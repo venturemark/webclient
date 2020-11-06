@@ -1,0 +1,179 @@
+{
+  "props": [
+    {
+      "name": "Green-50%",
+      "type": "color",
+      "value": "rgba(2,157,127,0.5)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "B46Lcr8OL"
+      }
+    },
+    {
+      "name": "UnnamedStyleToken",
+      "type": "color",
+      "value": "var(--token-B46Lcr8OL)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "DYXUMTmfA"
+      }
+    },
+    {
+      "name": "UnnamedStyleToken 2",
+      "type": "spacing",
+      "value": "1px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "VAfAs7NWA"
+      }
+    },
+    {
+      "name": "background",
+      "type": "color",
+      "value": "var(--token-01b69119-b413-4a0e-893f-21ed2081a290)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "0rBVph3oi"
+      }
+    },
+    {
+      "name": "black",
+      "type": "color",
+      "value": "rgb(21,15,36)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "YVOsw3L-n"
+      }
+    },
+    {
+      "name": "border",
+      "type": "color",
+      "value": "rgb(224,224,224)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "T8wtml_ng"
+      }
+    },
+    {
+      "name": "green",
+      "type": "color",
+      "value": "rgb(2,157,127)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "95829f13-f277-4fc0-b32e-c612d4afe537"
+      }
+    },
+    {
+      "name": "grey text",
+      "type": "color",
+      "value": "rgba(38,26,63,0)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "sJPCu_2Uu"
+      }
+    },
+    {
+      "name": "grey-text-main",
+      "type": "color",
+      "value": "rgb(189,189,189)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "HCHhYvBu9"
+      }
+    },
+    {
+      "name": "icon-focused",
+      "type": "color",
+      "value": "rgba(38,26,63,0.1)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "_Lw7GDR7y"
+      }
+    },
+    {
+      "name": "main-background",
+      "type": "color",
+      "value": "rgb(249,249,250)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "abI2ZZBhG"
+      }
+    },
+    {
+      "name": "purple",
+      "type": "color",
+      "value": "rgb(38,26,63)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "01b69119-b413-4a0e-893f-21ed2081a290"
+      }
+    },
+    {
+      "name": "purple-disabled",
+      "type": "color",
+      "value": "rgba(38,26,63,0.5)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "JTnFRZitB"
+      }
+    },
+    {
+      "name": "red",
+      "type": "color",
+      "value": "rgb(234,54,102)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "fcd77280-d1fc-42b9-85ed-d0f7f05aae8f"
+      }
+    },
+    {
+      "name": "red-50%",
+      "type": "color",
+      "value": "rgba(234,54,102,0.5)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "Pe-P769q6"
+      }
+    },
+    {
+      "name": "white",
+      "type": "color",
+      "value": "#ffffff",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "byKqoWybG"
+      }
+    },
+    {
+      "name": "yellow",
+      "type": "color",
+      "value": "rgb(247,208,71)",
+      "category": "color",
+      "meta": {
+        "projectId": "mSMs7FqGjFMPgGjdzmbmrV",
+        "id": "4a3400d2-9fc9-4553-80a2-98ceb85fba4a"
+      }
+    }
+  ],
+  "global": {
+    "meta": {
+      "source": "plasmic.app"
+    }
+  }
+}

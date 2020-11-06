@@ -1,0 +1,81 @@
+.LandingInput__emailAddress__XV3fW {
+  display: flex;
+  width: 194px;
+  font-size: 12px;
+  font-family: "Poppins";
+  padding-left: 13px;
+  border-top-style: solid;
+  border-right-style: none;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  height: 42px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: rgb(21, 15, 36) /* plasmic-token: YVOsw3L-n */;
+  position: relative;
+  border-radius: 0px;
+  border-width: 1px;
+  border-color: rgb(198, 198, 198);
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .LandingInput__emailAddress--desktop__XV3fWU__2W {
+    width: 346px;
+    height: 61px;
+    font-size: 15px;
+    font-weight: 600;
+    position: relative;
+    padding-top: 0px;
+  }
+}
+.LandingInput__emailAddress--added__XV3fWk_PPk {
+  position: relative;
+}
+.LandingInput__emailAddress--large__XV3fWjA0ZN {
+  height: 61px;
+  font-size: 15px;
+  font-weight: 600;
+  width: 346px;
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .LandingInput__emailAddress--largeDesktop__XV3fWjA0ZN_U__2W {
+    height: 61px;
+    width: 346px;
+  }
+}
+.LandingInput__emailAddress--dark__XV3fWyqYuT {
+  color: #ffffff /* plasmic-token: byKqoWybG */;
+  background-color: rgb(21, 15, 36) /* plasmic-token: YVOsw3L-n */;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 13px;
+  border-top-width: 1px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  text-align: left;
+  text-transform: none;
+  line-height: 1.5;
+  letter-spacing: normal;
+  white-space: pre-wrap;
+  user-select: text;
+  cursor: text;
+  border-radius: 0px;
+  border-style: solid;
+  border-color: #ffffff /* plasmic-token: byKqoWybG */;
+}
+.LandingInput__emailAddress--dark__XV3fWyqYuT::placeholder {
+  background-color: rgb(21, 15, 36) /* plasmic-token: YVOsw3L-n */;
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-image: none;
+  background-origin: padding-box;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #ffffff /* plasmic-token: byKqoWybG */;
+  border-color: #ffffff /* plasmic-token: byKqoWybG */;
+}

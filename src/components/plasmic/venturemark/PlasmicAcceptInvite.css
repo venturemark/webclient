@@ -1,0 +1,188 @@
+.AcceptInvite__root__nqJZw {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgb(249, 249, 250);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  border: 0px solid rgb(38, 26, 63) /* plasmic-token: 0rBVph3oi */;
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .AcceptInvite__root--desktop__nqJZwU__2W {
+    min-height: 1000px;
+  }
+}
+.AcceptInvite__box__x5Kgu {
+  display: flex;
+  position: relative;
+  background-color: #ffffff /* plasmic-token: byKqoWybG */;
+  width: auto;
+  height: 330px;
+  align-self: center;
+  min-width: 390px;
+  max-width: 680px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: T8wtml_ng */;
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .AcceptInvite__box--desktop__x5KguU__2W {
+    width: 100%;
+  }
+}
+.AcceptInvite__box__1ZvFa {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(68, 192, 255, 0);
+  width: 224px;
+  height: auto;
+}
+.AcceptInvite__box--isLoading__1ZvFa9WKv- {
+  width: 265px;
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .AcceptInvite__box--isLoadingDesktop__1ZvFa9WKv-_U__2W {
+    width: 345px;
+  }
+}
+.AcceptInvite__box__X13vJ {
+  position: relative;
+  font-size: 20px;
+  width: auto;
+  font-weight: 700;
+  display: inline-block;
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .AcceptInvite__box--desktop__X13vJU__2W {
+    font-size: 26px;
+  }
+}
+.AcceptInvite__slotFirstName__jciIC {
+  font-size: 20px;
+  font-weight: 700;
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .AcceptInvite__slotFirstName--desktop__jciICU__2W {
+    font-size: 26px;
+  }
+}
+.AcceptInvite__box___l7Zf {
+  position: relative;
+  font-size: 20px;
+  width: auto;
+  font-weight: 700;
+  display: inline-block;
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .AcceptInvite__box--desktop___l7ZfU__2W {
+    font-size: 26px;
+  }
+}
+.AcceptInvite__box__2nr5f {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  background-color: rgba(68, 192, 255, 0);
+  width: 100%;
+  height: auto;
+  margin-top: 5px;
+}
+.AcceptInvite__box__2nr5f > .__wab_flex-container {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin-left: calc(0px - 0px);
+  width: calc(100% + 0px);
+  margin-top: calc(0px - 4px);
+  height: calc(100% + 4px);
+}
+.AcceptInvite__box__2nr5f > .__wab_flex-container > *,
+.AcceptInvite__box__2nr5f > .__wab_flex-container > .__wab_slot > * {
+  margin-left: 0px;
+  margin-top: 4px;
+}
+.AcceptInvite__box__llSMm {
+  position: relative;
+  width: auto;
+  display: inline-block;
+}
+.AcceptInvite__box__gNROk {
+  display: inline-flex;
+  position: relative;
+  width: auto;
+  height: auto;
+}
+.AcceptInvite__slotCompanyName__ToYFg {
+  font-weight: 400;
+}
+.AcceptInvite__box__pNbqH {
+  position: relative;
+}
+.AcceptInvite__companyAvatar__UBTVB {
+  display: flex;
+  position: relative;
+  width: 60px;
+  margin-top: 30px;
+}
+.AcceptInvite__box__tXcIK {
+  display: flex;
+  position: relative;
+  margin-top: 7px;
+}
+.AcceptInvite__slotCompanyName2__OPJb7 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.AcceptInvite__box__mO7te {
+  display: flex;
+  position: relative;
+  margin-top: 2px;
+}
+.AcceptInvite__slotCompanyDescription__KYPs- {
+  font-size: 12px;
+  color: rgba(38, 26, 63, 0) /* plasmic-token: sJPCu_2Uu */;
+}
+.AcceptInvite__box__fTZD5 {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  background-color: rgba(68, 192, 255, 0);
+  width: auto;
+  height: auto;
+  min-width: 390px;
+  max-width: 680px;
+  margin-top: 20px;
+}
+.AcceptInvite__box__fTZD5 > .__wab_flex-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.AcceptInvite__box__fTZD5 > .__wab_flex-container > *,
+.AcceptInvite__box__fTZD5 > .__wab_flex-container > .__wab_slot > * {
+  margin-left: 5px;
+}
+.AcceptInvite__box__q6VGC {
+  position: relative;
+  font-size: 12px;
+}
+.AcceptInvite__link__nbDsx {
+  position: relative;
+  height: auto;
+  text-decoration-line: underline;
+  font-size: 12px;
+  font-weight: 400;
+}

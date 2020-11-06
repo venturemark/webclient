@@ -1,0 +1,20 @@
+.LoginEmail__loginEmail__7y4dN {
+  display: flex;
+  width: 174px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  position: relative;
+  border-radius: 5px;
+}
+@media (min-width: 600px) and (max-width: 9999px) {
+  .LoginEmail__loginEmail--desktop__7y4dNU__2W {
+    position: relative;
+  }
+}
+.LoginEmail__loginEmail__7y4dN::placeholder {
+  position: relative;
+}
+.LoginEmail__loginEmail__7y4dN::placeholder {
+  position: relative;
+}

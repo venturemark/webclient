@@ -1,0 +1,37 @@
+.ActionBarSelection__actionBarSelection__0JFWR {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(38, 26, 63, 0.2);
+  width: 100%;
+  height: auto;
+  position: relative;
+  border-radius: 8px;
+  padding: 4px 15px;
+}
+.ActionBarSelection__svg__XSj8R {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  color: #323232;
+  flex-shrink: 0;
+}
+.ActionBarSelection__slotName__Yb_fT {
+  font-weight: 600;
+  color: rgb(38, 26, 63)
+    /* plasmic-token: 01b69119-b413-4a0e-893f-21ed2081a290 */;
+}
+.ActionBarSelection__slotName--ask__Yb_fTJsja5 {
+  text-align: center;
+}
+.ActionBarSelection___delete__378W9 {
+  cursor: pointer;
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  color: #323232;
+  flex-shrink: 0;
+}

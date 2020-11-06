@@ -1,0 +1,17 @@
+.RegisterInput__input__VFSop {
+  display: flex;
+  width: auto;
+  text-align: center;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  font-size: 18px;
+  min-width: 100px;
+  border-bottom-style: solid;
+  font-weight: 600;
+  position: relative;
+}
+.RegisterInput__input--hasError__VFSopSjJIx {
+  position: relative;
+}
