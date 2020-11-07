@@ -35,7 +35,6 @@ import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
 import "./plasmic_flip_card.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import "./PlasmicUpdate.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
 import IconGraphIcon from "./icons/PlasmicIcon__IconGraph"; // plasmic-import: X0yAm0kztuYc_IO/icon
-import IconMetricIcon from "./icons/PlasmicIcon__IconMetric"; // plasmic-import: Sqzw_OTkst-6kZi/icon
 import IconTextIcon from "./icons/PlasmicIcon__IconText"; // plasmic-import: ncDyDuIGRd/icon
 import IconClockIcon from "./icons/PlasmicIcon__IconClock"; // plasmic-import: M_91_FWOwwP63LN/icon
 
@@ -103,7 +102,6 @@ function PlasmicUpdate__RenderFunc(props: {
       })}
     >
       <div
-        data-plasmic-wrap-flex-child={true}
         className={classNames({
           "Update__box--graph__cT4abVLB85": hasVariant(
             variants,
@@ -240,6 +238,12 @@ function PlasmicUpdate__RenderFunc(props: {
                       "graph"
                     ),
 
+                    "Update__toggleUpdateView--text__o6_TO__9Dd": hasVariant(
+                      variants,
+                      "state",
+                      "text"
+                    ),
+
                     Update__toggleUpdateView__o6_TO: true,
                     __wab_instance: true
                   })}
@@ -263,7 +267,7 @@ function PlasmicUpdate__RenderFunc(props: {
                         hasVariant(variants, "state", "graph")
                           ? IconTextIcon
                           : hasVariant(variants, "state", "text")
-                          ? IconMetricIcon
+                          ? IconGraphIcon
                           : IconGraphIcon
                       }
                       className={classNames({
