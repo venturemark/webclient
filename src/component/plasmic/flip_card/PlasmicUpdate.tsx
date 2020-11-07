@@ -61,7 +61,7 @@ export type PlasmicUpdate__OverridesType = {
   root?: Flex<"div">;
   textContainer?: Flex<"div">;
   metric?: Flex<typeof Metric>;
-  iconButton?: Flex<typeof IconButton>;
+  toggleUpdateView?: Flex<typeof IconButton>;
   startIcon?: Flex<"svg">;
   endIcon?: Flex<"svg">;
   svg?: Flex<"svg">;
@@ -225,10 +225,16 @@ function PlasmicUpdate__RenderFunc(props: {
                 })}
               >
                 <IconButton
-                  data-plasmic-name={"iconButton"}
-                  data-plasmic-override={overrides.iconButton}
+                  data-plasmic-name={"toggleUpdateView"}
+                  data-plasmic-override={overrides.toggleUpdateView}
                   className={classNames({
-                    Update__iconButton__o6_TO: true,
+                    "Update__toggleUpdateView--graph__o6_TOVLB85": hasVariant(
+                      variants,
+                      "state",
+                      "graph"
+                    ),
+
+                    Update__toggleUpdateView__o6_TO: true,
                     __wab_instance: true
                   })}
                   endIcon={
@@ -355,7 +361,7 @@ const PlasmicDescendants = {
     "root",
     "textContainer",
     "metric",
-    "iconButton",
+    "toggleUpdateView",
     "startIcon",
     "endIcon",
     "svg"
@@ -363,7 +369,7 @@ const PlasmicDescendants = {
 
   textContainer: ["textContainer"],
   metric: ["metric"],
-  iconButton: ["iconButton", "startIcon", "endIcon"],
+  toggleUpdateView: ["toggleUpdateView", "startIcon", "endIcon"],
   startIcon: ["startIcon"],
   endIcon: ["endIcon"],
   svg: ["svg"]
@@ -376,7 +382,7 @@ type NodeDefaultElementType = {
   root: "div";
   textContainer: "div";
   metric: typeof Metric;
-  iconButton: typeof IconButton;
+  toggleUpdateView: typeof IconButton;
   startIcon: "svg";
   endIcon: "svg";
   svg: "svg";
@@ -443,7 +449,7 @@ export const PlasmicUpdate = Object.assign(
     // Helper components rendering sub-elements
     textContainer: makeNodeComponent("textContainer"),
     metric: makeNodeComponent("metric"),
-    iconButton: makeNodeComponent("iconButton"),
+    toggleUpdateView: makeNodeComponent("toggleUpdateView"),
     startIcon: makeNodeComponent("startIcon"),
     endIcon: makeNodeComponent("endIcon"),
     svg: makeNodeComponent("svg"),
@@ -494,7 +500,7 @@ class PlasmicUpdate__Renderer extends Renderer<
   forNode(name: "svg"): ForNodeRenderer<"svg">;
   forNode(name: "endIcon"): ForNodeRenderer<"endIcon">;
   forNode(name: "startIcon"): ForNodeRenderer<"startIcon">;
-  forNode(name: "iconButton"): ForNodeRenderer<"iconButton">;
+  forNode(name: "toggleUpdateView"): ForNodeRenderer<"toggleUpdateView">;
   forNode(name: "metric"): ForNodeRenderer<"metric">;
   forNode(name: "textContainer"): ForNodeRenderer<"textContainer">;
   forNode(name: "root"): ForNodeRenderer<"root">;
