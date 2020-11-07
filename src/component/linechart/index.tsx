@@ -13,7 +13,7 @@ interface ChartProps {
 const LineChart: React.FC<ChartProps> = ({ data, dataKey }) => {
   return (
     <AreaChart
-      width={680}
+      width={640}
       height={100}
       data={data}
       margin={{ top: 5, right: 10, left: 10, bottom: 5 }}

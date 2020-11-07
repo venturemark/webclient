@@ -192,6 +192,12 @@ function PlasmicUpdate__RenderFunc(props: {
         {(hasVariant(variants, "state", "text") ? true : true) ? (
           <div
             className={classNames({
+              "Update__box--graph__4ZrypVLB85": hasVariant(
+                variants,
+                "state",
+                "graph"
+              ),
+
               "Update__box--text__4Zryp__9Dd": hasVariant(
                 variants,
                 "state",
@@ -290,6 +296,12 @@ function PlasmicUpdate__RenderFunc(props: {
             <div
               data-plasmic-wrap-flex-child={true}
               className={classNames({
+                "Update__box--graph__NHl3bVLB85": hasVariant(
+                  variants,
+                  "state",
+                  "graph"
+                ),
+
                 "Update__box--text__NHl3b__9Dd": hasVariant(
                   variants,
                   "state",

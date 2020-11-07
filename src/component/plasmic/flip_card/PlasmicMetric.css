@@ -1,5 +1,5 @@
 .Metric__metricItem__SDzae {
-  width: 700px;
+  width: 100%;
   display: flex;
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   height: 150px;
@@ -33,24 +33,25 @@
   font-size: 16px;
 }
 .Metric__box__0lbRl {
-  display: flex;
-  position: absolute;
+  display: inline-flex;
+  position: relative;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   top: auto;
-  left: 10px;
-  width: 100%;
+  left: auto;
+  width: auto;
   align-self: flex-start;
-  bottom: 5px;
+  bottom: auto;
 }
 .Metric__graphContainer__utA6n {
   object-fit: fill;
-  width: 100%;
+  width: 680px;
   height: 100px;
   align-self: flex-end;
   position: relative;
   left: auto;
   top: auto;
   bottom: auto;
+  flex-shrink: 0;
 }
