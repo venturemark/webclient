@@ -1,0 +1,18 @@
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 194 47">
+  <path d="M34.5 9.5C24 9.5 1 17 1 17v29.5h184v-37c-16.5 0-19 19-30.5 19S135 3 124.5 3s-19.5 15-30 15-20.5 7-30 7C54 25 45 9.5 34.5 9.5z" fill="url(#OQmTPzVtMa)" fill-opacity=".15"/>
+  <path d="M1 17s23-7.5 33.5-7.5S54 25 64.5 25c9.5 0 19.5-7 30-7s19.5-15 30-15 18.5 25.5 30 25.5 14-19 30.5-19" stroke="#029D7F" stroke-linecap="round" stroke-linejoin="bevel"/>
+  <circle cx="184.5" cy="9.5" r="9.5" fill="#029D7F" fill-opacity=".2"/>
+  <circle cx="184.5" cy="9.5" r="4.5" fill="#fff"/>
+  <circle cx="184.5" cy="9.5" r="2.5" fill="#029D7F"/>
+  <circle cx="64.5" cy="25" r="2" fill="#fff" stroke="#029D7F"/>
+  <circle cx="94.5" cy="18" r="2" fill="#fff" stroke="#029D7F"/>
+  <circle cx="124.5" cy="3" r="2" fill="#fff" stroke="#029D7F"/>
+  <circle cx="154.5" cy="28" r="2" fill="#fff" stroke="#029D7F"/>
+  <circle cx="34.5" cy="9.5" r="2" fill="#fff" stroke="#029D7F"/>
+  <defs>
+    <linearGradient id="OQmTPzVtMa" x1="93" y1="9.5" x2="93" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#029D7F"/>
+      <stop offset="1" stop-color="#C4C4C4" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

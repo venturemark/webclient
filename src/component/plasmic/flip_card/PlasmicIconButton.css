@@ -1,0 +1,62 @@
+.IconButton__root__dsslI {
+  position: relative;
+  width: auto;
+  display: inline-flex;
+  flex-direction: row;
+  height: auto;
+  cursor: pointer;
+  background-color: rgba(38, 26, 63, 0.1) /* plasmic-token: u3JIt-BuU8GbDfJ */;
+  border-radius: 8px;
+  padding: 5px;
+}
+.IconButton__root__dsslI > .__wab_flex-container {
+  flex-direction: row;
+  align-items: center;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.IconButton__root__dsslI > .__wab_flex-container > *,
+.IconButton__root__dsslI > .__wab_flex-container > .__wab_slot > * {
+  margin-left: 5px;
+}
+.IconButton__root--__dsslI3ehVR {
+  background-color: rgba(2, 157, 127, 0.5) /* plasmic-token: ktdOhSoiQwPKRUS */;
+  outline: none;
+  padding: 5px;
+}
+.IconButton__root__dsslI:hover {
+  background-color: rgba(2, 157, 127, 0.5) /* plasmic-token: YRJle7f6cdaqkr9 */;
+}
+.IconButton__startIcon__36tyI {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  flex-shrink: 0;
+}
+.IconButton__box__GjUYU {
+  display: inline-flex;
+  position: relative;
+  align-self: center;
+  height: auto;
+  width: auto;
+}
+.IconButton__slotContent__1ugyP {
+  text-align: center;
+}
+.IconButton__slotContent--isDisabled__1ugyPF0ULC {
+  color: rgba(38, 26, 63, 0.5) /* plasmic-token: lwU_HL5JBOkJ3g0 */;
+}
+.IconButton__endIcon__Noqpm {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  flex-shrink: 0;
+}

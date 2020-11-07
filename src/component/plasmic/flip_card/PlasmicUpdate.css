@@ -1,0 +1,184 @@
+.Update__root__qz6VI {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(68, 192, 255, 0);
+  width: 100%;
+  height: auto;
+  position: relative;
+  max-width: 700px;
+}
+.Update__root__qz6VI > .__wab_flex-container {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: calc(0px - 10px);
+  height: calc(100% + 10px);
+}
+.Update__root__qz6VI > .__wab_flex-container > *,
+.Update__root__qz6VI > .__wab_flex-container > .__wab_slot > * {
+  margin-top: 10px;
+}
+.Update__root--text__qz6VI__9Dd {
+  height: auto;
+  width: auto;
+  display: inline-flex;
+}
+.Update__box__cT4ab {
+  display: flex;
+  position: relative;
+  background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+  width: 100%;
+  height: auto;
+  left: auto;
+  top: auto;
+  flex-direction: column;
+  align-self: flex-start;
+  border-radius: 8px;
+  padding: 15px 20px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.Update__box__cT4ab > .__wab_flex-container {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: calc(0px - 10px);
+  height: calc(100% + 10px);
+}
+.Update__box__cT4ab > .__wab_flex-container > *,
+.Update__box__cT4ab > .__wab_flex-container > .__wab_slot > * {
+  margin-top: 10px;
+}
+.Update__box--text__cT4ab__9Dd {
+  align-self: flex-start;
+}
+.Update__box--text__cT4ab__9Dd > .__wab_flex-container {
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.Update__box__AQbk3 {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  background-color: rgba(68, 192, 255, 0);
+  width: 100%;
+  height: 100%;
+}
+.Update__box--text__AQbk3__9Dd {
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+}
+.Update__textContainer__Q8i3c {
+  position: relative;
+  left: auto;
+  top: auto;
+  font-weight: 300;
+  white-space: normal;
+  width: 100%;
+  height: auto;
+}
+.Update__textContainer--text__Q8i3c__9Dd {
+  width: 100%;
+}
+.Update__metric__ejHyM.__wab_instance {
+  position: relative;
+}
+.Update__box__4Zryp {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(68, 192, 255, 0);
+  width: 100%;
+  height: auto;
+  margin-top: calc(10px + 10px) !important;
+}
+.Update__box--text__4Zryp__9Dd {
+  width: 100%;
+  justify-content: space-between;
+  height: auto;
+}
+.Update__box__rBfll {
+  display: inline-flex;
+  position: relative;
+  flex-direction: row;
+  background-color: rgba(68, 192, 255, 0);
+  width: auto;
+  height: auto;
+  align-self: flex-start;
+}
+.Update__box__rBfll > .__wab_flex-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.Update__box__rBfll > .__wab_flex-container > *,
+.Update__box__rBfll > .__wab_flex-container > .__wab_slot > * {
+  margin-left: 5px;
+}
+.Update__box--text__rBfll__9Dd {
+  align-self: flex-end;
+}
+.Update__iconButton__o6_TO.__wab_instance {
+  position: relative;
+}
+.Update__startIcon__X90S9 {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.Update__endIcon__opXPA {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.Update__box__NHl3b {
+  display: inline-flex;
+  position: relative;
+  flex-direction: row;
+  background-color: rgba(68, 192, 255, 0);
+  width: auto;
+  height: auto;
+  align-self: flex-start;
+}
+.Update__box__NHl3b > .__wab_flex-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.Update__box__NHl3b > .__wab_flex-container > *,
+.Update__box__NHl3b > .__wab_flex-container > .__wab_slot > * {
+  margin-left: 5px;
+}
+.Update__box--text__NHl3b__9Dd {
+  align-self: center;
+}
+.Update__svg__L-S2H {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  color: #323232;
+  flex-shrink: 0;
+}
+.Update__box__ZSoVv {
+  display: flex;
+  position: relative;
+  background-color: rgba(249, 249, 250, 0);
+  border-radius: 50%;
+}
