@@ -1,5 +1,5 @@
 import React from 'react'
-import { AreaChart, Area, Tooltip, XAxis } from 'recharts'
+import { AreaChart, Area, Tooltip, XAxis } from 'recharts' 
 
 type DataItem = {
   [key:string]: string | number

@@ -39,7 +39,7 @@ function Metric(props: MetricProps) {
   // 4. Props to set on the root node.
   //
   // By default, we are just piping all MetricProps here, but feel free
-  // to do whatever works for you.
+  // to do whatever works for you. 
   return <PlasmicMetric
     name={'Customer Acquisition Cost'}
     graphContainer={{
