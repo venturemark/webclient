@@ -5,8 +5,6 @@
 #     workflow create typescript
 #
 
-# to be up to date. Further
-
 name: "typescript"
 
 on: "push"
