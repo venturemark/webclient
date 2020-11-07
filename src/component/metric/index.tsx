@@ -25,7 +25,7 @@ interface MetricProps extends DefaultMetricProps {
 }
 
 function Metric(props: MetricProps) {
-  const { data, dataKey, name, updated } = props
+  const { name } = props
   // Use PlasmicMetric to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
