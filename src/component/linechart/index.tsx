@@ -2,19 +2,18 @@ import React from 'react'
 import { AreaChart, Area, Tooltip, XAxis } from 'recharts'
 
 type DataItem = {
-  name: string,
-  value: number,
+  [key:string]: string | number
 }
 
-type ChartProps = {
-  data: DataItem[],
+interface ChartProps {
   dataKey: string,
+  data: DataItem[],
 }
 
 const LineChart: React.FC<ChartProps> = ({ data, dataKey }) => {
   return (
     <AreaChart
-      width={670}
+      width={680}
       height={100}
       data={data}
       margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
