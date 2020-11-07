@@ -3,7 +3,7 @@ import React from 'react'
 import logo from 'asset/logo.svg'
 
 import './index.css'
-import Update from '../Update'
+import Update from '../update/index'
 
 type Props = { }
 

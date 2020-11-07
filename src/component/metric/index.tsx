@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   PlasmicMetric,
   DefaultMetricProps
-} from "./plasmic/flip_card/PlasmicMetric";
+} from "../plasmic/flip_card/PlasmicMetric";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
