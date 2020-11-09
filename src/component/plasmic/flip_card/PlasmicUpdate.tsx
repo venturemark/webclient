@@ -248,16 +248,30 @@ function PlasmicUpdate__RenderFunc(props: {
                     __wab_instance: true,
                   })}
                   endIcon={
-                    <svg
-                      data-plasmic-name={'endIcon'}
-                      data-plasmic-override={overrides.endIcon}
-                      className={classNames({
-                        Update__endIcon__opXPA: true,
-                        'plasmic-default__all': true,
-                        'plasmic-default__svg': true,
-                      })}
-                      role={'img'}
-                    ></svg>
+                    (hasVariant(variants, 'state', 'text') ? false : false) ? (
+                      <svg
+                        data-plasmic-name={'endIcon'}
+                        data-plasmic-override={overrides.endIcon}
+                        className={classNames({
+                          'Update__endIcon--graph__opXPAVLB85': hasVariant(
+                            variants,
+                            'state',
+                            'graph',
+                          ),
+
+                          'Update__endIcon--text__opXPA__9Dd': hasVariant(
+                            variants,
+                            'state',
+                            'text',
+                          ),
+
+                          Update__endIcon__opXPA: true,
+                          'plasmic-default__all': true,
+                          'plasmic-default__svg': true,
+                        })}
+                        role={'img'}
+                      ></svg>
+                    ) : null
                   }
                   startIcon={
                     <PlasmicIcon
