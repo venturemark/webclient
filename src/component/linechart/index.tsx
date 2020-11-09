@@ -1,16 +1,16 @@
 import React from 'react'
-import { AreaChart, Area, Tooltip, XAxis } from 'recharts' 
+import { AreaChart, Area, Tooltip, XAxis } from 'recharts'
 
 type DataItem = {
-  [key:string]: string | number
+  [key: string]: string | number
 }
 
 interface ChartProps {
-  dataKey: string,
-  data: DataItem[],
+  dataKey: string
+  data: DataItem[]
 }
 
-const LineChart: React.FC<ChartProps> = ({ data, dataKey }) => {
+export const Component: React.FC<ChartProps> = ({ data, dataKey }) => {
   return (
     <AreaChart
       width={640}
@@ -37,5 +37,3 @@ const LineChart: React.FC<ChartProps> = ({ data, dataKey }) => {
     </AreaChart>
   )
 }
-
-export default LineChart

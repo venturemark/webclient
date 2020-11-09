@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import {
   PlasmicUpdate,
   DefaultUpdateProps,
-} from '../plasmic/flip_card/PlasmicUpdate'
+} from 'component/plasmic/flipcard/PlasmicUpdate'
+import './index.css'
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -43,6 +44,7 @@ export function Component(props: UpdateProps) {
   return (
     <PlasmicUpdate
       {...props}
+      className={'update'}
       state={updateView}
       toggleUpdateView={{
         'aria-label': 'Toggle View',

@@ -4,7 +4,7 @@ import * as React from 'react'
 import {
   PlasmicIconButton,
   DefaultIconButtonProps,
-} from '../plasmic/flip_card/PlasmicIconButton'
+} from 'component/plasmic/flipcard/PlasmicIconButton'
 import { PlumeButtonProps, PlumeButtonRef, useButton } from '@plasmicapp/plume'
 
 interface IconButtonProps extends PlumeButtonProps {}

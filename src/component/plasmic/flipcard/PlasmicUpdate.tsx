@@ -32,7 +32,7 @@ import IconButton from '../../iconButton/index' // plasmic-import: odPjbfT2kyJgB
 
 import '@plasmicapp/react-web/lib/plasmic.css'
 import '../plasmic__default_style.css' // plasmic-import: global/defaultcss
-import './plasmic_flip_card.css' // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import './plasmic_flipcard.css' // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import './PlasmicUpdate.css' // plasmic-import: Fs8bTUrvZrvfhCr/css
 import IconGraphIcon from './icons/PlasmicIcon__IconGraph' // plasmic-import: X0yAm0kztuYc_IO/icon
 import IconTextIcon from './icons/PlasmicIcon__IconText' // plasmic-import: ncDyDuIGRd/icon

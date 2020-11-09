@@ -5,7 +5,7 @@ import logo from 'asset/logo.svg'
 import './index.css'
 import * as update from 'component/update'
 
-type Props = { }
+type Props = {}
 
 export function Component(props: Props) {
   return (

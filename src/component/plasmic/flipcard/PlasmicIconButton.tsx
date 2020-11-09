@@ -30,7 +30,7 @@ import {
 
 import '@plasmicapp/react-web/lib/plasmic.css'
 import '../plasmic__default_style.css' // plasmic-import: global/defaultcss
-import './plasmic_flip_card.css' // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import './plasmic_flipcard.css' // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import './PlasmicIconButton.css' // plasmic-import: odPjbfT2kyJgB_S/css
 
 export type PlasmicIconButton__VariantMembers = {
