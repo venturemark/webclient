@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@plasmicapp/plume": "^0.1.15",
     "@plasmicapp/react-web": "^0.2.8",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
