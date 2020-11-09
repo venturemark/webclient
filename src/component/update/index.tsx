@@ -23,8 +23,9 @@ interface UpdateProps extends DefaultUpdateProps {}
 
 type UpdateState = 'text' | 'graph' | undefined
 
-function Update(props: UpdateProps) {
+export function Component(props: UpdateProps) {
   const [updateView, setUpdateView] = useState<UpdateState>('text')
+  const view = 'text'
   // Use PlasmicUpdate to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
@@ -49,5 +50,3 @@ function Update(props: UpdateProps) {
     }}
    />;
 }
-
-export default Update;

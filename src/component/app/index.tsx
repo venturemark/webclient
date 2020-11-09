@@ -3,7 +3,7 @@ import React from 'react'
 import logo from 'asset/logo.svg'
 
 import './index.css'
-import Update from '../update/index'
+import * as update from 'component/update'
 
 type Props = { }
 
@@ -11,7 +11,7 @@ export function Component(props: Props) {
   return (
     <div className="App">
       <header className="App-header">
-        <Update />
+        <update.Component />
       </header>
     </div>
   )
