@@ -1,7 +1,5 @@
 import React from "react";
 
-import logo from "asset/logo.svg";
-
 import "./index.css";
 import * as update from "component/update";
 
