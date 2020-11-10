@@ -25,17 +25,16 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts
+  deriveRenderOpts,
 } from "@plasmicapp/react-web";
-import Metric from "../../Metric"; // plasmic-import: _i6uD1XPzdbux6R/component
-import IconButton from "../../IconButton"; // plasmic-import: odPjbfT2kyJgB_S/component
+import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
+import IconButton from "../../iconButton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import "./plasmic_flip_card.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import "./plasmic_flipcard.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import "./PlasmicUpdate.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
 import IconGraphIcon from "./icons/PlasmicIcon__IconGraph"; // plasmic-import: X0yAm0kztuYc_IO/icon
-import IconMetricIcon from "./icons/PlasmicIcon__IconMetric"; // plasmic-import: Sqzw_OTkst-6kZi/icon
 import IconTextIcon from "./icons/PlasmicIcon__IconText"; // plasmic-import: ncDyDuIGRd/icon
 import IconClockIcon from "./icons/PlasmicIcon__IconClock"; // plasmic-import: M_91_FWOwwP63LN/icon
 
@@ -61,7 +60,7 @@ export type PlasmicUpdate__OverridesType = {
   root?: Flex<"div">;
   textContainer?: Flex<"div">;
   metric?: Flex<typeof Metric>;
-  iconButton?: Flex<typeof IconButton>;
+  toggleUpdateView?: Flex<typeof IconButton>;
   startIcon?: Flex<"svg">;
   endIcon?: Flex<"svg">;
   svg?: Flex<"svg">;
@@ -99,11 +98,10 @@ function PlasmicUpdate__RenderFunc(props: {
         Update__root__qz6VI: true,
         "plasmic-default__all": true,
         "plasmic-default__div": true,
-        root_reset_mTVXT6w3HHjZ4d74q3gB76: true
+        root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
       })}
     >
       <div
-        data-plasmic-wrap-flex-child={true}
         className={classNames({
           "Update__box--graph__cT4abVLB85": hasVariant(
             variants,
@@ -119,7 +117,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
           Update__box__cT4ab: true,
           "plasmic-default__all": true,
-          "plasmic-default__div": true
+          "plasmic-default__div": true,
         })}
       >
         <div
@@ -138,7 +136,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
             Update__box__AQbk3: true,
             "plasmic-default__all": true,
-            "plasmic-default__div": true
+            "plasmic-default__div": true,
           })}
         >
           {(hasVariant(variants, "state", "graph") ? false : true) ? (
@@ -161,7 +159,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
                   Update__textContainer__Q8i3c: true,
                   "plasmic-default__all": true,
-                  "plasmic-default__div": true
+                  "plasmic-default__div": true,
                 }) + " __wab_text"
               }
             >
@@ -182,7 +180,7 @@ function PlasmicUpdate__RenderFunc(props: {
                 ),
 
                 Update__metric__ejHyM: true,
-                __wab_instance: true
+                __wab_instance: true,
               })}
               {...({} as any)}
             ></Metric>
@@ -192,6 +190,12 @@ function PlasmicUpdate__RenderFunc(props: {
         {(hasVariant(variants, "state", "text") ? true : true) ? (
           <div
             className={classNames({
+              "Update__box--graph__4ZrypVLB85": hasVariant(
+                variants,
+                "state",
+                "graph"
+              ),
+
               "Update__box--text__4Zryp__9Dd": hasVariant(
                 variants,
                 "state",
@@ -200,7 +204,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
               Update__box__4Zryp: true,
               "plasmic-default__all": true,
-              "plasmic-default__div": true
+              "plasmic-default__div": true,
             })}
           >
             {(hasVariant(variants, "state", "text") ? true : true) ? (
@@ -221,27 +225,53 @@ function PlasmicUpdate__RenderFunc(props: {
 
                   Update__box__rBfll: true,
                   "plasmic-default__all": true,
-                  "plasmic-default__div": true
+                  "plasmic-default__div": true,
                 })}
               >
                 <IconButton
-                  data-plasmic-name={"iconButton"}
-                  data-plasmic-override={overrides.iconButton}
+                  data-plasmic-name={"toggleUpdateView"}
+                  data-plasmic-override={overrides.toggleUpdateView}
                   className={classNames({
-                    Update__iconButton__o6_TO: true,
-                    __wab_instance: true
+                    "Update__toggleUpdateView--graph__o6_TOVLB85": hasVariant(
+                      variants,
+                      "state",
+                      "graph"
+                    ),
+
+                    "Update__toggleUpdateView--text__o6_TO__9Dd": hasVariant(
+                      variants,
+                      "state",
+                      "text"
+                    ),
+
+                    Update__toggleUpdateView__o6_TO: true,
+                    __wab_instance: true,
                   })}
                   endIcon={
-                    <svg
-                      data-plasmic-name={"endIcon"}
-                      data-plasmic-override={overrides.endIcon}
-                      className={classNames({
-                        Update__endIcon__opXPA: true,
-                        "plasmic-default__all": true,
-                        "plasmic-default__svg": true
-                      })}
-                      role={"img"}
-                    ></svg>
+                    (hasVariant(variants, "state", "text") ? false : false) ? (
+                      <svg
+                        data-plasmic-name={"endIcon"}
+                        data-plasmic-override={overrides.endIcon}
+                        className={classNames({
+                          "Update__endIcon--graph__opXPAVLB85": hasVariant(
+                            variants,
+                            "state",
+                            "graph"
+                          ),
+
+                          "Update__endIcon--text__opXPA__9Dd": hasVariant(
+                            variants,
+                            "state",
+                            "text"
+                          ),
+
+                          Update__endIcon__opXPA: true,
+                          "plasmic-default__all": true,
+                          "plasmic-default__svg": true,
+                        })}
+                        role={"img"}
+                      ></svg>
+                    ) : null
                   }
                   startIcon={
                     <PlasmicIcon
@@ -251,7 +281,7 @@ function PlasmicUpdate__RenderFunc(props: {
                         hasVariant(variants, "state", "graph")
                           ? IconTextIcon
                           : hasVariant(variants, "state", "text")
-                          ? IconMetricIcon
+                          ? IconGraphIcon
                           : IconGraphIcon
                       }
                       className={classNames({
@@ -269,7 +299,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
                         Update__startIcon__X90S9: true,
                         "plasmic-default__all": true,
-                        "plasmic-default__svg": true
+                        "plasmic-default__svg": true,
                       })}
                       role={"img"}
                       {...({} as any)}
@@ -284,6 +314,12 @@ function PlasmicUpdate__RenderFunc(props: {
             <div
               data-plasmic-wrap-flex-child={true}
               className={classNames({
+                "Update__box--graph__NHl3bVLB85": hasVariant(
+                  variants,
+                  "state",
+                  "graph"
+                ),
+
                 "Update__box--text__NHl3b__9Dd": hasVariant(
                   variants,
                   "state",
@@ -292,7 +328,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
                 Update__box__NHl3b: true,
                 "plasmic-default__all": true,
-                "plasmic-default__div": true
+                "plasmic-default__div": true,
               })}
             >
               <PlasmicIcon
@@ -318,7 +354,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
                   "Update__svg__L-S2H": true,
                   "plasmic-default__all": true,
-                  "plasmic-default__svg": true
+                  "plasmic-default__svg": true,
                 })}
                 role={"img"}
                 {...({} as any)}
@@ -334,7 +370,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
                   Update__box__ZSoVv: true,
                   "plasmic-default__all": true,
-                  "plasmic-default__div": true
+                  "plasmic-default__div": true,
                 })}
               >
                 <PlasmicSlot
@@ -355,18 +391,18 @@ const PlasmicDescendants = {
     "root",
     "textContainer",
     "metric",
-    "iconButton",
+    "toggleUpdateView",
     "startIcon",
     "endIcon",
-    "svg"
+    "svg",
   ],
 
   textContainer: ["textContainer"],
   metric: ["metric"],
-  iconButton: ["iconButton", "startIcon", "endIcon"],
+  toggleUpdateView: ["toggleUpdateView", "startIcon", "endIcon"],
   startIcon: ["startIcon"],
   endIcon: ["endIcon"],
-  svg: ["svg"]
+  svg: ["svg"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -376,7 +412,7 @@ type NodeDefaultElementType = {
   root: "div";
   textContainer: "div";
   metric: typeof Metric;
-  iconButton: typeof IconButton;
+  toggleUpdateView: typeof IconButton;
   startIcon: "svg";
   endIcon: "svg";
   svg: "svg";
@@ -394,8 +430,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUpdate__VariantsArgs;
     args?: PlasmicUpdate__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicUpdate__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -418,14 +453,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicUpdate__ArgProps,
-      internalVariantPropNames: PlasmicUpdate__VariantProps
+      internalVariantPropNames: PlasmicUpdate__VariantProps,
     });
 
     return PlasmicUpdate__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -443,7 +478,7 @@ export const PlasmicUpdate = Object.assign(
     // Helper components rendering sub-elements
     textContainer: makeNodeComponent("textContainer"),
     metric: makeNodeComponent("metric"),
-    iconButton: makeNodeComponent("iconButton"),
+    toggleUpdateView: makeNodeComponent("toggleUpdateView"),
     startIcon: makeNodeComponent("startIcon"),
     endIcon: makeNodeComponent("endIcon"),
     svg: makeNodeComponent("svg"),
@@ -453,7 +488,7 @@ export const PlasmicUpdate = Object.assign(
 
     // Metadata about props expected for PlasmicUpdate
     internalVariantProps: PlasmicUpdate__VariantProps,
-    internalArgProps: PlasmicUpdate__ArgProps
+    internalArgProps: PlasmicUpdate__ArgProps,
   }
 );
 
@@ -494,7 +529,7 @@ class PlasmicUpdate__Renderer extends Renderer<
   forNode(name: "svg"): ForNodeRenderer<"svg">;
   forNode(name: "endIcon"): ForNodeRenderer<"endIcon">;
   forNode(name: "startIcon"): ForNodeRenderer<"startIcon">;
-  forNode(name: "iconButton"): ForNodeRenderer<"iconButton">;
+  forNode(name: "toggleUpdateView"): ForNodeRenderer<"toggleUpdateView">;
   forNode(name: "metric"): ForNodeRenderer<"metric">;
   forNode(name: "textContainer"): ForNodeRenderer<"textContainer">;
   forNode(name: "root"): ForNodeRenderer<"root">;
