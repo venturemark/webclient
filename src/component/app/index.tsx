@@ -1,18 +1,19 @@
-import React from 'react'
+import React from "react";
+import { FlipProvider } from "react-easy-flip";
 
-import logo from 'asset/logo.svg'
+import "./index.css";
+import * as update from "component/update";
 
-import './index.css'
-import * as update from 'component/update'
-
-type Props = {}
+type Props = {};
 
 export function Component(props: Props) {
   return (
     <div className="App">
       <header className="App-header">
-        <update.Component />
+        <FlipProvider>
+          <update.Component />
+        </FlipProvider>
       </header>
     </div>
-  )
+  );
 }
