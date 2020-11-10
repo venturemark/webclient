@@ -3,7 +3,7 @@
 import * as React from "react";
 import {
   PlasmicMetric,
-  DefaultMetricProps
+  DefaultMetricProps,
 } from "component/plasmic/flipcard/PlasmicMetric";
 import * as linechart from "component/linechart";
 
@@ -17,6 +17,7 @@ import * as linechart from "component/linechart";
 // interface MetricProps extends Omit<DefaultMetricProps, "hideProps1"|"hideProp2"> {
 //   // etc.
 // }
+
 //
 // You can also stop extending from DefaultMetricProps altogether and have
 // total control over the props for your component.
@@ -49,35 +50,35 @@ function Metric(props: MetricProps) {
             data={[
               {
                 date: "January 1, 2019",
-                cac: 50
+                cac: 50,
               },
               {
                 date: "February 2, 2019",
-                cac: 55
+                cac: 55,
               },
               {
                 date: "March 3, 2019",
-                cac: 40
+                cac: 40,
               },
               {
                 date: "April 1, 2019",
-                cac: 35
+                cac: 35,
               },
               {
                 date: "May 10, 2019",
-                cac: 39
+                cac: 39,
               },
               {
                 date: "June 1, 2019",
-                cac: 40
+                cac: 40,
               },
               {
                 date: "July 1, 2019",
-                cac: 50
-              }
+                cac: 50,
+              },
             ]}
           />
-        )
+        ),
       }}
     />
   );

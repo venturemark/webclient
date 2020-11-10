@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import {
   PlasmicUpdate,
-  DefaultUpdateProps
+  DefaultUpdateProps,
 } from "component/plasmic/flipcard/PlasmicUpdate";
 import "./index.css";
 
@@ -23,7 +23,7 @@ export function Component(props: UpdateProps) {
           "aria-label": "Toggle View",
           onPress: () => {
             setIsFlipped(!isFlipped);
-          }
+          },
         }}
       />
       <PlasmicUpdate
@@ -34,7 +34,7 @@ export function Component(props: UpdateProps) {
           "aria-label": "Toggle View",
           onPress: () => {
             setIsFlipped(!isFlipped);
-          }
+          },
         }}
       />
     </ReactCardFlip>
