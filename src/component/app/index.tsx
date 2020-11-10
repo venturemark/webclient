@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-import logo from 'asset/logo.svg'
+import logo from "asset/logo.svg";
 
-import './index.css'
-import * as update from 'component/update'
+import "./index.css";
+import * as update from "component/update";
 
-type Props = { }
+type Props = {};
 
 export function Component(props: Props) {
   return (
@@ -14,5 +14,5 @@ export function Component(props: Props) {
         <update.Component />
       </header>
     </div>
-  )
+  );
 }
