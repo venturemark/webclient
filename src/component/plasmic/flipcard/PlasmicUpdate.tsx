@@ -28,7 +28,7 @@ import {
   deriveRenderOpts,
 } from "@plasmicapp/react-web";
 import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
-import IconButton from "../../iconButton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
+import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
