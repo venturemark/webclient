@@ -25,12 +25,12 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts
+  deriveRenderOpts,
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import "./plasmic_flip_card.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import "./plasmic_flipcard.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import "./PlasmicMetric.css"; // plasmic-import: _i6uD1XPzdbux6R/css
 
 export type PlasmicMetric__VariantMembers = {};
@@ -74,14 +74,14 @@ function PlasmicMetric__RenderFunc(props: {
         Metric__metricItem__SDzae: true,
         "plasmic-default__all": true,
         "plasmic-default__div": true,
-        root_reset_mTVXT6w3HHjZ4d74q3gB76: true
+        root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
       })}
     >
       <div
         className={classNames({
           Metric__box__XYVDg: true,
           "plasmic-default__all": true,
-          "plasmic-default__div": true
+          "plasmic-default__div": true,
         })}
       >
         <PlasmicSlot
@@ -95,7 +95,7 @@ function PlasmicMetric__RenderFunc(props: {
         className={classNames({
           Metric__box__0lbRl: true,
           "plasmic-default__all": true,
-          "plasmic-default__div": true
+          "plasmic-default__div": true,
         })}
       >
         <img
@@ -105,7 +105,7 @@ function PlasmicMetric__RenderFunc(props: {
           className={classNames({
             Metric__graphContainer__utA6n: true,
             "plasmic-default__all": true,
-            "plasmic-default__img": true
+            "plasmic-default__img": true,
           })}
           role={"img"}
           src={
@@ -119,7 +119,7 @@ function PlasmicMetric__RenderFunc(props: {
 
 const PlasmicDescendants = {
   metricItem: ["metricItem", "graphContainer"],
-  graphContainer: ["graphContainer"]
+  graphContainer: ["graphContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -142,8 +142,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMetric__VariantsArgs;
     args?: PlasmicMetric__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicMetric__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicMetric__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicMetric__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -166,14 +165,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicMetric__ArgProps,
-      internalVariantPropNames: PlasmicMetric__VariantProps
+      internalVariantPropNames: PlasmicMetric__VariantProps,
     });
 
     return PlasmicMetric__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "metricItem") {
@@ -196,7 +195,7 @@ export const PlasmicMetric = Object.assign(
 
     // Metadata about props expected for PlasmicMetric
     internalVariantProps: PlasmicMetric__VariantProps,
-    internalArgProps: PlasmicMetric__ArgProps
+    internalArgProps: PlasmicMetric__ArgProps,
   }
 );
 
