@@ -22,7 +22,7 @@ function IconButton_(props: IconButtonProps, ref: PlumeButtonRef) {
       endIconSlot: "endIcon",
       contentSlot: "content",
 
-      root: "root"
+      root: "root",
     },
     ref
   );
