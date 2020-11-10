@@ -20,20 +20,20 @@
   "projects": [
     {
       "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-      "projectName": "Flip-Card",
+      "projectName": "flipcard",
       "version": "latest",
-      "cssFilePath": "plasmic/flip_card/plasmic_flip_card.css",
+      "cssFilePath": "plasmic/flipcard/plasmic_flipcard.css",
       "components": [
         {
           "id": "Fs8bTUrvZrvfhCr",
           "name": "Update",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/flip_card/PlasmicUpdate.tsx",
+          "renderModuleFilePath": "plasmic/flipcard/PlasmicUpdate.tsx",
           "importSpec": {
             "modulePath": "update/index.tsx"
           },
-          "cssFilePath": "plasmic/flip_card/PlasmicUpdate.css",
+          "cssFilePath": "plasmic/flipcard/PlasmicUpdate.css",
           "scheme": "blackbox"
         },
         {
@@ -41,11 +41,11 @@
           "name": "Metric",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/flip_card/PlasmicMetric.tsx",
+          "renderModuleFilePath": "plasmic/flipcard/PlasmicMetric.tsx",
           "importSpec": {
             "modulePath": "metric/index.tsx"
           },
-          "cssFilePath": "plasmic/flip_card/PlasmicMetric.css",
+          "cssFilePath": "plasmic/flipcard/PlasmicMetric.css",
           "scheme": "blackbox"
         },
         {
@@ -53,11 +53,11 @@
           "name": "IconButton",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/flip_card/PlasmicIconButton.tsx",
+          "renderModuleFilePath": "plasmic/flipcard/PlasmicIconButton.tsx",
           "importSpec": {
             "modulePath": "iconButton/index.tsx"
           },
-          "cssFilePath": "plasmic/flip_card/PlasmicIconButton.css",
+          "cssFilePath": "plasmic/flipcard/PlasmicIconButton.css",
           "scheme": "blackbox"
         }
       ],
@@ -65,39 +65,39 @@
         {
           "id": "X0yAm0kztuYc_IO",
           "name": "IconGraphIcon",
-          "moduleFilePath": "plasmic/flip_card/icons/PlasmicIcon__IconGraph.tsx"
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconGraph.tsx"
         },
         {
           "id": "Sqzw_OTkst-6kZi",
           "name": "IconMetricIcon",
-          "moduleFilePath": "plasmic/flip_card/icons/PlasmicIcon__IconMetric.tsx"
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconMetric.tsx"
         },
         {
           "id": "M_91_FWOwwP63LN",
           "name": "IconClockIcon",
-          "moduleFilePath": "plasmic/flip_card/icons/PlasmicIcon__IconClock.tsx"
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconClock.tsx"
         },
         {
           "id": "rflU0CK2WnITTSR",
           "name": "IconAskIcon",
-          "moduleFilePath": "plasmic/flip_card/icons/PlasmicIcon__IconAsk.tsx"
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconAsk.tsx"
         },
         {
           "id": "ncDyDuIGRd",
           "name": "IconTextIcon",
-          "moduleFilePath": "plasmic/flip_card/icons/PlasmicIcon__IconText.tsx"
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconText.tsx"
         }
       ],
       "images": [
         {
           "id": "g-rql0pCyuzVOIR",
           "name": "logo.svg",
-          "filePath": "plasmic/flip_card/images/logosvg.svg"
+          "filePath": "plasmic/flipcard/images/logosvg.svg"
         },
         {
           "id": "9kv6uNERxC5Tnft",
           "name": "graph",
-          "filePath": "plasmic/flip_card/images/graph.svg"
+          "filePath": "plasmic/flipcard/images/graph.svg"
         }
       ],
       "jsBundleThemes": []
@@ -106,5 +106,5 @@
   "globalVariants": {
     "variantGroups": []
   },
-  "cliVersion": "0.1.65"
+  "cliVersion": "0.1.67"
 }
