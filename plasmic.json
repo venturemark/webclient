@@ -6,7 +6,7 @@
   },
   "style": {
     "scheme": "css",
-    "defaultStyleCssFilePath": ""
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
   },
   "images": {
     "scheme": "inlined"
@@ -17,9 +17,94 @@
   },
   "srcDir": "src/component",
   "defaultPlasmicDir": "./plasmic",
-  "projects": [],
+  "projects": [
+    {
+      "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+      "projectName": "flipcard",
+      "version": "latest",
+      "cssFilePath": "plasmic/flipcard/plasmic_flipcard.css",
+      "components": [
+        {
+          "id": "Fs8bTUrvZrvfhCr",
+          "name": "Update",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/flipcard/PlasmicUpdate.tsx",
+          "importSpec": {
+            "modulePath": "update/index.tsx"
+          },
+          "cssFilePath": "plasmic/flipcard/PlasmicUpdate.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "_i6uD1XPzdbux6R",
+          "name": "Metric",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/flipcard/PlasmicMetric.tsx",
+          "importSpec": {
+            "modulePath": "metric/index.tsx"
+          },
+          "cssFilePath": "plasmic/flipcard/PlasmicMetric.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "odPjbfT2kyJgB_S",
+          "name": "IconButton",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/flipcard/PlasmicIconButton.tsx",
+          "importSpec": {
+            "modulePath": "iconbutton/index.tsx"
+          },
+          "cssFilePath": "plasmic/flipcard/PlasmicIconButton.css",
+          "scheme": "blackbox"
+        }
+      ],
+      "icons": [
+        {
+          "id": "X0yAm0kztuYc_IO",
+          "name": "IconGraphIcon",
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconGraph.tsx"
+        },
+        {
+          "id": "Sqzw_OTkst-6kZi",
+          "name": "IconMetricIcon",
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconMetric.tsx"
+        },
+        {
+          "id": "M_91_FWOwwP63LN",
+          "name": "IconClockIcon",
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconClock.tsx"
+        },
+        {
+          "id": "rflU0CK2WnITTSR",
+          "name": "IconAskIcon",
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconAsk.tsx"
+        },
+        {
+          "id": "ncDyDuIGRd",
+          "name": "IconTextIcon",
+          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconText.tsx"
+        }
+      ],
+      "images": [
+        {
+          "id": "g-rql0pCyuzVOIR",
+          "name": "logo.svg",
+          "filePath": "plasmic/flipcard/images/logosvg.svg"
+        },
+        {
+          "id": "9kv6uNERxC5Tnft",
+          "name": "graph",
+          "filePath": "plasmic/flipcard/images/graph.svg"
+        }
+      ],
+      "jsBundleThemes": []
+    }
+  ],
   "globalVariants": {
     "variantGroups": []
   },
-  "cliVersion": "0.1.65"
+  "cliVersion": "0.1.67"
 }
