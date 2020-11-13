@@ -25,7 +25,7 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts
+  deriveRenderOpts,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
@@ -93,7 +93,7 @@ function PlasmicHome__RenderFunc(props: {
         Home__root: true,
         plasmic_default__all: true,
         plasmic_default__div: true,
-        root_reset_rr3cgzELv8j1fSZjvVMfyx: true
+        root_reset_rr3cgzELv8j1fSZjvVMfyx: true,
       })}
     >
       <div
@@ -102,7 +102,7 @@ function PlasmicHome__RenderFunc(props: {
         className={classNames({
           Home__editorContainer: true,
           plasmic_default__all: true,
-          plasmic_default__div: true
+          plasmic_default__div: true,
         })}
       >
         <input
@@ -111,7 +111,7 @@ function PlasmicHome__RenderFunc(props: {
           className={classNames({
             Home__editor: true,
             plasmic_default__all: true,
-            plasmic_default__input: true
+            plasmic_default__input: true,
           })}
           placeholder={"Some placeholder" as const}
           size={1 as const}
@@ -125,13 +125,13 @@ function PlasmicHome__RenderFunc(props: {
           className={classNames({
             Home__actionBar: true,
             plasmic_default__all: true,
-            plasmic_default__div: true
+            plasmic_default__div: true,
           })}
         >
           <IconButton
             className={classNames({
               Home__iconButton__g8Jgr: true,
-              __wab_instance: true
+              __wab_instance: true,
             })}
             content={""}
             endIcon={
@@ -142,7 +142,7 @@ function PlasmicHome__RenderFunc(props: {
                   className={classNames({
                     Home__endIcon2: true,
                     plasmic_default__all: true,
-                    plasmic_default__svg: true
+                    plasmic_default__svg: true,
                   })}
                   role={"img"}
                 ></svg>
@@ -155,7 +155,7 @@ function PlasmicHome__RenderFunc(props: {
                 className={classNames({
                   Home__startIcon2: true,
                   plasmic_default__all: true,
-                  plasmic_default__svg: true
+                  plasmic_default__svg: true,
                 })}
                 role={"img"}
                 {...({} as any)}
@@ -173,7 +173,7 @@ function PlasmicHome__RenderFunc(props: {
         className={classNames({
           Home__updatesContainer: true,
           plasmic_default__all: true,
-          plasmic_default__div: true
+          plasmic_default__div: true,
         })}
       >
         <div
@@ -182,7 +182,7 @@ function PlasmicHome__RenderFunc(props: {
           className={classNames({
             Home__updateContainer: true,
             plasmic_default__all: true,
-            plasmic_default__div: true
+            plasmic_default__div: true,
           })}
         >
           <div
@@ -192,20 +192,20 @@ function PlasmicHome__RenderFunc(props: {
             className={classNames({
               Home__updateActionContainer: true,
               plasmic_default__all: true,
-              plasmic_default__div: true
+              plasmic_default__div: true,
             })}
           >
             <IconButton
               className={classNames({
                 Home__iconButton__wtoQs: true,
-                __wab_instance: true
+                __wab_instance: true,
               })}
               startIcon={
                 <IconWriteIcon
                   className={classNames({
                     Home__svg__r0Kjs: true,
                     plasmic_default__all: true,
-                    plasmic_default__svg: true
+                    plasmic_default__svg: true,
                   })}
                   role={"img"}
                   {...({} as any)}
@@ -218,7 +218,7 @@ function PlasmicHome__RenderFunc(props: {
             <IconButton
               className={classNames({
                 Home__iconButton__xcG4: true,
-                __wab_instance: true
+                __wab_instance: true,
               })}
               startIcon={
                 <IconClockIcon
@@ -227,7 +227,7 @@ function PlasmicHome__RenderFunc(props: {
                   className={classNames({
                     Home__startIcon3: true,
                     plasmic_default__all: true,
-                    plasmic_default__svg: true
+                    plasmic_default__svg: true,
                   })}
                   role={"img"}
                   {...({} as any)}
@@ -240,7 +240,7 @@ function PlasmicHome__RenderFunc(props: {
             <IconButton
               className={classNames({
                 Home__iconButton__c3DgA: true,
-                __wab_instance: true
+                __wab_instance: true,
               })}
               startIcon={
                 <IconBarChartIcon
@@ -249,7 +249,7 @@ function PlasmicHome__RenderFunc(props: {
                   className={classNames({
                     Home__startIcon32: true,
                     plasmic_default__all: true,
-                    plasmic_default__svg: true
+                    plasmic_default__svg: true,
                   })}
                   role={"img"}
                   {...({} as any)}
@@ -275,7 +275,7 @@ function PlasmicHome__RenderFunc(props: {
             className={classNames({
               Home__updateFeedbackContainer: true,
               plasmic_default__all: true,
-              plasmic_default__div: true
+              plasmic_default__div: true,
             })}
           >
             <div
@@ -285,7 +285,7 @@ function PlasmicHome__RenderFunc(props: {
                 classNames({
                   Home__box: true,
                   plasmic_default__all: true,
-                  plasmic_default__div: true
+                  plasmic_default__div: true,
                 }) +
                 " " +
                 "__wab_text"
@@ -303,7 +303,7 @@ function PlasmicHome__RenderFunc(props: {
         className={classNames({
           Home__footer: true,
           plasmic_default__all: true,
-          plasmic_default__div: true
+          plasmic_default__div: true,
         })}
       >
         <div
@@ -313,13 +313,13 @@ function PlasmicHome__RenderFunc(props: {
           className={classNames({
             Home__settingsContainer: true,
             plasmic_default__all: true,
-            plasmic_default__div: true
+            plasmic_default__div: true,
           })}
         >
           <IconButton
             className={classNames({
               Home__iconButton__zX6H: true,
-              __wab_instance: true
+              __wab_instance: true,
             })}
             content={""}
             endIcon={
@@ -328,7 +328,7 @@ function PlasmicHome__RenderFunc(props: {
                   className={classNames({
                     Home__svg___1OBNx: true,
                     plasmic_default__all: true,
-                    plasmic_default__svg: true
+                    plasmic_default__svg: true,
                   })}
                   role={"img"}
                 ></svg>
@@ -339,7 +339,7 @@ function PlasmicHome__RenderFunc(props: {
                 className={classNames({
                   Home__svg___0O2Rb: true,
                   plasmic_default__all: true,
-                  plasmic_default__svg: true
+                  plasmic_default__svg: true,
                 })}
                 role={"img"}
                 {...({} as any)}
@@ -352,7 +352,7 @@ function PlasmicHome__RenderFunc(props: {
           <IconButton
             className={classNames({
               Home__iconButton__hDyK9: true,
-              __wab_instance: true
+              __wab_instance: true,
             })}
             content={""}
             endIcon={
@@ -361,7 +361,7 @@ function PlasmicHome__RenderFunc(props: {
                   className={classNames({
                     Home__svg__cw2T7: true,
                     plasmic_default__all: true,
-                    plasmic_default__svg: true
+                    plasmic_default__svg: true,
                   })}
                   role={"img"}
                 ></svg>
@@ -372,7 +372,7 @@ function PlasmicHome__RenderFunc(props: {
                 className={classNames({
                   Home__svg__jAIa1: true,
                   plasmic_default__all: true,
-                  plasmic_default__svg: true
+                  plasmic_default__svg: true,
                 })}
                 role={"img"}
                 {...({} as any)}
@@ -404,7 +404,7 @@ const PlasmicDescendants = {
     "updateFeedbackContainer",
     "box",
     "footer",
-    "settingsContainer"
+    "settingsContainer",
   ],
 
   editorContainer: [
@@ -412,7 +412,7 @@ const PlasmicDescendants = {
     "editor",
     "actionBar",
     "startIcon2",
-    "endIcon2"
+    "endIcon2",
   ],
 
   editor: ["editor"],
@@ -427,7 +427,7 @@ const PlasmicDescendants = {
     "startIcon32",
     "update",
     "updateFeedbackContainer",
-    "box"
+    "box",
   ],
 
   updateContainer: [
@@ -437,7 +437,7 @@ const PlasmicDescendants = {
     "startIcon32",
     "update",
     "updateFeedbackContainer",
-    "box"
+    "box",
   ],
 
   updateActionContainer: ["updateActionContainer", "startIcon3", "startIcon32"],
@@ -447,7 +447,7 @@ const PlasmicDescendants = {
   updateFeedbackContainer: ["updateFeedbackContainer", "box"],
   box: ["box"],
   footer: ["footer", "settingsContainer"],
-  settingsContainer: ["settingsContainer"]
+  settingsContainer: ["settingsContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -484,8 +484,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHome__VariantsArgs;
     args?: PlasmicHome__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicHome__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicHome__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicHome__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -508,14 +507,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicHome__ArgProps,
-      internalVariantPropNames: PlasmicHome__VariantProps
+      internalVariantPropNames: PlasmicHome__VariantProps,
     });
 
     return PlasmicHome__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -552,7 +551,7 @@ export const PlasmicHome = Object.assign(
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,
-    internalArgProps: PlasmicHome__ArgProps
+    internalArgProps: PlasmicHome__ArgProps,
   }
 );
 

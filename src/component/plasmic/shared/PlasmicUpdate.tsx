@@ -25,7 +25,7 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts
+  deriveRenderOpts,
 } from "@plasmicapp/react-web";
 import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
 
@@ -81,7 +81,7 @@ function PlasmicUpdate__RenderFunc(props: {
         Update__root__text: hasVariant(variants, "state", "text"),
         plasmic_default__all: true,
         plasmic_default__div: true,
-        root_reset_mTVXT6w3HHjZ4d74q3gB76: true
+        root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
       })}
     >
       <div
@@ -95,7 +95,7 @@ function PlasmicUpdate__RenderFunc(props: {
           ),
 
           plasmic_default__all: true,
-          plasmic_default__div: true
+          plasmic_default__div: true,
         })}
       >
         <div
@@ -109,7 +109,7 @@ function PlasmicUpdate__RenderFunc(props: {
             ),
 
             plasmic_default__all: true,
-            plasmic_default__div: true
+            plasmic_default__div: true,
           })}
         >
           {(hasVariant(variants, "state", "graph") ? false : true) ? (
@@ -132,7 +132,7 @@ function PlasmicUpdate__RenderFunc(props: {
                   ),
 
                   plasmic_default__all: true,
-                  plasmic_default__div: true
+                  plasmic_default__div: true,
                 }) +
                 " " +
                 "__wab_text"
@@ -150,7 +150,7 @@ function PlasmicUpdate__RenderFunc(props: {
               className={classNames({
                 Update__metric: true,
                 Update__metric__graph: hasVariant(variants, "state", "graph"),
-                __wab_instance: true
+                __wab_instance: true,
               })}
               {...({} as any)}
             ></Metric>
@@ -164,7 +164,7 @@ function PlasmicUpdate__RenderFunc(props: {
 const PlasmicDescendants = {
   root: ["root", "textContainer", "metric"],
   textContainer: ["textContainer"],
-  metric: ["metric"]
+  metric: ["metric"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -188,8 +188,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUpdate__VariantsArgs;
     args?: PlasmicUpdate__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicUpdate__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -212,14 +211,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicUpdate__ArgProps,
-      internalVariantPropNames: PlasmicUpdate__VariantProps
+      internalVariantPropNames: PlasmicUpdate__VariantProps,
     });
 
     return PlasmicUpdate__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -243,7 +242,7 @@ export const PlasmicUpdate = Object.assign(
 
     // Metadata about props expected for PlasmicUpdate
     internalVariantProps: PlasmicUpdate__VariantProps,
-    internalArgProps: PlasmicUpdate__ArgProps
+    internalArgProps: PlasmicUpdate__ArgProps,
   }
 );
 
