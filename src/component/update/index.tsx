@@ -5,38 +5,27 @@ import ReactCardFlip from "react-card-flip";
 import {
   PlasmicUpdate,
   DefaultUpdateProps,
-} from "component/plasmic/flipcard/PlasmicUpdate";
+} from "component/plasmic/shared/PlasmicUpdate";
 import "./index.css";
 
 interface UpdateProps extends DefaultUpdateProps {}
 
-export function Component(props: UpdateProps) {
+function Update(props: UpdateProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-      <PlasmicUpdate
-        {...props}
-        className={"update"}
-        state={"text"}
-        toggleUpdateView={{
-          "aria-label": "Toggle View",
-          onPress: () => {
-            setIsFlipped(!isFlipped);
-          },
-        }}
-      />
-      <PlasmicUpdate
-        {...props}
-        className={"update"}
-        state={"graph"}
-        toggleUpdateView={{
-          "aria-label": "Toggle View",
-          onPress: () => {
-            setIsFlipped(!isFlipped);
-          },
-        }}
-      />
+      <PlasmicUpdate {...props} className={"update"} state={"text"} />
+      <PlasmicUpdate {...props} className={"update"} state={"graph"} />
     </ReactCardFlip>
   );
 }
+
+export default Update;
+
+// toggleUpdateView={{
+//   "aria-label": "Toggle View",
+//   onPress: () => {
+//     setIsFlipped(!isFlipped);
+//   },
+// }}

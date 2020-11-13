@@ -4,11 +4,11 @@
 import React from "react";
 import { classNames } from "@plasmicapp/react-web";
 
-export type IconMetricIconProps = React.ComponentProps<"svg"> & {
+export type IconLeaderBoardIconProps = React.ComponentProps<"svg"> & {
   title?: string;
 };
 
-export function IconMetricIcon(props: IconMetricIconProps) {
+export function IconLeaderBoardIcon(props: IconLeaderBoardIconProps) {
   const { className, style, title, ...restProps } = props;
   return (
     <svg
@@ -35,5 +35,5 @@ export function IconMetricIcon(props: IconMetricIconProps) {
   );
 }
 
-export default IconMetricIcon;
+export default IconLeaderBoardIcon;
 /* prettier-ignore-end */

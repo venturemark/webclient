@@ -1,4 +1,4 @@
-.plasmic-default__all {
+.plasmic_default__all {
   display: block;
   white-space: inherit;
   grid-row: auto auto;
@@ -10,10 +10,10 @@
   text-decoration-line: none;
   border-width: 0px;
 }
-.plasmic-default__img {
+.plasmic_default__img {
   display: inline-block;
 }
-.plasmic-default__input {
+.plasmic_default__input {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -22,7 +22,7 @@
   padding: 2px;
   border: 1px solid lightgray;
 }
-.plasmic-default__textarea {
+.plasmic_default__textarea {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -30,7 +30,7 @@
   padding: 2px;
   border: 1px solid lightgray;
 }
-.plasmic-default__button {
+.plasmic_default__button {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -40,78 +40,78 @@
   padding: 2px 6px;
   border: 1px solid lightgray;
 }
-.plasmic-default__code {
+.plasmic_default__code {
   font-family: inherit;
 }
-.plasmic-default__pre {
+.plasmic_default__pre {
   font-family: inherit;
   margin: 0;
 }
-.plasmic-default__h1 {
+.plasmic_default__h1 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
 }
-.plasmic-default__h2 {
+.plasmic_default__h2 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
 }
-.plasmic-default__h3 {
+.plasmic_default__h3 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
 }
-.plasmic-default__h4 {
+.plasmic_default__h4 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
 }
-.plasmic-default__h5 {
+.plasmic_default__h5 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
 }
-.plasmic-default__h6 {
+.plasmic_default__h6 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
 }
-.plasmic-default__address {
+.plasmic_default__address {
   font-style: inherit;
 }
-.plasmic-default__hr {
+.plasmic_default__hr {
   margin: 0;
 }
-.plasmic-default__blockquote {
+.plasmic_default__blockquote {
   margin: 0;
 }
-.plasmic-default__p {
+.plasmic_default__p {
   margin: 0;
 }
-.plasmic-default__dd {
+.plasmic_default__dd {
   margin: 0;
 }
-.plasmic-default__dl {
+.plasmic_default__dl {
   margin: 0;
 }
-.plasmic-default__ol {
+.plasmic_default__ol {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-.plasmic-default__ul {
+.plasmic_default__ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-.plasmic-default__select {
+.plasmic_default__select {
   padding: 2px 6px;
 }
-.plasmic-default__li {
+.plasmic_default__li {
   list-style-type: none;
 }
-.plasmic-default__component_wrapper {
+.plasmic_default__component_wrapper {
   display: grid;
 }
 .__wab_text {

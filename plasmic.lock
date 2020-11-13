@@ -4,6 +4,13 @@
       "projectId": "mTVXT6w3HHjZ4d74q3gB76",
       "version": "latest",
       "dependencies": {}
+    },
+    {
+      "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+      "version": "latest",
+      "dependencies": {
+        "mTVXT6w3HHjZ4d74q3gB76": "3.0.3"
+      }
     }
   ],
   "cliVersion": "0.1.65"

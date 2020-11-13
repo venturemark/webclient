@@ -4,11 +4,11 @@
 import React from "react";
 import { classNames } from "@plasmicapp/react-web";
 
-export type IconQuestionIconProps = React.ComponentProps<"svg"> & {
+export type IconWriteIconProps = React.ComponentProps<"svg"> & {
   title?: string;
 };
 
-export function IconQuestionIcon(props: IconQuestionIconProps) {
+export function IconWriteIcon(props: IconWriteIconProps) {
   const { className, style, title, ...restProps } = props;
   return (
     <svg
@@ -29,7 +29,7 @@ export function IconQuestionIcon(props: IconQuestionIconProps) {
 
       <path
         d={
-          "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-6.99 15c-.7 0-1.26-.56-1.26-1.26 0-.71.56-1.25 1.26-1.25.71 0 1.25.54 1.25 1.25-.01.69-.54 1.26-1.25 1.26zm3.01-7.4c-.76 1.11-1.48 1.46-1.87 2.17-.16.29-.22.48-.22 1.41h-1.82c0-.49-.08-1.29.31-1.98.49-.87 1.42-1.39 1.96-2.16.57-.81.25-2.33-1.37-2.33-1.06 0-1.58.8-1.8 1.48l-1.65-.7C9.01 7.15 10.22 6 11.99 6c1.48 0 2.49.67 3.01 1.52.44.72.7 2.07.02 3.08z"
+          "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 000-1.41l-2.34-2.34a.996.996 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
         }
         fill={"currentColor"}
       ></path>
@@ -37,5 +37,5 @@ export function IconQuestionIcon(props: IconQuestionIconProps) {
   );
 }
 
-export default IconQuestionIcon;
+export default IconWriteIcon;
 /* prettier-ignore-end */

@@ -14,7 +14,7 @@ export const Component: React.FC<ChartProps> = ({ data, dataKey }) => {
   return (
     <AreaChart
       width={640}
-      height={100}
+      height={150}
       data={data}
       margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
     >

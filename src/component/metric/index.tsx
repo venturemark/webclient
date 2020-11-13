@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   PlasmicMetric,
   DefaultMetricProps,
-} from "component/plasmic/flipcard/PlasmicMetric";
+} from "component/plasmic/shared/PlasmicMetric";
 import * as linechart from "component/linechart";
 
 // Your component props start with props for variants and slots you defined
