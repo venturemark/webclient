@@ -5,12 +5,12 @@ import ReactCardFlip from "react-card-flip";
 import {
   PlasmicUpdate,
   DefaultUpdateProps,
-} from "component/plasmic/flipcard/PlasmicUpdate";
+} from "component/plasmic/shared/PlasmicUpdate";
 import "./index.css";
 
 interface UpdateProps extends DefaultUpdateProps {}
 
-export function Component(props: UpdateProps) {
+function Update(props: UpdateProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -40,3 +40,5 @@ export function Component(props: UpdateProps) {
     </ReactCardFlip>
   );
 }
+
+export default Update;

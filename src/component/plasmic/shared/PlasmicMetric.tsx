@@ -30,7 +30,7 @@ import {
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import "./plasmic_flipcard.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import "./PlasmicMetric.css"; // plasmic-import: _i6uD1XPzdbux6R/css
 
 export type PlasmicMetric__VariantMembers = {};
@@ -69,19 +69,18 @@ function PlasmicMetric__RenderFunc(props: {
       data-plasmic-override={overrides.metricItem}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      data-plasmic-wrap-flex-child={true}
       className={classNames({
-        Metric__metricItem__SDzae: true,
-        "plasmic-default__all": true,
-        "plasmic-default__div": true,
+        Metric__metricItem__sDzae: true,
+        plasmic_default__all: true,
+        plasmic_default__div: true,
         root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
       })}
     >
       <div
         className={classNames({
-          Metric__box__XYVDg: true,
-          "plasmic-default__all": true,
-          "plasmic-default__div": true,
+          Metric__box__xyvDg: true,
+          plasmic_default__all: true,
+          plasmic_default__div: true,
         })}
       >
         <PlasmicSlot
@@ -93,9 +92,9 @@ function PlasmicMetric__RenderFunc(props: {
 
       <div
         className={classNames({
-          Metric__box__0lbRl: true,
-          "plasmic-default__all": true,
-          "plasmic-default__div": true,
+          Metric__box___0LbRl: true,
+          plasmic_default__all: true,
+          plasmic_default__div: true,
         })}
       >
         <img
@@ -103,15 +102,15 @@ function PlasmicMetric__RenderFunc(props: {
           data-plasmic-override={overrides.graphContainer}
           alt={""}
           className={classNames({
-            Metric__graphContainer__utA6n: true,
-            "plasmic-default__all": true,
-            "plasmic-default__img": true,
+            Metric__graphContainer__utA6N: true,
+            plasmic_default__all: true,
+            plasmic_default__img: true,
           })}
           role={"img"}
           src={
             "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTQgNDciPgogIDxwYXRoIGQ9Ik0zNC41IDkuNUMyNCA5LjUgMSAxNyAxIDE3djI5LjVoMTg0di0zN2MtMTYuNSAwLTE5IDE5LTMwLjUgMTlTMTM1IDMgMTI0LjUgM3MtMTkuNSAxNS0zMCAxNS0yMC41IDctMzAgN0M1NCAyNSA0NSA5LjUgMzQuNSA5LjV6IiBmaWxsPSJ1cmwoI09RbVRQelZ0TWEpIiBmaWxsLW9wYWNpdHk9Ii4xNSIvPgogIDxwYXRoIGQ9Ik0xIDE3czIzLTcuNSAzMy41LTcuNVM1NCAyNSA2NC41IDI1YzkuNSAwIDE5LjUtNyAzMC03czE5LjUtMTUgMzAtMTUgMTguNSAyNS41IDMwIDI1LjUgMTQtMTkgMzAuNS0xOSIgc3Ryb2tlPSIjMDI5RDdGIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiLz4KICA8Y2lyY2xlIGN4PSIxODQuNSIgY3k9IjkuNSIgcj0iOS41IiBmaWxsPSIjMDI5RDdGIiBmaWxsLW9wYWNpdHk9Ii4yIi8+CiAgPGNpcmNsZSBjeD0iMTg0LjUiIGN5PSI5LjUiIHI9IjQuNSIgZmlsbD0iI2ZmZiIvPgogIDxjaXJjbGUgY3g9IjE4NC41IiBjeT0iOS41IiByPSIyLjUiIGZpbGw9IiMwMjlEN0YiLz4KICA8Y2lyY2xlIGN4PSI2NC41IiBjeT0iMjUiIHI9IjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzAyOUQ3RiIvPgogIDxjaXJjbGUgY3g9Ijk0LjUiIGN5PSIxOCIgcj0iMiIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjMDI5RDdGIi8+CiAgPGNpcmNsZSBjeD0iMTI0LjUiIGN5PSIzIiByPSIyIiBmaWxsPSIjZmZmIiBzdHJva2U9IiMwMjlEN0YiLz4KICA8Y2lyY2xlIGN4PSIxNTQuNSIgY3k9IjI4IiByPSIyIiBmaWxsPSIjZmZmIiBzdHJva2U9IiMwMjlEN0YiLz4KICA8Y2lyY2xlIGN4PSIzNC41IiBjeT0iOS41IiByPSIyIiBmaWxsPSIjZmZmIiBzdHJva2U9IiMwMjlEN0YiLz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iT1FtVFB6VnRNYSIgeDE9IjkzIiB5MT0iOS41IiB4Mj0iOTMiIHkyPSI0NiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjMDI5RDdGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0M0QzRDNCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KPC9zdmc+Cg==" as const
           }
-        ></img>
+        />
       </div>
     </div>
   ) as React.ReactElement | null;

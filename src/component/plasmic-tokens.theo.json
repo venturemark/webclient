@@ -31,6 +31,16 @@
       }
     },
     {
+      "name": "UnnamedStyleToken 3",
+      "type": "spacing",
+      "value": "1px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "prIx4U6PG"
+      }
+    },
+    {
       "name": "background",
       "type": "color",
       "value": "var(--token-pJ8JNfS_nOyDpci)",

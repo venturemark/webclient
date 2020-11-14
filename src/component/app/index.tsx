@@ -1,16 +1,10 @@
 import React from "react";
 
 import "./index.css";
-import * as update from "component/update";
+import * as home from "component/home";
 
 type Props = {};
 
 export function Component(props: Props) {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <update.Component />
-      </header>
-    </div>
-  );
+  return <home.Component />;
 }

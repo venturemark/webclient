@@ -30,7 +30,7 @@ import {
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import "./plasmic_flipcard.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import "./PlasmicIconButton.css"; // plasmic-import: odPjbfT2kyJgB_S/css
 
 export type PlasmicIconButton__VariantMembers = {
@@ -109,34 +109,35 @@ function PlasmicIconButton__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       data-plasmic-wrap-flex-child={true}
       className={classNames({
-        "IconButton__root--__dsslI3ehVR": triggers.focusVisibleWithin_root,
-        "IconButton__root--end__dsslIDMCtf": hasVariant(
-          variants,
-          "withIcons",
-          "end"
-        ),
-
-        "IconButton__root--isDisabled__dsslIF0ULC": hasVariant(
+        IconButton__root____focusVisibleWithin__dsslI3EhVr:
+          triggers.focusVisibleWithin_root,
+        IconButton__root__dsslI: true,
+        IconButton__root__isDisabled_isDisabled__dsslIf0Ulc: hasVariant(
           variants,
           "isDisabled",
           "isDisabled"
         ),
 
-        "IconButton__root--showContent__dsslIGq8V_": hasVariant(
+        IconButton__root__showContent_showContent__dsslIGq8V: hasVariant(
           variants,
           "showContent",
           "showContent"
         ),
 
-        "IconButton__root--start__dsslIUXgup": hasVariant(
+        IconButton__root__withIcons_end__dsslIdmCtf: hasVariant(
+          variants,
+          "withIcons",
+          "end"
+        ),
+
+        IconButton__root__withIcons_start__dsslIuXgup: hasVariant(
           variants,
           "withIcons",
           "start"
         ),
 
-        IconButton__root__dsslI: true,
-        "plasmic-default__all": true,
-        "plasmic-default__div": true,
+        plasmic_default__all: true,
+        plasmic_default__div: true,
         root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
       })}
       data-plasmic-trigger-props={[triggerRootFocusVisibleWithinProps]}
@@ -148,49 +149,60 @@ function PlasmicIconButton__RenderFunc(props: {
               data-plasmic-name={"startIcon"}
               data-plasmic-override={overrides.startIcon}
               className={classNames({
-                IconButton__startIcon__36tyI: true,
-                "plasmic-default__all": true,
-                "plasmic-default__svg": true,
+                IconButton__startIcon___36TyI: true,
+                plasmic_default__all: true,
+                plasmic_default__svg: true,
               })}
               role={"img"}
-            ></svg>
+            />
           }
           value={args.startIcon}
         />
       ) : null}
-      {(hasVariant(variants, "showContent", "showContent") ? true : false) ? (
+      {(
+        hasVariant(variants, "withIcons", "start")
+          ? false
+          : hasVariant(variants, "showContent", "showContent")
+          ? true
+          : false
+      ) ? (
         <div
           data-plasmic-name={"box"}
           data-plasmic-override={overrides.box}
           className={classNames({
-            "IconButton__box--isDisabled__GjUYUF0ULC": hasVariant(
+            IconButton__box__gjUyu: true,
+            IconButton__box__isDisabled_isDisabled__gjUyuf0Ulc: hasVariant(
               variants,
               "isDisabled",
               "isDisabled"
             ),
 
-            "IconButton__box--showContent__GjUYUGq8V_": hasVariant(
+            IconButton__box__showContent_showContent__gjUyuGq8V: hasVariant(
               variants,
               "showContent",
               "showContent"
             ),
 
-            IconButton__box__GjUYU: true,
-            "plasmic-default__all": true,
-            "plasmic-default__div": true,
+            IconButton__box__withIcons_start__gjUyuuXgup: hasVariant(
+              variants,
+              "withIcons",
+              "start"
+            ),
+
+            plasmic_default__all: true,
+            plasmic_default__div: true,
           })}
         >
           <PlasmicSlot
             defaultContents={""}
             value={args.content}
             className={classNames({
-              "IconButton__slotContent--isDisabled__1ugyPF0ULC": hasVariant(
+              IconButton__slotContent___1UgyP: true,
+              IconButton__slotContent__isDisabled_isDisabled___1UgyPf0Ulc: hasVariant(
                 variants,
                 "isDisabled",
                 "isDisabled"
               ),
-
-              IconButton__slotContent__1ugyP: true,
             })}
           />
         </div>
@@ -198,16 +210,18 @@ function PlasmicIconButton__RenderFunc(props: {
       {(hasVariant(variants, "withIcons", "end") ? true : false) ? (
         <PlasmicSlot
           defaultContents={
-            <svg
-              data-plasmic-name={"endIcon"}
-              data-plasmic-override={overrides.endIcon}
-              className={classNames({
-                IconButton__endIcon__Noqpm: true,
-                "plasmic-default__all": true,
-                "plasmic-default__svg": true,
-              })}
-              role={"img"}
-            ></svg>
+            false ? (
+              <svg
+                data-plasmic-name={"endIcon"}
+                data-plasmic-override={overrides.endIcon}
+                className={classNames({
+                  IconButton__endIcon__noqpm: true,
+                  plasmic_default__all: true,
+                  plasmic_default__svg: true,
+                })}
+                role={"img"}
+              />
+            ) : null
           }
           value={args.endIcon}
         />
