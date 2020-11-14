@@ -59,33 +59,45 @@
           },
           "cssFilePath": "plasmic/shared/PlasmicIconButton.css",
           "scheme": "blackbox"
+        },
+        {
+          "id": "eUnRsS9UXR",
+          "name": "ActionBar",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicActionBar.tsx",
+          "importSpec": {
+            "modulePath": "actionbar/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicActionBar.css",
+          "scheme": "blackbox"
         }
       ],
       "icons": [
         {
           "id": "X0yAm0kztuYc_IO",
           "name": "IconGraphIcon",
-          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconGraph.tsx"
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconGraph.tsx"
         },
         {
           "id": "Sqzw_OTkst-6kZi",
           "name": "IconLeaderBoardIcon",
-          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconMetric.tsx"
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconMetric.tsx"
         },
         {
           "id": "M_91_FWOwwP63LN",
           "name": "IconClockIcon",
-          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconClock.tsx"
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconClock.tsx"
         },
         {
           "id": "rflU0CK2WnITTSR",
           "name": "IconQuestionIcon",
-          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconAsk.tsx"
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconAsk.tsx"
         },
         {
           "id": "ncDyDuIGRd",
           "name": "IconTextIcon",
-          "moduleFilePath": "plasmic/flipcard/icons/PlasmicIcon__IconText.tsx"
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconText.tsx"
         },
         {
           "id": "oiAgf-ezpQ",

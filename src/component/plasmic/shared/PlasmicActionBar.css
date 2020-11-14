@@ -1,0 +1,59 @@
+.ActionBar__root__sd9X {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  position: relative;
+  align-items: center;
+}
+.ActionBar__editorContainer__nsTsk {
+  display: inline-flex;
+  position: relative;
+  background-color: rgba(68, 192, 255, 0);
+  width: auto;
+  height: auto;
+  flex-direction: row;
+  padding-right: 74px;
+}
+.ActionBar__editorContainer__content_hasContent__nsTskQtYpu {
+  padding-right: 0px;
+}
+.ActionBar__textbox__v91D {
+  position: relative;
+  width: 602px;
+  left: auto;
+  top: auto;
+  height: 100%;
+  font-size: 24px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+.ActionBar__actionContainer__sisBv {
+  display: inline-flex;
+  position: relative;
+  background-color: rgba(68, 192, 255, 0);
+  width: auto;
+  height: auto;
+  flex-direction: row;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.ActionBar__iconButton__xv2S.__wab_instance {
+  position: relative;
+  left: auto;
+  top: auto;
+  height: auto;
+  width: 34px;
+  flex-shrink: 0;
+}
+.ActionBar__startIcon__dM10W {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}

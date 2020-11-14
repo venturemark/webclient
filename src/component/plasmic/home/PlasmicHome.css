@@ -1,4 +1,4 @@
-.Home__root {
+.Home__root__i4Rwt {
   display: flex;
   width: 100%;
   height: 100%;
@@ -7,197 +7,51 @@
   flex-direction: column;
   padding-top: 200px;
 }
-.Home__root > .__wab_flex-container {
+.Home__root__i4Rwt > .__wab_flex-container {
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
   margin-top: calc(0px - 30px);
   height: calc(100% + 30px);
 }
-.Home__root > .__wab_flex-container > *,
-.Home__root > .__wab_flex-container > .__wab_slot > * {
+.Home__root__i4Rwt > .__wab_flex-container > *,
+.Home__root__i4Rwt > .__wab_flex-container > .__wab_slot > * {
   margin-top: 30px;
 }
-.Home__editorContainer {
+.Home__actionBarContainer__m1ObZ {
   display: flex;
   position: relative;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  top: auto;
-  left: auto;
-  flex-wrap: nowrap;
-  width: 100%;
-  height: auto;
-  padding-left: 75px;
-  max-width: 838px;
-}
-.Home__editor {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding-left: 10px;
-  border-radius: 8px;
-}
-.Home__actionBar {
-  display: inline-flex;
-  position: relative;
   background-color: rgba(68, 192, 255, 0);
-  width: auto;
+  width: 100%;
   height: auto;
   flex-direction: column;
-  align-self: flex-end;
-  justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  align-items: center;
+  padding-left: 74px;
 }
-.Home__iconButton__g8Jgr.__wab_instance {
+.Home__actionBar__u6GxH.__wab_instance {
   position: relative;
   left: auto;
   top: auto;
-  width: auto;
-  height: auto;
-  align-self: flex-start;
 }
-.Home__startIcon2 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.Home__endIcon2 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.Home__updatesContainer {
+.Home__updatesContainer___9K5HA {
   display: flex;
   position: relative;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
   width: 100%;
-  height: auto;
-  max-width: 838px;
 }
-.Home__updateContainer {
-  display: flex;
-  background-color: rgba(68, 192, 255, 0);
-  width: 100%;
-  height: auto;
-  flex-direction: row;
+.Home__updatesContainer___9K5HA > .__wab_flex-container {
+  flex-direction: column;
   align-items: center;
-}
-.Home__updateActionContainer {
-  display: inline-flex;
-  position: relative;
-  background-color: rgba(68, 192, 255, 0);
-  width: auto;
-  height: 100%;
-  flex-direction: column;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.Home__updateActionContainer > .__wab_flex-container {
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: calc(0px - 10px);
-  height: calc(100% + 10px);
-}
-.Home__updateActionContainer > .__wab_flex-container > *,
-.Home__updateActionContainer > .__wab_flex-container > .__wab_slot > * {
-  margin-top: 10px;
-}
-.Home__iconButton__wtoQs.__wab_instance {
-  position: relative;
-}
-.Home__svg__r0Kjs {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.Home__iconButton__xcG4.__wab_instance {
-  position: relative;
-}
-.Home__startIcon3 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.Home__iconButton__c3DgA.__wab_instance {
-  position: relative;
-}
-.Home__startIcon32 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.Home__update.__wab_instance {
-  position: relative;
-  left: auto;
-  top: auto;
-  width: auto;
-  height: auto;
-}
-.Home__updateFeedbackContainer {
-  display: inline-flex;
-  position: relative;
-  background-color: rgba(68, 192, 255, 0);
-  width: auto;
-  height: 100%;
-  flex-direction: column;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
-}
-.Home__updateFeedbackContainer > .__wab_flex-container {
-  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  margin-top: calc(0px - 10px);
-  height: calc(100% + 10px);
+  margin-top: calc(0px - 20px);
+  height: calc(100% + 20px);
 }
-.Home__updateFeedbackContainer > .__wab_flex-container > *,
-.Home__updateFeedbackContainer > .__wab_flex-container > .__wab_slot > * {
-  margin-top: 10px;
+.Home__updatesContainer___9K5HA > .__wab_flex-container > *,
+.Home__updatesContainer___9K5HA > .__wab_flex-container > .__wab_slot > * {
+  margin-top: 20px;
 }
-.Home__box {
-  position: relative;
-  width: auto;
-  height: auto;
-  align-self: center;
-  text-align: center;
-  background-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
-  font-family: "Poppins";
-  font-size: 24px;
-  font-weight: 500;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  display: inline-block;
-  border-radius: 100%;
-  padding: 5px;
-}
-.Home__footer {
+.Home__footer__rH2Lk {
   display: flex;
   position: relative;
   background-color: rgba(68, 192, 255, 0);
@@ -205,9 +59,9 @@
   height: auto;
   flex-direction: row;
   justify-content: flex-end;
-  max-width: 838px;
+  max-width: 750px;
 }
-.Home__settingsContainer {
+.Home__settingsContainer__i18Dv {
   display: inline-flex;
   position: relative;
   background-color: rgba(68, 192, 255, 0);
@@ -220,13 +74,13 @@
   padding-left: 20px;
   padding-right: 20px;
 }
-.Home__settingsContainer > .__wab_flex-container {
+.Home__settingsContainer__i18Dv > .__wab_flex-container {
   flex-direction: column;
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
 }
-.Home__settingsContainer > .__wab_flex-container > *,
-.Home__settingsContainer > .__wab_flex-container > .__wab_slot > * {
+.Home__settingsContainer__i18Dv > .__wab_flex-container > *,
+.Home__settingsContainer__i18Dv > .__wab_flex-container > .__wab_slot > * {
   margin-top: 10px;
 }
 .Home__iconButton__zX6H.__wab_instance {
