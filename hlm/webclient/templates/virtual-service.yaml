@@ -14,7 +14,7 @@ spec:
     # here we define the specific subdomain of our micro service according to
     # the cluster name and DNS zone.
     #
-    #     apiclient.kia02.aws.example.com
+    #     webclient.kia02.aws.example.com
     #
     - "{{ .Release.Name }}.{{ .Values.cluster.name }}.{{ .Values.cluster.zone }}"
     {{- else }}

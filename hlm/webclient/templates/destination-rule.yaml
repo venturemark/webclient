@@ -8,7 +8,7 @@ spec:
   # In order to be most specific and prevent routing towards the wrong
   # destination we apply the exact representation of the local DNS record.
   #
-  #     apiclient.infra.svc.cluster.local
+  #     webclient.infra.svc.cluster.local
   #
   host: "{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local"
   trafficPolicy:
