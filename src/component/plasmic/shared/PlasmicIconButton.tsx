@@ -109,22 +109,33 @@ function PlasmicIconButton__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       data-plasmic-wrap-flex-child={true}
       className={classNames({
-        IconButton__root: true,
-        IconButton__root__: triggers.focusVisibleWithin_root,
-        IconButton__root__end: hasVariant(variants, "withIcons", "end"),
-        IconButton__root__isDisabled: hasVariant(
+        IconButton__root____focusVisibleWithin__dsslI3EhVr:
+          triggers.focusVisibleWithin_root,
+        IconButton__root__dsslI: true,
+        IconButton__root__isDisabled_isDisabled__dsslIf0Ulc: hasVariant(
           variants,
           "isDisabled",
           "isDisabled"
         ),
 
-        IconButton__root__showContent: hasVariant(
+        IconButton__root__showContent_showContent__dsslIGq8V: hasVariant(
           variants,
           "showContent",
           "showContent"
         ),
 
-        IconButton__root__start: hasVariant(variants, "withIcons", "start"),
+        IconButton__root__withIcons_end__dsslIdmCtf: hasVariant(
+          variants,
+          "withIcons",
+          "end"
+        ),
+
+        IconButton__root__withIcons_start__dsslIuXgup: hasVariant(
+          variants,
+          "withIcons",
+          "start"
+        ),
+
         plasmic_default__all: true,
         plasmic_default__div: true,
         root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
@@ -138,32 +149,44 @@ function PlasmicIconButton__RenderFunc(props: {
               data-plasmic-name={"startIcon"}
               data-plasmic-override={overrides.startIcon}
               className={classNames({
-                IconButton__startIcon: true,
+                IconButton__startIcon___36TyI: true,
                 plasmic_default__all: true,
                 plasmic_default__svg: true,
               })}
               role={"img"}
-            ></svg>
+            />
           }
           value={args.startIcon}
         />
       ) : null}
-      {(hasVariant(variants, "showContent", "showContent") ? true : false) ? (
+      {(
+        hasVariant(variants, "withIcons", "start")
+          ? false
+          : hasVariant(variants, "showContent", "showContent")
+          ? true
+          : false
+      ) ? (
         <div
           data-plasmic-name={"box"}
           data-plasmic-override={overrides.box}
           className={classNames({
-            IconButton__box: true,
-            IconButton__box__isDisabled: hasVariant(
+            IconButton__box__gjUyu: true,
+            IconButton__box__isDisabled_isDisabled__gjUyuf0Ulc: hasVariant(
               variants,
               "isDisabled",
               "isDisabled"
             ),
 
-            IconButton__box__showContent: hasVariant(
+            IconButton__box__showContent_showContent__gjUyuGq8V: hasVariant(
               variants,
               "showContent",
               "showContent"
+            ),
+
+            IconButton__box__withIcons_start__gjUyuuXgup: hasVariant(
+              variants,
+              "withIcons",
+              "start"
             ),
 
             plasmic_default__all: true,
@@ -174,8 +197,8 @@ function PlasmicIconButton__RenderFunc(props: {
             defaultContents={""}
             value={args.content}
             className={classNames({
-              IconButton__slotContent: true,
-              IconButton__slotContent__isDisabled: hasVariant(
+              IconButton__slotContent___1UgyP: true,
+              IconButton__slotContent__isDisabled_isDisabled___1UgyPf0Ulc: hasVariant(
                 variants,
                 "isDisabled",
                 "isDisabled"
@@ -192,12 +215,12 @@ function PlasmicIconButton__RenderFunc(props: {
                 data-plasmic-name={"endIcon"}
                 data-plasmic-override={overrides.endIcon}
                 className={classNames({
-                  IconButton__endIcon: true,
+                  IconButton__endIcon__noqpm: true,
                   plasmic_default__all: true,
                   plasmic_default__svg: true,
                 })}
                 role={"img"}
-              ></svg>
+              />
             ) : null
           }
           value={args.endIcon}

@@ -27,18 +27,15 @@ import {
   StrictProps,
   deriveRenderOpts,
 } from "@plasmicapp/react-web";
-import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
+import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
 import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
+import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
 import "./plasmic_home.css"; // plasmic-import: rr3cgzELv8j1fSZjvVMfyx/projectcss
 import "./PlasmicHome.css"; // plasmic-import: Ii0bQ3L3sO/css
 
-import IconSendIcon from "../shared/icons/PlasmicIcon__IconSend"; // plasmic-import: oiAgf-ezpQ/icon
-import IconWriteIcon from "../shared/icons/PlasmicIcon__IconWrite"; // plasmic-import: zCNIMAkbig/icon
-import IconClockIcon from "../flipcard/icons/PlasmicIcon__IconClock"; // plasmic-import: M_91_FWOwwP63LN/icon
-import IconBarChartIcon from "../shared/icons/PlasmicIcon__IconBarChart"; // plasmic-import: Y3JBiNHxmK/icon
 import IconPersonIcon from "../shared/icons/PlasmicIcon__IconPerson"; // plasmic-import: Exz-c1pU2x/icon
 import IconSettingsIcon from "../shared/icons/PlasmicIcon__IconSettings"; // plasmic-import: o3m824rpnQ/icon
 
@@ -53,19 +50,10 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHome__OverridesType = {
   root?: Flex<"div">;
-  editorContainer?: Flex<"div">;
-  editor?: Flex<"input">;
-  actionBar?: Flex<"div">;
-  startIcon2?: Flex<"svg">;
-  endIcon2?: Flex<"svg">;
+  actionBarContainer?: Flex<"div">;
+  actionBar?: Flex<typeof ActionBar>;
   updatesContainer?: Flex<"div">;
-  updateContainer?: Flex<"div">;
-  updateActionContainer?: Flex<"div">;
-  startIcon3?: Flex<"svg">;
-  startIcon32?: Flex<"svg">;
   update?: Flex<typeof Update>;
-  updateFeedbackContainer?: Flex<"div">;
-  box?: Flex<"div">;
   footer?: Flex<"div">;
   settingsContainer?: Flex<"div">;
 };
@@ -90,218 +78,54 @@ function PlasmicHome__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       data-plasmic-wrap-flex-child={true}
       className={classNames({
-        Home__root: true,
+        Home__root__i4Rwt: true,
         plasmic_default__all: true,
         plasmic_default__div: true,
         root_reset_rr3cgzELv8j1fSZjvVMfyx: true,
       })}
     >
       <div
-        data-plasmic-name={"editorContainer"}
-        data-plasmic-override={overrides.editorContainer}
+        data-plasmic-name={"actionBarContainer"}
+        data-plasmic-override={overrides.actionBarContainer}
         className={classNames({
-          Home__editorContainer: true,
+          Home__actionBarContainer__m1ObZ: true,
           plasmic_default__all: true,
           plasmic_default__div: true,
         })}
       >
-        <input
-          data-plasmic-name={"editor"}
-          data-plasmic-override={overrides.editor}
-          className={classNames({
-            Home__editor: true,
-            plasmic_default__all: true,
-            plasmic_default__input: true,
-          })}
-          placeholder={"Some placeholder" as const}
-          size={1 as const}
-          type={"text" as const}
-          value={"Some value" as const}
-        ></input>
-
-        <div
+        <ActionBar
           data-plasmic-name={"actionBar"}
           data-plasmic-override={overrides.actionBar}
           className={classNames({
-            Home__actionBar: true,
-            plasmic_default__all: true,
-            plasmic_default__div: true,
+            Home__actionBar__u6GxH: true,
+            __wab_instance: true,
           })}
-        >
-          <IconButton
-            className={classNames({
-              Home__iconButton__g8Jgr: true,
-              __wab_instance: true,
-            })}
-            content={""}
-            endIcon={
-              false ? (
-                <svg
-                  data-plasmic-name={"endIcon2"}
-                  data-plasmic-override={overrides.endIcon2}
-                  className={classNames({
-                    Home__endIcon2: true,
-                    plasmic_default__all: true,
-                    plasmic_default__svg: true,
-                  })}
-                  role={"img"}
-                ></svg>
-              ) : null
-            }
-            startIcon={
-              <IconSendIcon
-                data-plasmic-name={"startIcon2"}
-                data-plasmic-override={overrides.startIcon2}
-                className={classNames({
-                  Home__startIcon2: true,
-                  plasmic_default__all: true,
-                  plasmic_default__svg: true,
-                })}
-                role={"img"}
-                {...({} as any)}
-              ></IconSendIcon>
-            }
-            withIcons={["start"]}
-            {...({} as any)}
-          ></IconButton>
-        </div>
+          {...({} as any)}
+        />
       </div>
 
       <div
         data-plasmic-name={"updatesContainer"}
         data-plasmic-override={overrides.updatesContainer}
+        data-plasmic-wrap-flex-child={true}
         className={classNames({
-          Home__updatesContainer: true,
+          Home__updatesContainer___9K5HA: true,
           plasmic_default__all: true,
           plasmic_default__div: true,
         })}
       >
-        <div
-          data-plasmic-name={"updateContainer"}
-          data-plasmic-override={overrides.updateContainer}
-          className={classNames({
-            Home__updateContainer: true,
-            plasmic_default__all: true,
-            plasmic_default__div: true,
-          })}
-        >
-          <div
-            data-plasmic-name={"updateActionContainer"}
-            data-plasmic-override={overrides.updateActionContainer}
-            data-plasmic-wrap-flex-child={true}
-            className={classNames({
-              Home__updateActionContainer: true,
-              plasmic_default__all: true,
-              plasmic_default__div: true,
-            })}
-          >
-            <IconButton
-              className={classNames({
-                Home__iconButton__wtoQs: true,
-                __wab_instance: true,
-              })}
-              startIcon={
-                <IconWriteIcon
-                  className={classNames({
-                    Home__svg__r0Kjs: true,
-                    plasmic_default__all: true,
-                    plasmic_default__svg: true,
-                  })}
-                  role={"img"}
-                  {...({} as any)}
-                ></IconWriteIcon>
-              }
-              withIcons={["start"]}
-              {...({} as any)}
-            ></IconButton>
-
-            <IconButton
-              className={classNames({
-                Home__iconButton__xcG4: true,
-                __wab_instance: true,
-              })}
-              startIcon={
-                <IconClockIcon
-                  data-plasmic-name={"startIcon3"}
-                  data-plasmic-override={overrides.startIcon3}
-                  className={classNames({
-                    Home__startIcon3: true,
-                    plasmic_default__all: true,
-                    plasmic_default__svg: true,
-                  })}
-                  role={"img"}
-                  {...({} as any)}
-                ></IconClockIcon>
-              }
-              withIcons={["start"]}
-              {...({} as any)}
-            ></IconButton>
-
-            <IconButton
-              className={classNames({
-                Home__iconButton__c3DgA: true,
-                __wab_instance: true,
-              })}
-              startIcon={
-                <IconBarChartIcon
-                  data-plasmic-name={"startIcon32"}
-                  data-plasmic-override={overrides.startIcon32}
-                  className={classNames({
-                    Home__startIcon32: true,
-                    plasmic_default__all: true,
-                    plasmic_default__svg: true,
-                  })}
-                  role={"img"}
-                  {...({} as any)}
-                ></IconBarChartIcon>
-              }
-              withIcons={["start"]}
-              {...({} as any)}
-            ></IconButton>
-          </div>
-
-          <Update
-            data-plasmic-name={"update"}
-            data-plasmic-override={overrides.update}
-            className={classNames({ Home__update: true, __wab_instance: true })}
-            state={"text" as const}
-            {...({} as any)}
-          ></Update>
-
-          <div
-            data-plasmic-name={"updateFeedbackContainer"}
-            data-plasmic-override={overrides.updateFeedbackContainer}
-            data-plasmic-wrap-flex-child={true}
-            className={classNames({
-              Home__updateFeedbackContainer: true,
-              plasmic_default__all: true,
-              plasmic_default__div: true,
-            })}
-          >
-            <div
-              data-plasmic-name={"box"}
-              data-plasmic-override={overrides.box}
-              className={
-                classNames({
-                  Home__box: true,
-                  plasmic_default__all: true,
-                  plasmic_default__div: true,
-                }) +
-                " " +
-                "__wab_text"
-              }
-            >
-              {"35"}
-            </div>
-          </div>
-        </div>
+        <Update
+          data-plasmic-name={"update"}
+          data-plasmic-override={overrides.update}
+          {...({} as any)}
+        />
       </div>
 
       <div
         data-plasmic-name={"footer"}
         data-plasmic-override={overrides.footer}
         className={classNames({
-          Home__footer: true,
+          Home__footer__rH2Lk: true,
           plasmic_default__all: true,
           plasmic_default__div: true,
         })}
@@ -311,7 +135,7 @@ function PlasmicHome__RenderFunc(props: {
           data-plasmic-override={overrides.settingsContainer}
           data-plasmic-wrap-flex-child={true}
           className={classNames({
-            Home__settingsContainer: true,
+            Home__settingsContainer__i18Dv: true,
             plasmic_default__all: true,
             plasmic_default__div: true,
           })}
@@ -331,7 +155,7 @@ function PlasmicHome__RenderFunc(props: {
                     plasmic_default__svg: true,
                   })}
                   role={"img"}
-                ></svg>
+                />
               ) : null
             }
             startIcon={
@@ -343,11 +167,11 @@ function PlasmicHome__RenderFunc(props: {
                 })}
                 role={"img"}
                 {...({} as any)}
-              ></IconPersonIcon>
+              />
             }
             withIcons={["start"]}
             {...({} as any)}
-          ></IconButton>
+          />
 
           <IconButton
             className={classNames({
@@ -364,7 +188,7 @@ function PlasmicHome__RenderFunc(props: {
                     plasmic_default__svg: true,
                   })}
                   role={"img"}
-                ></svg>
+                />
               ) : null
             }
             startIcon={
@@ -376,11 +200,11 @@ function PlasmicHome__RenderFunc(props: {
                 })}
                 role={"img"}
                 {...({} as any)}
-              ></IconSettingsIcon>
+              />
             }
             withIcons={["start"]}
             {...({} as any)}
-          ></IconButton>
+          />
         </div>
       </div>
     </div>
@@ -390,62 +214,18 @@ function PlasmicHome__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "editorContainer",
-    "editor",
+    "actionBarContainer",
     "actionBar",
-    "startIcon2",
-    "endIcon2",
     "updatesContainer",
-    "updateContainer",
-    "updateActionContainer",
-    "startIcon3",
-    "startIcon32",
     "update",
-    "updateFeedbackContainer",
-    "box",
     "footer",
     "settingsContainer",
   ],
 
-  editorContainer: [
-    "editorContainer",
-    "editor",
-    "actionBar",
-    "startIcon2",
-    "endIcon2",
-  ],
-
-  editor: ["editor"],
-  actionBar: ["actionBar", "startIcon2", "endIcon2"],
-  startIcon2: ["startIcon2"],
-  endIcon2: ["endIcon2"],
-  updatesContainer: [
-    "updatesContainer",
-    "updateContainer",
-    "updateActionContainer",
-    "startIcon3",
-    "startIcon32",
-    "update",
-    "updateFeedbackContainer",
-    "box",
-  ],
-
-  updateContainer: [
-    "updateContainer",
-    "updateActionContainer",
-    "startIcon3",
-    "startIcon32",
-    "update",
-    "updateFeedbackContainer",
-    "box",
-  ],
-
-  updateActionContainer: ["updateActionContainer", "startIcon3", "startIcon32"],
-  startIcon3: ["startIcon3"],
-  startIcon32: ["startIcon32"],
+  actionBarContainer: ["actionBarContainer", "actionBar"],
+  actionBar: ["actionBar"],
+  updatesContainer: ["updatesContainer", "update"],
   update: ["update"],
-  updateFeedbackContainer: ["updateFeedbackContainer", "box"],
-  box: ["box"],
   footer: ["footer", "settingsContainer"],
   settingsContainer: ["settingsContainer"],
 } as const;
@@ -455,19 +235,10 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  editorContainer: "div";
-  editor: "input";
-  actionBar: "div";
-  startIcon2: "svg";
-  endIcon2: "svg";
+  actionBarContainer: "div";
+  actionBar: typeof ActionBar;
   updatesContainer: "div";
-  updateContainer: "div";
-  updateActionContainer: "div";
-  startIcon3: "svg";
-  startIcon32: "svg";
   update: typeof Update;
-  updateFeedbackContainer: "div";
-  box: "div";
   footer: "div";
   settingsContainer: "div";
 };
@@ -530,19 +301,10 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    editorContainer: makeNodeComponent("editorContainer"),
-    editor: makeNodeComponent("editor"),
+    actionBarContainer: makeNodeComponent("actionBarContainer"),
     actionBar: makeNodeComponent("actionBar"),
-    startIcon2: makeNodeComponent("startIcon2"),
-    endIcon2: makeNodeComponent("endIcon2"),
     updatesContainer: makeNodeComponent("updatesContainer"),
-    updateContainer: makeNodeComponent("updateContainer"),
-    updateActionContainer: makeNodeComponent("updateActionContainer"),
-    startIcon3: makeNodeComponent("startIcon3"),
-    startIcon32: makeNodeComponent("startIcon32"),
     update: makeNodeComponent("update"),
-    updateFeedbackContainer: makeNodeComponent("updateFeedbackContainer"),
-    box: makeNodeComponent("box"),
     footer: makeNodeComponent("footer"),
     settingsContainer: makeNodeComponent("settingsContainer"),
 
@@ -591,23 +353,10 @@ class PlasmicHome__Renderer extends Renderer<
 
   forNode(name: "settingsContainer"): ForNodeRenderer<"settingsContainer">;
   forNode(name: "footer"): ForNodeRenderer<"footer">;
-  forNode(name: "box"): ForNodeRenderer<"box">;
-  forNode(
-    name: "updateFeedbackContainer"
-  ): ForNodeRenderer<"updateFeedbackContainer">;
   forNode(name: "update"): ForNodeRenderer<"update">;
-  forNode(name: "startIcon32"): ForNodeRenderer<"startIcon32">;
-  forNode(name: "startIcon3"): ForNodeRenderer<"startIcon3">;
-  forNode(
-    name: "updateActionContainer"
-  ): ForNodeRenderer<"updateActionContainer">;
-  forNode(name: "updateContainer"): ForNodeRenderer<"updateContainer">;
   forNode(name: "updatesContainer"): ForNodeRenderer<"updatesContainer">;
-  forNode(name: "endIcon2"): ForNodeRenderer<"endIcon2">;
-  forNode(name: "startIcon2"): ForNodeRenderer<"startIcon2">;
   forNode(name: "actionBar"): ForNodeRenderer<"actionBar">;
-  forNode(name: "editor"): ForNodeRenderer<"editor">;
-  forNode(name: "editorContainer"): ForNodeRenderer<"editorContainer">;
+  forNode(name: "actionBarContainer"): ForNodeRenderer<"actionBarContainer">;
   forNode(name: "root"): ForNodeRenderer<"root">;
   forNode(name: NodeNameType) {
     return super.forNode(name);
