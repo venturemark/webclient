@@ -1,4 +1,6 @@
-port: 3000
+webclient:
+  port: 3000
+  replica: 4
 cluster:
   name: ""
   zone: ""

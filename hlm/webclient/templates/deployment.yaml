@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: "{{ .Release.Name }}"
 spec:
-  replicas: 4
+  replicas: {{ .Values.webclient.replica }}
   selector:
     matchLabels:
       app.kubernetes.io/name: "{{ .Release.Name }}"

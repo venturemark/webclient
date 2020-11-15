@@ -1,7 +1,7 @@
-# Getting Started with Create React App
+# webclient
 
 
 
 ```
-helm -n infra install webclient ./hlm/webclient --set "image.tag=d2565b00e370cafe3c9579b22733f8484a80b38c"
+helm -n infra install webclient ./hlm/webclient --set "webclient.replica=1" --set "image.tag=615d164adef3c61933dd3c9ca3cf2c34897f2aa4"
 ```
