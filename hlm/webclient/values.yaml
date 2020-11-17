@@ -1,0 +1,11 @@
+webclient:
+  port: 3000
+  replica: 4
+cluster:
+  name: ""
+  zone: ""
+image:
+  registry: "ghcr.io"
+  organization: "venturemark"
+  repository: "webclient"
+  tag: ""
