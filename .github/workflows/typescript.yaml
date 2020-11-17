@@ -20,7 +20,7 @@ jobs:
       - name: "Setup Ts Env"
         uses: "actions/setup-node@v1"
         with:
-          node-version: "15.x.x"
+          node-version: "14.x.x"
 
       - name: "Install Ts Dependencies"
         run: |
