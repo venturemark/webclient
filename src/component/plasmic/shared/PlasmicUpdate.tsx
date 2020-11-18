@@ -23,7 +23,7 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts
+  deriveRenderOpts,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
@@ -86,7 +86,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
   const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
   const triggers = {
-    hover_root: isRootHover
+    hover_root: isRootHover,
   };
 
   return (
@@ -107,7 +107,7 @@ function PlasmicUpdate__RenderFunc(props: {
         [sty.root__state_text_value_hasValue]:
           hasVariant(variants, "state", "text") &&
           hasVariant(variants, "value", "hasValue"),
-        [sty.root__value_hasValue]: hasVariant(variants, "value", "hasValue")
+        [sty.root__value_hasValue]: hasVariant(variants, "value", "hasValue"),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -147,7 +147,7 @@ function PlasmicUpdate__RenderFunc(props: {
             ),
 
             [sty.updateActionContainer__state_text___hover]:
-              hasVariant(variants, "state", "text") && triggers.hover_root
+              hasVariant(variants, "state", "text") && triggers.hover_root,
           })}
         >
           {(
@@ -173,7 +173,7 @@ function PlasmicUpdate__RenderFunc(props: {
                   variants,
                   "state",
                   "text"
-                )
+                ),
               })}
               startIcon={
                 <PlasmicIcon
@@ -197,7 +197,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       variants,
                       "state",
                       "text"
-                    )
+                    ),
                   })}
                   role={"img"}
                   {...({} as any)}
@@ -233,7 +233,7 @@ function PlasmicUpdate__RenderFunc(props: {
                   "text"
                 ),
 
-                [sty.iconButton__zHnWq]: true
+                [sty.iconButton__zHnWq]: true,
               })}
               startIcon={
                 <PlasmicIcon
@@ -257,7 +257,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       variants,
                       "state",
                       "text"
-                    )
+                    ),
                   })}
                   role={"img"}
                   {...({} as any)}
@@ -294,7 +294,7 @@ function PlasmicUpdate__RenderFunc(props: {
                   variants,
                   "state",
                   "text"
-                )
+                ),
               })}
               startIcon={
                 <PlasmicIcon
@@ -324,7 +324,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       variants,
                       "state",
                       "text"
-                    )
+                    ),
                   })}
                   role={"img"}
                   {...({} as any)}
@@ -352,7 +352,11 @@ function PlasmicUpdate__RenderFunc(props: {
           [sty.box__state_graph_value_hasValue__cT4AbVlb85T8P]:
             hasVariant(variants, "state", "graph") &&
             hasVariant(variants, "value", "hasValue"),
-          [sty.box__state_text__cT4Ab9Dd]: hasVariant(variants, "state", "text")
+          [sty.box__state_text__cT4Ab9Dd]: hasVariant(
+            variants,
+            "state",
+            "text"
+          ),
         })}
       >
         <div
@@ -369,7 +373,7 @@ function PlasmicUpdate__RenderFunc(props: {
               variants,
               "state",
               "text"
-            )
+            ),
           })}
         >
           {(hasVariant(variants, "state", "graph") ? false : true) ? (
@@ -390,7 +394,7 @@ function PlasmicUpdate__RenderFunc(props: {
                     variants,
                     "state",
                     "text"
-                  )
+                  ),
                 }) +
                 " " +
                 defaultcss.__wab_text
@@ -422,7 +426,7 @@ function PlasmicUpdate__RenderFunc(props: {
 
                 [sty.metric__state_text]: hasVariant(variants, "state", "text"),
                 [sty.metric__state_text___hover]:
-                  hasVariant(variants, "state", "text") && triggers.hover_root
+                  hasVariant(variants, "state", "text") && triggers.hover_root,
               })}
               {...({} as any)}
             />
@@ -479,7 +483,7 @@ function PlasmicUpdate__RenderFunc(props: {
               variants,
               "value",
               "hasValue"
-            )
+            ),
           })}
         >
           {(
@@ -507,7 +511,7 @@ function PlasmicUpdate__RenderFunc(props: {
                     variants,
                     "state",
                     "text"
-                  )
+                  ),
                 }) +
                 " " +
                 defaultcss.__wab_text
@@ -532,7 +536,7 @@ const PlasmicDescendants = {
     "startIcon22",
     "textContainer",
     "metric",
-    "updateFeedbackContainer"
+    "updateFeedbackContainer",
   ],
 
   updateActionContainer: [
@@ -540,7 +544,7 @@ const PlasmicDescendants = {
     "startIcon",
     "startIcon2",
     "toggleUpdateView",
-    "startIcon22"
+    "startIcon22",
   ],
 
   startIcon: ["startIcon"],
@@ -549,7 +553,7 @@ const PlasmicDescendants = {
   startIcon22: ["startIcon22"],
   textContainer: ["textContainer"],
   metric: ["metric"],
-  updateFeedbackContainer: ["updateFeedbackContainer"]
+  updateFeedbackContainer: ["updateFeedbackContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -579,8 +583,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUpdate__VariantsArgs;
     args?: PlasmicUpdate__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicUpdate__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -603,14 +606,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicUpdate__ArgProps,
-      internalVariantPropNames: PlasmicUpdate__VariantProps
+      internalVariantPropNames: PlasmicUpdate__VariantProps,
     });
 
     return PlasmicUpdate__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -637,7 +640,7 @@ export const PlasmicUpdate = Object.assign(
 
     // Metadata about props expected for PlasmicUpdate
     internalVariantProps: PlasmicUpdate__VariantProps,
-    internalArgProps: PlasmicUpdate__ArgProps
+    internalArgProps: PlasmicUpdate__ArgProps,
   }
 );
 
