@@ -23,7 +23,7 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts,
+  deriveRenderOpts
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -70,13 +70,13 @@ function PlasmicMetric__RenderFunc(props: {
       className={classNames({
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
-        [sty.metricItem]: true,
+        [sty.metricItem]: true
       })}
     >
       <div
         className={classNames({
           [defaultcss.all]: true,
-          [sty.box__xyvDg]: true,
+          [sty.box__xyvDg]: true
         })}
       >
         <PlasmicSlot
@@ -89,7 +89,7 @@ function PlasmicMetric__RenderFunc(props: {
       <div
         className={classNames({
           [defaultcss.all]: true,
-          [sty.box___0LbRl]: true,
+          [sty.box___0LbRl]: true
         })}
       >
         <img
@@ -98,7 +98,7 @@ function PlasmicMetric__RenderFunc(props: {
           alt={""}
           className={classNames({
             [defaultcss.img]: true,
-            [sty.graphContainer]: true,
+            [sty.graphContainer]: true
           })}
           role={"img"}
           src={
@@ -112,7 +112,7 @@ function PlasmicMetric__RenderFunc(props: {
 
 const PlasmicDescendants = {
   metricItem: ["metricItem", "graphContainer"],
-  graphContainer: ["graphContainer"],
+  graphContainer: ["graphContainer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -135,7 +135,8 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMetric__VariantsArgs;
     args?: PlasmicMetric__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMetric__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } & // Specify variants directly as props
+  Omit<PlasmicMetric__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMetric__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -158,14 +159,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicMetric__ArgProps,
-      internalVariantPropNames: PlasmicMetric__VariantProps,
+      internalVariantPropNames: PlasmicMetric__VariantProps
     });
 
     return PlasmicMetric__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName,
+      forNode: nodeName
     });
   };
   if (nodeName === "metricItem") {
@@ -185,7 +186,7 @@ export const PlasmicMetric = Object.assign(
 
     // Metadata about props expected for PlasmicMetric
     internalVariantProps: PlasmicMetric__VariantProps,
-    internalArgProps: PlasmicMetric__ArgProps,
+    internalArgProps: PlasmicMetric__ArgProps
   }
 );
 
