@@ -130,7 +130,7 @@
   top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
-.updateContent:global(.__wab_instance) {
+.contentContainer:global(.__wab_instance) {
   position: relative;
   top: auto;
   left: auto;
@@ -138,12 +138,12 @@
   width: default;
   height: default;
 }
-.updateContent__state_text:global(.__wab_instance) {
+.contentContainer__state_text:global(.__wab_instance) {
   top: auto;
   left: auto;
   align-self: flex-start;
 }
-.updateContent__state_graph:global(.__wab_instance) {
+.contentContainer__state_graph:global(.__wab_instance) {
   top: auto;
   left: auto;
 }

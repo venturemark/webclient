@@ -65,7 +65,7 @@ export type PlasmicUpdate__OverridesType = {
   startIcon2?: Flex<"svg">;
   toggleUpdateView?: Flex<typeof IconButton>;
   startIcon22?: Flex<"svg">;
-  updateContent?: Flex<typeof UpdateContent>;
+  contentContainer?: Flex<typeof UpdateContent>;
   updateFeedbackContainer?: Flex<"div">;
   box?: Flex<"div">;
 };
@@ -340,21 +340,25 @@ function PlasmicUpdate__RenderFunc(props: {
       ) : null}
 
       <UpdateContent
-        data-plasmic-name={"updateContent"}
-        data-plasmic-override={overrides.updateContent}
+        data-plasmic-name={"contentContainer"}
+        data-plasmic-override={overrides.contentContainer}
         className={classNames({
           __wab_instance: true,
-          [sty.updateContent]: true,
-          [sty.updateContent__state_graph]: hasVariant(
+          [sty.contentContainer]: true,
+          [sty.contentContainer__state_graph]: hasVariant(
             variants,
             "state",
             "graph"
           ),
 
-          [sty.updateContent__state_graph_value_hasValue]:
+          [sty.contentContainer__state_graph_value_hasValue]:
             hasVariant(variants, "state", "graph") &&
             hasVariant(variants, "value", "hasValue"),
-          [sty.updateContent__state_text]: hasVariant(variants, "state", "text")
+          [sty.contentContainer__state_text]: hasVariant(
+            variants,
+            "state",
+            "text"
+          )
         })}
         state={
           hasVariant(variants, "state", "graph") &&
@@ -467,7 +471,7 @@ const PlasmicDescendants = {
     "startIcon2",
     "toggleUpdateView",
     "startIcon22",
-    "updateContent",
+    "contentContainer",
     "updateFeedbackContainer",
     "box"
   ],
@@ -484,7 +488,7 @@ const PlasmicDescendants = {
   startIcon2: ["startIcon2"],
   toggleUpdateView: ["toggleUpdateView", "startIcon22"],
   startIcon22: ["startIcon22"],
-  updateContent: ["updateContent"],
+  contentContainer: ["contentContainer"],
   updateFeedbackContainer: ["updateFeedbackContainer", "box"],
   box: ["box"]
 } as const;
@@ -499,7 +503,7 @@ type NodeDefaultElementType = {
   startIcon2: "svg";
   toggleUpdateView: typeof IconButton;
   startIcon22: "svg";
-  updateContent: typeof UpdateContent;
+  contentContainer: typeof UpdateContent;
   updateFeedbackContainer: "div";
   box: "div";
 };
@@ -568,7 +572,7 @@ export const PlasmicUpdate = Object.assign(
     startIcon2: makeNodeComponent("startIcon2"),
     toggleUpdateView: makeNodeComponent("toggleUpdateView"),
     startIcon22: makeNodeComponent("startIcon22"),
-    updateContent: makeNodeComponent("updateContent"),
+    contentContainer: makeNodeComponent("contentContainer"),
     updateFeedbackContainer: makeNodeComponent("updateFeedbackContainer"),
     box: makeNodeComponent("box"),
 
