@@ -5,7 +5,7 @@
     "scheme": "blackbox"
   },
   "style": {
-    "scheme": "css",
+    "scheme": "css-modules",
     "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
   },
   "images": {

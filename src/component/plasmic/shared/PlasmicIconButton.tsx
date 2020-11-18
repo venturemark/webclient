@@ -12,8 +12,6 @@ import {
   classNames,
   Flex,
   wrapWithClassName,
-  Renderer,
-  NodeRenderer,
   createPlasmicElementProxy,
   makeFragment,
   PlasmicIcon,
@@ -25,13 +23,13 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts,
+  deriveRenderOpts
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import "./PlasmicIconButton.css"; // plasmic-import: odPjbfT2kyJgB_S/css
+import defaultcss from "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
+import projectcss from "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicIconButton.css"; // plasmic-import: odPjbfT2kyJgB_S/css
 
 export type PlasmicIconButton__VariantMembers = {
   isDisabled: "isDisabled";
@@ -92,13 +90,13 @@ function PlasmicIconButton__RenderFunc(props: {
 
   const [
     isRootFocusVisibleWithin,
-    triggerRootFocusVisibleWithinProps,
+    triggerRootFocusVisibleWithinProps
   ] = useTrigger("useFocusVisibleWithin", {
-    isTextInput: false,
+    isTextInput: false
   });
 
   const triggers = {
-    focusVisibleWithin_root: isRootFocusVisibleWithin,
+    focusVisibleWithin_root: isRootFocusVisibleWithin
   };
 
   return (
@@ -109,36 +107,24 @@ function PlasmicIconButton__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       data-plasmic-wrap-flex-child={true}
       className={classNames({
-        IconButton__root____focusVisibleWithin__dsslI3EhVr:
-          triggers.focusVisibleWithin_root,
-        IconButton__root__dsslI: true,
-        IconButton__root__isDisabled_isDisabled__dsslIf0Ulc: hasVariant(
+        [defaultcss.all]: true,
+        [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
+        [sty.root]: true,
+        [sty.root____focusVisibleWithin]: triggers.focusVisibleWithin_root,
+        [sty.root__isDisabled_isDisabled]: hasVariant(
           variants,
           "isDisabled",
           "isDisabled"
         ),
 
-        IconButton__root__showContent_showContent__dsslIGq8V: hasVariant(
+        [sty.root__showContent_showContent]: hasVariant(
           variants,
           "showContent",
           "showContent"
         ),
 
-        IconButton__root__withIcons_end__dsslIdmCtf: hasVariant(
-          variants,
-          "withIcons",
-          "end"
-        ),
-
-        IconButton__root__withIcons_start__dsslIuXgup: hasVariant(
-          variants,
-          "withIcons",
-          "start"
-        ),
-
-        plasmic_default__all: true,
-        plasmic_default__div: true,
-        root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
+        [sty.root__withIcons_end]: hasVariant(variants, "withIcons", "end"),
+        [sty.root__withIcons_start]: hasVariant(variants, "withIcons", "start")
       })}
       data-plasmic-trigger-props={[triggerRootFocusVisibleWithinProps]}
     >
@@ -149,9 +135,8 @@ function PlasmicIconButton__RenderFunc(props: {
               data-plasmic-name={"startIcon"}
               data-plasmic-override={overrides.startIcon}
               className={classNames({
-                IconButton__startIcon___36TyI: true,
-                plasmic_default__all: true,
-                plasmic_default__svg: true,
+                [defaultcss.all]: true,
+                [sty.startIcon]: true
               })}
               role={"img"}
             />
@@ -170,39 +155,37 @@ function PlasmicIconButton__RenderFunc(props: {
           data-plasmic-name={"box"}
           data-plasmic-override={overrides.box}
           className={classNames({
-            IconButton__box__gjUyu: true,
-            IconButton__box__isDisabled_isDisabled__gjUyuf0Ulc: hasVariant(
+            [defaultcss.all]: true,
+            [sty.box]: true,
+            [sty.box__isDisabled_isDisabled]: hasVariant(
               variants,
               "isDisabled",
               "isDisabled"
             ),
 
-            IconButton__box__showContent_showContent__gjUyuGq8V: hasVariant(
+            [sty.box__showContent_showContent]: hasVariant(
               variants,
               "showContent",
               "showContent"
             ),
 
-            IconButton__box__withIcons_start__gjUyuuXgup: hasVariant(
+            [sty.box__withIcons_start]: hasVariant(
               variants,
               "withIcons",
               "start"
-            ),
-
-            plasmic_default__all: true,
-            plasmic_default__div: true,
+            )
           })}
         >
           <PlasmicSlot
             defaultContents={""}
             value={args.content}
             className={classNames({
-              IconButton__slotContent___1UgyP: true,
-              IconButton__slotContent__isDisabled_isDisabled___1UgyPf0Ulc: hasVariant(
+              [sty.slotContent]: true,
+              [sty.slotContent__isDisabled_isDisabled]: hasVariant(
                 variants,
                 "isDisabled",
                 "isDisabled"
-              ),
+              )
             })}
           />
         </div>
@@ -215,9 +198,8 @@ function PlasmicIconButton__RenderFunc(props: {
                 data-plasmic-name={"endIcon"}
                 data-plasmic-override={overrides.endIcon}
                 className={classNames({
-                  IconButton__endIcon__noqpm: true,
-                  plasmic_default__all: true,
-                  plasmic_default__svg: true,
+                  [defaultcss.all]: true,
+                  [sty.endIcon]: true
                 })}
                 role={"img"}
               />
@@ -234,7 +216,7 @@ const PlasmicDescendants = {
   root: ["root", "startIcon", "box", "endIcon"],
   startIcon: ["startIcon"],
   box: ["box"],
-  endIcon: ["endIcon"],
+  endIcon: ["endIcon"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -259,7 +241,8 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicIconButton__VariantsArgs;
     args?: PlasmicIconButton__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicIconButton__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } & // Specify variants directly as props
+  Omit<PlasmicIconButton__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicIconButton__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -274,7 +257,7 @@ type NodeComponentProps<T extends NodeNameType> =
     >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
-  type PropsType = NodeComponentProps<NodeName>;
+  type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
@@ -282,14 +265,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicIconButton__ArgProps,
-      internalVariantPropNames: PlasmicIconButton__VariantProps,
+      internalVariantPropNames: PlasmicIconButton__VariantProps
     });
 
     return PlasmicIconButton__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName,
+      forNode: nodeName
     });
   };
   if (nodeName === "root") {
@@ -309,57 +292,11 @@ export const PlasmicIconButton = Object.assign(
     box: makeNodeComponent("box"),
     endIcon: makeNodeComponent("endIcon"),
 
-    // Helper for creating a Renderer
-    createRenderer: () => new PlasmicIconButton__Renderer({}, {}),
-
     // Metadata about props expected for PlasmicIconButton
     internalVariantProps: PlasmicIconButton__VariantProps,
-    internalArgProps: PlasmicIconButton__ArgProps,
+    internalArgProps: PlasmicIconButton__ArgProps
   }
 );
-
-type ForNodeRenderer<NodeName extends NodeNameType> = NodeRenderer<
-  PlasmicIconButton__VariantsArgs,
-  PlasmicIconButton__ArgsType,
-  NodeOverridesType<NodeName>
->;
-
-class PlasmicIconButton__Renderer extends Renderer<
-  PlasmicIconButton__VariantsArgs,
-  PlasmicIconButton__ArgsType,
-  PlasmicIconButton__OverridesType,
-  "root"
-> {
-  constructor(
-    variants: PlasmicIconButton__VariantsArgs,
-    args: PlasmicIconButton__ArgsType
-  ) {
-    super(variants, args, PlasmicIconButton__RenderFunc, "root");
-  }
-
-  protected create(
-    variants: PlasmicIconButton__VariantsArgs,
-    args: PlasmicIconButton__ArgsType
-  ) {
-    return new PlasmicIconButton__Renderer(variants, args);
-  }
-
-  getInternalVariantProps(): VariantPropType[] {
-    return PlasmicIconButton__VariantProps;
-  }
-
-  getInternalArgProps(): ArgPropType[] {
-    return PlasmicIconButton__ArgProps;
-  }
-
-  forNode(name: "endIcon"): ForNodeRenderer<"endIcon">;
-  forNode(name: "box"): ForNodeRenderer<"box">;
-  forNode(name: "startIcon"): ForNodeRenderer<"startIcon">;
-  forNode(name: "root"): ForNodeRenderer<"root">;
-  forNode(name: NodeNameType) {
-    return super.forNode(name);
-  }
-}
 
 export default PlasmicIconButton;
 /* prettier-ignore-end */

@@ -12,8 +12,6 @@ import {
   classNames,
   Flex,
   wrapWithClassName,
-  Renderer,
-  NodeRenderer,
   createPlasmicElementProxy,
   makeFragment,
   PlasmicIcon,
@@ -25,16 +23,16 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts,
+  deriveRenderOpts
 } from "@plasmicapp/react-web";
 import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
 import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import "./plasmic_home.css"; // plasmic-import: rr3cgzELv8j1fSZjvVMfyx/projectcss
-import "./PlasmicHome.css"; // plasmic-import: Ii0bQ3L3sO/css
+import defaultcss from "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
+import projectcss from "./plasmic_home.css"; // plasmic-import: rr3cgzELv8j1fSZjvVMfyx/projectcss
+import sty from "./PlasmicHome.css"; // plasmic-import: Ii0bQ3L3sO/css
 
 import IconPersonIcon from "../shared/icons/PlasmicIcon__IconPerson"; // plasmic-import: Exz-c1pU2x/icon
 import IconSettingsIcon from "../shared/icons/PlasmicIcon__IconSettings"; // plasmic-import: o3m824rpnQ/icon
@@ -78,27 +76,25 @@ function PlasmicHome__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       data-plasmic-wrap-flex-child={true}
       className={classNames({
-        Home__root__i4Rwt: true,
-        plasmic_default__all: true,
-        plasmic_default__div: true,
-        root_reset_rr3cgzELv8j1fSZjvVMfyx: true,
+        [defaultcss.all]: true,
+        [projectcss.root_reset_rr3cgzELv8j1fSZjvVMfyx]: true,
+        [sty.root]: true
       })}
     >
       <div
         data-plasmic-name={"actionBarContainer"}
         data-plasmic-override={overrides.actionBarContainer}
         className={classNames({
-          Home__actionBarContainer__m1ObZ: true,
-          plasmic_default__all: true,
-          plasmic_default__div: true,
+          [defaultcss.all]: true,
+          [sty.actionBarContainer]: true
         })}
       >
         <ActionBar
           data-plasmic-name={"actionBar"}
           data-plasmic-override={overrides.actionBar}
           className={classNames({
-            Home__actionBar__u6GxH: true,
             __wab_instance: true,
+            [sty.actionBar]: true
           })}
           {...({} as any)}
         />
@@ -109,9 +105,8 @@ function PlasmicHome__RenderFunc(props: {
         data-plasmic-override={overrides.updatesContainer}
         data-plasmic-wrap-flex-child={true}
         className={classNames({
-          Home__updatesContainer___9K5HA: true,
-          plasmic_default__all: true,
-          plasmic_default__div: true,
+          [defaultcss.all]: true,
+          [sty.updatesContainer]: true
         })}
       >
         <Update
@@ -124,35 +119,29 @@ function PlasmicHome__RenderFunc(props: {
       <div
         data-plasmic-name={"footer"}
         data-plasmic-override={overrides.footer}
-        className={classNames({
-          Home__footer__rH2Lk: true,
-          plasmic_default__all: true,
-          plasmic_default__div: true,
-        })}
+        className={classNames({ [defaultcss.all]: true, [sty.footer]: true })}
       >
         <div
           data-plasmic-name={"settingsContainer"}
           data-plasmic-override={overrides.settingsContainer}
           data-plasmic-wrap-flex-child={true}
           className={classNames({
-            Home__settingsContainer__i18Dv: true,
-            plasmic_default__all: true,
-            plasmic_default__div: true,
+            [defaultcss.all]: true,
+            [sty.settingsContainer]: true
           })}
         >
           <IconButton
             className={classNames({
-              Home__iconButton__zX6H: true,
               __wab_instance: true,
+              [sty.iconButton__zX6H]: true
             })}
             content={""}
             endIcon={
               false ? (
                 <svg
                   className={classNames({
-                    Home__svg___1OBNx: true,
-                    plasmic_default__all: true,
-                    plasmic_default__svg: true,
+                    [defaultcss.all]: true,
+                    [sty.svg___1OBNx]: true
                   })}
                   role={"img"}
                 />
@@ -161,9 +150,8 @@ function PlasmicHome__RenderFunc(props: {
             startIcon={
               <IconPersonIcon
                 className={classNames({
-                  Home__svg___0O2Rb: true,
-                  plasmic_default__all: true,
-                  plasmic_default__svg: true,
+                  [defaultcss.all]: true,
+                  [sty.svg___0O2Rb]: true
                 })}
                 role={"img"}
                 {...({} as any)}
@@ -175,17 +163,16 @@ function PlasmicHome__RenderFunc(props: {
 
           <IconButton
             className={classNames({
-              Home__iconButton__hDyK9: true,
               __wab_instance: true,
+              [sty.iconButton__hDyK9]: true
             })}
             content={""}
             endIcon={
               false ? (
                 <svg
                   className={classNames({
-                    Home__svg__cw2T7: true,
-                    plasmic_default__all: true,
-                    plasmic_default__svg: true,
+                    [defaultcss.all]: true,
+                    [sty.svg__cw2T7]: true
                   })}
                   role={"img"}
                 />
@@ -194,9 +181,8 @@ function PlasmicHome__RenderFunc(props: {
             startIcon={
               <IconSettingsIcon
                 className={classNames({
-                  Home__svg__jAIa1: true,
-                  plasmic_default__all: true,
-                  plasmic_default__svg: true,
+                  [defaultcss.all]: true,
+                  [sty.svg__jAIa1]: true
                 })}
                 role={"img"}
                 {...({} as any)}
@@ -219,7 +205,7 @@ const PlasmicDescendants = {
     "updatesContainer",
     "update",
     "footer",
-    "settingsContainer",
+    "settingsContainer"
   ],
 
   actionBarContainer: ["actionBarContainer", "actionBar"],
@@ -227,7 +213,7 @@ const PlasmicDescendants = {
   updatesContainer: ["updatesContainer", "update"],
   update: ["update"],
   footer: ["footer", "settingsContainer"],
-  settingsContainer: ["settingsContainer"],
+  settingsContainer: ["settingsContainer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -255,7 +241,8 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHome__VariantsArgs;
     args?: PlasmicHome__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHome__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } & // Specify variants directly as props
+  Omit<PlasmicHome__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHome__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -270,7 +257,7 @@ type NodeComponentProps<T extends NodeNameType> =
     >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
-  type PropsType = NodeComponentProps<NodeName>;
+  type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
@@ -278,14 +265,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicHome__ArgProps,
-      internalVariantPropNames: PlasmicHome__VariantProps,
+      internalVariantPropNames: PlasmicHome__VariantProps
     });
 
     return PlasmicHome__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName,
+      forNode: nodeName
     });
   };
   if (nodeName === "root") {
@@ -308,60 +295,11 @@ export const PlasmicHome = Object.assign(
     footer: makeNodeComponent("footer"),
     settingsContainer: makeNodeComponent("settingsContainer"),
 
-    // Helper for creating a Renderer
-    createRenderer: () => new PlasmicHome__Renderer({}, {}),
-
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,
-    internalArgProps: PlasmicHome__ArgProps,
+    internalArgProps: PlasmicHome__ArgProps
   }
 );
-
-type ForNodeRenderer<NodeName extends NodeNameType> = NodeRenderer<
-  PlasmicHome__VariantsArgs,
-  PlasmicHome__ArgsType,
-  NodeOverridesType<NodeName>
->;
-
-class PlasmicHome__Renderer extends Renderer<
-  PlasmicHome__VariantsArgs,
-  PlasmicHome__ArgsType,
-  PlasmicHome__OverridesType,
-  "root"
-> {
-  constructor(
-    variants: PlasmicHome__VariantsArgs,
-    args: PlasmicHome__ArgsType
-  ) {
-    super(variants, args, PlasmicHome__RenderFunc, "root");
-  }
-
-  protected create(
-    variants: PlasmicHome__VariantsArgs,
-    args: PlasmicHome__ArgsType
-  ) {
-    return new PlasmicHome__Renderer(variants, args);
-  }
-
-  getInternalVariantProps(): VariantPropType[] {
-    return PlasmicHome__VariantProps;
-  }
-
-  getInternalArgProps(): ArgPropType[] {
-    return PlasmicHome__ArgProps;
-  }
-
-  forNode(name: "settingsContainer"): ForNodeRenderer<"settingsContainer">;
-  forNode(name: "footer"): ForNodeRenderer<"footer">;
-  forNode(name: "update"): ForNodeRenderer<"update">;
-  forNode(name: "updatesContainer"): ForNodeRenderer<"updatesContainer">;
-  forNode(name: "actionBar"): ForNodeRenderer<"actionBar">;
-  forNode(name: "actionBarContainer"): ForNodeRenderer<"actionBarContainer">;
-  forNode(name: "root"): ForNodeRenderer<"root">;
-  forNode(name: NodeNameType) {
-    return super.forNode(name);
-  }
-}
 
 export default PlasmicHome;
 /* prettier-ignore-end */
