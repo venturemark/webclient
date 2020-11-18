@@ -23,7 +23,7 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts
+  deriveRenderOpts,
 } from "@plasmicapp/react-web";
 import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
 
@@ -71,10 +71,10 @@ function PlasmicUpdateContent__RenderFunc(props: {
 
   const [
     isContentContainerHover,
-    triggerContentContainerHoverProps
+    triggerContentContainerHoverProps,
   ] = useTrigger("useHover", {});
   const triggers = {
-    hover_contentContainer: isContentContainerHover
+    hover_contentContainer: isContentContainerHover,
   };
 
   return (
@@ -97,7 +97,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
           variants,
           "state",
           "text"
-        )
+        ),
       })}
       data-plasmic-trigger-props={[triggerContentContainerHoverProps]}
     >
@@ -108,7 +108,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
           [defaultcss.all]: true,
           [sty.box]: true,
           [sty.box__state_graph]: hasVariant(variants, "state", "graph"),
-          [sty.box__state_text]: hasVariant(variants, "state", "text")
+          [sty.box__state_text]: hasVariant(variants, "state", "text"),
         })}
       >
         {(hasVariant(variants, "state", "graph") ? false : true) ? (
@@ -129,7 +129,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
                   variants,
                   "state",
                   "text"
-                )
+                ),
               }) +
               " " +
               defaultcss.__wab_text
@@ -158,7 +158,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
               [sty.metric__state_text]: hasVariant(variants, "state", "text"),
               [sty.metric__state_text___hover]:
                 hasVariant(variants, "state", "text") &&
-                triggers.hover_contentContainer
+                triggers.hover_contentContainer,
             })}
             {...({} as any)}
           />
@@ -172,7 +172,7 @@ const PlasmicDescendants = {
   contentContainer: ["contentContainer", "box", "textContainer", "metric"],
   box: ["box", "textContainer", "metric"],
   textContainer: ["textContainer"],
-  metric: ["metric"]
+  metric: ["metric"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -197,8 +197,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUpdateContent__VariantsArgs;
     args?: PlasmicUpdateContent__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicUpdateContent__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicUpdateContent__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicUpdateContent__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -221,14 +220,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicUpdateContent__ArgProps,
-      internalVariantPropNames: PlasmicUpdateContent__VariantProps
+      internalVariantPropNames: PlasmicUpdateContent__VariantProps,
     });
 
     return PlasmicUpdateContent__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "contentContainer") {
@@ -250,7 +249,7 @@ export const PlasmicUpdateContent = Object.assign(
 
     // Metadata about props expected for PlasmicUpdateContent
     internalVariantProps: PlasmicUpdateContent__VariantProps,
-    internalArgProps: PlasmicUpdateContent__ArgProps
+    internalArgProps: PlasmicUpdateContent__ArgProps,
   }
 );
 

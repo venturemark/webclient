@@ -1,6 +1,5 @@
 import React from "react";
 
-import "./index.css";
 import * as home from "component/home";
 
 type Props = {};

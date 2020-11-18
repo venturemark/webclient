@@ -5,7 +5,6 @@ import {
   PlasmicUpdate,
   DefaultUpdateProps,
 } from "component/plasmic/shared/PlasmicUpdate";
-import "./index.css";
 
 interface UpdateProps extends DefaultUpdateProps {}
 
@@ -15,7 +14,6 @@ function Update(props: UpdateProps) {
   return (
     <PlasmicUpdate
       {...props}
-      className={"update"}
       toggleUpdateView={{
         "aria-label": "Toggle View",
         onPress: () => {
