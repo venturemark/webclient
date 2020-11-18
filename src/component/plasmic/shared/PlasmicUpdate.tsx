@@ -26,7 +26,7 @@ import {
   deriveRenderOpts,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
-import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
+import UpdateContent from "../../updatecontent/index"; // plasmic-import: A1UjtYt6k0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -65,10 +65,9 @@ export type PlasmicUpdate__OverridesType = {
   startIcon2?: Flex<"svg">;
   toggleUpdateView?: Flex<typeof IconButton>;
   startIcon22?: Flex<"svg">;
-  contentContainer?: Flex<"div">;
-  textContainer?: Flex<"div">;
-  metric?: Flex<typeof Metric>;
+  contentContainer?: Flex<typeof UpdateContent>;
   updateFeedbackContainer?: Flex<"div">;
+  box?: Flex<"div">;
 };
 
 export interface DefaultUpdateProps {
@@ -340,11 +339,11 @@ function PlasmicUpdate__RenderFunc(props: {
         </div>
       ) : null}
 
-      <div
+      <UpdateContent
         data-plasmic-name={"contentContainer"}
         data-plasmic-override={overrides.contentContainer}
         className={classNames({
-          [defaultcss.all]: true,
+          __wab_instance: true,
           [sty.contentContainer]: true,
           [sty.contentContainer__state_graph]: hasVariant(
             variants,
@@ -361,81 +360,18 @@ function PlasmicUpdate__RenderFunc(props: {
             "text"
           ),
         })}
-      >
-        <div
-          className={classNames({
-            [defaultcss.all]: true,
-            [sty.box__aQbk3]: true,
-            [sty.box__state_graph__aQbk3Vlb85]: hasVariant(
-              variants,
-              "state",
-              "graph"
-            ),
-
-            [sty.box__state_text__aQbk39Dd]: hasVariant(
-              variants,
-              "state",
-              "text"
-            ),
-          })}
-        >
-          {(hasVariant(variants, "state", "graph") ? false : true) ? (
-            <div
-              data-plasmic-name={"textContainer"}
-              data-plasmic-override={overrides.textContainer}
-              className={
-                classNames({
-                  [defaultcss.all]: true,
-                  [sty.textContainer]: true,
-                  [sty.textContainer__state_graph]: hasVariant(
-                    variants,
-                    "state",
-                    "graph"
-                  ),
-
-                  [sty.textContainer__state_text]: hasVariant(
-                    variants,
-                    "state",
-                    "text"
-                  ),
-                }) +
-                " " +
-                defaultcss.__wab_text
-              }
-            >
-              {hasVariant(variants, "state", "text")
-                ? "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius sapien lobortis eu."
-                : "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius sapien lobortis eu.\n\n\n"}
-            </div>
-          ) : null}
-          {(
-            hasVariant(variants, "state", "text") && triggers.hover_root
-              ? false
-              : hasVariant(variants, "state", "graph")
-              ? true
-              : false
-          ) ? (
-            <Metric
-              data-plasmic-name={"metric"}
-              data-plasmic-override={overrides.metric}
-              className={classNames({
-                __wab_instance: true,
-                [sty.metric]: true,
-                [sty.metric__state_graph]: hasVariant(
-                  variants,
-                  "state",
-                  "graph"
-                ),
-
-                [sty.metric__state_text]: hasVariant(variants, "state", "text"),
-                [sty.metric__state_text___hover]:
-                  hasVariant(variants, "state", "text") && triggers.hover_root,
-              })}
-              {...({} as any)}
-            />
-          ) : null}
-        </div>
-      </div>
+        state={
+          hasVariant(variants, "state", "graph") &&
+          hasVariant(variants, "value", "hasValue")
+            ? ("graph" as const)
+            : hasVariant(variants, "state", "graph")
+            ? ("graph" as const)
+            : hasVariant(variants, "state", "text")
+            ? ("text" as const)
+            : undefined
+        }
+        {...({} as any)}
+      />
 
       {(
         hasVariant(variants, "state", "graph") &&
@@ -497,24 +433,22 @@ function PlasmicUpdate__RenderFunc(props: {
               : true
           ) ? (
             <div
+              data-plasmic-name={"box"}
+              data-plasmic-override={overrides.box}
               className={
                 classNames({
                   [defaultcss.all]: true,
-                  [sty.box__ic5EG]: true,
-                  [sty.box__state_graph___hover__ic5EGvlb85VwvBe]:
-                    hasVariant(variants, "state", "graph") &&
-                    triggers.hover_root,
-                  [sty.box__state_graph__ic5EGvlb85]: hasVariant(
+                  [sty.box]: true,
+                  [sty.box__state_graph]: hasVariant(
                     variants,
                     "state",
                     "graph"
                   ),
 
-                  [sty.box__state_text__ic5EG9Dd]: hasVariant(
-                    variants,
-                    "state",
-                    "text"
-                  ),
+                  [sty.box__state_graph___hover]:
+                    hasVariant(variants, "state", "graph") &&
+                    triggers.hover_root,
+                  [sty.box__state_text]: hasVariant(variants, "state", "text"),
                 }) +
                 " " +
                 defaultcss.__wab_text
@@ -538,9 +472,8 @@ const PlasmicDescendants = {
     "toggleUpdateView",
     "startIcon22",
     "contentContainer",
-    "textContainer",
-    "metric",
     "updateFeedbackContainer",
+    "box",
   ],
 
   updateActionContainer: [
@@ -555,10 +488,9 @@ const PlasmicDescendants = {
   startIcon2: ["startIcon2"],
   toggleUpdateView: ["toggleUpdateView", "startIcon22"],
   startIcon22: ["startIcon22"],
-  contentContainer: ["contentContainer", "textContainer", "metric"],
-  textContainer: ["textContainer"],
-  metric: ["metric"],
-  updateFeedbackContainer: ["updateFeedbackContainer"],
+  contentContainer: ["contentContainer"],
+  updateFeedbackContainer: ["updateFeedbackContainer", "box"],
+  box: ["box"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -571,10 +503,9 @@ type NodeDefaultElementType = {
   startIcon2: "svg";
   toggleUpdateView: typeof IconButton;
   startIcon22: "svg";
-  contentContainer: "div";
-  textContainer: "div";
-  metric: typeof Metric;
+  contentContainer: typeof UpdateContent;
   updateFeedbackContainer: "div";
+  box: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -641,9 +572,8 @@ export const PlasmicUpdate = Object.assign(
     toggleUpdateView: makeNodeComponent("toggleUpdateView"),
     startIcon22: makeNodeComponent("startIcon22"),
     contentContainer: makeNodeComponent("contentContainer"),
-    textContainer: makeNodeComponent("textContainer"),
-    metric: makeNodeComponent("metric"),
     updateFeedbackContainer: makeNodeComponent("updateFeedbackContainer"),
+    box: makeNodeComponent("box"),
 
     // Metadata about props expected for PlasmicUpdate
     internalVariantProps: PlasmicUpdate__VariantProps,
