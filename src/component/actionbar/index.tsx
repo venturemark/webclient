@@ -5,6 +5,7 @@ import {
   PlasmicActionBar,
   DefaultActionBarProps,
 } from "component/plasmic/shared/PlasmicActionBar";
+import ComposeEditor from "component/editor/compose";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -48,6 +49,9 @@ function ActionBar(props: ActionBarProps) {
         onClick: () => {
           setHasContent("hasContent");
         },
+      }}
+      textbox={{
+        render: () => <ComposeEditor />,
       }}
     />
   );
