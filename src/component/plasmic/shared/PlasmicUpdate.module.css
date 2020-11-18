@@ -130,7 +130,7 @@
   top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
-.box__cT4Ab {
+.contentContainer {
   display: flex;
   position: relative;
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
@@ -146,7 +146,7 @@
   padding: 15px 20px;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.box__state_text__cT4Ab9Dd {
+.contentContainer__state_text {
   justify-content: space-between;
   align-self: flex-start;
   align-items: flex-start;
@@ -154,7 +154,7 @@
   top: auto;
   width: 100%;
 }
-.box__state_graph__cT4AbVlb85 {
+.contentContainer__state_graph {
   width: auto;
   left: auto;
   top: auto;

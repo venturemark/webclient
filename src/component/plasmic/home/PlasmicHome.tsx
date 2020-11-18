@@ -30,9 +30,9 @@ import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/comp
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_home.css"; // plasmic-import: rr3cgzELv8j1fSZjvVMfyx/projectcss
-import sty from "./PlasmicHome.css"; // plasmic-import: Ii0bQ3L3sO/css
+import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import projectcss from "./plasmic_home.module.css"; // plasmic-import: rr3cgzELv8j1fSZjvVMfyx/projectcss
+import sty from "./PlasmicHome.module.css"; // plasmic-import: Ii0bQ3L3sO/css
 
 import IconPersonIcon from "../shared/icons/PlasmicIcon__IconPerson"; // plasmic-import: Exz-c1pU2x/icon
 import IconSettingsIcon from "../shared/icons/PlasmicIcon__IconSettings"; // plasmic-import: o3m824rpnQ/icon

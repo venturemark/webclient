@@ -27,9 +27,9 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicMetric.css"; // plasmic-import: _i6uD1XPzdbux6R/css
+import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicMetric.module.css"; // plasmic-import: _i6uD1XPzdbux6R/css
 
 export type PlasmicMetric__VariantMembers = {};
 export type PlasmicMetric__VariantsArgs = {};

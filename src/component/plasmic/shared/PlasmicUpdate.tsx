@@ -29,9 +29,9 @@ import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJg
 import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicUpdate.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
+import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicUpdate.module.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
 
 import IconWriteIcon from "./icons/PlasmicIcon__IconWrite"; // plasmic-import: zCNIMAkbig/icon
 import IconClockIcon from "./icons/PlasmicIcon__IconClock"; // plasmic-import: M_91_FWOwwP63LN/icon
@@ -65,6 +65,7 @@ export type PlasmicUpdate__OverridesType = {
   startIcon2?: Flex<"svg">;
   toggleUpdateView?: Flex<typeof IconButton>;
   startIcon22?: Flex<"svg">;
+  contentContainer?: Flex<"div">;
   textContainer?: Flex<"div">;
   metric?: Flex<typeof Metric>;
   updateFeedbackContainer?: Flex<"div">;
@@ -340,19 +341,21 @@ function PlasmicUpdate__RenderFunc(props: {
       ) : null}
 
       <div
+        data-plasmic-name={"contentContainer"}
+        data-plasmic-override={overrides.contentContainer}
         className={classNames({
           [defaultcss.all]: true,
-          [sty.box__cT4Ab]: true,
-          [sty.box__state_graph__cT4AbVlb85]: hasVariant(
+          [sty.contentContainer]: true,
+          [sty.contentContainer__state_graph]: hasVariant(
             variants,
             "state",
             "graph"
           ),
 
-          [sty.box__state_graph_value_hasValue__cT4AbVlb85T8P]:
+          [sty.contentContainer__state_graph_value_hasValue]:
             hasVariant(variants, "state", "graph") &&
             hasVariant(variants, "value", "hasValue"),
-          [sty.box__state_text__cT4Ab9Dd]: hasVariant(
+          [sty.contentContainer__state_text]: hasVariant(
             variants,
             "state",
             "text"
@@ -534,6 +537,7 @@ const PlasmicDescendants = {
     "startIcon2",
     "toggleUpdateView",
     "startIcon22",
+    "contentContainer",
     "textContainer",
     "metric",
     "updateFeedbackContainer",
@@ -551,6 +555,7 @@ const PlasmicDescendants = {
   startIcon2: ["startIcon2"],
   toggleUpdateView: ["toggleUpdateView", "startIcon22"],
   startIcon22: ["startIcon22"],
+  contentContainer: ["contentContainer", "textContainer", "metric"],
   textContainer: ["textContainer"],
   metric: ["metric"],
   updateFeedbackContainer: ["updateFeedbackContainer"],
@@ -566,6 +571,7 @@ type NodeDefaultElementType = {
   startIcon2: "svg";
   toggleUpdateView: typeof IconButton;
   startIcon22: "svg";
+  contentContainer: "div";
   textContainer: "div";
   metric: typeof Metric;
   updateFeedbackContainer: "div";
@@ -634,6 +640,7 @@ export const PlasmicUpdate = Object.assign(
     startIcon2: makeNodeComponent("startIcon2"),
     toggleUpdateView: makeNodeComponent("toggleUpdateView"),
     startIcon22: makeNodeComponent("startIcon22"),
+    contentContainer: makeNodeComponent("contentContainer"),
     textContainer: makeNodeComponent("textContainer"),
     metric: makeNodeComponent("metric"),
     updateFeedbackContainer: makeNodeComponent("updateFeedbackContainer"),

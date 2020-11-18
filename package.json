@@ -12,6 +12,7 @@
     ]
   },
   "dependencies": {
+    "@plasmicapp/cli": "^0.1.70",
     "@plasmicapp/plume": "^0.1.15",
     "@plasmicapp/react-web": "^0.2.8",
     "@testing-library/jest-dom": "^5.11.5",

@@ -28,9 +28,9 @@ import {
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicActionBar.css"; // plasmic-import: eUnRsS9UXR/css
+import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicActionBar.module.css"; // plasmic-import: eUnRsS9UXR/css
 
 import IconSendIcon from "./icons/PlasmicIcon__IconSend"; // plasmic-import: oiAgf-ezpQ/icon
 
