@@ -6,16 +6,25 @@ import {
   PlasmicUpdateContent,
   DefaultUpdateContentProps,
 } from "component/plasmic/shared/PlasmicUpdateContent";
+import ReadEditor from "component/editor/read";
+import { initialValueEmpty } from "component/editor/config/initialValues";
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
   isFlipped: boolean;
 }
 
+const text = initialValueEmpty;
+
 function UpdateContent(props: UpdateContentProps) {
   const { isFlipped } = props;
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-      <PlasmicUpdateContent state="text" />
+      <PlasmicUpdateContent
+        state="text"
+        textContainer={{
+          render: () => <ReadEditor text={text} />,
+        }}
+      />
       <PlasmicUpdateContent state="graph" />
     </ReactCardFlip>
   );
