@@ -1,4 +1,4 @@
-.Metric__metricItem__sDzae {
+.metricItem {
   width: auto;
   display: inline-flex;
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
@@ -11,7 +11,7 @@
   border-style: solid;
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.Metric__box__xyvDg {
+.box__xyvDg {
   display: inline-flex;
   position: relative;
   width: auto;
@@ -19,11 +19,11 @@
   left: auto;
   top: auto;
 }
-.Metric__slotName__fmmKq {
+.slotName {
   font-weight: 500;
   font-size: 16px;
 }
-.Metric__box___0LbRl {
+.box___0LbRl {
   display: inline-flex;
   position: relative;
   flex-direction: row;
@@ -36,7 +36,7 @@
   bottom: auto;
   height: auto;
 }
-.Metric__graphContainer__utA6N {
+.graphContainer {
   object-fit: cover;
   width: 560px;
   height: 150px;

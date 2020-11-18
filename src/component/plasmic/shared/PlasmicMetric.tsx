@@ -12,8 +12,6 @@ import {
   classNames,
   Flex,
   wrapWithClassName,
-  Renderer,
-  NodeRenderer,
   createPlasmicElementProxy,
   makeFragment,
   PlasmicIcon,
@@ -29,9 +27,9 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import "./PlasmicMetric.css"; // plasmic-import: _i6uD1XPzdbux6R/css
+import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicMetric.module.css"; // plasmic-import: _i6uD1XPzdbux6R/css
 
 export type PlasmicMetric__VariantMembers = {};
 export type PlasmicMetric__VariantsArgs = {};
@@ -70,31 +68,28 @@ function PlasmicMetric__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames({
-        Metric__metricItem__sDzae: true,
-        plasmic_default__all: true,
-        plasmic_default__div: true,
-        root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
+        [defaultcss.all]: true,
+        [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
+        [sty.metricItem]: true,
       })}
     >
       <div
         className={classNames({
-          Metric__box__xyvDg: true,
-          plasmic_default__all: true,
-          plasmic_default__div: true,
+          [defaultcss.all]: true,
+          [sty.box__xyvDg]: true,
         })}
       >
         <PlasmicSlot
           defaultContents={"Revenue"}
           value={args.name}
-          className={classNames({ Metric__slotName__fmmKq: true })}
+          className={classNames({ [sty.slotName]: true })}
         />
       </div>
 
       <div
         className={classNames({
-          Metric__box___0LbRl: true,
-          plasmic_default__all: true,
-          plasmic_default__div: true,
+          [defaultcss.all]: true,
+          [sty.box___0LbRl]: true,
         })}
       >
         <img
@@ -102,9 +97,8 @@ function PlasmicMetric__RenderFunc(props: {
           data-plasmic-override={overrides.graphContainer}
           alt={""}
           className={classNames({
-            Metric__graphContainer__utA6N: true,
-            plasmic_default__all: true,
-            plasmic_default__img: true,
+            [defaultcss.img]: true,
+            [sty.graphContainer]: true,
           })}
           role={"img"}
           src={
@@ -156,7 +150,7 @@ type NodeComponentProps<T extends NodeNameType> =
     >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
-  type PropsType = NodeComponentProps<NodeName>;
+  type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
@@ -189,55 +183,11 @@ export const PlasmicMetric = Object.assign(
     // Helper components rendering sub-elements
     graphContainer: makeNodeComponent("graphContainer"),
 
-    // Helper for creating a Renderer
-    createRenderer: () => new PlasmicMetric__Renderer({}, {}),
-
     // Metadata about props expected for PlasmicMetric
     internalVariantProps: PlasmicMetric__VariantProps,
     internalArgProps: PlasmicMetric__ArgProps,
   }
 );
-
-type ForNodeRenderer<NodeName extends NodeNameType> = NodeRenderer<
-  PlasmicMetric__VariantsArgs,
-  PlasmicMetric__ArgsType,
-  NodeOverridesType<NodeName>
->;
-
-class PlasmicMetric__Renderer extends Renderer<
-  PlasmicMetric__VariantsArgs,
-  PlasmicMetric__ArgsType,
-  PlasmicMetric__OverridesType,
-  "metricItem"
-> {
-  constructor(
-    variants: PlasmicMetric__VariantsArgs,
-    args: PlasmicMetric__ArgsType
-  ) {
-    super(variants, args, PlasmicMetric__RenderFunc, "metricItem");
-  }
-
-  protected create(
-    variants: PlasmicMetric__VariantsArgs,
-    args: PlasmicMetric__ArgsType
-  ) {
-    return new PlasmicMetric__Renderer(variants, args);
-  }
-
-  getInternalVariantProps(): VariantPropType[] {
-    return PlasmicMetric__VariantProps;
-  }
-
-  getInternalArgProps(): ArgPropType[] {
-    return PlasmicMetric__ArgProps;
-  }
-
-  forNode(name: "graphContainer"): ForNodeRenderer<"graphContainer">;
-  forNode(name: "metricItem"): ForNodeRenderer<"metricItem">;
-  forNode(name: NodeNameType) {
-    return super.forNode(name);
-  }
-}
 
 export default PlasmicMetric;
 /* prettier-ignore-end */

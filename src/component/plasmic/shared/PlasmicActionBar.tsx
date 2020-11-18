@@ -12,8 +12,6 @@ import {
   classNames,
   Flex,
   wrapWithClassName,
-  Renderer,
-  NodeRenderer,
   createPlasmicElementProxy,
   makeFragment,
   PlasmicIcon,
@@ -30,9 +28,9 @@ import {
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import "../plasmic__default_style.css"; // plasmic-import: global/defaultcss
-import "./plasmic_shared.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import "./PlasmicActionBar.css"; // plasmic-import: eUnRsS9UXR/css
+import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicActionBar.module.css"; // plasmic-import: eUnRsS9UXR/css
 
 import IconSendIcon from "./icons/PlasmicIcon__IconSend"; // plasmic-import: oiAgf-ezpQ/icon
 
@@ -82,34 +80,30 @@ function PlasmicActionBar__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames({
-        ActionBar__root__sd9X: true,
-        plasmic_default__all: true,
-        plasmic_default__div: true,
-        root_reset_mTVXT6w3HHjZ4d74q3gB76: true,
+        [defaultcss.all]: true,
+        [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
+        [sty.root]: true,
       })}
     >
       <div
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
         className={classNames({
-          ActionBar__editorContainer__content_hasContent__nsTskQtYpu: hasVariant(
+          [defaultcss.all]: true,
+          [sty.editorContainer]: true,
+          [sty.editorContainer__content_hasContent]: hasVariant(
             variants,
             "content",
             "hasContent"
           ),
-
-          ActionBar__editorContainer__nsTsk: true,
-          plasmic_default__all: true,
-          plasmic_default__div: true,
         })}
       >
         <input
           data-plasmic-name={"textbox"}
           data-plasmic-override={overrides.textbox}
           className={classNames({
-            ActionBar__textbox__v91D: true,
-            plasmic_default__all: true,
-            plasmic_default__input: true,
+            [defaultcss.input]: true,
+            [sty.textbox]: true,
           })}
           placeholder={"Write an update" as const}
           size={1 as const}
@@ -122,32 +116,29 @@ function PlasmicActionBar__RenderFunc(props: {
           data-plasmic-name={"actionContainer"}
           data-plasmic-override={overrides.actionContainer}
           className={classNames({
-            ActionBar__actionContainer__content_hasContent__sisBvQtYpu: hasVariant(
+            [defaultcss.all]: true,
+            [sty.actionContainer]: true,
+            [sty.actionContainer__content_hasContent]: hasVariant(
               variants,
               "content",
               "hasContent"
             ),
-
-            ActionBar__actionContainer__sisBv: true,
-            plasmic_default__all: true,
-            plasmic_default__div: true,
           })}
         >
           <IconButton
             data-plasmic-name={"iconButton"}
             data-plasmic-override={overrides.iconButton}
             className={classNames({
-              ActionBar__iconButton__xv2S: true,
               __wab_instance: true,
+              [sty.iconButton]: true,
             })}
             startIcon={
               <IconSendIcon
                 data-plasmic-name={"startIcon"}
                 data-plasmic-override={overrides.startIcon}
                 className={classNames({
-                  ActionBar__startIcon__dM10W: true,
-                  plasmic_default__all: true,
-                  plasmic_default__svg: true,
+                  [defaultcss.all]: true,
+                  [sty.startIcon]: true,
                 })}
                 role={"img"}
                 {...({} as any)}
@@ -218,7 +209,7 @@ type NodeComponentProps<T extends NodeNameType> =
     >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
-  type PropsType = NodeComponentProps<NodeName>;
+  type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
@@ -255,59 +246,11 @@ export const PlasmicActionBar = Object.assign(
     iconButton: makeNodeComponent("iconButton"),
     startIcon: makeNodeComponent("startIcon"),
 
-    // Helper for creating a Renderer
-    createRenderer: () => new PlasmicActionBar__Renderer({}, {}),
-
     // Metadata about props expected for PlasmicActionBar
     internalVariantProps: PlasmicActionBar__VariantProps,
     internalArgProps: PlasmicActionBar__ArgProps,
   }
 );
-
-type ForNodeRenderer<NodeName extends NodeNameType> = NodeRenderer<
-  PlasmicActionBar__VariantsArgs,
-  PlasmicActionBar__ArgsType,
-  NodeOverridesType<NodeName>
->;
-
-class PlasmicActionBar__Renderer extends Renderer<
-  PlasmicActionBar__VariantsArgs,
-  PlasmicActionBar__ArgsType,
-  PlasmicActionBar__OverridesType,
-  "root"
-> {
-  constructor(
-    variants: PlasmicActionBar__VariantsArgs,
-    args: PlasmicActionBar__ArgsType
-  ) {
-    super(variants, args, PlasmicActionBar__RenderFunc, "root");
-  }
-
-  protected create(
-    variants: PlasmicActionBar__VariantsArgs,
-    args: PlasmicActionBar__ArgsType
-  ) {
-    return new PlasmicActionBar__Renderer(variants, args);
-  }
-
-  getInternalVariantProps(): VariantPropType[] {
-    return PlasmicActionBar__VariantProps;
-  }
-
-  getInternalArgProps(): ArgPropType[] {
-    return PlasmicActionBar__ArgProps;
-  }
-
-  forNode(name: "startIcon"): ForNodeRenderer<"startIcon">;
-  forNode(name: "iconButton"): ForNodeRenderer<"iconButton">;
-  forNode(name: "actionContainer"): ForNodeRenderer<"actionContainer">;
-  forNode(name: "textbox"): ForNodeRenderer<"textbox">;
-  forNode(name: "editorContainer"): ForNodeRenderer<"editorContainer">;
-  forNode(name: "root"): ForNodeRenderer<"root">;
-  forNode(name: NodeNameType) {
-    return super.forNode(name);
-  }
-}
 
 export default PlasmicActionBar;
 /* prettier-ignore-end */

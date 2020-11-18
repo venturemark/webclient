@@ -5,8 +5,8 @@
     "scheme": "blackbox"
   },
   "style": {
-    "scheme": "css",
-    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
+    "scheme": "css-modules",
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
   },
   "images": {
     "scheme": "inlined"
@@ -22,7 +22,7 @@
       "projectId": "mTVXT6w3HHjZ4d74q3gB76",
       "projectName": "shared",
       "version": "latest",
-      "cssFilePath": "plasmic/shared/plasmic_shared.css",
+      "cssFilePath": "plasmic/shared/plasmic_shared.module.css",
       "components": [
         {
           "id": "Fs8bTUrvZrvfhCr",
@@ -33,7 +33,7 @@
           "importSpec": {
             "modulePath": "update/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicUpdate.css",
+          "cssFilePath": "plasmic/shared/PlasmicUpdate.module.css",
           "scheme": "blackbox"
         },
         {
@@ -45,7 +45,7 @@
           "importSpec": {
             "modulePath": "metric/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicMetric.css",
+          "cssFilePath": "plasmic/shared/PlasmicMetric.module.css",
           "scheme": "blackbox"
         },
         {
@@ -57,7 +57,7 @@
           "importSpec": {
             "modulePath": "iconbutton/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicIconButton.css",
+          "cssFilePath": "plasmic/shared/PlasmicIconButton.module.css",
           "scheme": "blackbox"
         },
         {
@@ -69,7 +69,7 @@
           "importSpec": {
             "modulePath": "actionbar/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicActionBar.css",
+          "cssFilePath": "plasmic/shared/PlasmicActionBar.module.css",
           "scheme": "blackbox"
         }
       ],
@@ -143,7 +143,7 @@
       "projectId": "rr3cgzELv8j1fSZjvVMfyx",
       "projectName": "home",
       "version": "latest",
-      "cssFilePath": "plasmic/home/plasmic_home.css",
+      "cssFilePath": "plasmic/home/plasmic_home.module.css",
       "components": [
         {
           "id": "Ii0bQ3L3sO",
@@ -154,7 +154,7 @@
           "importSpec": {
             "modulePath": "home/index.tsx"
           },
-          "cssFilePath": "plasmic/home/PlasmicHome.css",
+          "cssFilePath": "plasmic/home/PlasmicHome.module.css",
           "scheme": "blackbox"
         }
       ],
@@ -166,5 +166,5 @@
   "globalVariants": {
     "variantGroups": []
   },
-  "cliVersion": "0.1.68"
+  "cliVersion": "0.1.70"
 }
