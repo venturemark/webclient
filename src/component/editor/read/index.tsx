@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { createEditor, Node } from "slate";
-import { withHistory } from "slate-history";
+import { createEditor } from "slate";
 import { Slate, withReact } from "slate-react";
 import {
   ParagraphPlugin,
@@ -11,26 +10,7 @@ import {
   UnderlinePlugin,
   pipe,
 } from "@udecode/slate-plugins";
-import {
-  headingTypes,
-  options,
-  optionsResetBlockTypes,
-  initialValueEmpty,
-} from "component/editor/config/initialValues";
-
-const initialValue: Node[] = [
-  {
-    type: options.p.type,
-    children: [
-      {
-        text: "This text is bold, italic and underlined.",
-        [options.bold.type]: true,
-        [options.italic.type]: true,
-        [options.underline.type]: true,
-      },
-    ],
-  },
-];
+import { initialValueEmpty } from "component/editor/config/initialValues";
 
 const plugins = [
   ParagraphPlugin(),
@@ -66,7 +46,7 @@ const ReadEditor = (props: EditorProps) => {
   return (
     <Slate
       editor={editor}
-      value={existingValue}
+      value={value}
       onChange={(newValue) => {
         setValue(newValue);
       }}

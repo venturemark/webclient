@@ -1,5 +1,5 @@
-import React, { useMemo, useState, useEffect } from "react";
-import { createEditor, Node } from "slate";
+import React, { useMemo, useState } from "react";
+import { createEditor } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
 import {
@@ -34,7 +34,6 @@ import {
   options,
   optionsResetBlockTypes,
   initialValueEmpty,
-  initialValueAutoformat,
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import { MENTIONABLES } from "component/editor/config/mentionables";
@@ -42,6 +41,7 @@ import { MENTIONABLES } from "component/editor/config/mentionables";
 const plugins = [
   ParagraphPlugin(options),
   BoldPlugin(),
+  UnderlinePlugin(),
   ItalicPlugin(),
   CodePlugin(),
   StrikethroughPlugin(),
