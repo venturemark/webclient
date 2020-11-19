@@ -23,7 +23,7 @@ import {
   omit,
   useTrigger,
   StrictProps,
-  deriveRenderOpts
+  deriveRenderOpts,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
@@ -87,7 +87,7 @@ function PlasmicActionBar__RenderFunc(props: {
           variants,
           "content",
           "hasContent"
-        )
+        ),
       })}
     >
       <div
@@ -100,7 +100,7 @@ function PlasmicActionBar__RenderFunc(props: {
             variants,
             "content",
             "hasContent"
-          )
+          ),
         })}
       >
         <input
@@ -108,7 +108,7 @@ function PlasmicActionBar__RenderFunc(props: {
           data-plasmic-override={overrides.textContainer}
           className={classNames({
             [defaultcss.input]: true,
-            [sty.textContainer]: true
+            [sty.textContainer]: true,
           })}
           placeholder={"Write an update" as const}
           size={1 as const}
@@ -127,7 +127,7 @@ function PlasmicActionBar__RenderFunc(props: {
               variants,
               "content",
               "hasContent"
-            )
+            ),
           })}
         >
           <IconButton
@@ -135,7 +135,7 @@ function PlasmicActionBar__RenderFunc(props: {
             data-plasmic-override={overrides.iconButton}
             className={classNames({
               __wab_instance: true,
-              [sty.iconButton]: true
+              [sty.iconButton]: true,
             })}
             startIcon={
               <IconSendIcon
@@ -143,7 +143,7 @@ function PlasmicActionBar__RenderFunc(props: {
                 data-plasmic-override={overrides.startIcon}
                 className={classNames({
                   [defaultcss.all]: true,
-                  [sty.startIcon]: true
+                  [sty.startIcon]: true,
                 })}
                 role={"img"}
                 {...({} as any)}
@@ -165,14 +165,14 @@ const PlasmicDescendants = {
     "textContainer",
     "actionContainer",
     "iconButton",
-    "startIcon"
+    "startIcon",
   ],
 
   editorContainer: ["editorContainer", "textContainer"],
   textContainer: ["textContainer"],
   actionContainer: ["actionContainer", "iconButton", "startIcon"],
   iconButton: ["iconButton", "startIcon"],
-  startIcon: ["startIcon"]
+  startIcon: ["startIcon"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -199,8 +199,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActionBar__VariantsArgs;
     args?: PlasmicActionBar__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicActionBar__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicActionBar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicActionBar__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -223,14 +222,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicActionBar__ArgProps,
-      internalVariantPropNames: PlasmicActionBar__VariantProps
+      internalVariantPropNames: PlasmicActionBar__VariantProps,
     });
 
     return PlasmicActionBar__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -254,7 +253,7 @@ export const PlasmicActionBar = Object.assign(
 
     // Metadata about props expected for PlasmicActionBar
     internalVariantProps: PlasmicActionBar__VariantProps,
-    internalArgProps: PlasmicActionBar__ArgProps
+    internalArgProps: PlasmicActionBar__ArgProps,
   }
 );
 
