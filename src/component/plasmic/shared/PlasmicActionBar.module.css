@@ -4,31 +4,35 @@
   height: auto;
   position: relative;
   align-items: center;
+  padding-right: 74px;
+}
+.root__content_hasContent {
+  padding-right: 0px;
 }
 .editorContainer {
-  display: inline-flex;
+  display: flex;
   position: relative;
-  background-color: rgba(68, 192, 255, 0);
-  width: auto;
+  background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+  width: 602px;
   height: auto;
   flex-direction: row;
-  padding-right: 74px;
+  padding-left: 15px;
+  padding-right: 15px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .editorContainer__content_hasContent {
   padding-right: 0px;
 }
-.textbox {
-  position: relative;
-  width: 602px;
-  left: auto;
-  top: auto;
+.textContainer {
+  width: 100%;
   height: 100%;
   font-size: 24px;
-  padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  flex-shrink: 0;
   border-radius: 8px;
+  border-width: 0px;
 }
 .actionContainer {
   display: inline-flex;

@@ -146,7 +146,7 @@ export const initialValueEmpty: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text: "Create",
+            text: "",
           },
         ],
       },

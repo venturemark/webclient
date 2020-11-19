@@ -142,6 +142,8 @@
   top: auto;
   left: auto;
   align-self: flex-start;
+  width: default;
+  height: default;
 }
 .contentContainer__state_graph:global(.__wab_instance) {
   top: auto;

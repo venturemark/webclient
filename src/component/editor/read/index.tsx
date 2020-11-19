@@ -73,7 +73,7 @@ const ReadEditor = (props: EditorProps) => {
     >
       <EditablePlugins
         plugins={plugins}
-        placeholder="This matters a great deal."
+        placeholder="This matters a great deal. So much in fact."
         spellCheck
         autoFocus
         readOnly

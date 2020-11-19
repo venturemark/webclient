@@ -50,7 +50,7 @@ function ActionBar(props: ActionBarProps) {
           setHasContent("hasContent");
         },
       }}
-      textbox={{
+      textContainer={{
         render: () => <ComposeEditor />,
       }}
     />

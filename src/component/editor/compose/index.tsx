@@ -130,9 +130,9 @@ const ComposeEditor = (props: EditorProps) => {
       <EditablePlugins
         plugins={plugins}
         placeholder="Why does this matter?"
+        style={{ width: "100%" }}
         onKeyDown={[onKeyDownMention]}
         onKeyDownDeps={[index, search, target]}
-        className={"updatecontentstates-description-5"}
         spellCheck
       />
       <MentionSelect
