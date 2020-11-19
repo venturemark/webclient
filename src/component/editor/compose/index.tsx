@@ -9,11 +9,9 @@ import {
   EditablePlugins,
   ItalicPlugin,
   UnderlinePlugin,
-  CodePlugin,
   StrikethroughPlugin,
   BlockquotePlugin,
   ListPlugin,
-  CodeBlockPlugin,
   ResetBlockTypePlugin,
   SoftBreakPlugin,
   ExitBreakPlugin,
@@ -43,12 +41,10 @@ const plugins = [
   BoldPlugin(),
   UnderlinePlugin(),
   ItalicPlugin(),
-  CodePlugin(),
   StrikethroughPlugin(),
   BlockquotePlugin(options),
   ListPlugin(options),
   HeadingPlugin(options),
-  CodeBlockPlugin(options),
   ResetBlockTypePlugin(optionsResetBlockTypes),
   SoftBreakPlugin({
     rules: [
@@ -56,7 +52,7 @@ const plugins = [
       {
         hotkey: "enter",
         query: {
-          allow: [options.code_block.type, options.blockquote.type],
+          allow: [options.blockquote.type],
         },
       },
     ],

@@ -1,7 +1,6 @@
 import {
   AutoformatRule,
   MARK_BOLD,
-  MARK_CODE,
   MARK_ITALIC,
   MARK_STRIKETHROUGH,
   toggleList,
@@ -93,22 +92,9 @@ export const autoformatRules: AutoformatRule[] = [
     insertTrigger: true,
   },
   {
-    type: MARK_CODE,
-    between: ["`", "`"],
-    mode: "inline",
-    insertTrigger: true,
-  },
-  {
     type: MARK_STRIKETHROUGH,
     between: ["~~", "~~"],
     mode: "inline",
     insertTrigger: true,
-  },
-  {
-    trigger: "`",
-    type: options.code_block.type,
-    markup: "``",
-    mode: "inline-block",
-    preFormat: (editor) => unwrapList(editor, options),
   },
 ];
