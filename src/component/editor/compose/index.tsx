@@ -89,7 +89,12 @@ const withPlugins = [
 ] as const;
 
 const ComposeEditor = (props: EditorProps) => {
-  const [value, setValue] = useState(initialValueEmpty);
+  const initialValue =
+    localStorage.content !== ""
+      ? JSON.parse(localStorage.content)
+      : initialValueEmpty;
+
+  const [value, setValue] = useState(initialValue);
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
   return (
