@@ -1,3 +1,7 @@
+// @refresh reset - this comment:
+// - is local
+// - forces "react fast refresh" to remount all components defined in the file on every edit.
+// only affects development
 import React, { useMemo, useState } from "react";
 import { createEditor } from "slate";
 import { withHistory } from "slate-history";
@@ -31,7 +35,7 @@ import {
   initialValueEmpty,
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
-import editorcss from "component/editor/compose/index.module.css";
+import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -89,7 +93,11 @@ const withPlugins = [
 ] as const;
 
 const ComposeEditor = (props: EditorProps) => {
-  const [value, setValue] = useState(initialValueEmpty);
+  const store = localStorage["composeEditor.content"];
+
+  const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
+
+  const [value, setValue] = useState(initialValue);
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
   return (
@@ -101,13 +109,13 @@ const ComposeEditor = (props: EditorProps) => {
 
         //save to local storage to persist...
         const content = JSON.stringify(value);
-        localStorage.setItem("content", content);
+        localStorage.setItem("composeEditor.content", content);
       }}
     >
       <EditablePlugins
         plugins={plugins}
         placeholder="Why does this matter?"
-        className={editorcss.editor}
+        className={actionbarcss.textContainer}
         spellCheck
       />
     </Slate>
