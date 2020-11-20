@@ -31,7 +31,7 @@ import {
   initialValueEmpty,
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
-import editorcss from "component/editor/compose/index.module.css";
+import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -112,7 +112,7 @@ const ComposeEditor = (props: EditorProps) => {
       <EditablePlugins
         plugins={plugins}
         placeholder="Why does this matter?"
-        className={editorcss.editor}
+        className={actionbarcss.textContainer}
         spellCheck
       />
     </Slate>
