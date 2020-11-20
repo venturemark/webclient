@@ -98,8 +98,6 @@ const ComposeEditor = (props: EditorProps) => {
   const [value, setValue] = useState(initialValue);
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
-  console.log("compose editor value:", value);
-
   return (
     <Slate
       editor={editor}
