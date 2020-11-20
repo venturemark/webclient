@@ -29,7 +29,17 @@ jobs:
 
       - name: "Prevent Js Files"
         run: |
-          test -z $(find ./src/ -name "*.js")
+          if [[ $(find ./src/ -name "*.js") ]]; then
+            echo ".js files not allowed"
+            exit 1
+          fi
+
+      - name: "Check Git Project"
+        run: |
+          if [[ $(git status --porcelain) ]]; then
+            echo "dirty git project"
+            exit 1
+          fi
 
       - name: "Check Ts Formatting"
         run: |
