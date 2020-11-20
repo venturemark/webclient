@@ -21,6 +21,16 @@
       }
     },
     {
+      "name": "UnnamedStyleToken",
+      "type": "color",
+      "value": "rgb(249,249,250)",
+      "category": "color",
+      "meta": {
+        "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+        "id": "2o4hRg6in"
+      }
+    },
+    {
       "name": "UnnamedStyleToken 2",
       "type": "spacing",
       "value": "1px",

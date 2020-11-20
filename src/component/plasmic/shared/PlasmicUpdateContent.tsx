@@ -50,10 +50,10 @@ type ArgPropType = keyof PlasmicUpdateContent__ArgsType;
 export const PlasmicUpdateContent__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicUpdateContent__OverridesType = {
-  contentContainer?: Flex<"div">;
-  box?: Flex<"div">;
-  textContainer?: Flex<"div">;
+  root?: Flex<"div">;
+  editorContainer?: Flex<"div">;
   metric?: Flex<typeof Metric>;
+  textContainer?: Flex<"div">;
 };
 
 export interface DefaultUpdateContentProps {
@@ -69,48 +69,67 @@ function PlasmicUpdateContent__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
-  const [
-    isContentContainerHover,
-    triggerContentContainerHoverProps,
-  ] = useTrigger("useHover", {});
+  const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
   const triggers = {
-    hover_contentContainer: isContentContainerHover,
+    hover_root: isRootHover,
   };
 
   return (
     <div
-      data-plasmic-name={"contentContainer"}
-      data-plasmic-override={overrides.contentContainer}
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames({
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
-        [sty.contentContainer]: true,
-        [sty.contentContainer__state_graph]: hasVariant(
-          variants,
-          "state",
-          "graph"
-        ),
-
-        [sty.contentContainer__state_text]: hasVariant(
-          variants,
-          "state",
-          "text"
-        ),
+        [sty.root]: true,
+        [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
+        [sty.root__state_text]: hasVariant(variants, "state", "text"),
       })}
-      data-plasmic-trigger-props={[triggerContentContainerHoverProps]}
+      data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
       <div
-        data-plasmic-name={"box"}
-        data-plasmic-override={overrides.box}
+        data-plasmic-name={"editorContainer"}
+        data-plasmic-override={overrides.editorContainer}
         className={classNames({
           [defaultcss.all]: true,
-          [sty.box]: true,
-          [sty.box__state_graph]: hasVariant(variants, "state", "graph"),
-          [sty.box__state_text]: hasVariant(variants, "state", "text"),
+          [sty.editorContainer]: true,
+          [sty.editorContainer__state_graph]: hasVariant(
+            variants,
+            "state",
+            "graph"
+          ),
+
+          [sty.editorContainer__state_text]: hasVariant(
+            variants,
+            "state",
+            "text"
+          ),
         })}
       >
+        {(
+          hasVariant(variants, "state", "text") && triggers.hover_root
+            ? false
+            : hasVariant(variants, "state", "graph")
+            ? true
+            : false
+        ) ? (
+          <Metric
+            data-plasmic-name={"metric"}
+            data-plasmic-override={overrides.metric}
+            className={classNames({
+              __wab_instance: true,
+              [sty.metric]: true,
+              [sty.metric__state_graph]: hasVariant(variants, "state", "graph"),
+              [sty.metric__state_text]: hasVariant(variants, "state", "text"),
+              [sty.metric__state_text___hover]:
+                hasVariant(variants, "state", "text") && triggers.hover_root,
+            })}
+            name={"Revenue"}
+            {...({} as any)}
+          />
+        ) : null}
         {(hasVariant(variants, "state", "graph") ? false : true) ? (
           <div
             data-plasmic-name={"textContainer"}
@@ -137,31 +156,8 @@ function PlasmicUpdateContent__RenderFunc(props: {
           >
             {hasVariant(variants, "state", "text")
               ? "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius sapien lobortis eu."
-              : "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius sapien lobortis eu.\n\n\n"}
+              : "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius\n\n\n"}
           </div>
-        ) : null}
-        {(
-          hasVariant(variants, "state", "text") &&
-          triggers.hover_contentContainer
-            ? false
-            : hasVariant(variants, "state", "graph")
-            ? true
-            : false
-        ) ? (
-          <Metric
-            data-plasmic-name={"metric"}
-            data-plasmic-override={overrides.metric}
-            className={classNames({
-              __wab_instance: true,
-              [sty.metric]: true,
-              [sty.metric__state_graph]: hasVariant(variants, "state", "graph"),
-              [sty.metric__state_text]: hasVariant(variants, "state", "text"),
-              [sty.metric__state_text___hover]:
-                hasVariant(variants, "state", "text") &&
-                triggers.hover_contentContainer,
-            })}
-            {...({} as any)}
-          />
         ) : null}
       </div>
     </div>
@@ -169,20 +165,20 @@ function PlasmicUpdateContent__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  contentContainer: ["contentContainer", "box", "textContainer", "metric"],
-  box: ["box", "textContainer", "metric"],
-  textContainer: ["textContainer"],
+  root: ["root", "editorContainer", "metric", "textContainer"],
+  editorContainer: ["editorContainer", "metric", "textContainer"],
   metric: ["metric"],
+  textContainer: ["textContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
   T extends NodeNameType
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
-  contentContainer: "div";
-  box: "div";
-  textContainer: "div";
+  root: "div";
+  editorContainer: "div";
   metric: typeof Metric;
+  textContainer: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -230,7 +226,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       forNode: nodeName,
     });
   };
-  if (nodeName === "contentContainer") {
+  if (nodeName === "root") {
     func.displayName = "PlasmicUpdateContent";
   } else {
     func.displayName = `PlasmicUpdateContent.${nodeName}`;
@@ -240,12 +236,12 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
 
 export const PlasmicUpdateContent = Object.assign(
   // Top-level PlasmicUpdateContent renders the root element
-  makeNodeComponent("contentContainer"),
+  makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    box: makeNodeComponent("box"),
-    textContainer: makeNodeComponent("textContainer"),
+    editorContainer: makeNodeComponent("editorContainer"),
     metric: makeNodeComponent("metric"),
+    textContainer: makeNodeComponent("textContainer"),
 
     // Metadata about props expected for PlasmicUpdateContent
     internalVariantProps: PlasmicUpdateContent__VariantProps,

@@ -54,7 +54,7 @@ export const PlasmicActionBar__ArgProps = new Array<ArgPropType>();
 export type PlasmicActionBar__OverridesType = {
   root?: Flex<"div">;
   editorContainer?: Flex<"div">;
-  textbox?: Flex<"input">;
+  textContainer?: Flex<"input">;
   actionContainer?: Flex<"div">;
   iconButton?: Flex<typeof IconButton>;
   startIcon?: Flex<"svg">;
@@ -83,6 +83,11 @@ function PlasmicActionBar__RenderFunc(props: {
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.root]: true,
+        [sty.root__content_hasContent]: hasVariant(
+          variants,
+          "content",
+          "hasContent"
+        ),
       })}
     >
       <div
@@ -99,11 +104,11 @@ function PlasmicActionBar__RenderFunc(props: {
         })}
       >
         <input
-          data-plasmic-name={"textbox"}
-          data-plasmic-override={overrides.textbox}
+          data-plasmic-name={"textContainer"}
+          data-plasmic-override={overrides.textContainer}
           className={classNames({
             [defaultcss.input]: true,
-            [sty.textbox]: true,
+            [sty.textContainer]: true,
           })}
           placeholder={"Write an update" as const}
           size={1 as const}
@@ -157,14 +162,14 @@ const PlasmicDescendants = {
   root: [
     "root",
     "editorContainer",
-    "textbox",
+    "textContainer",
     "actionContainer",
     "iconButton",
     "startIcon",
   ],
 
-  editorContainer: ["editorContainer", "textbox"],
-  textbox: ["textbox"],
+  editorContainer: ["editorContainer", "textContainer"],
+  textContainer: ["textContainer"],
   actionContainer: ["actionContainer", "iconButton", "startIcon"],
   iconButton: ["iconButton", "startIcon"],
   startIcon: ["startIcon"],
@@ -176,7 +181,7 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   editorContainer: "div";
-  textbox: "input";
+  textContainer: "input";
   actionContainer: "div";
   iconButton: typeof IconButton;
   startIcon: "svg";
@@ -241,7 +246,7 @@ export const PlasmicActionBar = Object.assign(
   {
     // Helper components rendering sub-elements
     editorContainer: makeNodeComponent("editorContainer"),
-    textbox: makeNodeComponent("textbox"),
+    textContainer: makeNodeComponent("textContainer"),
     actionContainer: makeNodeComponent("actionContainer"),
     iconButton: makeNodeComponent("iconButton"),
     startIcon: makeNodeComponent("startIcon"),
