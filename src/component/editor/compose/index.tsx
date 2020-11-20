@@ -1,3 +1,7 @@
+// @refresh reset - this comment:
+// - is local
+// - forces "react fast refresh" to remount all components defined in the file on every edit.
+// only affects development
 import React, { useMemo, useState } from "react";
 import { createEditor } from "slate";
 import { withHistory } from "slate-history";
