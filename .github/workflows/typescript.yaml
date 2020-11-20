@@ -27,6 +27,10 @@ jobs:
           npm install
           npm install prettier --global
 
+      - name: "Prevent Js Files"
+        run: |
+          test -z $(find ./src/ -name "*.js")
+
       - name: "Check Ts Formatting"
         run: |
           prettier -c $(find ./src/ -name "*.ts" -o -name "*.tsx")
