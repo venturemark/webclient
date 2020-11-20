@@ -15,7 +15,6 @@ import {
   ResetBlockTypePlugin,
   SoftBreakPlugin,
   ExitBreakPlugin,
-  MentionPlugin,
   pipe,
   SlateDocument,
   withAutoformat,
@@ -24,8 +23,6 @@ import {
   withList,
   withMarks,
   withInlineVoid,
-  MentionSelect,
-  useMention,
 } from "@udecode/slate-plugins";
 import {
   headingTypes,
@@ -34,7 +31,6 @@ import {
   initialValueEmpty,
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
-import { MENTIONABLES } from "component/editor/config/mentionables";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -76,7 +72,6 @@ const plugins = [
       },
     ],
   }),
-  MentionPlugin(options),
 ];
 
 interface EditorProps {}
@@ -95,18 +90,6 @@ const withPlugins = [
 const ComposeEditor = (props: EditorProps) => {
   const [value, setValue] = useState(initialValueEmpty);
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
-  const {
-    onAddMention,
-    onChangeMention,
-    onKeyDownMention,
-    search,
-    index,
-    target,
-    values,
-  } = useMention(MENTIONABLES, {
-    maxSuggestions: 10,
-    trigger: "@",
-  });
 
   return (
     <Slate
@@ -115,10 +98,7 @@ const ComposeEditor = (props: EditorProps) => {
       onChange={(newValue: any) => {
         setValue(newValue as SlateDocument);
 
-        //trigger mention
-        onChangeMention(editor);
-
-        //save to local storage for to persist...
+        //save to local storage to persist...
         const content = JSON.stringify(value);
         localStorage.setItem("content", content);
       }}
@@ -127,15 +107,7 @@ const ComposeEditor = (props: EditorProps) => {
         plugins={plugins}
         placeholder="Why does this matter?"
         style={{ width: "100%" }}
-        onKeyDown={[onKeyDownMention]}
-        onKeyDownDeps={[index, search, target]}
         spellCheck
-      />
-      <MentionSelect
-        at={target}
-        valueIndex={index}
-        options={values}
-        onClickMention={onAddMention}
       />
     </Slate>
   );
