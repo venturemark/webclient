@@ -89,10 +89,9 @@ const withPlugins = [
 ] as const;
 
 const ComposeEditor = (props: EditorProps) => {
-  const initialValue =
-    localStorage.content !== ""
-      ? JSON.parse(localStorage.content)
-      : initialValueEmpty;
+  const store = localStorage["composeEditor.content"];
+
+  const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
 
   const [value, setValue] = useState(initialValue);
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
@@ -106,7 +105,7 @@ const ComposeEditor = (props: EditorProps) => {
 
         //save to local storage to persist...
         const content = JSON.stringify(value);
-        localStorage.setItem("content", content);
+        localStorage.setItem("composeEditor.content", content);
       }}
     >
       <EditablePlugins
