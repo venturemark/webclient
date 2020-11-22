@@ -3,7 +3,7 @@
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
 import React, { useMemo, useState } from "react";
-import { createEditor } from "slate";
+import { createEditor, Node } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
 import {
@@ -79,7 +79,9 @@ const plugins = [
   }),
 ];
 
-interface EditorProps {}
+interface EditorProps {
+  setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
+}
 
 const withPlugins = [
   withReact,
@@ -92,23 +94,45 @@ const withPlugins = [
   withInlineVoid({ plugins }),
 ] as const;
 
-const ComposeEditor = (props: EditorProps) => {
-  const store = localStorage["composeEditor.content"];
+const serialize = (value: SlateDocument) => {
+  return (
+    value
+      // Return the string content of each paragraph in the value's children.
+      .map((n: Node) => Node.string(n))
+      // Join them all with line breaks denoting paragraphs.
+      .join("\n")
+  );
+};
 
+const ComposeEditor = (props: EditorProps) => {
+  const { setHasContent } = props;
+
+  const store = localStorage["composeEditor.content"];
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
 
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState<SlateDocument>(initialValue);
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
   return (
     <Slate
       editor={editor}
       value={value}
-      onChange={(newValue: any) => {
-        setValue(newValue as SlateDocument);
+      onChange={(newValue) => {
+        const slateDocumentValue = newValue as SlateDocument;
+
+        setValue(slateDocumentValue);
+
+        if (
+          serialize(slateDocumentValue) === "" ||
+          serialize(slateDocumentValue) === undefined
+        ) {
+          setHasContent(undefined);
+        } else {
+          setHasContent("hasContent");
+        }
 
         //save to local storage to persist...
-        const content = JSON.stringify(value);
+        const content = JSON.stringify(slateDocumentValue);
         localStorage.setItem("composeEditor.content", content);
       }}
     >
