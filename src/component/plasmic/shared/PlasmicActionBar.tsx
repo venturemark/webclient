@@ -56,7 +56,7 @@ export type PlasmicActionBar__OverridesType = {
   editorContainer?: Flex<"div">;
   textContainer?: Flex<"input">;
   actionContainer?: Flex<"div">;
-  iconButton?: Flex<typeof IconButton>;
+  sendButton?: Flex<typeof IconButton>;
   startIcon?: Flex<"svg">;
 };
 
@@ -109,6 +109,11 @@ function PlasmicActionBar__RenderFunc(props: {
           className={classNames({
             [defaultcss.input]: true,
             [sty.textContainer]: true,
+            [sty.textContainer__content_hasContent]: hasVariant(
+              variants,
+              "content",
+              "hasContent"
+            ),
           })}
           placeholder={"Write an update" as const}
           size={1 as const}
@@ -131,11 +136,16 @@ function PlasmicActionBar__RenderFunc(props: {
           })}
         >
           <IconButton
-            data-plasmic-name={"iconButton"}
-            data-plasmic-override={overrides.iconButton}
+            data-plasmic-name={"sendButton"}
+            data-plasmic-override={overrides.sendButton}
             className={classNames({
               __wab_instance: true,
-              [sty.iconButton]: true,
+              [sty.sendButton]: true,
+              [sty.sendButton__content_hasContent]: hasVariant(
+                variants,
+                "content",
+                "hasContent"
+              ),
             })}
             startIcon={
               <IconSendIcon
@@ -164,14 +174,14 @@ const PlasmicDescendants = {
     "editorContainer",
     "textContainer",
     "actionContainer",
-    "iconButton",
+    "sendButton",
     "startIcon",
   ],
 
   editorContainer: ["editorContainer", "textContainer"],
   textContainer: ["textContainer"],
-  actionContainer: ["actionContainer", "iconButton", "startIcon"],
-  iconButton: ["iconButton", "startIcon"],
+  actionContainer: ["actionContainer", "sendButton", "startIcon"],
+  sendButton: ["sendButton", "startIcon"],
   startIcon: ["startIcon"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -183,7 +193,7 @@ type NodeDefaultElementType = {
   editorContainer: "div";
   textContainer: "input";
   actionContainer: "div";
-  iconButton: typeof IconButton;
+  sendButton: typeof IconButton;
   startIcon: "svg";
 };
 
@@ -248,7 +258,7 @@ export const PlasmicActionBar = Object.assign(
     editorContainer: makeNodeComponent("editorContainer"),
     textContainer: makeNodeComponent("textContainer"),
     actionContainer: makeNodeComponent("actionContainer"),
-    iconButton: makeNodeComponent("iconButton"),
+    sendButton: makeNodeComponent("sendButton"),
     startIcon: makeNodeComponent("startIcon"),
 
     // Metadata about props expected for PlasmicActionBar
