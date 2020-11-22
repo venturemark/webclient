@@ -9,7 +9,7 @@ import ComposeEditor from "component/editor/compose";
 
 interface ActionBarProps extends DefaultActionBarProps {}
 
-export type HasContent = undefined | "hasContent";
+type HasContent = undefined | "hasContent";
 
 function ActionBar(props: ActionBarProps) {
   const [hasContent, setHasContent] = useState<HasContent>(undefined);
