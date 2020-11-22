@@ -44,7 +44,7 @@
   padding-left: 20px;
   padding-right: 20px;
 }
-.iconButton:global(.__wab_instance) {
+.sendButton:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
