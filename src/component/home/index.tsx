@@ -6,16 +6,68 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/home/PlasmicHome";
 import Update from "component/update";
+import { options } from "component/editor/config/initialValues";
 
 interface HomeProps extends DefaultHomeProps {}
 
-const updates = [{ text: "awesome" }, { text: "awesome" }, { text: "awesome" }];
+const defaultUpdates = [
+  {
+    text: [
+      {
+        children: [
+          {
+            type: options.p.type,
+            children: [
+              {
+                text: "Be Better Tomorrow",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    text: [
+      {
+        children: [
+          {
+            type: options.p.type,
+            children: [
+              {
+                text: "Be Better Tomorrow",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    text: [
+      {
+        children: [
+          {
+            type: options.p.type,
+            children: [
+              {
+                text: "Be Better Tomorrow",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
 
 export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       updatesContainer={{
-        children: updates.map((update: any) => <Update />),
+        children: defaultUpdates.map((update: any) => (
+          <Update text={update.text} />
+        )),
       }}
     />
   );

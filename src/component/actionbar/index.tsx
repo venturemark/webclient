@@ -21,6 +21,9 @@ function ActionBar(props: ActionBarProps) {
       textContainer={{
         render: () => <ComposeEditor setHasContent={setHasContent} />,
       }}
+      sendButton={{
+        onPress: () => alert("pressed!"),
+      }}
     />
   );
 }

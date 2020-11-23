@@ -10,6 +10,7 @@ import {
   ItalicPlugin,
   UnderlinePlugin,
   pipe,
+  SlateDocument,
 } from "@udecode/slate-plugins";
 import { initialValueEmpty } from "component/editor/config/initialValues";
 
@@ -24,7 +25,7 @@ const plugins = [
 const withPlugins = [withReact] as const;
 
 interface EditorProps {
-  text: any;
+  text: SlateDocument;
 }
 
 const ReadEditor = (props: EditorProps) => {

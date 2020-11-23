@@ -6,14 +6,16 @@ import {
   DefaultUpdateProps,
 } from "component/plasmic/shared/PlasmicUpdate";
 
-interface UpdateProps extends DefaultUpdateProps {}
+interface UpdateProps extends DefaultUpdateProps {
+  text: any;
+}
 
 function Update(props: UpdateProps) {
+  const { text } = props;
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <PlasmicUpdate
-      {...props}
       toggleUpdateView={{
         "aria-label": "Toggle View",
         onPress: () => {
@@ -22,6 +24,7 @@ function Update(props: UpdateProps) {
       }}
       contentContainer={{
         isFlipped: isFlipped,
+        text: text,
       }}
     />
   );
