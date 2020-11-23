@@ -25,6 +25,7 @@
     "@types/react-dom": "^16.9.9",
     "@types/recharts": "^1.8.16",
     "@udecode/slate-plugins": "0.69.1",
+    "@venturemark/apigents": "github:venturemark/apigents#v0.2.0",
     "faker": "^5.1.0",
     "react": "^17.0.1",
     "react-card-flip": "^1.0.11",
