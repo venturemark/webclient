@@ -72,6 +72,10 @@
   width: 34px;
   flex-shrink: 0;
 }
+.sendButton__content_hasContent:global(.__wab_instance) {
+  height: 34px;
+  align-self: center;
+}
 .startIcon {
   position: relative;
   object-fit: cover;

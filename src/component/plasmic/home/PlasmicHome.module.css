@@ -5,19 +5,10 @@
   position: relative;
   background-color: rgb(249, 249, 250) /* plasmic-token: 2o4hRg6in */;
   flex-direction: column;
-  padding-top: 200px;
-}
-.root > :global(.__wab_flex-container) {
-  flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
-  margin-top: calc(0px - 30px);
-  height: calc(100% + 30px);
-}
-.root > :global(.__wab_flex-container) > *,
-.root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 30px;
+  padding-top: 200px;
 }
 .actionBarContainer {
   display: flex;

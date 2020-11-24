@@ -146,65 +146,74 @@ function PlasmicActionBar__RenderFunc(props: {
             size={1 as const}
             type={"text" as const}
           />
+        </div>
 
-          {(hasVariant(variants, "content", "hasContent") ? true : false) ? (
-            <div
-              data-plasmic-name={"actionContainer"}
-              data-plasmic-override={overrides.actionContainer}
+        {(hasVariant(variants, "content", "hasContent") ? true : false) ? (
+          <div
+            data-plasmic-name={"actionContainer"}
+            data-plasmic-override={overrides.actionContainer}
+            className={classNames({
+              [defaultcss.all]: true,
+              [sty.actionContainer]: true,
+              [sty.actionContainer__content_hasContent]: hasVariant(
+                variants,
+                "content",
+                "hasContent"
+              ),
+            })}
+          >
+            <IconButton
+              data-plasmic-name={"sendButton"}
+              data-plasmic-override={overrides.sendButton}
               className={classNames({
-                [defaultcss.all]: true,
-                [sty.actionContainer]: true,
-                [sty.actionContainer__content_hasContent]: hasVariant(
+                __wab_instance: true,
+                [sty.sendButton]: true,
+                [sty.sendButton__content_hasContent]: hasVariant(
                   variants,
                   "content",
                   "hasContent"
                 ),
+
+                [sty.sendButton__content_hasContent_error_hasError]:
+                  hasVariant(variants, "content", "hasContent") &&
+                  hasVariant(variants, "error", "hasError"),
               })}
-            >
-              <IconButton
-                data-plasmic-name={"sendButton"}
-                data-plasmic-override={overrides.sendButton}
-                className={classNames({
-                  __wab_instance: true,
-                  [sty.sendButton]: true,
-                  [sty.sendButton__content_hasContent]: hasVariant(
-                    variants,
-                    "content",
-                    "hasContent"
-                  ),
-                })}
-                content={""}
-                endIcon={
-                  false ? (
-                    <svg
-                      data-plasmic-name={"endIcon"}
-                      data-plasmic-override={overrides.endIcon}
-                      className={classNames({
-                        [defaultcss.all]: true,
-                        [sty.endIcon]: true,
-                      })}
-                      role={"img"}
-                    />
-                  ) : null
-                }
-                startIcon={
-                  <IconSendIcon
-                    data-plasmic-name={"startIcon"}
-                    data-plasmic-override={overrides.startIcon}
+              content={""}
+              endIcon={
+                false ? (
+                  <svg
+                    data-plasmic-name={"endIcon"}
+                    data-plasmic-override={overrides.endIcon}
                     className={classNames({
                       [defaultcss.all]: true,
-                      [sty.startIcon]: true,
+                      [sty.endIcon]: true,
                     })}
                     role={"img"}
-                    {...({} as any)}
                   />
-                }
-                withIcons={["start"]}
-                {...({} as any)}
-              />
-            </div>
-          ) : null}
-        </div>
+                ) : null
+              }
+              startIcon={
+                <IconSendIcon
+                  data-plasmic-name={"startIcon"}
+                  data-plasmic-override={overrides.startIcon}
+                  className={classNames({
+                    [defaultcss.all]: true,
+                    [sty.startIcon]: true,
+                    [sty.startIcon__content_hasContent]: hasVariant(
+                      variants,
+                      "content",
+                      "hasContent"
+                    ),
+                  })}
+                  role={"img"}
+                  {...({} as any)}
+                />
+              }
+              withIcons={["start"]}
+              {...({} as any)}
+            />
+          </div>
+        ) : null}
       </div>
 
       {(hasVariant(variants, "error", "hasError") ? true : false) ? (
@@ -255,15 +264,7 @@ const PlasmicDescendants = {
     "endIcon",
   ],
 
-  editorContainer: [
-    "editorContainer",
-    "textContainer",
-    "actionContainer",
-    "sendButton",
-    "startIcon",
-    "endIcon",
-  ],
-
+  editorContainer: ["editorContainer", "textContainer"],
   textContainer: ["textContainer"],
   actionContainer: ["actionContainer", "sendButton", "startIcon", "endIcon"],
   sendButton: ["sendButton", "startIcon", "endIcon"],
