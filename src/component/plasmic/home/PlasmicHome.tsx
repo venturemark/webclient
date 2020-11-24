@@ -74,6 +74,7 @@ function PlasmicHome__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
+      data-plasmic-wrap-flex-child={true}
       className={classNames({
         [defaultcss.all]: true,
         [projectcss.root_reset_rr3cgzELv8j1fSZjvVMfyx]: true,
@@ -95,6 +96,7 @@ function PlasmicHome__RenderFunc(props: {
             __wab_instance: true,
             [sty.actionBar]: true,
           })}
+          error={[]}
           {...({} as any)}
         />
       </div>

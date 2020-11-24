@@ -59,6 +59,7 @@ function ActionBar(props: ActionBarProps) {
   return (
     <PlasmicActionBar
       content={hasContent}
+      error={"hasError"}
       textContainer={{
         render: () => (
           <ComposeEditor
