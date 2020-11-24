@@ -100,6 +100,17 @@
   width: auto;
   height: auto;
 }
+.errorContainer__error_hasError {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.errorContainer__error_hasError_content_hasContent {
+  width: 602px;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+}
 .slotErrorMessage {
   font-size: 16px;
   font-weight: 500;

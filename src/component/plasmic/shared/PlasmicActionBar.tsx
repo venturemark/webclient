@@ -104,6 +104,9 @@ function PlasmicActionBar__RenderFunc(props: {
         ),
 
         [sty.root__error_hasError]: hasVariant(variants, "error", "hasError"),
+        [sty.root__error_hasError_content_hasContent]:
+          hasVariant(variants, "error", "hasError") &&
+          hasVariant(variants, "content", "hasContent"),
       })}
     >
       <div
@@ -128,6 +131,10 @@ function PlasmicActionBar__RenderFunc(props: {
               "error",
               "hasError"
             ),
+
+            [sty.editorContainer__error_hasError_content_hasContent]:
+              hasVariant(variants, "error", "hasError") &&
+              hasVariant(variants, "content", "hasContent"),
           })}
         >
           <input
@@ -228,12 +235,27 @@ function PlasmicActionBar__RenderFunc(props: {
               "error",
               "hasError"
             ),
+
+            [sty.errorContainer__error_hasError_content_hasContent]:
+              hasVariant(variants, "error", "hasError") &&
+              hasVariant(variants, "content", "hasContent"),
           })}
         >
           <PlasmicSlot
             defaultContents={"Please enter a number value"}
             value={args.errorMessage}
-            className={classNames({ [sty.slotErrorMessage]: true })}
+            className={classNames({
+              [sty.slotErrorMessage]: true,
+              [sty.slotErrorMessage__error_hasError]: hasVariant(
+                variants,
+                "error",
+                "hasError"
+              ),
+
+              [sty.slotErrorMessage__error_hasError_content_hasContent]:
+                hasVariant(variants, "error", "hasError") &&
+                hasVariant(variants, "content", "hasContent"),
+            })}
           />
         </div>
       ) : null}
