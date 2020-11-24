@@ -1,8 +1,8 @@
 .all {
   display: block;
   white-space: inherit;
-  grid-row: auto auto;
-  grid-column: auto auto;
+  grid-row: auto;
+  grid-column: auto;
   position: relative;
   background-size: 100% 100%;
   background-repeat: no-repeat;

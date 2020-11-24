@@ -1,6 +1,7 @@
 // @refresh reset
 import React, { useMemo, useState } from "react";
 import { createEditor } from "slate";
+import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
 import {
   ParagraphPlugin,
@@ -9,22 +10,42 @@ import {
   EditablePlugins,
   ItalicPlugin,
   UnderlinePlugin,
+  StrikethroughPlugin,
+  BlockquotePlugin,
+  ListPlugin,
+  withLink,
+  withList,
+  withMarks,
+  withImageUpload,
+  withInlineVoid,
   pipe,
+  SlateDocument,
 } from "@udecode/slate-plugins";
 import { initialValueEmpty } from "component/editor/config/initialValues";
 
 const plugins = [
   ParagraphPlugin(),
-  HeadingPlugin(),
   BoldPlugin(),
-  ItalicPlugin(),
   UnderlinePlugin(),
+  ItalicPlugin(),
+  StrikethroughPlugin(),
+  BlockquotePlugin(),
+  ListPlugin(),
+  HeadingPlugin(),
 ];
 
-const withPlugins = [withReact] as const;
+const withPlugins = [
+  withReact,
+  withHistory,
+  withLink(),
+  withList(),
+  withMarks(),
+  withImageUpload(),
+  withInlineVoid({ plugins }),
+] as const;
 
 interface EditorProps {
-  text: any;
+  text: SlateDocument;
 }
 
 const ReadEditor = (props: EditorProps) => {

@@ -5,15 +5,18 @@ import {
   PlasmicUpdate,
   DefaultUpdateProps,
 } from "component/plasmic/shared/PlasmicUpdate";
+import { SlateDocument } from "@udecode/slate-plugins";
 
-interface UpdateProps extends DefaultUpdateProps {}
+interface UpdateProps extends DefaultUpdateProps {
+  text: SlateDocument;
+}
 
 function Update(props: UpdateProps) {
+  const { text } = props;
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <PlasmicUpdate
-      {...props}
       toggleUpdateView={{
         "aria-label": "Toggle View",
         onPress: () => {
@@ -22,6 +25,7 @@ function Update(props: UpdateProps) {
       }}
       contentContainer={{
         isFlipped: isFlipped,
+        text: text,
       }}
     />
   );

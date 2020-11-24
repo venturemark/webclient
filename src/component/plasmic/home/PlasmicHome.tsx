@@ -96,6 +96,7 @@ function PlasmicHome__RenderFunc(props: {
             __wab_instance: true,
             [sty.actionBar]: true,
           })}
+          error={[]}
           {...({} as any)}
         />
       </div>
