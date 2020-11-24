@@ -6,23 +6,70 @@ import {
   DefaultActionBarProps,
 } from "component/plasmic/shared/PlasmicActionBar";
 import ComposeEditor from "component/editor/compose";
+import { Node } from "slate";
+import { initialValueEmpty } from "component/editor/config/initialValues";
+import { SlateDocument } from "@udecode/slate-plugins";
 
-interface ActionBarProps extends DefaultActionBarProps {}
+interface ActionBarProps extends DefaultActionBarProps {
+  updates: any;
+  setUpdates: any;
+}
+
+const serialize = (value: SlateDocument) => {
+  return (
+    value
+      // Return the string content of each paragraph in the value's children.
+      .map((n: Node) => Node.string(n))
+      // Join them all with line breaks denoting paragraphs.
+      .join("\n")
+  );
+};
 
 type HasContent = undefined | "hasContent";
 
 function ActionBar(props: ActionBarProps) {
-  const [hasContent, setHasContent] = useState<HasContent>(undefined);
+  const { updates, setUpdates } = props;
+
+  // setting composeEditor value
+  const store = localStorage["composeEditor.content"];
+  const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
+  const [value, setValue] = useState<SlateDocument>(initialValue);
+
+  const hasContentDefault =
+    serialize(value) === "" || serialize(value) === undefined
+      ? undefined
+      : "hasContent";
+  const [hasContent, setHasContent] = useState<HasContent>(hasContentDefault);
+
+  const createUpdate = () => {
+    const update = {
+      text: value,
+      id: new Date(),
+    };
+    setUpdates([update, ...updates]);
+
+    //reset compose state
+    localStorage.setItem(
+      "composeEditor.content",
+      JSON.stringify(initialValueEmpty)
+    );
+    setValue(initialValueEmpty);
+  };
 
   return (
     <PlasmicActionBar
-      {...props}
       content={hasContent}
       textContainer={{
-        render: () => <ComposeEditor setHasContent={setHasContent} />,
+        render: () => (
+          <ComposeEditor
+            setHasContent={setHasContent}
+            value={value}
+            setValue={setValue}
+          />
+        ),
       }}
       sendButton={{
-        onPress: () => alert("pressed!"),
+        onPress: () => createUpdate(),
       }}
     />
   );
