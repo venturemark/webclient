@@ -31,7 +31,7 @@ function ActionBar(props: ActionBarProps) {
   const { updates, setUpdates } = props;
 
   // setting composeEditor value
-  const store = localStorage["composeEditor.content"];
+  const store = localStorage["composeEditor.content"] || "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
   const [value, setValue] = useState<SlateDocument>(initialValue);
 
@@ -59,7 +59,7 @@ function ActionBar(props: ActionBarProps) {
   return (
     <PlasmicActionBar
       content={hasContent}
-      error={"hasError"}
+      error={undefined}
       textContainer={{
         render: () => (
           <ComposeEditor
