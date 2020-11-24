@@ -5,9 +5,10 @@ import {
   PlasmicUpdate,
   DefaultUpdateProps,
 } from "component/plasmic/shared/PlasmicUpdate";
+import { SlateDocument } from "@udecode/slate-plugins";
 
 interface UpdateProps extends DefaultUpdateProps {
-  text: any;
+  text: SlateDocument;
 }
 
 function Update(props: UpdateProps) {
