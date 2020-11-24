@@ -2,7 +2,7 @@
 // - is local
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { createEditor, Node } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
@@ -32,7 +32,6 @@ import {
   headingTypes,
   options,
   optionsResetBlockTypes,
-  initialValueEmpty,
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
@@ -81,6 +80,8 @@ const plugins = [
 
 interface EditorProps {
   setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
+  value: SlateDocument;
+  setValue: React.Dispatch<React.SetStateAction<SlateDocument>>;
 }
 
 const withPlugins = [
@@ -105,12 +106,8 @@ const serialize = (value: SlateDocument) => {
 };
 
 const ComposeEditor = (props: EditorProps) => {
-  const { setHasContent } = props;
+  const { value, setValue, setHasContent } = props;
 
-  const store = localStorage["composeEditor.content"];
-  const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
-
-  const [value, setValue] = useState<SlateDocument>(initialValue);
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
   return (

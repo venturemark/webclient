@@ -7,16 +7,15 @@ import {
   DefaultUpdateContentProps,
 } from "component/plasmic/shared/PlasmicUpdateContent";
 import ReadEditor from "component/editor/read";
-import { initialValueEmpty } from "component/editor/config/initialValues";
+import { SlateDocument } from "@udecode/slate-plugins";
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
   isFlipped: boolean;
+  text: SlateDocument;
 }
 
-const text = initialValueEmpty;
-
 function UpdateContent(props: UpdateContentProps) {
-  const { isFlipped } = props;
+  const { isFlipped, text } = props;
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
       <PlasmicUpdateContent
