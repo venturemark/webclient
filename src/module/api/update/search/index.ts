@@ -1,4 +1,4 @@
-import apigents from "@venturemark/apigents";
+import * as apigents from "@venturemark/apigents";
 import * as env from "module/env";
 import * as spec from "./spec";
 
