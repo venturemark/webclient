@@ -20,7 +20,6 @@ import {
   SoftBreakPlugin,
   ExitBreakPlugin,
   pipe,
-  SlateDocument,
   withAutoformat,
   withImageUpload,
   withLink,
