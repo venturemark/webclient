@@ -8,14 +8,13 @@ import {
 import ComposeEditor from "component/editor/compose";
 import { Node } from "slate";
 import { initialValueEmpty } from "component/editor/config/initialValues";
-import { SlateDocument } from "@udecode/slate-plugins";
 
 interface ActionBarProps extends DefaultActionBarProps {
   updates: any;
   setUpdates: any;
 }
 
-const serialize = (value: SlateDocument) => {
+const serialize = (value: Node[]) => {
   return (
     value
       // Return the string content of each paragraph in the value's children.
@@ -33,7 +32,7 @@ function ActionBar(props: ActionBarProps) {
   // setting composeEditor value
   const store = localStorage["composeEditor.content"] || "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
-  const [value, setValue] = useState<SlateDocument>(initialValue);
+  const [value, setValue] = useState<Node[]>(initialValue);
 
   const hasContentDefault =
     serialize(value) === "" || serialize(value) === undefined

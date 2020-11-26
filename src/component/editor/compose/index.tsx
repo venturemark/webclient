@@ -80,8 +80,8 @@ const plugins = [
 
 interface EditorProps {
   setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
-  value: SlateDocument;
-  setValue: React.Dispatch<React.SetStateAction<SlateDocument>>;
+  value: Node[];
+  setValue: React.Dispatch<React.SetStateAction<Node[]>>;
 }
 
 const withPlugins = [
@@ -95,7 +95,7 @@ const withPlugins = [
   withInlineVoid({ plugins }),
 ] as const;
 
-const serialize = (value: SlateDocument) => {
+const serialize = (value: Node[]) => {
   return (
     value
       // Return the string content of each paragraph in the value's children.
@@ -115,7 +115,7 @@ const ComposeEditor = (props: EditorProps) => {
       editor={editor}
       value={value}
       onChange={(newValue) => {
-        const slateDocumentValue = newValue as SlateDocument;
+        const slateDocumentValue = newValue as Node[];
 
         setValue(slateDocumentValue);
 
