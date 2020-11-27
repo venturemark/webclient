@@ -35,7 +35,7 @@ import {
   SlateDocumentFragment,
 } from "@udecode/slate-plugins";
 import faker from "faker";
-import { Descendant, Text } from "slate";
+import { Descendant, Text, Node } from "slate";
 
 export const headingTypes = [
   ELEMENT_H1,
@@ -139,16 +139,12 @@ export const createList = (
   ];
 };
 
-export const initialValueEmpty: SlateDocument = [
+export const initialValueEmpty: Node[] = [
   {
+    type: "paragraph",
     children: [
       {
-        type: options.p.type,
-        children: [
-          {
-            text: "",
-          },
-        ],
+        text: "This is a really great piece of text",
       },
     ],
   },
