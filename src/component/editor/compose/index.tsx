@@ -114,8 +114,6 @@ const ComposeEditor = (props: EditorProps) => {
       editor={editor}
       value={value}
       onChange={(newValue) => {
-        console.log("Editor Selection:", editor.selection);
-        console.log("newValue", newValue);
         const slateDocumentValue = newValue as Node[];
 
         setValue(slateDocumentValue);
@@ -136,8 +134,6 @@ const ComposeEditor = (props: EditorProps) => {
     >
       <EditablePlugins
         plugins={plugins}
-        // placeholder="Why does this matter?"
-        // when placeholder is active (empy single paragraph), inputing a backtick on a german computer is not recognized by Slate onChange event and causes an error
         className={actionbarcss.textContainer}
         spellCheck
       />
