@@ -113,22 +113,19 @@ const ComposeEditor = (props: EditorProps) => {
     <Slate
       editor={editor}
       value={value}
-      onChange={(newValue) => {
-        const slateDocumentValue = newValue as Node[];
+      onChange={(newValue: Node[]) => {
+        const hasValue = serialize(newValue).trim().length;
 
-        setValue(slateDocumentValue);
+        setValue(newValue);
 
-        if (
-          serialize(slateDocumentValue) === "" ||
-          serialize(slateDocumentValue) === undefined
-        ) {
-          setHasContent(undefined);
-        } else {
+        if (hasValue) {
           setHasContent("hasContent");
+        } else {
+          setHasContent(undefined);
         }
 
         //save to local storage to persist...
-        const content = JSON.stringify(slateDocumentValue);
+        const content = JSON.stringify(newValue);
         localStorage.setItem("composeEditor.content", content);
       }}
     >
