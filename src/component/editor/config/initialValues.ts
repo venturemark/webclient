@@ -144,7 +144,7 @@ export const initialValueEmpty: Node[] = [
     type: "paragraph",
     children: [
       {
-        text: "This is a really great piece of text",
+        text: "",
       },
     ],
   },
