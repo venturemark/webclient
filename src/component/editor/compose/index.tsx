@@ -34,6 +34,7 @@ import {
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
+import Searcher from "@venturemark/numnum";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -77,10 +78,14 @@ const plugins = [
   }),
 ];
 
+type NumberValue = undefined | number;
+
 interface EditorProps {
   setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
   value: Node[];
   setValue: React.Dispatch<React.SetStateAction<Node[]>>;
+  numberValue: NumberValue;
+  setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
 }
 
 const withPlugins = [
@@ -105,7 +110,7 @@ const serialize = (value: Node[]) => {
 };
 
 const ComposeEditor = (props: EditorProps) => {
-  const { value, setValue, setHasContent } = props;
+  const { value, setValue, numberValue, setNumberValue, setHasContent } = props;
 
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
@@ -116,7 +121,13 @@ const ComposeEditor = (props: EditorProps) => {
       onChange={(newValue: Node[]) => {
         const hasValue = serialize(newValue).trim().length;
 
+        // get the first number in text
+        const number = Searcher.Search(serialize(value))[0];
+
         setValue(newValue);
+        if (number) {
+          setNumberValue(number);
+        }
 
         if (hasValue) {
           setHasContent("hasContent");

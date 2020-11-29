@@ -57,6 +57,7 @@ function ActionBar(props: ActionBarProps) {
 
     const update = {
       text: value,
+      value: numberValue,
       id: new Date(),
     };
     setUpdates([update, ...updates]);
@@ -80,6 +81,8 @@ function ActionBar(props: ActionBarProps) {
           <ComposeEditor
             setHasContent={setHasContent}
             value={value}
+            numberValue={numberValue}
+            setNumberValue={setNumberValue}
             setValue={setValue}
           />
         ),
