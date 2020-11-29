@@ -25,8 +25,8 @@ const serialize = (value: Node[]) => {
 };
 
 type HasContent = undefined | "hasContent";
-type HasError = undefined | "hasError";
 type ErrorMessage = undefined | string;
+type NumberValue = undefined | number;
 
 function ActionBar(props: ActionBarProps) {
   const { updates, setUpdates } = props;
@@ -35,8 +35,8 @@ function ActionBar(props: ActionBarProps) {
   const store = localStorage["composeEditor.content"] || "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
   const [value, setValue] = useState<Node[]>(initialValue);
-  const [error, setError] = useState<HasError>(undefined);
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>(undefined);
+  const [numberValue, setNumberValue] = useState<NumberValue>(undefined);
 
   const hasContentDefault =
     serialize(value) === "" || serialize(value) === undefined
@@ -46,8 +46,12 @@ function ActionBar(props: ActionBarProps) {
 
   const createUpdate = () => {
     if (!hasContent) {
-      setError("hasError");
       setErrorMessage("Please enter some text");
+      return;
+    }
+
+    if (!numberValue) {
+      setErrorMessage("Please enter a number");
       return;
     }
 
@@ -63,13 +67,13 @@ function ActionBar(props: ActionBarProps) {
       JSON.stringify(initialValueEmpty)
     );
     setValue(initialValueEmpty);
-    setErrorMessage("");
+    setErrorMessage(undefined);
   };
 
   return (
     <PlasmicActionBar
       content={hasContent}
-      error={error}
+      error={errorMessage ? "hasError" : undefined}
       errorMessage={errorMessage}
       textContainer={{
         render: () => (
