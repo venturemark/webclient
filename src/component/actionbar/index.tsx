@@ -81,7 +81,6 @@ function ActionBar(props: ActionBarProps) {
           <ComposeEditor
             setHasContent={setHasContent}
             value={value}
-            numberValue={numberValue}
             setNumberValue={setNumberValue}
             setValue={setValue}
           />

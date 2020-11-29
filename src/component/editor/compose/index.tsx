@@ -84,7 +84,6 @@ interface EditorProps {
   setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
   value: Node[];
   setValue: React.Dispatch<React.SetStateAction<Node[]>>;
-  numberValue: NumberValue;
   setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
 }
 
@@ -110,7 +109,7 @@ const serialize = (value: Node[]) => {
 };
 
 const ComposeEditor = (props: EditorProps) => {
-  const { value, setValue, numberValue, setNumberValue, setHasContent } = props;
+  const { value, setValue, setNumberValue, setHasContent } = props;
 
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
