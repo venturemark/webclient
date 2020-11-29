@@ -55,6 +55,15 @@ function ActionBar(props: ActionBarProps) {
       return;
     }
 
+    if (serialize(value).length > 240) {
+      setErrorMessage(
+        `Your update is ${
+          serialize(value).length
+        } characters. The limit is 240 characters`
+      );
+      return;
+    }
+
     const update = {
       text: value,
       numberValue: numberValue,
