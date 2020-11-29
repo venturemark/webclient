@@ -124,9 +124,7 @@ const ComposeEditor = (props: EditorProps) => {
         const number = Searcher.Search(serialize(newValue))[0];
 
         setValue(newValue);
-        if (number) {
-          setNumberValue(number);
-        }
+        setNumberValue(number);
 
         if (hasValue) {
           setHasContent("hasContent");

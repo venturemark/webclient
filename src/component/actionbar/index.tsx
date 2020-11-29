@@ -8,6 +8,7 @@ import {
 import ComposeEditor from "component/editor/compose";
 import { Node } from "slate";
 import { initialValueEmpty } from "component/editor/config/initialValues";
+import Searcher from "@venturemark/numnum";
 
 interface ActionBarProps extends DefaultActionBarProps {
   updates: any;
@@ -36,7 +37,10 @@ function ActionBar(props: ActionBarProps) {
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
   const [value, setValue] = useState<Node[]>(initialValue);
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>(undefined);
-  const [numberValue, setNumberValue] = useState<NumberValue>(undefined);
+  const defaultNumber = Searcher.Search(serialize(value))
+    ? Searcher.Search(serialize(value))[0]
+    : undefined;
+  const [numberValue, setNumberValue] = useState<NumberValue>(defaultNumber);
 
   const hasContentDefault =
     serialize(value) === "" || serialize(value) === undefined
@@ -78,6 +82,7 @@ function ActionBar(props: ActionBarProps) {
     );
     setValue(initialValueEmpty);
     setErrorMessage(undefined);
+    setNumberValue(undefined);
   };
 
   return (
