@@ -121,7 +121,7 @@ const ComposeEditor = (props: EditorProps) => {
         const hasValue = serialize(newValue).trim().length;
 
         // get the first number in text
-        const number = Searcher.Search(serialize(value))[0];
+        const number = Searcher.Search(serialize(newValue))[0];
 
         setValue(newValue);
         if (number) {

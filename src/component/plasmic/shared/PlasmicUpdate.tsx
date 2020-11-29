@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable */
 /* tslint:disable */
 /* prettier-ignore-start */
@@ -40,23 +41,26 @@ import IconTextIcon from "./icons/PlasmicIcon__IconText"; // plasmic-import: ncD
 
 export type PlasmicUpdate__VariantMembers = {
   state: "text" | "graph";
-  value: "hasValue";
+  hasValue: "hasValue";
 };
 
 export type PlasmicUpdate__VariantsArgs = {
   state?: SingleChoiceArg<"text" | "graph">;
-  value?: MultiChoiceArg<"hasValue">;
+  hasValue?: MultiChoiceArg<"hasValue">;
 };
 
 type VariantPropType = keyof PlasmicUpdate__VariantsArgs;
 export const PlasmicUpdate__VariantProps = new Array<VariantPropType>(
   "state",
-  "value"
+  "hasValue"
 );
 
-export type PlasmicUpdate__ArgsType = {};
+export type PlasmicUpdate__ArgsType = {
+  numberValue?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicUpdate__ArgsType;
-export const PlasmicUpdate__ArgProps = new Array<ArgPropType>();
+export const PlasmicUpdate__ArgProps = new Array<ArgPropType>("numberValue");
 
 export type PlasmicUpdate__OverridesType = {
   root?: Flex<"div">;
@@ -71,8 +75,9 @@ export type PlasmicUpdate__OverridesType = {
 };
 
 export interface DefaultUpdateProps {
+  numberValue?: React.ReactNode;
   state?: SingleChoiceArg<"text" | "graph">;
-  value?: MultiChoiceArg<"hasValue">;
+  hasValue?: MultiChoiceArg<"hasValue">;
   className?: string;
 }
 
@@ -99,15 +104,20 @@ function PlasmicUpdate__RenderFunc(props: {
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.root]: true,
+        [sty.root__hasValue_hasValue]: hasVariant(
+          variants,
+          "hasValue",
+          "hasValue"
+        ),
+
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
-        [sty.root__state_graph_value_hasValue]:
+        [sty.root__state_graph_hasValue_hasValue]:
           hasVariant(variants, "state", "graph") &&
-          hasVariant(variants, "value", "hasValue"),
+          hasVariant(variants, "hasValue", "hasValue"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
-        [sty.root__state_text_value_hasValue]:
+        [sty.root__state_text_hasValue_hasValue]:
           hasVariant(variants, "state", "text") &&
-          hasVariant(variants, "value", "hasValue"),
-        [sty.root__value_hasValue]: hasVariant(variants, "value", "hasValue"),
+          hasVariant(variants, "hasValue", "hasValue"),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -351,18 +361,22 @@ function PlasmicUpdate__RenderFunc(props: {
             "graph"
           ),
 
-          [sty.contentContainer__state_graph_value_hasValue]:
+          [sty.contentContainer__state_graph_hasValue_hasValue]:
             hasVariant(variants, "state", "graph") &&
-            hasVariant(variants, "value", "hasValue"),
+            hasVariant(variants, "hasValue", "hasValue"),
           [sty.contentContainer__state_text]: hasVariant(
             variants,
             "state",
             "text"
           ),
+
+          [sty.contentContainer__state_text_hasValue_hasValue]:
+            hasVariant(variants, "state", "text") &&
+            hasVariant(variants, "hasValue", "hasValue"),
         })}
         state={
           hasVariant(variants, "state", "graph") &&
-          hasVariant(variants, "value", "hasValue")
+          hasVariant(variants, "hasValue", "hasValue")
             ? ("graph" as const)
             : hasVariant(variants, "state", "graph")
             ? ("graph" as const)
@@ -375,12 +389,12 @@ function PlasmicUpdate__RenderFunc(props: {
 
       {(
         hasVariant(variants, "state", "graph") &&
-        hasVariant(variants, "value", "hasValue") &&
+        hasVariant(variants, "hasValue", "hasValue") &&
         triggers.hover_root
           ? true
           : hasVariant(variants, "state", "graph") && triggers.hover_root
           ? false
-          : hasVariant(variants, "value", "hasValue")
+          : hasVariant(variants, "hasValue", "hasValue")
           ? true
           : hasVariant(variants, "state", "graph")
           ? false
@@ -394,6 +408,12 @@ function PlasmicUpdate__RenderFunc(props: {
           className={classNames({
             [defaultcss.all]: true,
             [sty.updateFeedbackContainer]: true,
+            [sty.updateFeedbackContainer__hasValue_hasValue]: hasVariant(
+              variants,
+              "hasValue",
+              "hasValue"
+            ),
+
             [sty.updateFeedbackContainer__state_graph]: hasVariant(
               variants,
               "state",
@@ -402,12 +422,12 @@ function PlasmicUpdate__RenderFunc(props: {
 
             [sty.updateFeedbackContainer__state_graph___hover]:
               hasVariant(variants, "state", "graph") && triggers.hover_root,
-            [sty.updateFeedbackContainer__state_graph_value_hasValue]:
+            [sty.updateFeedbackContainer__state_graph_hasValue_hasValue]:
               hasVariant(variants, "state", "graph") &&
-              hasVariant(variants, "value", "hasValue"),
-            [sty.updateFeedbackContainer__state_graph_value_hasValue___hover]:
+              hasVariant(variants, "hasValue", "hasValue"),
+            [sty.updateFeedbackContainer__state_graph_hasValue_hasValue___hover]:
               hasVariant(variants, "state", "graph") &&
-              hasVariant(variants, "value", "hasValue") &&
+              hasVariant(variants, "hasValue", "hasValue") &&
               triggers.hover_root,
             [sty.updateFeedbackContainer__state_text]: hasVariant(
               variants,
@@ -415,48 +435,47 @@ function PlasmicUpdate__RenderFunc(props: {
               "text"
             ),
 
-            [sty.updateFeedbackContainer__state_text_value_hasValue]:
+            [sty.updateFeedbackContainer__state_text_hasValue_hasValue]:
               hasVariant(variants, "state", "text") &&
-              hasVariant(variants, "value", "hasValue"),
-            [sty.updateFeedbackContainer__value_hasValue]: hasVariant(
-              variants,
-              "value",
-              "hasValue"
-            ),
+              hasVariant(variants, "hasValue", "hasValue"),
           })}
         >
-          {(
-            hasVariant(variants, "state", "graph") && triggers.hover_root
-              ? true
-              : hasVariant(variants, "state", "text")
-              ? true
-              : true
-          ) ? (
-            <div
-              data-plasmic-name={"box"}
-              data-plasmic-override={overrides.box}
-              className={
-                classNames({
-                  [defaultcss.all]: true,
-                  [sty.box]: true,
-                  [sty.box__state_graph]: hasVariant(
-                    variants,
-                    "state",
-                    "graph"
-                  ),
+          <div
+            data-plasmic-name={"box"}
+            data-plasmic-override={overrides.box}
+            className={classNames({
+              [defaultcss.all]: true,
+              [sty.box]: true,
+              [sty.box__state_graph]: hasVariant(variants, "state", "graph"),
+              [sty.box__state_text]: hasVariant(variants, "state", "text"),
+              [sty.box__state_text_hasValue_hasValue]:
+                hasVariant(variants, "state", "text") &&
+                hasVariant(variants, "hasValue", "hasValue"),
+            })}
+          >
+            <PlasmicSlot
+              defaultContents={"35"}
+              value={args.numberValue}
+              className={classNames({
+                [sty.slotNumberValue]: true,
+                [sty.slotNumberValue__state_graph]: hasVariant(
+                  variants,
+                  "state",
+                  "graph"
+                ),
 
-                  [sty.box__state_graph___hover]:
-                    hasVariant(variants, "state", "graph") &&
-                    triggers.hover_root,
-                  [sty.box__state_text]: hasVariant(variants, "state", "text"),
-                }) +
-                " " +
-                defaultcss.__wab_text
-              }
-            >
-              {hasVariant(variants, "state", "text") ? "35" : "35\n"}
-            </div>
-          ) : null}
+                [sty.slotNumberValue__state_text]: hasVariant(
+                  variants,
+                  "state",
+                  "text"
+                ),
+
+                [sty.slotNumberValue__state_text_hasValue_hasValue]:
+                  hasVariant(variants, "state", "text") &&
+                  hasVariant(variants, "hasValue", "hasValue"),
+              })}
+            />
+          </div>
         </div>
       ) : null}
     </div>

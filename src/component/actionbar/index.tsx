@@ -57,7 +57,7 @@ function ActionBar(props: ActionBarProps) {
 
     const update = {
       text: value,
-      value: numberValue,
+      numberValue: numberValue,
       id: new Date(),
     };
     setUpdates([update, ...updates]);

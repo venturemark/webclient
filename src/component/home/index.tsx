@@ -46,7 +46,7 @@ export function Component(props: HomeProps) {
           <Update
             text={update.text}
             key={update.id}
-            numberValue={update.value}
+            numberValue={update.numberValue}
           />
         )),
       }}

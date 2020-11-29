@@ -51,6 +51,8 @@
   font-size: 24px;
   padding-top: 10px;
   padding-bottom: 10px;
+  min-width: 0;
+  min-height: 0;
   border-radius: 8px;
   border-width: 0px;
 }
@@ -104,6 +106,7 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  min-width: 0;
 }
 .errorContainer__error_hasError_content_hasContent {
   width: 602px;
