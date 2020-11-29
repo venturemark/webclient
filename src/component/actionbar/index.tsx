@@ -63,6 +63,7 @@ function ActionBar(props: ActionBarProps) {
       JSON.stringify(initialValueEmpty)
     );
     setValue(initialValueEmpty);
+    setErrorMessage("");
   };
 
   return (
