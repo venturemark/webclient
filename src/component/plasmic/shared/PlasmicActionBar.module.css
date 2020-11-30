@@ -3,9 +3,10 @@
   width: auto;
   height: auto;
   position: relative;
-  padding-right: 74px;
+  padding-right: 0px;
   flex-direction: column;
   padding-bottom: 29px;
+  padding-left: 0px;
 }
 .root > :global(.__wab_flex-container) {
   align-items: center;
@@ -16,9 +17,6 @@
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
-}
-.root__content_hasContent {
-  padding-right: 0px;
 }
 .root__error_hasError {
   padding-bottom: 0px;
@@ -42,57 +40,16 @@
   border-radius: 8px;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.editorContainer__content_hasContent {
-  padding-right: 0px;
-}
 .textContainer {
   width: 100%;
   height: 100%;
   font-size: 24px;
   padding-top: 10px;
   padding-bottom: 10px;
+  min-width: 0;
+  min-height: 0;
   border-radius: 8px;
   border-width: 0px;
-}
-.actionContainer {
-  display: inline-flex;
-  position: relative;
-  background-color: rgba(68, 192, 255, 0);
-  width: auto;
-  height: auto;
-  flex-direction: row;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.sendButton:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-  height: auto;
-  width: 34px;
-  flex-shrink: 0;
-}
-.sendButton__content_hasContent:global(.__wab_instance) {
-  height: 34px;
-  align-self: center;
-}
-.startIcon {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.endIcon {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .errorContainer {
   display: inline-flex;
@@ -104,12 +61,7 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-}
-.errorContainer__error_hasError_content_hasContent {
-  width: 602px;
-  align-self: flex-start;
-  align-items: center;
-  justify-content: center;
+  min-width: 0;
 }
 .slotErrorMessage {
   font-size: 16px;

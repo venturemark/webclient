@@ -34,6 +34,9 @@ import {
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
+import Searcher from "@venturemark/numnum";
+import { serialize } from "module/serialize";
+import { save } from "module/store";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -77,10 +80,14 @@ const plugins = [
   }),
 ];
 
+type NumberValue = undefined | number;
+type HasContent = undefined | "hasContent";
+
 interface EditorProps {
-  setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
+  setHasContent: React.Dispatch<React.SetStateAction<HasContent>>;
   value: Node[];
   setValue: React.Dispatch<React.SetStateAction<Node[]>>;
+  setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
 }
 
 const withPlugins = [
@@ -94,18 +101,8 @@ const withPlugins = [
   withInlineVoid({ plugins }),
 ] as const;
 
-const serialize = (value: Node[]) => {
-  return (
-    value
-      // Return the string content of each paragraph in the value's children.
-      .map((n: Node) => Node.string(n))
-      // Join them all with line breaks denoting paragraphs.
-      .join("\n")
-  );
-};
-
 const ComposeEditor = (props: EditorProps) => {
-  const { value, setValue, setHasContent } = props;
+  const { value, setValue, setNumberValue, setHasContent } = props;
 
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
@@ -114,19 +111,23 @@ const ComposeEditor = (props: EditorProps) => {
       editor={editor}
       value={value}
       onChange={(newValue: Node[]) => {
+        // get the first number in text
+        const number = Searcher.Search(serialize(newValue))[0];
+
+        // determine if there is a value in editor
         const hasValue = serialize(newValue).trim().length;
-
-        setValue(newValue);
-
         if (hasValue) {
           setHasContent("hasContent");
         } else {
           setHasContent(undefined);
         }
 
+        // set editor value onChange
+        setValue(newValue);
+        setNumberValue(number);
+
         //save to local storage to persist...
-        const content = JSON.stringify(newValue);
-        localStorage.setItem("composeEditor.content", content);
+        save(newValue);
       }}
     >
       <EditablePlugins
