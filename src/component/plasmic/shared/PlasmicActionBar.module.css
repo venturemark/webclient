@@ -6,6 +6,7 @@
   padding-right: 74px;
   flex-direction: column;
   padding-bottom: 29px;
+  padding-left: 0px;
 }
 .root > :global(.__wab_flex-container) {
   align-items: center;
@@ -19,6 +20,8 @@
 }
 .root__content_hasContent {
   padding-right: 0px;
+  width: auto;
+  display: inline-flex;
 }
 .root__error_hasError {
   padding-bottom: 0px;
@@ -65,12 +68,13 @@
   flex-direction: row;
   padding-left: 20px;
   padding-right: 20px;
+  align-self: center;
 }
 .sendButton:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
-  height: auto;
+  height: 34px;
   width: 34px;
   flex-shrink: 0;
 }

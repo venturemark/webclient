@@ -43,11 +43,7 @@ export function Component(props: HomeProps) {
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
-          <Update
-            text={update.text}
-            key={update.id}
-            numberValue={update.numberValue}
-          />
+          <Update text={update.text} key={update.id} />
         )),
       }}
     />
