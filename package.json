@@ -14,7 +14,7 @@
   "dependencies": {
     "@plasmicapp/cli": "^0.1.70",
     "@plasmicapp/plume": "^0.1.15",
-    "@plasmicapp/react-web": "^0.2.8",
+    "@plasmicapp/react-web": "^0.2.9",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
     "@testing-library/user-event": "^12.2.0",

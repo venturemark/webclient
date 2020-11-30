@@ -9,16 +9,14 @@ import { SlateDocument } from "@udecode/slate-plugins";
 
 interface UpdateProps extends DefaultUpdateProps {
   text: SlateDocument;
-  numberValue: number;
 }
 
 function Update(props: UpdateProps) {
-  const { text, numberValue } = props;
+  const { text } = props;
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <PlasmicUpdate
-      value={typeof numberValue === "number" ? "hasValue" : undefined}
       toggleUpdateView={{
         "aria-label": "Toggle View",
         onPress: () => {
