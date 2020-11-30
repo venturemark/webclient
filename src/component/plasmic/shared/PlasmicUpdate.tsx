@@ -41,19 +41,14 @@ import IconTextIcon from "./icons/PlasmicIcon__IconText"; // plasmic-import: ncD
 
 export type PlasmicUpdate__VariantMembers = {
   state: "text" | "graph";
-  hasValue: "hasValue";
 };
 
 export type PlasmicUpdate__VariantsArgs = {
   state?: SingleChoiceArg<"text" | "graph">;
-  hasValue?: MultiChoiceArg<"hasValue">;
 };
 
 type VariantPropType = keyof PlasmicUpdate__VariantsArgs;
-export const PlasmicUpdate__VariantProps = new Array<VariantPropType>(
-  "state",
-  "hasValue"
-);
+export const PlasmicUpdate__VariantProps = new Array<VariantPropType>("state");
 
 export type PlasmicUpdate__ArgsType = {};
 type ArgPropType = keyof PlasmicUpdate__ArgsType;
@@ -71,7 +66,6 @@ export type PlasmicUpdate__OverridesType = {
 
 export interface DefaultUpdateProps {
   state?: SingleChoiceArg<"text" | "graph">;
-  hasValue?: MultiChoiceArg<"hasValue">;
   className?: string;
 }
 
@@ -98,20 +92,8 @@ function PlasmicUpdate__RenderFunc(props: {
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.root]: true,
-        [sty.root__hasValue_hasValue]: hasVariant(
-          variants,
-          "hasValue",
-          "hasValue"
-        ),
-
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
-        [sty.root__state_graph_hasValue_hasValue]:
-          hasVariant(variants, "state", "graph") &&
-          hasVariant(variants, "hasValue", "hasValue"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
-        [sty.root__state_text_hasValue_hasValue]:
-          hasVariant(variants, "state", "text") &&
-          hasVariant(variants, "hasValue", "hasValue"),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -355,24 +337,14 @@ function PlasmicUpdate__RenderFunc(props: {
             "graph"
           ),
 
-          [sty.contentContainer__state_graph_hasValue_hasValue]:
-            hasVariant(variants, "state", "graph") &&
-            hasVariant(variants, "hasValue", "hasValue"),
           [sty.contentContainer__state_text]: hasVariant(
             variants,
             "state",
             "text"
           ),
-
-          [sty.contentContainer__state_text_hasValue_hasValue]:
-            hasVariant(variants, "state", "text") &&
-            hasVariant(variants, "hasValue", "hasValue"),
         })}
         state={
-          hasVariant(variants, "state", "graph") &&
-          hasVariant(variants, "hasValue", "hasValue")
-            ? ("graph" as const)
-            : hasVariant(variants, "state", "graph")
+          hasVariant(variants, "state", "graph")
             ? ("graph" as const)
             : hasVariant(variants, "state", "text")
             ? ("text" as const)

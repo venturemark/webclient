@@ -95,6 +95,18 @@
           },
           "cssFilePath": "plasmic/shared/PlasmicNumberValue.module.css",
           "scheme": "blackbox"
+        },
+        {
+          "id": "Ey_MwfntCV",
+          "name": "ActionsColumn",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicActionsColumn.tsx",
+          "importSpec": {
+            "modulePath": "actionscolumn/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicActionsColumn.module.css",
+          "scheme": "blackbox"
         }
       ],
       "icons": [
