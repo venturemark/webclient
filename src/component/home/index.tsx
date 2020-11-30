@@ -7,12 +7,22 @@ import {
 } from "component/plasmic/home/PlasmicHome";
 import Update from "component/update";
 import { options } from "component/editor/config/initialValues";
+import Searcher from "@venturemark/numnum";
+import { Node } from "slate";
+import { initialValueEmpty } from "component/editor/config/initialValues";
 
 interface HomeProps extends DefaultHomeProps {}
+
+interface UpdateType {
+  id: string;
+  text: Node[];
+  numberValue: number;
+}
 
 const defaultUpdates = [
   {
     id: "now",
+    numberValue: 23,
     text: [
       {
         children: [
@@ -30,21 +40,100 @@ const defaultUpdates = [
   },
 ];
 
-export function Component(props: HomeProps) {
-  const [updates, setUpdates] = useState(defaultUpdates);
+const serialize = (value: Node[]) => {
+  return (
+    value
+      // Return the string content of each paragraph in the value's children.
+      .map((n: Node) => Node.string(n))
+      // Join them all with line breaks denoting paragraphs.
+      .join("\n")
+  );
+};
 
-  console.log("updates", updates);
+type HasContent = undefined | "hasContent";
+type ErrorMessage = undefined | string;
+type NumberValue = undefined | number;
+
+export function Component(props: HomeProps) {
+  const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
+
+  const store = localStorage["composeEditor.content"] || "";
+  const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
+  const [value, setValue] = useState<Node[]>(initialValue);
+  const [errorMessage, setErrorMessage] = useState<ErrorMessage>(undefined);
+
+  const hasContentDefault =
+    serialize(value) === "" || serialize(value) === undefined
+      ? undefined
+      : "hasContent";
+  const [hasContent, setHasContent] = useState<HasContent>(hasContentDefault);
+  const defaultNumber = Searcher.Search(serialize(value))
+    ? Searcher.Search(serialize(value))[0]
+    : undefined;
+  const [numberValue, setNumberValue] = useState<NumberValue>(defaultNumber);
+
+  const createUpdate = () => {
+    if (!hasContent) {
+      setErrorMessage("Please enter some text");
+      return;
+    }
+
+    if (!numberValue) {
+      setErrorMessage("Please enter a number");
+      return;
+    }
+
+    if (serialize(value).length > 240) {
+      setErrorMessage(
+        `Your update is ${
+          serialize(value).length
+        } characters. The limit is 240 characters`
+      );
+      return;
+    }
+
+    const id = new Date();
+
+    const update = {
+      text: value,
+      numberValue: numberValue,
+      id: id.toString(),
+    };
+    setUpdates([update, ...updates]);
+
+    //reset compose state
+    localStorage.setItem(
+      "composeEditor.content",
+      JSON.stringify(initialValueEmpty)
+    );
+    setValue(initialValueEmpty);
+    setErrorMessage(undefined);
+    setNumberValue(undefined);
+    setHasContent(undefined);
+  };
 
   return (
     <PlasmicHome
       actionBar={{
         setUpdates: setUpdates,
         updates: updates,
+        hasContent: hasContent,
+        setHasContent: setHasContent,
+        numberValue: numberValue,
+        setNumberValue: setNumberValue,
+        value: value,
+        setValue: setValue,
+        errorMessage: errorMessage,
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
           <Update text={update.text} key={update.id} />
         )),
+      }}
+      actionsColumn={{
+        hasContent: hasContent,
+        numberValue: numberValue,
+        createUpdate: createUpdate,
       }}
     />
   );
