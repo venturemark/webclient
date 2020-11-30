@@ -11,6 +11,7 @@ import Searcher from "@venturemark/numnum";
 import { Node } from "slate";
 import { initialValueEmpty } from "component/editor/config/initialValues";
 import { serialize } from "module/serialize";
+import { get } from "module/store";
 
 interface HomeProps extends DefaultHomeProps {}
 
@@ -48,7 +49,7 @@ type NumberValue = undefined | number;
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
 
-  const store = localStorage["composeEditor.content"] || "";
+  const store = get("composeEditor.content");
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
   const [value, setValue] = useState<Node[]>(initialValue);
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>(undefined);
