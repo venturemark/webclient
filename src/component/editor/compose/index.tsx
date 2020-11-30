@@ -35,6 +35,7 @@ import {
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import Searcher from "@venturemark/numnum";
+import { serialize } from "module/serialize";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -98,16 +99,6 @@ const withPlugins = [
   withAutoformat({ rules: autoformatRules }),
   withInlineVoid({ plugins }),
 ] as const;
-
-const serialize = (value: Node[]) => {
-  return (
-    value
-      // Return the string content of each paragraph in the value's children.
-      .map((n: Node) => Node.string(n))
-      // Join them all with line breaks denoting paragraphs.
-      .join("\n")
-  );
-};
 
 const ComposeEditor = (props: EditorProps) => {
   const { value, setValue, setNumberValue, setHasContent } = props;
