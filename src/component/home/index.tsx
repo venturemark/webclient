@@ -10,6 +10,8 @@ import { options } from "component/editor/config/initialValues";
 import Searcher from "@venturemark/numnum";
 import { Node } from "slate";
 import { initialValueEmpty } from "component/editor/config/initialValues";
+import { serialize } from "module/serialize";
+import { get } from "module/store";
 
 interface HomeProps extends DefaultHomeProps {}
 
@@ -40,16 +42,6 @@ const defaultUpdates = [
   },
 ];
 
-const serialize = (value: Node[]) => {
-  return (
-    value
-      // Return the string content of each paragraph in the value's children.
-      .map((n: Node) => Node.string(n))
-      // Join them all with line breaks denoting paragraphs.
-      .join("\n")
-  );
-};
-
 type HasContent = undefined | "hasContent";
 type ErrorMessage = undefined | string;
 type NumberValue = undefined | number;
@@ -57,7 +49,7 @@ type NumberValue = undefined | number;
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
 
-  const store = localStorage["composeEditor.content"] || "";
+  const store = get("composeEditor.content");
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
   const [value, setValue] = useState<Node[]>(initialValue);
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>(undefined);
