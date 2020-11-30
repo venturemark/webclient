@@ -4,11 +4,11 @@
   align-items: flex-start;
   justify-content: flex-start;
   background-color: rgba(68, 192, 255, 0);
-  width: 750px;
+  width: 676px;
   height: 209px;
   position: relative;
   padding-left: 74px;
-  padding-right: 74px;
+  padding-right: 0px;
 }
 .root__state_text {
   height: 209px;
@@ -16,27 +16,21 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 750px;
+  width: 676px;
   padding-left: 74px;
 }
 .root__state_graph {
-  width: 750px;
+  width: 676px;
   display: flex;
   flex-direction: row;
   height: 209px;
-}
-.root__hasValue_hasValue {
-  padding-right: 0px;
-}
-.root__state_text_hasValue_hasValue {
-  padding-left: 74px;
 }
 .root:hover {
   padding-left: 0px;
 }
 .root__state_text:hover {
   flex-column-gap: 0px;
-  width: 750px;
+  width: 676px;
   justify-content: flex-start;
 }
 .updateActionContainer {
@@ -151,6 +145,7 @@
   top: auto;
   left: auto;
 }
-.contentContainer__state_text_hasValue_hasValue:global(.__wab_instance) {
-  width: auto;
+.root__state_text:hover .contentContainer__state_text:global(.__wab_instance) {
+  width: 602px;
+  flex-shrink: 0;
 }
