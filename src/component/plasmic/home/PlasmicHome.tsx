@@ -26,9 +26,10 @@ import {
   StrictProps,
   deriveRenderOpts,
 } from "@plasmicapp/react-web";
+import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
 import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
-import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
+import ActionsColumn from "../../actionscolumn/index"; // plasmic-import: Ey_MwfntCV/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -49,12 +50,16 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHome__OverridesType = {
   root?: Flex<"div">;
+  settingsContainer?: Flex<"div">;
+  startIcon?: Flex<"svg">;
+  endIcon?: Flex<"svg">;
+  startIcon2?: Flex<"svg">;
+  endIcon2?: Flex<"svg">;
   actionBarContainer?: Flex<"div">;
   actionBar?: Flex<typeof ActionBar>;
   updatesContainer?: Flex<"div">;
   update?: Flex<typeof Update>;
-  footer?: Flex<"div">;
-  settingsContainer?: Flex<"div">;
+  actionsColumn?: Flex<typeof ActionsColumn>;
 };
 
 export interface DefaultHomeProps {
@@ -82,119 +87,191 @@ function PlasmicHome__RenderFunc(props: {
         [sty.root]: true,
       })}
     >
-      <div
-        data-plasmic-name={"actionBarContainer"}
-        data-plasmic-override={overrides.actionBarContainer}
-        className={classNames({
-          [defaultcss.all]: true,
-          [sty.actionBarContainer]: true,
-        })}
-      >
-        <ActionBar
-          data-plasmic-name={"actionBar"}
-          data-plasmic-override={overrides.actionBar}
+      {false ? (
+        <div
           className={classNames({
-            __wab_instance: true,
-            [sty.actionBar]: true,
+            [defaultcss.all]: true,
+            [sty.box__utMxK]: true,
           })}
-          error={[]}
-          {...({} as any)}
-        />
-      </div>
+        >
+          <div
+            data-plasmic-name={"settingsContainer"}
+            data-plasmic-override={overrides.settingsContainer}
+            data-plasmic-wrap-flex-child={true}
+            className={classNames({
+              [defaultcss.all]: true,
+              [sty.settingsContainer]: true,
+            })}
+          >
+            <div
+              className={classNames({
+                [defaultcss.all]: true,
+                [sty.box___26Miy]: true,
+              })}
+            >
+              <div
+                className={
+                  classNames({
+                    [defaultcss.all]: true,
+                    [sty.box___1ARwj]: true,
+                  }) +
+                  " " +
+                  defaultcss.__wab_text
+                }
+              >
+                {"Profile\n"}
+              </div>
+
+              <IconButton
+                className={classNames({
+                  __wab_instance: true,
+                  [sty.iconButton__zX6H]: true,
+                })}
+                content={""}
+                endIcon={
+                  false ? (
+                    <svg
+                      data-plasmic-name={"endIcon"}
+                      data-plasmic-override={overrides.endIcon}
+                      className={classNames({
+                        [defaultcss.all]: true,
+                        [sty.endIcon]: true,
+                      })}
+                      role={"img"}
+                    />
+                  ) : null
+                }
+                startIcon={
+                  <IconPersonIcon
+                    data-plasmic-name={"startIcon"}
+                    data-plasmic-override={overrides.startIcon}
+                    className={classNames({
+                      [defaultcss.all]: true,
+                      [sty.startIcon]: true,
+                    })}
+                    role={"img"}
+                    {...({} as any)}
+                  />
+                }
+                withIcons={["start"]}
+                {...({} as any)}
+              />
+            </div>
+
+            <div
+              className={classNames({
+                [defaultcss.all]: true,
+                [sty.box__zoc2]: true,
+              })}
+            >
+              <div
+                className={
+                  classNames({
+                    [defaultcss.all]: true,
+                    [sty.box__wwTzT]: true,
+                  }) +
+                  " " +
+                  defaultcss.__wab_text
+                }
+              >
+                {"Settings\n"}
+              </div>
+
+              <IconButton
+                className={classNames({
+                  __wab_instance: true,
+                  [sty.iconButton___21OGd]: true,
+                })}
+                content={""}
+                endIcon={
+                  false ? (
+                    <svg
+                      data-plasmic-name={"endIcon2"}
+                      data-plasmic-override={overrides.endIcon2}
+                      className={classNames({
+                        [defaultcss.all]: true,
+                        [sty.endIcon2]: true,
+                      })}
+                      role={"img"}
+                    />
+                  ) : null
+                }
+                startIcon={
+                  <IconSettingsIcon
+                    data-plasmic-name={"startIcon2"}
+                    data-plasmic-override={overrides.startIcon2}
+                    className={classNames({
+                      [defaultcss.all]: true,
+                      [sty.startIcon2]: true,
+                    })}
+                    role={"img"}
+                    {...({} as any)}
+                  />
+                }
+                withIcons={["start"]}
+                {...({} as any)}
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       <div
-        data-plasmic-name={"updatesContainer"}
-        data-plasmic-override={overrides.updatesContainer}
         data-plasmic-wrap-flex-child={true}
         className={classNames({
           [defaultcss.all]: true,
-          [sty.updatesContainer]: true,
+          [sty.box__ineb5]: true,
         })}
       >
-        <Update
-          data-plasmic-name={"update"}
-          data-plasmic-override={overrides.update}
-          {...({} as any)}
-        />
-      </div>
-
-      <div
-        data-plasmic-name={"footer"}
-        data-plasmic-override={overrides.footer}
-        className={classNames({ [defaultcss.all]: true, [sty.footer]: true })}
-      >
         <div
-          data-plasmic-name={"settingsContainer"}
-          data-plasmic-override={overrides.settingsContainer}
+          data-plasmic-name={"actionBarContainer"}
+          data-plasmic-override={overrides.actionBarContainer}
+          className={classNames({
+            [defaultcss.all]: true,
+            [sty.actionBarContainer]: true,
+          })}
+        >
+          <ActionBar
+            data-plasmic-name={"actionBar"}
+            data-plasmic-override={overrides.actionBar}
+            className={classNames({
+              __wab_instance: true,
+              [sty.actionBar]: true,
+            })}
+            error={[]}
+            errorMessage={"Please enter a number value"}
+            {...({} as any)}
+          />
+        </div>
+
+        <div
+          data-plasmic-name={"updatesContainer"}
+          data-plasmic-override={overrides.updatesContainer}
           data-plasmic-wrap-flex-child={true}
           className={classNames({
             [defaultcss.all]: true,
-            [sty.settingsContainer]: true,
+            [sty.updatesContainer]: true,
           })}
         >
-          <IconButton
-            className={classNames({
-              __wab_instance: true,
-              [sty.iconButton__zX6H]: true,
-            })}
-            content={""}
-            endIcon={
-              false ? (
-                <svg
-                  className={classNames({
-                    [defaultcss.all]: true,
-                    [sty.svg___1OBNx]: true,
-                  })}
-                  role={"img"}
-                />
-              ) : null
-            }
-            startIcon={
-              <IconPersonIcon
-                className={classNames({
-                  [defaultcss.all]: true,
-                  [sty.svg___0O2Rb]: true,
-                })}
-                role={"img"}
-                {...({} as any)}
-              />
-            }
-            withIcons={["start"]}
-            {...({} as any)}
-          />
-
-          <IconButton
-            className={classNames({
-              __wab_instance: true,
-              [sty.iconButton__hDyK9]: true,
-            })}
-            content={""}
-            endIcon={
-              false ? (
-                <svg
-                  className={classNames({
-                    [defaultcss.all]: true,
-                    [sty.svg__cw2T7]: true,
-                  })}
-                  role={"img"}
-                />
-              ) : null
-            }
-            startIcon={
-              <IconSettingsIcon
-                className={classNames({
-                  [defaultcss.all]: true,
-                  [sty.svg__jAIa1]: true,
-                })}
-                role={"img"}
-                {...({} as any)}
-              />
-            }
-            withIcons={["start"]}
+          <Update
+            data-plasmic-name={"update"}
+            data-plasmic-override={overrides.update}
             {...({} as any)}
           />
         </div>
       </div>
+
+      <ActionsColumn
+        data-plasmic-name={"actionsColumn"}
+        data-plasmic-override={overrides.actionsColumn}
+        className={classNames({
+          __wab_instance: true,
+          [sty.actionsColumn]: true,
+        })}
+        content={["hasContent"]}
+        number={"hasNumber" as const}
+        {...({} as any)}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -202,20 +279,35 @@ function PlasmicHome__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "settingsContainer",
+    "startIcon",
+    "endIcon",
+    "startIcon2",
+    "endIcon2",
     "actionBarContainer",
     "actionBar",
     "updatesContainer",
     "update",
-    "footer",
-    "settingsContainer",
+    "actionsColumn",
   ],
 
+  settingsContainer: [
+    "settingsContainer",
+    "startIcon",
+    "endIcon",
+    "startIcon2",
+    "endIcon2",
+  ],
+
+  startIcon: ["startIcon"],
+  endIcon: ["endIcon"],
+  startIcon2: ["startIcon2"],
+  endIcon2: ["endIcon2"],
   actionBarContainer: ["actionBarContainer", "actionBar"],
   actionBar: ["actionBar"],
   updatesContainer: ["updatesContainer", "update"],
   update: ["update"],
-  footer: ["footer", "settingsContainer"],
-  settingsContainer: ["settingsContainer"],
+  actionsColumn: ["actionsColumn"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -223,12 +315,16 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  settingsContainer: "div";
+  startIcon: "svg";
+  endIcon: "svg";
+  startIcon2: "svg";
+  endIcon2: "svg";
   actionBarContainer: "div";
   actionBar: typeof ActionBar;
   updatesContainer: "div";
   update: typeof Update;
-  footer: "div";
-  settingsContainer: "div";
+  actionsColumn: typeof ActionsColumn;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -289,12 +385,16 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    settingsContainer: makeNodeComponent("settingsContainer"),
+    startIcon: makeNodeComponent("startIcon"),
+    endIcon: makeNodeComponent("endIcon"),
+    startIcon2: makeNodeComponent("startIcon2"),
+    endIcon2: makeNodeComponent("endIcon2"),
     actionBarContainer: makeNodeComponent("actionBarContainer"),
     actionBar: makeNodeComponent("actionBar"),
     updatesContainer: makeNodeComponent("updatesContainer"),
     update: makeNodeComponent("update"),
-    footer: makeNodeComponent("footer"),
-    settingsContainer: makeNodeComponent("settingsContainer"),
+    actionsColumn: makeNodeComponent("actionsColumn"),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

@@ -26,28 +26,22 @@ import {
   StrictProps,
   deriveRenderOpts,
 } from "@plasmicapp/react-web";
-import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicActionBar.module.css"; // plasmic-import: eUnRsS9UXR/css
 
-import IconSendIcon from "./icons/PlasmicIcon__IconSend"; // plasmic-import: oiAgf-ezpQ/icon
-
 export type PlasmicActionBar__VariantMembers = {
-  content: "hasContent";
   error: "hasError";
 };
 
 export type PlasmicActionBar__VariantsArgs = {
-  content?: SingleChoiceArg<"hasContent">;
   error?: MultiChoiceArg<"hasError">;
 };
 
 type VariantPropType = keyof PlasmicActionBar__VariantsArgs;
 export const PlasmicActionBar__VariantProps = new Array<VariantPropType>(
-  "content",
   "error"
 );
 
@@ -65,16 +59,11 @@ export type PlasmicActionBar__OverridesType = {
   box?: Flex<"div">;
   editorContainer?: Flex<"div">;
   textContainer?: Flex<"input">;
-  actionContainer?: Flex<"div">;
-  sendButton?: Flex<typeof IconButton>;
-  startIcon?: Flex<"svg">;
-  endIcon?: Flex<"svg">;
   errorContainer?: Flex<"div">;
 };
 
 export interface DefaultActionBarProps {
   errorMessage?: React.ReactNode;
-  content?: SingleChoiceArg<"hasContent">;
   error?: MultiChoiceArg<"hasError">;
   className?: string;
 }
@@ -98,22 +87,17 @@ function PlasmicActionBar__RenderFunc(props: {
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.root]: true,
-        [sty.root__content_hasContent]: hasVariant(
-          variants,
-          "content",
-          "hasContent"
-        ),
-
         [sty.root__error_hasError]: hasVariant(variants, "error", "hasError"),
-        [sty.root__error_hasError_content_hasContent]:
-          hasVariant(variants, "error", "hasError") &&
-          hasVariant(variants, "content", "hasContent"),
       })}
     >
       <div
         data-plasmic-name={"box"}
         data-plasmic-override={overrides.box}
-        className={classNames({ [defaultcss.all]: true, [sty.box]: true })}
+        className={classNames({
+          [defaultcss.all]: true,
+          [sty.box]: true,
+          [sty.box__error_hasError]: hasVariant(variants, "error", "hasError"),
+        })}
       >
         <div
           data-plasmic-name={"editorContainer"}
@@ -121,21 +105,11 @@ function PlasmicActionBar__RenderFunc(props: {
           className={classNames({
             [defaultcss.all]: true,
             [sty.editorContainer]: true,
-            [sty.editorContainer__content_hasContent]: hasVariant(
-              variants,
-              "content",
-              "hasContent"
-            ),
-
             [sty.editorContainer__error_hasError]: hasVariant(
               variants,
               "error",
               "hasError"
             ),
-
-            [sty.editorContainer__error_hasError_content_hasContent]:
-              hasVariant(variants, "error", "hasError") &&
-              hasVariant(variants, "content", "hasContent"),
           })}
         >
           <input
@@ -144,84 +118,12 @@ function PlasmicActionBar__RenderFunc(props: {
             className={classNames({
               [defaultcss.input]: true,
               [sty.textContainer]: true,
-              [sty.textContainer__content_hasContent]: hasVariant(
-                variants,
-                "content",
-                "hasContent"
-              ),
             })}
             placeholder={"Write an update" as const}
             size={1 as const}
             type={"text" as const}
           />
         </div>
-
-        {(hasVariant(variants, "content", "hasContent") ? true : false) ? (
-          <div
-            data-plasmic-name={"actionContainer"}
-            data-plasmic-override={overrides.actionContainer}
-            className={classNames({
-              [defaultcss.all]: true,
-              [sty.actionContainer]: true,
-              [sty.actionContainer__content_hasContent]: hasVariant(
-                variants,
-                "content",
-                "hasContent"
-              ),
-            })}
-          >
-            <IconButton
-              data-plasmic-name={"sendButton"}
-              data-plasmic-override={overrides.sendButton}
-              className={classNames({
-                __wab_instance: true,
-                [sty.sendButton]: true,
-                [sty.sendButton__content_hasContent]: hasVariant(
-                  variants,
-                  "content",
-                  "hasContent"
-                ),
-
-                [sty.sendButton__content_hasContent_error_hasError]:
-                  hasVariant(variants, "content", "hasContent") &&
-                  hasVariant(variants, "error", "hasError"),
-              })}
-              content={""}
-              endIcon={
-                false ? (
-                  <svg
-                    data-plasmic-name={"endIcon"}
-                    data-plasmic-override={overrides.endIcon}
-                    className={classNames({
-                      [defaultcss.all]: true,
-                      [sty.endIcon]: true,
-                    })}
-                    role={"img"}
-                  />
-                ) : null
-              }
-              startIcon={
-                <IconSendIcon
-                  data-plasmic-name={"startIcon"}
-                  data-plasmic-override={overrides.startIcon}
-                  className={classNames({
-                    [defaultcss.all]: true,
-                    [sty.startIcon]: true,
-                    [sty.startIcon__content_hasContent]: hasVariant(
-                      variants,
-                      "content",
-                      "hasContent"
-                    ),
-                  })}
-                  role={"img"}
-                  {...({} as any)}
-                />
-              }
-              withIcons={["start"]}
-              {...({} as any)}
-            />
-          </div>
-        ) : null}
       </div>
 
       {(hasVariant(variants, "error", "hasError") ? true : false) ? (
@@ -236,10 +138,6 @@ function PlasmicActionBar__RenderFunc(props: {
               "error",
               "hasError"
             ),
-
-            [sty.errorContainer__error_hasError_content_hasContent]:
-              hasVariant(variants, "error", "hasError") &&
-              hasVariant(variants, "content", "hasContent"),
           })}
         >
           <PlasmicSlot
@@ -252,10 +150,6 @@ function PlasmicActionBar__RenderFunc(props: {
                 "error",
                 "hasError"
               ),
-
-              [sty.slotErrorMessage__error_hasError_content_hasContent]:
-                hasVariant(variants, "error", "hasError") &&
-                hasVariant(variants, "content", "hasContent"),
             })}
           />
         </div>
@@ -265,34 +159,10 @@ function PlasmicActionBar__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "box",
-    "editorContainer",
-    "textContainer",
-    "actionContainer",
-    "sendButton",
-    "startIcon",
-    "endIcon",
-    "errorContainer",
-  ],
-
-  box: [
-    "box",
-    "editorContainer",
-    "textContainer",
-    "actionContainer",
-    "sendButton",
-    "startIcon",
-    "endIcon",
-  ],
-
+  root: ["root", "box", "editorContainer", "textContainer", "errorContainer"],
+  box: ["box", "editorContainer", "textContainer"],
   editorContainer: ["editorContainer", "textContainer"],
   textContainer: ["textContainer"],
-  actionContainer: ["actionContainer", "sendButton", "startIcon", "endIcon"],
-  sendButton: ["sendButton", "startIcon", "endIcon"],
-  startIcon: ["startIcon"],
-  endIcon: ["endIcon"],
   errorContainer: ["errorContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -304,10 +174,6 @@ type NodeDefaultElementType = {
   box: "div";
   editorContainer: "div";
   textContainer: "input";
-  actionContainer: "div";
-  sendButton: typeof IconButton;
-  startIcon: "svg";
-  endIcon: "svg";
   errorContainer: "div";
 };
 
@@ -372,10 +238,6 @@ export const PlasmicActionBar = Object.assign(
     box: makeNodeComponent("box"),
     editorContainer: makeNodeComponent("editorContainer"),
     textContainer: makeNodeComponent("textContainer"),
-    actionContainer: makeNodeComponent("actionContainer"),
-    sendButton: makeNodeComponent("sendButton"),
-    startIcon: makeNodeComponent("startIcon"),
-    endIcon: makeNodeComponent("endIcon"),
     errorContainer: makeNodeComponent("errorContainer"),
 
     // Metadata about props expected for PlasmicActionBar

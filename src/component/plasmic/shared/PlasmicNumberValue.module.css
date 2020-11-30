@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  background-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  position: relative;
+  border-radius: 100%;
+  padding: 3px 7px 1px;
+}
+.root__state_text {
+  background-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-radius: 100%;
+  padding: 2px 5px;
+}
+.slotNumberValue {
+  font-size: 24px;
+  text-align: center;
+}
+.slotNumberValue__state_text {
+  font-size: 24px;
+}
