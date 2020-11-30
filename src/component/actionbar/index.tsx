@@ -9,19 +9,13 @@ import ComposeEditor from "component/editor/compose";
 import { Node } from "slate";
 
 interface ActionBarProps extends DefaultActionBarProps {
-  updates: any;
-  setUpdates: any;
   setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
   value: Node[];
   setValue: React.Dispatch<React.SetStateAction<Node[]>>;
   setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
-  hasContent: HasContent;
-  numberValue: NumberValue;
-  createUpdate: any;
-  errorMessage: any;
+  errorMessage: string;
 }
 
-type HasContent = undefined | "hasContent";
 type NumberValue = undefined | number;
 
 function ActionBar(props: ActionBarProps) {

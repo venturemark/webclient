@@ -79,9 +79,10 @@ const plugins = [
 ];
 
 type NumberValue = undefined | number;
+type HasContent = undefined | "hasContent";
 
 interface EditorProps {
-  setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
+  setHasContent: React.Dispatch<React.SetStateAction<HasContent>>;
   value: Node[];
   setValue: React.Dispatch<React.SetStateAction<Node[]>>;
   setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;

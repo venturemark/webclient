@@ -6,10 +6,13 @@ import {
   DefaultActionsColumnProps,
 } from "component/plasmic/shared/PlasmicActionsColumn";
 
+type NumberValue = undefined | number;
+type HasContent = undefined | "hasContent";
+
 interface ActionsColumnProps extends DefaultActionsColumnProps {
-  numberValue: undefined | number;
-  hasContent: undefined | "hasContent";
-  createUpdate: any;
+  numberValue: NumberValue;
+  hasContent: HasContent;
+  createUpdate: () => void;
 }
 
 function ActionsColumn(props: ActionsColumnProps) {
