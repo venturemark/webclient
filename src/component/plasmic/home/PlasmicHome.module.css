@@ -4,45 +4,183 @@
   height: 100%;
   position: relative;
   background-color: rgb(249, 249, 250) /* plasmic-token: 2o4hRg6in */;
-  flex-direction: column;
+  flex-direction: row;
   padding-top: 200px;
   min-width: 0;
   min-height: 0;
 }
 .root > :global(.__wab_flex-container) {
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: calc(0px - 10px);
-  height: calc(100% + 10px);
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
 }
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 10px;
+  margin-left: 5px;
 }
-.actionBarContainer {
+.box__utMxK {
+  display: flex;
+  position: relative;
+  background-color: rgba(68, 192, 255, 0.2);
+  width: 150px;
+  height: 267px;
+  align-self: flex-start;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 10px;
+}
+.settingsContainer {
   display: flex;
   position: relative;
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
   height: auto;
   flex-direction: column;
-  align-items: center;
-  padding-left: 74px;
+  align-self: auto;
+  left: auto;
+  top: auto;
+  padding-left: 20px;
+  padding-right: 20px;
   min-width: 0;
+}
+.settingsContainer > :global(.__wab_flex-container) {
+  flex-direction: column;
+  margin-top: calc(0px - 10px);
+  height: calc(100% + 10px);
+}
+.settingsContainer > :global(.__wab_flex-container) > *,
+.settingsContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 10px;
+}
+.box___26Miy {
+  display: inline-flex;
+  position: relative;
+  background-color: rgba(68, 192, 255, 0.2);
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.box___1ARwj {
+  position: relative;
+  width: auto;
+  height: auto;
+  align-self: center;
+  display: inline-block;
+}
+.iconButton__zX6H:global(.__wab_instance) {
+  position: relative;
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+}
+.startIcon {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.endIcon {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.box__zoc2 {
+  display: inline-flex;
+  position: relative;
+  background-color: rgba(68, 192, 255, 0.2);
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.box__wwTzT {
+  position: relative;
+  width: auto;
+  height: auto;
+  align-self: center;
+  display: inline-block;
+}
+.iconButton___21OGd:global(.__wab_instance) {
+  position: relative;
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+}
+.startIcon2 {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.endIcon2 {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.box__ineb5 {
+  display: inline-flex;
+  position: relative;
+  background-color: rgba(68, 192, 255, 0);
+  width: auto;
+  height: auto;
+  flex-direction: column;
+}
+.box__ineb5 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: calc(0px - 10px);
+  height: calc(100% + 10px);
+}
+.box__ineb5 > :global(.__wab_flex-container) > *,
+.box__ineb5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 10px;
+}
+.actionBarContainer {
+  display: inline-flex;
+  position: relative;
+  background-color: rgba(68, 192, 255, 0);
+  width: auto;
+  height: auto;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 74px;
+  align-self: flex-start;
 }
 .actionBar:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
+  align-self: flex-start;
 }
 .updatesContainer {
-  display: flex;
+  display: inline-flex;
   position: relative;
   flex-direction: column;
-  width: 100%;
-  min-width: 0;
+  width: auto;
 }
 .updatesContainer > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -58,84 +196,7 @@
 .update:global(.__wab_instance) {
   flex-shrink: 0;
 }
-.footer {
-  display: flex;
+.actionsColumn:global(.__wab_instance) {
   position: relative;
-  background-color: rgba(68, 192, 255, 0);
-  width: 100%;
-  height: auto;
-  flex-direction: row;
-  justify-content: flex-end;
-  max-width: 750px;
-  min-width: 0;
-}
-.settingsContainer {
-  display: inline-flex;
-  position: relative;
-  background-color: rgba(68, 192, 255, 0);
-  width: auto;
-  height: auto;
-  flex-direction: column;
-  align-self: auto;
-  left: auto;
-  top: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.settingsContainer > :global(.__wab_flex-container) {
-  flex-direction: column;
-  margin-top: calc(0px - 10px);
-  height: calc(100% + 10px);
-}
-.settingsContainer > :global(.__wab_flex-container) > *,
-.settingsContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 10px;
-}
-.iconButton__zX6H:global(.__wab_instance) {
-  position: relative;
-  width: auto;
-  height: auto;
-}
-.svg___0O2Rb {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.svg___1OBNx {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.iconButton__hDyK9:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-  width: auto;
-  height: auto;
-}
-.svg__jAIa1 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.svg__cw2T7 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  flex-shrink: 0;
 }
