@@ -167,7 +167,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
           })}
         >
           <PlasmicSlot
-            defaultContents={"4549"}
+            defaultContents={"4567"}
             value={args.numberValue}
             className={classNames({
               [sty.slotNumberValue]: true,
