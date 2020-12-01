@@ -50,6 +50,11 @@
   padding: 3px 7px 1px;
 }
 .box__number_hasNumber_content_hasContent {
+  width: 59px;
+  height: auto;
+  align-self: auto;
+  justify-content: center;
+  align-items: center;
   padding: 30%;
 }
 .slotNumberValue {
@@ -59,4 +64,9 @@
 }
 .slotNumberValue__content_hasContent_number_hasNumber {
   font-size: 14px;
+  white-space: nowrap;
+}
+.slotNumberValue__content_hasContent_number_hasNumber > * {
+  text-overflow: clip;
+  overflow: hidden;
 }
