@@ -63,7 +63,9 @@ export function Component(props: HomeProps) {
     ? Searcher.Search(serialize(value))[0]
     : undefined;
   const [numberValue, setNumberValue] = useState<NumberValue>(defaultNumber);
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = React.useState<number>(
+    serialize(value).length
+  );
 
   const createUpdate = () => {
     if (!hasContent) {
