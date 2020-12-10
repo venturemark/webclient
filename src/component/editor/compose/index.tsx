@@ -89,6 +89,7 @@ interface EditorProps {
   setValue: React.Dispatch<React.SetStateAction<Node[]>>;
   setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
+  setErrorMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const withPlugins = [
@@ -106,7 +107,14 @@ const DEFAULT_HEIGHT = 44;
 const HEIGHT_LIMIT = 188;
 
 const ComposeEditor = (props: EditorProps) => {
-  const { value, setValue, setNumberValue, setHasContent, setProgress } = props;
+  const {
+    value,
+    setValue,
+    setNumberValue,
+    setHasContent,
+    setProgress,
+    setErrorMessage,
+  } = props;
 
   const editorRef = useRef<HTMLDivElement>(null);
 
@@ -142,6 +150,9 @@ const ComposeEditor = (props: EditorProps) => {
           setValue(newValue);
           setNumberValue(number);
           setProgress(serialize(newValue).length);
+          if (number) {
+            setErrorMessage(undefined);
+          }
 
           //save to local storage to persist...
           save(newValue);

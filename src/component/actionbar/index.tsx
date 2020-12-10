@@ -14,7 +14,10 @@ interface ActionBarProps extends DefaultActionBarProps {
   value: Node[];
   setValue: React.Dispatch<React.SetStateAction<Node[]>>;
   setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
+  setErrorMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
   errorMessage: string;
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
+  progress: number;
 }
 
 type NumberValue = undefined | number;
@@ -25,17 +28,19 @@ function ActionBar(props: ActionBarProps) {
     setNumberValue,
     value,
     setValue,
+    setErrorMessage,
     errorMessage,
+    progress,
+    setProgress,
   } = props;
   const MIN = 0;
-  const MAX = 280;
+  const MAX = 240;
   const normalize = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
-  const [progress, setProgress] = React.useState(0);
 
   return (
     <PlasmicActionBar
       error={errorMessage ? "hasError" : undefined}
-      hasText={true}
+      text={normalize(progress) > 0 ? "hasText" : undefined}
       errorMessage={errorMessage}
       progressContainer={{
         render: () => (
@@ -50,6 +55,7 @@ function ActionBar(props: ActionBarProps) {
             setNumberValue={setNumberValue}
             setValue={setValue}
             setProgress={setProgress}
+            setErrorMessage={setErrorMessage}
           />
         ),
       }}
