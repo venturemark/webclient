@@ -2,7 +2,7 @@
 // - is local
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import { createEditor, Node } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
@@ -101,41 +101,53 @@ const withPlugins = [
   withInlineVoid({ plugins }),
 ] as const;
 
+const DEFAULT_HEIGHT = 44;
+const HEIGHT_LIMIT = 188;
+
 const ComposeEditor = (props: EditorProps) => {
   const { value, setValue, setNumberValue, setHasContent } = props;
 
+  const editorRef = useRef<HTMLDivElement>(null);
+
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
+  const { insertBreak } = editor;
+
+  editor.insertBreak = () => {
+    const height = editorRef.current?.offsetHeight ?? DEFAULT_HEIGHT;
+    if (height < HEIGHT_LIMIT) {
+      insertBreak();
+    }
+  };
+
   return (
-    <Slate
-      editor={editor}
-      value={value}
-      onChange={(newValue: Node[]) => {
-        // get the first number in text
-        const number = Searcher.Search(serialize(newValue))[0];
+    <div ref={editorRef} className={actionbarcss.textContainer}>
+      <Slate
+        editor={editor}
+        value={value}
+        onChange={(newValue: Node[]) => {
+          // get the first number in text
+          const number = Searcher.Search(serialize(newValue))[0];
 
-        // determine if there is a value in editor
-        const hasValue = serialize(newValue).trim().length;
-        if (hasValue) {
-          setHasContent("hasContent");
-        } else {
-          setHasContent(undefined);
-        }
+          // determine if there is a value in editor
+          const hasValue = serialize(newValue).trim().length;
+          if (hasValue) {
+            setHasContent("hasContent");
+          } else {
+            setHasContent(undefined);
+          }
 
-        // set editor value onChange
-        setValue(newValue);
-        setNumberValue(number);
+          // set editor value onChange
+          setValue(newValue);
+          setNumberValue(number);
 
-        //save to local storage to persist...
-        save(newValue);
-      }}
-    >
-      <EditablePlugins
-        plugins={plugins}
-        className={actionbarcss.textContainer}
-        spellCheck
-      />
-    </Slate>
+          //save to local storage to persist...
+          save(newValue);
+        }}
+      >
+        <EditablePlugins plugins={plugins} spellCheck />
+      </Slate>
+    </div>
   );
 };
 
