@@ -121,7 +121,7 @@ const ComposeEditor = (props: EditorProps) => {
   };
 
   return (
-    <div ref={editorRef}>
+    <div ref={editorRef} className={actionbarcss.textContainer}>
       <Slate
         editor={editor}
         value={value}
@@ -145,11 +145,7 @@ const ComposeEditor = (props: EditorProps) => {
           save(newValue);
         }}
       >
-        <EditablePlugins
-          plugins={plugins}
-          className={actionbarcss.textContainer}
-          spellCheck
-        />
+        <EditablePlugins plugins={plugins} spellCheck />
       </Slate>
     </div>
   );
