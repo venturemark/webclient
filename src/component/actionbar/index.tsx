@@ -7,6 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 import ComposeEditor from "component/editor/compose";
 import { Node } from "slate";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 interface ActionBarProps extends DefaultActionBarProps {
   setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
@@ -26,11 +27,21 @@ function ActionBar(props: ActionBarProps) {
     setValue,
     errorMessage,
   } = props;
+  const MIN = 0;
+  const MAX = 280;
+  const normalize = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
+  const [progress, setProgress] = React.useState(0);
 
   return (
     <PlasmicActionBar
       error={errorMessage ? "hasError" : undefined}
+      hasText={true}
       errorMessage={errorMessage}
+      progressContainer={{
+        render: () => (
+          <CircularProgress variant="determinate" value={normalize(progress)} />
+        ),
+      }}
       textContainer={{
         render: () => (
           <ComposeEditor
@@ -38,6 +49,7 @@ function ActionBar(props: ActionBarProps) {
             value={value}
             setNumberValue={setNumberValue}
             setValue={setValue}
+            setProgress={setProgress}
           />
         ),
       }}
