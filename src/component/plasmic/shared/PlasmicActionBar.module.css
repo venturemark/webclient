@@ -5,7 +5,7 @@
   position: relative;
   padding-right: 0px;
   flex-direction: column;
-  padding-bottom: 29px;
+  padding-bottom: 35px;
   padding-left: 0px;
 }
 .root > :global(.__wab_flex-container) {
@@ -21,7 +21,10 @@
 .root__error_hasError {
   padding-bottom: 0px;
 }
-.box {
+.root__hasText_hasText {
+  padding-bottom: 0px;
+}
+.box__zG8Do {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -51,9 +54,25 @@
   border-radius: 8px;
   border-width: 0px;
 }
+.box__eZiS {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.box__hasText_hasText__eZiSykdVp {
+  justify-content: flex-end;
+  width: 100%;
+  min-width: 0;
+}
+.box__hasText_hasText_error_hasError__eZiSykdVpXYqMt {
+  width: 100%;
+  justify-content: center;
+  min-width: 0;
+}
 .errorContainer {
   display: inline-flex;
-  position: relative;
   width: auto;
   height: auto;
 }
@@ -63,8 +82,46 @@
   align-items: center;
   min-width: 0;
 }
+.errorContainer__hasText_hasText {
+  display: flex;
+  flex-direction: column;
+}
+.errorContainer__hasText_hasText_error_hasError {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  padding-left: 30px;
+  min-width: 0;
+}
 .slotErrorMessage {
   font-size: 16px;
   font-weight: 500;
   color: rgb(234, 54, 102) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.progressContainer {
+  display: block;
+  position: relative;
+  background-color: rgba(68, 192, 255, 0.2);
+  width: 95px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.progressContainer__hasText_hasText {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 100%;
+}
+.progressContainer__hasText_hasText_error_hasError {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  left: auto;
+  top: auto;
+  display: block;
+  flex-direction: row;
+  align-self: baseline;
+  flex-shrink: 0;
+  border-radius: 100%;
 }

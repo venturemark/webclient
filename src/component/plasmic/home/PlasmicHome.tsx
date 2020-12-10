@@ -119,7 +119,7 @@ function PlasmicHome__RenderFunc(props: {
                   defaultcss.__wab_text
                 }
               >
-                {"Profile\n"}
+                {"Profile"}
               </div>
 
               <IconButton
@@ -174,7 +174,7 @@ function PlasmicHome__RenderFunc(props: {
                   defaultcss.__wab_text
                 }
               >
-                {"Settings\n"}
+                {"Settings"}
               </div>
 
               <IconButton
