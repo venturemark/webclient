@@ -27,6 +27,7 @@
     "@types/recharts": "^1.8.16",
     "@udecode/slate-plugins": "0.71.0",
     "@venturemark/numnum": "github:venturemark/numnum#v0.1.1",
+    "date-fns": "^2.16.1",
     "faker": "^5.1.0",
     "react": "^17.0.1",
     "react-card-flip": "^1.0.11",

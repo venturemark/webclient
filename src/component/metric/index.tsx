@@ -7,78 +7,20 @@ import {
 } from "component/plasmic/shared/PlasmicMetric";
 import * as linechart from "component/linechart";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface MetricProps extends Omit<DefaultMetricProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-
-//
-// You can also stop extending from DefaultMetricProps altogether and have
-// total control over the props for your component.
 interface MetricProps extends DefaultMetricProps {
-  name?: string;
+  name: string;
+  dataKey: string;
+  data: linechart.DataItem[];
 }
 
 function Metric(props: MetricProps) {
-  // Use PlasmicMetric to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicMetric are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all MetricProps here, but feel free
-  // to do whatever works for you.
+  const { data, dataKey } = props;
+
   return (
     <PlasmicMetric
       name={"Customer Acquisition Cost"}
       graphContainer={{
-        render: () => (
-          <linechart.Component
-            dataKey={"cac"}
-            data={[
-              {
-                date: "January 1, 2019",
-                cac: 50,
-              },
-              {
-                date: "February 2, 2019",
-                cac: 55,
-              },
-              {
-                date: "March 3, 2019",
-                cac: 40,
-              },
-              {
-                date: "April 1, 2019",
-                cac: 35,
-              },
-              {
-                date: "May 10, 2019",
-                cac: 39,
-              },
-              {
-                date: "June 1, 2019",
-                cac: 40,
-              },
-              {
-                date: "July 1, 2019",
-                cac: 50,
-              },
-            ]}
-          />
-        ),
+        render: () => <linechart.Component dataKey={dataKey} data={data} />,
       }}
     />
   );

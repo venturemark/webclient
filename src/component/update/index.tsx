@@ -6,13 +6,17 @@ import {
   DefaultUpdateProps,
 } from "component/plasmic/shared/PlasmicUpdate";
 import { SlateDocument } from "@udecode/slate-plugins";
+import * as linechart from "component/linechart";
 
 interface UpdateProps extends DefaultUpdateProps {
   text: SlateDocument;
+  dataKey: string;
+  data: linechart.DataItem[];
+  name: string;
 }
 
 function Update(props: UpdateProps) {
-  const { text } = props;
+  const { text, dataKey, data, name } = props;
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -26,6 +30,9 @@ function Update(props: UpdateProps) {
       contentContainer={{
         isFlipped: isFlipped,
         text: text,
+        name: name,
+        dataKey: dataKey,
+        data: data,
       }}
     />
   );

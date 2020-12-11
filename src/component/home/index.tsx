@@ -6,12 +6,16 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/home/PlasmicHome";
 import Update from "component/update";
-import { options } from "component/editor/config/initialValues";
+import {
+  options,
+  initialValueEmpty,
+} from "component/editor/config/initialValues";
 import Searcher from "@venturemark/numnum";
 import { Node } from "slate";
-import { initialValueEmpty } from "component/editor/config/initialValues";
+import { format } from "date-fns";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
+import * as linechart from "component/linechart";
 
 interface HomeProps extends DefaultHomeProps {}
 
@@ -42,12 +46,47 @@ const defaultUpdates = [
   },
 ];
 
+const defaultData = [
+  {
+    date: "January 1, 2019",
+    cac: 50,
+  },
+  {
+    date: "February 2, 2019",
+    cac: 55,
+  },
+  {
+    date: "March 3, 2019",
+    cac: 40,
+  },
+  {
+    date: "April 1, 2019",
+    cac: 35,
+  },
+  {
+    date: "May 10, 2019",
+    cac: 39,
+  },
+  {
+    date: "June 1, 2019",
+    cac: 40,
+  },
+  {
+    date: "July 1, 2019",
+    cac: 50,
+  },
+];
+
+const dataKey = "cac";
+const name = "Customer Acquisition Cost";
+
 type HasContent = undefined | "hasContent";
 type ErrorMessage = undefined | string;
 type NumberValue = undefined | number;
 
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
+  const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -96,6 +135,12 @@ export function Component(props: HomeProps) {
     };
     setUpdates([update, ...updates]);
 
+    const metric = {
+      date: format(new Date(), "PP"),
+      cac: numberValue,
+    };
+    setMetrics([...metrics, metric]);
+
     //reset compose state
     localStorage.setItem(
       "composeEditor.content",
@@ -111,8 +156,6 @@ export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       actionBar={{
-        setUpdates: setUpdates,
-        updates: updates,
         hasContent: hasContent,
         setHasContent: setHasContent,
         numberValue: numberValue,
@@ -126,7 +169,13 @@ export function Component(props: HomeProps) {
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
-          <Update text={update.text} key={update.id} />
+          <Update
+            text={update.text}
+            key={update.id}
+            dataKey={dataKey}
+            data={metrics}
+            name={name}
+          />
         )),
       }}
       actionsColumn={{
