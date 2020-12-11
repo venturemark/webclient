@@ -121,6 +121,10 @@ function PlasmicActionBar__RenderFunc(props: {
               "error",
               "hasError"
             ),
+
+            [sty.editorContainer__text_hasText_error_hasError]:
+              hasVariant(variants, "text", "hasText") &&
+              hasVariant(variants, "error", "hasError"),
           })}
         >
           <input
@@ -177,6 +181,10 @@ function PlasmicActionBar__RenderFunc(props: {
                   "error",
                   "hasError"
                 ),
+
+                [sty.errorContainer__text_hasText_error_hasError]:
+                  hasVariant(variants, "text", "hasText") &&
+                  hasVariant(variants, "error", "hasError"),
               })}
             >
               <PlasmicSlot
