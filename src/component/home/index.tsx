@@ -78,7 +78,7 @@ export function Component(props: HomeProps) {
       return;
     }
 
-    if (serialize(value).length > 240) {
+    if (serialize(value).length > 241) {
       setErrorMessage(
         `Your update is ${
           serialize(value).length
