@@ -12,6 +12,7 @@ import {
 } from "component/editor/config/initialValues";
 import Searcher from "@venturemark/numnum";
 import { Node } from "slate";
+import { format } from "date-fns";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
 
@@ -84,6 +85,7 @@ type NumberValue = undefined | number;
 
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
+  const [metrics, setMetrics] = useState(defaultData);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -132,6 +134,12 @@ export function Component(props: HomeProps) {
     };
     setUpdates([update, ...updates]);
 
+    const metric = {
+      date: format(new Date(), "PP"),
+      cac: numberValue,
+    };
+    setMetrics([...metrics, metric]);
+
     //reset compose state
     localStorage.setItem(
       "composeEditor.content",
@@ -147,8 +155,6 @@ export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       actionBar={{
-        setUpdates: setUpdates,
-        updates: updates,
         hasContent: hasContent,
         setHasContent: setHasContent,
         numberValue: numberValue,
@@ -166,7 +172,7 @@ export function Component(props: HomeProps) {
             text={update.text}
             key={update.id}
             dataKey={dataKey}
-            data={defaultData}
+            data={metrics}
             name={name}
           />
         )),
