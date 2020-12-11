@@ -15,6 +15,7 @@ import { Node } from "slate";
 import { format } from "date-fns";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
+import * as linechart from "component/linechart";
 
 interface HomeProps extends DefaultHomeProps {}
 
@@ -85,7 +86,7 @@ type NumberValue = undefined | number;
 
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
-  const [metrics, setMetrics] = useState(defaultData);
+  const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;

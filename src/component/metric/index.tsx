@@ -9,8 +9,8 @@ import * as linechart from "component/linechart";
 
 interface MetricProps extends DefaultMetricProps {
   name: string;
-  dataKey: any;
-  data: any;
+  dataKey: string;
+  data: linechart.DataItem[];
 }
 
 function Metric(props: MetricProps) {
