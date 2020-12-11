@@ -3,7 +3,7 @@
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
 import React, { useMemo, useRef } from "react";
-import { createEditor, Node } from "slate";
+import { createEditor, Node, Editor } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
 import {
@@ -89,6 +89,7 @@ interface EditorProps {
   setValue: React.Dispatch<React.SetStateAction<Node[]>>;
   setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
+  setErrorMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const withPlugins = [
@@ -104,21 +105,38 @@ const withPlugins = [
 
 const DEFAULT_HEIGHT = 44;
 const HEIGHT_LIMIT = 188;
+const CHARACTER_LIMIT = 238;
 
 const ComposeEditor = (props: EditorProps) => {
-  const { value, setValue, setNumberValue, setHasContent, setProgress } = props;
+  const {
+    value,
+    setValue,
+    setNumberValue,
+    setHasContent,
+    setProgress,
+    setErrorMessage,
+  } = props;
 
   const editorRef = useRef<HTMLDivElement>(null);
 
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
-  const { insertBreak } = editor;
+  const { insertBreak, insertText } = editor;
 
   editor.insertBreak = () => {
     const height = editorRef.current?.offsetHeight ?? DEFAULT_HEIGHT;
     if (height < HEIGHT_LIMIT) {
       insertBreak();
     }
+  };
+  editor.insertText = (text) => {
+    const count = Editor.string(editor, []).length;
+
+    if (count > CHARACTER_LIMIT) {
+      return;
+    }
+
+    insertText(text);
   };
 
   return (
@@ -142,6 +160,9 @@ const ComposeEditor = (props: EditorProps) => {
           setValue(newValue);
           setNumberValue(number);
           setProgress(serialize(newValue).length);
+          if (number) {
+            setErrorMessage(undefined);
+          }
 
           //save to local storage to persist...
           save(newValue);
