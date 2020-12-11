@@ -238,8 +238,9 @@ function PlasmicHome__RenderFunc(props: {
               __wab_instance: true,
               [sty.actionBar]: true,
             })}
-            error={[]}
+            error={["hasError"]}
             errorMessage={"Please enter a number value"}
+            text={["hasText"]}
             {...({} as any)}
           />
         </div>

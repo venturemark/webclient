@@ -63,6 +63,9 @@ export function Component(props: HomeProps) {
     ? Searcher.Search(serialize(value))[0]
     : undefined;
   const [numberValue, setNumberValue] = useState<NumberValue>(defaultNumber);
+  const [progress, setProgress] = React.useState<number>(
+    serialize(value).length
+  );
 
   const createUpdate = () => {
     if (!hasContent) {
@@ -75,7 +78,7 @@ export function Component(props: HomeProps) {
       return;
     }
 
-    if (serialize(value).length > 240) {
+    if (serialize(value).length > 241) {
       setErrorMessage(
         `Your update is ${
           serialize(value).length
@@ -102,6 +105,7 @@ export function Component(props: HomeProps) {
     setErrorMessage(undefined);
     setNumberValue(undefined);
     setHasContent(undefined);
+    setProgress(0);
   };
 
   return (
@@ -116,6 +120,9 @@ export function Component(props: HomeProps) {
         value: value,
         setValue: setValue,
         errorMessage: errorMessage,
+        setErrorMessage: setErrorMessage,
+        progress: progress,
+        setProgress: setProgress,
       }}
       updatesContainer={{
         children: updates.map((update: any) => (

@@ -21,7 +21,7 @@
 .root__error_hasError {
   padding-bottom: 0px;
 }
-.root__hasText_hasText {
+.root__text_hasText {
   padding-bottom: 0px;
 }
 .box__zG8Do {
@@ -61,14 +61,15 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-.box__hasText_hasText__eZiSykdVp {
-  justify-content: flex-end;
+.box__error_hasError__eZiSxYqMt {
+  height: 30px;
   width: 100%;
   min-width: 0;
+  flex-shrink: 0;
 }
-.box__hasText_hasText_error_hasError__eZiSykdVpXYqMt {
+.box__text_hasText__eZiSBMkcu {
   width: 100%;
-  justify-content: center;
+  justify-content: flex-end;
   min-width: 0;
 }
 .errorContainer {
@@ -82,46 +83,23 @@
   align-items: center;
   min-width: 0;
 }
-.errorContainer__hasText_hasText {
-  display: flex;
-  flex-direction: column;
-}
-.errorContainer__hasText_hasText_error_hasError {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  padding-left: 30px;
-  min-width: 0;
-}
 .slotErrorMessage {
   font-size: 16px;
   font-weight: 500;
   color: rgb(234, 54, 102) /* plasmic-token: NYSf9tLZvxevghS */;
 }
-.progressContainer {
-  display: block;
+.box__wGyU6 {
+  display: flex;
   position: relative;
-  background-color: rgba(68, 192, 255, 0.2);
-  width: 95px;
-  height: 48px;
-  flex-shrink: 0;
-}
-.progressContainer__hasText_hasText {
-  width: 30px;
-  height: 30px;
-  flex-shrink: 0;
-  border-radius: 100%;
-}
-.progressContainer__hasText_hasText_error_hasError {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  left: auto;
-  top: auto;
-  display: block;
   flex-direction: row;
-  align-self: baseline;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.progressContainer {
+  object-fit: cover;
+}
+.progressContainer__text_hasText {
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
-  border-radius: 100%;
 }
