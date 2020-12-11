@@ -27,7 +27,7 @@ function Update(props: UpdateProps) {
           setIsFlipped(!isFlipped);
         },
       }}
-      contentContainer={{
+      updateContent={{
         isFlipped: isFlipped,
         text: text,
         name: name,
