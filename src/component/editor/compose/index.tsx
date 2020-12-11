@@ -3,7 +3,7 @@
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
 import React, { useMemo, useRef } from "react";
-import { createEditor, Node } from "slate";
+import { createEditor, Node, Editor } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
 import {
@@ -105,6 +105,7 @@ const withPlugins = [
 
 const DEFAULT_HEIGHT = 44;
 const HEIGHT_LIMIT = 188;
+const CHARACTER_LIMIT = 238;
 
 const ComposeEditor = (props: EditorProps) => {
   const {
@@ -120,13 +121,22 @@ const ComposeEditor = (props: EditorProps) => {
 
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
-  const { insertBreak } = editor;
+  const { insertBreak, insertText } = editor;
 
   editor.insertBreak = () => {
     const height = editorRef.current?.offsetHeight ?? DEFAULT_HEIGHT;
     if (height < HEIGHT_LIMIT) {
       insertBreak();
     }
+  };
+  editor.insertText = (text) => {
+    const count = Editor.string(editor, []).length;
+
+    if (count > CHARACTER_LIMIT) {
+      return;
+    }
+
+    insertText(text);
   };
 
   return (
