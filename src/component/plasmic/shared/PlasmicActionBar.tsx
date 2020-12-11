@@ -230,6 +230,10 @@ function PlasmicActionBar__RenderFunc(props: {
                       "text",
                       "hasText"
                     ),
+
+                    [sty.progressContainer__text_hasText_error_hasError]:
+                      hasVariant(variants, "text", "hasText") &&
+                      hasVariant(variants, "error", "hasError"),
                   })}
                   role={"img"}
                 />
