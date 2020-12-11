@@ -9,10 +9,13 @@ import { SlateDocument } from "@udecode/slate-plugins";
 
 interface UpdateProps extends DefaultUpdateProps {
   text: SlateDocument;
+  dataKey: any;
+  data: any;
+  name: string;
 }
 
 function Update(props: UpdateProps) {
-  const { text } = props;
+  const { text, dataKey, data, name } = props;
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -26,6 +29,9 @@ function Update(props: UpdateProps) {
       contentContainer={{
         isFlipped: isFlipped,
         text: text,
+        name: name,
+        dataKey: dataKey,
+        data: data,
       }}
     />
   );

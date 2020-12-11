@@ -22,10 +22,13 @@ import * as linechart from "component/linechart";
 // You can also stop extending from DefaultMetricProps altogether and have
 // total control over the props for your component.
 interface MetricProps extends DefaultMetricProps {
-  name?: string;
+  name: string;
+  dataKey: any;
+  data: any;
 }
 
 function Metric(props: MetricProps) {
+  const { data, dataKey } = props;
   // Use PlasmicMetric to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
@@ -44,41 +47,7 @@ function Metric(props: MetricProps) {
     <PlasmicMetric
       name={"Customer Acquisition Cost"}
       graphContainer={{
-        render: () => (
-          <linechart.Component
-            dataKey={"cac"}
-            data={[
-              {
-                date: "January 1, 2019",
-                cac: 50,
-              },
-              {
-                date: "February 2, 2019",
-                cac: 55,
-              },
-              {
-                date: "March 3, 2019",
-                cac: 40,
-              },
-              {
-                date: "April 1, 2019",
-                cac: 35,
-              },
-              {
-                date: "May 10, 2019",
-                cac: 39,
-              },
-              {
-                date: "June 1, 2019",
-                cac: 40,
-              },
-              {
-                date: "July 1, 2019",
-                cac: 50,
-              },
-            ]}
-          />
-        ),
+        render: () => <linechart.Component dataKey={dataKey} data={data} />,
       }}
     />
   );

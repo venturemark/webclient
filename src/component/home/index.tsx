@@ -6,10 +6,12 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/home/PlasmicHome";
 import Update from "component/update";
-import { options } from "component/editor/config/initialValues";
+import {
+  options,
+  initialValueEmpty,
+} from "component/editor/config/initialValues";
 import Searcher from "@venturemark/numnum";
 import { Node } from "slate";
-import { initialValueEmpty } from "component/editor/config/initialValues";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
 
@@ -41,6 +43,40 @@ const defaultUpdates = [
     ],
   },
 ];
+
+const defaultData = [
+  {
+    date: "January 1, 2019",
+    cac: 50,
+  },
+  {
+    date: "February 2, 2019",
+    cac: 55,
+  },
+  {
+    date: "March 3, 2019",
+    cac: 40,
+  },
+  {
+    date: "April 1, 2019",
+    cac: 35,
+  },
+  {
+    date: "May 10, 2019",
+    cac: 39,
+  },
+  {
+    date: "June 1, 2019",
+    cac: 40,
+  },
+  {
+    date: "July 1, 2019",
+    cac: 50,
+  },
+];
+
+const dataKey = "cac";
+const name = "Customer Acquisition Cost";
 
 type HasContent = undefined | "hasContent";
 type ErrorMessage = undefined | string;
@@ -126,7 +162,13 @@ export function Component(props: HomeProps) {
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
-          <Update text={update.text} key={update.id} />
+          <Update
+            text={update.text}
+            key={update.id}
+            dataKey={dataKey}
+            data={defaultData}
+            name={name}
+          />
         )),
       }}
       actionsColumn={{

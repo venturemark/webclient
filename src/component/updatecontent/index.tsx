@@ -12,10 +12,13 @@ import { SlateDocument } from "@udecode/slate-plugins";
 interface UpdateContentProps extends DefaultUpdateContentProps {
   isFlipped: boolean;
   text: SlateDocument;
+  dataKey: any;
+  data: any;
+  name: string;
 }
 
 function UpdateContent(props: UpdateContentProps) {
-  const { isFlipped, text } = props;
+  const { isFlipped, text, data, dataKey, name } = props;
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
       <PlasmicUpdateContent
@@ -24,7 +27,14 @@ function UpdateContent(props: UpdateContentProps) {
           render: () => <ReadEditor text={text} />,
         }}
       />
-      <PlasmicUpdateContent state="graph" />
+      <PlasmicUpdateContent
+        state="graph"
+        metric={{
+          name: name,
+          dataKey: dataKey,
+          data: data,
+        }}
+      />
     </ReactCardFlip>
   );
 }
