@@ -34,15 +34,18 @@ import sty from "./PlasmicActionBar.module.css"; // plasmic-import: eUnRsS9UXR/c
 
 export type PlasmicActionBar__VariantMembers = {
   error: "hasError";
+  text: "hasText";
 };
 
 export type PlasmicActionBar__VariantsArgs = {
   error?: MultiChoiceArg<"hasError">;
+  text?: MultiChoiceArg<"hasText">;
 };
 
 type VariantPropType = keyof PlasmicActionBar__VariantsArgs;
 export const PlasmicActionBar__VariantProps = new Array<VariantPropType>(
-  "error"
+  "error",
+  "text"
 );
 
 export type PlasmicActionBar__ArgsType = {
@@ -56,15 +59,16 @@ export const PlasmicActionBar__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicActionBar__OverridesType = {
   root?: Flex<"div">;
-  box?: Flex<"div">;
   editorContainer?: Flex<"div">;
   textContainer?: Flex<"input">;
   errorContainer?: Flex<"div">;
+  progressContainer?: Flex<"img">;
 };
 
 export interface DefaultActionBarProps {
   errorMessage?: React.ReactNode;
   error?: MultiChoiceArg<"hasError">;
+  text?: MultiChoiceArg<"hasText">;
   className?: string;
 }
 
@@ -88,15 +92,22 @@ function PlasmicActionBar__RenderFunc(props: {
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.root]: true,
         [sty.root__error_hasError]: hasVariant(variants, "error", "hasError"),
+        [sty.root__text_hasText]: hasVariant(variants, "text", "hasText"),
+        [sty.root__text_hasText_error_hasError]:
+          hasVariant(variants, "text", "hasText") &&
+          hasVariant(variants, "error", "hasError"),
       })}
     >
       <div
-        data-plasmic-name={"box"}
-        data-plasmic-override={overrides.box}
         className={classNames({
           [defaultcss.all]: true,
-          [sty.box]: true,
-          [sty.box__error_hasError]: hasVariant(variants, "error", "hasError"),
+          [sty.box__error_hasError__zG8DoxYqMt]: hasVariant(
+            variants,
+            "error",
+            "hasError"
+          ),
+
+          [sty.box__zG8Do]: true,
         })}
       >
         <div
@@ -110,6 +121,10 @@ function PlasmicActionBar__RenderFunc(props: {
               "error",
               "hasError"
             ),
+
+            [sty.editorContainer__text_hasText_error_hasError]:
+              hasVariant(variants, "text", "hasText") &&
+              hasVariant(variants, "error", "hasError"),
           })}
         >
           <input
@@ -126,32 +141,101 @@ function PlasmicActionBar__RenderFunc(props: {
         </div>
       </div>
 
-      {(hasVariant(variants, "error", "hasError") ? true : false) ? (
+      {(
+        hasVariant(variants, "text", "hasText")
+          ? true
+          : hasVariant(variants, "error", "hasError")
+          ? true
+          : false
+      ) ? (
         <div
-          data-plasmic-name={"errorContainer"}
-          data-plasmic-override={overrides.errorContainer}
           className={classNames({
             [defaultcss.all]: true,
-            [sty.errorContainer]: true,
-            [sty.errorContainer__error_hasError]: hasVariant(
+            [sty.box__eZiS]: true,
+            [sty.box__error_hasError__eZiSxYqMt]: hasVariant(
               variants,
               "error",
               "hasError"
             ),
+
+            [sty.box__text_hasText__eZiSBMkcu]: hasVariant(
+              variants,
+              "text",
+              "hasText"
+            ),
+
+            [sty.box__text_hasText_error_hasError__eZiSBMkcuXYqMt]:
+              hasVariant(variants, "text", "hasText") &&
+              hasVariant(variants, "error", "hasError"),
           })}
         >
-          <PlasmicSlot
-            defaultContents={"Please enter a number value"}
-            value={args.errorMessage}
-            className={classNames({
-              [sty.slotErrorMessage]: true,
-              [sty.slotErrorMessage__error_hasError]: hasVariant(
-                variants,
-                "error",
-                "hasError"
-              ),
-            })}
-          />
+          {(hasVariant(variants, "error", "hasError") ? true : false) ? (
+            <div
+              data-plasmic-name={"errorContainer"}
+              data-plasmic-override={overrides.errorContainer}
+              className={classNames({
+                [defaultcss.all]: true,
+                [sty.errorContainer]: true,
+                [sty.errorContainer__error_hasError]: hasVariant(
+                  variants,
+                  "error",
+                  "hasError"
+                ),
+
+                [sty.errorContainer__text_hasText_error_hasError]:
+                  hasVariant(variants, "text", "hasText") &&
+                  hasVariant(variants, "error", "hasError"),
+              })}
+            >
+              <PlasmicSlot
+                defaultContents={"Please enter a number value"}
+                value={args.errorMessage}
+                className={classNames({
+                  [sty.slotErrorMessage]: true,
+                  [sty.slotErrorMessage__error_hasError]: hasVariant(
+                    variants,
+                    "error",
+                    "hasError"
+                  ),
+                })}
+              />
+            </div>
+          ) : null}
+          {(hasVariant(variants, "text", "hasText") ? true : false) ? (
+            <div
+              className={classNames({
+                [defaultcss.all]: true,
+                [sty.box__text_hasText__wGyU6BMkcu]: hasVariant(
+                  variants,
+                  "text",
+                  "hasText"
+                ),
+
+                [sty.box__text_hasText_error_hasError__wGyU6BMkcuXYqMt]:
+                  hasVariant(variants, "text", "hasText") &&
+                  hasVariant(variants, "error", "hasError"),
+                [sty.box__wGyU6]: true,
+              })}
+            >
+              {(hasVariant(variants, "text", "hasText") ? true : false) ? (
+                <img
+                  data-plasmic-name={"progressContainer"}
+                  data-plasmic-override={overrides.progressContainer}
+                  alt={""}
+                  className={classNames({
+                    [defaultcss.img]: true,
+                    [sty.progressContainer]: true,
+                    [sty.progressContainer__text_hasText]: hasVariant(
+                      variants,
+                      "text",
+                      "hasText"
+                    ),
+                  })}
+                  role={"img"}
+                />
+              ) : null}
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>
@@ -159,11 +243,18 @@ function PlasmicActionBar__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "box", "editorContainer", "textContainer", "errorContainer"],
-  box: ["box", "editorContainer", "textContainer"],
+  root: [
+    "root",
+    "editorContainer",
+    "textContainer",
+    "errorContainer",
+    "progressContainer",
+  ],
+
   editorContainer: ["editorContainer", "textContainer"],
   textContainer: ["textContainer"],
   errorContainer: ["errorContainer"],
+  progressContainer: ["progressContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -171,10 +262,10 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  box: "div";
   editorContainer: "div";
   textContainer: "input";
   errorContainer: "div";
+  progressContainer: "img";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -235,10 +326,10 @@ export const PlasmicActionBar = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    box: makeNodeComponent("box"),
     editorContainer: makeNodeComponent("editorContainer"),
     textContainer: makeNodeComponent("textContainer"),
     errorContainer: makeNodeComponent("errorContainer"),
+    progressContainer: makeNodeComponent("progressContainer"),
 
     // Metadata about props expected for PlasmicActionBar
     internalVariantProps: PlasmicActionBar__VariantProps,

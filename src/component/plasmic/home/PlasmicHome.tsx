@@ -119,7 +119,7 @@ function PlasmicHome__RenderFunc(props: {
                   defaultcss.__wab_text
                 }
               >
-                {"Profile\n"}
+                {"Profile"}
               </div>
 
               <IconButton
@@ -174,7 +174,7 @@ function PlasmicHome__RenderFunc(props: {
                   defaultcss.__wab_text
                 }
               >
-                {"Settings\n"}
+                {"Settings"}
               </div>
 
               <IconButton
@@ -238,8 +238,9 @@ function PlasmicHome__RenderFunc(props: {
               __wab_instance: true,
               [sty.actionBar]: true,
             })}
-            error={[]}
+            error={["hasError"]}
             errorMessage={"Please enter a number value"}
+            text={["hasText"]}
             {...({} as any)}
           />
         </div>
