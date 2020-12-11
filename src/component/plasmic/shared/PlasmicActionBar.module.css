@@ -18,8 +18,13 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
 }
+@media (min-width: 0px) and (max-width: 760px) {
+  .root__global_screen_mobile {
+    padding-left: 74px;
+  }
+}
 .root__error_hasError {
-  padding-bottom: 0px;
+  padding-bottom: 10px;
 }
 .root__text_hasText {
   padding-bottom: 0px;
@@ -43,6 +48,12 @@
   border-radius: 8px;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
+@media (min-width: 0px) and (max-width: 760px) {
+  .editorContainer__global_screen_mobile {
+    width: 220px;
+    flex-shrink: 0;
+  }
+}
 .textContainer {
   width: 100%;
   height: 100%;
@@ -53,6 +64,11 @@
   min-height: 0;
   border-radius: 8px;
   border-width: 0px;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .textContainer__global_screen_mobile {
+    white-space: normal;
+  }
 }
 .box__eZiS {
   display: flex;
@@ -86,10 +102,21 @@
   align-items: center;
   min-width: 0;
 }
+@media (min-width: 0px) and (max-width: 760px) {
+  .errorContainer__text_hasText_error_hasError_global_screen_mobile {
+    width: 195px;
+    flex-shrink: 0;
+  }
+}
 .slotErrorMessage {
   font-size: 16px;
   font-weight: 500;
   color: rgb(234, 54, 102) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .slotErrorMessage__text_hasText_error_hasError_global_screen_mobile {
+    text-align: center;
+  }
 }
 .box__wGyU6 {
   display: flex;

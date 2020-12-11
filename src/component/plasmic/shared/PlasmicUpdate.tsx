@@ -61,7 +61,7 @@ export type PlasmicUpdate__OverridesType = {
   startIcon2?: Flex<"svg">;
   toggleUpdateView?: Flex<typeof IconButton>;
   startIcon22?: Flex<"svg">;
-  contentContainer?: Flex<typeof UpdateContent>;
+  updateContent?: Flex<typeof UpdateContent>;
 };
 
 export interface DefaultUpdateProps {
@@ -92,8 +92,14 @@ function PlasmicUpdate__RenderFunc(props: {
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.root]: true,
+        [sty.root__global_screen_mobile]: true,
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
+        [sty.root__state_text_global_screen_mobile]: hasVariant(
+          variants,
+          "state",
+          "text"
+        ),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -118,6 +124,7 @@ function PlasmicUpdate__RenderFunc(props: {
             [defaultcss.all]: true,
             [sty.updateActionContainer]: true,
             [sty.updateActionContainer____hover]: triggers.hover_root,
+            [sty.updateActionContainer__global_screen_mobile]: true,
             [sty.updateActionContainer__state_graph]: hasVariant(
               variants,
               "state",
@@ -326,18 +333,19 @@ function PlasmicUpdate__RenderFunc(props: {
       ) : null}
 
       <UpdateContent
-        data-plasmic-name={"contentContainer"}
-        data-plasmic-override={overrides.contentContainer}
+        data-plasmic-name={"updateContent"}
+        data-plasmic-override={overrides.updateContent}
         className={classNames({
           __wab_instance: true,
-          [sty.contentContainer]: true,
-          [sty.contentContainer__state_graph]: hasVariant(
+          [sty.updateContent]: true,
+          [sty.updateContent__global_screen_mobile]: true,
+          [sty.updateContent__state_graph]: hasVariant(
             variants,
             "state",
             "graph"
           ),
 
-          [sty.contentContainer__state_text]: hasVariant(
+          [sty.updateContent__state_text]: hasVariant(
             variants,
             "state",
             "text"
@@ -364,7 +372,7 @@ const PlasmicDescendants = {
     "startIcon2",
     "toggleUpdateView",
     "startIcon22",
-    "contentContainer",
+    "updateContent",
   ],
 
   updateActionContainer: [
@@ -379,7 +387,7 @@ const PlasmicDescendants = {
   startIcon2: ["startIcon2"],
   toggleUpdateView: ["toggleUpdateView", "startIcon22"],
   startIcon22: ["startIcon22"],
-  contentContainer: ["contentContainer"],
+  updateContent: ["updateContent"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -392,7 +400,7 @@ type NodeDefaultElementType = {
   startIcon2: "svg";
   toggleUpdateView: typeof IconButton;
   startIcon22: "svg";
-  contentContainer: typeof UpdateContent;
+  updateContent: typeof UpdateContent;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -458,7 +466,7 @@ export const PlasmicUpdate = Object.assign(
     startIcon2: makeNodeComponent("startIcon2"),
     toggleUpdateView: makeNodeComponent("toggleUpdateView"),
     startIcon22: makeNodeComponent("startIcon22"),
-    contentContainer: makeNodeComponent("contentContainer"),
+    updateContent: makeNodeComponent("updateContent"),
 
     // Metadata about props expected for PlasmicUpdate
     internalVariantProps: PlasmicUpdate__VariantProps,

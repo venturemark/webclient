@@ -21,6 +21,15 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
+@media (min-width: 0px) and (max-width: 760px) {
+  .root__global_screen_mobile {
+    width: 100%;
+    flex-column-gap: 0px;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+  }
+}
 .box__utMxK {
   display: flex;
   position: relative;
@@ -159,6 +168,11 @@
 .box__ineb5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 10px;
 }
+@media (min-width: 0px) and (max-width: 760px) {
+  .box__global_screen_mobile__ineb5CckRm {
+    flex-row-gap: 0px;
+  }
+}
 .actionBarContainer {
   display: inline-flex;
   position: relative;
@@ -170,11 +184,27 @@
   padding-left: 74px;
   align-self: flex-start;
 }
+@media (min-width: 0px) and (max-width: 760px) {
+  .actionBarContainer__global_screen_mobile {
+    padding-left: 0px;
+  }
+}
 .actionBar:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
   align-self: flex-start;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .actionBar__global_screen_mobile:global(.__wab_instance) {
+    width: 294px;
+    align-self: flex-end;
+  }
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .box__global_screen_mobile__pmC0QCckRm {
+    width: 159px;
+  }
 }
 .updatesContainer {
   display: inline-flex;
@@ -193,10 +223,31 @@
 .updatesContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 20px;
 }
+@media (min-width: 0px) and (max-width: 760px) {
+  .updatesContainer__global_screen_mobile {
+    align-self: flex-start;
+    height: auto;
+    width: auto;
+    display: inline-flex;
+  }
+}
 .update:global(.__wab_instance) {
   flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .update__global_screen_mobile:global(.__wab_instance) {
+    width: 100%;
+    align-self: flex-start;
+    min-width: 0;
+    flex-shrink: 0;
+  }
 }
 .actionsColumn:global(.__wab_instance) {
   position: relative;
   flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .actionsColumn__global_screen_mobile:global(.__wab_instance) {
+    flex-shrink: 0;
+  }
 }
