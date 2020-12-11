@@ -31,6 +31,11 @@ import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/com
 import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import ActionsColumn from "../../actionscolumn/index"; // plasmic-import: Ey_MwfntCV/component
 
+import {
+  ScreenContext,
+  ScreenValue,
+} from "../shared/PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_home.module.css"; // plasmic-import: rr3cgzELv8j1fSZjvVMfyx/projectcss
@@ -74,17 +79,30 @@ function PlasmicHome__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const globalVariants = {
+    screen: React.useContext(ScreenContext),
+  };
+
+  Object.entries(globalVariants).forEach(([key, value]) => {
+    if (value === ("PLEASE_RENDER_INSIDE_PROVIDER" as any)) {
+      throw new Error(
+        `Context value for ${key} was not defined. Did you render the required provider for this component? Learn More: https://www.plasmic.app/learn/other-assets/#global-variants`
+      );
+    }
+  });
+
   return (
     <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      data-plasmic-wrap-flex-child={true}
+      data-plasmic-wrap-flex-child={true ? true : false}
       className={classNames({
         [defaultcss.all]: true,
         [projectcss.root_reset_rr3cgzELv8j1fSZjvVMfyx]: true,
         [sty.root]: true,
+        [sty.root__global_screen_mobile]: true,
       })}
     >
       {false ? (
@@ -217,9 +235,10 @@ function PlasmicHome__RenderFunc(props: {
       ) : null}
 
       <div
-        data-plasmic-wrap-flex-child={true}
+        data-plasmic-wrap-flex-child={true ? true : false}
         className={classNames({
           [defaultcss.all]: true,
+          [sty.box__global_screen_mobile__ineb5CckRm]: true,
           [sty.box__ineb5]: true,
         })}
       >
@@ -229,6 +248,7 @@ function PlasmicHome__RenderFunc(props: {
           className={classNames({
             [defaultcss.all]: true,
             [sty.actionBarContainer]: true,
+            [sty.actionBarContainer__global_screen_mobile]: true,
           })}
         >
           <ActionBar
@@ -237,10 +257,25 @@ function PlasmicHome__RenderFunc(props: {
             className={classNames({
               __wab_instance: true,
               [sty.actionBar]: true,
+              [sty.actionBar__global_screen_mobile]: true,
             })}
-            error={[]}
-            errorMessage={"Please enter a number value"}
-            text={[]}
+            error={hasVariant(globalVariants, "screen", "mobile") ? [] : []}
+            errorMessage={
+              <div
+                className={
+                  classNames({
+                    [defaultcss.all]: true,
+                    [sty.box__global_screen_mobile__pmC0QCckRm]: true,
+                    [sty.box__pmC0Q]: true,
+                  }) +
+                  " " +
+                  defaultcss.__wab_text
+                }
+              >
+                {"Please enter a number value"}
+              </div>
+            }
+            text={hasVariant(globalVariants, "screen", "mobile") ? [] : []}
             {...({} as any)}
           />
         </div>
@@ -252,11 +287,16 @@ function PlasmicHome__RenderFunc(props: {
           className={classNames({
             [defaultcss.all]: true,
             [sty.updatesContainer]: true,
+            [sty.updatesContainer__global_screen_mobile]: true,
           })}
         >
           <Update
             data-plasmic-name={"update"}
             data-plasmic-override={overrides.update}
+            className={classNames({
+              __wab_instance: true,
+              [sty.update__global_screen_mobile]: true,
+            })}
             {...({} as any)}
           />
         </div>
@@ -268,6 +308,7 @@ function PlasmicHome__RenderFunc(props: {
         className={classNames({
           __wab_instance: true,
           [sty.actionsColumn]: true,
+          [sty.actionsColumn__global_screen_mobile]: true,
         })}
         content={["hasContent"]}
         number={"hasNumber" as const}

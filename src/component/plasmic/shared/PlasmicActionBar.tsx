@@ -27,6 +27,8 @@ import {
   deriveRenderOpts,
 } from "@plasmicapp/react-web";
 
+import { ScreenContext, ScreenValue } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
@@ -80,6 +82,18 @@ function PlasmicActionBar__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const globalVariants = {
+    screen: React.useContext(ScreenContext),
+  };
+
+  Object.entries(globalVariants).forEach(([key, value]) => {
+    if (value === ("PLEASE_RENDER_INSIDE_PROVIDER" as any)) {
+      throw new Error(
+        `Context value for ${key} was not defined. Did you render the required provider for this component? Learn More: https://www.plasmic.app/learn/other-assets/#global-variants`
+      );
+    }
+  });
+
   return (
     <div
       data-plasmic-name={"root"}
@@ -92,8 +106,18 @@ function PlasmicActionBar__RenderFunc(props: {
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.root]: true,
         [sty.root__error_hasError]: hasVariant(variants, "error", "hasError"),
+        [sty.root__error_hasError_global_screen_mobile]: hasVariant(
+          variants,
+          "error",
+          "hasError"
+        ),
+
+        [sty.root__global_screen_mobile]: true,
         [sty.root__text_hasText]: hasVariant(variants, "text", "hasText"),
         [sty.root__text_hasText_error_hasError]:
+          hasVariant(variants, "text", "hasText") &&
+          hasVariant(variants, "error", "hasError"),
+        [sty.root__text_hasText_error_hasError_global_screen_mobile]:
           hasVariant(variants, "text", "hasText") &&
           hasVariant(variants, "error", "hasError"),
       })}
@@ -122,9 +146,18 @@ function PlasmicActionBar__RenderFunc(props: {
               "hasError"
             ),
 
+            [sty.editorContainer__global_screen_mobile]: true,
             [sty.editorContainer__text_hasText_error_hasError]:
               hasVariant(variants, "text", "hasText") &&
               hasVariant(variants, "error", "hasError"),
+            [sty.editorContainer__text_hasText_error_hasError_global_screen_mobile]:
+              hasVariant(variants, "text", "hasText") &&
+              hasVariant(variants, "error", "hasError"),
+            [sty.editorContainer__text_hasText_global_screen_mobile]: hasVariant(
+              variants,
+              "text",
+              "hasText"
+            ),
           })}
         >
           <input
@@ -133,8 +166,13 @@ function PlasmicActionBar__RenderFunc(props: {
             className={classNames({
               [defaultcss.input]: true,
               [sty.textContainer]: true,
+              [sty.textContainer__global_screen_mobile]: true,
             })}
-            placeholder={"Write an update" as const}
+            placeholder={
+              hasVariant(globalVariants, "screen", "mobile")
+                ? ("Write update ..." as const)
+                : ("Write an update" as const)
+            }
             size={1 as const}
             type={"text" as const}
           />
@@ -185,6 +223,9 @@ function PlasmicActionBar__RenderFunc(props: {
                 [sty.errorContainer__text_hasText_error_hasError]:
                   hasVariant(variants, "text", "hasText") &&
                   hasVariant(variants, "error", "hasError"),
+                [sty.errorContainer__text_hasText_error_hasError_global_screen_mobile]:
+                  hasVariant(variants, "text", "hasText") &&
+                  hasVariant(variants, "error", "hasError"),
               })}
             >
               <PlasmicSlot
@@ -197,6 +238,10 @@ function PlasmicActionBar__RenderFunc(props: {
                     "error",
                     "hasError"
                   ),
+
+                  [sty.slotErrorMessage__text_hasText_error_hasError_global_screen_mobile]:
+                    hasVariant(variants, "text", "hasText") &&
+                    hasVariant(variants, "error", "hasError"),
                 })}
               />
             </div>
@@ -212,6 +257,9 @@ function PlasmicActionBar__RenderFunc(props: {
                 ),
 
                 [sty.box__text_hasText_error_hasError__wGyU6BMkcuXYqMt]:
+                  hasVariant(variants, "text", "hasText") &&
+                  hasVariant(variants, "error", "hasError"),
+                [sty.box__text_hasText_error_hasError_global_screen_mobile__wGyU6BMkcuXYqMtCckRm]:
                   hasVariant(variants, "text", "hasText") &&
                   hasVariant(variants, "error", "hasError"),
                 [sty.box__wGyU6]: true,

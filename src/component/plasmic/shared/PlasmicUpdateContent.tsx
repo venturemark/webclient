@@ -85,6 +85,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.root]: true,
+        [sty.root__global_screen_mobile]: true,
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
       })}
@@ -96,6 +97,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
         className={classNames({
           [defaultcss.all]: true,
           [sty.editorContainer]: true,
+          [sty.editorContainer__global_screen_mobile]: true,
           [sty.editorContainer__state_graph]: hasVariant(
             variants,
             "state",
@@ -139,6 +141,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
               classNames({
                 [defaultcss.all]: true,
                 [sty.textContainer]: true,
+                [sty.textContainer__global_screen_mobile]: true,
                 [sty.textContainer__state_graph]: hasVariant(
                   variants,
                   "state",

@@ -72,11 +72,13 @@ function PlasmicMetric__RenderFunc(props: {
         [defaultcss.all]: true,
         [projectcss.root_reset_mTVXT6w3HHjZ4d74q3gB76]: true,
         [sty.metricItem]: true,
+        [sty.metricItem__global_screen_mobile]: true,
       })}
     >
       <div
         className={classNames({
           [defaultcss.all]: true,
+          [sty.box__global_screen_mobile__xyvDgCckRm]: true,
           [sty.box__xyvDg]: true,
         })}
       >
@@ -91,6 +93,7 @@ function PlasmicMetric__RenderFunc(props: {
         className={classNames({
           [defaultcss.all]: true,
           [sty.box___0LbRl]: true,
+          [sty.box__global_screen_mobile___0LbRlCckRm]: true,
         })}
       >
         <img
@@ -100,6 +103,7 @@ function PlasmicMetric__RenderFunc(props: {
           className={classNames({
             [defaultcss.img]: true,
             [sty.graphContainer]: true,
+            [sty.graphContainer__global_screen_mobile]: true,
           })}
           role={"img"}
           src={
