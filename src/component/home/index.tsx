@@ -16,6 +16,7 @@ import { format } from "date-fns";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
 import * as linechart from "component/linechart";
+import { useEditor } from "component/editor/compose";
 
 interface HomeProps extends DefaultHomeProps {}
 
@@ -80,92 +81,89 @@ const defaultData = [
 const dataKey = "cac";
 const name = "Customer Acquisition Cost";
 
-type HasContent = undefined | "hasContent";
-type ErrorMessage = undefined | string;
-type NumberValue = undefined | number;
-
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
   const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
-  const [value, setValue] = useState<Node[]>(initialValue);
-  const [errorMessage, setErrorMessage] = useState<ErrorMessage>(undefined);
-
   const hasContentDefault =
-    serialize(value) === "" || serialize(value) === undefined
+    serialize(initialValue) === "" || serialize(initialValue) === undefined
       ? undefined
       : "hasContent";
-  const [hasContent, setHasContent] = useState<HasContent>(hasContentDefault);
-  const defaultNumber = Searcher.Search(serialize(value))
-    ? Searcher.Search(serialize(value))[0]
+  const defaultNumber = Searcher.Search(serialize(initialValue))
+    ? Searcher.Search(serialize(initialValue))[0]
     : undefined;
-  const [numberValue, setNumberValue] = useState<NumberValue>(defaultNumber);
-  const [progress, setProgress] = React.useState<number>(
-    serialize(value).length
-  );
+  const defaultProgress = serialize(initialValue).length;
+
+  const { editorShape, setEditorShape } = useEditor({
+    value: initialValue,
+    hasContent: hasContentDefault,
+    numberValue: defaultNumber,
+    progress: defaultProgress,
+  });
 
   const createUpdate = () => {
-    if (!hasContent) {
-      setErrorMessage("Please enter some text");
+    if (!editorShape.hasContent) {
+      console.log("content text");
+      const error = "Please enter some text";
+      setEditorShape({ ...editorShape, error });
       return;
     }
 
-    if (!numberValue) {
-      setErrorMessage("Please enter a number");
+    if (!editorShape.numberValue) {
+      const error = "Please enter a number";
+      setEditorShape({ ...editorShape, error });
       return;
     }
 
-    if (serialize(value).length > 241) {
-      setErrorMessage(
-        `Your update is ${
-          serialize(value).length
-        } characters. The limit is 240 characters`
-      );
+    if (serialize(editorShape.value).length > 241) {
+      const error = `Your update is ${
+        serialize(editorShape.value).length
+      } characters. The limit is 240 characters`;
+      setEditorShape({ ...editorShape, error });
       return;
     }
 
     const id = new Date();
 
     const update = {
-      text: value,
-      numberValue: numberValue,
+      text: editorShape.value,
+      numberValue: editorShape.numberValue,
       id: id.toString(),
     };
     setUpdates([update, ...updates]);
 
     const metric = {
       date: format(new Date(), "PP"),
-      cac: numberValue,
+      cac: editorShape.numberValue,
     };
     setMetrics([...metrics, metric]);
 
-    //reset compose state
+    //reset store
     localStorage.setItem(
       "composeEditor.content",
       JSON.stringify(initialValueEmpty)
     );
-    setValue(initialValueEmpty);
-    setErrorMessage(undefined);
-    setNumberValue(undefined);
-    setHasContent(undefined);
-    setProgress(0);
+    //reset editor
+    const resetEditor = {
+      value: initialValueEmpty,
+      string: "",
+      hasContent: undefined,
+      numberValue: undefined,
+      error: undefined,
+      progress: 0,
+    };
+    setEditorShape(resetEditor);
   };
 
   return (
     <PlasmicHome
       actionBar={{
-        hasContent: hasContent,
-        setHasContent: setHasContent,
-        numberValue: numberValue,
-        setNumberValue: setNumberValue,
-        value: value,
-        setValue: setValue,
-        errorMessage: errorMessage,
-        setErrorMessage: setErrorMessage,
-        progress: progress,
-        setProgress: setProgress,
+        errorMessage: editorShape.error,
+        progress: editorShape.progress,
+        editorShape: editorShape,
+        setEditorShape: setEditorShape,
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
@@ -179,8 +177,8 @@ export function Component(props: HomeProps) {
         )),
       }}
       actionsColumn={{
-        hasContent: hasContent,
-        numberValue: numberValue,
+        hasContent: editorShape.hasContent,
+        numberValue: editorShape.numberValue,
         createUpdate: createUpdate,
       }}
     />
