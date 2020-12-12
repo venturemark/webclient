@@ -6,33 +6,18 @@ import {
   DefaultActionBarProps,
 } from "component/plasmic/shared/PlasmicActionBar";
 import ComposeEditor from "component/editor/compose";
-import { Node } from "slate";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { EditorShape } from "component/editor/compose";
 
 interface ActionBarProps extends DefaultActionBarProps {
-  setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
-  value: Node[];
-  setValue: React.Dispatch<React.SetStateAction<Node[]>>;
-  setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
-  setErrorMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
   errorMessage: string;
-  setProgress: React.Dispatch<React.SetStateAction<number>>;
   progress: number;
+  editorShape: EditorShape;
+  setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
 }
 
-type NumberValue = undefined | number;
-
 function ActionBar(props: ActionBarProps) {
-  const {
-    setHasContent,
-    setNumberValue,
-    value,
-    setValue,
-    setErrorMessage,
-    errorMessage,
-    progress,
-    setProgress,
-  } = props;
+  const { errorMessage, progress, editorShape, setEditorShape } = props;
   const MIN = 0;
   const MAX = 240;
   const normalize = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
@@ -50,12 +35,8 @@ function ActionBar(props: ActionBarProps) {
       textContainer={{
         render: () => (
           <ComposeEditor
-            setHasContent={setHasContent}
-            value={value}
-            setNumberValue={setNumberValue}
-            setValue={setValue}
-            setProgress={setProgress}
-            setErrorMessage={setErrorMessage}
+            editorShape={editorShape}
+            setEditorShape={setEditorShape}
           />
         ),
       }}

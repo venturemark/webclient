@@ -2,7 +2,7 @@
 // - is local
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { createEditor, Node, Editor } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
@@ -31,6 +31,7 @@ import {
   headingTypes,
   options,
   optionsResetBlockTypes,
+  initialValueEmpty,
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
@@ -81,15 +82,45 @@ const plugins = [
 ];
 
 type NumberValue = undefined | number;
+type ErrorMessage = undefined | string;
 type HasContent = undefined | "hasContent";
 
-interface EditorProps {
-  setHasContent: React.Dispatch<React.SetStateAction<HasContent>>;
+export type EditorShape = {
   value: Node[];
-  setValue: React.Dispatch<React.SetStateAction<Node[]>>;
-  setNumberValue: React.Dispatch<React.SetStateAction<NumberValue>>;
-  setProgress: React.Dispatch<React.SetStateAction<number>>;
-  setErrorMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
+  string: string;
+  numberValue: NumberValue;
+  error: ErrorMessage;
+  hasContent: HasContent;
+  progress: number;
+};
+
+export interface EditorState {
+  editorShape: EditorShape;
+  setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
+}
+
+//create custom hook for our editor:
+export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
+  const defaultEditor: EditorShape = {
+    value: initialValueEmpty,
+    string: "",
+    numberValue: 0,
+    error: undefined,
+    hasContent: undefined,
+    progress: 0,
+  };
+
+  const [editorShape, setEditorShape] = useState<EditorShape>({
+    ...defaultEditor,
+    ...overrides,
+  });
+
+  return { editorShape, setEditorShape };
+};
+
+interface EditorProps {
+  editorShape: EditorShape;
+  setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
 }
 
 const withPlugins = [
@@ -108,14 +139,7 @@ const HEIGHT_LIMIT = 188;
 const CHARACTER_LIMIT = 238;
 
 const ComposeEditor = (props: EditorProps) => {
-  const {
-    value,
-    setValue,
-    setNumberValue,
-    setHasContent,
-    setProgress,
-    setErrorMessage,
-  } = props;
+  const { editorShape, setEditorShape } = props;
 
   const editorRef = useRef<HTMLDivElement>(null);
 
@@ -139,35 +163,37 @@ const ComposeEditor = (props: EditorProps) => {
     insertText(text);
   };
 
+  const handleChange = (newValue: Node[]) => {
+    //store serialized value
+    const serializedValue = serialize(newValue);
+    // get the first number in text
+    const number = Searcher.Search(serializedValue)[0];
+    // determine if there is a value in editor
+    const hasValue = serializedValue.trim().length;
+    //remove number error if a number is typed
+    const error = number ? undefined : editorShape.error;
+    // determine if a value has been entered
+    const hasContent: HasContent = hasValue ? "hasContent" : undefined;
+
+    // set editor data
+    const editorData = {
+      value: newValue,
+      string: serializedValue,
+      numberValue: number,
+      error: error,
+      hasContent: hasContent,
+      progress: serializedValue.length,
+    };
+
+    setEditorShape(editorData);
+
+    //save to local storage to persist...
+    save(newValue);
+  };
+
   return (
     <div ref={editorRef} className={actionbarcss.textContainer}>
-      <Slate
-        editor={editor}
-        value={value}
-        onChange={(newValue: Node[]) => {
-          // get the first number in text
-          const number = Searcher.Search(serialize(newValue))[0];
-
-          // determine if there is a value in editor
-          const hasValue = serialize(newValue).trim().length;
-          if (hasValue) {
-            setHasContent("hasContent");
-          } else {
-            setHasContent(undefined);
-          }
-
-          // set editor value onChange
-          setValue(newValue);
-          setNumberValue(number);
-          setProgress(serialize(newValue).length);
-          if (number) {
-            setErrorMessage(undefined);
-          }
-
-          //save to local storage to persist...
-          save(newValue);
-        }}
-      >
+      <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins plugins={plugins} spellCheck />
       </Slate>
     </div>
