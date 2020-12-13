@@ -11,25 +11,20 @@ import {
   initialValueEmpty,
 } from "component/editor/config/initialValues";
 import Searcher from "@venturemark/numnum";
-import { Node } from "slate";
 import { format } from "date-fns";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
 import * as linechart from "component/linechart";
 import { useEditor } from "component/editor/compose";
+import { UpdateType } from "component/update";
 
 interface HomeProps extends DefaultHomeProps {}
-
-interface UpdateType {
-  id: string;
-  text: Node[];
-  numberValue: number;
-}
 
 const defaultUpdates = [
   {
     id: "now",
     numberValue: 23,
+    flipped: false,
     text: [
       {
         children: [
@@ -131,6 +126,7 @@ export function Component(props: HomeProps) {
       text: editorShape.value,
       numberValue: editorShape.numberValue,
       id: id.toString(),
+      flipped: false,
     };
     setUpdates([update, ...updates]);
 
@@ -170,9 +166,13 @@ export function Component(props: HomeProps) {
           <Update
             text={update.text}
             key={update.id}
+            id={update.id}
             dataKey={dataKey}
             data={metrics}
             name={name}
+            flipped={update.flipped}
+            updates={updates}
+            setUpdates={setUpdates}
           />
         )),
       }}
