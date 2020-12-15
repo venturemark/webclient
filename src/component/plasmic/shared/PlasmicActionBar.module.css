@@ -11,11 +11,14 @@
 .root > :global(.__wab_flex-container) {
   align-items: center;
   flex-direction: column;
+  margin-left: calc(0px - 0px);
+  width: calc(100% + 0px);
   margin-top: calc(0px - 5px);
   height: calc(100% + 5px);
 }
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-left: 0px;
   margin-top: 5px;
 }
 @media (min-width: 0px) and (max-width: 760px) {

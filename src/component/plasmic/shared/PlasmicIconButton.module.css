@@ -14,10 +14,16 @@
   align-items: center;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
 }
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
+  margin-top: 0px;
+}
+.root__withIcons_start {
+  border-radius: 100%;
 }
 .root____focusVisibleWithin {
   background-color: rgba(2, 157, 127, 0.5) /* plasmic-token: ktdOhSoiQwPKRUS */;
@@ -36,6 +42,7 @@
   top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   flex-shrink: 0;
+  border-radius: 100%;
 }
 .box {
   display: inline-flex;
@@ -59,4 +66,5 @@
   top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   flex-shrink: 0;
+  border-radius: 100%;
 }

@@ -155,6 +155,7 @@ export function Component(props: HomeProps) {
 
   return (
     <PlasmicHome
+      sidebarHidden={false}
       actionBar={{
         errorMessage: editorShape.error,
         progress: editorShape.progress,
