@@ -64,6 +64,8 @@
   left: auto;
   top: auto;
   min-height: 1024px;
+  transition-property: all;
+  transition-duration: 1s;
   flex-shrink: 0;
   padding: 30px 20px;
 }
@@ -131,7 +133,7 @@
   transition-duration: 1s;
   display: inline-block;
 }
-.iconButton___9RNnQ:global(.__wab_instance) {
+.homeButton:global(.__wab_instance) {
   position: relative;
   width: auto;
   height: auto;
@@ -264,7 +266,7 @@
   outline: none;
   border-width: 0px;
 }
-.iconButton__gswCu:global(.__wab_instance) {
+.timelineButton:global(.__wab_instance) {
   position: relative;
   width: auto;
   height: auto;

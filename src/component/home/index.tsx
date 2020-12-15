@@ -79,6 +79,7 @@ const name = "Customer Acquisition Cost";
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
   const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
+  const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -155,7 +156,13 @@ export function Component(props: HomeProps) {
 
   return (
     <PlasmicHome
-      sidebarHidden={false}
+      sidebarHidden={showSidebar}
+      homeButton={{
+        "aria-label": "Toggle sidebar",
+        onPress: () => {
+          setShowSidebar(!showSidebar);
+        },
+      }}
       actionBar={{
         errorMessage: editorShape.error,
         progress: editorShape.progress,
