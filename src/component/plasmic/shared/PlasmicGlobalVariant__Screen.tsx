@@ -1,11 +1,14 @@
 import * as React from "react";
-export type ScreenValue = "mobile";
+export type ScreenValue = "mobile" | "desktop";
 export const ScreenContext = React.createContext<ScreenValue | undefined>(
   "PLEASE_RENDER_INSIDE_PROVIDER" as any
 );
 
-const screenVariants: ScreenValue[] = ["mobile"];
-const screenQueries = ["(min-width:0px) and (max-width:760px)"];
+const screenVariants: ScreenValue[] = ["mobile", "desktop"];
+const screenQueries = [
+  "(min-width:0px) and (max-width:760px)",
+  "(min-width:1440px)",
+];
 
 function matchScreenVariant() {
   if (!globalThis.matchMedia) {

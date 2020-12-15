@@ -95,6 +95,18 @@
           },
           "cssFilePath": "plasmic/shared/PlasmicActionsColumn.module.css",
           "scheme": "blackbox"
+        },
+        {
+          "id": "KDElHbQmfd",
+          "name": "TimelineItem",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicTimelineItem.tsx",
+          "importSpec": {
+            "modulePath": "timelineitem/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicTimelineItem.module.css",
+          "scheme": "blackbox"
         }
       ],
       "icons": [
@@ -147,6 +159,16 @@
           "id": "o3m824rpnQ",
           "name": "IconSettingsIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconSettings.tsx"
+        },
+        {
+          "id": "Z6YqF7wXr6",
+          "name": "IconHomeIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconHome.tsx"
+        },
+        {
+          "id": "gg_6iBfcsu",
+          "name": "IconAddIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconAdd.tsx"
         }
       ],
       "images": [
