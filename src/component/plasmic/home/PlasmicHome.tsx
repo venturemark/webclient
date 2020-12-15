@@ -273,36 +273,32 @@ function PlasmicHome__RenderFunc(props: {
                     __wab_instance: true,
                     [sty.timelineItem___7QYsY]: true,
                   })}
-                >
-                  {"Features Shipped"}
-                </TimelineItem>
+                  name={"Features Shipped"}
+                />
 
                 <TimelineItem
                   className={classNames({
                     __wab_instance: true,
                     [sty.timelineItem___14Lvf]: true,
                   })}
-                >
-                  {"Revenue"}
-                </TimelineItem>
+                  name={"Revenue"}
+                />
 
                 <TimelineItem
                   className={classNames({
                     __wab_instance: true,
                     [sty.timelineItem__jzcQp]: true,
                   })}
-                >
-                  {"Active Users"}
-                </TimelineItem>
+                  name={"Active Users"}
+                />
 
                 <TimelineItem
                   className={classNames({
                     __wab_instance: true,
                     [sty.timelineItem__m99Md]: true,
                   })}
-                >
-                  {"Milestones"}
-                </TimelineItem>
+                  name={"Milestones"}
+                />
               </Stack>
             ) : null}
           </Stack>

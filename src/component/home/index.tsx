@@ -11,34 +11,61 @@ import {
   initialValueEmpty,
 } from "component/editor/config/initialValues";
 import Searcher from "@venturemark/numnum";
+import { Node } from "slate";
 import { format } from "date-fns";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
 import * as linechart from "component/linechart";
 import { useEditor } from "component/editor/compose";
 import { UpdateType } from "component/update";
+import TimelineItem, { TimelineItemType } from "component/timelineitem";
 
 interface HomeProps extends DefaultHomeProps {}
 
-const defaultUpdates = [
+const defaultTimelines: TimelineItemType[] = [
   {
+    name: "Revenue",
     id: "now",
-    numberValue: 23,
-    flipped: false,
-    text: [
+    date: "now",
+  },
+  {
+    name: "Active Users",
+    id: "now",
+    date: "now",
+  },
+  {
+    name: "Features Shipped",
+    id: "now",
+    date: "now",
+  },
+  {
+    name: "Milestones",
+    id: "now",
+    date: "now",
+  },
+];
+
+const defaultText: Node[] = [
+  {
+    children: [
       {
+        type: options.p.type,
         children: [
           {
-            type: options.p.type,
-            children: [
-              {
-                text: "Be Better Tomorrow",
-              },
-            ],
+            text: "Be Better Tomorrow",
           },
         ],
       },
     ],
+  },
+];
+
+const defaultUpdates: UpdateType[] = [
+  {
+    id: "now",
+    numberValue: 23,
+    flipped: false,
+    text: defaultText,
   },
 ];
 
@@ -79,7 +106,11 @@ const name = "Customer Acquisition Cost";
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
   const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
-  const [showSidebar, setShowSidebar] = useState<boolean>(true);
+  const [timelines, setTimelines] = useState<TimelineItemType[]>(
+    defaultTimelines
+  );
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [timelineInput, setTimelineInput] = useState("");
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -154,6 +185,17 @@ export function Component(props: HomeProps) {
     setEditorShape(resetEditor);
   };
 
+  const handleAddTimeline = () => {
+    console.log("add timeline");
+    console.log(timelineInput);
+    const timeline = {
+      name: timelineInput,
+      date: format(new Date(), "PP"),
+      id: format(new Date(), "PP"),
+    };
+    setTimelines([timeline, ...timelines]);
+  };
+
   return (
     <PlasmicHome
       sidebarHidden={showSidebar}
@@ -163,6 +205,22 @@ export function Component(props: HomeProps) {
           setShowSidebar(!showSidebar);
         },
       }}
+      timelineButton={{
+        "aria-label": "Toggle sidebar",
+        onPress: () => {
+          handleAddTimeline();
+        },
+      }}
+      addTimelineInput={{
+        onChange: (event) => {
+          setTimelineInput(event.target.value);
+        },
+      }}
+      timelinesContainer={{
+        children: timelines.map((timeline) => (
+          <TimelineItem name={timeline.name} />
+        )),
+      }}
       actionBar={{
         errorMessage: editorShape.error,
         progress: editorShape.progress,
@@ -170,7 +228,7 @@ export function Component(props: HomeProps) {
         setEditorShape: setEditorShape,
       }}
       updatesContainer={{
-        children: updates.map((update: any) => (
+        children: updates.map((update) => (
           <Update
             text={update.text}
             key={update.id}

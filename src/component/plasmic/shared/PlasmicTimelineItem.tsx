@@ -48,11 +48,11 @@ export const PlasmicTimelineItem__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicTimelineItem__ArgsType = {
-  children?: React.ReactNode;
+  name?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicTimelineItem__ArgsType;
-export const PlasmicTimelineItem__ArgProps = new Array<ArgPropType>("children");
+export const PlasmicTimelineItem__ArgProps = new Array<ArgPropType>("name");
 
 export type PlasmicTimelineItem__OverridesType = {
   root?: Flex<"div">;
@@ -60,7 +60,7 @@ export type PlasmicTimelineItem__OverridesType = {
 };
 
 export interface DefaultTimelineItemProps {
-  children?: React.ReactNode;
+  name?: React.ReactNode;
   isCurrent?: SingleBooleanChoiceArg<"isCurrent">;
   className?: string;
 }
@@ -134,10 +134,10 @@ function PlasmicTimelineItem__RenderFunc(props: {
         >
           <PlasmicSlot
             defaultContents={"Feature Development"}
-            value={args.children}
+            value={args.name}
             className={classNames({
-              [sty.slotChildren]: true,
-              [sty.slotChildren__isCurrent_isCurrent]: hasVariant(
+              [sty.slotName]: true,
+              [sty.slotName__isCurrent_isCurrent]: hasVariant(
                 variants,
                 "isCurrent",
                 "isCurrent"

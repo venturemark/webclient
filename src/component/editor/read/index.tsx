@@ -19,8 +19,8 @@ import {
   withImageUpload,
   withInlineVoid,
   pipe,
-  SlateDocument,
 } from "@udecode/slate-plugins";
+import { Node } from "slate";
 import { initialValueEmpty } from "component/editor/config/initialValues";
 
 const plugins = [
@@ -45,7 +45,7 @@ const withPlugins = [
 ] as const;
 
 interface EditorProps {
-  text: SlateDocument;
+  text: Node[];
 }
 
 const ReadEditor = (props: EditorProps) => {
