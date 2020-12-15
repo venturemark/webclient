@@ -29,7 +29,7 @@ import {
   Stack,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
-import TimelineItem from "../../TimelineItem"; // plasmic-import: KDElHbQmfd/component
+import TimelineItem from "../../timelineitem/index"; // plasmic-import: KDElHbQmfd/component
 import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
 import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import ActionsColumn from "../../actionscolumn/index"; // plasmic-import: Ey_MwfntCV/component
