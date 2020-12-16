@@ -11,34 +11,62 @@ import {
   initialValueEmpty,
 } from "component/editor/config/initialValues";
 import Searcher from "@venturemark/numnum";
+import { Node } from "slate";
 import { format } from "date-fns";
+import { useForm } from "react-hook-form";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
 import * as linechart from "component/linechart";
 import { useEditor } from "component/editor/compose";
 import { UpdateType } from "component/update";
+import TimelineItem, { TimelineItemType } from "component/timelineitem";
 
 interface HomeProps extends DefaultHomeProps {}
 
-const defaultUpdates = [
+const defaultTimelines: TimelineItemType[] = [
   {
+    name: "Revenue",
     id: "now",
-    numberValue: 23,
-    flipped: false,
-    text: [
+    date: "now",
+  },
+  {
+    name: "Active Users",
+    id: "now",
+    date: "now",
+  },
+  {
+    name: "Features Shipped",
+    id: "now",
+    date: "now",
+  },
+  {
+    name: "Milestones",
+    id: "now",
+    date: "now",
+  },
+];
+
+const defaultText: Node[] = [
+  {
+    children: [
       {
+        type: options.p.type,
         children: [
           {
-            type: options.p.type,
-            children: [
-              {
-                text: "Be Better Tomorrow",
-              },
-            ],
+            text: "Be Better Tomorrow",
           },
         ],
       },
     ],
+  },
+];
+
+const defaultUpdates: UpdateType[] = [
+  {
+    id: "now",
+    numberValue: 23,
+    flipped: false,
+    text: defaultText,
   },
 ];
 
@@ -76,9 +104,18 @@ const defaultData = [
 const dataKey = "cac";
 const name = "Customer Acquisition Cost";
 
+type FormInputs = {
+  name: string;
+};
+
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
   const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
+  const [timelines, setTimelines] = useState<TimelineItemType[]>(
+    defaultTimelines
+  );
+  const [showSidebar, setShowSidebar] = useState(true);
+  const { register, handleSubmit, reset } = useForm<FormInputs>();
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -153,9 +190,49 @@ export function Component(props: HomeProps) {
     setEditorShape(resetEditor);
   };
 
+  const handleAddTimeline = (data: FormInputs, e: any) => {
+    if (!data.name) {
+      return;
+    }
+
+    const timeline = {
+      name: data.name,
+      date: format(new Date(), "PP"),
+      id: format(new Date(), "PP"),
+    };
+    setTimelines([timeline, ...timelines]);
+
+    //reset form
+    reset({
+      name: "",
+    });
+  };
+
   return (
     <PlasmicHome
-      sidebarHidden={false}
+      sidebarHidden={showSidebar}
+      homeButton={{
+        "aria-label": "Toggle sidebar",
+        onPress: () => {
+          setShowSidebar(!showSidebar);
+        },
+      }}
+      timelineButton={{
+        "aria-label": "Toggle sidebar",
+        onPress: () => handleSubmit(handleAddTimeline)(),
+      }}
+      addTimeline={{
+        onSubmit: handleSubmit(handleAddTimeline),
+      }}
+      addTimelineInput={{
+        name: "name",
+        ref: register,
+      }}
+      timelinesContainer={{
+        children: timelines.map((timeline) => (
+          <TimelineItem name={timeline.name} />
+        )),
+      }}
       actionBar={{
         errorMessage: editorShape.error,
         progress: editorShape.progress,
@@ -163,7 +240,7 @@ export function Component(props: HomeProps) {
         setEditorShape: setEditorShape,
       }}
       updatesContainer={{
-        children: updates.map((update: any) => (
+        children: updates.map((update) => (
           <Update
             text={update.text}
             key={update.id}

@@ -7,12 +7,12 @@ import {
   DefaultUpdateContentProps,
 } from "component/plasmic/shared/PlasmicUpdateContent";
 import ReadEditor from "component/editor/read";
-import { SlateDocument } from "@udecode/slate-plugins";
+import { Node } from "slate";
 import { DataItem } from "component/linechart";
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
   isFlipped: boolean;
-  text: SlateDocument;
+  text: Node[];
   dataKey: string;
   data: DataItem[];
   name: string;

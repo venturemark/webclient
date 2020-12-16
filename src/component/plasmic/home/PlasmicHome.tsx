@@ -71,12 +71,14 @@ export type PlasmicHome__OverridesType = {
   sidebar?: Flex<"div">;
   topSidebar?: Flex<"div">;
   homeContainer?: Flex<"div">;
+  homeButton?: Flex<typeof IconButton>;
   startIcon3?: Flex<"svg">;
   endIcon3?: Flex<"svg">;
   timelinesContainer?: Flex<"div">;
   bottomSidebar?: Flex<"div">;
-  addTimeline?: Flex<"div">;
+  addTimeline?: Flex<"form">;
   addTimelineInput?: Flex<"input">;
+  timelineButton?: Flex<typeof IconButton>;
   startIcon32?: Flex<"svg">;
   endIcon32?: Flex<"svg">;
   settingsContainer?: Flex<"div">;
@@ -205,9 +207,16 @@ function PlasmicHome__RenderFunc(props: {
               ) : null}
 
               <IconButton
+                data-plasmic-name={"homeButton"}
+                data-plasmic-override={overrides.homeButton}
                 className={classNames({
                   __wab_instance: true,
-                  [sty.iconButton___9RNnQ]: true,
+                  [sty.homeButton]: true,
+                  [sty.homeButton__sidebarHidden_sidebarHidden]: hasVariant(
+                    variants,
+                    "sidebarHidden",
+                    "sidebarHidden"
+                  ),
                 })}
                 content={""}
                 endIcon={
@@ -264,36 +273,32 @@ function PlasmicHome__RenderFunc(props: {
                     __wab_instance: true,
                     [sty.timelineItem___7QYsY]: true,
                   })}
-                >
-                  {"Features Shipped"}
-                </TimelineItem>
+                  name={"Features Shipped"}
+                />
 
                 <TimelineItem
                   className={classNames({
                     __wab_instance: true,
                     [sty.timelineItem___14Lvf]: true,
                   })}
-                >
-                  {"Revenue"}
-                </TimelineItem>
+                  name={"Revenue"}
+                />
 
                 <TimelineItem
                   className={classNames({
                     __wab_instance: true,
                     [sty.timelineItem__jzcQp]: true,
                   })}
-                >
-                  {"Active Users"}
-                </TimelineItem>
+                  name={"Active Users"}
+                />
 
                 <TimelineItem
                   className={classNames({
                     __wab_instance: true,
                     [sty.timelineItem__m99Md]: true,
                   })}
-                >
-                  {"Milestones"}
-                </TimelineItem>
+                  name={"Milestones"}
+                />
               </Stack>
             ) : null}
           </Stack>
@@ -309,7 +314,7 @@ function PlasmicHome__RenderFunc(props: {
             })}
           >
             <Stack
-              as={"div"}
+              as={"form"}
               data-plasmic-name={"addTimeline"}
               data-plasmic-override={overrides.addTimeline}
               hasGap={true}
@@ -342,9 +347,16 @@ function PlasmicHome__RenderFunc(props: {
               ) : null}
 
               <IconButton
+                data-plasmic-name={"timelineButton"}
+                data-plasmic-override={overrides.timelineButton}
                 className={classNames({
                   __wab_instance: true,
-                  [sty.iconButton__gswCu]: true,
+                  [sty.timelineButton]: true,
+                  [sty.timelineButton__sidebarHidden_sidebarHidden]: hasVariant(
+                    variants,
+                    "sidebarHidden",
+                    "sidebarHidden"
+                  ),
                 })}
                 content={""}
                 endIcon={
@@ -606,12 +618,14 @@ const PlasmicDescendants = {
     "sidebar",
     "topSidebar",
     "homeContainer",
+    "homeButton",
     "startIcon3",
     "endIcon3",
     "timelinesContainer",
     "bottomSidebar",
     "addTimeline",
     "addTimelineInput",
+    "timelineButton",
     "startIcon32",
     "endIcon32",
     "settingsContainer",
@@ -631,12 +645,14 @@ const PlasmicDescendants = {
     "sidebar",
     "topSidebar",
     "homeContainer",
+    "homeButton",
     "startIcon3",
     "endIcon3",
     "timelinesContainer",
     "bottomSidebar",
     "addTimeline",
     "addTimelineInput",
+    "timelineButton",
     "startIcon32",
     "endIcon32",
     "settingsContainer",
@@ -649,12 +665,14 @@ const PlasmicDescendants = {
   topSidebar: [
     "topSidebar",
     "homeContainer",
+    "homeButton",
     "startIcon3",
     "endIcon3",
     "timelinesContainer",
   ],
 
-  homeContainer: ["homeContainer", "startIcon3", "endIcon3"],
+  homeContainer: ["homeContainer", "homeButton", "startIcon3", "endIcon3"],
+  homeButton: ["homeButton", "startIcon3", "endIcon3"],
   startIcon3: ["startIcon3"],
   endIcon3: ["endIcon3"],
   timelinesContainer: ["timelinesContainer"],
@@ -662,6 +680,7 @@ const PlasmicDescendants = {
     "bottomSidebar",
     "addTimeline",
     "addTimelineInput",
+    "timelineButton",
     "startIcon32",
     "endIcon32",
     "settingsContainer",
@@ -671,8 +690,16 @@ const PlasmicDescendants = {
     "endIcon22",
   ],
 
-  addTimeline: ["addTimeline", "addTimelineInput", "startIcon32", "endIcon32"],
+  addTimeline: [
+    "addTimeline",
+    "addTimelineInput",
+    "timelineButton",
+    "startIcon32",
+    "endIcon32",
+  ],
+
   addTimelineInput: ["addTimelineInput"],
+  timelineButton: ["timelineButton", "startIcon32", "endIcon32"],
   startIcon32: ["startIcon32"],
   endIcon32: ["endIcon32"],
   settingsContainer: [
@@ -711,12 +738,14 @@ type NodeDefaultElementType = {
   sidebar: "div";
   topSidebar: "div";
   homeContainer: "div";
+  homeButton: typeof IconButton;
   startIcon3: "svg";
   endIcon3: "svg";
   timelinesContainer: "div";
   bottomSidebar: "div";
-  addTimeline: "div";
+  addTimeline: "form";
   addTimelineInput: "input";
+  timelineButton: typeof IconButton;
   startIcon32: "svg";
   endIcon32: "svg";
   settingsContainer: "div";
@@ -793,12 +822,14 @@ export const PlasmicHome = Object.assign(
     sidebar: makeNodeComponent("sidebar"),
     topSidebar: makeNodeComponent("topSidebar"),
     homeContainer: makeNodeComponent("homeContainer"),
+    homeButton: makeNodeComponent("homeButton"),
     startIcon3: makeNodeComponent("startIcon3"),
     endIcon3: makeNodeComponent("endIcon3"),
     timelinesContainer: makeNodeComponent("timelinesContainer"),
     bottomSidebar: makeNodeComponent("bottomSidebar"),
     addTimeline: makeNodeComponent("addTimeline"),
     addTimelineInput: makeNodeComponent("addTimelineInput"),
+    timelineButton: makeNodeComponent("timelineButton"),
     startIcon32: makeNodeComponent("startIcon32"),
     endIcon32: makeNodeComponent("endIcon32"),
     settingsContainer: makeNodeComponent("settingsContainer"),

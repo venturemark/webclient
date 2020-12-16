@@ -6,7 +6,6 @@ import {
   DefaultUpdateProps,
 } from "component/plasmic/shared/PlasmicUpdate";
 import { Node } from "slate";
-import { SlateDocument } from "@udecode/slate-plugins";
 import * as linechart from "component/linechart";
 
 export interface UpdateType {
@@ -17,7 +16,7 @@ export interface UpdateType {
 }
 
 interface UpdateProps extends DefaultUpdateProps {
-  text: SlateDocument;
+  text: Node[];
   dataKey: string;
   data: linechart.DataItem[];
   name: string;
