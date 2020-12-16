@@ -115,7 +115,7 @@ export function Component(props: HomeProps) {
     defaultTimelines
   );
   const [showSidebar, setShowSidebar] = useState(true);
-  const { register, handleSubmit } = useForm<FormInputs>();
+  const { register, handleSubmit, reset } = useForm<FormInputs>();
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -194,6 +194,7 @@ export function Component(props: HomeProps) {
     if (!data.name) {
       return;
     }
+
     const timeline = {
       name: data.name,
       date: format(new Date(), "PP"),
@@ -202,7 +203,9 @@ export function Component(props: HomeProps) {
     setTimelines([timeline, ...timelines]);
 
     //reset form
-    e.target.reset();
+    reset({
+      name: "",
+    });
   };
 
   return (
@@ -216,7 +219,7 @@ export function Component(props: HomeProps) {
       }}
       timelineButton={{
         "aria-label": "Toggle sidebar",
-        htmlType: "submit",
+        onPress: () => handleSubmit(handleAddTimeline)(),
       }}
       addTimeline={{
         onSubmit: handleSubmit(handleAddTimeline),
