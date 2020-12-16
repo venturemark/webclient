@@ -115,8 +115,7 @@ export function Component(props: HomeProps) {
     defaultTimelines
   );
   const [showSidebar, setShowSidebar] = useState(true);
-  const { register, handleSubmit, reset, watch } = useForm<FormInputs>();
-  const hasValue = watch("name") ? true : false;
+  const { register, handleSubmit, reset } = useForm<FormInputs>();
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -225,7 +224,6 @@ export function Component(props: HomeProps) {
       addTimeline={{
         onSubmit: handleSubmit(handleAddTimeline),
       }}
-      hasValue={hasValue}
       addTimelineInput={{
         name: "name",
         ref: register,
