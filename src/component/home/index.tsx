@@ -13,6 +13,7 @@ import {
 import Searcher from "@venturemark/numnum";
 import { Node } from "slate";
 import { format } from "date-fns";
+import { useForm } from "react-hook-form";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
 import * as linechart from "component/linechart";
@@ -103,6 +104,10 @@ const defaultData = [
 const dataKey = "cac";
 const name = "Customer Acquisition Cost";
 
+type FormInputs = {
+  name: string;
+};
+
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
   const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
@@ -110,7 +115,7 @@ export function Component(props: HomeProps) {
     defaultTimelines
   );
   const [showSidebar, setShowSidebar] = useState(true);
-  const [timelineInput, setTimelineInput] = useState("");
+  const { register, handleSubmit, reset } = useForm<FormInputs>();
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -185,15 +190,22 @@ export function Component(props: HomeProps) {
     setEditorShape(resetEditor);
   };
 
-  const handleAddTimeline = () => {
-    console.log("add timeline");
-    console.log(timelineInput);
+  const handleAddTimeline = (data: FormInputs, e: any) => {
+    if (!data.name) {
+      return;
+    }
+
     const timeline = {
-      name: timelineInput,
+      name: data.name,
       date: format(new Date(), "PP"),
       id: format(new Date(), "PP"),
     };
     setTimelines([timeline, ...timelines]);
+
+    //reset form
+    reset({
+      name: "",
+    });
   };
 
   return (
@@ -207,14 +219,14 @@ export function Component(props: HomeProps) {
       }}
       timelineButton={{
         "aria-label": "Toggle sidebar",
-        onPress: () => {
-          handleAddTimeline();
-        },
+        onPress: () => handleSubmit(handleAddTimeline)(),
+      }}
+      addTimeline={{
+        onSubmit: handleSubmit(handleAddTimeline),
       }}
       addTimelineInput={{
-        onChange: (event) => {
-          setTimelineInput(event.target.value);
-        },
+        name: "name",
+        ref: register,
       }}
       timelinesContainer={{
         children: timelines.map((timeline) => (

@@ -76,7 +76,7 @@ export type PlasmicHome__OverridesType = {
   endIcon3?: Flex<"svg">;
   timelinesContainer?: Flex<"div">;
   bottomSidebar?: Flex<"div">;
-  addTimeline?: Flex<"div">;
+  addTimeline?: Flex<"form">;
   addTimelineInput?: Flex<"input">;
   timelineButton?: Flex<typeof IconButton>;
   startIcon32?: Flex<"svg">;
@@ -314,7 +314,7 @@ function PlasmicHome__RenderFunc(props: {
             })}
           >
             <Stack
-              as={"div"}
+              as={"form"}
               data-plasmic-name={"addTimeline"}
               data-plasmic-override={overrides.addTimeline}
               hasGap={true}
@@ -743,7 +743,7 @@ type NodeDefaultElementType = {
   endIcon3: "svg";
   timelinesContainer: "div";
   bottomSidebar: "div";
-  addTimeline: "div";
+  addTimeline: "form";
   addTimelineInput: "input";
   timelineButton: typeof IconButton;
   startIcon32: "svg";
