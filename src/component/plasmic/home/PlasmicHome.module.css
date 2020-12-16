@@ -15,13 +15,10 @@
   justify-content: flex-start;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
 }
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
-  margin-top: 0px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
   .root__global_screen_mobile {
@@ -35,8 +32,6 @@
   .root__global_screen_mobile > :global(.__wab_flex-container) {
     margin-left: calc(0px - 0px);
     width: calc(100% + 0px);
-    margin-top: calc(0px - 0px);
-    height: calc(100% + 0px);
   }
 }
 @media (min-width: 0px) and (max-width: 760px) {
@@ -46,7 +41,6 @@
     > :global(.__wab_slot)
     > * {
     margin-left: 0px;
-    margin-top: 0px;
   }
 }
 .root:focus-within {
@@ -72,14 +66,11 @@
 .sidebar > :global(.__wab_flex-container) {
   flex-direction: column;
   justify-content: space-between;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
 }
 .sidebar > :global(.__wab_flex-container) > *,
 .sidebar > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-left: 0px;
   margin-top: 10px;
 }
 .root:focus-within .sidebar {
@@ -100,14 +91,11 @@
 }
 .topSidebar > :global(.__wab_flex-container) {
   flex-direction: column;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
   margin-top: calc(0px - 20px);
   height: calc(100% + 20px);
 }
 .topSidebar > :global(.__wab_flex-container) > *,
 .topSidebar > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-left: 0px;
   margin-top: 20px;
 }
 .homeContainer {
@@ -174,8 +162,6 @@
 }
 .timelinesContainer > :global(.__wab_flex-container) {
   flex-direction: column;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
   margin-top: calc(0px - 20px);
   height: calc(100% + 20px);
 }
@@ -184,7 +170,6 @@
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > * {
-  margin-left: 0px;
   margin-top: 20px;
 }
 .timelineItem___7QYsY:global(.__wab_instance) {
@@ -218,14 +203,11 @@
 }
 .bottomSidebar > :global(.__wab_flex-container) {
   flex-direction: column;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
   margin-top: calc(0px - 20px);
   height: calc(100% + 20px);
 }
 .bottomSidebar > :global(.__wab_flex-container) > *,
 .bottomSidebar > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-left: 0px;
   margin-top: 20px;
 }
 .addTimeline {
@@ -245,13 +227,10 @@
   justify-content: space-between;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
 }
 .addTimeline > :global(.__wab_flex-container) > *,
 .addTimeline > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
-  margin-top: 0px;
 }
 .addTimelineInput {
   position: relative;
@@ -306,14 +285,11 @@
 }
 .settingsContainer > :global(.__wab_flex-container) {
   flex-direction: column;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
   margin-top: calc(0px - 20px);
   height: calc(100% + 20px);
 }
 .settingsContainer > :global(.__wab_flex-container) > *,
 .settingsContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-left: 0px;
   margin-top: 20px;
 }
 .box__ad5RC {
@@ -443,20 +419,15 @@
 .box__ineb5 > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: flex-start;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
 }
 .box__ineb5 > :global(.__wab_flex-container) > *,
 .box__ineb5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-left: 0px;
   margin-top: 10px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
   .box__global_screen_mobile__ineb5CckRm > :global(.__wab_flex-container) {
-    margin-left: calc(0px - 0px);
-    width: calc(100% + 0px);
     margin-top: calc(0px - 0px);
     height: calc(100% + 0px);
   }
@@ -467,7 +438,6 @@
     > :global(.__wab_flex-container)
     > :global(.__wab_slot)
     > * {
-    margin-left: 0px;
     margin-top: 0px;
   }
 }
@@ -520,14 +490,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
   margin-top: calc(0px - 20px);
   height: calc(100% + 20px);
 }
 .updatesContainer > :global(.__wab_flex-container) > *,
 .updatesContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-left: 0px;
   margin-top: 20px;
 }
 @media (min-width: 0px) and (max-width: 760px) {

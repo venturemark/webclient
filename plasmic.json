@@ -169,6 +169,11 @@
           "id": "gg_6iBfcsu",
           "name": "IconAddIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconAdd.tsx"
+        },
+        {
+          "id": "MwyR6vQxWa",
+          "name": "IconCheckIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconCheck.tsx"
         }
       ],
       "images": [
