@@ -46,20 +46,24 @@ import sty from "./PlasmicHome.module.css"; // plasmic-import: Ii0bQ3L3sO/css
 
 import IconHomeIcon from "../shared/icons/PlasmicIcon__IconHome"; // plasmic-import: Z6YqF7wXr6/icon
 import IconAddIcon from "../shared/icons/PlasmicIcon__IconAdd"; // plasmic-import: gg_6iBfcsu/icon
+import IconCheckIcon from "../shared/icons/PlasmicIcon__IconCheck"; // plasmic-import: MwyR6vQxWa/icon
 import IconPersonIcon from "../shared/icons/PlasmicIcon__IconPerson"; // plasmic-import: Exz-c1pU2x/icon
 import IconSettingsIcon from "../shared/icons/PlasmicIcon__IconSettings"; // plasmic-import: o3m824rpnQ/icon
 
 export type PlasmicHome__VariantMembers = {
   sidebarHidden: "sidebarHidden";
+  hasValue: "hasValue";
 };
 
 export type PlasmicHome__VariantsArgs = {
   sidebarHidden?: SingleBooleanChoiceArg<"sidebarHidden">;
+  hasValue?: SingleBooleanChoiceArg<"hasValue">;
 };
 
 type VariantPropType = keyof PlasmicHome__VariantsArgs;
 export const PlasmicHome__VariantProps = new Array<VariantPropType>(
-  "sidebarHidden"
+  "sidebarHidden",
+  "hasValue"
 );
 
 export type PlasmicHome__ArgsType = {};
@@ -96,6 +100,7 @@ export type PlasmicHome__OverridesType = {
 
 export interface DefaultHomeProps {
   sidebarHidden?: SingleBooleanChoiceArg<"sidebarHidden">;
+  hasValue?: SingleBooleanChoiceArg<"hasValue">;
   className?: string;
 }
 
@@ -132,6 +137,12 @@ function PlasmicHome__RenderFunc(props: {
         [projectcss.root_reset]: true,
         [sty.root]: true,
         [sty.root__global_screen_mobile]: true,
+        [sty.root__hasValue_hasValue]: hasVariant(
+          variants,
+          "hasValue",
+          "hasValue"
+        ),
+
         [sty.root__sidebarHidden_sidebarHidden]: hasVariant(
           variants,
           "sidebarHidden",
@@ -149,6 +160,12 @@ function PlasmicHome__RenderFunc(props: {
             [defaultcss.all]: true,
             [sty.sidebar]: true,
             [sty.sidebar__global_screen_mobile]: true,
+            [sty.sidebar__hasValue_hasValue]: hasVariant(
+              variants,
+              "hasValue",
+              "hasValue"
+            ),
+
             [sty.sidebar__sidebarHidden_sidebarHidden]: hasVariant(
               variants,
               "sidebarHidden",
@@ -352,6 +369,12 @@ function PlasmicHome__RenderFunc(props: {
                 className={classNames({
                   __wab_instance: true,
                   [sty.timelineButton]: true,
+                  [sty.timelineButton__hasValue_hasValue]: hasVariant(
+                    variants,
+                    "hasValue",
+                    "hasValue"
+                  ),
+
                   [sty.timelineButton__sidebarHidden_sidebarHidden]: hasVariant(
                     variants,
                     "sidebarHidden",
@@ -373,12 +396,22 @@ function PlasmicHome__RenderFunc(props: {
                   ) : null
                 }
                 startIcon={
-                  <IconAddIcon
+                  <PlasmicIcon
                     data-plasmic-name={"startIcon32"}
                     data-plasmic-override={overrides.startIcon32}
+                    PlasmicIconType={
+                      hasVariant(variants, "hasValue", "hasValue")
+                        ? IconCheckIcon
+                        : IconAddIcon
+                    }
                     className={classNames({
                       [defaultcss.all]: true,
                       [sty.startIcon32]: true,
+                      [sty.startIcon32__hasValue_hasValue]: hasVariant(
+                        variants,
+                        "hasValue",
+                        "hasValue"
+                      ),
                     })}
                     role={"img"}
                   />
@@ -525,6 +558,11 @@ function PlasmicHome__RenderFunc(props: {
           [defaultcss.all]: true,
           [sty.main]: true,
           [sty.main__global_screen_desktop]: true,
+          [sty.main__hasValue_hasValue]: hasVariant(
+            variants,
+            "hasValue",
+            "hasValue"
+          ),
         })}
       >
         <Stack
