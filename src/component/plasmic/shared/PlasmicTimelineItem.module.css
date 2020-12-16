@@ -20,13 +20,10 @@
   flex-direction: row;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
 }
 .itemContainer > :global(.__wab_flex-container) > *,
 .itemContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
-  margin-top: 0px;
 }
 .itemContainer__isCurrent_isCurrent {
   display: flex;
@@ -37,8 +34,6 @@
   flex-direction: row;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
 }
 .itemContainer__isCurrent_isCurrent > :global(.__wab_flex-container) > *,
 .itemContainer__isCurrent_isCurrent
@@ -46,7 +41,6 @@
   > :global(.__wab_slot)
   > * {
   margin-left: 5px;
-  margin-top: 0px;
 }
 .root:hover .itemContainer {
   background-color: rgba(2, 157, 127, 0.5) /* plasmic-token: ktdOhSoiQwPKRUS */;

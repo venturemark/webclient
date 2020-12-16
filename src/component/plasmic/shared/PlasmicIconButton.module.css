@@ -14,13 +14,10 @@
   align-items: center;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
 }
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
-  margin-top: 0px;
 }
 .root__withIcons_start {
   border-radius: 100%;
