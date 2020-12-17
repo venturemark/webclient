@@ -26,7 +26,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack
+  Stack,
 } from "@plasmicapp/react-web";
 
 import { ScreenContext, ScreenValue } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
@@ -85,7 +85,7 @@ function PlasmicActionBar__RenderFunc(props: {
   const { variants, args, overrides, forNode } = props;
 
   const globalVariants = {
-    screen: React.useContext(ScreenContext)
+    screen: React.useContext(ScreenContext),
   };
 
   Object.entries(globalVariants).forEach(([key, value]) => {
@@ -109,7 +109,7 @@ function PlasmicActionBar__RenderFunc(props: {
         [sty.root__text_hasText]: hasVariant(variants, "text", "hasText"),
         [sty.root__text_hasText_error_hasError]:
           hasVariant(variants, "text", "hasText") &&
-          hasVariant(variants, "error", "hasError")
+          hasVariant(variants, "error", "hasError"),
       })}
     >
       <div
@@ -118,7 +118,7 @@ function PlasmicActionBar__RenderFunc(props: {
             variants,
             "error",
             "hasError"
-          )
+          ),
         })}
       >
         <div
@@ -133,7 +133,7 @@ function PlasmicActionBar__RenderFunc(props: {
 
             [sty.editorContainer__text_hasText_error_hasError]:
               hasVariant(variants, "text", "hasText") &&
-              hasVariant(variants, "error", "hasError")
+              hasVariant(variants, "error", "hasError"),
           })}
         >
           <input
@@ -174,7 +174,7 @@ function PlasmicActionBar__RenderFunc(props: {
 
             [sty.box__text_hasText_error_hasError__eZiSBMkcuXYqMt]:
               hasVariant(variants, "text", "hasText") &&
-              hasVariant(variants, "error", "hasError")
+              hasVariant(variants, "error", "hasError"),
           })}
         >
           {(hasVariant(variants, "error", "hasError") ? true : false) ? (
@@ -190,7 +190,7 @@ function PlasmicActionBar__RenderFunc(props: {
 
                 [sty.errorContainer__text_hasText_error_hasError]:
                   hasVariant(variants, "text", "hasText") &&
-                  hasVariant(variants, "error", "hasError")
+                  hasVariant(variants, "error", "hasError"),
               })}
             >
               <PlasmicSlot
@@ -201,7 +201,7 @@ function PlasmicActionBar__RenderFunc(props: {
                     variants,
                     "error",
                     "hasError"
-                  )
+                  ),
                 })}
               />
             </div>
@@ -217,7 +217,7 @@ function PlasmicActionBar__RenderFunc(props: {
 
                 [sty.box__text_hasText_error_hasError__wGyU6BMkcuXYqMt]:
                   hasVariant(variants, "text", "hasText") &&
-                  hasVariant(variants, "error", "hasError")
+                  hasVariant(variants, "error", "hasError"),
               })}
             >
               {(hasVariant(variants, "text", "hasText") ? true : false) ? (
@@ -234,7 +234,7 @@ function PlasmicActionBar__RenderFunc(props: {
 
                     [sty.progressContainer__text_hasText_error_hasError]:
                       hasVariant(variants, "text", "hasText") &&
-                      hasVariant(variants, "error", "hasError")
+                      hasVariant(variants, "error", "hasError"),
                   })}
                   role={"img"}
                 />
@@ -253,13 +253,13 @@ const PlasmicDescendants = {
     "editorContainer",
     "textContainer",
     "errorContainer",
-    "progressContainer"
+    "progressContainer",
   ],
 
   editorContainer: ["editorContainer", "textContainer"],
   textContainer: ["textContainer"],
   errorContainer: ["errorContainer"],
-  progressContainer: ["progressContainer"]
+  progressContainer: ["progressContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -285,8 +285,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActionBar__VariantsArgs;
     args?: PlasmicActionBar__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicActionBar__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicActionBar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicActionBar__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -309,14 +308,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicActionBar__ArgProps,
-      internalVariantPropNames: PlasmicActionBar__VariantProps
+      internalVariantPropNames: PlasmicActionBar__VariantProps,
     });
 
     return PlasmicActionBar__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -339,7 +338,7 @@ export const PlasmicActionBar = Object.assign(
 
     // Metadata about props expected for PlasmicActionBar
     internalVariantProps: PlasmicActionBar__VariantProps,
-    internalArgProps: PlasmicActionBar__ArgProps
+    internalArgProps: PlasmicActionBar__ArgProps,
   }
 );
 

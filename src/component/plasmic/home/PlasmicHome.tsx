@@ -26,7 +26,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack
+  Stack,
 } from "@plasmicapp/react-web";
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
@@ -36,7 +36,7 @@ import ActionsColumn from "../../actionscolumn/index"; // plasmic-import: Ey_Mwf
 
 import {
   ScreenContext,
-  ScreenValue
+  ScreenValue,
 } from "../shared/PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -93,7 +93,7 @@ function PlasmicHome__RenderFunc(props: {
   const { variants, args, overrides, forNode } = props;
 
   const globalVariants = {
-    screen: React.useContext(ScreenContext)
+    screen: React.useContext(ScreenContext),
   };
 
   Object.entries(globalVariants).forEach(([key, value]) => {
@@ -117,7 +117,7 @@ function PlasmicHome__RenderFunc(props: {
           variants,
           "sidebarHidden",
           "sidebarHidden"
-        )
+        ),
       })}
     >
       <div
@@ -128,7 +128,7 @@ function PlasmicHome__RenderFunc(props: {
             variants,
             "sidebarHidden",
             "sidebarHidden"
-          )
+          ),
         })}
       >
         {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
@@ -138,7 +138,7 @@ function PlasmicHome__RenderFunc(props: {
                 variants,
                 "sidebarHidden",
                 "sidebarHidden"
-              )
+              ),
             })}
           >
             {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
@@ -150,7 +150,7 @@ function PlasmicHome__RenderFunc(props: {
                     variants,
                     "sidebarHidden",
                     "sidebarHidden"
-                  )
+                  ),
                 })}
               />
             ) : null}
@@ -165,7 +165,7 @@ function PlasmicHome__RenderFunc(props: {
                 variants,
                 "sidebarHidden",
                 "sidebarHidden"
-              )
+              ),
             })}
           >
             {(
@@ -181,7 +181,7 @@ function PlasmicHome__RenderFunc(props: {
                     variants,
                     "sidebarHidden",
                     "sidebarHidden"
-                  )
+                  ),
                 })}
                 startIcon={
                   <PlasmicIcon
@@ -197,7 +197,7 @@ function PlasmicHome__RenderFunc(props: {
                         variants,
                         "sidebarHidden",
                         "sidebarHidden"
-                      )
+                      ),
                     })}
                     role={"img"}
                   />
@@ -222,7 +222,7 @@ function PlasmicHome__RenderFunc(props: {
                     variants,
                     "sidebarHidden",
                     "sidebarHidden"
-                  )
+                  ),
                 })}
                 startIcon={
                   <PlasmicIcon
@@ -238,7 +238,7 @@ function PlasmicHome__RenderFunc(props: {
                         variants,
                         "sidebarHidden",
                         "sidebarHidden"
-                      )
+                      ),
                     })}
                     role={"img"}
                   />
@@ -324,7 +324,7 @@ const PlasmicDescendants = {
     "actionBar",
     "updatesContainer",
     "update",
-    "actionsColumn"
+    "actionsColumn",
   ],
 
   main: [
@@ -338,7 +338,7 @@ const PlasmicDescendants = {
     "actionBar",
     "updatesContainer",
     "update",
-    "actionsColumn"
+    "actionsColumn",
   ],
 
   sidebar: ["sidebar"],
@@ -350,7 +350,7 @@ const PlasmicDescendants = {
   actionBar: ["actionBar"],
   updatesContainer: ["updatesContainer", "update"],
   update: ["update"],
-  actionsColumn: ["actionsColumn"]
+  actionsColumn: ["actionsColumn"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -383,8 +383,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHome__VariantsArgs;
     args?: PlasmicHome__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicHome__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicHome__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicHome__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -407,14 +406,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicHome__ArgProps,
-      internalVariantPropNames: PlasmicHome__VariantProps
+      internalVariantPropNames: PlasmicHome__VariantProps,
     });
 
     return PlasmicHome__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -444,7 +443,7 @@ export const PlasmicHome = Object.assign(
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,
-    internalArgProps: PlasmicHome__ArgProps
+    internalArgProps: PlasmicHome__ArgProps,
   }
 );
 

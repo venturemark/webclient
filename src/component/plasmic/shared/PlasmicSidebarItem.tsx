@@ -26,7 +26,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack
+  Stack,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
@@ -94,7 +94,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
-        [sty.root__isCurrent]: hasVariant(variants, "isCurrent", "isCurrent")
+        [sty.root__isCurrent]: hasVariant(variants, "isCurrent", "isCurrent"),
       })}
     >
       <Stack
@@ -113,7 +113,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
             variants,
             "isCurrent",
             "isCurrent"
-          )
+          ),
         })}
       >
         {(hasVariant(variants, "isCurrent", "isCurrent") ? true : false) ? (
@@ -123,7 +123,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 variants,
                 "isCurrent",
                 "isCurrent"
-              )
+              ),
             })}
           />
         ) : null}
@@ -143,7 +143,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
               variants,
               "isCurrent",
               "isCurrent"
-            )
+            ),
           })}
         >
           <PlasmicSlot
@@ -160,7 +160,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 variants,
                 "isCurrent",
                 "isCurrent"
-              )
+              ),
             })}
           />
         </div>
@@ -174,7 +174,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 variants,
                 "hasIcon",
                 "hasIcon"
-              )
+              ),
             })}
             startIcon={
               <PlasmicSlot
@@ -203,7 +203,7 @@ const PlasmicDescendants = {
   root: ["root", "itemContainer", "itemButton", "startIcon"],
   itemContainer: ["itemContainer", "itemButton", "startIcon"],
   itemButton: ["itemButton", "startIcon"],
-  startIcon: ["startIcon"]
+  startIcon: ["startIcon"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -228,8 +228,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSidebarItem__VariantsArgs;
     args?: PlasmicSidebarItem__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicSidebarItem__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicSidebarItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSidebarItem__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -252,14 +251,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicSidebarItem__ArgProps,
-      internalVariantPropNames: PlasmicSidebarItem__VariantProps
+      internalVariantPropNames: PlasmicSidebarItem__VariantProps,
     });
 
     return PlasmicSidebarItem__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -281,7 +280,7 @@ export const PlasmicSidebarItem = Object.assign(
 
     // Metadata about props expected for PlasmicSidebarItem
     internalVariantProps: PlasmicSidebarItem__VariantProps,
-    internalArgProps: PlasmicSidebarItem__ArgProps
+    internalArgProps: PlasmicSidebarItem__ArgProps,
   }
 );
 

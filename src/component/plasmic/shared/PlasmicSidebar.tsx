@@ -26,7 +26,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack
+  Stack,
 } from "@plasmicapp/react-web";
 import SidebarItem from "../../sidebaritem/index"; // plasmic-import: KDElHbQmfd/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
@@ -92,7 +92,7 @@ function PlasmicSidebar__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
-        [sty.root__hasValue]: hasVariant(variants, "hasValue", "hasValue")
+        [sty.root__hasValue]: hasVariant(variants, "hasValue", "hasValue"),
       })}
     >
       <Stack
@@ -110,7 +110,7 @@ function PlasmicSidebar__RenderFunc(props: {
               variants,
               "hasValue",
               "hasValue"
-            )
+            ),
           })}
           hasIcon={"hasIcon" as const}
           name={
@@ -124,7 +124,7 @@ function PlasmicSidebar__RenderFunc(props: {
                     variants,
                     "hasValue",
                     "hasValue"
-                  )
+                  ),
                 }
               )}
             >
@@ -138,7 +138,7 @@ function PlasmicSidebar__RenderFunc(props: {
                   variants,
                   "hasValue",
                   "hasValue"
-                )
+                ),
               })}
               role={"img"}
             />
@@ -195,7 +195,7 @@ function PlasmicSidebar__RenderFunc(props: {
                       variants,
                       "hasValue",
                       "hasValue"
-                    )
+                    ),
                   }
                 )}
               >
@@ -231,7 +231,7 @@ function PlasmicSidebar__RenderFunc(props: {
             variants,
             "hasValue",
             "hasValue"
-          )
+          ),
         })}
       >
         <Stack
@@ -244,7 +244,7 @@ function PlasmicSidebar__RenderFunc(props: {
               variants,
               "hasValue",
               "hasValue"
-            )
+            ),
           })}
         >
           <input
@@ -255,7 +255,7 @@ function PlasmicSidebar__RenderFunc(props: {
                 variants,
                 "hasValue",
                 "hasValue"
-              )
+              ),
             })}
             placeholder={"Add Timeline" as const}
             size={1 as const}
@@ -270,7 +270,7 @@ function PlasmicSidebar__RenderFunc(props: {
                 variants,
                 "hasValue",
                 "hasValue"
-              )
+              ),
             })}
             startIcon={
               <PlasmicIcon
@@ -284,7 +284,7 @@ function PlasmicSidebar__RenderFunc(props: {
                     variants,
                     "hasValue",
                     "hasValue"
-                  )
+                  ),
                 })}
                 role={"img"}
               />
@@ -308,7 +308,7 @@ function PlasmicSidebar__RenderFunc(props: {
                 variants,
                 "hasValue",
                 "hasValue"
-              )
+              ),
             })}
             hasIcon={"hasIcon" as const}
             name={
@@ -322,7 +322,7 @@ function PlasmicSidebar__RenderFunc(props: {
                       variants,
                       "hasValue",
                       "hasValue"
-                    )
+                    ),
                   }
                 )}
               >
@@ -347,7 +347,7 @@ function PlasmicSidebar__RenderFunc(props: {
                       variants,
                       "hasValue",
                       "hasValue"
-                    )
+                    ),
                   }
                 )}
               >
@@ -361,7 +361,7 @@ function PlasmicSidebar__RenderFunc(props: {
                     variants,
                     "hasValue",
                     "hasValue"
-                  )
+                  ),
                 })}
                 role={"img"}
               />
@@ -385,7 +385,7 @@ const PlasmicDescendants = {
     "addTimeline",
     "settingsContainer",
     "profileItem",
-    "settingsItem"
+    "settingsItem",
   ],
 
   topSidebar: ["topSidebar", "homeItem", "timelinesContainer"],
@@ -398,7 +398,7 @@ const PlasmicDescendants = {
     "addTimeline",
     "settingsContainer",
     "profileItem",
-    "settingsItem"
+    "settingsItem",
   ],
 
   sidebarForm: ["sidebarForm", "addTimelineInput", "addTimeline"],
@@ -406,7 +406,7 @@ const PlasmicDescendants = {
   addTimeline: ["addTimeline"],
   settingsContainer: ["settingsContainer", "profileItem", "settingsItem"],
   profileItem: ["profileItem"],
-  settingsItem: ["settingsItem"]
+  settingsItem: ["settingsItem"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -438,8 +438,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSidebar__VariantsArgs;
     args?: PlasmicSidebar__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & // Specify variants directly as props
-  Omit<PlasmicSidebar__VariantsArgs, ReservedPropsType> &
+  } & Omit<PlasmicSidebar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSidebar__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -462,14 +461,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicSidebar__ArgProps,
-      internalVariantPropNames: PlasmicSidebar__VariantProps
+      internalVariantPropNames: PlasmicSidebar__VariantProps,
     });
 
     return PlasmicSidebar__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -498,7 +497,7 @@ export const PlasmicSidebar = Object.assign(
 
     // Metadata about props expected for PlasmicSidebar
     internalVariantProps: PlasmicSidebar__VariantProps,
-    internalArgProps: PlasmicSidebar__ArgProps
+    internalArgProps: PlasmicSidebar__ArgProps,
   }
 );
 
