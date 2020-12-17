@@ -8,13 +8,13 @@
   display: flex;
   position: relative;
   background-color: rgba(68, 192, 255, 0);
-  width: 100%;
+  width: 240px;
   height: auto;
   flex-direction: row;
   padding-left: 8px;
   padding-right: 8px;
   cursor: pointer;
-  min-width: 0;
+  flex-shrink: 0;
 }
 .itemContainer > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -25,22 +25,32 @@
 .itemContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
-.itemContainer__isCurrent_isCurrent {
+.itemContainer__isCurrent {
   display: flex;
   flex-direction: row;
   padding-left: 0px;
 }
-.itemContainer__isCurrent_isCurrent > :global(.__wab_flex-container) {
+.itemContainer__isCurrent > :global(.__wab_flex-container) {
   flex-direction: row;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
 }
-.itemContainer__isCurrent_isCurrent > :global(.__wab_flex-container) > *,
-.itemContainer__isCurrent_isCurrent
+.itemContainer__isCurrent > :global(.__wab_flex-container) > *,
+.itemContainer__isCurrent
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > * {
   margin-left: 5px;
+}
+.itemContainer__hasIcon {
+  align-self: center;
+  width: 240px;
+  height: 34px;
+  flex-shrink: 0;
+}
+.itemContainer__hasIcon > :global(.__wab_flex-container) {
+  justify-content: space-between;
+  align-items: center;
 }
 .root:hover .itemContainer {
   background-color: rgba(2, 157, 127, 0.5) /* plasmic-token: ktdOhSoiQwPKRUS */;
@@ -54,7 +64,7 @@
   flex-shrink: 0;
   min-height: 0;
 }
-.box__isCurrent_isCurrent__v0Fwk0Mgpk {
+.box__isCurrent__v0Fwk0Mgpk {
   width: 3px;
   background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   height: 100%;
@@ -62,14 +72,45 @@
   min-height: 0;
 }
 .box__zwdJs {
-  display: inline-flex;
+  display: flex;
   position: relative;
-  width: auto;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+}
+.box__isCurrent__zwdJs0Mgpk {
   height: auto;
 }
-.box__isCurrent_isCurrent__zwdJs0Mgpk {
-  height: auto;
+.box__hasIcon__zwdJsHHCh {
+  width: 100%;
+  align-self: center;
+  min-width: 0;
 }
 .slotName {
-  font-size: 24px;
+  font-size: 16px;
+}
+.slotName__hasIcon {
+  font-size: 16px;
+  white-space: nowrap;
+}
+.slotName__hasIcon > * {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.itemButton:global(.__wab_instance) {
+  position: relative;
+}
+.itemButton__hasIcon:global(.__wab_instance) {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+.startIcon {
+  position: relative;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  left: auto;
+  top: auto;
+  border-radius: 100%;
 }

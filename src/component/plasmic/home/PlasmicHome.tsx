@@ -26,17 +26,17 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack,
+  Stack
 } from "@plasmicapp/react-web";
+import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
-import TimelineItem from "../../timelineitem/index"; // plasmic-import: KDElHbQmfd/component
 import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
 import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import ActionsColumn from "../../actionscolumn/index"; // plasmic-import: Ey_MwfntCV/component
 
 import {
   ScreenContext,
-  ScreenValue,
+  ScreenValue
 } from "../shared/PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -46,24 +46,18 @@ import sty from "./PlasmicHome.module.css"; // plasmic-import: Ii0bQ3L3sO/css
 
 import IconHomeIcon from "../shared/icons/PlasmicIcon__IconHome"; // plasmic-import: Z6YqF7wXr6/icon
 import IconAddIcon from "../shared/icons/PlasmicIcon__IconAdd"; // plasmic-import: gg_6iBfcsu/icon
-import IconCheckIcon from "../shared/icons/PlasmicIcon__IconCheck"; // plasmic-import: MwyR6vQxWa/icon
-import IconPersonIcon from "../shared/icons/PlasmicIcon__IconPerson"; // plasmic-import: Exz-c1pU2x/icon
-import IconSettingsIcon from "../shared/icons/PlasmicIcon__IconSettings"; // plasmic-import: o3m824rpnQ/icon
 
 export type PlasmicHome__VariantMembers = {
   sidebarHidden: "sidebarHidden";
-  hasValue: "hasValue";
 };
 
 export type PlasmicHome__VariantsArgs = {
   sidebarHidden?: SingleBooleanChoiceArg<"sidebarHidden">;
-  hasValue?: SingleBooleanChoiceArg<"hasValue">;
 };
 
 type VariantPropType = keyof PlasmicHome__VariantsArgs;
 export const PlasmicHome__VariantProps = new Array<VariantPropType>(
-  "sidebarHidden",
-  "hasValue"
+  "sidebarHidden"
 );
 
 export type PlasmicHome__ArgsType = {};
@@ -72,25 +66,12 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHome__OverridesType = {
   root?: Flex<"div">;
-  sidebar?: Flex<"div">;
-  topSidebar?: Flex<"div">;
-  homeContainer?: Flex<"div">;
-  homeButton?: Flex<typeof IconButton>;
-  startIcon3?: Flex<"svg">;
-  endIcon3?: Flex<"svg">;
-  timelinesContainer?: Flex<"div">;
-  bottomSidebar?: Flex<"div">;
-  addTimeline?: Flex<"form">;
-  addTimelineInput?: Flex<"input">;
-  timelineButton?: Flex<typeof IconButton>;
-  startIcon32?: Flex<"svg">;
-  endIcon32?: Flex<"svg">;
-  settingsContainer?: Flex<"div">;
-  startIcon4?: Flex<"svg">;
-  endIcon4?: Flex<"svg">;
-  startIcon22?: Flex<"svg">;
-  endIcon22?: Flex<"svg">;
   main?: Flex<"div">;
+  sidebar?: Flex<typeof Sidebar>;
+  homeButton?: Flex<typeof IconButton>;
+  startIcon?: Flex<"svg">;
+  addButton?: Flex<typeof IconButton>;
+  startIcon2?: Flex<"svg">;
   actionBarContainer?: Flex<"div">;
   actionBar?: Flex<typeof ActionBar>;
   updatesContainer?: Flex<"div">;
@@ -100,7 +81,6 @@ export type PlasmicHome__OverridesType = {
 
 export interface DefaultHomeProps {
   sidebarHidden?: SingleBooleanChoiceArg<"sidebarHidden">;
-  hasValue?: SingleBooleanChoiceArg<"hasValue">;
   className?: string;
 }
 
@@ -113,7 +93,7 @@ function PlasmicHome__RenderFunc(props: {
   const { variants, args, overrides, forNode } = props;
 
   const globalVariants = {
-    screen: React.useContext(ScreenContext),
+    screen: React.useContext(ScreenContext)
   };
 
   Object.entries(globalVariants).forEach(([key, value]) => {
@@ -132,477 +112,169 @@ function PlasmicHome__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames({
-        [defaultcss.all]: true,
-        [projectcss.root_reset]: true,
-        [sty.root]: true,
-        [sty.root__global_screen_mobile]: true,
-        [sty.root__hasValue_hasValue]: hasVariant(
-          variants,
-          "hasValue",
-          "hasValue"
-        ),
-
-        [sty.root__sidebarHidden_sidebarHidden]: hasVariant(
+      className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
+        [sty.root__sidebarHidden]: hasVariant(
           variants,
           "sidebarHidden",
           "sidebarHidden"
-        ),
+        )
       })}
     >
-      {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
-        <Stack
-          as={"div"}
-          data-plasmic-name={"sidebar"}
-          data-plasmic-override={overrides.sidebar}
-          hasGap={true}
-          className={classNames({
-            [defaultcss.all]: true,
-            [sty.sidebar]: true,
-            [sty.sidebar__global_screen_mobile]: true,
-            [sty.sidebar__hasValue_hasValue]: hasVariant(
-              variants,
-              "hasValue",
-              "hasValue"
-            ),
-
-            [sty.sidebar__sidebarHidden_sidebarHidden]: hasVariant(
-              variants,
-              "sidebarHidden",
-              "sidebarHidden"
-            ),
-
-            [sty.sidebar__sidebarHidden_sidebarHidden_global_screen_mobile]: hasVariant(
-              variants,
-              "sidebarHidden",
-              "sidebarHidden"
-            ),
-          })}
-        >
-          <Stack
-            as={"div"}
-            data-plasmic-name={"topSidebar"}
-            data-plasmic-override={overrides.topSidebar}
-            hasGap={true}
-            className={classNames({
-              [defaultcss.all]: true,
-              [sty.topSidebar]: true,
-            })}
-          >
-            <div
-              data-plasmic-name={"homeContainer"}
-              data-plasmic-override={overrides.homeContainer}
-              className={classNames({
-                [defaultcss.all]: true,
-                [sty.homeContainer]: true,
-              })}
-            >
-              {(
-                hasVariant(variants, "sidebarHidden", "sidebarHidden")
-                  ? false
-                  : true
-              ) ? (
-                <div
-                  className={
-                    classNames({
-                      [defaultcss.all]: true,
-                      [sty.box__a4Upt]: true,
-                      [sty.box__sidebarHidden_sidebarHidden__a4UptcPu7G]: hasVariant(
-                        variants,
-                        "sidebarHidden",
-                        "sidebarHidden"
-                      ),
-                    }) +
-                    " " +
-                    defaultcss.__wab_text
-                  }
-                >
-                  <span>
-                    <span style={{ fontWeight: 700 }}>{"Home"}</span>
-                  </span>
-                </div>
-              ) : null}
-
-              <IconButton
-                data-plasmic-name={"homeButton"}
-                data-plasmic-override={overrides.homeButton}
-                className={classNames({
-                  __wab_instance: true,
-                  [sty.homeButton]: true,
-                  [sty.homeButton__sidebarHidden_sidebarHidden]: hasVariant(
-                    variants,
-                    "sidebarHidden",
-                    "sidebarHidden"
-                  ),
-                })}
-                content={""}
-                endIcon={
-                  false ? (
-                    <svg
-                      data-plasmic-name={"endIcon3"}
-                      data-plasmic-override={overrides.endIcon3}
-                      className={classNames({
-                        [defaultcss.all]: true,
-                        [sty.endIcon3]: true,
-                      })}
-                      role={"img"}
-                    />
-                  ) : null
-                }
-                showContent={"showContent" as const}
-                startIcon={
-                  <IconHomeIcon
-                    data-plasmic-name={"startIcon3"}
-                    data-plasmic-override={overrides.startIcon3}
-                    className={classNames({
-                      [defaultcss.all]: true,
-                      [sty.startIcon3]: true,
-                    })}
-                    role={"img"}
-                  />
-                }
-                withIcons={["start"]}
-              />
-            </div>
-
-            {(
-              hasVariant(variants, "sidebarHidden", "sidebarHidden")
-                ? false
-                : true
-            ) ? (
-              <Stack
-                as={"div"}
-                data-plasmic-name={"timelinesContainer"}
-                data-plasmic-override={overrides.timelinesContainer}
-                hasGap={true}
-                className={classNames({
-                  [defaultcss.all]: true,
-                  [sty.timelinesContainer]: true,
-                  [sty.timelinesContainer__sidebarHidden_sidebarHidden]: hasVariant(
-                    variants,
-                    "sidebarHidden",
-                    "sidebarHidden"
-                  ),
-                })}
-              >
-                <TimelineItem
-                  className={classNames({
-                    __wab_instance: true,
-                    [sty.timelineItem___7QYsY]: true,
-                  })}
-                  name={"Features Shipped"}
-                />
-
-                <TimelineItem
-                  className={classNames({
-                    __wab_instance: true,
-                    [sty.timelineItem___14Lvf]: true,
-                  })}
-                  name={"Revenue"}
-                />
-
-                <TimelineItem
-                  className={classNames({
-                    __wab_instance: true,
-                    [sty.timelineItem__jzcQp]: true,
-                  })}
-                  name={"Active Users"}
-                />
-
-                <TimelineItem
-                  className={classNames({
-                    __wab_instance: true,
-                    [sty.timelineItem__m99Md]: true,
-                  })}
-                  name={"Milestones"}
-                />
-              </Stack>
-            ) : null}
-          </Stack>
-
-          <Stack
-            as={"div"}
-            data-plasmic-name={"bottomSidebar"}
-            data-plasmic-override={overrides.bottomSidebar}
-            hasGap={true}
-            className={classNames({
-              [defaultcss.all]: true,
-              [sty.bottomSidebar]: true,
-            })}
-          >
-            <Stack
-              as={"form"}
-              data-plasmic-name={"addTimeline"}
-              data-plasmic-override={overrides.addTimeline}
-              hasGap={true}
-              className={classNames({
-                [defaultcss.all]: true,
-                [sty.addTimeline]: true,
-              })}
-            >
-              {(
-                hasVariant(variants, "sidebarHidden", "sidebarHidden")
-                  ? false
-                  : true
-              ) ? (
-                <input
-                  data-plasmic-name={"addTimelineInput"}
-                  data-plasmic-override={overrides.addTimelineInput}
-                  className={classNames({
-                    [defaultcss.input]: true,
-                    [sty.addTimelineInput]: true,
-                    [sty.addTimelineInput__sidebarHidden_sidebarHidden]: hasVariant(
-                      variants,
-                      "sidebarHidden",
-                      "sidebarHidden"
-                    ),
-                  })}
-                  placeholder={"Add Timeline" as const}
-                  size={1 as const}
-                  type={"text" as const}
-                />
-              ) : null}
-
-              <IconButton
-                data-plasmic-name={"timelineButton"}
-                data-plasmic-override={overrides.timelineButton}
-                className={classNames({
-                  __wab_instance: true,
-                  [sty.timelineButton]: true,
-                  [sty.timelineButton__hasValue_hasValue]: hasVariant(
-                    variants,
-                    "hasValue",
-                    "hasValue"
-                  ),
-
-                  [sty.timelineButton__sidebarHidden_sidebarHidden]: hasVariant(
-                    variants,
-                    "sidebarHidden",
-                    "sidebarHidden"
-                  ),
-                })}
-                content={""}
-                endIcon={
-                  false ? (
-                    <svg
-                      data-plasmic-name={"endIcon32"}
-                      data-plasmic-override={overrides.endIcon32}
-                      className={classNames({
-                        [defaultcss.all]: true,
-                        [sty.endIcon32]: true,
-                      })}
-                      role={"img"}
-                    />
-                  ) : null
-                }
-                startIcon={
-                  <PlasmicIcon
-                    data-plasmic-name={"startIcon32"}
-                    data-plasmic-override={overrides.startIcon32}
-                    PlasmicIconType={
-                      hasVariant(variants, "hasValue", "hasValue")
-                        ? IconCheckIcon
-                        : IconAddIcon
-                    }
-                    className={classNames({
-                      [defaultcss.all]: true,
-                      [sty.startIcon32]: true,
-                      [sty.startIcon32__hasValue_hasValue]: hasVariant(
-                        variants,
-                        "hasValue",
-                        "hasValue"
-                      ),
-                    })}
-                    role={"img"}
-                  />
-                }
-                withIcons={["start"]}
-              />
-            </Stack>
-
-            {(
-              hasVariant(variants, "sidebarHidden", "sidebarHidden")
-                ? false
-                : true
-            ) ? (
-              <Stack
-                as={"div"}
-                data-plasmic-name={"settingsContainer"}
-                data-plasmic-override={overrides.settingsContainer}
-                hasGap={true}
-                className={classNames({
-                  [defaultcss.all]: true,
-                  [sty.settingsContainer]: true,
-                  [sty.settingsContainer__sidebarHidden_sidebarHidden]: hasVariant(
-                    variants,
-                    "sidebarHidden",
-                    "sidebarHidden"
-                  ),
-                })}
-              >
-                <div
-                  className={classNames({
-                    [defaultcss.all]: true,
-                    [sty.box__ad5RC]: true,
-                  })}
-                >
-                  <div
-                    className={
-                      classNames({
-                        [defaultcss.all]: true,
-                        [sty.box__pS1K3]: true,
-                      }) +
-                      " " +
-                      defaultcss.__wab_text
-                    }
-                  >
-                    {"Profile"}
-                  </div>
-
-                  <IconButton
-                    className={classNames({
-                      __wab_instance: true,
-                      [sty.iconButton__o7VyO]: true,
-                    })}
-                    content={""}
-                    endIcon={
-                      false ? (
-                        <svg
-                          data-plasmic-name={"endIcon4"}
-                          data-plasmic-override={overrides.endIcon4}
-                          className={classNames({
-                            [defaultcss.all]: true,
-                            [sty.endIcon4]: true,
-                          })}
-                          role={"img"}
-                        />
-                      ) : null
-                    }
-                    startIcon={
-                      <IconPersonIcon
-                        data-plasmic-name={"startIcon4"}
-                        data-plasmic-override={overrides.startIcon4}
-                        className={classNames({
-                          [defaultcss.all]: true,
-                          [sty.startIcon4]: true,
-                        })}
-                        role={"img"}
-                      />
-                    }
-                    withIcons={["start"]}
-                  />
-                </div>
-
-                <div
-                  className={classNames({
-                    [defaultcss.all]: true,
-                    [sty.box__taQf8]: true,
-                  })}
-                >
-                  <div
-                    className={
-                      classNames({
-                        [defaultcss.all]: true,
-                        [sty.box__ysBLn]: true,
-                      }) +
-                      " " +
-                      defaultcss.__wab_text
-                    }
-                  >
-                    {"Settings"}
-                  </div>
-
-                  <IconButton
-                    className={classNames({
-                      __wab_instance: true,
-                      [sty.iconButton__zIzeo]: true,
-                    })}
-                    content={""}
-                    endIcon={
-                      false ? (
-                        <svg
-                          data-plasmic-name={"endIcon22"}
-                          data-plasmic-override={overrides.endIcon22}
-                          className={classNames({
-                            [defaultcss.all]: true,
-                            [sty.endIcon22]: true,
-                          })}
-                          role={"img"}
-                        />
-                      ) : null
-                    }
-                    startIcon={
-                      <IconSettingsIcon
-                        data-plasmic-name={"startIcon22"}
-                        data-plasmic-override={overrides.startIcon22}
-                        className={classNames({
-                          [defaultcss.all]: true,
-                          [sty.startIcon22]: true,
-                        })}
-                        role={"img"}
-                      />
-                    }
-                    withIcons={["start"]}
-                  />
-                </div>
-              </Stack>
-            ) : null}
-          </Stack>
-        </Stack>
-      ) : null}
-
       <div
         data-plasmic-name={"main"}
         data-plasmic-override={overrides.main}
-        className={classNames({
-          [defaultcss.all]: true,
-          [sty.main]: true,
-          [sty.main__global_screen_desktop]: true,
-          [sty.main__hasValue_hasValue]: hasVariant(
+        className={classNames(sty.main, defaultcss.all, {
+          [sty.main__sidebarHidden]: hasVariant(
             variants,
-            "hasValue",
-            "hasValue"
-          ),
+            "sidebarHidden",
+            "sidebarHidden"
+          )
         })}
       >
+        {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
+          <div
+            className={classNames(sty.box___27XeS, defaultcss.all, {
+              [sty.box__sidebarHidden___27XeScPu7G]: hasVariant(
+                variants,
+                "sidebarHidden",
+                "sidebarHidden"
+              )
+            })}
+          >
+            {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
+              <Sidebar
+                data-plasmic-name={"sidebar"}
+                data-plasmic-override={overrides.sidebar}
+                className={classNames(sty.sidebar, "__wab_instance", {
+                  [sty.sidebar__sidebarHidden]: hasVariant(
+                    variants,
+                    "sidebarHidden",
+                    "sidebarHidden"
+                  )
+                })}
+              />
+            ) : null}
+          </div>
+        ) : null}
+        {(
+          hasVariant(variants, "sidebarHidden", "sidebarHidden") ? true : false
+        ) ? (
+          <div
+            className={classNames(sty.box__mbTc6, defaultcss.all, {
+              [sty.box__sidebarHidden__mbTc6CPu7G]: hasVariant(
+                variants,
+                "sidebarHidden",
+                "sidebarHidden"
+              )
+            })}
+          >
+            {(
+              hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                ? true
+                : true
+            ) ? (
+              <IconButton
+                data-plasmic-name={"homeButton"}
+                data-plasmic-override={overrides.homeButton}
+                className={classNames(sty.homeButton, "__wab_instance", {
+                  [sty.homeButton__sidebarHidden]: hasVariant(
+                    variants,
+                    "sidebarHidden",
+                    "sidebarHidden"
+                  )
+                })}
+                startIcon={
+                  <PlasmicIcon
+                    data-plasmic-name={"startIcon"}
+                    data-plasmic-override={overrides.startIcon}
+                    PlasmicIconType={
+                      hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                        ? IconHomeIcon
+                        : IconHomeIcon
+                    }
+                    className={classNames(sty.startIcon, defaultcss.all, {
+                      [sty.startIcon__sidebarHidden]: hasVariant(
+                        variants,
+                        "sidebarHidden",
+                        "sidebarHidden"
+                      )
+                    })}
+                    role={"img"}
+                  />
+                }
+                withIcons={
+                  hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                    ? ["start"]
+                    : ["start"]
+                }
+              />
+            ) : null}
+            {(
+              hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                ? true
+                : true
+            ) ? (
+              <IconButton
+                data-plasmic-name={"addButton"}
+                data-plasmic-override={overrides.addButton}
+                className={classNames(sty.addButton, "__wab_instance", {
+                  [sty.addButton__sidebarHidden]: hasVariant(
+                    variants,
+                    "sidebarHidden",
+                    "sidebarHidden"
+                  )
+                })}
+                startIcon={
+                  <PlasmicIcon
+                    data-plasmic-name={"startIcon2"}
+                    data-plasmic-override={overrides.startIcon2}
+                    PlasmicIconType={
+                      hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                        ? IconAddIcon
+                        : IconAddIcon
+                    }
+                    className={classNames(sty.startIcon2, defaultcss.all, {
+                      [sty.startIcon2__sidebarHidden]: hasVariant(
+                        variants,
+                        "sidebarHidden",
+                        "sidebarHidden"
+                      )
+                    })}
+                    role={"img"}
+                  />
+                }
+                withIcons={
+                  hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                    ? ["start"]
+                    : ["start"]
+                }
+              />
+            ) : null}
+          </div>
+        ) : null}
+
         <Stack
           as={"div"}
           hasGap={true}
-          className={classNames({
-            [defaultcss.all]: true,
-            [sty.box__global_screen_mobile__ineb5CckRm]: true,
-            [sty.box__ineb5]: true,
-          })}
+          className={classNames(sty.box__ineb5, defaultcss.all)}
         >
           <div
             data-plasmic-name={"actionBarContainer"}
             data-plasmic-override={overrides.actionBarContainer}
-            className={classNames({
-              [defaultcss.all]: true,
-              [sty.actionBarContainer]: true,
-              [sty.actionBarContainer__global_screen_mobile]: true,
-            })}
+            className={classNames(sty.actionBarContainer, defaultcss.all)}
           >
             <ActionBar
               data-plasmic-name={"actionBar"}
               data-plasmic-override={overrides.actionBar}
-              className={classNames({
-                __wab_instance: true,
-                [sty.actionBar]: true,
-                [sty.actionBar__global_screen_mobile]: true,
-              })}
+              className={classNames(sty.actionBar, "__wab_instance")}
               error={hasVariant(globalVariants, "screen", "mobile") ? [] : []}
               errorMessage={
                 <div
-                  className={
-                    classNames({
-                      [defaultcss.all]: true,
-                      [sty.box__global_screen_mobile__pmC0QCckRm]: true,
-                      [sty.box__pmC0Q]: true,
-                    }) +
-                    " " +
+                  className={classNames(
+                    sty.box__pmC0Q,
+                    defaultcss.all,
                     defaultcss.__wab_text
-                  }
+                  )}
                 >
                   {"Please enter a number value"}
                 </div>
@@ -616,19 +288,12 @@ function PlasmicHome__RenderFunc(props: {
             data-plasmic-name={"updatesContainer"}
             data-plasmic-override={overrides.updatesContainer}
             hasGap={true}
-            className={classNames({
-              [defaultcss.all]: true,
-              [sty.updatesContainer]: true,
-              [sty.updatesContainer__global_screen_mobile]: true,
-            })}
+            className={classNames(sty.updatesContainer, defaultcss.all)}
           >
             <Update
               data-plasmic-name={"update"}
               data-plasmic-override={overrides.update}
-              className={classNames({
-                __wab_instance: true,
-                [sty.update__global_screen_mobile]: true,
-              })}
+              className={classNames("__wab_instance")}
             />
           </Stack>
         </Stack>
@@ -636,11 +301,7 @@ function PlasmicHome__RenderFunc(props: {
         <ActionsColumn
           data-plasmic-name={"actionsColumn"}
           data-plasmic-override={overrides.actionsColumn}
-          className={classNames({
-            __wab_instance: true,
-            [sty.actionsColumn]: true,
-            [sty.actionsColumn__global_screen_mobile]: true,
-          })}
+          className={classNames(sty.actionsColumn, "__wab_instance")}
           content={["hasContent"]}
           number={"hasNumber" as const}
           numberValue={"4567"}
@@ -653,119 +314,43 @@ function PlasmicHome__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "sidebar",
-    "topSidebar",
-    "homeContainer",
-    "homeButton",
-    "startIcon3",
-    "endIcon3",
-    "timelinesContainer",
-    "bottomSidebar",
-    "addTimeline",
-    "addTimelineInput",
-    "timelineButton",
-    "startIcon32",
-    "endIcon32",
-    "settingsContainer",
-    "startIcon4",
-    "endIcon4",
-    "startIcon22",
-    "endIcon22",
     "main",
+    "sidebar",
+    "homeButton",
+    "startIcon",
+    "addButton",
+    "startIcon2",
     "actionBarContainer",
     "actionBar",
     "updatesContainer",
     "update",
-    "actionsColumn",
+    "actionsColumn"
   ],
 
-  sidebar: [
-    "sidebar",
-    "topSidebar",
-    "homeContainer",
-    "homeButton",
-    "startIcon3",
-    "endIcon3",
-    "timelinesContainer",
-    "bottomSidebar",
-    "addTimeline",
-    "addTimelineInput",
-    "timelineButton",
-    "startIcon32",
-    "endIcon32",
-    "settingsContainer",
-    "startIcon4",
-    "endIcon4",
-    "startIcon22",
-    "endIcon22",
-  ],
-
-  topSidebar: [
-    "topSidebar",
-    "homeContainer",
-    "homeButton",
-    "startIcon3",
-    "endIcon3",
-    "timelinesContainer",
-  ],
-
-  homeContainer: ["homeContainer", "homeButton", "startIcon3", "endIcon3"],
-  homeButton: ["homeButton", "startIcon3", "endIcon3"],
-  startIcon3: ["startIcon3"],
-  endIcon3: ["endIcon3"],
-  timelinesContainer: ["timelinesContainer"],
-  bottomSidebar: [
-    "bottomSidebar",
-    "addTimeline",
-    "addTimelineInput",
-    "timelineButton",
-    "startIcon32",
-    "endIcon32",
-    "settingsContainer",
-    "startIcon4",
-    "endIcon4",
-    "startIcon22",
-    "endIcon22",
-  ],
-
-  addTimeline: [
-    "addTimeline",
-    "addTimelineInput",
-    "timelineButton",
-    "startIcon32",
-    "endIcon32",
-  ],
-
-  addTimelineInput: ["addTimelineInput"],
-  timelineButton: ["timelineButton", "startIcon32", "endIcon32"],
-  startIcon32: ["startIcon32"],
-  endIcon32: ["endIcon32"],
-  settingsContainer: [
-    "settingsContainer",
-    "startIcon4",
-    "endIcon4",
-    "startIcon22",
-    "endIcon22",
-  ],
-
-  startIcon4: ["startIcon4"],
-  endIcon4: ["endIcon4"],
-  startIcon22: ["startIcon22"],
-  endIcon22: ["endIcon22"],
   main: [
     "main",
+    "sidebar",
+    "homeButton",
+    "startIcon",
+    "addButton",
+    "startIcon2",
     "actionBarContainer",
     "actionBar",
     "updatesContainer",
     "update",
-    "actionsColumn",
+    "actionsColumn"
   ],
 
+  sidebar: ["sidebar"],
+  homeButton: ["homeButton", "startIcon"],
+  startIcon: ["startIcon"],
+  addButton: ["addButton", "startIcon2"],
+  startIcon2: ["startIcon2"],
   actionBarContainer: ["actionBarContainer", "actionBar"],
   actionBar: ["actionBar"],
   updatesContainer: ["updatesContainer", "update"],
   update: ["update"],
-  actionsColumn: ["actionsColumn"],
+  actionsColumn: ["actionsColumn"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -773,25 +358,12 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  sidebar: "div";
-  topSidebar: "div";
-  homeContainer: "div";
-  homeButton: typeof IconButton;
-  startIcon3: "svg";
-  endIcon3: "svg";
-  timelinesContainer: "div";
-  bottomSidebar: "div";
-  addTimeline: "form";
-  addTimelineInput: "input";
-  timelineButton: typeof IconButton;
-  startIcon32: "svg";
-  endIcon32: "svg";
-  settingsContainer: "div";
-  startIcon4: "svg";
-  endIcon4: "svg";
-  startIcon22: "svg";
-  endIcon22: "svg";
   main: "div";
+  sidebar: typeof Sidebar;
+  homeButton: typeof IconButton;
+  startIcon: "svg";
+  addButton: typeof IconButton;
+  startIcon2: "svg";
   actionBarContainer: "div";
   actionBar: typeof ActionBar;
   updatesContainer: "div";
@@ -811,7 +383,8 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHome__VariantsArgs;
     args?: PlasmicHome__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHome__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } & // Specify variants directly as props
+  Omit<PlasmicHome__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHome__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -834,14 +407,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicHome__ArgProps,
-      internalVariantPropNames: PlasmicHome__VariantProps,
+      internalVariantPropNames: PlasmicHome__VariantProps
     });
 
     return PlasmicHome__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName,
+      forNode: nodeName
     });
   };
   if (nodeName === "root") {
@@ -857,25 +430,12 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    sidebar: makeNodeComponent("sidebar"),
-    topSidebar: makeNodeComponent("topSidebar"),
-    homeContainer: makeNodeComponent("homeContainer"),
-    homeButton: makeNodeComponent("homeButton"),
-    startIcon3: makeNodeComponent("startIcon3"),
-    endIcon3: makeNodeComponent("endIcon3"),
-    timelinesContainer: makeNodeComponent("timelinesContainer"),
-    bottomSidebar: makeNodeComponent("bottomSidebar"),
-    addTimeline: makeNodeComponent("addTimeline"),
-    addTimelineInput: makeNodeComponent("addTimelineInput"),
-    timelineButton: makeNodeComponent("timelineButton"),
-    startIcon32: makeNodeComponent("startIcon32"),
-    endIcon32: makeNodeComponent("endIcon32"),
-    settingsContainer: makeNodeComponent("settingsContainer"),
-    startIcon4: makeNodeComponent("startIcon4"),
-    endIcon4: makeNodeComponent("endIcon4"),
-    startIcon22: makeNodeComponent("startIcon22"),
-    endIcon22: makeNodeComponent("endIcon22"),
     main: makeNodeComponent("main"),
+    sidebar: makeNodeComponent("sidebar"),
+    homeButton: makeNodeComponent("homeButton"),
+    startIcon: makeNodeComponent("startIcon"),
+    addButton: makeNodeComponent("addButton"),
+    startIcon2: makeNodeComponent("startIcon2"),
     actionBarContainer: makeNodeComponent("actionBarContainer"),
     actionBar: makeNodeComponent("actionBar"),
     updatesContainer: makeNodeComponent("updatesContainer"),
@@ -884,7 +444,7 @@ export const PlasmicHome = Object.assign(
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,
-    internalArgProps: PlasmicHome__ArgProps,
+    internalArgProps: PlasmicHome__ArgProps
   }
 );
 

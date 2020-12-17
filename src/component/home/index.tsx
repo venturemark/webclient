@@ -13,17 +13,16 @@ import {
 import Searcher from "@venturemark/numnum";
 import { Node } from "slate";
 import { format } from "date-fns";
-import { useForm } from "react-hook-form";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
 import * as linechart from "component/linechart";
 import { useEditor } from "component/editor/compose";
 import { UpdateType } from "component/update";
-import TimelineItem, { TimelineItemType } from "component/timelineitem";
+import { TimelineType } from "component/sidebaritem";
 
 interface HomeProps extends DefaultHomeProps {}
 
-const defaultTimelines: TimelineItemType[] = [
+const defaultTimelines: TimelineType[] = [
   {
     name: "Revenue",
     id: "now",
@@ -104,19 +103,11 @@ const defaultData = [
 const dataKey = "cac";
 const name = "Customer Acquisition Cost";
 
-type FormInputs = {
-  name: string;
-};
-
 export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
   const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
-  const [timelines, setTimelines] = useState<TimelineItemType[]>(
-    defaultTimelines
-  );
+  const [timelines, setTimelines] = useState<TimelineType[]>(defaultTimelines);
   const [showSidebar, setShowSidebar] = useState(true);
-  const { register, handleSubmit, reset, watch } = useForm<FormInputs>();
-  const hasValue = watch("name") ? true : false;
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -191,24 +182,6 @@ export function Component(props: HomeProps) {
     setEditorShape(resetEditor);
   };
 
-  const handleAddTimeline = (data: FormInputs) => {
-    if (!data.name) {
-      return;
-    }
-
-    const timeline = {
-      name: data.name,
-      date: format(new Date(), "PP"),
-      id: format(new Date(), "PP"),
-    };
-    setTimelines([timeline, ...timelines]);
-
-    //reset form
-    reset({
-      name: "",
-    });
-  };
-
   return (
     <PlasmicHome
       sidebarHidden={showSidebar}
@@ -218,28 +191,15 @@ export function Component(props: HomeProps) {
           setShowSidebar(!showSidebar);
         },
       }}
-      timelineButton={{
+      addButton={{
         "aria-label": "Toggle sidebar",
-        onPress: () => {
-          if (!hasValue) {
-            setShowSidebar(!showSidebar);
-          } else {
-            handleSubmit(handleAddTimeline)();
-          }
-        },
+        onPress: () => setShowSidebar(!showSidebar),
       }}
-      addTimeline={{
-        onSubmit: handleSubmit(handleAddTimeline),
-      }}
-      hasValue={hasValue}
-      addTimelineInput={{
-        name: "name",
-        ref: register,
-      }}
-      timelinesContainer={{
-        children: timelines.map((timeline) => (
-          <TimelineItem name={timeline.name} />
-        )),
+      sidebar={{
+        timelines: timelines,
+        setShowSidebar: setShowSidebar,
+        setTimelines: setTimelines,
+        showSidebar: showSidebar,
       }}
       actionBar={{
         errorMessage: editorShape.error,
