@@ -90,18 +90,9 @@ function PlasmicUpdate__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames({
-        [defaultcss.all]: true,
-        [projectcss.root_reset]: true,
-        [sty.root]: true,
-        [sty.root__global_screen_mobile]: true,
+      className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
-        [sty.root__state_text_global_screen_mobile]: hasVariant(
-          variants,
-          "state",
-          "text"
-        ),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -123,27 +114,18 @@ function PlasmicUpdate__RenderFunc(props: {
           data-plasmic-name={"updateActionContainer"}
           data-plasmic-override={overrides.updateActionContainer}
           hasGap={true}
-          className={classNames({
-            [defaultcss.all]: true,
-            [sty.updateActionContainer]: true,
-            [sty.updateActionContainer____hover]: triggers.hover_root,
-            [sty.updateActionContainer__global_screen_mobile]: true,
+          className={classNames(sty.updateActionContainer, defaultcss.all, {
             [sty.updateActionContainer__state_graph]: hasVariant(
               variants,
               "state",
               "graph"
             ),
 
-            [sty.updateActionContainer__state_graph___hover]:
-              hasVariant(variants, "state", "graph") && triggers.hover_root,
             [sty.updateActionContainer__state_text]: hasVariant(
               variants,
               "state",
               "text"
             ),
-
-            [sty.updateActionContainer__state_text___hover]:
-              hasVariant(variants, "state", "text") && triggers.hover_root,
           })}
         >
           {(
@@ -154,11 +136,7 @@ function PlasmicUpdate__RenderFunc(props: {
               : true
           ) ? (
             <IconButton
-              className={classNames({
-                __wab_instance: true,
-                [sty.iconButton__i1WjS]: true,
-                [sty.iconButton__state_graph___hover__i1WjSvlb85VwvBe]:
-                  hasVariant(variants, "state", "graph") && triggers.hover_root,
+              className={classNames(sty.iconButton__i1WjS, "__wab_instance", {
                 [sty.iconButton__state_graph__i1WjSvlb85]: hasVariant(
                   variants,
                   "state",
@@ -180,9 +158,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       ? IconWriteIcon
                       : IconWriteIcon
                   }
-                  className={classNames({
-                    [defaultcss.all]: true,
-                    [sty.startIcon]: true,
+                  className={classNames(sty.startIcon, defaultcss.all, {
                     [sty.startIcon__state_graph]: hasVariant(
                       variants,
                       "state",
@@ -211,10 +187,7 @@ function PlasmicUpdate__RenderFunc(props: {
               : true
           ) ? (
             <IconButton
-              className={classNames({
-                __wab_instance: true,
-                [sty.iconButton__state_graph___hover__zHnWqVlb85VwvBe]:
-                  hasVariant(variants, "state", "graph") && triggers.hover_root,
+              className={classNames(sty.iconButton__zHnWq, "__wab_instance", {
                 [sty.iconButton__state_graph__zHnWqVlb85]: hasVariant(
                   variants,
                   "state",
@@ -226,8 +199,6 @@ function PlasmicUpdate__RenderFunc(props: {
                   "state",
                   "text"
                 ),
-
-                [sty.iconButton__zHnWq]: true,
               })}
               startIcon={
                 <PlasmicIcon
@@ -238,9 +209,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       ? IconClockIcon
                       : IconClockIcon
                   }
-                  className={classNames({
-                    [defaultcss.all]: true,
-                    [sty.startIcon2]: true,
+                  className={classNames(sty.startIcon2, defaultcss.all, {
                     [sty.startIcon2__state_graph]: hasVariant(
                       variants,
                       "state",
@@ -271,17 +240,13 @@ function PlasmicUpdate__RenderFunc(props: {
             <IconButton
               data-plasmic-name={"toggleUpdateView"}
               data-plasmic-override={overrides.toggleUpdateView}
-              className={classNames({
-                __wab_instance: true,
-                [sty.toggleUpdateView]: true,
+              className={classNames(sty.toggleUpdateView, "__wab_instance", {
                 [sty.toggleUpdateView__state_graph]: hasVariant(
                   variants,
                   "state",
                   "graph"
                 ),
 
-                [sty.toggleUpdateView__state_graph___hover]:
-                  hasVariant(variants, "state", "graph") && triggers.hover_root,
                 [sty.toggleUpdateView__state_text]: hasVariant(
                   variants,
                   "state",
@@ -300,18 +265,13 @@ function PlasmicUpdate__RenderFunc(props: {
                       ? IconBarChartIcon
                       : IconBarChartIcon
                   }
-                  className={classNames({
-                    [defaultcss.all]: true,
-                    [sty.startIcon22]: true,
+                  className={classNames(sty.startIcon22, defaultcss.all, {
                     [sty.startIcon22__state_graph]: hasVariant(
                       variants,
                       "state",
                       "graph"
                     ),
 
-                    [sty.startIcon22__state_graph___hover]:
-                      hasVariant(variants, "state", "graph") &&
-                      triggers.hover_root,
                     [sty.startIcon22__state_text]: hasVariant(
                       variants,
                       "state",
@@ -332,10 +292,7 @@ function PlasmicUpdate__RenderFunc(props: {
       <UpdateContent
         data-plasmic-name={"updateContent"}
         data-plasmic-override={overrides.updateContent}
-        className={classNames({
-          __wab_instance: true,
-          [sty.updateContent]: true,
-          [sty.updateContent__global_screen_mobile]: true,
+        className={classNames(sty.updateContent, "__wab_instance", {
           [sty.updateContent__state_graph]: hasVariant(
             variants,
             "state",

@@ -19,7 +19,7 @@
   margin-top: 5px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .root__global_screen_mobile {
+  .root {
     padding-left: 74px;
   }
 }
@@ -49,7 +49,7 @@
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .editorContainer__global_screen_mobile {
+  .editorContainer {
     width: 220px;
     flex-shrink: 0;
   }
@@ -66,7 +66,7 @@
   border-width: 0px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .textContainer__global_screen_mobile {
+  .textContainer {
     white-space: normal;
   }
 }
@@ -103,7 +103,7 @@
   min-width: 0;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .errorContainer__text_hasText_error_hasError_global_screen_mobile {
+  .errorContainer__text_hasText_error_hasError {
     width: 195px;
     flex-shrink: 0;
   }
@@ -114,7 +114,7 @@
   color: rgb(234, 54, 102) /* plasmic-token: NYSf9tLZvxevghS */;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .slotErrorMessage__text_hasText_error_hasError_global_screen_mobile {
+  .slotErrorMessage__text_hasText_error_hasError {
     text-align: center;
   }
 }

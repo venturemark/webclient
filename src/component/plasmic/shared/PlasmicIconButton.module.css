@@ -51,7 +51,7 @@
 .slotContent {
   text-align: center;
 }
-.slotContent__isDisabled_isDisabled {
+.slotContent__isDisabled {
   color: rgba(38, 26, 63, 0.5) /* plasmic-token: lwU_HL5JBOkJ3g0 */;
 }
 .endIcon {

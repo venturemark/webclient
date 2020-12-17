@@ -83,11 +83,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames({
-        [defaultcss.all]: true,
-        [projectcss.root_reset]: true,
-        [sty.root]: true,
-        [sty.root__global_screen_mobile]: true,
+      className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
       })}
@@ -96,10 +92,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
       <div
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
-        className={classNames({
-          [defaultcss.all]: true,
-          [sty.editorContainer]: true,
-          [sty.editorContainer__global_screen_mobile]: true,
+        className={classNames(sty.editorContainer, defaultcss.all, {
           [sty.editorContainer__state_graph]: hasVariant(
             variants,
             "state",
@@ -123,13 +116,9 @@ function PlasmicUpdateContent__RenderFunc(props: {
           <Metric
             data-plasmic-name={"metric"}
             data-plasmic-override={overrides.metric}
-            className={classNames({
-              __wab_instance: true,
-              [sty.metric]: true,
+            className={classNames(sty.metric, "__wab_instance", {
               [sty.metric__state_graph]: hasVariant(variants, "state", "graph"),
               [sty.metric__state_text]: hasVariant(variants, "state", "text"),
-              [sty.metric__state_text___hover]:
-                hasVariant(variants, "state", "text") && triggers.hover_root,
             })}
             name={"Revenue"}
           />
@@ -138,11 +127,11 @@ function PlasmicUpdateContent__RenderFunc(props: {
           <div
             data-plasmic-name={"textContainer"}
             data-plasmic-override={overrides.textContainer}
-            className={
-              classNames({
-                [defaultcss.all]: true,
-                [sty.textContainer]: true,
-                [sty.textContainer__global_screen_mobile]: true,
+            className={classNames(
+              sty.textContainer,
+              defaultcss.all,
+              defaultcss.__wab_text,
+              {
                 [sty.textContainer__state_graph]: hasVariant(
                   variants,
                   "state",
@@ -154,10 +143,8 @@ function PlasmicUpdateContent__RenderFunc(props: {
                   "state",
                   "text"
                 ),
-              }) +
-              " " +
-              defaultcss.__wab_text
-            }
+              }
+            )}
           >
             {hasVariant(variants, "state", "text")
               ? "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius sapien lobortis eu."

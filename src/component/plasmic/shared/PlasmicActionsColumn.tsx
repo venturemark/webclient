@@ -92,33 +92,33 @@ function PlasmicActionsColumn__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames({
-        [defaultcss.all]: true,
-        [projectcss.root_reset]: true,
-        [sty.updateActionContainer]: true,
-        [sty.updateActionContainer__content_hasContent]: hasVariant(
-          variants,
-          "content",
-          "hasContent"
-        ),
+      className={classNames(
+        sty.updateActionContainer,
+        projectcss.root_reset,
+        defaultcss.all,
+        {
+          [sty.updateActionContainer__content_hasContent]: hasVariant(
+            variants,
+            "content",
+            "hasContent"
+          ),
 
-        [sty.updateActionContainer__content_hasContent_number_hasNumber]:
-          hasVariant(variants, "content", "hasContent") &&
-          hasVariant(variants, "number", "hasNumber"),
-        [sty.updateActionContainer__number_hasNumber]: hasVariant(
-          variants,
-          "number",
-          "hasNumber"
-        ),
-      })}
+          [sty.updateActionContainer__content_hasContent_number_hasNumber]:
+            hasVariant(variants, "content", "hasContent") &&
+            hasVariant(variants, "number", "hasNumber"),
+          [sty.updateActionContainer__number_hasNumber]: hasVariant(
+            variants,
+            "number",
+            "hasNumber"
+          ),
+        }
+      )}
     >
       {(hasVariant(variants, "content", "hasContent") ? true : false) ? (
         <IconButton
           data-plasmic-name={"sendButton"}
           data-plasmic-override={overrides.sendButton}
-          className={classNames({
-            __wab_instance: true,
-            [sty.sendButton]: true,
+          className={classNames(sty.sendButton, "__wab_instance", {
             [sty.sendButton__content_hasContent]: hasVariant(
               variants,
               "content",
@@ -133,10 +133,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
             <IconSendIcon
               data-plasmic-name={"startIcon"}
               data-plasmic-override={overrides.startIcon}
-              className={classNames({
-                [defaultcss.all]: true,
-                [sty.startIcon]: true,
-              })}
+              className={classNames(sty.startIcon, defaultcss.all)}
               role={"img"}
             />
           }
@@ -147,9 +144,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
         <div
           data-plasmic-name={"box"}
           data-plasmic-override={overrides.box}
-          className={classNames({
-            [defaultcss.all]: true,
-            [sty.box]: true,
+          className={classNames(sty.box, defaultcss.all, {
             [sty.box__content_hasContent]: hasVariant(
               variants,
               "content",
@@ -170,8 +165,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
           <PlasmicSlot
             defaultContents={"4567"}
             value={args.numberValue}
-            className={classNames({
-              [sty.slotNumberValue]: true,
+            className={classNames(sty.slotNumberValue, {
               [sty.slotNumberValue__content_hasContent_number_hasNumber]:
                 hasVariant(variants, "content", "hasContent") &&
                 hasVariant(variants, "number", "hasNumber"),

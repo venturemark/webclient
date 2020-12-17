@@ -11,7 +11,7 @@
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .root__global_screen_mobile {
+  .root {
     width: auto;
     height: auto;
     display: inline-flex;
@@ -57,7 +57,7 @@
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .editorContainer__global_screen_mobile {
+  .editorContainer {
     width: 220px;
     height: 192px;
     flex-shrink: 0;

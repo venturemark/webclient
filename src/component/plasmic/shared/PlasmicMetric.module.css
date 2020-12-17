@@ -48,7 +48,7 @@
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .graphContainer__global_screen_mobile {
+  .graphContainer {
     width: 220px;
     flex-shrink: 0;
   }

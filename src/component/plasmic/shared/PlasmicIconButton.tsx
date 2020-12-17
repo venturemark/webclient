@@ -110,18 +110,15 @@ function PlasmicIconButton__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames({
-        [defaultcss.all]: true,
-        [projectcss.root_reset]: true,
-        [sty.root]: true,
+      className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
         [sty.root____focusVisibleWithin]: triggers.focusVisibleWithin_root,
-        [sty.root__isDisabled_isDisabled]: hasVariant(
+        [sty.root__isDisabled]: hasVariant(
           variants,
           "isDisabled",
           "isDisabled"
         ),
 
-        [sty.root__showContent_showContent]: hasVariant(
+        [sty.root__showContent]: hasVariant(
           variants,
           "showContent",
           "showContent"
@@ -138,10 +135,7 @@ function PlasmicIconButton__RenderFunc(props: {
             <svg
               data-plasmic-name={"startIcon"}
               data-plasmic-override={overrides.startIcon}
-              className={classNames({
-                [defaultcss.all]: true,
-                [sty.startIcon]: true,
-              })}
+              className={classNames(sty.startIcon, defaultcss.all)}
               role={"img"}
             />
           }
@@ -158,16 +152,14 @@ function PlasmicIconButton__RenderFunc(props: {
         <div
           data-plasmic-name={"box"}
           data-plasmic-override={overrides.box}
-          className={classNames({
-            [defaultcss.all]: true,
-            [sty.box]: true,
-            [sty.box__isDisabled_isDisabled]: hasVariant(
+          className={classNames(sty.box, defaultcss.all, {
+            [sty.box__isDisabled]: hasVariant(
               variants,
               "isDisabled",
               "isDisabled"
             ),
 
-            [sty.box__showContent_showContent]: hasVariant(
+            [sty.box__showContent]: hasVariant(
               variants,
               "showContent",
               "showContent"
@@ -183,9 +175,8 @@ function PlasmicIconButton__RenderFunc(props: {
           <PlasmicSlot
             defaultContents={""}
             value={args.content}
-            className={classNames({
-              [sty.slotContent]: true,
-              [sty.slotContent__isDisabled_isDisabled]: hasVariant(
+            className={classNames(sty.slotContent, {
+              [sty.slotContent__isDisabled]: hasVariant(
                 variants,
                 "isDisabled",
                 "isDisabled"
@@ -201,10 +192,7 @@ function PlasmicIconButton__RenderFunc(props: {
               <svg
                 data-plasmic-name={"endIcon"}
                 data-plasmic-override={overrides.endIcon}
-                className={classNames({
-                  [defaultcss.all]: true,
-                  [sty.endIcon]: true,
-                })}
+                className={classNames(sty.endIcon, defaultcss.all)}
                 role={"img"}
               />
             ) : null

@@ -98,14 +98,26 @@
         },
         {
           "id": "KDElHbQmfd",
-          "name": "TimelineItem",
+          "name": "SidebarItem",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicTimelineItem.tsx",
+          "renderModuleFilePath": "plasmic/shared/PlasmicSidebarItem.tsx",
           "importSpec": {
-            "modulePath": "timelineitem/index.tsx"
+            "modulePath": "sidebaritem/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicTimelineItem.module.css",
+          "cssFilePath": "plasmic/shared/PlasmicSidebarItem.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "FZWTu4L61t",
+          "name": "Sidebar",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicSidebar.tsx",
+          "importSpec": {
+            "modulePath": "sidebar/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicSidebar.module.css",
           "scheme": "blackbox"
         }
       ],
