@@ -22,7 +22,7 @@ function matchScreenVariant() {
 }
 
 export function ScreenVariantProvider(props: { children?: React.ReactNode }) {
-  const [value, setValue] = React.useState(matchScreenVariant());
+  const [value, setValue] = React.useState<ScreenValue>();
   React.useEffect(() => {
     const handler = () => {
       const newValue = matchScreenVariant();
@@ -30,6 +30,7 @@ export function ScreenVariantProvider(props: { children?: React.ReactNode }) {
         setValue(newValue);
       }
     };
+    handler();
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, [value]);
