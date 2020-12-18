@@ -7,25 +7,21 @@ import {
   DefaultSidebarItemProps,
 } from "component/plasmic/shared/PlasmicSidebarItem";
 
-export interface TimelineType {
-  name: string;
-  id: string;
-  date: string;
-}
-
 interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
   hasIcon?: boolean;
   onClick?: (e: React.MouseEvent) => void;
   startIcon?: boolean;
   onPress?: (e: PressEvent) => void;
+  isCurrent: boolean;
 }
 
 function SidebarItem(props: SidebarItemProps) {
-  const { name, hasIcon, onClick, startIcon, onPress } = props;
+  const { name, hasIcon, onClick, startIcon, onPress, isCurrent } = props;
   return (
     <PlasmicSidebarItem
       name={name}
+      isCurrent={isCurrent}
       hasIcon={hasIcon}
       onClick={onClick}
       startIcon={startIcon}

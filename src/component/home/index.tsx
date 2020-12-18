@@ -18,32 +18,18 @@ import { get } from "module/store";
 import * as linechart from "component/linechart";
 import { useEditor } from "component/editor/compose";
 import { UpdateType } from "component/update";
-import { TimelineType } from "component/sidebaritem";
 
 interface HomeProps extends DefaultHomeProps {}
 
-const defaultTimelines: TimelineType[] = [
-  {
-    name: "Active Users",
-    id: "now",
-    date: "now",
-  },
-  {
-    name: "Features Shipped",
-    id: "now",
-    date: "now",
-  },
-  {
-    name: "Milestones",
-    id: "now",
-    date: "now",
-  },
-  {
-    name: "Revenue",
-    id: "now",
-    date: "now",
-  },
-];
+export interface TimelineType {
+  name: string;
+  dataKey: string;
+  id: string;
+  date: string;
+  isCurrent: boolean;
+  updates: UpdateType[];
+  data: linechart.DataItem[];
+}
 
 const defaultText: Node[] = [
   {
@@ -100,13 +86,60 @@ const defaultData = [
   },
 ];
 
-const dataKey = "cac";
-const name = "Customer Acquisition Cost";
+const defaultTimelines: TimelineType[] = [
+  {
+    name: "Active Users",
+    dataKey: "cac",
+    id: "now",
+    date: "now",
+    updates: defaultUpdates,
+    data: defaultData,
+    isCurrent: false,
+  },
+  {
+    name: "Features Shipped",
+    dataKey: "cac",
+    id: "now",
+    date: "now",
+    updates: defaultUpdates,
+    data: defaultData,
+    isCurrent: true,
+  },
+  {
+    name: "Milestones",
+    dataKey: "cac",
+    id: "now",
+    date: "now",
+    updates: defaultUpdates,
+    data: defaultData,
+    isCurrent: false,
+  },
+  {
+    name: "Revenue",
+    dataKey: "cac",
+    id: "now",
+    date: "now",
+    updates: defaultUpdates,
+    data: defaultData,
+    isCurrent: false,
+  },
+];
+
+// const dataKey = "cac";
+// const name = "Customer Acquisition Cost";
+
+const defaultTimeline: TimelineType =
+  defaultTimelines.filter((timeline) => timeline.isCurrent === true)[0] ??
+  defaultUpdates;
 
 export function Component(props: HomeProps) {
-  const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
-  const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
   const [timelines, setTimelines] = useState<TimelineType[]>(defaultTimelines);
+  const [currentTimeline, setCurrentTimeline] = useState<TimelineType>(
+    defaultTimeline
+  );
+
+  const [updates, setUpdates] = useState<UpdateType[]>(currentTimeline.updates);
+  // const [metrics, setMetrics] = useState<linechart.DataItem[]>(currentTimeline.data);
   const [hideSidebar, setHideSidebar] = useState(true);
 
   const store = get("composeEditor.content") ?? "";
@@ -150,20 +183,32 @@ export function Component(props: HomeProps) {
     }
 
     const id = new Date();
-
     const update = {
       text: editorShape.value,
       numberValue: editorShape.numberValue,
       id: id.toString(),
       flipped: false,
     };
-    setUpdates([update, ...updates]);
+    // setUpdates([update, ...updates]);
 
     const metric = {
       date: format(new Date(), "PP"),
       cac: editorShape.numberValue,
     };
-    setMetrics([...metrics, metric]);
+    // setMetrics([...metrics, metric]);
+
+    const timelinesUpdate = timelines.map((timeline) => {
+      let updatedUpdates = currentTimeline.updates;
+      let data = currentTimeline.data;
+      if (timeline.isCurrent) {
+        // const updatedUpdates = [update, ...currentTimeline.updates];
+        updatedUpdates = currentTimeline?.updates?.concat(update);
+        // const data = [...currentTimeline.metrics, metric];
+        data = currentTimeline?.data?.concat(metric);
+      }
+      return { ...timeline, updates: updatedUpdates, data: data };
+    });
+    setTimelines(timelinesUpdate as TimelineType[]);
 
     //reset store
     localStorage.setItem(
@@ -181,6 +226,8 @@ export function Component(props: HomeProps) {
     };
     setEditorShape(resetEditor);
   };
+
+  console.log("currentTimeline.updates", currentTimeline.updates);
 
   return (
     <PlasmicHome
@@ -200,6 +247,8 @@ export function Component(props: HomeProps) {
         setHideSidebar: setHideSidebar,
         setTimelines: setTimelines,
         hideSidebar: hideSidebar,
+        currentTimeline: currentTimeline,
+        setCurrentTimeline: setCurrentTimeline,
       }}
       actionBar={{
         errorMessage: editorShape.error,
@@ -208,16 +257,16 @@ export function Component(props: HomeProps) {
         setEditorShape: setEditorShape,
       }}
       updatesContainer={{
-        children: updates.map((update) => (
+        children: currentTimeline?.updates?.map((update) => (
           <Update
             text={update.text}
             key={update.id}
             id={update.id}
-            dataKey={dataKey}
-            data={metrics}
-            name={name}
+            dataKey={currentTimeline.dataKey}
+            data={currentTimeline.data}
+            name={currentTimeline.name}
             flipped={update.flipped}
-            updates={updates}
+            updates={currentTimeline.updates}
             setUpdates={setUpdates}
           />
         )),
