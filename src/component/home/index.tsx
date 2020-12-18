@@ -24,11 +24,6 @@ interface HomeProps extends DefaultHomeProps {}
 
 const defaultTimelines: TimelineType[] = [
   {
-    name: "Revenue",
-    id: "now",
-    date: "now",
-  },
-  {
     name: "Active Users",
     id: "now",
     date: "now",
@@ -40,6 +35,11 @@ const defaultTimelines: TimelineType[] = [
   },
   {
     name: "Milestones",
+    id: "now",
+    date: "now",
+  },
+  {
+    name: "Revenue",
     id: "now",
     date: "now",
   },
@@ -107,7 +107,7 @@ export function Component(props: HomeProps) {
   const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
   const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
   const [timelines, setTimelines] = useState<TimelineType[]>(defaultTimelines);
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [hideSidebar, setHideSidebar] = useState(true);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -184,22 +184,22 @@ export function Component(props: HomeProps) {
 
   return (
     <PlasmicHome
-      sidebarHidden={showSidebar}
+      sidebarHidden={hideSidebar}
       homeButton={{
         "aria-label": "Toggle sidebar",
         onPress: () => {
-          setShowSidebar(!showSidebar);
+          setHideSidebar(!hideSidebar);
         },
       }}
       addButton={{
         "aria-label": "Toggle sidebar",
-        onPress: () => setShowSidebar(!showSidebar),
+        onPress: () => setHideSidebar(!hideSidebar),
       }}
       sidebar={{
         timelines: timelines,
-        setShowSidebar: setShowSidebar,
+        setHideSidebar: setHideSidebar,
         setTimelines: setTimelines,
-        showSidebar: showSidebar,
+        hideSidebar: hideSidebar,
       }}
       actionBar={{
         errorMessage: editorShape.error,
