@@ -46,9 +46,36 @@ const defaultText: Node[] = [
   },
 ];
 
-const defaultUpdates: UpdateType[] = [
+const defaultUpdatesActive: UpdateType[] = [
   {
     id: "now",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
+
+const defaultUpdatesFeature: UpdateType[] = [
+  {
+    id: "now1",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
+
+const defaultUpdatesMilestone: UpdateType[] = [
+  {
+    id: "now2",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
+
+const defaultUpdatesRevenue: UpdateType[] = [
+  {
+    id: "now3",
     numberValue: 23,
     isFlipped: false,
     text: defaultText,
@@ -185,7 +212,7 @@ const defaultTimelines: TimelineType[] = [
     dataKey: "Active Users",
     id: "now",
     date: "now",
-    updates: defaultUpdates,
+    updates: defaultUpdatesActive,
     data: defaultActiveData,
     isCurrent: true,
   },
@@ -194,7 +221,7 @@ const defaultTimelines: TimelineType[] = [
     dataKey: "Features Shipped",
     id: "now",
     date: "now",
-    updates: defaultUpdates,
+    updates: defaultUpdatesFeature,
     data: defaultFeaturesData,
     isCurrent: false,
   },
@@ -203,7 +230,7 @@ const defaultTimelines: TimelineType[] = [
     dataKey: "Milestones",
     id: "now",
     date: "now",
-    updates: defaultUpdates,
+    updates: defaultUpdatesMilestone,
     data: defaultMilestonesData,
     isCurrent: false,
   },
@@ -212,7 +239,7 @@ const defaultTimelines: TimelineType[] = [
     dataKey: "Revenue",
     id: "now",
     date: "now",
-    updates: defaultUpdates,
+    updates: defaultUpdatesRevenue,
     data: defaultRevenueData,
     isCurrent: false,
   },
