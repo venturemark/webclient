@@ -50,7 +50,7 @@ const defaultUpdates: UpdateType[] = [
   {
     id: "now",
     numberValue: 23,
-    flipped: false,
+    isFlipped: false,
     text: defaultText,
   },
 ];
@@ -94,7 +94,7 @@ const defaultTimelines: TimelineType[] = [
     date: "now",
     updates: defaultUpdates,
     data: defaultData,
-    isCurrent: false,
+    isCurrent: true,
   },
   {
     name: "Features Shipped",
@@ -103,7 +103,7 @@ const defaultTimelines: TimelineType[] = [
     date: "now",
     updates: defaultUpdates,
     data: defaultData,
-    isCurrent: true,
+    isCurrent: false,
   },
   {
     name: "Milestones",
@@ -125,21 +125,12 @@ const defaultTimelines: TimelineType[] = [
   },
 ];
 
-// const dataKey = "cac";
-// const name = "Customer Acquisition Cost";
-
-const defaultTimeline: TimelineType =
-  defaultTimelines.filter((timeline) => timeline.isCurrent === true)[0] ??
-  defaultUpdates;
-
 export function Component(props: HomeProps) {
   const [timelines, setTimelines] = useState<TimelineType[]>(defaultTimelines);
-  const [currentTimeline, setCurrentTimeline] = useState<TimelineType>(
-    defaultTimeline
-  );
+  const currentTimeline =
+    timelines.filter((timeline) => timeline.isCurrent === true)[0] ??
+    defaultTimelines[0];
 
-  const [updates, setUpdates] = useState<UpdateType[]>(currentTimeline.updates);
-  // const [metrics, setMetrics] = useState<linechart.DataItem[]>(currentTimeline.data);
   const [hideSidebar, setHideSidebar] = useState(true);
 
   const store = get("composeEditor.content") ?? "";
@@ -183,30 +174,29 @@ export function Component(props: HomeProps) {
     }
 
     const id = new Date();
-    const update = {
+    const update: UpdateType = {
       text: editorShape.value,
       numberValue: editorShape.numberValue,
       id: id.toString(),
-      flipped: false,
+      isFlipped: false,
     };
-    // setUpdates([update, ...updates]);
 
-    const metric = {
+    const metric: linechart.DataItem = {
       date: format(new Date(), "PP"),
       cac: editorShape.numberValue,
     };
-    // setMetrics([...metrics, metric]);
 
     const timelinesUpdate = timelines.map((timeline) => {
       let updatedUpdates = currentTimeline.updates;
       let data = currentTimeline.data;
       if (timeline.isCurrent) {
-        // const updatedUpdates = [update, ...currentTimeline.updates];
-        updatedUpdates = currentTimeline?.updates?.concat(update);
-        // const data = [...currentTimeline.metrics, metric];
+        updatedUpdates = [update].concat(currentTimeline?.updates);
         data = currentTimeline?.data?.concat(metric);
+
+        return { ...timeline, updates: updatedUpdates, data: data };
+      } else {
+        return timeline;
       }
-      return { ...timeline, updates: updatedUpdates, data: data };
     });
     setTimelines(timelinesUpdate as TimelineType[]);
 
@@ -227,8 +217,6 @@ export function Component(props: HomeProps) {
     setEditorShape(resetEditor);
   };
 
-  console.log("currentTimeline.updates", currentTimeline.updates);
-
   return (
     <PlasmicHome
       sidebarHidden={hideSidebar}
@@ -247,8 +235,6 @@ export function Component(props: HomeProps) {
         setHideSidebar: setHideSidebar,
         setTimelines: setTimelines,
         hideSidebar: hideSidebar,
-        currentTimeline: currentTimeline,
-        setCurrentTimeline: setCurrentTimeline,
       }}
       actionBar={{
         errorMessage: editorShape.error,
@@ -257,7 +243,7 @@ export function Component(props: HomeProps) {
         setEditorShape: setEditorShape,
       }}
       updatesContainer={{
-        children: currentTimeline?.updates?.map((update) => (
+        children: currentTimeline.updates.map((update) => (
           <Update
             text={update.text}
             key={update.id}
@@ -265,9 +251,9 @@ export function Component(props: HomeProps) {
             dataKey={currentTimeline.dataKey}
             data={currentTimeline.data}
             name={currentTimeline.name}
-            flipped={update.flipped}
-            updates={currentTimeline.updates}
-            setUpdates={setUpdates}
+            isFlipped={update.isFlipped}
+            timelines={timelines}
+            setTimelines={setTimelines}
           />
         )),
       }}

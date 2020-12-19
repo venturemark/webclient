@@ -16,8 +16,6 @@ interface SidebarProps extends DefaultSidebarProps {
   timelines: TimelineType[];
   setTimelines: React.Dispatch<React.SetStateAction<TimelineType[]>>;
   hideSidebar: boolean;
-  currentTimeline: TimelineType;
-  setCurrentTimeline: React.Dispatch<React.SetStateAction<TimelineType>>;
   setHideSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -75,20 +73,13 @@ const defaultUpdates: UpdateType[] = [
   {
     id: "now",
     numberValue: 23,
-    flipped: false,
+    isFlipped: false,
     text: defaultText,
   },
 ];
 
 function Sidebar(props: SidebarProps) {
-  const {
-    timelines,
-    setHideSidebar,
-    setTimelines,
-    hideSidebar,
-    currentTimeline,
-    setCurrentTimeline,
-  } = props;
+  const { timelines, setHideSidebar, setTimelines, hideSidebar } = props;
   const { register, handleSubmit, reset, watch } = useForm<FormInputs>();
   const nameRef = useRef<HTMLInputElement | null>(null);
   const hasValue = watch("name") ? true : false;
@@ -140,17 +131,14 @@ function Sidebar(props: SidebarProps) {
             isCurrent={timeline.isCurrent}
             onClick={() => {
               const name = timeline.name;
-              let isCurrent = false;
+
               const currentTimelines = timelines.map((timeline) => {
-                if (name === timeline.name) {
-                  isCurrent = true;
-                } else {
-                  isCurrent = false;
-                }
+                const isCurrent =
+                  name === timeline.name ? !timeline.isCurrent : false;
+
                 return { ...timeline, isCurrent: isCurrent };
               });
               setTimelines(currentTimelines);
-              setCurrentTimeline(timeline);
             }}
           />
         )),
