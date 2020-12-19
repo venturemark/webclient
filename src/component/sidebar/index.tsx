@@ -7,7 +7,11 @@ import {
   PlasmicSidebar,
   DefaultSidebarProps,
 } from "component/plasmic/shared/PlasmicSidebar";
-import SidebarItem, { TimelineType } from "component/sidebaritem";
+import SidebarItem from "component/sidebaritem";
+import { options } from "component/editor/config/initialValues";
+import { Node } from "slate";
+import { TimelineType } from "component/home";
+import { UpdateType } from "component/update";
 interface SidebarProps extends DefaultSidebarProps {
   timelines: TimelineType[];
   setTimelines: React.Dispatch<React.SetStateAction<TimelineType[]>>;
@@ -18,6 +22,61 @@ interface SidebarProps extends DefaultSidebarProps {
 type FormInputs = {
   name: string;
 };
+
+const defaultText: Node[] = [
+  {
+    children: [
+      {
+        type: options.p.type,
+        children: [
+          {
+            text: "Be Better Tomorrow",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const defaultData = [
+  {
+    date: "January 1, 2019",
+    cac: 50,
+  },
+  {
+    date: "February 2, 2019",
+    cac: 55,
+  },
+  {
+    date: "March 3, 2019",
+    cac: 40,
+  },
+  {
+    date: "April 1, 2019",
+    cac: 35,
+  },
+  {
+    date: "May 10, 2019",
+    cac: 39,
+  },
+  {
+    date: "June 1, 2019",
+    cac: 40,
+  },
+  {
+    date: "July 1, 2019",
+    cac: 50,
+  },
+];
+
+const defaultUpdates: UpdateType[] = [
+  {
+    id: "now",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
 
 function Sidebar(props: SidebarProps) {
   const { timelines, setHideSidebar, setTimelines, hideSidebar } = props;
@@ -30,10 +89,24 @@ function Sidebar(props: SidebarProps) {
       return;
     }
 
+    const name = data.name;
+    const date = format(new Date(), "PP");
+
+    const defaultData = [
+      {
+        date: date,
+        [data.name]: 0,
+      },
+    ];
+
     const timeline = {
-      name: data.name,
-      date: format(new Date(), "PP"),
-      id: format(new Date(), "PP"),
+      name: name,
+      date: date,
+      id: date,
+      dataKey: name,
+      updates: defaultUpdates,
+      data: defaultData,
+      isCurrent: false,
     };
     const sortedTimelines = [timeline, ...timelines].sort((a, b) =>
       a.name.localeCompare(b.name)
@@ -65,7 +138,18 @@ function Sidebar(props: SidebarProps) {
         children: timelines.map((timeline) => (
           <SidebarItem
             name={timeline.name}
-            onClick={() => alert("timeline pressed!")}
+            isCurrent={timeline.isCurrent}
+            onClick={() => {
+              const name = timeline.name;
+
+              const currentTimelines = timelines.map((timeline) => {
+                const isCurrent =
+                  name === timeline.name ? !timeline.isCurrent : false;
+
+                return { ...timeline, isCurrent: isCurrent };
+              });
+              setTimelines(currentTimelines);
+            }}
           />
         )),
       }}

@@ -7,12 +7,13 @@ import {
 } from "component/plasmic/shared/PlasmicUpdate";
 import { Node } from "slate";
 import * as linechart from "component/linechart";
+import { TimelineType } from "component/home";
 
 export interface UpdateType {
   id: string;
   text: Node[];
   numberValue: number;
-  flipped: boolean;
+  isFlipped: boolean;
 }
 
 interface UpdateProps extends DefaultUpdateProps {
@@ -20,29 +21,46 @@ interface UpdateProps extends DefaultUpdateProps {
   dataKey: string;
   data: linechart.DataItem[];
   name: string;
-  flipped: boolean;
-  updates: UpdateType[];
-  setUpdates: React.Dispatch<React.SetStateAction<UpdateType[]>>;
+  isFlipped: boolean;
+  timelines: TimelineType[];
+  setTimelines: React.Dispatch<React.SetStateAction<TimelineType[]>>;
   id: string;
 }
 
 function Update(props: UpdateProps) {
-  const { text, dataKey, data, name, flipped, updates, setUpdates, id } = props;
+  const {
+    text,
+    dataKey,
+    data,
+    name,
+    isFlipped,
+    timelines,
+    setTimelines,
+    id,
+  } = props;
 
   return (
     <PlasmicUpdate
       toggleUpdateView={{
         "aria-label": "Toggle View",
         onPress: () => {
-          const unflippedUpdates = updates.map((update) => {
-            const flipped = id === update.id ? !update.flipped : false;
-            return { ...update, flipped };
+          const flippedTimelines = timelines.map((timeline) => {
+            if (timeline.isCurrent) {
+              const flippedUpdates = timeline.updates.map((update) => {
+                const isFlipped = id === update.id ? !update.isFlipped : false;
+                return { ...update, isFlipped };
+              });
+
+              return { ...timeline, updates: flippedUpdates };
+            } else {
+              return timeline;
+            }
           });
-          setUpdates(unflippedUpdates);
+          setTimelines(flippedTimelines);
         },
       }}
       updateContent={{
-        isFlipped: flipped,
+        isFlipped: isFlipped,
         text: text,
         name: name,
         dataKey: dataKey,

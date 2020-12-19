@@ -14,11 +14,11 @@ interface MetricProps extends DefaultMetricProps {
 }
 
 function Metric(props: MetricProps) {
-  const { data, dataKey } = props;
+  const { data, dataKey, name } = props;
 
   return (
     <PlasmicMetric
-      name={"Customer Acquisition Cost"}
+      name={name}
       graphContainer={{
         render: () => <linechart.Component dataKey={dataKey} data={data} />,
       }}

@@ -18,32 +18,18 @@ import { get } from "module/store";
 import * as linechart from "component/linechart";
 import { useEditor } from "component/editor/compose";
 import { UpdateType } from "component/update";
-import { TimelineType } from "component/sidebaritem";
 
 interface HomeProps extends DefaultHomeProps {}
 
-const defaultTimelines: TimelineType[] = [
-  {
-    name: "Active Users",
-    id: "now",
-    date: "now",
-  },
-  {
-    name: "Features Shipped",
-    id: "now",
-    date: "now",
-  },
-  {
-    name: "Milestones",
-    id: "now",
-    date: "now",
-  },
-  {
-    name: "Revenue",
-    id: "now",
-    date: "now",
-  },
-];
+export interface TimelineType {
+  name: string;
+  dataKey: string;
+  id: string;
+  date: string;
+  isCurrent: boolean;
+  updates: UpdateType[];
+  data: linechart.DataItem[];
+}
 
 const defaultText: Node[] = [
   {
@@ -60,53 +46,211 @@ const defaultText: Node[] = [
   },
 ];
 
-const defaultUpdates: UpdateType[] = [
+const defaultUpdatesActive: UpdateType[] = [
   {
     id: "now",
     numberValue: 23,
-    flipped: false,
+    isFlipped: false,
     text: defaultText,
   },
 ];
 
-const defaultData = [
+const defaultUpdatesFeature: UpdateType[] = [
   {
-    date: "January 1, 2019",
-    cac: 50,
-  },
-  {
-    date: "February 2, 2019",
-    cac: 55,
-  },
-  {
-    date: "March 3, 2019",
-    cac: 40,
-  },
-  {
-    date: "April 1, 2019",
-    cac: 35,
-  },
-  {
-    date: "May 10, 2019",
-    cac: 39,
-  },
-  {
-    date: "June 1, 2019",
-    cac: 40,
-  },
-  {
-    date: "July 1, 2019",
-    cac: 50,
+    id: "now1",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
   },
 ];
 
-const dataKey = "cac";
-const name = "Customer Acquisition Cost";
+const defaultUpdatesMilestone: UpdateType[] = [
+  {
+    id: "now2",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
+
+const defaultUpdatesRevenue: UpdateType[] = [
+  {
+    id: "now3",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
+
+const defaultActiveData = [
+  {
+    date: "January 1, 2019",
+    "Active Users": 50,
+  },
+  {
+    date: "February 2, 2019",
+    "Active Users": 55,
+  },
+  {
+    date: "March 3, 2019",
+    "Active Users": 40,
+  },
+  {
+    date: "April 1, 2019",
+    "Active Users": 35,
+  },
+  {
+    date: "May 10, 2019",
+    "Active Users": 39,
+  },
+  {
+    date: "June 1, 2019",
+    "Active Users": 40,
+  },
+  {
+    date: "July 1, 2019",
+    "Active Users": 50,
+  },
+];
+
+const defaultFeaturesData = [
+  {
+    date: "January 1, 2019",
+    "Features Shipped": 50,
+  },
+  {
+    date: "February 2, 2019",
+    "Features Shipped": 55,
+  },
+  {
+    date: "March 3, 2019",
+    "Features Shipped": 40,
+  },
+  {
+    date: "April 1, 2019",
+    "Features Shipped": 35,
+  },
+  {
+    date: "May 10, 2019",
+    "Features Shipped": 39,
+  },
+  {
+    date: "June 1, 2019",
+    "Features Shipped": 40,
+  },
+  {
+    date: "July 1, 2019",
+    "Features Shipped": 50,
+  },
+];
+
+const defaultMilestonesData = [
+  {
+    date: "January 1, 2019",
+    Milestones: 50,
+  },
+  {
+    date: "February 2, 2019",
+    Milestones: 55,
+  },
+  {
+    date: "March 3, 2019",
+    Milestones: 40,
+  },
+  {
+    date: "April 1, 2019",
+    Milestones: 35,
+  },
+  {
+    date: "May 10, 2019",
+    Milestones: 39,
+  },
+  {
+    date: "June 1, 2019",
+    Milestones: 40,
+  },
+  {
+    date: "July 1, 2019",
+    Milestones: 50,
+  },
+];
+
+const defaultRevenueData = [
+  {
+    date: "January 1, 2019",
+    Revenue: 50,
+  },
+  {
+    date: "February 2, 2019",
+    Revenue: 55,
+  },
+  {
+    date: "March 3, 2019",
+    Revenue: 40,
+  },
+  {
+    date: "April 1, 2019",
+    Revenue: 35,
+  },
+  {
+    date: "May 10, 2019",
+    Revenue: 39,
+  },
+  {
+    date: "June 1, 2019",
+    Revenue: 40,
+  },
+  {
+    date: "July 1, 2019",
+    Revenue: 50,
+  },
+];
+
+const defaultTimelines: TimelineType[] = [
+  {
+    name: "Active Users",
+    dataKey: "Active Users",
+    id: "now",
+    date: "now",
+    updates: defaultUpdatesActive,
+    data: defaultActiveData,
+    isCurrent: true,
+  },
+  {
+    name: "Features Shipped",
+    dataKey: "Features Shipped",
+    id: "now",
+    date: "now",
+    updates: defaultUpdatesFeature,
+    data: defaultFeaturesData,
+    isCurrent: false,
+  },
+  {
+    name: "Milestones",
+    dataKey: "Milestones",
+    id: "now",
+    date: "now",
+    updates: defaultUpdatesMilestone,
+    data: defaultMilestonesData,
+    isCurrent: false,
+  },
+  {
+    name: "Revenue",
+    dataKey: "Revenue",
+    id: "now",
+    date: "now",
+    updates: defaultUpdatesRevenue,
+    data: defaultRevenueData,
+    isCurrent: false,
+  },
+];
 
 export function Component(props: HomeProps) {
-  const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdates);
-  const [metrics, setMetrics] = useState<linechart.DataItem[]>(defaultData);
   const [timelines, setTimelines] = useState<TimelineType[]>(defaultTimelines);
+  const currentTimeline =
+    timelines.filter((timeline) => timeline.isCurrent === true)[0] ??
+    defaultTimelines[0];
+
   const [hideSidebar, setHideSidebar] = useState(true);
 
   const store = get("composeEditor.content") ?? "";
@@ -150,20 +294,31 @@ export function Component(props: HomeProps) {
     }
 
     const id = new Date();
-
-    const update = {
+    const update: UpdateType = {
       text: editorShape.value,
       numberValue: editorShape.numberValue,
       id: id.toString(),
-      flipped: false,
+      isFlipped: false,
     };
-    setUpdates([update, ...updates]);
 
-    const metric = {
+    const metric: linechart.DataItem = {
       date: format(new Date(), "PP"),
-      cac: editorShape.numberValue,
+      [currentTimeline.name]: editorShape.numberValue,
     };
-    setMetrics([...metrics, metric]);
+
+    const timelinesUpdate = timelines.map((timeline) => {
+      let updatedUpdates = currentTimeline.updates;
+      let data = currentTimeline.data;
+      if (timeline.isCurrent) {
+        updatedUpdates = [update].concat(currentTimeline?.updates);
+        data = currentTimeline?.data?.concat(metric);
+
+        return { ...timeline, updates: updatedUpdates, data: data };
+      } else {
+        return timeline;
+      }
+    });
+    setTimelines(timelinesUpdate as TimelineType[]);
 
     //reset store
     localStorage.setItem(
@@ -208,17 +363,17 @@ export function Component(props: HomeProps) {
         setEditorShape: setEditorShape,
       }}
       updatesContainer={{
-        children: updates.map((update) => (
+        children: currentTimeline.updates.map((update) => (
           <Update
             text={update.text}
             key={update.id}
             id={update.id}
-            dataKey={dataKey}
-            data={metrics}
-            name={name}
-            flipped={update.flipped}
-            updates={updates}
-            setUpdates={setUpdates}
+            dataKey={currentTimeline.dataKey}
+            data={currentTimeline.data}
+            name={currentTimeline.name}
+            isFlipped={update.isFlipped}
+            timelines={timelines}
+            setTimelines={setTimelines}
           />
         )),
       }}
