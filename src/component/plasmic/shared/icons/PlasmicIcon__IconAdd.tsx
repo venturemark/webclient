@@ -5,11 +5,11 @@
 import React from "react";
 import { classNames } from "@plasmicapp/react-web";
 
-export type IconLeaderBoardIconProps = React.ComponentProps<"svg"> & {
+export type IconAddIconProps = React.ComponentProps<"svg"> & {
   title?: string;
 };
 
-export function IconLeaderBoardIcon(props: IconLeaderBoardIconProps) {
+export function IconAddIcon(props: IconAddIconProps) {
   const { className, style, title, ...restProps } = props;
   return (
     <svg
@@ -29,12 +29,12 @@ export function IconLeaderBoardIcon(props: IconLeaderBoardIconProps) {
       {title && <title>{title}</title>}
 
       <path
-        d={"M7.5 21H2V9h5.5v12zm7.25-18h-5.5v18h5.5V3zM22 11h-5.5v10H22V11z"}
+        d={"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"}
         fill={"currentColor"}
       ></path>
     </svg>
   );
 }
 
-export default IconLeaderBoardIcon;
+export default IconAddIcon;
 /* prettier-ignore-end */

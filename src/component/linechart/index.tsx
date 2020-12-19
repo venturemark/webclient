@@ -1,7 +1,7 @@
 import React from "react";
 import { AreaChart, Area, Tooltip, XAxis } from "recharts";
 
-type DataItem = {
+export type DataItem = {
   [key: string]: string | number;
 };
 

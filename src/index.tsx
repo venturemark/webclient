@@ -2,13 +2,16 @@ import "index.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
+import { ScreenVariantProvider } from "component/plasmic/shared/PlasmicGlobalVariant__Screen";
 
 import * as app from "component/app";
 import reportWebVitals from "reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <app.Component />
+    <ScreenVariantProvider>
+      <app.Component />
+    </ScreenVariantProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

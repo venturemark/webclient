@@ -19,6 +19,9 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
+.root__withIcons_start {
+  border-radius: 100%;
+}
 .root____focusVisibleWithin {
   background-color: rgba(2, 157, 127, 0.5) /* plasmic-token: ktdOhSoiQwPKRUS */;
   outline: none;
@@ -36,6 +39,7 @@
   top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   flex-shrink: 0;
+  border-radius: 100%;
 }
 .box {
   display: inline-flex;
@@ -47,7 +51,7 @@
 .slotContent {
   text-align: center;
 }
-.slotContent__isDisabled_isDisabled {
+.slotContent__isDisabled {
   color: rgba(38, 26, 63, 0.5) /* plasmic-token: lwU_HL5JBOkJ3g0 */;
 }
 .endIcon {
@@ -59,4 +63,5 @@
   top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   flex-shrink: 0;
+  border-radius: 100%;
 }

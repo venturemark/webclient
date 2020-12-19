@@ -6,23 +6,39 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/home/PlasmicHome";
 import Update from "component/update";
-import { options } from "component/editor/config/initialValues";
+import {
+  options,
+  initialValueEmpty,
+} from "component/editor/config/initialValues";
+import Searcher from "@venturemark/numnum";
+import { Node } from "slate";
+import { format } from "date-fns";
+import { serialize } from "module/serialize";
+import { get } from "module/store";
+import * as linechart from "component/linechart";
+import { useEditor } from "component/editor/compose";
+import { UpdateType } from "component/update";
 
 interface HomeProps extends DefaultHomeProps {}
 
-const defaultUpdates = [
+export interface TimelineType {
+  name: string;
+  dataKey: string;
+  id: string;
+  date: string;
+  isCurrent: boolean;
+  updates: UpdateType[];
+  data: linechart.DataItem[];
+}
+
+const defaultText: Node[] = [
   {
-    id: "now",
-    text: [
+    children: [
       {
+        type: options.p.type,
         children: [
           {
-            type: options.p.type,
-            children: [
-              {
-                text: "Be Better Tomorrow",
-              },
-            ],
+            text: "Be Better Tomorrow",
           },
         ],
       },
@@ -30,21 +46,341 @@ const defaultUpdates = [
   },
 ];
 
-export function Component(props: HomeProps) {
-  const [updates, setUpdates] = useState(defaultUpdates);
+const defaultUpdatesActive: UpdateType[] = [
+  {
+    id: "now",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
 
-  console.log("updates", updates);
+const defaultUpdatesFeature: UpdateType[] = [
+  {
+    id: "now1",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
+
+const defaultUpdatesMilestone: UpdateType[] = [
+  {
+    id: "now2",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
+
+const defaultUpdatesRevenue: UpdateType[] = [
+  {
+    id: "now3",
+    numberValue: 23,
+    isFlipped: false,
+    text: defaultText,
+  },
+];
+
+const defaultActiveData = [
+  {
+    date: "January 1, 2019",
+    "Active Users": 50,
+  },
+  {
+    date: "February 2, 2019",
+    "Active Users": 55,
+  },
+  {
+    date: "March 3, 2019",
+    "Active Users": 40,
+  },
+  {
+    date: "April 1, 2019",
+    "Active Users": 35,
+  },
+  {
+    date: "May 10, 2019",
+    "Active Users": 39,
+  },
+  {
+    date: "June 1, 2019",
+    "Active Users": 40,
+  },
+  {
+    date: "July 1, 2019",
+    "Active Users": 50,
+  },
+];
+
+const defaultFeaturesData = [
+  {
+    date: "January 1, 2019",
+    "Features Shipped": 50,
+  },
+  {
+    date: "February 2, 2019",
+    "Features Shipped": 55,
+  },
+  {
+    date: "March 3, 2019",
+    "Features Shipped": 40,
+  },
+  {
+    date: "April 1, 2019",
+    "Features Shipped": 35,
+  },
+  {
+    date: "May 10, 2019",
+    "Features Shipped": 39,
+  },
+  {
+    date: "June 1, 2019",
+    "Features Shipped": 40,
+  },
+  {
+    date: "July 1, 2019",
+    "Features Shipped": 50,
+  },
+];
+
+const defaultMilestonesData = [
+  {
+    date: "January 1, 2019",
+    Milestones: 50,
+  },
+  {
+    date: "February 2, 2019",
+    Milestones: 55,
+  },
+  {
+    date: "March 3, 2019",
+    Milestones: 40,
+  },
+  {
+    date: "April 1, 2019",
+    Milestones: 35,
+  },
+  {
+    date: "May 10, 2019",
+    Milestones: 39,
+  },
+  {
+    date: "June 1, 2019",
+    Milestones: 40,
+  },
+  {
+    date: "July 1, 2019",
+    Milestones: 50,
+  },
+];
+
+const defaultRevenueData = [
+  {
+    date: "January 1, 2019",
+    Revenue: 50,
+  },
+  {
+    date: "February 2, 2019",
+    Revenue: 55,
+  },
+  {
+    date: "March 3, 2019",
+    Revenue: 40,
+  },
+  {
+    date: "April 1, 2019",
+    Revenue: 35,
+  },
+  {
+    date: "May 10, 2019",
+    Revenue: 39,
+  },
+  {
+    date: "June 1, 2019",
+    Revenue: 40,
+  },
+  {
+    date: "July 1, 2019",
+    Revenue: 50,
+  },
+];
+
+const defaultTimelines: TimelineType[] = [
+  {
+    name: "Active Users",
+    dataKey: "Active Users",
+    id: "now",
+    date: "now",
+    updates: defaultUpdatesActive,
+    data: defaultActiveData,
+    isCurrent: true,
+  },
+  {
+    name: "Features Shipped",
+    dataKey: "Features Shipped",
+    id: "now",
+    date: "now",
+    updates: defaultUpdatesFeature,
+    data: defaultFeaturesData,
+    isCurrent: false,
+  },
+  {
+    name: "Milestones",
+    dataKey: "Milestones",
+    id: "now",
+    date: "now",
+    updates: defaultUpdatesMilestone,
+    data: defaultMilestonesData,
+    isCurrent: false,
+  },
+  {
+    name: "Revenue",
+    dataKey: "Revenue",
+    id: "now",
+    date: "now",
+    updates: defaultUpdatesRevenue,
+    data: defaultRevenueData,
+    isCurrent: false,
+  },
+];
+
+export function Component(props: HomeProps) {
+  const [timelines, setTimelines] = useState<TimelineType[]>(defaultTimelines);
+  const currentTimeline =
+    timelines.filter((timeline) => timeline.isCurrent === true)[0] ??
+    defaultTimelines[0];
+
+  const [hideSidebar, setHideSidebar] = useState(true);
+
+  const store = get("composeEditor.content") ?? "";
+  const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
+  const hasContentDefault =
+    serialize(initialValue) === "" || serialize(initialValue) === undefined
+      ? undefined
+      : "hasContent";
+  const defaultNumber = Searcher.Search(serialize(initialValue))
+    ? Searcher.Search(serialize(initialValue))[0]
+    : undefined;
+  const defaultProgress = serialize(initialValue).length;
+
+  const { editorShape, setEditorShape } = useEditor({
+    value: initialValue,
+    hasContent: hasContentDefault,
+    numberValue: defaultNumber,
+    progress: defaultProgress,
+  });
+
+  const createUpdate = () => {
+    if (!editorShape.hasContent) {
+      console.log("content text");
+      const error = "Please enter some text";
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
+
+    if (!editorShape.numberValue) {
+      const error = "Please enter a number";
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
+
+    if (serialize(editorShape.value).length > 241) {
+      const error = `Your update is ${
+        serialize(editorShape.value).length
+      } characters. The limit is 240 characters`;
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
+
+    const id = new Date();
+    const update: UpdateType = {
+      text: editorShape.value,
+      numberValue: editorShape.numberValue,
+      id: id.toString(),
+      isFlipped: false,
+    };
+
+    const metric: linechart.DataItem = {
+      date: format(new Date(), "PP"),
+      [currentTimeline.name]: editorShape.numberValue,
+    };
+
+    const timelinesUpdate = timelines.map((timeline) => {
+      let updatedUpdates = currentTimeline.updates;
+      let data = currentTimeline.data;
+      if (timeline.isCurrent) {
+        updatedUpdates = [update].concat(currentTimeline?.updates);
+        data = currentTimeline?.data?.concat(metric);
+
+        return { ...timeline, updates: updatedUpdates, data: data };
+      } else {
+        return timeline;
+      }
+    });
+    setTimelines(timelinesUpdate as TimelineType[]);
+
+    //reset store
+    localStorage.setItem(
+      "composeEditor.content",
+      JSON.stringify(initialValueEmpty)
+    );
+    //reset editor
+    const resetEditor = {
+      value: initialValueEmpty,
+      string: "",
+      hasContent: undefined,
+      numberValue: undefined,
+      error: undefined,
+      progress: 0,
+    };
+    setEditorShape(resetEditor);
+  };
 
   return (
     <PlasmicHome
+      sidebarHidden={hideSidebar}
+      homeButton={{
+        "aria-label": "Toggle sidebar",
+        onPress: () => {
+          setHideSidebar(!hideSidebar);
+        },
+      }}
+      addButton={{
+        "aria-label": "Toggle sidebar",
+        onPress: () => setHideSidebar(!hideSidebar),
+      }}
+      sidebar={{
+        timelines: timelines,
+        setHideSidebar: setHideSidebar,
+        setTimelines: setTimelines,
+        hideSidebar: hideSidebar,
+      }}
       actionBar={{
-        setUpdates: setUpdates,
-        updates: updates,
+        errorMessage: editorShape.error,
+        progress: editorShape.progress,
+        editorShape: editorShape,
+        setEditorShape: setEditorShape,
       }}
       updatesContainer={{
-        children: updates.map((update: any) => (
-          <Update text={update.text} key={update.id} />
+        children: currentTimeline.updates.map((update) => (
+          <Update
+            text={update.text}
+            key={update.id}
+            id={update.id}
+            dataKey={currentTimeline.dataKey}
+            data={currentTimeline.data}
+            name={currentTimeline.name}
+            isFlipped={update.isFlipped}
+            timelines={timelines}
+            setTimelines={setTimelines}
+          />
         )),
+      }}
+      actionsColumn={{
+        hasContent: editorShape.hasContent,
+        numberValue: editorShape.numberValue,
+        createUpdate: createUpdate,
       }}
     />
   );

@@ -2,8 +2,8 @@
 // - is local
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
-import React, { useMemo } from "react";
-import { createEditor, Node } from "slate";
+import React, { useMemo, useRef, useState } from "react";
+import { createEditor, Node, Editor } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
 import {
@@ -20,7 +20,6 @@ import {
   SoftBreakPlugin,
   ExitBreakPlugin,
   pipe,
-  SlateDocument,
   withAutoformat,
   withImageUpload,
   withLink,
@@ -32,9 +31,13 @@ import {
   headingTypes,
   options,
   optionsResetBlockTypes,
+  initialValueEmpty,
 } from "component/editor/config/initialValues";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
+import Searcher from "@venturemark/numnum";
+import { serialize } from "module/serialize";
+import { save } from "module/store";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -78,10 +81,46 @@ const plugins = [
   }),
 ];
 
+type NumberValue = undefined | number;
+type ErrorMessage = undefined | string;
+type HasContent = undefined | "hasContent";
+
+export type EditorShape = {
+  value: Node[];
+  string: string;
+  numberValue: NumberValue;
+  error: ErrorMessage;
+  hasContent: HasContent;
+  progress: number;
+};
+
+export interface EditorState {
+  editorShape: EditorShape;
+  setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
+}
+
+//create custom hook for our editor:
+export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
+  const defaultEditor: EditorShape = {
+    value: initialValueEmpty,
+    string: "",
+    numberValue: 0,
+    error: undefined,
+    hasContent: undefined,
+    progress: 0,
+  };
+
+  const [editorShape, setEditorShape] = useState<EditorShape>({
+    ...defaultEditor,
+    ...overrides,
+  });
+
+  return { editorShape, setEditorShape };
+};
+
 interface EditorProps {
-  setHasContent: React.Dispatch<React.SetStateAction<undefined | "hasContent">>;
-  value: SlateDocument;
-  setValue: React.Dispatch<React.SetStateAction<SlateDocument>>;
+  editorShape: EditorShape;
+  setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
 }
 
 const withPlugins = [
@@ -95,51 +134,69 @@ const withPlugins = [
   withInlineVoid({ plugins }),
 ] as const;
 
-const serialize = (value: SlateDocument) => {
-  return (
-    value
-      // Return the string content of each paragraph in the value's children.
-      .map((n: Node) => Node.string(n))
-      // Join them all with line breaks denoting paragraphs.
-      .join("\n")
-  );
-};
+const DEFAULT_HEIGHT = 44;
+const HEIGHT_LIMIT = 188;
+const CHARACTER_LIMIT = 238;
 
 const ComposeEditor = (props: EditorProps) => {
-  const { value, setValue, setHasContent } = props;
+  const { editorShape, setEditorShape } = props;
+
+  const editorRef = useRef<HTMLDivElement>(null);
 
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
+  const { insertBreak, insertText } = editor;
+
+  editor.insertBreak = () => {
+    const height = editorRef.current?.offsetHeight ?? DEFAULT_HEIGHT;
+    if (height < HEIGHT_LIMIT) {
+      insertBreak();
+    }
+  };
+  editor.insertText = (text) => {
+    const count = Editor.string(editor, []).length;
+
+    if (count > CHARACTER_LIMIT) {
+      return;
+    }
+
+    insertText(text);
+  };
+
+  const handleChange = (newValue: Node[]) => {
+    //store serialized value
+    const serializedValue = serialize(newValue);
+    // get the first number in text
+    const number = Searcher.Search(serializedValue)[0];
+    // determine if there is a value in editor
+    const hasValue = serializedValue.trim().length;
+    //remove number error if a number is typed
+    const error = number ? undefined : editorShape.error;
+    // determine if a value has been entered
+    const hasContent: HasContent = hasValue ? "hasContent" : undefined;
+
+    // set editor data
+    const editorData = {
+      value: newValue,
+      string: serializedValue,
+      numberValue: number,
+      error: error,
+      hasContent: hasContent,
+      progress: serializedValue.length,
+    };
+
+    setEditorShape(editorData);
+
+    //save to local storage to persist...
+    save(newValue);
+  };
+
   return (
-    <Slate
-      editor={editor}
-      value={value}
-      onChange={(newValue) => {
-        const slateDocumentValue = newValue as SlateDocument;
-
-        setValue(slateDocumentValue);
-
-        if (
-          serialize(slateDocumentValue) === "" ||
-          serialize(slateDocumentValue) === undefined
-        ) {
-          setHasContent(undefined);
-        } else {
-          setHasContent("hasContent");
-        }
-
-        //save to local storage to persist...
-        const content = JSON.stringify(slateDocumentValue);
-        localStorage.setItem("composeEditor.content", content);
-      }}
-    >
-      <EditablePlugins
-        plugins={plugins}
-        placeholder="Why does this matter?"
-        className={actionbarcss.textContainer}
-        spellCheck
-      />
-    </Slate>
+    <div ref={editorRef} className={actionbarcss.textContainer}>
+      <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
+        <EditablePlugins plugins={plugins} spellCheck />
+      </Slate>
+    </div>
   );
 };
 
