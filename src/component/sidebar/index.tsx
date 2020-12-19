@@ -89,11 +89,21 @@ function Sidebar(props: SidebarProps) {
       return;
     }
 
+    const name = data.name;
+    const date = format(new Date(), "PP");
+
+    const defaultData = [
+      {
+        date: date,
+        [data.name]: 0,
+      },
+    ];
+
     const timeline = {
-      name: data.name,
-      date: format(new Date(), "PP"),
-      id: format(new Date(), "PP"),
-      dataKey: data.name,
+      name: name,
+      date: date,
+      id: date,
+      dataKey: name,
       updates: defaultUpdates,
       data: defaultData,
       isCurrent: false,

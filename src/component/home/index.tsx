@@ -55,72 +55,165 @@ const defaultUpdates: UpdateType[] = [
   },
 ];
 
-const defaultData = [
+const defaultActiveData = [
   {
     date: "January 1, 2019",
-    cac: 50,
+    ["Active Users"]: 50,
   },
   {
     date: "February 2, 2019",
-    cac: 55,
+    ["Active Users"]: 55,
   },
   {
     date: "March 3, 2019",
-    cac: 40,
+    ["Active Users"]: 40,
   },
   {
     date: "April 1, 2019",
-    cac: 35,
+    ["Active Users"]: 35,
   },
   {
     date: "May 10, 2019",
-    cac: 39,
+    ["Active Users"]: 39,
   },
   {
     date: "June 1, 2019",
-    cac: 40,
+    ["Active Users"]: 40,
   },
   {
     date: "July 1, 2019",
-    cac: 50,
+    ["Active Users"]: 50,
+  },
+];
+
+const defaultFeaturesData = [
+  {
+    date: "January 1, 2019",
+    ["Features Shipped"]: 50,
+  },
+  {
+    date: "February 2, 2019",
+    ["Features Shipped"]: 55,
+  },
+  {
+    date: "March 3, 2019",
+    ["Features Shipped"]: 40,
+  },
+  {
+    date: "April 1, 2019",
+    ["Features Shipped"]: 35,
+  },
+  {
+    date: "May 10, 2019",
+    ["Features Shipped"]: 39,
+  },
+  {
+    date: "June 1, 2019",
+    ["Features Shipped"]: 40,
+  },
+  {
+    date: "July 1, 2019",
+    ["Features Shipped"]: 50,
+  },
+];
+
+const defaultMilestonesData = [
+  {
+    date: "January 1, 2019",
+    Milestones: 50,
+  },
+  {
+    date: "February 2, 2019",
+    Milestones: 55,
+  },
+  {
+    date: "March 3, 2019",
+    Milestones: 40,
+  },
+  {
+    date: "April 1, 2019",
+    Milestones: 35,
+  },
+  {
+    date: "May 10, 2019",
+    Milestones: 39,
+  },
+  {
+    date: "June 1, 2019",
+    Milestones: 40,
+  },
+  {
+    date: "July 1, 2019",
+    Milestones: 50,
+  },
+];
+
+const defaultRevenueData = [
+  {
+    date: "January 1, 2019",
+    Revenue: 50,
+  },
+  {
+    date: "February 2, 2019",
+    Revenue: 55,
+  },
+  {
+    date: "March 3, 2019",
+    Revenue: 40,
+  },
+  {
+    date: "April 1, 2019",
+    Revenue: 35,
+  },
+  {
+    date: "May 10, 2019",
+    Revenue: 39,
+  },
+  {
+    date: "June 1, 2019",
+    Revenue: 40,
+  },
+  {
+    date: "July 1, 2019",
+    Revenue: 50,
   },
 ];
 
 const defaultTimelines: TimelineType[] = [
   {
     name: "Active Users",
-    dataKey: "cac",
+    dataKey: "Active Users",
     id: "now",
     date: "now",
     updates: defaultUpdates,
-    data: defaultData,
+    data: defaultActiveData,
     isCurrent: true,
   },
   {
     name: "Features Shipped",
-    dataKey: "cac",
+    dataKey: "Features Shipped",
     id: "now",
     date: "now",
     updates: defaultUpdates,
-    data: defaultData,
+    data: defaultFeaturesData,
     isCurrent: false,
   },
   {
     name: "Milestones",
-    dataKey: "cac",
+    dataKey: "Milestones",
     id: "now",
     date: "now",
     updates: defaultUpdates,
-    data: defaultData,
+    data: defaultMilestonesData,
     isCurrent: false,
   },
   {
     name: "Revenue",
-    dataKey: "cac",
+    dataKey: "Revenue",
     id: "now",
     date: "now",
     updates: defaultUpdates,
-    data: defaultData,
+    data: defaultRevenueData,
     isCurrent: false,
   },
 ];
@@ -183,7 +276,7 @@ export function Component(props: HomeProps) {
 
     const metric: linechart.DataItem = {
       date: format(new Date(), "PP"),
-      cac: editorShape.numberValue,
+      [currentTimeline.name]: editorShape.numberValue,
     };
 
     const timelinesUpdate = timelines.map((timeline) => {
