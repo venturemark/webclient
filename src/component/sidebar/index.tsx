@@ -96,6 +96,7 @@ function Sidebar(props: SidebarProps) {
       {
         date: date,
         [data.name]: 0,
+        updateId: date,
       },
     ];
 

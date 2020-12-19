@@ -20,6 +20,15 @@ interface UpdateContentProps extends DefaultUpdateContentProps {
 
 function UpdateContent(props: UpdateContentProps) {
   const { isFlipped, text, data, dataKey, name } = props;
+
+  const handleChangeContext = (
+    e: React.MouseEvent<HTMLInputElement>,
+    payload: any
+  ) => {
+    console.log(e);
+    console.log(payload);
+  };
+
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
       <PlasmicUpdateContent
@@ -34,6 +43,7 @@ function UpdateContent(props: UpdateContentProps) {
           name: name,
           dataKey: dataKey,
           data: data,
+          handleChangeContext: handleChangeContext,
         }}
       />
     </ReactCardFlip>

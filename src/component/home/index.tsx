@@ -82,127 +82,155 @@ const defaultUpdatesRevenue: UpdateType[] = [
   },
 ];
 
-const defaultActiveData = [
+const defaultActiveData: linechart.DataItem[] = [
   {
     date: "January 1, 2019",
     "Active Users": 50,
+    updateId: "now",
   },
   {
     date: "February 2, 2019",
     "Active Users": 55,
+    updateId: "now",
   },
   {
     date: "March 3, 2019",
     "Active Users": 40,
+    updateId: "now",
   },
   {
     date: "April 1, 2019",
     "Active Users": 35,
+    updateId: "now",
   },
   {
     date: "May 10, 2019",
     "Active Users": 39,
+    updateId: "now",
   },
   {
     date: "June 1, 2019",
     "Active Users": 40,
+    updateId: "now",
   },
   {
     date: "July 1, 2019",
     "Active Users": 50,
+    updateId: "now",
   },
 ];
 
-const defaultFeaturesData = [
+const defaultFeaturesData: linechart.DataItem[] = [
   {
     date: "January 1, 2019",
     "Features Shipped": 50,
+    updateId: "now1",
   },
   {
     date: "February 2, 2019",
     "Features Shipped": 55,
+    updateId: "now1",
   },
   {
     date: "March 3, 2019",
     "Features Shipped": 40,
+    updateId: "now1",
   },
   {
     date: "April 1, 2019",
     "Features Shipped": 35,
+    updateId: "now1",
   },
   {
     date: "May 10, 2019",
     "Features Shipped": 39,
+    updateId: "now1",
   },
   {
     date: "June 1, 2019",
     "Features Shipped": 40,
+    updateId: "now1",
   },
   {
     date: "July 1, 2019",
     "Features Shipped": 50,
+    updateId: "now1",
   },
 ];
 
-const defaultMilestonesData = [
+const defaultMilestonesData: linechart.DataItem[] = [
   {
     date: "January 1, 2019",
     Milestones: 50,
+    updateId: "now2",
   },
   {
     date: "February 2, 2019",
     Milestones: 55,
+    updateId: "now2",
   },
   {
     date: "March 3, 2019",
     Milestones: 40,
+    updateId: "now2",
   },
   {
     date: "April 1, 2019",
     Milestones: 35,
+    updateId: "now2",
   },
   {
     date: "May 10, 2019",
     Milestones: 39,
+    updateId: "now2",
   },
   {
     date: "June 1, 2019",
     Milestones: 40,
+    updateId: "now2",
   },
   {
     date: "July 1, 2019",
     Milestones: 50,
+    updateId: "now2",
   },
 ];
 
-const defaultRevenueData = [
+const defaultRevenueData: linechart.DataItem[] = [
   {
     date: "January 1, 2019",
     Revenue: 50,
+    updateId: "now3",
   },
   {
     date: "February 2, 2019",
     Revenue: 55,
+    updateId: "now3",
   },
   {
     date: "March 3, 2019",
     Revenue: 40,
+    updateId: "now3",
   },
   {
     date: "April 1, 2019",
     Revenue: 35,
+    updateId: "now3",
   },
   {
     date: "May 10, 2019",
     Revenue: 39,
+    updateId: "now3",
   },
   {
     date: "June 1, 2019",
     Revenue: 40,
+    updateId: "now3",
   },
   {
     date: "July 1, 2019",
     Revenue: 50,
+    updateId: "now3",
   },
 ];
 
@@ -219,8 +247,8 @@ const defaultTimelines: TimelineType[] = [
   {
     name: "Features Shipped",
     dataKey: "Features Shipped",
-    id: "now",
-    date: "now",
+    id: "now1",
+    date: "now1",
     updates: defaultUpdatesFeature,
     data: defaultFeaturesData,
     isCurrent: false,
@@ -228,8 +256,8 @@ const defaultTimelines: TimelineType[] = [
   {
     name: "Milestones",
     dataKey: "Milestones",
-    id: "now",
-    date: "now",
+    id: "now2",
+    date: "now2",
     updates: defaultUpdatesMilestone,
     data: defaultMilestonesData,
     isCurrent: false,
@@ -237,8 +265,8 @@ const defaultTimelines: TimelineType[] = [
   {
     name: "Revenue",
     dataKey: "Revenue",
-    id: "now",
-    date: "now",
+    id: "now3",
+    date: "now3",
     updates: defaultUpdatesRevenue,
     data: defaultRevenueData,
     isCurrent: false,
@@ -293,17 +321,18 @@ export function Component(props: HomeProps) {
       return;
     }
 
-    const id = new Date();
+    const id = new Date().toString();
     const update: UpdateType = {
       text: editorShape.value,
       numberValue: editorShape.numberValue,
-      id: id.toString(),
+      id: id,
       isFlipped: false,
     };
 
     const metric: linechart.DataItem = {
       date: format(new Date(), "PP"),
       [currentTimeline.name]: editorShape.numberValue,
+      updateId: id,
     };
 
     const timelinesUpdate = timelines.map((timeline) => {

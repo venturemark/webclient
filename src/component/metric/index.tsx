@@ -11,16 +11,26 @@ interface MetricProps extends DefaultMetricProps {
   name: string;
   dataKey: string;
   data: linechart.DataItem[];
+  handleChangeContext: (
+    e: React.MouseEvent<HTMLInputElement>,
+    payload: any
+  ) => void;
 }
 
 function Metric(props: MetricProps) {
-  const { data, dataKey, name } = props;
+  const { data, dataKey, name, handleChangeContext } = props;
 
   return (
     <PlasmicMetric
       name={name}
       graphContainer={{
-        render: () => <linechart.Component dataKey={dataKey} data={data} />,
+        render: () => (
+          <linechart.Component
+            dataKey={dataKey}
+            data={data}
+            handleChangeContext={handleChangeContext}
+          />
+        ),
       }}
     />
   );
