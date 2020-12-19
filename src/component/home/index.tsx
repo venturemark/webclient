@@ -85,62 +85,62 @@ const defaultUpdatesRevenue: UpdateType[] = [
 const defaultActiveData = [
   {
     date: "January 1, 2019",
-    ["Active Users"]: 50,
+    "Active Users": 50,
   },
   {
     date: "February 2, 2019",
-    ["Active Users"]: 55,
+    "Active Users": 55,
   },
   {
     date: "March 3, 2019",
-    ["Active Users"]: 40,
+    "Active Users": 40,
   },
   {
     date: "April 1, 2019",
-    ["Active Users"]: 35,
+    "Active Users": 35,
   },
   {
     date: "May 10, 2019",
-    ["Active Users"]: 39,
+    "Active Users": 39,
   },
   {
     date: "June 1, 2019",
-    ["Active Users"]: 40,
+    "Active Users": 40,
   },
   {
     date: "July 1, 2019",
-    ["Active Users"]: 50,
+    "Active Users": 50,
   },
 ];
 
 const defaultFeaturesData = [
   {
     date: "January 1, 2019",
-    ["Features Shipped"]: 50,
+    "Features Shipped": 50,
   },
   {
     date: "February 2, 2019",
-    ["Features Shipped"]: 55,
+    "Features Shipped": 55,
   },
   {
     date: "March 3, 2019",
-    ["Features Shipped"]: 40,
+    "Features Shipped": 40,
   },
   {
     date: "April 1, 2019",
-    ["Features Shipped"]: 35,
+    "Features Shipped": 35,
   },
   {
     date: "May 10, 2019",
-    ["Features Shipped"]: 39,
+    "Features Shipped": 39,
   },
   {
     date: "June 1, 2019",
-    ["Features Shipped"]: 40,
+    "Features Shipped": 40,
   },
   {
     date: "July 1, 2019",
-    ["Features Shipped"]: 50,
+    "Features Shipped": 50,
   },
 ];
 
