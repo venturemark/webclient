@@ -29,6 +29,10 @@ export const Component: React.FC<ChartProps> = ({ data, dataKey }) => {
       <Area
         type="monotone"
         dot={{ strokeWidth: 1, fill: "#FFFFFF" }}
+        activeDot={{
+          style: { cursor: "pointer" },
+          onClick: (event: any, payload: any) => console.log(payload),
+        }}
         dataKey={dataKey}
         stroke={"#029D7F"}
         fillOpacity={1}
