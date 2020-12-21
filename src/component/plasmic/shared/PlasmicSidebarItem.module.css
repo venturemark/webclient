@@ -11,10 +11,9 @@
   width: 240px;
   height: auto;
   flex-direction: row;
-  padding-left: 8px;
-  padding-right: 8px;
   cursor: pointer;
   flex-shrink: 0;
+  padding: 20px 8px;
 }
 .itemContainer > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -34,6 +33,8 @@
   flex-direction: row;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
 }
 .itemContainer__isCurrent > :global(.__wab_flex-container) > *,
 .itemContainer__isCurrent
@@ -41,11 +42,14 @@
   > :global(.__wab_slot)
   > * {
   margin-left: 5px;
+  margin-top: 0px;
 }
 .itemContainer__hasIcon {
   align-self: center;
   width: 240px;
   height: 34px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   flex-shrink: 0;
 }
 .itemContainer__hasIcon > :global(.__wab_flex-container) {
@@ -99,10 +103,13 @@
 }
 .itemButton:global(.__wab_instance) {
   position: relative;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
 }
 .itemButton__hasIcon:global(.__wab_instance) {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   flex-shrink: 0;
 }
 .startIcon {

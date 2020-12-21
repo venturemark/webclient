@@ -27,6 +27,7 @@ import {
   StrictProps,
   deriveRenderOpts,
   Stack,
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";

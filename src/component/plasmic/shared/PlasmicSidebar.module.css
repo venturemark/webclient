@@ -133,15 +133,15 @@
 }
 .timelinesContainer > :global(.__wab_flex-container) {
   flex-direction: column;
-  margin-top: calc(0px - 20px);
-  height: calc(100% + 20px);
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
 }
 .timelinesContainer > :global(.__wab_flex-container) > *,
 .timelinesContainer
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > * {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 .sidebarItem__iKtWk:global(.__wab_instance) {
   position: relative;

@@ -27,6 +27,7 @@ import {
   StrictProps,
   deriveRenderOpts,
   Stack,
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import SidebarItem from "../../sidebaritem/index"; // plasmic-import: KDElHbQmfd/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component

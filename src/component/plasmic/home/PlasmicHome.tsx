@@ -27,6 +27,7 @@ import {
   StrictProps,
   deriveRenderOpts,
   Stack,
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
@@ -94,16 +95,8 @@ function PlasmicHome__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
-  const globalVariants = {
+  const globalVariants = ensureGlobalVariants({
     screen: React.useContext(ScreenContext),
-  };
-
-  Object.entries(globalVariants).forEach(([key, value]) => {
-    if (value === ("PLEASE_RENDER_INSIDE_PROVIDER" as any)) {
-      throw new Error(
-        `Context value for ${key} was not defined. Did you render the required provider for this component? Learn More: https://www.plasmic.app/learn/other-assets/#global-variants`
-      );
-    }
   });
 
   return (
@@ -125,7 +118,13 @@ function PlasmicHome__RenderFunc(props: {
       {(
         hasVariant(variants, "sidebarHidden", "sidebarHidden") ? true : true
       ) ? (
-        <div
+        <Stack
+          as={"div"}
+          hasGap={
+            hasVariant(variants, "sidebarHidden", "sidebarHidden")
+              ? true
+              : false
+          }
           className={classNames(sty.box__mbTc6, defaultcss.all, {
             [sty.box__sidebarHidden__mbTc6CPu7G]: hasVariant(
               variants,
@@ -234,7 +233,7 @@ function PlasmicHome__RenderFunc(props: {
               }
             />
           ) : null}
-        </div>
+        </Stack>
       ) : null}
       {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
         <div

@@ -236,5 +236,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.75"
+  "cliVersion": "0.1.79",
+  "$schema": "../../../.nvm/versions/node/v14.15.1/lib/node_modules/@plasmicapp/cli/dist/plasmic.schema.json"
 }

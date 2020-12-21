@@ -27,6 +27,7 @@ import {
   StrictProps,
   deriveRenderOpts,
   Stack,
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
 

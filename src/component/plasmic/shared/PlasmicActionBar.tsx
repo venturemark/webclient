@@ -27,6 +27,7 @@ import {
   StrictProps,
   deriveRenderOpts,
   Stack,
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 
 import { ScreenContext, ScreenValue } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
@@ -84,16 +85,8 @@ function PlasmicActionBar__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
-  const globalVariants = {
+  const globalVariants = ensureGlobalVariants({
     screen: React.useContext(ScreenContext),
-  };
-
-  Object.entries(globalVariants).forEach(([key, value]) => {
-    if (value === ("PLEASE_RENDER_INSIDE_PROVIDER" as any)) {
-      throw new Error(
-        `Context value for ${key} was not defined. Did you render the required provider for this component? Learn More: https://www.plasmic.app/learn/other-assets/#global-variants`
-      );
-    }
   });
 
   return (
