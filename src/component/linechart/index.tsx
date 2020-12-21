@@ -3,14 +3,23 @@ import { AreaChart, Area, Tooltip, XAxis } from "recharts";
 
 export type DataItem = {
   [key: string]: string | number;
+  updateId: string;
 };
 
 interface ChartProps {
   dataKey: string;
   data: DataItem[];
+  handleChangeContext: (
+    e: React.MouseEvent<HTMLInputElement>,
+    payload: any
+  ) => void;
 }
 
-export const Component: React.FC<ChartProps> = ({ data, dataKey }) => {
+export const Component: React.FC<ChartProps> = ({
+  data,
+  dataKey,
+  handleChangeContext,
+}) => {
   return (
     <AreaChart
       width={560}
@@ -29,6 +38,11 @@ export const Component: React.FC<ChartProps> = ({ data, dataKey }) => {
       <Area
         type="monotone"
         dot={{ strokeWidth: 1, fill: "#FFFFFF" }}
+        activeDot={{
+          style: { cursor: "pointer" },
+          onClick: (e: React.MouseEvent<HTMLInputElement>, payload: any) =>
+            handleChangeContext(e, payload),
+        }}
         dataKey={dataKey}
         stroke={"#029D7F"}
         fillOpacity={1}
