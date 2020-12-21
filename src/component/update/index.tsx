@@ -7,7 +7,6 @@ import {
 } from "component/plasmic/shared/PlasmicUpdate";
 import { Node } from "slate";
 import * as linechart from "component/linechart";
-import { TimelineType } from "component/home";
 
 export interface UpdateType {
   id: string;
@@ -22,9 +21,9 @@ interface UpdateProps extends DefaultUpdateProps {
   data: linechart.DataItem[];
   name: string;
   isFlipped: boolean;
-  timelines: TimelineType[];
-  setTimelines: React.Dispatch<React.SetStateAction<TimelineType[]>>;
   id: string;
+  updates: UpdateType[];
+  setUpdates: React.Dispatch<React.SetStateAction<UpdateType[]>>;
 }
 
 function Update(props: UpdateProps) {
@@ -34,29 +33,34 @@ function Update(props: UpdateProps) {
     data,
     name,
     isFlipped,
-    timelines,
-    setTimelines,
     id,
+    updates,
+    setUpdates,
   } = props;
+
+  const changeContext = (updateId: string) => {
+    if (updateId === id) {
+      return;
+    }
+
+    const flippedUpdates = updates.map((update) => {
+      const isFlipped = update.id === updateId ? !update.isFlipped : false;
+      return { ...update, isFlipped };
+    });
+    setUpdates(flippedUpdates);
+    console.log("Calling set updates:", flippedUpdates);
+  };
 
   return (
     <PlasmicUpdate
       toggleUpdateView={{
         "aria-label": "Toggle View",
         onPress: () => {
-          const flippedTimelines = timelines.map((timeline) => {
-            if (timeline.isCurrent) {
-              const flippedUpdates = timeline.updates.map((update) => {
-                const isFlipped = id === update.id ? !update.isFlipped : false;
-                return { ...update, isFlipped };
-              });
-
-              return { ...timeline, updates: flippedUpdates };
-            } else {
-              return timeline;
-            }
+          const flippedUpdates = updates.map((update: any) => {
+            const isFlipped = id === update.id ? !update.isFlipped : false;
+            return { ...update, isFlipped };
           });
-          setTimelines(flippedTimelines);
+          setUpdates(flippedUpdates);
         },
       }}
       updateContent={{
@@ -65,6 +69,7 @@ function Update(props: UpdateProps) {
         name: name,
         dataKey: dataKey,
         data: data,
+        changeContext: changeContext,
       }}
     />
   );

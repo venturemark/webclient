@@ -38,37 +38,6 @@ const defaultText: Node[] = [
   },
 ];
 
-const defaultData = [
-  {
-    date: "January 1, 2019",
-    cac: 50,
-  },
-  {
-    date: "February 2, 2019",
-    cac: 55,
-  },
-  {
-    date: "March 3, 2019",
-    cac: 40,
-  },
-  {
-    date: "April 1, 2019",
-    cac: 35,
-  },
-  {
-    date: "May 10, 2019",
-    cac: 39,
-  },
-  {
-    date: "June 1, 2019",
-    cac: 40,
-  },
-  {
-    date: "July 1, 2019",
-    cac: 50,
-  },
-];
-
 const defaultUpdates: UpdateType[] = [
   {
     id: "now",
@@ -96,6 +65,7 @@ function Sidebar(props: SidebarProps) {
       {
         date: date,
         [data.name]: 0,
+        updateId: date,
       },
     ];
 
