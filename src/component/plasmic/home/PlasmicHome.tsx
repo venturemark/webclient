@@ -122,7 +122,6 @@ function PlasmicHome__RenderFunc(props: {
         ),
       })}
     >
-
       <div
         className={classNames(sty.box__nh02S, defaultcss.all, {
           [sty.box__sidebarHidden__nh02ScPu7G]: hasVariant(
