@@ -280,6 +280,7 @@ export function Component(props: HomeProps) {
     defaultTimelines[0];
 
   const [hideSidebar, setHideSidebar] = useState(true);
+  const [addTimelineFocused, setAddTimelineFocused] = useState(false);
 
   const [updates, setUpdates] = useState<UpdateType[]>(currentTimeline.updates);
 
@@ -376,21 +377,24 @@ export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       sidebarHidden={hideSidebar}
-      homeButton={{
-        "aria-label": "Toggle sidebar",
+      toggleSidebar={{
+        "aria-label": "Toggle Sidebar",
         onPress: () => {
           setHideSidebar(!hideSidebar);
+          setAddTimelineFocused(false);
         },
       }}
       addButton={{
-        "aria-label": "Toggle sidebar",
-        onPress: () => setHideSidebar(!hideSidebar),
+        "aria-label": "Add Timeline",
+        onPress: () => {
+          setHideSidebar(!hideSidebar);
+          setAddTimelineFocused(true);
+        },
       }}
       sidebar={{
         timelines: timelines,
-        setHideSidebar: setHideSidebar,
         setTimelines: setTimelines,
-        hideSidebar: hideSidebar,
+        addTimelineFocused: addTimelineFocused,
       }}
       actionBar={{
         errorMessage: editorShape.error,
