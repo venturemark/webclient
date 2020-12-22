@@ -41,19 +41,27 @@
     padding-left: 200px;
   }
 }
-.toggleSidebar:global(.__wab_instance) {
+.box__nh02S {
+  display: flex;
   position: absolute;
-  left: 240px;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
   top: 10px;
+  left: 240px;
+  z-index: 200;
+  transition-property: all;
+  transition-duration: 250ms;
+}
+.box__sidebarHidden__nh02ScPu7G {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.toggleSidebar:global(.__wab_instance) {
   width: 28px;
   height: 28px;
-  z-index: 200;
   flex-shrink: 0;
-}
-.toggleSidebar__sidebarHidden:global(.__wab_instance) {
-  left: 241px;
-  top: 10px;
-  position: absolute;
 }
 .startIcon3 {
   position: relative;
