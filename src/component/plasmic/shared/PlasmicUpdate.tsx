@@ -9,6 +9,7 @@
 // Plasmic Project: mTVXT6w3HHjZ4d74q3gB76
 // Component: Fs8bTUrvZrvfhCr
 import * as React from "react";
+
 import {
   hasVariant,
   classNames,
@@ -17,6 +18,7 @@ import {
   createPlasmicElementProxy,
   makeFragment,
   PlasmicIcon,
+  PlasmicLink,
   PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
@@ -27,6 +29,7 @@ import {
   StrictProps,
   deriveRenderOpts,
   Stack,
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 import UpdateContent from "../../updatecontent/index"; // plasmic-import: A1UjtYt6k0/component
@@ -85,11 +88,20 @@ function PlasmicUpdate__RenderFunc(props: {
   };
 
   return (
-    <div
+    <Stack
+      as={"div"}
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
+      hasGap={
+        hasVariant(variants, "state", "text") ||
+        (hasVariant(variants, "state", "text") &&
+          hasVariant(globalVariants, "screen", "mobile")) ||
+        hasVariant(variants, "state", "graph")
+          ? true
+          : false
+      }
       className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
@@ -313,7 +325,7 @@ function PlasmicUpdate__RenderFunc(props: {
             : undefined
         }
       />
-    </div>
+    </Stack>
   ) as React.ReactElement | null;
 }
 

@@ -9,7 +9,7 @@
   transition-property: all;
   transition-duration: 1s;
   min-height: 0;
-  padding: 30px 20px;
+  padding: 30px 20px 60px;
 }
 .topSidebar {
   display: flex;
@@ -20,15 +20,6 @@
   flex-direction: column;
   padding-top: 20px;
   min-width: 0;
-}
-.topSidebar > :global(.__wab_flex-container) {
-  flex-direction: column;
-  margin-top: calc(0px - 20px);
-  height: calc(100% + 20px);
-}
-.topSidebar > :global(.__wab_flex-container) > *,
-.topSidebar > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 20px;
 }
 .homeItem:global(.__wab_instance) {
   position: relative;
@@ -74,21 +65,11 @@
   left: auto;
   top: auto;
   flex-direction: column;
-  padding-top: 20px;
   border-top-width: 1px;
-  padding-bottom: 20px;
+  padding-top: 10px;
   min-width: 0;
   border-style: solid;
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
-}
-.settingsContainer > :global(.__wab_flex-container) {
-  flex-direction: column;
-  margin-top: calc(0px - 20px);
-  height: calc(100% + 20px);
-}
-.settingsContainer > :global(.__wab_flex-container) > *,
-.settingsContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 20px;
 }
 .settingsItem:global(.__wab_instance) {
   position: relative;
@@ -126,22 +107,10 @@
   width: 100%;
   height: auto;
   flex-direction: column;
-  padding-top: 60px;
+  padding-top: 40px;
   overflow: visible;
   min-width: 0;
   border-top: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
-}
-.timelinesContainer > :global(.__wab_flex-container) {
-  flex-direction: column;
-  margin-top: calc(0px - 20px);
-  height: calc(100% + 20px);
-}
-.timelinesContainer > :global(.__wab_flex-container) > *,
-.timelinesContainer
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
-  margin-top: 20px;
 }
 .sidebarItem__iKtWk:global(.__wab_instance) {
   position: relative;
@@ -154,7 +123,7 @@
   font-size: 16px;
   height: auto;
   width: 241px;
-  white-space: nowrap;
+  white-space: pre;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -176,7 +145,7 @@
 }
 .box__jgsq {
   font-size: 16px;
-  white-space: nowrap;
+  white-space: pre;
   text-overflow: ellipsis;
   overflow: hidden;
   width: 233px;
@@ -199,7 +168,7 @@
 }
 .box___7F5M7 {
   font-size: 16px;
-  white-space: nowrap;
+  white-space: pre;
   text-overflow: ellipsis;
   overflow: hidden;
   width: 239px;
@@ -223,7 +192,7 @@
 .box___7SQ2 {
   width: 250px;
   font-size: 16px;
-  white-space: nowrap;
+  white-space: pre;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -274,8 +243,8 @@
 }
 .addTimeline:global(.__wab_instance) {
   position: relative;
-  height: 28px;
-  width: 28px;
+  height: 34px;
+  width: 34px;
   flex-shrink: 0;
 }
 .startIcon2 {
