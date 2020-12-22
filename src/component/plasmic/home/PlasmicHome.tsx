@@ -122,48 +122,58 @@ function PlasmicHome__RenderFunc(props: {
         ),
       })}
     >
-      <IconButton
-        data-plasmic-name={"toggleSidebar"}
-        data-plasmic-override={overrides.toggleSidebar}
-        className={classNames(sty.toggleSidebar, "__wab_instance", {
-          [sty.toggleSidebar__sidebarHidden]: hasVariant(
+      <div
+        className={classNames(sty.box__nh02S, defaultcss.all, {
+          [sty.box__sidebarHidden__nh02ScPu7G]: hasVariant(
             variants,
             "sidebarHidden",
             "sidebarHidden"
           ),
         })}
-        content={""}
-        endIcon={
-          false ? (
-            <svg
-              data-plasmic-name={"endIcon3"}
-              data-plasmic-override={overrides.endIcon3}
-              className={classNames(sty.endIcon3, defaultcss.all)}
+      >
+        <IconButton
+          data-plasmic-name={"toggleSidebar"}
+          data-plasmic-override={overrides.toggleSidebar}
+          className={classNames(sty.toggleSidebar, "__wab_instance", {
+            [sty.toggleSidebar__sidebarHidden]: hasVariant(
+              variants,
+              "sidebarHidden",
+              "sidebarHidden"
+            ),
+          })}
+          content={""}
+          endIcon={
+            false ? (
+              <svg
+                data-plasmic-name={"endIcon3"}
+                data-plasmic-override={overrides.endIcon3}
+                className={classNames(sty.endIcon3, defaultcss.all)}
+                role={"img"}
+              />
+            ) : null
+          }
+          startIcon={
+            <PlasmicIcon
+              data-plasmic-name={"startIcon3"}
+              data-plasmic-override={overrides.startIcon3}
+              PlasmicIconType={
+                hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                  ? IconMenuOpenIcon
+                  : IconCloseIcon
+              }
+              className={classNames(sty.startIcon3, defaultcss.all, {
+                [sty.startIcon3__sidebarHidden]: hasVariant(
+                  variants,
+                  "sidebarHidden",
+                  "sidebarHidden"
+                ),
+              })}
               role={"img"}
             />
-          ) : null
-        }
-        startIcon={
-          <PlasmicIcon
-            data-plasmic-name={"startIcon3"}
-            data-plasmic-override={overrides.startIcon3}
-            PlasmicIconType={
-              hasVariant(variants, "sidebarHidden", "sidebarHidden")
-                ? IconMenuOpenIcon
-                : IconCloseIcon
-            }
-            className={classNames(sty.startIcon3, defaultcss.all, {
-              [sty.startIcon3__sidebarHidden]: hasVariant(
-                variants,
-                "sidebarHidden",
-                "sidebarHidden"
-              ),
-            })}
-            role={"img"}
-          />
-        }
-        withIcons={["start"]}
-      />
+          }
+          withIcons={["start"]}
+        />
+      </div>
 
       {(
         hasVariant(variants, "sidebarHidden", "sidebarHidden") ? true : true
