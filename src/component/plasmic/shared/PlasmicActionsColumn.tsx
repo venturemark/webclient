@@ -9,6 +9,7 @@
 // Plasmic Project: mTVXT6w3HHjZ4d74q3gB76
 // Component: Ey_MwfntCV
 import * as React from "react";
+
 import {
   hasVariant,
   classNames,
@@ -17,6 +18,7 @@ import {
   createPlasmicElementProxy,
   makeFragment,
   PlasmicIcon,
+  PlasmicLink,
   PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
@@ -27,6 +29,7 @@ import {
   StrictProps,
   deriveRenderOpts,
   Stack,
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
