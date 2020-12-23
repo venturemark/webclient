@@ -88,71 +88,11 @@ const defaultActiveData: linechart.DataItem[] = [
     "Active Users": 50,
     updateId: "now",
   },
-  {
-    date: "February 2, 2019",
-    "Active Users": 55,
-    updateId: "now",
-  },
-  {
-    date: "March 3, 2019",
-    "Active Users": 40,
-    updateId: "now",
-  },
-  {
-    date: "April 1, 2019",
-    "Active Users": 35,
-    updateId: "now",
-  },
-  {
-    date: "May 10, 2019",
-    "Active Users": 39,
-    updateId: "now",
-  },
-  {
-    date: "June 1, 2019",
-    "Active Users": 40,
-    updateId: "now",
-  },
-  {
-    date: "July 1, 2019",
-    "Active Users": 50,
-    updateId: "now",
-  },
 ];
 
 const defaultFeaturesData: linechart.DataItem[] = [
   {
     date: "January 1, 2019",
-    "Features Shipped": 50,
-    updateId: "now1",
-  },
-  {
-    date: "February 2, 2019",
-    "Features Shipped": 55,
-    updateId: "now1",
-  },
-  {
-    date: "March 3, 2019",
-    "Features Shipped": 40,
-    updateId: "now1",
-  },
-  {
-    date: "April 1, 2019",
-    "Features Shipped": 35,
-    updateId: "now1",
-  },
-  {
-    date: "May 10, 2019",
-    "Features Shipped": 39,
-    updateId: "now1",
-  },
-  {
-    date: "June 1, 2019",
-    "Features Shipped": 40,
-    updateId: "now1",
-  },
-  {
-    date: "July 1, 2019",
     "Features Shipped": 50,
     updateId: "now1",
   },
@@ -164,71 +104,11 @@ const defaultMilestonesData: linechart.DataItem[] = [
     Milestones: 50,
     updateId: "now2",
   },
-  {
-    date: "February 2, 2019",
-    Milestones: 55,
-    updateId: "now2",
-  },
-  {
-    date: "March 3, 2019",
-    Milestones: 40,
-    updateId: "now2",
-  },
-  {
-    date: "April 1, 2019",
-    Milestones: 35,
-    updateId: "now2",
-  },
-  {
-    date: "May 10, 2019",
-    Milestones: 39,
-    updateId: "now2",
-  },
-  {
-    date: "June 1, 2019",
-    Milestones: 40,
-    updateId: "now2",
-  },
-  {
-    date: "July 1, 2019",
-    Milestones: 50,
-    updateId: "now2",
-  },
 ];
 
 const defaultRevenueData: linechart.DataItem[] = [
   {
     date: "January 1, 2019",
-    Revenue: 50,
-    updateId: "now3",
-  },
-  {
-    date: "February 2, 2019",
-    Revenue: 55,
-    updateId: "now3",
-  },
-  {
-    date: "March 3, 2019",
-    Revenue: 40,
-    updateId: "now3",
-  },
-  {
-    date: "April 1, 2019",
-    Revenue: 35,
-    updateId: "now3",
-  },
-  {
-    date: "May 10, 2019",
-    Revenue: 39,
-    updateId: "now3",
-  },
-  {
-    date: "June 1, 2019",
-    Revenue: 40,
-    updateId: "now3",
-  },
-  {
-    date: "July 1, 2019",
     Revenue: 50,
     updateId: "now3",
   },
@@ -280,6 +160,7 @@ export function Component(props: HomeProps) {
     defaultTimelines[0];
 
   const [hideSidebar, setHideSidebar] = useState(true);
+  const [addTimelineFocused, setAddTimelineFocused] = useState(false);
 
   const [updates, setUpdates] = useState<UpdateType[]>(currentTimeline.updates);
 
@@ -376,21 +257,24 @@ export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       sidebarHidden={hideSidebar}
-      homeButton={{
-        "aria-label": "Toggle sidebar",
+      toggleSidebar={{
+        "aria-label": "Toggle Sidebar",
         onPress: () => {
           setHideSidebar(!hideSidebar);
+          setAddTimelineFocused(false);
         },
       }}
       addButton={{
-        "aria-label": "Toggle sidebar",
-        onPress: () => setHideSidebar(!hideSidebar),
+        "aria-label": "Add Timeline",
+        onPress: () => {
+          setHideSidebar(!hideSidebar);
+          setAddTimelineFocused(true);
+        },
       }}
       sidebar={{
         timelines: timelines,
-        setHideSidebar: setHideSidebar,
         setTimelines: setTimelines,
-        hideSidebar: hideSidebar,
+        addTimelineFocused: addTimelineFocused,
       }}
       actionBar={{
         errorMessage: editorShape.error,

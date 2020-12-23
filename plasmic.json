@@ -186,6 +186,16 @@
           "id": "MwyR6vQxWa",
           "name": "IconCheckIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconCheck.tsx"
+        },
+        {
+          "id": "U8bxGhPFOV",
+          "name": "IconMenuOpenIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconMenuOpen.tsx"
+        },
+        {
+          "id": "FJuvOqJzhV",
+          "name": "IconCloseIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconClose.tsx"
         }
       ],
       "images": [
@@ -236,5 +246,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.75"
+  "cliVersion": "0.1.80",
+  "$schema": "../../../.nvm/versions/node/v14.15.1/lib/node_modules/@plasmicapp/cli/dist/plasmic.schema.json"
 }
