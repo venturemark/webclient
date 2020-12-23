@@ -3,4 +3,5 @@ import * as timeline from "./timeline";
 
 export const API = {
   Update: update.Update,
+  Timeline: timeline.Timeline,
 };
