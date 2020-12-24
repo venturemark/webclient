@@ -5,7 +5,7 @@
   position: relative;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
+  overflow: auto;
   transition-property: all;
   transition-duration: 1s;
   min-height: 0;

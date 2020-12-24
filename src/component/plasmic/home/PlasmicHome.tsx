@@ -174,6 +174,7 @@ function PlasmicHome__RenderFunc(props: {
           withIcons={["start"]}
         />
       </div>
+
       {(
         hasVariant(variants, "sidebarHidden", "sidebarHidden") ? true : true
       ) ? (
