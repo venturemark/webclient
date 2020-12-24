@@ -257,7 +257,14 @@ export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       sidebarHidden={hideSidebar}
-      toggleSidebar={{
+      closeSidebar={{
+        "aria-label": "Toggle Sidebar",
+        onPress: () => {
+          setHideSidebar(!hideSidebar);
+          setAddTimelineFocused(false);
+        },
+      }}
+      openSidebar={{
         "aria-label": "Toggle Sidebar",
         onPress: () => {
           setHideSidebar(!hideSidebar);
