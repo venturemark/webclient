@@ -9,13 +9,20 @@ export function Search(userId: string, username: string): spec.Res | null {
     const req = new apigents.Timeline.Search.I();
 
     //We don't have definitions in apigents library for SearchI_Obj?
-    const obj = new SearchI_Obj();
+    // const obj = new SearchI_Obj();
+    const obj = {
+      metadata: {
+        "user.venturemark.co/id": "usr-al9qy",
+      },
+    };
 
     let requestObj = { obj: [] };
 
     // Set classes
-    obj.getMetadataMap().set("user.venturemark.co/id", "usr-al9qy");
+    // obj.getMetadataMap().set("user.venturemark.co/id", "usr-al9qy");
+    // not used because no SearchI_Obj class
 
+    // @ts-ignore
     requestObj.obj.push(obj);
 
     req.setObjList(requestObj);
@@ -33,7 +40,9 @@ export function Search(userId: string, username: string): spec.Res | null {
     //     ]
     // }
 
-    client.search(req, {}, function (err: any, res: spec.Res) {
+    console.log(req);
+
+    client.search(req, {}, function (err: any, res: any) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
