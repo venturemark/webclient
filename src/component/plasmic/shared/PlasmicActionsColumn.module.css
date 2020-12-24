@@ -64,7 +64,7 @@
 }
 .slotNumberValue__content_hasContent_number_hasNumber {
   font-size: 14px;
-  white-space: nowrap;
+  white-space: pre;
 }
 .slotNumberValue__content_hasContent_number_hasNumber > * {
   text-overflow: clip;

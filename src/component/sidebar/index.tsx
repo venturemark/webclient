@@ -15,8 +15,7 @@ import { UpdateType } from "component/update";
 interface SidebarProps extends DefaultSidebarProps {
   timelines: TimelineType[];
   setTimelines: React.Dispatch<React.SetStateAction<TimelineType[]>>;
-  hideSidebar: boolean;
-  setHideSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  addTimelineFocused: boolean;
 }
 
 type FormInputs = {
@@ -48,7 +47,7 @@ const defaultUpdates: UpdateType[] = [
 ];
 
 function Sidebar(props: SidebarProps) {
-  const { timelines, setHideSidebar, setTimelines, hideSidebar } = props;
+  const { timelines, setTimelines, addTimelineFocused } = props;
   const { register, handleSubmit, reset, watch } = useForm<FormInputs>();
   const nameRef = useRef<HTMLInputElement | null>(null);
   const hasValue = watch("name") ? true : false;
@@ -90,16 +89,15 @@ function Sidebar(props: SidebarProps) {
   };
 
   useEffect(() => {
-    if (!hideSidebar) {
+    if (addTimelineFocused) {
       nameRef?.current?.focus();
     }
-  }, [hideSidebar]);
+  }, [addTimelineFocused]);
 
   return (
     <PlasmicSidebar
       homeItem={{
         onClick: () => alert("home pressed!"),
-        onPress: () => setHideSidebar(!hideSidebar),
       }}
       settingsItem={{
         onClick: () => alert("menu pressed!"),
@@ -127,7 +125,7 @@ function Sidebar(props: SidebarProps) {
         "aria-label": "Toggle sidebar",
         onPress: () => {
           if (!hasValue) {
-            setHideSidebar(!hideSidebar);
+            nameRef?.current?.focus();
           } else {
             handleSubmit(handleAddTimeline)();
           }

@@ -67,7 +67,7 @@
 }
 @media (min-width: 0px) and (max-width: 760px) {
   .textContainer {
-    white-space: normal;
+    white-space: pre-wrap;
   }
 }
 .box__eZiS {

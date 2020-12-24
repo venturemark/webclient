@@ -9,6 +9,7 @@
 // Plasmic Project: mTVXT6w3HHjZ4d74q3gB76
 // Component: FZWTu4L61t
 import * as React from "react";
+
 import {
   hasVariant,
   classNames,
@@ -17,6 +18,7 @@ import {
   createPlasmicElementProxy,
   makeFragment,
   PlasmicIcon,
+  PlasmicLink,
   PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
@@ -27,6 +29,7 @@ import {
   StrictProps,
   deriveRenderOpts,
   Stack,
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import SidebarItem from "../../sidebaritem/index"; // plasmic-import: KDElHbQmfd/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
@@ -97,11 +100,9 @@ function PlasmicSidebar__RenderFunc(props: {
         [sty.root__hasValue]: hasVariant(variants, "hasValue", "hasValue"),
       })}
     >
-      <Stack
-        as={"div"}
+      <div
         data-plasmic-name={"topSidebar"}
         data-plasmic-override={overrides.topSidebar}
-        hasGap={true}
         className={classNames(sty.topSidebar, defaultcss.all)}
       >
         <SidebarItem
@@ -152,11 +153,9 @@ function PlasmicSidebar__RenderFunc(props: {
           data-plasmic-override={overrides.scrollContainer}
           className={classNames(sty.scrollContainer, defaultcss.all)}
         >
-          <Stack
-            as={"div"}
+          <div
             data-plasmic-name={"settingsContainer"}
             data-plasmic-override={overrides.settingsContainer}
-            hasGap={true}
             className={classNames(sty.settingsContainer, defaultcss.all)}
           >
             <SidebarItem
@@ -197,13 +196,11 @@ function PlasmicSidebar__RenderFunc(props: {
                 />
               }
             />
-          </Stack>
+          </div>
 
-          <Stack
-            as={"div"}
+          <div
             data-plasmic-name={"timelinesContainer"}
             data-plasmic-override={overrides.timelinesContainer}
-            hasGap={true}
             className={classNames(sty.timelinesContainer, defaultcss.all)}
           >
             <SidebarItem
@@ -296,9 +293,9 @@ function PlasmicSidebar__RenderFunc(props: {
                 />
               }
             />
-          </Stack>
+          </div>
         </div>
-      </Stack>
+      </div>
 
       <Stack
         as={"form"}

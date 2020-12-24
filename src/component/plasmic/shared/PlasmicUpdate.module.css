@@ -24,10 +24,19 @@
   height: 209px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
   width: 676px;
   padding-left: 74px;
+}
+.root__state_text > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
+}
+.root__state_text > :global(.__wab_flex-container) > *,
+.root__state_text > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 0px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
   .root__state_text {
@@ -40,6 +49,15 @@
   flex-direction: row;
   height: 209px;
 }
+.root__state_graph > :global(.__wab_flex-container) {
+  flex-direction: row;
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
+}
+.root__state_graph > :global(.__wab_flex-container) > *,
+.root__state_graph > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 0px;
+}
 .root:hover {
   padding-left: 0px;
 }
@@ -50,6 +68,8 @@
   justify-content: flex-start;
   margin-left: calc(0px - 0px);
   width: calc(100% + 0px);
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
 }
 .root__state_text:hover > :global(.__wab_flex-container) > *,
 .root__state_text:hover
@@ -57,6 +77,7 @@
   > :global(.__wab_slot)
   > * {
   margin-left: 0px;
+  margin-top: 0px;
 }
 .updateActionContainer {
   display: inline-flex;
@@ -96,6 +117,15 @@
 .updateActionContainer__state_text > :global(.__wab_flex-container) {
   flex-direction: column;
   justify-content: space-evenly;
+  margin-left: calc(0px - 0px);
+  width: calc(100% + 0px);
+}
+.updateActionContainer__state_text > :global(.__wab_flex-container) > *,
+.updateActionContainer__state_text
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
+  margin-left: 0px;
 }
 .iconButton__i1WjS:global(.__wab_instance) {
   position: relative;
