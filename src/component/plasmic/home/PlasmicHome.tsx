@@ -71,15 +71,18 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHome__OverridesType = {
   root?: Flex<"div">;
-  toggleSidebar?: Flex<typeof IconButton>;
-  startIcon3?: Flex<"svg">;
-  endIcon3?: Flex<"svg">;
+  openSidebar?: Flex<typeof IconButton>;
+  startIcon32?: Flex<"svg">;
+  endIcon32?: Flex<"svg">;
   homeButton?: Flex<typeof IconButton>;
   startIcon?: Flex<"svg">;
   endIcon2?: Flex<"svg">;
   addButton?: Flex<typeof IconButton>;
   startIcon2?: Flex<"svg">;
   endIcon?: Flex<"svg">;
+  closeSidebar?: Flex<typeof IconButton>;
+  startIcon3?: Flex<"svg">;
+  endIcon3?: Flex<"svg">;
   sidebar?: Flex<typeof Sidebar>;
   main?: Flex<"div">;
   actionBarContainer?: Flex<"div">;
@@ -122,58 +125,6 @@ function PlasmicHome__RenderFunc(props: {
         ),
       })}
     >
-      <div
-        className={classNames(sty.box__nh02S, defaultcss.all, {
-          [sty.box__sidebarHidden__nh02ScPu7G]: hasVariant(
-            variants,
-            "sidebarHidden",
-            "sidebarHidden"
-          ),
-        })}
-      >
-        <IconButton
-          data-plasmic-name={"toggleSidebar"}
-          data-plasmic-override={overrides.toggleSidebar}
-          className={classNames(sty.toggleSidebar, "__wab_instance", {
-            [sty.toggleSidebar__sidebarHidden]: hasVariant(
-              variants,
-              "sidebarHidden",
-              "sidebarHidden"
-            ),
-          })}
-          content={""}
-          endIcon={
-            false ? (
-              <svg
-                data-plasmic-name={"endIcon3"}
-                data-plasmic-override={overrides.endIcon3}
-                className={classNames(sty.endIcon3, defaultcss.all)}
-                role={"img"}
-              />
-            ) : null
-          }
-          startIcon={
-            <PlasmicIcon
-              data-plasmic-name={"startIcon3"}
-              data-plasmic-override={overrides.startIcon3}
-              PlasmicIconType={
-                hasVariant(variants, "sidebarHidden", "sidebarHidden")
-                  ? IconMenuOpenIcon
-                  : IconCloseIcon
-              }
-              className={classNames(sty.startIcon3, defaultcss.all, {
-                [sty.startIcon3__sidebarHidden]: hasVariant(
-                  variants,
-                  "sidebarHidden",
-                  "sidebarHidden"
-                ),
-              })}
-              role={"img"}
-            />
-          }
-          withIcons={["start"]}
-        />
-      </div>
       {(
         hasVariant(variants, "sidebarHidden", "sidebarHidden") ? true : true
       ) ? (
@@ -192,6 +143,52 @@ function PlasmicHome__RenderFunc(props: {
             ),
           })}
         >
+          {(
+            hasVariant(variants, "sidebarHidden", "sidebarHidden") ? true : true
+          ) ? (
+            <IconButton
+              data-plasmic-name={"openSidebar"}
+              data-plasmic-override={overrides.openSidebar}
+              className={classNames(sty.openSidebar, "__wab_instance", {
+                [sty.openSidebar__sidebarHidden]: hasVariant(
+                  variants,
+                  "sidebarHidden",
+                  "sidebarHidden"
+                ),
+              })}
+              content={""}
+              endIcon={
+                false ? (
+                  <svg
+                    data-plasmic-name={"endIcon32"}
+                    data-plasmic-override={overrides.endIcon32}
+                    className={classNames(sty.endIcon32, defaultcss.all)}
+                    role={"img"}
+                  />
+                ) : null
+              }
+              startIcon={
+                <PlasmicIcon
+                  data-plasmic-name={"startIcon32"}
+                  data-plasmic-override={overrides.startIcon32}
+                  PlasmicIconType={
+                    hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                      ? IconMenuOpenIcon
+                      : IconCloseIcon
+                  }
+                  className={classNames(sty.startIcon32, defaultcss.all, {
+                    [sty.startIcon32__sidebarHidden]: hasVariant(
+                      variants,
+                      "sidebarHidden",
+                      "sidebarHidden"
+                    ),
+                  })}
+                  role={"img"}
+                />
+              }
+              withIcons={["start"]}
+            />
+          ) : null}
           {(
             hasVariant(variants, "sidebarHidden", "sidebarHidden") ? true : true
           ) ? (
@@ -304,6 +301,49 @@ function PlasmicHome__RenderFunc(props: {
             ),
           })}
         >
+          <IconButton
+            data-plasmic-name={"closeSidebar"}
+            data-plasmic-override={overrides.closeSidebar}
+            className={classNames(sty.closeSidebar, "__wab_instance", {
+              [sty.closeSidebar__sidebarHidden]: hasVariant(
+                variants,
+                "sidebarHidden",
+                "sidebarHidden"
+              ),
+            })}
+            content={""}
+            endIcon={
+              false ? (
+                <svg
+                  data-plasmic-name={"endIcon3"}
+                  data-plasmic-override={overrides.endIcon3}
+                  className={classNames(sty.endIcon3, defaultcss.all)}
+                  role={"img"}
+                />
+              ) : null
+            }
+            startIcon={
+              <PlasmicIcon
+                data-plasmic-name={"startIcon3"}
+                data-plasmic-override={overrides.startIcon3}
+                PlasmicIconType={
+                  hasVariant(variants, "sidebarHidden", "sidebarHidden")
+                    ? IconMenuOpenIcon
+                    : IconCloseIcon
+                }
+                className={classNames(sty.startIcon3, defaultcss.all, {
+                  [sty.startIcon3__sidebarHidden]: hasVariant(
+                    variants,
+                    "sidebarHidden",
+                    "sidebarHidden"
+                  ),
+                })}
+                role={"img"}
+              />
+            }
+            withIcons={["start"]}
+          />
+
           {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
             <Sidebar
               data-plasmic-name={"sidebar"}
@@ -392,15 +432,18 @@ function PlasmicHome__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "toggleSidebar",
-    "startIcon3",
-    "endIcon3",
+    "openSidebar",
+    "startIcon32",
+    "endIcon32",
     "homeButton",
     "startIcon",
     "endIcon2",
     "addButton",
     "startIcon2",
     "endIcon",
+    "closeSidebar",
+    "startIcon3",
+    "endIcon3",
     "sidebar",
     "main",
     "actionBarContainer",
@@ -410,15 +453,18 @@ const PlasmicDescendants = {
     "actionsColumn",
   ],
 
-  toggleSidebar: ["toggleSidebar", "startIcon3", "endIcon3"],
-  startIcon3: ["startIcon3"],
-  endIcon3: ["endIcon3"],
+  openSidebar: ["openSidebar", "startIcon32", "endIcon32"],
+  startIcon32: ["startIcon32"],
+  endIcon32: ["endIcon32"],
   homeButton: ["homeButton", "startIcon", "endIcon2"],
   startIcon: ["startIcon"],
   endIcon2: ["endIcon2"],
   addButton: ["addButton", "startIcon2", "endIcon"],
   startIcon2: ["startIcon2"],
   endIcon: ["endIcon"],
+  closeSidebar: ["closeSidebar", "startIcon3", "endIcon3"],
+  startIcon3: ["startIcon3"],
+  endIcon3: ["endIcon3"],
   sidebar: ["sidebar"],
   main: [
     "main",
@@ -441,15 +487,18 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  toggleSidebar: typeof IconButton;
-  startIcon3: "svg";
-  endIcon3: "svg";
+  openSidebar: typeof IconButton;
+  startIcon32: "svg";
+  endIcon32: "svg";
   homeButton: typeof IconButton;
   startIcon: "svg";
   endIcon2: "svg";
   addButton: typeof IconButton;
   startIcon2: "svg";
   endIcon: "svg";
+  closeSidebar: typeof IconButton;
+  startIcon3: "svg";
+  endIcon3: "svg";
   sidebar: typeof Sidebar;
   main: "div";
   actionBarContainer: "div";
@@ -517,15 +566,18 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    toggleSidebar: makeNodeComponent("toggleSidebar"),
-    startIcon3: makeNodeComponent("startIcon3"),
-    endIcon3: makeNodeComponent("endIcon3"),
+    openSidebar: makeNodeComponent("openSidebar"),
+    startIcon32: makeNodeComponent("startIcon32"),
+    endIcon32: makeNodeComponent("endIcon32"),
     homeButton: makeNodeComponent("homeButton"),
     startIcon: makeNodeComponent("startIcon"),
     endIcon2: makeNodeComponent("endIcon2"),
     addButton: makeNodeComponent("addButton"),
     startIcon2: makeNodeComponent("startIcon2"),
     endIcon: makeNodeComponent("endIcon"),
+    closeSidebar: makeNodeComponent("closeSidebar"),
+    startIcon3: makeNodeComponent("startIcon3"),
+    endIcon3: makeNodeComponent("endIcon3"),
     sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     actionBarContainer: makeNodeComponent("actionBarContainer"),

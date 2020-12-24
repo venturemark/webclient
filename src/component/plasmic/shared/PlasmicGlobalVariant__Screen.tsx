@@ -1,3 +1,7 @@
+// @ts-nocheck
+/* eslint-disable */
+/* tslint:disable */
+/* prettier-ignore-start */
 import * as React from "react";
 export type ScreenValue = "mobile" | "desktop" | "tablet";
 export const ScreenContext = React.createContext<ScreenValue | undefined>(
@@ -42,3 +46,4 @@ export function ScreenVariantProvider(props: { children?: React.ReactNode }) {
 }
 
 export default ScreenContext;
+/* prettier-ignore-end */
