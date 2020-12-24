@@ -2,13 +2,8 @@ import React from "react";
 
 import * as home from "component/home";
 import * as api from "module/api";
-import { TimelineSearchI } from "module/api/timeline/search";
 
-const request: TimelineSearchI = {
-  obj: [{ metadata: { "user.venturemark.co/id": "usr-al9qy" } }],
-};
-
-api.API.Timeline.Search(request);
+api.API.Timeline.Search("user.venturemark.co/id", "usr-al9qy");
 
 type Props = {};
 

@@ -2,41 +2,38 @@ import apigents from "@venturemark/apigents";
 import * as env from "module/env";
 import * as spec from "./spec";
 
-type DataField = {
-  [key: string]: string;
-};
-
-type ChunkingObject = {
-  perpage: number;
-  pointer: number;
-};
-
-type ApiObject = {
-  chunking: ChunkingObject;
-};
-
-type DataObject = {
-  metadata: DataField;
-};
-
-export interface TimelineSearchI {
-  api?: ApiObject;
-  obj: DataObject[];
-}
-
-export interface TimelineSearchO {
-  api?: ApiObject;
-  obj: DataObject[];
-}
-
-export function Search(request: TimelineSearchI): TimelineSearchO | null {
+export function Search(userId: string, username: string): spec.Res | null {
   {
+    //instantiate classes
     const client = new apigents.Timeline.Client(env.APIEndpoint());
     const req = new apigents.Timeline.Search.I();
 
-    req.setObjList(request);
+    //We don't have definitions in apigents library for SearchI_Obj?
+    const obj = new SearchI_Obj();
 
-    client.search(req, {}, function (err: any, res: TimelineSearchO) {
+    let requestObj = { obj: [] };
+
+    // Set classes
+    obj.getMetadataMap().set("user.venturemark.co/id", "usr-al9qy");
+
+    requestObj.obj.push(obj);
+
+    req.setObjList(requestObj);
+    // Structure should be: SearchI.obj.[0].SearchI_Obj
+    //
+    // or
+    //
+    // {
+    //     "obj": [
+    //         {
+    //             "metadata": {
+    //                 "user.venturemark.co/id": "usr-al9qy"
+    //             }
+    //         }
+    //     ]
+    // }
+
+    client.search(req, {}, function (err: any, res: spec.Res) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
