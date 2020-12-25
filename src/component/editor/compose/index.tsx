@@ -19,6 +19,9 @@ import {
   ResetBlockTypePlugin,
   SoftBreakPlugin,
   ExitBreakPlugin,
+  MentionPlugin,
+  MentionSelect,
+  useMention,
   pipe,
   withAutoformat,
   withImageUpload,
@@ -33,6 +36,7 @@ import {
   optionsResetBlockTypes,
   initialValueEmpty,
 } from "component/editor/config/initialValues";
+import { MENTIONABLES } from "../config/mentionables";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import Searcher from "@venturemark/numnum";
@@ -49,6 +53,7 @@ const plugins = [
   ListPlugin(options),
   HeadingPlugin(options),
   ResetBlockTypePlugin(optionsResetBlockTypes),
+  MentionPlugin(options),
   SoftBreakPlugin({
     rules: [
       { hotkey: "shift+enter" },
@@ -147,6 +152,19 @@ const ComposeEditor = (props: EditorProps) => {
 
   const { insertBreak, insertText } = editor;
 
+  const {
+    onAddMention,
+    onChangeMention,
+    onKeyDownMention,
+    search,
+    index,
+    target,
+    values,
+  } = useMention(MENTIONABLES, {
+    maxSuggestions: 10,
+    trigger: "@",
+  });
+
   editor.insertBreak = () => {
     const height = editorRef.current?.offsetHeight ?? DEFAULT_HEIGHT;
     if (height < HEIGHT_LIMIT) {
@@ -189,12 +207,24 @@ const ComposeEditor = (props: EditorProps) => {
 
     //save to local storage to persist...
     save(newValue);
+    onChangeMention(editor);
   };
 
   return (
     <div ref={editorRef} className={actionbarcss.textContainer}>
       <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
-        <EditablePlugins plugins={plugins} spellCheck />
+        <EditablePlugins
+          plugins={plugins}
+          spellCheck
+          onKeyDown={[onKeyDownMention]}
+          onKeyDownDeps={[index, search, target]}
+        />
+        <MentionSelect
+          at={target}
+          valueIndex={index}
+          options={values}
+          onClickMention={onAddMention}
+        />
       </Slate>
     </div>
   );
