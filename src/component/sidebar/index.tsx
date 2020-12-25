@@ -42,6 +42,7 @@ const defaultUpdates: UpdateType[] = [
     id: "now",
     numberValue: 23,
     isFlipped: false,
+    isContext: false,
     text: defaultText,
   },
 ];
