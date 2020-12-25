@@ -8,6 +8,8 @@ export function Search(userId: string, username: string): spec.Res | null {
     const client = new apigents.Timeline.Client(env.APIEndpoint());
     const req = new apigents.Timeline.Search.I();
 
+    console.log(apigents);
+
     //We don't have definitions in apigents library for SearchI_Obj?
     // const obj = new SearchI_Obj();
     const obj = {
