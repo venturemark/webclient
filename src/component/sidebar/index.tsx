@@ -108,6 +108,7 @@ function Sidebar(props: SidebarProps) {
 
   return (
     <PlasmicSidebar
+      hasValue={hasValue}
       homeItem={{
         onClick: () => alert("home pressed!"),
       }}
