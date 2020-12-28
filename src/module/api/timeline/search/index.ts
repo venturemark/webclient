@@ -1,5 +1,5 @@
 import apigents from "@venturemark/apigents";
-import { SearchI_Obj } from "../proto/search_pb";
+import { SearchI_Obj } from "module/api/proto/search_pb";
 import * as env from "module/env";
 import { TimelineType } from "component/home/index";
 

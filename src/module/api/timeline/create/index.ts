@@ -1,13 +1,8 @@
 import apigents from "@venturemark/apigents";
-import { CreateI_Obj, CreateI_Obj_Property } from "../proto/create_pb";
+import { CreateI_Obj, CreateI_Obj_Property } from "module/api/proto/create_pb";
 import * as env from "module/env";
-import * as spec from "./spec";
 
-export function Create(
-  name: string,
-  userId: string,
-  timelineId: string
-): spec.Res {
+export function Create(name: string, userId: string, timelineId: string): any {
   {
     const client = new apigents.Timeline.Client(env.APIEndpoint());
     const req = new apigents.Timeline.Create.I();
@@ -21,7 +16,7 @@ export function Create(
 
     req.setObj(obj);
 
-    client.create(req, {}, function (err: any, res: spec.Res) {
+    client.create(req, {}, function (err: any, res: any) {
       if (err) {
         console.log(err.code);
         console.log(err.message);

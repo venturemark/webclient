@@ -1,13 +1,12 @@
 // import * as apigents from "@venturemark/apigents";
-import APIGENTS from "@venturemark/apigents";
+import apigents from "@venturemark/apigents";
 import * as env from "module/env";
-import * as spec from "./spec";
 
-export function Search(payload: spec.Req): spec.Res {
+export function Search(payload: any) {
   {
-    const client = new APIGENTS.Update.Client(env.APIEndpoint());
+    const client = new apigents.Update.Client(env.APIEndpoint());
 
-    const req = new APIGENTS.Update.Search.I();
+    const req = new apigents.Update.Search.I();
     // TODO use proper types for the search input
 
     req.setObjList(payload);
