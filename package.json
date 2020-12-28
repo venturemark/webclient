@@ -26,7 +26,8 @@
     "@types/react-dom": "^16.9.9",
     "@types/recharts": "^1.8.16",
     "@udecode/slate-plugins": "0.71.0",
-    "@venturemark/numnum": "github:venturemark/numnum#v0.1.1",
+    "@venturemark/apigents": "github:venturemark/apigents#v0.2.3",
+    "@venturemark/numnum": "github:venturemark/numnum#v0.1.2",
     "date-fns": "^2.16.1",
     "faker": "^5.1.0",
     "react": "^17.0.1",
@@ -54,7 +55,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "start": "react-scripts start"
+    "start": "PORT=3006 react-scripts start"
   },
   "version": "0.1.0"
 }

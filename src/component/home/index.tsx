@@ -18,14 +18,16 @@ import { get } from "module/store";
 import * as linechart from "component/linechart";
 import { useEditor } from "component/editor/compose";
 import { UpdateType } from "component/update";
+import * as api from "module/api";
 
 interface HomeProps extends DefaultHomeProps {}
 
 export interface TimelineType {
   name: string;
   dataKey: string;
-  id: string;
-  date: string;
+  userId: string;
+  timelineId: string;
+  date?: string;
   isCurrent: boolean;
   updates: UpdateType[];
   data: linechart.DataItem[];
@@ -122,8 +124,8 @@ const defaultTimelines: TimelineType[] = [
   {
     name: "Active Users",
     dataKey: "Active Users",
-    id: "now",
-    date: "now",
+    timelineId: "now",
+    userId: "now",
     updates: defaultUpdatesActive,
     data: defaultActiveData,
     isCurrent: true,
@@ -131,8 +133,8 @@ const defaultTimelines: TimelineType[] = [
   {
     name: "Features Shipped",
     dataKey: "Features Shipped",
-    id: "now1",
-    date: "now1",
+    timelineId: "now1",
+    userId: "now1",
     updates: defaultUpdatesFeature,
     data: defaultFeaturesData,
     isCurrent: false,
@@ -140,8 +142,8 @@ const defaultTimelines: TimelineType[] = [
   {
     name: "Milestones",
     dataKey: "Milestones",
-    id: "now2",
-    date: "now2",
+    timelineId: "now2",
+    userId: "now2",
     updates: defaultUpdatesMilestone,
     data: defaultMilestonesData,
     isCurrent: false,
@@ -149,8 +151,8 @@ const defaultTimelines: TimelineType[] = [
   {
     name: "Revenue",
     dataKey: "Revenue",
-    id: "now3",
-    date: "now3",
+    timelineId: "now3",
+    userId: "now3",
     updates: defaultUpdatesRevenue,
     data: defaultRevenueData,
     isCurrent: false,
@@ -159,6 +161,7 @@ const defaultTimelines: TimelineType[] = [
 
 export function Component(props: HomeProps) {
   const [timelines, setTimelines] = useState<TimelineType[]>(defaultTimelines);
+
   const currentTimeline =
     timelines.filter((timeline) => timeline.isCurrent === true)[0] ??
     defaultTimelines[0];
@@ -166,7 +169,7 @@ export function Component(props: HomeProps) {
   const [hideSidebar, setHideSidebar] = useState(true);
   const [addTimelineFocused, setAddTimelineFocused] = useState(false);
 
-  const [updates, setUpdates] = useState<UpdateType[]>(currentTimeline.updates);
+  const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdatesFeature);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -187,8 +190,20 @@ export function Component(props: HomeProps) {
   });
 
   useEffect(() => {
-    setUpdates(currentTimeline.updates);
-  }, [currentTimeline]);
+    const fetchData = async () => {
+      const result = await api.API.Timeline.Search(
+        "user.venturemark.co/id",
+        "usr-al9qy"
+      );
+      setTimelines(result as TimelineType[]);
+    };
+
+    fetchData();
+  }, []);
+
+  // useEffect(() => {
+  //   setUpdates(defaultUpdates);
+  // }, [currentTimeline, timelinesData]);
 
   const createUpdate = () => {
     if (!editorShape.hasContent) {

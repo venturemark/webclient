@@ -12,6 +12,8 @@ import { options } from "component/editor/config/initialValues";
 import { Node } from "slate";
 import { TimelineType } from "component/home";
 import { UpdateType } from "component/update";
+import * as api from "module/api";
+
 interface SidebarProps extends DefaultSidebarProps {
   timelines: TimelineType[];
   setTimelines: React.Dispatch<React.SetStateAction<TimelineType[]>>;
@@ -60,6 +62,8 @@ function Sidebar(props: SidebarProps) {
 
     const name = data.name;
     const date = format(new Date(), "PP");
+    const userId = "usr-al9qy";
+    const timelineId = "user.venturemark.co/id";
 
     const defaultData = [
       {
@@ -72,12 +76,16 @@ function Sidebar(props: SidebarProps) {
     const timeline = {
       name: name,
       date: date,
-      id: date,
+      userId: date,
+      timelineId: date,
       dataKey: name,
       updates: defaultUpdates,
       data: defaultData,
       isCurrent: false,
     };
+
+    api.API.Timeline.Create(name, userId, timelineId);
+
     const sortedTimelines = [timeline, ...timelines].sort((a, b) =>
       a.name.localeCompare(b.name)
     );
@@ -97,6 +105,7 @@ function Sidebar(props: SidebarProps) {
 
   return (
     <PlasmicSidebar
+      hasValue={hasValue}
       homeItem={{
         onClick: () => alert("home pressed!"),
       }}
