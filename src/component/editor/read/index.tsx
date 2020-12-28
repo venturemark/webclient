@@ -13,12 +13,13 @@ import {
   StrikethroughPlugin,
   BlockquotePlugin,
   ListPlugin,
+  MentionPlugin,
+  pipe,
+  withImageUpload,
   withLink,
   withList,
   withMarks,
-  withImageUpload,
   withInlineVoid,
-  pipe,
 } from "@udecode/slate-plugins";
 import { Node } from "slate";
 import { initialValueEmpty } from "component/editor/config/initialValues";
@@ -30,6 +31,7 @@ const plugins = [
   ItalicPlugin(),
   StrikethroughPlugin(),
   BlockquotePlugin(),
+  MentionPlugin(),
   ListPlugin(),
   HeadingPlugin(),
 ];
