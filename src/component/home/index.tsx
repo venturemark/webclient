@@ -53,6 +53,7 @@ const defaultUpdatesActive: UpdateType[] = [
     id: "now",
     numberValue: 23,
     isFlipped: false,
+    isContext: false,
     text: defaultText,
   },
 ];
@@ -62,6 +63,7 @@ const defaultUpdatesFeature: UpdateType[] = [
     id: "now1",
     numberValue: 23,
     isFlipped: false,
+    isContext: false,
     text: defaultText,
   },
 ];
@@ -71,6 +73,7 @@ const defaultUpdatesMilestone: UpdateType[] = [
     id: "now2",
     numberValue: 23,
     isFlipped: false,
+    isContext: false,
     text: defaultText,
   },
 ];
@@ -80,6 +83,7 @@ const defaultUpdatesRevenue: UpdateType[] = [
     id: "now3",
     numberValue: 23,
     isFlipped: false,
+    isContext: false,
     text: defaultText,
   },
 ];
@@ -229,6 +233,7 @@ export function Component(props: HomeProps) {
       numberValue: editorShape.numberValue,
       id: id,
       isFlipped: false,
+      isContext: false,
     };
     setUpdates([update, ...updates]);
 
@@ -272,7 +277,14 @@ export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       sidebarHidden={hideSidebar}
-      toggleSidebar={{
+      closeSidebar={{
+        "aria-label": "Toggle Sidebar",
+        onPress: () => {
+          setHideSidebar(!hideSidebar);
+          setAddTimelineFocused(false);
+        },
+      }}
+      openSidebar={{
         "aria-label": "Toggle Sidebar",
         onPress: () => {
           setHideSidebar(!hideSidebar);
@@ -307,6 +319,7 @@ export function Component(props: HomeProps) {
             data={currentTimeline.data}
             name={currentTimeline.name}
             isFlipped={update.isFlipped}
+            isContext={update.isContext}
             updates={updates}
             setUpdates={setUpdates}
           />
