@@ -1,7 +1,6 @@
 import apigents from "@venturemark/apigents";
 import { SearchI_Obj } from "../proto/search_pb";
 import * as env from "module/env";
-import * as spec from "./spec";
 import { TimelineType } from "component/home/index";
 
 export async function Search(timelineId: string, userId: string) {
