@@ -65,9 +65,6 @@ function Sidebar(props: SidebarProps) {
     const userId = "usr-al9qy";
     const timelineId = "user.venturemark.co/id";
 
-    // const timelinePb = api.API.Timeline.Create();
-    // console.log("created timelined:",timelinePb )
-
     const defaultData = [
       {
         date: date,

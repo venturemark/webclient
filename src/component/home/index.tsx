@@ -169,7 +169,7 @@ export function Component(props: HomeProps) {
   const [hideSidebar, setHideSidebar] = useState(true);
   const [addTimelineFocused, setAddTimelineFocused] = useState(false);
 
-  const [updates, setUpdates] = useState<UpdateType[]>(currentTimeline.updates);
+  const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdatesFeature);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
