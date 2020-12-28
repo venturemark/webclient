@@ -1,58 +1,52 @@
 import apigents from "@venturemark/apigents";
+import { SearchI_Obj } from "../proto/search_pb";
 import * as env from "module/env";
 import * as spec from "./spec";
+import { TimelineType } from "component/home/index";
 
-export function Search(userId: string, username: string): spec.Res | null {
-  {
-    //instantiate classes
-    const client = new apigents.Timeline.Client(env.APIEndpoint());
-    const req = new apigents.Timeline.Search.I();
+export async function Search(timelineId: string, userId: string) {
+  const objList = [];
+  //instantiate client and req classes
+  const client = new apigents.Timeline.Client(env.APIEndpoint());
+  const req = new apigents.Timeline.Search.I();
 
-    console.log(apigents);
+  // Need to map JSON array of objects into protobuf using the generated marshalling code.
+  const obj = new SearchI_Obj();
+  obj.getMetadataMap().set(timelineId, userId);
+  objList.push(obj);
+  req.setObjList(objList);
 
-    //We don't have definitions in apigents library for SearchI_Obj?
-    // const obj = new SearchI_Obj();
-    const obj = {
-      metadata: {
-        "user.venturemark.co/id": "usr-al9qy",
-      },
-    };
-
-    let requestObj = { obj: [] };
-
-    // Set classes
-    // obj.getMetadataMap().set("user.venturemark.co/id", "usr-al9qy");
-    // not used because no SearchI_Obj class
-
-    // @ts-ignore
-    requestObj.obj.push(obj);
-
-    req.setObjList(requestObj);
-    // Structure should be: SearchI.obj.[0].SearchI_Obj
-    //
-    // or
-    //
-    // {
-    //     "obj": [
-    //         {
-    //             "metadata": {
-    //                 "user.venturemark.co/id": "usr-al9qy"
-    //             }
-    //         }
-    //     ]
-    // }
-
-    console.log(req);
-
-    client.search(req, {}, function (err: any, res: any) {
+  const getSearchResponsePb = await new Promise((resolve, reject) => {
+    client.search(req, {}, function (err: any, res: any): any {
       if (err) {
         console.log(err.code);
         console.log(err.message);
+        reject(err);
       } else {
-        console.log(res);
+        const timelinesPb = res.getObjList();
+
+        const timelines = timelinesPb.map((timelinePb: SearchI_Obj) => {
+          const propertyPb = timelinePb.getProperty();
+          const name = propertyPb?.toObject().name;
+          const timelineId = timelinePb
+            .getMetadataMap()
+            .toObject()[0][1] as string;
+          const userId = timelinePb.getMetadataMap().toObject()[1][1] as string;
+
+          const timeline: TimelineType = {
+            name: name as string,
+            timelineId: timelineId,
+            userId: userId,
+            dataKey: name as string,
+            isCurrent: false,
+            updates: [],
+            data: [],
+          };
+          return timeline;
+        });
+        resolve(timelines);
       }
     });
-  }
-
-  return null;
+  });
+  return getSearchResponsePb;
 }
