@@ -41,7 +41,9 @@ const defaultText: Node[] = [
 
 const defaultUpdates: IUpdate[] = [
   {
-    id: "now",
+    updateId: "now",
+    userId: "now",
+    timelineId: "now",
     numberValue: 23,
     isFlipped: false,
     isContext: false,

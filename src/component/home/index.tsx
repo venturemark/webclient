@@ -90,7 +90,9 @@ export function Component(props: HomeProps) {
     const update: IUpdate = {
       text: editorShape.value,
       numberValue: editorShape.numberValue,
-      id: id,
+      updateId: id,
+      userId: id,
+      timelineId: id,
       isFlipped: false,
       isContext: false,
     };
@@ -172,8 +174,8 @@ export function Component(props: HomeProps) {
         children: updates.map((update) => (
           <Update
             text={update.text}
-            key={update.id}
-            id={update.id}
+            key={update.updateId}
+            updateId={update.updateId}
             dataKey={currentTimeline.dataKey}
             data={currentTimeline.data}
             name={currentTimeline.name}

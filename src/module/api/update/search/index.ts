@@ -1,28 +1,60 @@
-// import * as apigents from "@venturemark/apigents";
 import apigents from "@venturemark/apigents";
+import { SearchI_Obj } from "module/api/update/proto/search_pb";
 import * as env from "module/env";
+import { IUpdate } from "module/interface/update/index";
 
-export function Search(payload: any) {
-  {
-    const client = new apigents.Update.Client(env.APIEndpoint());
+export async function Search(
+  timelineIdKey: string,
+  timelineIdvalue: string,
+  userIdKey: string,
+  userIdvalue: string
+) {
+  const objList = [];
 
-    const req = new apigents.Update.Search.I();
-    // TODO use proper types for the search input
+  //instantiate client and req classes
+  const client = new apigents.Update.Client(env.APIEndpoint());
+  const req = new apigents.Update.Search.I();
 
-    req.setObjList(payload);
+  // Need to map JSON array of objects into protobuf using the generated marshalling code.
+  const obj = new SearchI_Obj();
+  obj.getMetadataMap().set(timelineIdKey, timelineIdvalue);
+  obj.getMetadataMap().set(userIdKey, userIdvalue);
+  objList.push(obj);
+  req.setObjList(objList);
+  console.log(req);
 
-    console.log("req instantiation: ", req);
+  const response = await client.search(req, {}, function (err: any, res: any) {
+    if (err) {
+      console.log(err);
+      console.log(err.code);
+      console.log(err.message);
+      return;
+    } else {
+      const updatesPb = res.getObjList();
 
-    client.search(req, {}, function (err: any, res: any) {
-      if (err) {
-        console.log(err);
-        console.log(err.code);
-        console.log(err.message);
-      } else {
-        console.log(res);
-      }
-    });
-  }
+      const updates = updatesPb.map((updatePb: SearchI_Obj) => {
+        const propertyPb = updatePb.getProperty();
+        const text = propertyPb?.toObject();
+        const updateId = updatePb.getMetadataMap().toObject()[0][1] as string;
+        const timelineId = updatePb.getMetadataMap().toObject()[1][1] as string;
+        const userId = updatePb.getMetadataMap().toObject()[2][1] as string;
 
-  return null;
+        const update: IUpdate = {
+          timelineId: timelineId,
+          updateId: updateId,
+          userId: userId,
+          text: [],
+          numberValue: 0,
+          isFlipped: false,
+          isContext: false,
+        };
+        return update;
+      });
+      console.log(updates);
+      return updates;
+    }
+  });
+  console.log(response);
+
+  return response;
 }

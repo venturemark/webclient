@@ -1,5 +1,8 @@
 import apigents from "@venturemark/apigents";
-import { CreateI_Obj, CreateI_Obj_Property } from "module/api/proto/create_pb";
+import {
+  CreateI_Obj,
+  CreateI_Obj_Property,
+} from "module/api/timeline/proto/create_pb";
 import * as env from "module/env";
 
 export function Create(name: string, userId: string, timelineId: string): any {

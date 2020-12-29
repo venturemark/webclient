@@ -1,9 +1,9 @@
 import apigents from "@venturemark/apigents";
-import { SearchI_Obj } from "module/api/proto/search_pb";
+import { SearchI_Obj } from "module/api/timeline/proto/search_pb";
 import * as env from "module/env";
 import { ITimeline } from "module/interface/timeline/index";
 
-export async function Search(timelineId: string, userId: string) {
+export async function Search(userIdKey: string, userIdValue: string) {
   const objList = [];
   //instantiate client and req classes
   const client = new apigents.Timeline.Client(env.APIEndpoint());
@@ -11,7 +11,7 @@ export async function Search(timelineId: string, userId: string) {
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(timelineId, userId);
+  obj.getMetadataMap().set(userIdKey, userIdValue);
   objList.push(obj);
   req.setObjList(objList);
 
