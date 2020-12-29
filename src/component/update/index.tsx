@@ -6,7 +6,6 @@ import {
   DefaultUpdateProps,
 } from "component/plasmic/shared/PlasmicUpdate";
 import { Node } from "slate";
-import * as linechart from "component/linechart";
 import { IUpdate } from "module/interface/update";
 import { IMetric } from "module/interface/metric";
 
