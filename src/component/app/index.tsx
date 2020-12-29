@@ -6,6 +6,8 @@ import * as api from "module/api";
 const fetch = api.API.Update.Search(
   "timeline.venturemark.co/id",
   "1606488079",
+  "update.venturemark.co/id",
+  "1606488140",
   "user.venturemark.co/id",
   "usr-al9qy"
 );

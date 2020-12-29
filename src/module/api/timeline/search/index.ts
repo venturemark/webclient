@@ -21,6 +21,7 @@ export async function Search(userIdKey: string, userIdValue: string) {
         console.log(err.code);
         console.log(err.message);
         reject(err);
+        return;
       } else {
         const timelinesPb = res.getObjList();
 

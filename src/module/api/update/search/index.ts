@@ -6,6 +6,8 @@ import { IUpdate } from "module/interface/update/index";
 export async function Search(
   timelineIdKey: string,
   timelineIdvalue: string,
+  updateIdKey: string,
+  updateIdValue: string,
   userIdKey: string,
   userIdvalue: string
 ) {
@@ -19,42 +21,44 @@ export async function Search(
   const obj = new SearchI_Obj();
   obj.getMetadataMap().set(timelineIdKey, timelineIdvalue);
   obj.getMetadataMap().set(userIdKey, userIdvalue);
+  obj.getMetadataMap().set(updateIdKey, updateIdValue);
   objList.push(obj);
   req.setObjList(objList);
   console.log(req);
 
-  const response = await client.search(req, {}, function (err: any, res: any) {
-    if (err) {
-      console.log(err);
-      console.log(err.code);
-      console.log(err.message);
-      return;
-    } else {
-      const updatesPb = res.getObjList();
+  const getSearchResponsePb = await new Promise((resolve, reject) => {
+    client.search(req, {}, function (err: any, res: any) {
+      if (err) {
+        console.log(err.code);
+        console.log(err.message);
+        reject(err);
+      } else {
+        const updatesPb = res.getObjList();
 
-      const updates = updatesPb.map((updatePb: SearchI_Obj) => {
-        const propertyPb = updatePb.getProperty();
-        const text = propertyPb?.toObject().text;
-        const updateId = updatePb.getMetadataMap().toObject()[0][1] as string;
-        const timelineId = updatePb.getMetadataMap().toObject()[1][1] as string;
-        const userId = updatePb.getMetadataMap().toObject()[2][1] as string;
+        const updates = updatesPb.map((updatePb: SearchO_Obj) => {
+          const propertyPb = updatePb.getProperty();
+          const text = propertyPb?.toObject().text;
+          const updateId = updatePb.getMetadataMap().toObject()[0][1] as string;
+          const timelineId = updatePb
+            .getMetadataMap()
+            .toObject()[1][1] as string;
+          const userId = updatePb.getMetadataMap().toObject()[2][1] as string;
 
-        const update: IUpdate = {
-          timelineId: timelineId,
-          updateId: updateId,
-          userId: userId,
-          text: text,
-          numberValue: 0,
-          isFlipped: false,
-          isContext: false,
-        };
-        return update;
-      });
-      console.log(updates);
-      return updates;
-    }
+          const update: IUpdate = {
+            timelineId: timelineId,
+            updateId: updateId,
+            userId: userId,
+            text: text,
+            numberValue: 0,
+            isFlipped: false,
+            isContext: false,
+          };
+          return update;
+        });
+        resolve(updates);
+      }
+    });
   });
-  console.log(response);
 
-  return response;
+  return getSearchResponsePb;
 }
