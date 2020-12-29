@@ -7,24 +7,18 @@ import {
 } from "component/plasmic/shared/PlasmicUpdate";
 import { Node } from "slate";
 import * as linechart from "component/linechart";
-
-export interface UpdateType {
-  id: string;
-  text: Node[];
-  numberValue: number;
-  isFlipped: boolean;
-  isContext: boolean;
-}
+import { IUpdate } from "module/interface/update";
+import { IMetric } from "module/interface/metric";
 
 interface UpdateProps extends DefaultUpdateProps {
   text: Node[];
   dataKey: string;
-  data: linechart.DataItem[];
+  data: IMetric[];
   name: string;
   isFlipped: boolean;
   id: string;
-  updates: UpdateType[];
-  setUpdates: React.Dispatch<React.SetStateAction<UpdateType[]>>;
+  updates: IUpdate[];
+  setUpdates: React.Dispatch<React.SetStateAction<IUpdate[]>>;
   isContext: boolean;
 }
 

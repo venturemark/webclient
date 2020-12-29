@@ -6,11 +6,12 @@ import {
   DefaultMetricProps,
 } from "component/plasmic/shared/PlasmicMetric";
 import * as linechart from "component/linechart";
+import { IMetric } from "module/interface/metric";
 
 interface MetricProps extends DefaultMetricProps {
   name: string;
   dataKey: string;
-  data: linechart.DataItem[];
+  data: IMetric[];
   handleChangeContext: (
     e: React.MouseEvent<HTMLInputElement>,
     payload: any

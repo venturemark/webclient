@@ -8,13 +8,13 @@ import {
 } from "component/plasmic/shared/PlasmicUpdateContent";
 import ReadEditor from "component/editor/read";
 import { Node } from "slate";
-import { DataItem } from "component/linechart";
+import { IMetric } from "module/interface/metric";
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
   isFlipped: boolean;
   text: Node[];
   dataKey: string;
-  data: DataItem[];
+  data: IMetric[];
   name: string;
   changeContext: any;
 }
