@@ -34,7 +34,7 @@ export async function Search(
 
       const updates = updatesPb.map((updatePb: SearchI_Obj) => {
         const propertyPb = updatePb.getProperty();
-        const text = propertyPb?.toObject();
+        const text = propertyPb?.toObject().text;
         const updateId = updatePb.getMetadataMap().toObject()[0][1] as string;
         const timelineId = updatePb.getMetadataMap().toObject()[1][1] as string;
         const userId = updatePb.getMetadataMap().toObject()[2][1] as string;
@@ -43,7 +43,7 @@ export async function Search(
           timelineId: timelineId,
           updateId: updateId,
           userId: userId,
-          text: [],
+          text: text,
           numberValue: 0,
           isFlipped: false,
           isContext: false,
