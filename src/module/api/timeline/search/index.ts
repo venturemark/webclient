@@ -1,7 +1,7 @@
 import apigents from "@venturemark/apigents";
 import { SearchI_Obj } from "module/api/proto/search_pb";
 import * as env from "module/env";
-import { TimelineType } from "component/home/index";
+import { ITimeline } from "module/interface/timeline/index";
 
 export async function Search(timelineId: string, userId: string) {
   const objList = [];
@@ -32,7 +32,7 @@ export async function Search(timelineId: string, userId: string) {
             .toObject()[0][1] as string;
           const userId = timelinePb.getMetadataMap().toObject()[1][1] as string;
 
-          const timeline: TimelineType = {
+          const timeline: ITimeline = {
             name: name as string,
             timelineId: timelineId,
             userId: userId,

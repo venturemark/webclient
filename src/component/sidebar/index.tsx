@@ -10,13 +10,13 @@ import {
 import SidebarItem from "component/sidebaritem";
 import { options } from "component/editor/config/initialValues";
 import { Node } from "slate";
-import { TimelineType } from "component/home";
-import { UpdateType } from "component/update";
+import { ITimeline } from "module/interface/timeline";
+import { IUpdate } from "module/interface/update";
 import * as api from "module/api";
 
 interface SidebarProps extends DefaultSidebarProps {
-  timelines: TimelineType[];
-  setTimelines: React.Dispatch<React.SetStateAction<TimelineType[]>>;
+  timelines: ITimeline[];
+  setTimelines: React.Dispatch<React.SetStateAction<ITimeline[]>>;
   addTimelineFocused: boolean;
 }
 
@@ -39,7 +39,7 @@ const defaultText: Node[] = [
   },
 ];
 
-const defaultUpdates: UpdateType[] = [
+const defaultUpdates: IUpdate[] = [
   {
     id: "now",
     numberValue: 23,

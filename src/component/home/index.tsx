@@ -6,170 +6,29 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/home/PlasmicHome";
 import Update from "component/update";
-import {
-  options,
-  initialValueEmpty,
-} from "component/editor/config/initialValues";
+import { initialValueEmpty } from "component/editor/config/initialValues";
 import Searcher from "@venturemark/numnum";
-import { Node } from "slate";
 import { format } from "date-fns";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
-import * as linechart from "component/linechart";
 import { useEditor } from "component/editor/compose";
-import { UpdateType } from "component/update";
+import { IUpdate } from "module/interface/update";
+import { ITimeline } from "module/interface/timeline";
+import { IMetric } from "module/interface/metric";
 import * as api from "module/api";
 
 interface HomeProps extends DefaultHomeProps {}
 
-export interface TimelineType {
-  name: string;
-  dataKey: string;
-  userId: string;
-  timelineId: string;
-  date?: string;
-  isCurrent: boolean;
-  updates: UpdateType[];
-  data: linechart.DataItem[];
-}
-
-const defaultText: Node[] = [
-  {
-    children: [
-      {
-        type: options.p.type,
-        children: [
-          {
-            text: "Be Better Tomorrow",
-          },
-        ],
-      },
-    ],
-  },
-];
-
-const defaultUpdatesActive: UpdateType[] = [
-  {
-    id: "now",
-    numberValue: 23,
-    isFlipped: false,
-    isContext: false,
-    text: defaultText,
-  },
-];
-
-const defaultUpdatesFeature: UpdateType[] = [
-  {
-    id: "now1",
-    numberValue: 23,
-    isFlipped: false,
-    isContext: false,
-    text: defaultText,
-  },
-];
-
-const defaultUpdatesMilestone: UpdateType[] = [
-  {
-    id: "now2",
-    numberValue: 23,
-    isFlipped: false,
-    isContext: false,
-    text: defaultText,
-  },
-];
-
-const defaultUpdatesRevenue: UpdateType[] = [
-  {
-    id: "now3",
-    numberValue: 23,
-    isFlipped: false,
-    isContext: false,
-    text: defaultText,
-  },
-];
-
-const defaultActiveData: linechart.DataItem[] = [
-  {
-    date: "January 1, 2019",
-    "Active Users": 50,
-    updateId: "now",
-  },
-];
-
-const defaultFeaturesData: linechart.DataItem[] = [
-  {
-    date: "January 1, 2019",
-    "Features Shipped": 50,
-    updateId: "now1",
-  },
-];
-
-const defaultMilestonesData: linechart.DataItem[] = [
-  {
-    date: "January 1, 2019",
-    Milestones: 50,
-    updateId: "now2",
-  },
-];
-
-const defaultRevenueData: linechart.DataItem[] = [
-  {
-    date: "January 1, 2019",
-    Revenue: 50,
-    updateId: "now3",
-  },
-];
-
-const defaultTimelines: TimelineType[] = [
-  {
-    name: "Active Users",
-    dataKey: "Active Users",
-    timelineId: "now",
-    userId: "now",
-    updates: defaultUpdatesActive,
-    data: defaultActiveData,
-    isCurrent: true,
-  },
-  {
-    name: "Features Shipped",
-    dataKey: "Features Shipped",
-    timelineId: "now1",
-    userId: "now1",
-    updates: defaultUpdatesFeature,
-    data: defaultFeaturesData,
-    isCurrent: false,
-  },
-  {
-    name: "Milestones",
-    dataKey: "Milestones",
-    timelineId: "now2",
-    userId: "now2",
-    updates: defaultUpdatesMilestone,
-    data: defaultMilestonesData,
-    isCurrent: false,
-  },
-  {
-    name: "Revenue",
-    dataKey: "Revenue",
-    timelineId: "now3",
-    userId: "now3",
-    updates: defaultUpdatesRevenue,
-    data: defaultRevenueData,
-    isCurrent: false,
-  },
-];
-
 export function Component(props: HomeProps) {
-  const [timelines, setTimelines] = useState<TimelineType[]>(defaultTimelines);
+  const [timelines, setTimelines] = useState<ITimeline[]>([]);
 
   const currentTimeline =
-    timelines.filter((timeline) => timeline.isCurrent === true)[0] ??
-    defaultTimelines[0];
+    timelines.filter((timeline) => timeline.isCurrent === true)[0] ?? {};
 
   const [hideSidebar, setHideSidebar] = useState(true);
   const [addTimelineFocused, setAddTimelineFocused] = useState(false);
 
-  const [updates, setUpdates] = useState<UpdateType[]>(defaultUpdatesFeature);
+  const [updates, setUpdates] = useState<IUpdate[]>([]);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -195,7 +54,7 @@ export function Component(props: HomeProps) {
         "user.venturemark.co/id",
         "usr-al9qy"
       );
-      setTimelines(result as TimelineType[]);
+      setTimelines(result as ITimeline[]);
     };
 
     fetchData();
@@ -228,7 +87,7 @@ export function Component(props: HomeProps) {
     }
 
     const id = new Date().toString();
-    const update: UpdateType = {
+    const update: IUpdate = {
       text: editorShape.value,
       numberValue: editorShape.numberValue,
       id: id,
@@ -237,7 +96,7 @@ export function Component(props: HomeProps) {
     };
     setUpdates([update, ...updates]);
 
-    const metric: linechart.DataItem = {
+    const metric: IMetric = {
       date: format(new Date(), "PP"),
       [currentTimeline.name]: editorShape.numberValue,
       updateId: id,
@@ -255,7 +114,7 @@ export function Component(props: HomeProps) {
         return timeline;
       }
     });
-    setTimelines(timelinesUpdate as TimelineType[]);
+    setTimelines(timelinesUpdate as ITimeline[]);
 
     //reset store
     localStorage.setItem(
