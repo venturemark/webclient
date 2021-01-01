@@ -41,6 +41,7 @@ export function Component(props: HomeProps) {
   const [addTimelineFocused, setAddTimelineFocused] = useState(false);
 
   const [updates, setUpdates] = useState<IUpdate[]>([]);
+  const [metrics, setMetrics] = useState<IMetric[]>([]);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -58,75 +59,65 @@ export function Component(props: HomeProps) {
     progress: defaultProgress,
   });
 
-  const mergeMetricsAndUpdates = (arr1: any, arr2: any) => {
-    // console.log(arr1, arr2);
-    return arr1.map((item: any, i: any) => {
-      if (item.updateId === arr2[i].updateId) {
-        //merging two objects
-        console.log(item, arr2[i]);
-        return { ...item, ...arr2[i] };
-      }
-    });
-  };
-
   useEffect(() => {
     const fetchData = async () => {
-      const timelinesResponse: ITimeline[] = await api.API.Timeline.Search(
+      let timelinesResponse: ITimeline[] = await api.API.Timeline.Search(
         "user.venturemark.co/id",
         "usr-al9qy"
       );
 
-      const metricsResponse: any = await api.API.Metric.Search(
-        "timeline.venturemark.co/id",
-        "1609448698",
-        "user.venturemark.co/id",
-        "usr-al9qy"
-      );
-      const updatesResponse: any = await api.API.Update.Search(
-        "timeline.venturemark.co/id",
-        "1609448698",
-        "user.venturemark.co/id",
-        "usr-al9qy"
-      );
+      if (timelinesResponse) {
+        const currentTimelineResponse: ITimeline = timelinesResponse[0];
+        currentTimelineResponse.isCurrent = true;
+        setCurrentTimeline(currentTimelineResponse);
 
-      let concatAndDeDuplicateObjects = (p: any, ...arrs: any) =>
-        []
-          .concat(...arrs)
-          .reduce(
-            (a, b) => (!a.filter((c) => b[p] === c[p]).length ? [...a, b] : a),
-            []
-          );
+        const metricsResponse: any = await api.API.Metric.Search(
+          "timeline.venturemark.co/id",
+          currentTimelineResponse.timelineId,
+          "user.venturemark.co/id",
+          currentTimelineResponse.userId
+        );
+        const updatesResponse: any = await api.API.Update.Search(
+          "timeline.venturemark.co/id",
+          currentTimelineResponse.timelineId,
+          "user.venturemark.co/id",
+          currentTimelineResponse.userId
+        );
 
-      const updates = concatAndDeDuplicateObjects(
-        "updateId",
-        updatesResponse,
-        metricsResponse
-      );
-      // const currentTimelineWithUpdates = timelinesResponse.map((timeline) => {
-      //   if (timeline.timelineId === updatesResponse[0].timelineId) {
-      //     return { ...timeline, updates };
-      //   }
-      // });
+        const metrics: IMetric[] = metricsResponse.map((metric: IMetric) => {
+          return { ...metric, [currentTimelineResponse.name]: metric.value };
+        });
 
-      console.log(updates);
-      console.log(metricsResponse);
-      console.log(updatesResponse);
+        let concatAndDeDuplicateObjects = (p: any, ...arrs: any) =>
+          []
+            .concat(...arrs)
+            .reduce(
+              (a, b) =>
+                !a.filter((c) => b[p] === c[p]).length ? [...a, b] : a,
+              []
+            );
 
-      setTimelines(timelinesResponse);
-      setCurrentTimeline(timelinesResponse[0]);
-      // setUpdates(updates);
+        const updates = concatAndDeDuplicateObjects(
+          "updateId",
+          updatesResponse,
+          metricsResponse
+        );
+        setTimelines(timelinesResponse);
+        setUpdates(updates);
+        setMetrics(metrics);
+      }
     };
 
     fetchData();
   }, [refresh]);
 
-  // useEffect(() => {
-  //   setUpdates(defaultUpdates);
-  // }, [currentTimeline, timelinesData]);
-
   const createUpdate = () => {
+    if (!currentTimeline) {
+      const error = "Please create a timeline";
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
     if (!editorShape.hasContent) {
-      console.log("content text");
       const error = "Please enter some text";
       setEditorShape({ ...editorShape, error });
       return;
@@ -169,7 +160,7 @@ export function Component(props: HomeProps) {
 
     async function createMetricUpdate() {
       let response = await api.API.MetricUpdate.Create(
-        JSON.stringify(editorShape.value),
+        serialize(editorShape.value),
         editorShape.numberValue,
         "timeline.venturemark.co/id",
         currentTimeline.timelineId,
@@ -186,7 +177,7 @@ export function Component(props: HomeProps) {
 
     const timelinesUpdate = timelines.map((timeline) => {
       let updatedUpdates = currentTimeline.updates;
-      let data = currentTimeline.data;
+      let data = metrics;
       if (timeline.isCurrent) {
         updatedUpdates = [update].concat(currentTimeline?.updates);
         data = currentTimeline?.data?.concat(metric);
@@ -257,9 +248,9 @@ export function Component(props: HomeProps) {
           <Update
             text={update.text}
             key={update.updateId}
-            updateId={update.updateId}
+            id={update.updateId}
             dataKey={currentTimeline.dataKey}
-            data={currentTimeline.data}
+            data={metrics}
             name={currentTimeline.name}
             isFlipped={update.isFlipped}
             isContext={update.isContext}

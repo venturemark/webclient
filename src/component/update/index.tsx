@@ -15,7 +15,7 @@ interface UpdateProps extends DefaultUpdateProps {
   data: IMetric[];
   name: string;
   isFlipped: boolean;
-  updateId: string;
+  id: string;
   updates: IUpdate[];
   setUpdates: React.Dispatch<React.SetStateAction<IUpdate[]>>;
   isContext: boolean;
@@ -28,7 +28,7 @@ function Update(props: UpdateProps) {
     data,
     name,
     isFlipped,
-    updateId,
+    id,
     updates,
     setUpdates,
     isContext,
@@ -38,30 +38,27 @@ function Update(props: UpdateProps) {
     if (isContext === true) {
       setTimeout(() => {
         const flippedUpdates = updates.map((update) => {
-          const isFlipped =
-            updateId === update.updateId ? !update.isFlipped : false;
-          const isContext =
-            updateId === update.updateId ? !update.isContext : false;
+          const isFlipped = id === update.updateId ? !update.isFlipped : false;
+          const isContext = id === update.updateId ? !update.isContext : false;
           return { ...update, isFlipped, isContext };
         });
         setUpdates(flippedUpdates);
       }, 500);
       setTimeout(() => {
         const flippedUpdates = updates.map((update) => {
-          const isFlipped = updateId === update.updateId ? true : false;
+          const isFlipped = id === update.updateId ? true : false;
           const isContext = false;
           return { ...update, isFlipped, isContext };
         });
         setUpdates(flippedUpdates);
       }, 1000);
     }
-  }, [isContext, updateId, setUpdates, updates]);
+  }, [isContext, id, setUpdates, updates]);
 
   const changeContext = (updateId: string) => {
-    if (updateId === updateId) {
+    if (id === updateId) {
       return;
     }
-
     const flippedUpdates = updates.map((update) => {
       const isFlipped =
         update.updateId === updateId ? !update.isFlipped : false;
@@ -70,7 +67,6 @@ function Update(props: UpdateProps) {
       return { ...update, isFlipped, isContext };
     });
     setUpdates(flippedUpdates);
-    console.log("Calling set updates:", flippedUpdates);
   };
 
   return (
@@ -80,7 +76,7 @@ function Update(props: UpdateProps) {
         onPress: () => {
           const flippedUpdates = updates.map((update: any) => {
             const isFlipped =
-              updateId === update.updateId ? !update.isFlipped : false;
+              id === update.updateId ? !update.isFlipped : false;
             return { ...update, isFlipped };
           });
           setUpdates(flippedUpdates);

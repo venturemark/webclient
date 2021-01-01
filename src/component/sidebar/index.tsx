@@ -93,7 +93,7 @@ function Sidebar(props: SidebarProps) {
       dataKey: name,
       updates: defaultUpdates,
       data: defaultData,
-      isCurrent: false,
+      isCurrent: true,
     };
 
     async function createTimeline() {

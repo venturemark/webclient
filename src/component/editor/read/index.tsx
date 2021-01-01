@@ -53,11 +53,22 @@ interface EditorProps {
 const ReadEditor = (props: EditorProps) => {
   const { text } = props;
 
+  const textValue = [
+    {
+      type: "paragraph",
+      children: [
+        {
+          text: text,
+        },
+      ],
+    },
+  ];
+
   const existingValue = !text
     ? initialValueEmpty
-    : typeof text === "string"
-    ? JSON.parse(text)
-    : text;
+    : typeof text != "string"
+    ? text
+    : textValue;
 
   const [value, setValue] = useState(
     typeof existingValue === "string"
@@ -75,13 +86,7 @@ const ReadEditor = (props: EditorProps) => {
         setValue(newValue);
       }}
     >
-      <EditablePlugins
-        plugins={plugins}
-        placeholder="This matters a great deal. So much in fact."
-        spellCheck
-        autoFocus
-        readOnly
-      />
+      <EditablePlugins plugins={plugins} spellCheck autoFocus readOnly />
     </Slate>
   );
 };
