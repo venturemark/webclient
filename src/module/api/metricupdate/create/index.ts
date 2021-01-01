@@ -1,57 +1,78 @@
 import apigents from "@venturemark/apigents";
 import {
   CreateI_Obj,
+  CreateO,
   CreateI_Obj_Property,
   CreateI_Obj_Property_Data,
 } from "module/api/metricupdate/proto/create_pb";
 import * as env from "module/env";
 
-export function Create(
+export async function Create(
   text: string,
   value: number,
-  userId: string,
-  timelineId: string,
+  timelineIdKey: string,
+  timelineIdValue: string,
   userIdKey: string,
   userIdvalue: string
-): any {
-  {
-    const client = new apigents.Timeline.Client(env.APIEndpoint());
-    const req = new apigents.Timeline.Create.I();
+): Promise<any> {
+  const client = new apigents.Metupd.Client(env.APIEndpoint());
+  const req = new apigents.Metupd.Create.I();
 
-    const obj = new CreateI_Obj();
-    const objProperty = new CreateI_Obj_Property();
-    const dataObj = new CreateI_Obj_Property_Data();
-    const dataObjValue = [];
-    dataObjValue.push(value);
+  console.log(timelineIdValue);
 
-    dataObj.setSpace("y");
-    dataObj.setValue(dataObjValue);
-    objProperty.setText(text);
-    objProperty.setData(dataObj);
-    obj.getMetadataMap().set(timelineId, userId);
-    obj.getMetadataMap().set(userIdKey, userIdvalue);
-    obj.setProperty(objProperty);
+  const obj = new CreateI_Obj();
+  const objProperty = new CreateI_Obj_Property();
+  const dataObj = new CreateI_Obj_Property_Data();
+  const dataObjValue = [];
+  const dataObjArray = [];
+  dataObjValue.push(value);
+  dataObjArray.push(dataObj);
 
-    req.setObj(obj);
-    // format
-    //
-    // obj: {
-    //   metadata: {
-    //     "timeline.venturemark.co/id": "1606488079",
-    //     "user.venturemark.co/id": "usr-al9qy",
-    //   },
-    //   property: { data: [{ space: "y", value: [23] }], text: "foo bar baz" },
-    // },
+  dataObj.setSpace("y");
+  dataObj.setValueList(dataObjValue);
+  objProperty.setText(text);
+  console.log("stringified text:", text);
+  // objProperty.setText(
+  //   "Here is a thing that is awesome and not that was proned from the start the be the best of the lot."
+  // );
+  objProperty.setDataList(dataObjArray);
+  obj.getMetadataMap().set(timelineIdKey, timelineIdValue);
+  obj.getMetadataMap().set(userIdKey, userIdvalue);
+  obj.setProperty(objProperty);
 
-    client.create(req, {}, function (err: any, res: any) {
+  req.setObj(obj);
+
+  console.log("object to be created:", req);
+  // format
+  //
+  // obj: {
+  //   metadata: {
+  //     "timeline.venturemark.co/id": "1606488079",
+  //     "user.venturemark.co/id": "usr-al9qy",
+  //   },
+  //   property: { data: [{ space: "y", value: [23] }], text: "foo bar baz" },
+  // },
+
+  const getCreateResponsePb = await new Promise((resolve, reject) => {
+    client.create(req, {}, function (err: any, res: CreateO) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
+        reject(err);
       } else {
-        console.log(res.toObject());
+        const metricId = res.toObject().obj.metadataMap[0][1];
+        const updateId = res.toObject().obj.metadataMap[1][1];
+        const response = {
+          metricId: metricId,
+          updateId: updateId,
+        };
+
+        console.log(response);
+
+        resolve(response);
       }
     });
-  }
+  });
 
-  return null;
+  return getCreateResponsePb;
 }

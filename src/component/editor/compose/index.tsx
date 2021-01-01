@@ -86,14 +86,14 @@ const plugins = [
   }),
 ];
 
-type NumberValue = undefined | number;
+type NumberValue = number;
 type ErrorMessage = undefined | string;
 type HasContent = undefined | "hasContent";
 
 export type EditorShape = {
   value: Node[];
   string: string;
-  numberValue: NumberValue;
+  numberValue: number;
   error: ErrorMessage;
   hasContent: HasContent;
   progress: number;

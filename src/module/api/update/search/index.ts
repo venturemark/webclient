@@ -1,13 +1,11 @@
 import apigents from "@venturemark/apigents";
-import { SearchI_Obj } from "module/api/update/proto/search_pb";
+import { SearchI_Obj, SearchO_Obj } from "module/api/update/proto/search_pb";
 import * as env from "module/env";
 import { IUpdate } from "module/interface/update/index";
 
 export async function Search(
   timelineIdKey: string,
   timelineIdvalue: string,
-  updateIdKey: string,
-  updateIdValue: string,
   userIdKey: string,
   userIdvalue: string
 ) {
@@ -21,7 +19,6 @@ export async function Search(
   const obj = new SearchI_Obj();
   obj.getMetadataMap().set(timelineIdKey, timelineIdvalue);
   obj.getMetadataMap().set(userIdKey, userIdvalue);
-  obj.getMetadataMap().set(updateIdKey, updateIdValue);
   objList.push(obj);
   req.setObjList(objList);
   console.log(req);
@@ -36,20 +33,22 @@ export async function Search(
         const updatesPb = res.getObjList();
 
         const updates = updatesPb.map((updatePb: SearchO_Obj) => {
+          const updatePbObj = updatePb.toObject();
+          console.log(updatePbObj);
           const propertyPb = updatePb.getProperty();
           const text = propertyPb?.toObject().text;
-          const updateId = updatePb.getMetadataMap().toObject()[0][1] as string;
+          console.log(text);
           const timelineId = updatePb
             .getMetadataMap()
-            .toObject()[1][1] as string;
+            .toObject()[0][1] as string;
+          const updateId = updatePb.getMetadataMap().toObject()[1][1] as string;
           const userId = updatePb.getMetadataMap().toObject()[2][1] as string;
 
-          const update: IUpdate = {
+          const update: any = {
             timelineId: timelineId,
             updateId: updateId,
             userId: userId,
             text: text,
-            numberValue: 0,
             isFlipped: false,
             isContext: false,
           };

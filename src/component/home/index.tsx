@@ -17,13 +17,25 @@ import { ITimeline } from "module/interface/timeline";
 import { IMetric } from "module/interface/metric";
 import * as api from "module/api";
 
+const defaultTimeline: ITimeline = {
+  name: "",
+  timelineId: "",
+  userId: "",
+  dataKey: "",
+  isCurrent: false,
+  updates: [],
+  data: [],
+};
+
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
   const [timelines, setTimelines] = useState<ITimeline[]>([]);
+  const [currentTimeline, setCurrentTimeline] = useState<ITimeline>(
+    defaultTimeline
+  );
 
-  const currentTimeline =
-    timelines.filter((timeline) => timeline.isCurrent === true)[0] ?? {};
+  const [refresh, setRefresh] = useState(false);
 
   const [hideSidebar, setHideSidebar] = useState(true);
   const [addTimelineFocused, setAddTimelineFocused] = useState(false);
@@ -36,29 +48,77 @@ export function Component(props: HomeProps) {
     serialize(initialValue) === "" || serialize(initialValue) === undefined
       ? undefined
       : "hasContent";
-  const defaultNumber = Searcher.Search(serialize(initialValue))
-    ? Searcher.Search(serialize(initialValue))[0]
-    : undefined;
+  const defaultNumber = Searcher.Search(serialize(initialValue)) ?? 0;
   const defaultProgress = serialize(initialValue).length;
 
   const { editorShape, setEditorShape } = useEditor({
     value: initialValue,
     hasContent: hasContentDefault,
-    numberValue: defaultNumber,
+    numberValue: defaultNumber[0],
     progress: defaultProgress,
   });
 
+  const mergeMetricsAndUpdates = (arr1: any, arr2: any) => {
+    // console.log(arr1, arr2);
+    return arr1.map((item: any, i: any) => {
+      if (item.updateId === arr2[i].updateId) {
+        //merging two objects
+        console.log(item, arr2[i]);
+        return { ...item, ...arr2[i] };
+      }
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
-      const result = await api.API.Timeline.Search(
+      const timelinesResponse: ITimeline[] = await api.API.Timeline.Search(
         "user.venturemark.co/id",
         "usr-al9qy"
       );
-      setTimelines(result as ITimeline[]);
+
+      const metricsResponse: any = await api.API.Metric.Search(
+        "timeline.venturemark.co/id",
+        "1609448698",
+        "user.venturemark.co/id",
+        "usr-al9qy"
+      );
+      const updatesResponse: any = await api.API.Update.Search(
+        "timeline.venturemark.co/id",
+        "1609448698",
+        "user.venturemark.co/id",
+        "usr-al9qy"
+      );
+
+      let concatAndDeDuplicateObjects = (p: any, ...arrs: any) =>
+        []
+          .concat(...arrs)
+          .reduce(
+            (a, b) => (!a.filter((c) => b[p] === c[p]).length ? [...a, b] : a),
+            []
+          );
+
+      const updates = concatAndDeDuplicateObjects(
+        "updateId",
+        updatesResponse,
+        metricsResponse
+      );
+      // const currentTimelineWithUpdates = timelinesResponse.map((timeline) => {
+      //   if (timeline.timelineId === updatesResponse[0].timelineId) {
+      //     return { ...timeline, updates };
+      //   }
+      // });
+
+      console.log(updates);
+      console.log(metricsResponse);
+      console.log(updatesResponse);
+
+      setTimelines(timelinesResponse);
+      setCurrentTimeline(timelinesResponse[0]);
+      // setUpdates(updates);
     };
 
     fetchData();
-  }, []);
+  }, [refresh]);
 
   // useEffect(() => {
   //   setUpdates(defaultUpdates);
@@ -91,8 +151,8 @@ export function Component(props: HomeProps) {
       text: editorShape.value,
       numberValue: editorShape.numberValue,
       updateId: id,
-      userId: id,
-      timelineId: id,
+      userId: currentTimeline.userId,
+      timelineId: currentTimeline.timelineId,
       isFlipped: false,
       isContext: false,
     };
@@ -101,8 +161,28 @@ export function Component(props: HomeProps) {
     const metric: IMetric = {
       date: format(new Date(), "PP"),
       [currentTimeline.name]: editorShape.numberValue,
+      metricId: id,
       updateId: id,
+      timelineId: currentTimeline.timelineId,
+      userId: currentTimeline.userId,
     };
+
+    async function createMetricUpdate() {
+      let response = await api.API.MetricUpdate.Create(
+        JSON.stringify(editorShape.value),
+        editorShape.numberValue,
+        "timeline.venturemark.co/id",
+        currentTimeline.timelineId,
+        "user.venturemark.co/id",
+        currentTimeline.userId
+      );
+
+      if (response.metricId & response.updateId) {
+        setRefresh(!refresh);
+      }
+    }
+
+    createMetricUpdate();
 
     const timelinesUpdate = timelines.map((timeline) => {
       let updatedUpdates = currentTimeline.updates;
@@ -128,7 +208,7 @@ export function Component(props: HomeProps) {
       value: initialValueEmpty,
       string: "",
       hasContent: undefined,
-      numberValue: undefined,
+      numberValue: 0,
       error: undefined,
       progress: 0,
     };
@@ -163,6 +243,8 @@ export function Component(props: HomeProps) {
         timelines: timelines,
         setTimelines: setTimelines,
         addTimelineFocused: addTimelineFocused,
+        refresh: refresh,
+        setRefresh: setRefresh,
       }}
       actionBar={{
         errorMessage: editorShape.error,

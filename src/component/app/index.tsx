@@ -3,16 +3,27 @@ import React from "react";
 import * as home from "component/home";
 import * as api from "module/api";
 
-const fetch = api.API.Update.Search(
-  "timeline.venturemark.co/id",
-  "1606488079",
-  "update.venturemark.co/id",
-  "1606488140",
-  "user.venturemark.co/id",
-  "usr-al9qy"
-);
+// api.API.Update.Search(
+//   "timeline.venturemark.co/id",
+//   "1606488079",
+//   "user.venturemark.co/id",
+//   "usr-al9qy"
+// );
 
-console.log(fetch.then(console.log));
+// api.API.Metric.Search(
+//   "timeline.venturemark.co/id",
+//   "1609448698",
+//   "user.venturemark.co/id",
+//   "usr-al9qy"
+// );
+// api.API.MetricUpdate.Create(
+//   "A new startup",
+//   12,
+//   "timeline.venturemark.co/id",
+//   "1609368062",
+//   "user.venturemark.co/id",
+//   "usr-al9qy"
+// );
 
 type Props = {};
 

@@ -6,8 +6,6 @@ import { IMetric } from "module/interface/metric/index";
 export async function Search(
   timelineIdKey: string,
   timelineIdvalue: string,
-  metricIdKey: string,
-  metricIdValue: string,
   userIdKey: string,
   userIdvalue: string
 ) {
@@ -19,7 +17,6 @@ export async function Search(
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
   obj.getMetadataMap().set(timelineIdKey, timelineIdvalue);
-  obj.getMetadataMap().set(metricIdKey, metricIdValue);
   obj.getMetadataMap().set(userIdKey, userIdvalue);
   objList.push(obj);
   req.setObjList(objList);
@@ -34,23 +31,18 @@ export async function Search(
         const metricsPb = res.getObjList();
 
         const metrics = metricsPb.map((metricPb: SearchO_Obj) => {
-          const dataPb = metricPb.getProperty();
-          console.log(dataPb);
-          const metricId = metricPb.getMetadataMap().toObject()[0][1] as string;
-          const timelineId = metricPb
-            .getMetadataMap()
-            .toObject()[1][1] as string;
-          const userId = updatePb.getMetadataMap().toObject()[2][1] as string;
+          const metricPbObj = metricPb.toObject();
 
-          const metric: IMetric = {
-            name: name as string,
-            metricId: metricId,
+          const metricId = metricPbObj.metadataMap[0][1];
+          const timelineId = metricPbObj.metadataMap[1][1];
+          const userId = metricPbObj.metadataMap[2][1];
+          const value = metricPbObj.property.dataList[1].valueList[0];
+
+          const metric: any = {
+            updateId: metricId,
             userId: userId,
             timelineId: timelineId,
-            dataKey: name as string,
-            isCurrent: false,
-            updates: [],
-            data: [],
+            value: value,
           };
           return metric;
         });
