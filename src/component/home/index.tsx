@@ -67,9 +67,21 @@ export function Component(props: HomeProps) {
       );
 
       if (timelinesResponse) {
-        const currentTimelineResponse: ITimeline = timelinesResponse[0];
+        let currentTimelineResponse: ITimeline = timelinesResponse[0];
+
+        if (currentTimeline.timelineId) {
+          currentTimelineResponse = currentTimeline;
+        }
         currentTimelineResponse.isCurrent = true;
         setCurrentTimeline(currentTimelineResponse);
+
+        const activeTimelines = timelinesResponse.map((timeline) => {
+          if (timeline.timelineId === currentTimeline.timelineId) {
+            return { ...timeline, isCurrent: true };
+          }
+          return timeline;
+        });
+        console.log(activeTimelines);
 
         const metricsResponse: any = await api.API.Metric.Search(
           "timeline.venturemark.co/id",
@@ -102,7 +114,11 @@ export function Component(props: HomeProps) {
           updatesResponse,
           metricsResponse
         );
-        setTimelines(timelinesResponse);
+        if (refresh) {
+          setRefresh(false);
+        }
+
+        setTimelines(activeTimelines);
         setUpdates(updates);
         setMetrics(metrics);
       }
@@ -236,6 +252,7 @@ export function Component(props: HomeProps) {
         addTimelineFocused: addTimelineFocused,
         refresh: refresh,
         setRefresh: setRefresh,
+        setCurrentTimeline: setCurrentTimeline,
       }}
       actionBar={{
         errorMessage: editorShape.error,

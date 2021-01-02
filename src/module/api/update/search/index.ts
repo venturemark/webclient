@@ -21,7 +21,6 @@ export async function Search(
   obj.getMetadataMap().set(userIdKey, userIdvalue);
   objList.push(obj);
   req.setObjList(objList);
-  console.log(req);
 
   const getSearchResponsePb = await new Promise((resolve, reject) => {
     client.search(req, {}, function (err: any, res: any) {
@@ -34,10 +33,8 @@ export async function Search(
 
         const updates = updatesPb.map((updatePb: SearchO_Obj) => {
           const updatePbObj = updatePb.toObject();
-          console.log(updatePbObj);
           const propertyPb = updatePb.getProperty();
           const text = propertyPb?.toObject().text;
-          console.log(text);
           const timelineId = updatePb
             .getMetadataMap()
             .toObject()[0][1] as string;

@@ -17,6 +17,7 @@ import * as api from "module/api";
 interface SidebarProps extends DefaultSidebarProps {
   timelines: ITimeline[];
   setTimelines: React.Dispatch<React.SetStateAction<ITimeline[]>>;
+  setCurrentTimeline: React.Dispatch<React.SetStateAction<ITimeline>>;
   addTimelineFocused: boolean;
   refresh: boolean;
   setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
@@ -60,6 +61,7 @@ function Sidebar(props: SidebarProps) {
     addTimelineFocused,
     refresh,
     setRefresh,
+    setCurrentTimeline,
   } = props;
   const { register, handleSubmit, reset, watch } = useForm<FormInputs>();
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -99,7 +101,7 @@ function Sidebar(props: SidebarProps) {
     async function createTimeline() {
       let response = await api.API.Timeline.Create(name, userId, timelineId);
       if (response) {
-        setRefresh(!refresh);
+        setRefresh(true);
       }
     }
     createTimeline();
@@ -138,6 +140,11 @@ function Sidebar(props: SidebarProps) {
             onClick={() => {
               const name = timeline.name;
 
+              const thisTimeline = timelines.filter(
+                (clickedTimeline) =>
+                  timeline.timelineId === clickedTimeline.timelineId
+              )[0];
+
               const currentTimelines = timelines.map((timeline) => {
                 const isCurrent =
                   name === timeline.name ? !timeline.isCurrent : false;
@@ -145,6 +152,8 @@ function Sidebar(props: SidebarProps) {
                 return { ...timeline, isCurrent: isCurrent };
               });
               setTimelines(currentTimelines);
+              setCurrentTimeline(thisTimeline);
+              setRefresh(true);
             }}
           />
         )),
