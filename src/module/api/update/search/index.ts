@@ -1,7 +1,6 @@
 import apigents from "@venturemark/apigents";
 import { SearchI_Obj, SearchO_Obj } from "module/api/update/proto/search_pb";
 import * as env from "module/env";
-import { IUpdate } from "module/interface/update/index";
 
 export async function Search(
   timelineIdKey: string,
@@ -32,7 +31,6 @@ export async function Search(
         const updatesPb = res.getObjList();
 
         const updates = updatesPb.map((updatePb: SearchO_Obj) => {
-          const updatePbObj = updatePb.toObject();
           const propertyPb = updatePb.getProperty();
           const text = propertyPb?.toObject().text;
           const timelineId = updatePb

@@ -59,7 +59,6 @@ function Sidebar(props: SidebarProps) {
     timelines,
     setTimelines,
     addTimelineFocused,
-    refresh,
     setRefresh,
     setCurrentTimeline,
   } = props;

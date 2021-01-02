@@ -81,7 +81,6 @@ export function Component(props: HomeProps) {
           }
           return timeline;
         });
-        console.log(activeTimelines);
 
         const metricsResponse: any = await api.API.Metric.Search(
           "timeline.venturemark.co/id",
@@ -125,7 +124,7 @@ export function Component(props: HomeProps) {
     };
 
     fetchData();
-  }, [refresh]);
+  }, [refresh, currentTimeline]);
 
   const createUpdate = () => {
     if (!currentTimeline) {

@@ -86,7 +86,6 @@ const plugins = [
   }),
 ];
 
-type NumberValue = number;
 type ErrorMessage = undefined | string;
 type HasContent = undefined | "hasContent";
 

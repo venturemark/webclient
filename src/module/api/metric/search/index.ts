@@ -1,7 +1,6 @@
 import apigents from "@venturemark/apigents";
 import { SearchI_Obj, SearchO_Obj } from "module/api/metric/proto/search_pb";
 import * as env from "module/env";
-import { IMetric } from "module/interface/metric/index";
 
 export async function Search(
   timelineIdKey: string,
