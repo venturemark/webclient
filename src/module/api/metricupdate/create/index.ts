@@ -32,9 +32,6 @@ export async function Create(
   dataObj.setValueList(dataObjValue);
   objProperty.setText(text);
   console.log("stringified text:", text);
-  // objProperty.setText(
-  //   "Here is a thing that is awesome and not that was proned from the start the be the best of the lot."
-  // );
   objProperty.setDataList(dataObjArray);
   obj.getMetadataMap().set(timelineIdKey, timelineIdValue);
   obj.getMetadataMap().set(userIdKey, userIdvalue);
@@ -58,6 +55,9 @@ export async function Create(
       if (err) {
         console.log(err.code);
         console.log(err.message);
+        alert(
+          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`
+        );
         reject(err);
       } else {
         const metricId = res.toObject().obj.metadataMap[0][1];
@@ -66,8 +66,6 @@ export async function Create(
           metricId: metricId,
           updateId: updateId,
         };
-
-        console.log(response);
 
         resolve(response);
       }
