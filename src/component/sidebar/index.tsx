@@ -67,13 +67,22 @@ function Sidebar(props: SidebarProps) {
   const { register, handleSubmit, reset, watch } = useForm<FormInputs>();
   const nameRef = useRef<HTMLInputElement | null>(null);
   const hasValue = watch("name") ? true : false;
+  const sortedTimelines = timelines.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 
   const handleAddTimeline = (data: FormInputs) => {
     if (!data.name) {
       return;
     }
-
     const name = data.name;
+
+    const duplicates = timelines.filter((timeline) => name === timeline.name);
+
+    if (duplicates.length > 0) {
+      return;
+    }
+
     const date = format(new Date(), "PP");
     const timelineId = "user.venturemark.co/id";
 
@@ -107,10 +116,8 @@ function Sidebar(props: SidebarProps) {
     }
     createTimeline();
 
-    const sortedTimelines = [timeline, ...timelines].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    setTimelines(sortedTimelines);
+    const updatedTimelines = [timeline, ...timelines];
+    setTimelines(updatedTimelines);
 
     //reset form
     reset({
@@ -134,7 +141,7 @@ function Sidebar(props: SidebarProps) {
         onClick: () => alert("menu pressed!"),
       }}
       timelinesContainer={{
-        children: timelines.map((timeline) => (
+        children: sortedTimelines.map((timeline) => (
           <SidebarItem
             name={timeline.name}
             isCurrent={timeline.isCurrent}

@@ -43,7 +43,7 @@ function Update(props: UpdateProps) {
           return { ...update, isFlipped, isContext };
         });
         setUpdates(flippedUpdates);
-      }, 500);
+      }, 1000);
       setTimeout(() => {
         const flippedUpdates = updates.map((update) => {
           const isFlipped = id === update.updateId ? true : false;
