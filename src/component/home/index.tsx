@@ -30,6 +30,7 @@ const defaultTimeline: ITimeline = {
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
+  const userId = window.location.pathname.slice(1);
   const [timelines, setTimelines] = useState<ITimeline[]>([]);
   const [currentTimeline, setCurrentTimeline] = useState<ITimeline>(
     defaultTimeline
@@ -63,7 +64,7 @@ export function Component(props: HomeProps) {
     const fetchData = async () => {
       let timelinesResponse: ITimeline[] = await api.API.Timeline.Search(
         "user.venturemark.co/id",
-        "usr-al9qy"
+        userId
       );
 
       if (timelinesResponse.length > 0) {
@@ -124,7 +125,7 @@ export function Component(props: HomeProps) {
     };
 
     fetchData();
-  }, [refresh, currentTimeline]);
+  }, [refresh, currentTimeline, userId]);
 
   const createUpdate = () => {
     if (!currentTimeline.timelineId) {
@@ -252,6 +253,7 @@ export function Component(props: HomeProps) {
         refresh: refresh,
         setRefresh: setRefresh,
         setCurrentTimeline: setCurrentTimeline,
+        userId: currentTimeline.userId || userId,
       }}
       actionBar={{
         errorMessage: editorShape.error,

@@ -5,11 +5,7 @@ import {
 } from "module/api/timeline/proto/create_pb";
 import * as env from "module/env";
 
-export async function Create(
-  name: string,
-  userId: string,
-  timelineId: string
-): Promise<any> {
+export async function Create(name: string, userId: string): Promise<any> {
   const client = new apigents.Timeline.Client(env.APIEndpoint());
   const req = new apigents.Timeline.Create.I();
 
@@ -17,7 +13,7 @@ export async function Create(
   const objProperty = new CreateI_Obj_Property();
 
   objProperty.setName(name);
-  obj.getMetadataMap().set(timelineId, userId);
+  obj.getMetadataMap().set("user.venturemark.co/id", userId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);
