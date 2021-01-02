@@ -23,6 +23,9 @@ export async function Create(name: string, userId: string): Promise<any> {
       if (err) {
         console.log(err.code);
         console.log(err.message);
+        alert(
+          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`
+        );
         reject(err);
       } else {
         console.log(res.toObject());
