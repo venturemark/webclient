@@ -21,6 +21,7 @@ interface SidebarProps extends DefaultSidebarProps {
   addTimelineFocused: boolean;
   refresh: boolean;
   setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+  userId: string;
 }
 
 type FormInputs = {
@@ -61,6 +62,7 @@ function Sidebar(props: SidebarProps) {
     addTimelineFocused,
     setRefresh,
     setCurrentTimeline,
+    userId,
   } = props;
   const { register, handleSubmit, reset, watch } = useForm<FormInputs>();
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -73,7 +75,6 @@ function Sidebar(props: SidebarProps) {
 
     const name = data.name;
     const date = format(new Date(), "PP");
-    const userId = "usr-al9qy";
     const timelineId = "user.venturemark.co/id";
 
     const defaultData = [
@@ -89,16 +90,17 @@ function Sidebar(props: SidebarProps) {
     const timeline = {
       name: name,
       date: date,
-      userId: date,
+      userId: userId,
       timelineId: date,
       dataKey: name,
       updates: defaultUpdates,
       data: defaultData,
       isCurrent: true,
     };
+    console.log(name, userId);
 
     async function createTimeline() {
-      let response = await api.API.Timeline.Create(name, userId, timelineId);
+      let response = await api.API.Timeline.Create(name, userId);
       if (response) {
         setRefresh(true);
       }
