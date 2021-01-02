@@ -66,7 +66,7 @@ export function Component(props: HomeProps) {
         "usr-al9qy"
       );
 
-      if (timelinesResponse) {
+      if (timelinesResponse.length > 0) {
         let currentTimelineResponse: ITimeline = timelinesResponse[0];
 
         if (currentTimeline.timelineId) {
@@ -127,7 +127,7 @@ export function Component(props: HomeProps) {
   }, [refresh, currentTimeline]);
 
   const createUpdate = () => {
-    if (!currentTimeline) {
+    if (!currentTimeline.timelineId) {
       const error = "Please create a timeline";
       setEditorShape({ ...editorShape, error });
       return;
