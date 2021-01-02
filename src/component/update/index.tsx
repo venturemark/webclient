@@ -38,15 +38,15 @@ function Update(props: UpdateProps) {
     if (isContext === true) {
       setTimeout(() => {
         const flippedUpdates = updates.map((update) => {
-          const isFlipped = id === update.id ? !update.isFlipped : false;
-          const isContext = id === update.id ? !update.isContext : false;
+          const isFlipped = id === update.updateId ? !update.isFlipped : false;
+          const isContext = id === update.updateId ? !update.isContext : false;
           return { ...update, isFlipped, isContext };
         });
         setUpdates(flippedUpdates);
       }, 500);
       setTimeout(() => {
         const flippedUpdates = updates.map((update) => {
-          const isFlipped = id === update.id ? true : false;
+          const isFlipped = id === update.updateId ? true : false;
           const isContext = false;
           return { ...update, isFlipped, isContext };
         });
@@ -56,17 +56,17 @@ function Update(props: UpdateProps) {
   }, [isContext, id, setUpdates, updates]);
 
   const changeContext = (updateId: string) => {
-    if (updateId === id) {
+    if (id === updateId) {
       return;
     }
-
     const flippedUpdates = updates.map((update) => {
-      const isFlipped = update.id === updateId ? !update.isFlipped : false;
-      const isContext = update.id === updateId ? !update.isFlipped : false;
+      const isFlipped =
+        update.updateId === updateId ? !update.isFlipped : false;
+      const isContext =
+        update.updateId === updateId ? !update.isFlipped : false;
       return { ...update, isFlipped, isContext };
     });
     setUpdates(flippedUpdates);
-    console.log("Calling set updates:", flippedUpdates);
   };
 
   return (
@@ -75,7 +75,8 @@ function Update(props: UpdateProps) {
         "aria-label": "Toggle View",
         onPress: () => {
           const flippedUpdates = updates.map((update: any) => {
-            const isFlipped = id === update.id ? !update.isFlipped : false;
+            const isFlipped =
+              id === update.updateId ? !update.isFlipped : false;
             return { ...update, isFlipped };
           });
           setUpdates(flippedUpdates);

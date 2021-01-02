@@ -1,30 +1,39 @@
 import apigents from "@venturemark/apigents";
-import { CreateI_Obj, CreateI_Obj_Property } from "module/api/proto/create_pb";
+import {
+  CreateI_Obj,
+  CreateI_Obj_Property,
+} from "module/api/timeline/proto/create_pb";
 import * as env from "module/env";
 
-export function Create(name: string, userId: string, timelineId: string): any {
-  {
-    const client = new apigents.Timeline.Client(env.APIEndpoint());
-    const req = new apigents.Timeline.Create.I();
+export async function Create(
+  name: string,
+  userId: string,
+  timelineId: string
+): Promise<any> {
+  const client = new apigents.Timeline.Client(env.APIEndpoint());
+  const req = new apigents.Timeline.Create.I();
 
-    const obj = new CreateI_Obj();
-    const objProperty = new CreateI_Obj_Property();
+  const obj = new CreateI_Obj();
+  const objProperty = new CreateI_Obj_Property();
 
-    objProperty.setName(name);
-    obj.getMetadataMap().set(timelineId, userId);
-    obj.setProperty(objProperty);
+  objProperty.setName(name);
+  obj.getMetadataMap().set(timelineId, userId);
+  obj.setProperty(objProperty);
 
-    req.setObj(obj);
+  req.setObj(obj);
 
+  const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, {}, function (err: any, res: any) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
+        reject(err);
       } else {
         console.log(res.toObject());
+        resolve(res.toObject());
       }
     });
-  }
+  });
 
-  return null;
+  return getCreateResponsePb;
 }
