@@ -1,4 +1,4 @@
-import apigents from "@venturemark/apigents";
+import * as apigents from "@venturemark/apigents";
 import {
   CreateI_Obj,
   CreateO,
