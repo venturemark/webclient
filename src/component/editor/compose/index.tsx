@@ -39,7 +39,7 @@ import {
 import { MENTIONABLES } from "../config/mentionables";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
-import Searcher from "@venturemark/numnum";
+import { Search } from "@venturemark/numnum";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
@@ -184,7 +184,7 @@ const ComposeEditor = (props: EditorProps) => {
     //store serialized value
     const serializedValue = serialize(newValue);
     // get the first number in text
-    const number = Searcher.Search(serializedValue)[0];
+    const number = Search(serializedValue)[0];
     // determine if there is a value in editor
     const hasValue = serializedValue.trim().length;
     //remove number error if a number is typed

@@ -1,4 +1,4 @@
-import apigents from "@venturemark/apigents";
+import * as apigents from "@venturemark/apigents";
 import { SearchI_Obj } from "module/api/timeline/proto/search_pb";
 import * as env from "module/env";
 import { ITimeline } from "module/interface/timeline/index";

@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/home/PlasmicHome";
 import Update from "component/update";
 import { initialValueEmpty } from "component/editor/config/initialValues";
-import Searcher from "@venturemark/numnum";
+import { Search } from "@venturemark/numnum";
 import { format } from "date-fns";
 import { serialize } from "module/serialize";
 import { get } from "module/store";
@@ -49,7 +49,7 @@ export function Component(props: HomeProps) {
     serialize(initialValue) === "" || serialize(initialValue) === undefined
       ? undefined
       : "hasContent";
-  const defaultNumber = Searcher.Search(serialize(initialValue)) ?? 0;
+  const defaultNumber = Search(serialize(initialValue)) ?? 0;
   const defaultProgress = serialize(initialValue).length;
 
   const { editorShape, setEditorShape } = useEditor({

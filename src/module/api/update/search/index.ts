@@ -1,4 +1,4 @@
-import apigents from "@venturemark/apigents";
+import * as apigents from "@venturemark/apigents";
 import { SearchI_Obj, SearchO_Obj } from "module/api/update/proto/search_pb";
 import * as env from "module/env";
 
