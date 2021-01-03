@@ -1,3 +1,13 @@
+interface IGlobalConfig {
+  apiEndpoint: string;
+}
+
+declare global {
+  interface Window {
+    config: IGlobalConfig;
+  }
+}
+
 export function APIEndpoint(): string {
-  return "http://127.0.0.1:7777";
+  return window.config.apiEndpoint;
 }
