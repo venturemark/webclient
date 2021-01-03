@@ -1,6 +1,5 @@
-webclient:
-  port: 3000
-  replica: 4
+api:
+  endpoint: ""
 cluster:
   name: ""
   zone: ""
@@ -9,3 +8,6 @@ image:
   organization: "venturemark"
   repository: "webclient"
   tag: ""
+webclient:
+  port: 3000
+  replica: 2

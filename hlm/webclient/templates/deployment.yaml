@@ -20,5 +20,8 @@ spec:
           ports:
             - name: "http"
               containerPort: 80
+          env:
+            - name: API_ENDPOINT
+              value: "{{ .Values.api.endpoint }}"
       imagePullSecrets:
         - name: "pull-secret"
