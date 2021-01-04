@@ -114,17 +114,20 @@ export function Component(props: HomeProps) {
           updatesResponse,
           metricsResponse
         );
+        const sortedMetrics = metrics.sort(
+          (a: IMetric, b: IMetric) => Number(a.updateId) - Number(b.updateId)
+        );
         if (refresh) {
           setRefresh(false);
         }
 
         setTimelines(activeTimelines);
         setUpdates(updates);
-        setMetrics(metrics);
+        setMetrics(sortedMetrics);
       }
     };
 
-    fetchData();
+    userId && fetchData();
   }, [refresh, currentTimeline, userId]);
 
   const createUpdate = () => {

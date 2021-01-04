@@ -18,8 +18,6 @@ export async function Create(
   const client = new apigents.Metupd.Client(env.APIEndpoint());
   const req = new apigents.Metupd.Create.I();
 
-  console.log(timelineIdValue);
-
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
   const dataObj = new CreateI_Obj_Property_Data();
@@ -31,7 +29,6 @@ export async function Create(
   dataObj.setSpace("y");
   dataObj.setValueList(dataObjValue);
   objProperty.setText(text);
-  console.log("stringified text:", text);
   objProperty.setDataList(dataObjArray);
   obj.getMetadataMap().set(timelineIdKey, timelineIdValue);
   obj.getMetadataMap().set(userIdKey, userIdvalue);

@@ -183,6 +183,7 @@ const ComposeEditor = (props: EditorProps) => {
   const handleChange = (newValue: Node[]) => {
     //store serialized value
     const serializedValue = serialize(newValue);
+
     // get the first number in text
     const number = Search(serializedValue)[0];
     // determine if there is a value in editor
