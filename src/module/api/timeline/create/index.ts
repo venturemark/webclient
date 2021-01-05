@@ -29,7 +29,8 @@ export async function Create(name: string, userId: string): Promise<any> {
         reject(err);
       } else {
         console.log(res.toObject());
-        resolve(res.toObject());
+        const response = res.toObject().obj.metadataMap[0][1];
+        resolve(response);
       }
     });
   });

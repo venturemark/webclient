@@ -17,23 +17,33 @@ import { ITimeline } from "module/interface/timeline";
 import { IMetric } from "module/interface/metric";
 import * as api from "module/api";
 
-const defaultTimeline: ITimeline = {
-  name: "",
-  timelineId: "",
-  userId: "",
-  dataKey: "",
-  isCurrent: false,
-  updates: [],
-  data: [],
-};
+import { DefaultTimelines, DefaultData, DefaultUpdates } from "playbook";
+
+// const defaultTimeline: ITimeline = {
+//   name: "",
+//   timelineId: "",
+//   userId: "",
+//   dataKey: "",
+//   isCurrent: false,
+//   updates: [],
+//   data: [],
+// };
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
   const userId = window.location.pathname.slice(1);
-  const [timelines, setTimelines] = useState<ITimeline[]>([]);
+  const [timelines, setTimelines] = useState<ITimeline[]>(DefaultTimelines);
   const [currentTimeline, setCurrentTimeline] = useState<ITimeline>(
-    defaultTimeline
+    DefaultTimelines[0]
+  );
+
+  const playbookName = currentTimeline.timelineId;
+  const metricPlaybooks = DefaultData.filter(
+    (metric) => metric.timelineId === playbookName
+  );
+  const updatePlaybooks = DefaultUpdates.filter(
+    (update) => update.timelineId === playbookName
   );
 
   const [refresh, setRefresh] = useState(false);
@@ -41,8 +51,8 @@ export function Component(props: HomeProps) {
   const [hideSidebar, setHideSidebar] = useState(true);
   const [addTimelineFocused, setAddTimelineFocused] = useState(false);
 
-  const [updates, setUpdates] = useState<IUpdate[]>([]);
-  const [metrics, setMetrics] = useState<IMetric[]>([]);
+  const [updates, setUpdates] = useState<IUpdate[]>(updatePlaybooks);
+  const [metrics, setMetrics] = useState<IMetric[]>(metricPlaybooks);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -67,6 +77,9 @@ export function Component(props: HomeProps) {
         userId
       );
 
+      console.log(timelinesResponse);
+      console.log(userId);
+
       if (timelinesResponse.length > 0) {
         let currentTimelineResponse: ITimeline = timelinesResponse[0];
 
@@ -83,12 +96,27 @@ export function Component(props: HomeProps) {
           return timeline;
         });
 
+        // const timelinesWithPlaybooks = {
+        //   ...activeTimelines,
+        //   ...timelines,
+        // };
+        //
+        // const playbookName = currentTimeline.timelineId;
+
         const metricsResponse: any = await api.API.Metric.Search(
           "timeline.venturemark.co/id",
           currentTimelineResponse.timelineId,
           "user.venturemark.co/id",
           currentTimelineResponse.userId
         );
+
+        // const metricPlaybooks = DefaultData.filter(
+        //   (metric) => metric.timelineId === playbookName
+        // );
+        // const metricsWithPlaybooks = { ...metricsResponse, ...metricPlaybooks };
+
+        // console.log("metric playbooks:", metricsWithPlaybooks);
+
         const updatesResponse: any = await api.API.Update.Search(
           "timeline.venturemark.co/id",
           currentTimelineResponse.timelineId,
@@ -100,7 +128,7 @@ export function Component(props: HomeProps) {
           return { ...metric, [currentTimelineResponse.name]: metric.value };
         });
 
-        let concatAndDeDuplicateObjects = (p: any, ...arrs: any) =>
+        const concatAndDeDuplicateObjects = (p: any, ...arrs: any) =>
           []
             .concat(...arrs)
             .reduce(
@@ -124,6 +152,19 @@ export function Component(props: HomeProps) {
         setTimelines(activeTimelines);
         setUpdates(updates);
         setMetrics(sortedMetrics);
+      } else {
+        const playbookName = currentTimeline.timelineId;
+        const updatePlaybooks = DefaultUpdates.filter(
+          (update) => update.timelineId === playbookName
+        );
+        const metricPlaybooks = DefaultData.filter(
+          (metric) => metric.timelineId === playbookName
+        );
+
+        // setTimelines(DefaultTimelines);
+        setUpdates(updatePlaybooks);
+        setMetrics(metricPlaybooks);
+        // setCurrentTimeline(DefaultTimelines[0]);
       }
     };
 
@@ -224,6 +265,10 @@ export function Component(props: HomeProps) {
     };
     setEditorShape(resetEditor);
   };
+
+  console.log(timelines);
+  console.log(updates);
+  console.log(metrics);
 
   return (
     <PlasmicHome
