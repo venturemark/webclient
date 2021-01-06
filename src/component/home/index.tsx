@@ -93,6 +93,7 @@ export function Component(props: HomeProps) {
             }, 1000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
+
                 "Most recent user satisfaction rating was 8.3! Why the uptick? High touch onboarding. Our customer support is crushing it. Narrower product focus leads to stronger believers",
                 8.3,
                 "timeline.venturemark.co/id",
@@ -111,6 +112,7 @@ export function Component(props: HomeProps) {
           );
           thirdResponse.then((timelineId) => {
             api.API.MetricUpdate.Create(
+
               "Thanks mom! 1 recurring user",
               1,
               "timeline.venturemark.co/id",
