@@ -70,49 +70,11 @@ export function Component(props: HomeProps) {
       // put in default data if there are no existing timelines
       if (timelinesResponse.length < 1) {
         setTimeout(() => {
-          let firstResponse = api.API.Timeline.Create(
-            "Feature Development",
-            userId
-          );
-          firstResponse.then((timelineId) => {
-            api.API.MetricUpdate.Create(
-              "Here is an example.",
-              3,
-              "timeline.venturemark.co/id",
-              timelineId,
-              "user.venturemark.co/id",
-              userId
-            );
-
-            setTimeout(() => {
-              api.API.MetricUpdate.Create(
-                "Where the world turns, it turns",
-                10,
-                "timeline.venturemark.co/id",
-                timelineId,
-                "user.venturemark.co/id",
-                userId
-              );
-            }, 1000);
-            setTimeout(() => {
-              api.API.MetricUpdate.Create(
-                "New found freedom in a strange land",
-                25,
-                "timeline.venturemark.co/id",
-                timelineId,
-                "user.venturemark.co/id",
-                userId
-              );
-            }, 2000);
-          });
-        }, 0);
-
-        setTimeout(() => {
           let secondResponse = api.API.Timeline.Create("User Feedback", userId);
           secondResponse.then((timelineId) => {
             api.API.MetricUpdate.Create(
-              "Here is an example.",
-              3,
+              "One user said, 'I would rather shovel $#*!' that use your software.↵↵She gave us a satisfaction rating of 1 because she likes our idea.",
+              1,
               "timeline.venturemark.co/id",
               timelineId,
               "user.venturemark.co/id",
@@ -121,8 +83,8 @@ export function Component(props: HomeProps) {
 
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "Where the world turns, it turns",
-                10,
+                "We're struggling to get our satisfaction rating higher. We believe there is a disconnect between the value users expect and the marketing message. We're not delivering.",
+                2,
                 "timeline.venturemark.co/id",
                 timelineId,
                 "user.venturemark.co/id",
@@ -131,8 +93,8 @@ export function Component(props: HomeProps) {
             }, 1000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "New found freedom in a strange land",
-                25,
+                "Most recent user satisfaction rating was 8.3!↵↵Why the uptick?↵- High touch onboarding.↵- Our customer support is crushing it.↵- Narrower product focus leads to stronger believers",
+                8.3,
                 "timeline.venturemark.co/id",
                 timelineId,
                 "user.venturemark.co/id",
@@ -149,8 +111,8 @@ export function Component(props: HomeProps) {
           );
           thirdResponse.then((timelineId) => {
             api.API.MetricUpdate.Create(
-              "Here is an example.",
-              3,
+              "Thanks mom!",
+              1,
               "timeline.venturemark.co/id",
               timelineId,
               "user.venturemark.co/id",
@@ -159,8 +121,8 @@ export function Component(props: HomeProps) {
 
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "Where the world turns, it turns",
-                10,
+                "I don't know who these 123 people that keep using our product are. Which is cool. but we've done a lot of marketing",
+                123,
                 "timeline.venturemark.co/id",
                 timelineId,
                 "user.venturemark.co/id",
@@ -169,8 +131,8 @@ export function Component(props: HomeProps) {
             }, 1000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "New found freedom in a strange land",
-                25,
+                "We really only have 12 users that also make viable customers. The rest were consuming lots of resource but were neither contributing to the platform nor showed any desire to every pay.",
+                12,
                 "timeline.venturemark.co/id",
                 timelineId,
                 "user.venturemark.co/id",
@@ -187,8 +149,8 @@ export function Component(props: HomeProps) {
           );
           fourthResponse.then((timelineId) => {
             api.API.MetricUpdate.Create(
-              "Here is an example.",
-              3,
+              "First customer signed at $40/month",
+              40,
               "timeline.venturemark.co/id",
               timelineId,
               "user.venturemark.co/id",
@@ -197,8 +159,8 @@ export function Component(props: HomeProps) {
 
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "Where the world turns, it turns",
-                10,
+                "we're at $160/month! 4 customers and signing a new customer each week.",
+                160,
                 "timeline.venturemark.co/id",
                 timelineId,
                 "user.venturemark.co/id",
@@ -207,8 +169,8 @@ export function Component(props: HomeProps) {
             }, 1000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "New found freedom in a strange land",
-                25,
+                "We believe we were able to 10x our sales by ",
+                1160,
                 "timeline.venturemark.co/id",
                 timelineId,
                 "user.venturemark.co/id",
@@ -218,10 +180,48 @@ export function Component(props: HomeProps) {
             }, 2000);
           });
         }, 3000);
+
+        setTimeout(() => {
+          let firstResponse = api.API.Timeline.Create(
+            "Feature Development",
+            userId
+          );
+          firstResponse.then((timelineId) => {
+            api.API.MetricUpdate.Create(
+              "We're currently releasing .5 features per week. And there is a lot of regression.",
+              0.5,
+              "timeline.venturemark.co/id",
+              timelineId,
+              "user.venturemark.co/id",
+              userId
+            );
+
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "We're currently releasing 2.5 features per week.↵↵ - Brought onboard a like-minded fellow to help build backend.",
+                3.5,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 1000);
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "We now have a complete team. We're shipping 10 features per week.",
+                10,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 2000);
+          });
+        }, 0);
       }
 
       if (timelinesResponse.length > 0) {
-        let currentTimelineResponse: ITimeline = timelinesResponse[0];
+        let currentTimelineResponse: ITimeline = timelinesResponse[3];
 
         if (currentTimeline.timelineId) {
           currentTimelineResponse = currentTimeline;
