@@ -70,16 +70,18 @@ export function Component(props: HomeProps) {
       // put in default data if there are no existing timelines
       if (timelinesResponse.length < 1) {
         setTimeout(() => {
-          let secondResponse = api.API.Timeline.Create("User Feedback", userId);
-          secondResponse.then((timelineId) => {
-            api.API.MetricUpdate.Create(
-              "One user said, 'I would rather shovel $#*!' that use your software. She gave us a satisfaction rating of 1 because she likes our idea.",
-              1,
-              "timeline.venturemark.co/id",
-              timelineId,
-              "user.venturemark.co/id",
-              userId
-            );
+          let firstResponse = api.API.Timeline.Create("User Feedback", userId);
+          firstResponse.then((timelineId) => {
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "One user said, 'I would rather shovel $#*!' that use your software. She gave us a satisfaction rating of 1 because she likes our idea.",
+                1,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 0);
 
             setTimeout(() => {
               api.API.MetricUpdate.Create(
@@ -102,22 +104,24 @@ export function Component(props: HomeProps) {
               );
             }, 2000);
           });
-        }, 1000);
+        }, 0);
 
         setTimeout(() => {
-          let thirdResponse = api.API.Timeline.Create(
+          let secondResponse = api.API.Timeline.Create(
             "Recurring Users",
             userId
           );
-          thirdResponse.then((timelineId) => {
-            api.API.MetricUpdate.Create(
-              "Thanks mom! 1 recurring user",
-              1,
-              "timeline.venturemark.co/id",
-              timelineId,
-              "user.venturemark.co/id",
-              userId
-            );
+          secondResponse.then((timelineId) => {
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "Thanks mom! 1 recurring user",
+                1,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 2000);
 
             setTimeout(() => {
               api.API.MetricUpdate.Create(
@@ -128,7 +132,7 @@ export function Component(props: HomeProps) {
                 "user.venturemark.co/id",
                 userId
               );
-            }, 1000);
+            }, 3000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
                 "We really only have 12 users that also make viable customers. The rest were consuming lots of resource but were neither contributing to the platform nor showed any desire to every pay.",
@@ -138,25 +142,26 @@ export function Component(props: HomeProps) {
                 "user.venturemark.co/id",
                 userId
               );
-            }, 2000);
+            }, 4000);
           });
-        }, 2000);
+        }, 1000);
 
         setTimeout(() => {
-          let fourthResponse = api.API.Timeline.Create(
+          let thirdResponse = api.API.Timeline.Create(
             "Recurring Revenue",
             userId
           );
-          fourthResponse.then((timelineId) => {
-            api.API.MetricUpdate.Create(
-              "First customer signed at $40/month",
-              40,
-              "timeline.venturemark.co/id",
-              timelineId,
-              "user.venturemark.co/id",
-              userId
-            );
-
+          thirdResponse.then((timelineId) => {
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "First customer signed at $40/month",
+                40,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 4000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
                 "we're at $160/month! 4 customers and signing a new customer each week.",
@@ -166,10 +171,10 @@ export function Component(props: HomeProps) {
                 "user.venturemark.co/id",
                 userId
               );
-            }, 1000);
+            }, 5000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "We believe we were able to 10x our sales by ",
+                "We believe we were able to increase MRR to $1160 by introducing a new incentive program.",
                 1160,
                 "timeline.venturemark.co/id",
                 timelineId,
@@ -177,35 +182,47 @@ export function Component(props: HomeProps) {
                 userId
               );
               setRefresh(true); // re-fetch from client after tasks
-            }, 2000);
-          });
-        }, 3000);
-
-        setTimeout(() => {
-          let firstResponse = api.API.Timeline.Create(
-            "Feature Development",
-            userId
-          );
-          firstResponse.then((timelineId) => {
-            api.API.MetricUpdate.Create(
-              "We're currently releasing .5 features per week. And there is a lot of regression.",
-              0.5,
-              "timeline.venturemark.co/id",
-              timelineId,
-              "user.venturemark.co/id",
-              userId
-            );
-
+            }, 6000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "We're currently releasing 2.5 features per week. We also brought onboard a like-minded fellow to help build backend.",
-                3.5,
+                "Covid hit and brought our existing customers down to 120",
+                120,
                 "timeline.venturemark.co/id",
                 timelineId,
                 "user.venturemark.co/id",
                 userId
               );
-            }, 1000);
+            }, 7000);
+          });
+        }, 2000);
+
+        setTimeout(() => {
+          let fourthResponse = api.API.Timeline.Create(
+            "Feature Development",
+            userId
+          );
+          fourthResponse.then((timelineId) => {
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "We're currently releasing 1 features per week. And there is a lot of regression.",
+                1,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 7000);
+
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "We're currently releasing 3 features per week. We also brought onboard a like-minded fellow to help build backend.",
+                3,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 8000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
                 "We now have a complete team. We're shipping 10 features per week.",
@@ -215,13 +232,14 @@ export function Component(props: HomeProps) {
                 "user.venturemark.co/id",
                 userId
               );
-            }, 2000);
+              setRefresh(true); // re-fetch from client after tasks
+            }, 9000);
           });
-        }, 0);
+        }, 3000);
       }
 
       if (timelinesResponse.length > 0) {
-        let currentTimelineResponse: ITimeline = timelinesResponse[3];
+        let currentTimelineResponse: ITimeline = timelinesResponse[0];
 
         if (currentTimeline.timelineId) {
           currentTimelineResponse = currentTimeline;
@@ -250,9 +268,20 @@ export function Component(props: HomeProps) {
           currentTimelineResponse.userId
         );
 
-        const metrics: IMetric[] = metricsResponse.map((metric: IMetric) => {
-          return { ...metric, [currentTimelineResponse.name]: metric.value };
-        });
+        console.log(
+          "timeline, metrics, updates:",
+          currentTimelineResponse,
+          metricsResponse,
+          updatesResponse
+        );
+
+        const mappedMetrics: IMetric[] = metricsResponse.map(
+          (metric: IMetric) => {
+            return { ...metric, [currentTimelineResponse.name]: metric.value };
+          }
+        );
+
+        console.log("mappedMetrics", mappedMetrics);
 
         let concatAndDeDuplicateObjects = (p: any, ...arrs: any) =>
           []
@@ -263,21 +292,23 @@ export function Component(props: HomeProps) {
               []
             );
 
-        const updates = concatAndDeDuplicateObjects(
+        const deDuplicatedUpdates = concatAndDeDuplicateObjects(
           "updateId",
           updatesResponse,
-          metricsResponse
+          mappedMetrics
         );
-        const sortedMetrics = metrics.sort(
+        console.log("new updates", deDuplicatedUpdates);
+        const sortedMetrics = mappedMetrics.sort(
           (a: IMetric, b: IMetric) => Number(a.updateId) - Number(b.updateId)
         );
+        console.log("sorted metrics:", sortedMetrics);
+        setTimelines(activeTimelines);
+        setUpdates(deDuplicatedUpdates);
+        setMetrics(sortedMetrics);
+
         if (refresh) {
           setRefresh(false);
         }
-
-        setTimelines(activeTimelines);
-        setUpdates(updates);
-        setMetrics(sortedMetrics);
       }
     };
 
