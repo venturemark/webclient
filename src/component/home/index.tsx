@@ -67,6 +67,159 @@ export function Component(props: HomeProps) {
         userId
       );
 
+      // put in default data if there are no existing timelines
+      if (timelinesResponse.length < 1) {
+        setTimeout(() => {
+          let firstResponse = api.API.Timeline.Create(
+            "Feature Development",
+            userId
+          );
+          firstResponse.then((timelineId) => {
+            api.API.MetricUpdate.Create(
+              "Here is an example.",
+              3,
+              "timeline.venturemark.co/id",
+              timelineId,
+              "user.venturemark.co/id",
+              userId
+            );
+
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "Where the world turns, it turns",
+                10,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 1000);
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "New found freedom in a strange land",
+                25,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 2000);
+          });
+        }, 0);
+
+        setTimeout(() => {
+          let secondResponse = api.API.Timeline.Create("User Feedback", userId);
+          secondResponse.then((timelineId) => {
+            api.API.MetricUpdate.Create(
+              "Here is an example.",
+              3,
+              "timeline.venturemark.co/id",
+              timelineId,
+              "user.venturemark.co/id",
+              userId
+            );
+
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "Where the world turns, it turns",
+                10,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 1000);
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "New found freedom in a strange land",
+                25,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 2000);
+          });
+        }, 1000);
+
+        setTimeout(() => {
+          let thirdResponse = api.API.Timeline.Create(
+            "Recurring Users",
+            userId
+          );
+          thirdResponse.then((timelineId) => {
+            api.API.MetricUpdate.Create(
+              "Here is an example.",
+              3,
+              "timeline.venturemark.co/id",
+              timelineId,
+              "user.venturemark.co/id",
+              userId
+            );
+
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "Where the world turns, it turns",
+                10,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 1000);
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "New found freedom in a strange land",
+                25,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 2000);
+          });
+        }, 2000);
+
+        setTimeout(() => {
+          let fourthResponse = api.API.Timeline.Create(
+            "Recurring Revenue",
+            userId
+          );
+          fourthResponse.then((timelineId) => {
+            api.API.MetricUpdate.Create(
+              "Here is an example.",
+              3,
+              "timeline.venturemark.co/id",
+              timelineId,
+              "user.venturemark.co/id",
+              userId
+            );
+
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "Where the world turns, it turns",
+                10,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+            }, 1000);
+            setTimeout(() => {
+              api.API.MetricUpdate.Create(
+                "New found freedom in a strange land",
+                25,
+                "timeline.venturemark.co/id",
+                timelineId,
+                "user.venturemark.co/id",
+                userId
+              );
+              setRefresh(true); // re-fetch from client after tasks
+            }, 2000);
+          });
+        }, 3000);
+      }
+
       if (timelinesResponse.length > 0) {
         let currentTimelineResponse: ITimeline = timelinesResponse[0];
 
@@ -74,6 +227,7 @@ export function Component(props: HomeProps) {
           currentTimelineResponse = currentTimeline;
         }
         currentTimelineResponse.isCurrent = true;
+
         setCurrentTimeline(currentTimelineResponse);
 
         const activeTimelines = timelinesResponse.map((timeline) => {

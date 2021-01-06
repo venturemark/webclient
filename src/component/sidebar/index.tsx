@@ -106,11 +106,12 @@ function Sidebar(props: SidebarProps) {
       data: defaultData,
       isCurrent: true,
     };
-    console.log(name, userId);
 
     async function createTimeline() {
-      let response = await api.API.Timeline.Create(name, userId);
-      if (response) {
+      let thisTimelineId = await api.API.Timeline.Create(name, userId);
+      if (thisTimelineId) {
+        const thisTimeline = { ...timeline, timelineId: thisTimelineId };
+        setCurrentTimeline(thisTimeline);
         setRefresh(true);
       }
     }
