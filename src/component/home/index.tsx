@@ -73,7 +73,7 @@ export function Component(props: HomeProps) {
           let secondResponse = api.API.Timeline.Create("User Feedback", userId);
           secondResponse.then((timelineId) => {
             api.API.MetricUpdate.Create(
-              "One user said, 'I would rather shovel $#*!' that use your software.↵↵She gave us a satisfaction rating of 1 because she likes our idea.",
+              "One user said, 'I would rather shovel $#*!' that use your software. She gave us a satisfaction rating of 1 because she likes our idea.",
               1,
               "timeline.venturemark.co/id",
               timelineId,
@@ -93,7 +93,7 @@ export function Component(props: HomeProps) {
             }, 1000);
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "Most recent user satisfaction rating was 8.3!↵↵Why the uptick?↵- High touch onboarding.↵- Our customer support is crushing it.↵- Narrower product focus leads to stronger believers",
+                "Most recent user satisfaction rating was 8.3! Why the uptick? High touch onboarding. Our customer support is crushing it. Narrower product focus leads to stronger believers",
                 8.3,
                 "timeline.venturemark.co/id",
                 timelineId,
@@ -111,7 +111,7 @@ export function Component(props: HomeProps) {
           );
           thirdResponse.then((timelineId) => {
             api.API.MetricUpdate.Create(
-              "Thanks mom!",
+              "Thanks mom! 1 recurring user",
               1,
               "timeline.venturemark.co/id",
               timelineId,
@@ -198,7 +198,7 @@ export function Component(props: HomeProps) {
 
             setTimeout(() => {
               api.API.MetricUpdate.Create(
-                "We're currently releasing 2.5 features per week.↵↵ - Brought onboard a like-minded fellow to help build backend.",
+                "We're currently releasing 2.5 features per week. We also brought onboard a like-minded fellow to help build backend.",
                 3.5,
                 "timeline.venturemark.co/id",
                 timelineId,
