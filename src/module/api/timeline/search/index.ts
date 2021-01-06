@@ -13,6 +13,7 @@ export async function Search(
   const req = new apigents.Timeline.Search.I();
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
+
   const obj = new SearchI_Obj();
   obj.getMetadataMap().set(userIdKey, userIdValue);
   objList.push(obj);
