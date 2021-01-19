@@ -10,16 +10,13 @@
 // Component: A1UjtYt6k0
 import * as React from "react";
 
+import * as p from "@plasmicapp/react-web";
 import {
   hasVariant,
   classNames,
-  Flex,
   wrapWithClassName,
   createPlasmicElementProxy,
   makeFragment,
-  PlasmicIcon,
-  PlasmicLink,
-  PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
@@ -28,7 +25,6 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
@@ -56,10 +52,15 @@ type ArgPropType = keyof PlasmicUpdateContent__ArgsType;
 export const PlasmicUpdateContent__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicUpdateContent__OverridesType = {
-  root?: Flex<"div">;
-  editorContainer?: Flex<"div">;
-  metric?: Flex<typeof Metric>;
-  textContainer?: Flex<"div">;
+  root?: p.Flex<"div">;
+  editorContainer?: p.Flex<"div">;
+  metric?: p.Flex<typeof Metric>;
+  userName?: p.Flex<"span">;
+  organizationName?: p.Flex<"span">;
+  date?: p.Flex<"span">;
+  timelineName?: p.Flex<"span">;
+  textContainer?: p.Flex<"div">;
+  button?: p.Flex<"button">;
 };
 
 export interface DefaultUpdateContentProps {
@@ -86,7 +87,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
       })}
@@ -95,7 +96,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
       <div
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
-        className={classNames(sty.editorContainer, defaultcss.all, {
+        className={classNames(defaultcss.all, sty.editorContainer, {
           [sty.editorContainer__state_graph]: hasVariant(
             variants,
             "state",
@@ -119,21 +120,120 @@ function PlasmicUpdateContent__RenderFunc(props: {
           <Metric
             data-plasmic-name={"metric"}
             data-plasmic-override={overrides.metric}
-            className={classNames(sty.metric, "__wab_instance", {
+            className={classNames("__wab_instance", sty.metric, {
               [sty.metric__state_graph]: hasVariant(variants, "state", "graph"),
               [sty.metric__state_text]: hasVariant(variants, "state", "text"),
             })}
             name={"Revenue"}
           />
         ) : null}
+
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.box__ehjLr)}
+        >
+          <div className={classNames(defaultcss.all, sty.box__wAdRc)} />
+
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(defaultcss.all, sty.box__mkSty)}
+          >
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(defaultcss.all, sty.box__fjL5B)}
+            >
+              <span
+                data-plasmic-name={"userName"}
+                data-plasmic-override={overrides.userName}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.userName
+                )}
+              >
+                <span>
+                  <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                </span>
+              </span>
+
+              <div
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.box__tizM
+                )}
+              >
+                {"posted to"}
+              </div>
+
+              <span
+                data-plasmic-name={"organizationName"}
+                data-plasmic-override={overrides.organizationName}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.organizationName
+                )}
+              >
+                <span>
+                  <span style={{ fontWeight: 700 }}>{"Venturemark"}</span>
+                </span>
+              </span>
+            </p.Stack>
+
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(defaultcss.all, sty.box__vvzri)}
+            >
+              <span
+                data-plasmic-name={"date"}
+                data-plasmic-override={overrides.date}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.date
+                )}
+              >
+                {"3 hours ago"}
+              </span>
+
+              <div
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.box__rwEsf
+                )}
+              >
+                {"•"}
+              </div>
+
+              <span
+                data-plasmic-name={"timelineName"}
+                data-plasmic-override={overrides.timelineName}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.timelineName
+                )}
+              >
+                {"Wins"}
+              </span>
+            </p.Stack>
+          </p.Stack>
+        </p.Stack>
+
         {(hasVariant(variants, "state", "graph") ? false : true) ? (
           <div
             data-plasmic-name={"textContainer"}
             data-plasmic-override={overrides.textContainer}
             className={classNames(
-              sty.textContainer,
               defaultcss.all,
               defaultcss.__wab_text,
+              sty.textContainer,
               {
                 [sty.textContainer__state_graph]: hasVariant(
                   variants,
@@ -154,16 +254,58 @@ function PlasmicUpdateContent__RenderFunc(props: {
               : "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius\n\n"}
           </div>
         ) : null}
+
+        <div className={classNames(defaultcss.all, sty.box__khPiB)}>
+          <button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            className={classNames(
+              defaultcss.button,
+              defaultcss.__wab_text,
+              sty.button
+            )}
+          >
+            {"Reply"}
+          </button>
+
+          <div className={classNames(defaultcss.all, sty.box__uciye)} />
+        </div>
       </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "editorContainer", "metric", "textContainer"],
-  editorContainer: ["editorContainer", "metric", "textContainer"],
+  root: [
+    "root",
+    "editorContainer",
+    "metric",
+    "userName",
+    "organizationName",
+    "date",
+    "timelineName",
+    "textContainer",
+    "button",
+  ],
+
+  editorContainer: [
+    "editorContainer",
+    "metric",
+    "userName",
+    "organizationName",
+    "date",
+    "timelineName",
+    "textContainer",
+    "button",
+  ],
+
   metric: ["metric"],
+  userName: ["userName"],
+  organizationName: ["organizationName"],
+  date: ["date"],
+  timelineName: ["timelineName"],
   textContainer: ["textContainer"],
+  button: ["button"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -173,7 +315,12 @@ type NodeDefaultElementType = {
   root: "div";
   editorContainer: "div";
   metric: typeof Metric;
+  userName: "span";
+  organizationName: "span";
+  date: "span";
+  timelineName: "span";
   textContainer: "div";
+  button: "button";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -236,7 +383,12 @@ export const PlasmicUpdateContent = Object.assign(
     // Helper components rendering sub-elements
     editorContainer: makeNodeComponent("editorContainer"),
     metric: makeNodeComponent("metric"),
+    userName: makeNodeComponent("userName"),
+    organizationName: makeNodeComponent("organizationName"),
+    date: makeNodeComponent("date"),
+    timelineName: makeNodeComponent("timelineName"),
     textContainer: makeNodeComponent("textContainer"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicUpdateContent
     internalVariantProps: PlasmicUpdateContent__VariantProps,

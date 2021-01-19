@@ -5,17 +5,17 @@
 import React from "react";
 import { classNames } from "@plasmicapp/react-web";
 
-export type IconHomeIconProps = React.ComponentProps<"svg"> & {
+export type IconDotMenuIconProps = React.ComponentProps<"svg"> & {
   title?: string;
 };
 
-export function IconHomeIcon(props: IconHomeIconProps) {
+export function IconDotMenuIcon(props: IconDotMenuIconProps) {
   const { className, style, title, ...restProps } = props;
   return (
     <svg
       xmlns={"http://www.w3.org/2000/svg"}
       fill={"none"}
-      viewBox={"0 0 15 16"}
+      viewBox={"0 0 16 18"}
       height={"1em"}
       width={"1em"}
       style={{
@@ -30,7 +30,7 @@ export function IconHomeIcon(props: IconHomeIconProps) {
 
       <path
         d={
-          "M7.184.105L.207 5.44A.547.547 0 000 5.866v9.6c0 .28.25.534.523.534h4.71a.55.55 0 00.523-.533V12.8c0-.995.768-1.778 1.744-1.778s1.744.784 1.744 1.778v2.667c0 .279.25.533.523.533h4.71a.55.55 0 00.523-.533v-9.6a.549.549 0 00-.207-.428L7.816.105c-.228-.148-.419-.132-.632 0zM7.5 1.2l6.454 4.933v8.8H10.29V12.8c0-1.567-1.254-2.845-2.791-2.845S4.71 11.233 4.71 12.8v2.133H1.046v-8.8L7.5 1.2z"
+          "M7.5 5.11c.828 0 1.5-.696 1.5-1.555S8.328 2 7.5 2 6 2.696 6 3.555c0 .86.672 1.556 1.5 1.556zM6 9c0-.86.672-1.556 1.5-1.556S9 8.141 9 9c0 .859-.672 1.555-1.5 1.555S6 9.859 6 9zm0 5.445c0-.86.672-1.556 1.5-1.556s1.5.697 1.5 1.556C9 15.304 8.328 16 7.5 16S6 15.304 6 14.445z"
         }
         fill={"currentColor"}
       ></path>
@@ -38,5 +38,5 @@ export function IconHomeIcon(props: IconHomeIconProps) {
   );
 }
 
-export default IconHomeIcon;
+export default IconDotMenuIcon;
 /* prettier-ignore-end */

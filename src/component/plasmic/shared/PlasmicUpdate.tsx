@@ -10,16 +10,13 @@
 // Component: Fs8bTUrvZrvfhCr
 import * as React from "react";
 
+import * as p from "@plasmicapp/react-web";
 import {
   hasVariant,
   classNames,
-  Flex,
   wrapWithClassName,
   createPlasmicElementProxy,
   makeFragment,
-  PlasmicIcon,
-  PlasmicLink,
-  PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
@@ -28,7 +25,6 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
@@ -60,13 +56,13 @@ type ArgPropType = keyof PlasmicUpdate__ArgsType;
 export const PlasmicUpdate__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicUpdate__OverridesType = {
-  root?: Flex<"div">;
-  updateActionContainer?: Flex<"div">;
-  startIcon?: Flex<"svg">;
-  startIcon2?: Flex<"svg">;
-  toggleUpdateView?: Flex<typeof IconButton>;
-  startIcon22?: Flex<"svg">;
-  updateContent?: Flex<typeof UpdateContent>;
+  root?: p.Flex<"div">;
+  updateActionContainer?: p.Flex<"div">;
+  startIcon?: p.Flex<"svg">;
+  startIcon2?: p.Flex<"svg">;
+  toggleUpdateView?: p.Flex<typeof IconButton>;
+  startIcon22?: p.Flex<"svg">;
+  updateContent?: p.Flex<typeof UpdateContent>;
 };
 
 export interface DefaultUpdateProps {
@@ -88,7 +84,7 @@ function PlasmicUpdate__RenderFunc(props: {
   };
 
   return (
-    <Stack
+    <p.Stack
       as={"div"}
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
@@ -102,7 +98,7 @@ function PlasmicUpdate__RenderFunc(props: {
           ? true
           : false
       }
-      className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
         [sty.root__state_text]: hasVariant(variants, "state", "text"),
       })}
@@ -121,12 +117,12 @@ function PlasmicUpdate__RenderFunc(props: {
           ? false
           : false
       ) ? (
-        <Stack
+        <p.Stack
           as={"div"}
           data-plasmic-name={"updateActionContainer"}
           data-plasmic-override={overrides.updateActionContainer}
           hasGap={true}
-          className={classNames(sty.updateActionContainer, defaultcss.all, {
+          className={classNames(defaultcss.all, sty.updateActionContainer, {
             [sty.updateActionContainer__state_graph]: hasVariant(
               variants,
               "state",
@@ -148,7 +144,7 @@ function PlasmicUpdate__RenderFunc(props: {
               : true
           ) ? (
             <IconButton
-              className={classNames(sty.iconButton__i1WjS, "__wab_instance", {
+              className={classNames("__wab_instance", sty.iconButton__i1WjS, {
                 [sty.iconButton__state_graph__i1WjSvlb85]: hasVariant(
                   variants,
                   "state",
@@ -162,7 +158,7 @@ function PlasmicUpdate__RenderFunc(props: {
                 ),
               })}
               startIcon={
-                <PlasmicIcon
+                <p.PlasmicIcon
                   data-plasmic-name={"startIcon"}
                   data-plasmic-override={overrides.startIcon}
                   PlasmicIconType={
@@ -170,7 +166,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       ? IconWriteIcon
                       : IconWriteIcon
                   }
-                  className={classNames(sty.startIcon, defaultcss.all, {
+                  className={classNames(defaultcss.all, sty.startIcon, {
                     [sty.startIcon__state_graph]: hasVariant(
                       variants,
                       "state",
@@ -199,7 +195,7 @@ function PlasmicUpdate__RenderFunc(props: {
               : true
           ) ? (
             <IconButton
-              className={classNames(sty.iconButton__zHnWq, "__wab_instance", {
+              className={classNames("__wab_instance", sty.iconButton__zHnWq, {
                 [sty.iconButton__state_graph__zHnWqVlb85]: hasVariant(
                   variants,
                   "state",
@@ -213,7 +209,7 @@ function PlasmicUpdate__RenderFunc(props: {
                 ),
               })}
               startIcon={
-                <PlasmicIcon
+                <p.PlasmicIcon
                   data-plasmic-name={"startIcon2"}
                   data-plasmic-override={overrides.startIcon2}
                   PlasmicIconType={
@@ -221,7 +217,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       ? IconClockIcon
                       : IconClockIcon
                   }
-                  className={classNames(sty.startIcon2, defaultcss.all, {
+                  className={classNames(defaultcss.all, sty.startIcon2, {
                     [sty.startIcon2__state_graph]: hasVariant(
                       variants,
                       "state",
@@ -252,7 +248,7 @@ function PlasmicUpdate__RenderFunc(props: {
             <IconButton
               data-plasmic-name={"toggleUpdateView"}
               data-plasmic-override={overrides.toggleUpdateView}
-              className={classNames(sty.toggleUpdateView, "__wab_instance", {
+              className={classNames("__wab_instance", sty.toggleUpdateView, {
                 [sty.toggleUpdateView__state_graph]: hasVariant(
                   variants,
                   "state",
@@ -266,7 +262,7 @@ function PlasmicUpdate__RenderFunc(props: {
                 ),
               })}
               startIcon={
-                <PlasmicIcon
+                <p.PlasmicIcon
                   data-plasmic-name={"startIcon22"}
                   data-plasmic-override={overrides.startIcon22}
                   PlasmicIconType={
@@ -277,7 +273,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       ? IconBarChartIcon
                       : IconBarChartIcon
                   }
-                  className={classNames(sty.startIcon22, defaultcss.all, {
+                  className={classNames(defaultcss.all, sty.startIcon22, {
                     [sty.startIcon22__state_graph]: hasVariant(
                       variants,
                       "state",
@@ -298,13 +294,13 @@ function PlasmicUpdate__RenderFunc(props: {
               }
             />
           ) : null}
-        </Stack>
+        </p.Stack>
       ) : null}
 
       <UpdateContent
         data-plasmic-name={"updateContent"}
         data-plasmic-override={overrides.updateContent}
-        className={classNames(sty.updateContent, "__wab_instance", {
+        className={classNames("__wab_instance", sty.updateContent, {
           [sty.updateContent__state_graph]: hasVariant(
             variants,
             "state",
@@ -325,7 +321,7 @@ function PlasmicUpdate__RenderFunc(props: {
             : undefined
         }
       />
-    </Stack>
+    </p.Stack>
   ) as React.ReactElement | null;
 }
 

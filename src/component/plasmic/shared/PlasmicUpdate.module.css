@@ -1,13 +1,12 @@
 .root {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   background-color: rgba(68, 192, 255, 0);
-  width: 676px;
-  height: 209px;
+  width: auto;
+  height: 216px;
   position: relative;
-  padding-left: 74px;
   padding-right: 0px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
@@ -189,7 +188,7 @@
   top: auto;
   left: auto;
   align-self: flex-start;
-  flex-shrink: 0;
+  width: auto;
 }
 @media (min-width: 0px) and (max-width: 760px) {
   .updateContent:global(.__wab_instance) {
