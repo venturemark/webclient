@@ -6,19 +6,6 @@ import {
   DefaultSidebarOrganizationNameProps,
 } from "./plasmic/shared/PlasmicSidebarOrganizationName";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface SidebarOrganizationNameProps extends Omit<DefaultSidebarOrganizationNameProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultSidebarOrganizationNameProps altogether and have
-// total control over the props for your component.
 interface SidebarOrganizationNameProps
   extends DefaultSidebarOrganizationNameProps {
   hasInput: any;

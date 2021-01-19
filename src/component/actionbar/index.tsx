@@ -6,7 +6,6 @@ import {
   DefaultActionBarProps,
 } from "component/plasmic/shared/PlasmicActionBar";
 import ComposeEditor from "component/editor/compose";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { EditorShape } from "component/editor/compose";
 
 interface ActionBarProps extends DefaultActionBarProps {

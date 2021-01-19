@@ -39,8 +39,6 @@ export function Component(props: HomeProps) {
 
   const [refresh, setRefresh] = useState(false);
 
-  const [addTimelineFocused, setAddTimelineFocused] = useState(false);
-
   const [updates, setUpdates] = useState<IUpdate[]>([]);
   const [metrics, setMetrics] = useState<IMetric[]>([]);
 
@@ -386,7 +384,6 @@ export function Component(props: HomeProps) {
       sidebar={{
         timelines: timelines,
         setTimelines: setTimelines,
-        addTimelineFocused: addTimelineFocused,
         refresh: refresh,
         setRefresh: setRefresh,
         setCurrentTimeline: setCurrentTimeline,
