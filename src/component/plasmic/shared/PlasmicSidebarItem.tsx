@@ -10,16 +10,13 @@
 // Component: KDElHbQmfd
 import * as React from "react";
 
+import * as p from "@plasmicapp/react-web";
 import {
   hasVariant,
   classNames,
-  Flex,
   wrapWithClassName,
   createPlasmicElementProxy,
   makeFragment,
-  PlasmicIcon,
-  PlasmicLink,
-  PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
@@ -28,7 +25,6 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
@@ -38,47 +34,62 @@ import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicSidebarItem.module.css"; // plasmic-import: KDElHbQmfd/css
 
-import IconHomeIcon from "./icons/PlasmicIcon__IconHome"; // plasmic-import: Z6YqF7wXr6/icon
+import IconHomeOldIcon from "./icons/PlasmicIcon__IconHomeOld"; // plasmic-import: Z6YqF7wXr6/icon
+import IconHashIcon from "./icons/PlasmicIcon__IconHash"; // plasmic-import: AVLV6uMr56/icon
+import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicSidebarItem__VariantMembers = {
   isCurrent: "isCurrent";
   hasIcon: "hasIcon";
+  hasUpdates: "hasUpdates";
+  isInput: "isInput";
 };
 
 export type PlasmicSidebarItem__VariantsArgs = {
   isCurrent?: SingleBooleanChoiceArg<"isCurrent">;
   hasIcon?: SingleBooleanChoiceArg<"hasIcon">;
+  hasUpdates?: SingleBooleanChoiceArg<"hasUpdates">;
+  isInput?: SingleBooleanChoiceArg<"isInput">;
 };
 
 type VariantPropType = keyof PlasmicSidebarItem__VariantsArgs;
 export const PlasmicSidebarItem__VariantProps = new Array<VariantPropType>(
   "isCurrent",
-  "hasIcon"
+  "hasIcon",
+  "hasUpdates",
+  "isInput"
 );
 
 export type PlasmicSidebarItem__ArgsType = {
   name?: React.ReactNode;
   startIcon?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicSidebarItem__ArgsType;
 export const PlasmicSidebarItem__ArgProps = new Array<ArgPropType>(
   "name",
-  "startIcon"
+  "startIcon",
+  "children"
 );
 
 export type PlasmicSidebarItem__OverridesType = {
-  root?: Flex<"div">;
-  itemContainer?: Flex<"div">;
-  itemButton?: Flex<typeof IconButton>;
-  startIcon?: Flex<"svg">;
+  root?: p.Flex<"div">;
+  itemContainer?: p.Flex<"div">;
+  itemButton?: p.Flex<typeof IconButton>;
+  startIcon?: p.Flex<"svg">;
+  endIcon?: p.Flex<"svg">;
+  textbox?: p.Flex<"input">;
 };
 
 export interface DefaultSidebarItemProps {
   name?: React.ReactNode;
   startIcon?: React.ReactNode;
+  children?: React.ReactNode;
   isCurrent?: SingleBooleanChoiceArg<"isCurrent">;
   hasIcon?: SingleBooleanChoiceArg<"hasIcon">;
+  hasUpdates?: SingleBooleanChoiceArg<"hasUpdates">;
+  isInput?: SingleBooleanChoiceArg<"isInput">;
   className?: string;
 }
 
@@ -90,26 +101,45 @@ function PlasmicSidebarItem__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
+  const triggers = {
+    hover_root: isRootHover,
+  };
+
   return (
     <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__hasIcon]: hasVariant(variants, "hasIcon", "hasIcon"),
+        [sty.root__hasUpdates]: hasVariant(
+          variants,
+          "hasUpdates",
+          "hasUpdates"
+        ),
+
         [sty.root__isCurrent]: hasVariant(variants, "isCurrent", "isCurrent"),
       })}
+      data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
-      <Stack
+      <p.Stack
         as={"div"}
         data-plasmic-name={"itemContainer"}
         data-plasmic-override={overrides.itemContainer}
         hasGap={true}
-        className={classNames(sty.itemContainer, defaultcss.all, {
+        className={classNames(defaultcss.all, sty.itemContainer, {
           [sty.itemContainer__hasIcon]: hasVariant(
             variants,
             "hasIcon",
             "hasIcon"
+          ),
+
+          [sty.itemContainer__hasUpdates]: hasVariant(
+            variants,
+            "hasUpdates",
+            "hasUpdates"
           ),
 
           [sty.itemContainer__isCurrent]: hasVariant(
@@ -117,11 +147,29 @@ function PlasmicSidebarItem__RenderFunc(props: {
             "isCurrent",
             "isCurrent"
           ),
+
+          [sty.itemContainer__isCurrent_hasUpdates]:
+            hasVariant(variants, "isCurrent", "isCurrent") &&
+            hasVariant(variants, "hasUpdates", "hasUpdates"),
+          [sty.itemContainer__isCurrent_isInput]:
+            hasVariant(variants, "isCurrent", "isCurrent") &&
+            hasVariant(variants, "isInput", "isInput"),
+          [sty.itemContainer__isInput]: hasVariant(
+            variants,
+            "isInput",
+            "isInput"
+          ),
         })}
       >
         {(hasVariant(variants, "isCurrent", "isCurrent") ? true : false) ? (
           <div
-            className={classNames(sty.box__v0Fwk, defaultcss.all, {
+            className={classNames(defaultcss.all, sty.box__v0Fwk, {
+              [sty.box__hasUpdates__v0FwkkXb7H]: hasVariant(
+                variants,
+                "hasUpdates",
+                "hasUpdates"
+              ),
+
               [sty.box__isCurrent__v0Fwk0Mgpk]: hasVariant(
                 variants,
                 "isCurrent",
@@ -130,62 +178,35 @@ function PlasmicSidebarItem__RenderFunc(props: {
             })}
           />
         ) : null}
-
-        <div
-          className={classNames(sty.box__zwdJs, defaultcss.all, {
-            [sty.box__hasIcon__zwdJsHHCh]: hasVariant(
-              variants,
-              "hasIcon",
-              "hasIcon"
-            ),
-
-            [sty.box__hasIcon_isCurrent__zwdJsHHCh0Mgpk]:
-              hasVariant(variants, "hasIcon", "hasIcon") &&
-              hasVariant(variants, "isCurrent", "isCurrent"),
-            [sty.box__isCurrent__zwdJs0Mgpk]: hasVariant(
-              variants,
-              "isCurrent",
-              "isCurrent"
-            ),
-          })}
-        >
-          <PlasmicSlot
-            defaultContents={"Features Shipped"}
-            value={args.name}
-            className={classNames(sty.slotName, {
-              [sty.slotName__hasIcon]: hasVariant(
-                variants,
-                "hasIcon",
-                "hasIcon"
-              ),
-
-              [sty.slotName__isCurrent]: hasVariant(
-                variants,
-                "isCurrent",
-                "isCurrent"
-              ),
-            })}
-          />
-        </div>
-
         {(hasVariant(variants, "hasIcon", "hasIcon") ? true : false) ? (
           <IconButton
             data-plasmic-name={"itemButton"}
             data-plasmic-override={overrides.itemButton}
-            className={classNames(sty.itemButton, "__wab_instance", {
+            className={classNames("__wab_instance", sty.itemButton, {
               [sty.itemButton__hasIcon]: hasVariant(
                 variants,
                 "hasIcon",
                 "hasIcon"
               ),
             })}
+            content={""}
+            endIcon={
+              false ? (
+                <svg
+                  data-plasmic-name={"endIcon"}
+                  data-plasmic-override={overrides.endIcon}
+                  className={classNames(defaultcss.all, sty.endIcon)}
+                  role={"img"}
+                />
+              ) : null
+            }
             startIcon={
-              <PlasmicSlot
+              <p.PlasmicSlot
                 defaultContents={
-                  <IconHomeIcon
+                  <IconHomeOldIcon
                     data-plasmic-name={"startIcon"}
                     data-plasmic-override={overrides.startIcon}
-                    className={classNames(sty.startIcon, defaultcss.all)}
+                    className={classNames(defaultcss.all, sty.startIcon)}
                     role={"img"}
                   />
                 }
@@ -197,16 +218,155 @@ function PlasmicSidebarItem__RenderFunc(props: {
             }
           />
         ) : null}
-      </Stack>
+        {(hasVariant(variants, "hasUpdates", "hasUpdates") ? true : false) ? (
+          <p.Stack
+            as={"div"}
+            hasGap={
+              hasVariant(variants, "hasUpdates", "hasUpdates") ? true : false
+            }
+            className={classNames(defaultcss.all, sty.box__yCln2, {
+              [sty.box__hasUpdates__yCln2KXb7H]: hasVariant(
+                variants,
+                "hasUpdates",
+                "hasUpdates"
+              ),
+            })}
+          />
+        ) : null}
+        <p.PlasmicSlot
+          defaultContents={
+            <IconHashIcon
+              className={classNames(defaultcss.all, sty.svg__mVzHz)}
+              role={"img"}
+            />
+          }
+          value={args.children}
+        />
+
+        <div
+          className={classNames(defaultcss.all, sty.box__zwdJs, {
+            [sty.box__hasIcon__zwdJsHHCh]: hasVariant(
+              variants,
+              "hasIcon",
+              "hasIcon"
+            ),
+
+            [sty.box__hasIcon_isCurrent__zwdJsHHCh0Mgpk]:
+              hasVariant(variants, "hasIcon", "hasIcon") &&
+              hasVariant(variants, "isCurrent", "isCurrent"),
+            [sty.box__hasUpdates__zwdJSkXb7H]: hasVariant(
+              variants,
+              "hasUpdates",
+              "hasUpdates"
+            ),
+
+            [sty.box__isCurrent__zwdJs0Mgpk]: hasVariant(
+              variants,
+              "isCurrent",
+              "isCurrent"
+            ),
+
+            [sty.box__isInput__zwdJsrIr3V]: hasVariant(
+              variants,
+              "isInput",
+              "isInput"
+            ),
+          })}
+        >
+          <p.PlasmicSlot
+            defaultContents={
+              <React.Fragment>
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.box__j6CkC
+                  )}
+                >
+                  {"Wins"}
+                </div>
+
+                {false ? (
+                  <input
+                    data-plasmic-name={"textbox"}
+                    data-plasmic-override={overrides.textbox}
+                    className={classNames(defaultcss.input, sty.textbox, {
+                      [sty.textbox__isInput]: hasVariant(
+                        variants,
+                        "isInput",
+                        "isInput"
+                      ),
+                    })}
+                    placeholder={"Enter name" as const}
+                    size={1 as const}
+                    type={"text" as const}
+                    value={"" as const}
+                  />
+                ) : null}
+              </React.Fragment>
+            }
+            value={args.name}
+            className={classNames(sty.slotName, {
+              [sty.slotName__hasIcon]: hasVariant(
+                variants,
+                "hasIcon",
+                "hasIcon"
+              ),
+
+              [sty.slotName__hasUpdates]: hasVariant(
+                variants,
+                "hasUpdates",
+                "hasUpdates"
+              ),
+
+              [sty.slotName__isCurrent]: hasVariant(
+                variants,
+                "isCurrent",
+                "isCurrent"
+              ),
+
+              [sty.slotName__isInput]: hasVariant(
+                variants,
+                "isInput",
+                "isInput"
+              ),
+            })}
+          />
+        </div>
+
+        {(triggers.hover_root ? true : false) ? (
+          <IconDotMenuIcon
+            className={classNames(defaultcss.all, sty.svg___2Wfi2)}
+            role={"img"}
+          />
+        ) : null}
+      </p.Stack>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "itemContainer", "itemButton", "startIcon"],
-  itemContainer: ["itemContainer", "itemButton", "startIcon"],
-  itemButton: ["itemButton", "startIcon"],
+  root: [
+    "root",
+    "itemContainer",
+    "itemButton",
+    "startIcon",
+    "endIcon",
+    "textbox",
+  ],
+
+  itemContainer: [
+    "itemContainer",
+    "itemButton",
+    "startIcon",
+    "endIcon",
+    "textbox",
+  ],
+
+  itemButton: ["itemButton", "startIcon", "endIcon"],
   startIcon: ["startIcon"],
+  endIcon: ["endIcon"],
+  textbox: ["textbox"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -217,6 +377,8 @@ type NodeDefaultElementType = {
   itemContainer: "div";
   itemButton: typeof IconButton;
   startIcon: "svg";
+  endIcon: "svg";
+  textbox: "input";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -280,6 +442,8 @@ export const PlasmicSidebarItem = Object.assign(
     itemContainer: makeNodeComponent("itemContainer"),
     itemButton: makeNodeComponent("itemButton"),
     startIcon: makeNodeComponent("startIcon"),
+    endIcon: makeNodeComponent("endIcon"),
+    textbox: makeNodeComponent("textbox"),
 
     // Metadata about props expected for PlasmicSidebarItem
     internalVariantProps: PlasmicSidebarItem__VariantProps,

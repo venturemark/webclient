@@ -10,16 +10,13 @@
 // Component: Ey_MwfntCV
 import * as React from "react";
 
+import * as p from "@plasmicapp/react-web";
 import {
   hasVariant,
   classNames,
-  Flex,
   wrapWithClassName,
   createPlasmicElementProxy,
   makeFragment,
-  PlasmicIcon,
-  PlasmicLink,
-  PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
@@ -28,7 +25,6 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
@@ -66,10 +62,10 @@ export const PlasmicActionsColumn__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicActionsColumn__OverridesType = {
-  updateActionContainer?: Flex<"div">;
-  sendButton?: Flex<typeof IconButton>;
-  startIcon?: Flex<"svg">;
-  box?: Flex<"div">;
+  updateActionContainer?: p.Flex<"div">;
+  sendButton?: p.Flex<typeof IconButton>;
+  startIcon?: p.Flex<"svg">;
+  box?: p.Flex<"div">;
 };
 
 export interface DefaultActionsColumnProps {
@@ -88,7 +84,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
   const { variants, args, overrides, forNode } = props;
 
   return (
-    <Stack
+    <p.Stack
       as={"div"}
       data-plasmic-name={"updateActionContainer"}
       data-plasmic-override={overrides.updateActionContainer}
@@ -96,9 +92,9 @@ function PlasmicActionsColumn__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(
-        sty.updateActionContainer,
-        projectcss.root_reset,
         defaultcss.all,
+        projectcss.root_reset,
+        sty.updateActionContainer,
         {
           [sty.updateActionContainer__content_hasContent]: hasVariant(
             variants,
@@ -121,7 +117,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
         <IconButton
           data-plasmic-name={"sendButton"}
           data-plasmic-override={overrides.sendButton}
-          className={classNames(sty.sendButton, "__wab_instance", {
+          className={classNames("__wab_instance", sty.sendButton, {
             [sty.sendButton__content_hasContent]: hasVariant(
               variants,
               "content",
@@ -136,7 +132,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
             <IconSendIcon
               data-plasmic-name={"startIcon"}
               data-plasmic-override={overrides.startIcon}
-              className={classNames(sty.startIcon, defaultcss.all)}
+              className={classNames(defaultcss.all, sty.startIcon)}
               role={"img"}
             />
           }
@@ -147,7 +143,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
         <div
           data-plasmic-name={"box"}
           data-plasmic-override={overrides.box}
-          className={classNames(sty.box, defaultcss.all, {
+          className={classNames(defaultcss.all, sty.box, {
             [sty.box__content_hasContent]: hasVariant(
               variants,
               "content",
@@ -165,7 +161,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
               hasVariant(variants, "content", "hasContent"),
           })}
         >
-          <PlasmicSlot
+          <p.PlasmicSlot
             defaultContents={"4555"}
             value={args.numberValue}
             className={classNames(sty.slotNumberValue, {
@@ -176,7 +172,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
           />
         </div>
       ) : null}
-    </Stack>
+    </p.Stack>
   ) as React.ReactElement | null;
 }
 

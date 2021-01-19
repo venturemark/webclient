@@ -39,9 +39,6 @@ export function Component(props: HomeProps) {
 
   const [refresh, setRefresh] = useState(false);
 
-  const [hideSidebar, setHideSidebar] = useState(true);
-  const [addTimelineFocused, setAddTimelineFocused] = useState(false);
-
   const [updates, setUpdates] = useState<IUpdate[]>([]);
   const [metrics, setMetrics] = useState<IMetric[]>([]);
 
@@ -384,32 +381,9 @@ export function Component(props: HomeProps) {
 
   return (
     <PlasmicHome
-      sidebarHidden={hideSidebar}
-      closeSidebar={{
-        "aria-label": "Toggle Sidebar",
-        onPress: () => {
-          setHideSidebar(!hideSidebar);
-          setAddTimelineFocused(false);
-        },
-      }}
-      openSidebar={{
-        "aria-label": "Toggle Sidebar",
-        onPress: () => {
-          setHideSidebar(!hideSidebar);
-          setAddTimelineFocused(false);
-        },
-      }}
-      addButton={{
-        "aria-label": "Add Timeline",
-        onPress: () => {
-          setHideSidebar(!hideSidebar);
-          setAddTimelineFocused(true);
-        },
-      }}
       sidebar={{
         timelines: timelines,
         setTimelines: setTimelines,
-        addTimelineFocused: addTimelineFocused,
         refresh: refresh,
         setRefresh: setRefresh,
         setCurrentTimeline: setCurrentTimeline,
@@ -421,27 +395,22 @@ export function Component(props: HomeProps) {
         editorShape: editorShape,
         setEditorShape: setEditorShape,
       }}
-      updatesContainer={{
-        children: updates.map((update) => (
-          <Update
-            text={update.text}
-            key={update.updateId}
-            id={update.updateId}
-            dataKey={currentTimeline.dataKey}
-            data={metrics}
-            name={currentTimeline.name}
-            isFlipped={update.isFlipped}
-            isContext={update.isContext}
-            updates={updates}
-            setUpdates={setUpdates}
-          />
-        )),
-      }}
-      actionsColumn={{
-        hasContent: editorShape.hasContent,
-        numberValue: editorShape.numberValue,
-        createUpdate: createUpdate,
-      }}
+      // updatesContainer={{
+      //   children: updates.map((update) => (
+      //     <Update
+      //       text={update.text}
+      //       key={update.updateId}
+      //       id={update.updateId}
+      //       dataKey={currentTimeline.dataKey}
+      //       data={metrics}
+      //       name={currentTimeline.name}
+      //       isFlipped={update.isFlipped}
+      //       isContext={update.isContext}
+      //       updates={updates}
+      //       setUpdates={setUpdates}
+      //     />
+      //   )),
+      // }}
     />
   );
 }

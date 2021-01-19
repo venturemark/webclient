@@ -13,9 +13,8 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
-    "@plasmicapp/cli": "^0.1.70",
     "@plasmicapp/plume": "^0.1.15",
-    "@plasmicapp/react-web": "^0.2.15",
+    "@plasmicapp/react-web": "^0.2.16",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
     "@testing-library/user-event": "^12.2.0",
@@ -57,5 +56,8 @@
     "eject": "react-scripts eject",
     "start": "PORT=3006 react-scripts start"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "@plasmicapp/cli": "^0.1.94"
+  }
 }

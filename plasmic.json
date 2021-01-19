@@ -119,6 +119,54 @@
           },
           "cssFilePath": "plasmic/shared/PlasmicSidebar.module.css",
           "scheme": "blackbox"
+        },
+        {
+          "id": "MkyvVOg5Ik",
+          "name": "Header",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicHeader.tsx",
+          "importSpec": {
+            "modulePath": "Header.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicHeader.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "LRwT0lHdps",
+          "name": "MainHeader",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicMainHeader.tsx",
+          "importSpec": {
+            "modulePath": "MainHeader.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicMainHeader.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "ZvAJESOUhw",
+          "name": "SelectItem",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicSelectItem.tsx",
+          "importSpec": {
+            "modulePath": "SelectItem.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicSelectItem.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "pJJQRCyJQM",
+          "name": "SidebarOrganizationName",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicSidebarOrganizationName.tsx",
+          "importSpec": {
+            "modulePath": "SidebarOrganizationName.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicSidebarOrganizationName.module.css",
+          "scheme": "blackbox"
         }
       ],
       "icons": [
@@ -130,7 +178,7 @@
         {
           "id": "Sqzw_OTkst-6kZi",
           "name": "IconLeaderBoardIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconMetric.tsx"
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconLeaderBoard.tsx"
         },
         {
           "id": "M_91_FWOwwP63LN",
@@ -140,7 +188,7 @@
         {
           "id": "rflU0CK2WnITTSR",
           "name": "IconQuestionIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconAsk.tsx"
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconQuestion.tsx"
         },
         {
           "id": "ncDyDuIGRd",
@@ -174,8 +222,8 @@
         },
         {
           "id": "Z6YqF7wXr6",
-          "name": "IconHomeIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconHome.tsx"
+          "name": "IconHomeOldIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconHomeOld.tsx"
         },
         {
           "id": "gg_6iBfcsu",
@@ -196,6 +244,31 @@
           "id": "FJuvOqJzhV",
           "name": "IconCloseIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconClose.tsx"
+        },
+        {
+          "id": "gDL0fFl2pD",
+          "name": "IconMenuIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconMenu.tsx"
+        },
+        {
+          "id": "AVLV6uMr56",
+          "name": "IconHashIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconHash.tsx"
+        },
+        {
+          "id": "Z_5uLzTckE",
+          "name": "IconHomeIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconHome.tsx"
+        },
+        {
+          "id": "B5QLKmr2tW",
+          "name": "IconPlusIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconPlus.tsx"
+        },
+        {
+          "id": "Dz069s-rE",
+          "name": "IconDotMenuIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconDotMenu.tsx"
         }
       ],
       "images": [
@@ -246,6 +319,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.82",
-  "$schema": "../../../.nvm/versions/node/v14.15.1/lib/node_modules/@plasmicapp/cli/dist/plasmic.schema.json"
+  "cliVersion": "0.1.94",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.94/dist/plasmic.schema.json"
 }

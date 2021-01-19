@@ -10,16 +10,13 @@
 // Component: _i6uD1XPzdbux6R
 import * as React from "react";
 
+import * as p from "@plasmicapp/react-web";
 import {
   hasVariant,
   classNames,
-  Flex,
   wrapWithClassName,
   createPlasmicElementProxy,
   makeFragment,
-  PlasmicIcon,
-  PlasmicLink,
-  PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
@@ -28,7 +25,6 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 
@@ -50,8 +46,8 @@ type ArgPropType = keyof PlasmicMetric__ArgsType;
 export const PlasmicMetric__ArgProps = new Array<ArgPropType>("name");
 
 export type PlasmicMetric__OverridesType = {
-  metricItem?: Flex<"div">;
-  graphContainer?: Flex<"img">;
+  metricItem?: p.Flex<"div">;
+  graphContainer?: p.Flex<"img">;
 };
 
 export interface DefaultMetricProps {
@@ -74,25 +70,25 @@ function PlasmicMetric__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        sty.metricItem,
+        defaultcss.all,
         projectcss.root_reset,
-        defaultcss.all
+        sty.metricItem
       )}
     >
-      <div className={classNames(sty.box__xyvDg, defaultcss.all)}>
-        <PlasmicSlot
+      <div className={classNames(defaultcss.all, sty.box__xyvDg)}>
+        <p.PlasmicSlot
           defaultContents={"Revenue"}
           value={args.name}
           className={classNames(sty.slotName)}
         />
       </div>
 
-      <div className={classNames(sty.box___0LbRl, defaultcss.all)}>
+      <div className={classNames(defaultcss.all, sty.box___0LbRl)}>
         <img
           data-plasmic-name={"graphContainer"}
           data-plasmic-override={overrides.graphContainer}
           alt={""}
-          className={classNames(sty.graphContainer, defaultcss.img)}
+          className={classNames(defaultcss.img, sty.graphContainer)}
           role={"img"}
           src={
             "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTQgNDciPgogIDxwYXRoIGQ9Ik0zNC41IDkuNUMyNCA5LjUgMSAxNyAxIDE3djI5LjVoMTg0di0zN2MtMTYuNSAwLTE5IDE5LTMwLjUgMTlTMTM1IDMgMTI0LjUgM3MtMTkuNSAxNS0zMCAxNS0yMC41IDctMzAgN0M1NCAyNSA0NSA5LjUgMzQuNSA5LjV6IiBmaWxsPSJ1cmwoI09RbVRQelZ0TWEpIiBmaWxsLW9wYWNpdHk9Ii4xNSIvPgogIDxwYXRoIGQ9Ik0xIDE3czIzLTcuNSAzMy41LTcuNVM1NCAyNSA2NC41IDI1YzkuNSAwIDE5LjUtNyAzMC03czE5LjUtMTUgMzAtMTUgMTguNSAyNS41IDMwIDI1LjUgMTQtMTkgMzAuNS0xOSIgc3Ryb2tlPSIjMDI5RDdGIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiLz4KICA8Y2lyY2xlIGN4PSIxODQuNSIgY3k9IjkuNSIgcj0iOS41IiBmaWxsPSIjMDI5RDdGIiBmaWxsLW9wYWNpdHk9Ii4yIi8+CiAgPGNpcmNsZSBjeD0iMTg0LjUiIGN5PSI5LjUiIHI9IjQuNSIgZmlsbD0iI2ZmZiIvPgogIDxjaXJjbGUgY3g9IjE4NC41IiBjeT0iOS41IiByPSIyLjUiIGZpbGw9IiMwMjlEN0YiLz4KICA8Y2lyY2xlIGN4PSI2NC41IiBjeT0iMjUiIHI9IjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzAyOUQ3RiIvPgogIDxjaXJjbGUgY3g9Ijk0LjUiIGN5PSIxOCIgcj0iMiIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjMDI5RDdGIi8+CiAgPGNpcmNsZSBjeD0iMTI0LjUiIGN5PSIzIiByPSIyIiBmaWxsPSIjZmZmIiBzdHJva2U9IiMwMjlEN0YiLz4KICA8Y2lyY2xlIGN4PSIxNTQuNSIgY3k9IjI4IiByPSIyIiBmaWxsPSIjZmZmIiBzdHJva2U9IiMwMjlEN0YiLz4KICA8Y2lyY2xlIGN4PSIzNC41IiBjeT0iOS41IiByPSIyIiBmaWxsPSIjZmZmIiBzdHJva2U9IiMwMjlEN0YiLz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iT1FtVFB6VnRNYSIgeDE9IjkzIiB5MT0iOS41IiB4Mj0iOTMiIHkyPSI0NiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjMDI5RDdGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0M0QzRDNCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KPC9zdmc+Cg==" as const

@@ -4,7 +4,7 @@
   height: 100%;
   position: relative;
   background-color: rgb(249, 249, 250) /* plasmic-token: 2o4hRg6in */;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
@@ -41,170 +41,39 @@
     padding-left: 200px;
   }
 }
-.box__mbTc6 {
+.box__dMQq {
   display: flex;
-  position: absolute;
-  background-color: rgba(68, 192, 255, 0);
-  width: 280px;
-  height: 100%;
-  left: 0px;
-  top: 0px;
+  position: relative;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-shrink: 0;
-  min-height: 0;
-  padding: 65px 20px 60px;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  border-bottom: 1px solid rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.box__sidebarHidden__mbTc6CPu7G {
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(68, 192, 255, 0);
-  z-index: 15;
-  min-height: 0;
-}
-.box__sidebarHidden__mbTc6CPu7G > :global(.__wab_flex-container) {
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
-}
-.box__sidebarHidden__mbTc6CPu7G > :global(.__wab_flex-container) > *,
-.box__sidebarHidden__mbTc6CPu7G
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
-  margin-left: 0px;
-}
-.openSidebar:global(.__wab_instance) {
-  width: 28px;
-  height: 28px;
-  position: absolute;
-  left: -100px;
-  top: 10px;
-  right: auto;
-  flex-shrink: 0;
-}
-.openSidebar__sidebarHidden:global(.__wab_instance) {
-  position: absolute;
-  left: 24px;
-  top: 15px;
-  z-index: 99;
-}
-.startIcon32 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  border-radius: 100%;
-}
-.endIcon32 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  border-radius: 100%;
-}
-.homeButton:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
-}
-.homeButton__sidebarHidden:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
-}
-.startIcon {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  border-radius: 100%;
-}
-.endIcon2 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  border-radius: 100%;
-}
-.addButton:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
-}
-.addButton__sidebarHidden:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
-}
-.startIcon2 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  border-radius: 100%;
-}
-.endIcon {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  border-radius: 100%;
+.header:global(.__wab_instance) {
+  width: 100%;
+  min-width: 0;
 }
 .box___27XeS {
   display: flex;
-  position: absolute;
-  flex-direction: column;
+  position: relative;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  top: 0px;
-  left: 0px;
+  top: auto;
+  left: auto;
   height: 100%;
   transition-property: all;
   transition-duration: 250ms;
-  width: 280px;
+  width: 100%;
   overflow: hidden;
   background-color: rgb(249, 249, 250) /* plasmic-token: 4lM47qJruvPIx-u */;
   z-index: 15;
   transition-timing-function: ease-in-out;
-  flex-shrink: 0;
+  box-shadow: none;
+  min-width: 0;
   min-height: 0;
 }
 @media (min-width: 0px) and (max-width: 760px) {
@@ -213,53 +82,28 @@
     top: auto;
   }
 }
-.box__sidebarHidden___27XeScPu7G {
-  left: -280px;
-  top: auto;
-  right: auto;
-  z-index: 99;
-  overflow: visible;
-}
-.closeSidebar:global(.__wab_instance) {
-  width: 28px;
-  height: 28px;
-  position: absolute;
-  left: 221px;
-  top: 15px;
-  z-index: 99;
-  flex-shrink: 0;
-}
-.closeSidebar__sidebarHidden:global(.__wab_instance) {
-  position: absolute;
-  left: auto;
-  top: 10px;
-  z-index: 99;
-}
-.startIcon3 {
+.box__sqRU {
+  display: flex;
   position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  border-radius: 100%;
-}
-.endIcon3 {
-  position: relative;
-  object-fit: cover;
-  width: 24px;
-  height: 24px;
-  left: auto;
-  top: auto;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  border-radius: 100%;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  align-self: flex-start;
+  height: 100%;
+  box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  min-height: 0;
 }
 .sidebar:global(.__wab_instance) {
   height: 100%;
   width: 280px;
-  align-self: flex-start;
+  flex-shrink: 0;
   min-height: 0;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .sidebar:global(.__wab_instance) {
+    flex-shrink: 0;
+  }
 }
 .main {
   display: flex;
@@ -267,15 +111,26 @@
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
   height: 100%;
-  flex-direction: row;
+  flex-direction: column;
   align-self: auto;
   left: auto;
   top: auto;
-  justify-content: center;
   overflow: hidden;
-  padding-top: 60px;
   min-width: 0;
   min-height: 0;
+}
+.main > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: calc(0px - 30px);
+  height: calc(100% + 30px);
+}
+.main > :global(.__wab_flex-container) > *,
+.main > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 30px;
+}
+.mainHeader:global(.__wab_instance) {
+  position: relative;
 }
 .box__ineb5 {
   display: inline-flex;
@@ -284,10 +139,20 @@
   width: auto;
   height: auto;
   flex-direction: column;
-  align-items: flex-start;
   left: auto;
   top: auto;
   overflow: auto;
+  padding-left: 93px;
+}
+.box__ineb5 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: calc(0px - 40px);
+  height: calc(100% + 40px);
+}
+.box__ineb5 > :global(.__wab_flex-container) > *,
+.box__ineb5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 40px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
   .box__ineb5 > :global(.__wab_flex-container) {
@@ -312,7 +177,6 @@
   height: auto;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 74px;
   align-self: flex-start;
 }
 @media (min-width: 0px) and (max-width: 760px) {
@@ -336,6 +200,16 @@
   .box__pmC0Q {
     width: 159px;
   }
+}
+.box__g9Hh0 {
+  display: block;
+  position: relative;
+  background-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  width: 100%;
+  height: 1px;
+  max-width: 938px;
+  min-width: 0;
+  flex-shrink: 0;
 }
 .updatesContainer {
   display: inline-flex;
@@ -362,6 +236,16 @@
     display: inline-flex;
   }
 }
+.box__ezjEq {
+  position: relative;
+  width: auto;
+  height: auto;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  align-self: flex-start;
+  display: inline-block;
+}
 .update:global(.__wab_instance) {
   flex-shrink: 0;
 }
@@ -370,17 +254,6 @@
     width: 100%;
     align-self: flex-start;
     min-width: 0;
-    flex-shrink: 0;
-  }
-}
-.actionsColumn:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-  flex-shrink: 0;
-}
-@media (min-width: 0px) and (max-width: 760px) {
-  .actionsColumn:global(.__wab_instance) {
     flex-shrink: 0;
   }
 }

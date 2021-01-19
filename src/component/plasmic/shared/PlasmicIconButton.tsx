@@ -10,16 +10,13 @@
 // Component: odPjbfT2kyJgB_S
 import * as React from "react";
 
+import * as p from "@plasmicapp/react-web";
 import {
   hasVariant,
   classNames,
-  Flex,
   wrapWithClassName,
   createPlasmicElementProxy,
   makeFragment,
-  PlasmicIcon,
-  PlasmicLink,
-  PlasmicSlot,
   MultiChoiceArg,
   SingleBooleanChoiceArg,
   SingleChoiceArg,
@@ -28,7 +25,6 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  Stack,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 
@@ -70,10 +66,10 @@ export const PlasmicIconButton__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicIconButton__OverridesType = {
-  root?: Flex<"div">;
-  startIcon?: Flex<"svg">;
-  box?: Flex<"div">;
-  endIcon?: Flex<"svg">;
+  root?: p.Flex<"div">;
+  startIcon?: p.Flex<"svg">;
+  box?: p.Flex<"div">;
+  endIcon?: p.Flex<"svg">;
 };
 
 export interface DefaultIconButtonProps {
@@ -106,14 +102,14 @@ function PlasmicIconButton__RenderFunc(props: {
   };
 
   return (
-    <Stack
+    <p.Stack
       as={"div"}
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(sty.root, projectcss.root_reset, defaultcss.all, {
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root____focusVisibleWithin]: triggers.focusVisibleWithin_root,
         [sty.root__isDisabled]: hasVariant(
           variants,
@@ -133,12 +129,12 @@ function PlasmicIconButton__RenderFunc(props: {
       data-plasmic-trigger-props={[triggerRootFocusVisibleWithinProps]}
     >
       {(hasVariant(variants, "withIcons", "start") ? true : false) ? (
-        <PlasmicSlot
+        <p.PlasmicSlot
           defaultContents={
             <svg
               data-plasmic-name={"startIcon"}
               data-plasmic-override={overrides.startIcon}
-              className={classNames(sty.startIcon, defaultcss.all)}
+              className={classNames(defaultcss.all, sty.startIcon)}
               role={"img"}
             />
           }
@@ -155,7 +151,7 @@ function PlasmicIconButton__RenderFunc(props: {
         <div
           data-plasmic-name={"box"}
           data-plasmic-override={overrides.box}
-          className={classNames(sty.box, defaultcss.all, {
+          className={classNames(defaultcss.all, sty.box, {
             [sty.box__isDisabled]: hasVariant(
               variants,
               "isDisabled",
@@ -175,7 +171,7 @@ function PlasmicIconButton__RenderFunc(props: {
             ),
           })}
         >
-          <PlasmicSlot
+          <p.PlasmicSlot
             defaultContents={""}
             value={args.content}
             className={classNames(sty.slotContent, {
@@ -189,13 +185,13 @@ function PlasmicIconButton__RenderFunc(props: {
         </div>
       ) : null}
       {(hasVariant(variants, "withIcons", "end") ? true : false) ? (
-        <PlasmicSlot
+        <p.PlasmicSlot
           defaultContents={
             false ? (
               <svg
                 data-plasmic-name={"endIcon"}
                 data-plasmic-override={overrides.endIcon}
-                className={classNames(sty.endIcon, defaultcss.all)}
+                className={classNames(defaultcss.all, sty.endIcon)}
                 role={"img"}
               />
             ) : null
@@ -203,7 +199,7 @@ function PlasmicIconButton__RenderFunc(props: {
           value={args.endIcon}
         />
       ) : null}
-    </Stack>
+    </p.Stack>
   ) as React.ReactElement | null;
 }
 
