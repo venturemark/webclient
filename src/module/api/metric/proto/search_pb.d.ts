@@ -25,12 +25,12 @@ export class SearchI extends jspb.Message {
   ): SearchI;
 }
 
-// export namespace SearchI {
-//   export type AsObject = {
-//     api?: SearchI_API.AsObject;
-//     objList: Array<SearchI_Obj.AsObject>;
-//   };
-// }
+export namespace SearchI {
+  export type AsObject = {
+    api?: SearchI_API.AsObject;
+    objList: Array<SearchI_Obj.AsObject>;
+  };
+}
 
 export class SearchI_API extends jspb.Message {
   getChunking(): SearchI_API_Chunking | undefined;
@@ -60,12 +60,12 @@ export class SearchI_API extends jspb.Message {
   ): SearchI_API;
 }
 
-// export namespace SearchI_API {
-//   export type AsObject = {
-//     chunking?: SearchI_API_Chunking.AsObject;
-//     operatorList: Array<string>;
-//   };
-// }
+export namespace SearchI_API {
+  export type AsObject = {
+    chunking?: SearchI_API_Chunking.AsObject;
+    operatorList: Array<string>;
+  };
+}
 
 export class SearchI_API_Chunking extends jspb.Message {
   getPointer(): string;
@@ -91,12 +91,12 @@ export class SearchI_API_Chunking extends jspb.Message {
   ): SearchI_API_Chunking;
 }
 
-// export namespace SearchI_API_Chunking {
-//   export type AsObject = {
-//     pointer: string;
-//     perpage: string;
-//   };
-// }
+export namespace SearchI_API_Chunking {
+  export type AsObject = {
+    pointer: string;
+    perpage: string;
+  };
+}
 
 export class SearchI_Obj extends jspb.Message {
   getMetadataMap(): jspb.Map<string, string>;
@@ -124,12 +124,12 @@ export class SearchI_Obj extends jspb.Message {
   ): SearchI_Obj;
 }
 
-// export namespace SearchI_Obj {
-//   export type AsObject = {
-//     metadataMap: Array<[string, string]>;
-//     property?: SearchI_Obj_Property.AsObject;
-//   };
-// }
+export namespace SearchI_Obj {
+  export type AsObject = {
+    metadataMap: Array<[string, string]>;
+    property?: SearchI_Obj_Property.AsObject;
+  };
+}
 
 export class SearchI_Obj_Property extends jspb.Message {
   serializeBinary(): Uint8Array;
@@ -149,9 +149,9 @@ export class SearchI_Obj_Property extends jspb.Message {
   ): SearchI_Obj_Property;
 }
 
-// export namespace SearchI_Obj_Property {
-//   export type AsObject = {};
-// }
+export namespace SearchI_Obj_Property {
+  export type AsObject = {};
+}
 
 export class SearchO extends jspb.Message {
   getApi(): SearchO_API | undefined;
@@ -178,12 +178,12 @@ export class SearchO extends jspb.Message {
   ): SearchO;
 }
 
-// export namespace SearchO {
-//   export type AsObject = {
-//     api?: SearchO_API.AsObject;
-//     objList: Array<SearchO_Obj.AsObject>;
-//   };
-// }
+export namespace SearchO {
+  export type AsObject = {
+    api?: SearchO_API.AsObject;
+    objList: Array<SearchO_Obj.AsObject>;
+  };
+}
 
 export class SearchO_API extends jspb.Message {
   getChunking(): SearchO_API_Chunking | undefined;
@@ -208,11 +208,11 @@ export class SearchO_API extends jspb.Message {
   ): SearchO_API;
 }
 
-// export namespace SearchO_API {
-//   export type AsObject = {
-//     chunking?: SearchO_API_Chunking.AsObject;
-//   };
-// }
+export namespace SearchO_API {
+  export type AsObject = {
+    chunking?: SearchO_API_Chunking.AsObject;
+  };
+}
 
 export class SearchO_API_Chunking extends jspb.Message {
   getPointer(): string;
@@ -238,12 +238,12 @@ export class SearchO_API_Chunking extends jspb.Message {
   ): SearchO_API_Chunking;
 }
 
-// export namespace SearchO_API_Chunking {
-//   export type AsObject = {
-//     pointer: string;
-//     perpage: string;
-//   };
-// }
+export namespace SearchO_API_Chunking {
+  export type AsObject = {
+    pointer: string;
+    perpage: string;
+  };
+}
 
 export class SearchO_Obj extends jspb.Message {
   getMetadataMap(): jspb.Map<string, string>;
@@ -271,12 +271,12 @@ export class SearchO_Obj extends jspb.Message {
   ): SearchO_Obj;
 }
 
-// export namespace SearchO_Obj {
-//   export type AsObject = {
-//     metadataMap: Array<[string, string]>;
-//     property?: SearchO_Obj_Property.AsObject;
-//   };
-// }
+export namespace SearchO_Obj {
+  export type AsObject = {
+    metadataMap: Array<[string, string]>;
+    property?: SearchO_Obj_Property.AsObject;
+  };
+}
 
 export class SearchO_Obj_Property extends jspb.Message {
   getDataList(): Array<SearchO_Obj_Property_Data>;
@@ -304,11 +304,11 @@ export class SearchO_Obj_Property extends jspb.Message {
   ): SearchO_Obj_Property;
 }
 
-// export namespace SearchO_Obj_Property {
-//   export type AsObject = {
-//     dataList: Array<SearchO_Obj_Property_Data.AsObject>;
-//   };
-// }
+export namespace SearchO_Obj_Property {
+  export type AsObject = {
+    dataList: Array<SearchO_Obj_Property_Data.AsObject>;
+  };
+}
 
 export class SearchO_Obj_Property_Data extends jspb.Message {
   getSpace(): string;
@@ -336,9 +336,9 @@ export class SearchO_Obj_Property_Data extends jspb.Message {
   ): SearchO_Obj_Property_Data;
 }
 
-// export namespace SearchO_Obj_Property_Data {
-//   export type AsObject = {
-//     space: string;
-//     valueList: Array<number>;
-//   };
-// }
+export namespace SearchO_Obj_Property_Data {
+  export type AsObject = {
+    space: string;
+    valueList: Array<number>;
+  };
+}

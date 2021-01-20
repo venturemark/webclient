@@ -25,12 +25,12 @@ export class CreateI extends jspb.Message {
   ): CreateI;
 }
 
-// export namespace CreateI {
-//   export type AsObject = {
-//     api?: CreateI_API.AsObject;
-//     obj?: CreateI_Obj.AsObject;
-//   };
-// }
+export namespace CreateI {
+  export type AsObject = {
+    api?: CreateI_API.AsObject;
+    obj?: CreateI_Obj.AsObject;
+  };
+}
 
 export class CreateI_API extends jspb.Message {
   serializeBinary(): Uint8Array;
@@ -80,14 +80,17 @@ export class CreateI_Obj extends jspb.Message {
   ): CreateI_Obj;
 }
 
-// export namespace CreateI_Obj {
-//   export type AsObject = {
-//     metadataMap: Array<[string, string]>;
-//     property?: CreateI_Obj_Property.AsObject;
-//   };
-// }
+export namespace CreateI_Obj {
+  export type AsObject = {
+    metadataMap: Array<[string, string]>;
+    property?: CreateI_Obj_Property.AsObject;
+  };
+}
 
 export class CreateI_Obj_Property extends jspb.Message {
+  getDesc(): string;
+  setDesc(value: string): CreateI_Obj_Property;
+
   getName(): string;
   setName(value: string): CreateI_Obj_Property;
 
@@ -108,11 +111,12 @@ export class CreateI_Obj_Property extends jspb.Message {
   ): CreateI_Obj_Property;
 }
 
-// export namespace CreateI_Obj_Property {
-//   export type AsObject = {
-//     name: string;
-//   };
-// }
+export namespace CreateI_Obj_Property {
+  export type AsObject = {
+    desc: string;
+    name: string;
+  };
+}
 
 export class CreateO extends jspb.Message {
   getApi(): CreateO_API | undefined;
@@ -139,12 +143,12 @@ export class CreateO extends jspb.Message {
   ): CreateO;
 }
 
-// export namespace CreateO {
-//   export type AsObject = {
-//     api?: CreateO_API.AsObject;
-//     obj?: CreateO_Obj.AsObject;
-//   };
-// }
+export namespace CreateO {
+  export type AsObject = {
+    api?: CreateO_API.AsObject;
+    obj?: CreateO_Obj.AsObject;
+  };
+}
 
 export class CreateO_API extends jspb.Message {
   serializeBinary(): Uint8Array;
@@ -164,9 +168,9 @@ export class CreateO_API extends jspb.Message {
   ): CreateO_API;
 }
 
-// export namespace CreateO_API {
-//   export type AsObject = {};
-// }
+export namespace CreateO_API {
+  export type AsObject = {};
+}
 
 export class CreateO_Obj extends jspb.Message {
   getMetadataMap(): jspb.Map<string, string>;
@@ -189,8 +193,8 @@ export class CreateO_Obj extends jspb.Message {
   ): CreateO_Obj;
 }
 
-// export namespace CreateO_Obj {
-//   export type AsObject = {
-//     metadataMap: Array<[string, string]>;
-//   };
-// }
+export namespace CreateO_Obj {
+  export type AsObject = {
+    metadataMap: Array<[string, string]>;
+  };
+}

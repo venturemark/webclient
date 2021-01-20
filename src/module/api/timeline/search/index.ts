@@ -1,5 +1,6 @@
 import * as apigents from "@venturemark/apigents";
 import { SearchI_Obj } from "module/api/timeline/proto/search_pb";
+import { SearchO_Obj } from "module/api/timeline/proto/search_pb";
 import * as env from "module/env";
 import { ITimeline } from "module/interface/timeline/index";
 
@@ -30,7 +31,7 @@ export async function Search(
         } else {
           const timelinesPb = res.getObjList();
 
-          const timelines = timelinesPb.map((timelinePb: SearchI_Obj) => {
+          const timelines = timelinesPb.map((timelinePb: SearchO_Obj) => {
             const propertyPb = timelinePb.getProperty();
             const name = propertyPb?.toObject().name;
             const timelineId = timelinePb

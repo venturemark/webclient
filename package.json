@@ -47,6 +47,9 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "ignorePatterns": [
+      "**/*_pb.js"
     ]
   },
   "name": "webclient",
