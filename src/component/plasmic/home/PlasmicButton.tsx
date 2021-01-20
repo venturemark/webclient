@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -75,7 +75,7 @@ function PlasmicButton__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__primary]: hasVariant(variants, "primary", "primary")
+        [sty.root__primary]: hasVariant(variants, "primary", "primary"),
       })}
     >
       <div
@@ -91,7 +91,7 @@ function PlasmicButton__RenderFunc(props: {
 
 const PlasmicDescendants = {
   root: ["root", "text"],
-  text: ["text"]
+  text: ["text"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -137,14 +137,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicButton__ArgProps,
-      internalVariantPropNames: PlasmicButton__VariantProps
+      internalVariantPropNames: PlasmicButton__VariantProps,
     });
 
     return PlasmicButton__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -164,7 +164,7 @@ export const PlasmicButton = Object.assign(
 
     // Metadata about props expected for PlasmicButton
     internalVariantProps: PlasmicButton__VariantProps,
-    internalArgProps: PlasmicButton__ArgProps
+    internalArgProps: PlasmicButton__ArgProps,
   }
 );
 

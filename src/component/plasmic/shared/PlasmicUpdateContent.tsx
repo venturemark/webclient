@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Metric from "../../metric/index"; // plasmic-import: _i6uD1XPzdbux6R/component
 
@@ -78,7 +78,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
 
   const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
   const triggers = {
-    hover_root: isRootHover
+    hover_root: isRootHover,
   };
 
   return (
@@ -89,7 +89,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
-        [sty.root__state_text]: hasVariant(variants, "state", "text")
+        [sty.root__state_text]: hasVariant(variants, "state", "text"),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -107,7 +107,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
             variants,
             "state",
             "text"
-          )
+          ),
         })}
       >
         {(
@@ -122,7 +122,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
             data-plasmic-override={overrides.metric}
             className={classNames("__wab_instance", sty.metric, {
               [sty.metric__state_graph]: hasVariant(variants, "state", "graph"),
-              [sty.metric__state_text]: hasVariant(variants, "state", "text")
+              [sty.metric__state_text]: hasVariant(variants, "state", "text"),
             })}
             name={"Revenue"}
           />
@@ -245,7 +245,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
                   variants,
                   "state",
                   "text"
-                )
+                ),
               }
             )}
           >
@@ -285,7 +285,7 @@ const PlasmicDescendants = {
     "date",
     "timelineName",
     "textContainer",
-    "button"
+    "button",
   ],
 
   editorContainer: [
@@ -296,7 +296,7 @@ const PlasmicDescendants = {
     "date",
     "timelineName",
     "textContainer",
-    "button"
+    "button",
   ],
 
   metric: ["metric"],
@@ -305,7 +305,7 @@ const PlasmicDescendants = {
   date: ["date"],
   timelineName: ["timelineName"],
   textContainer: ["textContainer"],
-  button: ["button"]
+  button: ["button"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -358,14 +358,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicUpdateContent__ArgProps,
-      internalVariantPropNames: PlasmicUpdateContent__VariantProps
+      internalVariantPropNames: PlasmicUpdateContent__VariantProps,
     });
 
     return PlasmicUpdateContent__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -392,7 +392,7 @@ export const PlasmicUpdateContent = Object.assign(
 
     // Metadata about props expected for PlasmicUpdateContent
     internalVariantProps: PlasmicUpdateContent__VariantProps,
-    internalArgProps: PlasmicUpdateContent__ArgProps
+    internalArgProps: PlasmicUpdateContent__ArgProps,
   }
 );
 

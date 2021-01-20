@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Header from "../../Header"; // plasmic-import: MkyvVOg5Ik/component
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
@@ -35,7 +35,7 @@ import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/comp
 
 import {
   ScreenContext,
-  ScreenValue
+  ScreenValue,
 } from "../shared/PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -77,7 +77,7 @@ function PlasmicHome__RenderFunc(props: {
   const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: React.useContext(ScreenContext)
+    screen: React.useContext(ScreenContext),
   });
 
   return (
@@ -201,7 +201,7 @@ const PlasmicDescendants = {
     "actionBarContainer",
     "actionBar",
     "updatesContainer",
-    "update"
+    "update",
   ],
 
   header: ["header"],
@@ -212,14 +212,14 @@ const PlasmicDescendants = {
     "actionBarContainer",
     "actionBar",
     "updatesContainer",
-    "update"
+    "update",
   ],
 
   mainHeader: ["mainHeader"],
   actionBarContainer: ["actionBarContainer", "actionBar"],
   actionBar: ["actionBar"],
   updatesContainer: ["updatesContainer", "update"],
-  update: ["update"]
+  update: ["update"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -272,14 +272,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicHome__ArgProps,
-      internalVariantPropNames: PlasmicHome__VariantProps
+      internalVariantPropNames: PlasmicHome__VariantProps,
     });
 
     return PlasmicHome__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -306,7 +306,7 @@ export const PlasmicHome = Object.assign(
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,
-    internalArgProps: PlasmicHome__ArgProps
+    internalArgProps: PlasmicHome__ArgProps,
   }
 );
 

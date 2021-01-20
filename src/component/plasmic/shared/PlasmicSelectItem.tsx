@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -99,7 +99,7 @@ function PlasmicSelectItem__RenderFunc(props: {
 
 const PlasmicDescendants = {
   root: ["root", "svg"],
-  svg: ["svg"]
+  svg: ["svg"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -145,14 +145,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicSelectItem__ArgProps,
-      internalVariantPropNames: PlasmicSelectItem__VariantProps
+      internalVariantPropNames: PlasmicSelectItem__VariantProps,
     });
 
     return PlasmicSelectItem__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -172,7 +172,7 @@ export const PlasmicSelectItem = Object.assign(
 
     // Metadata about props expected for PlasmicSelectItem
     internalVariantProps: PlasmicSelectItem__VariantProps,
-    internalArgProps: PlasmicSelectItem__ArgProps
+    internalArgProps: PlasmicSelectItem__ArgProps,
   }
 );
 

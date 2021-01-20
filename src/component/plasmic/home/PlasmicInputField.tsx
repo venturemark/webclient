@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -106,7 +106,7 @@ function PlasmicInputField__RenderFunc(props: {
 
 const PlasmicDescendants = {
   root: ["root", "textbox"],
-  textbox: ["textbox"]
+  textbox: ["textbox"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -152,14 +152,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicInputField__ArgProps,
-      internalVariantPropNames: PlasmicInputField__VariantProps
+      internalVariantPropNames: PlasmicInputField__VariantProps,
     });
 
     return PlasmicInputField__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -179,7 +179,7 @@ export const PlasmicInputField = Object.assign(
 
     // Metadata about props expected for PlasmicInputField
     internalVariantProps: PlasmicInputField__VariantProps,
-    internalArgProps: PlasmicInputField__ArgProps
+    internalArgProps: PlasmicInputField__ArgProps,
   }
 );
 

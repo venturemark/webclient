@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 import UpdateContent from "../../updatecontent/index"; // plasmic-import: A1UjtYt6k0/component
@@ -94,7 +94,7 @@ function PlasmicUpdate__RenderFunc(props: {
       }
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__state_graph]: hasVariant(variants, "state", "graph"),
-        [sty.root__state_text]: hasVariant(variants, "state", "text")
+        [sty.root__state_text]: hasVariant(variants, "state", "text"),
       })}
     >
       {(
@@ -120,7 +120,7 @@ function PlasmicUpdate__RenderFunc(props: {
               variants,
               "state",
               "text"
-            )
+            ),
           })}
         >
           {(hasVariant(variants, "state", "text") ? true : true) ? (
@@ -136,7 +136,7 @@ function PlasmicUpdate__RenderFunc(props: {
                   variants,
                   "state",
                   "text"
-                )
+                ),
               })}
               startIcon={
                 <p.PlasmicIcon
@@ -158,7 +158,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       variants,
                       "state",
                       "text"
-                    )
+                    ),
                   })}
                   role={"img"}
                 />
@@ -181,7 +181,7 @@ function PlasmicUpdate__RenderFunc(props: {
                   variants,
                   "state",
                   "text"
-                )
+                ),
               })}
               startIcon={
                 <p.PlasmicIcon
@@ -203,7 +203,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       variants,
                       "state",
                       "text"
-                    )
+                    ),
                   })}
                   role={"img"}
                 />
@@ -228,7 +228,7 @@ function PlasmicUpdate__RenderFunc(props: {
                   variants,
                   "state",
                   "text"
-                )
+                ),
               })}
               startIcon={
                 <p.PlasmicIcon
@@ -250,7 +250,7 @@ function PlasmicUpdate__RenderFunc(props: {
                       variants,
                       "state",
                       "text"
-                    )
+                    ),
                   })}
                   role={"img"}
                 />
@@ -273,7 +273,11 @@ function PlasmicUpdate__RenderFunc(props: {
             "graph"
           ),
 
-          [sty.updateContent__state_text]: hasVariant(variants, "state", "text")
+          [sty.updateContent__state_text]: hasVariant(
+            variants,
+            "state",
+            "text"
+          ),
         })}
         state={
           hasVariant(variants, "state", "graph")
@@ -295,7 +299,7 @@ const PlasmicDescendants = {
     "startIcon2",
     "toggleUpdateView",
     "startIcon22",
-    "updateContent"
+    "updateContent",
   ],
 
   updateActionContainer: [
@@ -303,14 +307,14 @@ const PlasmicDescendants = {
     "startIcon",
     "startIcon2",
     "toggleUpdateView",
-    "startIcon22"
+    "startIcon22",
   ],
 
   startIcon: ["startIcon"],
   startIcon2: ["startIcon2"],
   toggleUpdateView: ["toggleUpdateView", "startIcon22"],
   startIcon22: ["startIcon22"],
-  updateContent: ["updateContent"]
+  updateContent: ["updateContent"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -361,14 +365,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicUpdate__ArgProps,
-      internalVariantPropNames: PlasmicUpdate__VariantProps
+      internalVariantPropNames: PlasmicUpdate__VariantProps,
     });
 
     return PlasmicUpdate__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "root") {
@@ -393,7 +397,7 @@ export const PlasmicUpdate = Object.assign(
 
     // Metadata about props expected for PlasmicUpdate
     internalVariantProps: PlasmicUpdate__VariantProps,
-    internalArgProps: PlasmicUpdate__ArgProps
+    internalArgProps: PlasmicUpdate__ArgProps,
   }
 );
 

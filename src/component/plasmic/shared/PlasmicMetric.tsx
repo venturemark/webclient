@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants
+  ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -101,7 +101,7 @@ function PlasmicMetric__RenderFunc(props: {
 
 const PlasmicDescendants = {
   metricItem: ["metricItem", "graphContainer"],
-  graphContainer: ["graphContainer"]
+  graphContainer: ["graphContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -147,14 +147,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicMetric__ArgProps,
-      internalVariantPropNames: PlasmicMetric__VariantProps
+      internalVariantPropNames: PlasmicMetric__VariantProps,
     });
 
     return PlasmicMetric__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName
+      forNode: nodeName,
     });
   };
   if (nodeName === "metricItem") {
@@ -174,7 +174,7 @@ export const PlasmicMetric = Object.assign(
 
     // Metadata about props expected for PlasmicMetric
     internalVariantProps: PlasmicMetric__VariantProps,
-    internalArgProps: PlasmicMetric__ArgProps
+    internalArgProps: PlasmicMetric__ArgProps,
   }
 );
 
