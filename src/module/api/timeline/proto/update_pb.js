@@ -714,7 +714,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   ) {
     var f,
       obj = {
-        name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+        desc: jspb.Message.getFieldWithDefault(msg, 1, ""),
+        name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+        stat: jspb.Message.getFieldWithDefault(msg, 3, ""),
       };
 
     if (includeInstance) {
@@ -757,7 +759,15 @@ proto.timeline.UpdateI_Obj_Property.deserializeBinaryFromReader = function (
     switch (field) {
       case 1:
         var value = /** @type {string} */ (reader.readString());
+        msg.setDesc(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
         msg.setName(value);
+        break;
+      case 3:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setStat(value);
         break;
       default:
         reader.skipField();
@@ -789,17 +799,25 @@ proto.timeline.UpdateI_Obj_Property.serializeBinaryToWriter = function (
   writer
 ) {
   var f = undefined;
-  f = message.getName();
+  f = message.getDesc();
   if (f.length > 0) {
     writer.writeString(1, f);
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(2, f);
+  }
+  f = message.getStat();
+  if (f.length > 0) {
+    writer.writeString(3, f);
   }
 };
 
 /**
- * optional string name = 1;
+ * optional string desc = 1;
  * @return {string}
  */
-proto.timeline.UpdateI_Obj_Property.prototype.getName = function () {
+proto.timeline.UpdateI_Obj_Property.prototype.getDesc = function () {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -807,8 +825,40 @@ proto.timeline.UpdateI_Obj_Property.prototype.getName = function () {
  * @param {string} value
  * @return {!proto.timeline.UpdateI_Obj_Property} returns this
  */
-proto.timeline.UpdateI_Obj_Property.prototype.setName = function (value) {
+proto.timeline.UpdateI_Obj_Property.prototype.setDesc = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+/**
+ * optional string name = 2;
+ * @return {string}
+ */
+proto.timeline.UpdateI_Obj_Property.prototype.getName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+/**
+ * @param {string} value
+ * @return {!proto.timeline.UpdateI_Obj_Property} returns this
+ */
+proto.timeline.UpdateI_Obj_Property.prototype.setName = function (value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+/**
+ * optional string stat = 3;
+ * @return {string}
+ */
+proto.timeline.UpdateI_Obj_Property.prototype.getStat = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+/**
+ * @param {string} value
+ * @return {!proto.timeline.UpdateI_Obj_Property} returns this
+ */
+proto.timeline.UpdateI_Obj_Property.prototype.setStat = function (value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 if (jspb.Message.GENERATE_TO_OBJECT) {

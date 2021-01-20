@@ -282,6 +282,9 @@ export class SearchO_Obj_Property extends jspb.Message {
   getText(): string;
   setText(value: string): SearchO_Obj_Property;
 
+  getReid(): string;
+  setReid(value: string): SearchO_Obj_Property;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchO_Obj_Property.AsObject;
   static toObject(
@@ -302,5 +305,6 @@ export class SearchO_Obj_Property extends jspb.Message {
 export namespace SearchO_Obj_Property {
   export type AsObject = {
     text: string;
+    reid: string;
   };
 }
