@@ -224,7 +224,6 @@ function PlasmicSidebar__RenderFunc(props: {
                     placeholder={"Enter name" as const}
                     size={1 as const}
                     type={"text" as const}
-                    value={"" as const}
                   />
                 ) : null}
               </p.Stack>

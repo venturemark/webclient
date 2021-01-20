@@ -137,6 +137,10 @@ function PlasmicActionBar__RenderFunc(props: {
             "isActive",
             "isActive"
           ),
+
+          [sty.box__timelineSelected_isActive__zG8Do75BwGVjQpn]:
+            hasVariant(variants, "timelineSelected", "timelineSelected") &&
+            hasVariant(variants, "isActive", "isActive"),
         })}
       >
         <div

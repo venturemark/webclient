@@ -1,6 +1,16 @@
 {
   "props": [
     {
+      "name": "BodyText",
+      "type": "fontsize",
+      "value": "20px",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+        "id": "sOMmP5n48"
+      }
+    },
+    {
       "name": "Green-50%",
       "type": "color",
       "value": "rgba(2,157,127,0.5)",
@@ -38,6 +48,16 @@
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
         "id": "hAT_EGH6OwGWQ6G"
+      }
+    },
+    {
+      "name": "UnnamedStyleToken 2",
+      "type": "color",
+      "value": "rgb(38,26,63)",
+      "category": "color",
+      "meta": {
+        "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+        "id": "71A6CT6-Y"
       }
     },
     {

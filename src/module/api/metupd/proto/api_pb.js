@@ -1,3 +1,4 @@
+/* eslint-disable */
 // source: pbf/metupd/api.proto
 /**
  * @fileoverview
@@ -8,15 +9,15 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-var jspb = require('google-protobuf');
+var jspb = require("google-protobuf");
 var goog = jspb;
-var global = Function('return this')();
+var global = Function("return this")();
 
-var pbf_metupd_create_pb = require('../../pbf/metupd/create_pb.js');
+var pbf_metupd_create_pb = require("../../pbf/metupd/create_pb.js");
 goog.object.extend(proto, pbf_metupd_create_pb);
-var pbf_metupd_delete_pb = require('../../pbf/metupd/delete_pb.js');
+var pbf_metupd_delete_pb = require("../../pbf/metupd/delete_pb.js");
 goog.object.extend(proto, pbf_metupd_delete_pb);
-var pbf_metupd_search_pb = require('../../pbf/metupd/search_pb.js');
+var pbf_metupd_search_pb = require("../../pbf/metupd/search_pb.js");
 goog.object.extend(proto, pbf_metupd_search_pb);
-var pbf_metupd_update_pb = require('../../pbf/metupd/update_pb.js');
+var pbf_metupd_update_pb = require("../../pbf/metupd/update_pb.js");
 goog.object.extend(proto, pbf_metupd_update_pb);
