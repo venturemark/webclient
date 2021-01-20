@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants,
+  ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
@@ -109,7 +109,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
             variants,
             "number",
             "hasNumber"
-          ),
+          )
         }
       )}
     >
@@ -126,7 +126,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
 
             [sty.sendButton__content_hasContent_number_hasNumber]:
               hasVariant(variants, "content", "hasContent") &&
-              hasVariant(variants, "number", "hasNumber"),
+              hasVariant(variants, "number", "hasNumber")
           })}
           startIcon={
             <IconSendIcon
@@ -158,7 +158,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
 
             [sty.box__number_hasNumber_content_hasContent]:
               hasVariant(variants, "number", "hasNumber") &&
-              hasVariant(variants, "content", "hasContent"),
+              hasVariant(variants, "content", "hasContent")
           })}
         >
           <p.PlasmicSlot
@@ -167,7 +167,7 @@ function PlasmicActionsColumn__RenderFunc(props: {
             className={classNames(sty.slotNumberValue, {
               [sty.slotNumberValue__content_hasContent_number_hasNumber]:
                 hasVariant(variants, "content", "hasContent") &&
-                hasVariant(variants, "number", "hasNumber"),
+                hasVariant(variants, "number", "hasNumber")
             })}
           />
         </div>
@@ -181,12 +181,12 @@ const PlasmicDescendants = {
     "updateActionContainer",
     "sendButton",
     "startIcon",
-    "box",
+    "box"
   ],
 
   sendButton: ["sendButton", "startIcon"],
   startIcon: ["startIcon"],
-  box: ["box"],
+  box: ["box"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -234,14 +234,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicActionsColumn__ArgProps,
-      internalVariantPropNames: PlasmicActionsColumn__VariantProps,
+      internalVariantPropNames: PlasmicActionsColumn__VariantProps
     });
 
     return PlasmicActionsColumn__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName,
+      forNode: nodeName
     });
   };
   if (nodeName === "updateActionContainer") {
@@ -263,7 +263,7 @@ export const PlasmicActionsColumn = Object.assign(
 
     // Metadata about props expected for PlasmicActionsColumn
     internalVariantProps: PlasmicActionsColumn__VariantProps,
-    internalArgProps: PlasmicActionsColumn__ArgProps,
+    internalArgProps: PlasmicActionsColumn__ArgProps
   }
 );
 

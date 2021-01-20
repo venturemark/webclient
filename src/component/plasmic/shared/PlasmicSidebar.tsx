@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants,
+  ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import SidebarItem from "../../sidebaritem/index"; // plasmic-import: KDElHbQmfd/component
 import SidebarOrganizationName from "../../SidebarOrganizationName"; // plasmic-import: pJJQRCyJQM/component
@@ -93,7 +93,7 @@ function PlasmicSidebar__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__hasInput]: hasVariant(variants, "hasInput", "hasInput"),
-        [sty.root__hasValue]: hasVariant(variants, "hasValue", "hasValue"),
+        [sty.root__hasValue]: hasVariant(variants, "hasValue", "hasValue")
       })}
     >
       <div
@@ -111,7 +111,7 @@ function PlasmicSidebar__RenderFunc(props: {
               variants,
               "hasInput",
               "hasInput"
-            ),
+            )
           })}
         >
           <p.Stack
@@ -127,7 +127,7 @@ function PlasmicSidebar__RenderFunc(props: {
                   variants,
                   "hasInput",
                   "hasInput"
-                ),
+                )
               })}
               isCurrent={"isCurrent" as const}
               name={
@@ -165,7 +165,7 @@ function PlasmicSidebar__RenderFunc(props: {
                 variants,
                 "hasInput",
                 "hasInput"
-              ),
+              )
             })}
           />
 
@@ -187,7 +187,7 @@ function PlasmicSidebar__RenderFunc(props: {
                     variants,
                     "hasInput",
                     "hasInput"
-                  ),
+                  )
                 })}
               >
                 {(
@@ -199,7 +199,7 @@ function PlasmicSidebar__RenderFunc(props: {
                         variants,
                         "hasInput",
                         "hasInput"
-                      ),
+                      )
                     })}
                     role={"img"}
                   />
@@ -218,13 +218,12 @@ function PlasmicSidebar__RenderFunc(props: {
                           variants,
                           "hasInput",
                           "hasInput"
-                        ),
+                        )
                       }
                     )}
                     placeholder={"Enter name" as const}
                     size={1 as const}
                     type={"text" as const}
-                    value={"" as const}
                   />
                 ) : null}
               </p.Stack>
@@ -257,7 +256,7 @@ function PlasmicSidebar__RenderFunc(props: {
                   variants,
                   "hasInput",
                   "hasInput"
-                ),
+                )
               })}
               name={
                 <div
@@ -270,7 +269,7 @@ function PlasmicSidebar__RenderFunc(props: {
                         variants,
                         "hasInput",
                         "hasInput"
-                      ),
+                      )
                     }
                   )}
                 >
@@ -301,7 +300,7 @@ const PlasmicDescendants = {
     "organizationName",
     "timelinesContainer",
     "sidebarForm",
-    "addTimelineInput",
+    "addTimelineInput"
   ],
 
   topSidebar: [
@@ -312,7 +311,7 @@ const PlasmicDescendants = {
     "organizationName",
     "timelinesContainer",
     "sidebarForm",
-    "addTimelineInput",
+    "addTimelineInput"
   ],
 
   scrollContainer: [
@@ -322,7 +321,7 @@ const PlasmicDescendants = {
     "organizationName",
     "timelinesContainer",
     "sidebarForm",
-    "addTimelineInput",
+    "addTimelineInput"
   ],
 
   homeContainer: ["homeContainer", "startIcon3"],
@@ -330,7 +329,7 @@ const PlasmicDescendants = {
   organizationName: ["organizationName"],
   timelinesContainer: ["timelinesContainer", "sidebarForm", "addTimelineInput"],
   sidebarForm: ["sidebarForm", "addTimelineInput"],
-  addTimelineInput: ["addTimelineInput"],
+  addTimelineInput: ["addTimelineInput"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -383,14 +382,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicSidebar__ArgProps,
-      internalVariantPropNames: PlasmicSidebar__VariantProps,
+      internalVariantPropNames: PlasmicSidebar__VariantProps
     });
 
     return PlasmicSidebar__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName,
+      forNode: nodeName
     });
   };
   if (nodeName === "root") {
@@ -417,7 +416,7 @@ export const PlasmicSidebar = Object.assign(
 
     // Metadata about props expected for PlasmicSidebar
     internalVariantProps: PlasmicSidebar__VariantProps,
-    internalArgProps: PlasmicSidebar__ArgProps,
+    internalArgProps: PlasmicSidebar__ArgProps
   }
 );
 

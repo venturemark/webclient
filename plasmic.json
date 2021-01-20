@@ -302,9 +302,44 @@
           },
           "cssFilePath": "plasmic/home/PlasmicHome.module.css",
           "scheme": "blackbox"
+        },
+        {
+          "id": "yT5Y2AcZ02",
+          "name": "InputField",
+          "type": "managed",
+          "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+          "renderModuleFilePath": "plasmic/home/PlasmicInputField.tsx",
+          "importSpec": {
+            "modulePath": "InputField.tsx"
+          },
+          "cssFilePath": "plasmic/home/PlasmicInputField.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "4FEK_8lyET",
+          "name": "Button",
+          "type": "managed",
+          "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+          "renderModuleFilePath": "plasmic/home/PlasmicButton.tsx",
+          "importSpec": {
+            "modulePath": "Button.tsx"
+          },
+          "cssFilePath": "plasmic/home/PlasmicButton.module.css",
+          "scheme": "blackbox"
         }
       ],
-      "icons": [],
+      "icons": [
+        {
+          "id": "-hJ0w0PNok",
+          "name": "MaskIcon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Mask.tsx"
+        },
+        {
+          "id": "SDZiGHgVMN",
+          "name": "BgIcon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Bg.tsx"
+        }
+      ],
       "images": [],
       "jsBundleThemes": []
     }

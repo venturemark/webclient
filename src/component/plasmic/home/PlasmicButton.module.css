@@ -1,0 +1,31 @@
+.root {
+  display: flex;
+  background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  width: 159px;
+  height: 44px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.text {
+  opacity: 1;
+  background-color: transparent;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  text-transform: none;
+  text-decoration-line: none;
+  font-family: "SF Pro Display";
+  font-weight: 900;
+  letter-spacing: 0px;
+  color: rgba(255, 255, 255, 1);
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 149px;
+  height: auto;
+  transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
+  transform-origin: top left;
+  flex-shrink: 0;
+}

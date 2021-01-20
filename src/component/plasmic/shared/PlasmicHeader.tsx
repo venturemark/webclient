@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants,
+  ensureGlobalVariants
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -113,7 +113,7 @@ function PlasmicHeader__RenderFunc(props: {
 
 const PlasmicDescendants = {
   root: ["root", "svg"],
-  svg: ["svg"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -159,14 +159,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicHeader__ArgProps,
-      internalVariantPropNames: PlasmicHeader__VariantProps,
+      internalVariantPropNames: PlasmicHeader__VariantProps
     });
 
     return PlasmicHeader__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName,
+      forNode: nodeName
     });
   };
   if (nodeName === "root") {
@@ -186,7 +186,7 @@ export const PlasmicHeader = Object.assign(
 
     // Metadata about props expected for PlasmicHeader
     internalVariantProps: PlasmicHeader__VariantProps,
-    internalArgProps: PlasmicHeader__ArgProps,
+    internalArgProps: PlasmicHeader__ArgProps
   }
 );
 

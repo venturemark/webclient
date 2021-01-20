@@ -25,7 +25,7 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants,
+  ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: odPjbfT2kyJgB_S/component
 
@@ -103,7 +103,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
 
   const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
   const triggers = {
-    hover_root: isRootHover,
+    hover_root: isRootHover
   };
 
   return (
@@ -120,7 +120,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
           "hasUpdates"
         ),
 
-        [sty.root__isCurrent]: hasVariant(variants, "isCurrent", "isCurrent"),
+        [sty.root__isCurrent]: hasVariant(variants, "isCurrent", "isCurrent")
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -158,7 +158,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
             variants,
             "isInput",
             "isInput"
-          ),
+          )
         })}
       >
         {(hasVariant(variants, "isCurrent", "isCurrent") ? true : false) ? (
@@ -174,7 +174,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 variants,
                 "isCurrent",
                 "isCurrent"
-              ),
+              )
             })}
           />
         ) : null}
@@ -187,7 +187,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 variants,
                 "hasIcon",
                 "hasIcon"
-              ),
+              )
             })}
             content={""}
             endIcon={
@@ -229,7 +229,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 variants,
                 "hasUpdates",
                 "hasUpdates"
-              ),
+              )
             })}
           />
         ) : null}
@@ -270,7 +270,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
               variants,
               "isInput",
               "isInput"
-            ),
+            )
           })}
         >
           <p.PlasmicSlot
@@ -295,7 +295,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                         variants,
                         "isInput",
                         "isInput"
-                      ),
+                      )
                     })}
                     placeholder={"Enter name" as const}
                     size={1 as const}
@@ -329,7 +329,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 variants,
                 "isInput",
                 "isInput"
-              ),
+              )
             })}
           />
         </div>
@@ -352,7 +352,7 @@ const PlasmicDescendants = {
     "itemButton",
     "startIcon",
     "endIcon",
-    "textbox",
+    "textbox"
   ],
 
   itemContainer: [
@@ -360,13 +360,13 @@ const PlasmicDescendants = {
     "itemButton",
     "startIcon",
     "endIcon",
-    "textbox",
+    "textbox"
   ],
 
   itemButton: ["itemButton", "startIcon", "endIcon"],
   startIcon: ["startIcon"],
   endIcon: ["endIcon"],
-  textbox: ["textbox"],
+  textbox: ["textbox"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -416,14 +416,14 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
       internalArgPropNames: PlasmicSidebarItem__ArgProps,
-      internalVariantPropNames: PlasmicSidebarItem__VariantProps,
+      internalVariantPropNames: PlasmicSidebarItem__VariantProps
     });
 
     return PlasmicSidebarItem__RenderFunc({
       variants,
       args,
       overrides,
-      forNode: nodeName,
+      forNode: nodeName
     });
   };
   if (nodeName === "root") {
@@ -447,7 +447,7 @@ export const PlasmicSidebarItem = Object.assign(
 
     // Metadata about props expected for PlasmicSidebarItem
     internalVariantProps: PlasmicSidebarItem__VariantProps,
-    internalArgProps: PlasmicSidebarItem__ArgProps,
+    internalArgProps: PlasmicSidebarItem__ArgProps
   }
 );
 
