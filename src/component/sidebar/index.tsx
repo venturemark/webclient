@@ -7,7 +7,6 @@ import {
   PlasmicSidebar,
   DefaultSidebarProps,
 } from "component/plasmic/shared/PlasmicSidebar";
-import SidebarItem from "component/sidebaritem";
 import { options } from "component/editor/config/initialValues";
 import { Node } from "slate";
 import { ITimeline } from "module/interface/timeline";
@@ -68,9 +67,6 @@ function Sidebar(props: SidebarProps) {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const hasValue = watch("name") ? true : false;
   const [hasInput, setHasInput] = useState(false);
-  const sortedTimelines = timelines.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
 
   const handleAddTimeline = (data: FormInputs) => {
     if (!data.name) {

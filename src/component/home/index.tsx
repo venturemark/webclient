@@ -6,7 +6,6 @@ import {
   PlasmicHome,
   DefaultHomeProps,
 } from "component/plasmic/home/PlasmicHome";
-import Update from "component/update";
 import { initialValueEmpty } from "component/editor/config/initialValues";
 import { Search } from "@venturemark/numnum";
 import { format } from "date-fns";
@@ -283,101 +282,6 @@ export function Component(props: HomeProps) {
 
     userId && fetchData();
   }, [refresh, currentTimeline, userId]);
-
-  const createUpdate = () => {
-    if (!currentTimeline.timelineId) {
-      const error = "Please create a timeline";
-      setEditorShape({ ...editorShape, error });
-      return;
-    }
-    if (!editorShape.hasContent) {
-      const error = "Please enter some text";
-      setEditorShape({ ...editorShape, error });
-      return;
-    }
-
-    if (!editorShape.numberValue) {
-      const error = "Please enter a number";
-      setEditorShape({ ...editorShape, error });
-      return;
-    }
-
-    if (serialize(editorShape.value).length > 241) {
-      const error = `Your update is ${
-        serialize(editorShape.value).length
-      } characters. The limit is 240 characters`;
-      setEditorShape({ ...editorShape, error });
-      return;
-    }
-
-    const id = new Date().toString();
-    const update: IUpdate = {
-      text: editorShape.value,
-      numberValue: editorShape.numberValue,
-      updateId: id,
-      userId: currentTimeline.userId,
-      timelineId: currentTimeline.timelineId,
-      isFlipped: false,
-      isContext: false,
-    };
-    setUpdates([update, ...updates]);
-
-    const metric: IMetric = {
-      date: format(new Date(), "PP"),
-      [currentTimeline.name]: editorShape.numberValue,
-      metricId: id,
-      updateId: id,
-      timelineId: currentTimeline.timelineId,
-      userId: currentTimeline.userId,
-    };
-
-    async function createMetricUpdate() {
-      let response = await api.API.MetricUpdate.Create(
-        serialize(editorShape.value),
-        editorShape.numberValue,
-        "timeline.venturemark.co/id",
-        currentTimeline.timelineId,
-        "user.venturemark.co/id",
-        currentTimeline.userId
-      );
-
-      if (response.metricId & response.updateId) {
-        setRefresh(!refresh);
-      }
-    }
-
-    createMetricUpdate();
-
-    const timelinesUpdate = timelines.map((timeline) => {
-      let updatedUpdates = currentTimeline.updates;
-      let data = metrics;
-      if (timeline.isCurrent) {
-        updatedUpdates = [update].concat(currentTimeline?.updates);
-        data = currentTimeline?.data?.concat(metric);
-
-        return { ...timeline, updates: updatedUpdates, data: data };
-      } else {
-        return timeline;
-      }
-    });
-    setTimelines(timelinesUpdate as ITimeline[]);
-
-    //reset store
-    localStorage.setItem(
-      "composeEditor.content",
-      JSON.stringify(initialValueEmpty)
-    );
-    //reset editor
-    const resetEditor = {
-      value: initialValueEmpty,
-      string: "",
-      hasContent: undefined,
-      numberValue: 0,
-      error: undefined,
-      progress: 0,
-    };
-    setEditorShape(resetEditor);
-  };
 
   return (
     <PlasmicHome
