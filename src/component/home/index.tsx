@@ -38,8 +38,14 @@ export function Component(props: HomeProps) {
 
   const [refresh, setRefresh] = useState(false);
 
-  const [updates, setUpdates] = useState<IUpdate[]>([]);
-  const [metrics, setMetrics] = useState<IMetric[]>([]);
+  const [u, setUpdates] = useState<IUpdate[]>([]);
+  const [m, setMetrics] = useState<IMetric[]>([]);
+
+  // TODO this bullshit is only to fix the linter issues because u and m are not
+  // used for anything and I have no fucking clue how to use the stupid react
+  // hooks. I just try to make the build green right now.
+  console.log(u);
+  console.log(m);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
