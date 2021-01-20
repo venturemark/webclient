@@ -88,11 +88,16 @@ export namespace CreateI_Obj {
 }
 
 export class CreateI_Obj_Property extends jspb.Message {
-  getDesc(): string;
-  setDesc(value: string): CreateI_Obj_Property;
+  getDataList(): Array<CreateI_Obj_Property_Data>;
+  setDataList(value: Array<CreateI_Obj_Property_Data>): CreateI_Obj_Property;
+  clearDataList(): CreateI_Obj_Property;
+  addData(
+    value?: CreateI_Obj_Property_Data,
+    index?: number
+  ): CreateI_Obj_Property_Data;
 
-  getName(): string;
-  setName(value: string): CreateI_Obj_Property;
+  getText(): string;
+  setText(value: string): CreateI_Obj_Property;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateI_Obj_Property.AsObject;
@@ -113,8 +118,41 @@ export class CreateI_Obj_Property extends jspb.Message {
 
 export namespace CreateI_Obj_Property {
   export type AsObject = {
-    desc: string;
-    name: string;
+    dataList: Array<CreateI_Obj_Property_Data.AsObject>;
+    text: string;
+  };
+}
+
+export class CreateI_Obj_Property_Data extends jspb.Message {
+  getSpace(): string;
+  setSpace(value: string): CreateI_Obj_Property_Data;
+
+  getValueList(): Array<number>;
+  setValueList(value: Array<number>): CreateI_Obj_Property_Data;
+  clearValueList(): CreateI_Obj_Property_Data;
+  addValue(value: number, index?: number): CreateI_Obj_Property_Data;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateI_Obj_Property_Data.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: CreateI_Obj_Property_Data
+  ): CreateI_Obj_Property_Data.AsObject;
+  static serializeBinaryToWriter(
+    message: CreateI_Obj_Property_Data,
+    writer: jspb.BinaryWriter
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): CreateI_Obj_Property_Data;
+  static deserializeBinaryFromReader(
+    message: CreateI_Obj_Property_Data,
+    reader: jspb.BinaryReader
+  ): CreateI_Obj_Property_Data;
+}
+
+export namespace CreateI_Obj_Property_Data {
+  export type AsObject = {
+    space: string;
+    valueList: Array<number>;
   };
 }
 

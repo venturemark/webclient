@@ -88,11 +88,8 @@ export namespace CreateI_Obj {
 }
 
 export class CreateI_Obj_Property extends jspb.Message {
-  getDesc(): string;
-  setDesc(value: string): CreateI_Obj_Property;
-
-  getName(): string;
-  setName(value: string): CreateI_Obj_Property;
+  getText(): string;
+  setText(value: string): CreateI_Obj_Property;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateI_Obj_Property.AsObject;
@@ -113,8 +110,7 @@ export class CreateI_Obj_Property extends jspb.Message {
 
 export namespace CreateI_Obj_Property {
   export type AsObject = {
-    desc: string;
-    name: string;
+    text: string;
   };
 }
 

@@ -88,14 +88,16 @@ export namespace UpdateI_Obj {
 }
 
 export class UpdateI_Obj_Property extends jspb.Message {
-  getDesc(): string;
-  setDesc(value: string): UpdateI_Obj_Property;
+  getDataList(): Array<UpdateI_Obj_Property_Data>;
+  setDataList(value: Array<UpdateI_Obj_Property_Data>): UpdateI_Obj_Property;
+  clearDataList(): UpdateI_Obj_Property;
+  addData(
+    value?: UpdateI_Obj_Property_Data,
+    index?: number
+  ): UpdateI_Obj_Property_Data;
 
-  getName(): string;
-  setName(value: string): UpdateI_Obj_Property;
-
-  getStat(): string;
-  setStat(value: string): UpdateI_Obj_Property;
+  getText(): string;
+  setText(value: string): UpdateI_Obj_Property;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateI_Obj_Property.AsObject;
@@ -116,9 +118,41 @@ export class UpdateI_Obj_Property extends jspb.Message {
 
 export namespace UpdateI_Obj_Property {
   export type AsObject = {
-    desc: string;
-    name: string;
-    stat: string;
+    dataList: Array<UpdateI_Obj_Property_Data.AsObject>;
+    text: string;
+  };
+}
+
+export class UpdateI_Obj_Property_Data extends jspb.Message {
+  getSpace(): string;
+  setSpace(value: string): UpdateI_Obj_Property_Data;
+
+  getValueList(): Array<number>;
+  setValueList(value: Array<number>): UpdateI_Obj_Property_Data;
+  clearValueList(): UpdateI_Obj_Property_Data;
+  addValue(value: number, index?: number): UpdateI_Obj_Property_Data;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateI_Obj_Property_Data.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: UpdateI_Obj_Property_Data
+  ): UpdateI_Obj_Property_Data.AsObject;
+  static serializeBinaryToWriter(
+    message: UpdateI_Obj_Property_Data,
+    writer: jspb.BinaryWriter
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateI_Obj_Property_Data;
+  static deserializeBinaryFromReader(
+    message: UpdateI_Obj_Property_Data,
+    reader: jspb.BinaryReader
+  ): UpdateI_Obj_Property_Data;
+}
+
+export namespace UpdateI_Obj_Property_Data {
+  export type AsObject = {
+    space: string;
+    valueList: Array<number>;
   };
 }
 
