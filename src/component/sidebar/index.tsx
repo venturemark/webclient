@@ -75,6 +75,7 @@ function Sidebar(props: SidebarProps) {
   // );
 
   const handleAddTimeline = (data: FormInputs) => {
+    alert("clicked");
     if (!data.name) {
       return;
     }
