@@ -22,6 +22,7 @@ interface SidebarProps extends DefaultSidebarProps {
   refresh: boolean;
   setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   userId: string;
+  organizationId: string;
 }
 
 type FormInputs = {
@@ -63,6 +64,7 @@ function Sidebar(props: SidebarProps) {
     setRefresh,
     setCurrentTimeline,
     userId,
+    organizationId,
   } = props;
   const { register, handleSubmit, reset, watch } = useForm<FormInputs>();
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -77,6 +79,7 @@ function Sidebar(props: SidebarProps) {
       return;
     }
     const name = data.name;
+    const desc = "Lorem ipsum ...";
 
     const duplicates = timelines.filter((timeline) => name === timeline.name);
 
@@ -97,9 +100,16 @@ function Sidebar(props: SidebarProps) {
       },
     ];
 
+    const audienceId = "";
+    // this is temporary until we add create audience code
+
     const timeline = {
       name: name,
       date: date,
+      stat: "active",
+      desc: desc,
+      audienceId: audienceId,
+      organizationId: organizationId,
       userId: userId,
       timelineId: date,
       dataKey: name,
@@ -109,7 +119,13 @@ function Sidebar(props: SidebarProps) {
     };
 
     async function createTimeline() {
-      let thisTimelineId = await api.API.Timeline.Create(name, userId);
+      let thisTimelineId = await api.API.Timeline.Create(
+        name,
+        desc,
+        userId,
+        audienceId,
+        organizationId
+      );
       if (thisTimelineId) {
         const thisTimeline = { ...timeline, timelineId: thisTimelineId };
         setCurrentTimeline(thisTimeline);

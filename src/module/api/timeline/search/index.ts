@@ -4,9 +4,14 @@ import { SearchO_Obj } from "module/api/timeline/proto/search_pb";
 import * as env from "module/env";
 import { ITimeline } from "module/interface/timeline/index";
 
+const USERIDKEY = "user.venturemark.co/id";
+const ORGANIZATIONIDKEY = "organization.venturemark.co/id";
+const AUDIENCEIDKEY = "audience.venturemark.co/id";
+
 export async function Search(
-  userIdKey: string,
-  userIdValue: string
+  userId: string,
+  organizationId: string,
+  audienceId: string
 ): Promise<ITimeline[]> {
   const objList = [];
   //instantiate client and req classes
@@ -16,7 +21,9 @@ export async function Search(
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
 
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(userIdKey, userIdValue);
+  obj.getMetadataMap().set(USERIDKEY, userId);
+  obj.getMetadataMap().set(ORGANIZATIONIDKEY, organizationId);
+  obj.getMetadataMap().set(AUDIENCEIDKEY, audienceId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -34,21 +41,31 @@ export async function Search(
           const timelines = timelinesPb.map((timelinePb: SearchO_Obj) => {
             const propertyPb = timelinePb.getProperty();
             const name = propertyPb?.toObject().name;
-            const timelineId = timelinePb
+            const desc = propertyPb?.toObject().desc;
+            const stat = propertyPb?.toObject().stat;
+            const audienceId = timelinePb
               .getMetadataMap()
               .toObject()[0][1] as string;
-            const userId = timelinePb
+            const organizationId = timelinePb
               .getMetadataMap()
               .toObject()[1][1] as string;
+            const timelineId = timelinePb
+              .getMetadataMap()
+              .toObject()[2][1] as string;
+            const userId = timelinePb
+              .getMetadataMap()
+              .toObject()[3][1] as string;
 
             const timeline: ITimeline = {
               name: name as string,
+              desc: desc as string,
+              stat: stat as string,
+              audienceId: audienceId,
+              organizationId: organizationId,
               timelineId: timelineId,
               userId: userId,
-              dataKey: name as string,
               isCurrent: false,
               updates: [],
-              data: [],
             };
             return timeline;
           });

@@ -18,18 +18,23 @@ import * as api from "module/api";
 
 const defaultTimeline: ITimeline = {
   name: "",
+  desc: "",
+  stat: "",
+  audienceId: "",
+  organizationId: "",
   timelineId: "",
   userId: "",
-  dataKey: "",
   isCurrent: false,
   updates: [],
-  data: [],
 };
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
-  const userId = window.location.pathname.slice(1);
+  const pathArray = window.location.pathname.split("/");
+  const organizationId = pathArray[1];
+  const userId = pathArray[2];
+
   const [timelines, setTimelines] = useState<ITimeline[]>([]);
   const [currentTimeline, setCurrentTimeline] = useState<ITimeline>(
     defaultTimeline
@@ -38,6 +43,7 @@ export function Component(props: HomeProps) {
   const [refresh, setRefresh] = useState(false);
 
   const [updates, setUpdates] = useState<IUpdate[]>([]);
+  // const [audiences, setAudiences] = useState<any>([]);
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -56,49 +62,56 @@ export function Component(props: HomeProps) {
   });
 
   useEffect(() => {
+    console.log(organizationId, userId);
+
+    const audienceId = "";
+
     const fetchData = async () => {
       let timelinesResponse: ITimeline[] = await api.API.Timeline.Search(
-        "user.venturemark.co/id",
-        userId
+        userId,
+        organizationId,
+        audienceId
       );
 
-      let currentTimelineResponse: ITimeline = timelinesResponse[0];
+      if (timelinesResponse.length > 0) {
+        let currentTimelineResponse: ITimeline = timelinesResponse[0];
 
-      if (currentTimeline.timelineId) {
-        currentTimelineResponse = currentTimeline;
-      }
-      currentTimelineResponse.isCurrent = true;
-
-      setCurrentTimeline(currentTimelineResponse);
-
-      const activeTimelines = timelinesResponse.map((timeline) => {
-        if (timeline.timelineId === currentTimeline.timelineId) {
-          return { ...timeline, isCurrent: true };
+        if (currentTimeline.timelineId) {
+          currentTimelineResponse = currentTimeline;
         }
-        return timeline;
-      });
+        currentTimelineResponse.isCurrent = true;
 
-      const updatesResponse: any = await api.API.Update.Search(
-        "timeline.venturemark.co/id",
-        currentTimelineResponse.timelineId,
-        "user.venturemark.co/id",
-        currentTimelineResponse.userId
-      );
+        setCurrentTimeline(currentTimelineResponse);
 
-      // let concatAndDeDuplicateObjects = (p: any, ...arrs: any) =>
-      //   []
-      //     .concat(...arrs)
-      //     .reduce(
-      //       (a, b) => (!a.filter((c) => b[p] === c[p]).length ? [...a, b] : a),
-      //       []
-      //     );
-      //
-      // const deDuplicatedUpdates = concatAndDeDuplicateObjects(
-      //   "updateId",
-      //   updatesResponse,
-      // );
-      setTimelines(activeTimelines);
-      setUpdates(updatesResponse);
+        const activeTimelines = timelinesResponse.map((timeline) => {
+          if (timeline.timelineId === currentTimeline.timelineId) {
+            return { ...timeline, isCurrent: true };
+          }
+          return timeline;
+        });
+
+        const updatesResponse: any = await api.API.Update.Search(
+          "timeline.venturemark.co/id",
+          currentTimelineResponse.timelineId,
+          "user.venturemark.co/id",
+          currentTimelineResponse.userId
+        );
+
+        // let concatAndDeDuplicateObjects = (p: any, ...arrs: any) =>
+        //   []
+        //     .concat(...arrs)
+        //     .reduce(
+        //       (a, b) => (!a.filter((c) => b[p] === c[p]).length ? [...a, b] : a),
+        //       []
+        //     );
+        //
+        // const deDuplicatedUpdates = concatAndDeDuplicateObjects(
+        //   "updateId",
+        //   updatesResponse,
+        // );
+        setTimelines(activeTimelines);
+        setUpdates(updatesResponse);
+      }
 
       if (refresh) {
         setRefresh(false);
@@ -106,7 +119,7 @@ export function Component(props: HomeProps) {
     };
 
     userId && fetchData();
-  }, [refresh, currentTimeline, userId]);
+  }, [refresh, currentTimeline, userId, organizationId]);
 
   // const createUpdate = () => {
   //   if (!currentTimeline.timelineId) {
@@ -191,6 +204,7 @@ export function Component(props: HomeProps) {
         setRefresh: setRefresh,
         setCurrentTimeline: setCurrentTimeline,
         userId: currentTimeline.userId || userId,
+        organizationId: currentTimeline.userId || organizationId,
       }}
       actionBar={{
         errorMessage: editorShape.error,
