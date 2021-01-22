@@ -15,6 +15,7 @@ import { useEditor } from "component/editor/compose";
 import { IUpdate } from "module/interface/update";
 import { ITimeline } from "module/interface/timeline";
 import * as api from "module/api";
+import { useQuery } from 'react-query'
 
 const defaultTimeline: ITimeline = {
   name: "",
@@ -29,6 +30,8 @@ const defaultTimeline: ITimeline = {
 };
 
 interface HomeProps extends DefaultHomeProps {}
+
+type ErrorResponse = { code: number; message: string; metadata: any}
 
 export function Component(props: HomeProps) {
   const pathArray = window.location.pathname.split("/");
@@ -60,6 +63,17 @@ export function Component(props: HomeProps) {
     numberValue: defaultNumber[0],
     progress: defaultProgress,
   });
+  const audienceId = '';
+
+  const timelineQuery = useQuery<any, ErrorResponse>(['timeline'], ()=> {
+    return api.API.Timeline.Search(
+      userId,
+      organizationId,
+      audienceId
+    );
+  });
+
+  console.log(timelineQuery);
 
   useEffect(() => {
     console.log(organizationId, userId);
@@ -194,6 +208,18 @@ export function Component(props: HomeProps) {
   // };
 
   console.log(updates);
+
+  if(timelineQuery.isLoading) {
+    return <div style={{backgroundColor: 'blue'}}>IS LOADING</div>
+  }
+
+  if(timelineQuery.isError) {
+    return <div style={{backgroundColor: 'red'}}>FAILED: {timelineQuery.error.message}</div>
+  }
+
+  // all cool we have the data
+
+  console.log(timelineQuery.data);
 
   return (
     <PlasmicHome
