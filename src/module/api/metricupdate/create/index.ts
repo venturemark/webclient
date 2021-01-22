@@ -1,11 +1,11 @@
-import * as apigents from "@venturemark/apigents";
+import * as apigents from '@venturemark/apigents';
 import {
   CreateI_Obj,
   CreateO,
   CreateI_Obj_Property,
   CreateI_Obj_Property_Data,
-} from "module/api/metricupdate/proto/create_pb";
-import * as env from "module/env";
+} from 'module/api/metricupdate/proto/create_pb';
+import * as env from 'module/env';
 
 export async function Create(
   text: string,
@@ -13,7 +13,7 @@ export async function Create(
   timelineIdKey: string,
   timelineIdValue: string,
   userIdKey: string,
-  userIdvalue: string
+  userIdvalue: string,
 ): Promise<any> {
   const client = new apigents.Metupd.Client(env.APIEndpoint());
   const req = new apigents.Metupd.Create.I();
@@ -26,7 +26,7 @@ export async function Create(
   dataObjValue.push(value);
   dataObjArray.push(dataObj);
 
-  dataObj.setSpace("y");
+  dataObj.setSpace('y');
   dataObj.setValueList(dataObjValue);
   objProperty.setText(text);
   objProperty.setDataList(dataObjArray);
@@ -36,7 +36,7 @@ export async function Create(
 
   req.setObj(obj);
 
-  console.log("object to be created:", req);
+  console.log('object to be created:', req);
   // format
   //
   // obj: {
@@ -53,7 +53,7 @@ export async function Create(
         console.log(err.code);
         console.log(err.message);
         alert(
-          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`
+          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`,
         );
         reject(err);
       } else {

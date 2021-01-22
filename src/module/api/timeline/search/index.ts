@@ -1,17 +1,17 @@
-import * as apigents from "@venturemark/apigents";
-import { SearchI_Obj } from "module/api/timeline/proto/search_pb";
-import { SearchO_Obj } from "module/api/timeline/proto/search_pb";
-import * as env from "module/env";
-import { ITimeline } from "module/interface/timeline/index";
+import * as apigents from '@venturemark/apigents';
+import { SearchI_Obj } from 'module/api/timeline/proto/search_pb';
+import { SearchO_Obj } from 'module/api/timeline/proto/search_pb';
+import * as env from 'module/env';
+import { ITimeline } from 'module/interface/timeline/index';
 
-const USERIDKEY = "user.venturemark.co/id";
-const ORGANIZATIONIDKEY = "organization.venturemark.co/id";
-const AUDIENCEIDKEY = "audience.venturemark.co/id";
+const USERIDKEY = 'user.venturemark.co/id';
+const ORGANIZATIONIDKEY = 'organization.venturemark.co/id';
+const AUDIENCEIDKEY = 'audience.venturemark.co/id';
 
 export async function Search(
   userId: string,
   organizationId: string,
-  audienceId: string
+  audienceId: string,
 ): Promise<ITimeline[]> {
   const objList = [];
   //instantiate client and req classes
@@ -38,41 +38,43 @@ export async function Search(
         } else {
           const timelinesPb = res.getObjList();
 
-          const timelines = timelinesPb.map((timelinePb: SearchO_Obj) => {
-            const propertyPb = timelinePb.getProperty();
-            const name = propertyPb?.toObject().name;
-            const desc = propertyPb?.toObject().desc;
-            const stat = propertyPb?.toObject().stat;
-            const audienceId = timelinePb
-              .getMetadataMap()
-              .toObject()[0][1] as string;
-            const organizationId = timelinePb
-              .getMetadataMap()
-              .toObject()[1][1] as string;
-            const timelineId = timelinePb
-              .getMetadataMap()
-              .toObject()[2][1] as string;
-            const userId = timelinePb
-              .getMetadataMap()
-              .toObject()[3][1] as string;
+          const timelines = timelinesPb.map(
+            (timelinePb: SearchO_Obj) => {
+              const propertyPb = timelinePb.getProperty();
+              const name = propertyPb?.toObject().name;
+              const desc = propertyPb?.toObject().desc;
+              const stat = propertyPb?.toObject().stat;
+              const audienceId = timelinePb
+                .getMetadataMap()
+                .toObject()[0][1] as string;
+              const organizationId = timelinePb
+                .getMetadataMap()
+                .toObject()[1][1] as string;
+              const timelineId = timelinePb
+                .getMetadataMap()
+                .toObject()[2][1] as string;
+              const userId = timelinePb
+                .getMetadataMap()
+                .toObject()[3][1] as string;
 
-            const timeline: ITimeline = {
-              name: name as string,
-              desc: desc as string,
-              stat: stat as string,
-              audienceId: audienceId,
-              organizationId: organizationId,
-              timelineId: timelineId,
-              userId: userId,
-              isCurrent: false,
-              updates: [],
-            };
-            return timeline;
-          });
+              const timeline: ITimeline = {
+                name: name as string,
+                desc: desc as string,
+                stat: stat as string,
+                audienceId: audienceId,
+                organizationId: organizationId,
+                timelineId: timelineId,
+                userId: userId,
+                isCurrent: false,
+                updates: [],
+              };
+              return timeline;
+            },
+          );
           resolve(timelines);
         }
       });
-    }
+    },
   );
   return getSearchResponsePb;
 }

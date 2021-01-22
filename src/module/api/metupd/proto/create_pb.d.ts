@@ -1,4 +1,4 @@
-import * as jspb from "google-protobuf";
+import * as jspb from 'google-protobuf';
 
 export class CreateI extends jspb.Message {
   getApi(): CreateI_API | undefined;
@@ -13,15 +13,18 @@ export class CreateI extends jspb.Message {
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateI.AsObject;
-  static toObject(includeInstance: boolean, msg: CreateI): CreateI.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: CreateI,
+  ): CreateI.AsObject;
   static serializeBinaryToWriter(
     message: CreateI,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): CreateI;
   static deserializeBinaryFromReader(
     message: CreateI,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): CreateI;
 }
 
@@ -37,16 +40,16 @@ export class CreateI_API extends jspb.Message {
   toObject(includeInstance?: boolean): CreateI_API.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: CreateI_API
+    msg: CreateI_API,
   ): CreateI_API.AsObject;
   static serializeBinaryToWriter(
     message: CreateI_API,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): CreateI_API;
   static deserializeBinaryFromReader(
     message: CreateI_API,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): CreateI_API;
 }
 
@@ -67,16 +70,16 @@ export class CreateI_Obj extends jspb.Message {
   toObject(includeInstance?: boolean): CreateI_Obj.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: CreateI_Obj
+    msg: CreateI_Obj,
   ): CreateI_Obj.AsObject;
   static serializeBinaryToWriter(
     message: CreateI_Obj,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): CreateI_Obj;
   static deserializeBinaryFromReader(
     message: CreateI_Obj,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): CreateI_Obj;
 }
 
@@ -89,11 +92,13 @@ export namespace CreateI_Obj {
 
 export class CreateI_Obj_Property extends jspb.Message {
   getDataList(): Array<CreateI_Obj_Property_Data>;
-  setDataList(value: Array<CreateI_Obj_Property_Data>): CreateI_Obj_Property;
+  setDataList(
+    value: Array<CreateI_Obj_Property_Data>,
+  ): CreateI_Obj_Property;
   clearDataList(): CreateI_Obj_Property;
   addData(
     value?: CreateI_Obj_Property_Data,
-    index?: number
+    index?: number,
   ): CreateI_Obj_Property_Data;
 
   getText(): string;
@@ -103,16 +108,16 @@ export class CreateI_Obj_Property extends jspb.Message {
   toObject(includeInstance?: boolean): CreateI_Obj_Property.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: CreateI_Obj_Property
+    msg: CreateI_Obj_Property,
   ): CreateI_Obj_Property.AsObject;
   static serializeBinaryToWriter(
     message: CreateI_Obj_Property,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): CreateI_Obj_Property;
   static deserializeBinaryFromReader(
     message: CreateI_Obj_Property,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): CreateI_Obj_Property;
 }
 
@@ -133,19 +138,23 @@ export class CreateI_Obj_Property_Data extends jspb.Message {
   addValue(value: number, index?: number): CreateI_Obj_Property_Data;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CreateI_Obj_Property_Data.AsObject;
+  toObject(
+    includeInstance?: boolean,
+  ): CreateI_Obj_Property_Data.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: CreateI_Obj_Property_Data
+    msg: CreateI_Obj_Property_Data,
   ): CreateI_Obj_Property_Data.AsObject;
   static serializeBinaryToWriter(
     message: CreateI_Obj_Property_Data,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
-  static deserializeBinary(bytes: Uint8Array): CreateI_Obj_Property_Data;
+  static deserializeBinary(
+    bytes: Uint8Array,
+  ): CreateI_Obj_Property_Data;
   static deserializeBinaryFromReader(
     message: CreateI_Obj_Property_Data,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): CreateI_Obj_Property_Data;
 }
 
@@ -169,15 +178,18 @@ export class CreateO extends jspb.Message {
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateO.AsObject;
-  static toObject(includeInstance: boolean, msg: CreateO): CreateO.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: CreateO,
+  ): CreateO.AsObject;
   static serializeBinaryToWriter(
     message: CreateO,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): CreateO;
   static deserializeBinaryFromReader(
     message: CreateO,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): CreateO;
 }
 
@@ -193,16 +205,16 @@ export class CreateO_API extends jspb.Message {
   toObject(includeInstance?: boolean): CreateO_API.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: CreateO_API
+    msg: CreateO_API,
   ): CreateO_API.AsObject;
   static serializeBinaryToWriter(
     message: CreateO_API,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): CreateO_API;
   static deserializeBinaryFromReader(
     message: CreateO_API,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): CreateO_API;
 }
 
@@ -218,16 +230,16 @@ export class CreateO_Obj extends jspb.Message {
   toObject(includeInstance?: boolean): CreateO_Obj.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: CreateO_Obj
+    msg: CreateO_Obj,
   ): CreateO_Obj.AsObject;
   static serializeBinaryToWriter(
     message: CreateO_Obj,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): CreateO_Obj;
   static deserializeBinaryFromReader(
     message: CreateO_Obj,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): CreateO_Obj;
 }
 

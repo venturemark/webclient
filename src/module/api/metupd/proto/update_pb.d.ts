@@ -1,4 +1,4 @@
-import * as jspb from "google-protobuf";
+import * as jspb from 'google-protobuf';
 
 export class UpdateI extends jspb.Message {
   getApi(): UpdateI_API | undefined;
@@ -13,15 +13,18 @@ export class UpdateI extends jspb.Message {
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateI.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateI): UpdateI.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: UpdateI,
+  ): UpdateI.AsObject;
   static serializeBinaryToWriter(
     message: UpdateI,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): UpdateI;
   static deserializeBinaryFromReader(
     message: UpdateI,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): UpdateI;
 }
 
@@ -37,16 +40,16 @@ export class UpdateI_API extends jspb.Message {
   toObject(includeInstance?: boolean): UpdateI_API.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: UpdateI_API
+    msg: UpdateI_API,
   ): UpdateI_API.AsObject;
   static serializeBinaryToWriter(
     message: UpdateI_API,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): UpdateI_API;
   static deserializeBinaryFromReader(
     message: UpdateI_API,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): UpdateI_API;
 }
 
@@ -67,16 +70,16 @@ export class UpdateI_Obj extends jspb.Message {
   toObject(includeInstance?: boolean): UpdateI_Obj.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: UpdateI_Obj
+    msg: UpdateI_Obj,
   ): UpdateI_Obj.AsObject;
   static serializeBinaryToWriter(
     message: UpdateI_Obj,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): UpdateI_Obj;
   static deserializeBinaryFromReader(
     message: UpdateI_Obj,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): UpdateI_Obj;
 }
 
@@ -89,11 +92,13 @@ export namespace UpdateI_Obj {
 
 export class UpdateI_Obj_Property extends jspb.Message {
   getDataList(): Array<UpdateI_Obj_Property_Data>;
-  setDataList(value: Array<UpdateI_Obj_Property_Data>): UpdateI_Obj_Property;
+  setDataList(
+    value: Array<UpdateI_Obj_Property_Data>,
+  ): UpdateI_Obj_Property;
   clearDataList(): UpdateI_Obj_Property;
   addData(
     value?: UpdateI_Obj_Property_Data,
-    index?: number
+    index?: number,
   ): UpdateI_Obj_Property_Data;
 
   getText(): string;
@@ -103,16 +108,16 @@ export class UpdateI_Obj_Property extends jspb.Message {
   toObject(includeInstance?: boolean): UpdateI_Obj_Property.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: UpdateI_Obj_Property
+    msg: UpdateI_Obj_Property,
   ): UpdateI_Obj_Property.AsObject;
   static serializeBinaryToWriter(
     message: UpdateI_Obj_Property,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): UpdateI_Obj_Property;
   static deserializeBinaryFromReader(
     message: UpdateI_Obj_Property,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): UpdateI_Obj_Property;
 }
 
@@ -133,19 +138,23 @@ export class UpdateI_Obj_Property_Data extends jspb.Message {
   addValue(value: number, index?: number): UpdateI_Obj_Property_Data;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateI_Obj_Property_Data.AsObject;
+  toObject(
+    includeInstance?: boolean,
+  ): UpdateI_Obj_Property_Data.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: UpdateI_Obj_Property_Data
+    msg: UpdateI_Obj_Property_Data,
   ): UpdateI_Obj_Property_Data.AsObject;
   static serializeBinaryToWriter(
     message: UpdateI_Obj_Property_Data,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateI_Obj_Property_Data;
+  static deserializeBinary(
+    bytes: Uint8Array,
+  ): UpdateI_Obj_Property_Data;
   static deserializeBinaryFromReader(
     message: UpdateI_Obj_Property_Data,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): UpdateI_Obj_Property_Data;
 }
 
@@ -169,15 +178,18 @@ export class UpdateO extends jspb.Message {
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateO.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateO): UpdateO.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: UpdateO,
+  ): UpdateO.AsObject;
   static serializeBinaryToWriter(
     message: UpdateO,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): UpdateO;
   static deserializeBinaryFromReader(
     message: UpdateO,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): UpdateO;
 }
 
@@ -193,16 +205,16 @@ export class UpdateO_API extends jspb.Message {
   toObject(includeInstance?: boolean): UpdateO_API.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: UpdateO_API
+    msg: UpdateO_API,
   ): UpdateO_API.AsObject;
   static serializeBinaryToWriter(
     message: UpdateO_API,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): UpdateO_API;
   static deserializeBinaryFromReader(
     message: UpdateO_API,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): UpdateO_API;
 }
 
@@ -218,16 +230,16 @@ export class UpdateO_Obj extends jspb.Message {
   toObject(includeInstance?: boolean): UpdateO_Obj.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: UpdateO_Obj
+    msg: UpdateO_Obj,
   ): UpdateO_Obj.AsObject;
   static serializeBinaryToWriter(
     message: UpdateO_Obj,
-    writer: jspb.BinaryWriter
+    writer: jspb.BinaryWriter,
   ): void;
   static deserializeBinary(bytes: Uint8Array): UpdateO_Obj;
   static deserializeBinaryFromReader(
     message: UpdateO_Obj,
-    reader: jspb.BinaryReader
+    reader: jspb.BinaryReader,
   ): UpdateO_Obj;
 }
 

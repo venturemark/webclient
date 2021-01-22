@@ -1,20 +1,20 @@
-import * as apigents from "@venturemark/apigents";
+import * as apigents from '@venturemark/apigents';
 import {
   CreateI_Obj,
   CreateI_Obj_Property,
-} from "module/api/timeline/proto/create_pb";
-import * as env from "module/env";
+} from 'module/api/timeline/proto/create_pb';
+import * as env from 'module/env';
 
-const USERIDKEY = "user.venturemark.co/id";
-const ORGANIZATIONIDKEY = "organization.venturemark.co/id";
-const AUDIENCEIDKEY = "audience.venturemark.co/id";
+const USERIDKEY = 'user.venturemark.co/id';
+const ORGANIZATIONIDKEY = 'organization.venturemark.co/id';
+const AUDIENCEIDKEY = 'audience.venturemark.co/id';
 
 export async function Create(
   name: string,
   desc: string,
   userId: string,
   audienceId: string,
-  organizationId: string
+  organizationId: string,
 ): Promise<any> {
   const client = new apigents.Timeline.Client(env.APIEndpoint());
   const req = new apigents.Timeline.Create.I();
@@ -37,7 +37,7 @@ export async function Create(
         console.log(err.code);
         console.log(err.message);
         alert(
-          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`
+          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`,
         );
         reject(err);
       } else {

@@ -5,46 +5,46 @@ import {
   MARK_STRIKETHROUGH,
   toggleList,
   unwrapList,
-} from "@udecode/slate-plugins";
-import { Editor } from "slate";
-import { options } from "./initialValues";
+} from '@udecode/slate-plugins';
+import { Editor } from 'slate';
+import { options } from './initialValues';
 
 const preFormat = (editor: Editor) => unwrapList(editor, options);
 
 export const autoformatRules: AutoformatRule[] = [
   {
     type: options.h1.type,
-    markup: "#",
+    markup: '#',
     preFormat,
   },
   {
     type: options.h2.type,
-    markup: "##",
+    markup: '##',
     preFormat,
   },
   {
     type: options.h3.type,
-    markup: "###",
+    markup: '###',
     preFormat,
   },
   {
     type: options.h4.type,
-    markup: "####",
+    markup: '####',
     preFormat,
   },
   {
     type: options.h5.type,
-    markup: "#####",
+    markup: '#####',
     preFormat,
   },
   {
     type: options.h6.type,
-    markup: "######",
+    markup: '######',
     preFormat,
   },
   {
     type: options.li.type,
-    markup: ["*", "-"],
+    markup: ['*', '-'],
     preFormat,
     format: (editor) => {
       toggleList(editor, { ...options, typeList: options.ul.type });
@@ -52,7 +52,7 @@ export const autoformatRules: AutoformatRule[] = [
   },
   {
     type: options.li.type,
-    markup: ["1.", "1)"],
+    markup: ['1.', '1)'],
     preFormat,
     format: (editor) => {
       toggleList(editor, { ...options, typeList: options.ol.type });
@@ -60,41 +60,41 @@ export const autoformatRules: AutoformatRule[] = [
   },
   {
     type: options.todo_li.type,
-    markup: ["[]"],
+    markup: ['[]'],
   },
   {
     type: options.blockquote.type,
-    markup: [">"],
+    markup: ['>'],
     preFormat,
   },
   {
     type: MARK_BOLD,
-    between: ["**", "**"],
-    mode: "inline",
+    between: ['**', '**'],
+    mode: 'inline',
     insertTrigger: true,
   },
   {
     type: MARK_BOLD,
-    between: ["__", "__"],
-    mode: "inline",
+    between: ['__', '__'],
+    mode: 'inline',
     insertTrigger: true,
   },
   {
     type: MARK_ITALIC,
-    between: ["*", "*"],
-    mode: "inline",
+    between: ['*', '*'],
+    mode: 'inline',
     insertTrigger: true,
   },
   {
     type: MARK_ITALIC,
-    between: ["_", "_"],
-    mode: "inline",
+    between: ['_', '_'],
+    mode: 'inline',
     insertTrigger: true,
   },
   {
     type: MARK_STRIKETHROUGH,
-    between: ["~~", "~~"],
-    mode: "inline",
+    between: ['~~', '~~'],
+    mode: 'inline',
     insertTrigger: true,
   },
 ];
