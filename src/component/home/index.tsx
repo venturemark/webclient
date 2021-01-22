@@ -212,26 +212,29 @@ export function Component(props: HomeProps) {
   //   setEditorShape(resetEditor);
   // };
 
-  if (timelineQuery.isLoading) {
-    return <div style={{ backgroundColor: 'blue' }}>IS LOADING</div>;
-  }
+  // loading and error states from fetch calls... nice!!
+  // if (timelineQuery.isLoading) {
+  //   return <div style={{ backgroundColor: 'blue' }}>IS LOADING</div>;
+  // }
 
-  if (timelineQuery.isError) {
-    return (
-      <div style={{ backgroundColor: 'red' }}>
-        FAILED: {timelineQuery.error.message}
-      </div>
-    );
-  }
+  // if (timelineQuery.isError) {
+  //   return (
+  //     <div style={{ backgroundColor: 'red' }}>
+  //       FAILED: {timelineQuery.error.message}
+  //     </div>
+  //   );
+  // }
 
   // all cool we have the data
+
+  let timelinesResponse = timelineQuery.data ?? [];
 
   console.log(timelineQuery.data);
 
   return (
     <PlasmicHome
       sidebar={{
-        timelines: timelines,
+        timelines: timelinesResponse,
         setTimelines: setTimelines,
         refresh: refresh,
         setRefresh: setRefresh,

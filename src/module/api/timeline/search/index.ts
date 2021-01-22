@@ -41,6 +41,7 @@ export async function Search(
           const timelines = timelinesPb.map(
             (timelinePb: SearchO_Obj) => {
               const propertyPb = timelinePb.getProperty();
+              console.log(propertyPb?.toObject());
               const name = propertyPb?.toObject().name;
               const desc = propertyPb?.toObject().desc;
               const stat = propertyPb?.toObject().stat;
@@ -50,12 +51,12 @@ export async function Search(
               const organizationId = timelinePb
                 .getMetadataMap()
                 .toObject()[1][1] as string;
-              const timelineId = timelinePb
-                .getMetadataMap()
-                .toObject()[2][1] as string;
-              const userId = timelinePb
-                .getMetadataMap()
-                .toObject()[3][1] as string;
+              // const timelineId = timelinePb
+              //   .getMetadataMap()
+              //   .toObject()[2][1] as string;
+              // const userId = timelinePb
+              //   .getMetadataMap()
+              //   .toObject()[3][1] as string;
 
               const timeline: ITimeline = {
                 name: name as string,
@@ -63,8 +64,8 @@ export async function Search(
                 stat: stat as string,
                 audienceId: audienceId,
                 organizationId: organizationId,
-                timelineId: timelineId,
-                userId: userId,
+                timelineId: '',
+                userId: '',
                 isCurrent: false,
                 updates: [],
               };

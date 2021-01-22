@@ -69,11 +69,13 @@ function PlasmicInputField__RenderFunc(props: {
   const { variants, args, overrides, forNode } = props;
 
   return (
-    <div
+    <p.Stack
+      as={'div'}
       data-plasmic-name={'root'}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
+      hasGap={true}
       className={classNames(
         defaultcss.all,
         projectcss.root_reset,
@@ -104,7 +106,7 @@ function PlasmicInputField__RenderFunc(props: {
           value={args.children}
         />
       </div>
-    </div>
+    </p.Stack>
   ) as React.ReactElement | null;
 }
 

@@ -7,7 +7,7 @@ import {
   PlasmicSidebar,
   DefaultSidebarProps,
 } from 'component/plasmic/shared/PlasmicSidebar';
-// import SidebarItem from "component/sidebaritem";
+import SidebarItem from 'component/sidebaritem';
 import { options } from 'component/editor/config/initialValues';
 import { Node } from 'slate';
 import { ITimeline } from 'module/interface/timeline';
@@ -75,12 +75,11 @@ function Sidebar(props: SidebarProps) {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const hasValue = watch('name') ? true : false;
   const [hasInput, setHasInput] = useState(false);
-  // const sortedTimelines = timelines.sort((a, b) =>
-  //   a.name.localeCompare(b.name)
-  // );
+  const sortedTimelines = timelines.sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
 
   const handleAddTimeline = (data: FormInputs) => {
-    alert('clicked');
     if (!data.name) {
       return;
     }
@@ -127,20 +126,29 @@ function Sidebar(props: SidebarProps) {
     };
 
     async function createTimeline() {
-      let thisTimelineId = await api.API.Timeline.Create(
+      // create an audience first
+      let thisAudienceId = await api.API.Audience.Create(
         name,
-        desc,
         userId,
-        audienceId,
         organizationId,
       );
-      if (thisTimelineId) {
-        const thisTimeline = {
-          ...timeline,
-          timelineId: thisTimelineId,
-        };
-        setCurrentTimeline(thisTimeline);
-        setRefresh(true);
+
+      if (thisAudienceId) {
+        let thisTimelineId = await api.API.Timeline.Create(
+          name,
+          desc,
+          userId,
+          audienceId,
+          organizationId,
+        );
+        if (thisTimelineId) {
+          const thisTimeline = {
+            ...timeline,
+            timelineId: thisTimelineId,
+          };
+          setCurrentTimeline(thisTimeline);
+          setRefresh(true);
+        }
       }
     }
     createTimeline();
@@ -160,6 +168,8 @@ function Sidebar(props: SidebarProps) {
     }
   }, [addTimelineFocused]);
 
+  // console.log(watch("name"))
+
   return (
     <PlasmicSidebar
       hasValue={hasValue}
@@ -171,32 +181,34 @@ function Sidebar(props: SidebarProps) {
       sidebarForm={{
         onSubmit: handleSubmit(handleAddTimeline),
       }}
-      // timelinesContainer={{
-      //   children: sortedTimelines.map((timeline) => (
-      //     <SidebarItem
-      //       name={timeline.name}
-      //       isCurrent={timeline.isCurrent}
-      //       onClick={() => {
-      //         const name = timeline.name;
-      //
-      //         const thisTimeline = timelines.filter(
-      //           (clickedTimeline) =>
-      //             timeline.timelineId === clickedTimeline.timelineId
-      //         )[0];
-      //
-      //         const currentTimelines = timelines.map((timeline) => {
-      //           const isCurrent =
-      //             name === timeline.name ? !timeline.isCurrent : false;
-      //
-      //           return { ...timeline, isCurrent: isCurrent };
-      //         });
-      //         setTimelines(currentTimelines);
-      //         setCurrentTimeline(thisTimeline);
-      //         setRefresh(true);
-      //       }}
-      //     />
-      //   )),
-      // }}
+      timelinesContainer={{
+        children: sortedTimelines.map((timeline) => (
+          <SidebarItem
+            name={timeline.name}
+            isCurrent={timeline.isCurrent}
+            onClick={() => {
+              const name = timeline.name;
+
+              const thisTimeline = timelines.filter(
+                (clickedTimeline) =>
+                  timeline.timelineId === clickedTimeline.timelineId,
+              )[0];
+
+              const currentTimelines = timelines.map((timeline) => {
+                const isCurrent =
+                  name === timeline.name
+                    ? !timeline.isCurrent
+                    : false;
+
+                return { ...timeline, isCurrent: isCurrent };
+              });
+              setTimelines(currentTimelines);
+              setCurrentTimeline(thisTimeline);
+              setRefresh(true);
+            }}
+          />
+        )),
+      }}
       addTimelineInput={{
         name: 'name',
         ref: (e) => {
