@@ -3,7 +3,7 @@ import {
   CreateI_Obj,
   CreateI_Obj_Property,
 } from "module/api/audience/proto/create_pb";
-import {APIClient} from "module/api/audience/proto/ApiServiceClientPb"
+import { APIClient } from "module/api/audience/proto/ApiServiceClientPb";
 import * as env from "module/env";
 
 const USERIDKEY = "user.venturemark.co/id";
