@@ -9,12 +9,12 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import * as grpcWeb from "grpc-web";
+import * as grpcWeb from 'grpc-web';
 
-import * as pbf_message_create_pb from "../../pbf/message/create_pb";
-import * as pbf_message_delete_pb from "../../pbf/message/delete_pb";
-import * as pbf_message_search_pb from "../../pbf/message/search_pb";
-import * as pbf_message_update_pb from "../../pbf/message/update_pb";
+import * as pbf_message_create_pb from '../../pbf/message/create_pb';
+import * as pbf_message_delete_pb from '../../pbf/message/delete_pb';
+import * as pbf_message_search_pb from '../../pbf/message/search_pb';
+import * as pbf_message_update_pb from '../../pbf/message/update_pb';
 
 export class APIClient {
   client_: grpcWeb.AbstractClientBase;
@@ -25,11 +25,11 @@ export class APIClient {
   constructor(
     hostname: string,
     credentials?: null | { [index: string]: string },
-    options?: null | { [index: string]: any }
+    options?: null | { [index: string]: any },
   ) {
     if (!options) options = {};
     if (!credentials) credentials = {};
-    options["format"] = "text";
+    options['format'] = 'text';
 
     this.client_ = new grpcWeb.GrpcWebClientBase(options);
     this.hostname_ = hostname;
@@ -42,12 +42,12 @@ export class APIClient {
     (request: pbf_message_create_pb.CreateI) => {
       return request.serializeBinary();
     },
-    pbf_message_create_pb.CreateO.deserializeBinary
+    pbf_message_create_pb.CreateO.deserializeBinary,
   );
 
   create(
     request: pbf_message_create_pb.CreateI,
-    metadata: grpcWeb.Metadata | null
+    metadata: grpcWeb.Metadata | null,
   ): Promise<pbf_message_create_pb.CreateO>;
 
   create(
@@ -55,8 +55,8 @@ export class APIClient {
     metadata: grpcWeb.Metadata | null,
     callback: (
       err: grpcWeb.Error,
-      response: pbf_message_create_pb.CreateO
-    ) => void
+      response: pbf_message_create_pb.CreateO,
+    ) => void,
   ): grpcWeb.ClientReadableStream<pbf_message_create_pb.CreateO>;
 
   create(
@@ -64,23 +64,23 @@ export class APIClient {
     metadata: grpcWeb.Metadata | null,
     callback?: (
       err: grpcWeb.Error,
-      response: pbf_message_create_pb.CreateO
-    ) => void
+      response: pbf_message_create_pb.CreateO,
+    ) => void,
   ) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        this.hostname_ + "/message.API/Create",
+        this.hostname_ + '/message.API/Create',
         request,
         metadata || {},
         this.methodInfoCreate,
-        callback
+        callback,
       );
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/message.API/Create",
+      this.hostname_ + '/message.API/Create',
       request,
       metadata || {},
-      this.methodInfoCreate
+      this.methodInfoCreate,
     );
   }
 
@@ -89,12 +89,12 @@ export class APIClient {
     (request: pbf_message_delete_pb.DeleteI) => {
       return request.serializeBinary();
     },
-    pbf_message_delete_pb.DeleteO.deserializeBinary
+    pbf_message_delete_pb.DeleteO.deserializeBinary,
   );
 
   delete(
     request: pbf_message_delete_pb.DeleteI,
-    metadata: grpcWeb.Metadata | null
+    metadata: grpcWeb.Metadata | null,
   ): Promise<pbf_message_delete_pb.DeleteO>;
 
   delete(
@@ -102,8 +102,8 @@ export class APIClient {
     metadata: grpcWeb.Metadata | null,
     callback: (
       err: grpcWeb.Error,
-      response: pbf_message_delete_pb.DeleteO
-    ) => void
+      response: pbf_message_delete_pb.DeleteO,
+    ) => void,
   ): grpcWeb.ClientReadableStream<pbf_message_delete_pb.DeleteO>;
 
   delete(
@@ -111,23 +111,23 @@ export class APIClient {
     metadata: grpcWeb.Metadata | null,
     callback?: (
       err: grpcWeb.Error,
-      response: pbf_message_delete_pb.DeleteO
-    ) => void
+      response: pbf_message_delete_pb.DeleteO,
+    ) => void,
   ) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        this.hostname_ + "/message.API/Delete",
+        this.hostname_ + '/message.API/Delete',
         request,
         metadata || {},
         this.methodInfoDelete,
-        callback
+        callback,
       );
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/message.API/Delete",
+      this.hostname_ + '/message.API/Delete',
       request,
       metadata || {},
-      this.methodInfoDelete
+      this.methodInfoDelete,
     );
   }
 
@@ -136,12 +136,12 @@ export class APIClient {
     (request: pbf_message_search_pb.SearchI) => {
       return request.serializeBinary();
     },
-    pbf_message_search_pb.SearchO.deserializeBinary
+    pbf_message_search_pb.SearchO.deserializeBinary,
   );
 
   search(
     request: pbf_message_search_pb.SearchI,
-    metadata: grpcWeb.Metadata | null
+    metadata: grpcWeb.Metadata | null,
   ): Promise<pbf_message_search_pb.SearchO>;
 
   search(
@@ -149,8 +149,8 @@ export class APIClient {
     metadata: grpcWeb.Metadata | null,
     callback: (
       err: grpcWeb.Error,
-      response: pbf_message_search_pb.SearchO
-    ) => void
+      response: pbf_message_search_pb.SearchO,
+    ) => void,
   ): grpcWeb.ClientReadableStream<pbf_message_search_pb.SearchO>;
 
   search(
@@ -158,23 +158,23 @@ export class APIClient {
     metadata: grpcWeb.Metadata | null,
     callback?: (
       err: grpcWeb.Error,
-      response: pbf_message_search_pb.SearchO
-    ) => void
+      response: pbf_message_search_pb.SearchO,
+    ) => void,
   ) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        this.hostname_ + "/message.API/Search",
+        this.hostname_ + '/message.API/Search',
         request,
         metadata || {},
         this.methodInfoSearch,
-        callback
+        callback,
       );
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/message.API/Search",
+      this.hostname_ + '/message.API/Search',
       request,
       metadata || {},
-      this.methodInfoSearch
+      this.methodInfoSearch,
     );
   }
 
@@ -183,12 +183,12 @@ export class APIClient {
     (request: pbf_message_update_pb.UpdateI) => {
       return request.serializeBinary();
     },
-    pbf_message_update_pb.UpdateO.deserializeBinary
+    pbf_message_update_pb.UpdateO.deserializeBinary,
   );
 
   update(
     request: pbf_message_update_pb.UpdateI,
-    metadata: grpcWeb.Metadata | null
+    metadata: grpcWeb.Metadata | null,
   ): Promise<pbf_message_update_pb.UpdateO>;
 
   update(
@@ -196,8 +196,8 @@ export class APIClient {
     metadata: grpcWeb.Metadata | null,
     callback: (
       err: grpcWeb.Error,
-      response: pbf_message_update_pb.UpdateO
-    ) => void
+      response: pbf_message_update_pb.UpdateO,
+    ) => void,
   ): grpcWeb.ClientReadableStream<pbf_message_update_pb.UpdateO>;
 
   update(
@@ -205,23 +205,23 @@ export class APIClient {
     metadata: grpcWeb.Metadata | null,
     callback?: (
       err: grpcWeb.Error,
-      response: pbf_message_update_pb.UpdateO
-    ) => void
+      response: pbf_message_update_pb.UpdateO,
+    ) => void,
   ) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        this.hostname_ + "/message.API/Update",
+        this.hostname_ + '/message.API/Update',
         request,
         metadata || {},
         this.methodInfoUpdate,
-        callback
+        callback,
       );
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/message.API/Update",
+      this.hostname_ + '/message.API/Update',
       request,
       metadata || {},
-      this.methodInfoUpdate
+      this.methodInfoUpdate,
     );
   }
 }

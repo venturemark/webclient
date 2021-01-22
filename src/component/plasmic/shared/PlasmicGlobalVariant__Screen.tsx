@@ -2,17 +2,17 @@
 /* eslint-disable */
 /* tslint:disable */
 /* prettier-ignore-start */
-import * as React from "react";
-export type ScreenValue = "mobile" | "desktop" | "tablet";
-export const ScreenContext = React.createContext<ScreenValue | undefined>(
-  "PLEASE_RENDER_INSIDE_PROVIDER" as any
-);
+import * as React from 'react';
+export type ScreenValue = 'mobile' | 'desktop' | 'tablet';
+export const ScreenContext = React.createContext<
+  ScreenValue | undefined
+>('PLEASE_RENDER_INSIDE_PROVIDER' as any);
 
-const screenVariants: ScreenValue[] = ["mobile", "desktop", "tablet"];
+const screenVariants: ScreenValue[] = ['mobile', 'desktop', 'tablet'];
 const screenQueries = [
-  "(min-width:0px) and (max-width:760px)",
-  "(min-width:1440px)",
-  "(min-width:760px) and (max-width:1440px)",
+  '(min-width:0px) and (max-width:760px)',
+  '(min-width:1440px)',
+  '(min-width:760px) and (max-width:1440px)',
 ];
 
 function matchScreenVariant() {
@@ -20,12 +20,14 @@ function matchScreenVariant() {
     return undefined;
   }
   const index = screenQueries.findIndex(
-    (q) => globalThis.matchMedia(q).matches
+    (q) => globalThis.matchMedia(q).matches,
   );
   return index >= 0 ? screenVariants[index] : undefined;
 }
 
-export function ScreenVariantProvider(props: { children?: React.ReactNode }) {
+export function ScreenVariantProvider(props: {
+  children?: React.ReactNode;
+}) {
   const [value, setValue] = React.useState<ScreenValue>();
   React.useEffect(() => {
     const handler = () => {
@@ -35,8 +37,8 @@ export function ScreenVariantProvider(props: { children?: React.ReactNode }) {
       }
     };
     handler();
-    window.addEventListener("resize", handler);
-    return () => window.removeEventListener("resize", handler);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
   }, [value]);
   return (
     <ScreenContext.Provider value={value}>

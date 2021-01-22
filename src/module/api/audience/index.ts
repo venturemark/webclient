@@ -1,5 +1,5 @@
 import * as create from './create';
 
-export const MetricUpdate = {
+export const Audience = {
   Create: create.Create,
 };
