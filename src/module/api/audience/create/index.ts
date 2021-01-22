@@ -1,8 +1,9 @@
-import * as apigents from "@venturemark/apigents";
 import {
+  CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
 } from "module/api/audience/proto/create_pb";
+import {APIClient} from "module/api/audience/proto/ApiServiceClientPb"
 import * as env from "module/env";
 
 const USERIDKEY = "user.venturemark.co/id";
@@ -13,8 +14,8 @@ export async function Create(
   userId: string,
   organizationId: string
 ): Promise<any> {
-  const client = new apigents.Audience.Client(env.APIEndpoint());
-  const req = new apigents.Audience.Create.I();
+  const client = new APIClient(env.APIEndpoint());
+  const req = new CreateI();
 
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
@@ -22,7 +23,7 @@ export async function Create(
   userList.push(userId);
 
   objProperty.setName(name);
-  objProperty.setUserList(userList); // I'm not sure how we're supposed to manage members of an audience.
+  objProperty.setUserList(userList); // Right now an audience doesn't have to have members
   obj.getMetadataMap().set(USERIDKEY, userId);
   obj.getMetadataMap().set(ORGANIZATIONIDKEY, organizationId);
   obj.setProperty(objProperty);
