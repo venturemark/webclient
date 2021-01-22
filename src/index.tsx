@@ -1,7 +1,7 @@
 import "index.css";
 
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import React from "react";
 import ReactDOM from "react-dom";
 import { ScreenVariantProvider } from "component/plasmic/shared/PlasmicGlobalVariant__Screen";
@@ -9,7 +9,7 @@ import { ScreenVariantProvider } from "component/plasmic/shared/PlasmicGlobalVar
 import * as app from "component/app";
 import reportWebVitals from "reportWebVitals";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
