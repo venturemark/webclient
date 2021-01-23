@@ -1,11 +1,20 @@
 .root {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 300px;
   position: relative;
   padding: 0px 0px 10px;
+}
+.root > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: calc(0px - 9px);
+  height: calc(100% + 9px);
+}
+.root > :global(.__wab_flex-container) > *,
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 9px;
 }
 .box__vrRjI {
   display: flex;
@@ -34,8 +43,11 @@
   display: flex;
   position: relative;
   width: 100%;
+  margin-top: calc(0px + 9px) !important;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
   min-width: 0;
-  margin: 0px 0px 10px;
 }
 .textbox {
   position: relative;

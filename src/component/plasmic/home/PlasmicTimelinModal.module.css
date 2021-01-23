@@ -1,0 +1,97 @@
+.group55 {
+  opacity: 1;
+  transform: scale(1, 1) rotate(0deg);
+  width: 483px;
+  height: 481px;
+  display: block;
+  box-shadow: 2px 4px 15px 10px rgba(214, 214, 214, 0.5);
+  flex-direction: column;
+  padding-top: 30px;
+  background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+  position: relative;
+  border-radius: 10px;
+}
+.booking3DaysBefor2 {
+  opacity: 1;
+  background-color: transparent;
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  text-transform: none;
+  text-decoration-line: none;
+  font-family: "SF Pro Display";
+  font-weight: 900;
+  letter-spacing: 0.491px;
+  line-height: 18px;
+  color: rgba(36, 25, 62, 1);
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
+  transform-origin: top left;
+  min-width: 0;
+  margin: 0px 0px 40px;
+}
+.inputField__fzPe3:global(.__wab_instance) {
+  position: absolute;
+  align-self: center;
+  left: 92px;
+  top: 88px;
+}
+.textbox {
+  position: relative;
+  width: 100%;
+  padding-top: -73px;
+  min-width: 0;
+  border-radius: 10px;
+  margin: 0;
+}
+.inputField__hwxq0:global(.__wab_instance) {
+  position: absolute;
+  align-self: center;
+  left: 92px;
+  top: 166px;
+}
+.booking3DaysBefor {
+  height: auto;
+}
+.textarea {
+  position: relative;
+  width: 100%;
+  padding-top: -73px;
+  min-height: 100px;
+  min-width: 0;
+  border-radius: 10px;
+  margin: 0;
+}
+.button:global(.__wab_instance) {
+  position: absolute;
+  top: 313px;
+  left: 162px;
+  align-self: center;
+  margin: 0px 0px 20px;
+}
+.booking3DaysBefor4 {
+  opacity: 1;
+  background-color: transparent;
+  display: block;
+  font-size: 14px;
+  text-align: left;
+  text-transform: none;
+  text-decoration-line: underline;
+  font-family: "SF Pro Display";
+  font-weight: 900;
+  letter-spacing: 0.491px;
+  line-height: 18px;
+  color: rgba(36, 25, 62, 1);
+  position: absolute;
+  top: 377px;
+  left: 215px;
+  width: auto;
+  height: auto;
+  transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
+  transform-origin: top left;
+  align-self: center;
+}

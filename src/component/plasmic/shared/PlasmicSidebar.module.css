@@ -92,19 +92,9 @@
 .organizationName__hasInput:global(.__wab_instance) {
   left: auto;
   top: auto;
+  width: 223px;
 }
-.timelinesContainer {
-  display: flex;
-  background-color: rgba(68, 192, 255, 0);
-  width: 100%;
-  height: auto;
-  flex-direction: column;
-  border-top-style: solid;
-  border-top-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
-  overflow: hidden;
-  min-width: 0;
-}
-.sidebarForm {
+.inputContainer {
   display: block;
   position: relative;
   background-color: rgba(68, 192, 255, 0.2);
@@ -112,7 +102,7 @@
   height: 12px;
   flex-shrink: 0;
 }
-.sidebarForm__hasInput {
+.inputContainer__hasInput {
   width: auto;
   height: auto;
   display: inline-flex;
@@ -121,7 +111,7 @@
   background-color: rgba(68, 192, 255, 0);
   padding-top: 10px;
 }
-.sidebarForm__hasInput > :global(.__wab_flex-container) {
+.inputContainer__hasInput > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: center;
   margin-left: calc(0px - 12px);
@@ -129,8 +119,8 @@
   margin-top: calc(0px - 0px);
   height: calc(100% + 0px);
 }
-.sidebarForm__hasInput > :global(.__wab_flex-container) > *,
-.sidebarForm__hasInput
+.inputContainer__hasInput > :global(.__wab_flex-container) > *,
+.inputContainer__hasInput
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > * {
@@ -152,20 +142,38 @@
   top: auto;
   color: rgba(38, 26, 63, 0.5) /* plasmic-token: lwU_HL5JBOkJ3g0 */;
 }
-.addTimelineInput {
+.sidebarForm {
+  display: flex;
   position: absolute;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  top: 0px;
+  left: 0px;
+}
+.sidebarForm__hasInput {
+  position: relative;
+  top: auto;
+  left: auto;
+}
+.addTimelineInput {
   width: 180px;
   height: 26px;
   padding-left: 5px;
-  left: 0px;
-  top: 0px;
+  flex-shrink: 0;
   border-radius: 5px;
   border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.addTimelineInput__hasInput {
-  position: relative;
-  left: auto;
-  top: auto;
+.timelinesContainer {
+  display: flex;
+  background-color: rgba(68, 192, 255, 0);
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  border-top-style: solid;
+  border-top-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  overflow: hidden;
+  min-width: 0;
 }
 .sidebarItem__iKtWk:global(.__wab_instance) {
   position: relative;

@@ -105,6 +105,11 @@
     flex-shrink: 0;
   }
 }
+@media (min-width: 1440px) {
+  .sidebar:global(.__wab_instance) {
+    flex-shrink: 0;
+  }
+}
 .main {
   display: flex;
   position: relative;

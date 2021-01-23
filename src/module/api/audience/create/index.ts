@@ -14,13 +14,21 @@ export async function Create(
   userId: string,
   organizationId: string,
 ): Promise<any> {
+  console.log(
+    'send to create audience:',
+    name,
+    userId,
+    organizationId,
+  );
+
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
-  const userList = [];
-  userList.push(userId);
+
+  const userList = ['xh3b4sd', 'marcojelli'];
+  // userList.push(userId);
 
   objProperty.setName(name);
   objProperty.setUserList(userList); // Right now an audience doesn't have to have members
@@ -29,6 +37,8 @@ export async function Create(
   obj.setProperty(objProperty);
 
   req.setObj(obj);
+
+  console.log(req.toObject());
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, {}, function (err: any, res: any) {

@@ -4,17 +4,14 @@ import {
   CreateI_Obj_Property,
 } from 'module/api/timeline/proto/create_pb';
 import * as env from 'module/env';
+import { INewTimeline } from 'module/interface/timeline';
 
 const USERIDKEY = 'user.venturemark.co/id';
 const ORGANIZATIONIDKEY = 'organization.venturemark.co/id';
 const AUDIENCEIDKEY = 'audience.venturemark.co/id';
 
 export async function Create(
-  name: string,
-  desc: string,
-  userId: string,
-  audienceId: string,
-  organizationId: string,
+  newTimeline: INewTimeline,
 ): Promise<any> {
   const client = new apigents.Timeline.Client(env.APIEndpoint());
   const req = new apigents.Timeline.Create.I();
@@ -22,11 +19,13 @@ export async function Create(
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
 
-  objProperty.setName(name);
-  objProperty.setDesc(desc);
-  obj.getMetadataMap().set(USERIDKEY, userId);
-  obj.getMetadataMap().set(ORGANIZATIONIDKEY, organizationId);
-  obj.getMetadataMap().set(AUDIENCEIDKEY, audienceId);
+  objProperty.setName(newTimeline.name);
+  objProperty.setDesc(newTimeline.desc);
+  obj.getMetadataMap().set(USERIDKEY, newTimeline.userId);
+  obj
+    .getMetadataMap()
+    .set(ORGANIZATIONIDKEY, newTimeline.organizationId);
+  obj.getMetadataMap().set(AUDIENCEIDKEY, newTimeline.audienceId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);

@@ -104,16 +104,14 @@ function PlasmicHome__RenderFunc(props: {
         />
       </div>
 
-      {(
-        hasVariant(globalVariants, 'screen', 'mobile') ? false : true
-      ) ? (
-        <div className={classNames(defaultcss.all, sty.box___27XeS)}>
+      <div className={classNames(defaultcss.all, sty.box___27XeS)}>
+        {(
+          hasVariant(globalVariants, 'screen', 'mobile')
+            ? false
+            : true
+        ) ? (
           <div className={classNames(defaultcss.all, sty.box__sqRU)}>
-            {(
-              hasVariant(globalVariants, 'screen', 'mobile')
-                ? false
-                : true
-            ) ? (
+            {true ? (
               <Sidebar
                 data-plasmic-name={'sidebar'}
                 data-plasmic-override={overrides.sidebar}
@@ -121,99 +119,99 @@ function PlasmicHome__RenderFunc(props: {
               />
             ) : null}
           </div>
+        ) : null}
+
+        <p.Stack
+          as={'div'}
+          data-plasmic-name={'main'}
+          data-plasmic-override={overrides.main}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.main)}
+        >
+          <MainHeader
+            data-plasmic-name={'mainHeader'}
+            data-plasmic-override={overrides.mainHeader}
+            className={classNames('__wab_instance', sty.mainHeader)}
+          />
 
           <p.Stack
             as={'div'}
-            data-plasmic-name={'main'}
-            data-plasmic-override={overrides.main}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.main)}
+            className={classNames(defaultcss.all, sty.box__ineb5)}
           >
-            <MainHeader
-              data-plasmic-name={'mainHeader'}
-              data-plasmic-override={overrides.mainHeader}
-              className={classNames('__wab_instance', sty.mainHeader)}
+            <div
+              data-plasmic-name={'actionBarContainer'}
+              data-plasmic-override={overrides.actionBarContainer}
+              className={classNames(
+                defaultcss.all,
+                sty.actionBarContainer,
+              )}
+            >
+              <ActionBar
+                data-plasmic-name={'actionBar'}
+                data-plasmic-override={overrides.actionBar}
+                className={classNames(
+                  '__wab_instance',
+                  sty.actionBar,
+                )}
+                error={
+                  hasVariant(globalVariants, 'screen', 'mobile')
+                    ? []
+                    : []
+                }
+                errorMessage={
+                  <div
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.box__pmC0Q,
+                    )}
+                  >
+                    {'Please enter a number value'}
+                  </div>
+                }
+                isActive={'isActive' as const}
+                text={
+                  hasVariant(globalVariants, 'screen', 'mobile')
+                    ? []
+                    : []
+                }
+              />
+            </div>
+
+            <div
+              className={classNames(defaultcss.all, sty.box__g9Hh0)}
             />
 
             <p.Stack
               as={'div'}
+              data-plasmic-name={'updatesContainer'}
+              data-plasmic-override={overrides.updatesContainer}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__ineb5)}
+              className={classNames(
+                defaultcss.all,
+                sty.updatesContainer,
+              )}
             >
               <div
-                data-plasmic-name={'actionBarContainer'}
-                data-plasmic-override={overrides.actionBarContainer}
                 className={classNames(
                   defaultcss.all,
-                  sty.actionBarContainer,
+                  defaultcss.__wab_text,
+                  sty.box__ezjEq,
                 )}
               >
-                <ActionBar
-                  data-plasmic-name={'actionBar'}
-                  data-plasmic-override={overrides.actionBar}
-                  className={classNames(
-                    '__wab_instance',
-                    sty.actionBar,
-                  )}
-                  error={
-                    hasVariant(globalVariants, 'screen', 'mobile')
-                      ? []
-                      : []
-                  }
-                  errorMessage={
-                    <div
-                      className={classNames(
-                        defaultcss.all,
-                        defaultcss.__wab_text,
-                        sty.box__pmC0Q,
-                      )}
-                    >
-                      {'Please enter a number value'}
-                    </div>
-                  }
-                  isActive={'isActive' as const}
-                  text={
-                    hasVariant(globalVariants, 'screen', 'mobile')
-                      ? []
-                      : []
-                  }
-                />
+                {'new updates'}
               </div>
 
-              <div
-                className={classNames(defaultcss.all, sty.box__g9Hh0)}
+              <Update
+                data-plasmic-name={'update'}
+                data-plasmic-override={overrides.update}
+                className={classNames('__wab_instance')}
               />
-
-              <p.Stack
-                as={'div'}
-                data-plasmic-name={'updatesContainer'}
-                data-plasmic-override={overrides.updatesContainer}
-                hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  sty.updatesContainer,
-                )}
-              >
-                <div
-                  className={classNames(
-                    defaultcss.all,
-                    defaultcss.__wab_text,
-                    sty.box__ezjEq,
-                  )}
-                >
-                  {'new updates'}
-                </div>
-
-                <Update
-                  data-plasmic-name={'update'}
-                  data-plasmic-override={overrides.update}
-                  className={classNames('__wab_instance')}
-                />
-              </p.Stack>
             </p.Stack>
           </p.Stack>
-        </div>
-      ) : null}
+        </p.Stack>
+      </div>
     </p.Stack>
   ) as React.ReactElement | null;
 }

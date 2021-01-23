@@ -326,6 +326,30 @@
           },
           "cssFilePath": "plasmic/home/PlasmicButton.module.css",
           "scheme": "blackbox"
+        },
+        {
+          "id": "sIIbkPiydb",
+          "name": "SidebarListItem",
+          "type": "managed",
+          "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+          "renderModuleFilePath": "plasmic/home/PlasmicSidebarListItem.tsx",
+          "importSpec": {
+            "modulePath": "SidebarListItem.tsx"
+          },
+          "cssFilePath": "plasmic/home/PlasmicSidebarListItem.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "BJX20CpONV",
+          "name": "TimelinModal",
+          "type": "managed",
+          "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+          "renderModuleFilePath": "plasmic/home/PlasmicTimelinModal.tsx",
+          "importSpec": {
+            "modulePath": "TimelinModal.tsx"
+          },
+          "cssFilePath": "plasmic/home/PlasmicTimelinModal.module.css",
+          "scheme": "blackbox"
         }
       ],
       "icons": [
@@ -338,9 +362,110 @@
           "id": "SDZiGHgVMN",
           "name": "BgIcon",
           "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Bg.tsx"
+        },
+        {
+          "id": "2Q8TV5jEdu",
+          "name": "RectangleIcon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Rectangle.tsx"
+        },
+        {
+          "id": "rw6-60ifYq",
+          "name": "LineIcon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Line.tsx"
+        },
+        {
+          "id": "PBQ7ELDIc1",
+          "name": "Rectangle571CopyIcon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Rectangle571Copy.tsx"
+        },
+        {
+          "id": "UfO6L4GAFYk",
+          "name": "Rectangle571Copy2Icon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Rectangle571Copy2.tsx"
+        },
+        {
+          "id": "9uuJ1si_pU",
+          "name": "OvalIcon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Oval.tsx"
+        },
+        {
+          "id": "RysJdjqIri",
+          "name": "VectorIcon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Vector.tsx"
+        },
+        {
+          "id": "u3tiQx-K1G",
+          "name": "Vector2Icon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Vector2.tsx"
+        },
+        {
+          "id": "66Rdkh9OJJ",
+          "name": "Mask4Icon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Mask4.tsx"
+        },
+        {
+          "id": "0RG_gVqJvl",
+          "name": "Line2Icon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Line2.tsx"
+        },
+        {
+          "id": "DeOD_uytMU",
+          "name": "Line21Icon",
+          "moduleFilePath": "plasmic/home/icons/PlasmicIcon__Line21.tsx"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "id": "_vO4a7Ndn",
+          "name": "Screen Shot 2017-11-30 at 8.58.55 PM",
+          "filePath": "plasmic/home/images/screenShot20171130At85855Pm.png"
+        },
+        {
+          "id": "KZcIn9bdkx",
+          "name": "image",
+          "filePath": "plasmic/home/images/image.png"
+        },
+        {
+          "id": "4o_QO6Mg5c",
+          "name": "image 2",
+          "filePath": "plasmic/home/images/image2.png"
+        },
+        {
+          "id": "-Xr_Od_0zh",
+          "name": "image 2 2",
+          "filePath": "plasmic/home/images/image22.png"
+        },
+        {
+          "id": "VkFn13pFbk",
+          "name": "image 3",
+          "filePath": "plasmic/home/images/image3.png"
+        },
+        {
+          "id": "NICkcXH132",
+          "name": "image 2.1",
+          "filePath": "plasmic/home/images/image21.png"
+        },
+        {
+          "id": "Wx0QEC55OWa",
+          "name": "Mask 2",
+          "filePath": "plasmic/home/images/mask2.svg"
+        },
+        {
+          "id": "8-qzhAIIxU7",
+          "name": "Mask 3",
+          "filePath": "plasmic/home/images/mask3.svg"
+        },
+        {
+          "id": "VkY5fPMSA",
+          "name": "image 2.1 2",
+          "filePath": "plasmic/home/images/image212.null"
+        },
+        {
+          "id": "1dcN-_7KBP",
+          "name": "Mask 5",
+          "filePath": "plasmic/home/images/mask5.svg"
+        }
+      ],
       "jsBundleThemes": []
     }
   ],

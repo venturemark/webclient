@@ -1,5 +1,4 @@
 import { IUpdate } from 'module/interface/update';
-import { IMetric } from 'module/interface/metric';
 
 export interface ITimeline {
   name: string;
@@ -12,4 +11,12 @@ export interface ITimeline {
   date?: string;
   isCurrent: boolean;
   updates: IUpdate[];
+}
+
+export interface INewTimeline {
+  name: string;
+  desc: string;
+  userId: string;
+  audienceId: string;
+  organizationId: string;
 }
