@@ -6,6 +6,7 @@ import {
   PlasmicHome,
   DefaultHomeProps,
 } from 'component/plasmic/home/PlasmicHome';
+import Update from 'component/update'
 import { initialValueEmpty } from 'component/editor/config/initialValues';
 import { Search } from '@venturemark/numnum';
 // import { format } from "date-fns";
@@ -78,7 +79,22 @@ export function Component(props: HomeProps) {
     },
   );
 
-  console.log('timelineQuery:', timelineQuery);
+  let timelineId = timelineQuery.data || "1"
+
+  // TODO: we need updateQuery to happen after timeline query (requires timeline id)
+  const updateQuery = useQuery<any, ErrorResponse>(
+    ['update'],
+    () => {
+      return api.API.Update.Search(
+        audienceId,
+        organizationId,
+        timelineId,
+        userId,
+      );
+    },
+  );
+
+  console.log('updateQuery:', updateQuery);
 
   // useEffect(() => {
   //   console.log(organizationId, userId);
@@ -228,6 +244,7 @@ export function Component(props: HomeProps) {
   // all cool we have the data
 
   let timelinesResponse = timelineQuery.data ?? [];
+  let updatesResponse = updateQuery.data ?? []
 
   console.log(timelineQuery.data);
 
@@ -247,22 +264,16 @@ export function Component(props: HomeProps) {
         editorShape: editorShape,
         setEditorShape: setEditorShape,
       }}
-      // updatesContainer={{
-      //   children: updates.map((update) => (
-      //     <Update
-      //       text={update.text}
-      //       key={update.updateId}
-      //       id={update.updateId}
-      //       dataKey={currentTimeline.dataKey}
-      //       data={metrics}
-      //       name={currentTimeline.name}
-      //       isFlipped={update.isFlipped}
-      //       isContext={update.isContext}
-      //       updates={updates}
-      //       setUpdates={setUpdates}
-      //     />
-      //   )),
-      // }}
+      updatesContainer={{
+        children: updatesResponse.map((update:any) => (
+          <Update
+            text={update.text}
+            key={update.updateId}
+            id={update.updateId}
+            name={currentTimeline.name}
+          />
+        )),
+      }}
     />
   );
 }
