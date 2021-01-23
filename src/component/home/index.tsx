@@ -79,7 +79,7 @@ export function Component(props: HomeProps) {
     },
   );
 
-  let timelineId = timelineQuery.data || "1"
+  let timelineId = timelineQuery.isSuccess? timelineQuery.data[0].timelineId : "1"
 
   // TODO: we need updateQuery to happen after timeline query (requires timeline id)
   const updateQuery = useQuery<any, ErrorResponse>(
@@ -259,6 +259,10 @@ export function Component(props: HomeProps) {
         organizationId: currentTimeline.userId || organizationId,
       }}
       actionBar={{
+        audienceId: audienceId,
+        organizationId: organizationId,
+        timelineId: timelineId,
+        userId: userId,
         errorMessage: editorShape.error,
         progress: editorShape.progress,
         editorShape: editorShape,

@@ -37,9 +37,6 @@ export async function Search(
       if (err) {
         console.log(err.code);
         console.log(err.message);
-        alert(
-          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`,
-        );
         reject(err);
       } else {
         const updatesPb = res.getObjList();

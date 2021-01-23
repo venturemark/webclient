@@ -81,7 +81,7 @@ export type PlasmicActionBar__OverridesType = {
   selectItemContainer?: p.Flex<'div'>;
   selectItem?: p.Flex<typeof SelectItem>;
   errorContainer?: p.Flex<'div'>;
-  button?: p.Flex<'button'>;
+  sendUpdate?: p.Flex<'button'>;
 };
 
 export interface DefaultActionBarProps {
@@ -483,14 +483,14 @@ function PlasmicActionBar__RenderFunc(props: {
           ) : null}
 
           <button
-            data-plasmic-name={'button'}
-            data-plasmic-override={overrides.button}
+            data-plasmic-name={'sendUpdate'}
+            data-plasmic-override={overrides.sendUpdate}
             className={classNames(
               defaultcss.button,
               defaultcss.__wab_text,
-              sty.button,
+              sty.sendUpdate,
               {
-                [sty.button__isActive]: hasVariant(
+                [sty.sendUpdate__isActive]: hasVariant(
                   variants,
                   'isActive',
                   'isActive',
@@ -516,7 +516,7 @@ const PlasmicDescendants = {
     'selectItemContainer',
     'selectItem',
     'errorContainer',
-    'button',
+    'sendUpdate',
   ],
 
   editorContainer: ['editorContainer', 'textContainer'],
@@ -526,7 +526,7 @@ const PlasmicDescendants = {
   selectItemContainer: ['selectItemContainer', 'selectItem'],
   selectItem: ['selectItem'],
   errorContainer: ['errorContainer'],
-  button: ['button'],
+  sendUpdate: ['sendUpdate'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -541,7 +541,7 @@ type NodeDefaultElementType = {
   selectItemContainer: 'div';
   selectItem: typeof SelectItem;
   errorContainer: 'div';
-  button: 'button';
+  sendUpdate: 'button';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -616,7 +616,7 @@ export const PlasmicActionBar = Object.assign(
     selectItemContainer: makeNodeComponent('selectItemContainer'),
     selectItem: makeNodeComponent('selectItem'),
     errorContainer: makeNodeComponent('errorContainer'),
-    button: makeNodeComponent('button'),
+    sendUpdate: makeNodeComponent('sendUpdate'),
 
     // Metadata about props expected for PlasmicActionBar
     internalVariantProps: PlasmicActionBar__VariantProps,

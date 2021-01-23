@@ -343,7 +343,7 @@
     text-align: center;
   }
 }
-.button {
+.sendUpdate {
   position: relative;
   align-self: flex-end;
   width: 164px;
@@ -359,7 +359,7 @@
   border-radius: 4px;
   border-width: 0px;
 }
-.button__isActive {
+.sendUpdate__isActive {
   position: relative;
   left: auto;
   top: auto;
