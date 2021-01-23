@@ -2,17 +2,14 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React, { useRef, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { format } from 'date-fns';
 import {
   PlasmicSidebar,
   DefaultSidebarProps,
 } from 'component/plasmic/shared/PlasmicSidebar';
 import SidebarItem from 'component/sidebaritem';
-import { options } from 'component/editor/config/initialValues';
-import { Node } from 'slate';
-import { ITimeline } from 'module/interface/timeline';
-import { IUpdate } from 'module/interface/update';
+import { ITimeline, INewTimeline } from 'module/interface/timeline';
 import * as api from 'module/api';
+import { useMutation, useQueryClient } from 'react-query';
 
 interface SidebarProps extends DefaultSidebarProps {
   timelines: ITimeline[];
@@ -28,33 +25,6 @@ interface SidebarProps extends DefaultSidebarProps {
 type FormInputs = {
   name: string;
 };
-
-const defaultText: Node[] = [
-  {
-    children: [
-      {
-        type: options.p.type,
-        children: [
-          {
-            text: 'Be Better Tomorrow',
-          },
-        ],
-      },
-    ],
-  },
-];
-
-const defaultUpdates: IUpdate[] = [
-  {
-    updateId: 'now',
-    userId: 'now',
-    timelineId: 'now',
-    numberValue: 23,
-    isFlipped: false,
-    isContext: false,
-    text: defaultText,
-  },
-];
 
 function Sidebar(props: SidebarProps) {
   const {
@@ -79,82 +49,49 @@ function Sidebar(props: SidebarProps) {
     a.name.localeCompare(b.name),
   );
 
+  const queryClient = useQueryClient();
+
+  // Mutations
+  // const audienceMutation = useMutation<any, any, any>((name) => {
+  //   return api.API.Audience.Create(
+  //     name,
+  //     userId,
+  //     organizationId,
+  //   );
+  // },{
+  //   onSuccess: () => {
+  //     // Invalidate and refetch
+  //     queryClient.invalidateQueries('audience')
+  //   },
+  // })
+
+  const timelineMutation = useMutation<any, any, any>(
+    (newTimeline) => {
+      return api.API.Timeline.Create(newTimeline);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries('timeline');
+      },
+    },
+  );
+
   const handleAddTimeline = (data: FormInputs) => {
     if (!data.name) {
       return;
     }
-    const name = data.name;
-    const desc = 'Lorem ipsum ...';
 
-    const duplicates = timelines.filter(
-      (timeline) => name === timeline.name,
-    );
-
-    if (duplicates.length > 0) {
-      return;
-    }
-
-    const date = format(new Date(), 'PP');
-    const timelineId = 'user.venturemark.co/id';
-
-    const defaultData = [
-      {
-        date: date,
-        [data.name]: 0,
-        updateId: date,
-        timelineId: timelineId,
-        metricId: date,
-      },
-    ];
-
-    const audienceId = '';
-    // this is temporary until we add create audience code
-
-    const timeline = {
-      name: name,
-      date: date,
-      stat: 'active',
-      desc: desc,
-      audienceId: audienceId,
-      organizationId: organizationId,
-      userId: userId,
-      timelineId: date,
-      dataKey: name,
-      updates: defaultUpdates,
-      data: defaultData,
-      isCurrent: true,
+    const newTimeline: INewTimeline = {
+      name: data.name,
+      desc: 'Lorem Ipsum...',
+      userId,
+      audienceId: '1',
+      organizationId,
     };
 
-    async function createTimeline() {
-      // create an audience first
-      let thisAudienceId = await api.API.Audience.Create(
-        name,
-        userId,
-        organizationId,
-      );
-
-      if (thisAudienceId) {
-        let thisTimelineId = await api.API.Timeline.Create(
-          name,
-          desc,
-          userId,
-          audienceId,
-          organizationId,
-        );
-        if (thisTimelineId) {
-          const thisTimeline = {
-            ...timeline,
-            timelineId: thisTimelineId,
-          };
-          setCurrentTimeline(thisTimeline);
-          setRefresh(true);
-        }
-      }
-    }
-    createTimeline();
-
-    const updatedTimelines = [timeline, ...timelines];
-    setTimelines(updatedTimelines);
+    // audienceMutation(timelineId)
+    timelineMutation.mutate(newTimeline);
 
     //reset form
     reset({
@@ -167,8 +104,6 @@ function Sidebar(props: SidebarProps) {
       nameRef?.current?.focus();
     }
   }, [addTimelineFocused]);
-
-  // console.log(watch("name"))
 
   return (
     <PlasmicSidebar

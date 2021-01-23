@@ -38,7 +38,6 @@ export function Component(props: HomeProps) {
   const organizationId = pathArray[1];
   const userId = pathArray[2];
 
-  const [timelines, setTimelines] = useState<ITimeline[]>([]);
   const [currentTimeline, setCurrentTimeline] = useState<ITimeline>(
     defaultTimeline,
   );
@@ -65,7 +64,8 @@ export function Component(props: HomeProps) {
     numberValue: defaultNumber[0],
     progress: defaultProgress,
   });
-  const audienceId = '';
+
+  let audienceId = '1';
 
   const timelineQuery = useQuery<any, ErrorResponse>(
     ['timeline'],
@@ -78,7 +78,7 @@ export function Component(props: HomeProps) {
     },
   );
 
-  console.log(timelineQuery);
+  console.log('timelineQuery:', timelineQuery);
 
   // useEffect(() => {
   //   console.log(organizationId, userId);
@@ -235,7 +235,6 @@ export function Component(props: HomeProps) {
     <PlasmicHome
       sidebar={{
         timelines: timelinesResponse,
-        setTimelines: setTimelines,
         refresh: refresh,
         setRefresh: setRefresh,
         setCurrentTimeline: setCurrentTimeline,
