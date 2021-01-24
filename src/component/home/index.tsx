@@ -78,8 +78,11 @@ export function Component(props: HomeProps) {
       );
     },
   );
-
-  let timelineId = timelineQuery.isSuccess? timelineQuery.data[0].timelineId : "1"
+  let timelineId = ""
+  if (timelineQuery.isSuccess) {
+    console.log("timeline query successful data", timelineQuery.data)
+    timelineId = timelineQuery.data.length > 0 ? timelineQuery.data[0].timelineId : ""
+  }
 
   // TODO: we need updateQuery to happen after timeline query (requires timeline id)
   const updateQuery = useQuery<any, ErrorResponse>(

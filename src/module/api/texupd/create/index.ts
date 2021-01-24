@@ -19,19 +19,21 @@ export async function Create(
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
+  console.log("newUpdate in create update", newUpdate)
+
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
 
   objProperty.setText(newUpdate.text);
   obj.getMetadataMap().set(AUDIENCEIDKEY, newUpdate.audienceId);
   obj.getMetadataMap().set(ORGANIZATIONIDKEY, newUpdate.organizationId);
-  obj.getMetadataMap().set(USERIDKEY, newUpdate.timelineId);
-  obj.getMetadataMap().set(TIMELINEIDKEY, newUpdate.userId);
+  obj.getMetadataMap().set(TIMELINEIDKEY, newUpdate.timelineId);
+  obj.getMetadataMap().set(USERIDKEY, newUpdate.userId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);
 
-  console.log('object to be created:', req);
+  console.log('object to be created:', req.toObject());
 //     {
 //         "obj": {
 //             "metadata": {
