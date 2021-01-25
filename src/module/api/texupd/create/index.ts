@@ -12,8 +12,6 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
-  console.log('newUpdate in create update', newUpdate);
-
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
 
@@ -28,32 +26,18 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
 
   req.setObj(obj);
 
-  console.log('object to be created:', req.toObject());
-  //     {
-  //         "obj": {
-  //             "metadata": {
-  //                 "audience.venturemark.co/id": "<id>",
-  //                 "organization.venturemark.co/id": "<id>",
-  //                 "timeline.venturemark.co/id": "<id>",
-  //                 "user.venturemark.co/id": "<id>"
-  //             },
-  //             "property": {
-  //                 "text": "Lorem ipsum ..."
-  //             }
-  //         }
-  //     }
-
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, {}, function (err: any, res: any) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
-        alert(
-          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`,
-        );
         reject(err);
       } else {
-        resolve(res.toObject().obj.metadataMap[0][1]);
+        const updatePb = res.getObj();
+        const metaPb = updatePb?.getMetadataMap();
+        const updateId = metaPb.get(key.UpdateID);
+
+        resolve(updateId);
       }
     });
   });

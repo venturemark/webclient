@@ -22,12 +22,10 @@ const defaultTimeline: ITimeline = {
   name: '',
   desc: '',
   stat: '',
-  audienceId: '',
   organizationId: '',
   timelineId: '',
   userId: '',
   isCurrent: false,
-  updates: [],
 };
 
 interface HomeProps extends DefaultHomeProps {}
@@ -80,7 +78,6 @@ export function Component(props: HomeProps) {
   );
   let timelineId = '';
   if (timelineQuery.isSuccess) {
-    console.log('timeline query successful data', timelineQuery.data);
     timelineId =
       timelineQuery.data.length > 0
         ? timelineQuery.data[0].timelineId
@@ -89,14 +86,8 @@ export function Component(props: HomeProps) {
 
   // TODO: we need updateQuery to happen after timeline query (requires timeline id)
   const updateQuery = useQuery<any, ErrorResponse>(['update'], () => {
-    return api.API.Update.Search(
-      organizationId,
-      timelineId,
-      userId,
-    );
+    return api.API.Update.Search(organizationId, timelineId, userId);
   });
-
-  console.log('updateQuery:', updateQuery);
 
   // useEffect(() => {
   //   console.log(organizationId, userId);
@@ -247,9 +238,6 @@ export function Component(props: HomeProps) {
 
   let timelinesResponse = timelineQuery.data ?? [];
   let updatesResponse = updateQuery.data ?? [];
-
-  console.log(timelinesResponse);
-  console.log(updatesResponse);
 
   return (
     <PlasmicHome

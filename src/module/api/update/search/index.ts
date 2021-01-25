@@ -33,32 +33,23 @@ export async function Search(
         reject(err);
       } else {
         const updatesPb = res.getObjList();
+        console.log("we're getting updates!", updatesPb)
 
         const updates = updatesPb.map((updatePb: SearchO_Obj) => {
           const propertyPb = updatePb.getProperty();
+          const metaPb = updatePb.getMetadataMap();
+
           const text = propertyPb?.toObject().text;
 
-          console.log("Meta data", updatePb
-          .getMetadataMap()
-          .toObject())
-          const organizationId = updatePb
-            .getMetadataMap()
-            .toObject()[0][1] as string;
-          const timelineId = updatePb
-            .getMetadataMap()
-            .toObject()[1][1] as string;
-          const updateId = updatePb
-            .getMetadataMap()
-            .toObject()[2][1] as string;
-          
+          const organizationId = metaPb.get(key.OrganizationID);
+          const timelineId = metaPb.get(key.TimelineID);
+          const updateId = metaPb.get(key.UpdateID);
 
           const update: any = {
             organizationId: organizationId,
             timelineId: timelineId,
             updateId: updateId,
             text: text,
-            isFlipped: false,
-            isContext: false,
           };
           return update;
         });

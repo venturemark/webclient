@@ -37,34 +37,23 @@ export async function Search(
 
           const timelines = timelinesPb.map(
             (timelinePb: SearchO_Obj) => {
-              const propertyPb = timelinePb.getProperty();
-              console.log(propertyPb?.toObject());
-              const name = propertyPb?.toObject().name as string;
-              const desc = propertyPb?.toObject().desc as string;
-              const stat = propertyPb?.toObject().stat as string;
-              // do not assume order?
-              // do not assume input and output have same structure
-              // do not work with indices
-              console.log("Meta data timeline", timelinePb
-          .getMetadataMap()
-          .toObject())
-              const organizationId = timelinePb
-                .getMetadataMap()
-                .toObject()[0][1] as string;
-              const timelineId = timelinePb
-                .getMetadataMap()
-                .toObject()[1][1] as string;
+              const propertiesPb = timelinePb.getProperty();
+              const metaPb = timelinePb.getMetadataMap();
 
-              console.log(timelinePb.getMetadataMap().toObject());
+              const name = propertiesPb?.getName() as string;
+              const desc = propertiesPb?.getDesc() as string;
+              const stat = propertiesPb?.getStat() as string;
+              const organizationId = metaPb.get(key.OrganizationID);
+              const timelineId = metaPb.get(key.TimelineID);
 
-              const timeline: any = {
+              const timeline: ITimeline = {
                 name: name,
                 desc: desc,
                 stat: stat,
                 organizationId: organizationId,
                 timelineId: timelineId,
+                userId: '',
                 isCurrent: false,
-                updates: [],
               };
               return timeline;
             },

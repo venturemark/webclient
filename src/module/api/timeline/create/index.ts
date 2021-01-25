@@ -1,6 +1,7 @@
 import * as apigents from '@venturemark/apigents';
 import {
   CreateI_Obj,
+  CreateO,
   CreateI_Obj_Property,
 } from 'module/api/timeline/proto/create_pb';
 import * as env from 'module/env';
@@ -28,16 +29,17 @@ export async function Create(
   req.setObj(obj);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
-    client.create(req, {}, function (err: any, res: any) {
+    client.create(req, {}, function (err: any, res: CreateO) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
-        alert(
-          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`,
-        );
         reject(err);
       } else {
-        resolve(res.toObject().obj.metadataMap[0][1]);
+        const timelinePb = res.getObj();
+        const metaPb = timelinePb?.getMetadataMap();
+        const timelineId = metaPb.get(key.TimelineID);
+
+        resolve(timelineId);
       }
     });
   });
