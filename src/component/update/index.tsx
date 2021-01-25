@@ -14,10 +14,7 @@ interface UpdateProps extends DefaultUpdateProps {
 }
 
 function Update(props: UpdateProps) {
-  const {
-    text,
-    name,
-  } = props;
+  const { text, name } = props;
 
   return (
     <PlasmicUpdate

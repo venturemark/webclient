@@ -6,7 +6,7 @@ import {
   PlasmicHome,
   DefaultHomeProps,
 } from 'component/plasmic/home/PlasmicHome';
-import Update from 'component/update'
+import Update from 'component/update';
 import { initialValueEmpty } from 'component/editor/config/initialValues';
 import { Search } from '@venturemark/numnum';
 // import { format } from "date-fns";
@@ -78,24 +78,24 @@ export function Component(props: HomeProps) {
       );
     },
   );
-  let timelineId = ""
+  let timelineId = '';
   if (timelineQuery.isSuccess) {
-    console.log("timeline query successful data", timelineQuery.data)
-    timelineId = timelineQuery.data.length > 0 ? timelineQuery.data[0].timelineId : ""
+    console.log('timeline query successful data', timelineQuery.data);
+    timelineId =
+      timelineQuery.data.length > 0
+        ? timelineQuery.data[0].timelineId
+        : '';
   }
 
   // TODO: we need updateQuery to happen after timeline query (requires timeline id)
-  const updateQuery = useQuery<any, ErrorResponse>(
-    ['update'],
-    () => {
-      return api.API.Update.Search(
-        audienceId,
-        organizationId,
-        timelineId,
-        userId,
-      );
-    },
-  );
+  const updateQuery = useQuery<any, ErrorResponse>(['update'], () => {
+    return api.API.Update.Search(
+      audienceId,
+      organizationId,
+      timelineId,
+      userId,
+    );
+  });
 
   console.log('updateQuery:', updateQuery);
 
@@ -247,7 +247,7 @@ export function Component(props: HomeProps) {
   // all cool we have the data
 
   let timelinesResponse = timelineQuery.data ?? [];
-  let updatesResponse = updateQuery.data ?? []
+  let updatesResponse = updateQuery.data ?? [];
 
   console.log(timelineQuery.data);
 
@@ -272,7 +272,7 @@ export function Component(props: HomeProps) {
         setEditorShape: setEditorShape,
       }}
       updatesContainer={{
-        children: updatesResponse.map((update:any) => (
+        children: updatesResponse.map((update: any) => (
           <Update
             text={update.text}
             key={update.updateId}

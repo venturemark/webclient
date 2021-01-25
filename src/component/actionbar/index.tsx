@@ -13,7 +13,6 @@ import { initialValueEmpty } from 'component/editor/config/initialValues';
 import { serialize } from 'module/serialize';
 import * as api from 'module/api';
 
-
 interface ActionBarProps extends DefaultActionBarProps {
   audienceId: string;
   organizationId: string;
@@ -53,23 +52,23 @@ function ActionBar(props: ActionBarProps) {
 
   const handleAddUpdate = () => {
     if (!timelineId) {
-          const error = "Please create a timeline";
-          setEditorShape({ ...editorShape, error });
-          return;
-        }
-        if (!editorShape.hasContent) {
-          const error = "Please enter some text";
-          setEditorShape({ ...editorShape, error });
-          return;
-        }
-      
-        if (serialize(editorShape.value).length > 241) {
-          const error = `Your update is ${
-            serialize(editorShape.value).length
-          } characters. The limit is 240 characters`;
-          setEditorShape({ ...editorShape, error });
-          return;
-        }
+      const error = 'Please create a timeline';
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
+    if (!editorShape.hasContent) {
+      const error = 'Please enter some text';
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
+
+    if (serialize(editorShape.value).length > 241) {
+      const error = `Your update is ${
+        serialize(editorShape.value).length
+      } characters. The limit is 240 characters`;
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
 
     const newUpdate: INewUpdate = {
       text: serialize(editorShape.value),
@@ -83,13 +82,13 @@ function ActionBar(props: ActionBarProps) {
 
     //reset store
     localStorage.setItem(
-      "composeEditor.content",
-      JSON.stringify(initialValueEmpty)
+      'composeEditor.content',
+      JSON.stringify(initialValueEmpty),
     );
     //reset editor
     const resetEditor = {
       value: initialValueEmpty,
-      string: "",
+      string: '',
       hasContent: undefined,
       numberValue: 0,
       error: undefined,
@@ -112,7 +111,7 @@ function ActionBar(props: ActionBarProps) {
         onClick: () => setIsActive(true),
       }}
       sendUpdate={{
-        onClick: () => handleAddUpdate()
+        onClick: () => handleAddUpdate(),
       }}
       error={errorMessage ? 'hasError' : undefined}
       text={normalize(progress) > 0 ? 'hasText' : undefined}

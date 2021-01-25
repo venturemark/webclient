@@ -9,8 +9,8 @@ export interface IUpdate {
 
 export interface INewUpdate {
   text: string;
-  audienceId: string,
-  organizationId: string,
+  audienceId: string;
+  organizationId: string;
   timelineId: string;
   userId: string;
 }

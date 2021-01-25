@@ -4,18 +4,13 @@ import {
   SearchO_Obj,
 } from 'module/api/update/proto/search_pb';
 import * as env from 'module/env';
-
-const AUDIENCEIDKEY = 'audience.venturemark.co/id';
-const ORGANIZATIONIDKEY = 'organization.venturemark.co/id';
-const USERIDKEY = 'user.venturemark.co/id';
-const TIMELINEIDKEY = "timeline.venturemark.co/id";
-
+import * as key from 'module/idkeys';
 
 export async function Search(
-  timelineIdKey: string,
-  timelineIdvalue: string,
-  userIdKey: string,
-  userIdvalue: string,
+  audienceId: string,
+  organizationId: string,
+  timelineId: string,
+  userId: string,
 ) {
   const objList = [];
 
@@ -25,10 +20,10 @@ export async function Search(
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(AUDIENCEIDKEY, timelineIdvalue);
-  obj.getMetadataMap().set(ORGANIZATIONIDKEY, timelineIdvalue);
-  obj.getMetadataMap().set(USERIDKEY, timelineIdvalue);
-  obj.getMetadataMap().set(TIMELINEIDKEY, userIdvalue);
+  obj.getMetadataMap().set(key.AUDIENCEIDKEY, audienceId);
+  obj.getMetadataMap().set(key.ORGANIZATIONIDKEY, organizationId);
+  obj.getMetadataMap().set(key.USERIDKEY, timelineId);
+  obj.getMetadataMap().set(key.TIMELINEIDKEY, userId);
   objList.push(obj);
   req.setObjList(objList);
 

@@ -4,11 +4,8 @@ import {
   CreateI_Obj_Property,
 } from 'module/api/timeline/proto/create_pb';
 import * as env from 'module/env';
+import * as key from 'module/idkeys';
 import { INewTimeline } from 'module/interface/timeline';
-
-const USERIDKEY = 'user.venturemark.co/id';
-const ORGANIZATIONIDKEY = 'organization.venturemark.co/id';
-const AUDIENCEIDKEY = 'audience.venturemark.co/id';
 
 export async function Create(
   newTimeline: INewTimeline,
@@ -21,11 +18,11 @@ export async function Create(
 
   objProperty.setName(newTimeline.name);
   objProperty.setDesc(newTimeline.desc);
-  obj.getMetadataMap().set(USERIDKEY, newTimeline.userId);
+  obj.getMetadataMap().set(key.USERIDKEY, newTimeline.userId);
   obj
     .getMetadataMap()
-    .set(ORGANIZATIONIDKEY, newTimeline.organizationId);
-  obj.getMetadataMap().set(AUDIENCEIDKEY, newTimeline.audienceId);
+    .set(key.ORGANIZATIONIDKEY, newTimeline.organizationId);
+  obj.getMetadataMap().set(key.AUDIENCEIDKEY, newTimeline.audienceId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);
