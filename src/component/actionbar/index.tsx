@@ -62,10 +62,10 @@ function ActionBar(props: ActionBarProps) {
       return;
     }
 
-    if (serialize(editorShape.value).length > 241) {
+    if (serialize(editorShape.value).length > 281) {
       const error = `Your update is ${
         serialize(editorShape.value).length
-      } characters. The limit is 240 characters`;
+      } characters. The limit is 280 characters`;
       setEditorShape({ ...editorShape, error });
       return;
     }
