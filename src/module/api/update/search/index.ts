@@ -7,7 +7,6 @@ import * as env from 'module/env';
 import * as key from 'module/idkeys';
 
 export async function Search(
-  audienceId: string,
   organizationId: string,
   timelineId: string,
   userId: string,
@@ -20,10 +19,9 @@ export async function Search(
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.AudienceID, audienceId);
   obj.getMetadataMap().set(key.OrganizationID, organizationId);
-  obj.getMetadataMap().set(key.UserID, timelineId);
-  obj.getMetadataMap().set(key.TimelineID, userId);
+  obj.getMetadataMap().set(key.TimelineID, timelineId);
+  obj.getMetadataMap().set(key.UserID, userId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -39,20 +37,25 @@ export async function Search(
         const updates = updatesPb.map((updatePb: SearchO_Obj) => {
           const propertyPb = updatePb.getProperty();
           const text = propertyPb?.toObject().text;
-          const timelineId = updatePb
+
+          console.log("Meta data", updatePb
+          .getMetadataMap()
+          .toObject())
+          const organizationId = updatePb
             .getMetadataMap()
             .toObject()[0][1] as string;
-          const updateId = updatePb
+          const timelineId = updatePb
             .getMetadataMap()
             .toObject()[1][1] as string;
-          const userId = updatePb
+          const updateId = updatePb
             .getMetadataMap()
             .toObject()[2][1] as string;
+          
 
           const update: any = {
+            organizationId: organizationId,
             timelineId: timelineId,
             updateId: updateId,
-            userId: userId,
             text: text,
             isFlipped: false,
             isContext: false,

@@ -45,7 +45,10 @@ export async function Search(
               // do not assume order?
               // do not assume input and output have same structure
               // do not work with indices
-              const audienceId = timelinePb
+              console.log("Meta data timeline", timelinePb
+          .getMetadataMap()
+          .toObject())
+              const organizationId = timelinePb
                 .getMetadataMap()
                 .toObject()[0][1] as string;
               const timelineId = timelinePb
@@ -54,14 +57,12 @@ export async function Search(
 
               console.log(timelinePb.getMetadataMap().toObject());
 
-              const timeline: ITimeline = {
+              const timeline: any = {
                 name: name,
                 desc: desc,
                 stat: stat,
-                audienceId: audienceId,
-                organizationId: '',
+                organizationId: organizationId,
                 timelineId: timelineId,
-                userId: '',
                 isCurrent: false,
                 updates: [],
               };

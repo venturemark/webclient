@@ -44,6 +44,7 @@ function ActionBar(props: ActionBarProps) {
     },
     {
       onSuccess: () => {
+        console.log("we have a new text update")
         // Invalidate and refetch
         queryClient.invalidateQueries('update');
       },

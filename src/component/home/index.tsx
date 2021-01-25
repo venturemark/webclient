@@ -90,7 +90,6 @@ export function Component(props: HomeProps) {
   // TODO: we need updateQuery to happen after timeline query (requires timeline id)
   const updateQuery = useQuery<any, ErrorResponse>(['update'], () => {
     return api.API.Update.Search(
-      audienceId,
       organizationId,
       timelineId,
       userId,
@@ -249,7 +248,8 @@ export function Component(props: HomeProps) {
   let timelinesResponse = timelineQuery.data ?? [];
   let updatesResponse = updateQuery.data ?? [];
 
-  console.log(timelineQuery.data);
+  console.log(timelinesResponse);
+  console.log(updatesResponse);
 
   return (
     <PlasmicHome
