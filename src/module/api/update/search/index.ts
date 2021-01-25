@@ -33,7 +33,7 @@ export async function Search(
         reject(err);
       } else {
         const updatesPb = res.getObjList();
-        console.log("we're getting updates!", updatesPb)
+        console.log("we're getting updates!", updatesPb);
 
         const updates = updatesPb.map((updatePb: SearchO_Obj) => {
           const propertyPb = updatePb.getProperty();
