@@ -30,8 +30,8 @@ export async function Create(
 
   objProperty.setName(name);
   objProperty.setUserList(userList); // Right now an audience doesn't have to have members
-  obj.getMetadataMap().set(key.USERIDKEY, userId);
-  obj.getMetadataMap().set(key.ORGANIZATIONIDKEY, organizationId);
+  obj.getMetadataMap().set(key.UserID, userId);
+  obj.getMetadataMap().set(key.OrganizationID, organizationId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);

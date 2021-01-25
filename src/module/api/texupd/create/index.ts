@@ -18,12 +18,12 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
   const objProperty = new CreateI_Obj_Property();
 
   objProperty.setText(newUpdate.text);
-  obj.getMetadataMap().set(key.AUDIENCEIDKEY, newUpdate.audienceId);
+  obj.getMetadataMap().set(key.AudienceID, newUpdate.audienceId);
   obj
     .getMetadataMap()
-    .set(key.ORGANIZATIONIDKEY, newUpdate.organizationId);
-  obj.getMetadataMap().set(key.TIMELINEIDKEY, newUpdate.timelineId);
-  obj.getMetadataMap().set(key.USERIDKEY, newUpdate.userId);
+    .set(key.OrganizationID, newUpdate.organizationId);
+  obj.getMetadataMap().set(key.TimelineID, newUpdate.timelineId);
+  obj.getMetadataMap().set(key.UserID, newUpdate.userId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);

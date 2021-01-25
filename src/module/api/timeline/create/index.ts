@@ -18,11 +18,11 @@ export async function Create(
 
   objProperty.setName(newTimeline.name);
   objProperty.setDesc(newTimeline.desc);
-  obj.getMetadataMap().set(key.USERIDKEY, newTimeline.userId);
+  obj.getMetadataMap().set(key.UserID, newTimeline.userId);
   obj
     .getMetadataMap()
-    .set(key.ORGANIZATIONIDKEY, newTimeline.organizationId);
-  obj.getMetadataMap().set(key.AUDIENCEIDKEY, newTimeline.audienceId);
+    .set(key.OrganizationID, newTimeline.organizationId);
+  obj.getMetadataMap().set(key.AudienceID, newTimeline.audienceId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);

@@ -20,10 +20,10 @@ export async function Search(
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.AUDIENCEIDKEY, audienceId);
-  obj.getMetadataMap().set(key.ORGANIZATIONIDKEY, organizationId);
-  obj.getMetadataMap().set(key.USERIDKEY, timelineId);
-  obj.getMetadataMap().set(key.TIMELINEIDKEY, userId);
+  obj.getMetadataMap().set(key.AudienceID, audienceId);
+  obj.getMetadataMap().set(key.OrganizationID, organizationId);
+  obj.getMetadataMap().set(key.UserID, timelineId);
+  obj.getMetadataMap().set(key.TimelineID, userId);
   objList.push(obj);
   req.setObjList(objList);
 
