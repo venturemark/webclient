@@ -74,22 +74,28 @@ function PlasmicHeader__RenderFunc(props: {
       )}
     >
       <div className={classNames(defaultcss.all, sty.box__ky7Rm)}>
-        <IconMenuIcon
-          data-plasmic-name={'svg'}
-          data-plasmic-override={overrides.svg}
-          className={classNames(defaultcss.all, sty.svg)}
-          role={'img'}
-        />
-
-        <div
-          className={classNames(
-            defaultcss.all,
-            defaultcss.__wab_text,
-            sty.box__c0F9M,
-          )}
+        <p.Stack
+          as={'div'}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.box__wE8Ym)}
         >
-          {'Venturemark'}
-        </div>
+          <IconMenuIcon
+            data-plasmic-name={'svg'}
+            data-plasmic-override={overrides.svg}
+            className={classNames(defaultcss.all, sty.svg)}
+            role={'img'}
+          />
+
+          <div
+            className={classNames(
+              defaultcss.all,
+              defaultcss.__wab_text,
+              sty.box__c0F9M,
+            )}
+          >
+            {'Venturemark'}
+          </div>
+        </p.Stack>
 
         <p.Stack
           as={'div'}
