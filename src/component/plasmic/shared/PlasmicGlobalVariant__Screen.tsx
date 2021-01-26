@@ -3,16 +3,26 @@
 /* tslint:disable */
 /* prettier-ignore-start */
 import * as React from 'react';
-export type ScreenValue = 'mobile' | 'desktop' | 'tablet';
+export type ScreenValue =
+  | 'desktop'
+  | 'tablet'
+  | 'mobile'
+  | 'notSupported';
 export const ScreenContext = React.createContext<
   ScreenValue | undefined
 >('PLEASE_RENDER_INSIDE_PROVIDER' as any);
 
-const screenVariants: ScreenValue[] = ['mobile', 'desktop', 'tablet'];
+const screenVariants: ScreenValue[] = [
+  'desktop',
+  'tablet',
+  'mobile',
+  'notSupported',
+];
 const screenQueries = [
-  '(min-width:0px) and (max-width:760px)',
   '(min-width:1440px)',
   '(min-width:760px) and (max-width:1440px)',
+  '(min-width:0px) and (max-width:760px)',
+  '(min-width:0px) and (max-width:319px)',
 ];
 
 function matchScreenVariant() {

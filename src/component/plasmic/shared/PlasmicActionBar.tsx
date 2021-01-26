@@ -28,11 +28,7 @@ import {
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
 import SelectItem from '../../SelectItem'; // plasmic-import: ZvAJESOUhw/component
-
-import {
-  ScreenContext,
-  ScreenValue,
-} from './PlasmicGlobalVariant__Screen'; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import Button from '../../Button'; // plasmic-import: JU1t0P9pFY/component
 
 import '@plasmicapp/react-web/lib/plasmic.css';
 import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import: global/defaultcss
@@ -76,12 +72,11 @@ export type PlasmicActionBar__OverridesType = {
   root?: p.Flex<'div'>;
   editorContainer?: p.Flex<'div'>;
   textContainer?: p.Flex<'input'>;
-  selectTimelineContainer?: p.Flex<'div'>;
+  timelineSelect?: p.Flex<'div'>;
   svg?: p.Flex<'svg'>;
-  selectItemContainer?: p.Flex<'div'>;
   selectItem?: p.Flex<typeof SelectItem>;
   errorContainer?: p.Flex<'div'>;
-  sendUpdate?: p.Flex<'button'>;
+  sendUpdate?: p.Flex<typeof Button>;
 };
 
 export interface DefaultActionBarProps {
@@ -100,10 +95,6 @@ function PlasmicActionBar__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode } = props;
-
-  const globalVariants = ensureGlobalVariants({
-    screen: React.useContext(ScreenContext),
-  });
 
   return (
     <p.Stack
@@ -139,6 +130,11 @@ function PlasmicActionBar__RenderFunc(props: {
           [sty.root__text_hasText_error_hasError]:
             hasVariant(variants, 'text', 'hasText') &&
             hasVariant(variants, 'error', 'hasError'),
+          [sty.root__timelineSelected]: hasVariant(
+            variants,
+            'timelineSelected',
+            'timelineSelected',
+          ),
         },
       )}
     >
@@ -158,6 +154,12 @@ function PlasmicActionBar__RenderFunc(props: {
             'isActive',
           ),
 
+          [sty.box__timelineSelected__zG8Do75BwG]: hasVariant(
+            variants,
+            'timelineSelected',
+            'timelineSelected',
+          ),
+
           [sty.box__timelineSelected_isActive__zG8Do75BwGVjQpn]:
             hasVariant(
               variants,
@@ -173,10 +175,28 @@ function PlasmicActionBar__RenderFunc(props: {
               'isActive',
               'isActive',
             ),
+
+            [sty.box__timelineSelected__vJy6G75BwG]: hasVariant(
+              variants,
+              'timelineSelected',
+              'timelineSelected',
+            ),
           })}
         >
           <div
             className={classNames(defaultcss.all, sty.box__rXa4B, {
+              [sty.box__isActive__rXa4BvjQpn]: hasVariant(
+                variants,
+                'isActive',
+                'isActive',
+              ),
+
+              [sty.box__timelineSelected__rXa4B75BwG]: hasVariant(
+                variants,
+                'timelineSelected',
+                'timelineSelected',
+              ),
+
               [sty.box__timelineSelected_isActive__rXa4B75BwGVjQpn]:
                 hasVariant(
                   variants,
@@ -190,6 +210,13 @@ function PlasmicActionBar__RenderFunc(props: {
                 defaultcss.all,
                 defaultcss.__wab_text,
                 sty.box__wnwam,
+                {
+                  [sty.box__isActive__wnwamvjQpn]: hasVariant(
+                    variants,
+                    'isActive',
+                    'isActive',
+                  ),
+                },
               )}
             >
               {'KO'}
@@ -209,9 +236,20 @@ function PlasmicActionBar__RenderFunc(props: {
                   'hasError',
                 ),
 
+                [sty.editorContainer__isActive]: hasVariant(
+                  variants,
+                  'isActive',
+                  'isActive',
+                ),
+
                 [sty.editorContainer__text_hasText_error_hasError]:
                   hasVariant(variants, 'text', 'hasText') &&
                   hasVariant(variants, 'error', 'hasError'),
+                [sty.editorContainer__timelineSelected]: hasVariant(
+                  variants,
+                  'timelineSelected',
+                  'timelineSelected',
+                ),
               },
             )}
           >
@@ -227,13 +265,15 @@ function PlasmicActionBar__RenderFunc(props: {
                     'isActive',
                     'isActive',
                   ),
+
+                  [sty.textContainer__timelineSelected]: hasVariant(
+                    variants,
+                    'timelineSelected',
+                    'timelineSelected',
+                  ),
                 },
               )}
-              placeholder={
-                hasVariant(globalVariants, 'screen', 'mobile')
-                  ? ('Write update ...' as const)
-                  : ('Write an update' as const)
-              }
+              placeholder={'Write an update ...' as const}
               size={1 as const}
               type={'text' as const}
               value={'' as const}
@@ -241,185 +281,149 @@ function PlasmicActionBar__RenderFunc(props: {
           </div>
         </div>
 
-        {(
-          hasVariant(variants, 'isActive', 'isActive') ? true : false
-        ) ? (
-          <div
-            className={classNames(defaultcss.all, sty.box__cZ9B, {
-              [sty.box__isActive__cZ9BvjQpn]: hasVariant(
-                variants,
-                'isActive',
-                'isActive',
-              ),
-            })}
-          />
-        ) : null}
-        {(
-          hasVariant(variants, 'isActive', 'isActive') ? true : false
-        ) ? (
+        <p.Stack
+          as={'div'}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.box__mQqJf, {
+            [sty.box__isActive__mQqJfvjQpn]: hasVariant(
+              variants,
+              'isActive',
+              'isActive',
+            ),
+
+            [sty.box__timelineSelected__mQqJf75BwG]: hasVariant(
+              variants,
+              'timelineSelected',
+              'timelineSelected',
+            ),
+          })}
+        >
+          <p.Stack
+            as={'div'}
+            data-plasmic-name={'timelineSelect'}
+            data-plasmic-override={overrides.timelineSelect}
+            hasGap={true}
+            className={classNames(
+              defaultcss.all,
+              sty.timelineSelect,
+              {
+                [sty.timelineSelect__isActive]: hasVariant(
+                  variants,
+                  'isActive',
+                  'isActive',
+                ),
+
+                [sty.timelineSelect__timelineSelected]: hasVariant(
+                  variants,
+                  'timelineSelected',
+                  'timelineSelected',
+                ),
+
+                [sty.timelineSelect__timelineSelected_isActive]:
+                  hasVariant(
+                    variants,
+                    'timelineSelected',
+                    'timelineSelected',
+                  ) && hasVariant(variants, 'isActive', 'isActive'),
+              },
+            )}
+          >
+            <IconPlusIcon
+              data-plasmic-name={'svg'}
+              data-plasmic-override={overrides.svg}
+              className={classNames(defaultcss.all, sty.svg, {
+                [sty.svg__isActive]: hasVariant(
+                  variants,
+                  'isActive',
+                  'isActive',
+                ),
+
+                [sty.svg__timelineSelected]: hasVariant(
+                  variants,
+                  'timelineSelected',
+                  'timelineSelected',
+                ),
+              })}
+              role={'img'}
+            />
+
+            <div
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.box___0Drgs,
+                {
+                  [sty.box__isActive___0DrgsvjQpn]: hasVariant(
+                    variants,
+                    'isActive',
+                    'isActive',
+                  ),
+
+                  [sty.box__timelineSelected___0Drgs75BwG]: hasVariant(
+                    variants,
+                    'timelineSelected',
+                    'timelineSelected',
+                  ),
+
+                  [sty.box__timelineSelected_isActive___0Drgs75BwGVjQpn]:
+                    hasVariant(
+                      variants,
+                      'timelineSelected',
+                      'timelineSelected',
+                    ) && hasVariant(variants, 'isActive', 'isActive'),
+                },
+              )}
+            >
+              {'Select timeline'}
+            </div>
+          </p.Stack>
+
           <p.Stack
             as={'div'}
             hasGap={
-              hasVariant(variants, 'isActive', 'isActive')
+              hasVariant(
+                variants,
+                'timelineSelected',
+                'timelineSelected',
+              )
                 ? true
                 : false
             }
-            className={classNames(defaultcss.all, sty.box__gxeLh, {
-              [sty.box__isActive__gxeLhvjQpn]: hasVariant(
+            className={classNames(defaultcss.all, sty.box__nk1Yz, {
+              [sty.box__timelineSelected__nk1Yz75BwG]: hasVariant(
                 variants,
-                'isActive',
-                'isActive',
+                'timelineSelected',
+                'timelineSelected',
               ),
             })}
           >
-            {(
-              hasVariant(variants, 'isActive', 'isActive')
-                ? true
-                : false
-            ) ? (
-              <p.Stack
-                as={'div'}
-                data-plasmic-name={'selectTimelineContainer'}
-                data-plasmic-override={
-                  overrides.selectTimelineContainer
-                }
-                hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  sty.selectTimelineContainer,
-                  {
-                    [sty.selectTimelineContainer__isActive]: hasVariant(
-                      variants,
-                      'isActive',
-                      'isActive',
-                    ),
-
-                    [sty.selectTimelineContainer__timelineSelected_isActive]:
-                      hasVariant(
-                        variants,
-                        'timelineSelected',
-                        'timelineSelected',
-                      ) &&
-                      hasVariant(variants, 'isActive', 'isActive'),
-                  },
-                )}
-              >
-                <IconPlusIcon
-                  data-plasmic-name={'svg'}
-                  data-plasmic-override={overrides.svg}
-                  className={classNames(defaultcss.all, sty.svg)}
-                  role={'img'}
-                />
-
-                <div
-                  className={classNames(
-                    defaultcss.all,
-                    defaultcss.__wab_text,
-                    sty.box__pyPrT,
-                    {
-                      [sty.box__isActive__pyPrTvjQpn]: hasVariant(
-                        variants,
-                        'isActive',
-                        'isActive',
-                      ),
-
-                      [sty.box__timelineSelected_isActive__pyPrT75BwGVjQpn]:
-                        hasVariant(
-                          variants,
-                          'timelineSelected',
-                          'timelineSelected',
-                        ) &&
-                        hasVariant(variants, 'isActive', 'isActive'),
-                    },
-                  )}
-                >
-                  {'Select timeline'}
-                </div>
-              </p.Stack>
-            ) : null}
             {(
               hasVariant(
                 variants,
                 'timelineSelected',
                 'timelineSelected',
-              ) && hasVariant(variants, 'isActive', 'isActive')
+              )
                 ? true
-                : hasVariant(
-                    variants,
-                    'timelineSelected',
-                    'timelineSelected',
-                  )
-                ? true
-                : hasVariant(variants, 'isActive', 'isActive')
-                ? false
                 : false
             ) ? (
-              <p.Stack
-                as={'div'}
-                data-plasmic-name={'selectItemContainer'}
-                data-plasmic-override={overrides.selectItemContainer}
-                hasGap={
-                  hasVariant(variants, 'isActive', 'isActive') ||
-                  (hasVariant(
-                    variants,
-                    'timelineSelected',
-                    'timelineSelected',
-                  ) &&
-                    hasVariant(variants, 'isActive', 'isActive'))
-                    ? true
-                    : false
-                }
+              <SelectItem
+                data-plasmic-name={'selectItem'}
+                data-plasmic-override={overrides.selectItem}
                 className={classNames(
-                  defaultcss.all,
-                  sty.selectItemContainer,
+                  '__wab_instance',
+                  sty.selectItem,
                   {
-                    [sty.selectItemContainer__isActive]: hasVariant(
-                      variants,
-                      'isActive',
-                      'isActive',
-                    ),
-
-                    [sty.selectItemContainer__timelineSelected]: hasVariant(
+                    [sty.selectItem__timelineSelected]: hasVariant(
                       variants,
                       'timelineSelected',
                       'timelineSelected',
                     ),
-
-                    [sty.selectItemContainer__timelineSelected_isActive]:
-                      hasVariant(
-                        variants,
-                        'timelineSelected',
-                        'timelineSelected',
-                      ) &&
-                      hasVariant(variants, 'isActive', 'isActive'),
                   },
                 )}
-              >
-                {(
-                  hasVariant(variants, 'isActive', 'isActive')
-                    ? true
-                    : false
-                ) ? (
-                  <SelectItem
-                    data-plasmic-name={'selectItem'}
-                    data-plasmic-override={overrides.selectItem}
-                    className={classNames(
-                      '__wab_instance',
-                      sty.selectItem,
-                      {
-                        [sty.selectItem__isActive]: hasVariant(
-                          variants,
-                          'isActive',
-                          'isActive',
-                        ),
-                      },
-                    )}
-                  />
-                ) : null}
-              </p.Stack>
+              />
             ) : null}
           </p.Stack>
-        ) : null}
+        </p.Stack>
       </p.Stack>
 
       {(
@@ -437,6 +441,12 @@ function PlasmicActionBar__RenderFunc(props: {
               variants,
               'isActive',
               'isActive',
+            ),
+
+            [sty.box__timelineSelected__lmDWp75BwG]: hasVariant(
+              variants,
+              'timelineSelected',
+              'timelineSelected',
             ),
           })}
         >
@@ -482,24 +492,12 @@ function PlasmicActionBar__RenderFunc(props: {
             </div>
           ) : null}
 
-          <button
+          <Button
             data-plasmic-name={'sendUpdate'}
             data-plasmic-override={overrides.sendUpdate}
-            className={classNames(
-              defaultcss.button,
-              defaultcss.__wab_text,
-              sty.sendUpdate,
-              {
-                [sty.sendUpdate__isActive]: hasVariant(
-                  variants,
-                  'isActive',
-                  'isActive',
-                ),
-              },
-            )}
-          >
-            {'Send Update'}
-          </button>
+            className={classNames('__wab_instance', sty.sendUpdate)}
+            text={'Send Update'}
+          />
         </p.Stack>
       ) : null}
     </p.Stack>
@@ -511,9 +509,8 @@ const PlasmicDescendants = {
     'root',
     'editorContainer',
     'textContainer',
-    'selectTimelineContainer',
+    'timelineSelect',
     'svg',
-    'selectItemContainer',
     'selectItem',
     'errorContainer',
     'sendUpdate',
@@ -521,9 +518,8 @@ const PlasmicDescendants = {
 
   editorContainer: ['editorContainer', 'textContainer'],
   textContainer: ['textContainer'],
-  selectTimelineContainer: ['selectTimelineContainer', 'svg'],
+  timelineSelect: ['timelineSelect', 'svg'],
   svg: ['svg'],
-  selectItemContainer: ['selectItemContainer', 'selectItem'],
   selectItem: ['selectItem'],
   errorContainer: ['errorContainer'],
   sendUpdate: ['sendUpdate'],
@@ -536,12 +532,11 @@ type NodeDefaultElementType = {
   root: 'div';
   editorContainer: 'div';
   textContainer: 'input';
-  selectTimelineContainer: 'div';
+  timelineSelect: 'div';
   svg: 'svg';
-  selectItemContainer: 'div';
   selectItem: typeof SelectItem;
   errorContainer: 'div';
-  sendUpdate: 'button';
+  sendUpdate: typeof Button;
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -609,11 +604,8 @@ export const PlasmicActionBar = Object.assign(
     // Helper components rendering sub-elements
     editorContainer: makeNodeComponent('editorContainer'),
     textContainer: makeNodeComponent('textContainer'),
-    selectTimelineContainer: makeNodeComponent(
-      'selectTimelineContainer',
-    ),
+    timelineSelect: makeNodeComponent('timelineSelect'),
     svg: makeNodeComponent('svg'),
-    selectItemContainer: makeNodeComponent('selectItemContainer'),
     selectItem: makeNodeComponent('selectItem'),
     errorContainer: makeNodeComponent('errorContainer'),
     sendUpdate: makeNodeComponent('sendUpdate'),

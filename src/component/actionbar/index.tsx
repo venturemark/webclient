@@ -111,12 +111,12 @@ function ActionBar(props: ActionBarProps) {
         onClick: () => setIsActive(true),
       }}
       sendUpdate={{
-        onClick: () => handleAddUpdate(),
+        handleClick: () => handleAddUpdate(),
       }}
       error={errorMessage ? 'hasError' : undefined}
       text={normalize(progress) > 0 ? 'hasText' : undefined}
       timelineSelected={timelineSelected}
-      selectTimelineContainer={{
+      timelineSelect={{
         onClick: () => setTimelineSelected(true),
       }}
       errorMessage={errorMessage}

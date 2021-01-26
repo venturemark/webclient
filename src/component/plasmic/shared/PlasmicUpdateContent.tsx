@@ -28,11 +28,14 @@ import {
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
 import Metric from '../../metric/index'; // plasmic-import: _i6uD1XPzdbux6R/component
+import Dropdown from '../../Dropdown'; // plasmic-import: Umq3CDOCIR/component
 
 import '@plasmicapp/react-web/lib/plasmic.css';
 import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import: global/defaultcss
 import projectcss from './plasmic_shared.module.css'; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from './PlasmicUpdateContent.module.css'; // plasmic-import: A1UjtYt6k0/css
+
+import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicUpdateContent__VariantMembers = {
   state: 'text' | 'graph';
@@ -47,9 +50,20 @@ export const PlasmicUpdateContent__VariantProps = new Array<VariantPropType>(
   'state',
 );
 
-export type PlasmicUpdateContent__ArgsType = {};
+export type PlasmicUpdateContent__ArgsType = {
+  userName?: React.ReactNode;
+  organizationName?: React.ReactNode;
+  date?: React.ReactNode;
+  timelineName?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicUpdateContent__ArgsType;
-export const PlasmicUpdateContent__ArgProps = new Array<ArgPropType>();
+export const PlasmicUpdateContent__ArgProps = new Array<ArgPropType>(
+  'userName',
+  'organizationName',
+  'date',
+  'timelineName',
+);
 
 export type PlasmicUpdateContent__OverridesType = {
   root?: p.Flex<'div'>;
@@ -59,11 +73,16 @@ export type PlasmicUpdateContent__OverridesType = {
   organizationName?: p.Flex<'span'>;
   date?: p.Flex<'span'>;
   timelineName?: p.Flex<'span'>;
+  svg?: p.Flex<'svg'>;
+  dropdown?: p.Flex<typeof Dropdown>;
   textContainer?: p.Flex<'div'>;
-  button?: p.Flex<'button'>;
 };
 
 export interface DefaultUpdateContentProps {
+  userName?: React.ReactNode;
+  organizationName?: React.ReactNode;
+  date?: React.ReactNode;
+  timelineName?: React.ReactNode;
   state?: SingleChoiceArg<'text' | 'graph'>;
   className?: string;
 }
@@ -80,8 +99,13 @@ function PlasmicUpdateContent__RenderFunc(props: {
     'useHover',
     {},
   );
+  const [isRootActive, triggerRootActiveProps] = useTrigger(
+    'usePressed',
+    {},
+  );
   const triggers = {
     hover_root: isRootHover,
+    active_root: isRootActive,
   };
 
   return (
@@ -107,7 +131,10 @@ function PlasmicUpdateContent__RenderFunc(props: {
           ),
         },
       )}
-      data-plasmic-trigger-props={[triggerRootHoverProps]}
+      data-plasmic-trigger-props={[
+        triggerRootHoverProps,
+        triggerRootActiveProps,
+      ]}
     >
       <div
         data-plasmic-name={'editorContainer'}
@@ -171,89 +198,163 @@ function PlasmicUpdateContent__RenderFunc(props: {
               hasGap={true}
               className={classNames(defaultcss.all, sty.box__fjL5B)}
             >
+              <div
+                className={classNames(defaultcss.all, sty.box__nwWG)}
+              >
+                <p.PlasmicSlot
+                  defaultContents={
+                    <span
+                      data-plasmic-name={'userName'}
+                      data-plasmic-override={overrides.userName}
+                      className={classNames(
+                        defaultcss.all,
+                        defaultcss.__wab_text,
+                        sty.userName,
+                      )}
+                    >
+                      <span>
+                        <span style={{ fontWeight: 700 }}>
+                          {'The Rock'}
+                        </span>
+                      </span>
+                    </span>
+                  }
+                  value={args.userName}
+                />
+              </div>
+
               <span
-                data-plasmic-name={'userName'}
-                data-plasmic-override={overrides.userName}
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.userName,
+                  sty.span__tizM,
                 )}
               >
-                <span>
-                  <span style={{ fontWeight: 700 }}>
-                    {'The Rock'}
-                  </span>
-                </span>
+                {'posted to'}
               </span>
 
               <div
                 className={classNames(
                   defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.box__tizM,
+                  sty.box___8Q6Vp,
                 )}
               >
-                {'posted to'}
+                <p.PlasmicSlot
+                  defaultContents={
+                    <span
+                      data-plasmic-name={'organizationName'}
+                      data-plasmic-override={
+                        overrides.organizationName
+                      }
+                      className={classNames(
+                        defaultcss.all,
+                        defaultcss.__wab_text,
+                        sty.organizationName,
+                      )}
+                    >
+                      <span>
+                        <span style={{ fontWeight: 700 }}>
+                          {'Venturemark'}
+                        </span>
+                      </span>
+                    </span>
+                  }
+                  value={args.organizationName}
+                />
               </div>
-
-              <span
-                data-plasmic-name={'organizationName'}
-                data-plasmic-override={overrides.organizationName}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.organizationName,
-                )}
-              >
-                <span>
-                  <span style={{ fontWeight: 700 }}>
-                    {'Venturemark'}
-                  </span>
-                </span>
-              </span>
             </p.Stack>
 
             <p.Stack
               as={'div'}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__vvzri)}
+              className={classNames(defaultcss.all, sty.box__vvzri, {
+                [sty.box__state_text__vvzrItpjiV]: hasVariant(
+                  variants,
+                  'state',
+                  'text',
+                ),
+              })}
             >
-              <span
-                data-plasmic-name={'date'}
-                data-plasmic-override={overrides.date}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.date,
-                )}
-              >
-                {'3 hours ago'}
-              </span>
-
               <div
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.box__rwEsf,
-                )}
+                className={classNames(defaultcss.all, sty.box__wDBh5)}
               >
-                {'•'}
+                <p.PlasmicSlot
+                  defaultContents={
+                    <span
+                      data-plasmic-name={'date'}
+                      data-plasmic-override={overrides.date}
+                      className={classNames(
+                        defaultcss.all,
+                        defaultcss.__wab_text,
+                        sty.date,
+                      )}
+                    >
+                      {'3 hours ago'}
+                    </span>
+                  }
+                  value={args.date}
+                />
               </div>
 
               <span
-                data-plasmic-name={'timelineName'}
-                data-plasmic-override={overrides.timelineName}
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.timelineName,
+                  sty.span__rwEsf,
                 )}
               >
-                {'Wins'}
+                {'•'}
               </span>
+
+              <div
+                className={classNames(defaultcss.all, sty.box__lqdFr)}
+              >
+                <p.PlasmicSlot
+                  defaultContents={
+                    <span
+                      data-plasmic-name={'timelineName'}
+                      data-plasmic-override={overrides.timelineName}
+                      className={classNames(
+                        defaultcss.all,
+                        defaultcss.__wab_text,
+                        sty.timelineName,
+                      )}
+                    >
+                      {'Wins'}
+                    </span>
+                  }
+                  value={args.timelineName}
+                />
+              </div>
             </p.Stack>
           </p.Stack>
+
+          <div className={classNames(defaultcss.all, sty.box__vXGzN)}>
+            <button
+              className={classNames(
+                defaultcss.button,
+                sty.button__yd1L1,
+              )}
+            >
+              <IconDotMenuIcon
+                data-plasmic-name={'svg'}
+                data-plasmic-override={overrides.svg}
+                className={classNames(defaultcss.all, sty.svg)}
+                role={'img'}
+              />
+
+              {(triggers.active_root ? true : false) ? (
+                <Dropdown
+                  data-plasmic-name={'dropdown'}
+                  data-plasmic-override={overrides.dropdown}
+                  className={classNames(
+                    '__wab_instance',
+                    sty.dropdown,
+                  )}
+                />
+              ) : null}
+            </button>
+          </div>
         </p.Stack>
 
         {(hasVariant(variants, 'state', 'graph') ? false : true) ? (
@@ -281,18 +382,16 @@ function PlasmicUpdateContent__RenderFunc(props: {
           >
             {hasVariant(variants, 'state', 'text')
               ? 'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius sapien lobortis eu.'
-              : 'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius\n\n'}
+              : 'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius'}
           </div>
         ) : null}
 
         <div className={classNames(defaultcss.all, sty.box__khPiB)}>
           <button
-            data-plasmic-name={'button'}
-            data-plasmic-override={overrides.button}
             className={classNames(
               defaultcss.button,
               defaultcss.__wab_text,
-              sty.button,
+              sty.button__sEjq7,
             )}
           >
             {'Reply'}
@@ -316,8 +415,9 @@ const PlasmicDescendants = {
     'organizationName',
     'date',
     'timelineName',
+    'svg',
+    'dropdown',
     'textContainer',
-    'button',
   ],
 
   editorContainer: [
@@ -327,8 +427,9 @@ const PlasmicDescendants = {
     'organizationName',
     'date',
     'timelineName',
+    'svg',
+    'dropdown',
     'textContainer',
-    'button',
   ],
 
   metric: ['metric'],
@@ -336,8 +437,9 @@ const PlasmicDescendants = {
   organizationName: ['organizationName'],
   date: ['date'],
   timelineName: ['timelineName'],
+  svg: ['svg'],
+  dropdown: ['dropdown'],
   textContainer: ['textContainer'],
-  button: ['button'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -351,8 +453,9 @@ type NodeDefaultElementType = {
   organizationName: 'span';
   date: 'span';
   timelineName: 'span';
+  svg: 'svg';
+  dropdown: typeof Dropdown;
   textContainer: 'div';
-  button: 'button';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -424,8 +527,9 @@ export const PlasmicUpdateContent = Object.assign(
     organizationName: makeNodeComponent('organizationName'),
     date: makeNodeComponent('date'),
     timelineName: makeNodeComponent('timelineName'),
+    svg: makeNodeComponent('svg'),
+    dropdown: makeNodeComponent('dropdown'),
     textContainer: makeNodeComponent('textContainer'),
-    button: makeNodeComponent('button'),
 
     // Metadata about props expected for PlasmicUpdateContent
     internalVariantProps: PlasmicUpdateContent__VariantProps,

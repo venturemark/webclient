@@ -32,21 +32,25 @@ import Sidebar from '../../sidebar/index'; // plasmic-import: FZWTu4L61t/compone
 import MainHeader from '../../MainHeader'; // plasmic-import: LRwT0lHdps/component
 import ActionBar from '../../actionbar/index'; // plasmic-import: eUnRsS9UXR/component
 import Update from '../../update/index'; // plasmic-import: Fs8bTUrvZrvfhCr/component
-
-import {
-  ScreenContext,
-  ScreenValue,
-} from '../shared/PlasmicGlobalVariant__Screen'; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import Modal from '../../Modal'; // plasmic-import: FsY3j3NYte/component
 
 import '@plasmicapp/react-web/lib/plasmic.css';
 import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import: global/defaultcss
 import projectcss from './plasmic_home.module.css'; // plasmic-import: rr3cgzELv8j1fSZjvVMfyx/projectcss
 import sty from './PlasmicHome.module.css'; // plasmic-import: Ii0bQ3L3sO/css
 
-export type PlasmicHome__VariantMembers = {};
-export type PlasmicHome__VariantsArgs = {};
+export type PlasmicHome__VariantMembers = {
+  showLogin: 'showLogin';
+};
+
+export type PlasmicHome__VariantsArgs = {
+  showLogin?: SingleBooleanChoiceArg<'showLogin'>;
+};
+
 type VariantPropType = keyof PlasmicHome__VariantsArgs;
-export const PlasmicHome__VariantProps = new Array<VariantPropType>();
+export const PlasmicHome__VariantProps = new Array<VariantPropType>(
+  'showLogin',
+);
 
 export type PlasmicHome__ArgsType = {};
 type ArgPropType = keyof PlasmicHome__ArgsType;
@@ -62,9 +66,12 @@ export type PlasmicHome__OverridesType = {
   actionBar?: p.Flex<typeof ActionBar>;
   updatesContainer?: p.Flex<'div'>;
   update?: p.Flex<typeof Update>;
+  modalOverlay?: p.Flex<'div'>;
+  modal?: p.Flex<typeof Modal>;
 };
 
 export interface DefaultHomeProps {
+  showLogin?: SingleBooleanChoiceArg<'showLogin'>;
   className?: string;
 }
 
@@ -76,20 +83,12 @@ function PlasmicHome__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
-  const globalVariants = ensureGlobalVariants({
-    screen: React.useContext(ScreenContext),
-  });
-
   return (
-    <p.Stack
-      as={'div'}
+    <div
       data-plasmic-name={'root'}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={
-        hasVariant(globalVariants, 'screen', 'mobile') ? true : false
-      }
       className={classNames(
         defaultcss.all,
         projectcss.root_reset,
@@ -105,21 +104,15 @@ function PlasmicHome__RenderFunc(props: {
       </div>
 
       <div className={classNames(defaultcss.all, sty.box___27XeS)}>
-        {(
-          hasVariant(globalVariants, 'screen', 'mobile')
-            ? false
-            : true
-        ) ? (
-          <div className={classNames(defaultcss.all, sty.box__sqRU)}>
-            {true ? (
-              <Sidebar
-                data-plasmic-name={'sidebar'}
-                data-plasmic-override={overrides.sidebar}
-                className={classNames('__wab_instance', sty.sidebar)}
-              />
-            ) : null}
-          </div>
-        ) : null}
+        <div className={classNames(defaultcss.all, sty.box__sqRU)}>
+          {true ? (
+            <Sidebar
+              data-plasmic-name={'sidebar'}
+              data-plasmic-override={overrides.sidebar}
+              className={classNames('__wab_instance', sty.sidebar)}
+            />
+          ) : null}
+        </div>
 
         <p.Stack
           as={'div'}
@@ -154,28 +147,10 @@ function PlasmicHome__RenderFunc(props: {
                   '__wab_instance',
                   sty.actionBar,
                 )}
-                error={
-                  hasVariant(globalVariants, 'screen', 'mobile')
-                    ? []
-                    : []
-                }
-                errorMessage={
-                  <div
-                    className={classNames(
-                      defaultcss.all,
-                      defaultcss.__wab_text,
-                      sty.box__pmC0Q,
-                    )}
-                  >
-                    {'Please enter a number value'}
-                  </div>
-                }
+                error={[]}
+                errorMessage={'Please enter a number value'}
                 isActive={'isActive' as const}
-                text={
-                  hasVariant(globalVariants, 'screen', 'mobile')
-                    ? []
-                    : []
-                }
+                text={[]}
               />
             </div>
 
@@ -206,13 +181,35 @@ function PlasmicHome__RenderFunc(props: {
               <Update
                 data-plasmic-name={'update'}
                 data-plasmic-override={overrides.update}
-                className={classNames('__wab_instance')}
+                className={classNames('__wab_instance', sty.update)}
               />
             </p.Stack>
           </p.Stack>
         </p.Stack>
       </div>
-    </p.Stack>
+
+      {(
+        hasVariant(variants, 'showLogin', 'showLogin') ? true : false
+      ) ? (
+        <div
+          data-plasmic-name={'modalOverlay'}
+          data-plasmic-override={overrides.modalOverlay}
+          className={classNames(defaultcss.all, sty.modalOverlay, {
+            [sty.modalOverlay__showLogin]: hasVariant(
+              variants,
+              'showLogin',
+              'showLogin',
+            ),
+          })}
+        >
+          <Modal
+            data-plasmic-name={'modal'}
+            data-plasmic-override={overrides.modal}
+            className={classNames('__wab_instance', sty.modal)}
+          />
+        </div>
+      ) : null}
+    </div>
   ) as React.ReactElement | null;
 }
 
@@ -227,6 +224,8 @@ const PlasmicDescendants = {
     'actionBar',
     'updatesContainer',
     'update',
+    'modalOverlay',
+    'modal',
   ],
 
   header: ['header'],
@@ -245,6 +244,8 @@ const PlasmicDescendants = {
   actionBar: ['actionBar'],
   updatesContainer: ['updatesContainer', 'update'],
   update: ['update'],
+  modalOverlay: ['modalOverlay', 'modal'],
+  modal: ['modal'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -260,6 +261,8 @@ type NodeDefaultElementType = {
   actionBar: typeof ActionBar;
   updatesContainer: 'div';
   update: typeof Update;
+  modalOverlay: 'div';
+  modal: typeof Modal;
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -333,6 +336,8 @@ export const PlasmicHome = Object.assign(
     actionBar: makeNodeComponent('actionBar'),
     updatesContainer: makeNodeComponent('updatesContainer'),
     update: makeNodeComponent('update'),
+    modalOverlay: makeNodeComponent('modalOverlay'),
+    modal: makeNodeComponent('modal'),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

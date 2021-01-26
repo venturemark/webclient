@@ -167,6 +167,54 @@
           },
           "cssFilePath": "plasmic/shared/PlasmicSidebarOrganizationName.module.css",
           "scheme": "blackbox"
+        },
+        {
+          "id": "Umq3CDOCIR",
+          "name": "Dropdown",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicDropdown.tsx",
+          "importSpec": {
+            "modulePath": "Dropdown.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicDropdown.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "FsY3j3NYte",
+          "name": "Modal",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicModal.tsx",
+          "importSpec": {
+            "modulePath": "Modal.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicModal.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "JU1t0P9pFY",
+          "name": "Button",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicButton.tsx",
+          "importSpec": {
+            "modulePath": "Button.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicButton.module.css",
+          "scheme": "blackbox"
+        },
+        {
+          "id": "v0nNSTRV39",
+          "name": "TextInput",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicTextInput.tsx",
+          "importSpec": {
+            "modulePath": "TextInput.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicTextInput.module.css",
+          "scheme": "blackbox"
         }
       ],
       "icons": [
@@ -269,6 +317,76 @@
           "id": "Dz069s-rE",
           "name": "IconDotMenuIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconDotMenu.tsx"
+        },
+        {
+          "id": "XUgdOgQqgl",
+          "name": "MaskIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Mask.tsx"
+        },
+        {
+          "id": "BpZ46_NMV6",
+          "name": "BgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Bg.tsx"
+        },
+        {
+          "id": "_qd0glcNIB",
+          "name": "Mask2Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Mask2.tsx"
+        },
+        {
+          "id": "KHjXB9x4MW",
+          "name": "VectorIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector.tsx"
+        },
+        {
+          "id": "U-Jaeq__a_",
+          "name": "Vector2Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector2.tsx"
+        },
+        {
+          "id": "BrCOdQDBB8n",
+          "name": "Vector3Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector3.tsx"
+        },
+        {
+          "id": "q3jeL7oGzyq",
+          "name": "Vector4Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector4.tsx"
+        },
+        {
+          "id": "N6GW61430mT",
+          "name": "Vector5Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector5.tsx"
+        },
+        {
+          "id": "QiKLFwk8gHE",
+          "name": "Vector6Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector6.tsx"
+        },
+        {
+          "id": "x57pg_sjNBd",
+          "name": "Vector7Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector7.tsx"
+        },
+        {
+          "id": "iArCgrWJBDK",
+          "name": "Vector8Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector8.tsx"
+        },
+        {
+          "id": "SFV0ONnhDMP",
+          "name": "Vector9Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector9.tsx"
+        },
+        {
+          "id": "RzjjVYNqSL1",
+          "name": "Vector10Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector10.tsx"
+        },
+        {
+          "id": "74AWP6pMaxz",
+          "name": "Vector11Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector11.tsx"
         }
       ],
       "images": [

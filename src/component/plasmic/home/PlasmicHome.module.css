@@ -13,32 +13,9 @@
   min-width: 0;
   min-height: 0;
 }
-@media (min-width: 0px) and (max-width: 760px) {
-  .root {
-    width: 100%;
-    height: 100%;
-    min-width: 0;
-    min-height: 0;
-  }
-}
-@media (min-width: 0px) and (max-width: 760px) {
-  .root > :global(.__wab_flex-container) {
-    margin-left: calc(0px - 0px);
-    width: calc(100% + 0px);
-    margin-top: calc(0px - 0px);
-    height: calc(100% + 0px);
-  }
-}
-@media (min-width: 0px) and (max-width: 760px) {
-  .root > :global(.__wab_flex-container) > *,
-  .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-    margin-left: 0px;
-    margin-top: 0px;
-  }
-}
 @media (min-width: 760px) and (max-width: 1440px) {
   .root {
-    padding-left: 200px;
+    padding: 0px;
   }
 }
 .box__dMQq {
@@ -48,6 +25,9 @@
   align-items: stretch;
   justify-content: flex-start;
   width: 100%;
+  height: auto;
+  left: auto;
+  top: auto;
   min-width: 0;
   border-bottom: 1px solid rgb(224, 224, 224)
     /* plasmic-token: 9--4ZPcisViPq8V */;
@@ -76,12 +56,6 @@
   min-width: 0;
   min-height: 0;
 }
-@media (min-width: 0px) and (max-width: 760px) {
-  .box___27XeS {
-    left: auto;
-    top: auto;
-  }
-}
 .box__sqRU {
   display: flex;
   position: relative;
@@ -99,11 +73,6 @@
   width: 280px;
   flex-shrink: 0;
   min-height: 0;
-}
-@media (min-width: 0px) and (max-width: 760px) {
-  .sidebar:global(.__wab_instance) {
-    flex-shrink: 0;
-  }
 }
 @media (min-width: 1440px) {
   .sidebar:global(.__wab_instance) {
@@ -138,20 +107,23 @@
   position: relative;
 }
 .box__ineb5 {
-  display: inline-flex;
+  display: flex;
   position: relative;
   background-color: rgba(68, 192, 255, 0);
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   left: auto;
   top: auto;
   overflow: auto;
   padding-left: 93px;
+  align-self: auto;
+  min-width: 0;
+  min-height: 0;
 }
 .box__ineb5 > :global(.__wab_flex-container) {
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   margin-top: calc(0px - 40px);
   height: calc(100% + 40px);
 }
@@ -159,52 +131,23 @@
 .box__ineb5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 40px;
 }
-@media (min-width: 0px) and (max-width: 760px) {
-  .box__ineb5 > :global(.__wab_flex-container) {
-    margin-left: calc(0px - 0px);
-    width: calc(100% + 0px);
-    margin-top: calc(0px - 0px);
-    height: calc(100% + 0px);
-  }
-}
-@media (min-width: 0px) and (max-width: 760px) {
-  .box__ineb5 > :global(.__wab_flex-container) > *,
-  .box__ineb5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-    margin-left: 0px;
-    margin-top: 0px;
-  }
-}
 .actionBarContainer {
-  display: inline-flex;
+  display: flex;
   position: relative;
-  background-color: rgba(68, 192, 255, 0);
-  width: auto;
+  width: 100%;
   height: auto;
   flex-direction: column;
-  align-items: flex-start;
-  align-self: flex-start;
-}
-@media (min-width: 0px) and (max-width: 760px) {
-  .actionBarContainer {
-    padding-left: 0px;
-  }
+  align-items: center;
+  align-self: auto;
+  min-width: 0;
 }
 .actionBar:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
   align-self: flex-start;
-}
-@media (min-width: 0px) and (max-width: 760px) {
-  .actionBar:global(.__wab_instance) {
-    width: 294px;
-    align-self: flex-end;
-  }
-}
-@media (min-width: 0px) and (max-width: 760px) {
-  .box__pmC0Q {
-    width: 159px;
-  }
+  width: 100%;
+  min-width: 0;
 }
 .box__g9Hh0 {
   display: block;
@@ -233,14 +176,6 @@
 .updatesContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 20px;
 }
-@media (min-width: 0px) and (max-width: 760px) {
-  .updatesContainer {
-    align-self: flex-start;
-    height: auto;
-    width: auto;
-    display: inline-flex;
-  }
-}
 .box__ezjEq {
   position: relative;
   width: auto;
@@ -254,11 +189,21 @@
 .update:global(.__wab_instance) {
   flex-shrink: 0;
 }
-@media (min-width: 0px) and (max-width: 760px) {
-  .update:global(.__wab_instance) {
-    width: 100%;
-    align-self: flex-start;
-    min-width: 0;
-    flex-shrink: 0;
-  }
+.modalOverlay {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(189, 189, 189, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  min-width: 0;
+  min-height: 0;
+}
+.modal:global(.__wab_instance) {
+  position: relative;
 }
