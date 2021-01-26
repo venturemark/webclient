@@ -1,13 +1,14 @@
 .root {
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   background-color: rgba(68, 192, 255, 0);
-  width: auto;
-  height: 216px;
+  width: 100%;
+  height: auto;
   position: relative;
   padding-right: 0px;
+  min-width: 0;
 }
 .root__state_text {
   height: 209px;

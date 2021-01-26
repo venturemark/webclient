@@ -34,6 +34,11 @@ import ActionBar from '../../actionbar/index'; // plasmic-import: eUnRsS9UXR/com
 import Update from '../../update/index'; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import Modal from '../../Modal'; // plasmic-import: FsY3j3NYte/component
 
+import {
+  ScreenContext,
+  ScreenValue,
+} from '../shared/PlasmicGlobalVariant__Screen'; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+
 import '@plasmicapp/react-web/lib/plasmic.css';
 import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import: global/defaultcss
 import projectcss from './plasmic_home.module.css'; // plasmic-import: rr3cgzELv8j1fSZjvVMfyx/projectcss
@@ -62,10 +67,10 @@ export type PlasmicHome__OverridesType = {
   sidebar?: p.Flex<typeof Sidebar>;
   main?: p.Flex<'div'>;
   mainHeader?: p.Flex<typeof MainHeader>;
+  container?: p.Flex<'div'>;
   actionBarContainer?: p.Flex<'div'>;
   actionBar?: p.Flex<typeof ActionBar>;
   updatesContainer?: p.Flex<'div'>;
-  update?: p.Flex<typeof Update>;
   modalOverlay?: p.Flex<'div'>;
   modal?: p.Flex<typeof Modal>;
 };
@@ -82,6 +87,10 @@ function PlasmicHome__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode } = props;
+
+  const globalVariants = ensureGlobalVariants({
+    screen: React.useContext(ScreenContext),
+  });
 
   return (
     <div
@@ -104,15 +113,23 @@ function PlasmicHome__RenderFunc(props: {
       </div>
 
       <div className={classNames(defaultcss.all, sty.box___27XeS)}>
-        <div className={classNames(defaultcss.all, sty.box__sqRU)}>
-          {true ? (
-            <Sidebar
-              data-plasmic-name={'sidebar'}
-              data-plasmic-override={overrides.sidebar}
-              className={classNames('__wab_instance', sty.sidebar)}
-            />
-          ) : null}
-        </div>
+        {(
+          hasVariant(globalVariants, 'screen', 'notSupported')
+            ? false
+            : hasVariant(globalVariants, 'screen', 'mobile')
+            ? false
+            : true
+        ) ? (
+          <div className={classNames(defaultcss.all, sty.box__sqRU)}>
+            {true ? (
+              <Sidebar
+                data-plasmic-name={'sidebar'}
+                data-plasmic-override={overrides.sidebar}
+                className={classNames('__wab_instance', sty.sidebar)}
+              />
+            ) : null}
+          </div>
+        ) : null}
 
         <p.Stack
           as={'div'}
@@ -121,70 +138,98 @@ function PlasmicHome__RenderFunc(props: {
           hasGap={true}
           className={classNames(defaultcss.all, sty.main)}
         >
-          <MainHeader
-            data-plasmic-name={'mainHeader'}
-            data-plasmic-override={overrides.mainHeader}
-            className={classNames('__wab_instance', sty.mainHeader)}
-          />
-
-          <p.Stack
-            as={'div'}
-            hasGap={true}
-            className={classNames(defaultcss.all, sty.box__ineb5)}
-          >
-            <div
-              data-plasmic-name={'actionBarContainer'}
-              data-plasmic-override={overrides.actionBarContainer}
-              className={classNames(
-                defaultcss.all,
-                sty.actionBarContainer,
-              )}
-            >
-              <ActionBar
-                data-plasmic-name={'actionBar'}
-                data-plasmic-override={overrides.actionBar}
-                className={classNames(
-                  '__wab_instance',
-                  sty.actionBar,
-                )}
-                error={[]}
-                errorMessage={'Please enter a number value'}
-                isActive={'isActive' as const}
-                text={[]}
-              />
-            </div>
-
-            <div
-              className={classNames(defaultcss.all, sty.box__g9Hh0)}
+          <div className={classNames(defaultcss.all, sty.box___7UOp)}>
+            <MainHeader
+              data-plasmic-name={'mainHeader'}
+              data-plasmic-override={overrides.mainHeader}
+              className={classNames('__wab_instance', sty.mainHeader)}
             />
+          </div>
 
+          <div className={classNames(defaultcss.all, sty.box__of3XW)}>
             <p.Stack
               as={'div'}
-              data-plasmic-name={'updatesContainer'}
-              data-plasmic-override={overrides.updatesContainer}
+              data-plasmic-name={'container'}
+              data-plasmic-override={overrides.container}
               hasGap={true}
-              className={classNames(
-                defaultcss.all,
-                sty.updatesContainer,
-              )}
+              className={classNames(defaultcss.all, sty.container)}
             >
               <div
+                data-plasmic-name={'actionBarContainer'}
+                data-plasmic-override={overrides.actionBarContainer}
                 className={classNames(
                   defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.box__ezjEq,
+                  sty.actionBarContainer,
                 )}
               >
-                {'new updates'}
+                <ActionBar
+                  data-plasmic-name={'actionBar'}
+                  data-plasmic-override={overrides.actionBar}
+                  className={classNames(
+                    '__wab_instance',
+                    sty.actionBar,
+                  )}
+                  error={[]}
+                  errorMessage={'Please enter a number value'}
+                  isActive={'isActive' as const}
+                  text={[]}
+                />
               </div>
 
-              <Update
-                data-plasmic-name={'update'}
-                data-plasmic-override={overrides.update}
-                className={classNames('__wab_instance', sty.update)}
+              <div
+                className={classNames(defaultcss.all, sty.box__g9Hh0)}
               />
+
+              <p.Stack
+                as={'div'}
+                data-plasmic-name={'updatesContainer'}
+                data-plasmic-override={overrides.updatesContainer}
+                hasGap={true}
+                className={classNames(
+                  defaultcss.all,
+                  sty.updatesContainer,
+                )}
+              >
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.box__ezjEq,
+                  )}
+                >
+                  {'new updates'}
+                </div>
+
+                <Update
+                  className={classNames(
+                    '__wab_instance',
+                    sty.update__aMfE,
+                  )}
+                />
+
+                <Update
+                  className={classNames(
+                    '__wab_instance',
+                    sty.update__i0Ec2,
+                  )}
+                />
+
+                <Update
+                  className={classNames(
+                    '__wab_instance',
+                    sty.update__pLxE,
+                  )}
+                />
+
+                <Update
+                  className={classNames(
+                    '__wab_instance',
+                    sty.update__jcO9K,
+                  )}
+                />
+              </p.Stack>
             </p.Stack>
-          </p.Stack>
+          </div>
         </p.Stack>
       </div>
 
@@ -220,10 +265,10 @@ const PlasmicDescendants = {
     'sidebar',
     'main',
     'mainHeader',
+    'container',
     'actionBarContainer',
     'actionBar',
     'updatesContainer',
-    'update',
     'modalOverlay',
     'modal',
   ],
@@ -233,17 +278,23 @@ const PlasmicDescendants = {
   main: [
     'main',
     'mainHeader',
+    'container',
     'actionBarContainer',
     'actionBar',
     'updatesContainer',
-    'update',
   ],
 
   mainHeader: ['mainHeader'],
+  container: [
+    'container',
+    'actionBarContainer',
+    'actionBar',
+    'updatesContainer',
+  ],
+
   actionBarContainer: ['actionBarContainer', 'actionBar'],
   actionBar: ['actionBar'],
-  updatesContainer: ['updatesContainer', 'update'],
-  update: ['update'],
+  updatesContainer: ['updatesContainer'],
   modalOverlay: ['modalOverlay', 'modal'],
   modal: ['modal'],
 } as const;
@@ -257,10 +308,10 @@ type NodeDefaultElementType = {
   sidebar: typeof Sidebar;
   main: 'div';
   mainHeader: typeof MainHeader;
+  container: 'div';
   actionBarContainer: 'div';
   actionBar: typeof ActionBar;
   updatesContainer: 'div';
-  update: typeof Update;
   modalOverlay: 'div';
   modal: typeof Modal;
 };
@@ -332,10 +383,10 @@ export const PlasmicHome = Object.assign(
     sidebar: makeNodeComponent('sidebar'),
     main: makeNodeComponent('main'),
     mainHeader: makeNodeComponent('mainHeader'),
+    container: makeNodeComponent('container'),
     actionBarContainer: makeNodeComponent('actionBarContainer'),
     actionBar: makeNodeComponent('actionBar'),
     updatesContainer: makeNodeComponent('updatesContainer'),
-    update: makeNodeComponent('update'),
     modalOverlay: makeNodeComponent('modalOverlay'),
     modal: makeNodeComponent('modal'),
 

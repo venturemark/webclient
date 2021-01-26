@@ -71,6 +71,26 @@
       }
     },
     {
+      "name": "UnnamedStyleToken 3",
+      "type": "lineheight",
+      "value": "1.5",
+      "category": "lineheight",
+      "meta": {
+        "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+        "id": "TeEpNER9B"
+      }
+    },
+    {
+      "name": "UnnamedStyleToken 4",
+      "type": "spacing",
+      "value": "1px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+        "id": "lfFr5Zl2k"
+      }
+    },
+    {
       "name": "White",
       "type": "color",
       "value": "#ffffff",

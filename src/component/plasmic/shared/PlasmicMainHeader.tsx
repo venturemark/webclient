@@ -28,6 +28,11 @@ import {
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
 
+import {
+  ScreenContext,
+  ScreenValue,
+} from './PlasmicGlobalVariant__Screen'; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+
 import '@plasmicapp/react-web/lib/plasmic.css';
 import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import: global/defaultcss
 import projectcss from './plasmic_shared.module.css'; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
@@ -43,7 +48,7 @@ type ArgPropType = keyof PlasmicMainHeader__ArgsType;
 export const PlasmicMainHeader__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicMainHeader__OverridesType = {
-  root?: p.Flex<'div'>;
+  container?: p.Flex<'div'>;
 };
 
 export interface DefaultMainHeaderProps {
@@ -58,16 +63,20 @@ function PlasmicMainHeader__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const globalVariants = ensureGlobalVariants({
+    screen: React.useContext(ScreenContext),
+  });
+
   return (
     <div
-      data-plasmic-name={'root'}
-      data-plasmic-override={overrides.root}
+      data-plasmic-name={'container'}
+      data-plasmic-override={overrides.container}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
         defaultcss.all,
         projectcss.root_reset,
-        sty.root,
+        sty.container,
       )}
     >
       <p.Stack
@@ -87,31 +96,37 @@ function PlasmicMainHeader__RenderFunc(props: {
 
         <div className={classNames(defaultcss.all, sty.box__rlXLs)} />
 
-        <div
-          className={classNames(
-            defaultcss.all,
-            defaultcss.__wab_text,
-            sty.box__ewHZ,
-          )}
-        >
-          {
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.'
-          }
-        </div>
+        {(
+          hasVariant(globalVariants, 'screen', 'notSupported')
+            ? false
+            : true
+        ) ? (
+          <div
+            className={classNames(
+              defaultcss.all,
+              defaultcss.__wab_text,
+              sty.box__ewHZ,
+            )}
+          >
+            {
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.'
+            }
+          </div>
+        ) : null}
       </p.Stack>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ['root'],
+  container: ['container'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
   T extends NodeNameType
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
-  root: 'div';
+  container: 'div';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -164,7 +179,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(
       forNode: nodeName,
     });
   };
-  if (nodeName === 'root') {
+  if (nodeName === 'container') {
     func.displayName = 'PlasmicMainHeader';
   } else {
     func.displayName = `PlasmicMainHeader.${nodeName}`;
@@ -174,7 +189,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(
 
 export const PlasmicMainHeader = Object.assign(
   // Top-level PlasmicMainHeader renders the root element
-  makeNodeComponent('root'),
+  makeNodeComponent('container'),
   {
     // Helper components rendering sub-elements
 
