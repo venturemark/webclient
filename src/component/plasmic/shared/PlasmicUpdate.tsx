@@ -88,8 +88,6 @@ function PlasmicUpdate__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={
         hasVariant(variants, 'state', 'text') ||
-        (hasVariant(variants, 'state', 'text') &&
-          hasVariant(globalVariants, 'screen', 'mobile')) ||
         hasVariant(variants, 'state', 'graph')
           ? true
           : false
