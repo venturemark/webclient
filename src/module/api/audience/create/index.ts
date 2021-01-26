@@ -5,9 +5,7 @@ import {
 } from 'module/api/audience/proto/create_pb';
 import { APIClient } from 'module/api/audience/proto/ApiServiceClientPb';
 import * as env from 'module/env';
-
-const USERIDKEY = 'user.venturemark.co/id';
-const ORGANIZATIONIDKEY = 'organization.venturemark.co/id';
+import * as key from 'module/idkeys';
 
 export async function Create(
   name: string,
@@ -32,8 +30,8 @@ export async function Create(
 
   objProperty.setName(name);
   objProperty.setUserList(userList); // Right now an audience doesn't have to have members
-  obj.getMetadataMap().set(USERIDKEY, userId);
-  obj.getMetadataMap().set(ORGANIZATIONIDKEY, organizationId);
+  obj.getMetadataMap().set(key.UserID, userId);
+  obj.getMetadataMap().set(key.OrganizationID, organizationId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);

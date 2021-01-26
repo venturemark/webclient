@@ -3,10 +3,7 @@ import { SearchI_Obj } from 'module/api/timeline/proto/search_pb';
 import { SearchO_Obj } from 'module/api/timeline/proto/search_pb';
 import * as env from 'module/env';
 import { ITimeline } from 'module/interface/timeline/index';
-
-const USERIDKEY = 'user.venturemark.co/id';
-const ORGANIZATIONIDKEY = 'organization.venturemark.co/id';
-const AUDIENCEIDKEY = 'audience.venturemark.co/id';
+import * as key from 'module/idkeys';
 
 export async function Search(
   userId: string,
@@ -21,9 +18,9 @@ export async function Search(
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
 
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(USERIDKEY, userId);
-  obj.getMetadataMap().set(ORGANIZATIONIDKEY, organizationId);
-  obj.getMetadataMap().set(AUDIENCEIDKEY, audienceId);
+  obj.getMetadataMap().set(key.UserID, userId);
+  obj.getMetadataMap().set(key.OrganizationID, organizationId);
+  obj.getMetadataMap().set(key.AudienceID, audienceId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -40,37 +37,23 @@ export async function Search(
 
           const timelines = timelinesPb.map(
             (timelinePb: SearchO_Obj) => {
-              const propertyPb = timelinePb.getProperty();
-              console.log(propertyPb?.toObject());
-              const name = propertyPb?.toObject().name;
-              const desc = propertyPb?.toObject().desc;
-              const stat = propertyPb?.toObject().stat;
-              const audienceId = timelinePb
-                .getMetadataMap()
-                .toObject()[0][1] as string;
-              const timelineId = timelinePb
-                .getMetadataMap()
-                .toObject()[1][1] as string;
-              // const organizationId = timelinePb
-              //   .getMetadataMap()
-              //   .toObject()[1][1] as string;
+              const propertiesPb = timelinePb.getProperty();
+              const metaPb = timelinePb.getMetadataMap();
 
-              // const userId = timelinePb
-              //   .getMetadataMap()
-              //   .toObject()[3][1] as string;
-
-              console.log(timelinePb.getMetadataMap().toObject());
+              const name = propertiesPb?.getName() as string;
+              const desc = propertiesPb?.getDesc() as string;
+              const stat = propertiesPb?.getStat() as string;
+              const organizationId = metaPb.get(key.OrganizationID);
+              const timelineId = metaPb.get(key.TimelineID);
 
               const timeline: ITimeline = {
-                name: name as string,
-                desc: desc as string,
-                stat: stat as string,
-                audienceId: audienceId,
-                organizationId: '',
+                name: name,
+                desc: desc,
+                stat: stat,
+                organizationId: organizationId,
                 timelineId: timelineId,
                 userId: '',
                 isCurrent: false,
-                updates: [],
               };
               return timeline;
             },

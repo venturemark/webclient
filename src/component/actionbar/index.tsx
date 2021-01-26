@@ -7,8 +7,17 @@ import {
 } from 'component/plasmic/shared/PlasmicActionBar';
 import ComposeEditor from 'component/editor/compose';
 import { EditorShape } from 'component/editor/compose';
+import { INewUpdate } from 'module/interface/update';
+import { useMutation, useQueryClient } from 'react-query';
+import { initialValueEmpty } from 'component/editor/config/initialValues';
+import { serialize } from 'module/serialize';
+import * as api from 'module/api';
 
 interface ActionBarProps extends DefaultActionBarProps {
+  audienceId: string;
+  organizationId: string;
+  timelineId: string;
+  userId: string;
   errorMessage: string;
   progress: number;
   editorShape: EditorShape;
@@ -17,11 +26,76 @@ interface ActionBarProps extends DefaultActionBarProps {
 
 function ActionBar(props: ActionBarProps) {
   const {
+    audienceId,
+    organizationId,
+    timelineId,
+    userId,
     errorMessage,
     progress,
     editorShape,
     setEditorShape,
   } = props;
+
+  const queryClient = useQueryClient();
+
+  const updateMutation = useMutation<any, any, any>(
+    (newUpdate) => {
+      return api.API.TexUpd.Create(newUpdate);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries('update');
+      },
+    },
+  );
+
+  const handleAddUpdate = () => {
+    if (!timelineId) {
+      const error = 'Please create a timeline';
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
+    if (!editorShape.hasContent) {
+      const error = 'Please enter some text';
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
+
+    if (serialize(editorShape.value).length > 281) {
+      const error = `Your update is ${
+        serialize(editorShape.value).length
+      } characters. The limit is 280 characters`;
+      setEditorShape({ ...editorShape, error });
+      return;
+    }
+
+    const newUpdate: INewUpdate = {
+      text: serialize(editorShape.value),
+      audienceId,
+      organizationId,
+      timelineId,
+      userId,
+    };
+
+    updateMutation.mutate(newUpdate);
+
+    //reset store
+    localStorage.setItem(
+      'composeEditor.content',
+      JSON.stringify(initialValueEmpty),
+    );
+    //reset editor
+    const resetEditor = {
+      value: initialValueEmpty,
+      string: '',
+      hasContent: undefined,
+      numberValue: 0,
+      error: undefined,
+      progress: 0,
+    };
+    setEditorShape(resetEditor);
+  };
 
   const MIN = 0;
   const MAX = 240;
@@ -35,6 +109,9 @@ function ActionBar(props: ActionBarProps) {
     <PlasmicActionBar
       root={{
         onClick: () => setIsActive(true),
+      }}
+      sendUpdate={{
+        onClick: () => handleAddUpdate(),
       }}
       error={errorMessage ? 'hasError' : undefined}
       text={normalize(progress) > 0 ? 'hasText' : undefined}

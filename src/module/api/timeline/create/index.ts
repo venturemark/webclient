@@ -1,14 +1,12 @@
 import * as apigents from '@venturemark/apigents';
 import {
   CreateI_Obj,
+  CreateO,
   CreateI_Obj_Property,
 } from 'module/api/timeline/proto/create_pb';
 import * as env from 'module/env';
+import * as key from 'module/idkeys';
 import { INewTimeline } from 'module/interface/timeline';
-
-const USERIDKEY = 'user.venturemark.co/id';
-const ORGANIZATIONIDKEY = 'organization.venturemark.co/id';
-const AUDIENCEIDKEY = 'audience.venturemark.co/id';
 
 export async function Create(
   newTimeline: INewTimeline,
@@ -21,26 +19,27 @@ export async function Create(
 
   objProperty.setName(newTimeline.name);
   objProperty.setDesc(newTimeline.desc);
-  obj.getMetadataMap().set(USERIDKEY, newTimeline.userId);
+  obj.getMetadataMap().set(key.UserID, newTimeline.userId);
   obj
     .getMetadataMap()
-    .set(ORGANIZATIONIDKEY, newTimeline.organizationId);
-  obj.getMetadataMap().set(AUDIENCEIDKEY, newTimeline.audienceId);
+    .set(key.OrganizationID, newTimeline.organizationId);
+  obj.getMetadataMap().set(key.AudienceID, newTimeline.audienceId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
-    client.create(req, {}, function (err: any, res: any) {
+    client.create(req, {}, function (err: any, res: CreateO) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
-        alert(
-          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`,
-        );
         reject(err);
       } else {
-        resolve(res.toObject().obj.metadataMap[0][1]);
+        const timelinePb = res.getObj();
+        const metaPb = timelinePb?.getMetadataMap();
+        const timelineId = metaPb.get(key.TimelineID);
+
+        resolve(timelineId);
       }
     });
   });

@@ -1,11 +1,17 @@
 import { Node } from 'slate';
 
 export interface IUpdate {
+  text: Node[];
   updateId: string;
   userId: string;
+  organizationId: string;
   timelineId: string;
-  text: Node[];
-  numberValue: number;
-  isFlipped: boolean;
-  isContext: boolean;
+}
+
+export interface INewUpdate {
+  text: string;
+  audienceId: string;
+  organizationId: string;
+  timelineId: string;
+  userId: string;
 }

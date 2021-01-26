@@ -6,6 +6,7 @@ import {
   PlasmicHome,
   DefaultHomeProps,
 } from 'component/plasmic/home/PlasmicHome';
+import Update from 'component/update';
 import { initialValueEmpty } from 'component/editor/config/initialValues';
 import { Search } from '@venturemark/numnum';
 // import { format } from "date-fns";
@@ -21,12 +22,10 @@ const defaultTimeline: ITimeline = {
   name: '',
   desc: '',
   stat: '',
-  audienceId: '',
   organizationId: '',
   timelineId: '',
   userId: '',
   isCurrent: false,
-  updates: [],
 };
 
 interface HomeProps extends DefaultHomeProps {}
@@ -77,8 +76,18 @@ export function Component(props: HomeProps) {
       );
     },
   );
+  let timelineId = '';
+  if (timelineQuery.isSuccess) {
+    timelineId =
+      timelineQuery.data.length > 0
+        ? timelineQuery.data[0].timelineId
+        : '';
+  }
 
-  console.log('timelineQuery:', timelineQuery);
+  // TODO: we need updateQuery to happen after timeline query (requires timeline id)
+  const updateQuery = useQuery<any, ErrorResponse>(['update'], () => {
+    return api.API.Update.Search(organizationId, timelineId, userId);
+  });
 
   // useEffect(() => {
   //   console.log(organizationId, userId);
@@ -228,8 +237,7 @@ export function Component(props: HomeProps) {
   // all cool we have the data
 
   let timelinesResponse = timelineQuery.data ?? [];
-
-  console.log(timelineQuery.data);
+  let updatesResponse = updateQuery.data ?? [];
 
   return (
     <PlasmicHome
@@ -242,27 +250,25 @@ export function Component(props: HomeProps) {
         organizationId: currentTimeline.userId || organizationId,
       }}
       actionBar={{
+        audienceId: audienceId,
+        organizationId: organizationId,
+        timelineId: timelineId,
+        userId: userId,
         errorMessage: editorShape.error,
         progress: editorShape.progress,
         editorShape: editorShape,
         setEditorShape: setEditorShape,
       }}
-      // updatesContainer={{
-      //   children: updates.map((update) => (
-      //     <Update
-      //       text={update.text}
-      //       key={update.updateId}
-      //       id={update.updateId}
-      //       dataKey={currentTimeline.dataKey}
-      //       data={metrics}
-      //       name={currentTimeline.name}
-      //       isFlipped={update.isFlipped}
-      //       isContext={update.isContext}
-      //       updates={updates}
-      //       setUpdates={setUpdates}
-      //     />
-      //   )),
-      // }}
+      updatesContainer={{
+        children: updatesResponse.map((update: any) => (
+          <Update
+            text={update.text}
+            key={update.updateId}
+            id={update.updateId}
+            name={currentTimeline.name}
+          />
+        )),
+      }}
     />
   );
 }
