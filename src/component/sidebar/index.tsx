@@ -7,14 +7,15 @@ import {
   DefaultSidebarProps,
 } from 'component/plasmic/shared/PlasmicSidebar';
 import SidebarItem from 'component/sidebaritem';
-// import * as api from 'module/api';
-// import { useMutation, useQueryClient } from 'react-query';
 import {
   ITimeline,
   INewTimeline,
   ITimelineQuery,
 } from 'module/interface/timeline';
-import { useTimelines, useCreateTimeline } from 'module/hook/timeline';
+import {
+  useTimelines,
+  useCreateTimeline,
+} from 'module/hook/timeline';
 
 interface SidebarProps extends DefaultSidebarProps {
   setTimelines: React.Dispatch<React.SetStateAction<ITimeline[]>>;
@@ -36,12 +37,14 @@ function Sidebar(props: SidebarProps) {
     userId,
     organizationId,
   } = props;
+
   const {
     register,
     handleSubmit,
     reset,
     watch,
   } = useForm<FormInputs>();
+
   const audienceId = '1';
   const timelineSearch: ITimelineQuery = {
     audienceId,
@@ -58,7 +61,7 @@ function Sidebar(props: SidebarProps) {
     a.name.localeCompare(b.name),
   );
 
-  const {mutate :createTimeline} = useCreateTimeline()
+  const { mutate: createTimeline } = useCreateTimeline();
 
   const handleAddTimeline = (data: FormInputs) => {
     if (!data.name) {

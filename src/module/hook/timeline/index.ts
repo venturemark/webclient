@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { ITimelineQuery,INewTimeline } from 'module/interface/timeline';
+import { ITimelineQuery } from 'module/interface/timeline';
 import * as api from 'module/api';
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -15,9 +15,7 @@ export function useTimelines(timelineQuery: ITimelineQuery) {
   );
 }
 
-
 export function useCreateTimeline() {
-
   const queryClient = useQueryClient();
 
   return useMutation<any, any, any>(
@@ -30,5 +28,5 @@ export function useCreateTimeline() {
         queryClient.invalidateQueries('timeline');
       },
     },
-  )
+  );
 }

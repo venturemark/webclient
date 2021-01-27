@@ -8,14 +8,13 @@ import {
 import ComposeEditor from 'component/editor/compose';
 import { EditorShape } from 'component/editor/compose';
 import { INewUpdate } from 'module/interface/update';
-import { useMutation, useQueryClient } from 'react-query';
-import * as api from 'module/api';
 
 import { initialValueEmpty } from 'component/editor/config/initialValues';
 import { Search } from '@venturemark/numnum';
 import { serialize } from 'module/serialize';
 import { get } from 'module/store';
 import { useEditor } from 'component/editor/compose';
+import { useCreateUpdate } from 'module/hook/update';
 
 interface ActionBarProps extends DefaultActionBarProps {
   organizationId: string;
@@ -46,19 +45,7 @@ function ActionBar(props: ActionBarProps) {
 
   const audienceId = '1';
 
-  const queryClient = useQueryClient();
-
-  const updateMutation = useMutation<any, any, any>(
-    (newUpdate) => {
-      return api.API.TexUpd.Create(newUpdate);
-    },
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries('update');
-      },
-    },
-  );
+  const { mutate: createUpdate } = useCreateUpdate();
 
   const handleAddUpdate = () => {
     if (!timelineId) {
@@ -88,7 +75,7 @@ function ActionBar(props: ActionBarProps) {
       userId,
     };
 
-    updateMutation.mutate(newUpdate);
+    createUpdate(newUpdate);
 
     //reset store
     localStorage.setItem(
