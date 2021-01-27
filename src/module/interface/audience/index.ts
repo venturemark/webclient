@@ -6,3 +6,10 @@ export interface IAudience {
   userId: string;
   organizationId: string;
 }
+
+export interface INewAudience {
+  name: string;
+  members: User[];
+  userId: string;
+  organizationId: string;
+}

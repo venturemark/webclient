@@ -7,12 +7,12 @@ import {
   DefaultSidebarProps,
 } from 'component/plasmic/shared/PlasmicSidebar';
 import SidebarItem from 'component/sidebaritem';
-import { ITimeline, INewTimeline } from 'module/interface/timeline';
 import * as api from 'module/api';
 import { useMutation, useQueryClient } from 'react-query';
+import { ITimeline, INewTimeline, ITimelineQuery } from 'module/interface/timeline';
+import {useTimelines} from 'module/hook/timeline'
 
 interface SidebarProps extends DefaultSidebarProps {
-  timelines: ITimeline[];
   setTimelines: React.Dispatch<React.SetStateAction<ITimeline[]>>;
   setCurrentTimeline: React.Dispatch<React.SetStateAction<ITimeline>>;
   addTimelineFocused: boolean;
@@ -28,7 +28,6 @@ type FormInputs = {
 
 function Sidebar(props: SidebarProps) {
   const {
-    timelines,
     setTimelines,
     addTimelineFocused,
     setRefresh,
@@ -42,28 +41,23 @@ function Sidebar(props: SidebarProps) {
     reset,
     watch,
   } = useForm<FormInputs>();
+  const audienceId = '1'
+  const timelineSearch: ITimelineQuery = {
+    audienceId,
+    userId,
+    organizationId,
+  }
+
+  const {data: timelinesData} = useTimelines(timelineSearch)
   const nameRef = useRef<HTMLInputElement | null>(null);
   const hasValue = watch('name') ? true : false;
   const [hasInput, setHasInput] = useState(false);
-  const sortedTimelines = timelines.sort((a, b) =>
+  const timelines = timelinesData ?? []
+  const sortedTimelines = timelines.sort((a:any, b:any) =>
     a.name.localeCompare(b.name),
   );
 
   const queryClient = useQueryClient();
-
-  // Mutations
-  // const audienceMutation = useMutation<any, any, any>((name) => {
-  //   return api.API.Audience.Create(
-  //     name,
-  //     userId,
-  //     organizationId,
-  //   );
-  // },{
-  //   onSuccess: () => {
-  //     // Invalidate and refetch
-  //     queryClient.invalidateQueries('audience')
-  //   },
-  // })
 
   const timelineMutation = useMutation<any, any, any>(
     (newTimeline) => {
@@ -117,7 +111,7 @@ function Sidebar(props: SidebarProps) {
         onSubmit: handleSubmit(handleAddTimeline),
       }}
       timelinesContainer={{
-        children: sortedTimelines.map((timeline) => (
+        children: sortedTimelines.map((timeline: any) => (
           <SidebarItem
             name={timeline.name}
             isCurrent={timeline.isCurrent}
@@ -125,11 +119,11 @@ function Sidebar(props: SidebarProps) {
               const name = timeline.name;
 
               const thisTimeline = timelines.filter(
-                (clickedTimeline) =>
+                (clickedTimeline: any) =>
                   timeline.id === clickedTimeline.id,
               )[0];
 
-              const currentTimelines = timelines.map((timeline) => {
+              const currentTimelines = timelines.map((timeline:any) => {
                 const isCurrent =
                   name === timeline.name
                     ? !timeline.isCurrent

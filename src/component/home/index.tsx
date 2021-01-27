@@ -7,17 +7,10 @@ import {
   DefaultHomeProps,
 } from 'component/plasmic/home/PlasmicHome';
 import Update from 'component/update';
-import { initialValueEmpty } from 'component/editor/config/initialValues';
-import { Search } from '@venturemark/numnum';
 // import { format } from "date-fns";
-import { serialize } from 'module/serialize';
-import { get } from 'module/store';
-import { useEditor } from 'component/editor/compose';
-import { ITimeline, ITimelineQuery } from 'module/interface/timeline';
+
+import { ITimeline } from 'module/interface/timeline';
 import {IUpdateQuery} from 'module/interface/update'
-// import * as api from 'module/api';
-// import { useQuery } from 'react-query';
-import {useTimelines} from 'module/hook/timeline'
 import {useUpdates} from 'module/hook/update'
 
  
@@ -46,47 +39,15 @@ export function Component(props: HomeProps) {
 
   const [showLogin, setShowLogin] = useState(true)
 
-  const [refresh, setRefresh] = useState(false);
+  const timelineId = currentTimeline.id
 
-  const store = get('composeEditor.content') ?? '';
-  const initialValue =
-    store !== '' ? JSON.parse(store) : initialValueEmpty;
-  const hasContentDefault =
-    serialize(initialValue) === '' ||
-    serialize(initialValue) === undefined
-      ? undefined
-      : 'hasContent';
-  const defaultNumber = Search(serialize(initialValue)) ?? 0;
-  const defaultProgress = serialize(initialValue).length;
-
-  const { editorShape, setEditorShape } = useEditor({
-    value: initialValue,
-    hasContent: hasContentDefault,
-    numberValue: defaultNumber[0],
-    progress: defaultProgress,
-  });
-
-  let audienceId = '1';
-
-  const timelineSearch: ITimelineQuery = {
-    audienceId,
-    userId,
-    organizationId,
-  }
-
-  const {data: timelinesData, isSuccess} = useTimelines(timelineSearch)
-
-  const timelineId = isSuccess && timelinesData.length > 0? timelinesData[0].id : ''
-
-  const updateSearch:IUpdateQuery  = {
+  const updatesSearch:IUpdateQuery  = {
     organizationId,
     timelineId,
     userId,
   }
+  const {data: updatesData} = useUpdates(updatesSearch)
 
-  const {data: updatesData} = useUpdates(updateSearch)
-
-  const timelines = timelinesData ?? []
   const updates = updatesData ?? []
 
   useEffect(() => {
@@ -95,41 +56,18 @@ export function Component(props: HomeProps) {
     }
   }, [userId, organizationId]);
 
-  // loading and error states from fetch calls... nice!!
-  // if (timelineQuery.isLoading) {
-  //   return <div style={{ backgroundColor: 'blue' }}>IS LOADING</div>;
-  // }
-
-  // if (timelineQuery.isError) {
-  //   return (
-  //     <div style={{ backgroundColor: 'red' }}>
-  //       FAILED: {timelineQuery.error.message}
-  //     </div>
-  //   );
-  // }
-
-  // all cool we have the data
-
   return (
     <PlasmicHome
       showLogin={showLogin}
       sidebar={{
-        timelines: timelines,
-        refresh: refresh,
-        setRefresh: setRefresh,
         setCurrentTimeline: setCurrentTimeline,
         userId: currentTimeline.userId || userId,
         organizationId: currentTimeline.userId || organizationId,
       }}
       actionBar={{
-        audienceId: audienceId,
         organizationId: organizationId,
         timelineId: timelineId,
         userId: userId,
-        errorMessage: editorShape.error,
-        progress: editorShape.progress,
-        editorShape: editorShape,
-        setEditorShape: setEditorShape,
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
