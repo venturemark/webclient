@@ -71,7 +71,7 @@ export const PlasmicActionBar__ArgProps = new Array<ArgPropType>(
 export type PlasmicActionBar__OverridesType = {
   root?: p.Flex<'div'>;
   editorContainer?: p.Flex<'div'>;
-  textContainer?: p.Flex<'input'>;
+  textContainer?: p.Flex<'textarea'>;
   timelineSelect?: p.Flex<'div'>;
   svg?: p.Flex<'svg'>;
   selectItem?: p.Flex<typeof SelectItem>;
@@ -253,11 +253,11 @@ function PlasmicActionBar__RenderFunc(props: {
               },
             )}
           >
-            <input
+            <textarea
               data-plasmic-name={'textContainer'}
               data-plasmic-override={overrides.textContainer}
               className={classNames(
-                defaultcss.input,
+                defaultcss.textarea,
                 sty.textContainer,
                 {
                   [sty.textContainer__isActive]: hasVariant(
@@ -274,9 +274,17 @@ function PlasmicActionBar__RenderFunc(props: {
                 },
               )}
               placeholder={'Write an update ...' as const}
-              size={1 as const}
-              type={'text' as const}
               value={'' as const}
+            />
+
+            <div
+              className={classNames(defaultcss.all, sty.box__sPwRc, {
+                [sty.box__isActive__sPwRCvjQpn]: hasVariant(
+                  variants,
+                  'isActive',
+                  'isActive',
+                ),
+              })}
             />
           </div>
         </div>
@@ -531,7 +539,7 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: 'div';
   editorContainer: 'div';
-  textContainer: 'input';
+  textContainer: 'textarea';
   timelineSelect: 'div';
   svg: 'svg';
   selectItem: typeof SelectItem;

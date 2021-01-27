@@ -66,8 +66,9 @@
 .homeContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
 }
-.sidebarItem__u6Wdo:global(.__wab_instance) {
+.homeSidebarItem:global(.__wab_instance) {
   position: relative;
+  width: 223px;
 }
 .startIcon3 {
   position: relative;

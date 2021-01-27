@@ -64,6 +64,7 @@ export type PlasmicSidebar__OverridesType = {
   topSidebar?: p.Flex<'div'>;
   scrollContainer?: p.Flex<'div'>;
   homeContainer?: p.Flex<'div'>;
+  homeSidebarItem?: p.Flex<typeof SidebarItem>;
   startIcon3?: p.Flex<'svg'>;
   organizationName?: p.Flex<typeof SidebarOrganizationName>;
   inputContainer?: p.Flex<'div'>;
@@ -113,7 +114,13 @@ function PlasmicSidebar__RenderFunc(props: {
       <div
         data-plasmic-name={'topSidebar'}
         data-plasmic-override={overrides.topSidebar}
-        className={classNames(defaultcss.all, sty.topSidebar)}
+        className={classNames(defaultcss.all, sty.topSidebar, {
+          [sty.topSidebar__hasInput]: hasVariant(
+            variants,
+            'hasInput',
+            'hasInput',
+          ),
+        })}
       >
         <p.Stack
           as={'div'}
@@ -142,11 +149,13 @@ function PlasmicSidebar__RenderFunc(props: {
             })}
           >
             <SidebarItem
+              data-plasmic-name={'homeSidebarItem'}
+              data-plasmic-override={overrides.homeSidebarItem}
               className={classNames(
                 '__wab_instance',
-                sty.sidebarItem__u6Wdo,
+                sty.homeSidebarItem,
                 {
-                  [sty.sidebarItem__hasInput__u6WdOj2HLz]: hasVariant(
+                  [sty.homeSidebarItem__hasInput]: hasVariant(
                     variants,
                     'hasInput',
                     'hasInput',
@@ -403,6 +412,7 @@ const PlasmicDescendants = {
     'topSidebar',
     'scrollContainer',
     'homeContainer',
+    'homeSidebarItem',
     'startIcon3',
     'organizationName',
     'inputContainer',
@@ -415,6 +425,7 @@ const PlasmicDescendants = {
     'topSidebar',
     'scrollContainer',
     'homeContainer',
+    'homeSidebarItem',
     'startIcon3',
     'organizationName',
     'inputContainer',
@@ -426,6 +437,7 @@ const PlasmicDescendants = {
   scrollContainer: [
     'scrollContainer',
     'homeContainer',
+    'homeSidebarItem',
     'startIcon3',
     'organizationName',
     'inputContainer',
@@ -434,7 +446,8 @@ const PlasmicDescendants = {
     'timelinesContainer',
   ],
 
-  homeContainer: ['homeContainer', 'startIcon3'],
+  homeContainer: ['homeContainer', 'homeSidebarItem', 'startIcon3'],
+  homeSidebarItem: ['homeSidebarItem', 'startIcon3'],
   startIcon3: ['startIcon3'],
   organizationName: ['organizationName'],
   inputContainer: [
@@ -455,6 +468,7 @@ type NodeDefaultElementType = {
   topSidebar: 'div';
   scrollContainer: 'div';
   homeContainer: 'div';
+  homeSidebarItem: typeof SidebarItem;
   startIcon3: 'svg';
   organizationName: typeof SidebarOrganizationName;
   inputContainer: 'div';
@@ -529,6 +543,7 @@ export const PlasmicSidebar = Object.assign(
     topSidebar: makeNodeComponent('topSidebar'),
     scrollContainer: makeNodeComponent('scrollContainer'),
     homeContainer: makeNodeComponent('homeContainer'),
+    homeSidebarItem: makeNodeComponent('homeSidebarItem'),
     startIcon3: makeNodeComponent('startIcon3'),
     organizationName: makeNodeComponent('organizationName'),
     inputContainer: makeNodeComponent('inputContainer'),

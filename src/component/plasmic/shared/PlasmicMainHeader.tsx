@@ -38,6 +38,8 @@ import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import
 import projectcss from './plasmic_shared.module.css'; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from './PlasmicMainHeader.module.css'; // plasmic-import: LRwT0lHdps/css
 
+import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
+
 export type PlasmicMainHeader__VariantMembers = {};
 export type PlasmicMainHeader__VariantsArgs = {};
 type VariantPropType = keyof PlasmicMainHeader__VariantsArgs;
@@ -49,6 +51,8 @@ export const PlasmicMainHeader__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicMainHeader__OverridesType = {
   container?: p.Flex<'div'>;
+  button?: p.Flex<'button'>;
+  svg?: p.Flex<'svg'>;
 };
 
 export interface DefaultMainHeaderProps {
@@ -114,12 +118,29 @@ function PlasmicMainHeader__RenderFunc(props: {
           </div>
         ) : null}
       </p.Stack>
+
+      <div className={classNames(defaultcss.all, sty.box__lP94A)}>
+        <button
+          data-plasmic-name={'button'}
+          data-plasmic-override={overrides.button}
+          className={classNames(defaultcss.button, sty.button)}
+        >
+          <IconDotMenuIcon
+            data-plasmic-name={'svg'}
+            data-plasmic-override={overrides.svg}
+            className={classNames(defaultcss.all, sty.svg)}
+            role={'img'}
+          />
+        </button>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  container: ['container'],
+  container: ['container', 'button', 'svg'],
+  button: ['button', 'svg'],
+  svg: ['svg'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -127,6 +148,8 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   container: 'div';
+  button: 'button';
+  svg: 'svg';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -192,6 +215,8 @@ export const PlasmicMainHeader = Object.assign(
   makeNodeComponent('container'),
   {
     // Helper components rendering sub-elements
+    button: makeNodeComponent('button'),
+    svg: makeNodeComponent('svg'),
 
     // Metadata about props expected for PlasmicMainHeader
     internalVariantProps: PlasmicMainHeader__VariantProps,

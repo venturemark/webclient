@@ -9,13 +9,14 @@
   width: 200px;
 }
 .itemContainer {
-  display: inline-flex;
+  display: flex;
   position: relative;
   background-color: rgba(68, 192, 255, 0);
-  width: auto;
+  width: 100%;
   height: auto;
   flex-direction: row;
   cursor: default;
+  min-width: 0;
   padding: 10px 8px 10px 17px;
 }
 .itemContainer > :global(.__wab_flex-container) {

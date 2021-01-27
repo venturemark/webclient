@@ -32,7 +32,6 @@ export async function Search(updateQuery: IUpdateQuery) {
         reject(err);
       } else {
         const updatesPb = res.getObjList();
-        console.log("we're getting updates!", updatesPb);
 
         const updates = updatesPb.map((updatePb: SearchO_Obj) => {
           const propertyPb = updatePb.getProperty();
@@ -47,7 +46,7 @@ export async function Search(updateQuery: IUpdateQuery) {
           const update: any = {
             organizationId: organizationId,
             timelineId: timelineId,
-            updateId: updateId,
+            id: updateId,
             text: text,
           };
           return update;
