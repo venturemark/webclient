@@ -10,10 +10,9 @@ import Update from 'component/update';
 // import { format } from "date-fns";
 
 import { ITimeline } from 'module/interface/timeline';
-import {IUpdateQuery} from 'module/interface/update'
-import {useUpdates} from 'module/hook/update'
+import { IUpdateQuery } from 'module/interface/update';
+import { useUpdates } from 'module/hook/update';
 
- 
 const defaultTimeline: ITimeline = {
   name: '',
   desc: '',
@@ -27,7 +26,6 @@ const defaultTimeline: ITimeline = {
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
-
   // get org and username
   const pathArray = window.location.pathname.split('/');
   const organizationId = pathArray[1];
@@ -37,22 +35,22 @@ export function Component(props: HomeProps) {
     defaultTimeline,
   );
 
-  const [showLogin, setShowLogin] = useState(true)
+  const [showLogin, setShowLogin] = useState(true);
 
-  const timelineId = currentTimeline.id
+  const timelineId = currentTimeline.id;
 
-  const updatesSearch:IUpdateQuery  = {
+  const updatesSearch: IUpdateQuery = {
     organizationId,
     timelineId,
     userId,
-  }
-  const {data: updatesData} = useUpdates(updatesSearch)
+  };
+  const { data: updatesData } = useUpdates(updatesSearch);
 
-  const updates = updatesData ?? []
+  const updates = updatesData ?? [];
 
   useEffect(() => {
     if (userId && organizationId) {
-      setShowLogin(false)
+      setShowLogin(false);
     }
   }, [userId, organizationId]);
 

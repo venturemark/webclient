@@ -24,11 +24,7 @@ interface ActionBarProps extends DefaultActionBarProps {
 }
 
 function ActionBar(props: ActionBarProps) {
-  const {
-    organizationId,
-    timelineId,
-    userId,
-  } = props;
+  const { organizationId, timelineId, userId } = props;
 
   const store = get('composeEditor.content') ?? '';
   const initialValue =
@@ -48,7 +44,7 @@ function ActionBar(props: ActionBarProps) {
     progress: defaultProgress,
   });
 
-  const audienceId = '1'
+  const audienceId = '1';
 
   const queryClient = useQueryClient();
 
@@ -100,7 +96,7 @@ function ActionBar(props: ActionBarProps) {
       JSON.stringify(initialValueEmpty),
     );
     //reset editor
-    const resetEditor:EditorShape = {
+    const resetEditor: EditorShape = {
       value: initialValueEmpty,
       string: '',
       hasContent: undefined,
@@ -128,7 +124,9 @@ function ActionBar(props: ActionBarProps) {
         handleClick: () => handleAddUpdate(),
       }}
       error={editorShape.error ? 'hasError' : undefined}
-      text={normalize(editorShape.progress) > 0 ? 'hasText' : undefined}
+      text={
+        normalize(editorShape.progress) > 0 ? 'hasText' : undefined
+      }
       timelineSelected={timelineSelected}
       timelineSelect={{
         onClick: () => setTimelineSelected(true),

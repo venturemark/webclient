@@ -7,17 +7,19 @@ import {
   DefaultSidebarProps,
 } from 'component/plasmic/shared/PlasmicSidebar';
 import SidebarItem from 'component/sidebaritem';
-import * as api from 'module/api';
-import { useMutation, useQueryClient } from 'react-query';
-import { ITimeline, INewTimeline, ITimelineQuery } from 'module/interface/timeline';
-import {useTimelines} from 'module/hook/timeline'
+// import * as api from 'module/api';
+// import { useMutation, useQueryClient } from 'react-query';
+import {
+  ITimeline,
+  INewTimeline,
+  ITimelineQuery,
+} from 'module/interface/timeline';
+import { useTimelines, useCreateTimeline } from 'module/hook/timeline';
 
 interface SidebarProps extends DefaultSidebarProps {
   setTimelines: React.Dispatch<React.SetStateAction<ITimeline[]>>;
   setCurrentTimeline: React.Dispatch<React.SetStateAction<ITimeline>>;
   addTimelineFocused: boolean;
-  refresh: boolean;
-  setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   userId: string;
   organizationId: string;
 }
@@ -30,7 +32,6 @@ function Sidebar(props: SidebarProps) {
   const {
     setTimelines,
     addTimelineFocused,
-    setRefresh,
     setCurrentTimeline,
     userId,
     organizationId,
@@ -41,35 +42,23 @@ function Sidebar(props: SidebarProps) {
     reset,
     watch,
   } = useForm<FormInputs>();
-  const audienceId = '1'
+  const audienceId = '1';
   const timelineSearch: ITimelineQuery = {
     audienceId,
     userId,
     organizationId,
-  }
+  };
 
-  const {data: timelinesData} = useTimelines(timelineSearch)
+  const { data: timelinesData } = useTimelines(timelineSearch);
   const nameRef = useRef<HTMLInputElement | null>(null);
   const hasValue = watch('name') ? true : false;
   const [hasInput, setHasInput] = useState(false);
-  const timelines = timelinesData ?? []
-  const sortedTimelines = timelines.sort((a:any, b:any) =>
+  const timelines = timelinesData ?? [];
+  const sortedTimelines = timelines.sort((a: any, b: any) =>
     a.name.localeCompare(b.name),
   );
 
-  const queryClient = useQueryClient();
-
-  const timelineMutation = useMutation<any, any, any>(
-    (newTimeline) => {
-      return api.API.Timeline.Create(newTimeline);
-    },
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries('timeline');
-      },
-    },
-  );
+  const {mutate :createTimeline} = useCreateTimeline()
 
   const handleAddTimeline = (data: FormInputs) => {
     if (!data.name) {
@@ -85,7 +74,7 @@ function Sidebar(props: SidebarProps) {
     };
 
     // audienceMutation(timelineId)
-    timelineMutation.mutate(newTimeline);
+    createTimeline(newTimeline);
 
     //reset form
     reset({
@@ -123,17 +112,18 @@ function Sidebar(props: SidebarProps) {
                   timeline.id === clickedTimeline.id,
               )[0];
 
-              const currentTimelines = timelines.map((timeline:any) => {
-                const isCurrent =
-                  name === timeline.name
-                    ? !timeline.isCurrent
-                    : false;
+              const currentTimelines = timelines.map(
+                (timeline: any) => {
+                  const isCurrent =
+                    name === timeline.name
+                      ? !timeline.isCurrent
+                      : false;
 
-                return { ...timeline, isCurrent: isCurrent };
-              });
+                  return { ...timeline, isCurrent: isCurrent };
+                },
+              );
               setTimelines(currentTimelines);
               setCurrentTimeline(thisTimeline);
-              setRefresh(true);
             }}
           />
         )),

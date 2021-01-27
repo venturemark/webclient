@@ -2,11 +2,14 @@ import * as apigents from '@venturemark/apigents';
 import { SearchI_Obj } from 'module/api/timeline/proto/search_pb';
 import { SearchO_Obj } from 'module/api/timeline/proto/search_pb';
 import * as env from 'module/env';
-import { ITimeline, ITimelineQuery } from 'module/interface/timeline/index';
+import {
+  ITimeline,
+  ITimelineQuery,
+} from 'module/interface/timeline/index';
 import * as key from 'module/idkeys';
 
 export async function Search(
-  timelineQuery: ITimelineQuery
+  timelineQuery: ITimelineQuery,
 ): Promise<ITimeline[]> {
   const objList = [];
   //instantiate client and req classes
@@ -17,7 +20,9 @@ export async function Search(
 
   const obj = new SearchI_Obj();
   obj.getMetadataMap().set(key.UserID, timelineQuery.userId);
-  obj.getMetadataMap().set(key.OrganizationID, timelineQuery.organizationId);
+  obj
+    .getMetadataMap()
+    .set(key.OrganizationID, timelineQuery.organizationId);
   obj.getMetadataMap().set(key.AudienceID, timelineQuery.audienceId);
   objList.push(obj);
   req.setObjList(objList);
