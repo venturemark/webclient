@@ -28,6 +28,7 @@
   width: auto;
   height: 100%;
   flex-direction: row;
+  flex-grow: 3;
   min-height: 0;
   padding: 15px 0px;
 }
@@ -75,4 +76,31 @@
   .box__ewHZ {
     font-size: 14px;
   }
+}
+.box__lP94A {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  top: auto;
+  left: auto;
+  margin-top: 3px;
+  height: auto;
+}
+.button {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0px;
+  border-width: 0px;
+}
+.svg {
+  object-fit: cover;
+  width: 23px;
+  height: 26px;
+  color: #4d4d4d;
+  flex-shrink: 0;
 }

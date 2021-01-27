@@ -28,6 +28,11 @@ import {
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
 
+import {
+  ScreenContext,
+  ScreenValue,
+} from './PlasmicGlobalVariant__Screen'; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+
 import '@plasmicapp/react-web/lib/plasmic.css';
 import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import: global/defaultcss
 import projectcss from './plasmic_shared.module.css'; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
@@ -61,6 +66,10 @@ function PlasmicHeader__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const globalVariants = ensureGlobalVariants({
+    screen: React.useContext(ScreenContext),
+  });
+
   return (
     <div
       data-plasmic-name={'root'}
@@ -73,7 +82,11 @@ function PlasmicHeader__RenderFunc(props: {
         sty.root,
       )}
     >
-      <div className={classNames(defaultcss.all, sty.box__ky7Rm)}>
+      <p.Stack
+        as={'div'}
+        hasGap={true}
+        className={classNames(defaultcss.all, sty.box__ky7Rm)}
+      >
         <p.Stack
           as={'div'}
           hasGap={true}
@@ -120,7 +133,7 @@ function PlasmicHeader__RenderFunc(props: {
             </div>
           </div>
         </p.Stack>
-      </div>
+      </p.Stack>
     </div>
   ) as React.ReactElement | null;
 }

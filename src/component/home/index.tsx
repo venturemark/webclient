@@ -13,16 +13,6 @@ import { ITimeline } from 'module/interface/timeline';
 import { IUpdateQuery } from 'module/interface/update';
 import { useUpdates } from 'module/hook/update';
 
-const defaultTimeline: ITimeline = {
-  name: '',
-  desc: '',
-  stat: '',
-  organizationId: '',
-  id: '',
-  userId: '',
-  isCurrent: false,
-};
-
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
@@ -31,13 +21,13 @@ export function Component(props: HomeProps) {
   const organizationId = pathArray[1];
   const userId = pathArray[2];
 
-  const [currentTimeline, setCurrentTimeline] = useState<ITimeline>(
-    defaultTimeline,
-  );
+  const [currentTimeline, setCurrentTimeline] = useState<
+    ITimeline | undefined
+  >();
 
   const [showLogin, setShowLogin] = useState(true);
 
-  const timelineId = currentTimeline.id;
+  const timelineId = currentTimeline?.id ?? '';
 
   const updatesSearch: IUpdateQuery = {
     organizationId,
@@ -54,13 +44,16 @@ export function Component(props: HomeProps) {
     }
   }, [userId, organizationId]);
 
+  console.log('updates in the current timeline:', updates);
+
   return (
     <PlasmicHome
       showLogin={showLogin}
       sidebar={{
+        currentTimeline: currentTimeline,
         setCurrentTimeline: setCurrentTimeline,
-        userId: currentTimeline.userId || userId,
-        organizationId: currentTimeline.userId || organizationId,
+        userId: currentTimeline?.userId || userId,
+        organizationId: currentTimeline?.userId || organizationId,
       }}
       actionBar={{
         organizationId: organizationId,
@@ -73,7 +66,7 @@ export function Component(props: HomeProps) {
             text={update.text}
             key={update.id}
             id={update.id}
-            name={currentTimeline.name}
+            name={currentTimeline?.name ?? ''}
           />
         )),
       }}

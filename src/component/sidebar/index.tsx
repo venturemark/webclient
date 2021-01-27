@@ -18,9 +18,10 @@ import {
 } from 'module/hook/timeline';
 
 interface SidebarProps extends DefaultSidebarProps {
-  setTimelines: React.Dispatch<React.SetStateAction<ITimeline[]>>;
-  setCurrentTimeline: React.Dispatch<React.SetStateAction<ITimeline>>;
-  addTimelineFocused: boolean;
+  currentTimeline: any;
+  setCurrentTimeline: React.Dispatch<
+    React.SetStateAction<ITimeline | undefined>
+  >;
   userId: string;
   organizationId: string;
 }
@@ -31,8 +32,7 @@ type FormInputs = {
 
 function Sidebar(props: SidebarProps) {
   const {
-    setTimelines,
-    addTimelineFocused,
+    currentTimeline,
     setCurrentTimeline,
     userId,
     organizationId,
@@ -52,14 +52,21 @@ function Sidebar(props: SidebarProps) {
     organizationId,
   };
 
+  const [homeSidebarState, setHomeSidebarState] = useState(true);
   const { data: timelinesData } = useTimelines(timelineSearch);
   const nameRef = useRef<HTMLInputElement | null>(null);
   const hasValue = watch('name') ? true : false;
   const [hasInput, setHasInput] = useState(false);
   const timelines = timelinesData ?? [];
-  const sortedTimelines = timelines.sort((a: any, b: any) =>
-    a.name.localeCompare(b.name),
-  );
+
+  const sortedCurrentTimelines = timelines
+    .map((timeline: any) => {
+      if (currentTimeline && timeline.id === currentTimeline.id) {
+        return { ...timeline, isCurrent: true };
+      }
+      return timeline;
+    })
+    .sort((a: any, b: any) => a.name.localeCompare(b.name));
 
   const { mutate: createTimeline } = useCreateTimeline();
 
@@ -86,10 +93,8 @@ function Sidebar(props: SidebarProps) {
   };
 
   useEffect(() => {
-    if (addTimelineFocused) {
-      nameRef?.current?.focus();
-    }
-  }, [addTimelineFocused]);
+    setHomeSidebarState(!currentTimeline);
+  }, [currentTimeline]);
 
   return (
     <PlasmicSidebar
@@ -102,31 +107,19 @@ function Sidebar(props: SidebarProps) {
       sidebarForm={{
         onSubmit: handleSubmit(handleAddTimeline),
       }}
+      homeSidebarItem={{
+        onClick: () => {
+          setCurrentTimeline(undefined);
+        },
+        isCurrent: homeSidebarState,
+      }}
       timelinesContainer={{
-        children: sortedTimelines.map((timeline: any) => (
+        children: sortedCurrentTimelines.map((timeline: any) => (
           <SidebarItem
             name={timeline.name}
             isCurrent={timeline.isCurrent}
             onClick={() => {
-              const name = timeline.name;
-
-              const thisTimeline = timelines.filter(
-                (clickedTimeline: any) =>
-                  timeline.id === clickedTimeline.id,
-              )[0];
-
-              const currentTimelines = timelines.map(
-                (timeline: any) => {
-                  const isCurrent =
-                    name === timeline.name
-                      ? !timeline.isCurrent
-                      : false;
-
-                  return { ...timeline, isCurrent: isCurrent };
-                },
-              );
-              setTimelines(currentTimelines);
-              setCurrentTimeline(thisTimeline);
+              setCurrentTimeline(timeline);
             }}
           />
         )),
