@@ -5,12 +5,9 @@ import {
 } from 'module/api/update/proto/search_pb';
 import * as env from 'module/env';
 import * as key from 'module/idkeys';
+import { IUpdateQuery } from 'module/interface/update';
 
-export async function Search(
-  organizationId: string,
-  timelineId: string,
-  userId: string,
-) {
+export async function Search(updateQuery: IUpdateQuery) {
   const objList = [];
 
   //instantiate client and req classes
@@ -19,9 +16,11 @@ export async function Search(
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.OrganizationID, organizationId);
-  obj.getMetadataMap().set(key.TimelineID, timelineId);
-  obj.getMetadataMap().set(key.UserID, userId);
+  obj
+    .getMetadataMap()
+    .set(key.OrganizationID, updateQuery.organizationId);
+  obj.getMetadataMap().set(key.TimelineID, updateQuery.timelineId);
+  obj.getMetadataMap().set(key.UserID, updateQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
 

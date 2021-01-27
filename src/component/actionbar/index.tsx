@@ -8,51 +8,48 @@ import {
 import ComposeEditor from 'component/editor/compose';
 import { EditorShape } from 'component/editor/compose';
 import { INewUpdate } from 'module/interface/update';
-import { useMutation, useQueryClient } from 'react-query';
+
 import { initialValueEmpty } from 'component/editor/config/initialValues';
+import { Search } from '@venturemark/numnum';
 import { serialize } from 'module/serialize';
-import * as api from 'module/api';
+import { get } from 'module/store';
+import { useEditor } from 'component/editor/compose';
+import { useCreateUpdate } from 'module/hook/update';
 
 interface ActionBarProps extends DefaultActionBarProps {
-  audienceId: string;
   organizationId: string;
   timelineId: string;
   userId: string;
-  errorMessage: string;
-  progress: number;
-  editorShape: EditorShape;
-  setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
 }
 
 function ActionBar(props: ActionBarProps) {
-  const {
-    audienceId,
-    organizationId,
-    timelineId,
-    userId,
-    errorMessage,
-    progress,
-    editorShape,
-    setEditorShape,
-  } = props;
+  const { organizationId, timelineId, userId } = props;
 
-  const queryClient = useQueryClient();
+  const store = get('composeEditor.content') ?? '';
+  const initialValue =
+    store !== '' ? JSON.parse(store) : initialValueEmpty;
+  const hasContentDefault =
+    serialize(initialValue) === '' ||
+    serialize(initialValue) === undefined
+      ? undefined
+      : 'hasContent';
+  const defaultNumber = Search(serialize(initialValue)) ?? 0;
+  const defaultProgress = serialize(initialValue).length;
 
-  const updateMutation = useMutation<any, any, any>(
-    (newUpdate) => {
-      return api.API.TexUpd.Create(newUpdate);
-    },
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries('update');
-      },
-    },
-  );
+  const { editorShape, setEditorShape } = useEditor({
+    value: initialValue,
+    hasContent: hasContentDefault,
+    numberValue: defaultNumber[0],
+    progress: defaultProgress,
+  });
+
+  const audienceId = '1';
+
+  const { mutate: createUpdate } = useCreateUpdate();
 
   const handleAddUpdate = () => {
     if (!timelineId) {
-      const error = 'Please create a timeline';
+      const error = 'Please select a timeline';
       setEditorShape({ ...editorShape, error });
       return;
     }
@@ -78,7 +75,7 @@ function ActionBar(props: ActionBarProps) {
       userId,
     };
 
-    updateMutation.mutate(newUpdate);
+    createUpdate(newUpdate);
 
     //reset store
     localStorage.setItem(
@@ -86,7 +83,7 @@ function ActionBar(props: ActionBarProps) {
       JSON.stringify(initialValueEmpty),
     );
     //reset editor
-    const resetEditor = {
+    const resetEditor: EditorShape = {
       value: initialValueEmpty,
       string: '',
       hasContent: undefined,
@@ -113,13 +110,15 @@ function ActionBar(props: ActionBarProps) {
       sendUpdate={{
         handleClick: () => handleAddUpdate(),
       }}
-      error={errorMessage ? 'hasError' : undefined}
-      text={normalize(progress) > 0 ? 'hasText' : undefined}
+      error={editorShape.error ? 'hasError' : undefined}
+      text={
+        normalize(editorShape.progress) > 0 ? 'hasText' : undefined
+      }
       timelineSelected={timelineSelected}
       timelineSelect={{
         onClick: () => setTimelineSelected(true),
       }}
-      errorMessage={errorMessage}
+      errorMessage={editorShape.error}
       isActive={isActive}
       textContainer={{
         render: () => (
