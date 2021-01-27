@@ -126,7 +126,7 @@ function Sidebar(props: SidebarProps) {
 
               const thisTimeline = timelines.filter(
                 (clickedTimeline) =>
-                  timeline.timelineId === clickedTimeline.timelineId,
+                  timeline.id === clickedTimeline.id,
               )[0];
 
               const currentTimelines = timelines.map((timeline) => {

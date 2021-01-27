@@ -13,26 +13,29 @@ import { Search } from '@venturemark/numnum';
 import { serialize } from 'module/serialize';
 import { get } from 'module/store';
 import { useEditor } from 'component/editor/compose';
-// import { IUpdate } from "module/interface/update";
-import { ITimeline } from 'module/interface/timeline';
-import * as api from 'module/api';
-import { useQuery } from 'react-query';
+import { ITimeline, ITimelineQuery } from 'module/interface/timeline';
+import {IUpdateQuery} from 'module/interface/update'
+// import * as api from 'module/api';
+// import { useQuery } from 'react-query';
+import {useTimelines} from 'module/hook/timeline'
+import {useUpdates} from 'module/hook/update'
 
+ 
 const defaultTimeline: ITimeline = {
   name: '',
   desc: '',
   stat: '',
   organizationId: '',
-  timelineId: '',
+  id: '',
   userId: '',
   isCurrent: false,
 };
 
 interface HomeProps extends DefaultHomeProps {}
 
-type ErrorResponse = { code: number; message: string; metadata: any };
-
 export function Component(props: HomeProps) {
+
+  // get org and username
   const pathArray = window.location.pathname.split('/');
   const organizationId = pathArray[1];
   const userId = pathArray[2];
@@ -44,9 +47,6 @@ export function Component(props: HomeProps) {
   const [showLogin, setShowLogin] = useState(true)
 
   const [refresh, setRefresh] = useState(false);
-
-  // const [updates, setUpdates] = useState<IUpdate[]>([]);
-  // const [audiences, setAudiences] = useState<any>([]);
 
   const store = get('composeEditor.content') ?? '';
   const initialValue =
@@ -68,110 +68,32 @@ export function Component(props: HomeProps) {
 
   let audienceId = '1';
 
-  const timelineQuery = useQuery<any, ErrorResponse>(
-    ['timeline'],
-    () => {
-      return api.API.Timeline.Search(
-        userId,
-        organizationId,
-        audienceId,
-      );
-    },
-  );
-  let timelineId = '';
-  if (timelineQuery.isSuccess) {
-    timelineId =
-      timelineQuery.data.length > 0
-        ? timelineQuery.data[0].timelineId
-        : '';
+  const timelineSearch: ITimelineQuery = {
+    audienceId,
+    userId,
+    organizationId,
   }
 
-  // const timelineId = timelineQuery.data?[0].timelineId
+  const {data: timelinesData, isSuccess} = useTimelines(timelineSearch)
 
-  // TODO: we need updateQuery to happen after timeline query (requires timeline id)
-  const updateQuery = useQuery<any, ErrorResponse>(['update', timelineId], () => {
-    return api.API.Update.Search(organizationId, timelineId, userId);
-  }, {enabled: !!timelineId,});
+  const timelineId = isSuccess && timelinesData.length > 0? timelinesData[0].id : ''
 
- 
+  const updateSearch:IUpdateQuery  = {
+    organizationId,
+    timelineId,
+    userId,
+  }
+
+  const {data: updatesData} = useUpdates(updateSearch)
+
+  const timelines = timelinesData ?? []
+  const updates = updatesData ?? []
 
   useEffect(() => {
     if (userId && organizationId) {
       setShowLogin(false)
     }
   }, [userId, organizationId]);
-
-  // const createUpdate = () => {
-  //   if (!currentTimeline.timelineId) {
-  //     const error = "Please create a timeline";
-  //     setEditorShape({ ...editorShape, error });
-  //     return;
-  //   }
-  //   if (!editorShape.hasContent) {
-  //     const error = "Please enter some text";
-  //     setEditorShape({ ...editorShape, error });
-  //     return;
-  //   }
-  //
-  //   if (!editorShape.numberValue) {
-  //     const error = "Please enter a number";
-  //     setEditorShape({ ...editorShape, error });
-  //     return;
-  //   }
-  //
-  //   if (serialize(editorShape.value).length > 241) {
-  //     const error = `Your update is ${
-  //       serialize(editorShape.value).length
-  //     } characters. The limit is 240 characters`;
-  //     setEditorShape({ ...editorShape, error });
-  //     return;
-  //   }
-  //
-  //   const id = new Date().toString();
-  //   const update: IUpdate = {
-  //     text: editorShape.value,
-  //     numberValue: editorShape.numberValue,
-  //     updateId: id,
-  //     userId: currentTimeline.userId,
-  //     timelineId: currentTimeline.timelineId,
-  //     isFlipped: false,
-  //     isContext: false,
-  //   };
-  //   setUpdates([update, ...updates]);
-  //
-  //   async function createMetricUpdate() {
-  //     let response = await api.API.MetricUpdate.Create(
-  //       serialize(editorShape.value),
-  //       editorShape.numberValue,
-  //       "timeline.venturemark.co/id",
-  //       currentTimeline.timelineId,
-  //       "user.venturemark.co/id",
-  //       currentTimeline.userId
-  //     );
-  //
-  //     if (response.metricId & response.updateId) {
-  //       setRefresh(!refresh);
-  //     }
-  //   }
-  //
-  //   setTimelines(timelines as ITimeline[]);
-  //
-  //   //reset store
-  //   localStorage.setItem(
-  //     "composeEditor.content",
-  //     JSON.stringify(initialValueEmpty)
-  //   );
-  //   //reset editor
-  //   const resetEditor = {
-  //     value: initialValueEmpty,
-  //     string: "",
-  //     hasContent: undefined,
-  //     numberValue: 0,
-  //     error: undefined,
-  //     progress: 0,
-  //   };
-  //   setEditorShape(resetEditor);
-  // };
 
   // loading and error states from fetch calls... nice!!
   // if (timelineQuery.isLoading) {
@@ -188,14 +110,11 @@ export function Component(props: HomeProps) {
 
   // all cool we have the data
 
-  let timelinesResponse = timelineQuery.data ?? [];
-  let updatesResponse = updateQuery.data ?? [];
-
   return (
     <PlasmicHome
       showLogin={showLogin}
       sidebar={{
-        timelines: timelinesResponse,
+        timelines: timelines,
         refresh: refresh,
         setRefresh: setRefresh,
         setCurrentTimeline: setCurrentTimeline,
@@ -213,11 +132,11 @@ export function Component(props: HomeProps) {
         setEditorShape: setEditorShape,
       }}
       updatesContainer={{
-        children: updatesResponse.map((update: any) => (
+        children: updates.map((update: any) => (
           <Update
             text={update.text}
-            key={update.updateId}
-            id={update.updateId}
+            key={update.id}
+            id={update.id}
             name={currentTimeline.name}
           />
         )),

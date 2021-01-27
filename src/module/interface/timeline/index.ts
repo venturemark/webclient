@@ -3,10 +3,16 @@ export interface ITimeline {
   desc: string;
   stat: string;
   organizationId: string;
-  timelineId: string;
+  id: string;
   userId: string;
   date?: string;
   isCurrent: boolean;
+}
+
+export interface ITimelineQuery {
+  userId: string;
+  audienceId: string;
+  organizationId: string;
 }
 
 export interface INewTimeline {

@@ -2,10 +2,16 @@ import { Node } from 'slate';
 
 export interface IUpdate {
   text: Node[];
-  updateId: string;
+  id: string;
   userId: string;
   organizationId: string;
   timelineId: string;
+}
+
+export interface IUpdateQuery {
+  organizationId: string;
+  timelineId: string;
+  userId: string;
 }
 
 export interface INewUpdate {
