@@ -70,7 +70,7 @@ function ActionBar(props: ActionBarProps) {
       return;
     }
 
-    selectedTimelines.forEach(timelineId => {
+    selectedTimelines.forEach((timelineId) => {
       const newUpdate: INewUpdate = {
         text: serialize(editorShape.value),
         audienceId,
@@ -79,7 +79,7 @@ function ActionBar(props: ActionBarProps) {
         userId,
       };
       createUpdate(newUpdate);
-    })
+    });
 
     //reset store
     localStorage.setItem(

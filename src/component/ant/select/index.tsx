@@ -3,7 +3,6 @@ import { Select, Tag } from 'antd';
 import { useTimelines } from 'module/hook/timeline';
 import { ITimelineQuery } from 'module/interface/timeline';
 
-
 function tagRender(props: any) {
   const { label, closable, onClose } = props;
 
@@ -23,8 +22,9 @@ interface SelectProps {
   audienceId: string;
   userId: string;
   organizationId: string;
-  setSelectedTimelines: React.Dispatch<React.SetStateAction<string[]>>;
-
+  setSelectedTimelines: React.Dispatch<
+    React.SetStateAction<string[]>
+  >;
 }
 
 export function AntSelect(props: SelectProps) {

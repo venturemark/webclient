@@ -1,9 +1,7 @@
 .root {
   display: flex;
   width: 100%;
-  height: auto;
   position: relative;
-  min-width: 0;
 }
 .root__hasUpdates {
   width: 200px;
@@ -13,14 +11,10 @@
   position: relative;
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
-  height: auto;
-  flex-direction: row;
   cursor: default;
-  min-width: 0;
   padding: 10px 8px 10px 17px;
 }
 .itemContainer > :global(.__wab_flex-container) {
-  flex-direction: row;
   align-items: center;
   margin-left: calc(0px - 12px);
   width: calc(100% + 12px);
@@ -107,7 +101,6 @@
   background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   height: 100%;
   flex-shrink: 0;
-  min-height: 0;
 }
 .box__isCurrent__v0Fwk0Mgpk {
   width: 3px;
@@ -132,8 +125,6 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
-  left: auto;
-  top: auto;
   border-radius: 100%;
 }
 .endIcon {
@@ -141,8 +132,6 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
-  left: auto;
-  top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   border-radius: 100%;
 }
@@ -152,7 +141,6 @@
   background-color: rgba(68, 192, 255, 0.2);
   width: 4px;
   height: 9px;
-  align-self: auto;
   flex-shrink: 0;
 }
 .box__hasUpdates__yCln2KXb7H {
@@ -189,7 +177,6 @@
   display: flex;
   position: relative;
   width: 140px;
-  height: auto;
   cursor: pointer;
   flex-shrink: 0;
 }

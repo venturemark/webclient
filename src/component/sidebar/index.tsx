@@ -19,7 +19,9 @@ import {
 
 interface SidebarProps extends DefaultSidebarProps {
   currentTimeline: any;
-  setCurrentTimeline: React.Dispatch<React.SetStateAction<ITimeline | undefined>>;
+  setCurrentTimeline: React.Dispatch<
+    React.SetStateAction<ITimeline | undefined>
+  >;
   userId: string;
   organizationId: string;
 }

@@ -1,14 +1,10 @@
 .root {
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
-  height: auto;
   position: relative;
   padding-right: 0px;
-  min-width: 0;
 }
 .root__state_text {
   height: 209px;
@@ -47,10 +43,8 @@
   display: inline-flex;
   position: relative;
   background-color: rgba(68, 192, 255, 0);
-  width: auto;
   height: 100%;
   flex-direction: column;
-  min-height: 0;
   padding: 20px;
 }
 .updateActionContainer > :global(.__wab_flex-container) {
@@ -93,8 +87,6 @@
 }
 .iconButton__i1WjS:global(.__wab_instance) {
   position: relative;
-  left: auto;
-  top: auto;
 }
 .iconButton__state_text__i1WjS9Dd:global(.__wab_instance) {
   position: relative;
@@ -106,14 +98,10 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
-  left: auto;
-  top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .iconButton__zHnWq:global(.__wab_instance) {
   position: relative;
-  left: auto;
-  top: auto;
 }
 .iconButton__state_text__zHnWq9Dd:global(.__wab_instance) {
   position: relative;
@@ -125,14 +113,10 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
-  left: auto;
-  top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .toggleUpdateView:global(.__wab_instance) {
   position: relative;
-  left: auto;
-  top: auto;
 }
 .toggleUpdateView__state_text:global(.__wab_instance) {
   position: relative;
@@ -144,14 +128,10 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
-  left: auto;
-  top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .updateContent:global(.__wab_instance) {
   position: relative;
-  top: auto;
-  left: auto;
   align-self: flex-start;
 }
 .updateContent__state_text:global(.__wab_instance) {

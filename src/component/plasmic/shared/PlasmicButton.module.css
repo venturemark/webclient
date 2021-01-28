@@ -1,17 +1,12 @@
 .root {
   display: inline-flex;
-  width: auto;
-  height: auto;
   position: relative;
 }
 .button {
   opacity: 1;
   transform: scale(1, 1) rotate(0deg);
-  width: auto;
-  height: auto;
   display: inline-flex;
   background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   min-width: 120px;
@@ -32,9 +27,6 @@
   display: inline-flex;
   position: relative;
   opacity: 1;
-  top: auto;
-  left: auto;
-  width: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
   justify-content: center;
@@ -45,11 +37,7 @@
   font-weight: 900;
   color: rgba(255, 255, 255, 1);
   text-align: center;
-  text-transform: none;
   letter-spacing: 0px;
-}
-.slotText > * {
-  text-decoration-line: none;
 }
 .slotText__buttonStyle_secondary {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
