@@ -38,12 +38,7 @@ function Sidebar(props: SidebarProps) {
     organizationId,
   } = props;
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    watch,
-  } = useForm<FormInputs>();
+  const { register, handleSubmit, reset } = useForm<FormInputs>();
 
   const audienceId = '1';
   const timelineSearch: ITimelineQuery = {
@@ -55,7 +50,6 @@ function Sidebar(props: SidebarProps) {
   const [homeSidebarState, setHomeSidebarState] = useState(true);
   const { data: timelinesData } = useTimelines(timelineSearch);
   const nameRef = useRef<HTMLInputElement | null>(null);
-  const hasValue = watch('name') ? true : false;
   const [hasInput, setHasInput] = useState(false);
   const timelines = timelinesData ?? [];
 
@@ -98,7 +92,6 @@ function Sidebar(props: SidebarProps) {
 
   return (
     <PlasmicSidebar
-      hasValue={hasValue}
       organizationName={{
         hasInput: hasInput,
         setHasInput: setHasInput,

@@ -34,7 +34,8 @@
             "modulePath": "update/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicUpdate.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "_i6uD1XPzdbux6R",
@@ -46,7 +47,8 @@
             "modulePath": "metric/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicMetric.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "odPjbfT2kyJgB_S",
@@ -58,7 +60,8 @@
             "modulePath": "iconbutton/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicIconButton.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "eUnRsS9UXR",
@@ -70,7 +73,8 @@
             "modulePath": "actionbar/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicActionBar.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "A1UjtYt6k0",
@@ -82,7 +86,8 @@
             "modulePath": "updatecontent/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicUpdateContent.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "Ey_MwfntCV",
@@ -94,7 +99,8 @@
             "modulePath": "actionscolumn/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicActionsColumn.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "KDElHbQmfd",
@@ -106,7 +112,8 @@
             "modulePath": "sidebaritem/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSidebarItem.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "FZWTu4L61t",
@@ -118,7 +125,8 @@
             "modulePath": "sidebar/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSidebar.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "MkyvVOg5Ik",
@@ -130,7 +138,8 @@
             "modulePath": "Header.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicHeader.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "LRwT0lHdps",
@@ -142,7 +151,8 @@
             "modulePath": "MainHeader.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicMainHeader.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "ZvAJESOUhw",
@@ -154,7 +164,8 @@
             "modulePath": "SelectItem.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSelectItem.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "pJJQRCyJQM",
@@ -166,7 +177,8 @@
             "modulePath": "SidebarOrganizationName.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSidebarOrganizationName.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "Umq3CDOCIR",
@@ -178,7 +190,8 @@
             "modulePath": "Dropdown.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicDropdown.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "FsY3j3NYte",
@@ -190,7 +203,8 @@
             "modulePath": "Modal.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicModal.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "JU1t0P9pFY",
@@ -202,7 +216,8 @@
             "modulePath": "Button.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicButton.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "v0nNSTRV39",
@@ -214,7 +229,8 @@
             "modulePath": "TextInput.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicTextInput.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -419,7 +435,8 @@
             "modulePath": "home/index.tsx"
           },
           "cssFilePath": "plasmic/home/PlasmicHome.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "yT5Y2AcZ02",
@@ -431,7 +448,8 @@
             "modulePath": "InputField.tsx"
           },
           "cssFilePath": "plasmic/home/PlasmicInputField.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "4FEK_8lyET",
@@ -443,7 +461,8 @@
             "modulePath": "Button.tsx"
           },
           "cssFilePath": "plasmic/home/PlasmicButton.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "sIIbkPiydb",
@@ -455,7 +474,8 @@
             "modulePath": "SidebarListItem.tsx"
           },
           "cssFilePath": "plasmic/home/PlasmicSidebarListItem.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         },
         {
           "id": "BJX20CpONV",
@@ -467,7 +487,8 @@
             "modulePath": "TimelinModal.tsx"
           },
           "cssFilePath": "plasmic/home/PlasmicTimelinModal.module.css",
-          "scheme": "blackbox"
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -597,6 +618,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.94",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.94/dist/plasmic.schema.json"
+  "cliVersion": "0.1.95",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.95/dist/plasmic.schema.json"
 }
