@@ -19,9 +19,7 @@ import {
 
 interface SidebarProps extends DefaultSidebarProps {
   currentTimeline: any;
-  setCurrentTimeline: React.Dispatch<
-    React.SetStateAction<ITimeline | undefined>
-  >;
+  setCurrentTimeline: React.Dispatch<React.SetStateAction<ITimeline | undefined>>;
   userId: string;
   organizationId: string;
 }
@@ -77,7 +75,7 @@ function Sidebar(props: SidebarProps) {
 
     const newTimeline: INewTimeline = {
       name: data.name,
-      desc: 'Lorem Ipsum...',
+      desc: 'edit timeline description',
       userId,
       audienceId: '1',
       organizationId,

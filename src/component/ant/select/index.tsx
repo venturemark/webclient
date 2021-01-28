@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Select, Tag } from 'antd';
 import { useTimelines } from 'module/hook/timeline';
 import { ITimelineQuery } from 'module/interface/timeline';
 
-// const options = [{ value: 'gold', label: 'name' }, { value: 'lime', label: 'cousin' }, { value: 'green',label: 'home' }, { value: 'cyan',label: 'house' }];
 
 function tagRender(props: any) {
   const { label, closable, onClose } = props;
 
   return (
     <Tag
-      color={'green'}
+      color={'gold'}
       closable={closable}
       onClose={onClose}
       style={{ marginRight: 3, borderRadius: 8 }}
@@ -24,7 +23,8 @@ interface SelectProps {
   audienceId: string;
   userId: string;
   organizationId: string;
-  setSelectedTimeline: any;
+  setSelectedTimelines: React.Dispatch<React.SetStateAction<string[]>>;
+
 }
 
 export function AntSelect(props: SelectProps) {
@@ -32,7 +32,7 @@ export function AntSelect(props: SelectProps) {
     audienceId,
     userId,
     organizationId,
-    setSelectedTimeline,
+    setSelectedTimelines,
   } = props;
 
   const timelineSearch: ITimelineQuery = {
@@ -45,7 +45,6 @@ export function AntSelect(props: SelectProps) {
   const options =
     timelines?.map((timeline: any) => {
       return {
-        ...timeline,
         value: timeline.id,
         label: timeline.name,
       };
@@ -55,9 +54,8 @@ export function AntSelect(props: SelectProps) {
     <Select
       mode="multiple"
       showArrow
-      onChange={(value: [string]) => {
-        console.log('change value', value);
-        setSelectedTimeline(value[0]);
+      onChange={(timelines: [string]) => {
+        setSelectedTimelines(timelines);
       }}
       placeholder={'Select Timeline'}
       tagRender={tagRender}
