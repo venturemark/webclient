@@ -12,7 +12,6 @@
     ]
   },
   "dependencies": {
-    "react-query": "3.5.16",
     "@material-ui/core": "^4.11.2",
     "@plasmicapp/plume": "^0.1.15",
     "@plasmicapp/react-web": "^0.2.16",
@@ -28,12 +27,14 @@
     "@udecode/slate-plugins": "0.71.0",
     "@venturemark/apigents": "github:venturemark/apigents#v0.3.1",
     "@venturemark/numnum": "github:venturemark/numnum#v0.2.0",
+    "antd": "^4.11.2",
     "date-fns": "^2.16.1",
     "faker": "^5.1.0",
     "react": "^17.0.1",
     "react-card-flip": "^1.0.11",
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.13.1",
+    "react-query": "3.5.16",
     "react-scripts": "4.0.0",
     "recharts": "^1.8.5",
     "slate": "^0.59.0",
