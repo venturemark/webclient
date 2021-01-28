@@ -8,7 +8,7 @@ import {
 import ComposeEditor from 'component/editor/compose';
 import { EditorShape } from 'component/editor/compose';
 import { INewUpdate } from 'module/interface/update';
-import {AntSelect} from 'component/ant/select'
+import { AntSelect } from 'component/ant/select';
 
 import { initialValueEmpty } from 'component/editor/config/initialValues';
 import { Search } from '@venturemark/numnum';
@@ -37,6 +37,8 @@ function ActionBar(props: ActionBarProps) {
   const defaultNumber = Search(serialize(initialValue)) ?? 0;
   const defaultProgress = serialize(initialValue).length;
 
+  const [selectedTimeline, setSelectedTimeline] = useState('');
+
   const { editorShape, setEditorShape } = useEditor({
     value: initialValue,
     hasContent: hasContentDefault,
@@ -49,7 +51,7 @@ function ActionBar(props: ActionBarProps) {
   const { mutate: createUpdate } = useCreateUpdate();
 
   const handleAddUpdate = () => {
-    if (!timelineId) {
+    if (!selectedTimeline) {
       const error = 'Please select a timeline';
       setEditorShape({ ...editorShape, error });
       return;
@@ -72,7 +74,7 @@ function ActionBar(props: ActionBarProps) {
       text: serialize(editorShape.value),
       audienceId,
       organizationId,
-      timelineId,
+      timelineId: selectedTimeline,
       userId,
     };
 
@@ -117,7 +119,14 @@ function ActionBar(props: ActionBarProps) {
       }
       // timelineSelected={timelineSelected}
       timelineSelect={{
-        render: () => <AntSelect/>,
+        render: () => (
+          <AntSelect
+            audienceId={audienceId}
+            userId={userId}
+            organizationId={organizationId}
+            setSelectedTimeline={setSelectedTimeline}
+          />
+        ),
       }}
       errorMessage={editorShape.error}
       isActive={isActive}
