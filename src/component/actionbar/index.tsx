@@ -8,6 +8,7 @@ import {
 import ComposeEditor from 'component/editor/compose';
 import { EditorShape } from 'component/editor/compose';
 import { INewUpdate } from 'module/interface/update';
+import {AntSelect} from 'component/ant/select'
 
 import { initialValueEmpty } from 'component/editor/config/initialValues';
 import { Search } from '@venturemark/numnum';
@@ -100,7 +101,7 @@ function ActionBar(props: ActionBarProps) {
     ((value - MIN) * 100) / (MAX - MIN);
 
   const [isActive, setIsActive] = useState(false);
-  const [timelineSelected, setTimelineSelected] = useState(false);
+  // const [timelineSelected, setTimelineSelected] = useState(false);
 
   return (
     <PlasmicActionBar
@@ -114,9 +115,9 @@ function ActionBar(props: ActionBarProps) {
       text={
         normalize(editorShape.progress) > 0 ? 'hasText' : undefined
       }
-      timelineSelected={timelineSelected}
+      // timelineSelected={timelineSelected}
       timelineSelect={{
-        onClick: () => setTimelineSelected(true),
+        render: () => <AntSelect/>,
       }}
       errorMessage={editorShape.error}
       isActive={isActive}
