@@ -31,7 +31,7 @@ function Button(props: ButtonProps) {
     <PlasmicButton
       root={{
         onClick: handleClick,
-        type:type
+        type: type,
       }}
     />
   );

@@ -15,17 +15,17 @@ interface TextInputProps extends DefaultTextInputProps {
 }
 
 function TextInput(props: TextInputProps) {
-  const {options, onChange} = props
+  const { options, onChange } = props;
 
   return (
-    <PlasmicTextInput 
+    <PlasmicTextInput
       input={{
         render: () => (
           <AntAutocomplete options={options} onChange={onChange} />
-        )
+        ),
       }}
     />
-  ) 
+  );
 }
 
 export default TextInput;

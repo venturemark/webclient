@@ -51,7 +51,7 @@ export function Component(props: HomeProps) {
       showLogin={true}
       loginModal={{
         organizationName: 'Fantastic Enterprises',
-        organizationDescription: "A very awesome description here."
+        organizationDescription: 'A very awesome description here.',
       }}
       isTimeline={!isHome}
       sidebar={{
