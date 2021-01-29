@@ -9,9 +9,9 @@ import { useForm } from 'react-hook-form';
 import { saveUser, ISaveUser } from 'module/store';
 
 const options = [
-  { value: 'marcus' },
-  { value: 'tim' },
-  { value: 'victor' },
+  { value: 'Marcus Ellison' },
+  { value: 'Tim Schindler' },
+  { value: 'Victor Tan' },
 ];
 
 interface ModalProps extends DefaultModalProps {

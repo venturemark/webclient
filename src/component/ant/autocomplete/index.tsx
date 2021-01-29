@@ -17,7 +17,7 @@ export function AntAutocomplete(props: SelectProps) {
       style={{ width: 200 }}
       options={options}
       onChange={onChange}
-      placeholder="try to type `b`"
+      placeholder="Search for you name"
       filterOption={(inputValue, option) =>
         option!.value
           .toUpperCase()

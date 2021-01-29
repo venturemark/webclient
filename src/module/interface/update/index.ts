@@ -10,7 +10,7 @@ export interface IUpdate {
 
 export interface IUpdateQuery {
   organizationId: string;
-  timelineId: string;
+  timelineId?: string;
   userId: string;
 }
 
