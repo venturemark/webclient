@@ -40,8 +40,7 @@
     padding: 15px 10px;
   }
 }
-.box__qmNq8 {
-  position: relative;
+.slotTimelineName {
   font-size: 30px;
 }
 .box__rlXLs {
@@ -53,16 +52,18 @@
   position: relative;
   flex-shrink: 0;
 }
-.box__ewHZ {
+.box__sDNfz {
+  display: inline-flex;
   position: relative;
-  font-size: 16px;
-  font-weight: 300;
   cursor: pointer;
   max-width: 363px;
-  display: inline-block;
+}
+.slotTimelineDescription {
+  font-size: 16px;
+  font-weight: 300;
 }
 @media (min-width: 0px) and (max-width: 760px) {
-  .box__ewHZ {
+  .slotTimelineDescription {
     font-size: 14px;
   }
 }

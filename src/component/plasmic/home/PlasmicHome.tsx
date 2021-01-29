@@ -46,15 +46,18 @@ import sty from './PlasmicHome.module.css'; // plasmic-import: Ii0bQ3L3sO/css
 
 export type PlasmicHome__VariantMembers = {
   showLogin: 'showLogin';
+  isTimeline: 'isTimeline';
 };
 
 export type PlasmicHome__VariantsArgs = {
   showLogin?: SingleBooleanChoiceArg<'showLogin'>;
+  isTimeline?: SingleBooleanChoiceArg<'isTimeline'>;
 };
 
 type VariantPropType = keyof PlasmicHome__VariantsArgs;
 export const PlasmicHome__VariantProps = new Array<VariantPropType>(
   'showLogin',
+  'isTimeline',
 );
 
 export type PlasmicHome__ArgsType = {};
@@ -66,6 +69,7 @@ export type PlasmicHome__OverridesType = {
   header?: p.Flex<typeof Header>;
   sidebar?: p.Flex<typeof Sidebar>;
   main?: p.Flex<'div'>;
+  mainHeaderContainer?: p.Flex<'div'>;
   mainHeader?: p.Flex<typeof MainHeader>;
   container?: p.Flex<'div'>;
   actionBarContainer?: p.Flex<'div'>;
@@ -77,6 +81,7 @@ export type PlasmicHome__OverridesType = {
 
 export interface DefaultHomeProps {
   showLogin?: SingleBooleanChoiceArg<'showLogin'>;
+  isTimeline?: SingleBooleanChoiceArg<'isTimeline'>;
   className?: string;
 }
 
@@ -102,6 +107,13 @@ function PlasmicHome__RenderFunc(props: {
         defaultcss.all,
         projectcss.root_reset,
         sty.root,
+        {
+          [sty.root__isTimeline]: hasVariant(
+            variants,
+            'isTimeline',
+            'isTimeline',
+          ),
+        },
       )}
     >
       <div className={classNames(defaultcss.all, sty.box__dMQq)}>
@@ -138,13 +150,43 @@ function PlasmicHome__RenderFunc(props: {
           hasGap={true}
           className={classNames(defaultcss.all, sty.main)}
         >
-          <div className={classNames(defaultcss.all, sty.box___7UOp)}>
-            <MainHeader
-              data-plasmic-name={'mainHeader'}
-              data-plasmic-override={overrides.mainHeader}
-              className={classNames('__wab_instance', sty.mainHeader)}
-            />
-          </div>
+          {(
+            hasVariant(variants, 'isTimeline', 'isTimeline')
+              ? true
+              : false
+          ) ? (
+            <div
+              data-plasmic-name={'mainHeaderContainer'}
+              data-plasmic-override={overrides.mainHeaderContainer}
+              className={classNames(
+                defaultcss.all,
+                sty.mainHeaderContainer,
+                {
+                  [sty.mainHeaderContainer__isTimeline]: hasVariant(
+                    variants,
+                    'isTimeline',
+                    'isTimeline',
+                  ),
+                },
+              )}
+            >
+              <MainHeader
+                data-plasmic-name={'mainHeader'}
+                data-plasmic-override={overrides.mainHeader}
+                className={classNames(
+                  '__wab_instance',
+                  sty.mainHeader,
+                  {
+                    [sty.mainHeader__isTimeline]: hasVariant(
+                      variants,
+                      'isTimeline',
+                      'isTimeline',
+                    ),
+                  },
+                )}
+              />
+            </div>
+          ) : null}
 
           <div className={classNames(defaultcss.all, sty.box__of3XW)}>
             <p.Stack
@@ -168,6 +210,13 @@ function PlasmicHome__RenderFunc(props: {
                   className={classNames(
                     '__wab_instance',
                     sty.actionBar,
+                    {
+                      [sty.actionBar__isTimeline]: hasVariant(
+                        variants,
+                        'isTimeline',
+                        'isTimeline',
+                      ),
+                    },
                   )}
                   error={[]}
                   errorMessage={'Please enter a number value'}
@@ -264,6 +313,7 @@ const PlasmicDescendants = {
     'header',
     'sidebar',
     'main',
+    'mainHeaderContainer',
     'mainHeader',
     'container',
     'actionBarContainer',
@@ -277,6 +327,7 @@ const PlasmicDescendants = {
   sidebar: ['sidebar'],
   main: [
     'main',
+    'mainHeaderContainer',
     'mainHeader',
     'container',
     'actionBarContainer',
@@ -284,6 +335,7 @@ const PlasmicDescendants = {
     'updatesContainer',
   ],
 
+  mainHeaderContainer: ['mainHeaderContainer', 'mainHeader'],
   mainHeader: ['mainHeader'],
   container: [
     'container',
@@ -307,6 +359,7 @@ type NodeDefaultElementType = {
   header: typeof Header;
   sidebar: typeof Sidebar;
   main: 'div';
+  mainHeaderContainer: 'div';
   mainHeader: typeof MainHeader;
   container: 'div';
   actionBarContainer: 'div';
@@ -382,6 +435,7 @@ export const PlasmicHome = Object.assign(
     header: makeNodeComponent('header'),
     sidebar: makeNodeComponent('sidebar'),
     main: makeNodeComponent('main'),
+    mainHeaderContainer: makeNodeComponent('mainHeaderContainer'),
     mainHeader: makeNodeComponent('mainHeader'),
     container: makeNodeComponent('container'),
     actionBarContainer: makeNodeComponent('actionBarContainer'),

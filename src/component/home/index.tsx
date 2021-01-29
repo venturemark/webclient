@@ -26,6 +26,7 @@ export function Component(props: HomeProps) {
   >();
 
   const [showLogin, setShowLogin] = useState(true);
+  const [isHome, setIsHome] = useState(true);
 
   const timelineId = currentTimeline?.id ?? '';
 
@@ -49,7 +50,10 @@ export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       showLogin={showLogin}
+      isTimeline={!isHome}
       sidebar={{
+        isHome: isHome,
+        setIsHome: setIsHome,
         currentTimeline: currentTimeline,
         setCurrentTimeline: setCurrentTimeline,
         userId: currentTimeline?.userId || userId,
@@ -59,6 +63,11 @@ export function Component(props: HomeProps) {
         organizationId: organizationId,
         timelineId: timelineId,
         userId: userId,
+      }}
+      mainHeader={{
+        timelineName: currentTimeline?.name ?? '',
+        timelineDescription:
+          currentTimeline?.desc ?? 'edit timeline description',
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
