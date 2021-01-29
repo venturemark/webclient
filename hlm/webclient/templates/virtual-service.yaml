@@ -8,6 +8,14 @@ spec:
   gateways:
     - "istio-system/ingressgateway"
   hosts:
+    {{- if and ( .Values.dns ) ( .Values.dns.cname ) }}
+    # In a remote setup using eks we can forward traffic based on a pretty
+    # shortcut domain, if any.
+    #
+    #     app.example.com
+    #
+    - "{{ .Values.dns.cname }}"
+    {{- end }}
     {{- if and ( .Values.cluster ) ( .Values.cluster.name ) ( .Values.cluster.zone ) }}
     # In a remote setup using eks the istio ingress gateway forwards traffic
     # based on wildcard expressions of a hosted zone. In our virtual service

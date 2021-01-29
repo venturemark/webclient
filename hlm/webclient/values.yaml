@@ -3,6 +3,8 @@ api:
 cluster:
   name: ""
   zone: ""
+dns:
+  cname: ""
 image:
   registry: "ghcr.io"
   organization: "venturemark"
