@@ -160,6 +160,6 @@
   height: 100%;
   z-index: 99;
 }
-.modal:global(.__wab_instance) {
+.loginModal:global(.__wab_instance) {
   position: relative;
 }

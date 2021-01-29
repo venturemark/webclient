@@ -76,7 +76,7 @@ export type PlasmicHome__OverridesType = {
   actionBar?: p.Flex<typeof ActionBar>;
   updatesContainer?: p.Flex<'div'>;
   modalOverlay?: p.Flex<'div'>;
-  modal?: p.Flex<typeof Modal>;
+  loginModal?: p.Flex<typeof Modal>;
 };
 
 export interface DefaultHomeProps {
@@ -297,9 +297,9 @@ function PlasmicHome__RenderFunc(props: {
           })}
         >
           <Modal
-            data-plasmic-name={'modal'}
-            data-plasmic-override={overrides.modal}
-            className={classNames('__wab_instance', sty.modal)}
+            data-plasmic-name={'loginModal'}
+            data-plasmic-override={overrides.loginModal}
+            className={classNames('__wab_instance', sty.loginModal)}
           />
         </div>
       ) : null}
@@ -320,7 +320,7 @@ const PlasmicDescendants = {
     'actionBar',
     'updatesContainer',
     'modalOverlay',
-    'modal',
+    'loginModal',
   ],
 
   header: ['header'],
@@ -347,8 +347,8 @@ const PlasmicDescendants = {
   actionBarContainer: ['actionBarContainer', 'actionBar'],
   actionBar: ['actionBar'],
   updatesContainer: ['updatesContainer'],
-  modalOverlay: ['modalOverlay', 'modal'],
-  modal: ['modal'],
+  modalOverlay: ['modalOverlay', 'loginModal'],
+  loginModal: ['loginModal'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -366,7 +366,7 @@ type NodeDefaultElementType = {
   actionBar: typeof ActionBar;
   updatesContainer: 'div';
   modalOverlay: 'div';
-  modal: typeof Modal;
+  loginModal: typeof Modal;
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -442,7 +442,7 @@ export const PlasmicHome = Object.assign(
     actionBar: makeNodeComponent('actionBar'),
     updatesContainer: makeNodeComponent('updatesContainer'),
     modalOverlay: makeNodeComponent('modalOverlay'),
-    modal: makeNodeComponent('modal'),
+    loginModal: makeNodeComponent('loginModal'),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

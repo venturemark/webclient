@@ -56,6 +56,7 @@ export type PlasmicModal__OverridesType = {
   group64?: p.Flex<'div'>;
   rectangle587?: p.Flex<'div'>;
   ellipse2?: p.Flex<'div'>;
+  welcomeForm?: p.Flex<'form'>;
   selectUserContainer?: p.Flex<'div'>;
   selectUserInput?: p.Flex<typeof TextInput>;
   selectUserButton?: p.Flex<typeof Button>;
@@ -116,9 +117,11 @@ function PlasmicModal__RenderFunc(props: {
         </p.Stack>
 
         <p.Stack
-          as={'div'}
+          as={'form'}
+          data-plasmic-name={'welcomeForm'}
+          data-plasmic-override={overrides.welcomeForm}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box___90Nki)}
+          className={classNames(defaultcss.all, sty.welcomeForm)}
         >
           <p.Stack
             as={'div'}
@@ -193,6 +196,7 @@ const PlasmicDescendants = {
     'group64',
     'rectangle587',
     'ellipse2',
+    'welcomeForm',
     'selectUserContainer',
     'selectUserInput',
     'selectUserButton',
@@ -203,6 +207,7 @@ const PlasmicDescendants = {
     'group64',
     'rectangle587',
     'ellipse2',
+    'welcomeForm',
     'selectUserContainer',
     'selectUserInput',
     'selectUserButton',
@@ -211,6 +216,14 @@ const PlasmicDescendants = {
 
   rectangle587: ['rectangle587', 'ellipse2'],
   ellipse2: ['ellipse2'],
+  welcomeForm: [
+    'welcomeForm',
+    'selectUserContainer',
+    'selectUserInput',
+    'selectUserButton',
+    'ventureMark',
+  ],
+
   selectUserContainer: ['selectUserContainer', 'selectUserInput'],
   selectUserInput: ['selectUserInput'],
   selectUserButton: ['selectUserButton'],
@@ -225,6 +238,7 @@ type NodeDefaultElementType = {
   group64: 'div';
   rectangle587: 'div';
   ellipse2: 'div';
+  welcomeForm: 'form';
   selectUserContainer: 'div';
   selectUserInput: typeof TextInput;
   selectUserButton: typeof Button;
@@ -297,6 +311,7 @@ export const PlasmicModal = Object.assign(
     group64: makeNodeComponent('group64'),
     rectangle587: makeNodeComponent('rectangle587'),
     ellipse2: makeNodeComponent('ellipse2'),
+    welcomeForm: makeNodeComponent('welcomeForm'),
     selectUserContainer: makeNodeComponent('selectUserContainer'),
     selectUserInput: makeNodeComponent('selectUserInput'),
     selectUserButton: makeNodeComponent('selectUserButton'),

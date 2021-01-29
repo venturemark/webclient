@@ -47,7 +47,12 @@ export function Component(props: HomeProps) {
 
   return (
     <PlasmicHome
-      showLogin={showLogin}
+      // showLogin={showLogin}
+      showLogin={true}
+      loginModal={{
+        organizationName: 'Fantastic Enterprises',
+        organizationDescription: "A very awesome description here."
+      }}
       isTimeline={!isHome}
       sidebar={{
         isHome: isHome,
