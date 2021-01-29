@@ -5,8 +5,8 @@ import {
 } from 'module/api/update/proto/search_pb';
 import * as env from 'module/env';
 import * as key from 'module/idkeys';
-import fromUnixTime from "date-fns/fromUnixTime";
-import { format } from "date-fns";
+import fromUnixTime from 'date-fns/fromUnixTime';
+import { format } from 'date-fns';
 import { IUpdateQuery } from 'module/interface/update';
 
 export async function Search(updateQuery: IUpdateQuery) {
@@ -44,9 +44,9 @@ export async function Search(updateQuery: IUpdateQuery) {
           const organizationId = metaPb.get(key.OrganizationID);
           const timelineId = metaPb.get(key.TimelineID);
           const updateId = metaPb.get(key.UpdateID);
-          const userId = metaPb.get(key.UserID)
-          const rawDate = fromUnixTime(updateId/1000000000)
-          const date = format(rawDate, 'MMM do, Y')
+          const userId = metaPb.get(key.UserID);
+          const rawDate = fromUnixTime(updateId / 1000000000);
+          const date = format(rawDate, 'MMM do, Y');
 
           const update: any = {
             organizationId: organizationId,

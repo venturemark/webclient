@@ -17,7 +17,13 @@ interface UpdateContentProps extends DefaultUpdateContentProps {
 }
 
 function UpdateContent(props: UpdateContentProps) {
-  const { text, organizationName, userName, timelineName, date } = props;
+  const {
+    text,
+    organizationName,
+    userName,
+    timelineName,
+    date,
+  } = props;
 
   return (
     <PlasmicUpdateContent
