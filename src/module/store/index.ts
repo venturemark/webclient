@@ -1,8 +1,8 @@
 import { Node } from 'slate';
 
 export interface ISaveUser {
- userName: string;
- organizationName: string; 
+ userId: string;
+ organizationId: string; 
 }
 
 export const save = (content: Node[]) => {
@@ -15,12 +15,17 @@ export const saveUser = (userObj: ISaveUser) => {
   localStorage.setItem('user', contentString);
 };
 
+export const getUser = (): ISaveUser | undefined => {
+  if (localStorage['user']) {
+    return JSON.parse(localStorage['user']);
+  }
+  return undefined
+}
+
 export const get = (name: string) => {
   switch (name) {
     case 'composeEditor.content':
       return localStorage[name];
-    case 'user':
-      return JSON.parse(localStorage[name]);
     default:
       return '';
   }

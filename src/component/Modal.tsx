@@ -9,29 +9,30 @@ import { useForm } from 'react-hook-form';
 import {saveUser, ISaveUser} from 'module/store'
 
 const options = [
-  { value: 'Marcus Ellison' },
-  { value: 'Tim Schindler' },
-  { value: 'Victor Tang' },
+  { value: 'marcus' },
+  { value: 'tim' },
+  { value: 'victor' },
 ];
 
 interface ModalProps extends DefaultModalProps {
   organizationName: string;
   users: string[];
   organizationDescription: string;
+  setLogin: any;
 }
 
 function Modal(props: ModalProps) {
-  const { organizationName, organizationDescription } = props;
+  const { organizationName, organizationDescription, setLogin } = props;
   const { handleSubmit } = useForm<any>();
   const [user, setUser] = useState('');
 
   const handleLogin = () => {
-    console.log(user);
     const userObj: ISaveUser = {
-      userName: user,
-      organizationName: organizationName,
+      userId: user,
+      organizationId: organizationName,
     }
     saveUser(userObj)
+    setLogin(userObj)
   };
 
   return (

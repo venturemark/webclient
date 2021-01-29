@@ -10,22 +10,22 @@ import Update from 'component/update';
 import { ITimeline } from 'module/interface/timeline';
 import { IUpdateQuery } from 'module/interface/update';
 import { useUpdates } from 'module/hook/update';
+import {getUser} from 'module/store'
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
-  // get org and username
-  const pathArray = window.location.pathname.split('/');
-  const organizationId = pathArray[1];
-  const userId = pathArray[2];
 
+  const user = getUser()
+
+  const organizationId = user?.organizationId ?? '';
+  const userId = user?.userId ?? '';
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
   >();
-
   const [showLogin, setShowLogin] = useState(true);
+  const [login, setLogin] = useState(user)
   const [isHome, setIsHome] = useState(true);
-
   const timelineId = currentTimeline?.id ?? '';
 
   const updatesSearch: IUpdateQuery = {
@@ -38,20 +38,20 @@ export function Component(props: HomeProps) {
   const updates = updatesData ?? [];
 
   useEffect(() => {
-    if (userId && organizationId) {
+    if (login) {
       setShowLogin(false);
     }
-  }, [userId, organizationId]);
+  }, [login]);
 
   console.log('updates in the current timeline:', updates);
 
   return (
     <PlasmicHome
-      // showLogin={showLogin}
-      showLogin={true}
+      showLogin={showLogin}
       loginModal={{
-        organizationName: 'Fantastic Enterprises',
+        organizationName: 'venturemark',
         organizationDescription: 'A very awesome description here.',
+        setLogin: setLogin,
       }}
       isTimeline={!isHome}
       sidebar={{
