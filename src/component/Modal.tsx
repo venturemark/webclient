@@ -6,6 +6,7 @@ import {
   DefaultModalProps,
 } from './plasmic/shared/PlasmicModal';
 import { useForm } from 'react-hook-form';
+import {saveUser, ISaveUser} from 'module/store'
 
 const options = [
   { value: 'Marcus Ellison' },
@@ -26,6 +27,11 @@ function Modal(props: ModalProps) {
 
   const handleLogin = () => {
     console.log(user);
+    const userObj: ISaveUser = {
+      userName: user,
+      organizationName: organizationName,
+    }
+    saveUser(userObj)
   };
 
   return (
