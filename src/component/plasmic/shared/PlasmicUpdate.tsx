@@ -39,18 +39,10 @@ import IconWriteIcon from './icons/PlasmicIcon__IconWrite'; // plasmic-import: z
 import IconClockIcon from './icons/PlasmicIcon__IconClock'; // plasmic-import: M_91_FWOwwP63LN/icon
 import IconBarChartIcon from './icons/PlasmicIcon__IconBarChart'; // plasmic-import: Y3JBiNHxmK/icon
 
-export type PlasmicUpdate__VariantMembers = {
-  state: 'text' | 'graph';
-};
-
-export type PlasmicUpdate__VariantsArgs = {
-  state?: SingleChoiceArg<'text' | 'graph'>;
-};
-
+export type PlasmicUpdate__VariantMembers = {};
+export type PlasmicUpdate__VariantsArgs = {};
 type VariantPropType = keyof PlasmicUpdate__VariantsArgs;
-export const PlasmicUpdate__VariantProps = new Array<VariantPropType>(
-  'state',
-);
+export const PlasmicUpdate__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicUpdate__ArgsType = {};
 type ArgPropType = keyof PlasmicUpdate__ArgsType;
@@ -64,10 +56,10 @@ export type PlasmicUpdate__OverridesType = {
   toggleUpdateView?: p.Flex<typeof IconButton>;
   startIcon22?: p.Flex<'svg'>;
   updateContent?: p.Flex<typeof UpdateContent>;
+  organizationName?: p.Flex<'span'>;
 };
 
 export interface DefaultUpdateProps {
-  state?: SingleChoiceArg<'text' | 'graph'>;
   className?: string;
 }
 
@@ -80,43 +72,18 @@ function PlasmicUpdate__RenderFunc(props: {
   const { variants, args, overrides, forNode } = props;
 
   return (
-    <p.Stack
-      as={'div'}
+    <div
       data-plasmic-name={'root'}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={
-        hasVariant(variants, 'state', 'text') ||
-        hasVariant(variants, 'state', 'graph')
-          ? true
-          : false
-      }
       className={classNames(
         defaultcss.all,
         projectcss.root_reset,
         sty.root,
-        {
-          [sty.root__state_graph]: hasVariant(
-            variants,
-            'state',
-            'graph',
-          ),
-          [sty.root__state_text]: hasVariant(
-            variants,
-            'state',
-            'text',
-          ),
-        },
       )}
     >
-      {(
-        hasVariant(variants, 'state', 'graph')
-          ? false
-          : hasVariant(variants, 'state', 'text')
-          ? false
-          : false
-      ) ? (
+      {false ? (
         <p.Stack
           as={'div'}
           data-plasmic-name={'updateActionContainer'}
@@ -125,216 +92,84 @@ function PlasmicUpdate__RenderFunc(props: {
           className={classNames(
             defaultcss.all,
             sty.updateActionContainer,
-            {
-              [sty.updateActionContainer__state_graph]: hasVariant(
-                variants,
-                'state',
-                'graph',
-              ),
-
-              [sty.updateActionContainer__state_text]: hasVariant(
-                variants,
-                'state',
-                'text',
-              ),
-            },
           )}
         >
-          {(hasVariant(variants, 'state', 'text') ? true : true) ? (
-            <IconButton
-              className={classNames(
-                '__wab_instance',
-                sty.iconButton__i1WjS,
-                {
-                  [sty.iconButton__state_graph__i1WjSvlb85]: hasVariant(
-                    variants,
-                    'state',
-                    'graph',
-                  ),
+          <IconButton
+            className={classNames(
+              '__wab_instance',
+              sty.iconButton__i1WjS,
+            )}
+            startIcon={
+              <IconWriteIcon
+                data-plasmic-name={'startIcon'}
+                data-plasmic-override={overrides.startIcon}
+                className={classNames(defaultcss.all, sty.startIcon)}
+                role={'img'}
+              />
+            }
+            withIcons={['start']}
+          />
 
-                  [sty.iconButton__state_text__i1WjS9Dd]: hasVariant(
-                    variants,
-                    'state',
-                    'text',
-                  ),
-                },
-              )}
-              startIcon={
-                <p.PlasmicIcon
-                  data-plasmic-name={'startIcon'}
-                  data-plasmic-override={overrides.startIcon}
-                  PlasmicIconType={
-                    hasVariant(variants, 'state', 'text')
-                      ? IconWriteIcon
-                      : IconWriteIcon
-                  }
-                  className={classNames(
-                    defaultcss.all,
-                    sty.startIcon,
-                    {
-                      [sty.startIcon__state_graph]: hasVariant(
-                        variants,
-                        'state',
-                        'graph',
-                      ),
+          <IconButton
+            className={classNames(
+              '__wab_instance',
+              sty.iconButton__zHnWq,
+            )}
+            startIcon={
+              <IconClockIcon
+                data-plasmic-name={'startIcon2'}
+                data-plasmic-override={overrides.startIcon2}
+                className={classNames(defaultcss.all, sty.startIcon2)}
+                role={'img'}
+              />
+            }
+            withIcons={['start']}
+          />
 
-                      [sty.startIcon__state_text]: hasVariant(
-                        variants,
-                        'state',
-                        'text',
-                      ),
-                    },
-                  )}
-                  role={'img'}
-                />
-              }
-              withIcons={
-                hasVariant(variants, 'state', 'text')
-                  ? ['start']
-                  : ['start']
-              }
-            />
-          ) : null}
-          {(hasVariant(variants, 'state', 'text') ? true : true) ? (
-            <IconButton
-              className={classNames(
-                '__wab_instance',
-                sty.iconButton__zHnWq,
-                {
-                  [sty.iconButton__state_graph__zHnWqVlb85]: hasVariant(
-                    variants,
-                    'state',
-                    'graph',
-                  ),
-
-                  [sty.iconButton__state_text__zHnWq9Dd]: hasVariant(
-                    variants,
-                    'state',
-                    'text',
-                  ),
-                },
-              )}
-              startIcon={
-                <p.PlasmicIcon
-                  data-plasmic-name={'startIcon2'}
-                  data-plasmic-override={overrides.startIcon2}
-                  PlasmicIconType={
-                    hasVariant(variants, 'state', 'text')
-                      ? IconClockIcon
-                      : IconClockIcon
-                  }
-                  className={classNames(
-                    defaultcss.all,
-                    sty.startIcon2,
-                    {
-                      [sty.startIcon2__state_graph]: hasVariant(
-                        variants,
-                        'state',
-                        'graph',
-                      ),
-
-                      [sty.startIcon2__state_text]: hasVariant(
-                        variants,
-                        'state',
-                        'text',
-                      ),
-                    },
-                  )}
-                  role={'img'}
-                />
-              }
-              withIcons={
-                hasVariant(variants, 'state', 'text')
-                  ? ['start']
-                  : ['start']
-              }
-            />
-          ) : null}
-          {(hasVariant(variants, 'state', 'text') ? true : true) ? (
-            <IconButton
-              data-plasmic-name={'toggleUpdateView'}
-              data-plasmic-override={overrides.toggleUpdateView}
-              className={classNames(
-                '__wab_instance',
-                sty.toggleUpdateView,
-                {
-                  [sty.toggleUpdateView__state_graph]: hasVariant(
-                    variants,
-                    'state',
-                    'graph',
-                  ),
-
-                  [sty.toggleUpdateView__state_text]: hasVariant(
-                    variants,
-                    'state',
-                    'text',
-                  ),
-                },
-              )}
-              startIcon={
-                <p.PlasmicIcon
-                  data-plasmic-name={'startIcon22'}
-                  data-plasmic-override={overrides.startIcon22}
-                  PlasmicIconType={
-                    hasVariant(variants, 'state', 'text')
-                      ? IconBarChartIcon
-                      : IconBarChartIcon
-                  }
-                  className={classNames(
-                    defaultcss.all,
-                    sty.startIcon22,
-                    {
-                      [sty.startIcon22__state_graph]: hasVariant(
-                        variants,
-                        'state',
-                        'graph',
-                      ),
-
-                      [sty.startIcon22__state_text]: hasVariant(
-                        variants,
-                        'state',
-                        'text',
-                      ),
-                    },
-                  )}
-                  role={'img'}
-                />
-              }
-              withIcons={
-                hasVariant(variants, 'state', 'text')
-                  ? ['start']
-                  : ['start']
-              }
-            />
-          ) : null}
+          <IconButton
+            data-plasmic-name={'toggleUpdateView'}
+            data-plasmic-override={overrides.toggleUpdateView}
+            className={classNames(
+              '__wab_instance',
+              sty.toggleUpdateView,
+            )}
+            startIcon={
+              <IconBarChartIcon
+                data-plasmic-name={'startIcon22'}
+                data-plasmic-override={overrides.startIcon22}
+                className={classNames(
+                  defaultcss.all,
+                  sty.startIcon22,
+                )}
+                role={'img'}
+              />
+            }
+            withIcons={['start']}
+          />
         </p.Stack>
       ) : null}
 
       <UpdateContent
         data-plasmic-name={'updateContent'}
         data-plasmic-override={overrides.updateContent}
-        className={classNames('__wab_instance', sty.updateContent, {
-          [sty.updateContent__state_graph]: hasVariant(
-            variants,
-            'state',
-            'graph',
-          ),
-
-          [sty.updateContent__state_text]: hasVariant(
-            variants,
-            'state',
-            'text',
-          ),
-        })}
-        state={
-          hasVariant(variants, 'state', 'graph')
-            ? ('graph' as const)
-            : hasVariant(variants, 'state', 'text')
-            ? ('text' as const)
-            : undefined
+        className={classNames('__wab_instance', sty.updateContent)}
+        organizationName={
+          <span
+            data-plasmic-name={'organizationName'}
+            data-plasmic-override={overrides.organizationName}
+            className={classNames(
+              defaultcss.all,
+              defaultcss.__wab_text,
+              sty.organizationName,
+            )}
+          >
+            <span>
+              <span style={{ fontWeight: 700 }}>{'Venturemark'}</span>
+            </span>
+          </span>
         }
       />
-    </p.Stack>
+    </div>
   ) as React.ReactElement | null;
 }
 
@@ -347,6 +182,7 @@ const PlasmicDescendants = {
     'toggleUpdateView',
     'startIcon22',
     'updateContent',
+    'organizationName',
   ],
 
   updateActionContainer: [
@@ -361,7 +197,8 @@ const PlasmicDescendants = {
   startIcon2: ['startIcon2'],
   toggleUpdateView: ['toggleUpdateView', 'startIcon22'],
   startIcon22: ['startIcon22'],
-  updateContent: ['updateContent'],
+  updateContent: ['updateContent', 'organizationName'],
+  organizationName: ['organizationName'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -375,6 +212,7 @@ type NodeDefaultElementType = {
   toggleUpdateView: typeof IconButton;
   startIcon22: 'svg';
   updateContent: typeof UpdateContent;
+  organizationName: 'span';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -446,6 +284,7 @@ export const PlasmicUpdate = Object.assign(
     toggleUpdateView: makeNodeComponent('toggleUpdateView'),
     startIcon22: makeNodeComponent('startIcon22'),
     updateContent: makeNodeComponent('updateContent'),
+    organizationName: makeNodeComponent('organizationName'),
 
     // Metadata about props expected for PlasmicUpdate
     internalVariantProps: PlasmicUpdate__VariantProps,

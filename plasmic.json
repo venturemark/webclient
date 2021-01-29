@@ -38,19 +38,6 @@
           "componentType": "component"
         },
         {
-          "id": "_i6uD1XPzdbux6R",
-          "name": "Metric",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicMetric.tsx",
-          "importSpec": {
-            "modulePath": "metric/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicMetric.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "odPjbfT2kyJgB_S",
           "name": "IconButton",
           "type": "managed",

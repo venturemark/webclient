@@ -6,39 +6,6 @@
   position: relative;
   padding-right: 0px;
 }
-.root__state_text {
-  height: 209px;
-  display: flex;
-  flex-direction: row;
-  width: 676px;
-  padding-left: 74px;
-}
-.root__state_text > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
-}
-.root__state_text > :global(.__wab_flex-container) > *,
-.root__state_text > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 0px;
-}
-.root__state_graph {
-  width: 676px;
-  display: flex;
-  flex-direction: row;
-  height: 209px;
-}
-.root__state_graph > :global(.__wab_flex-container) {
-  flex-direction: row;
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
-}
-.root__state_graph > :global(.__wab_flex-container) > *,
-.root__state_graph > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 0px;
-}
 .updateActionContainer {
   display: inline-flex;
   position: relative;
@@ -61,37 +28,8 @@
   > * {
   margin-top: 10px;
 }
-.updateActionContainer__state_text {
-  height: 100%;
-  width: auto;
-  display: inline-flex;
-  flex-direction: column;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: rgba(68, 192, 255, 0);
-  align-self: flex-start;
-  min-height: 0;
-}
-.updateActionContainer__state_text > :global(.__wab_flex-container) {
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin-left: calc(0px - 0px);
-  width: calc(100% + 0px);
-}
-.updateActionContainer__state_text > :global(.__wab_flex-container) > *,
-.updateActionContainer__state_text
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
-  margin-left: 0px;
-}
 .iconButton__i1WjS:global(.__wab_instance) {
   position: relative;
-}
-.iconButton__state_text__i1WjS9Dd:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
 }
 .startIcon {
   position: relative;
@@ -103,11 +41,6 @@
 .iconButton__zHnWq:global(.__wab_instance) {
   position: relative;
 }
-.iconButton__state_text__zHnWq9Dd:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-}
 .startIcon2 {
   position: relative;
   object-fit: cover;
@@ -117,11 +50,6 @@
 }
 .toggleUpdateView:global(.__wab_instance) {
   position: relative;
-}
-.toggleUpdateView__state_text:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
 }
 .startIcon22 {
   position: relative;
@@ -134,12 +62,8 @@
   position: relative;
   align-self: flex-start;
 }
-.updateContent__state_text:global(.__wab_instance) {
-  top: auto;
-  left: auto;
-  align-self: flex-start;
-}
-.updateContent__state_graph:global(.__wab_instance) {
-  top: auto;
-  left: auto;
+.organizationName {
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
 }

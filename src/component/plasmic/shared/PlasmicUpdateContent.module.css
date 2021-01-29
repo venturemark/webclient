@@ -9,19 +9,6 @@
   border-style: solid;
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.root__state_text {
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  min-width: 0;
-}
-.root__state_graph {
-  width: auto;
-  height: 100%;
-  justify-content: center;
-  display: inline-flex;
-  min-height: 0;
-}
 .editorContainer {
   box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
@@ -34,25 +21,6 @@
   padding: 15px 20px;
   border-style: solid;
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
-}
-.editorContainer__state_text {
-  top: auto;
-  left: auto;
-  align-self: center;
-}
-.editorContainer__state_graph {
-  top: auto;
-  left: auto;
-  padding-right: 20px;
-}
-.metric:global(.__wab_instance) {
-  position: relative;
-}
-.metric__state_graph:global(.__wab_instance) {
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  min-height: 0;
 }
 .box__ehjLr {
   display: inline-flex;
@@ -111,6 +79,10 @@
   display: inline-flex;
   position: relative;
 }
+.slotUserName {
+  font-size: 16px;
+  font-weight: 700;
+}
 .userName {
   position: relative;
   font-size: 16px;
@@ -125,9 +97,14 @@
   display: inline-flex;
   position: relative;
 }
+.slotOrganizationName {
+  font-weight: 700;
+  font-size: 16px;
+}
 .organizationName {
   position: relative;
   font-size: 16px;
+  font-weight: 900;
 }
 .box__vvzri {
   display: inline-flex;
@@ -146,6 +123,9 @@
   display: inline-flex;
   position: relative;
 }
+.slotDate {
+  font-weight: 300;
+}
 .date {
   position: relative;
   font-weight: 300;
@@ -156,6 +136,9 @@
 .box__lqdFr {
   display: inline-flex;
   position: relative;
+}
+.slotTimelineName {
+  font-weight: 300;
 }
 .timelineName {
   position: relative;
@@ -190,19 +173,16 @@
   left: -77px;
   top: 30px;
 }
+.box__z3Q65 {
+  display: flex;
+  position: relative;
+  padding-top: 15px;
+}
 .textContainer {
   font-weight: 300;
   white-space: pre-wrap;
   font-size: 16px;
-  padding-top: 15px;
   display: inline-block;
-}
-.textContainer__state_text {
-  width: 100%;
-  height: 100%;
-  font-size: 24px;
-  min-width: 0;
-  min-height: 0;
 }
 .box__khPiB {
   display: flex;

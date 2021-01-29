@@ -75,7 +75,10 @@ export function Component(props: HomeProps) {
             text={update.text}
             key={update.id}
             id={update.id}
-            name={currentTimeline?.name ?? ''}
+            organizationName={update.organizationId}
+            userName={update.userId}
+            timelineName={currentTimeline?.name ?? ''}
+            date={update.date}
           />
         )),
       }}
