@@ -147,18 +147,6 @@
   align-self: flex-start;
   display: inline-block;
 }
-.update__aMfE:global(.__wab_instance) {
-  flex-shrink: 0;
-}
-.update__i0Ec2:global(.__wab_instance) {
-  flex-shrink: 0;
-}
-.update__pLxE:global(.__wab_instance) {
-  flex-shrink: 0;
-}
-.update__jcO9K:global(.__wab_instance) {
-  flex-shrink: 0;
-}
 .modalOverlay {
   display: flex;
   position: absolute;

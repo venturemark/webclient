@@ -27,7 +27,6 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
-import Metric from '../../metric/index'; // plasmic-import: _i6uD1XPzdbux6R/component
 import Dropdown from '../../Dropdown'; // plasmic-import: Umq3CDOCIR/component
 
 import '@plasmicapp/react-web/lib/plasmic.css';
@@ -37,18 +36,10 @@ import sty from './PlasmicUpdateContent.module.css'; // plasmic-import: A1UjtYt6
 
 import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
 
-export type PlasmicUpdateContent__VariantMembers = {
-  state: 'text' | 'graph';
-};
-
-export type PlasmicUpdateContent__VariantsArgs = {
-  state?: SingleChoiceArg<'text' | 'graph'>;
-};
-
+export type PlasmicUpdateContent__VariantMembers = {};
+export type PlasmicUpdateContent__VariantsArgs = {};
 type VariantPropType = keyof PlasmicUpdateContent__VariantsArgs;
-export const PlasmicUpdateContent__VariantProps = new Array<VariantPropType>(
-  'state',
-);
+export const PlasmicUpdateContent__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicUpdateContent__ArgsType = {
   userName?: React.ReactNode;
@@ -68,7 +59,6 @@ export const PlasmicUpdateContent__ArgProps = new Array<ArgPropType>(
 export type PlasmicUpdateContent__OverridesType = {
   root?: p.Flex<'div'>;
   editorContainer?: p.Flex<'div'>;
-  metric?: p.Flex<typeof Metric>;
   userName?: p.Flex<'span'>;
   organizationName?: p.Flex<'span'>;
   date?: p.Flex<'span'>;
@@ -83,7 +73,6 @@ export interface DefaultUpdateContentProps {
   organizationName?: React.ReactNode;
   date?: React.ReactNode;
   timelineName?: React.ReactNode;
-  state?: SingleChoiceArg<'text' | 'graph'>;
   className?: string;
 }
 
@@ -95,16 +84,11 @@ function PlasmicUpdateContent__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
-  const [isRootHover, triggerRootHoverProps] = useTrigger(
-    'useHover',
-    {},
-  );
   const [isRootActive, triggerRootActiveProps] = useTrigger(
     'usePressed',
     {},
   );
   const triggers = {
-    hover_root: isRootHover,
     active_root: isRootActive,
   };
 
@@ -118,67 +102,14 @@ function PlasmicUpdateContent__RenderFunc(props: {
         defaultcss.all,
         projectcss.root_reset,
         sty.root,
-        {
-          [sty.root__state_graph]: hasVariant(
-            variants,
-            'state',
-            'graph',
-          ),
-          [sty.root__state_text]: hasVariant(
-            variants,
-            'state',
-            'text',
-          ),
-        },
       )}
-      data-plasmic-trigger-props={[
-        triggerRootHoverProps,
-        triggerRootActiveProps,
-      ]}
+      data-plasmic-trigger-props={[triggerRootActiveProps]}
     >
       <div
         data-plasmic-name={'editorContainer'}
         data-plasmic-override={overrides.editorContainer}
-        className={classNames(defaultcss.all, sty.editorContainer, {
-          [sty.editorContainer__state_graph]: hasVariant(
-            variants,
-            'state',
-            'graph',
-          ),
-
-          [sty.editorContainer__state_text]: hasVariant(
-            variants,
-            'state',
-            'text',
-          ),
-        })}
+        className={classNames(defaultcss.all, sty.editorContainer)}
       >
-        {(
-          hasVariant(variants, 'state', 'text') && triggers.hover_root
-            ? false
-            : hasVariant(variants, 'state', 'graph')
-            ? true
-            : false
-        ) ? (
-          <Metric
-            data-plasmic-name={'metric'}
-            data-plasmic-override={overrides.metric}
-            className={classNames('__wab_instance', sty.metric, {
-              [sty.metric__state_graph]: hasVariant(
-                variants,
-                'state',
-                'graph',
-              ),
-              [sty.metric__state_text]: hasVariant(
-                variants,
-                'state',
-                'text',
-              ),
-            })}
-            name={'Revenue'}
-          />
-        ) : null}
-
         <p.Stack
           as={'div'}
           hasGap={true}
@@ -220,6 +151,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
                     </span>
                   }
                   value={args.userName}
+                  className={classNames(sty.slotUserName)}
                 />
               </div>
 
@@ -260,6 +192,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
                     </span>
                   }
                   value={args.organizationName}
+                  className={classNames(sty.slotOrganizationName)}
                 />
               </div>
             </p.Stack>
@@ -267,13 +200,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
             <p.Stack
               as={'div'}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__vvzri, {
-                [sty.box__state_text__vvzrItpjiV]: hasVariant(
-                  variants,
-                  'state',
-                  'text',
-                ),
-              })}
+              className={classNames(defaultcss.all, sty.box__vvzri)}
             >
               <div
                 className={classNames(defaultcss.all, sty.box__wDBh5)}
@@ -293,6 +220,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
                     </span>
                   }
                   value={args.date}
+                  className={classNames(sty.slotDate)}
                 />
               </div>
 
@@ -324,6 +252,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
                     </span>
                   }
                   value={args.timelineName}
+                  className={classNames(sty.slotTimelineName)}
                 />
               </div>
             </p.Stack>
@@ -357,7 +286,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
           </div>
         </p.Stack>
 
-        {(hasVariant(variants, 'state', 'graph') ? false : true) ? (
+        <div className={classNames(defaultcss.all, sty.box__z3Q65)}>
           <div
             data-plasmic-name={'textContainer'}
             data-plasmic-override={overrides.textContainer}
@@ -365,26 +294,13 @@ function PlasmicUpdateContent__RenderFunc(props: {
               defaultcss.all,
               defaultcss.__wab_text,
               sty.textContainer,
-              {
-                [sty.textContainer__state_graph]: hasVariant(
-                  variants,
-                  'state',
-                  'graph',
-                ),
-
-                [sty.textContainer__state_text]: hasVariant(
-                  variants,
-                  'state',
-                  'text',
-                ),
-              },
             )}
           >
-            {hasVariant(variants, 'state', 'text')
-              ? 'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius sapien lobortis eu.'
-              : 'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius'}
+            {
+              'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius'
+            }
           </div>
-        ) : null}
+        </div>
 
         <div className={classNames(defaultcss.all, sty.box__khPiB)}>
           <button
@@ -410,7 +326,6 @@ const PlasmicDescendants = {
   root: [
     'root',
     'editorContainer',
-    'metric',
     'userName',
     'organizationName',
     'date',
@@ -422,7 +337,6 @@ const PlasmicDescendants = {
 
   editorContainer: [
     'editorContainer',
-    'metric',
     'userName',
     'organizationName',
     'date',
@@ -432,7 +346,6 @@ const PlasmicDescendants = {
     'textContainer',
   ],
 
-  metric: ['metric'],
   userName: ['userName'],
   organizationName: ['organizationName'],
   date: ['date'],
@@ -448,7 +361,6 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: 'div';
   editorContainer: 'div';
-  metric: typeof Metric;
   userName: 'span';
   organizationName: 'span';
   date: 'span';
@@ -522,7 +434,6 @@ export const PlasmicUpdateContent = Object.assign(
   {
     // Helper components rendering sub-elements
     editorContainer: makeNodeComponent('editorContainer'),
-    metric: makeNodeComponent('metric'),
     userName: makeNodeComponent('userName'),
     organizationName: makeNodeComponent('organizationName'),
     date: makeNodeComponent('date'),

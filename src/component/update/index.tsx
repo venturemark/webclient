@@ -9,18 +9,30 @@ import { Node } from 'slate';
 
 interface UpdateProps extends DefaultUpdateProps {
   text: Node[];
-  name: string;
   id: string;
+  organizationName: string;
+  userName: string;
+  timelineName: string;
+  date: string;
 }
 
 function Update(props: UpdateProps) {
-  const { text, name } = props;
+  const {
+    text,
+    organizationName,
+    userName,
+    timelineName,
+    date,
+  } = props;
 
   return (
     <PlasmicUpdate
       updateContent={{
         text: text,
-        name: name,
+        organizationName: organizationName,
+        userName: userName,
+        timelineName: timelineName,
+        date: date,
       }}
     />
   );

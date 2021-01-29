@@ -10,16 +10,27 @@ import { Node } from 'slate';
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
   text: Node[];
-  name: string;
-  changeContext: any;
+  organizationName: string;
+  userName: string;
+  timelineName: string;
+  date: string;
 }
 
 function UpdateContent(props: UpdateContentProps) {
-  const { text } = props;
+  const {
+    text,
+    organizationName,
+    userName,
+    timelineName,
+    date,
+  } = props;
 
   return (
     <PlasmicUpdateContent
-      state="text"
+      organizationName={organizationName}
+      userName={userName}
+      timelineName={timelineName}
+      date={date}
       textContainer={{
         render: () => <ReadEditor text={text} />,
       }}
