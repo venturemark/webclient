@@ -26,7 +26,7 @@ export function Component(props: HomeProps) {
   >();
 
   const [showLogin, setShowLogin] = useState(true);
-  const [isHome, setIsHome] = useState(true)
+  const [isHome, setIsHome] = useState(true);
 
   const timelineId = currentTimeline?.id ?? '';
 
@@ -66,7 +66,8 @@ export function Component(props: HomeProps) {
       }}
       mainHeader={{
         timelineName: currentTimeline?.name ?? '',
-        timelineDescription: currentTimeline?.desc ?? 'edit timeline description',
+        timelineDescription:
+          currentTimeline?.desc ?? 'edit timeline description',
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
