@@ -10,13 +10,12 @@ import Update from 'component/update';
 import { ITimeline } from 'module/interface/timeline';
 import { IUpdateQuery } from 'module/interface/update';
 import { useUpdates } from 'module/hook/update';
-import {getUser} from 'module/store'
+import { getUser } from 'module/store';
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
-
-  const user = getUser()
+  const user = getUser();
 
   const organizationId = user?.organizationId ?? '';
   const userId = user?.userId ?? '';
@@ -24,7 +23,7 @@ export function Component(props: HomeProps) {
     ITimeline | undefined
   >();
   const [showLogin, setShowLogin] = useState(true);
-  const [login, setLogin] = useState(user)
+  const [login, setLogin] = useState(user);
   const [isHome, setIsHome] = useState(true);
   const timelineId = currentTimeline?.id ?? '';
 

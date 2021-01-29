@@ -1,8 +1,8 @@
 import { Node } from 'slate';
 
 export interface ISaveUser {
- userId: string;
- organizationId: string; 
+  userId: string;
+  organizationId: string;
 }
 
 export const save = (content: Node[]) => {
@@ -19,8 +19,8 @@ export const getUser = (): ISaveUser | undefined => {
   if (localStorage['user']) {
     return JSON.parse(localStorage['user']);
   }
-  return undefined
-}
+  return undefined;
+};
 
 export const get = (name: string) => {
   switch (name) {
