@@ -8,7 +8,7 @@ function tagRender(props: any) {
 
   return (
     <Tag
-      color={'gold'}
+      color={'green'}
       closable={closable}
       onClose={onClose}
       style={{ marginRight: 3, borderRadius: 8 }}

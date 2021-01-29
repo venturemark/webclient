@@ -5,38 +5,27 @@ import {
   PlasmicTextInput,
   DefaultTextInputProps,
 } from './plasmic/shared/PlasmicTextInput';
+import { AntAutocomplete } from 'component/ant/autocomplete';
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface TextInputProps extends Omit<DefaultTextInputProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultTextInputProps altogether and have
-// total control over the props for your component.
-interface TextInputProps extends DefaultTextInputProps {}
+interface TextInputProps extends DefaultTextInputProps {
+  options: any;
+  name: string;
+  register: any;
+  onChange: any;
+}
 
 function TextInput(props: TextInputProps) {
-  // Use PlasmicTextInput to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicTextInput are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all TextInputProps here, but feel free
-  // to do whatever works for you.
-  return <PlasmicTextInput {...props} />;
+  const { options, onChange } = props;
+
+  return (
+    <PlasmicTextInput
+      input={{
+        render: () => (
+          <AntAutocomplete options={options} onChange={onChange} />
+        ),
+      }}
+    />
+  );
 }
 
 export default TextInput;

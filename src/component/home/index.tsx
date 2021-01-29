@@ -6,27 +6,26 @@ import {
   DefaultHomeProps,
 } from 'component/plasmic/home/PlasmicHome';
 import Update from 'component/update';
-
 import { ITimeline } from 'module/interface/timeline';
 import { IUpdateQuery } from 'module/interface/update';
 import { useUpdates } from 'module/hook/update';
+import { getUser } from 'module/store';
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
-  // get org and username
-  const pathArray = window.location.pathname.split('/');
-  const organizationId = pathArray[1];
-  const userId = pathArray[2];
+  const user = getUser();
 
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
   >();
-
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
+  const [login, setLogin] = useState(user);
   const [isHome, setIsHome] = useState(true);
+  const timelineId = currentTimeline?.id ?? undefined;
 
-  const timelineId = currentTimeline?.id ?? '';
+  const organizationId = login?.organizationId ?? '';
+  const userId = login?.userId ?? '';
 
   const updatesSearch: IUpdateQuery = {
     organizationId,
@@ -38,24 +37,33 @@ export function Component(props: HomeProps) {
   const updates = updatesData ?? [];
 
   useEffect(() => {
-    if (userId && organizationId) {
-      setShowLogin(false);
+    if (!login) {
+      setShowLogin(true);
     }
-  }, [userId, organizationId]);
 
-  console.log('updates in the current timeline:', updates);
+    if (login && showLogin) {
+      setShowLogin(false);
+      window.location.reload();
+    }
+  }, [login, showLogin]);
 
   return (
     <PlasmicHome
       showLogin={showLogin}
+      loginModal={{
+        organizationName: 'Venturemark',
+        organizationDescription:
+          'Venturemark helps founders communicate to internal and external stakeholders.',
+        setLogin: setLogin,
+      }}
       isTimeline={!isHome}
       sidebar={{
         isHome: isHome,
         setIsHome: setIsHome,
         currentTimeline: currentTimeline,
         setCurrentTimeline: setCurrentTimeline,
-        userId: currentTimeline?.userId || userId,
-        organizationId: currentTimeline?.userId || organizationId,
+        userId: userId,
+        organizationId: organizationId,
       }}
       actionBar={{
         organizationId: organizationId,
@@ -65,7 +73,7 @@ export function Component(props: HomeProps) {
       mainHeader={{
         timelineName: currentTimeline?.name ?? '',
         timelineDescription:
-          currentTimeline?.desc ?? 'edit timeline description',
+          currentTimeline?.desc ?? 'edit description...',
       }}
       updatesContainer={{
         children: updates.map((update: any) => (
