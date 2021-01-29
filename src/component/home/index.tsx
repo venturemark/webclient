@@ -14,7 +14,6 @@ import { getUser } from 'module/store';
 interface HomeProps extends DefaultHomeProps {}
 
 export function Component(props: HomeProps) {
-
   const user = getUser();
 
   const [currentTimeline, setCurrentTimeline] = useState<
@@ -23,7 +22,7 @@ export function Component(props: HomeProps) {
   const [showLogin, setShowLogin] = useState(false);
   const [login, setLogin] = useState(user);
   const [isHome, setIsHome] = useState(true);
-  const timelineId = currentTimeline?.id ?? undefined
+  const timelineId = currentTimeline?.id ?? undefined;
 
   const organizationId = login?.organizationId ?? '';
   const userId = login?.userId ?? '';
@@ -38,10 +37,9 @@ export function Component(props: HomeProps) {
   const updates = updatesData ?? [];
 
   useEffect(() => {
-    if(!login) {
-      setShowLogin(true)
+    if (!login) {
+      setShowLogin(true);
     }
-
 
     if (login && showLogin) {
       setShowLogin(false);
@@ -54,7 +52,8 @@ export function Component(props: HomeProps) {
       showLogin={showLogin}
       loginModal={{
         organizationName: 'Venturemark',
-        organizationDescription: 'Venturemark helps founders communicate to internal and external stakeholders.',
+        organizationDescription:
+          'Venturemark helps founders communicate to internal and external stakeholders.',
         setLogin: setLogin,
       }}
       isTimeline={!isHome}
