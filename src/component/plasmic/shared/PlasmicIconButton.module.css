@@ -1,16 +1,12 @@
 .root {
   position: relative;
-  width: auto;
   display: inline-flex;
-  flex-direction: row;
-  height: auto;
   cursor: pointer;
   background-color: rgba(38, 26, 63, 0.1) /* plasmic-token: u3JIt-BuU8GbDfJ */;
   border-radius: 8px;
   padding: 5px;
 }
 .root > :global(.__wab_flex-container) {
-  flex-direction: row;
   align-items: center;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
@@ -35,8 +31,6 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
-  left: auto;
-  top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   flex-shrink: 0;
   border-radius: 100%;
@@ -45,8 +39,6 @@
   display: inline-flex;
   position: relative;
   align-self: center;
-  height: auto;
-  width: auto;
 }
 .slotContent {
   text-align: center;
@@ -59,8 +51,6 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
-  left: auto;
-  top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   flex-shrink: 0;
   border-radius: 100%;

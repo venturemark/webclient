@@ -8,6 +8,7 @@ import {
 import ComposeEditor from 'component/editor/compose';
 import { EditorShape } from 'component/editor/compose';
 import { INewUpdate } from 'module/interface/update';
+import { AntSelect } from 'component/ant/select';
 
 import { initialValueEmpty } from 'component/editor/config/initialValues';
 import { Search } from '@venturemark/numnum';
@@ -23,7 +24,7 @@ interface ActionBarProps extends DefaultActionBarProps {
 }
 
 function ActionBar(props: ActionBarProps) {
-  const { organizationId, timelineId, userId } = props;
+  const { organizationId, userId } = props;
 
   const store = get('composeEditor.content') ?? '';
   const initialValue =
@@ -35,6 +36,8 @@ function ActionBar(props: ActionBarProps) {
       : 'hasContent';
   const defaultNumber = Search(serialize(initialValue)) ?? 0;
   const defaultProgress = serialize(initialValue).length;
+
+  const [selectedTimelines, setSelectedTimelines] = useState(['']);
 
   const { editorShape, setEditorShape } = useEditor({
     value: initialValue,
@@ -48,7 +51,7 @@ function ActionBar(props: ActionBarProps) {
   const { mutate: createUpdate } = useCreateUpdate();
 
   const handleAddUpdate = () => {
-    if (!timelineId) {
+    if (selectedTimelines.length < 1) {
       const error = 'Please select a timeline';
       setEditorShape({ ...editorShape, error });
       return;
@@ -67,15 +70,16 @@ function ActionBar(props: ActionBarProps) {
       return;
     }
 
-    const newUpdate: INewUpdate = {
-      text: serialize(editorShape.value),
-      audienceId,
-      organizationId,
-      timelineId,
-      userId,
-    };
-
-    createUpdate(newUpdate);
+    selectedTimelines.forEach((timelineId) => {
+      const newUpdate: INewUpdate = {
+        text: serialize(editorShape.value),
+        audienceId,
+        organizationId,
+        timelineId: timelineId,
+        userId,
+      };
+      createUpdate(newUpdate);
+    });
 
     //reset store
     localStorage.setItem(
@@ -100,7 +104,6 @@ function ActionBar(props: ActionBarProps) {
     ((value - MIN) * 100) / (MAX - MIN);
 
   const [isActive, setIsActive] = useState(false);
-  const [timelineSelected, setTimelineSelected] = useState(false);
 
   return (
     <PlasmicActionBar
@@ -114,9 +117,15 @@ function ActionBar(props: ActionBarProps) {
       text={
         normalize(editorShape.progress) > 0 ? 'hasText' : undefined
       }
-      timelineSelected={timelineSelected}
       timelineSelect={{
-        onClick: () => setTimelineSelected(true),
+        render: () => (
+          <AntSelect
+            audienceId={audienceId}
+            userId={userId}
+            organizationId={organizationId}
+            setSelectedTimelines={setSelectedTimelines}
+          />
+        ),
       }}
       errorMessage={editorShape.error}
       isActive={isActive}

@@ -1,11 +1,8 @@
 .metricItem {
-  width: auto;
   display: inline-flex;
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
-  height: auto;
   position: relative;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: flex-start;
   border-radius: 5px;
   border-style: solid;
@@ -14,10 +11,6 @@
 .box__xyvDg {
   display: inline-flex;
   position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
 }
 .slotName {
   font-weight: 500;
@@ -26,15 +19,8 @@
 .box___0LbRl {
   display: inline-flex;
   position: relative;
-  flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
-  top: auto;
-  left: auto;
-  width: auto;
   align-self: flex-start;
-  bottom: auto;
-  height: auto;
 }
 .graphContainer {
   object-fit: cover;
@@ -42,8 +28,5 @@
   height: 150px;
   align-self: flex-end;
   position: relative;
-  left: auto;
-  top: auto;
-  bottom: auto;
   flex-shrink: 0;
 }

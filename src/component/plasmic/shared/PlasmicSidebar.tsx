@@ -40,18 +40,15 @@ import IconHomeIcon from './icons/PlasmicIcon__IconHome'; // plasmic-import: Z_5
 import IconHashIcon from './icons/PlasmicIcon__IconHash'; // plasmic-import: AVLV6uMr56/icon
 
 export type PlasmicSidebar__VariantMembers = {
-  hasValue: 'hasValue';
   hasInput: 'hasInput';
 };
 
 export type PlasmicSidebar__VariantsArgs = {
-  hasValue?: SingleBooleanChoiceArg<'hasValue'>;
   hasInput?: SingleBooleanChoiceArg<'hasInput'>;
 };
 
 type VariantPropType = keyof PlasmicSidebar__VariantsArgs;
 export const PlasmicSidebar__VariantProps = new Array<VariantPropType>(
-  'hasValue',
   'hasInput',
 );
 
@@ -74,7 +71,6 @@ export type PlasmicSidebar__OverridesType = {
 };
 
 export interface DefaultSidebarProps {
-  hasValue?: SingleBooleanChoiceArg<'hasValue'>;
   hasInput?: SingleBooleanChoiceArg<'hasInput'>;
   className?: string;
 }
@@ -102,11 +98,6 @@ function PlasmicSidebar__RenderFunc(props: {
             variants,
             'hasInput',
             'hasInput',
-          ),
-          [sty.root__hasValue]: hasVariant(
-            variants,
-            'hasValue',
-            'hasValue',
           ),
         },
       )}

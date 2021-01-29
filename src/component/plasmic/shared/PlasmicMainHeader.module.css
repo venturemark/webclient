@@ -1,12 +1,9 @@
 .container {
   display: flex;
   width: 100%;
-  height: auto;
   position: relative;
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
-  justify-content: flex-start;
   align-items: center;
-  min-width: 0;
   padding: 0px 40px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
@@ -25,15 +22,11 @@
 .box___3Xg51 {
   display: inline-flex;
   position: relative;
-  width: auto;
   height: 100%;
-  flex-direction: row;
   flex-grow: 3;
-  min-height: 0;
   padding: 15px 0px;
 }
 .box___3Xg51 > :global(.__wab_flex-container) {
-  flex-direction: row;
   align-items: center;
   margin-left: calc(0px - 15px);
   width: calc(100% + 15px);
@@ -49,8 +42,6 @@
 }
 .box__qmNq8 {
   position: relative;
-  left: auto;
-  top: auto;
   font-size: 30px;
 }
 .box__rlXLs {
@@ -60,13 +51,11 @@
   margin-right: 10px;
   display: block;
   position: relative;
-  align-self: auto;
   flex-shrink: 0;
 }
 .box__ewHZ {
   position: relative;
   font-size: 16px;
-  width: auto;
   font-weight: 300;
   cursor: pointer;
   max-width: 363px;
@@ -80,20 +69,13 @@
 .box__lP94A {
   display: flex;
   position: relative;
-  flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  top: auto;
-  left: auto;
   margin-top: 3px;
-  height: auto;
 }
 .button {
   display: flex;
   position: relative;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
   padding: 0px;
   border-width: 0px;
 }

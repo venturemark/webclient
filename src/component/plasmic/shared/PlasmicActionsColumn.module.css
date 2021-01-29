@@ -5,12 +5,10 @@
   flex-direction: column;
   background-color: rgba(68, 192, 255, 0);
   position: relative;
-  min-height: 0;
   padding: 20px;
 }
 .updateActionContainer > :global(.__wab_flex-container) {
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   margin-top: calc(0px - 20px);
   height: calc(100% + 20px);
@@ -30,16 +28,12 @@
 }
 .sendButton:global(.__wab_instance) {
   position: relative;
-  left: auto;
-  top: auto;
 }
 .startIcon {
   position: relative;
   object-fit: cover;
   width: 24px;
   height: 24px;
-  left: auto;
-  top: auto;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .box {

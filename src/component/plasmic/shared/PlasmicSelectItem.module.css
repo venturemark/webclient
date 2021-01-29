@@ -1,7 +1,5 @@
 .root {
   display: inline-flex;
-  width: auto;
-  height: auto;
   position: relative;
 }
 .box__pzzK {
@@ -9,13 +7,11 @@
   position: relative;
   background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   height: 28px;
-  flex-direction: row;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 10px;
 }
 .box__pzzK > :global(.__wab_flex-container) {
-  flex-direction: row;
   align-items: center;
   margin-left: calc(0px - 16px);
   width: calc(100% + 16px);
@@ -28,17 +24,11 @@
   position: relative;
   background-color: rgba(2, 157, 127, 0);
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
-  height: auto;
 }
 .box__sZdqp {
   display: inline-flex;
   position: relative;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
   cursor: pointer;
-  width: auto;
-  height: auto;
 }
 .svg {
   object-fit: cover;
