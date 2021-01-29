@@ -40,7 +40,7 @@ export function AntSelect(props: SelectProps) {
     userId,
     organizationId,
   };
-  const { data: timelines } = useTimelines(timelineSearch);
+  const { isLoading, data: timelines } = useTimelines(timelineSearch);
 
   const options =
     timelines?.map((timeline: any) => {
@@ -58,8 +58,8 @@ export function AntSelect(props: SelectProps) {
         setSelectedTimelines(timelines);
       }}
       placeholder={'Select Timeline'}
+      loading={isLoading}
       tagRender={tagRender}
-      // defaultValue={['gold', 'cyan', 'yellow', 'green']}
       style={{ width: '100%' }}
       options={options}
     />
