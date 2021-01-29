@@ -18,6 +18,8 @@ import {
 } from 'module/hook/timeline';
 
 interface SidebarProps extends DefaultSidebarProps {
+  isHome: boolean,
+  setIsHome: React.Dispatch<React.SetStateAction<boolean>>;
   currentTimeline: any;
   setCurrentTimeline: React.Dispatch<
     React.SetStateAction<ITimeline | undefined>
@@ -32,6 +34,8 @@ type FormInputs = {
 
 function Sidebar(props: SidebarProps) {
   const {
+    isHome,
+    setIsHome,
     currentTimeline,
     setCurrentTimeline,
     userId,
@@ -47,7 +51,6 @@ function Sidebar(props: SidebarProps) {
     organizationId,
   };
 
-  const [homeSidebarState, setHomeSidebarState] = useState(true);
   const { data: timelinesData } = useTimelines(timelineSearch);
   const nameRef = useRef<HTMLInputElement | null>(null);
   const [hasInput, setHasInput] = useState(false);
@@ -87,8 +90,8 @@ function Sidebar(props: SidebarProps) {
   };
 
   useEffect(() => {
-    setHomeSidebarState(!currentTimeline);
-  }, [currentTimeline]);
+    setIsHome(!currentTimeline);
+  }, [currentTimeline, setIsHome]);
 
   return (
     <PlasmicSidebar
@@ -104,7 +107,7 @@ function Sidebar(props: SidebarProps) {
         onClick: () => {
           setCurrentTimeline(undefined);
         },
-        isCurrent: homeSidebarState,
+        isCurrent: isHome,
       }}
       timelinesContainer={{
         children: sortedCurrentTimelines.map((timeline: any) => (

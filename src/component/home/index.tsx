@@ -26,6 +26,7 @@ export function Component(props: HomeProps) {
   >();
 
   const [showLogin, setShowLogin] = useState(true);
+  const [isHome, setIsHome] = useState(true)
 
   const timelineId = currentTimeline?.id ?? '';
 
@@ -50,6 +51,8 @@ export function Component(props: HomeProps) {
     <PlasmicHome
       showLogin={showLogin}
       sidebar={{
+        isHome: isHome,
+        setIsHome: setIsHome,
         currentTimeline: currentTimeline,
         setCurrentTimeline: setCurrentTimeline,
         userId: currentTimeline?.userId || userId,
