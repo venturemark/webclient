@@ -28,11 +28,6 @@ import {
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
 
-import {
-  ScreenContext,
-  ScreenValue,
-} from './PlasmicGlobalVariant__Screen'; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
-
 import '@plasmicapp/react-web/lib/plasmic.css';
 import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import: global/defaultcss
 import projectcss from './plasmic_shared.module.css'; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
@@ -45,9 +40,16 @@ export type PlasmicMainHeader__VariantsArgs = {};
 type VariantPropType = keyof PlasmicMainHeader__VariantsArgs;
 export const PlasmicMainHeader__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicMainHeader__ArgsType = {};
+export type PlasmicMainHeader__ArgsType = {
+  timelineDescription?: React.ReactNode;
+  timelineName?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicMainHeader__ArgsType;
-export const PlasmicMainHeader__ArgProps = new Array<ArgPropType>();
+export const PlasmicMainHeader__ArgProps = new Array<ArgPropType>(
+  'timelineDescription',
+  'timelineName',
+);
 
 export type PlasmicMainHeader__OverridesType = {
   container?: p.Flex<'div'>;
@@ -56,6 +58,8 @@ export type PlasmicMainHeader__OverridesType = {
 };
 
 export interface DefaultMainHeaderProps {
+  timelineDescription?: React.ReactNode;
+  timelineName?: React.ReactNode;
   className?: string;
 }
 
@@ -66,10 +70,6 @@ function PlasmicMainHeader__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode } = props;
-
-  const globalVariants = ensureGlobalVariants({
-    screen: React.useContext(ScreenContext),
-  });
 
   return (
     <div
@@ -88,35 +88,23 @@ function PlasmicMainHeader__RenderFunc(props: {
         hasGap={true}
         className={classNames(defaultcss.all, sty.box___3Xg51)}
       >
-        <div
-          className={classNames(
-            defaultcss.all,
-            defaultcss.__wab_text,
-            sty.box__qmNq8,
-          )}
-        >
-          {'Wins'}
-        </div>
+        <p.PlasmicSlot
+          defaultContents={'Wins'}
+          value={args.timelineName}
+          className={classNames(sty.slotTimelineName)}
+        />
 
         <div className={classNames(defaultcss.all, sty.box__rlXLs)} />
 
-        {(
-          hasVariant(globalVariants, 'screen', 'notSupported')
-            ? false
-            : true
-        ) ? (
-          <div
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.box__ewHZ,
-            )}
-          >
-            {
+        <div className={classNames(defaultcss.all, sty.box__sDNfz)}>
+          <p.PlasmicSlot
+            defaultContents={
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.'
             }
-          </div>
-        ) : null}
+            value={args.timelineDescription}
+            className={classNames(sty.slotTimelineDescription)}
+          />
+        </div>
       </p.Stack>
 
       <div className={classNames(defaultcss.all, sty.box__lP94A)}>

@@ -61,7 +61,7 @@
 .main > :global(.__wab_flex-container) {
   flex-direction: column;
 }
-.box___7UOp {
+.mainHeaderContainer {
   display: flex;
   position: relative;
   justify-content: center;

@@ -50,6 +50,7 @@ export function Component(props: HomeProps) {
   return (
     <PlasmicHome
       showLogin={showLogin}
+      isTimeline={!isHome}
       sidebar={{
         isHome: isHome,
         setIsHome: setIsHome,
@@ -62,6 +63,10 @@ export function Component(props: HomeProps) {
         organizationId: organizationId,
         timelineId: timelineId,
         userId: userId,
+      }}
+      mainHeader={{
+        timelineName: currentTimeline?.name ?? '',
+        timelineDescription: currentTimeline?.desc ?? 'edit timeline description',
       }}
       updatesContainer={{
         children: updates.map((update: any) => (

@@ -18,7 +18,7 @@ import {
 } from 'module/hook/timeline';
 
 interface SidebarProps extends DefaultSidebarProps {
-  isHome: boolean,
+  isHome: boolean;
   setIsHome: React.Dispatch<React.SetStateAction<boolean>>;
   currentTimeline: any;
   setCurrentTimeline: React.Dispatch<
