@@ -1,10 +1,11 @@
-import * as apigents from '@venturemark/apigents';
 import {
+  CreateI,
   CreateI_Obj,
   CreateO,
   CreateI_Obj_Property,
   CreateI_Obj_Property_Data,
 } from 'module/api/metricupdate/proto/create_pb';
+import { APIClient } from 'module/api/update/proto/ApiServiceClientPb';
 import * as env from 'module/env';
 
 export async function Create(
@@ -15,8 +16,8 @@ export async function Create(
   userIdKey: string,
   userIdvalue: string,
 ): Promise<any> {
-  const client = new apigents.Metupd.Client(env.APIEndpoint());
-  const req = new apigents.Metupd.Create.I();
+  const client = new APIClient(env.APIEndpoint());
+  const req = new CreateI();
 
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
