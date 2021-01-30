@@ -11,10 +11,10 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import * as pbf_message_create_pb from '../../pbf/message/create_pb';
-import * as pbf_message_delete_pb from '../../pbf/message/delete_pb';
-import * as pbf_message_search_pb from '../../pbf/message/search_pb';
-import * as pbf_message_update_pb from '../../pbf/message/update_pb';
+import * as pbf_message_create_pb from './create_pb';
+import * as pbf_message_delete_pb from './delete_pb';
+import * as pbf_message_search_pb from './search_pb';
+import * as pbf_message_update_pb from './update_pb';
 
 export class APIClient {
   client_: grpcWeb.AbstractClientBase;
