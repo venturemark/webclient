@@ -17,6 +17,35 @@ export function useUpdates(updateQuery: IUpdateQuery) {
   );
 }
 
+const getAllUpdates = async (updateQuery: any) => {
+  const {timelines, organizationId, userId} = updateQuery
+
+  const allUpdates = await Promise.all(timelines.map(async (timeline: any) => {
+    const timelineId = timeline.id
+    const search = {
+      organizationId,
+      timelineId,
+      userId,
+    }
+    
+    const updates = await api.API.Update.Search(search);
+    console.log(updates)
+    return updates
+  }));
+
+  console.log("all updates in get all Updates:", allUpdates)
+  return allUpdates.flat();
+}
+
+
+export function useAllUpdates(updateQuery: IUpdateQuery) {
+  return useQuery<any, ErrorResponse>(
+    ['update', updateQuery.timelines],
+    () => getAllUpdates(updateQuery),
+    { enabled: !!updateQuery.timelines },
+  );
+}
+
 export function useCreateUpdate() {
   const queryClient = useQueryClient();
 
