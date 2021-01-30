@@ -2,15 +2,15 @@ import {
   SearchI,
   SearchI_Obj,
   SearchO_Obj,
-} from 'module/api/update/proto/search_pb';
-import { APIClient } from 'module/api/update/proto/ApiServiceClientPb';
+} from 'module/api/message/proto/search_pb';
+import { APIClient } from 'module/api/message/proto/ApiServiceClientPb';
 import * as env from 'module/env';
 import * as key from 'module/idkeys';
 import fromUnixTime from 'date-fns/fromUnixTime';
 import { format } from 'date-fns';
-import { IUpdateQuery } from 'module/interface/update';
+import { IMessageQuery } from 'module/interface/message';
 
-export async function Search(updateQuery: IUpdateQuery) {
+export async function Search(messageQuery: IMessageQuery) {
   const objList = [];
 
   //instantiate client and req classes
@@ -21,9 +21,10 @@ export async function Search(updateQuery: IUpdateQuery) {
   const obj = new SearchI_Obj();
   obj
     .getMetadataMap()
-    .set(key.OrganizationID, updateQuery.organizationId);
-  obj.getMetadataMap().set(key.TimelineID, updateQuery.timelineId);
-  obj.getMetadataMap().set(key.UserID, updateQuery.userId);
+    .set(key.OrganizationID, messageQuery.organizationId);
+  obj.getMetadataMap().set(key.TimelineID, messageQuery.timelineId);
+  obj.getMetadataMap().set(key.UpdateID, messageQuery.updateId);
+  obj.getMetadataMap().set(key.UserID, messageQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -34,32 +35,34 @@ export async function Search(updateQuery: IUpdateQuery) {
         console.log(err.message);
         reject(err);
       } else {
-        const updatesPb = res.getObjList();
+        const messagesPb = res.getObjList();
 
-        const updates = updatesPb.map((updatePb: SearchO_Obj) => {
-          const propertyPb = updatePb.getProperty();
-          const metaPb = updatePb.getMetadataMap();
+        const messages = messagesPb.map((messagePb: SearchO_Obj) => {
+          const propertyPb = messagePb.getProperty();
+          const metaPb = messagePb.getMetadataMap();
 
           const text = propertyPb?.toObject().text;
 
           const organizationId = metaPb.get(key.OrganizationID);
           const timelineId = metaPb.get(key.TimelineID);
-          const updateId = metaPb.get(key.UpdateID);
+          const messageId = metaPb.get(key.MessageID);
           const userId = metaPb.get(key.UserID);
-          const rawDate = fromUnixTime(updateId / 1000000000);
+          const updateId = metaPb.get(key.UpdateID)
+          const rawDate = fromUnixTime(messageId / 1000000000);
           const date = format(rawDate, 'MMM do, Y');
 
-          const update: any = {
+          const message: any = {
             organizationId: organizationId,
             timelineId: timelineId,
             userId: userId,
-            id: updateId,
+            updateId: updateId,
+            id: messageId,
             text: text,
             date: date,
           };
-          return update;
+          return message;
         });
-        resolve(updates);
+        resolve(messages);
       }
     });
   });
