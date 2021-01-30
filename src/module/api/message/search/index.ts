@@ -47,7 +47,7 @@ export async function Search(messageQuery: IMessageQuery) {
           const timelineId = metaPb.get(key.TimelineID);
           const messageId = metaPb.get(key.MessageID);
           const userId = metaPb.get(key.UserID);
-          const updateId = metaPb.get(key.UpdateID)
+          const updateId = metaPb.get(key.UpdateID);
           const rawDate = fromUnixTime(messageId / 1000000000);
           const date = format(rawDate, 'MMM do, Y');
 

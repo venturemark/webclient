@@ -22,4 +22,6 @@ export interface INewMessage {
   organizationId: string;
   timelineId: string;
   userId: string;
+  updateId: string;
+  reid?: string;
 }
