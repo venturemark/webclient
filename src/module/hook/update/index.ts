@@ -29,12 +29,15 @@ const getAllUpdates = async (updateQuery: any) => {
     }
     
     const updates = await api.API.Update.Search(search);
-    console.log(updates)
     return updates
   }));
-
-  console.log("all updates in get all Updates:", allUpdates)
-  return allUpdates.flat();
+  const flattenedUpdates:any = allUpdates.flat()
+  
+  const uniqueUpdates:any = Array.from(new Set(flattenedUpdates.map((update:any) => Math.round(update.id/1000000000) )))
+ .map(id => {
+   return flattenedUpdates.find((update:any) => Math.round(update.id/1000000000) === id)
+ })
+  return uniqueUpdates;
 }
 
 

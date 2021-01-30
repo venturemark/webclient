@@ -53,8 +53,6 @@ export function Component(props: HomeProps) {
 
   const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
   
-
-
   const { data: updatesData } = useUpdates(updatesSearch);
 
   let updates = [];
@@ -62,8 +60,6 @@ export function Component(props: HomeProps) {
   if (isSuccess) {
     updates = isHome? allUpdates ?? []: updatesData ?? []
   }
-
-  console.log("updates:",updates)
 
   useEffect(() => {
     if (!login) {
