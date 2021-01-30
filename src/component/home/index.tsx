@@ -6,9 +6,10 @@ import {
   DefaultHomeProps,
 } from 'component/plasmic/home/PlasmicHome';
 import Update from 'component/update';
-import { ITimeline } from 'module/interface/timeline';
+import { ITimeline, ITimelineQuery } from 'module/interface/timeline';
+import { useTimelines } from 'module/hook/timeline';
 import { IUpdateQuery } from 'module/interface/update';
-import { useUpdates } from 'module/hook/update';
+import { useUpdates, useAllUpdates } from 'module/hook/update';
 import { getUser } from 'module/store';
 
 interface HomeProps extends DefaultHomeProps {}
@@ -32,9 +33,34 @@ export function Component(props: HomeProps) {
     timelineId,
     userId,
   };
+
+  const audienceId = '1';
+  const timelineSearch: ITimelineQuery = {
+    audienceId,
+    userId,
+    organizationId,
+  };
+
+  const { data: timelinesData, isSuccess } = useTimelines(
+    timelineSearch,
+  );
+
+  const allUpdatesSearch: any = {
+    organizationId,
+    timelineId,
+    userId,
+    timelines: timelinesData,
+  };
+
+  const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
+
   const { data: updatesData } = useUpdates(updatesSearch);
 
-  const updates = updatesData ?? [];
+  let updates = [];
+
+  if (isSuccess) {
+    updates = isHome ? allUpdates ?? [] : updatesData ?? [];
+  }
 
   useEffect(() => {
     if (!login) {
