@@ -41,24 +41,25 @@ export function Component(props: HomeProps) {
     organizationId,
   };
 
-  const { data: timelinesData, isSuccess } = useTimelines(timelineSearch);
+  const { data: timelinesData, isSuccess } = useTimelines(
+    timelineSearch,
+  );
 
-  
   const allUpdatesSearch: any = {
     organizationId,
     timelineId,
     userId,
-    timelines:timelinesData,
-  };    
+    timelines: timelinesData,
+  };
 
   const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
-  
+
   const { data: updatesData } = useUpdates(updatesSearch);
 
   let updates = [];
 
   if (isSuccess) {
-    updates = isHome? allUpdates ?? []: updatesData ?? []
+    updates = isHome ? allUpdates ?? [] : updatesData ?? [];
   }
 
   useEffect(() => {

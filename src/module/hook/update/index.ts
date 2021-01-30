@@ -18,28 +18,36 @@ export function useUpdates(updateQuery: IUpdateQuery) {
 }
 
 const getAllUpdates = async (updateQuery: any) => {
-  const {timelines, organizationId, userId} = updateQuery
+  const { timelines, organizationId, userId } = updateQuery;
 
-  const allUpdates = await Promise.all(timelines.map(async (timeline: any) => {
-    const timelineId = timeline.id
-    const search = {
-      organizationId,
-      timelineId,
-      userId,
-    }
-    
-    const updates = await api.API.Update.Search(search);
-    return updates
-  }));
-  const flattenedUpdates:any = allUpdates.flat()
-  
-  const uniqueUpdates:any = Array.from(new Set(flattenedUpdates.map((update:any) => Math.round(update.id/1000000000) )))
- .map(id => {
-   return flattenedUpdates.find((update:any) => Math.round(update.id/1000000000) === id)
- })
+  const allUpdates = await Promise.all(
+    timelines.map(async (timeline: any) => {
+      const timelineId = timeline.id;
+      const search = {
+        organizationId,
+        timelineId,
+        userId,
+      };
+
+      const updates = await api.API.Update.Search(search);
+      return updates;
+    }),
+  );
+  const flattenedUpdates: any = allUpdates.flat();
+
+  const uniqueUpdates: any = Array.from(
+    new Set(
+      flattenedUpdates.map((update: any) =>
+        Math.round(update.id / 1000000000),
+      ),
+    ),
+  ).map((id) => {
+    return flattenedUpdates.find(
+      (update: any) => Math.round(update.id / 1000000000) === id,
+    );
+  });
   return uniqueUpdates;
-}
-
+};
 
 export function useAllUpdates(updateQuery: IUpdateQuery) {
   return useQuery<any, ErrorResponse>(
