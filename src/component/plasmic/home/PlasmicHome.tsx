@@ -32,7 +32,7 @@ import Sidebar from '../../sidebar/index'; // plasmic-import: FZWTu4L61t/compone
 import MainHeader from '../../MainHeader'; // plasmic-import: LRwT0lHdps/component
 import ActionBar from '../../actionbar/index'; // plasmic-import: eUnRsS9UXR/component
 import Update from '../../update/index'; // plasmic-import: Fs8bTUrvZrvfhCr/component
-import Modal from '../../Modal'; // plasmic-import: FsY3j3NYte/component
+import ModalAlt from '../../ModalAlt'; // plasmic-import: Rd6ctyxKvRM/component
 
 import {
   ScreenContext,
@@ -76,7 +76,7 @@ export type PlasmicHome__OverridesType = {
   actionBar?: p.Flex<typeof ActionBar>;
   updatesContainer?: p.Flex<'div'>;
   modalOverlay?: p.Flex<'div'>;
-  loginModal?: p.Flex<typeof Modal>;
+  loginModal?: p.Flex<typeof ModalAlt>;
 };
 
 export interface DefaultHomeProps {
@@ -296,10 +296,13 @@ function PlasmicHome__RenderFunc(props: {
             ),
           })}
         >
-          <Modal
+          <ModalAlt
             data-plasmic-name={'loginModal'}
             data-plasmic-override={overrides.loginModal}
             className={classNames('__wab_instance', sty.loginModal)}
+            organizationDescription={
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.'
+            }
           />
         </div>
       ) : null}
@@ -366,7 +369,7 @@ type NodeDefaultElementType = {
   actionBar: typeof ActionBar;
   updatesContainer: 'div';
   modalOverlay: 'div';
-  loginModal: typeof Modal;
+  loginModal: typeof ModalAlt;
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';

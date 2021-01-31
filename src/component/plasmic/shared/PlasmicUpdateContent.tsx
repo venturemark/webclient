@@ -28,6 +28,7 @@ import {
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
 import Dropdown from '../../Dropdown'; // plasmic-import: Umq3CDOCIR/component
+import Reply from '../../Reply'; // plasmic-import: cZqz_iAjea/component
 
 import '@plasmicapp/react-web/lib/plasmic.css';
 import defaultcss from '../plasmic__default_style.module.css'; // plasmic-import: global/defaultcss
@@ -36,10 +37,18 @@ import sty from './PlasmicUpdateContent.module.css'; // plasmic-import: A1UjtYt6
 
 import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
 
-export type PlasmicUpdateContent__VariantMembers = {};
-export type PlasmicUpdateContent__VariantsArgs = {};
+export type PlasmicUpdateContent__VariantMembers = {
+  state: 'reply' | 'isUser';
+};
+
+export type PlasmicUpdateContent__VariantsArgs = {
+  state?: SingleChoiceArg<'reply' | 'isUser'>;
+};
+
 type VariantPropType = keyof PlasmicUpdateContent__VariantsArgs;
-export const PlasmicUpdateContent__VariantProps = new Array<VariantPropType>();
+export const PlasmicUpdateContent__VariantProps = new Array<VariantPropType>(
+  'state',
+);
 
 export type PlasmicUpdateContent__ArgsType = {
   userName?: React.ReactNode;
@@ -65,7 +74,10 @@ export type PlasmicUpdateContent__OverridesType = {
   timelineName?: p.Flex<'span'>;
   svg?: p.Flex<'svg'>;
   dropdown?: p.Flex<typeof Dropdown>;
+  textContainer2?: p.Flex<'div'>;
   textContainer?: p.Flex<'div'>;
+  button?: p.Flex<'button'>;
+  reply?: p.Flex<typeof Reply>;
 };
 
 export interface DefaultUpdateContentProps {
@@ -73,6 +85,7 @@ export interface DefaultUpdateContentProps {
   organizationName?: React.ReactNode;
   date?: React.ReactNode;
   timelineName?: React.ReactNode;
+  state?: SingleChoiceArg<'reply' | 'isUser'>;
   className?: string;
 }
 
@@ -108,12 +121,24 @@ function PlasmicUpdateContent__RenderFunc(props: {
       <div
         data-plasmic-name={'editorContainer'}
         data-plasmic-override={overrides.editorContainer}
-        className={classNames(defaultcss.all, sty.editorContainer)}
+        className={classNames(defaultcss.all, sty.editorContainer, {
+          [sty.editorContainer__state_reply]: hasVariant(
+            variants,
+            'state',
+            'reply',
+          ),
+        })}
       >
         <p.Stack
           as={'div'}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__ehjLr)}
+          className={classNames(defaultcss.all, sty.box__ehjLr, {
+            [sty.box__state_isUser__ehjLrU0Xnn]: hasVariant(
+              variants,
+              'state',
+              'isUser',
+            ),
+          })}
         >
           <div
             className={classNames(defaultcss.all, sty.box__wAdRc)}
@@ -127,7 +152,13 @@ function PlasmicUpdateContent__RenderFunc(props: {
             <p.Stack
               as={'div'}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__fjL5B)}
+              className={classNames(defaultcss.all, sty.box__fjL5B, {
+                [sty.box__state_isUser__fjL5Bu0Xnn]: hasVariant(
+                  variants,
+                  'state',
+                  'isUser',
+                ),
+              })}
             >
               <div
                 className={classNames(defaultcss.all, sty.box__nwWG)}
@@ -258,56 +289,81 @@ function PlasmicUpdateContent__RenderFunc(props: {
             </p.Stack>
           </p.Stack>
 
-          <div className={classNames(defaultcss.all, sty.box__vXGzN)}>
-            <button
-              className={classNames(
-                defaultcss.button,
-                sty.button__yd1L1,
-              )}
+          {(
+            hasVariant(variants, 'state', 'isUser') ? true : false
+          ) ? (
+            <div
+              className={classNames(defaultcss.all, sty.box__tAhMj, {
+                [sty.box__state_isUser__tAhMju0Xnn]: hasVariant(
+                  variants,
+                  'state',
+                  'isUser',
+                ),
+              })}
             >
-              <IconDotMenuIcon
-                data-plasmic-name={'svg'}
-                data-plasmic-override={overrides.svg}
-                className={classNames(defaultcss.all, sty.svg)}
-                role={'img'}
-              />
-
-              {(triggers.active_root ? true : false) ? (
-                <Dropdown
-                  data-plasmic-name={'dropdown'}
-                  data-plasmic-override={overrides.dropdown}
-                  className={classNames(
-                    '__wab_instance',
-                    sty.dropdown,
-                  )}
+              <div
+                className={classNames(defaultcss.all, sty.box__vVNrv)}
+              >
+                <IconDotMenuIcon
+                  data-plasmic-name={'svg'}
+                  data-plasmic-override={overrides.svg}
+                  className={classNames(defaultcss.all, sty.svg)}
+                  role={'img'}
                 />
-              ) : null}
-            </button>
-          </div>
+
+                {(triggers.active_root ? true : false) ? (
+                  <Dropdown
+                    data-plasmic-name={'dropdown'}
+                    data-plasmic-override={overrides.dropdown}
+                    className={classNames(
+                      '__wab_instance',
+                      sty.dropdown,
+                    )}
+                  />
+                ) : null}
+              </div>
+            </div>
+          ) : null}
         </p.Stack>
 
         <div className={classNames(defaultcss.all, sty.box__z3Q65)}>
           <div
-            data-plasmic-name={'textContainer'}
-            data-plasmic-override={overrides.textContainer}
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.textContainer,
-            )}
+            data-plasmic-name={'textContainer2'}
+            data-plasmic-override={overrides.textContainer2}
+            className={classNames(defaultcss.all, sty.textContainer2)}
           >
-            {
-              'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius'
-            }
+            <div
+              data-plasmic-name={'textContainer'}
+              data-plasmic-override={overrides.textContainer}
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.textContainer,
+              )}
+            >
+              {
+                'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius'
+              }
+            </div>
           </div>
         </div>
 
-        <div className={classNames(defaultcss.all, sty.box__khPiB)}>
+        <div
+          className={classNames(defaultcss.all, sty.box__khPiB, {
+            [sty.box__state_reply__khPiB4CwlI]: hasVariant(
+              variants,
+              'state',
+              'reply',
+            ),
+          })}
+        >
           <button
+            data-plasmic-name={'button'}
+            data-plasmic-override={overrides.button}
             className={classNames(
               defaultcss.button,
               defaultcss.__wab_text,
-              sty.button__sEjq7,
+              sty.button,
             )}
           >
             {'Reply'}
@@ -317,6 +373,20 @@ function PlasmicUpdateContent__RenderFunc(props: {
             className={classNames(defaultcss.all, sty.box__uciye)}
           />
         </div>
+
+        {(hasVariant(variants, 'state', 'reply') ? true : false) ? (
+          <Reply
+            data-plasmic-name={'reply'}
+            data-plasmic-override={overrides.reply}
+            className={classNames('__wab_instance', sty.reply, {
+              [sty.reply__state_reply]: hasVariant(
+                variants,
+                'state',
+                'reply',
+              ),
+            })}
+          />
+        ) : null}
       </div>
     </div>
   ) as React.ReactElement | null;
@@ -332,7 +402,10 @@ const PlasmicDescendants = {
     'timelineName',
     'svg',
     'dropdown',
+    'textContainer2',
     'textContainer',
+    'button',
+    'reply',
   ],
 
   editorContainer: [
@@ -343,7 +416,10 @@ const PlasmicDescendants = {
     'timelineName',
     'svg',
     'dropdown',
+    'textContainer2',
     'textContainer',
+    'button',
+    'reply',
   ],
 
   userName: ['userName'],
@@ -352,7 +428,10 @@ const PlasmicDescendants = {
   timelineName: ['timelineName'],
   svg: ['svg'],
   dropdown: ['dropdown'],
+  textContainer2: ['textContainer2', 'textContainer'],
   textContainer: ['textContainer'],
+  button: ['button'],
+  reply: ['reply'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -367,7 +446,10 @@ type NodeDefaultElementType = {
   timelineName: 'span';
   svg: 'svg';
   dropdown: typeof Dropdown;
+  textContainer2: 'div';
   textContainer: 'div';
+  button: 'button';
+  reply: typeof Reply;
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -440,7 +522,10 @@ export const PlasmicUpdateContent = Object.assign(
     timelineName: makeNodeComponent('timelineName'),
     svg: makeNodeComponent('svg'),
     dropdown: makeNodeComponent('dropdown'),
+    textContainer2: makeNodeComponent('textContainer2'),
     textContainer: makeNodeComponent('textContainer'),
+    button: makeNodeComponent('button'),
+    reply: makeNodeComponent('reply'),
 
     // Metadata about props expected for PlasmicUpdateContent
     internalVariantProps: PlasmicUpdateContent__VariantProps,

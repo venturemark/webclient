@@ -1,0 +1,14 @@
+.root {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  position: relative;
+  flex-direction: column;
+  padding: 15px 0px 0px;
+}
+.replyInput:global(.__wab_instance) {
+  position: relative;
+}
+.replyContent:global(.__wab_instance) {
+  position: relative;
+}

@@ -77,7 +77,6 @@ export function Component(props: HomeProps) {
     <PlasmicHome
       showLogin={showLogin}
       loginModal={{
-        organizationName: 'Venturemark',
         organizationDescription:
           'Venturemark helps founders communicate to internal and external stakeholders.',
         setLogin: setLogin,

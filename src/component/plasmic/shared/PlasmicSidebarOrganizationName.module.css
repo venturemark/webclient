@@ -1,13 +1,19 @@
 .root {
   display: flex;
   position: relative;
+  flex-direction: row;
+  align-items: stretch;
   justify-content: space-between;
   width: 168px;
 }
 .box {
+  display: flex;
+  position: relative;
+  padding-left: 17px;
+}
+.slotOrganizationName {
   font-size: 14px;
   font-weight: 700;
-  padding-left: 17px;
   text-align: left;
 }
 .showAddTimeline {

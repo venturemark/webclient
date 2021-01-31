@@ -45,48 +45,52 @@
 .rectangle587 > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
-  margin-top: calc(0px - 20px);
-  height: calc(100% + 20px);
+  margin-top: calc(0px - 10px);
+  height: calc(100% + 10px);
 }
 .rectangle587 > :global(.__wab_flex-container) > *,
 .rectangle587 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 20px;
+  margin-top: 10px;
 }
-.ellipse2 {
+.label3 {
   opacity: 1;
-  transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
-  background-color: rgba(255, 255, 255, 1);
-  width: 90px;
-  height: 90px;
+  background-color: transparent;
   display: block;
+  font-size: 16px;
+  text-align: center;
+  text-transform: none;
+  text-decoration-line: none;
+  font-family: "SF Pro Display";
+  font-weight: 700;
+  letter-spacing: 0.491px;
+  line-height: 18px;
+  color: rgba(36, 25, 62, 1);
+  width: auto;
+  height: auto;
+  transform: scale(1, 1) rotate(0deg);
+  position: relative;
+  left: auto;
+  top: auto;
+}
+.ventureMark {
+  opacity: 1;
+  background-color: transparent;
+  display: block;
+  font-size: 20px;
+  text-align: left;
+  text-transform: none;
+  text-decoration-line: none;
+  font-family: "Roboto";
+  font-weight: 700;
+  letter-spacing: 0.19332999999999997em;
+  color: rgba(36, 25, 62, 1);
   position: relative;
   top: auto;
   left: auto;
-  transform-origin: top left;
-  flex-shrink: 0;
-  border-radius: 50%;
-}
-.box__budGd {
-  display: flex;
-  position: relative;
-  opacity: 1;
-  width: 54.45%;
+  width: auto;
+  height: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
-  justify-content: center;
-}
-.slotOrganizationName {
-  font-family: "SF Pro Display";
-  font-size: 20px;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 1);
-  text-align: center;
-  text-transform: none;
-  line-height: 17.5px;
-  letter-spacing: 0.491px;
-}
-.slotOrganizationName > * {
-  text-decoration-line: none;
 }
 .welcomeForm {
   display: flex;
@@ -98,6 +102,7 @@
   height: 100%;
   min-width: 0;
   min-height: 0;
+  padding: 20px;
 }
 .welcomeForm > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -110,21 +115,23 @@
 .welcomeForm > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 20px;
 }
-.box__u42Cd {
+.box___0WolP {
   display: flex;
   position: relative;
   flex-direction: column;
+  flex-grow: 3;
+  padding: 0px 0px 20px;
 }
-.box__u42Cd > :global(.__wab_flex-container) {
+.box___0WolP > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  margin-top: calc(0px - 20px);
-  height: calc(100% + 20px);
+  justify-content: center;
+  margin-top: calc(0px - 30px);
+  height: calc(100% + 30px);
 }
-.box__u42Cd > :global(.__wab_flex-container) > *,
-.box__u42Cd > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 20px;
+.box___0WolP > :global(.__wab_flex-container) > *,
+.box___0WolP > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 30px;
 }
 .selectUserContainer {
   display: flex;
@@ -133,28 +140,55 @@
   align-items: stretch;
   justify-content: flex-start;
 }
+.selectUserContainer2 {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.label2 {
+  opacity: 1;
+  background-color: transparent;
+  display: block;
+  font-size: 16px;
+  text-align: center;
+  text-transform: none;
+  text-decoration-line: none;
+  font-family: "SF Pro Display";
+  font-weight: 700;
+  letter-spacing: 0.491px;
+  line-height: 18px;
+  color: rgba(36, 25, 62, 1);
+  width: auto;
+  height: auto;
+  transform: scale(1, 1) rotate(0deg);
+  position: relative;
+  left: auto;
+  top: auto;
+}
 .selectUserButton:global(.__wab_instance) {
   position: relative;
 }
-.box__koqyt {
+.box__ljTa5 {
   display: flex;
   position: relative;
   flex-direction: column;
   top: auto;
   left: auto;
 }
-.box__koqyt > :global(.__wab_flex-container) {
+.box__ljTa5 > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: calc(0px - 20px);
   height: calc(100% + 20px);
 }
-.box__koqyt > :global(.__wab_flex-container) > *,
-.box__koqyt > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box__ljTa5 > :global(.__wab_flex-container) > *,
+.box__ljTa5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 20px;
 }
-.box__oiIyK {
+.box__aUujC {
   display: flex;
   position: relative;
   opacity: 1;
@@ -173,24 +207,4 @@
 }
 .slotOrganizationDescription > * {
   text-decoration-line: none;
-}
-.ventureMark {
-  opacity: 1;
-  background-color: transparent;
-  display: block;
-  font-size: 12px;
-  text-align: left;
-  text-transform: none;
-  text-decoration-line: none;
-  font-family: "Roboto";
-  font-weight: 700;
-  letter-spacing: 0.19332999999999997em;
-  color: rgba(36, 25, 62, 1);
-  position: relative;
-  top: auto;
-  left: auto;
-  width: auto;
-  height: auto;
-  transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
-  transform-origin: top left;
 }
