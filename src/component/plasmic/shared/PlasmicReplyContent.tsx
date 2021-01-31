@@ -39,11 +39,11 @@ import sty from './PlasmicReplyContent.module.css'; // plasmic-import: q3VnCwfx2
 import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicReplyContent__VariantMembers = {
-  state: 'reply' | 'isUser';
+  state: 'isReply' | 'isUser';
 };
 
 export type PlasmicReplyContent__VariantsArgs = {
-  state?: SingleChoiceArg<'reply' | 'isUser'>;
+  state?: SingleChoiceArg<'isReply' | 'isUser'>;
 };
 
 type VariantPropType = keyof PlasmicReplyContent__VariantsArgs;
@@ -81,7 +81,7 @@ export interface DefaultReplyContentProps {
   userName?: React.ReactNode;
   textContainer?: React.ReactNode;
   textContainer2?: React.ReactNode;
-  state?: SingleChoiceArg<'reply' | 'isUser'>;
+  state?: SingleChoiceArg<'isReply' | 'isUser'>;
   className?: string;
 }
 
@@ -141,10 +141,10 @@ function PlasmicReplyContent__RenderFunc(props: {
               as={'div'}
               hasGap={true}
               className={classNames(defaultcss.all, sty.box__rqpD, {
-                [sty.box__state_reply__rqpDD0Pzv]: hasVariant(
+                [sty.box__state_isReply__rqpDD0Pzv]: hasVariant(
                   variants,
                   'state',
-                  'reply',
+                  'isReply',
                 ),
               })}
             >
@@ -163,6 +163,13 @@ function PlasmicReplyContent__RenderFunc(props: {
                   className={classNames(
                     defaultcss.all,
                     sty.box__cAoxI,
+                    {
+                      [sty.box__state_isReply__cAoxId0Pzv]: hasVariant(
+                        variants,
+                        'state',
+                        'isReply',
+                      ),
+                    },
                   )}
                 >
                   <p.Stack
@@ -307,7 +314,9 @@ function PlasmicReplyContent__RenderFunc(props: {
               </button>
 
               {(
-                hasVariant(variants, 'state', 'reply') ? true : false
+                hasVariant(variants, 'state', 'isReply')
+                  ? true
+                  : false
               ) ? (
                 <p.Stack
                   as={'div'}
@@ -316,16 +325,16 @@ function PlasmicReplyContent__RenderFunc(props: {
                     defaultcss.all,
                     sty.box__w4TSo,
                     {
-                      [sty.box__state_reply__w4TSoD0Pzv]: hasVariant(
+                      [sty.box__state_isReply__w4TSoD0Pzv]: hasVariant(
                         variants,
                         'state',
-                        'reply',
+                        'isReply',
                       ),
                     },
                   )}
                 >
                   {(
-                    hasVariant(variants, 'state', 'reply')
+                    hasVariant(variants, 'state', 'isReply')
                       ? true
                       : false
                   ) ? (
@@ -336,17 +345,17 @@ function PlasmicReplyContent__RenderFunc(props: {
                         '__wab_instance',
                         sty.replyInput,
                         {
-                          [sty.replyInput__state_reply]: hasVariant(
+                          [sty.replyInput__state_isReply]: hasVariant(
                             variants,
                             'state',
-                            'reply',
+                            'isReply',
                           ),
                         },
                       )}
                     />
                   ) : null}
                   {(
-                    hasVariant(variants, 'state', 'reply')
+                    hasVariant(variants, 'state', 'isReply')
                       ? true
                       : false
                   ) ? (
@@ -359,10 +368,10 @@ function PlasmicReplyContent__RenderFunc(props: {
                         '__wab_instance',
                         sty.replyContentSecond,
                         {
-                          [sty.replyContentSecond__state_reply]: hasVariant(
+                          [sty.replyContentSecond__state_isReply]: hasVariant(
                             variants,
                             'state',
-                            'reply',
+                            'isReply',
                           ),
                         },
                       )}

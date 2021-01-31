@@ -38,9 +38,16 @@ export type PlasmicDropdown__VariantsArgs = {};
 type VariantPropType = keyof PlasmicDropdown__VariantsArgs;
 export const PlasmicDropdown__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicDropdown__ArgsType = {};
+export type PlasmicDropdown__ArgsType = {
+  rename?: React.ReactNode;
+  rename2?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicDropdown__ArgsType;
-export const PlasmicDropdown__ArgProps = new Array<ArgPropType>();
+export const PlasmicDropdown__ArgProps = new Array<ArgPropType>(
+  'rename',
+  'rename2',
+);
 
 export type PlasmicDropdown__OverridesType = {
   root?: p.Flex<'div'>;
@@ -51,6 +58,8 @@ export type PlasmicDropdown__OverridesType = {
 };
 
 export interface DefaultDropdownProps {
+  rename?: React.ReactNode;
+  rename2?: React.ReactNode;
   className?: string;
 }
 
@@ -86,29 +95,45 @@ function PlasmicDropdown__RenderFunc(props: {
           hasGap={true}
           className={classNames(defaultcss.ul, sty.ul)}
         >
-          <li
-            data-plasmic-name={'rename'}
-            data-plasmic-override={overrides.rename}
-            className={classNames(
-              defaultcss.li,
-              defaultcss.__wab_text,
-              sty.rename,
-            )}
+          <div
+            className={classNames(defaultcss.all, sty.box___84NsJ)}
           >
-            {'Rename'}
-          </li>
+            <p.PlasmicSlot
+              defaultContents={
+                <li
+                  data-plasmic-name={'rename'}
+                  data-plasmic-override={overrides.rename}
+                  className={classNames(
+                    defaultcss.li,
+                    defaultcss.__wab_text,
+                    sty.rename,
+                  )}
+                >
+                  {'Rename'}
+                </li>
+              }
+              value={args.rename}
+            />
+          </div>
 
-          <li
-            data-plasmic-name={'rename2'}
-            data-plasmic-override={overrides.rename2}
-            className={classNames(
-              defaultcss.li,
-              defaultcss.__wab_text,
-              sty.rename2,
-            )}
-          >
-            {'Archive'}
-          </li>
+          <div className={classNames(defaultcss.all, sty.box__uyCPf)}>
+            <p.PlasmicSlot
+              defaultContents={
+                <li
+                  data-plasmic-name={'rename2'}
+                  data-plasmic-override={overrides.rename2}
+                  className={classNames(
+                    defaultcss.li,
+                    defaultcss.__wab_text,
+                    sty.rename2,
+                  )}
+                >
+                  {'Archive'}
+                </li>
+              }
+              value={args.rename2}
+            />
+          </div>
         </p.Stack>
       </div>
     </div>

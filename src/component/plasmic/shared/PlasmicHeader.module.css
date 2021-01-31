@@ -11,9 +11,8 @@
   width: 100%;
   height: 75px;
   flex-direction: row;
-  padding-left: 24px;
-  padding-right: 45px;
   min-width: 0;
+  padding: 0px 24px;
 }
 .box__ky7Rm > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -104,16 +103,6 @@
 .box___4Ktdl > :global(.__wab_flex-container) > *,
 .box___4Ktdl > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 20px;
-}
-.box__xbz3A {
-  display: block;
-  position: relative;
-  background-color: rgb(216, 216, 216);
-  width: 3px;
-  height: 31px;
-  left: auto;
-  top: auto;
-  flex-shrink: 0;
 }
 .box___7UEdG {
   display: flex;

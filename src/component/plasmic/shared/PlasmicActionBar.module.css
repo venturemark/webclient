@@ -84,7 +84,7 @@
 }
 .box__isActive__vJy6GvjQpn {
   padding-bottom: 19px;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   justify-content: flex-start;
   min-width: 0;
@@ -105,6 +105,7 @@
 }
 .box__isActive__rXa4BvjQpn {
   justify-content: center;
+  margin-top: 5px;
 }
 .box__wnwam {
   position: relative;
