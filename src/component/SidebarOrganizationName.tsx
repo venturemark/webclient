@@ -10,12 +10,13 @@ interface SidebarOrganizationNameProps
   extends DefaultSidebarOrganizationNameProps {
   hasInput: any;
   setHasInput: any;
+  organizationName: string;
 }
 
 function SidebarOrganizationName(
   props: SidebarOrganizationNameProps,
 ) {
-  const { hasInput, setHasInput } = props;
+  const { hasInput, setHasInput, organizationName } = props;
 
   return (
     <PlasmicSidebarOrganizationName
@@ -24,6 +25,7 @@ function SidebarOrganizationName(
           setHasInput(!hasInput);
         },
       }}
+      organizationName={organizationName}
     />
   );
 }

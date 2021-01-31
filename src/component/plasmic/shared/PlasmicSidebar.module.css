@@ -1,12 +1,15 @@
 .root {
   display: inline-flex;
+  width: auto;
   height: 100%;
   position: relative;
   flex-direction: column;
   justify-content: space-between;
   overflow: auto;
+  transition-property: all;
   transition-duration: 1s;
   align-items: center;
+  min-height: 0;
 }
 .root__hasInput {
   border-width: 1px;
@@ -16,18 +19,27 @@
   position: relative;
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
+  height: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 0;
   padding: 40px 20px;
 }
 .scrollContainer {
   display: inline-flex;
   position: relative;
   flex-direction: column;
+  top: auto;
+  left: auto;
+  overflow: visible;
+  height: auto;
+  width: auto;
 }
 .scrollContainer > :global(.__wab_flex-container) {
   flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
 }
@@ -40,7 +52,11 @@
   position: relative;
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
+  height: auto;
+  left: auto;
+  top: auto;
   flex-direction: column;
+  min-width: 0;
   border-style: solid;
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
@@ -62,6 +78,8 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
+  left: auto;
+  top: auto;
   border-radius: 100%;
 }
 .box__trDkY {
@@ -75,6 +93,8 @@
 }
 .organizationName:global(.__wab_instance) {
   position: relative;
+  top: auto;
+  left: auto;
 }
 .organizationName__hasInput:global(.__wab_instance) {
   left: auto;
@@ -132,6 +152,9 @@
 .sidebarForm {
   display: flex;
   position: absolute;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
   top: 0px;
   left: 0px;
 }
@@ -152,17 +175,23 @@
   display: flex;
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
+  height: auto;
   flex-direction: column;
   border-top-style: solid;
   border-top-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
   overflow: hidden;
+  min-width: 0;
 }
 .sidebarItem__iKtWk:global(.__wab_instance) {
   position: relative;
+  left: auto;
+  top: auto;
   width: 100%;
+  min-width: 0;
 }
 .box__pMluL {
   font-size: 16px;
+  height: auto;
   width: 241px;
   white-space: pre;
   text-overflow: ellipsis;
@@ -173,11 +202,16 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
+  left: auto;
+  top: auto;
   border-radius: 100%;
 }
 .sidebarItem__e6KpG:global(.__wab_instance) {
   position: relative;
+  left: auto;
+  top: auto;
   width: 100%;
+  min-width: 0;
 }
 .box__jgsq {
   font-size: 16px;
@@ -191,5 +225,7 @@
   object-fit: cover;
   width: 24px;
   height: 24px;
+  left: auto;
+  top: auto;
   border-radius: 100%;
 }

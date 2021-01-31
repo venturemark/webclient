@@ -1,5 +1,7 @@
 .root {
   display: inline-flex;
+  width: auto;
+  height: auto;
   position: relative;
 }
 .rectangle574 {
@@ -7,6 +9,8 @@
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   transform: scale(1, 1) rotate(0deg);
   opacity: 1;
+  width: auto;
+  height: auto;
   display: inline-flex;
   flex-direction: column;
   border-radius: 8px;
@@ -16,10 +20,13 @@
   display: flex;
   position: relative;
   flex-direction: column;
+  top: auto;
+  left: auto;
 }
 .ul > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
 }
@@ -29,31 +36,45 @@
 }
 .rename {
   opacity: 1;
+  background-color: transparent;
   display: block;
   font-size: 14px;
   text-align: left;
+  text-transform: none;
+  text-decoration-line: none;
   font-family: "SF Pro Text";
   font-weight: 400;
   letter-spacing: 0.491px;
   line-height: 18px;
   color: rgba(36, 25, 62, 1);
   width: 100%;
+  height: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
   position: relative;
+  left: auto;
+  top: auto;
+  min-width: 0;
 }
 .rename2 {
   opacity: 1;
+  background-color: transparent;
   display: block;
   font-size: 14px;
   text-align: left;
+  text-transform: none;
+  text-decoration-line: none;
   font-family: "SF Pro Text";
   font-weight: 400;
   letter-spacing: 0.491px;
   line-height: 18px;
   color: rgba(36, 25, 62, 1);
   position: relative;
+  top: auto;
+  left: auto;
   width: 100%;
+  height: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
+  min-width: 0;
 }

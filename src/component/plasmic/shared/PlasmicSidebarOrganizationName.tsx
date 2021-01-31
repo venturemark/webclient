@@ -40,9 +40,14 @@ export type PlasmicSidebarOrganizationName__VariantsArgs = {};
 type VariantPropType = keyof PlasmicSidebarOrganizationName__VariantsArgs;
 export const PlasmicSidebarOrganizationName__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicSidebarOrganizationName__ArgsType = {};
+export type PlasmicSidebarOrganizationName__ArgsType = {
+  organizationName?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicSidebarOrganizationName__ArgsType;
-export const PlasmicSidebarOrganizationName__ArgProps = new Array<ArgPropType>();
+export const PlasmicSidebarOrganizationName__ArgProps = new Array<ArgPropType>(
+  'organizationName',
+);
 
 export type PlasmicSidebarOrganizationName__OverridesType = {
   root?: p.Flex<'div'>;
@@ -51,6 +56,7 @@ export type PlasmicSidebarOrganizationName__OverridesType = {
 };
 
 export interface DefaultSidebarOrganizationNameProps {
+  organizationName?: React.ReactNode;
   className?: string;
 }
 
@@ -86,13 +92,13 @@ function PlasmicSidebarOrganizationName__RenderFunc(props: {
       <div
         data-plasmic-name={'box'}
         data-plasmic-override={overrides.box}
-        className={classNames(
-          defaultcss.all,
-          defaultcss.__wab_text,
-          sty.box,
-        )}
+        className={classNames(defaultcss.all, sty.box)}
       >
-        {'Baron Fig'}
+        <p.PlasmicSlot
+          defaultContents={'Baron Fig'}
+          value={args.organizationName}
+          className={classNames(sty.slotOrganizationName)}
+        />
       </div>
 
       {(triggers.hover_root ? true : false) ? (

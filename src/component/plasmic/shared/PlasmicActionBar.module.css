@@ -1,10 +1,12 @@
 .root {
   display: flex;
   width: 100%;
+  height: auto;
   position: relative;
   padding-right: 0px;
   flex-direction: column;
   padding-left: 0px;
+  min-width: 0;
 }
 .root > :global(.__wab_flex-container) {
   align-items: center;
@@ -29,15 +31,18 @@
   display: flex;
   position: relative;
   flex-direction: column;
+  height: auto;
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
   width: 100%;
+  min-width: 0;
   border-radius: 8px;
   padding: 26px 20px;
 }
 .box__zG8Do > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   margin-top: calc(0px - 16px);
   height: calc(100% + 16px);
 }
@@ -71,7 +76,11 @@
   position: relative;
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
+  height: auto;
+  flex-direction: row;
   align-items: flex-start;
+  align-self: auto;
+  min-width: 0;
 }
 .box__isActive__vJy6GvjQpn {
   padding-bottom: 19px;
@@ -86,8 +95,11 @@
   background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   width: 40px;
   height: 40px;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  left: auto;
+  top: auto;
   flex-shrink: 0;
   border-radius: 100%;
 }
@@ -96,6 +108,10 @@
 }
 .box__wnwam {
   position: relative;
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   font-size: 20px;
   display: inline-block;
@@ -104,7 +120,12 @@
   display: flex;
   background-color: rgba(255, 255, 255, 0);
   width: 100%;
+  height: auto;
+  flex-direction: row;
   position: relative;
+  left: auto;
+  top: auto;
+  min-width: 0;
   border-radius: 8px;
   padding: 8px 15px;
   margin: 10px;
@@ -121,6 +142,8 @@
   height: 100%;
   font-size: 16px;
   font-weight: 300;
+  min-width: 0;
+  min-height: 0;
   border-radius: 8px;
   padding: 0px;
   border-width: 0px;
@@ -132,6 +155,7 @@
 .box__sPwRc {
   display: flex;
   position: relative;
+  flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   background-color: rgba(68, 192, 255, 0.2);
@@ -141,12 +165,16 @@
   position: relative;
   width: 100%;
   height: 100%;
+  flex-direction: row;
   padding-top: 15px;
   align-self: flex-start;
   min-height: 50px;
+  min-width: 0;
   border-top: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .box__mQqJf > :global(.__wab_flex-container) {
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
@@ -167,12 +195,20 @@
 .timelineSelect {
   display: inline-flex;
   position: relative;
+  flex-direction: row;
+  top: auto;
+  left: auto;
+  align-self: auto;
+  width: auto;
   height: 100%;
   margin-right: 15px;
   min-width: 134px;
+  min-height: 0;
 }
 .timelineSelect > :global(.__wab_flex-container) {
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
 }
@@ -202,6 +238,8 @@
   object-fit: cover;
   width: 14px;
   height: 14px;
+  left: auto;
+  top: auto;
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   align-self: center;
   flex-shrink: 0;
@@ -213,7 +251,9 @@
 }
 .box___0Drgs {
   width: 100%;
+  height: auto;
   font-weight: 400;
+  min-width: 0;
 }
 .box__isActive___0DrgsvjQpn {
   font-weight: 500;
@@ -225,6 +265,9 @@
   position: relative;
   width: 100%;
   height: 100%;
+  flex-direction: row;
+  min-width: 0;
+  min-height: 0;
 }
 .box__timelineSelected__nk1Yz75BwG > :global(.__wab_flex-container) {
   flex-wrap: wrap;
@@ -249,7 +292,10 @@
   position: relative;
   background-color: rgba(68, 192, 255, 0);
   width: 100%;
+  height: auto;
+  flex-direction: row;
   justify-content: flex-end;
+  min-width: 0;
 }
 .box__isActive__lmDWpvjQpn {
   display: flex;
@@ -273,6 +319,8 @@
 }
 .errorContainer {
   display: inline-flex;
+  width: auto;
+  height: auto;
 }
 .errorContainer__error_hasError {
   width: 100%;

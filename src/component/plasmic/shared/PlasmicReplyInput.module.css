@@ -1,0 +1,61 @@
+.root {
+  display: flex;
+  width: 100%;
+  height: auto;
+  position: relative;
+  min-width: 0;
+}
+.box__ohAw0 {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 0px;
+}
+.box__ohAw0 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin-top: calc(0px - 10px);
+  height: calc(100% + 10px);
+}
+.box__ohAw0 > :global(.__wab_flex-container) > *,
+.box__ohAw0 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 10px;
+}
+.root:focus-within .box__ohAw0 {
+  outline: none;
+}
+.box__ykXz {
+  align-items: center;
+  justify-content: flex-start;
+  height: auto;
+  width: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  min-width: 0;
+  border-radius: 0px;
+  border: 0px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.textContainer2 {
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  font-weight: 300;
+  min-width: 0;
+  border-radius: 25px;
+  padding: 15px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.root:focus-within .textContainer2 {
+  outline: none;
+}
+.button:global(.__wab_instance) {
+  position: relative;
+  align-self: flex-end;
+}
+.root:focus-within .button:global(.__wab_instance) {
+  outline: none;
+}
