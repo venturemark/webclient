@@ -281,7 +281,7 @@
   border-style: solid;
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.button {
+.replyButton {
   position: relative;
   align-self: auto;
   width: 61px;

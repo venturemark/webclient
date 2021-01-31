@@ -66,6 +66,7 @@ export type PlasmicModalAlt__OverridesType = {
   welcomeForm?: p.Flex<'form'>;
   selectUserContainer?: p.Flex<'div'>;
   selectOrganization?: p.Flex<typeof TextInput>;
+  label?: p.Flex<'label'>;
   selectUserContainer2?: p.Flex<'div'>;
   selectUser?: p.Flex<typeof TextInput>;
   label2?: p.Flex<'label'>;
@@ -170,6 +171,19 @@ function PlasmicModalAlt__RenderFunc(props: {
               <TextInput
                 data-plasmic-name={'selectOrganization'}
                 data-plasmic-override={overrides.selectOrganization}
+                label={
+                  <label
+                    data-plasmic-name={'label'}
+                    data-plasmic-override={overrides.label}
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.label,
+                    )}
+                  >
+                    {'Search your name'}
+                  </label>
+                }
               />
             </div>
 
@@ -278,6 +292,7 @@ const PlasmicDescendants = {
     'welcomeForm',
     'selectUserContainer',
     'selectOrganization',
+    'label',
     'selectUserContainer2',
     'selectUser',
     'label2',
@@ -292,6 +307,7 @@ const PlasmicDescendants = {
     'welcomeForm',
     'selectUserContainer',
     'selectOrganization',
+    'label',
     'selectUserContainer2',
     'selectUser',
     'label2',
@@ -305,14 +321,20 @@ const PlasmicDescendants = {
     'welcomeForm',
     'selectUserContainer',
     'selectOrganization',
+    'label',
     'selectUserContainer2',
     'selectUser',
     'label2',
     'selectUserButton',
   ],
 
-  selectUserContainer: ['selectUserContainer', 'selectOrganization'],
-  selectOrganization: ['selectOrganization'],
+  selectUserContainer: [
+    'selectUserContainer',
+    'selectOrganization',
+    'label',
+  ],
+  selectOrganization: ['selectOrganization', 'label'],
+  label: ['label'],
   selectUserContainer2: [
     'selectUserContainer2',
     'selectUser',
@@ -335,6 +357,7 @@ type NodeDefaultElementType = {
   welcomeForm: 'form';
   selectUserContainer: 'div';
   selectOrganization: typeof TextInput;
+  label: 'label';
   selectUserContainer2: 'div';
   selectUser: typeof TextInput;
   label2: 'label';
@@ -411,6 +434,7 @@ export const PlasmicModalAlt = Object.assign(
     welcomeForm: makeNodeComponent('welcomeForm'),
     selectUserContainer: makeNodeComponent('selectUserContainer'),
     selectOrganization: makeNodeComponent('selectOrganization'),
+    label: makeNodeComponent('label'),
     selectUserContainer2: makeNodeComponent('selectUserContainer2'),
     selectUser: makeNodeComponent('selectUser'),
     label2: makeNodeComponent('label2'),

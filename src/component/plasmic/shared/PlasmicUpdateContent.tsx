@@ -38,11 +38,11 @@ import sty from './PlasmicUpdateContent.module.css'; // plasmic-import: A1UjtYt6
 import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicUpdateContent__VariantMembers = {
-  state: 'reply' | 'isUser';
+  state: 'isReply' | 'isUser';
 };
 
 export type PlasmicUpdateContent__VariantsArgs = {
-  state?: SingleChoiceArg<'reply' | 'isUser'>;
+  state?: SingleChoiceArg<'isReply' | 'isUser'>;
 };
 
 type VariantPropType = keyof PlasmicUpdateContent__VariantsArgs;
@@ -76,7 +76,7 @@ export type PlasmicUpdateContent__OverridesType = {
   dropdown?: p.Flex<typeof Dropdown>;
   textContainer2?: p.Flex<'div'>;
   textContainer?: p.Flex<'div'>;
-  button?: p.Flex<'button'>;
+  replyButton?: p.Flex<'button'>;
   reply?: p.Flex<typeof Reply>;
 };
 
@@ -85,7 +85,7 @@ export interface DefaultUpdateContentProps {
   organizationName?: React.ReactNode;
   date?: React.ReactNode;
   timelineName?: React.ReactNode;
-  state?: SingleChoiceArg<'reply' | 'isUser'>;
+  state?: SingleChoiceArg<'isReply' | 'isUser'>;
   className?: string;
 }
 
@@ -122,10 +122,10 @@ function PlasmicUpdateContent__RenderFunc(props: {
         data-plasmic-name={'editorContainer'}
         data-plasmic-override={overrides.editorContainer}
         className={classNames(defaultcss.all, sty.editorContainer, {
-          [sty.editorContainer__state_reply]: hasVariant(
+          [sty.editorContainer__state_isReply]: hasVariant(
             variants,
             'state',
-            'reply',
+            'isReply',
           ),
         })}
       >
@@ -350,20 +350,20 @@ function PlasmicUpdateContent__RenderFunc(props: {
 
         <div
           className={classNames(defaultcss.all, sty.box__khPiB, {
-            [sty.box__state_reply__khPiB4CwlI]: hasVariant(
+            [sty.box__state_isReply__khPiB4CwlI]: hasVariant(
               variants,
               'state',
-              'reply',
+              'isReply',
             ),
           })}
         >
           <button
-            data-plasmic-name={'button'}
-            data-plasmic-override={overrides.button}
+            data-plasmic-name={'replyButton'}
+            data-plasmic-override={overrides.replyButton}
             className={classNames(
               defaultcss.button,
               defaultcss.__wab_text,
-              sty.button,
+              sty.replyButton,
             )}
           >
             {'Reply'}
@@ -374,15 +374,15 @@ function PlasmicUpdateContent__RenderFunc(props: {
           />
         </div>
 
-        {(hasVariant(variants, 'state', 'reply') ? true : false) ? (
+        {(hasVariant(variants, 'state', 'isReply') ? true : false) ? (
           <Reply
             data-plasmic-name={'reply'}
             data-plasmic-override={overrides.reply}
             className={classNames('__wab_instance', sty.reply, {
-              [sty.reply__state_reply]: hasVariant(
+              [sty.reply__state_isReply]: hasVariant(
                 variants,
                 'state',
-                'reply',
+                'isReply',
               ),
             })}
           />
@@ -404,7 +404,7 @@ const PlasmicDescendants = {
     'dropdown',
     'textContainer2',
     'textContainer',
-    'button',
+    'replyButton',
     'reply',
   ],
 
@@ -418,7 +418,7 @@ const PlasmicDescendants = {
     'dropdown',
     'textContainer2',
     'textContainer',
-    'button',
+    'replyButton',
     'reply',
   ],
 
@@ -430,7 +430,7 @@ const PlasmicDescendants = {
   dropdown: ['dropdown'],
   textContainer2: ['textContainer2', 'textContainer'],
   textContainer: ['textContainer'],
-  button: ['button'],
+  replyButton: ['replyButton'],
   reply: ['reply'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -448,7 +448,7 @@ type NodeDefaultElementType = {
   dropdown: typeof Dropdown;
   textContainer2: 'div';
   textContainer: 'div';
-  button: 'button';
+  replyButton: 'button';
   reply: typeof Reply;
 };
 
@@ -524,7 +524,7 @@ export const PlasmicUpdateContent = Object.assign(
     dropdown: makeNodeComponent('dropdown'),
     textContainer2: makeNodeComponent('textContainer2'),
     textContainer: makeNodeComponent('textContainer'),
-    button: makeNodeComponent('button'),
+    replyButton: makeNodeComponent('replyButton'),
     reply: makeNodeComponent('reply'),
 
     // Metadata about props expected for PlasmicUpdateContent
