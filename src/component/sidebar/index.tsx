@@ -98,7 +98,7 @@ function Sidebar(props: SidebarProps) {
       organizationName={{
         hasInput: hasInput,
         setHasInput: setHasInput,
-        organizationName: "Venturemark",
+        organizationName: 'Venturemark',
       }}
       hasInput={hasInput}
       sidebarForm={{

@@ -1,43 +1,43 @@
 export const customers = [
-   {
-    name: "Venturemark",
+  {
+    name: 'Venturemark',
     users: [
       {
-        name: "Marcus Ellison",
+        name: 'Marcus Ellison',
       },
       {
-        name: "Tim Schindler",
+        name: 'Tim Schindler',
       },
       {
-        name: "Victor Tang",
-      }
-    ]
+        name: 'Victor Tang',
+      },
+    ],
   },
   {
-    name: "Baronfig",
+    name: 'Baronfig',
     users: [
       {
-        name: "Joey Cofone",
-      }
-    ]
+        name: 'Joey Cofone',
+      },
+    ],
   },
   {
-    name: "Memo",
+    name: 'Memo',
     users: [
       {
-        name: "Richard Sheperd",
+        name: 'Richard Sheperd',
       },
       {
-        name: "Peter Saxton",
-      }
-    ]
+        name: 'Peter Saxton',
+      },
+    ],
   },
   {
-    name: "PluFin",
+    name: 'PluFin',
     users: [
       {
-        name: "Elliot Koss",
+        name: 'Elliot Koss',
       },
-    ]
-  }
-]
+    ],
+  },
+];
