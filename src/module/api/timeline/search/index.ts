@@ -1,4 +1,8 @@
-import { SearchI,SearchI_Obj, SearchO_Obj } from 'module/api/timeline/proto/search_pb';
+import {
+  SearchI,
+  SearchI_Obj,
+  SearchO_Obj,
+} from 'module/api/timeline/proto/search_pb';
 import { APIClient } from 'module/api/timeline/proto/ApiServiceClientPb';
 import * as env from 'module/env';
 import {
@@ -25,7 +29,7 @@ export async function Search(
   objList.push(obj);
   req.setObjList(objList);
 
-  console.log(req.toObject())
+  console.log(req.toObject());
 
   const getSearchResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {

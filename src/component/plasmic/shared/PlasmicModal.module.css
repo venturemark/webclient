@@ -49,7 +49,10 @@
   height: calc(100% + 20px);
 }
 .rectangle587 > :global(.__wab_flex-container) > *,
-.rectangle587 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.rectangle587
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-top: 20px;
 }
 .ellipse2 {
@@ -76,7 +79,7 @@
   justify-content: center;
 }
 .slotOrganizationName {
-  font-family: "SF Pro Display";
+  font-family: 'SF Pro Display';
   font-size: 20px;
   font-weight: 700;
   color: rgba(0, 0, 0, 1);
@@ -107,7 +110,10 @@
   height: calc(100% + 20px);
 }
 .welcomeForm > :global(.__wab_flex-container) > *,
-.welcomeForm > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.welcomeForm
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-top: 20px;
 }
 .box__u42Cd {
@@ -123,7 +129,10 @@
   height: calc(100% + 20px);
 }
 .box__u42Cd > :global(.__wab_flex-container) > *,
-.box__u42Cd > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box__u42Cd
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-top: 20px;
 }
 .selectUserContainer {
@@ -151,7 +160,10 @@
   height: calc(100% + 20px);
 }
 .box__koqyt > :global(.__wab_flex-container) > *,
-.box__koqyt > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box__koqyt
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-top: 20px;
 }
 .box__oiIyK {
@@ -163,7 +175,7 @@
   transform-origin: top left;
 }
 .slotOrganizationDescription {
-  font-family: "SF Pro Text";
+  font-family: 'SF Pro Text';
   font-size: 12px;
   font-weight: 400;
   color: rgba(117, 117, 117, 1);
@@ -182,7 +194,7 @@
   text-align: left;
   text-transform: none;
   text-decoration-line: none;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-weight: 700;
   letter-spacing: 0.19332999999999997em;
   color: rgba(36, 25, 62, 1);

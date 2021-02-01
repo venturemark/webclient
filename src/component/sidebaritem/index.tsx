@@ -7,12 +7,8 @@ import {
   DefaultSidebarItemProps,
 } from 'component/plasmic/shared/PlasmicSidebarItem';
 import { useForm } from 'react-hook-form';
-import {
-  INewTimeline,
-} from 'module/interface/timeline';
-import {
-  useCreateTimeline,
-} from 'module/hook/timeline';
+import { INewTimeline } from 'module/interface/timeline';
+import { useCreateTimeline } from 'module/hook/timeline';
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
@@ -64,8 +60,6 @@ function SidebarItem(props: SidebarItemProps) {
       name: '',
     });
   };
-
-
 
   return (
     <PlasmicSidebarItem

@@ -6,13 +6,8 @@ import {
   DefaultSidebarProps,
 } from 'component/plasmic/shared/PlasmicSidebar';
 import SidebarItem from 'component/sidebaritem';
-import {
-  ITimeline,
-  ITimelineQuery,
-} from 'module/interface/timeline';
-import {
-  useTimelines,
-} from 'module/hook/timeline';
+import { ITimeline, ITimelineQuery } from 'module/interface/timeline';
+import { useTimelines } from 'module/hook/timeline';
 
 interface SidebarProps extends DefaultSidebarProps {
   isHome: boolean;
@@ -39,7 +34,7 @@ function Sidebar(props: SidebarProps) {
     userId,
     organizationId,
   };
-  
+
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
 
@@ -70,8 +65,8 @@ function Sidebar(props: SidebarProps) {
         isCurrent: isHome,
       }}
       addTimeline={{
-        userId:userId,
-        organizationId:organizationId,
+        userId: userId,
+        organizationId: organizationId,
       }}
       timelinesContainer={{
         children: sortedCurrentTimelines.map((timeline: any) => (

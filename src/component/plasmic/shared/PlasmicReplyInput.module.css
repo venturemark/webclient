@@ -37,7 +37,8 @@
   flex-direction: row;
   min-width: 0;
   border-radius: 0px;
-  border: 0px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border: 0px solid rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .replyInput {
   width: 100%;
@@ -47,7 +48,8 @@
   min-width: 0;
   border-radius: 25px;
   padding: 15px;
-  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border: 1px solid rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .root:focus-within .replyInput {
   outline: none;

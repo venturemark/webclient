@@ -29,7 +29,8 @@
   height: 100%;
   flex-direction: row;
   flex-grow: 3;
-  border-bottom-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-bottom-color: rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
   border-bottom-style: solid;
   min-height: 0;
   padding: 15px 0px;
@@ -41,7 +42,10 @@
   width: calc(100% + 15px);
 }
 .box___3Xg51 > :global(.__wab_flex-container) > *,
-.box___3Xg51 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box___3Xg51
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-left: 15px;
 }
 @media (min-width: 0px) and (max-width: 760px) {
@@ -54,7 +58,8 @@
 }
 .box__rlXLs {
   width: 3px;
-  background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  background-color: rgb(2, 157, 127)
+    /* plasmic-token: Jfzps88GdGw80SE */;
   height: 37px;
   margin-right: 10px;
   display: block;

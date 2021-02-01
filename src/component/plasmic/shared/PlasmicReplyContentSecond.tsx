@@ -38,11 +38,11 @@ import sty from './PlasmicReplyContentSecond.module.css'; // plasmic-import: 97K
 import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicReplyContentSecond__VariantMembers = {
-  state: 'reply' | 'isUser';
+  state: 'isReply' | 'isUser';
 };
 
 export type PlasmicReplyContentSecond__VariantsArgs = {
-  state?: SingleChoiceArg<'reply' | 'isUser'>;
+  state?: SingleChoiceArg<'isReply' | 'isUser'>;
 };
 
 type VariantPropType = keyof PlasmicReplyContentSecond__VariantsArgs;
@@ -53,12 +53,14 @@ export const PlasmicReplyContentSecond__VariantProps = new Array<VariantPropType
 export type PlasmicReplyContentSecond__ArgsType = {
   userName?: React.ReactNode;
   textContainer?: React.ReactNode;
+  date?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicReplyContentSecond__ArgsType;
 export const PlasmicReplyContentSecond__ArgProps = new Array<ArgPropType>(
   'userName',
   'textContainer',
+  'date',
 );
 
 export type PlasmicReplyContentSecond__OverridesType = {
@@ -69,14 +71,15 @@ export type PlasmicReplyContentSecond__OverridesType = {
   date?: p.Flex<'span'>;
   svg?: p.Flex<'svg'>;
   dropdown?: p.Flex<typeof Dropdown>;
-  button?: p.Flex<'button'>;
+  replyButton?: p.Flex<'button'>;
   replyInput?: p.Flex<typeof ReplyInput>;
 };
 
 export interface DefaultReplyContentSecondProps {
   userName?: React.ReactNode;
   textContainer?: React.ReactNode;
-  state?: SingleChoiceArg<'reply' | 'isUser'>;
+  date?: React.ReactNode;
+  state?: SingleChoiceArg<'isReply' | 'isUser'>;
   className?: string;
 }
 
@@ -128,10 +131,10 @@ function PlasmicReplyContentSecond__RenderFunc(props: {
               as={'div'}
               hasGap={true}
               className={classNames(defaultcss.all, sty.box__kPjxs, {
-                [sty.box__state_reply__kPjxs2BJxM]: hasVariant(
+                [sty.box__state_isReply__kPjxs2BJxM]: hasVariant(
                   variants,
                   'state',
-                  'reply',
+                  'isReply',
                 ),
               })}
             >
@@ -198,17 +201,22 @@ function PlasmicReplyContentSecond__RenderFunc(props: {
                       {'•'}
                     </span>
 
-                    <span
-                      data-plasmic-name={'date'}
-                      data-plasmic-override={overrides.date}
-                      className={classNames(
-                        defaultcss.all,
-                        defaultcss.__wab_text,
-                        sty.date,
-                      )}
-                    >
-                      {'3 hours ago'}
-                    </span>
+                    <p.PlasmicSlot
+                      defaultContents={
+                        <span
+                          data-plasmic-name={'date'}
+                          data-plasmic-override={overrides.date}
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.date,
+                          )}
+                        >
+                          {'3 hours ago'}
+                        </span>
+                      }
+                      value={args.date}
+                    />
                   </p.Stack>
                 </div>
 
@@ -298,19 +306,21 @@ function PlasmicReplyContentSecond__RenderFunc(props: {
               </div>
 
               <button
-                data-plasmic-name={'button'}
-                data-plasmic-override={overrides.button}
+                data-plasmic-name={'replyButton'}
+                data-plasmic-override={overrides.replyButton}
                 className={classNames(
                   defaultcss.button,
                   defaultcss.__wab_text,
-                  sty.button,
+                  sty.replyButton,
                 )}
               >
                 {'Reply'}
               </button>
 
               {(
-                hasVariant(variants, 'state', 'reply') ? true : false
+                hasVariant(variants, 'state', 'isReply')
+                  ? true
+                  : false
               ) ? (
                 <ReplyInput
                   data-plasmic-name={'replyInput'}
@@ -319,10 +329,10 @@ function PlasmicReplyContentSecond__RenderFunc(props: {
                     '__wab_instance',
                     sty.replyInput,
                     {
-                      [sty.replyInput__state_reply]: hasVariant(
+                      [sty.replyInput__state_isReply]: hasVariant(
                         variants,
                         'state',
-                        'reply',
+                        'isReply',
                       ),
                     },
                   )}
@@ -345,7 +355,7 @@ const PlasmicDescendants = {
     'date',
     'svg',
     'dropdown',
-    'button',
+    'replyButton',
     'replyInput',
   ],
 
@@ -356,7 +366,7 @@ const PlasmicDescendants = {
     'date',
     'svg',
     'dropdown',
-    'button',
+    'replyButton',
     'replyInput',
   ],
 
@@ -365,7 +375,7 @@ const PlasmicDescendants = {
   date: ['date'],
   svg: ['svg'],
   dropdown: ['dropdown'],
-  button: ['button'],
+  replyButton: ['replyButton'],
   replyInput: ['replyInput'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -380,7 +390,7 @@ type NodeDefaultElementType = {
   date: 'span';
   svg: 'svg';
   dropdown: typeof Dropdown;
-  button: 'button';
+  replyButton: 'button';
   replyInput: typeof ReplyInput;
 };
 
@@ -396,7 +406,8 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicReplyContentSecond__VariantsArgs;
     args?: PlasmicReplyContentSecond__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
+  } & Omit<
+    // Specify variants directly as props
     PlasmicReplyContentSecond__VariantsArgs,
     ReservedPropsType
   > &
@@ -456,7 +467,7 @@ export const PlasmicReplyContentSecond = Object.assign(
     date: makeNodeComponent('date'),
     svg: makeNodeComponent('svg'),
     dropdown: makeNodeComponent('dropdown'),
-    button: makeNodeComponent('button'),
+    replyButton: makeNodeComponent('replyButton'),
     replyInput: makeNodeComponent('replyInput'),
 
     // Metadata about props expected for PlasmicReplyContentSecond

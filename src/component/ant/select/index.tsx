@@ -27,11 +27,7 @@ interface SelectProps {
 }
 
 export function AntSelect(props: SelectProps) {
-  const {
-    userId,
-    organizationId,
-    setSelectedTimelines,
-  } = props;
+  const { userId, organizationId, setSelectedTimelines } = props;
 
   const timelineSearch: ITimelineQuery = {
     userId,

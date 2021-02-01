@@ -6,13 +6,16 @@ export interface IMessage {
   userId: string;
   organizationId: string;
   timelineId: string;
+  date: string;
+  reid?: string;
 }
 
 export interface IMessageQuery {
   organizationId: string;
-  timelineId?: string;
+  timelineId: string;
   userId: string;
   updateId: string;
+  reid?: string;
   timelines?: any;
 }
 

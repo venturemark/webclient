@@ -7,7 +7,8 @@
 .box__pzzK {
   display: flex;
   position: relative;
-  background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  background-color: rgb(2, 157, 127)
+    /* plasmic-token: Jfzps88GdGw80SE */;
   height: 28px;
   flex-direction: row;
   padding-left: 10px;
@@ -22,7 +23,10 @@
   width: calc(100% + 16px);
 }
 .box__pzzK > :global(.__wab_flex-container) > *,
-.box__pzzK > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box__pzzK
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-left: 16px;
 }
 .box___0FfK {

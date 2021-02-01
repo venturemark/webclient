@@ -28,7 +28,7 @@ export async function Create(
 
   req.setObj(obj);
 
-  console.log(req.toObject())
+  console.log(req.toObject());
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, {}, function (err: any, res: CreateO) {

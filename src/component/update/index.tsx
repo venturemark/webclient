@@ -6,7 +6,6 @@ import {
   DefaultUpdateProps,
 } from 'component/plasmic/shared/PlasmicUpdate';
 import { Node } from 'slate';
-import { id } from 'date-fns/locale';
 
 interface UpdateProps extends DefaultUpdateProps {
   text: Node[];

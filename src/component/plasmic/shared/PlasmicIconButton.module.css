@@ -5,7 +5,8 @@
   flex-direction: row;
   height: auto;
   cursor: pointer;
-  background-color: rgba(38, 26, 63, 0.1) /* plasmic-token: u3JIt-BuU8GbDfJ */;
+  background-color: rgba(38, 26, 63, 0.1)
+    /* plasmic-token: u3JIt-BuU8GbDfJ */;
   border-radius: 8px;
   padding: 5px;
 }
@@ -23,12 +24,14 @@
   border-radius: 100%;
 }
 .root____focusVisibleWithin {
-  background-color: rgba(2, 157, 127, 0.91) /* plasmic-token: ktdOhSoiQwPKRUS */;
+  background-color: rgba(2, 157, 127, 0.91)
+    /* plasmic-token: ktdOhSoiQwPKRUS */;
   outline: none;
   padding: 5px;
 }
 .root:hover {
-  background-color: rgba(2, 157, 127, 0.91) /* plasmic-token: YRJle7f6cdaqkr9 */;
+  background-color: rgba(2, 157, 127, 0.91)
+    /* plasmic-token: YRJle7f6cdaqkr9 */;
 }
 .startIcon {
   position: relative;

@@ -6,20 +6,12 @@ import {
   DefaultReplyInputProps,
 } from './plasmic/shared/PlasmicReplyInput';
 import { useForm } from 'react-hook-form';
-import {
-  IMessage,
-  INewMessage,
-  IMessageQuery,
-} from 'module/interface/message';
-import {
-  useMessages,
-  useCreateMessage,
-} from 'module/hook/message';
-import { subMinutes } from 'date-fns';
-
+import { INewMessage } from 'module/interface/message';
+import { useCreateMessage } from 'module/hook/message';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 type FormInputs = {
-  name: string;
+  text: string;
 };
 
 interface ReplyInputProps extends DefaultReplyInputProps {
@@ -27,56 +19,66 @@ interface ReplyInputProps extends DefaultReplyInputProps {
   timelineId: string;
   organizationId: string;
   userId: string;
+  reid: string;
 }
 
 function ReplyInput(props: ReplyInputProps) {
-  const {updateId, timelineId, organizationId, userId} = props
-
-  const { register, handleSubmit, reset } = useForm<FormInputs>();
-
-  const messageSearch: IMessageQuery = {
+  const {
     updateId,
     timelineId,
-    userId,
     organizationId,
-  };
-  const { data: messagesData } = useMessages(messageSearch);
+    userId,
+    reid,
+  } = props;
+
+  console.log(
+    'user input',
+    updateId,
+    timelineId,
+    organizationId,
+    userId,
+    reid,
+  );
+
+  const { register, handleSubmit, reset } = useForm<FormInputs>();
   const { mutate: createMessage } = useCreateMessage();
 
-  const handleAddMessage = () => {
-    // if (!data.name) {
-    //   return;
-    // }
+  const handleAddMessage = (data: FormInputs) => {
+    if (!data.text) {
+      return;
+    }
 
     const newMessage: INewMessage = {
-      text: 'edit message description',
+      text: data.text,
       organizationId,
       timelineId,
       updateId,
       userId,
+      reid: reid,
     };
+
+    console.log(newMessage);
 
     // audienceMutation(messageId)
     createMessage(newMessage);
 
     //reset form
     reset({
-      name: '',
+      text: '',
     });
   };
 
   return (
-  <PlasmicReplyInput 
-    replyForm={{
-      onSubmit: handleSubmit(handleAddMessage),
-    }}
-    replyInput={{
-      type: "submit",
-      name: "text",
-      ref: register()
-    }}
-  />
-  )
+    <PlasmicReplyInput
+      replyForm={{
+        onSubmit: handleSubmit(handleAddMessage),
+      }}
+      replyInput={{
+        name: 'text',
+        ref: register(),
+      }}
+    />
+  );
 }
 
 export default ReplyInput;

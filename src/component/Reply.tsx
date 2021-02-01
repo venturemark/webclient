@@ -5,38 +5,56 @@ import {
   PlasmicReply,
   DefaultReplyProps,
 } from './plasmic/shared/PlasmicReply';
+import ReplyContent from 'component/ReplyContent';
+import { IMessageQuery } from 'module/interface/message';
+import { useMessages } from 'module/hook/message';
+import { message } from 'antd';
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface ReplyProps extends Omit<DefaultReplyProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultReplyProps altogether and have
-// total control over the props for your component.
-interface ReplyProps extends DefaultReplyProps {}
+interface ReplyProps extends DefaultReplyProps {
+  updateId: string;
+  timelineId: string;
+  organizationId: string;
+  userId: string;
+}
 
 function Reply(props: ReplyProps) {
-  // Use PlasmicReply to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicReply are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all ReplyProps here, but feel free
-  // to do whatever works for you.
-  return <PlasmicReply {...props} />;
+  const { updateId, timelineId, userId, organizationId } = props;
+  const messageSearch: IMessageQuery = {
+    updateId,
+    timelineId,
+    userId,
+    organizationId,
+  };
+  const { data: messagesData } = useMessages(messageSearch);
+  const messages =
+    messagesData?.filter((message: any) => !message.reid) ?? [];
+
+  console.log('messages in reply:', messages);
+
+  return (
+    <PlasmicReply
+      replyInput={{
+        organizationId: organizationId,
+        timelineId,
+        updateId,
+        userId,
+      }}
+      repliesContainer={{
+        children: messages.map((message: any) => (
+          <ReplyContent
+            userName={message.userId}
+            date={message.date}
+            key={message.id}
+            id={message.id}
+            text={message.text}
+            updateId={updateId}
+            timelineId={timelineId}
+            organizationId={organizationId}
+          />
+        )),
+      }}
+    />
+  );
 }
 
 export default Reply;
