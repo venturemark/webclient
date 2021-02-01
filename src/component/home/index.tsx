@@ -8,7 +8,7 @@ import {
 import Update from 'component/update';
 import { ITimeline, ITimelineQuery } from 'module/interface/timeline';
 import { useTimelines } from 'module/hook/timeline';
-import { IUpdateQuery } from 'module/interface/update';
+import { IUpdate, IUpdateQuery } from 'module/interface/update';
 import { useUpdates, useAllUpdates } from 'module/hook/update';
 import { getUser } from 'module/store';
 
@@ -99,14 +99,14 @@ export function Component(props: HomeProps) {
           currentTimeline?.desc ?? 'edit description...',
       }}
       updatesContainer={{
-        children: updates.map((update: any) => (
+        children: updates.map((update: IUpdate) => (
           <Update
             text={update.text}
             key={update.id}
             id={update.id}
             organizationName={update.organizationId}
+            timelineId={update.timelineId}
             userName={update.userId}
-            timelineName={update.timelineId}
             date={update.date}
           />
         )),

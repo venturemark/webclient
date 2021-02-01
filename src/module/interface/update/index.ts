@@ -6,6 +6,7 @@ export interface IUpdate {
   userId: string;
   organizationId: string;
   timelineId: string;
+  date: string;
 }
 
 export interface IUpdateQuery {
