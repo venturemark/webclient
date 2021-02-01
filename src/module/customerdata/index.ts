@@ -66,7 +66,6 @@ export const customers = [
       {
         name: 'Rangel Spasov',
       },
-
     ],
   },
   {
