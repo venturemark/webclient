@@ -8,7 +8,7 @@ import * as env from 'module/env';
 import * as key from 'module/idkeys';
 import fromUnixTime from 'date-fns/fromUnixTime';
 import { format } from 'date-fns';
-import { IUpdate, IUpdateQuery } from 'module/interface/update';
+import { IUpdateQuery } from 'module/interface/update';
 
 export async function Search(updateQuery: IUpdateQuery) {
   const objList = [];
