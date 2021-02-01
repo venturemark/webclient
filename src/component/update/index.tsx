@@ -6,13 +6,15 @@ import {
   DefaultUpdateProps,
 } from 'component/plasmic/shared/PlasmicUpdate';
 import { Node } from 'slate';
+import { useTimelines } from 'module/hook/timeline';
+import { ITimeline, ITimelineQuery } from 'module/interface/timeline';
 
 interface UpdateProps extends DefaultUpdateProps {
   text: Node[];
   id: string;
   organizationName: string;
+  timelineId: string;
   userName: string;
-  timelineName: string;
   date: string;
 }
 
@@ -21,10 +23,20 @@ function Update(props: UpdateProps) {
     text,
     id,
     organizationName,
+    timelineId,
     userName,
-    timelineName,
     date,
   } = props;
+
+  const timelineSearch: ITimelineQuery = {
+    userId: userName,
+    organizationId: organizationName,
+  };
+
+  const { data: timelinesData } = useTimelines(timelineSearch);
+  const timelines = timelinesData ?? [];
+
+  const timelineName = timelines.filter((timeline:ITimeline) => timeline.id === timelineId)[0].name
 
   return (
     <PlasmicUpdate
