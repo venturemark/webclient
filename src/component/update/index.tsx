@@ -36,7 +36,9 @@ function Update(props: UpdateProps) {
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
 
-  const timelineName = timelines.filter((timeline:ITimeline) => timeline.id === timelineId)[0].name
+  const timelineName = timelines.filter(
+    (timeline: ITimeline) => timeline.id === timelineId,
+  )[0].name;
 
   return (
     <PlasmicUpdate
