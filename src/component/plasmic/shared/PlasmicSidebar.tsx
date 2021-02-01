@@ -58,9 +58,9 @@ export type PlasmicSidebar__OverridesType = {
   root?: p.Flex<'div'>;
   topSidebar?: p.Flex<'div'>;
   scrollContainer?: p.Flex<'div'>;
+  homeSidebarItem?: p.Flex<typeof SidebarItem>;
+  organizationName?: p.Flex<typeof SidebarItem>;
   timelinesContainer?: p.Flex<'div'>;
-  timelinesContainer3?: p.Flex<'div'>;
-  timelinesContainer2?: p.Flex<'div'>;
 };
 
 export interface DefaultSidebarProps {
@@ -120,11 +120,13 @@ function PlasmicSidebar__RenderFunc(props: {
           })}
         >
           <SidebarItem
+            data-plasmic-name={'homeSidebarItem'}
+            data-plasmic-override={overrides.homeSidebarItem}
             className={classNames(
               '__wab_instance',
-              sty.sidebarItem__nzXic,
+              sty.homeSidebarItem,
               {
-                [sty.sidebarItem__hasInput__nzXiCj2HLz]: hasVariant(
+                [sty.homeSidebarItem__hasInput]: hasVariant(
                   variants,
                   'hasInput',
                   'hasInput',
@@ -151,11 +153,13 @@ function PlasmicSidebar__RenderFunc(props: {
           </SidebarItem>
 
           <SidebarItem
+            data-plasmic-name={'organizationName'}
+            data-plasmic-override={overrides.organizationName}
             className={classNames(
               '__wab_instance',
-              sty.sidebarItem__tz3Ir,
+              sty.organizationName,
               {
-                [sty.sidebarItem__hasInput__tz3IRj2HLz]: hasVariant(
+                [sty.organizationName__hasInput]: hasVariant(
                   variants,
                   'hasInput',
                   'hasInput',
@@ -181,6 +185,37 @@ function PlasmicSidebar__RenderFunc(props: {
             />
           </SidebarItem>
 
+          <SidebarItem
+            className={classNames(
+              '__wab_instance',
+              sty.sidebarItem__iKtWk,
+              {
+                [sty.sidebarItem__hasInput__iKtWKj2HLz]: hasVariant(
+                  variants,
+                  'hasInput',
+                  'hasInput',
+                ),
+              },
+            )}
+            isInput={'isInput' as const}
+            name={
+              <div
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.box__pMluL,
+                )}
+              >
+                {'Wins'}
+              </div>
+            }
+          >
+            <IconHashIcon
+              className={classNames(defaultcss.all, sty.svg__rRxnv)}
+              role={'img'}
+            />
+          </SidebarItem>
+
           <div
             data-plasmic-name={'timelinesContainer'}
             data-plasmic-override={overrides.timelinesContainer}
@@ -189,48 +224,6 @@ function PlasmicSidebar__RenderFunc(props: {
               sty.timelinesContainer,
               {
                 [sty.timelinesContainer__hasInput]: hasVariant(
-                  variants,
-                  'hasInput',
-                  'hasInput',
-                ),
-              },
-            )}
-          >
-            <SidebarItem
-              className={classNames(
-                '__wab_instance',
-                sty.sidebarItem__iKtWk,
-                {
-                  [sty.sidebarItem__hasInput__iKtWKj2HLz]: hasVariant(
-                    variants,
-                    'hasInput',
-                    'hasInput',
-                  ),
-                },
-              )}
-              isInput={'isInput' as const}
-              name={
-                <div
-                  className={classNames(
-                    defaultcss.all,
-                    defaultcss.__wab_text,
-                    sty.box__pMluL,
-                  )}
-                >
-                  {'Wins'}
-                </div>
-              }
-            />
-          </div>
-
-          <div
-            data-plasmic-name={'timelinesContainer3'}
-            data-plasmic-override={overrides.timelinesContainer3}
-            className={classNames(
-              defaultcss.all,
-              sty.timelinesContainer3,
-              {
-                [sty.timelinesContainer3__hasInput]: hasVariant(
                   variants,
                   'hasInput',
                   'hasInput',
@@ -261,24 +254,13 @@ function PlasmicSidebar__RenderFunc(props: {
                   {'Wins'}
                 </div>
               }
-            />
-          </div>
+            >
+              <IconHashIcon
+                className={classNames(defaultcss.all, sty.svg__uZxxn)}
+                role={'img'}
+              />
+            </SidebarItem>
 
-          <div
-            data-plasmic-name={'timelinesContainer2'}
-            data-plasmic-override={overrides.timelinesContainer2}
-            className={classNames(
-              defaultcss.all,
-              sty.timelinesContainer2,
-              {
-                [sty.timelinesContainer2__hasInput]: hasVariant(
-                  variants,
-                  'hasInput',
-                  'hasInput',
-                ),
-              },
-            )}
-          >
             <SidebarItem
               className={classNames(
                 '__wab_instance',
@@ -303,7 +285,12 @@ function PlasmicSidebar__RenderFunc(props: {
                   {'Metrics'}
                 </div>
               }
-            />
+            >
+              <IconHashIcon
+                className={classNames(defaultcss.all, sty.svg__gm7Z6)}
+                role={'img'}
+              />
+            </SidebarItem>
           </div>
         </p.Stack>
       </div>
@@ -316,29 +303,29 @@ const PlasmicDescendants = {
     'root',
     'topSidebar',
     'scrollContainer',
+    'homeSidebarItem',
+    'organizationName',
     'timelinesContainer',
-    'timelinesContainer3',
-    'timelinesContainer2',
   ],
 
   topSidebar: [
     'topSidebar',
     'scrollContainer',
+    'homeSidebarItem',
+    'organizationName',
     'timelinesContainer',
-    'timelinesContainer3',
-    'timelinesContainer2',
   ],
 
   scrollContainer: [
     'scrollContainer',
+    'homeSidebarItem',
+    'organizationName',
     'timelinesContainer',
-    'timelinesContainer3',
-    'timelinesContainer2',
   ],
 
+  homeSidebarItem: ['homeSidebarItem'],
+  organizationName: ['organizationName'],
   timelinesContainer: ['timelinesContainer'],
-  timelinesContainer3: ['timelinesContainer3'],
-  timelinesContainer2: ['timelinesContainer2'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -348,9 +335,9 @@ type NodeDefaultElementType = {
   root: 'div';
   topSidebar: 'div';
   scrollContainer: 'div';
+  homeSidebarItem: typeof SidebarItem;
+  organizationName: typeof SidebarItem;
   timelinesContainer: 'div';
-  timelinesContainer3: 'div';
-  timelinesContainer2: 'div';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -418,9 +405,9 @@ export const PlasmicSidebar = Object.assign(
     // Helper components rendering sub-elements
     topSidebar: makeNodeComponent('topSidebar'),
     scrollContainer: makeNodeComponent('scrollContainer'),
+    homeSidebarItem: makeNodeComponent('homeSidebarItem'),
+    organizationName: makeNodeComponent('organizationName'),
     timelinesContainer: makeNodeComponent('timelinesContainer'),
-    timelinesContainer3: makeNodeComponent('timelinesContainer3'),
-    timelinesContainer2: makeNodeComponent('timelinesContainer2'),
 
     // Metadata about props expected for PlasmicSidebar
     internalVariantProps: PlasmicSidebar__VariantProps,

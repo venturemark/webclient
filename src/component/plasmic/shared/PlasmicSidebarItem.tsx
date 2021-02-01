@@ -76,8 +76,6 @@ export type PlasmicSidebarItem__OverridesType = {
   textbox?: p.Flex<'input'>;
   sidebarForm?: p.Flex<'form'>;
   addTimelineInput?: p.Flex<'input'>;
-  sidebarForm2?: p.Flex<'form'>;
-  addTimelineInput2?: p.Flex<'input'>;
 };
 
 export interface DefaultSidebarItemProps {
@@ -332,9 +330,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
             />
           ) : null}
           {(
-            hasVariant(variants, 'isOrganization', 'isOrganization')
-              ? false
-              : false
+            hasVariant(variants, 'isInput', 'isInput') ? true : false
           ) ? (
             <form
               data-plasmic-name={'sidebarForm'}
@@ -345,12 +341,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   'isInput',
                   'isInput',
                 ),
-
-                [sty.sidebarForm__isOrganization]: hasVariant(
-                  variants,
-                  'isOrganization',
-                  'isOrganization',
-                ),
               })}
             >
               <input
@@ -360,45 +350,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   defaultcss.input,
                   sty.addTimelineInput,
                   {
-                    [sty.addTimelineInput__isOrganization]: hasVariant(
-                      variants,
-                      'isOrganization',
-                      'isOrganization',
-                    ),
-                  },
-                )}
-                placeholder={'Enter name' as const}
-                size={1 as const}
-                type={'text' as const}
-              />
-            </form>
-          ) : null}
-          {(
-            hasVariant(variants, 'isInput', 'isInput') ? true : false
-          ) ? (
-            <form
-              data-plasmic-name={'sidebarForm2'}
-              data-plasmic-override={overrides.sidebarForm2}
-              className={classNames(
-                defaultcss.all,
-                sty.sidebarForm2,
-                {
-                  [sty.sidebarForm2__isInput]: hasVariant(
-                    variants,
-                    'isInput',
-                    'isInput',
-                  ),
-                },
-              )}
-            >
-              <input
-                data-plasmic-name={'addTimelineInput2'}
-                data-plasmic-override={overrides.addTimelineInput2}
-                className={classNames(
-                  defaultcss.input,
-                  sty.addTimelineInput2,
-                  {
-                    [sty.addTimelineInput2__isInput]: hasVariant(
+                    [sty.addTimelineInput__isInput]: hasVariant(
                       variants,
                       'isInput',
                       'isInput',
@@ -468,24 +420,17 @@ const PlasmicDescendants = {
     'textbox',
     'sidebarForm',
     'addTimelineInput',
-    'sidebarForm2',
-    'addTimelineInput2',
   ],
-
   itemContainer: [
     'itemContainer',
     'textbox',
     'sidebarForm',
     'addTimelineInput',
-    'sidebarForm2',
-    'addTimelineInput2',
   ],
 
   textbox: ['textbox'],
   sidebarForm: ['sidebarForm', 'addTimelineInput'],
   addTimelineInput: ['addTimelineInput'],
-  sidebarForm2: ['sidebarForm2', 'addTimelineInput2'],
-  addTimelineInput2: ['addTimelineInput2'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -497,8 +442,6 @@ type NodeDefaultElementType = {
   textbox: 'input';
   sidebarForm: 'form';
   addTimelineInput: 'input';
-  sidebarForm2: 'form';
-  addTimelineInput2: 'input';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -568,8 +511,6 @@ export const PlasmicSidebarItem = Object.assign(
     textbox: makeNodeComponent('textbox'),
     sidebarForm: makeNodeComponent('sidebarForm'),
     addTimelineInput: makeNodeComponent('addTimelineInput'),
-    sidebarForm2: makeNodeComponent('sidebarForm2'),
-    addTimelineInput2: makeNodeComponent('addTimelineInput2'),
 
     // Metadata about props expected for PlasmicSidebarItem
     internalVariantProps: PlasmicSidebarItem__VariantProps,
