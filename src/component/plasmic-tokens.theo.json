@@ -21,6 +21,16 @@
       }
     },
     {
+      "name": "Transparent",
+      "type": "color",
+      "value": "rgba(255,255,255,0)",
+      "category": "color",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "W4gFmUIar"
+      }
+    },
+    {
       "name": "UnnamedStyleToken",
       "type": "color",
       "value": "var(--token-ktdOhSoiQwPKRUS)",
@@ -88,6 +98,26 @@
       "meta": {
         "projectId": "rr3cgzELv8j1fSZjvVMfyx",
         "id": "lfFr5Zl2k"
+      }
+    },
+    {
+      "name": "UnnamedStyleToken 4",
+      "type": "color",
+      "value": "rgba(38,26,63,0.61)",
+      "category": "color",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "BQ77SKZJQ"
+      }
+    },
+    {
+      "name": "UnnamedStyleToken 5",
+      "type": "color",
+      "value": "rgb(245,245,245)",
+      "category": "color",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "_-qy7JIkw"
       }
     },
     {

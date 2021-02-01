@@ -455,6 +455,11 @@
           "id": "74AWP6pMaxz",
           "name": "Vector11Icon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector11.tsx"
+        },
+        {
+          "id": "FUAnm6q86",
+          "name": "OvalIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Oval.tsx"
         }
       ],
       "images": [
@@ -670,6 +675,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.95",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.95/dist/plasmic.schema.json"
+  "cliVersion": "0.1.97",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.97/dist/plasmic.schema.json"
 }

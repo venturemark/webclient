@@ -9,7 +9,8 @@
   position: relative;
   min-width: 0;
   border-style: solid;
-  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-color: rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .editorContainer {
   box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.2);
@@ -29,7 +30,8 @@
   border-radius: 8px;
   padding: 20px;
   border-style: solid;
-  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-color: rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .box__ehjLr {
   display: inline-flex;
@@ -45,7 +47,10 @@
   width: calc(100% + 10px);
 }
 .box__ehjLr > :global(.__wab_flex-container) > *,
-.box__ehjLr > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box__ehjLr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-left: 10px;
 }
 .box__wAdRc {
@@ -74,7 +79,10 @@
   height: calc(100% + 3px);
 }
 .box__mkSty > :global(.__wab_flex-container) > *,
-.box__mkSty > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box__mkSty
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-top: 3px;
 }
 .box__fjL5B {
@@ -95,7 +103,10 @@
   width: calc(100% + 5px);
 }
 .box__fjL5B > :global(.__wab_flex-container) > *,
-.box__fjL5B > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box__fjL5B
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-left: 5px;
 }
 .box__nwWG {
@@ -161,7 +172,10 @@
   width: calc(100% + 5px);
 }
 .box__vvzri > :global(.__wab_flex-container) > *,
-.box__vvzri > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.box__vvzri
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
   margin-left: 5px;
 }
 .box__wDBh5 {
@@ -279,9 +293,10 @@
   padding: 15px 0px 0px;
   margin: 0px;
   border-style: solid;
-  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-color: rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.button {
+.replyButton {
   position: relative;
   align-self: auto;
   width: 61px;
@@ -301,7 +316,8 @@
 .box__uciye {
   display: block;
   position: relative;
-  background-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  background-color: rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
   width: 1px;
   height: 22px;
   align-self: center;

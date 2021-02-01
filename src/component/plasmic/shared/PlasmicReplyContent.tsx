@@ -39,11 +39,11 @@ import sty from './PlasmicReplyContent.module.css'; // plasmic-import: q3VnCwfx2
 import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicReplyContent__VariantMembers = {
-  state: 'reply' | 'isUser';
+  state: 'isReply' | 'isUser';
 };
 
 export type PlasmicReplyContent__VariantsArgs = {
-  state?: SingleChoiceArg<'reply' | 'isUser'>;
+  state?: SingleChoiceArg<'isReply' | 'isUser'>;
 };
 
 type VariantPropType = keyof PlasmicReplyContent__VariantsArgs;
@@ -53,15 +53,17 @@ export const PlasmicReplyContent__VariantProps = new Array<VariantPropType>(
 
 export type PlasmicReplyContent__ArgsType = {
   userName?: React.ReactNode;
-  textContainer?: React.ReactNode;
+  text?: React.ReactNode;
   textContainer2?: React.ReactNode;
+  date?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicReplyContent__ArgsType;
 export const PlasmicReplyContent__ArgProps = new Array<ArgPropType>(
   'userName',
-  'textContainer',
+  'text',
   'textContainer2',
+  'date',
 );
 
 export type PlasmicReplyContent__OverridesType = {
@@ -69,19 +71,22 @@ export type PlasmicReplyContent__OverridesType = {
   editorContainer?: p.Flex<'div'>;
   userName?: p.Flex<'span'>;
   span?: p.Flex<'span'>;
-  date?: p.Flex<'span'>;
+  button?: p.Flex<'button'>;
   svg?: p.Flex<'svg'>;
   dropdown?: p.Flex<typeof Dropdown>;
+  replyButton?: p.Flex<'button'>;
   replyInput?: p.Flex<typeof ReplyInput>;
+  repliesContainer?: p.Flex<'div'>;
   replyContentSecond?: p.Flex<typeof ReplyContentSecond>;
   userName2?: p.Flex<'span'>;
 };
 
 export interface DefaultReplyContentProps {
   userName?: React.ReactNode;
-  textContainer?: React.ReactNode;
+  text?: React.ReactNode;
   textContainer2?: React.ReactNode;
-  state?: SingleChoiceArg<'reply' | 'isUser'>;
+  date?: React.ReactNode;
+  state?: SingleChoiceArg<'isReply' | 'isUser'>;
   className?: string;
 }
 
@@ -141,10 +146,10 @@ function PlasmicReplyContent__RenderFunc(props: {
               as={'div'}
               hasGap={true}
               className={classNames(defaultcss.all, sty.box__rqpD, {
-                [sty.box__state_reply__rqpDD0Pzv]: hasVariant(
+                [sty.box__state_isReply__rqpDD0Pzv]: hasVariant(
                   variants,
                   'state',
-                  'reply',
+                  'isReply',
                 ),
               })}
             >
@@ -163,6 +168,13 @@ function PlasmicReplyContent__RenderFunc(props: {
                   className={classNames(
                     defaultcss.all,
                     sty.box__cAoxI,
+                    {
+                      [sty.box__state_isReply__cAoxId0Pzv]: hasVariant(
+                        variants,
+                        'state',
+                        'isReply',
+                      ),
+                    },
                   )}
                 >
                   <p.Stack
@@ -207,17 +219,20 @@ function PlasmicReplyContent__RenderFunc(props: {
                       {'•'}
                     </span>
 
-                    <span
-                      data-plasmic-name={'date'}
-                      data-plasmic-override={overrides.date}
-                      className={classNames(
-                        defaultcss.all,
-                        defaultcss.__wab_text,
-                        sty.date,
-                      )}
-                    >
-                      {'3 hours ago'}
-                    </span>
+                    <p.PlasmicSlot
+                      defaultContents={
+                        <span
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.span___4NLge,
+                          )}
+                        >
+                          {'3 hours ago'}
+                        </span>
+                      }
+                      value={args.date}
+                    />
                   </p.Stack>
                 </div>
 
@@ -240,9 +255,11 @@ function PlasmicReplyContent__RenderFunc(props: {
                     )}
                   >
                     <button
+                      data-plasmic-name={'button'}
+                      data-plasmic-override={overrides.button}
                       className={classNames(
                         defaultcss.button,
-                        sty.button__yn9Ij,
+                        sty.button,
                       )}
                     >
                       <IconDotMenuIcon
@@ -290,24 +307,28 @@ function PlasmicReplyContent__RenderFunc(props: {
                     defaultContents={
                       'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius'
                     }
-                    value={args.textContainer}
-                    className={classNames(sty.slotTextContainer)}
+                    value={args.text}
+                    className={classNames(sty.slotText)}
                   />
                 </div>
               </div>
 
               <button
+                data-plasmic-name={'replyButton'}
+                data-plasmic-override={overrides.replyButton}
                 className={classNames(
                   defaultcss.button,
                   defaultcss.__wab_text,
-                  sty.button__oAXxz,
+                  sty.replyButton,
                 )}
               >
                 {'Reply'}
               </button>
 
               {(
-                hasVariant(variants, 'state', 'reply') ? true : false
+                hasVariant(variants, 'state', 'isReply')
+                  ? true
+                  : false
               ) ? (
                 <p.Stack
                   as={'div'}
@@ -316,16 +337,16 @@ function PlasmicReplyContent__RenderFunc(props: {
                     defaultcss.all,
                     sty.box__w4TSo,
                     {
-                      [sty.box__state_reply__w4TSoD0Pzv]: hasVariant(
+                      [sty.box__state_isReply__w4TSoD0Pzv]: hasVariant(
                         variants,
                         'state',
-                        'reply',
+                        'isReply',
                       ),
                     },
                   )}
                 >
                   {(
-                    hasVariant(variants, 'state', 'reply')
+                    hasVariant(variants, 'state', 'isReply')
                       ? true
                       : false
                   ) ? (
@@ -336,63 +357,75 @@ function PlasmicReplyContent__RenderFunc(props: {
                         '__wab_instance',
                         sty.replyInput,
                         {
-                          [sty.replyInput__state_reply]: hasVariant(
+                          [sty.replyInput__state_isReply]: hasVariant(
                             variants,
                             'state',
-                            'reply',
+                            'isReply',
                           ),
                         },
                       )}
                     />
                   ) : null}
-                  {(
-                    hasVariant(variants, 'state', 'reply')
-                      ? true
-                      : false
-                  ) ? (
-                    <ReplyContentSecond
-                      data-plasmic-name={'replyContentSecond'}
-                      data-plasmic-override={
-                        overrides.replyContentSecond
-                      }
-                      className={classNames(
-                        '__wab_instance',
-                        sty.replyContentSecond,
-                        {
-                          [sty.replyContentSecond__state_reply]: hasVariant(
-                            variants,
-                            'state',
-                            'reply',
-                          ),
-                        },
-                      )}
-                      textContainer={
-                        <p.PlasmicSlot
-                          defaultContents={
-                            'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mo'
-                          }
-                          value={args.textContainer2}
-                        />
-                      }
-                      userName={
-                        <span
-                          data-plasmic-name={'userName2'}
-                          data-plasmic-override={overrides.userName2}
-                          className={classNames(
-                            defaultcss.all,
-                            defaultcss.__wab_text,
-                            sty.userName2,
-                          )}
-                        >
-                          <span>
-                            <span style={{ fontWeight: 700 }}>
-                              {'The Rock'}
+
+                  <div
+                    data-plasmic-name={'repliesContainer'}
+                    data-plasmic-override={overrides.repliesContainer}
+                    className={classNames(
+                      defaultcss.all,
+                      sty.repliesContainer,
+                    )}
+                  >
+                    {(
+                      hasVariant(variants, 'state', 'isReply')
+                        ? true
+                        : false
+                    ) ? (
+                      <ReplyContentSecond
+                        data-plasmic-name={'replyContentSecond'}
+                        data-plasmic-override={
+                          overrides.replyContentSecond
+                        }
+                        date={
+                          <span
+                            className={classNames(
+                              defaultcss.all,
+                              defaultcss.__wab_text,
+                              sty.span__ik8Gc,
+                            )}
+                          >
+                            {'3 hours ago'}
+                          </span>
+                        }
+                        textContainer={
+                          <p.PlasmicSlot
+                            defaultContents={
+                              'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mo'
+                            }
+                            value={args.textContainer2}
+                          />
+                        }
+                        userName={
+                          <span
+                            data-plasmic-name={'userName2'}
+                            data-plasmic-override={
+                              overrides.userName2
+                            }
+                            className={classNames(
+                              defaultcss.all,
+                              defaultcss.__wab_text,
+                              sty.userName2,
+                            )}
+                          >
+                            <span>
+                              <span style={{ fontWeight: 700 }}>
+                                {'The Rock'}
+                              </span>
                             </span>
                           </span>
-                        </span>
-                      }
-                    />
-                  ) : null}
+                        }
+                      />
+                    ) : null}
+                  </div>
                 </p.Stack>
               ) : null}
             </p.Stack>
@@ -409,10 +442,12 @@ const PlasmicDescendants = {
     'editorContainer',
     'userName',
     'span',
-    'date',
+    'button',
     'svg',
     'dropdown',
+    'replyButton',
     'replyInput',
+    'repliesContainer',
     'replyContentSecond',
     'userName2',
   ],
@@ -421,20 +456,28 @@ const PlasmicDescendants = {
     'editorContainer',
     'userName',
     'span',
-    'date',
+    'button',
     'svg',
     'dropdown',
+    'replyButton',
     'replyInput',
+    'repliesContainer',
     'replyContentSecond',
     'userName2',
   ],
 
   userName: ['userName'],
   span: ['span'],
-  date: ['date'],
+  button: ['button', 'svg', 'dropdown'],
   svg: ['svg'],
   dropdown: ['dropdown'],
+  replyButton: ['replyButton'],
   replyInput: ['replyInput'],
+  repliesContainer: [
+    'repliesContainer',
+    'replyContentSecond',
+    'userName2',
+  ],
   replyContentSecond: ['replyContentSecond', 'userName2'],
   userName2: ['userName2'],
 } as const;
@@ -447,10 +490,12 @@ type NodeDefaultElementType = {
   editorContainer: 'div';
   userName: 'span';
   span: 'span';
-  date: 'span';
+  button: 'button';
   svg: 'svg';
   dropdown: typeof Dropdown;
+  replyButton: 'button';
   replyInput: typeof ReplyInput;
+  repliesContainer: 'div';
   replyContentSecond: typeof ReplyContentSecond;
   userName2: 'span';
 };
@@ -521,10 +566,12 @@ export const PlasmicReplyContent = Object.assign(
     editorContainer: makeNodeComponent('editorContainer'),
     userName: makeNodeComponent('userName'),
     span: makeNodeComponent('span'),
-    date: makeNodeComponent('date'),
+    button: makeNodeComponent('button'),
     svg: makeNodeComponent('svg'),
     dropdown: makeNodeComponent('dropdown'),
+    replyButton: makeNodeComponent('replyButton'),
     replyInput: makeNodeComponent('replyInput'),
+    repliesContainer: makeNodeComponent('repliesContainer'),
     replyContentSecond: makeNodeComponent('replyContentSecond'),
     userName2: makeNodeComponent('userName2'),
 

@@ -19,6 +19,7 @@ interface UpdateProps extends DefaultUpdateProps {
 function Update(props: UpdateProps) {
   const {
     text,
+    id,
     organizationName,
     userName,
     timelineName,
@@ -29,6 +30,7 @@ function Update(props: UpdateProps) {
     <PlasmicUpdate
       updateContent={{
         text: text,
+        id: id,
         organizationName: organizationName,
         userName: userName,
         timelineName: timelineName,

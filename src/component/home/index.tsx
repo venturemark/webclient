@@ -34,9 +34,7 @@ export function Component(props: HomeProps) {
     userId,
   };
 
-  const audienceId = '1';
   const timelineSearch: ITimelineQuery = {
-    audienceId,
     userId,
     organizationId,
   };
@@ -108,7 +106,7 @@ export function Component(props: HomeProps) {
             id={update.id}
             organizationName={update.organizationId}
             userName={update.userId}
-            timelineName={currentTimeline?.name ?? ''}
+            timelineName={update.timelineId}
             date={update.date}
           />
         )),

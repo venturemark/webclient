@@ -17,7 +17,6 @@ export interface IUpdateQuery {
 
 export interface INewUpdate {
   text: string;
-  audienceId: string;
   organizationId: string;
   timelineId: string;
   userId: string;

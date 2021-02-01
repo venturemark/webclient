@@ -19,7 +19,6 @@ function tagRender(props: any) {
 }
 
 interface SelectProps {
-  audienceId: string;
   userId: string;
   organizationId: string;
   setSelectedTimelines: React.Dispatch<
@@ -28,15 +27,9 @@ interface SelectProps {
 }
 
 export function AntSelect(props: SelectProps) {
-  const {
-    audienceId,
-    userId,
-    organizationId,
-    setSelectedTimelines,
-  } = props;
+  const { userId, organizationId, setSelectedTimelines } = props;
 
   const timelineSearch: ITimelineQuery = {
-    audienceId,
     userId,
     organizationId,
   };

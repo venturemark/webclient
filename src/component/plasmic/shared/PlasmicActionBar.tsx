@@ -273,7 +273,7 @@ function PlasmicActionBar__RenderFunc(props: {
                   ),
                 },
               )}
-              placeholder={'Write an update ...' as const}
+              placeholder={'Write an update' as const}
               value={'' as const}
             />
 

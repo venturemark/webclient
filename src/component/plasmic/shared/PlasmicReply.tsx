@@ -47,7 +47,9 @@ export const PlasmicReply__ArgProps = new Array<ArgPropType>();
 export type PlasmicReply__OverridesType = {
   root?: p.Flex<'div'>;
   replyInput?: p.Flex<typeof ReplyInput>;
+  repliesContainer?: p.Flex<'div'>;
   replyContent?: p.Flex<typeof ReplyContent>;
+  userName?: p.Flex<'span'>;
 };
 
 export interface DefaultReplyProps {
@@ -80,19 +82,53 @@ function PlasmicReply__RenderFunc(props: {
         className={classNames('__wab_instance', sty.replyInput)}
       />
 
-      <ReplyContent
-        data-plasmic-name={'replyContent'}
-        data-plasmic-override={overrides.replyContent}
-        className={classNames('__wab_instance', sty.replyContent)}
-      />
+      <div
+        data-plasmic-name={'repliesContainer'}
+        data-plasmic-override={overrides.repliesContainer}
+        className={classNames(defaultcss.all, sty.repliesContainer)}
+      >
+        <ReplyContent
+          data-plasmic-name={'replyContent'}
+          data-plasmic-override={overrides.replyContent}
+          text={
+            'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius'
+          }
+          textContainer2={
+            'Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mo'
+          }
+          userName={
+            <span
+              data-plasmic-name={'userName'}
+              data-plasmic-override={overrides.userName}
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.userName,
+              )}
+            >
+              <span>
+                <span style={{ fontWeight: 700 }}>{'The Rock'}</span>
+              </span>
+            </span>
+          }
+        />
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ['root', 'replyInput', 'replyContent'],
+  root: [
+    'root',
+    'replyInput',
+    'repliesContainer',
+    'replyContent',
+    'userName',
+  ],
   replyInput: ['replyInput'],
-  replyContent: ['replyContent'],
+  repliesContainer: ['repliesContainer', 'replyContent', 'userName'],
+  replyContent: ['replyContent', 'userName'],
+  userName: ['userName'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -101,7 +137,9 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: 'div';
   replyInput: typeof ReplyInput;
+  repliesContainer: 'div';
   replyContent: typeof ReplyContent;
+  userName: 'span';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -168,7 +206,9 @@ export const PlasmicReply = Object.assign(
   {
     // Helper components rendering sub-elements
     replyInput: makeNodeComponent('replyInput'),
+    repliesContainer: makeNodeComponent('repliesContainer'),
     replyContent: makeNodeComponent('replyContent'),
+    userName: makeNodeComponent('userName'),
 
     // Metadata about props expected for PlasmicReply
     internalVariantProps: PlasmicReply__VariantProps,

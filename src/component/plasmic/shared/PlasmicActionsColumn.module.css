@@ -44,7 +44,8 @@
 }
 .box {
   display: flex;
-  background-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  background-color: rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
   position: relative;
   border-radius: 100%;
   padding: 3px 7px 1px;

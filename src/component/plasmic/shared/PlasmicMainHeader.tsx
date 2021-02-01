@@ -89,38 +89,56 @@ function PlasmicMainHeader__RenderFunc(props: {
         className={classNames(defaultcss.all, sty.box___3Xg51)}
       >
         <p.PlasmicSlot
-          defaultContents={'Wins'}
+          defaultContents={
+            <React.Fragment>
+              <div
+                className={classNames(defaultcss.all, sty.box__rlXLs)}
+              />
+
+              <div
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.box__xi1Sz,
+                )}
+              >
+                {'Wins'}
+              </div>
+            </React.Fragment>
+          }
           value={args.timelineName}
           className={classNames(sty.slotTimelineName)}
         />
 
-        <div className={classNames(defaultcss.all, sty.box__rlXLs)} />
-
-        <div className={classNames(defaultcss.all, sty.box__sDNfz)}>
-          <p.PlasmicSlot
-            defaultContents={
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.'
-            }
-            value={args.timelineDescription}
-            className={classNames(sty.slotTimelineDescription)}
-          />
-        </div>
+        {false ? (
+          <div className={classNames(defaultcss.all, sty.box__sDNfz)}>
+            <p.PlasmicSlot
+              defaultContents={
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.'
+              }
+              value={args.timelineDescription}
+              className={classNames(sty.slotTimelineDescription)}
+            />
+          </div>
+        ) : null}
       </p.Stack>
 
-      <div className={classNames(defaultcss.all, sty.box__lP94A)}>
-        <button
-          data-plasmic-name={'button'}
-          data-plasmic-override={overrides.button}
-          className={classNames(defaultcss.button, sty.button)}
-        >
-          <IconDotMenuIcon
-            data-plasmic-name={'svg'}
-            data-plasmic-override={overrides.svg}
-            className={classNames(defaultcss.all, sty.svg)}
-            role={'img'}
-          />
-        </button>
-      </div>
+      {false ? (
+        <div className={classNames(defaultcss.all, sty.box__lP94A)}>
+          <button
+            data-plasmic-name={'button'}
+            data-plasmic-override={overrides.button}
+            className={classNames(defaultcss.button, sty.button)}
+          >
+            <IconDotMenuIcon
+              data-plasmic-name={'svg'}
+              data-plasmic-override={overrides.svg}
+              className={classNames(defaultcss.all, sty.svg)}
+              role={'img'}
+            />
+          </button>
+        </div>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }

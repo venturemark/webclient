@@ -42,6 +42,7 @@ export async function Search(messageQuery: IMessageQuery) {
           const metaPb = messagePb.getMetadataMap();
 
           const text = propertyPb?.toObject().text;
+          const reid = propertyPb?.toObject().reid;
 
           const organizationId = metaPb.get(key.OrganizationID);
           const timelineId = metaPb.get(key.TimelineID);
@@ -59,6 +60,7 @@ export async function Search(messageQuery: IMessageQuery) {
             id: messageId,
             text: text,
             date: date,
+            reid: reid,
           };
           return message;
         });

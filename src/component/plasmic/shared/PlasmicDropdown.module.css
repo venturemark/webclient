@@ -34,6 +34,13 @@
 .ul > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 10px;
 }
+.box___84NsJ {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+}
 .rename {
   opacity: 1;
   background-color: transparent;
@@ -42,18 +49,24 @@
   text-align: left;
   text-transform: none;
   text-decoration-line: none;
-  font-family: "SF Pro Text";
+  font-family: 'SF Pro Text';
   font-weight: 400;
   letter-spacing: 0.491px;
   line-height: 18px;
   color: rgba(36, 25, 62, 1);
-  width: 100%;
+  width: auto;
   height: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
   position: relative;
   left: auto;
   top: auto;
+}
+.box__uyCPf {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
   min-width: 0;
 }
 .rename2 {
@@ -64,7 +77,7 @@
   text-align: left;
   text-transform: none;
   text-decoration-line: none;
-  font-family: "SF Pro Text";
+  font-family: 'SF Pro Text';
   font-weight: 400;
   letter-spacing: 0.491px;
   line-height: 18px;
@@ -72,9 +85,8 @@
   position: relative;
   top: auto;
   left: auto;
-  width: 100%;
+  width: auto;
   height: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
-  min-width: 0;
 }

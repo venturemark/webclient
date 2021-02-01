@@ -1,6 +1,9 @@
-import * as apigents from '@venturemark/apigents';
-import { SearchI_Obj } from 'module/api/timeline/proto/search_pb';
-import { SearchO_Obj } from 'module/api/timeline/proto/search_pb';
+import {
+  SearchI,
+  SearchI_Obj,
+  SearchO_Obj,
+} from 'module/api/timeline/proto/search_pb';
+import { APIClient } from 'module/api/timeline/proto/ApiServiceClientPb';
 import * as env from 'module/env';
 import {
   ITimeline,
@@ -13,19 +16,20 @@ export async function Search(
 ): Promise<ITimeline[]> {
   const objList = [];
   //instantiate client and req classes
-  const client = new apigents.Timeline.Client(env.APIEndpoint());
-  const req = new apigents.Timeline.Search.I();
+  const client = new APIClient(env.APIEndpoint());
+  const req = new SearchI();
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
 
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.UserID, timelineQuery.userId);
   obj
     .getMetadataMap()
     .set(key.OrganizationID, timelineQuery.organizationId);
-  obj.getMetadataMap().set(key.AudienceID, timelineQuery.audienceId);
+  obj.getMetadataMap().set(key.UserID, timelineQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
+
+  console.log(req.toObject());
 
   const getSearchResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {

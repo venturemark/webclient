@@ -11,7 +11,6 @@ export interface ITimeline {
 
 export interface ITimelineQuery {
   userId: string;
-  audienceId: string;
   organizationId: string;
 }
 
@@ -19,6 +18,5 @@ export interface INewTimeline {
   name: string;
   desc: string;
   userId: string;
-  audienceId: string;
   organizationId: string;
 }

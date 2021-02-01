@@ -116,10 +116,6 @@ function PlasmicHeader__RenderFunc(props: {
           className={classNames(defaultcss.all, sty.box___4Ktdl)}
         >
           <div
-            className={classNames(defaultcss.all, sty.box__xbz3A)}
-          />
-
-          <div
             className={classNames(defaultcss.all, sty.box___7UEdG)}
           >
             <div

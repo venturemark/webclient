@@ -16,11 +16,12 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   const objProperty = new CreateI_Obj_Property();
 
   objProperty.setText(newMessage.text);
-  newMessage.reid
-    ? objProperty.setReid(newMessage.reid)
-    : obj
-        .getMetadataMap()
-        .set(key.OrganizationID, newMessage.organizationId);
+  if (newMessage.reid) {
+    objProperty.setReid(newMessage.reid);
+  }
+  obj
+    .getMetadataMap()
+    .set(key.OrganizationID, newMessage.organizationId);
   obj.getMetadataMap().set(key.TimelineID, newMessage.timelineId);
   obj.getMetadataMap().set(key.UpdateID, newMessage.updateId);
   obj.getMetadataMap().set(key.UserID, newMessage.userId);
