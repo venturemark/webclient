@@ -6,6 +6,7 @@ import {
   DefaultUpdateProps,
 } from 'component/plasmic/shared/PlasmicUpdate';
 import { Node } from 'slate';
+import { id } from 'date-fns/locale';
 
 interface UpdateProps extends DefaultUpdateProps {
   text: Node[];
@@ -19,6 +20,7 @@ interface UpdateProps extends DefaultUpdateProps {
 function Update(props: UpdateProps) {
   const {
     text,
+    id,
     organizationName,
     userName,
     timelineName,
@@ -29,6 +31,7 @@ function Update(props: UpdateProps) {
     <PlasmicUpdate
       updateContent={{
         text: text,
+        id: id,
         organizationName: organizationName,
         userName: userName,
         timelineName: timelineName,

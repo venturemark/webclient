@@ -46,8 +46,6 @@ function ActionBar(props: ActionBarProps) {
     progress: defaultProgress,
   });
 
-  const audienceId = '1';
-
   const { mutate: createUpdate } = useCreateUpdate();
 
   const handleAddUpdate = () => {
@@ -73,7 +71,6 @@ function ActionBar(props: ActionBarProps) {
     selectedTimelines.forEach((timelineId) => {
       const newUpdate: INewUpdate = {
         text: serialize(editorShape.value),
-        audienceId,
         organizationId,
         timelineId: timelineId,
         userId,
@@ -120,7 +117,6 @@ function ActionBar(props: ActionBarProps) {
       timelineSelect={{
         render: () => (
           <AntSelect
-            audienceId={audienceId}
             userId={userId}
             organizationId={organizationId}
             setSelectedTimelines={setSelectedTimelines}

@@ -7,62 +7,35 @@ import {
 } from 'component/plasmic/shared/PlasmicUpdateContent';
 import ReadEditor from 'component/editor/read';
 import { Node } from 'slate';
-import {
-  IMessage,
-  INewMessage,
-  IMessageQuery,
-} from 'module/interface/message';
-import {
-  useMessages,
-  useCreateMessage,
-} from 'module/hook/message';
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
   text: Node[];
+  id: string;
   organizationName: string;
   userName: string;
   timelineName: string;
   date: string;
 }
 
+
+
 function UpdateContent(props: UpdateContentProps) {
   const {
     text,
+    id,
     organizationName,
     userName,
     timelineName,
     date,
   } = props;
 
-  // const [isReply, setIsReply] = useState(false)
-  const { mutate: createMessage } = useCreateMessage();
-
-  const handleAddMessage = (data: FormInputs) => {
-    if (!data.name) {
-      return;
-    }
-
-    const newMessage: INewMessage = {
-      text: 'edit message description',
-      audienceId: '1',
-      organizationId: organizationName,
-      userId: userName,
-    };
-
-    // audienceMutation(messageId)
-    createMessage(newMessage);
-
-    //reset form
-    reset({
-      name: '',
-    });
-  };
+  const [isReply, setIsReply] = useState(false)
 
   return (
     <PlasmicUpdateContent
       // isReply={isReply}
       replyButton={{
-        onClick: () => createMessage(),
+        onClick: () => setIsReply(true)
       }}
       organizationName={organizationName}
       userName={userName}

@@ -5,38 +5,78 @@ import {
   PlasmicReplyInput,
   DefaultReplyInputProps,
 } from './plasmic/shared/PlasmicReplyInput';
+import { useForm } from 'react-hook-form';
+import {
+  IMessage,
+  INewMessage,
+  IMessageQuery,
+} from 'module/interface/message';
+import {
+  useMessages,
+  useCreateMessage,
+} from 'module/hook/message';
+import { subMinutes } from 'date-fns';
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface ReplyInputProps extends Omit<DefaultReplyInputProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultReplyInputProps altogether and have
-// total control over the props for your component.
-interface ReplyInputProps extends DefaultReplyInputProps {}
+
+type FormInputs = {
+  name: string;
+};
+
+interface ReplyInputProps extends DefaultReplyInputProps {
+  updateId: string;
+  timelineId: string;
+  organizationId: string;
+  userId: string;
+}
 
 function ReplyInput(props: ReplyInputProps) {
-  // Use PlasmicReplyInput to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicReplyInput are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all ReplyInputProps here, but feel free
-  // to do whatever works for you.
-  return <PlasmicReplyInput {...props} />;
+  const {updateId, timelineId, organizationId, userId} = props
+
+  const { register, handleSubmit, reset } = useForm<FormInputs>();
+
+  const messageSearch: IMessageQuery = {
+    updateId,
+    timelineId,
+    userId,
+    organizationId,
+  };
+  const { data: messagesData } = useMessages(messageSearch);
+  const { mutate: createMessage } = useCreateMessage();
+
+  const handleAddMessage = () => {
+    // if (!data.name) {
+    //   return;
+    // }
+
+    const newMessage: INewMessage = {
+      text: 'edit message description',
+      organizationId,
+      timelineId,
+      updateId,
+      userId,
+    };
+
+    // audienceMutation(messageId)
+    createMessage(newMessage);
+
+    //reset form
+    reset({
+      name: '',
+    });
+  };
+
+  return (
+  <PlasmicReplyInput 
+    replyForm={{
+      onSubmit: handleSubmit(handleAddMessage),
+    }}
+    replyInput={{
+      type: "submit",
+      name: "text",
+      ref: register()
+    }}
+  />
+  )
 }
 
 export default ReplyInput;

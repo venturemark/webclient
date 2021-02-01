@@ -35,13 +35,10 @@ function Sidebar(props: SidebarProps) {
     organizationId,
   } = props;
 
-  const audienceId = '1';
   const timelineSearch: ITimelineQuery = {
-    audienceId,
     userId,
     organizationId,
   };
-
   
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
@@ -62,7 +59,8 @@ function Sidebar(props: SidebarProps) {
   return (
     <PlasmicSidebar
       organizationName={{
-        name: 'Venturemark',
+        name: organizationId,
+        isOrganization: true,
       }}
       hasInput={true}
       homeSidebarItem={{
@@ -71,10 +69,15 @@ function Sidebar(props: SidebarProps) {
         },
         isCurrent: isHome,
       }}
+      addTimeline={{
+        userId:userId,
+        organizationId:organizationId,
+      }}
       timelinesContainer={{
         children: sortedCurrentTimelines.map((timeline: any) => (
           <SidebarItem
             name={timeline.name}
+            key={timeline.id}
             isCurrent={timeline.isCurrent}
             onClick={() => {
               setCurrentTimeline(timeline);

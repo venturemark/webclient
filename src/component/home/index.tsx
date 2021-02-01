@@ -34,9 +34,7 @@ export function Component(props: HomeProps) {
     userId,
   };
 
-  const audienceId = '1';
   const timelineSearch: ITimelineQuery = {
-    audienceId,
     userId,
     organizationId,
   };

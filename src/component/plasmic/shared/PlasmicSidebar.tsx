@@ -60,6 +60,7 @@ export type PlasmicSidebar__OverridesType = {
   scrollContainer?: p.Flex<'div'>;
   homeSidebarItem?: p.Flex<typeof SidebarItem>;
   organizationName?: p.Flex<typeof SidebarItem>;
+  addTimeline?: p.Flex<typeof SidebarItem>;
   timelinesContainer?: p.Flex<'div'>;
 };
 
@@ -186,17 +187,15 @@ function PlasmicSidebar__RenderFunc(props: {
           </SidebarItem>
 
           <SidebarItem
-            className={classNames(
-              '__wab_instance',
-              sty.sidebarItem__iKtWk,
-              {
-                [sty.sidebarItem__hasInput__iKtWKj2HLz]: hasVariant(
-                  variants,
-                  'hasInput',
-                  'hasInput',
-                ),
-              },
-            )}
+            data-plasmic-name={'addTimeline'}
+            data-plasmic-override={overrides.addTimeline}
+            className={classNames('__wab_instance', sty.addTimeline, {
+              [sty.addTimeline__hasInput]: hasVariant(
+                variants,
+                'hasInput',
+                'hasInput',
+              ),
+            })}
             isInput={'isInput' as const}
             name={
               <div
@@ -305,6 +304,7 @@ const PlasmicDescendants = {
     'scrollContainer',
     'homeSidebarItem',
     'organizationName',
+    'addTimeline',
     'timelinesContainer',
   ],
 
@@ -313,6 +313,7 @@ const PlasmicDescendants = {
     'scrollContainer',
     'homeSidebarItem',
     'organizationName',
+    'addTimeline',
     'timelinesContainer',
   ],
 
@@ -320,11 +321,13 @@ const PlasmicDescendants = {
     'scrollContainer',
     'homeSidebarItem',
     'organizationName',
+    'addTimeline',
     'timelinesContainer',
   ],
 
   homeSidebarItem: ['homeSidebarItem'],
   organizationName: ['organizationName'],
+  addTimeline: ['addTimeline'],
   timelinesContainer: ['timelinesContainer'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -337,6 +340,7 @@ type NodeDefaultElementType = {
   scrollContainer: 'div';
   homeSidebarItem: typeof SidebarItem;
   organizationName: typeof SidebarItem;
+  addTimeline: typeof SidebarItem;
   timelinesContainer: 'div';
 };
 
@@ -407,6 +411,7 @@ export const PlasmicSidebar = Object.assign(
     scrollContainer: makeNodeComponent('scrollContainer'),
     homeSidebarItem: makeNodeComponent('homeSidebarItem'),
     organizationName: makeNodeComponent('organizationName'),
+    addTimeline: makeNodeComponent('addTimeline'),
     timelinesContainer: makeNodeComponent('timelinesContainer'),
 
     // Metadata about props expected for PlasmicSidebar

@@ -45,7 +45,9 @@ export const PlasmicReplyInput__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicReplyInput__OverridesType = {
   root?: p.Flex<'div'>;
-  textContainer2?: p.Flex<'input'>;
+  box?: p.Flex<'div'>;
+  replyForm?: p.Flex<'form'>;
+  replyInput?: p.Flex<'input'>;
   button?: p.Flex<typeof Button>;
 };
 
@@ -85,22 +87,24 @@ function PlasmicReplyInput__RenderFunc(props: {
     >
       <p.Stack
         as={'div'}
+        data-plasmic-name={'box'}
+        data-plasmic-override={overrides.box}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box__ohAw0)}
+        className={classNames(defaultcss.all, sty.box)}
       >
-        <div className={classNames(defaultcss.all, sty.box__ykXz)}>
+        <form
+          data-plasmic-name={'replyForm'}
+          data-plasmic-override={overrides.replyForm}
+          className={classNames(defaultcss.all, sty.replyForm)}
+        >
           <input
-            data-plasmic-name={'textContainer2'}
-            data-plasmic-override={overrides.textContainer2}
-            className={classNames(
-              defaultcss.input,
-              sty.textContainer2,
-            )}
+            data-plasmic-name={'replyInput'}
+            data-plasmic-override={overrides.replyInput}
+            className={classNames(defaultcss.input, sty.replyInput)}
             placeholder={'Write a reply' as const}
             type={'text' as const}
-            value={'' as const}
           />
-        </div>
+        </form>
 
         {(triggers.focusWithin_root ? true : false) ? (
           <Button
@@ -116,8 +120,10 @@ function PlasmicReplyInput__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ['root', 'textContainer2', 'button'],
-  textContainer2: ['textContainer2'],
+  root: ['root', 'box', 'replyForm', 'replyInput', 'button'],
+  box: ['box', 'replyForm', 'replyInput', 'button'],
+  replyForm: ['replyForm', 'replyInput'],
+  replyInput: ['replyInput'],
   button: ['button'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -126,7 +132,9 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: 'div';
-  textContainer2: 'input';
+  box: 'div';
+  replyForm: 'form';
+  replyInput: 'input';
   button: typeof Button;
 };
 
@@ -193,7 +201,9 @@ export const PlasmicReplyInput = Object.assign(
   makeNodeComponent('root'),
   {
     // Helper components rendering sub-elements
-    textContainer2: makeNodeComponent('textContainer2'),
+    box: makeNodeComponent('box'),
+    replyForm: makeNodeComponent('replyForm'),
+    replyInput: makeNodeComponent('replyInput'),
     button: makeNodeComponent('button'),
 
     // Metadata about props expected for PlasmicReplyInput

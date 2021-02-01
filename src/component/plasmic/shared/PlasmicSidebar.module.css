@@ -101,12 +101,12 @@
   height: 15px;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
-.sidebarItem__iKtWk:global(.__wab_instance) {
+.addTimeline:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
 }
-.sidebarItem__hasInput__iKtWKj2HLz:global(.__wab_instance) {
+.addTimeline__hasInput:global(.__wab_instance) {
   left: auto;
   top: auto;
 }

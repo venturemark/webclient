@@ -18,7 +18,6 @@ export interface IMessageQuery {
 
 export interface INewMessage {
   text: string;
-  audienceId: string;
   organizationId: string;
   timelineId: string;
   userId: string;
