@@ -43,8 +43,6 @@ function ReplyContent(props: ReplyContentProps) {
   const messages =
     messagesData?.filter((message: any) => message.reid === id) ?? [];
 
-  console.log('messages replied to this message:', messages);
-
   return (
     <PlasmicReplyContent
       state={isReply}

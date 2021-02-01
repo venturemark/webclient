@@ -41,11 +41,6 @@ export async function Search(messageQuery: IMessageQuery) {
           const propertyPb = messagePb.getProperty();
           const metaPb = messagePb.getMetadataMap();
 
-          console.log(
-            'message reponse from fetch:',
-            propertyPb?.toObject(),
-          );
-
           const text = propertyPb?.toObject().text;
           const reid = propertyPb?.toObject().reid;
 

@@ -8,7 +8,6 @@ import {
 import ReplyContent from 'component/ReplyContent';
 import { IMessageQuery } from 'module/interface/message';
 import { useMessages } from 'module/hook/message';
-import { message } from 'antd';
 
 interface ReplyProps extends DefaultReplyProps {
   updateId: string;
@@ -28,8 +27,6 @@ function Reply(props: ReplyProps) {
   const { data: messagesData } = useMessages(messageSearch);
   const messages =
     messagesData?.filter((message: any) => !message.reid) ?? [];
-
-  console.log('messages in reply:', messages);
 
   return (
     <PlasmicReply

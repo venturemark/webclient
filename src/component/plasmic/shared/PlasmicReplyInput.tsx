@@ -48,7 +48,7 @@ export type PlasmicReplyInput__OverridesType = {
   box?: p.Flex<'div'>;
   replyForm?: p.Flex<'form'>;
   replyInput?: p.Flex<'input'>;
-  button?: p.Flex<typeof Button>;
+  postReplyButton?: p.Flex<typeof Button>;
 };
 
 export interface DefaultReplyInputProps {
@@ -92,9 +92,11 @@ function PlasmicReplyInput__RenderFunc(props: {
         hasGap={true}
         className={classNames(defaultcss.all, sty.box)}
       >
-        <form
+        <p.Stack
+          as={'form'}
           data-plasmic-name={'replyForm'}
           data-plasmic-override={overrides.replyForm}
+          hasGap={true}
           className={classNames(defaultcss.all, sty.replyForm)}
         >
           <input
@@ -104,27 +106,30 @@ function PlasmicReplyInput__RenderFunc(props: {
             placeholder={'Write a reply' as const}
             type={'text' as const}
           />
-        </form>
 
-        {(triggers.focusWithin_root ? true : false) ? (
-          <Button
-            data-plasmic-name={'button'}
-            data-plasmic-override={overrides.button}
-            className={classNames('__wab_instance', sty.button)}
-            text={'Post Reply'}
-          />
-        ) : null}
+          {(triggers.focusWithin_root ? true : false) ? (
+            <Button
+              data-plasmic-name={'postReplyButton'}
+              data-plasmic-override={overrides.postReplyButton}
+              className={classNames(
+                '__wab_instance',
+                sty.postReplyButton,
+              )}
+              text={'Post Reply'}
+            />
+          ) : null}
+        </p.Stack>
       </p.Stack>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ['root', 'box', 'replyForm', 'replyInput', 'button'],
-  box: ['box', 'replyForm', 'replyInput', 'button'],
-  replyForm: ['replyForm', 'replyInput'],
+  root: ['root', 'box', 'replyForm', 'replyInput', 'postReplyButton'],
+  box: ['box', 'replyForm', 'replyInput', 'postReplyButton'],
+  replyForm: ['replyForm', 'replyInput', 'postReplyButton'],
   replyInput: ['replyInput'],
-  button: ['button'],
+  postReplyButton: ['postReplyButton'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -135,7 +140,7 @@ type NodeDefaultElementType = {
   box: 'div';
   replyForm: 'form';
   replyInput: 'input';
-  button: typeof Button;
+  postReplyButton: typeof Button;
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -204,7 +209,7 @@ export const PlasmicReplyInput = Object.assign(
     box: makeNodeComponent('box'),
     replyForm: makeNodeComponent('replyForm'),
     replyInput: makeNodeComponent('replyInput'),
-    button: makeNodeComponent('button'),
+    postReplyButton: makeNodeComponent('postReplyButton'),
 
     // Metadata about props expected for PlasmicReplyInput
     internalVariantProps: PlasmicReplyInput__VariantProps,

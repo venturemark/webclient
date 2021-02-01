@@ -28,17 +28,29 @@
   outline: none;
 }
 .replyForm {
-  align-items: center;
-  justify-content: flex-start;
   height: auto;
   width: 100%;
   display: flex;
   position: relative;
-  flex-direction: row;
+  flex-direction: column;
   min-width: 0;
   border-radius: 0px;
   border: 0px solid rgb(224, 224, 224)
     /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.replyForm > :global(.__wab_flex-container) {
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-top: calc(0px - 10px);
+  height: calc(100% + 10px);
+}
+.replyForm > :global(.__wab_flex-container) > *,
+.replyForm
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
+  margin-top: 10px;
 }
 .replyInput {
   width: 100%;
@@ -54,10 +66,10 @@
 .root:focus-within .replyInput {
   outline: none;
 }
-.button:global(.__wab_instance) {
+.postReplyButton:global(.__wab_instance) {
   position: relative;
   align-self: flex-end;
 }
-.root:focus-within .button:global(.__wab_instance) {
+.root:focus-within .postReplyButton:global(.__wab_instance) {
   outline: none;
 }

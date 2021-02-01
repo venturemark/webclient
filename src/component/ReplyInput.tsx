@@ -8,7 +8,6 @@ import {
 import { useForm } from 'react-hook-form';
 import { INewMessage } from 'module/interface/message';
 import { useCreateMessage } from 'module/hook/message';
-import { renderIntoDocument } from 'react-dom/test-utils';
 
 type FormInputs = {
   text: string;
@@ -31,15 +30,6 @@ function ReplyInput(props: ReplyInputProps) {
     reid,
   } = props;
 
-  console.log(
-    'user input',
-    updateId,
-    timelineId,
-    organizationId,
-    userId,
-    reid,
-  );
-
   const { register, handleSubmit, reset } = useForm<FormInputs>();
   const { mutate: createMessage } = useCreateMessage();
 
@@ -57,7 +47,7 @@ function ReplyInput(props: ReplyInputProps) {
       reid: reid,
     };
 
-    console.log(newMessage);
+    // console.log(newMessage);
 
     // audienceMutation(messageId)
     createMessage(newMessage);
@@ -76,6 +66,9 @@ function ReplyInput(props: ReplyInputProps) {
       replyInput={{
         name: 'text',
         ref: register(),
+      }}
+      postReplyButton={{
+        type: 'submit',
       }}
     />
   );
