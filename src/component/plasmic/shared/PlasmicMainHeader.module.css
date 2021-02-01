@@ -29,6 +29,8 @@
   height: 100%;
   flex-direction: row;
   flex-grow: 3;
+  border-bottom-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-bottom-style: solid;
   min-height: 0;
   padding: 15px 0px;
 }

@@ -67,11 +67,11 @@
   transition-property: all;
   transition-duration: 1s;
   min-height: 0;
+  padding: 0px 20px;
 }
 .sidebar:global(.__wab_instance) {
   height: 100%;
-  width: 280px;
-  flex-shrink: 0;
+  width: auto;
   min-height: 0;
 }
 .main {
@@ -105,6 +105,8 @@
   align-items: stretch;
   justify-content: center;
   background-color: #ffffff /* plasmic-token: ynJoiIC0v */;
+  border-bottom: 1px solid rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .mainHeader:global(.__wab_instance) {
   max-width: 1024px;
