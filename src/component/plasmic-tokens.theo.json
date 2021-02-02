@@ -121,6 +121,16 @@
       }
     },
     {
+      "name": "UnnamedStyleToken 5",
+      "type": "color",
+      "value": "rgba(2,2,2,0.68)",
+      "category": "color",
+      "meta": {
+        "projectId": "rr3cgzELv8j1fSZjvVMfyx",
+        "id": "JblSxxZLg"
+      }
+    },
+    {
       "name": "White",
       "type": "color",
       "value": "#ffffff",

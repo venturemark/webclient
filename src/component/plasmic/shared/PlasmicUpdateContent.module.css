@@ -243,21 +243,12 @@
   padding: 0px;
   border-width: 0px;
 }
-.svg {
+.iconMenu {
   object-fit: cover;
   width: 23px;
   height: 26px;
   color: #4d4d4d;
   flex-shrink: 0;
-}
-.dropdown:global(.__wab_instance) {
-  position: relative;
-  z-index: 2;
-}
-.root:active .dropdown:global(.__wab_instance) {
-  position: absolute;
-  left: -77px;
-  top: 30px;
 }
 .box__z3Q65 {
   display: flex;

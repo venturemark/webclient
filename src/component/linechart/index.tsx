@@ -1,10 +1,8 @@
 import React from 'react';
 import { AreaChart, Area, Tooltip, XAxis } from 'recharts';
-// import { IMetric } from 'module/interface/metric';
 
 interface ChartProps {
   dataKey: string;
-  // data: IMetric[];
   data: any;
   handleChangeContext: (
     e: React.MouseEvent<HTMLInputElement>,

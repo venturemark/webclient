@@ -38,6 +38,7 @@ function ActionBar(props: ActionBarProps) {
   const defaultProgress = serialize(initialValue).length;
 
   const [selectedTimelines, setSelectedTimelines] = useState(['']);
+  const [isTimelineSelected, setIsTimelineSelected] = useState(false);
 
   const { editorShape, setEditorShape } = useEditor({
     value: initialValue,
@@ -100,13 +101,9 @@ function ActionBar(props: ActionBarProps) {
   const normalize = (value: number) =>
     ((value - MIN) * 100) / (MAX - MIN);
 
-  const [isActive, setIsActive] = useState(false);
-
   return (
     <PlasmicActionBar
-      root={{
-        onClick: () => setIsActive(true),
-      }}
+      isActive={true}
       sendUpdate={{
         handleClick: () => handleAddUpdate(),
       }}
@@ -114,7 +111,11 @@ function ActionBar(props: ActionBarProps) {
       text={
         normalize(editorShape.progress) > 0 ? 'hasText' : undefined
       }
+      timelineSelected={isTimelineSelected}
       timelineSelect={{
+        handleClick: () => setIsTimelineSelected(true),
+      }}
+      selectedItemsContainer={{
         render: () => (
           <AntSelect
             userId={userId}
@@ -124,7 +125,6 @@ function ActionBar(props: ActionBarProps) {
         ),
       }}
       errorMessage={editorShape.error}
-      isActive={isActive}
       textContainer={{
         render: () => (
           <ComposeEditor
