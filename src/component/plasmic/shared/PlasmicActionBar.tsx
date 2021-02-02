@@ -408,7 +408,7 @@ function PlasmicActionBar__RenderFunc(props: {
       </p.Stack>
 
       {(
-        hasVariant(variants, 'isActive', 'isActive') ? true : true
+        hasVariant(variants, 'isActive', 'isActive') ? true : false
       ) ? (
         <p.Stack
           as={'div'}

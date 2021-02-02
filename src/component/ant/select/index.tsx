@@ -55,7 +55,6 @@ export function AntSelect(props: SelectProps) {
   return (
     <Select
       mode="multiple"
-      showArrow
       onChange={(timelines: [string]) => {
         setSelectedTimelines(timelines);
       }}

@@ -36,6 +36,7 @@ import sty from './PlasmicSidebarItem.module.css'; // plasmic-import: KDElHbQmfd
 import OvalIcon from './icons/PlasmicIcon__Oval'; // plasmic-import: FUAnm6q86/icon
 import IconHashIcon from './icons/PlasmicIcon__IconHash'; // plasmic-import: AVLV6uMr56/icon
 import IconDotMenuIcon from './icons/PlasmicIcon__IconDotMenu'; // plasmic-import: Dz069s-rE/icon
+import IconPlusIcon from './icons/PlasmicIcon__IconPlus'; // plasmic-import: B5QLKmr2tW/icon
 
 export type PlasmicSidebarItem__VariantMembers = {
   isCurrent: 'isCurrent';
@@ -76,6 +77,7 @@ export type PlasmicSidebarItem__OverridesType = {
   textbox?: p.Flex<'input'>;
   sidebarForm?: p.Flex<'form'>;
   addTimelineInput?: p.Flex<'input'>;
+  iconMenu?: p.Flex<'svg'>;
 };
 
 export interface DefaultSidebarItemProps {
@@ -391,18 +393,31 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 ? false
                 : true
             ) ? (
-              <IconDotMenuIcon
-                className={classNames(
-                  defaultcss.all,
-                  sty.svg___2D7My,
-                  {
-                    [sty.svg__isInput___2D7MyVs3Tx]: hasVariant(
-                      variants,
-                      'isInput',
-                      'isInput',
-                    ),
-                  },
-                )}
+              <p.PlasmicIcon
+                data-plasmic-name={'iconMenu'}
+                data-plasmic-override={overrides.iconMenu}
+                PlasmicIconType={
+                  hasVariant(
+                    variants,
+                    'isOrganization',
+                    'isOrganization',
+                  ) && triggers.hover_root
+                    ? IconPlusIcon
+                    : IconDotMenuIcon
+                }
+                className={classNames(defaultcss.all, sty.iconMenu, {
+                  [sty.iconMenu__isInput]: hasVariant(
+                    variants,
+                    'isInput',
+                    'isInput',
+                  ),
+
+                  [sty.iconMenu__isOrganization]: hasVariant(
+                    variants,
+                    'isOrganization',
+                    'isOrganization',
+                  ),
+                })}
                 role={'img'}
               />
             ) : null}
@@ -420,17 +435,21 @@ const PlasmicDescendants = {
     'textbox',
     'sidebarForm',
     'addTimelineInput',
+    'iconMenu',
   ],
+
   itemContainer: [
     'itemContainer',
     'textbox',
     'sidebarForm',
     'addTimelineInput',
+    'iconMenu',
   ],
 
   textbox: ['textbox'],
   sidebarForm: ['sidebarForm', 'addTimelineInput'],
   addTimelineInput: ['addTimelineInput'],
+  iconMenu: ['iconMenu'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -442,6 +461,7 @@ type NodeDefaultElementType = {
   textbox: 'input';
   sidebarForm: 'form';
   addTimelineInput: 'input';
+  iconMenu: 'svg';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -511,6 +531,7 @@ export const PlasmicSidebarItem = Object.assign(
     textbox: makeNodeComponent('textbox'),
     sidebarForm: makeNodeComponent('sidebarForm'),
     addTimelineInput: makeNodeComponent('addTimelineInput'),
+    iconMenu: makeNodeComponent('iconMenu'),
 
     // Metadata about props expected for PlasmicSidebarItem
     internalVariantProps: PlasmicSidebarItem__VariantProps,

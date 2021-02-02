@@ -6,12 +6,14 @@ import {
   PlasmicSidebarItem,
   DefaultSidebarItemProps,
 } from 'component/plasmic/shared/PlasmicSidebarItem';
+import {AntDropdown} from 'component/ant/dropdown'
 import { useForm } from 'react-hook-form';
 import { INewTimeline } from 'module/interface/timeline';
 import { useCreateTimeline } from 'module/hook/timeline';
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
+  id: string;
   userId: string;
   organizationId: string;
   onClick?: (e: React.MouseEvent) => void;
@@ -29,6 +31,7 @@ function SidebarItem(props: SidebarItemProps) {
   const {
     name,
     userId,
+    id,
     organizationId,
     onClick,
     isCurrent,
@@ -65,6 +68,9 @@ function SidebarItem(props: SidebarItemProps) {
     <PlasmicSidebarItem
       isInput={isInput}
       isOrganization={isOrganization}
+      iconMenu={{
+        render: () => (<AntDropdown timelineId={id} />)
+      }}
       name={name}
       isCurrent={isCurrent}
       onClick={onClick}
@@ -74,6 +80,7 @@ function SidebarItem(props: SidebarItemProps) {
       addTimelineInput={{
         name: 'name',
         ref: register(),
+        // maxLength: 17,
       }}
     />
   );

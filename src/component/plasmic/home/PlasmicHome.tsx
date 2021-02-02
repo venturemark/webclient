@@ -47,17 +47,20 @@ import sty from './PlasmicHome.module.css'; // plasmic-import: Ii0bQ3L3sO/css
 export type PlasmicHome__VariantMembers = {
   showLogin: 'showLogin';
   isTimeline: 'isTimeline';
+  menuToggle: 'menuToggle';
 };
 
 export type PlasmicHome__VariantsArgs = {
   showLogin?: SingleBooleanChoiceArg<'showLogin'>;
   isTimeline?: SingleBooleanChoiceArg<'isTimeline'>;
+  menuToggle?: SingleBooleanChoiceArg<'menuToggle'>;
 };
 
 type VariantPropType = keyof PlasmicHome__VariantsArgs;
 export const PlasmicHome__VariantProps = new Array<VariantPropType>(
   'showLogin',
   'isTimeline',
+  'menuToggle',
 );
 
 export type PlasmicHome__ArgsType = {};
@@ -66,7 +69,9 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHome__OverridesType = {
   root?: p.Flex<'div'>;
+  headerContainer?: p.Flex<'div'>;
   header?: p.Flex<typeof Header>;
+  sidebarContainer?: p.Flex<'div'>;
   sidebar?: p.Flex<typeof Sidebar>;
   main?: p.Flex<'div'>;
   mainHeaderContainer?: p.Flex<'div'>;
@@ -82,6 +87,7 @@ export type PlasmicHome__OverridesType = {
 export interface DefaultHomeProps {
   showLogin?: SingleBooleanChoiceArg<'showLogin'>;
   isTimeline?: SingleBooleanChoiceArg<'isTimeline'>;
+  menuToggle?: SingleBooleanChoiceArg<'menuToggle'>;
   className?: string;
 }
 
@@ -113,32 +119,100 @@ function PlasmicHome__RenderFunc(props: {
             'isTimeline',
             'isTimeline',
           ),
+
+          [sty.root__menuToggle]: hasVariant(
+            variants,
+            'menuToggle',
+            'menuToggle',
+          ),
         },
       )}
     >
-      <div className={classNames(defaultcss.all, sty.box__dMQq)}>
+      <div
+        data-plasmic-name={'headerContainer'}
+        data-plasmic-override={overrides.headerContainer}
+        className={classNames(defaultcss.all, sty.headerContainer)}
+      >
         <Header
           data-plasmic-name={'header'}
           data-plasmic-override={overrides.header}
-          className={classNames('__wab_instance', sty.header)}
+          className={classNames('__wab_instance', sty.header, {
+            [sty.header__menuToggle]: hasVariant(
+              variants,
+              'menuToggle',
+              'menuToggle',
+            ),
+          })}
         />
       </div>
 
       <div className={classNames(defaultcss.all, sty.box___27XeS)}>
         {(
-          hasVariant(globalVariants, 'screen', 'notSupported')
+          hasVariant(variants, 'menuToggle', 'menuToggle') &&
+          hasVariant(globalVariants, 'screen', 'tablet')
+            ? false
+            : hasVariant(variants, 'menuToggle', 'menuToggle') &&
+              hasVariant(globalVariants, 'screen', 'desktop')
+            ? false
+            : hasVariant(variants, 'menuToggle', 'menuToggle')
+            ? true
+            : hasVariant(globalVariants, 'screen', 'notSupported')
             ? false
             : hasVariant(globalVariants, 'screen', 'mobile')
             ? false
             : true
         ) ? (
-          <div className={classNames(defaultcss.all, sty.box__sqRU)}>
-            {true ? (
-              <Sidebar
-                data-plasmic-name={'sidebar'}
-                data-plasmic-override={overrides.sidebar}
-                className={classNames('__wab_instance', sty.sidebar)}
-              />
+          <div
+            data-plasmic-name={'sidebarContainer'}
+            data-plasmic-override={overrides.sidebarContainer}
+            className={classNames(
+              defaultcss.all,
+              sty.sidebarContainer,
+              {
+                [sty.sidebarContainer__menuToggle]: hasVariant(
+                  variants,
+                  'menuToggle',
+                  'menuToggle',
+                ),
+              },
+            )}
+          >
+            {(
+              hasVariant(variants, 'menuToggle', 'menuToggle')
+                ? true
+                : hasVariant(globalVariants, 'screen', 'notSupported')
+                ? false
+                : hasVariant(globalVariants, 'screen', 'mobile')
+                ? false
+                : true
+            ) ? (
+              <div
+                className={classNames(defaultcss.all, sty.box__sqRU, {
+                  [sty.box__menuToggle__sqRUmPnl3]: hasVariant(
+                    variants,
+                    'menuToggle',
+                    'menuToggle',
+                  ),
+                })}
+              >
+                {true ? (
+                  <Sidebar
+                    data-plasmic-name={'sidebar'}
+                    data-plasmic-override={overrides.sidebar}
+                    className={classNames(
+                      '__wab_instance',
+                      sty.sidebar,
+                      {
+                        [sty.sidebar__menuToggle]: hasVariant(
+                          variants,
+                          'menuToggle',
+                          'menuToggle',
+                        ),
+                      },
+                    )}
+                  />
+                ) : null}
+              </div>
             ) : null}
           </div>
         ) : null}
@@ -289,6 +363,12 @@ function PlasmicHome__RenderFunc(props: {
           data-plasmic-name={'modalOverlay'}
           data-plasmic-override={overrides.modalOverlay}
           className={classNames(defaultcss.all, sty.modalOverlay, {
+            [sty.modalOverlay__menuToggle]: hasVariant(
+              variants,
+              'menuToggle',
+              'menuToggle',
+            ),
+
             [sty.modalOverlay__showLogin]: hasVariant(
               variants,
               'showLogin',
@@ -299,7 +379,13 @@ function PlasmicHome__RenderFunc(props: {
           <ModalAlt
             data-plasmic-name={'loginModal'}
             data-plasmic-override={overrides.loginModal}
-            className={classNames('__wab_instance', sty.loginModal)}
+            className={classNames('__wab_instance', sty.loginModal, {
+              [sty.loginModal__menuToggle]: hasVariant(
+                variants,
+                'menuToggle',
+                'menuToggle',
+              ),
+            })}
             organizationDescription={
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.'
             }
@@ -313,7 +399,9 @@ function PlasmicHome__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     'root',
+    'headerContainer',
     'header',
+    'sidebarContainer',
     'sidebar',
     'main',
     'mainHeaderContainer',
@@ -326,7 +414,9 @@ const PlasmicDescendants = {
     'loginModal',
   ],
 
+  headerContainer: ['headerContainer', 'header'],
   header: ['header'],
+  sidebarContainer: ['sidebarContainer', 'sidebar'],
   sidebar: ['sidebar'],
   main: [
     'main',
@@ -359,7 +449,9 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: 'div';
+  headerContainer: 'div';
   header: typeof Header;
+  sidebarContainer: 'div';
   sidebar: typeof Sidebar;
   main: 'div';
   mainHeaderContainer: 'div';
@@ -435,7 +527,9 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent('root'),
   {
     // Helper components rendering sub-elements
+    headerContainer: makeNodeComponent('headerContainer'),
     header: makeNodeComponent('header'),
+    sidebarContainer: makeNodeComponent('sidebarContainer'),
     sidebar: makeNodeComponent('sidebar'),
     main: makeNodeComponent('main'),
     mainHeaderContainer: makeNodeComponent('mainHeaderContainer'),

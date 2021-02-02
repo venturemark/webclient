@@ -191,12 +191,12 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-.svg___2D7My {
+.iconMenu {
   object-fit: cover;
   width: 1em;
   height: 1em;
 }
-.root:hover .svg___2D7My {
+.root:hover .iconMenu {
   width: 16px;
   height: 18px;
   cursor: pointer;
