@@ -113,7 +113,9 @@ function ActionBar(props: ActionBarProps) {
       }
       timelineSelected={isTimelineSelected}
       timelineSelect={{
-        handleClick: () => setIsTimelineSelected(true),
+        handleClick: () => {
+          setIsTimelineSelected(!isTimelineSelected);
+        },
       }}
       selectedItemsContainer={{
         render: () => (
