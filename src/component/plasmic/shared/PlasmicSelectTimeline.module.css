@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: row;
   width: 160px;
-  height: auto;
   position: relative;
   cursor: pointer;
   border-radius: 20px;
@@ -27,7 +26,6 @@
 .timelineSelect__timelineSelected {
   width: 160px;
   flex-grow: 0;
-  min-width: 127px;
 }
 .box__lnRel {
   display: inline-flex;

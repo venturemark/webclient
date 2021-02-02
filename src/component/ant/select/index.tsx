@@ -63,7 +63,7 @@ export function AntSelect(props: SelectProps) {
       defaultOpen
       tagRender={tagRender}
       bordered={false}
-      style={{ width: '100%', paddingTop: '5px' }}
+      style={{ width: '80%', paddingTop: '5px' }}
       options={options}
     />
   );
