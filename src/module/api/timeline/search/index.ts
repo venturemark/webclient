@@ -29,8 +29,6 @@ export async function Search(
   objList.push(obj);
   req.setObjList(objList);
 
-  console.log(req.toObject());
-
   const getSearchResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {
       client.search(req, {}, function (err: any, res: any): any {

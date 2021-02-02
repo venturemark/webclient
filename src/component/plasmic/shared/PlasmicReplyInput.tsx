@@ -92,11 +92,9 @@ function PlasmicReplyInput__RenderFunc(props: {
         hasGap={true}
         className={classNames(defaultcss.all, sty.box)}
       >
-        <p.Stack
-          as={'form'}
+        <form
           data-plasmic-name={'replyForm'}
           data-plasmic-override={overrides.replyForm}
-          hasGap={true}
           className={classNames(defaultcss.all, sty.replyForm)}
         >
           <input
@@ -118,7 +116,7 @@ function PlasmicReplyInput__RenderFunc(props: {
               text={'Post Reply'}
             />
           ) : null}
-        </p.Stack>
+        </form>
       </p.Stack>
     </div>
   ) as React.ReactElement | null;

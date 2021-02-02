@@ -283,6 +283,19 @@
           "cssFilePath": "plasmic/shared/PlasmicModalAlt.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "fX--9UW2GgJ",
+          "name": "SelectTimeline",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicSelectTimeline.tsx",
+          "importSpec": {
+            "modulePath": "SelectTimeline.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicSelectTimeline.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
