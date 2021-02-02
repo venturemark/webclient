@@ -2,7 +2,6 @@ import React from 'react';
 import { Select, Tag } from 'antd';
 import { useTimelines } from 'module/hook/timeline';
 import { ITimelineQuery } from 'module/interface/timeline';
-import SelectTimeline from 'component/SelectTimeline';
 
 function tagRender(props: any) {
   const { label, closable, onClose } = props;
@@ -14,7 +13,7 @@ function tagRender(props: any) {
       onClose={onClose}
       style={{
         marginRight: 3,
-        borderRadius: 8,
+        borderRadius: 10,
         backgroundColor: '#029D7F',
         fontFamily: 'Poppins',
         border: 'none',
@@ -55,15 +54,16 @@ export function AntSelect(props: SelectProps) {
   return (
     <Select
       mode="multiple"
-      showArrow
       onChange={(timelines: [string]) => {
         setSelectedTimelines(timelines);
       }}
-      placeholder={<SelectTimeline />}
+      dropdownStyle={{ width: '200px' }}
+      placeholder={'Select Timeline'}
       loading={isLoading}
+      defaultOpen
       tagRender={tagRender}
       bordered={false}
-      style={{ width: '100%' }}
+      style={{ width: '100%', paddingTop: '5px' }}
       options={options}
     />
   );

@@ -58,7 +58,6 @@ export const PlasmicSelectTimeline__ArgProps = new Array<ArgPropType>();
 export type PlasmicSelectTimeline__OverridesType = {
   timelineSelect?: p.Flex<'div'>;
   svg?: p.Flex<'svg'>;
-  box?: p.Flex<'div'>;
 };
 
 export interface DefaultSelectTimelineProps {
@@ -109,45 +108,54 @@ function PlasmicSelectTimeline__RenderFunc(props: {
         },
       )}
     >
-      <IconPlusIcon
-        data-plasmic-name={'svg'}
-        data-plasmic-override={overrides.svg}
-        className={classNames(defaultcss.all, sty.svg, {
-          [sty.svg__isActive]: hasVariant(
+      <p.Stack
+        as={'div'}
+        hasGap={true}
+        className={classNames(defaultcss.all, sty.box__lnRel, {
+          [sty.box__isActive__lnRelVpG5]: hasVariant(
             variants,
             'isActive',
             'isActive',
           ),
         })}
-        role={'img'}
-      />
-
-      <div
-        data-plasmic-name={'box'}
-        data-plasmic-override={overrides.box}
-        className={classNames(
-          defaultcss.all,
-          defaultcss.__wab_text,
-          sty.box,
-          {
-            [sty.box__isActive]: hasVariant(
+      >
+        <IconPlusIcon
+          data-plasmic-name={'svg'}
+          data-plasmic-override={overrides.svg}
+          className={classNames(defaultcss.all, sty.svg, {
+            [sty.svg__isActive]: hasVariant(
               variants,
               'isActive',
               'isActive',
             ),
-          },
-        )}
-      >
-        {'Select timeline'}
-      </div>
+          })}
+          role={'img'}
+        />
+
+        <div
+          className={classNames(
+            defaultcss.all,
+            defaultcss.__wab_text,
+            sty.box__nTNtH,
+            {
+              [sty.box__isActive__nTNtHvpG5]: hasVariant(
+                variants,
+                'isActive',
+                'isActive',
+              ),
+            },
+          )}
+        >
+          {'Select timeline'}
+        </div>
+      </p.Stack>
     </p.Stack>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  timelineSelect: ['timelineSelect', 'svg', 'box'],
+  timelineSelect: ['timelineSelect', 'svg'],
   svg: ['svg'],
-  box: ['box'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -156,7 +164,6 @@ type DescendantsType<
 type NodeDefaultElementType = {
   timelineSelect: 'div';
   svg: 'svg';
-  box: 'div';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -223,7 +230,6 @@ export const PlasmicSelectTimeline = Object.assign(
   {
     // Helper components rendering sub-elements
     svg: makeNodeComponent('svg'),
-    box: makeNodeComponent('box'),
 
     // Metadata about props expected for PlasmicSelectTimeline
     internalVariantProps: PlasmicSelectTimeline__VariantProps,

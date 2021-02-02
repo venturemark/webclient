@@ -72,6 +72,7 @@ export type PlasmicActionBar__OverridesType = {
   editorContainer?: p.Flex<'div'>;
   textContainer?: p.Flex<'textarea'>;
   timelineSelect?: p.Flex<typeof SelectTimeline>;
+  selectedItemsContainer?: p.Flex<'div'>;
   selectItem?: p.Flex<typeof SelectItem>;
   errorContainer?: p.Flex<'div'>;
   sendUpdate?: p.Flex<typeof Button>;
@@ -275,15 +276,21 @@ function PlasmicActionBar__RenderFunc(props: {
               value={'' as const}
             />
 
-            <div
-              className={classNames(defaultcss.all, sty.box__sPwRc, {
-                [sty.box__isActive__sPwRCvjQpn]: hasVariant(
-                  variants,
-                  'isActive',
-                  'isActive',
-                ),
-              })}
-            />
+            {false ? (
+              <div
+                className={classNames(
+                  defaultcss.all,
+                  sty.box__sPwRc,
+                  {
+                    [sty.box__isActive__sPwRCvjQpn]: hasVariant(
+                      variants,
+                      'isActive',
+                      'isActive',
+                    ),
+                  },
+                )}
+              />
+            ) : null}
           </div>
         </div>
 
@@ -338,8 +345,6 @@ function PlasmicActionBar__RenderFunc(props: {
                 'timelineSelected',
               ) && hasVariant(variants, 'isActive', 'isActive')
                 ? ('isActive' as const)
-                : hasVariant(variants, 'isActive', 'isActive')
-                ? ('isActive' as const)
                 : undefined
             }
             timelineSelected={
@@ -359,56 +364,78 @@ function PlasmicActionBar__RenderFunc(props: {
             }
           />
 
-          <p.Stack
-            as={'div'}
-            hasGap={
-              hasVariant(
-                variants,
-                'timelineSelected',
-                'timelineSelected',
-              )
-                ? true
-                : false
-            }
-            className={classNames(defaultcss.all, sty.box__nk1Yz, {
-              [sty.box__timelineSelected__nk1Yz75BwG]: hasVariant(
-                variants,
-                'timelineSelected',
-                'timelineSelected',
-              ),
-            })}
-          >
-            {(
-              hasVariant(
-                variants,
-                'timelineSelected',
-                'timelineSelected',
-              )
-                ? true
-                : false
-            ) ? (
-              <SelectItem
-                data-plasmic-name={'selectItem'}
-                data-plasmic-override={overrides.selectItem}
-                className={classNames(
-                  '__wab_instance',
-                  sty.selectItem,
-                  {
-                    [sty.selectItem__timelineSelected]: hasVariant(
-                      variants,
-                      'timelineSelected',
-                      'timelineSelected',
-                    ),
-                  },
-                )}
-              />
-            ) : null}
-          </p.Stack>
+          {(
+            hasVariant(
+              variants,
+              'timelineSelected',
+              'timelineSelected',
+            )
+              ? true
+              : false
+          ) ? (
+            <p.Stack
+              as={'div'}
+              data-plasmic-name={'selectedItemsContainer'}
+              data-plasmic-override={overrides.selectedItemsContainer}
+              hasGap={
+                hasVariant(
+                  variants,
+                  'timelineSelected',
+                  'timelineSelected',
+                )
+                  ? true
+                  : false
+              }
+              className={classNames(
+                defaultcss.all,
+                sty.selectedItemsContainer,
+                {
+                  [sty.selectedItemsContainer__isActive]: hasVariant(
+                    variants,
+                    'isActive',
+                    'isActive',
+                  ),
+
+                  [sty.selectedItemsContainer__timelineSelected]: hasVariant(
+                    variants,
+                    'timelineSelected',
+                    'timelineSelected',
+                  ),
+                },
+              )}
+            >
+              {(
+                hasVariant(
+                  variants,
+                  'timelineSelected',
+                  'timelineSelected',
+                )
+                  ? true
+                  : false
+              ) ? (
+                <SelectItem
+                  data-plasmic-name={'selectItem'}
+                  data-plasmic-override={overrides.selectItem}
+                  className={classNames(
+                    '__wab_instance',
+                    sty.selectItem,
+                    {
+                      [sty.selectItem__timelineSelected]: hasVariant(
+                        variants,
+                        'timelineSelected',
+                        'timelineSelected',
+                      ),
+                    },
+                  )}
+                />
+              ) : null}
+            </p.Stack>
+          ) : null}
         </p.Stack>
       </p.Stack>
 
       {(
-        hasVariant(variants, 'isActive', 'isActive') ? true : true
+        hasVariant(variants, 'isActive', 'isActive') ? true : false
       ) ? (
         <p.Stack
           as={'div'}
@@ -491,6 +518,7 @@ const PlasmicDescendants = {
     'editorContainer',
     'textContainer',
     'timelineSelect',
+    'selectedItemsContainer',
     'selectItem',
     'errorContainer',
     'sendUpdate',
@@ -499,6 +527,7 @@ const PlasmicDescendants = {
   editorContainer: ['editorContainer', 'textContainer'],
   textContainer: ['textContainer'],
   timelineSelect: ['timelineSelect'],
+  selectedItemsContainer: ['selectedItemsContainer', 'selectItem'],
   selectItem: ['selectItem'],
   errorContainer: ['errorContainer'],
   sendUpdate: ['sendUpdate'],
@@ -512,6 +541,7 @@ type NodeDefaultElementType = {
   editorContainer: 'div';
   textContainer: 'textarea';
   timelineSelect: typeof SelectTimeline;
+  selectedItemsContainer: 'div';
   selectItem: typeof SelectItem;
   errorContainer: 'div';
   sendUpdate: typeof Button;
@@ -583,6 +613,9 @@ export const PlasmicActionBar = Object.assign(
     editorContainer: makeNodeComponent('editorContainer'),
     textContainer: makeNodeComponent('textContainer'),
     timelineSelect: makeNodeComponent('timelineSelect'),
+    selectedItemsContainer: makeNodeComponent(
+      'selectedItemsContainer',
+    ),
     selectItem: makeNodeComponent('selectItem'),
     errorContainer: makeNodeComponent('errorContainer'),
     sendUpdate: makeNodeComponent('sendUpdate'),

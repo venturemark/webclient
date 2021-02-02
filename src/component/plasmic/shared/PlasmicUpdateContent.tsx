@@ -27,7 +27,6 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
-import Dropdown from '../../Dropdown'; // plasmic-import: Umq3CDOCIR/component
 import Reply from '../../Reply'; // plasmic-import: cZqz_iAjea/component
 
 import '@plasmicapp/react-web/lib/plasmic.css';
@@ -72,8 +71,7 @@ export type PlasmicUpdateContent__OverridesType = {
   organizationName?: p.Flex<'span'>;
   date?: p.Flex<'span'>;
   timelineName?: p.Flex<'span'>;
-  svg?: p.Flex<'svg'>;
-  dropdown?: p.Flex<typeof Dropdown>;
+  iconMenu?: p.Flex<'svg'>;
   textContainer2?: p.Flex<'div'>;
   textContainer?: p.Flex<'div'>;
   replyButton?: p.Flex<'button'>;
@@ -97,14 +95,6 @@ function PlasmicUpdateContent__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
-  const [isRootActive, triggerRootActiveProps] = useTrigger(
-    'usePressed',
-    {},
-  );
-  const triggers = {
-    active_root: isRootActive,
-  };
-
   return (
     <div
       data-plasmic-name={'root'}
@@ -116,7 +106,6 @@ function PlasmicUpdateContent__RenderFunc(props: {
         projectcss.root_reset,
         sty.root,
       )}
-      data-plasmic-trigger-props={[triggerRootActiveProps]}
     >
       <div
         data-plasmic-name={'editorContainer'}
@@ -305,22 +294,11 @@ function PlasmicUpdateContent__RenderFunc(props: {
                 className={classNames(defaultcss.all, sty.box__vVNrv)}
               >
                 <IconDotMenuIcon
-                  data-plasmic-name={'svg'}
-                  data-plasmic-override={overrides.svg}
-                  className={classNames(defaultcss.all, sty.svg)}
+                  data-plasmic-name={'iconMenu'}
+                  data-plasmic-override={overrides.iconMenu}
+                  className={classNames(defaultcss.all, sty.iconMenu)}
                   role={'img'}
                 />
-
-                {(triggers.active_root ? true : false) ? (
-                  <Dropdown
-                    data-plasmic-name={'dropdown'}
-                    data-plasmic-override={overrides.dropdown}
-                    className={classNames(
-                      '__wab_instance',
-                      sty.dropdown,
-                    )}
-                  />
-                ) : null}
               </div>
             </div>
           ) : null}
@@ -400,8 +378,7 @@ const PlasmicDescendants = {
     'organizationName',
     'date',
     'timelineName',
-    'svg',
-    'dropdown',
+    'iconMenu',
     'textContainer2',
     'textContainer',
     'replyButton',
@@ -414,8 +391,7 @@ const PlasmicDescendants = {
     'organizationName',
     'date',
     'timelineName',
-    'svg',
-    'dropdown',
+    'iconMenu',
     'textContainer2',
     'textContainer',
     'replyButton',
@@ -426,8 +402,7 @@ const PlasmicDescendants = {
   organizationName: ['organizationName'],
   date: ['date'],
   timelineName: ['timelineName'],
-  svg: ['svg'],
-  dropdown: ['dropdown'],
+  iconMenu: ['iconMenu'],
   textContainer2: ['textContainer2', 'textContainer'],
   textContainer: ['textContainer'],
   replyButton: ['replyButton'],
@@ -444,8 +419,7 @@ type NodeDefaultElementType = {
   organizationName: 'span';
   date: 'span';
   timelineName: 'span';
-  svg: 'svg';
-  dropdown: typeof Dropdown;
+  iconMenu: 'svg';
   textContainer2: 'div';
   textContainer: 'div';
   replyButton: 'button';
@@ -520,8 +494,7 @@ export const PlasmicUpdateContent = Object.assign(
     organizationName: makeNodeComponent('organizationName'),
     date: makeNodeComponent('date'),
     timelineName: makeNodeComponent('timelineName'),
-    svg: makeNodeComponent('svg'),
-    dropdown: makeNodeComponent('dropdown'),
+    iconMenu: makeNodeComponent('iconMenu'),
     textContainer2: makeNodeComponent('textContainer2'),
     textContainer: makeNodeComponent('textContainer'),
     replyButton: makeNodeComponent('replyButton'),
