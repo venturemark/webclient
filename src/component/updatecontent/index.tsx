@@ -7,6 +7,7 @@ import {
 } from 'component/plasmic/shared/PlasmicUpdateContent';
 import ReadEditor from 'component/editor/read';
 import { Node } from 'slate';
+import {AntDropdown} from 'component/ant/dropdown';
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
   text: Node[];
@@ -34,6 +35,9 @@ function UpdateContent(props: UpdateContentProps) {
   return (
     <PlasmicUpdateContent
       state={isReply}
+      iconMenu={{
+        render: () => (<AntDropdown updateId={id} />)
+      }}
       reply={{
         updateId: id,
         timelineId: timelineName,

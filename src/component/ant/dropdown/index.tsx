@@ -1,6 +1,5 @@
 import React from 'react';
-import { Menu, Dropdown, Button, message, } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, message, } from 'antd';
 import {IconDotMenuIcon} from 'component/plasmic/shared/icons/PlasmicIcon__IconDotMenu'
 
 function handleMenuClick(e:any) {
@@ -36,7 +35,7 @@ export function AntDropdown(props: DropdownProps) {
 
   return (
     <Dropdown overlay={menu} trigger={['click']} overlayStyle={{"zIndex": 50}}>
-        <IconDotMenuIcon/> 
+        <IconDotMenuIcon style={{cursor:"pointer"}}/> 
     </Dropdown>
   );
 }

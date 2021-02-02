@@ -6,7 +6,7 @@ import {
   PlasmicSidebarItem,
   DefaultSidebarItemProps,
 } from 'component/plasmic/shared/PlasmicSidebarItem';
-import {AntDropdown} from 'component/ant/dropdown'
+import {AntDropdown} from 'component/ant/dropdown';
 import { useForm } from 'react-hook-form';
 import { INewTimeline } from 'module/interface/timeline';
 import { useCreateTimeline } from 'module/hook/timeline';
