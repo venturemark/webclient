@@ -13,16 +13,18 @@ interface TextInputProps extends DefaultTextInputProps {
   register: any;
   onChange: any;
   label: string;
+  setUserFocus?: any;
+  userFocus?: boolean;
 }
 
 function TextInput(props: TextInputProps) {
-  const { options, onChange, label } = props;
+  const { options, onChange, label, setUserFocus, userFocus } = props;
 
   return (
     <PlasmicTextInput
       input={{
         render: () => (
-          <AntAutocomplete options={options} onChange={onChange} />
+          <AntAutocomplete options={options} onChange={onChange} setUserFocus={setUserFocus} userFocus={userFocus}  />
         ),
       }}
       label={label}

@@ -13,14 +13,6 @@ const organizationOptions = customers.map((customer) => {
   return { value: customer.name };
 });
 
-// const userOptions =
-
-const options = [
-  { value: 'Marcus Ellison' },
-  { value: 'Tim Schindler' },
-  { value: 'Victor Tan' },
-];
-
 interface ModalAltProps extends DefaultModalAltProps {
   users: string[];
   organizationDescription: string;
@@ -34,6 +26,18 @@ function ModalAlt(props: ModalAltProps) {
   const [user, setUser] = useState('');
   const [organization, setOrganization] = useState('');
   const [orgSelected, setOrgSelected] = useState(false);
+  const [userFocus, setUserFocus] = useState(false)
+
+  const currentCustomer = customers.filter(customer => customer.name === organization)
+  let userOptions:any = []
+
+  if (currentCustomer && currentCustomer.length > 0) {
+    userOptions = currentCustomer[0].users.map((user) => {
+      return { value: user.name };
+    });
+  }
+  
+  
 
   const handleLogin = () => {
     if (!organization || !user) {
@@ -67,13 +71,16 @@ function ModalAlt(props: ModalAltProps) {
           setOrganization(organization);
         },
         label: 'Select your organization',
+        setUserFocus:setUserFocus,
       }}
       selectUser={{
-        options: options,
+        options: userOptions,
         onChange: (user: string) => {
           setUser(user);
         },
         label: 'Select your name',
+        userFocus: userFocus,
+        setUserFocus: setUserFocus,
       }}
     />
   );
