@@ -13,7 +13,7 @@ function tagRender(props: any) {
       closable={closable}
       onClose={onClose}
       style={{
-        marginRight: 3,
+        margin: 5,
         borderRadius: 10,
         backgroundColor: '#029D7F',
         fontFamily: 'Poppins',
@@ -86,7 +86,7 @@ export function AntSelect(props: SelectProps) {
       ref={select}
       tagRender={tagRender}
       bordered={false}
-      style={{ width: '80%', paddingTop: '5px' }}
+      style={{ width: '80%' }}
       options={options}
     />
   );
