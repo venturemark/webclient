@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { AutoComplete } from 'antd';
 
 interface Option {
@@ -8,10 +8,22 @@ interface Option {
 interface SelectProps {
   options: Option[];
   onChange: any;
+  setUserFocus?: any;
+  userFocus?: boolean;
 }
 
 export function AntAutocomplete(props: SelectProps) {
-  const { options, onChange } = props;
+  const { options, onChange, setUserFocus, userFocus } = props;
+
+  const autocomplete = useRef<any>(null);
+
+  useEffect(() => {
+    if (userFocus && autocomplete && autocomplete.current) {
+      autocomplete.current?.focus();
+      setUserFocus(false);
+    }
+  }, [userFocus, setUserFocus]);
+
   return (
     <AutoComplete
       style={{
@@ -22,6 +34,8 @@ export function AntAutocomplete(props: SelectProps) {
       }}
       options={options}
       onChange={onChange}
+      ref={autocomplete}
+      onSelect={() => setUserFocus(true)}
       placeholder="Search for you name"
       filterOption={(inputValue, option) =>
         option!.value

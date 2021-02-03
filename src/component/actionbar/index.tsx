@@ -109,8 +109,9 @@ function ActionBar(props: ActionBarProps) {
   useEffect(() => {
     if (currentTimeline) {
       const option = [currentTimeline.id];
-      console.log('option in useEffect:', option);
       setSelectedTimelines(option);
+    } else {
+      setSelectedTimelines([]);
     }
   }, [currentTimeline]);
 

@@ -29,6 +29,9 @@ export const customers = [
         name: 'Adam Kornfield',
       },
       {
+        name: 'Marcus Snarkus',
+      },
+      {
         name: 'Laura Toffolo',
       },
       {
