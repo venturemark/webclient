@@ -45,9 +45,14 @@ export type PlasmicHeader__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHeader__VariantsArgs;
 export const PlasmicHeader__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicHeader__ArgsType = {};
+export type PlasmicHeader__ArgsType = {
+  userInitials?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicHeader__ArgsType;
-export const PlasmicHeader__ArgProps = new Array<ArgPropType>();
+export const PlasmicHeader__ArgProps = new Array<ArgPropType>(
+  'userInitials',
+);
 
 export type PlasmicHeader__OverridesType = {
   root?: p.Flex<'div'>;
@@ -55,6 +60,7 @@ export type PlasmicHeader__OverridesType = {
 };
 
 export interface DefaultHeaderProps {
+  userInitials?: React.ReactNode;
   className?: string;
 }
 
@@ -92,12 +98,14 @@ function PlasmicHeader__RenderFunc(props: {
           hasGap={true}
           className={classNames(defaultcss.all, sty.box__wE8Ym)}
         >
-          <IconMenuIcon
-            data-plasmic-name={'svg'}
-            data-plasmic-override={overrides.svg}
-            className={classNames(defaultcss.all, sty.svg)}
-            role={'img'}
-          />
+          {false ? (
+            <IconMenuIcon
+              data-plasmic-name={'svg'}
+              data-plasmic-override={overrides.svg}
+              className={classNames(defaultcss.all, sty.svg)}
+              role={'img'}
+            />
+          ) : null}
 
           <div
             className={classNames(
@@ -119,13 +127,13 @@ function PlasmicHeader__RenderFunc(props: {
             className={classNames(defaultcss.all, sty.box___7UEdG)}
           >
             <div
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.box__qWkxb,
-              )}
+              className={classNames(defaultcss.all, sty.box__wOx1P)}
             >
-              {'KO'}
+              <p.PlasmicSlot
+                defaultContents={'KO'}
+                value={args.userInitials}
+                className={classNames(sty.slotUserInitials)}
+              />
             </div>
           </div>
         </p.Stack>

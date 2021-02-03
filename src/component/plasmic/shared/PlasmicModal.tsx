@@ -59,6 +59,7 @@ export type PlasmicModal__OverridesType = {
   welcomeForm?: p.Flex<'form'>;
   selectUserContainer?: p.Flex<'div'>;
   selectUserInput?: p.Flex<typeof TextInput>;
+  label?: p.Flex<'label'>;
   selectUserButton?: p.Flex<typeof Button>;
   ventureMark?: p.Flex<'div'>;
 };
@@ -139,6 +140,19 @@ function PlasmicModal__RenderFunc(props: {
               <TextInput
                 data-plasmic-name={'selectUserInput'}
                 data-plasmic-override={overrides.selectUserInput}
+                label={
+                  <label
+                    data-plasmic-name={'label'}
+                    data-plasmic-override={overrides.label}
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.label,
+                    )}
+                  >
+                    {'Search your organization'}
+                  </label>
+                }
               />
             </div>
 
@@ -199,6 +213,7 @@ const PlasmicDescendants = {
     'welcomeForm',
     'selectUserContainer',
     'selectUserInput',
+    'label',
     'selectUserButton',
     'ventureMark',
   ],
@@ -210,6 +225,7 @@ const PlasmicDescendants = {
     'welcomeForm',
     'selectUserContainer',
     'selectUserInput',
+    'label',
     'selectUserButton',
     'ventureMark',
   ],
@@ -220,12 +236,18 @@ const PlasmicDescendants = {
     'welcomeForm',
     'selectUserContainer',
     'selectUserInput',
+    'label',
     'selectUserButton',
     'ventureMark',
   ],
 
-  selectUserContainer: ['selectUserContainer', 'selectUserInput'],
-  selectUserInput: ['selectUserInput'],
+  selectUserContainer: [
+    'selectUserContainer',
+    'selectUserInput',
+    'label',
+  ],
+  selectUserInput: ['selectUserInput', 'label'],
+  label: ['label'],
   selectUserButton: ['selectUserButton'],
   ventureMark: ['ventureMark'],
 } as const;
@@ -241,6 +263,7 @@ type NodeDefaultElementType = {
   welcomeForm: 'form';
   selectUserContainer: 'div';
   selectUserInput: typeof TextInput;
+  label: 'label';
   selectUserButton: typeof Button;
   ventureMark: 'div';
 };
@@ -314,6 +337,7 @@ export const PlasmicModal = Object.assign(
     welcomeForm: makeNodeComponent('welcomeForm'),
     selectUserContainer: makeNodeComponent('selectUserContainer'),
     selectUserInput: makeNodeComponent('selectUserInput'),
+    label: makeNodeComponent('label'),
     selectUserButton: makeNodeComponent('selectUserButton'),
     ventureMark: makeNodeComponent('ventureMark'),
 

@@ -181,7 +181,7 @@ function PlasmicModalAlt__RenderFunc(props: {
                       sty.label,
                     )}
                   >
-                    {'Search your name'}
+                    {'Search your organization'}
                   </label>
                 }
               />

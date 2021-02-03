@@ -49,6 +49,7 @@ export type PlasmicReplyInput__OverridesType = {
   replyForm?: p.Flex<'form'>;
   replyInput?: p.Flex<'input'>;
   postReplyButton?: p.Flex<typeof Button>;
+  text?: p.Flex<'div'>;
 };
 
 export interface DefaultReplyInputProps {
@@ -113,7 +114,19 @@ function PlasmicReplyInput__RenderFunc(props: {
                 '__wab_instance',
                 sty.postReplyButton,
               )}
-              text={'Post Reply'}
+              text={
+                <div
+                  data-plasmic-name={'text'}
+                  data-plasmic-override={overrides.text}
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.text,
+                  )}
+                >
+                  {'Post Reply'}
+                </div>
+              }
             />
           ) : null}
         </form>
@@ -123,11 +136,19 @@ function PlasmicReplyInput__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ['root', 'box', 'replyForm', 'replyInput', 'postReplyButton'],
-  box: ['box', 'replyForm', 'replyInput', 'postReplyButton'],
-  replyForm: ['replyForm', 'replyInput', 'postReplyButton'],
+  root: [
+    'root',
+    'box',
+    'replyForm',
+    'replyInput',
+    'postReplyButton',
+    'text',
+  ],
+  box: ['box', 'replyForm', 'replyInput', 'postReplyButton', 'text'],
+  replyForm: ['replyForm', 'replyInput', 'postReplyButton', 'text'],
   replyInput: ['replyInput'],
-  postReplyButton: ['postReplyButton'],
+  postReplyButton: ['postReplyButton', 'text'],
+  text: ['text'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -139,6 +160,7 @@ type NodeDefaultElementType = {
   replyForm: 'form';
   replyInput: 'input';
   postReplyButton: typeof Button;
+  text: 'div';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -208,6 +230,7 @@ export const PlasmicReplyInput = Object.assign(
     replyForm: makeNodeComponent('replyForm'),
     replyInput: makeNodeComponent('replyInput'),
     postReplyButton: makeNodeComponent('postReplyButton'),
+    text: makeNodeComponent('text'),
 
     // Metadata about props expected for PlasmicReplyInput
     internalVariantProps: PlasmicReplyInput__VariantProps,

@@ -36,6 +36,9 @@ function ModalAlt(props: ModalAltProps) {
   const [orgSelected, setOrgSelected] = useState(false);
 
   const handleLogin = () => {
+    if (!organization || !user) {
+      return;
+    }
     const userObj: ISaveUser = {
       userId: user,
       organizationId: organization,
@@ -63,12 +66,14 @@ function ModalAlt(props: ModalAltProps) {
         onChange: (organization: string) => {
           setOrganization(organization);
         },
+        label: 'Select your organization',
       }}
       selectUser={{
         options: options,
         onChange: (user: string) => {
           setUser(user);
         },
+        label: 'Select your name',
       }}
     />
   );

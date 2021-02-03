@@ -372,7 +372,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
           triggers.hover_root
             ? false
             : triggers.hover_root
-            ? true
+            ? false
             : hasVariant(variants, 'isInput', 'isInput')
             ? false
             : false

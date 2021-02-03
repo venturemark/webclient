@@ -14,7 +14,12 @@ export function AntAutocomplete(props: SelectProps) {
   const { options, onChange } = props;
   return (
     <AutoComplete
-      style={{ width: 200 }}
+      style={{
+        width: 200,
+        textAlign: 'center',
+        fontFamily: 'Poppins',
+        fontSize: '14px',
+      }}
       options={options}
       onChange={onChange}
       placeholder="Search for you name"
