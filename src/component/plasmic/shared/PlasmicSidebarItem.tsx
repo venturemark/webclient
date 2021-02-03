@@ -371,6 +371,12 @@ function PlasmicSidebarItem__RenderFunc(props: {
           hasVariant(variants, 'isInput', 'isInput') &&
           triggers.hover_root
             ? false
+            : hasVariant(
+                variants,
+                'isOrganization',
+                'isOrganization',
+              ) && triggers.hover_root
+            ? true
             : triggers.hover_root
             ? false
             : hasVariant(variants, 'isInput', 'isInput')
@@ -383,6 +389,12 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 variants,
                 'isInput',
                 'isInput',
+              ),
+
+              [sty.box__isOrganization__eFeONLnuO]: hasVariant(
+                variants,
+                'isOrganization',
+                'isOrganization',
               ),
             })}
           >

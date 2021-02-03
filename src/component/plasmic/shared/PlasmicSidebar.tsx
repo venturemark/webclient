@@ -186,34 +186,44 @@ function PlasmicSidebar__RenderFunc(props: {
             />
           </SidebarItem>
 
-          <SidebarItem
-            data-plasmic-name={'addTimeline'}
-            data-plasmic-override={overrides.addTimeline}
-            className={classNames('__wab_instance', sty.addTimeline, {
-              [sty.addTimeline__hasInput]: hasVariant(
-                variants,
-                'hasInput',
-                'hasInput',
-              ),
-            })}
-            isInput={'isInput' as const}
-            name={
-              <div
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.box__pMluL,
-                )}
-              >
-                {'Wins'}
-              </div>
-            }
-          >
-            <IconHashIcon
-              className={classNames(defaultcss.all, sty.svg__rRxnv)}
-              role={'img'}
-            />
-          </SidebarItem>
+          {(
+            hasVariant(variants, 'hasInput', 'hasInput')
+              ? true
+              : false
+          ) ? (
+            <SidebarItem
+              data-plasmic-name={'addTimeline'}
+              data-plasmic-override={overrides.addTimeline}
+              className={classNames(
+                '__wab_instance',
+                sty.addTimeline,
+                {
+                  [sty.addTimeline__hasInput]: hasVariant(
+                    variants,
+                    'hasInput',
+                    'hasInput',
+                  ),
+                },
+              )}
+              isInput={'isInput' as const}
+              name={
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.box__pMluL,
+                  )}
+                >
+                  {'Wins'}
+                </div>
+              }
+            >
+              <IconHashIcon
+                className={classNames(defaultcss.all, sty.svg__rRxnv)}
+                role={'img'}
+              />
+            </SidebarItem>
+          ) : null}
 
           <div
             data-plasmic-name={'timelinesContainer'}

@@ -115,6 +115,7 @@
   box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
   transition-property: all;
   transition-duration: 1s;
+  overflow: auto;
   min-height: 0;
   padding: 0px 20px;
 }
@@ -125,11 +126,6 @@
   .box__menuToggle__sqRUmPnl3 {
     padding: 0px 60px;
   }
-}
-.sidebar:global(.__wab_instance) {
-  height: 100%;
-  width: auto;
-  min-height: 0;
 }
 .sidebar__menuToggle:global(.__wab_instance) {
   position: relative;
@@ -197,6 +193,7 @@
   height: 100%;
   flex-direction: column;
   max-width: 1024px;
+  margin-bottom: 100px;
   min-width: 0;
   min-height: 0;
   padding: 40px;
@@ -250,6 +247,7 @@
   position: relative;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 90px;
   min-width: 0;
 }
 .updatesContainer > :global(.__wab_flex-container) {

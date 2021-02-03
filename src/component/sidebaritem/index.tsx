@@ -19,6 +19,7 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   isCurrent: boolean;
   isInput?: boolean;
   isOrganization?: boolean;
+  setHasInput?: any;
 }
 
 type FormInputs = {
@@ -34,6 +35,7 @@ function SidebarItem(props: SidebarItemProps) {
     isCurrent,
     isInput,
     isOrganization,
+    setHasInput,
   } = props;
 
   const { register, handleSubmit, reset } = useForm<FormInputs>();
@@ -59,12 +61,19 @@ function SidebarItem(props: SidebarItemProps) {
     reset({
       name: '',
     });
+    //hide sidebar
+    setHasInput(false)
   };
 
   return (
     <PlasmicSidebarItem
       isInput={isInput}
       isOrganization={isOrganization}
+      iconMenu={{
+        onClick: () => {
+          setHasInput(true)
+        }
+      }}
       name={name}
       isCurrent={isCurrent}
       onClick={onClick}
