@@ -46,7 +46,6 @@ export const customers = [
       {
         name: 'David Fellows',
       },
-      
     ],
   },
   {

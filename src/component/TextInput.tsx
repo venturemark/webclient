@@ -24,7 +24,12 @@ function TextInput(props: TextInputProps) {
     <PlasmicTextInput
       input={{
         render: () => (
-          <AntAutocomplete options={options} onChange={onChange} setUserFocus={setUserFocus} userFocus={userFocus}  />
+          <AntAutocomplete
+            options={options}
+            onChange={onChange}
+            setUserFocus={setUserFocus}
+            userFocus={userFocus}
+          />
         ),
       }}
       label={label}

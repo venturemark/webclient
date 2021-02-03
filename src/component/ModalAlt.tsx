@@ -26,18 +26,18 @@ function ModalAlt(props: ModalAltProps) {
   const [user, setUser] = useState('');
   const [organization, setOrganization] = useState('');
   const [orgSelected, setOrgSelected] = useState(false);
-  const [userFocus, setUserFocus] = useState(false)
+  const [userFocus, setUserFocus] = useState(false);
 
-  const currentCustomer = customers.filter(customer => customer.name === organization)
-  let userOptions:any = []
+  const currentCustomer = customers.filter(
+    (customer) => customer.name === organization,
+  );
+  let userOptions: any = [];
 
   if (currentCustomer && currentCustomer.length > 0) {
     userOptions = currentCustomer[0].users.map((user) => {
       return { value: user.name };
     });
   }
-  
-  
 
   const handleLogin = () => {
     if (!organization || !user) {
@@ -71,7 +71,7 @@ function ModalAlt(props: ModalAltProps) {
           setOrganization(organization);
         },
         label: 'Select your organization',
-        setUserFocus:setUserFocus,
+        setUserFocus: setUserFocus,
       }}
       selectUser={{
         options: userOptions,

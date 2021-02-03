@@ -30,7 +30,7 @@ function Sidebar(props: SidebarProps) {
     organizationId,
   } = props;
 
-  const [hasInput, setHasInput] = useState(false)
+  const [hasInput, setHasInput] = useState(false);
 
   const timelineSearch: ITimelineQuery = {
     userId,

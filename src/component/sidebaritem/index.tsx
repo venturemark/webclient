@@ -62,7 +62,7 @@ function SidebarItem(props: SidebarItemProps) {
       name: '',
     });
     //hide sidebar
-    setHasInput(false)
+    setHasInput(false);
   };
 
   return (
@@ -71,8 +71,8 @@ function SidebarItem(props: SidebarItemProps) {
       isOrganization={isOrganization}
       iconMenu={{
         onClick: () => {
-          setHasInput(true)
-        }
+          setHasInput(true);
+        },
       }}
       name={name}
       isCurrent={isCurrent}
