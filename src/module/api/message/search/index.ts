@@ -50,7 +50,7 @@ export async function Search(messageQuery: IMessageQuery) {
           const userId = metaPb.get(key.UserID);
           const updateId = metaPb.get(key.UpdateID);
           const rawDate = fromUnixTime(messageId / 1000000000);
-          const date = formatDistanceToNow(rawDate) + " ago";
+          const date = formatDistanceToNow(rawDate) + ' ago';
 
           const message: any = {
             organizationId: organizationId,
