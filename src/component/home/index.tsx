@@ -73,6 +73,12 @@ export function Component(props: HomeProps) {
 
   return (
     <PlasmicHome
+      header={{
+        userInitials: userId
+          .split(' ')
+          .map((n) => n[0])
+          .join(''),
+      }}
       showLogin={showLogin}
       loginModal={{
         organizationDescription:
@@ -90,7 +96,7 @@ export function Component(props: HomeProps) {
       }}
       actionBar={{
         organizationId: organizationId,
-        timelineId: timelineId,
+        currentTimeline: currentTimeline,
         userId: userId,
       }}
       mainHeader={{

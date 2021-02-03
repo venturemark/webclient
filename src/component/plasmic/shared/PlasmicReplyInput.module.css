@@ -62,3 +62,12 @@
 .root:focus-within .postReplyButton:global(.__wab_instance) {
   outline: none;
 }
+.text {
+  height: auto;
+  width: auto;
+  font-family: 'Poppins';
+  display: inline-block;
+}
+.root:focus-within .text {
+  outline: none;
+}

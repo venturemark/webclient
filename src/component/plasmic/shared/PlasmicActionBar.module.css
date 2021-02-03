@@ -81,15 +81,15 @@
   flex-shrink: 0;
   border-radius: 100%;
 }
-.box__wnwam {
+.box__eW8Ps {
+  display: inline-flex;
   position: relative;
   width: auto;
   height: auto;
-  left: auto;
-  top: auto;
-  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotUserInitials {
   font-size: 20px;
-  display: inline-block;
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .editorContainer {
   display: flex;

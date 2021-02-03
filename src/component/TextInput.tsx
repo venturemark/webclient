@@ -12,10 +12,11 @@ interface TextInputProps extends DefaultTextInputProps {
   name: string;
   register: any;
   onChange: any;
+  label: string;
 }
 
 function TextInput(props: TextInputProps) {
-  const { options, onChange } = props;
+  const { options, onChange, label } = props;
 
   return (
     <PlasmicTextInput
@@ -24,6 +25,7 @@ function TextInput(props: TextInputProps) {
           <AntAutocomplete options={options} onChange={onChange} />
         ),
       }}
+      label={label}
     />
   );
 }

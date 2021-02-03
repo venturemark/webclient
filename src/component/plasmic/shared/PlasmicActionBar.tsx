@@ -60,11 +60,13 @@ export const PlasmicActionBar__VariantProps = new Array<VariantPropType>(
 
 export type PlasmicActionBar__ArgsType = {
   errorMessage?: React.ReactNode;
+  userInitials?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicActionBar__ArgsType;
 export const PlasmicActionBar__ArgProps = new Array<ArgPropType>(
   'errorMessage',
+  'userInitials',
 );
 
 export type PlasmicActionBar__OverridesType = {
@@ -80,6 +82,7 @@ export type PlasmicActionBar__OverridesType = {
 
 export interface DefaultActionBarProps {
   errorMessage?: React.ReactNode;
+  userInitials?: React.ReactNode;
   error?: MultiChoiceArg<'hasError'>;
   text?: MultiChoiceArg<'hasText'>;
   isActive?: SingleBooleanChoiceArg<'isActive'>;
@@ -205,20 +208,25 @@ function PlasmicActionBar__RenderFunc(props: {
             })}
           >
             <div
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.box__wnwam,
-                {
-                  [sty.box__isActive__wnwamvjQpn]: hasVariant(
+              className={classNames(defaultcss.all, sty.box__eW8Ps, {
+                [sty.box__isActive__eW8PsvjQpn]: hasVariant(
+                  variants,
+                  'isActive',
+                  'isActive',
+                ),
+              })}
+            >
+              <p.PlasmicSlot
+                defaultContents={'KO'}
+                value={args.userInitials}
+                className={classNames(sty.slotUserInitials, {
+                  [sty.slotUserInitials__isActive]: hasVariant(
                     variants,
                     'isActive',
                     'isActive',
                   ),
-                },
-              )}
-            >
-              {'KO'}
+                })}
+              />
             </div>
           </div>
 

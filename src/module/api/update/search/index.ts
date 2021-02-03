@@ -47,7 +47,7 @@ export async function Search(updateQuery: IUpdateQuery) {
           const updateId = metaPb.get(key.UpdateID);
           const userId = metaPb.get(key.UserID);
           const rawDate = fromUnixTime(updateId / 1000000000);
-          const date = format(rawDate, 'MMM do, Y');
+          const date = format(rawDate, 'MMM do, Y p');
 
           const update: any = {
             organizationId: organizationId,
