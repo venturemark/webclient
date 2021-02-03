@@ -74,6 +74,7 @@ function SidebarItem(props: SidebarItemProps) {
       addTimelineInput={{
         name: 'name',
         ref: register(),
+        maxLength: 15,
       }}
     />
   );
