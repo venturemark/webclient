@@ -7,7 +7,7 @@ import { APIClient } from 'module/api/message/proto/ApiServiceClientPb';
 import * as env from 'module/env';
 import * as key from 'module/idkeys';
 import fromUnixTime from 'date-fns/fromUnixTime';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { IMessageQuery } from 'module/interface/message';
 
 export async function Search(messageQuery: IMessageQuery) {
@@ -50,7 +50,7 @@ export async function Search(messageQuery: IMessageQuery) {
           const userId = metaPb.get(key.UserID);
           const updateId = metaPb.get(key.UpdateID);
           const rawDate = fromUnixTime(messageId / 1000000000);
-          const date = format(rawDate, 'MMM do, Y p');
+          const date = formatDistanceToNow(rawDate) + " ago";
 
           const message: any = {
             organizationId: organizationId,

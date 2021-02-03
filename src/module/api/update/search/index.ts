@@ -7,7 +7,7 @@ import { APIClient } from 'module/api/update/proto/ApiServiceClientPb';
 import * as env from 'module/env';
 import * as key from 'module/idkeys';
 import fromUnixTime from 'date-fns/fromUnixTime';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { IUpdateQuery } from 'module/interface/update';
 
 export async function Search(updateQuery: IUpdateQuery) {
@@ -47,7 +47,7 @@ export async function Search(updateQuery: IUpdateQuery) {
           const updateId = metaPb.get(key.UpdateID);
           const userId = metaPb.get(key.UserID);
           const rawDate = fromUnixTime(updateId / 1000000000);
-          const date = format(rawDate, 'MMM do, Y p');
+          const date = formatDistanceToNow(rawDate) + " ago";
 
           const update: any = {
             organizationId: organizationId,
