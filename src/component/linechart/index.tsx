@@ -1,12 +1,12 @@
-import React from 'react';
-import { AreaChart, Area, Tooltip, XAxis } from 'recharts';
+import React from "react";
+import { AreaChart, Area, Tooltip, XAxis } from "recharts";
 
 interface ChartProps {
   dataKey: string;
   data: any;
   handleChangeContext: (
     e: React.MouseEvent<HTMLInputElement>,
-    payload: any,
+    payload: any
   ) => void;
 }
 
@@ -24,32 +24,22 @@ export const Component: React.FC<ChartProps> = ({
     >
       <defs>
         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-          <stop
-            offset="8.82%"
-            stopColor={'#029D7F'}
-            stopOpacity={0.15}
-          />
-          <stop
-            offset="79.41%"
-            stopColor={'#029D7F'}
-            stopOpacity={0}
-          />
+          <stop offset="8.82%" stopColor={"#029D7F"} stopOpacity={0.15} />
+          <stop offset="79.41%" stopColor={"#029D7F"} stopOpacity={0} />
         </linearGradient>
       </defs>
       <Tooltip />
       <XAxis tick={false} hide={true} dataKey="date" />
       <Area
         type="monotone"
-        dot={{ strokeWidth: 1, fill: '#FFFFFF' }}
+        dot={{ strokeWidth: 1, fill: "#FFFFFF" }}
         activeDot={{
-          style: { cursor: 'pointer' },
-          onClick: (
-            e: React.MouseEvent<HTMLInputElement>,
-            payload: any,
-          ) => handleChangeContext(e, payload),
+          style: { cursor: "pointer" },
+          onClick: (e: React.MouseEvent<HTMLInputElement>, payload: any) =>
+            handleChangeContext(e, payload),
         }}
         dataKey={dataKey}
-        stroke={'#029D7F'}
+        stroke={"#029D7F"}
         fillOpacity={1}
         fill="url(#colorUv)"
       />

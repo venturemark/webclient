@@ -1,25 +1,25 @@
-import React, { useRef, useEffect } from 'react';
-import { Select, Tag } from 'antd';
-import { useTimelines } from 'module/hook/timeline';
-import { ITimeline, ITimelineQuery } from 'module/interface/timeline';
-import { RefSelectProps } from 'antd/lib/select';
+import React, { useRef, useEffect } from "react";
+import { Select, Tag } from "antd";
+import { useTimelines } from "module/hook/timeline";
+import { ITimeline, ITimelineQuery } from "module/interface/timeline";
+import { RefSelectProps } from "antd/lib/select";
 
 function tagRender(props: any) {
   const { label, closable, onClose } = props;
 
   return (
     <Tag
-      color={'#FFF'}
+      color={"#FFF"}
       closable={closable}
       onClose={onClose}
       style={{
-        marginRight: 3,
+        margin: 5,
         borderRadius: 10,
-        backgroundColor: '#029D7F',
-        fontFamily: 'Poppins',
-        border: 'none',
-        padding: '5px 10px',
-        fontSize: '14px',
+        backgroundColor: "#029D7F",
+        fontFamily: "Poppins",
+        border: "none",
+        padding: "5px 10px",
+        fontSize: "14px",
       }}
     >
       {label}
@@ -30,9 +30,7 @@ function tagRender(props: any) {
 interface SelectProps {
   userId: string;
   organizationId: string;
-  setSelectedTimelines: React.Dispatch<
-    React.SetStateAction<string[]>
-  >;
+  setSelectedTimelines: React.Dispatch<React.SetStateAction<string[]>>;
   selectFocused: boolean;
   setSelectFocused: React.Dispatch<React.SetStateAction<boolean>>;
   selectedTimelines: string[];
@@ -77,16 +75,16 @@ export function AntSelect(props: SelectProps) {
       onChange={(timelines: string[]) => {
         setSelectedTimelines(timelines);
       }}
-      dropdownStyle={{ width: '200px' }}
-      placeholder={'Select Timeline'}
+      dropdownStyle={{ width: "200px" }}
+      placeholder={"Select Timeline"}
       loading={isLoading}
-      showAction={['focus']}
+      showAction={["focus"]}
       value={selectedTimelines}
       defaultOpen
       ref={select}
       tagRender={tagRender}
       bordered={false}
-      style={{ width: '80%', paddingTop: '5px' }}
+      style={{ width: "80%", marginTop: "0px" }}
       options={options}
     />
   );

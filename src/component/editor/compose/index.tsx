@@ -2,10 +2,10 @@
 // - is local
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
-import React, { useMemo, useRef, useState } from 'react';
-import { createEditor, Node, Editor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
+import React, { useMemo, useRef, useState } from "react";
+import { createEditor, Node, Editor } from "slate";
+import { withHistory } from "slate-history";
+import { Slate, withReact } from "slate-react";
 import {
   ParagraphPlugin,
   HeadingPlugin,
@@ -29,19 +29,19 @@ import {
   withList,
   withMarks,
   withInlineVoid,
-} from '@udecode/slate-plugins';
+} from "@udecode/slate-plugins";
 import {
   headingTypes,
   options,
   optionsResetBlockTypes,
   initialValueEmpty,
-} from 'component/editor/config/initialValues';
-import { MENTIONABLES } from '../config/mentionables';
-import { autoformatRules } from 'component/editor/config/autoformatRules';
-import actionbarcss from 'component/plasmic/shared/PlasmicActionBar.module.css';
-import { Search } from '@venturemark/numnum';
-import { serialize } from 'module/serialize';
-import { save } from 'module/store';
+} from "component/editor/config/initialValues";
+import { MENTIONABLES } from "../config/mentionables";
+import { autoformatRules } from "component/editor/config/autoformatRules";
+import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
+import { Search } from "@venturemark/numnum";
+import { serialize } from "module/serialize";
+import { save } from "module/store";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -56,9 +56,9 @@ const plugins = [
   MentionPlugin(options),
   SoftBreakPlugin({
     rules: [
-      { hotkey: 'shift+enter' },
+      { hotkey: "shift+enter" },
       {
-        hotkey: 'enter',
+        hotkey: "enter",
         query: {
           allow: [options.blockquote.type],
         },
@@ -68,14 +68,14 @@ const plugins = [
   ExitBreakPlugin({
     rules: [
       {
-        hotkey: 'mod+enter',
+        hotkey: "mod+enter",
       },
       {
-        hotkey: 'mod+shift+enter',
+        hotkey: "mod+shift+enter",
         before: true,
       },
       {
-        hotkey: 'enter',
+        hotkey: "enter",
         query: {
           start: true,
           end: true,
@@ -87,7 +87,7 @@ const plugins = [
 ];
 
 type ErrorMessage = undefined | string;
-type HasContent = undefined | 'hasContent';
+type HasContent = undefined | "hasContent";
 
 export type EditorShape = {
   value: Node[];
@@ -104,12 +104,10 @@ export interface EditorState {
 }
 
 //create custom hook for our editor:
-export const useEditor = (
-  overrides?: Partial<EditorShape>,
-): EditorState => {
+export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
   const defaultEditor: EditorShape = {
     value: initialValueEmpty,
-    string: '',
+    string: "",
     numberValue: 0,
     error: undefined,
     hasContent: undefined,
@@ -149,10 +147,7 @@ const ComposeEditor = (props: EditorProps) => {
 
   const editorRef = useRef<HTMLDivElement>(null);
 
-  const editor = useMemo(
-    () => pipe(createEditor(), ...withPlugins),
-    [],
-  );
+  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
   const { insertBreak, insertText } = editor;
 
@@ -166,7 +161,7 @@ const ComposeEditor = (props: EditorProps) => {
     values,
   } = useMention(MENTIONABLES, {
     maxSuggestions: 10,
-    trigger: '@',
+    trigger: "@",
   });
 
   editor.insertBreak = () => {
@@ -196,9 +191,7 @@ const ComposeEditor = (props: EditorProps) => {
     //remove number error if a number is typed
     const error = number ? undefined : editorShape.error;
     // determine if a value has been entered
-    const hasContent: HasContent = hasValue
-      ? 'hasContent'
-      : undefined;
+    const hasContent: HasContent = hasValue ? "hasContent" : undefined;
 
     // set editor data
     const editorData = {
@@ -219,11 +212,7 @@ const ComposeEditor = (props: EditorProps) => {
 
   return (
     <div ref={editorRef} className={actionbarcss.textContainer}>
-      <Slate
-        editor={editor}
-        value={editorShape.value}
-        onChange={handleChange}
-      >
+      <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins
           plugins={plugins}
           spellCheck

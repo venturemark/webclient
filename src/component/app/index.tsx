@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import * as home from 'component/home';
+import * as home from "component/home";
 
 type Props = {};
 

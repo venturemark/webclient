@@ -1,6 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { IMessageQuery } from 'module/interface/message';
-import * as api from 'module/api';
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { IMessageQuery } from "module/interface/message";
+import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -10,8 +10,8 @@ const getMessages = async (messageQuery: IMessageQuery) => {
 };
 
 export function useMessages(messageQuery: IMessageQuery) {
-  return useQuery<any, ErrorResponse>(['message'], () =>
-    getMessages(messageQuery),
+  return useQuery<any, ErrorResponse>(["message"], () =>
+    getMessages(messageQuery)
   );
 }
 
@@ -25,8 +25,8 @@ export function useCreateMessage() {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries('message');
+        queryClient.invalidateQueries("message");
       },
-    },
+    }
   );
 }

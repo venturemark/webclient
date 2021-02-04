@@ -1,81 +1,81 @@
 export const customers = [
   {
-    name: 'Venturemark',
+    name: "Venturemark",
     users: [
       {
-        name: 'Marcus Ellison',
+        name: "Marcus Ellison",
       },
       {
-        name: 'Tim Schindler',
+        name: "Tim Schindler",
       },
       {
-        name: 'Victor Tang',
+        name: "Victor Tang",
       },
       {
-        name: 'David Gowdey',
+        name: "David Gowdey",
       },
     ],
   },
   {
-    name: 'Baronfig',
+    name: "Baronfig",
     users: [
       {
-        name: 'Joey Cofone',
+        name: "Joey Cofone",
       },
       {
-        name: 'Jay Desai',
+        name: "Jay Desai",
       },
       {
-        name: 'Adam Kornfield',
+        name: "Adam Kornfield",
       },
       {
-        name: 'Marcus Snarkus',
+        name: "Marcus Snarkus",
       },
       {
-        name: 'Laura Toffolo',
+        name: "Laura Toffolo",
       },
       {
-        name: 'Peter Papadimitropoulos',
+        name: "Peter Papadimitropoulos",
       },
       {
-        name: 'Andi Talarico',
+        name: "Andi Talarico",
       },
       {
-        name: 'Erica Feuer',
+        name: "Erica Feuer",
       },
       {
-        name: 'David Fellows',
+        name: "David Fellows",
       },
     ],
   },
   {
-    name: 'Memo',
+    name: "Memo",
     users: [
       {
-        name: 'Richard Sheperd',
+        name: "Richard Sheperd",
       },
       {
-        name: 'Peter Saxton',
+        name: "Peter Saxton",
       },
       {
-        name: 'Alex Schmitt',
+        name: "Alex Schmitt",
       },
       {
-        name: 'Harriet Hamblin',
+        name: "Harriet Hamblin",
       },
       {
-        name: 'YC',
+        name: "YC",
       },
       {
-        name: 'Rangel Spasov',
+        name: "Rangel Spasov",
       },
     ],
   },
   {
-    name: 'PluFin',
+    name: "PluFin",
     users: [
       {
-        name: 'Elliot Koss',
+        name: "Elliot Koss",
       },
     ],
   },

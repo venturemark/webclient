@@ -1,8 +1,8 @@
 // @refresh reset
-import React, { useMemo, useState } from 'react';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
+import React, { useMemo, useState } from "react";
+import { createEditor } from "slate";
+import { withHistory } from "slate-history";
+import { Slate, withReact } from "slate-react";
 import {
   ParagraphPlugin,
   HeadingPlugin,
@@ -20,9 +20,9 @@ import {
   withList,
   withMarks,
   withInlineVoid,
-} from '@udecode/slate-plugins';
-import { Node } from 'slate';
-import { initialValueEmpty } from 'component/editor/config/initialValues';
+} from "@udecode/slate-plugins";
+import { Node } from "slate";
+import { initialValueEmpty } from "component/editor/config/initialValues";
 
 const plugins = [
   ParagraphPlugin(),
@@ -55,7 +55,7 @@ const ReadEditor = (props: EditorProps) => {
 
   const textValue = [
     {
-      type: 'paragraph',
+      type: "paragraph",
       children: [
         {
           text: text,
@@ -66,20 +66,17 @@ const ReadEditor = (props: EditorProps) => {
 
   const existingValue = !text
     ? initialValueEmpty
-    : typeof text != 'string'
+    : typeof text != "string"
     ? text
     : textValue;
 
   const [value, setValue] = useState(
-    typeof existingValue === 'string'
+    typeof existingValue === "string"
       ? JSON.parse(existingValue)
-      : existingValue,
+      : existingValue
   );
 
-  const editor = useMemo(
-    () => pipe(createEditor(), ...withPlugins),
-    [],
-  );
+  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
   return (
     <Slate
@@ -89,12 +86,7 @@ const ReadEditor = (props: EditorProps) => {
         setValue(newValue);
       }}
     >
-      <EditablePlugins
-        plugins={plugins}
-        spellCheck
-        autoFocus
-        readOnly
-      />
+      <EditablePlugins plugins={plugins} spellCheck autoFocus readOnly />
     </Slate>
   );
 };

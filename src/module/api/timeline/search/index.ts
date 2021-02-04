@@ -2,17 +2,14 @@ import {
   SearchI,
   SearchI_Obj,
   SearchO_Obj,
-} from 'module/api/timeline/proto/search_pb';
-import { APIClient } from 'module/api/timeline/proto/ApiServiceClientPb';
-import * as env from 'module/env';
-import {
-  ITimeline,
-  ITimelineQuery,
-} from 'module/interface/timeline/index';
-import * as key from 'module/idkeys';
+} from "module/api/timeline/proto/search_pb";
+import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
+import * as env from "module/env";
+import { ITimeline, ITimelineQuery } from "module/interface/timeline/index";
+import * as key from "module/idkeys";
 
 export async function Search(
-  timelineQuery: ITimelineQuery,
+  timelineQuery: ITimelineQuery
 ): Promise<ITimeline[]> {
   const objList = [];
   //instantiate client and req classes
@@ -22,9 +19,7 @@ export async function Search(
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
 
   const obj = new SearchI_Obj();
-  obj
-    .getMetadataMap()
-    .set(key.OrganizationID, timelineQuery.organizationId);
+  obj.getMetadataMap().set(key.OrganizationID, timelineQuery.organizationId);
   obj.getMetadataMap().set(key.UserID, timelineQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
@@ -40,33 +35,31 @@ export async function Search(
         } else {
           const timelinesPb = res.getObjList();
 
-          const timelines = timelinesPb.map(
-            (timelinePb: SearchO_Obj) => {
-              const propertiesPb = timelinePb.getProperty();
-              const metaPb = timelinePb.getMetadataMap();
+          const timelines = timelinesPb.map((timelinePb: SearchO_Obj) => {
+            const propertiesPb = timelinePb.getProperty();
+            const metaPb = timelinePb.getMetadataMap();
 
-              const name = propertiesPb?.getName() as string;
-              const desc = propertiesPb?.getDesc() as string;
-              const stat = propertiesPb?.getStat() as string;
-              const organizationId = metaPb.get(key.OrganizationID);
-              const id = metaPb.get(key.TimelineID);
+            const name = propertiesPb?.getName() as string;
+            const desc = propertiesPb?.getDesc() as string;
+            const stat = propertiesPb?.getStat() as string;
+            const organizationId = metaPb.get(key.OrganizationID);
+            const id = metaPb.get(key.TimelineID);
 
-              const timeline: ITimeline = {
-                name: name,
-                desc: desc,
-                stat: stat,
-                organizationId: organizationId,
-                id: id,
-                userId: '',
-                isCurrent: false,
-              };
-              return timeline;
-            },
-          );
+            const timeline: ITimeline = {
+              name: name,
+              desc: desc,
+              stat: stat,
+              organizationId: organizationId,
+              id: id,
+              userId: "",
+              isCurrent: false,
+            };
+            return timeline;
+          });
           resolve(timelines);
         }
       });
-    },
+    }
   );
   return getSearchResponsePb;
 }
