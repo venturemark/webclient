@@ -27,6 +27,8 @@ export async function Create(newMessage: INewMessage): Promise<any> {
 
   req.setObj(obj);
 
+  console.log(req.toObject());
+
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, {}, function (err: any, res: any) {
       if (err) {

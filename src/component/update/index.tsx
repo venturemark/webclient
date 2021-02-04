@@ -14,6 +14,7 @@ interface UpdateProps extends DefaultUpdateProps {
   text: Node[];
   id: string;
   organizationName: string;
+  timelineId: string;
   userName: string;
   date: string;
   allUpdates: IUpdate[];
@@ -26,6 +27,7 @@ function Update(props: UpdateProps) {
   const {
     text,
     id,
+    timelineId,
     organizationName,
     userName,
     date,
@@ -60,6 +62,7 @@ function Update(props: UpdateProps) {
       updateContent={{
         text: text,
         id: id,
+        timelineId: timelineId,
         organizationName: organizationName,
         userName: userName,
         updateTimelines: updateTimelines,

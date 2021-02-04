@@ -109,6 +109,7 @@ export function Component(props: HomeProps) {
             key={update.id}
             id={update.id}
             organizationName={update.organizationId}
+            timelineId={update.timelineId}
             userName={update.userId}
             date={update.date}
             allUpdates={allUpdates}
