@@ -27,11 +27,9 @@ function ActionBar(props: ActionBarProps) {
   const { organizationId, userId } = props;
 
   const store = get('composeEditor.content') ?? '';
-  const initialValue =
-    store !== '' ? JSON.parse(store) : initialValueEmpty;
+  const initialValue = store !== '' ? JSON.parse(store) : initialValueEmpty;
   const hasContentDefault =
-    serialize(initialValue) === '' ||
-    serialize(initialValue) === undefined
+    serialize(initialValue) === '' || serialize(initialValue) === undefined
       ? undefined
       : 'hasContent';
   const defaultNumber = Search(serialize(initialValue)) ?? 0;
@@ -97,8 +95,7 @@ function ActionBar(props: ActionBarProps) {
 
   const MIN = 0;
   const MAX = 240;
-  const normalize = (value: number) =>
-    ((value - MIN) * 100) / (MAX - MIN);
+  const normalize = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
 
   const [isActive, setIsActive] = useState(false);
 
@@ -111,9 +108,7 @@ function ActionBar(props: ActionBarProps) {
         handleClick: () => handleAddUpdate(),
       }}
       error={editorShape.error ? 'hasError' : undefined}
-      text={
-        normalize(editorShape.progress) > 0 ? 'hasText' : undefined
-      }
+      text={normalize(editorShape.progress) > 0 ? 'hasText' : undefined}
       timelineSelect={{
         render: () => (
           <AntSelect

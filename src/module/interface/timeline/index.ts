@@ -20,3 +20,12 @@ export interface INewTimeline {
   userId: string;
   organizationId: string;
 }
+
+export interface ITimelineUpdate {
+  id: string;
+  organizationId: string;
+  userId: string;
+  desc?: string;
+  name?: string;
+  stat?: string | undefined;
+}

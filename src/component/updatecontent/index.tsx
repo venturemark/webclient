@@ -7,7 +7,7 @@ import {
 } from 'component/plasmic/shared/PlasmicUpdateContent';
 import ReadEditor from 'component/editor/read';
 import { Node } from 'slate';
-import {AntDropdown} from 'component/ant/dropdown';
+import { AntDropdown } from 'component/ant/dropdown';
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
   text: Node[];
@@ -19,24 +19,15 @@ interface UpdateContentProps extends DefaultUpdateContentProps {
 }
 
 function UpdateContent(props: UpdateContentProps) {
-  const {
-    text,
-    organizationName,
-    userName,
-    timelineName,
-    date,
-    id,
-  } = props;
+  const { text, organizationName, userName, timelineName, date, id } = props;
 
-  const [isReply, setIsReply] = useState<'isReply' | 'isUser'>(
-    'isUser',
-  );
+  const [isReply, setIsReply] = useState<'isReply' | 'isUser'>('isUser');
 
   return (
     <PlasmicUpdateContent
       state={isReply}
       iconMenu={{
-        render: () => (<AntDropdown updateId={id} />)
+        render: () => <AntDropdown updateId={id} />,
       }}
       reply={{
         updateId: id,
