@@ -1,12 +1,12 @@
-import * as env from 'module/env';
+import * as env from "module/env";
 import {
   CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
-} from 'module/api/texupd/proto/create_pb';
-import * as key from 'module/idkeys';
-import { APIClient } from 'module/api/texupd/proto/ApiServiceClientPb';
-import { INewUpdate } from 'module/interface/update';
+} from "module/api/texupd/proto/create_pb";
+import * as key from "module/idkeys";
+import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
+import { INewUpdate } from "module/interface/update";
 
 export async function Create(newUpdate: INewUpdate): Promise<any> {
   const client = new APIClient(env.APIEndpoint());
@@ -16,9 +16,7 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
   const objProperty = new CreateI_Obj_Property();
 
   objProperty.setText(newUpdate.text);
-  obj
-    .getMetadataMap()
-    .set(key.OrganizationID, newUpdate.organizationId);
+  obj.getMetadataMap().set(key.OrganizationID, newUpdate.organizationId);
   obj.getMetadataMap().set(key.TimelineID, newUpdate.timelineId);
   obj.getMetadataMap().set(key.UserID, newUpdate.userId);
   obj.setProperty(objProperty);

@@ -1,4 +1,4 @@
-import * as jspb from 'google-protobuf';
+import * as jspb from "google-protobuf";
 
 export class DeleteI extends jspb.Message {
   getApi(): DeleteI_API | undefined;
@@ -13,18 +13,15 @@ export class DeleteI extends jspb.Message {
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteI.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: DeleteI,
-  ): DeleteI.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteI): DeleteI.AsObject;
   static serializeBinaryToWriter(
     message: DeleteI,
-    writer: jspb.BinaryWriter,
+    writer: jspb.BinaryWriter
   ): void;
   static deserializeBinary(bytes: Uint8Array): DeleteI;
   static deserializeBinaryFromReader(
     message: DeleteI,
-    reader: jspb.BinaryReader,
+    reader: jspb.BinaryReader
   ): DeleteI;
 }
 
@@ -40,16 +37,16 @@ export class DeleteI_API extends jspb.Message {
   toObject(includeInstance?: boolean): DeleteI_API.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: DeleteI_API,
+    msg: DeleteI_API
   ): DeleteI_API.AsObject;
   static serializeBinaryToWriter(
     message: DeleteI_API,
-    writer: jspb.BinaryWriter,
+    writer: jspb.BinaryWriter
   ): void;
   static deserializeBinary(bytes: Uint8Array): DeleteI_API;
   static deserializeBinaryFromReader(
     message: DeleteI_API,
-    reader: jspb.BinaryReader,
+    reader: jspb.BinaryReader
   ): DeleteI_API;
 }
 
@@ -65,16 +62,16 @@ export class DeleteI_Obj extends jspb.Message {
   toObject(includeInstance?: boolean): DeleteI_Obj.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: DeleteI_Obj,
+    msg: DeleteI_Obj
   ): DeleteI_Obj.AsObject;
   static serializeBinaryToWriter(
     message: DeleteI_Obj,
-    writer: jspb.BinaryWriter,
+    writer: jspb.BinaryWriter
   ): void;
   static deserializeBinary(bytes: Uint8Array): DeleteI_Obj;
   static deserializeBinaryFromReader(
     message: DeleteI_Obj,
-    reader: jspb.BinaryReader,
+    reader: jspb.BinaryReader
   ): DeleteI_Obj;
 }
 
@@ -97,18 +94,15 @@ export class DeleteO extends jspb.Message {
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteO.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: DeleteO,
-  ): DeleteO.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteO): DeleteO.AsObject;
   static serializeBinaryToWriter(
     message: DeleteO,
-    writer: jspb.BinaryWriter,
+    writer: jspb.BinaryWriter
   ): void;
   static deserializeBinary(bytes: Uint8Array): DeleteO;
   static deserializeBinaryFromReader(
     message: DeleteO,
-    reader: jspb.BinaryReader,
+    reader: jspb.BinaryReader
   ): DeleteO;
 }
 
@@ -124,16 +118,16 @@ export class DeleteO_API extends jspb.Message {
   toObject(includeInstance?: boolean): DeleteO_API.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: DeleteO_API,
+    msg: DeleteO_API
   ): DeleteO_API.AsObject;
   static serializeBinaryToWriter(
     message: DeleteO_API,
-    writer: jspb.BinaryWriter,
+    writer: jspb.BinaryWriter
   ): void;
   static deserializeBinary(bytes: Uint8Array): DeleteO_API;
   static deserializeBinaryFromReader(
     message: DeleteO_API,
-    reader: jspb.BinaryReader,
+    reader: jspb.BinaryReader
   ): DeleteO_API;
 }
 
@@ -149,16 +143,16 @@ export class DeleteO_Obj extends jspb.Message {
   toObject(includeInstance?: boolean): DeleteO_Obj.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: DeleteO_Obj,
+    msg: DeleteO_Obj
   ): DeleteO_Obj.AsObject;
   static serializeBinaryToWriter(
     message: DeleteO_Obj,
-    writer: jspb.BinaryWriter,
+    writer: jspb.BinaryWriter
   ): void;
   static deserializeBinary(bytes: Uint8Array): DeleteO_Obj;
   static deserializeBinaryFromReader(
     message: DeleteO_Obj,
-    reader: jspb.BinaryReader,
+    reader: jspb.BinaryReader
   ): DeleteO_Obj;
 }
 

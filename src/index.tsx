@@ -1,13 +1,13 @@
-import 'index.css';
+import "index.css";
 
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { ScreenVariantProvider } from 'component/plasmic/shared/PlasmicGlobalVariant__Screen';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import React from "react";
+import ReactDOM from "react-dom";
+import { ScreenVariantProvider } from "component/plasmic/shared/PlasmicGlobalVariant__Screen";
 
-import * as app from 'component/app';
-import reportWebVitals from 'reportWebVitals';
+import * as app from "component/app";
+import reportWebVitals from "reportWebVitals";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +20,7 @@ ReactDOM.render(
       </ScreenVariantProvider>
     </QueryClientProvider>
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { AutoComplete } from 'antd';
+import React, { useRef, useEffect } from "react";
+import { AutoComplete } from "antd";
 
 interface Option {
   value: string;
@@ -28,9 +28,9 @@ export function AntAutocomplete(props: SelectProps) {
     <AutoComplete
       style={{
         width: 200,
-        textAlign: 'center',
-        fontFamily: 'Poppins',
-        fontSize: '14px',
+        textAlign: "center",
+        fontFamily: "Poppins",
+        fontSize: "14px",
       }}
       options={options}
       onChange={onChange}
@@ -38,9 +38,7 @@ export function AntAutocomplete(props: SelectProps) {
       onSelect={() => setUserFocus(true)}
       placeholder="Search for you name"
       filterOption={(inputValue, option) =>
-        option!.value
-          .toUpperCase()
-          .indexOf(inputValue.toUpperCase()) !== -1
+        option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
       }
     />
   );

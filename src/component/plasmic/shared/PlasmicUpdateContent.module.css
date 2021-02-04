@@ -198,22 +198,35 @@
 .span__rwEsf {
   position: relative;
 }
-.box__lqdFr {
+.timelineNamesContainer {
   display: inline-flex;
   position: relative;
   width: auto;
   height: auto;
+  cursor: pointer;
 }
-.slotTimelineName {
-  font-weight: 300;
+.timelineNamesContainer > :global(.__wab_flex-container) {
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
 }
-.timelineName {
+.timelineNamesContainer > :global(.__wab_flex-container) > *,
+.timelineNamesContainer
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
+  margin-left: 5px;
+}
+.timelineLink:global(.__wab_instance) {
   position: relative;
+  top: auto;
+  left: auto;
+}
+.span__fuKna {
   width: auto;
   height: auto;
-  left: auto;
-  top: auto;
   font-weight: 300;
+  cursor: pointer;
+  position: relative;
 }
 .box__tAhMj {
   display: flex;
