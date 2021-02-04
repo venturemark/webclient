@@ -4,15 +4,15 @@ import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getUpdates = async (updateQuery: IUpdateQuery) => {
+const getTimelineUpdates = async (updateQuery: IUpdateQuery) => {
   const data = await api.API.Update.Search(updateQuery);
   return data;
 };
 
-export function useUpdates(updateQuery: IUpdateQuery) {
+export function useTimelineUpdates(updateQuery: IUpdateQuery) {
   return useQuery<any, ErrorResponse>(
-    ["update", updateQuery.timelineId],
-    () => getUpdates(updateQuery),
+    ["timelineUpdate", updateQuery.timelineId],
+    () => getTimelineUpdates(updateQuery),
     { enabled: !!updateQuery.timelineId }
   );
 }
@@ -70,7 +70,7 @@ const getAllUpdates = async (updateQuery: any) => {
 
 export function useHomeUpdates(updateQuery: IUpdateQuery) {
   return useQuery<any, ErrorResponse>(
-    ["update", updateQuery.timelines],
+    ["homeUpdate", updateQuery.timelines],
     () => getHomeUpdates(updateQuery),
     { enabled: !!updateQuery.timelines }
   );
@@ -78,7 +78,7 @@ export function useHomeUpdates(updateQuery: IUpdateQuery) {
 
 export function useAllUpdates(updateQuery: IUpdateQuery) {
   return useQuery<any, ErrorResponse>(
-    ["update", updateQuery.timelines],
+    ["allUpdate", updateQuery.timelines],
     () => getAllUpdates(updateQuery),
     { enabled: !!updateQuery.timelines }
   );

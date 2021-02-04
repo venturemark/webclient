@@ -9,7 +9,11 @@ import Update from "component/update";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { IUpdate, IUpdateQuery } from "module/interface/update";
-import { useUpdates, useHomeUpdates, useAllUpdates } from "module/hook/update";
+import {
+  useTimelineUpdates,
+  useHomeUpdates,
+  useAllUpdates,
+} from "module/hook/update";
 import { getUser } from "module/store";
 
 interface HomeProps extends DefaultHomeProps {}
@@ -51,12 +55,12 @@ export function Component(props: HomeProps) {
   const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
   const { data: homeUpdates } = useHomeUpdates(allUpdatesSearch);
 
-  const { data: updatesData } = useUpdates(updatesSearch);
+  const { data: timelineUpdates } = useTimelineUpdates(updatesSearch);
 
   let updates = [];
 
   if (isSuccess) {
-    updates = isHome ? homeUpdates ?? [] : updatesData ?? [];
+    updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
   }
 
   useEffect(() => {
