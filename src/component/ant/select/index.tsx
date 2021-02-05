@@ -84,7 +84,7 @@ export function AntSelect(props: SelectProps) {
       ref={select}
       tagRender={tagRender}
       bordered={false}
-      style={{ width: "80%", marginTop: "0px" }}
+      style={{ width: "80%", marginTop: "8px" }}
       options={options}
     />
   );
