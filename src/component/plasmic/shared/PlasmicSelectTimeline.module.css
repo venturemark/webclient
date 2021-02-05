@@ -6,8 +6,7 @@
   cursor: pointer;
   border-radius: 20px;
   padding: 10px;
-  border: 1px solid rgb(224, 224, 224)
-    /* plasmic-token: 9--4ZPcisViPq8V */;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .timelineSelect > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -17,10 +16,7 @@
   width: calc(100% + 5px);
 }
 .timelineSelect > :global(.__wab_flex-container) > *,
-.timelineSelect
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.timelineSelect > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
 .timelineSelect__timelineSelected {
@@ -45,10 +41,7 @@
   width: calc(100% + 5px);
 }
 .box__lnRel > :global(.__wab_flex-container) > *,
-.box__lnRel
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box__lnRel > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
 .svg {

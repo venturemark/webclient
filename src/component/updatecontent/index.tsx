@@ -35,7 +35,9 @@ function UpdateContent(props: UpdateContentProps) {
     setCurrentTimeline,
   } = props;
 
-  const [isReply, setIsReply] = useState<"isReply" | "isUser">("isUser");
+  const [isReply, setIsReply] = useState<"isReply" | "isUser" | undefined>(
+    undefined
+  );
 
   return (
     <PlasmicUpdateContent

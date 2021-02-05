@@ -19,7 +19,9 @@ interface ReplyContentSecondProps extends DefaultReplyContentSecondProps {
 function ReplyContentSecond(props: ReplyContentSecondProps) {
   const { updateId, timelineId, userName, organizationId } = props;
 
-  const [isReply, setIsReply] = useState<"isReply" | "isUser">("isUser");
+  const [isReply, setIsReply] = useState<"isReply" | "isUser" | undefined>(
+    undefined
+  );
 
   return (
     <PlasmicReplyContentSecond
