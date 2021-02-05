@@ -9,44 +9,6 @@ const getTimelineUpdates = async (updateQuery: IUpdateQuery) => {
   return data;
 };
 
-export function useTimelineUpdates(updateQuery: IUpdateQuery) {
-  return useQuery<any, ErrorResponse>(
-    ["timelineUpdate", updateQuery.timelineId],
-    () => getTimelineUpdates(updateQuery),
-    { enabled: !!updateQuery.timelineId }
-  );
-}
-
-const getHomeUpdates = async (updateQuery: any) => {
-  const { timelines, organizationId, userId } = updateQuery;
-
-  const allUpdates = await Promise.all(
-    timelines.map(async (timeline: any) => {
-      const timelineId = timeline.id;
-      const search = {
-        organizationId,
-        timelineId,
-        userId,
-      };
-
-      const updates = await api.API.Update.Search(search);
-      return updates;
-    })
-  );
-  const flattenedUpdates: any = allUpdates.flat();
-
-  const uniqueUpdates: any = Array.from(
-    new Set(
-      flattenedUpdates.map((update: any) => Math.round(update.id / 1000000000))
-    )
-  ).map((id) => {
-    return flattenedUpdates.find(
-      (update: any) => Math.round(update.id / 1000000000) === id
-    );
-  });
-  return uniqueUpdates;
-};
-
 const getAllUpdates = async (updateQuery: any) => {
   const { timelines, organizationId, userId } = updateQuery;
 
@@ -68,17 +30,17 @@ const getAllUpdates = async (updateQuery: any) => {
   return flattenedUpdates;
 };
 
-export function useHomeUpdates(updateQuery: IUpdateQuery) {
+export function useTimelineUpdates(updateQuery: IUpdateQuery) {
   return useQuery<any, ErrorResponse>(
-    ["homeUpdate", updateQuery.timelines],
-    () => getHomeUpdates(updateQuery),
-    { enabled: !!updateQuery.timelines }
+    ["update", updateQuery.timelineId],
+    () => getTimelineUpdates(updateQuery),
+    { enabled: !!updateQuery.timelineId }
   );
 }
 
 export function useAllUpdates(updateQuery: IUpdateQuery) {
   return useQuery<any, ErrorResponse>(
-    ["allUpdate", updateQuery.timelines],
+    ["update", updateQuery.timelines],
     () => getAllUpdates(updateQuery),
     { enabled: !!updateQuery.timelines }
   );
