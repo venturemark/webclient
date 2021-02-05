@@ -133,11 +133,7 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSidebarOrganizationName__VariantsArgs;
     args?: PlasmicSidebarOrganizationName__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<
-    // Specify variants directly as props
-    PlasmicSidebarOrganizationName__VariantsArgs,
-    ReservedPropsType
-  > &
+  } & Omit<PlasmicSidebarOrganizationName__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSidebarOrganizationName__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

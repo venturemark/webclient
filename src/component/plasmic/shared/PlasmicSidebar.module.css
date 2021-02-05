@@ -46,10 +46,7 @@
   height: calc(100% + 5px);
 }
 .scrollContainer > :global(.__wab_flex-container) > *,
-.scrollContainer
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.scrollContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
 }
 .homeSidebarItem:global(.__wab_instance) {
@@ -136,8 +133,7 @@
   height: auto;
   flex-direction: column;
   border-top-style: solid;
-  border-top-color: rgb(224, 224, 224)
-    /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-top-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
   overflow: hidden;
   min-width: 0;
 }

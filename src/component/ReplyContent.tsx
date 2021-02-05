@@ -29,7 +29,9 @@ function ReplyContent(props: ReplyContentProps) {
     date,
     text,
   } = props;
-  const [isReply, setIsReply] = useState<"isReply" | "isUser">("isUser");
+  const [isReply, setIsReply] = useState<"isReply" | "isUser" | undefined>(
+    undefined
+  );
   const messageSearch: IMessageQuery = {
     updateId,
     reid: id,

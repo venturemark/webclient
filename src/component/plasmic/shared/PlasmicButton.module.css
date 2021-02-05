@@ -10,8 +10,7 @@
   width: auto;
   height: auto;
   display: inline-flex;
-  background-color: rgb(2, 157, 127)
-    /* plasmic-token: Jfzps88GdGw80SE */;
+  background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -22,16 +21,13 @@
 }
 .button__buttonStyle_secondary {
   background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
-  border: 1px solid rgb(2, 157, 127)
-    /* plasmic-token: Jfzps88GdGw80SE */;
+  border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .root:hover .button {
-  background-color: rgba(2, 157, 127, 0.91)
-    /* plasmic-token: ktdOhSoiQwPKRUS */;
+  background-color: rgba(2, 157, 127, 0.91) /* plasmic-token: ktdOhSoiQwPKRUS */;
 }
 .root:active .button {
-  background-color: rgba(2, 157, 127, 0.91)
-    /* plasmic-token: ktdOhSoiQwPKRUS */;
+  background-color: rgba(2, 157, 127, 0.91) /* plasmic-token: ktdOhSoiQwPKRUS */;
 }
 .box {
   display: inline-flex;
@@ -45,7 +41,7 @@
   justify-content: center;
 }
 .slotText {
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   font-size: 14px;
   font-weight: 900;
   color: rgba(255, 255, 255, 1);

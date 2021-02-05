@@ -8,8 +8,7 @@
   position: relative;
   min-width: 0;
   border-style: solid;
-  border-color: rgb(224, 224, 224)
-    /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .editorContainer {
   display: flex;
@@ -27,8 +26,7 @@
   min-width: 0;
   padding: 10px 20px;
   border-style: solid;
-  border-color: rgb(224, 224, 224)
-    /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .box__cyQ9E {
   display: inline-flex;
@@ -44,10 +42,7 @@
   width: calc(100% + 10px);
 }
 .box__cyQ9E > :global(.__wab_flex-container) > *,
-.box__cyQ9E
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box__cyQ9E > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
 }
 .box__dc4F {
@@ -81,10 +76,7 @@
   height: calc(100% + 3px);
 }
 .box__rqpD > :global(.__wab_flex-container) > *,
-.box__rqpD
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box__rqpD > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 3px;
 }
 .box__iU0A {
@@ -105,10 +97,7 @@
   width: calc(100% + 5px);
 }
 .box__iU0A > :global(.__wab_flex-container) > *,
-.box__iU0A
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box__iU0A > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
 .box__cAoxI {
@@ -131,10 +120,7 @@
   width: calc(100% + 5px);
 }
 .box__oKSfs > :global(.__wab_flex-container) > *,
-.box__oKSfs
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box__oKSfs > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
 .slotUserName {
@@ -259,10 +245,7 @@
   height: calc(100% + 20px);
 }
 .box__w4TSo > :global(.__wab_flex-container) > *,
-.box__w4TSo
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box__w4TSo > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 20px;
 }
 .replyInput:global(.__wab_instance) {
