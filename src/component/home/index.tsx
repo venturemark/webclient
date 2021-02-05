@@ -9,11 +9,7 @@ import Update from "component/update";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { IUpdate, IUpdateQuery } from "module/interface/update";
-import {
-  useTimelineUpdates,
-  useHomeUpdates,
-  useAllUpdates,
-} from "module/hook/update";
+import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
 import { getUser } from "module/store";
 
 interface HomeProps extends DefaultHomeProps {}
@@ -32,34 +28,50 @@ export function Component(props: HomeProps) {
   const organizationId = login?.organizationId ?? "";
   const userId = login?.userId ?? "";
 
-  const updatesSearch: IUpdateQuery = {
-    organizationId,
-    timelineId,
-    userId,
-  };
-
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
   };
 
-  const { data: timelinesData, isSuccess } = useTimelines(timelineSearch);
+  const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
+    timelineSearch
+  );
 
-  const allUpdatesSearch: any = {
+  const timelineUpdatesSearch: IUpdateQuery = {
+    organizationId,
+    timelineId,
+    userId,
+  };
+
+  const allUpdatesSearch: IUpdateQuery = {
     organizationId,
     timelineId,
     userId,
     timelines: timelinesData,
   };
 
-  const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
-  const { data: homeUpdates } = useHomeUpdates(allUpdatesSearch);
-
-  const { data: timelineUpdates } = useTimelineUpdates(updatesSearch);
+  const { data: allUpdates, isSuccess: updateSuccess } = useAllUpdates(
+    allUpdatesSearch
+  );
+  const { data: timelineUpdates } = useTimelineUpdates(timelineUpdatesSearch);
 
   let updates = [];
 
-  if (isSuccess) {
+  if (timelineSuccess && updateSuccess) {
+    //deduplicate updates for home
+    const homeUpdates: IUpdate[] = Array.from(
+      new Set(
+        allUpdates.map((update: IUpdate) =>
+          Math.round(Number(update.id) / 1000000000)
+        )
+      )
+    ).map((id) => {
+      return allUpdates.find(
+        (update: IUpdate) => Math.round(Number(update.id) / 1000000000) === id
+      );
+    });
+
+    // return updates or updates of current timeline.
     updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
   }
 
