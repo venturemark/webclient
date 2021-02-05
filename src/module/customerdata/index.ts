@@ -1,5 +1,25 @@
 export const customers = [
   {
+    name: "CVBourne",
+    users: [
+      {
+        name: "Kav Ohiomoba",
+      },
+      {
+        name: "Andy Kittler",
+      },
+      {
+        name: "Robert Angarita",
+      },
+      {
+        name: "Laura Del Beccaro",
+      },
+      {
+        name: "Orien Wu",
+      },
+    ],
+  },
+  {
     name: "Venturemark",
     users: [
       {
