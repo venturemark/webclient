@@ -1,12 +1,12 @@
-import * as env from 'module/env';
+import * as env from "module/env";
 import {
   CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
-} from 'module/api/message/proto/create_pb';
-import * as key from 'module/idkeys';
-import { APIClient } from 'module/api/message/proto/ApiServiceClientPb';
-import { INewMessage } from 'module/interface/message';
+} from "module/api/message/proto/create_pb";
+import * as key from "module/idkeys";
+import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
+import { INewMessage } from "module/interface/message";
 
 export async function Create(newMessage: INewMessage): Promise<any> {
   const client = new APIClient(env.APIEndpoint());
@@ -19,9 +19,7 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   if (newMessage.reid) {
     objProperty.setReid(newMessage.reid);
   }
-  obj
-    .getMetadataMap()
-    .set(key.OrganizationID, newMessage.organizationId);
+  obj.getMetadataMap().set(key.OrganizationID, newMessage.organizationId);
   obj.getMetadataMap().set(key.TimelineID, newMessage.timelineId);
   obj.getMetadataMap().set(key.UpdateID, newMessage.updateId);
   obj.getMetadataMap().set(key.UserID, newMessage.userId);

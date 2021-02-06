@@ -1,6 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { ITimelineQuery } from 'module/interface/timeline';
-import * as api from 'module/api';
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { ITimelineQuery } from "module/interface/timeline";
+import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -10,8 +10,8 @@ const getTimelines = async (timelineQuery: ITimelineQuery) => {
 };
 
 export function useTimelines(timelineQuery: ITimelineQuery) {
-  return useQuery<any, ErrorResponse>(['timeline'], () =>
-    getTimelines(timelineQuery),
+  return useQuery<any, ErrorResponse>(["timeline"], () =>
+    getTimelines(timelineQuery)
   );
 }
 
@@ -25,8 +25,8 @@ export function useCreateTimeline() {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries('timeline');
+        queryClient.invalidateQueries("timeline");
       },
-    },
+    }
   );
 }

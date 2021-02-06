@@ -49,10 +49,7 @@
   height: calc(100% + 10px);
 }
 .rectangle587 > :global(.__wab_flex-container) > *,
-.rectangle587
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.rectangle587 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 10px;
 }
 .label3 {
@@ -63,7 +60,7 @@
   text-align: center;
   text-transform: none;
   text-decoration-line: none;
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   font-weight: 700;
   letter-spacing: 0.491px;
   line-height: 18px;
@@ -83,7 +80,7 @@
   text-align: left;
   text-transform: none;
   text-decoration-line: none;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 700;
   letter-spacing: 0.19332999999999997em;
   color: rgba(36, 25, 62, 1);
@@ -115,10 +112,7 @@
   height: calc(100% + 20px);
 }
 .welcomeForm > :global(.__wab_flex-container) > *,
-.welcomeForm
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.welcomeForm > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 20px;
 }
 .box___0WolP {
@@ -136,10 +130,7 @@
   height: calc(100% + 30px);
 }
 .box___0WolP > :global(.__wab_flex-container) > *,
-.box___0WolP
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box___0WolP > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 30px;
 }
 .selectUserContainer {
@@ -157,7 +148,7 @@
   text-align: center;
   text-transform: none;
   text-decoration-line: none;
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   font-weight: 700;
   letter-spacing: 0.491px;
   line-height: 18px;
@@ -184,7 +175,7 @@
   text-align: center;
   text-transform: none;
   text-decoration-line: none;
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   font-weight: 700;
   letter-spacing: 0.491px;
   line-height: 18px;
@@ -214,10 +205,7 @@
   height: calc(100% + 20px);
 }
 .box__ljTa5 > :global(.__wab_flex-container) > *,
-.box__ljTa5
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box__ljTa5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 20px;
 }
 .box__aUujC {
@@ -229,7 +217,7 @@
   transform-origin: top left;
 }
 .slotOrganizationDescription {
-  font-family: 'SF Pro Text';
+  font-family: "SF Pro Text";
   font-size: 12px;
   font-weight: 400;
   color: rgba(117, 117, 117, 1);

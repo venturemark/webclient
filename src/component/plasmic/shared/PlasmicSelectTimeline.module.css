@@ -1,59 +1,63 @@
 .timelineSelect {
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
-  width: auto;
-  height: 100%;
-  min-width: 134px;
+  width: 160px;
   position: relative;
-  min-height: 0;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .timelineSelect > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.timelineSelect > :global(.__wab_flex-container) > *,
+.timelineSelect > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-left: 5px;
+}
+.timelineSelect__timelineSelected {
+  width: 160px;
+  flex-grow: 0;
+}
+.box__lnRel {
+  display: inline-flex;
+  position: relative;
+  flex-direction: row;
+  top: auto;
+  left: auto;
+  align-self: center;
+  width: auto;
+  height: auto;
+}
+.box__lnRel > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
 }
-.timelineSelect > :global(.__wab_flex-container) > *,
-.timelineSelect
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.box__lnRel > :global(.__wab_flex-container) > *,
+.box__lnRel > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
-.timelineSelect__isActive {
-  width: 130px;
-}
-.timelineSelect__timelineSelected {
-  width: auto;
-  flex-grow: 0;
-  min-width: 127px;
-  display: inline-flex;
-}
 .svg {
-  position: relative;
   object-fit: cover;
   width: 14px;
   height: 14px;
-  left: auto;
-  top: auto;
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
-  align-self: center;
   flex-shrink: 0;
 }
 .svg__isActive {
-  left: auto;
-  top: auto;
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.box {
-  width: 100%;
-  height: auto;
+.box__nTNtH {
   font-weight: 400;
-  min-width: 0;
-}
-.box__isActive {
-  font-weight: 500;
-  width: 100%;
-  min-width: 0;
+  width: auto;
+  height: auto;
+  white-space: pre;
+  display: inline-block;
 }

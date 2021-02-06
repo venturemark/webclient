@@ -2,22 +2,17 @@ import {
   CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
-} from 'module/api/audience/proto/create_pb';
-import { APIClient } from 'module/api/audience/proto/ApiServiceClientPb';
-import * as env from 'module/env';
-import * as key from 'module/idkeys';
+} from "module/api/audience/proto/create_pb";
+import { APIClient } from "module/api/audience/proto/ApiServiceClientPb";
+import * as env from "module/env";
+import * as key from "module/idkeys";
 
 export async function Create(
   name: string,
   userId: string,
-  organizationId: string,
+  organizationId: string
 ): Promise<any> {
-  console.log(
-    'send to create audience:',
-    name,
-    userId,
-    organizationId,
-  );
+  console.log("send to create audience:", name, userId, organizationId);
 
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
@@ -25,7 +20,7 @@ export async function Create(
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
 
-  const userList = ['xh3b4sd', 'marcojelli'];
+  const userList = ["xh3b4sd", "marcojelli"];
   // userList.push(userId);
 
   objProperty.setName(name);
@@ -44,7 +39,7 @@ export async function Create(
         console.log(err.code);
         console.log(err.message);
         alert(
-          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`,
+          `Error code: ${err.code}, Something went wrong, please email tim@venturemark.co or marcus@venturemark.co`
         );
         reject(err);
       } else {

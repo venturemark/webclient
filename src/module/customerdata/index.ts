@@ -1,78 +1,101 @@
 export const customers = [
   {
-    name: 'Venturemark',
+    name: "CVBourne",
     users: [
       {
-        name: 'Marcus Ellison',
+        name: "Kav Ohiomoba",
       },
       {
-        name: 'Tim Schindler',
+        name: "Andy Kittler",
       },
       {
-        name: 'Victor Tang',
+        name: "Robert Angarita",
       },
       {
-        name: 'David Gowdey',
+        name: "Laura Del Beccaro",
+      },
+      {
+        name: "Orien Wu",
       },
     ],
   },
   {
-    name: 'Baronfig',
+    name: "Venturemark",
     users: [
       {
-        name: 'Joey Cofone',
+        name: "Marcus Ellison",
       },
       {
-        name: 'Jay Desai',
+        name: "Tim Schindler",
       },
       {
-        name: 'Adam Kornfield',
+        name: "Victor Tang",
       },
       {
-        name: 'Laura Toffolo',
-      },
-      {
-        name: 'Peter Papadimitropoulos',
-      },
-      {
-        name: 'Andi Talarico',
-      },
-      {
-        name: 'Erica Feuer',
-      },
-      {
-        name: 'David Fellows',
+        name: "David Gowdey",
       },
     ],
   },
   {
-    name: 'Memo',
+    name: "Baronfig",
     users: [
       {
-        name: 'Richard Sheperd',
+        name: "Joey Cofone",
       },
       {
-        name: 'Peter Saxton',
+        name: "Jay Desai",
       },
       {
-        name: 'Alex Schmitt',
+        name: "Adam Kornfield",
       },
       {
-        name: 'Harriet Hamblin',
+        name: "Marcus Snarkus",
       },
       {
-        name: 'YC',
+        name: "Laura Toffolo",
       },
       {
-        name: 'Rangel Spasov',
+        name: "Peter Papadimitropoulos",
+      },
+      {
+        name: "Andi Talarico",
+      },
+      {
+        name: "Erica Feuer",
+      },
+      {
+        name: "David Fellows",
       },
     ],
   },
   {
-    name: 'PluFin',
+    name: "Memo",
     users: [
       {
-        name: 'Elliot Koss',
+        name: "Richard Sheperd",
+      },
+      {
+        name: "Peter Saxton",
+      },
+      {
+        name: "Alex Schmitt",
+      },
+      {
+        name: "Harriet Hamblin",
+      },
+      {
+        name: "YC",
+      },
+      {
+        name: "Rangel Spasov",
+      },
+    ],
+  },
+  {
+    name: "PluFin",
+    users: [
+      {
+        name: "Elliot Koss",
       },
     ],
   },

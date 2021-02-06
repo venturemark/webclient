@@ -2,13 +2,13 @@ import {
   SearchI,
   SearchI_Obj,
   SearchO_Obj,
-} from 'module/api/message/proto/search_pb';
-import { APIClient } from 'module/api/message/proto/ApiServiceClientPb';
-import * as env from 'module/env';
-import * as key from 'module/idkeys';
-import fromUnixTime from 'date-fns/fromUnixTime';
-import { format } from 'date-fns';
-import { IMessageQuery } from 'module/interface/message';
+} from "module/api/message/proto/search_pb";
+import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
+import * as env from "module/env";
+import * as key from "module/idkeys";
+import fromUnixTime from "date-fns/fromUnixTime";
+import { formatDistanceToNow } from "date-fns";
+import { IMessageQuery } from "module/interface/message";
 
 export async function Search(messageQuery: IMessageQuery) {
   const objList = [];
@@ -19,9 +19,7 @@ export async function Search(messageQuery: IMessageQuery) {
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj
-    .getMetadataMap()
-    .set(key.OrganizationID, messageQuery.organizationId);
+  obj.getMetadataMap().set(key.OrganizationID, messageQuery.organizationId);
   obj.getMetadataMap().set(key.TimelineID, messageQuery.timelineId);
   obj.getMetadataMap().set(key.UpdateID, messageQuery.updateId);
   obj.getMetadataMap().set(key.UserID, messageQuery.userId);
@@ -50,7 +48,7 @@ export async function Search(messageQuery: IMessageQuery) {
           const userId = metaPb.get(key.UserID);
           const updateId = metaPb.get(key.UpdateID);
           const rawDate = fromUnixTime(messageId / 1000000000);
-          const date = format(rawDate, 'MMM do, Y');
+          const date = formatDistanceToNow(rawDate) + " ago";
 
           const message: any = {
             organizationId: organizationId,

@@ -20,16 +20,12 @@
   width: calc(100% + 10px);
 }
 .listItem > :global(.__wab_flex-container) > *,
-.listItem
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
+.listItem > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
 }
 .listItem__active {
   padding: 4px 10px;
-  border-left: 1px solid rgb(2, 157, 127)
-    /* plasmic-token: Jfzps88GdGw80SE */;
+  border-left: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .slotChildren {
   color: #ffffff /* plasmic-token: ynJoiIC0v */;
@@ -61,7 +57,7 @@
   min-width: 0;
 }
 .slotLabel {
-  font-family: 'SF Pro Text';
+  font-family: "SF Pro Text";
   font-size: 14px;
   font-weight: 400;
   color: rgba(36, 25, 62, 1);

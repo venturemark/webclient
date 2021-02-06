@@ -2,10 +2,10 @@
 /* eslint-disable */
 /* tslint:disable */
 /* prettier-ignore-start */
-import React from 'react';
-import { classNames } from '@plasmicapp/react-web';
+import React from "react";
+import { classNames } from "@plasmicapp/react-web";
 
-export type Line2IconProps = React.ComponentProps<'svg'> & {
+export type Line2IconProps = React.ComponentProps<"svg"> & {
   title?: string;
 };
 
@@ -13,22 +13,22 @@ export function Line2Icon(props: Line2IconProps) {
   const { className, style, title, ...restProps } = props;
   return (
     <svg
-      xmlns={'http://www.w3.org/2000/svg'}
-      fill={'none'}
-      viewBox={'0 0 898 1'}
-      height={'1em'}
-      width={'1em'}
+      xmlns={"http://www.w3.org/2000/svg"}
+      fill={"none"}
+      viewBox={"0 0 898 1"}
+      height={"1em"}
+      width={"1em"}
       style={{
-        fill: 'currentcolor',
+        fill: "currentcolor",
 
         ...(style || {}),
       }}
-      className={classNames('plasmic-default__svg', className)}
+      className={classNames("plasmic-default__svg", className)}
       {...restProps}
     >
       {title && <title>{title}</title>}
 
-      <path stroke={'currentColor'} d={'M0 .5h898'}></path>
+      <path stroke={"currentColor"} d={"M0 .5h898"}></path>
     </svg>
   );
 }
