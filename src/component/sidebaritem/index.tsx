@@ -79,7 +79,7 @@ function SidebarItem(props: SidebarItemProps) {
       }}
       itemHoverIcon={{
         render: () => {
-          return <AntDropdown timelineId={id} />;
+          return <AntDropdown />;
         },
       }}
       name={name}

@@ -44,7 +44,7 @@ function UpdateContent(props: UpdateContentProps) {
     <PlasmicUpdateContent
       state={isReply}
       iconMenu={{
-        render: () => <AntDropdown updateId={id} />,
+        render: () => <AntDropdown />,
       }}
       reply={{
         updateId: id,

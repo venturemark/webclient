@@ -3,14 +3,14 @@ import {
   UpdateI_Obj,
   UpdateO_Obj,
   UpdateI_Obj_Property,
-} from 'module/api/timeline/proto/update_pb';
-import { APIClient } from 'module/api/timeline/proto/ApiServiceClientPb';
-import * as env from 'module/env';
-import { ITimeline, ITimelineUpdate } from 'module/interface/timeline/index';
-import * as key from 'module/idkeys';
+} from "module/api/timeline/proto/update_pb";
+import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
+import * as env from "module/env";
+import { ITimeline, ITimelineUpdate } from "module/interface/timeline/index";
+import * as key from "module/idkeys";
 
 export async function Update(
-  timelineUpdate: ITimelineUpdate,
+  timelineUpdate: ITimelineUpdate
 ): Promise<ITimeline[]> {
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
@@ -31,7 +31,7 @@ export async function Update(
 
   obj.getMetadataMap().set(key.OrganizationID, timelineUpdate.organizationId);
   obj.getMetadataMap().set(key.UserID, timelineUpdate.userId);
-  obj.getMetadataMap().set(key.UserID, timelineUpdate.id);
+  obj.getMetadataMap().set(key.TimelineID, timelineUpdate.id);
   obj.setProperty(objProperty);
   req.setObj(obj);
 
@@ -51,7 +51,7 @@ export async function Update(
           resolve(status);
         }
       });
-    },
+    }
   );
   return getUpdateResponsePb;
 }
