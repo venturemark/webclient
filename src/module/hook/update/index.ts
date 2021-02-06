@@ -61,3 +61,19 @@ export function useCreateUpdate() {
     }
   );
 }
+
+export function useUpdateUpdate() {
+  const queryClient = useQueryClient();
+
+  return useMutation<any, any, any>(
+    (newUpdate) => {
+      return api.API.TexUpd.Update(newUpdate);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("update");
+      },
+    }
+  );
+}

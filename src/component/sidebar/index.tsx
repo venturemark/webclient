@@ -76,7 +76,6 @@ function Sidebar(props: SidebarProps) {
         children: sortedCurrentTimelines.map((timeline: ITimeline) => (
           <SidebarItem
             name={timeline.name}
-            id={timeline.id}
             key={timeline.id}
             isCurrent={timeline.isCurrent}
             onClick={() => {

@@ -13,7 +13,6 @@ import { useCreateTimeline } from "module/hook/timeline";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
-  id: string;
   userId: string;
   organizationId: string;
   onClick?: (e: React.MouseEvent) => void;
@@ -32,7 +31,6 @@ function SidebarItem(props: SidebarItemProps) {
   const {
     name,
     userId,
-    id,
     organizationId,
     onClick,
     isCurrent,
