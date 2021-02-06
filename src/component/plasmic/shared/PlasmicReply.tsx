@@ -138,7 +138,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicReply__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicReply__VariantsArgs;
   args?: PlasmicReply__ArgsType;
   overrides?: NodeOverridesType<T>;

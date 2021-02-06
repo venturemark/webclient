@@ -111,7 +111,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicTimelineLink__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicTimelineLink__VariantsArgs;
   args?: PlasmicTimelineLink__ArgsType;
   overrides?: NodeOverridesType<T>;

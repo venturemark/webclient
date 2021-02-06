@@ -199,7 +199,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicActionsColumn__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicActionsColumn__VariantsArgs;
   args?: PlasmicActionsColumn__ArgsType;
   overrides?: NodeOverridesType<T>;
