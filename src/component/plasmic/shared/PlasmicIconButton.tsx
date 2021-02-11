@@ -116,13 +116,11 @@ function PlasmicIconButton__RenderFunc(props: {
           "isDisabled",
           "isDisabled"
         ),
-
         [sty.root__showContent]: hasVariant(
           variants,
           "showContent",
           "showContent"
         ),
-
         [sty.root__withIcons_end]: hasVariant(variants, "withIcons", "end"),
         [sty.root__withIcons_start]: hasVariant(variants, "withIcons", "start"),
       })}
@@ -157,13 +155,11 @@ function PlasmicIconButton__RenderFunc(props: {
               "isDisabled",
               "isDisabled"
             ),
-
             [sty.box__showContent]: hasVariant(
               variants,
               "showContent",
               "showContent"
             ),
-
             [sty.box__withIcons_start]: hasVariant(
               variants,
               "withIcons",
@@ -225,26 +221,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicIconButton__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicIconButton__VariantsArgs;
-    args?: PlasmicIconButton__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicIconButton__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicIconButton__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicIconButton__VariantsArgs;
+  args?: PlasmicIconButton__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicIconButton__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicIconButton__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

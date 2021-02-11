@@ -30,3 +30,19 @@ export function useCreateTimeline() {
     }
   );
 }
+
+export function useUpdateTimeline() {
+  const queryClient = useQueryClient();
+
+  return useMutation<any, any, any>(
+    (timelineUpdate) => {
+      return api.API.Timeline.Update(timelineUpdate);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("timeline");
+      },
+    }
+  );
+}

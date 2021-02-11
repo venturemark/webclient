@@ -180,12 +180,30 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-.iconMenu {
+.itemHoverIcon {
   object-fit: cover;
   width: 1em;
   height: 1em;
 }
-.root:hover .iconMenu {
+.root:hover .itemHoverIcon {
+  width: 16px;
+  height: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.box__xAVp {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.orgHoverIcon {
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.root:hover .orgHoverIcon {
   width: 16px;
   height: 18px;
   cursor: pointer;

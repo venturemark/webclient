@@ -36,6 +36,7 @@ import sty from "./PlasmicSelectItem.module.css"; // plasmic-import: ZvAJESOUhw/
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: FJuvOqJzhV/icon
 
 export type PlasmicSelectItem__VariantMembers = {};
+
 export type PlasmicSelectItem__VariantsArgs = {};
 type VariantPropType = keyof PlasmicSelectItem__VariantsArgs;
 export const PlasmicSelectItem__VariantProps = new Array<VariantPropType>();
@@ -115,26 +116,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSelectItem__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicSelectItem__VariantsArgs;
-    args?: PlasmicSelectItem__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicSelectItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicSelectItem__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicSelectItem__VariantsArgs;
+  args?: PlasmicSelectItem__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicSelectItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicSelectItem__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

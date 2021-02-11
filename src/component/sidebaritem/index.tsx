@@ -6,6 +6,7 @@ import {
   PlasmicSidebarItem,
   DefaultSidebarItemProps,
 } from "component/plasmic/shared/PlasmicSidebarItem";
+import { AntDropdown } from "component/ant/dropdown";
 import { useForm } from "react-hook-form";
 import { INewTimeline } from "module/interface/timeline";
 import { useCreateTimeline } from "module/hook/timeline";
@@ -69,9 +70,14 @@ function SidebarItem(props: SidebarItemProps) {
     <PlasmicSidebarItem
       isInput={isInput}
       isOrganization={isOrganization}
-      iconMenu={{
+      orgHoverIcon={{
         onClick: () => {
           setHasInput(true);
+        },
+      }}
+      itemHoverIcon={{
+        render: () => {
+          return <AntDropdown />;
         },
       }}
       name={name}

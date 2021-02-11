@@ -34,6 +34,7 @@ import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w
 import sty from "./PlasmicTimelineLink.module.css"; // plasmic-import: PGPJmONwto/css
 
 export type PlasmicTimelineLink__VariantMembers = {};
+
 export type PlasmicTimelineLink__VariantsArgs = {};
 type VariantPropType = keyof PlasmicTimelineLink__VariantsArgs;
 export const PlasmicTimelineLink__VariantProps = new Array<VariantPropType>();
@@ -110,26 +111,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicTimelineLink__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicTimelineLink__VariantsArgs;
-    args?: PlasmicTimelineLink__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicTimelineLink__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicTimelineLink__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicTimelineLink__VariantsArgs;
+  args?: PlasmicTimelineLink__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicTimelineLink__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicTimelineLink__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

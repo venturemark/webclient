@@ -36,6 +36,7 @@ import projectcss from "./plasmic_home.module.css"; // plasmic-import: rr3cgzELv
 import sty from "./PlasmicTimelinModal.module.css"; // plasmic-import: BJX20CpONV/css
 
 export type PlasmicTimelinModal__VariantMembers = {};
+
 export type PlasmicTimelinModal__VariantsArgs = {};
 type VariantPropType = keyof PlasmicTimelinModal__VariantsArgs;
 export const PlasmicTimelinModal__VariantProps = new Array<VariantPropType>();
@@ -157,7 +158,6 @@ const PlasmicDescendants = {
     "button",
     "booking3DaysBefor4",
   ],
-
   booking3DaysBefor2: ["booking3DaysBefor2"],
   textbox: ["textbox"],
   booking3DaysBefor: ["booking3DaysBefor"],
@@ -184,26 +184,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicTimelinModal__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicTimelinModal__VariantsArgs;
-    args?: PlasmicTimelinModal__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicTimelinModal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicTimelinModal__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicTimelinModal__VariantsArgs;
+  args?: PlasmicTimelinModal__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicTimelinModal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicTimelinModal__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

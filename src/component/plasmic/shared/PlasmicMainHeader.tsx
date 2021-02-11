@@ -36,6 +36,7 @@ import sty from "./PlasmicMainHeader.module.css"; // plasmic-import: LRwT0lHdps/
 import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicMainHeader__VariantMembers = {};
+
 export type PlasmicMainHeader__VariantsArgs = {};
 type VariantPropType = keyof PlasmicMainHeader__VariantsArgs;
 export const PlasmicMainHeader__VariantProps = new Array<VariantPropType>();
@@ -107,7 +108,6 @@ function PlasmicMainHeader__RenderFunc(props: {
           value={args.timelineName}
           className={classNames(sty.slotTimelineName)}
         />
-
         {false ? (
           <div className={classNames(defaultcss.all, sty.box__sDNfz)}>
             <p.PlasmicSlot
@@ -161,26 +161,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicMainHeader__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicMainHeader__VariantsArgs;
-    args?: PlasmicMainHeader__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMainHeader__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicMainHeader__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicMainHeader__VariantsArgs;
+  args?: PlasmicMainHeader__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicMainHeader__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicMainHeader__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

@@ -34,10 +34,7 @@ import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/com
 import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import ModalAlt from "../../ModalAlt"; // plasmic-import: Rd6ctyxKvRM/component
 
-import {
-  ScreenContext,
-  ScreenValue,
-} from "../shared/PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants } from "../shared/PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -100,7 +97,7 @@ function PlasmicHome__RenderFunc(props: {
   const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: React.useContext(ScreenContext),
+    screen: useScreenVariants(),
   });
 
   return (
@@ -115,7 +112,6 @@ function PlasmicHome__RenderFunc(props: {
           "isTimeline",
           "isTimeline"
         ),
-
         [sty.root__menuToggle]: hasVariant(
           variants,
           "menuToggle",
@@ -317,7 +313,6 @@ function PlasmicHome__RenderFunc(props: {
               "menuToggle",
               "menuToggle"
             ),
-
             [sty.modalOverlay__showLogin]: hasVariant(
               variants,
               "showLogin",
@@ -362,7 +357,6 @@ const PlasmicDescendants = {
     "modalOverlay",
     "loginModal",
   ],
-
   headerContainer: ["headerContainer", "header"],
   header: ["header"],
   sidebarContainer: ["sidebarContainer", "sidebar"],
@@ -376,7 +370,6 @@ const PlasmicDescendants = {
     "actionBar",
     "updatesContainer",
   ],
-
   mainHeaderContainer: ["mainHeaderContainer", "mainHeader"],
   mainHeader: ["mainHeader"],
   container: [
@@ -385,7 +378,6 @@ const PlasmicDescendants = {
     "actionBar",
     "updatesContainer",
   ],
-
   actionBarContainer: ["actionBarContainer", "actionBar"],
   actionBar: ["actionBar"],
   updatesContainer: ["updatesContainer"],
@@ -418,26 +410,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicHome__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicHome__VariantsArgs;
-    args?: PlasmicHome__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHome__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicHome__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicHome__VariantsArgs;
+  args?: PlasmicHome__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicHome__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicHome__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

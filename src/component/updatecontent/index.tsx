@@ -7,6 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicUpdateContent";
 import ReadEditor from "component/editor/read";
 import { Node } from "slate";
+import { AntDropdown } from "component/ant/dropdown";
 import TimelineLink from "component/TimelineLink";
 import { ITimeline } from "module/interface/timeline";
 
@@ -42,6 +43,9 @@ function UpdateContent(props: UpdateContentProps) {
   return (
     <PlasmicUpdateContent
       state={isReply}
+      iconMenu={{
+        render: () => <AntDropdown />,
+      }}
       reply={{
         updateId: id,
         timelineId: timelineId,

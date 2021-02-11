@@ -22,3 +22,11 @@ export interface INewUpdate {
   timelineId: string;
   userId: string;
 }
+
+export interface IUpdateUpdate {
+  text: string;
+  id: string;
+  userId: string;
+  organizationId: string;
+  timelineId: string;
+}

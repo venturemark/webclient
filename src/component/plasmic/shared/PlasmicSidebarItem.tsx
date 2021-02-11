@@ -77,7 +77,8 @@ export type PlasmicSidebarItem__OverridesType = {
   textbox?: p.Flex<"input">;
   sidebarForm?: p.Flex<"form">;
   addTimelineInput?: p.Flex<"input">;
-  iconMenu?: p.Flex<"svg">;
+  itemHoverIcon?: p.Flex<"svg">;
+  orgHoverIcon?: p.Flex<"svg">;
 };
 
 export interface DefaultSidebarItemProps {
@@ -132,19 +133,16 @@ function PlasmicSidebarItem__RenderFunc(props: {
             "hasUpdate",
             "hasUpdate"
           ),
-
           [sty.itemContainer__isCurrent]: hasVariant(
             variants,
             "isCurrent",
             "isCurrent"
           ),
-
           [sty.itemContainer__isInput]: hasVariant(
             variants,
             "isInput",
             "isInput"
           ),
-
           [sty.itemContainer__isOrganization]: hasVariant(
             variants,
             "isOrganization",
@@ -174,19 +172,16 @@ function PlasmicSidebarItem__RenderFunc(props: {
               "hasUpdate",
               "hasUpdate"
             ),
-
             [sty.box__isCurrent__zwdJs0Mgpk]: hasVariant(
               variants,
               "isCurrent",
               "isCurrent"
             ),
-
             [sty.box__isInput__zwdJsVs3Tx]: hasVariant(
               variants,
               "isInput",
               "isInput"
             ),
-
             [sty.box__isOrganization__zwdJsnLnuO]: hasVariant(
               variants,
               "isOrganization",
@@ -222,19 +217,16 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     "hasUpdate",
                     "hasUpdate"
                   ),
-
                   [sty.slotChildren__isCurrent]: hasVariant(
                     variants,
                     "isCurrent",
                     "isCurrent"
                   ),
-
                   [sty.slotChildren__isInput]: hasVariant(
                     variants,
                     "isInput",
                     "isInput"
                   ),
-
                   [sty.slotChildren__isOrganization]: hasVariant(
                     variants,
                     "isOrganization",
@@ -278,19 +270,16 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   "hasUpdate",
                   "hasUpdate"
                 ),
-
                 [sty.slotName__isCurrent]: hasVariant(
                   variants,
                   "isCurrent",
                   "isCurrent"
                 ),
-
                 [sty.slotName__isInput]: hasVariant(
                   variants,
                   "isInput",
                   "isInput"
                 ),
-
                 [sty.slotName__isOrganization]: hasVariant(
                   variants,
                   "isOrganization",
@@ -334,9 +323,9 @@ function PlasmicSidebarItem__RenderFunc(props: {
             ? false
             : hasVariant(variants, "isOrganization", "isOrganization") &&
               triggers.hover_root
-            ? true
-            : triggers.hover_root
             ? false
+            : triggers.hover_root
+            ? true
             : hasVariant(variants, "isInput", "isInput")
             ? false
             : false
@@ -348,7 +337,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 "isInput",
                 "isInput"
               ),
-
               [sty.box__isOrganization__eFeONLnuO]: hasVariant(
                 variants,
                 "isOrganization",
@@ -364,22 +352,80 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 : true
             ) ? (
               <p.PlasmicIcon
-                data-plasmic-name={"iconMenu"}
-                data-plasmic-override={overrides.iconMenu}
+                data-plasmic-name={"itemHoverIcon"}
+                data-plasmic-override={overrides.itemHoverIcon}
                 PlasmicIconType={
                   hasVariant(variants, "isOrganization", "isOrganization") &&
                   triggers.hover_root
                     ? IconPlusIcon
                     : IconDotMenuIcon
                 }
-                className={classNames(defaultcss.all, sty.iconMenu, {
-                  [sty.iconMenu__isInput]: hasVariant(
+                className={classNames(defaultcss.all, sty.itemHoverIcon, {
+                  [sty.itemHoverIcon__isInput]: hasVariant(
                     variants,
                     "isInput",
                     "isInput"
                   ),
-
-                  [sty.iconMenu__isOrganization]: hasVariant(
+                  [sty.itemHoverIcon__isOrganization]: hasVariant(
+                    variants,
+                    "isOrganization",
+                    "isOrganization"
+                  ),
+                })}
+                role={"img"}
+              />
+            ) : null}
+          </div>
+        ) : null}
+        {(
+          hasVariant(variants, "isInput", "isInput") && triggers.hover_root
+            ? false
+            : hasVariant(variants, "isOrganization", "isOrganization") &&
+              triggers.hover_root
+            ? true
+            : triggers.hover_root
+            ? false
+            : hasVariant(variants, "isInput", "isInput")
+            ? false
+            : false
+        ) ? (
+          <div
+            className={classNames(defaultcss.all, sty.box__xAVp, {
+              [sty.box__isInput__xAVpVs3Tx]: hasVariant(
+                variants,
+                "isInput",
+                "isInput"
+              ),
+              [sty.box__isOrganization__xAVpNLnuO]: hasVariant(
+                variants,
+                "isOrganization",
+                "isOrganization"
+              ),
+            })}
+          >
+            {(
+              triggers.hover_root
+                ? true
+                : hasVariant(variants, "isInput", "isInput")
+                ? false
+                : true
+            ) ? (
+              <p.PlasmicIcon
+                data-plasmic-name={"orgHoverIcon"}
+                data-plasmic-override={overrides.orgHoverIcon}
+                PlasmicIconType={
+                  hasVariant(variants, "isOrganization", "isOrganization") &&
+                  triggers.hover_root
+                    ? IconPlusIcon
+                    : IconDotMenuIcon
+                }
+                className={classNames(defaultcss.all, sty.orgHoverIcon, {
+                  [sty.orgHoverIcon__isInput]: hasVariant(
+                    variants,
+                    "isInput",
+                    "isInput"
+                  ),
+                  [sty.orgHoverIcon__isOrganization]: hasVariant(
                     variants,
                     "isOrganization",
                     "isOrganization"
@@ -402,21 +448,22 @@ const PlasmicDescendants = {
     "textbox",
     "sidebarForm",
     "addTimelineInput",
-    "iconMenu",
+    "itemHoverIcon",
+    "orgHoverIcon",
   ],
-
   itemContainer: [
     "itemContainer",
     "textbox",
     "sidebarForm",
     "addTimelineInput",
-    "iconMenu",
+    "itemHoverIcon",
+    "orgHoverIcon",
   ],
-
   textbox: ["textbox"],
   sidebarForm: ["sidebarForm", "addTimelineInput"],
   addTimelineInput: ["addTimelineInput"],
-  iconMenu: ["iconMenu"],
+  itemHoverIcon: ["itemHoverIcon"],
+  orgHoverIcon: ["orgHoverIcon"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -428,7 +475,8 @@ type NodeDefaultElementType = {
   textbox: "input";
   sidebarForm: "form";
   addTimelineInput: "input";
-  iconMenu: "svg";
+  itemHoverIcon: "svg";
+  orgHoverIcon: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -436,26 +484,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSidebarItem__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicSidebarItem__VariantsArgs;
-    args?: PlasmicSidebarItem__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicSidebarItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicSidebarItem__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicSidebarItem__VariantsArgs;
+  args?: PlasmicSidebarItem__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicSidebarItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicSidebarItem__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };
@@ -493,7 +539,8 @@ export const PlasmicSidebarItem = Object.assign(
     textbox: makeNodeComponent("textbox"),
     sidebarForm: makeNodeComponent("sidebarForm"),
     addTimelineInput: makeNodeComponent("addTimelineInput"),
-    iconMenu: makeNodeComponent("iconMenu"),
+    itemHoverIcon: makeNodeComponent("itemHoverIcon"),
+    orgHoverIcon: makeNodeComponent("orgHoverIcon"),
 
     // Metadata about props expected for PlasmicSidebarItem
     internalVariantProps: PlasmicSidebarItem__VariantProps,

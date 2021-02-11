@@ -101,7 +101,6 @@ function PlasmicActionsColumn__RenderFunc(props: {
             "content",
             "hasContent"
           ),
-
           [sty.updateActionContainer__content_hasContent_number_hasNumber]:
             hasVariant(variants, "content", "hasContent") &&
             hasVariant(variants, "number", "hasNumber"),
@@ -123,7 +122,6 @@ function PlasmicActionsColumn__RenderFunc(props: {
               "content",
               "hasContent"
             ),
-
             [sty.sendButton__content_hasContent_number_hasNumber]:
               hasVariant(variants, "content", "hasContent") &&
               hasVariant(variants, "number", "hasNumber"),
@@ -149,13 +147,11 @@ function PlasmicActionsColumn__RenderFunc(props: {
               "content",
               "hasContent"
             ),
-
             [sty.box__number_hasNumber]: hasVariant(
               variants,
               "number",
               "hasNumber"
             ),
-
             [sty.box__number_hasNumber_content_hasContent]:
               hasVariant(variants, "number", "hasNumber") &&
               hasVariant(variants, "content", "hasContent"),
@@ -183,7 +179,6 @@ const PlasmicDescendants = {
     "startIcon",
     "box",
   ],
-
   sendButton: ["sendButton", "startIcon"],
   startIcon: ["startIcon"],
   box: ["box"],
@@ -204,26 +199,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicActionsColumn__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicActionsColumn__VariantsArgs;
-    args?: PlasmicActionsColumn__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActionsColumn__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicActionsColumn__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicActionsColumn__VariantsArgs;
+  args?: PlasmicActionsColumn__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicActionsColumn__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicActionsColumn__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

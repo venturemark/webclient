@@ -20,6 +20,7 @@ function tagRender(props: any) {
         border: "none",
         padding: "5px 10px",
         fontSize: "14px",
+        marginTop: "-2px",
       }}
     >
       {label}

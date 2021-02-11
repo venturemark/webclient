@@ -133,19 +133,16 @@ function PlasmicActionBar__RenderFunc(props: {
             "error",
             "hasError"
           ),
-
           [sty.box__isActive__zG8DovjQpn]: hasVariant(
             variants,
             "isActive",
             "isActive"
           ),
-
           [sty.box__timelineSelected__zG8Do75BwG]: hasVariant(
             variants,
             "timelineSelected",
             "timelineSelected"
           ),
-
           [sty.box__timelineSelected_isActive__zG8Do75BwGVjQpn]:
             hasVariant(variants, "timelineSelected", "timelineSelected") &&
             hasVariant(variants, "isActive", "isActive"),
@@ -158,7 +155,6 @@ function PlasmicActionBar__RenderFunc(props: {
               "isActive",
               "isActive"
             ),
-
             [sty.box__timelineSelected__vJy6G75BwG]: hasVariant(
               variants,
               "timelineSelected",
@@ -173,13 +169,11 @@ function PlasmicActionBar__RenderFunc(props: {
                 "isActive",
                 "isActive"
               ),
-
               [sty.box__timelineSelected__rXa4B75BwG]: hasVariant(
                 variants,
                 "timelineSelected",
                 "timelineSelected"
               ),
-
               [sty.box__timelineSelected_isActive__rXa4B75BwGVjQpn]:
                 hasVariant(variants, "timelineSelected", "timelineSelected") &&
                 hasVariant(variants, "isActive", "isActive"),
@@ -217,13 +211,11 @@ function PlasmicActionBar__RenderFunc(props: {
                 "error",
                 "hasError"
               ),
-
               [sty.editorContainer__isActive]: hasVariant(
                 variants,
                 "isActive",
                 "isActive"
               ),
-
               [sty.editorContainer__text_hasText_error_hasError]:
                 hasVariant(variants, "text", "hasText") &&
                 hasVariant(variants, "error", "hasError"),
@@ -243,7 +235,6 @@ function PlasmicActionBar__RenderFunc(props: {
                   "isActive",
                   "isActive"
                 ),
-
                 [sty.textContainer__timelineSelected]: hasVariant(
                   variants,
                   "timelineSelected",
@@ -277,13 +268,11 @@ function PlasmicActionBar__RenderFunc(props: {
               "isActive",
               "isActive"
             ),
-
             [sty.box__timelineSelected__mQqJf75BwG]: hasVariant(
               variants,
               "timelineSelected",
               "timelineSelected"
             ),
-
             [sty.box__timelineSelected_isActive__mQqJf75BwGVjQpn]:
               hasVariant(variants, "timelineSelected", "timelineSelected") &&
               hasVariant(variants, "isActive", "isActive"),
@@ -298,13 +287,11 @@ function PlasmicActionBar__RenderFunc(props: {
                 "isActive",
                 "isActive"
               ),
-
               [sty.timelineSelect__timelineSelected]: hasVariant(
                 variants,
                 "timelineSelected",
                 "timelineSelected"
               ),
-
               [sty.timelineSelect__timelineSelected_isActive]:
                 hasVariant(variants, "timelineSelected", "timelineSelected") &&
                 hasVariant(variants, "isActive", "isActive"),
@@ -347,7 +334,6 @@ function PlasmicActionBar__RenderFunc(props: {
                   "isActive",
                   "isActive"
                 ),
-
                 [sty.container__isActive_timelineSelected]:
                   hasVariant(variants, "isActive", "isActive") &&
                   hasVariant(variants, "timelineSelected", "timelineSelected"),
@@ -408,7 +394,6 @@ function PlasmicActionBar__RenderFunc(props: {
               "isActive",
               "isActive"
             ),
-
             [sty.box__timelineSelected__lmDWp75BwG]: hasVariant(
               variants,
               "timelineSelected",
@@ -426,13 +411,11 @@ function PlasmicActionBar__RenderFunc(props: {
                   "error",
                   "hasError"
                 ),
-
                 [sty.errorContainer__isActive]: hasVariant(
                   variants,
                   "isActive",
                   "isActive"
                 ),
-
                 [sty.errorContainer__text_hasText_error_hasError]:
                   hasVariant(variants, "text", "hasText") &&
                   hasVariant(variants, "error", "hasError"),
@@ -476,7 +459,6 @@ const PlasmicDescendants = {
     "errorContainer",
     "sendUpdate",
   ],
-
   editorContainer: ["editorContainer", "textContainer"],
   textContainer: ["textContainer"],
   timelineSelect: ["timelineSelect"],
@@ -507,26 +489,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicActionBar__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicActionBar__VariantsArgs;
-    args?: PlasmicActionBar__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActionBar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicActionBar__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicActionBar__VariantsArgs;
+  args?: PlasmicActionBar__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicActionBar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicActionBar__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

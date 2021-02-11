@@ -300,7 +300,6 @@ const PlasmicDescendants = {
     "replyButton",
     "replyInput",
   ],
-
   editorContainer: [
     "editorContainer",
     "userName",
@@ -311,7 +310,6 @@ const PlasmicDescendants = {
     "replyButton",
     "replyInput",
   ],
-
   userName: ["userName"],
   span: ["span"],
   date: ["date"],
@@ -341,26 +339,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicReplyContentSecond__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicReplyContentSecond__VariantsArgs;
-    args?: PlasmicReplyContentSecond__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicReplyContentSecond__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicReplyContentSecond__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicReplyContentSecond__VariantsArgs;
+  args?: PlasmicReplyContentSecond__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicReplyContentSecond__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicReplyContentSecond__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

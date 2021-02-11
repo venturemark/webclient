@@ -40,6 +40,7 @@ import IconClockIcon from "./icons/PlasmicIcon__IconClock"; // plasmic-import: M
 import IconBarChartIcon from "./icons/PlasmicIcon__IconBarChart"; // plasmic-import: Y3JBiNHxmK/icon
 
 export type PlasmicUpdate__VariantMembers = {};
+
 export type PlasmicUpdate__VariantsArgs = {};
 type VariantPropType = keyof PlasmicUpdate__VariantsArgs;
 export const PlasmicUpdate__VariantProps = new Array<VariantPropType>();
@@ -165,7 +166,6 @@ const PlasmicDescendants = {
     "updateContent",
     "organizationName",
   ],
-
   updateActionContainer: [
     "updateActionContainer",
     "startIcon",
@@ -173,7 +173,6 @@ const PlasmicDescendants = {
     "toggleUpdateView",
     "startIcon22",
   ],
-
   startIcon: ["startIcon"],
   startIcon2: ["startIcon2"],
   toggleUpdateView: ["toggleUpdateView", "startIcon22"],
@@ -201,26 +200,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUpdate__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicUpdate__VariantsArgs;
-    args?: PlasmicUpdate__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicUpdate__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicUpdate__VariantsArgs;
+  args?: PlasmicUpdate__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicUpdate__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

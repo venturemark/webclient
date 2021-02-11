@@ -36,6 +36,7 @@ import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w
 import sty from "./PlasmicModal.module.css"; // plasmic-import: FsY3j3NYte/css
 
 export type PlasmicModal__VariantMembers = {};
+
 export type PlasmicModal__VariantsArgs = {};
 type VariantPropType = keyof PlasmicModal__VariantsArgs;
 export const PlasmicModal__VariantProps = new Array<VariantPropType>();
@@ -203,7 +204,6 @@ const PlasmicDescendants = {
     "selectUserButton",
     "ventureMark",
   ],
-
   group64: [
     "group64",
     "rectangle587",
@@ -215,7 +215,6 @@ const PlasmicDescendants = {
     "selectUserButton",
     "ventureMark",
   ],
-
   rectangle587: ["rectangle587", "ellipse2"],
   ellipse2: ["ellipse2"],
   welcomeForm: [
@@ -226,7 +225,6 @@ const PlasmicDescendants = {
     "selectUserButton",
     "ventureMark",
   ],
-
   selectUserContainer: ["selectUserContainer", "selectUserInput", "label"],
   selectUserInput: ["selectUserInput", "label"],
   label: ["label"],
@@ -255,26 +253,24 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicModal__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> =
+type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  {
-    variants?: PlasmicModal__VariantsArgs;
-    args?: PlasmicModal__ArgsType;
-    overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicModal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    // Specify args directly as props
-    Omit<PlasmicModal__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  variants?: PlasmicModal__VariantsArgs;
+  args?: PlasmicModal__ArgsType;
+  overrides?: NodeOverridesType<T>;
+} & Omit<PlasmicModal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  // Specify args directly as props
+  Omit<PlasmicModal__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

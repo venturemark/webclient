@@ -3,53 +3,30 @@
 /* tslint:disable */
 /* prettier-ignore-start */
 import * as React from "react";
+import * as p from "@plasmicapp/react-web";
 export type ScreenValue = "desktop" | "tablet" | "mobile" | "notSupported";
 export const ScreenContext = React.createContext<ScreenValue | undefined>(
   "PLEASE_RENDER_INSIDE_PROVIDER" as any
 );
 
-const screenVariants: ScreenValue[] = [
-  "desktop",
-  "tablet",
-  "mobile",
-  "notSupported",
-];
-const screenQueries = [
-  "(min-width:1440px)",
-  "(min-width:760px) and (max-width:1440px)",
-  "(min-width:0px) and (max-width:760px)",
-  "(min-width:0px) and (max-width:319px)",
-];
-
-function matchScreenVariant() {
-  if (!globalThis.matchMedia) {
-    return undefined;
-  }
-  const index = screenQueries.findIndex(
-    (q) => globalThis.matchMedia(q).matches
+/**
+ *  @deprecated Plasmic now uses a custom hook for Screen variants, which is
+ *  automatically included in your components. Please remove this provider
+ *  from your code.
+ */
+export function ScreenVariantProvider(props: React.PropsWithChildren) {
+  console.warn(
+    "DEPRECATED: Plasmic now uses a custom hook for Screen variants, which is automatically included in your components. Please remove this provider from your code."
   );
-  return index >= 0 ? screenVariants[index] : undefined;
+  return props.children;
 }
 
-export function ScreenVariantProvider(props: { children?: React.ReactNode }) {
-  const [value, setValue] = React.useState<ScreenValue>();
-  React.useEffect(() => {
-    const handler = () => {
-      const newValue = matchScreenVariant();
-      if (newValue !== value) {
-        setValue(newValue);
-      }
-    };
-    handler();
-    window.addEventListener("resize", handler);
-    return () => window.removeEventListener("resize", handler);
-  }, [value]);
-  return (
-    <ScreenContext.Provider value={value}>
-      {props.children}
-    </ScreenContext.Provider>
-  );
-}
+export const useScreenVariants = p.createUseScreenVariants(false, {
+  desktop: "(min-width:1440px)",
+  tablet: "(min-width:760px) and (max-width:1440px)",
+  mobile: "(min-width:0px) and (max-width:760px)",
+  notSupported: "(min-width:0px) and (max-width:319px)",
+});
 
 export default ScreenContext;
 /* prettier-ignore-end */
