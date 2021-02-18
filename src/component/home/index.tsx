@@ -88,51 +88,51 @@ export function Component(props: HomeProps) {
 
   return (
     <PlasmicHome
-      header={{
-        userInitials: userId
-          .split(" ")
-          .map((n) => n[0])
-          .join(""),
-      }}
-      showLogin={showLogin}
-      loginModal={{
-        organizationDescription:
-          "Venturemark helps founders communicate to internal and external stakeholders.",
-        setLogin: setLogin,
-      }}
-      isTimeline={!isHome}
-      sidebar={{
-        isHome: isHome,
-        setIsHome: setIsHome,
-        currentTimeline: currentTimeline,
-        setCurrentTimeline: setCurrentTimeline,
-        userId: userId,
-        organizationId: organizationId,
-      }}
-      actionBar={{
-        organizationId: organizationId,
-        currentTimeline: currentTimeline,
-        userId: userId,
-      }}
-      mainHeader={{
-        timelineName: currentTimeline?.name ?? "",
-        timelineDescription: currentTimeline?.desc ?? "edit description...",
-      }}
-      updatesContainer={{
-        children: updates.map((update: IUpdate) => (
-          <Update
-            text={update.text}
-            key={update.id}
-            id={update.id}
-            organizationName={update.organizationId}
-            timelineId={update.timelineId}
-            userName={update.userId}
-            date={update.date}
-            allUpdates={allUpdates}
-            setCurrentTimeline={setCurrentTimeline}
-          />
-        )),
-      }}
+    // header={{
+    //   userInitials: userId
+    //     .split(" ")
+    //     .map((n) => n[0])
+    //     .join(""),
+    // }}
+    // showLogin={showLogin}
+    // loginModal={{
+    //   organizationDescription:
+    //     "Venturemark helps founders communicate to internal and external stakeholders.",
+    //   setLogin: setLogin,
+    // }}
+    // isTimeline={!isHome}
+    // sidebar={{
+    //   isHome: isHome,
+    //   setIsHome: setIsHome,
+    //   currentTimeline: currentTimeline,
+    //   setCurrentTimeline: setCurrentTimeline,
+    //   userId: userId,
+    //   organizationId: organizationId,
+    // }}
+    // actionBar={{
+    //   organizationId: organizationId,
+    //   currentTimeline: currentTimeline,
+    //   userId: userId,
+    // }}
+    // mainHeader={{
+    //   timelineName: currentTimeline?.name ?? "",
+    //   timelineDescription: currentTimeline?.desc ?? "edit description...",
+    // }}
+    // updatesContainer={{
+    //   children: updates.map((update: IUpdate) => (
+    //     <Update
+    //       text={update.text}
+    //       key={update.id}
+    //       id={update.id}
+    //       organizationName={update.organizationId}
+    //       timelineId={update.timelineId}
+    //       userName={update.userId}
+    //       date={update.date}
+    //       allUpdates={allUpdates}
+    //       setCurrentTimeline={setCurrentTimeline}
+    //     />
+    //   )),
+    // }}
     />
   );
 }

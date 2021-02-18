@@ -55,37 +55,37 @@ function Sidebar(props: SidebarProps) {
 
   return (
     <PlasmicSidebar
-      organizationName={{
-        name: organizationId,
-        isOrganization: true,
-        setHasInput: setHasInput,
-      }}
+      // organizationName={{
+      //   name: organizationId,
+      //   isOrganization: true,
+      //   setHasInput: setHasInput,
+      // }}
       hasInput={hasInput}
-      homeSidebarItem={{
-        onClick: () => {
-          setCurrentTimeline(undefined);
-        },
-        isCurrent: isHome,
-      }}
+      // homeSidebarItem={{
+      //   onClick: () => {
+      //     setCurrentTimeline(undefined);
+      //   },
+      //   isCurrent: isHome,
+      // }}
       addTimeline={{
         userId: userId,
         organizationId: organizationId,
         setHasInput: setHasInput,
       }}
-      timelinesContainer={{
-        children: sortedCurrentTimelines.map((timeline: ITimeline) => (
-          <SidebarItem
-            name={timeline.name}
-            key={timeline.id}
-            isCurrent={timeline.isCurrent}
-            onClick={() => {
-              setCurrentTimeline(timeline);
-            }}
-            userId={userId}
-            organizationId={organizationId}
-          />
-        )),
-      }}
+      // timelinesContainer={{
+      //   children: sortedCurrentTimelines.map((timeline: ITimeline) => (
+      //     <SidebarItem
+      //       name={timeline.name}
+      //       key={timeline.id}
+      //       isCurrent={timeline.isCurrent}
+      //       onClick={() => {
+      //         setCurrentTimeline(timeline);
+      //       }}
+      //       userId={userId}
+      //       organizationId={organizationId}
+      //     />
+      //   )),
+      // }}
     />
   );
 }
