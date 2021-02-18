@@ -10,24 +10,75 @@
   width: auto;
   height: auto;
   display: inline-flex;
-  background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   min-width: 120px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 10px 15px;
+  background: linear-gradient(rgb(2, 157, 127), rgb(2, 157, 127))
+    /* plasmic-token: Jfzps88GdGw80SE, Jfzps88GdGw80SE */;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
-.button__buttonStyle_secondary {
-  background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+.button__buttonStyle_primaryPurple {
+  background: linear-gradient(rgb(38, 26, 63), rgb(38, 26, 63))
+    /* plasmic-token: pJ8JNfS_nOyDpci, pJ8JNfS_nOyDpci */;
+}
+.button__buttonFeatures_iconOnly {
+  min-width: 0px;
+  padding: 10px;
+}
+.button__disabled {
+  opacity: 0.5;
+}
+.button__buttonStyle_secondaryPurple {
+  background: none;
+  border: 1px solid rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.button__buttonStyle_secondaryGreen {
+  background: linear-gradient(#ffffff, #ffffff)
+    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
   border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.root:hover .button {
-  background-color: rgba(2, 157, 127, 0.91) /* plasmic-token: ktdOhSoiQwPKRUS */;
+.button__buttonStyle_danger {
+  background: linear-gradient(#ffffff, #ffffff)
+    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
+  border: 1px solid rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
-.root:active .button {
-  background-color: rgba(2, 157, 127, 0.91) /* plasmic-token: ktdOhSoiQwPKRUS */;
+.button__buttonStyle_whiteBlue {
+  box-shadow: 2px 2px 4px 1px rgba(221, 220, 220, 0.5);
+  background: linear-gradient(#ffffff, #ffffff)
+    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
+  border-width: 1px;
+  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.button__buttonFeatures_rounded {
+  border-radius: 30px;
+}
+.root:hover .button {
+  background: linear-gradient(rgb(0, 142, 113), rgb(0, 142, 113))
+    /* plasmic-token: UlVSoc2FV, UlVSoc2FV */;
+}
+.root__buttonStyle_primaryPurple:hover .button__buttonStyle_primaryPurple {
+  background: linear-gradient(rgb(56, 31, 86), rgb(56, 31, 86))
+    /* plasmic-token: BQ77SKZJQ, BQ77SKZJQ */;
+}
+.root__buttonStyle_secondaryPurple:hover .button__buttonStyle_secondaryPurple {
+  background: linear-gradient(rgba(74, 40, 112, 0.05), rgba(74, 40, 112, 0.05))
+    /* plasmic-token: RvvnSEjNc, RvvnSEjNc */;
+}
+.root__buttonStyle_secondaryGreen:hover .button__buttonStyle_secondaryGreen {
+  background: rgba(20, 220, 152, 0.06);
+}
+.root__buttonStyle_danger:hover .button__buttonStyle_danger {
+  background: linear-gradient(rgb(218, 36, 82), rgb(218, 36, 82))
+    /* plasmic-token: NYSf9tLZvxevghS, NYSf9tLZvxevghS */;
+}
+.root__buttonStyle_whiteBlue:hover .button__buttonStyle_whiteBlue {
+  background: linear-gradient(#ffffff, #ffffff)
+    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
 }
 .box {
   display: inline-flex;
@@ -38,20 +89,107 @@
   width: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
-  justify-content: center;
 }
-.slotText {
-  font-family: "SF Pro Display";
-  font-size: 14px;
-  font-weight: 900;
+.box > :global(.__wab_flex-container) {
+  justify-content: center;
+  align-items: center;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.box > :global(.__wab_flex-container) > *,
+.box > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-left: 5px;
+}
+.slotSlot__buttonFeatures_leftIcon {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotSlot__buttonFeatures_leftIcon_buttonStyle_danger {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.slotSlot__buttonFeatures_leftIcon_buttonStyle_secondaryPurple {
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.slotSlot__buttonFeatures_leftIcon_buttonStyle_secondaryGreen {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.svg__vdEop {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.slotCount {
+  font-size: 16px /* plasmic-token: mV0JUhpGq */;
+  font-weight: 500;
   color: rgba(255, 255, 255, 1);
   text-align: center;
   text-transform: none;
   letter-spacing: 0px;
 }
-.slotText > * {
+.slotCount > * {
   text-decoration-line: none;
 }
-.slotText__buttonStyle_secondary {
+.slotCount__buttonStyle_secondaryPurple {
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.slotCount__buttonStyle_secondaryGreen {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.slotCount__buttonStyle_danger {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.slotCount__buttonFeatures_rounded {
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+}
+.root__buttonStyle_danger:hover .slotCount__buttonStyle_danger {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotText2 {
+  font-size: 16px /* plasmic-token: mV0JUhpGq */;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  text-transform: none;
+  letter-spacing: 0px;
+}
+.slotText2 > * {
+  text-decoration-line: none;
+}
+.slotText2__buttonStyle_secondaryPurple {
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.slotText2__buttonStyle_secondaryGreen {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.slotText2__buttonStyle_danger {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.slotText2__buttonStyle_whiteBlue {
+  color: rgb(46, 129, 184) /* plasmic-token: IfaVHQ1Yp */;
+}
+.slotText2__buttonFeatures_rounded {
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+}
+.root__buttonStyle_danger:hover .slotText2__buttonStyle_danger {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotChildren__buttonFeatures_rightIcon {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotChildren__buttonFeatures_rightIcon_buttonStyle_secondaryGreen {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.slotChildren__buttonFeatures_rightIcon_buttonStyle_danger {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.slotChildren__buttonFeatures_rightIcon_buttonStyle_secondaryPurple {
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.svg___85Aov {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+  flex-shrink: 0;
 }

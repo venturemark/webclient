@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   PlasmicHome,
   DefaultHomeProps,
-} from "component/plasmic/home/PlasmicHome";
+} from "component/plasmic/shared/PlasmicHome";
 import Update from "component/update";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";

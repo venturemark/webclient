@@ -1,0 +1,33 @@
+.root {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 100%;
+  background: linear-gradient(rgb(2, 157, 127), rgb(2, 157, 127))
+    /* plasmic-token: Jfzps88GdGw80SE, Jfzps88GdGw80SE */;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .root {
+    width: 26px;
+    height: 26px;
+  }
+}
+.box {
+  display: inline-flex;
+  position: relative;
+  width: auto;
+  height: auto;
+}
+.slotUserInitials {
+  font-size: 20px;
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .slotUserInitials {
+    font-size: 12px /* plasmic-token: LxqIZc9hM */;
+  }
+}

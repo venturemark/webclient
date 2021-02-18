@@ -1,18 +1,22 @@
 .root {
-  display: inline-flex;
-  width: auto;
+  display: flex;
+  width: 100%;
   height: auto;
   position: relative;
+  min-width: 0;
 }
 .box__ky7Rm {
   display: flex;
   position: relative;
-  background-color: rgba(68, 192, 255, 0);
   width: 100%;
   height: 75px;
   flex-direction: row;
   min-width: 0;
   padding: 0px 24px;
+  background: linear-gradient(#ffffff, #ffffff)
+    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
+  border-bottom: 1px solid rgb(224, 224, 224)
+    /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .box__ky7Rm > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -73,26 +77,27 @@
     margin-top: 0px;
   }
 }
-.svg {
+.svg___09Qs7 {
   object-fit: cover;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   flex-shrink: 0;
 }
-.box__c0F9M {
+.svg__u6Qtf {
   position: relative;
-  font-size: 20px;
-  font-weight: 500;
-  text-transform: uppercase;
+  object-fit: cover;
+  width: 148px;
+  height: 13px;
+  flex-shrink: 0;
 }
 .box___4Ktdl {
   display: inline-flex;
   position: relative;
-  background-color: rgba(68, 192, 255, 0);
   width: auto;
   height: auto;
   flex-direction: row;
+  background: rgba(68, 192, 255, 0);
 }
 .box___4Ktdl > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -104,26 +109,7 @@
 .box___4Ktdl > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 20px;
 }
-.box___7UEdG {
-  display: flex;
+.photoAvatar:global(.__wab_instance) {
   position: relative;
-  background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
-  width: 40px;
-  height: 40px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
   flex-shrink: 0;
-  border-radius: 100%;
-}
-.box__wOx1P {
-  display: inline-flex;
-  position: relative;
-  width: auto;
-  height: auto;
-}
-.slotUserInitials {
-  font-size: 20px;
-  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }

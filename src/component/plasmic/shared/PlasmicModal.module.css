@@ -5,8 +5,7 @@
   position: relative;
 }
 .group64 {
-  box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
-  background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+  box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
   opacity: 1;
   transform: scale(1, 1) rotate(0deg);
   width: 450px;
@@ -15,13 +14,14 @@
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
-  border-radius: 8px;
   padding: 0px;
+  background: linear-gradient(#ffffff, #ffffff)
+    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .rectangle587 {
   opacity: 1;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
-  background-color: rgba(244, 244, 244, 1);
   width: 100%;
   height: auto;
   display: flex;
@@ -39,6 +39,7 @@
   border-right-width: 0px;
   border-left-width: 0px;
   min-width: 0;
+  background: rgba(244, 244, 244, 1);
   border-style: solid;
   border-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
@@ -55,7 +56,6 @@
 .ellipse2 {
   opacity: 1;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
-  background-color: rgba(255, 255, 255, 1);
   width: 90px;
   height: 90px;
   display: block;
@@ -65,6 +65,7 @@
   transform-origin: top left;
   flex-shrink: 0;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 1);
 }
 .box__budGd {
   display: flex;
@@ -135,7 +136,6 @@
 }
 .label {
   opacity: 1;
-  background-color: transparent;
   display: block;
   font-size: 16px;
   text-align: center;
@@ -152,6 +152,7 @@
   position: relative;
   left: auto;
   top: auto;
+  background: transparent;
 }
 .selectUserButton:global(.__wab_instance) {
   position: relative;
@@ -196,7 +197,6 @@
 }
 .ventureMark {
   opacity: 1;
-  background-color: transparent;
   display: block;
   font-size: 12px;
   text-align: left;
@@ -213,4 +213,5 @@
   height: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
+  background: transparent;
 }
