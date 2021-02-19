@@ -3,9 +3,9 @@
 import React from "react";
 import { PressEvent } from "@react-types/shared";
 import {
-  PlasmicSidebarItem,
-  DefaultSidebarItemProps,
-} from "component/plasmic/shared/PlasmicSidebarItem";
+PlasmicSidebarItem,
+DefaultSidebarItemProps } from
+"component/plasmic/shared/PlasmicSidebarItem";
 import { AntDropdown } from "component/ant/dropdown";
 import { useForm } from "react-hook-form";
 import { INewTimeline } from "module/interface/timeline";
@@ -20,12 +20,12 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   isCurrent: boolean;
   isInput?: boolean;
   isOrganization?: boolean;
-  setHasInput?: any;
-}
+  setHasInput?: any;}
+
 
 type FormInputs = {
-  name: string;
-};
+  name: string;};
+
 
 function SidebarItem(props: SidebarItemProps) {
   const {
@@ -36,8 +36,8 @@ function SidebarItem(props: SidebarItemProps) {
     isCurrent,
     isInput,
     isOrganization,
-    setHasInput,
-  } = props;
+    setHasInput } =
+  props;
 
   const { register, handleSubmit, reset } = useForm<FormInputs>();
 
@@ -52,47 +52,47 @@ function SidebarItem(props: SidebarItemProps) {
       name: data.name,
       desc: "edit timeline description",
       userId,
-      organizationId,
-    };
+      organizationId };
+
 
     // audienceMutation(timelineId)
     createTimeline(newTimeline);
 
     //reset form
     reset({
-      name: "",
-    });
+      name: "" });
+
+
     //hide sidebar
     setHasInput(false);
   };
 
   return (
     <PlasmicSidebarItem
-      isInput={isInput}
-      isOrganization={isOrganization}
-      orgHoverIcon={{
-        onClick: () => {
-          setHasInput(true);
-        },
-      }}
-      itemHoverIcon={{
-        render: () => {
-          return <AntDropdown />;
-        },
-      }}
-      name={name}
-      isCurrent={isCurrent}
-      onClick={onClick}
-      sidebarForm={{
-        onSubmit: handleSubmit(handleAddTimeline),
-      }}
-      addTimelineInput={{
-        name: "name",
-        ref: register(),
-        maxLength: 15,
-      }}
-    />
-  );
+    // isInput={isInput}
+    // isOrganization={isOrganization}
+    // orgHoverIcon={{
+    //   onClick: () => {
+    //     setHasInput(true);
+    //   } }}
+
+    // itemHoverIcon={{
+    //   render: () => {
+    //     return <AntDropdown />;
+    //   } }}
+
+    name={name}
+    isActive={isCurrent}
+    onClick={onClick}
+    // sidebarForm={{
+    //   onSubmit: handleSubmit(handleAddTimeline) }}
+
+    // addTimelineInput={{
+    //   name: "name",
+    //   ref: register(),
+    //   maxLength: 15 }}
+    />);
+
 }
 
 export default SidebarItem;

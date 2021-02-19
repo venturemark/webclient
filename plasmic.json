@@ -109,7 +109,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicHeader.tsx",
           "importSpec": {
-            "modulePath": "Header.tsx"
+            "modulePath": "header/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicHeader.module.css",
           "scheme": "blackbox",
@@ -122,22 +122,9 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicMainHeader.tsx",
           "importSpec": {
-            "modulePath": "MainHeader.tsx"
+            "modulePath": "mainheader/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicMainHeader.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
-          "id": "ZvAJESOUhw",
-          "name": "Tag",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicTag.tsx",
-          "importSpec": {
-            "modulePath": "SelectItem.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicTag.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -148,7 +135,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicSidebarOrganizationName.tsx",
           "importSpec": {
-            "modulePath": "SidebarOrganizationName.tsx"
+            "modulePath": "sidebarorganizationname/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSidebarOrganizationName.module.css",
           "scheme": "blackbox",
@@ -161,7 +148,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicDropdown.tsx",
           "importSpec": {
-            "modulePath": "Dropdown.tsx"
+            "modulePath": "dropdown/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicDropdown.module.css",
           "scheme": "blackbox",
@@ -174,7 +161,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicModal.tsx",
           "importSpec": {
-            "modulePath": "Modal.tsx"
+            "modulePath": "modal/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicModal.module.css",
           "scheme": "blackbox",
@@ -187,22 +174,9 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicButton.tsx",
           "importSpec": {
-            "modulePath": "Button.tsx"
+            "modulePath": "button/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicButton.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
-          "id": "v0nNSTRV39",
-          "name": "InputText",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicInputText.tsx",
-          "importSpec": {
-            "modulePath": "TextInput.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicInputText.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -213,7 +187,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicReplyContent.tsx",
           "importSpec": {
-            "modulePath": "ReplyContent.tsx"
+            "modulePath": "replycontent/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicReplyContent.module.css",
           "scheme": "blackbox",
@@ -226,7 +200,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicReply.tsx",
           "importSpec": {
-            "modulePath": "Reply.tsx"
+            "modulePath": "reply/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicReply.module.css",
           "scheme": "blackbox",
@@ -239,7 +213,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicReplyContentSecond.tsx",
           "importSpec": {
-            "modulePath": "ReplyContentSecond.tsx"
+            "modulePath": "replycontentsecond/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicReplyContentSecond.module.css",
           "scheme": "blackbox",
@@ -252,7 +226,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicReplyInput.tsx",
           "importSpec": {
-            "modulePath": "ReplyInput.tsx"
+            "modulePath": "replyinput/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicReplyInput.module.css",
           "scheme": "blackbox",
@@ -265,7 +239,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicModalAlt.tsx",
           "importSpec": {
-            "modulePath": "ModalAlt.tsx"
+            "modulePath": "modalalt/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicModalAlt.module.css",
           "scheme": "blackbox",
@@ -278,7 +252,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicSelectTimeline.tsx",
           "importSpec": {
-            "modulePath": "SelectTimeline.tsx"
+            "modulePath": "selecttimeline/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSelectTimeline.module.css",
           "scheme": "blackbox",
@@ -291,7 +265,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicTimelineLink.tsx",
           "importSpec": {
-            "modulePath": "TimelineLink.tsx"
+            "modulePath": "timelinelink/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicTimelineLink.module.css",
           "scheme": "blackbox",
@@ -304,7 +278,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicInputTextArea.tsx",
           "importSpec": {
-            "modulePath": "InputTextArea.tsx"
+            "modulePath": "inputtextarea/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicInputTextArea.module.css",
           "scheme": "blackbox",
@@ -317,7 +291,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicInputToggleButton.tsx",
           "importSpec": {
-            "modulePath": "InputToggleButton.tsx"
+            "modulePath": "inputtogglebutton/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicInputToggleButton.module.css",
           "scheme": "blackbox",
@@ -330,7 +304,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicIconButtonMember.tsx",
           "importSpec": {
-            "modulePath": "IconButtonMember.tsx"
+            "modulePath": "iconbuttonmember/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicIconButtonMember.module.css",
           "scheme": "blackbox",
@@ -343,7 +317,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicInputToggleSet.tsx",
           "importSpec": {
-            "modulePath": "InputToggleSet.tsx"
+            "modulePath": "inputtoggleset/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicInputToggleSet.module.css",
           "scheme": "blackbox",
@@ -356,7 +330,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicErrorMessage.tsx",
           "importSpec": {
-            "modulePath": "ErrorMessage.tsx"
+            "modulePath": "errormessage/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicErrorMessage.module.css",
           "scheme": "blackbox",
@@ -369,7 +343,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicSignin.tsx",
           "importSpec": {
-            "modulePath": "Signin.tsx"
+            "modulePath": "signin/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSignin.module.css",
           "scheme": "blackbox",
@@ -382,7 +356,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicProfile.tsx",
           "importSpec": {
-            "modulePath": "Profile.tsx"
+            "modulePath": "profile/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicProfile.module.css",
           "scheme": "blackbox",
@@ -408,7 +382,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicPhotoAvatar.tsx",
           "importSpec": {
-            "modulePath": "PhotoAvatar.tsx"
+            "modulePath": "photoavatar/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicPhotoAvatar.module.css",
           "scheme": "blackbox",
@@ -421,7 +395,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicNotificationCount.tsx",
           "importSpec": {
-            "modulePath": "NotificationCount.tsx"
+            "modulePath": "notificationcount/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicNotificationCount.module.css",
           "scheme": "blackbox",
@@ -434,7 +408,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicTags.tsx",
           "importSpec": {
-            "modulePath": "Tags.tsx"
+            "modulePath": "tags/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicTags.module.css",
           "scheme": "blackbox",
@@ -447,7 +421,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicInputToggleSwitcher.tsx",
           "importSpec": {
-            "modulePath": "InputToggleSwitcher.tsx"
+            "modulePath": "inputtoggleswitcher/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicInputToggleSwitcher.module.css",
           "scheme": "blackbox",
@@ -460,7 +434,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicButtonToggleSwitcher.tsx",
           "importSpec": {
-            "modulePath": "ButtonToggleSwitcher.tsx"
+            "modulePath": "buttontoggleswitcher/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicButtonToggleSwitcher.module.css",
           "scheme": "blackbox",
@@ -473,7 +447,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicListItem.tsx",
           "importSpec": {
-            "modulePath": "ListItem.tsx"
+            "modulePath": "listitem/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicListItem.module.css",
           "scheme": "blackbox",
@@ -486,7 +460,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicSidebarItemGroup.tsx",
           "importSpec": {
-            "modulePath": "SidebarItemGroup.tsx"
+            "modulePath": "sidebaritemgroup/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSidebarItemGroup.module.css",
           "scheme": "blackbox",
@@ -499,9 +473,35 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicIconButton.tsx",
           "importSpec": {
-            "modulePath": "IconButton.tsx"
+            "modulePath": "iconbutton/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicIconButton.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "ZvAJESOUhw",
+          "name": "Tag",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicTag.tsx",
+          "importSpec": {
+            "modulePath": "tag/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicTag.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "v0nNSTRV39",
+          "name": "InputText",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicInputText.tsx",
+          "importSpec": {
+            "modulePath": "inputtext/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicInputText.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -798,6 +798,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.107",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.107/dist/plasmic.schema.json"
+  "cliVersion": "0.1.109",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.109/dist/plasmic.schema.json"
 }

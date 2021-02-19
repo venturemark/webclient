@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React from "react";
 import {
-  PlasmicUpdate,
-  DefaultUpdateProps,
-} from "component/plasmic/shared/PlasmicUpdate";
+PlasmicUpdate,
+DefaultUpdateProps } from
+"component/plasmic/shared/PlasmicUpdate";
 import { Node } from "slate";
 import { useTimelines } from "module/hook/timeline";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
@@ -19,9 +19,9 @@ interface UpdateProps extends DefaultUpdateProps {
   date: string;
   allUpdates: IUpdate[];
   setCurrentTimeline: React.Dispatch<
-    React.SetStateAction<ITimeline | undefined>
-  >;
-}
+  React.SetStateAction<ITimeline | undefined>>;}
+
+
 
 function Update(props: UpdateProps) {
   const {
@@ -32,45 +32,45 @@ function Update(props: UpdateProps) {
     userName,
     date,
     allUpdates,
-    setCurrentTimeline,
-  } = props;
+    setCurrentTimeline } =
+  props;
 
   const timelineSearch: ITimelineQuery = {
     userId: userName,
-    organizationId: organizationName,
-  };
+    organizationId: organizationName };
+
 
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
 
-  const updateTimelines = allUpdates
-    .filter(
-      (update: IUpdate) =>
-        Math.round(Number(update.id) / 1000000000) ===
-        Math.round(Number(id) / 1000000000)
-    )
-    .map((update) => {
-      const updateTimelines = timelines.filter(
-        (timeline: ITimeline) => timeline.id === update.timelineId
-      );
-      return updateTimelines;
-    })
-    .flat();
+  const updateTimelines = allUpdates.
+  filter(
+  (update: IUpdate) =>
+  Math.round(Number(update.id) / 1000000000) ===
+  Math.round(Number(id) / 1000000000)).
+
+  map(update => {
+    const updateTimelines = timelines.filter(
+    (timeline: ITimeline) => timeline.id === update.timelineId);
+
+    return updateTimelines;
+  }).
+  flat();
 
   return (
     <PlasmicUpdate
-      updateContent={{
-        text: text,
-        id: id,
-        timelineId: timelineId,
-        organizationName: organizationName,
-        userName: userName,
-        updateTimelines: updateTimelines,
-        date: date,
-        setCurrentTimeline: setCurrentTimeline,
-      }}
-    />
-  );
+    updateContent={{
+      text: text,
+      id: id,
+      timelineId: timelineId,
+      organizationName: organizationName,
+      userName: userName,
+      updateTimelines: updateTimelines,
+      date: date,
+      setCurrentTimeline: setCurrentTimeline }} />);
+
+
+
 }
 
 export default Update;

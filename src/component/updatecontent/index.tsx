@@ -2,13 +2,13 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React, { useState } from "react";
 import {
-  PlasmicUpdateContent,
-  DefaultUpdateContentProps,
-} from "component/plasmic/shared/PlasmicUpdateContent";
+PlasmicUpdateContent,
+DefaultUpdateContentProps } from
+"component/plasmic/shared/PlasmicUpdateContent";
 import ReadEditor from "component/editor/read";
 import { Node } from "slate";
 import { AntDropdown } from "component/ant/dropdown";
-import TimelineLink from "component/TimelineLink";
+import TimelineLink from "component/timelinelink";
 import { ITimeline } from "module/interface/timeline";
 
 interface UpdateContentProps extends DefaultUpdateContentProps {
@@ -20,9 +20,9 @@ interface UpdateContentProps extends DefaultUpdateContentProps {
   updateTimelines: ITimeline[];
   date: string;
   setCurrentTimeline: React.Dispatch<
-    React.SetStateAction<ITimeline | undefined>
-  >;
-}
+  React.SetStateAction<ITimeline | undefined>>;}
+
+
 
 function UpdateContent(props: UpdateContentProps) {
   const {
@@ -33,44 +33,44 @@ function UpdateContent(props: UpdateContentProps) {
     timelineId,
     date,
     id,
-    setCurrentTimeline,
-  } = props;
+    setCurrentTimeline } =
+  props;
 
   const [isReply, setIsReply] = useState<"isReply" | "isUser" | undefined>(
-    undefined
-  );
+  undefined);
+
 
   return (
     <PlasmicUpdateContent
-      state={isReply}
-      iconMenu={{
-        render: () => <AntDropdown />,
-      }}
-      reply={{
-        updateId: id,
-        timelineId: timelineId,
-        organizationId: organizationName,
-        userId: userName,
-      }}
-      replyButton={{
-        onClick: () => setIsReply("isReply"),
-      }}
-      organizationName={organizationName}
-      userName={userName}
-      date={date}
-      timelineNamesContainer={{
-        children: updateTimelines.map((timeline: ITimeline) => (
-          <TimelineLink
-            timeline={timeline}
-            setCurrentTimeline={setCurrentTimeline}
-          />
-        )),
-      }}
-      textContainer={{
-        render: () => <ReadEditor text={text} />,
-      }}
-    />
-  );
+    state={isReply}
+    iconMenu={{
+      render: () => <AntDropdown /> }}
+
+    reply={{
+      updateId: id,
+      timelineId: timelineId,
+      organizationId: organizationName,
+      userId: userName }}
+
+    // replyButton={{
+    //   onClick: () => setIsReply("isReply"),
+    // }}
+    // organizationName={organizationName}
+    userName={userName}
+    date={date}
+    timelineNamesContainer={{
+      children: updateTimelines.map((timeline: ITimeline) =>
+      <TimelineLink
+      timeline={timeline}
+      setCurrentTimeline={setCurrentTimeline} />) }}
+
+
+
+    textContainer={{
+      render: () => <ReadEditor text={text} /> }} />);
+
+
+
 }
 
 export default UpdateContent;
