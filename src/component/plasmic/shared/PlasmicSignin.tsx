@@ -52,7 +52,9 @@ export const PlasmicSignin__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicSignin__OverridesType = {
   root?: p.Flex<"div">;
+  googleButton?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
+  linkedinButton?: p.Flex<typeof Button>;
   text22?: p.Flex<"div">;
 };
 
@@ -167,9 +169,11 @@ function PlasmicSignin__RenderFunc(props: {
                 ) : null}
 
                 <Button
+                  data-plasmic-name={"googleButton"}
+                  data-plasmic-override={overrides.googleButton}
                   buttonFeatures={[]}
                   buttonStyle={"whiteBlue" as const}
-                  className={classNames("__wab_instance", sty.button__cIoeM)}
+                  className={classNames("__wab_instance", sty.googleButton)}
                   count={"1"}
                   slot={
                     <IconPlusIcon
@@ -209,9 +213,11 @@ function PlasmicSignin__RenderFunc(props: {
                 </Button>
 
                 <Button
+                  data-plasmic-name={"linkedinButton"}
+                  data-plasmic-override={overrides.linkedinButton}
                   buttonFeatures={[]}
                   buttonStyle={"whiteBlue" as const}
-                  className={classNames("__wab_instance", sty.button___20Ia)}
+                  className={classNames("__wab_instance", sty.linkedinButton)}
                   count={"1"}
                   slot={
                     <IconPlusIcon
@@ -259,8 +265,10 @@ function PlasmicSignin__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text2", "text22"],
+  root: ["root", "googleButton", "text2", "linkedinButton", "text22"],
+  googleButton: ["googleButton", "text2"],
   text2: ["text2"],
+  linkedinButton: ["linkedinButton", "text22"],
   text22: ["text22"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -269,7 +277,9 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  googleButton: typeof Button;
   text2: "div";
+  linkedinButton: typeof Button;
   text22: "div";
 };
 
@@ -278,9 +288,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSignin__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicSignin__VariantsArgs;
   args?: PlasmicSignin__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -330,7 +338,9 @@ export const PlasmicSignin = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    googleButton: makeNodeComponent("googleButton"),
     text2: makeNodeComponent("text2"),
+    linkedinButton: makeNodeComponent("linkedinButton"),
     text22: makeNodeComponent("text22"),
 
     // Metadata about props expected for PlasmicSignin

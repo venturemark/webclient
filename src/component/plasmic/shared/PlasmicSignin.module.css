@@ -223,7 +223,7 @@
     min-width: 0;
   }
 }
-.button__cIoeM:global(.__wab_instance) {
+.googleButton:global(.__wab_instance) {
   position: relative;
   width: 100%;
   height: 100%;
@@ -254,7 +254,7 @@
   width: 17px;
   height: 14px;
 }
-.button___20Ia:global(.__wab_instance) {
+.linkedinButton:global(.__wab_instance) {
   position: relative;
 }
 .svg__ilBOe {
