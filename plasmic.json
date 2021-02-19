@@ -343,7 +343,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicSignin.tsx",
           "importSpec": {
-            "modulePath": "signin/index.tsx"
+            "modulePath": "page/signin/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSignin.module.css",
           "scheme": "blackbox",
@@ -356,7 +356,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicProfile.tsx",
           "importSpec": {
-            "modulePath": "profile/index.tsx"
+            "modulePath": "page/profile/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicProfile.module.css",
           "scheme": "blackbox",
@@ -369,7 +369,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicHome.tsx",
           "importSpec": {
-            "modulePath": "home/index.tsx"
+            "modulePath": "page/home/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicHome.module.css",
           "scheme": "blackbox",

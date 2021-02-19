@@ -8,18 +8,26 @@ DefaultButtonProps } from
 
 interface ButtonProps extends DefaultButtonProps {
   handleClick: any;
-  type?: string;}
+  type?: string;
+  buttonStyle:
+  "primaryPurple" |
+  "secondaryPurple" |
+  "secondaryGreen" |
+  "danger" |
+  "whiteBlue" |
+  undefined;}
 
 
 function Button(props: ButtonProps) {
-  const { handleClick, type } = props;
+  const { handleClick, type, buttonStyle } = props;
 
   return (
     <PlasmicButton
     root={{
       onClick: handleClick,
-      type: type }} />);
+      type: type }}
 
+    buttonStyle={buttonStyle} />);
 
 
 }

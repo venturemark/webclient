@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import React from "react";
 import ReactDOM from "react-dom";
-import { ScreenVariantProvider } from "component/plasmic/shared/PlasmicGlobalVariant__Screen";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import * as app from "component/app";
 import reportWebVitals from "reportWebVitals";
@@ -15,9 +15,9 @@ ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <ScreenVariantProvider>
+      <Router>
         <app.Component />
-      </ScreenVariantProvider>
+      </Router>
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
