@@ -39,17 +39,20 @@ import IconCautionIcon from "./icons/PlasmicIcon__IconCaution"; // plasmic-impor
 export type PlasmicInputTextArea__VariantMembers = {
   hasTextHelper: "hasTextHelper";
   error: "error";
+  hasLabel: "hasLabel";
 };
 
 export type PlasmicInputTextArea__VariantsArgs = {
   hasTextHelper?: SingleBooleanChoiceArg<"hasTextHelper">;
   error?: SingleBooleanChoiceArg<"error">;
+  hasLabel?: SingleBooleanChoiceArg<"hasLabel">;
 };
 
 type VariantPropType = keyof PlasmicInputTextArea__VariantsArgs;
 export const PlasmicInputTextArea__VariantProps = new Array<VariantPropType>(
   "hasTextHelper",
-  "error"
+  "error",
+  "hasLabel"
 );
 
 export type PlasmicInputTextArea__ArgsType = {
@@ -66,8 +69,9 @@ export const PlasmicInputTextArea__ArgProps = new Array<ArgPropType>(
 export type PlasmicInputTextArea__OverridesType = {
   root?: p.Flex<"div">;
   textInput?: p.Flex<"div">;
-  label?: p.Flex<"label">;
+  labelContainer?: p.Flex<"label">;
   inputHelperText?: p.Flex<"div">;
+  textboxContainer?: p.Flex<"div">;
   input?: p.Flex<"textarea">;
   errorMessage?: p.Flex<typeof ErrorMessage>;
 };
@@ -77,6 +81,7 @@ export interface DefaultInputTextAreaProps {
   children?: React.ReactNode;
   hasTextHelper?: SingleBooleanChoiceArg<"hasTextHelper">;
   error?: SingleBooleanChoiceArg<"error">;
+  hasLabel?: SingleBooleanChoiceArg<"hasLabel">;
   className?: string;
 }
 
@@ -103,18 +108,25 @@ function PlasmicInputTextArea__RenderFunc(props: {
         hasGap={true}
         className={classNames(defaultcss.all, sty.textInput)}
       >
-        <label
-          data-plasmic-name={"label"}
-          data-plasmic-override={overrides.label}
-          className={classNames(defaultcss.all, sty.label)}
-        >
-          <p.PlasmicSlot
-            defaultContents={"Label Name"}
-            value={args.label}
-            className={classNames(sty.slotLabel)}
-          />
-        </label>
-
+        {(hasVariant(variants, "hasLabel", "hasLabel") ? true : false) ? (
+          <label
+            data-plasmic-name={"labelContainer"}
+            data-plasmic-override={overrides.labelContainer}
+            className={classNames(defaultcss.all, sty.labelContainer, {
+              [sty.labelContainer__hasLabel]: hasVariant(
+                variants,
+                "hasLabel",
+                "hasLabel"
+              ),
+            })}
+          >
+            <p.PlasmicSlot
+              defaultContents={"Label Name"}
+              value={args.label}
+              className={classNames(sty.slotLabel)}
+            />
+          </label>
+        ) : null}
         {(
           hasVariant(variants, "hasTextHelper", "hasTextHelper") ? true : false
         ) ? (
@@ -126,6 +138,12 @@ function PlasmicInputTextArea__RenderFunc(props: {
                 variants,
                 "error",
                 "error"
+              ),
+
+              [sty.inputHelperText__hasLabel]: hasVariant(
+                variants,
+                "hasLabel",
+                "hasLabel"
               ),
 
               [sty.inputHelperText__hasTextHelper]: hasVariant(
@@ -143,13 +161,19 @@ function PlasmicInputTextArea__RenderFunc(props: {
           </div>
         ) : null}
 
-        <textarea
-          data-plasmic-name={"input"}
-          data-plasmic-override={overrides.input}
-          className={classNames(defaultcss.textarea, sty.input)}
-          placeholder={"Placeholder" as const}
-          title={"" as const}
-        />
+        <div
+          data-plasmic-name={"textboxContainer"}
+          data-plasmic-override={overrides.textboxContainer}
+          className={classNames(defaultcss.all, sty.textboxContainer)}
+        >
+          <textarea
+            data-plasmic-name={"input"}
+            data-plasmic-override={overrides.input}
+            className={classNames(defaultcss.textarea, sty.input)}
+            placeholder={"" as const}
+            title={"" as const}
+          />
+        </div>
 
         <div className={classNames(defaultcss.all, sty.box__wBY0)} />
 
@@ -179,15 +203,25 @@ const PlasmicDescendants = {
   root: [
     "root",
     "textInput",
-    "label",
+    "labelContainer",
     "inputHelperText",
+    "textboxContainer",
     "input",
     "errorMessage",
   ],
 
-  textInput: ["textInput", "label", "inputHelperText", "input", "errorMessage"],
-  label: ["label"],
+  textInput: [
+    "textInput",
+    "labelContainer",
+    "inputHelperText",
+    "textboxContainer",
+    "input",
+    "errorMessage",
+  ],
+
+  labelContainer: ["labelContainer"],
   inputHelperText: ["inputHelperText"],
+  textboxContainer: ["textboxContainer", "input"],
   input: ["input"],
   errorMessage: ["errorMessage"],
 } as const;
@@ -198,8 +232,9 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   textInput: "div";
-  label: "label";
+  labelContainer: "label";
   inputHelperText: "div";
+  textboxContainer: "div";
   input: "textarea";
   errorMessage: typeof ErrorMessage;
 };
@@ -262,8 +297,9 @@ export const PlasmicInputTextArea = Object.assign(
   {
     // Helper components rendering sub-elements
     textInput: makeNodeComponent("textInput"),
-    label: makeNodeComponent("label"),
+    labelContainer: makeNodeComponent("labelContainer"),
     inputHelperText: makeNodeComponent("inputHelperText"),
+    textboxContainer: makeNodeComponent("textboxContainer"),
     input: makeNodeComponent("input"),
     errorMessage: makeNodeComponent("errorMessage"),
 

@@ -15,7 +15,7 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
 }
-.label {
+.labelContainer {
   display: flex;
   width: 100%;
   justify-content: flex-start;

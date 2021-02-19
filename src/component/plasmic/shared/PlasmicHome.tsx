@@ -29,9 +29,7 @@ import {
 } from "@plasmicapp/react-web";
 import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
-import MainHeader from "../../mainheader/index"; // plasmic-import: LRwT0lHdps/component
-import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
-import Update from "../../update/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
+import Main from "../../main/index"; // plasmic-import: 0c6QSqHYCk/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -39,9 +37,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicHome.module.css"; // plasmic-import: cRgEcIgCT1/css
-
-import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
-import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 
 export type PlasmicHome__VariantMembers = {};
 
@@ -56,12 +51,10 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 export type PlasmicHome__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
+  box?: p.Flex<"div">;
   sidebar?: p.Flex<typeof Sidebar>;
   main2?: p.Flex<"div">;
-  container?: p.Flex<"div">;
-  mainHeader?: p.Flex<typeof MainHeader>;
-  updatesContainer?: p.Flex<"div">;
-  actionBar?: p.Flex<typeof ActionBar>;
+  main?: p.Flex<typeof Main>;
 };
 
 export interface DefaultHomeProps {
@@ -100,7 +93,11 @@ function PlasmicHome__RenderFunc(props: {
             className={classNames("__wab_instance", sty.header)}
           />
 
-          <div className={classNames(defaultcss.all, sty.box___70Att)}>
+          <div
+            data-plasmic-name={"box"}
+            data-plasmic-override={overrides.box}
+            className={classNames(defaultcss.all, sty.box)}
+          >
             {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
               <Sidebar
                 data-plasmic-name={"sidebar"}
@@ -114,60 +111,12 @@ function PlasmicHome__RenderFunc(props: {
               data-plasmic-override={overrides.main2}
               className={classNames(defaultcss.all, sty.main2)}
             >
-              <p.Stack
-                as={"div"}
-                data-plasmic-name={"container"}
-                data-plasmic-override={overrides.container}
-                hasGap={true}
-                className={classNames(defaultcss.all, sty.container)}
-              >
-                <MainHeader
-                  data-plasmic-name={"mainHeader"}
-                  data-plasmic-override={overrides.mainHeader}
-                  className={classNames("__wab_instance", sty.mainHeader)}
-                  headerStyles={"timelineSubHeader" as const}
-                  timelineDescription={
-                    <div
-                      className={classNames(
-                        defaultcss.all,
-                        defaultcss.__wab_text,
-                        sty.box__taWsq
-                      )}
-                    >
-                      {hasVariant(globalVariants, "screen", "tablet")
-                        ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
-                        : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \nDonec nec volutpat magna."}
-                    </div>
-                  }
-                  timelineName={"Wins"}
-                />
-
-                <p.Stack
-                  as={"div"}
-                  data-plasmic-name={"updatesContainer"}
-                  data-plasmic-override={overrides.updatesContainer}
-                  hasGap={true}
-                  className={classNames(defaultcss.all, sty.updatesContainer)}
-                >
-                  <ActionBar
-                    data-plasmic-name={"actionBar"}
-                    data-plasmic-override={overrides.actionBar}
-                    className={classNames("__wab_instance", sty.actionBar)}
-                  />
-
-                  <Update
-                    className={classNames("__wab_instance", sty.update__ofZlh)}
-                  />
-
-                  <Update />
-
-                  <Update
-                    className={classNames("__wab_instance", sty.update__lnRaY)}
-                  />
-                </p.Stack>
-              </p.Stack>
-
-              <div className={classNames(defaultcss.all, sty.box__a6FcE)} />
+              <Main
+                data-plasmic-name={"main"}
+                data-plasmic-override={overrides.main}
+                className={classNames("__wab_instance", sty.main)}
+                isActive={"feed" as const}
+              />
             </div>
           </div>
         </div>
@@ -177,24 +126,12 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "header",
-    "sidebar",
-    "main2",
-    "container",
-    "mainHeader",
-    "updatesContainer",
-    "actionBar",
-  ],
-
+  root: ["root", "header", "box", "sidebar", "main2", "main"],
   header: ["header"],
+  box: ["box", "sidebar", "main2", "main"],
   sidebar: ["sidebar"],
-  main2: ["main2", "container", "mainHeader", "updatesContainer", "actionBar"],
-  container: ["container", "mainHeader", "updatesContainer", "actionBar"],
-  mainHeader: ["mainHeader"],
-  updatesContainer: ["updatesContainer", "actionBar"],
-  actionBar: ["actionBar"],
+  main2: ["main2", "main"],
+  main: ["main"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -203,12 +140,10 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
+  box: "div";
   sidebar: typeof Sidebar;
   main2: "div";
-  container: "div";
-  mainHeader: typeof MainHeader;
-  updatesContainer: "div";
-  actionBar: typeof ActionBar;
+  main: typeof Main;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -269,12 +204,10 @@ export const PlasmicHome = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
+    box: makeNodeComponent("box"),
     sidebar: makeNodeComponent("sidebar"),
     main2: makeNodeComponent("main2"),
-    container: makeNodeComponent("container"),
-    mainHeader: makeNodeComponent("mainHeader"),
-    updatesContainer: makeNodeComponent("updatesContainer"),
-    actionBar: makeNodeComponent("actionBar"),
+    main: makeNodeComponent("main"),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

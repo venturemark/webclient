@@ -2,24 +2,24 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React, { useState } from "react";
 import {
-PlasmicModal,
-DefaultModalProps } from
-"component/plasmic/shared/PlasmicModal";
+  PlasmicModal,
+  DefaultModalProps,
+} from "component/plasmic/shared/PlasmicModal";
 import { useForm } from "react-hook-form";
 import { saveUser, ISaveUser } from "module/store";
 
 const options = [
-{ value: "Marcus Ellison" },
-{ value: "Tim Schindler" },
-{ value: "Victor Tan" }];
-
+  { value: "Marcus Ellison" },
+  { value: "Tim Schindler" },
+  { value: "Victor Tan" },
+];
 
 interface ModalProps extends DefaultModalProps {
   organizationName: string;
   users: string[];
   organizationDescription: string;
-  setLogin: any;}
-
+  setLogin: any;
+}
 
 function Modal(props: ModalProps) {
   const { organizationName, organizationDescription, setLogin } = props;
@@ -29,7 +29,8 @@ function Modal(props: ModalProps) {
   const handleLogin = () => {
     const userObj: ISaveUser = {
       userId: user,
-      organizationId: organizationName };
+      organizationId: organizationName,
+    };
 
     saveUser(userObj);
     setLogin(userObj);
@@ -37,24 +38,25 @@ function Modal(props: ModalProps) {
 
   return (
     <PlasmicModal
-    organizationName={organizationName}
-    organizationDescription={organizationDescription}
-    welcomeForm={{
-      onSubmit: handleSubmit(handleLogin) }}
+      organizationName={organizationName}
+      organizationDescription={organizationDescription}
+      welcomeForm={{
+        onSubmit: handleSubmit(handleLogin),
+      }}
 
-    selectUserButton={{
-      type: "submit" }}
+      // selectUserButton={{
+      //   type: "submit" }}
 
-    // selectUserInput={
-    //   {
-    //     options: options,
-    //     onChange: (user: string) => {
-    //       setUser(user);
-    //     },
-    //   }
-    // }
-    />);
-
+      // selectUserInput={
+      //   {
+      //     options: options,
+      //     onChange: (user: string) => {
+      //       setUser(user);
+      //     },
+      //   }
+      // }
+    />
+  );
 }
 
 export default Modal;

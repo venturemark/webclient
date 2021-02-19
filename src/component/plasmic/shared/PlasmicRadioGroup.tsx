@@ -32,35 +32,47 @@ import InputToggleButton from "../../inputtogglebutton/index"; // plasmic-import
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicInputToggleSet.module.css"; // plasmic-import: Q9Z-qP9n2Q/css
+import sty from "./PlasmicRadioGroup.module.css"; // plasmic-import: Q9Z-qP9n2Q/css
 
-export type PlasmicInputToggleSet__VariantMembers = {};
+export type PlasmicRadioGroup__VariantMembers = {
+  hasLabel: "hasLabel";
+  isHorizontal: "isHorizontal";
+};
 
-export type PlasmicInputToggleSet__VariantsArgs = {};
-type VariantPropType = keyof PlasmicInputToggleSet__VariantsArgs;
-export const PlasmicInputToggleSet__VariantProps = new Array<VariantPropType>();
+export type PlasmicRadioGroup__VariantsArgs = {
+  hasLabel?: SingleBooleanChoiceArg<"hasLabel">;
+  isHorizontal?: SingleBooleanChoiceArg<"isHorizontal">;
+};
 
-export type PlasmicInputToggleSet__ArgsType = {
+type VariantPropType = keyof PlasmicRadioGroup__VariantsArgs;
+export const PlasmicRadioGroup__VariantProps = new Array<VariantPropType>(
+  "hasLabel",
+  "isHorizontal"
+);
+
+export type PlasmicRadioGroup__ArgsType = {
   label3?: React.ReactNode;
 };
 
-type ArgPropType = keyof PlasmicInputToggleSet__ArgsType;
-export const PlasmicInputToggleSet__ArgProps = new Array<ArgPropType>("label3");
+type ArgPropType = keyof PlasmicRadioGroup__ArgsType;
+export const PlasmicRadioGroup__ArgProps = new Array<ArgPropType>("label3");
 
-export type PlasmicInputToggleSet__OverridesType = {
+export type PlasmicRadioGroup__OverridesType = {
   root?: p.Flex<"div">;
-  label?: p.Flex<"label">;
+  labelContainer?: p.Flex<"label">;
 };
 
-export interface DefaultInputToggleSetProps {
+export interface DefaultRadioGroupProps {
   label3?: React.ReactNode;
+  hasLabel?: SingleBooleanChoiceArg<"hasLabel">;
+  isHorizontal?: SingleBooleanChoiceArg<"isHorizontal">;
   className?: string;
 }
 
-function PlasmicInputToggleSet__RenderFunc(props: {
-  variants: PlasmicInputToggleSet__VariantsArgs;
-  args: PlasmicInputToggleSet__ArgsType;
-  overrides: PlasmicInputToggleSet__OverridesType;
+function PlasmicRadioGroup__RenderFunc(props: {
+  variants: PlasmicRadioGroup__VariantsArgs;
+  args: PlasmicRadioGroup__ArgsType;
+  overrides: PlasmicRadioGroup__OverridesType;
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode } = props;
@@ -75,17 +87,25 @@ function PlasmicInputToggleSet__RenderFunc(props: {
       hasGap={true}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
-      <label
-        data-plasmic-name={"label"}
-        data-plasmic-override={overrides.label}
-        className={classNames(defaultcss.all, sty.label)}
-      >
-        <p.PlasmicSlot
-          defaultContents={"Visibility"}
-          value={args.label3}
-          className={classNames(sty.slotLabel3)}
-        />
-      </label>
+      {(hasVariant(variants, "hasLabel", "hasLabel") ? true : false) ? (
+        <label
+          data-plasmic-name={"labelContainer"}
+          data-plasmic-override={overrides.labelContainer}
+          className={classNames(defaultcss.all, sty.labelContainer, {
+            [sty.labelContainer__hasLabel]: hasVariant(
+              variants,
+              "hasLabel",
+              "hasLabel"
+            ),
+          })}
+        >
+          <p.PlasmicSlot
+            defaultContents={"Visibility"}
+            value={args.label3}
+            className={classNames(sty.slotLabel3)}
+          />
+        </label>
+      ) : null}
 
       <div className={classNames(defaultcss.all, sty.box__zgeS0)}>
         <InputToggleButton
@@ -127,8 +147,8 @@ function PlasmicInputToggleSet__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "label"],
-  label: ["label"],
+  root: ["root", "labelContainer"],
+  labelContainer: ["labelContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -136,23 +156,23 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  label: "label";
+  labelContainer: "label";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
 type NodeOverridesType<T extends NodeNameType> = Pick<
-  PlasmicInputToggleSet__OverridesType,
+  PlasmicRadioGroup__OverridesType,
   DescendantsType<T>
 >;
 
 type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  variants?: PlasmicInputToggleSet__VariantsArgs;
-  args?: PlasmicInputToggleSet__ArgsType;
+  variants?: PlasmicRadioGroup__VariantsArgs;
+  args?: PlasmicRadioGroup__ArgsType;
   overrides?: NodeOverridesType<T>;
-} & Omit<PlasmicInputToggleSet__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+} & Omit<PlasmicRadioGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
-  Omit<PlasmicInputToggleSet__ArgsType, ReservedPropsType> &
+  Omit<PlasmicRadioGroup__ArgsType, ReservedPropsType> &
   // Specify overrides for each element directly as props
   Omit<
     NodeOverridesType<T>,
@@ -172,11 +192,11 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
     const { variants, args, overrides } = deriveRenderOpts(props, {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicInputToggleSet__ArgProps,
-      internalVariantPropNames: PlasmicInputToggleSet__VariantProps,
+      internalArgPropNames: PlasmicRadioGroup__ArgProps,
+      internalVariantPropNames: PlasmicRadioGroup__VariantProps,
     });
 
-    return PlasmicInputToggleSet__RenderFunc({
+    return PlasmicRadioGroup__RenderFunc({
       variants,
       args,
       overrides,
@@ -184,25 +204,25 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
     });
   };
   if (nodeName === "root") {
-    func.displayName = "PlasmicInputToggleSet";
+    func.displayName = "PlasmicRadioGroup";
   } else {
-    func.displayName = `PlasmicInputToggleSet.${nodeName}`;
+    func.displayName = `PlasmicRadioGroup.${nodeName}`;
   }
   return func;
 }
 
-export const PlasmicInputToggleSet = Object.assign(
-  // Top-level PlasmicInputToggleSet renders the root element
+export const PlasmicRadioGroup = Object.assign(
+  // Top-level PlasmicRadioGroup renders the root element
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    label: makeNodeComponent("label"),
+    labelContainer: makeNodeComponent("labelContainer"),
 
-    // Metadata about props expected for PlasmicInputToggleSet
-    internalVariantProps: PlasmicInputToggleSet__VariantProps,
-    internalArgProps: PlasmicInputToggleSet__ArgProps,
+    // Metadata about props expected for PlasmicRadioGroup
+    internalVariantProps: PlasmicRadioGroup__VariantProps,
+    internalArgProps: PlasmicRadioGroup__ArgProps,
   }
 );
 
-export default PlasmicInputToggleSet;
+export default PlasmicRadioGroup;
 /* prettier-ignore-end */

@@ -42,16 +42,21 @@ import IconFeedIcon from "./icons/PlasmicIcon__IconFeed"; // plasmic-import: gkI
 import IconSettings2Icon from "./icons/PlasmicIcon__IconSettings2"; // plasmic-import: sumyU8-X3n/icon
 
 export type PlasmicMainHeader__VariantMembers = {
-  headerStyles: "timelineSubHeader";
+  headerStyles: "timelineHeader" | "ventureHeader";
+  isActive: "feed" | "members" | "settings" | "unnamedVariant";
 };
 
 export type PlasmicMainHeader__VariantsArgs = {
-  headerStyles?: SingleChoiceArg<"timelineSubHeader">;
+  headerStyles?: SingleChoiceArg<"timelineHeader" | "ventureHeader">;
+  isActive?: SingleChoiceArg<
+    "feed" | "members" | "settings" | "unnamedVariant"
+  >;
 };
 
 type VariantPropType = keyof PlasmicMainHeader__VariantsArgs;
 export const PlasmicMainHeader__VariantProps = new Array<VariantPropType>(
-  "headerStyles"
+  "headerStyles",
+  "isActive"
 );
 
 export type PlasmicMainHeader__ArgsType = {
@@ -77,7 +82,11 @@ export interface DefaultMainHeaderProps {
   timelineDescription?: React.ReactNode;
   timelineName?: React.ReactNode;
   venturename?: React.ReactNode;
-  headerStyles?: SingleChoiceArg<"timelineSubHeader">;
+  headerStyles?: SingleChoiceArg<"timelineHeader" | "ventureHeader">;
+  isActive?: SingleChoiceArg<
+    "feed" | "members" | "settings" | "unnamedVariant"
+  >;
+
   className?: string;
 }
 
@@ -104,10 +113,16 @@ function PlasmicMainHeader__RenderFunc(props: {
         projectcss.root_reset,
         sty.container,
         {
-          [sty.container__headerStyles_timelineSubHeader]: hasVariant(
+          [sty.container__headerStyles_timelineHeader]: hasVariant(
             variants,
             "headerStyles",
-            "timelineSubHeader"
+            "timelineHeader"
+          ),
+
+          [sty.container__isActive_feed]: hasVariant(
+            variants,
+            "isActive",
+            "feed"
           ),
         }
       )}
@@ -116,10 +131,16 @@ function PlasmicMainHeader__RenderFunc(props: {
         as={"div"}
         hasGap={true}
         className={classNames(defaultcss.all, sty.box___3Xg51, {
-          [sty.box__headerStyles_timelineSubHeader___3Xg51Rxxpi]: hasVariant(
+          [sty.box__headerStyles_timelineHeader___3Xg51Rxxpi]: hasVariant(
             variants,
             "headerStyles",
-            "timelineSubHeader"
+            "timelineHeader"
+          ),
+
+          [sty.box__headerStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
+            variants,
+            "headerStyles",
+            "ventureHeader"
           ),
         })}
       >
@@ -132,10 +153,10 @@ function PlasmicMainHeader__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(defaultcss.all, sty.box__yHtqj, {
-              [sty.box__headerStyles_timelineSubHeader__yHtqjRxxpi]: hasVariant(
+              [sty.box__headerStyles_timelineHeader__yHtqjRxxpi]: hasVariant(
                 variants,
                 "headerStyles",
-                "timelineSubHeader"
+                "timelineHeader"
               ),
             })}
           >
@@ -143,36 +164,36 @@ function PlasmicMainHeader__RenderFunc(props: {
               defaultContents={"Wins"}
               value={args.timelineName}
               className={classNames(sty.slotTimelineName, {
-                [sty.slotTimelineName__headerStyles_timelineSubHeader]: hasVariant(
+                [sty.slotTimelineName__headerStyles_timelineHeader]: hasVariant(
                   variants,
                   "headerStyles",
-                  "timelineSubHeader"
+                  "timelineHeader"
                 ),
               })}
             />
 
             {(
-              hasVariant(variants, "headerStyles", "timelineSubHeader")
+              hasVariant(variants, "headerStyles", "timelineHeader")
                 ? true
                 : false
             ) ? (
               <p.Stack
                 as={"div"}
                 hasGap={
-                  hasVariant(variants, "headerStyles", "timelineSubHeader")
+                  hasVariant(variants, "headerStyles", "timelineHeader")
                     ? true
                     : false
                 }
                 className={classNames(defaultcss.all, sty.box___6YZlv, {
-                  [sty.box__headerStyles_timelineSubHeader___6YZlvRxxpi]: hasVariant(
+                  [sty.box__headerStyles_timelineHeader___6YZlvRxxpi]: hasVariant(
                     variants,
                     "headerStyles",
-                    "timelineSubHeader"
+                    "timelineHeader"
                   ),
                 })}
               >
                 {(
-                  hasVariant(variants, "headerStyles", "timelineSubHeader")
+                  hasVariant(variants, "headerStyles", "timelineHeader")
                     ? true
                     : false
                 ) ? (
@@ -182,21 +203,21 @@ function PlasmicMainHeader__RenderFunc(props: {
                       defaultcss.__wab_text,
                       sty.box__y7S0J,
                       {
-                        [sty.box__headerStyles_timelineSubHeader__y7S0JRxxpi]: hasVariant(
+                        [sty.box__headerStyles_timelineHeader__y7S0JRxxpi]: hasVariant(
                           variants,
                           "headerStyles",
-                          "timelineSubHeader"
+                          "timelineHeader"
                         ),
                       }
                     )}
                   >
-                    {hasVariant(variants, "headerStyles", "timelineSubHeader")
+                    {hasVariant(variants, "headerStyles", "timelineHeader")
                       ? "@"
                       : "Enter some text"}
                   </div>
                 ) : null}
                 {(
-                  hasVariant(variants, "headerStyles", "timelineSubHeader")
+                  hasVariant(variants, "headerStyles", "timelineHeader")
                     ? true
                     : false
                 ) ? (
@@ -204,10 +225,10 @@ function PlasmicMainHeader__RenderFunc(props: {
                     defaultContents={"Adbloom"}
                     value={args.venturename}
                     className={classNames(sty.slotVenturename, {
-                      [sty.slotVenturename__headerStyles_timelineSubHeader]: hasVariant(
+                      [sty.slotVenturename__headerStyles_timelineHeader]: hasVariant(
                         variants,
                         "headerStyles",
-                        "timelineSubHeader"
+                        "timelineHeader"
                       ),
                     })}
                   />
@@ -215,7 +236,7 @@ function PlasmicMainHeader__RenderFunc(props: {
               </p.Stack>
             ) : null}
             {(
-              hasVariant(variants, "headerStyles", "timelineSubHeader")
+              hasVariant(variants, "headerStyles", "timelineHeader")
                 ? false
                 : true
             ) ? (
@@ -224,10 +245,10 @@ function PlasmicMainHeader__RenderFunc(props: {
                   "__wab_instance",
                   sty.iconButton___6HyIq,
                   {
-                    [sty.iconButton__headerStyles_timelineSubHeader___6HyIqRxxpi]: hasVariant(
+                    [sty.iconButton__headerStyles_timelineHeader___6HyIqRxxpi]: hasVariant(
                       variants,
                       "headerStyles",
-                      "timelineSubHeader"
+                      "timelineHeader"
                     ),
                   }
                 )}
@@ -242,7 +263,7 @@ function PlasmicMainHeader__RenderFunc(props: {
           </p.Stack>
 
           {(
-            hasVariant(variants, "headerStyles", "timelineSubHeader")
+            hasVariant(variants, "headerStyles", "timelineHeader")
               ? false
               : hasVariant(globalVariants, "screen", "mobile")
               ? false
@@ -250,10 +271,16 @@ function PlasmicMainHeader__RenderFunc(props: {
           ) ? (
             <div
               className={classNames(defaultcss.all, sty.box__fohK2, {
-                [sty.box__headerStyles_timelineSubHeader__fohK2Rxxpi]: hasVariant(
+                [sty.box__headerStyles_timelineHeader__fohK2Rxxpi]: hasVariant(
                   variants,
                   "headerStyles",
-                  "timelineSubHeader"
+                  "timelineHeader"
+                ),
+
+                [sty.box__headerStyles_ventureHeader__fohK2NMQ9]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "ventureHeader"
                 ),
               })}
             >
@@ -263,10 +290,16 @@ function PlasmicMainHeader__RenderFunc(props: {
                 }
                 value={args.timelineDescription}
                 className={classNames(sty.slotTimelineDescription, {
-                  [sty.slotTimelineDescription__headerStyles_timelineSubHeader]: hasVariant(
+                  [sty.slotTimelineDescription__headerStyles_timelineHeader]: hasVariant(
                     variants,
                     "headerStyles",
-                    "timelineSubHeader"
+                    "timelineHeader"
+                  ),
+
+                  [sty.slotTimelineDescription__headerStyles_ventureHeader]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "ventureHeader"
                   ),
                 })}
               />
@@ -279,11 +312,30 @@ function PlasmicMainHeader__RenderFunc(props: {
           data-plasmic-name={"iconContainer"}
           data-plasmic-override={overrides.iconContainer}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.iconContainer)}
+          className={classNames(defaultcss.all, sty.iconContainer, {
+            [sty.iconContainer__isActive_feed]: hasVariant(
+              variants,
+              "isActive",
+              "feed"
+            ),
+          })}
         >
-          <IconButton iconSize={"large" as const}>
+          <IconButton
+            iconSize={"large" as const}
+            isActive={
+              hasVariant(variants, "isActive", "feed")
+                ? ("isActive" as const)
+                : undefined
+            }
+          >
             <IconFeedIcon
-              className={classNames(defaultcss.all, sty.svg__eTdlE)}
+              className={classNames(defaultcss.all, sty.svg__eTdlE, {
+                [sty.svg__isActive_feed__eTdlEfnkZp]: hasVariant(
+                  variants,
+                  "isActive",
+                  "feed"
+                ),
+              })}
               role={"img"}
             />
           </IconButton>
@@ -291,14 +343,41 @@ function PlasmicMainHeader__RenderFunc(props: {
           <IconButtonMember
             data-plasmic-name={"iconButtonMember"}
             data-plasmic-override={overrides.iconButtonMember}
-            className={classNames("__wab_instance", sty.iconButtonMember)}
-            isActive={"isActive" as const}
+            className={classNames("__wab_instance", sty.iconButtonMember, {
+              [sty.iconButtonMember__isActive_feed]: hasVariant(
+                variants,
+                "isActive",
+                "feed"
+              ),
+
+              [sty.iconButtonMember__isActive_members]: hasVariant(
+                variants,
+                "isActive",
+                "members"
+              ),
+            })}
+            isActive={
+              hasVariant(variants, "isActive", "members")
+                ? ("isActive" as const)
+                : undefined
+            }
             memberCount={"+"}
           />
 
           <IconButton
-            className={classNames("__wab_instance", sty.iconButton__nVsD)}
+            className={classNames("__wab_instance", sty.iconButton__nVsD, {
+              [sty.iconButton__isActive_settings__nVsDKxQfa]: hasVariant(
+                variants,
+                "isActive",
+                "settings"
+              ),
+            })}
             iconSize={"large" as const}
+            isActive={
+              hasVariant(variants, "isActive", "settings")
+                ? ("isActive" as const)
+                : undefined
+            }
           >
             <IconSettings2Icon
               className={classNames(defaultcss.all, sty.svg__isMis)}

@@ -27,59 +27,73 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
+import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
 import UpdateContent from "../../updatecontent/index"; // plasmic-import: A1UjtYt6k0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicUpdate.module.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
+import sty from "./PlasmicFeedUpdate.module.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
 
-export type PlasmicUpdate__VariantMembers = {};
+import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
+import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 
-export type PlasmicUpdate__VariantsArgs = {};
-type VariantPropType = keyof PlasmicUpdate__VariantsArgs;
-export const PlasmicUpdate__VariantProps = new Array<VariantPropType>();
+export type PlasmicFeedUpdate__VariantMembers = {};
 
-export type PlasmicUpdate__ArgsType = {};
-type ArgPropType = keyof PlasmicUpdate__ArgsType;
-export const PlasmicUpdate__ArgProps = new Array<ArgPropType>();
+export type PlasmicFeedUpdate__VariantsArgs = {};
+type VariantPropType = keyof PlasmicFeedUpdate__VariantsArgs;
+export const PlasmicFeedUpdate__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicUpdate__OverridesType = {
+export type PlasmicFeedUpdate__ArgsType = {};
+type ArgPropType = keyof PlasmicFeedUpdate__ArgsType;
+export const PlasmicFeedUpdate__ArgProps = new Array<ArgPropType>();
+
+export type PlasmicFeedUpdate__OverridesType = {
   root?: p.Flex<"div">;
+  actionBar?: p.Flex<typeof ActionBar>;
   updateContent?: p.Flex<typeof UpdateContent>;
 };
 
-export interface DefaultUpdateProps {
+export interface DefaultFeedUpdateProps {
   className?: string;
 }
 
-function PlasmicUpdate__RenderFunc(props: {
-  variants: PlasmicUpdate__VariantsArgs;
-  args: PlasmicUpdate__ArgsType;
-  overrides: PlasmicUpdate__OverridesType;
+function PlasmicFeedUpdate__RenderFunc(props: {
+  variants: PlasmicFeedUpdate__VariantsArgs;
+  args: PlasmicFeedUpdate__ArgsType;
+  overrides: PlasmicFeedUpdate__OverridesType;
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode } = props;
 
   return (
-    <div
+    <p.Stack
+      as={"div"}
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
+      hasGap={true}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
+      <ActionBar
+        data-plasmic-name={"actionBar"}
+        data-plasmic-override={overrides.actionBar}
+        className={classNames("__wab_instance", sty.actionBar)}
+      />
+
       <UpdateContent
         data-plasmic-name={"updateContent"}
         data-plasmic-override={overrides.updateContent}
         className={classNames("__wab_instance", sty.updateContent)}
       />
-    </div>
+    </p.Stack>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "updateContent"],
+  root: ["root", "actionBar", "updateContent"],
+  actionBar: ["actionBar"],
   updateContent: ["updateContent"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -88,23 +102,24 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  actionBar: typeof ActionBar;
   updateContent: typeof UpdateContent;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
 type NodeOverridesType<T extends NodeNameType> = Pick<
-  PlasmicUpdate__OverridesType,
+  PlasmicFeedUpdate__OverridesType,
   DescendantsType<T>
 >;
 
 type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  variants?: PlasmicUpdate__VariantsArgs;
-  args?: PlasmicUpdate__ArgsType;
+  variants?: PlasmicFeedUpdate__VariantsArgs;
+  args?: PlasmicFeedUpdate__ArgsType;
   overrides?: NodeOverridesType<T>;
-} & Omit<PlasmicUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+} & Omit<PlasmicFeedUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
-  Omit<PlasmicUpdate__ArgsType, ReservedPropsType> &
+  Omit<PlasmicFeedUpdate__ArgsType, ReservedPropsType> &
   // Specify overrides for each element directly as props
   Omit<
     NodeOverridesType<T>,
@@ -124,11 +139,11 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
     const { variants, args, overrides } = deriveRenderOpts(props, {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicUpdate__ArgProps,
-      internalVariantPropNames: PlasmicUpdate__VariantProps,
+      internalArgPropNames: PlasmicFeedUpdate__ArgProps,
+      internalVariantPropNames: PlasmicFeedUpdate__VariantProps,
     });
 
-    return PlasmicUpdate__RenderFunc({
+    return PlasmicFeedUpdate__RenderFunc({
       variants,
       args,
       overrides,
@@ -136,25 +151,26 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
     });
   };
   if (nodeName === "root") {
-    func.displayName = "PlasmicUpdate";
+    func.displayName = "PlasmicFeedUpdate";
   } else {
-    func.displayName = `PlasmicUpdate.${nodeName}`;
+    func.displayName = `PlasmicFeedUpdate.${nodeName}`;
   }
   return func;
 }
 
-export const PlasmicUpdate = Object.assign(
-  // Top-level PlasmicUpdate renders the root element
+export const PlasmicFeedUpdate = Object.assign(
+  // Top-level PlasmicFeedUpdate renders the root element
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    actionBar: makeNodeComponent("actionBar"),
     updateContent: makeNodeComponent("updateContent"),
 
-    // Metadata about props expected for PlasmicUpdate
-    internalVariantProps: PlasmicUpdate__VariantProps,
-    internalArgProps: PlasmicUpdate__ArgProps,
+    // Metadata about props expected for PlasmicFeedUpdate
+    internalVariantProps: PlasmicFeedUpdate__VariantProps,
+    internalArgProps: PlasmicFeedUpdate__ArgProps,
   }
 );
 
-export default PlasmicUpdate;
+export default PlasmicFeedUpdate;
 /* prettier-ignore-end */

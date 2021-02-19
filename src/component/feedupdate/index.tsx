@@ -2,15 +2,15 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React from "react";
 import {
-PlasmicUpdate,
-DefaultUpdateProps } from
-"component/plasmic/shared/PlasmicUpdate";
+PlasmicFeedUpdate,
+DefaultFeedUpdateProps } from
+"component/plasmic/shared/PlasmicFeedUpdate";
 import { Node } from "slate";
 import { useTimelines } from "module/hook/timeline";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 
-interface UpdateProps extends DefaultUpdateProps {
+interface FeedUpdateProps extends DefaultFeedUpdateProps {
   text: Node[];
   id: string;
   organizationName: string;
@@ -23,7 +23,7 @@ interface UpdateProps extends DefaultUpdateProps {
 
 
 
-function Update(props: UpdateProps) {
+function FeedUpdate(props: FeedUpdateProps) {
   const {
     text,
     id,
@@ -53,12 +53,13 @@ function Update(props: UpdateProps) {
     const updateTimelines = timelines.filter(
     (timeline: ITimeline) => timeline.id === update.timelineId);
 
+
     return updateTimelines;
   }).
   flat();
 
   return (
-    <PlasmicUpdate
+    <PlasmicFeedUpdate
     updateContent={{
       text: text,
       id: id,
@@ -73,4 +74,4 @@ function Update(props: UpdateProps) {
 
 }
 
-export default Update;
+export default FeedUpdate;

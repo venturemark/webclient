@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React, { useState, useEffect } from "react";
 import {
-PlasmicActionBar,
-DefaultActionBarProps } from
-"component/plasmic/shared/PlasmicActionBar";
+  PlasmicActionBar,
+  DefaultActionBarProps,
+} from "component/plasmic/shared/PlasmicActionBar";
 import ComposeEditor from "component/editor/compose";
 import { EditorShape } from "component/editor/compose";
 import { INewUpdate } from "module/interface/update";
@@ -21,8 +21,8 @@ import { ITimeline } from "module/interface/timeline";
 interface ActionBarProps extends DefaultActionBarProps {
   organizationId: string;
   userId: string;
-  currentTimeline: ITimeline;}
-
+  currentTimeline: ITimeline;
+}
 
 function ActionBar(props: ActionBarProps) {
   const { organizationId, userId, currentTimeline } = props;
@@ -30,15 +30,16 @@ function ActionBar(props: ActionBarProps) {
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
   const hasContentDefault =
-  serialize(initialValue) === "" || serialize(initialValue) === undefined ?
-  undefined :
-  "hasContent";
+    serialize(initialValue) === "" || serialize(initialValue) === undefined
+      ? undefined
+      : "hasContent";
   const defaultNumber = Search(serialize(initialValue)) ?? 0;
   const defaultProgress = serialize(initialValue).length;
 
   const defaultTimelineOption = [currentTimeline?.id] ?? [];
   const [selectedTimelines, setSelectedTimelines] = useState(
-  defaultTimelineOption);
+    defaultTimelineOption
+  );
 
   const [isTimelineSelected, setIsTimelineSelected] = useState(false);
   const [selectFocused, setSelectFocused] = useState(false);
@@ -47,8 +48,8 @@ function ActionBar(props: ActionBarProps) {
     value: initialValue,
     hasContent: hasContentDefault,
     numberValue: defaultNumber[0],
-    progress: defaultProgress });
-
+    progress: defaultProgress,
+  });
 
   const { mutate: createUpdate } = useCreateUpdate();
 
@@ -66,26 +67,28 @@ function ActionBar(props: ActionBarProps) {
 
     if (serialize(editorShape.value).length > 281) {
       const error = `Your update is ${
-      serialize(editorShape.value).length
+        serialize(editorShape.value).length
       } characters. The limit is 280 characters`;
       setEditorShape({ ...editorShape, error });
       return;
     }
 
-    selectedTimelines.forEach(timelineId => {
+    selectedTimelines.forEach((timelineId) => {
       const newUpdate: INewUpdate = {
         text: serialize(editorShape.value),
         organizationId,
         timelineId: timelineId,
-        userId };
+        userId,
+      };
 
       createUpdate(newUpdate);
     });
 
     //reset store
     localStorage.setItem(
-    "composeEditor.content",
-    JSON.stringify(initialValueEmpty));
+      "composeEditor.content",
+      JSON.stringify(initialValueEmpty)
+    );
 
     //reset editor
     const resetEditor: EditorShape = {
@@ -94,14 +97,15 @@ function ActionBar(props: ActionBarProps) {
       hasContent: undefined,
       numberValue: 0,
       error: undefined,
-      progress: 0 };
+      progress: 0,
+    };
 
     setEditorShape(resetEditor);
   };
 
   const MIN = 0;
   const MAX = 240;
-  const normalize = (value: number) => (value - MIN) * 100 / (MAX - MIN);
+  const normalize = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
 
   useEffect(() => {
     if (currentTimeline) {
@@ -114,46 +118,46 @@ function ActionBar(props: ActionBarProps) {
 
   return (
     <PlasmicActionBar
-    isActive={true}
-    userInitials={userId.
-    split(" ").
-    map(n => n[0]).
-    join("")}
-    sendUpdate={{
-      handleClick: () => handleAddUpdate() }}
+      isActive={true}
+      userInitials={userId
+        .split(" ")
+        .map((n) => n[0])
+        .join("")}
+      // sendUpdate={{
+      //   handleClick: () => handleAddUpdate() }}
 
-    error={editorShape.error ? "hasError" : undefined}
-    text={normalize(editorShape.progress) > 0 ? "hasText" : undefined}
-    timelineSelected={isTimelineSelected}
-    timelineSelect={{
-      handleClick: () => {
-        setIsTimelineSelected(true);
-        setSelectFocused(true);
-      } }}
-
-    selectedItemsContainer={{
-      render: () =>
-      <AntSelect
-      userId={userId}
-      organizationId={organizationId}
-      selectedTimelines={selectedTimelines}
-      setSelectedTimelines={setSelectedTimelines}
-      selectFocused={selectFocused}
-      setSelectFocused={setSelectFocused} /> }}
-
-
-
-    errorMessage={editorShape.error}
-    textContainer={{
-      render: () =>
-      <ComposeEditor
-      editorShape={editorShape}
-      setEditorShape={setEditorShape} /> }} />);
-
-
-
-
-
+      error={editorShape.error ? "hasError" : undefined}
+      text={normalize(editorShape.progress) > 0 ? "hasText" : undefined}
+      timelineSelected={isTimelineSelected}
+      timelineSelect={{
+        handleClick: () => {
+          setIsTimelineSelected(true);
+          setSelectFocused(true);
+        },
+      }}
+      selectedItemsContainer={{
+        render: () => (
+          <AntSelect
+            userId={userId}
+            organizationId={organizationId}
+            selectedTimelines={selectedTimelines}
+            setSelectedTimelines={setSelectedTimelines}
+            selectFocused={selectFocused}
+            setSelectFocused={setSelectFocused}
+          />
+        ),
+      }}
+      errorMessage={editorShape.error}
+      textContainer={{
+        render: () => (
+          <ComposeEditor
+            editorShape={editorShape}
+            setEditorShape={setEditorShape}
+          />
+        ),
+      }}
+    />
+  );
 }
 
 export default ActionBar;

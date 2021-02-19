@@ -142,7 +142,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
               )}
             >
               {
-                "Lorem ipsumNam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui "
+                "Lorem ipsumNam mollis varius ex. In ornare #scelerisque ex, ut ullamcorper dui "
               }
             </div>
 
@@ -305,7 +305,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
             <Button
               data-plasmic-name={"button"}
               data-plasmic-override={overrides.button}
-              buttonFeatures={["rounded", "rightIcon", "count"]}
+              buttonFeatures={["isRounded", "showEndIcon", "showCount"]}
               buttonStyle={"secondaryPurple" as const}
               className={classNames("__wab_instance", sty.button)}
               count={"1"}

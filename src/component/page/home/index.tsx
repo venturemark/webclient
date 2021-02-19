@@ -5,7 +5,7 @@ import {
 PlasmicHome,
 DefaultHomeProps } from
 "component/plasmic/shared/PlasmicHome";
-import Update from "component/update";
+import FeedUpdate from "component/feedupdate";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { IUpdate, IUpdateQuery } from "module/interface/update";
@@ -120,21 +120,21 @@ export function Component(props: HomeProps) {
     //   timelineName: currentTimeline?.name ?? "",
     //   timelineDescription: currentTimeline?.desc ?? "edit description...",
     // }}
-    updatesContainer={{
-      children: updates.map((update: IUpdate) =>
-      <Update
-      text={update.text}
-      key={update.id}
-      id={update.id}
-      organizationName={update.organizationId}
-      timelineId={update.timelineId}
-      userName={update.userId}
-      date={update.date}
-      allUpdates={allUpdates}
-      setCurrentTimeline={setCurrentTimeline} />) }} />);
-
-
-
-
+    // updatesContainer={{
+    //   children: updates.map((update: IUpdate) => (
+    //     <FeedUpdate
+    //       text={update.text}
+    //       key={update.id}
+    //       id={update.id}
+    //       organizationName={update.organizationId}
+    //       timelineId={update.timelineId}
+    //       userName={update.userId}
+    //       date={update.date}
+    //       allUpdates={allUpdates}
+    //       setCurrentTimeline={setCurrentTimeline}
+    //     />
+    //   )),
+    // }}
+    />);
 
 }
