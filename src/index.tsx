@@ -15,9 +15,12 @@ import reportWebVitals from "reportWebVitals";
 const history = createBrowserHistory();
 const config = getConfig();
 
+//how do we set this up?
 const onRedirectCallback = (appState: any) => {
   history.push(
-    appState && appState.returnTo ? appState.returnTo : window.location.pathname
+    appState && appState.returnTo
+      ? appState.returnTo
+      : window.location.pathname + "profile"
   );
 };
 

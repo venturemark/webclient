@@ -2,9 +2,10 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-PlasmicProfile,
-DefaultProfileProps } from
-"component/plasmic/shared/PlasmicProfile";
+  PlasmicProfile,
+  DefaultProfileProps,
+} from "component/plasmic/shared/PlasmicProfile";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -39,4 +40,4 @@ function Profile(props: ProfileProps) {
   return <PlasmicProfile {...props} />;
 }
 
-export default Profile;
+export default withAuthenticationRequired(Profile);
