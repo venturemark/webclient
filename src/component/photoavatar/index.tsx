@@ -2,9 +2,10 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-PlasmicPhotoAvatar,
-DefaultPhotoAvatarProps } from
-"component/plasmic/shared/PlasmicPhotoAvatar";
+  PlasmicPhotoAvatar,
+  DefaultPhotoAvatarProps,
+} from "component/plasmic/shared/PlasmicPhotoAvatar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -22,21 +23,22 @@ DefaultPhotoAvatarProps } from
 interface PhotoAvatarProps extends DefaultPhotoAvatarProps {}
 
 function PhotoAvatar(props: PhotoAvatarProps) {
-  // Use PlasmicPhotoAvatar to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicPhotoAvatar are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all PhotoAvatarProps here, but feel free
-  // to do whatever works for you.
-  return <PlasmicPhotoAvatar {...props} />;
+  const { user, logout } = useAuth0();
+
+  const userInitials =
+    user?.name
+      .split(" ")
+      .map((n: string) => n[0])
+      .join("") ?? "";
+  console.log("user in photo avatar:", user);
+
+  return (
+    <PlasmicPhotoAvatar
+      onClick={() => logout()}
+      userInitials={userInitials}
+      {...props}
+    />
+  );
 }
 
 export default PhotoAvatar;

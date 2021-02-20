@@ -18,9 +18,7 @@ const config = getConfig();
 //how do we set this up?
 const onRedirectCallback = (appState: any) => {
   history.push(
-    appState && appState.returnTo
-      ? appState.returnTo
-      : window.location.pathname + "profile"
+    appState && appState.returnTo ? appState.returnTo : window.location.pathname
   );
 };
 
@@ -28,7 +26,7 @@ const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   ...(config.audience ? { audience: config.audience } : null),
-  redirectUri: window.location.origin,
+  redirectUri: "http://localhost:3006/profile",
   onRedirectCallback,
 };
 
