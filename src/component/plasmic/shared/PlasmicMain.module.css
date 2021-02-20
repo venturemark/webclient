@@ -31,38 +31,7 @@
     font-size: 12px /* plasmic-token: LxqIZc9hM */;
   }
 }
-.updatesContainer {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-}
-.updatesContainer > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  margin-top: calc(0px - 30px);
-  height: calc(100% + 30px);
-}
-.updatesContainer > :global(.__wab_flex-container) > *,
-.updatesContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 30px;
-}
-.actionBar:global(.__wab_instance) {
-  position: relative;
-}
-.svg__p0F36 {
-  position: relative;
-  object-fit: cover;
-  width: 17px;
-  height: 14px;
-}
-.svg___2WyMn {
-  position: relative;
-  object-fit: cover;
-  width: 12px;
-  height: 10px;
-}
-.feedUpdate__ql0Hq:global(.__wab_instance) {
+.feedUpdate:global(.__wab_instance) {
   position: relative;
 }
 .addEditMembers:global(.__wab_instance) {

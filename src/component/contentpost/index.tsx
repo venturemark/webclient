@@ -2,16 +2,16 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React, { useState } from "react";
 import {
-PlasmicUpdateContent,
-DefaultUpdateContentProps } from
-"component/plasmic/shared/PlasmicUpdateContent";
+PlasmicContentPost,
+DefaultContentPostProps } from
+"component/plasmic/shared/PlasmicContentPost";
 import ReadEditor from "component/editor/read";
 import { Node } from "slate";
 import { AntDropdown } from "component/ant/dropdown";
 import TimelineLink from "component/timelinelink";
 import { ITimeline } from "module/interface/timeline";
 
-interface UpdateContentProps extends DefaultUpdateContentProps {
+interface ContentPostProps extends DefaultContentPostProps {
   text: Node[];
   id: string;
   organizationName: string;
@@ -24,7 +24,7 @@ interface UpdateContentProps extends DefaultUpdateContentProps {
 
 
 
-function UpdateContent(props: UpdateContentProps) {
+function ContentPost(props: ContentPostProps) {
   const {
     text,
     organizationName,
@@ -41,7 +41,7 @@ function UpdateContent(props: UpdateContentProps) {
 
 
   return (
-    <PlasmicUpdateContent
+    <PlasmicContentPost
     state={isReply}
     iconMenu={{
       render: () => <AntDropdown /> }}
@@ -73,4 +73,4 @@ function UpdateContent(props: UpdateContentProps) {
 
 }
 
-export default UpdateContent;
+export default ContentPost;

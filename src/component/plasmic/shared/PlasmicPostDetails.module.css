@@ -6,9 +6,6 @@
   flex-direction: column;
   padding: 15px 0px 0px;
 }
-.replyInput:global(.__wab_instance) {
-  position: relative;
-}
 .repliesContainer {
   display: flex;
   position: relative;
@@ -23,4 +20,7 @@
   left: auto;
   top: auto;
   font-size: 16px;
+}
+.replyInput:global(.__wab_instance) {
+  position: relative;
 }

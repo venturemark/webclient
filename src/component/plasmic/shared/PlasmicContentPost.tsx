@@ -30,46 +30,46 @@ import {
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import TimelineLink from "../../timelinelink/index"; // plasmic-import: PGPJmONwto/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
-import Reply from "../../reply/index"; // plasmic-import: cZqz_iAjea/component
+import PostDetails from "../../postdetails/index"; // plasmic-import: cZqz_iAjea/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicUpdateContent.module.css"; // plasmic-import: A1UjtYt6k0/css
+import sty from "./PlasmicContentPost.module.css"; // plasmic-import: A1UjtYt6k0/css
 
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
 
-export type PlasmicUpdateContent__VariantMembers = {
+export type PlasmicContentPost__VariantMembers = {
   state: "isReply" | "isUser";
 };
 
-export type PlasmicUpdateContent__VariantsArgs = {
+export type PlasmicContentPost__VariantsArgs = {
   state?: SingleChoiceArg<"isReply" | "isUser">;
 };
 
-type VariantPropType = keyof PlasmicUpdateContent__VariantsArgs;
-export const PlasmicUpdateContent__VariantProps = new Array<VariantPropType>(
+type VariantPropType = keyof PlasmicContentPost__VariantsArgs;
+export const PlasmicContentPost__VariantProps = new Array<VariantPropType>(
   "state"
 );
 
-export type PlasmicUpdateContent__ArgsType = {
+export type PlasmicContentPost__ArgsType = {
   userName?: React.ReactNode;
   date?: React.ReactNode;
   userInitials?: React.ReactNode;
 };
 
-type ArgPropType = keyof PlasmicUpdateContent__ArgsType;
-export const PlasmicUpdateContent__ArgProps = new Array<ArgPropType>(
+type ArgPropType = keyof PlasmicContentPost__ArgsType;
+export const PlasmicContentPost__ArgProps = new Array<ArgPropType>(
   "userName",
   "date",
   "userInitials"
 );
 
-export type PlasmicUpdateContent__OverridesType = {
+export type PlasmicContentPost__OverridesType = {
   root?: p.Flex<"div">;
   editorContainer?: p.Flex<"div">;
   textContainer2?: p.Flex<"div">;
@@ -82,10 +82,10 @@ export type PlasmicUpdateContent__OverridesType = {
   timelineLink?: p.Flex<typeof TimelineLink>;
   button?: p.Flex<typeof Button>;
   iconMenu?: p.Flex<"svg">;
-  reply?: p.Flex<typeof Reply>;
+  reply?: p.Flex<typeof PostDetails>;
 };
 
-export interface DefaultUpdateContentProps {
+export interface DefaultContentPostProps {
   userName?: React.ReactNode;
   date?: React.ReactNode;
   userInitials?: React.ReactNode;
@@ -93,10 +93,10 @@ export interface DefaultUpdateContentProps {
   className?: string;
 }
 
-function PlasmicUpdateContent__RenderFunc(props: {
-  variants: PlasmicUpdateContent__VariantsArgs;
-  args: PlasmicUpdateContent__ArgsType;
-  overrides: PlasmicUpdateContent__OverridesType;
+function PlasmicContentPost__RenderFunc(props: {
+  variants: PlasmicContentPost__VariantsArgs;
+  args: PlasmicContentPost__ArgsType;
+  overrides: PlasmicContentPost__OverridesType;
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode } = props;
@@ -347,7 +347,7 @@ function PlasmicUpdateContent__RenderFunc(props: {
         </p.Stack>
 
         {(hasVariant(variants, "state", "isReply") ? true : false) ? (
-          <Reply
+          <PostDetails
             data-plasmic-name={"reply"}
             data-plasmic-override={overrides.reply}
             className={classNames("__wab_instance", sty.reply, {
@@ -425,23 +425,23 @@ type NodeDefaultElementType = {
   timelineLink: typeof TimelineLink;
   button: typeof Button;
   iconMenu: "svg";
-  reply: typeof Reply;
+  reply: typeof PostDetails;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
 type NodeOverridesType<T extends NodeNameType> = Pick<
-  PlasmicUpdateContent__OverridesType,
+  PlasmicContentPost__OverridesType,
   DescendantsType<T>
 >;
 
 type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
-  variants?: PlasmicUpdateContent__VariantsArgs;
-  args?: PlasmicUpdateContent__ArgsType;
+  variants?: PlasmicContentPost__VariantsArgs;
+  args?: PlasmicContentPost__ArgsType;
   overrides?: NodeOverridesType<T>;
-} & Omit<PlasmicUpdateContent__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+} & Omit<PlasmicContentPost__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
-  Omit<PlasmicUpdateContent__ArgsType, ReservedPropsType> &
+  Omit<PlasmicContentPost__ArgsType, ReservedPropsType> &
   // Specify overrides for each element directly as props
   Omit<
     NodeOverridesType<T>,
@@ -461,11 +461,11 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
     const { variants, args, overrides } = deriveRenderOpts(props, {
       name: nodeName,
       descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicUpdateContent__ArgProps,
-      internalVariantPropNames: PlasmicUpdateContent__VariantProps,
+      internalArgPropNames: PlasmicContentPost__ArgProps,
+      internalVariantPropNames: PlasmicContentPost__VariantProps,
     });
 
-    return PlasmicUpdateContent__RenderFunc({
+    return PlasmicContentPost__RenderFunc({
       variants,
       args,
       overrides,
@@ -473,15 +473,15 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
     });
   };
   if (nodeName === "root") {
-    func.displayName = "PlasmicUpdateContent";
+    func.displayName = "PlasmicContentPost";
   } else {
-    func.displayName = `PlasmicUpdateContent.${nodeName}`;
+    func.displayName = `PlasmicContentPost.${nodeName}`;
   }
   return func;
 }
 
-export const PlasmicUpdateContent = Object.assign(
-  // Top-level PlasmicUpdateContent renders the root element
+export const PlasmicContentPost = Object.assign(
+  // Top-level PlasmicContentPost renders the root element
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
@@ -498,11 +498,11 @@ export const PlasmicUpdateContent = Object.assign(
     iconMenu: makeNodeComponent("iconMenu"),
     reply: makeNodeComponent("reply"),
 
-    // Metadata about props expected for PlasmicUpdateContent
-    internalVariantProps: PlasmicUpdateContent__VariantProps,
-    internalArgProps: PlasmicUpdateContent__ArgProps,
+    // Metadata about props expected for PlasmicContentPost
+    internalVariantProps: PlasmicContentPost__VariantProps,
+    internalArgProps: PlasmicContentPost__ArgProps,
   }
 );
 
-export default PlasmicUpdateContent;
+export default PlasmicContentPost;
 /* prettier-ignore-end */

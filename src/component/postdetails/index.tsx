@@ -2,21 +2,21 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-PlasmicReply,
-DefaultReplyProps } from
-"component/plasmic/shared/PlasmicReply";
+PlasmicPostDetails,
+DefaultPostDetailsProps } from
+"component/plasmic/shared/PlasmicPostDetails";
 import ReplyContent from "component/replycontent";
 import { IMessageQuery } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 
-interface ReplyProps extends DefaultReplyProps {
+interface PostDetailsProps extends DefaultPostDetailsProps {
   updateId: string;
   timelineId: string;
   organizationId: string;
   userId: string;}
 
 
-function Reply(props: ReplyProps) {
+function PostDetails(props: PostDetailsProps) {
   const { updateId, timelineId, userId, organizationId } = props;
   const messageSearch: IMessageQuery = {
     updateId,
@@ -24,11 +24,12 @@ function Reply(props: ReplyProps) {
     userId,
     organizationId };
 
+
   const { data: messagesData } = useMessages(messageSearch);
   const messages = messagesData?.filter((message: any) => !message.reid) ?? [];
 
   return (
-    <PlasmicReply
+    <PlasmicPostDetails
     replyInput={{
       organizationId: organizationId,
       timelineId,
@@ -53,4 +54,4 @@ function Reply(props: ReplyProps) {
 
 }
 
-export default Reply;
+export default PostDetails;

@@ -28,7 +28,6 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
-import Switch from "../../switch/index"; // plasmic-import: l1Qe8RjaNW/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -63,7 +62,6 @@ export type PlasmicAddEditMembers__OverridesType = {
   root?: p.Flex<"div">;
   inputText?: p.Flex<typeof InputText>;
   input?: p.Flex<"input">;
-  _switch?: p.Flex<typeof Switch>;
   button?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
 };
@@ -159,13 +157,6 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         />
       </div>
 
-      <Switch
-        data-plasmic-name={"_switch"}
-        data-plasmic-override={overrides._switch}
-        className={classNames("__wab_instance", sty._switch)}
-        variantSettings={["hasLabel"]}
-      />
-
       <div className={classNames(defaultcss.all, sty.box___1CNd9)}>
         <Button
           data-plasmic-name={"button"}
@@ -203,10 +194,9 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "inputText", "input", "_switch", "button", "text2"],
+  root: ["root", "inputText", "input", "button", "text2"],
   inputText: ["inputText", "input"],
   input: ["input"],
-  _switch: ["_switch"],
   button: ["button", "text2"],
   text2: ["text2"],
 } as const;
@@ -218,7 +208,6 @@ type NodeDefaultElementType = {
   root: "div";
   inputText: typeof InputText;
   input: "input";
-  _switch: typeof Switch;
   button: typeof Button;
   text2: "div";
 };
@@ -282,7 +271,6 @@ export const PlasmicAddEditMembers = Object.assign(
     // Helper components rendering sub-elements
     inputText: makeNodeComponent("inputText"),
     input: makeNodeComponent("input"),
-    _switch: makeNodeComponent("_switch"),
     button: makeNodeComponent("button"),
     text2: makeNodeComponent("text2"),
 

@@ -6,13 +6,11 @@ PlasmicHeader,
 DefaultHeaderProps } from
 "component/plasmic/shared/PlasmicHeader";
 
-interface HeaderProps extends DefaultHeaderProps {
-  userInitials?: string;}
-
+interface HeaderProps extends DefaultHeaderProps {}
 
 function Header(props: HeaderProps) {
-  const { userInitials } = props;
-  return <PlasmicHeader />;
+  const { ...rest } = props;
+  return <PlasmicHeader {...rest} />;
 }
 
 export default Header;

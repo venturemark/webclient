@@ -29,6 +29,7 @@ import {
 } from "@plasmicapp/react-web";
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import InputTextArea from "../../inputtextarea/index"; // plasmic-import: Q2R-U25DUBO/component
+import Switch from "../../switch/index"; // plasmic-import: l1Qe8RjaNW/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -61,6 +62,7 @@ export const PlasmicAddEditVenture__ArgProps = new Array<ArgPropType>(
 export type PlasmicAddEditVenture__OverridesType = {
   settings?: p.Flex<"div">;
   inputTextArea?: p.Flex<typeof InputTextArea>;
+  _switch?: p.Flex<typeof Switch>;
   button?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
 };
@@ -171,6 +173,13 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         />
       </div>
 
+      <Switch
+        data-plasmic-name={"_switch"}
+        data-plasmic-override={overrides._switch}
+        className={classNames("__wab_instance", sty._switch)}
+        variantSettings={["hasLabel"]}
+      />
+
       <div className={classNames(defaultcss.all, sty.box___9CoNs)}>
         <Button
           data-plasmic-name={"button"}
@@ -208,8 +217,9 @@ function PlasmicAddEditVenture__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  settings: ["settings", "inputTextArea", "button", "text2"],
+  settings: ["settings", "inputTextArea", "_switch", "button", "text2"],
   inputTextArea: ["inputTextArea"],
+  _switch: ["_switch"],
   button: ["button", "text2"],
   text2: ["text2"],
 } as const;
@@ -220,6 +230,7 @@ type DescendantsType<
 type NodeDefaultElementType = {
   settings: "div";
   inputTextArea: typeof InputTextArea;
+  _switch: typeof Switch;
   button: typeof Button;
   text2: "div";
 };
@@ -282,6 +293,7 @@ export const PlasmicAddEditVenture = Object.assign(
   {
     // Helper components rendering sub-elements
     inputTextArea: makeNodeComponent("inputTextArea"),
+    _switch: makeNodeComponent("_switch"),
     button: makeNodeComponent("button"),
     text2: makeNodeComponent("text2"),
 

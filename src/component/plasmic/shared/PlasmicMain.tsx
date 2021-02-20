@@ -28,7 +28,6 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import MainHeader from "../../mainheader/index"; // plasmic-import: LRwT0lHdps/component
-import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
 import FeedUpdate from "../../feedupdate/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import AddEditMembers from "../../addeditmembers/index"; // plasmic-import: 3NTlJO7oDpw/component
 import AddEditVenture from "../../addeditventure/index"; // plasmic-import: xICnD3GwL-L/component
@@ -39,9 +38,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicMain.module.css"; // plasmic-import: 0c6QSqHYCk/css
-
-import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
-import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 
 export type PlasmicMain__VariantMembers = {
   isActive: "feed" | "settings" | "members";
@@ -62,8 +58,7 @@ export type PlasmicMain__OverridesType = {
   container?: p.Flex<"div">;
   mainHeader?: p.Flex<typeof MainHeader>;
   box?: p.Flex<"div">;
-  updatesContainer?: p.Flex<"div">;
-  actionBar?: p.Flex<typeof ActionBar>;
+  feedUpdate?: p.Flex<typeof FeedUpdate>;
   addEditMembers?: p.Flex<typeof AddEditMembers>;
   addEditVenture?: p.Flex<typeof AddEditVenture>;
 };
@@ -154,61 +149,25 @@ function PlasmicMain__RenderFunc(props: {
           ? false
           : hasVariant(variants, "isActive", "settings")
           ? false
-          : hasVariant(variants, "isActive", "feed")
-          ? true
           : true
       ) ? (
-        <p.Stack
-          as={"div"}
-          data-plasmic-name={"updatesContainer"}
-          data-plasmic-override={overrides.updatesContainer}
-          hasGap={true}
-          className={classNames(defaultcss.all, sty.updatesContainer, {
-            [sty.updatesContainer__isActive_feed]: hasVariant(
-              variants,
-              "isActive",
-              "feed"
-            ),
-
-            [sty.updatesContainer__isActive_members]: hasVariant(
+        <FeedUpdate
+          data-plasmic-name={"feedUpdate"}
+          data-plasmic-override={overrides.feedUpdate}
+          className={classNames("__wab_instance", sty.feedUpdate, {
+            [sty.feedUpdate__isActive_members]: hasVariant(
               variants,
               "isActive",
               "members"
             ),
 
-            [sty.updatesContainer__isActive_settings]: hasVariant(
+            [sty.feedUpdate__isActive_settings]: hasVariant(
               variants,
               "isActive",
               "settings"
             ),
           })}
-        >
-          <ActionBar
-            data-plasmic-name={"actionBar"}
-            data-plasmic-override={overrides.actionBar}
-            className={classNames("__wab_instance", sty.actionBar)}
-            errorMessage={"Please enter a number value"}
-            slot={
-              <IconPlusIcon
-                className={classNames(defaultcss.all, sty.svg__p0F36)}
-                role={"img"}
-              />
-            }
-            text2={"Metric"}
-            userInitials={"KO"}
-          >
-            <IconCloseIcon
-              className={classNames(defaultcss.all, sty.svg___2WyMn)}
-              role={"img"}
-            />
-          </ActionBar>
-
-          <FeedUpdate
-            className={classNames("__wab_instance", sty.feedUpdate__ql0Hq)}
-          />
-
-          <FeedUpdate />
-        </p.Stack>
+        />
       ) : null}
       {(hasVariant(variants, "isActive", "members") ? true : false) ? (
         <AddEditMembers
@@ -251,16 +210,14 @@ const PlasmicDescendants = {
     "container",
     "mainHeader",
     "box",
-    "updatesContainer",
-    "actionBar",
+    "feedUpdate",
     "addEditMembers",
     "addEditVenture",
   ],
 
   mainHeader: ["mainHeader", "box"],
   box: ["box"],
-  updatesContainer: ["updatesContainer", "actionBar"],
-  actionBar: ["actionBar"],
+  feedUpdate: ["feedUpdate"],
   addEditMembers: ["addEditMembers"],
   addEditVenture: ["addEditVenture"],
 } as const;
@@ -272,8 +229,7 @@ type NodeDefaultElementType = {
   container: "div";
   mainHeader: typeof MainHeader;
   box: "div";
-  updatesContainer: "div";
-  actionBar: typeof ActionBar;
+  feedUpdate: typeof FeedUpdate;
   addEditMembers: typeof AddEditMembers;
   addEditVenture: typeof AddEditVenture;
 };
@@ -337,8 +293,7 @@ export const PlasmicMain = Object.assign(
     // Helper components rendering sub-elements
     mainHeader: makeNodeComponent("mainHeader"),
     box: makeNodeComponent("box"),
-    updatesContainer: makeNodeComponent("updatesContainer"),
-    actionBar: makeNodeComponent("actionBar"),
+    feedUpdate: makeNodeComponent("feedUpdate"),
     addEditMembers: makeNodeComponent("addEditMembers"),
     addEditVenture: makeNodeComponent("addEditVenture"),
 

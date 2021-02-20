@@ -2,13 +2,13 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-  PlasmicButton,
-  DefaultButtonProps,
-} from "component/plasmic/shared/PlasmicButton";
+PlasmicButton,
+DefaultButtonProps } from
+"component/plasmic/shared/PlasmicButton";
 
 interface ButtonProps extends DefaultButtonProps {
-  onClick?: () => void;
-}
+  onClick?: () => void;}
+
 
 function Button(props: ButtonProps) {
   const { onClick, ...rest } = props;

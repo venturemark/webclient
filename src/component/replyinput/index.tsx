@@ -2,24 +2,24 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-  PlasmicReplyInput,
-  DefaultReplyInputProps,
-} from "component/plasmic/shared/PlasmicReplyInput";
+PlasmicReplyInput,
+DefaultReplyInputProps } from
+"component/plasmic/shared/PlasmicReplyInput";
 import { useForm } from "react-hook-form";
 import { INewMessage } from "module/interface/message";
 import { useCreateMessage } from "module/hook/message";
 
 type FormInputs = {
-  text: string;
-};
+  text: string;};
+
 
 interface ReplyInputProps extends DefaultReplyInputProps {
   updateId: string;
   timelineId: string;
   organizationId: string;
   userId: string;
-  reid: string;
-}
+  reid: string;}
+
 
 function ReplyInput(props: ReplyInputProps) {
   const { updateId, timelineId, organizationId, userId, reid } = props;
@@ -38,8 +38,8 @@ function ReplyInput(props: ReplyInputProps) {
       timelineId,
       updateId,
       userId,
-      reid: reid,
-    };
+      reid: reid };
+
 
     // console.log(newMessage);
 
@@ -48,24 +48,24 @@ function ReplyInput(props: ReplyInputProps) {
 
     //reset form
     reset({
-      text: "",
-    });
+      text: "" });
+
   };
 
   return (
     <PlasmicReplyInput
-      replyForm={{
-        onSubmit: handleSubmit(handleAddMessage),
-      }}
-      replyInput={{
-        name: "text",
-        ref: register(),
-      }}
+    replyForm={{
+      onSubmit: handleSubmit(handleAddMessage) }}
 
-      // postReplyButton={{
-      //   type: "submit" }}
-    />
-  );
+    replyInput={{
+      name: "text",
+      ref: register() }}
+
+
+    // postReplyButton={{
+    //   type: "submit" }}
+    />);
+
 }
 
 export default ReplyInput;

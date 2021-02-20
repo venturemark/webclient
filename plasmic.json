@@ -39,14 +39,14 @@
         },
         {
           "id": "A1UjtYt6k0",
-          "name": "UpdateContent",
+          "name": "ContentPost",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicUpdateContent.tsx",
+          "renderModuleFilePath": "plasmic/shared/PlasmicContentPost.tsx",
           "importSpec": {
-            "modulePath": "updatecontent/index.tsx"
+            "modulePath": "contentpost/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicUpdateContent.module.css",
+          "cssFilePath": "plasmic/shared/PlasmicContentPost.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -169,14 +169,14 @@
         },
         {
           "id": "cZqz_iAjea",
-          "name": "Reply",
+          "name": "PostDetails",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicReply.tsx",
+          "renderModuleFilePath": "plasmic/shared/PlasmicPostDetails.tsx",
           "importSpec": {
-            "modulePath": "reply/index.tsx"
+            "modulePath": "postdetails/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicReply.module.css",
+          "cssFilePath": "plasmic/shared/PlasmicPostDetails.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -528,6 +528,19 @@
             "modulePath": "button/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicButton.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "1E73LSzV2l",
+          "name": "PostDetails2",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicPostDetails2.tsx",
+          "importSpec": {
+            "modulePath": "PostDetails2.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicPostDetails2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
