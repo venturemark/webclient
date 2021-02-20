@@ -119,7 +119,7 @@ function ActionBar(props: ActionBarProps) {
   return (
     <PlasmicActionBar
       isActive={true}
-      userInitials={userId
+      userInitials={"Venture Mark"
         .split(" ")
         .map((n) => n[0])
         .join("")}
