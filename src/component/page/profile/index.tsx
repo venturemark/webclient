@@ -17,6 +17,7 @@ function Profile(props: ProfileProps) {
   const { handleSubmit, register } = useForm();
 
   const handleComplete = (data: any) => {
+    //currently we're not storing a change here because we're waiting on backend.
     console.log(data);
     history.push("/");
   };

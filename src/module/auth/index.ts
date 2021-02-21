@@ -1,7 +1,12 @@
+import { isDev } from "module/helpers";
+
 export const configJson = {
   domain: "vm001.us.auth0.com",
   clientId: "OcDgIHyVoiG39haDb8Vm88dTa96mgGTg",
   audience: "apiserver",
+  redirectUri: isDev()
+    ? "http://localhost:3006/profile"
+    : "https://venturemark.co/profile",
 };
 
 export function getConfig() {
@@ -20,5 +25,6 @@ export function getConfig() {
     domain: configJson.domain,
     clientId: configJson.clientId,
     ...(audience ? { audience } : null),
+    redirectUri: configJson.redirectUri,
   };
 }
