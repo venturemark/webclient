@@ -10,8 +10,11 @@
   position: relative;
   flex-direction: column;
   width: 100%;
+  height: 75px;
   min-width: 0;
-  padding: 10px 0px;
+  padding: 10px 20px;
+  background: linear-gradient(rgb(249, 249, 250), rgb(249, 249, 250))
+    /* plasmic-token: 4lM47qJruvPIx-u, 4lM47qJruvPIx-u */;
 }
 .box > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -28,26 +31,36 @@
   outline: none;
 }
 .replyForm {
-  align-items: flex-end;
-  justify-content: flex-start;
   height: auto;
   width: 100%;
   display: flex;
   position: relative;
-  flex-direction: column;
+  flex-direction: row;
   min-width: 0;
   border-radius: 0px;
   border: 0px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.replyForm > :global(.__wab_flex-container) {
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-left: calc(0px - 14px);
+  width: calc(100% + 14px);
+}
+.replyForm > :global(.__wab_flex-container) > *,
+.replyForm > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-left: 14px;
 }
 .replyInput {
   width: 100%;
   height: auto;
   font-size: 16px;
   font-weight: 300;
-  margin-bottom: 10px;
   min-width: 0;
-  border-radius: 25px;
-  padding: 15px;
+  border-radius: 10px;
+  padding: 15px 20px;
+  background: linear-gradient(#ffffff, #ffffff)
+    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .root:focus-within .replyInput {
@@ -55,7 +68,7 @@
 }
 .postReplyButton:global(.__wab_instance) {
   position: relative;
-  align-self: flex-end;
+  align-self: center;
 }
 .root:focus-within .postReplyButton:global(.__wab_instance) {
   outline: none;
@@ -68,4 +81,10 @@
 }
 .root:focus-within .text {
   outline: none;
+}
+.svg {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
 }

@@ -6,14 +6,36 @@ import {
   DefaultProfileProps,
 } from "component/plasmic/shared/PlasmicProfile";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
+import { useForm } from "react-hook-form";
 
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
   const { user } = useAuth0();
+  const { handleSubmit, register } = useForm<any>();
+
+  const handleComplete = (data: any) => {
+    console.log(data);
+  };
 
   return (
-    <PlasmicProfile input={{ defaultValue: user?.name ?? "" }} {...props} />
+    <PlasmicProfile
+      form={{
+        onSubmit: handleSubmit(handleComplete),
+      }}
+      nameField={{
+        defaultValue: user?.name ?? "",
+        register: register(),
+        name: "name",
+      }}
+      jobField={{
+        register: register(),
+        name: "job",
+      }}
+      completeProfile={{
+        type: "submit",
+      }}
+    />
   );
 }
 

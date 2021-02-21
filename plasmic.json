@@ -168,19 +168,6 @@
           "componentType": "component"
         },
         {
-          "id": "cZqz_iAjea",
-          "name": "PostDetails",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicPostDetails.tsx",
-          "importSpec": {
-            "modulePath": "postdetails/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicPostDetails.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "97K6RSBlPOz",
           "name": "ReplyContentSecond",
           "type": "managed",
@@ -533,14 +520,14 @@
         },
         {
           "id": "1E73LSzV2l",
-          "name": "PostDetails2",
+          "name": "PostDetails",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicPostDetails2.tsx",
+          "renderModuleFilePath": "plasmic/shared/PlasmicPostDetails.tsx",
           "importSpec": {
-            "modulePath": "PostDetails2.tsx"
+            "modulePath": "postdetails/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicPostDetails2.module.css",
+          "cssFilePath": "plasmic/shared/PlasmicPostDetails.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -790,6 +777,11 @@
           "id": "kQoy0KbdjL",
           "name": "VectorsvgIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vectorsvg.tsx"
+        },
+        {
+          "id": "Iea8iz1ew",
+          "name": "IconSend2Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconSend2.tsx"
         }
       ],
       "images": [

@@ -61,7 +61,6 @@ export const PlasmicAddEditMembers__ArgProps = new Array<ArgPropType>(
 export type PlasmicAddEditMembers__OverridesType = {
   root?: p.Flex<"div">;
   inputText?: p.Flex<typeof InputText>;
-  input?: p.Flex<"input">;
   button?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
 };
@@ -110,18 +109,6 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         <InputText
           data-plasmic-name={"inputText"}
           data-plasmic-override={overrides.inputText}
-          input={
-            <input
-              data-plasmic-name={"input"}
-              data-plasmic-override={overrides.input}
-              className={classNames(defaultcss.input, sty.input)}
-              placeholder={"e.g. example@email.com" as const}
-              size={1 as const}
-              title={"" as const}
-              type={"text" as const}
-              value={"" as const}
-            />
-          }
           label={"Invite a member by email"}
         >
           {"Text Helper Description"}
@@ -194,9 +181,8 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "inputText", "input", "button", "text2"],
-  inputText: ["inputText", "input"],
-  input: ["input"],
+  root: ["root", "inputText", "button", "text2"],
+  inputText: ["inputText"],
   button: ["button", "text2"],
   text2: ["text2"],
 } as const;
@@ -207,7 +193,6 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   inputText: typeof InputText;
-  input: "input";
   button: typeof Button;
   text2: "div";
 };
@@ -270,7 +255,6 @@ export const PlasmicAddEditMembers = Object.assign(
   {
     // Helper components rendering sub-elements
     inputText: makeNodeComponent("inputText"),
-    input: makeNodeComponent("input"),
     button: makeNodeComponent("button"),
     text2: makeNodeComponent("text2"),
 

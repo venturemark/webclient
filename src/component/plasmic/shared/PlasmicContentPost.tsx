@@ -30,7 +30,6 @@ import {
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import TimelineLink from "../../timelinelink/index"; // plasmic-import: PGPJmONwto/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
-import PostDetails from "../../postdetails/index"; // plasmic-import: cZqz_iAjea/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -39,16 +38,16 @@ import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicContentPost.module.css"; // plasmic-import: A1UjtYt6k0/css
 
+import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
-import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicContentPost__VariantMembers = {
-  state: "isReply" | "isUser";
+  state: "isUser" | "isPostDetails";
 };
 
 export type PlasmicContentPost__VariantsArgs = {
-  state?: SingleChoiceArg<"isReply" | "isUser">;
+  state?: MultiChoiceArg<"isUser" | "isPostDetails">;
 };
 
 type VariantPropType = keyof PlasmicContentPost__VariantsArgs;
@@ -75,21 +74,20 @@ export type PlasmicContentPost__OverridesType = {
   textContainer2?: p.Flex<"div">;
   textContainer?: p.Flex<"div">;
   textContainer3?: p.Flex<"div">;
+  iconMenu?: p.Flex<"svg">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   userName?: p.Flex<"span">;
   date?: p.Flex<"span">;
   timelineNamesContainer?: p.Flex<"div">;
   timelineLink?: p.Flex<typeof TimelineLink>;
   button?: p.Flex<typeof Button>;
-  iconMenu?: p.Flex<"svg">;
-  reply?: p.Flex<typeof PostDetails>;
 };
 
 export interface DefaultContentPostProps {
   userName?: React.ReactNode;
   date?: React.ReactNode;
   userInitials?: React.ReactNode;
-  state?: SingleChoiceArg<"isReply" | "isUser">;
+  state?: MultiChoiceArg<"isUser" | "isPostDetails">;
   className?: string;
 }
 
@@ -111,16 +109,22 @@ function PlasmicContentPost__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__state_isPostDetails]: hasVariant(
+          variants,
+          "state",
+          "isPostDetails"
+        ),
+      })}
     >
       <div
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
         className={classNames(defaultcss.all, sty.editorContainer, {
-          [sty.editorContainer__state_isReply]: hasVariant(
+          [sty.editorContainer__state_isPostDetails]: hasVariant(
             variants,
             "state",
-            "isReply"
+            "isPostDetails"
           ),
         })}
       >
@@ -138,7 +142,14 @@ function PlasmicContentPost__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.textContainer
+                sty.textContainer,
+                {
+                  [sty.textContainer__state_isPostDetails]: hasVariant(
+                    variants,
+                    "state",
+                    "isPostDetails"
+                  ),
+                }
               )}
             >
               {
@@ -152,7 +163,14 @@ function PlasmicContentPost__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.textContainer3
+                sty.textContainer3,
+                {
+                  [sty.textContainer3__state_isPostDetails]: hasVariant(
+                    variants,
+                    "state",
+                    "isPostDetails"
+                  ),
+                }
               )}
             >
               {
@@ -160,12 +178,37 @@ function PlasmicContentPost__RenderFunc(props: {
               }
             </div>
           </p.Stack>
+
+          {(hasVariant(variants, "state", "isUser") ? true : false) ? (
+            <div
+              className={classNames(defaultcss.all, sty.box__vVNrv, {
+                [sty.box__state_isUser__vVNrvU0Xnn]: hasVariant(
+                  variants,
+                  "state",
+                  "isUser"
+                ),
+              })}
+            >
+              <IconDotMenuIcon
+                data-plasmic-name={"iconMenu"}
+                data-plasmic-override={overrides.iconMenu}
+                className={classNames(defaultcss.all, sty.iconMenu)}
+                role={"img"}
+              />
+            </div>
+          ) : null}
         </div>
 
         <p.Stack
           as={"div"}
           hasGap={true}
           className={classNames(defaultcss.all, sty.box__ehjLr, {
+            [sty.box__state_isPostDetails__ehjLrNeiX5]: hasVariant(
+              variants,
+              "state",
+              "isPostDetails"
+            ),
+
             [sty.box__state_isUser__ehjLrU0Xnn]: hasVariant(
               variants,
               "state",
@@ -301,64 +344,39 @@ function PlasmicContentPost__RenderFunc(props: {
             </p.Stack>
           </p.Stack>
 
-          <div className={classNames(defaultcss.all, sty.box__iRFwS)}>
-            <Button
-              data-plasmic-name={"button"}
-              data-plasmic-override={overrides.button}
-              buttonFeatures={["isRounded", "showEndIcon", "showCount"]}
-              buttonStyle={"secondaryPurple" as const}
-              className={classNames("__wab_instance", sty.button)}
-              count={"1"}
-              slot={
-                <IconPlusIcon
-                  className={classNames(defaultcss.all, sty.svg__w2QpP)}
-                  role={"img"}
-                />
-              }
-              text2={"Replies"}
-            >
-              <IconRightIcon
-                className={classNames(defaultcss.all, sty.svg__i90Xz)}
-                role={"img"}
-              />
-            </Button>
-          </div>
-
-          {(hasVariant(variants, "state", "isUser") ? true : false) ? (
+          {(hasVariant(variants, "state", "isPostDetails") ? false : true) ? (
             <div
-              className={classNames(defaultcss.all, sty.box__tAhMj, {
-                [sty.box__state_isUser__tAhMju0Xnn]: hasVariant(
+              className={classNames(defaultcss.all, sty.box__iRFwS, {
+                [sty.box__state_isPostDetails__iRFwSNeiX5]: hasVariant(
                   variants,
                   "state",
-                  "isUser"
+                  "isPostDetails"
                 ),
               })}
             >
-              <div className={classNames(defaultcss.all, sty.box__vVNrv)}>
-                <IconDotMenuIcon
-                  data-plasmic-name={"iconMenu"}
-                  data-plasmic-override={overrides.iconMenu}
-                  className={classNames(defaultcss.all, sty.iconMenu)}
+              <Button
+                data-plasmic-name={"button"}
+                data-plasmic-override={overrides.button}
+                buttonFeatures={["isRounded", "showEndIcon", "showCount"]}
+                buttonStyle={"secondaryPurple" as const}
+                className={classNames("__wab_instance", sty.button)}
+                count={"1"}
+                slot={
+                  <IconPlusIcon
+                    className={classNames(defaultcss.all, sty.svg__w2QpP)}
+                    role={"img"}
+                  />
+                }
+                text2={"Replies"}
+              >
+                <IconRightIcon
+                  className={classNames(defaultcss.all, sty.svg__i90Xz)}
                   role={"img"}
                 />
-              </div>
+              </Button>
             </div>
           ) : null}
         </p.Stack>
-
-        {(hasVariant(variants, "state", "isReply") ? true : false) ? (
-          <PostDetails
-            data-plasmic-name={"reply"}
-            data-plasmic-override={overrides.reply}
-            className={classNames("__wab_instance", sty.reply, {
-              [sty.reply__state_isReply]: hasVariant(
-                variants,
-                "state",
-                "isReply"
-              ),
-            })}
-          />
-        ) : null}
       </div>
     </div>
   ) as React.ReactElement | null;
@@ -371,14 +389,13 @@ const PlasmicDescendants = {
     "textContainer2",
     "textContainer",
     "textContainer3",
+    "iconMenu",
     "photoAvatar",
     "userName",
     "date",
     "timelineNamesContainer",
     "timelineLink",
     "button",
-    "iconMenu",
-    "reply",
   ],
 
   editorContainer: [
@@ -386,27 +403,25 @@ const PlasmicDescendants = {
     "textContainer2",
     "textContainer",
     "textContainer3",
+    "iconMenu",
     "photoAvatar",
     "userName",
     "date",
     "timelineNamesContainer",
     "timelineLink",
     "button",
-    "iconMenu",
-    "reply",
   ],
 
   textContainer2: ["textContainer2", "textContainer", "textContainer3"],
   textContainer: ["textContainer"],
   textContainer3: ["textContainer3"],
+  iconMenu: ["iconMenu"],
   photoAvatar: ["photoAvatar"],
   userName: ["userName"],
   date: ["date"],
   timelineNamesContainer: ["timelineNamesContainer", "timelineLink"],
   timelineLink: ["timelineLink"],
   button: ["button"],
-  iconMenu: ["iconMenu"],
-  reply: ["reply"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -418,14 +433,13 @@ type NodeDefaultElementType = {
   textContainer2: "div";
   textContainer: "div";
   textContainer3: "div";
+  iconMenu: "svg";
   photoAvatar: typeof PhotoAvatar;
   userName: "span";
   date: "span";
   timelineNamesContainer: "div";
   timelineLink: typeof TimelineLink;
   button: typeof Button;
-  iconMenu: "svg";
-  reply: typeof PostDetails;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -489,14 +503,13 @@ export const PlasmicContentPost = Object.assign(
     textContainer2: makeNodeComponent("textContainer2"),
     textContainer: makeNodeComponent("textContainer"),
     textContainer3: makeNodeComponent("textContainer3"),
+    iconMenu: makeNodeComponent("iconMenu"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     userName: makeNodeComponent("userName"),
     date: makeNodeComponent("date"),
     timelineNamesContainer: makeNodeComponent("timelineNamesContainer"),
     timelineLink: makeNodeComponent("timelineLink"),
     button: makeNodeComponent("button"),
-    iconMenu: makeNodeComponent("iconMenu"),
-    reply: makeNodeComponent("reply"),
 
     // Metadata about props expected for PlasmicContentPost
     internalVariantProps: PlasmicContentPost__VariantProps,

@@ -53,24 +53,6 @@
 .scrollContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
 }
-.addTimeline:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
-}
-.addTimeline__hasInput:global(.__wab_instance) {
-  left: auto;
-  top: auto;
-}
-.box {
-  font-size: 16px;
-  height: auto;
-  width: auto;
-  white-space: pre;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: inline-block;
-}
 .sidebarItemGroup:global(.__wab_instance) {
   position: relative;
 }

@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-  PlasmicHeader,
-  DefaultHeaderProps,
-} from "component/plasmic/shared/PlasmicHeader";
+PlasmicHeader,
+DefaultHeaderProps } from
+"component/plasmic/shared/PlasmicHeader";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface HeaderProps extends DefaultHeaderProps {}

@@ -111,16 +111,6 @@ function PlasmicAddEditVenture__RenderFunc(props: {
 
       <InputText
         className={classNames("__wab_instance", sty.inputText__bXf6P)}
-        input={
-          <input
-            className={classNames(defaultcss.input, sty.textbox__p4EWi)}
-            placeholder={"" as const}
-            size={1 as const}
-            title={"" as const}
-            type={"text" as const}
-            value={"" as const}
-          />
-        }
         label={"Name"}
       />
 
@@ -139,20 +129,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         hasGap={true}
         className={classNames(defaultcss.all, sty.box__uCWf)}
       >
-        <InputText
-          input={
-            <input
-              className={classNames(defaultcss.input, sty.textbox__hONdq)}
-              placeholder={" " as const}
-              size={1 as const}
-              title={"" as const}
-              type={"text" as const}
-            />
-          }
-          label={"Custom URL"}
-        >
-          {"Text Helper Description"}
-        </InputText>
+        <InputText label={"Custom URL"}>{"Text Helper Description"}</InputText>
 
         <div
           className={classNames(

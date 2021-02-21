@@ -29,8 +29,7 @@ function ReplyContent(props: ReplyContentProps) {
     date,
     text } =
   props;
-  const [isReply, setIsReply] = useState<"isReply" | "isUser" | undefined>(
-  undefined);
+  const [state, setState] = useState<"isUser" | undefined>(undefined);
 
   const messageSearch: IMessageQuery = {
     updateId,
@@ -39,41 +38,42 @@ function ReplyContent(props: ReplyContentProps) {
     userId: userName,
     organizationId };
 
+
   const { data: messagesData } = useMessages(messageSearch);
   const messages =
   messagesData?.filter((message: any) => message.reid === id) ?? [];
 
   return (
     <PlasmicReplyContent
-    state={isReply}
-    replyInput={{
-      organizationId: organizationId,
-      timelineId,
-      updateId,
-      userId: userName,
-      reid: id }}
-
+    state={state}
+    // replyInput={{
+    //   organizationId: organizationId,
+    //   timelineId,
+    //   updateId,
+    //   userId: userName,
+    //   reid: id,
+    // }}
     userName={userName}
     text={text}
     date={date}
-    repliesContainer={{
-      children: messages.map((message: any) =>
-      <ReplyContentSecond
-      userName={message.userId}
-      date={message.date}
-      key={message.id}
-      id={message.id}
-      text={message.text}
-      updateId={updateId}
-      timelineId={timelineId}
-      organizationId={organizationId} />) }}
-
-
-
-    replyButton={{
-      onClick: () => setIsReply("isReply") }} />);
-
-
+    // repliesContainer={{
+    //   children: messages.map((message: any) => (
+    //     <ReplyContentSecond
+    //       userName={message.userId}
+    //       date={message.date}
+    //       key={message.id}
+    //       id={message.id}
+    //       text={message.text}
+    //       updateId={updateId}
+    //       timelineId={timelineId}
+    //       organizationId={organizationId}
+    //     />
+    //   )),
+    // }}
+    // replyButton={{
+    //   onClick: () => setState("isUser"),
+    // }}
+    />);
 
 }
 

@@ -45,16 +45,9 @@
 .box__cyQ9E > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
 }
-.box__dc4F {
-  display: block;
+.photoAvatar:global(.__wab_instance) {
   position: relative;
-  width: 50px;
-  height: 50px;
-  left: auto;
-  top: auto;
   flex-shrink: 0;
-  border-radius: 100%;
-  background: rgb(216, 216, 216);
 }
 .box___0YC8Z {
   display: flex;
@@ -212,24 +205,6 @@
   font-size: 16px;
   font-weight: 300;
   white-space: pre-wrap;
-}
-.replyButton {
-  position: relative;
-  align-self: auto;
-  width: 61px;
-  height: 39px;
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
-  font-weight: 500;
-  box-shadow: none;
-  left: auto;
-  top: auto;
-  padding-left: 0px;
-  text-align: left;
-  cursor: pointer;
-  flex-shrink: 0;
-  border-radius: 4px;
-  background: rgba(2, 157, 127, 0);
-  border-width: 0px;
 }
 .box__w4TSo {
   display: flex;

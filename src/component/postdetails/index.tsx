@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-PlasmicPostDetails,
-DefaultPostDetailsProps } from
-"component/plasmic/shared/PlasmicPostDetails";
+  PlasmicPostDetails,
+  DefaultPostDetailsProps,
+} from "component/plasmic/shared/PlasmicPostDetails";
 import ReplyContent from "component/replycontent";
 import { IMessageQuery } from "module/interface/message";
 import { useMessages } from "module/hook/message";
@@ -13,8 +13,8 @@ interface PostDetailsProps extends DefaultPostDetailsProps {
   updateId: string;
   timelineId: string;
   organizationId: string;
-  userId: string;}
-
+  userId: string;
+}
 
 function PostDetails(props: PostDetailsProps) {
   const { updateId, timelineId, userId, organizationId } = props;
@@ -22,36 +22,36 @@ function PostDetails(props: PostDetailsProps) {
     updateId,
     timelineId,
     userId,
-    organizationId };
-
+    organizationId,
+  };
 
   const { data: messagesData } = useMessages(messageSearch);
   const messages = messagesData?.filter((message: any) => !message.reid) ?? [];
 
   return (
     <PlasmicPostDetails
-    replyInput={{
-      organizationId: organizationId,
-      timelineId,
-      updateId,
-      userId }}
-
-    repliesContainer={{
-      children: messages.map((message: any) =>
-      <ReplyContent
-      userName={message.userId}
-      date={message.date}
-      key={message.id}
-      id={message.id}
-      text={message.text}
-      updateId={updateId}
-      timelineId={timelineId}
-      organizationId={organizationId} />) }} />);
-
-
-
-
-
+      replyInput={{
+        organizationId: organizationId,
+        timelineId,
+        updateId,
+        userId,
+      }}
+      replyContainer={{
+        children: messages.map((message: any) => (
+          <ReplyContent
+            userName={message.userId}
+            date={message.date}
+            key={message.id}
+            id={message.id}
+            text={message.text}
+            updateId={updateId}
+            timelineId={timelineId}
+            organizationId={organizationId}
+          />
+        )),
+      }}
+    />
+  );
 }
 
 export default PostDetails;

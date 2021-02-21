@@ -30,6 +30,7 @@ import {
 import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
 import Main from "../../main/index"; // plasmic-import: 0c6QSqHYCk/component
+import PostDetails from "../../postdetails/index"; // plasmic-import: 1E73LSzV2l/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -51,10 +52,10 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 export type PlasmicHome__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
-  box?: p.Flex<"div">;
   sidebar?: p.Flex<typeof Sidebar>;
-  main2?: p.Flex<"div">;
+  mainContainer?: p.Flex<"div">;
   main?: p.Flex<typeof Main>;
+  postDetails?: p.Flex<typeof PostDetails>;
 };
 
 export interface DefaultHomeProps {
@@ -91,32 +92,41 @@ function PlasmicHome__RenderFunc(props: {
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}
             className={classNames("__wab_instance", sty.header)}
+            photoAvatar={"photoAvatar" as const}
           />
 
-          <div
-            data-plasmic-name={"box"}
-            data-plasmic-override={overrides.box}
-            className={classNames(defaultcss.all, sty.box)}
-          >
+          <div className={classNames(defaultcss.all, sty.box___70Att)}>
             {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
               <Sidebar
                 data-plasmic-name={"sidebar"}
                 data-plasmic-override={overrides.sidebar}
                 className={classNames("__wab_instance", sty.sidebar)}
+                hasInput={"hasInput" as const}
               />
             ) : null}
 
-            <div
-              data-plasmic-name={"main2"}
-              data-plasmic-override={overrides.main2}
-              className={classNames(defaultcss.all, sty.main2)}
-            >
-              <Main
-                data-plasmic-name={"main"}
-                data-plasmic-override={overrides.main}
-                className={classNames("__wab_instance", sty.main)}
-                isActive={"feed" as const}
-              />
+            <div className={classNames(defaultcss.all, sty.box__cJlKh)}>
+              <div
+                data-plasmic-name={"mainContainer"}
+                data-plasmic-override={overrides.mainContainer}
+                className={classNames(defaultcss.all, sty.mainContainer)}
+              >
+                <Main
+                  data-plasmic-name={"main"}
+                  data-plasmic-override={overrides.main}
+                  className={classNames("__wab_instance", sty.main)}
+                  isActive={"feed" as const}
+                  variantType={"isVenture" as const}
+                />
+              </div>
+
+              <PostDetails
+                data-plasmic-name={"postDetails"}
+                data-plasmic-override={overrides.postDetails}
+                className={classNames("__wab_instance", sty.postDetails)}
+              >
+                {"Post Details"}
+              </PostDetails>
             </div>
           </div>
         </div>
@@ -126,12 +136,12 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "box", "sidebar", "main2", "main"],
+  root: ["root", "header", "sidebar", "mainContainer", "main", "postDetails"],
   header: ["header"],
-  box: ["box", "sidebar", "main2", "main"],
   sidebar: ["sidebar"],
-  main2: ["main2", "main"],
+  mainContainer: ["mainContainer", "main"],
   main: ["main"],
+  postDetails: ["postDetails"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -140,10 +150,10 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  box: "div";
   sidebar: typeof Sidebar;
-  main2: "div";
+  mainContainer: "div";
   main: typeof Main;
+  postDetails: typeof PostDetails;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -204,10 +214,10 @@ export const PlasmicHome = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    box: makeNodeComponent("box"),
     sidebar: makeNodeComponent("sidebar"),
-    main2: makeNodeComponent("main2"),
+    mainContainer: makeNodeComponent("mainContainer"),
     main: makeNodeComponent("main"),
+    postDetails: makeNodeComponent("postDetails"),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

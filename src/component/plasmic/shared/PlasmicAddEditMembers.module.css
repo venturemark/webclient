@@ -42,20 +42,6 @@
   top: auto;
   left: auto;
 }
-.input {
-  position: relative;
-  width: 100%;
-  left: auto;
-  top: auto;
-  height: auto;
-  text-align: left;
-  font-size: 16px /* plasmic-token: mV0JUhpGq */;
-  cursor: text;
-  min-width: 0;
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
-}
 .box__cL4Gx {
   display: flex;
   position: relative;

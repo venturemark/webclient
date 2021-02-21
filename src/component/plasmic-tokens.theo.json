@@ -203,7 +203,7 @@
     {
       "name": "fs-body",
       "type": "fontsize",
-      "value": "16px",
+      "value": "15px",
       "category": "fontsize",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
@@ -263,7 +263,7 @@
     {
       "name": "fs-h4",
       "type": "fontsize",
-      "value": "20px",
+      "value": "18px",
       "category": "fontsize",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",

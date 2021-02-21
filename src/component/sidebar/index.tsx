@@ -16,6 +16,7 @@ interface SidebarProps extends DefaultSidebarProps {
   setCurrentTimeline: React.Dispatch<
   React.SetStateAction<ITimeline | undefined>>;
 
+
   userId: string;
   organizationId: string;}
 
@@ -67,10 +68,10 @@ function Sidebar(props: SidebarProps) {
     //   },
     //   isCurrent: isHome,
     // }}
-    addTimeline={{
-      userId: userId,
-      organizationId: organizationId,
-      setHasInput: setHasInput }}
+    // addTimeline={{
+    //   userId: userId,
+    //   organizationId: organizationId,
+    //   setHasInput: setHasInput }}
 
     // timelinesContainer={{
     //   children: sortedCurrentTimelines.map((timeline: ITimeline) => (

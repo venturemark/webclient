@@ -2,43 +2,28 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-  PlasmicPhotoAvatar,
-  DefaultPhotoAvatarProps,
-} from "component/plasmic/shared/PlasmicPhotoAvatar";
+PlasmicPhotoAvatar,
+DefaultPhotoAvatarProps } from
+"component/plasmic/shared/PlasmicPhotoAvatar";
 import { useAuth0 } from "@auth0/auth0-react";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface PhotoAvatarProps extends Omit<DefaultPhotoAvatarProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultPhotoAvatarProps altogether and have
-// total control over the props for your component.
 interface PhotoAvatarProps extends DefaultPhotoAvatarProps {}
 
 function PhotoAvatar(props: PhotoAvatarProps) {
   const { user, logout } = useAuth0();
 
   const userInitials =
-    user?.name
-      .split(" ")
-      .map((n: string) => n[0])
-      .join("") ?? "";
-  console.log("user in photo avatar:", user);
-
+  user?.name.
+  split(" ").
+  map((n: string) => n[0]).
+  join("") ?? "";
   return (
     <PlasmicPhotoAvatar
-      onClick={() => logout()}
-      userInitials={userInitials}
-      {...props}
-    />
-  );
+    onClick={() => logout()}
+    userInitials={userInitials}
+    {...props} />);
+
+
 }
 
 export default PhotoAvatar;

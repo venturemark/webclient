@@ -40,15 +40,20 @@ import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w
 import sty from "./PlasmicMain.module.css"; // plasmic-import: 0c6QSqHYCk/css
 
 export type PlasmicMain__VariantMembers = {
+  variantType: "isVenture" | "isTimeline";
   isActive: "feed" | "settings" | "members";
 };
 
 export type PlasmicMain__VariantsArgs = {
+  variantType?: SingleChoiceArg<"isVenture" | "isTimeline">;
   isActive?: SingleChoiceArg<"feed" | "settings" | "members">;
 };
 
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
-export const PlasmicMain__VariantProps = new Array<VariantPropType>("isActive");
+export const PlasmicMain__VariantProps = new Array<VariantPropType>(
+  "variantType",
+  "isActive"
+);
 
 export type PlasmicMain__ArgsType = {};
 type ArgPropType = keyof PlasmicMain__ArgsType;
@@ -64,6 +69,7 @@ export type PlasmicMain__OverridesType = {
 };
 
 export interface DefaultMainProps {
+  variantType?: SingleChoiceArg<"isVenture" | "isTimeline">;
   isActive?: SingleChoiceArg<"feed" | "settings" | "members">;
   className?: string;
 }
@@ -98,6 +104,12 @@ function PlasmicMain__RenderFunc(props: {
             "isActive",
             "settings"
           ),
+
+          [sty.container__variantType_isTimeline]: hasVariant(
+            variants,
+            "variantType",
+            "isTimeline"
+          ),
         }
       )}
     >
@@ -116,8 +128,18 @@ function PlasmicMain__RenderFunc(props: {
             "isActive",
             "settings"
           ),
+
+          [sty.mainHeader__variantType_isTimeline]: hasVariant(
+            variants,
+            "variantType",
+            "isTimeline"
+          ),
         })}
-        headerStyles={"ventureHeader" as const}
+        headerStyles={
+          hasVariant(variants, "variantType", "isTimeline")
+            ? ("timelineHeader" as const)
+            : ("ventureHeader" as const)
+        }
         isActive={
           hasVariant(variants, "isActive", "settings")
             ? ("settings" as const)

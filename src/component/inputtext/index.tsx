@@ -14,12 +14,20 @@ interface InputTextProps extends DefaultInputTextProps {
   // label: string;
   // setUserFocus?: any;
   // userFocus?: boolean;
+  defaultValue?: any;
+  register?: any;
+  name?: string;
 }
 
 function InputText(props: InputTextProps) {
-  const { ...rest } = props;
+  const { register, name, defaultValue, ...rest } = props;
 
-  return <PlasmicInputText {...rest} />;
+  return (
+    <PlasmicInputText
+      input={{ ref: register, name: name, defaultValue: defaultValue }}
+      {...rest}
+    />
+  );
 }
 
 export default InputText;

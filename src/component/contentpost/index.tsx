@@ -36,40 +36,40 @@ function ContentPost(props: ContentPostProps) {
     setCurrentTimeline } =
   props;
 
-  const [isReply, setIsReply] = useState<"isReply" | "isUser" | undefined>(
+  const [isPostDetails, setIsPostDetails] = useState<
+  "isPostDetails" | "isUser" | undefined>(
   undefined);
-
 
   return (
     <PlasmicContentPost
-    state={isReply}
-    iconMenu={{
-      render: () => <AntDropdown /> }}
-
-    reply={{
-      updateId: id,
-      timelineId: timelineId,
-      organizationId: organizationName,
-      userId: userName }}
-
+    state={isPostDetails}
+    // iconMenu={{
+    //   render: () => <AntDropdown />,
+    // }}
+    // reply={{
+    //   updateId: id,
+    //   timelineId: timelineId,
+    //   organizationId: organizationName,
+    //   userId: userName,
+    // }}
     // replyButton={{
-    //   onClick: () => setIsReply("isReply"),
+    //   onClick: () => setIsPostDetails("isPostDetails"),
     // }}
     // organizationName={organizationName}
     userName={userName}
     date={date}
-    timelineNamesContainer={{
-      children: updateTimelines.map((timeline: ITimeline) =>
-      <TimelineLink
-      timeline={timeline}
-      setCurrentTimeline={setCurrentTimeline} />) }}
-
-
-
-    textContainer={{
-      render: () => <ReadEditor text={text} /> }} />);
-
-
+    // timelineNamesContainer={{
+    //   children: updateTimelines.map((timeline: ITimeline) => (
+    //     <TimelineLink
+    //       timeline={timeline}
+    //       setCurrentTimeline={setCurrentTimeline}
+    //     />
+    //   )),
+    // }}
+    // textContainer={{
+    //   render: () => <ReadEditor text={text} />,
+    // }}
+    />);
 
 }
 
