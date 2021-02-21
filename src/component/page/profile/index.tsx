@@ -7,15 +7,18 @@ import {
 } from "component/plasmic/shared/PlasmicProfile";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
+  const history = useHistory();
   const { user } = useAuth0();
-  const { handleSubmit, register } = useForm<any>();
+  const { handleSubmit, register } = useForm();
 
   const handleComplete = (data: any) => {
     console.log(data);
+    history.push("/");
   };
 
   return (
