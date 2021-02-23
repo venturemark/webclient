@@ -152,14 +152,14 @@ function ActionBar(props: ActionBarProps) {
         ),
       }}
       // errorMessage={editorShape.error}
-      textContainer={{
-        render: () => (
-          <ComposeEditor
-            editorShape={editorShape}
-            setEditorShape={setEditorShape}
-          />
-        ),
-      }}
+      // textContainer={{
+      //   render: () => (
+      //     <ComposeEditor
+      //       editorShape={editorShape}
+      //       setEditorShape={setEditorShape}
+      //     />
+      //   ),
+      // }}
     />
   );
 }

@@ -18,8 +18,6 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   onClick?: (e: React.MouseEvent) => void;
   onPress?: (e: PressEvent) => void;
   isCurrent: boolean;
-  isInput?: boolean;
-  isOrganization?: boolean;
   setHasInput?: any;
 }
 
@@ -34,9 +32,8 @@ function SidebarItem(props: SidebarItemProps) {
     organizationId,
     onClick,
     isCurrent,
-    isInput,
-    isOrganization,
     setHasInput,
+    ...rest
   } = props;
 
   const { register, handleSubmit, reset } = useForm<FormInputs>();

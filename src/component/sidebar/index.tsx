@@ -89,7 +89,7 @@ function Sidebar(props: SidebarProps) {
       //   userId: userId,
       //   organizationId: organizationId,
       //   setHasInput: setHasInput }}
-
+      scrollContainer={{}}
       // timelinesContainer={{
       //   children: sortedCurrentTimelines.map((timeline: ITimeline) => (
       //     <SidebarItem
