@@ -86,7 +86,6 @@ export interface DefaultMainHeaderProps {
   isActive?: SingleChoiceArg<
     "feed" | "members" | "settings" | "unnamedVariant"
   >;
-
   className?: string;
 }
 
@@ -118,7 +117,11 @@ function PlasmicMainHeader__RenderFunc(props: {
             "headerStyles",
             "timelineHeader"
           ),
-
+          [sty.container__headerStyles_ventureHeader]: hasVariant(
+            variants,
+            "headerStyles",
+            "ventureHeader"
+          ),
           [sty.container__isActive_feed]: hasVariant(
             variants,
             "isActive",
@@ -136,7 +139,6 @@ function PlasmicMainHeader__RenderFunc(props: {
             "headerStyles",
             "timelineHeader"
           ),
-
           [sty.box__headerStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
             variants,
             "headerStyles",
@@ -171,7 +173,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                 ),
               })}
             />
-
             {(
               hasVariant(variants, "headerStyles", "timelineHeader")
                 ? true
@@ -276,7 +277,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                   "headerStyles",
                   "timelineHeader"
                 ),
-
                 [sty.box__headerStyles_ventureHeader__fohK2NMQ9]: hasVariant(
                   variants,
                   "headerStyles",
@@ -295,7 +295,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                     "headerStyles",
                     "timelineHeader"
                   ),
-
                   [sty.slotTimelineDescription__headerStyles_ventureHeader]: hasVariant(
                     variants,
                     "headerStyles",
@@ -349,7 +348,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                 "isActive",
                 "feed"
               ),
-
               [sty.iconButtonMember__isActive_members]: hasVariant(
                 variants,
                 "isActive",
@@ -410,9 +408,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicMainHeader__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicMainHeader__VariantsArgs;
   args?: PlasmicMainHeader__ArgsType;
   overrides?: NodeOverridesType<T>;

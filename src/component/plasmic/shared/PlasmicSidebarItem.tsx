@@ -49,7 +49,6 @@ export type PlasmicSidebarItem__VariantsArgs = {
   itemType?: SingleChoiceArg<
     "timeline" | "createTimeline" | "ventureCollapsed"
   >;
-
   isActive?: SingleBooleanChoiceArg<"isActive">;
 };
 
@@ -77,7 +76,6 @@ export interface DefaultSidebarItemProps {
   itemType?: SingleChoiceArg<
     "timeline" | "createTimeline" | "ventureCollapsed"
   >;
-
   isActive?: SingleBooleanChoiceArg<"isActive">;
   className?: string;
 }
@@ -108,7 +106,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
           "itemType",
           "createTimeline"
         ),
-
         [sty.root__itemType_timeline]: hasVariant(
           variants,
           "itemType",
@@ -134,7 +131,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
               "isActive",
               "isActive"
             ),
-
             [sty.itemContainer__isActive_itemType_createTimeline]:
               hasVariant(variants, "isActive", "isActive") &&
               hasVariant(variants, "itemType", "createTimeline"),
@@ -143,7 +139,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
               "itemType",
               "createTimeline"
             ),
-
             [sty.itemContainer__itemType_ventureCollapsed]: hasVariant(
               variants,
               "itemType",
@@ -164,7 +159,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   "isActive",
                   "isActive"
                 ),
-
                 [sty.iconButton__isActive_itemType_createTimeline__vRhIw0Xu8OuGst]:
                   hasVariant(variants, "isActive", "isActive") &&
                   hasVariant(variants, "itemType", "createTimeline"),
@@ -200,19 +194,16 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     "isActive",
                     "isActive"
                   ),
-
                   [sty.svg__itemType_createTimeline___6Fx5DOuGst]: hasVariant(
                     variants,
                     "itemType",
                     "createTimeline"
                   ),
-
                   [sty.svg__itemType_timeline___6Fx5DoN3Wv]: hasVariant(
                     variants,
                     "itemType",
                     "timeline"
                   ),
-
                   [sty.svg__itemType_ventureCollapsed___6Fx5D4PCv]: hasVariant(
                     variants,
                     "itemType",
@@ -240,7 +231,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   "itemType",
                   "createTimeline"
                 ),
-
                 [sty.box__itemType_timeline__zwdJSoN3Wv]: hasVariant(
                   variants,
                   "itemType",
@@ -281,13 +271,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     "isActive",
                     "isActive"
                   ),
-
                   [sty.slotName__itemType_createTimeline]: hasVariant(
                     variants,
                     "itemType",
                     "createTimeline"
                   ),
-
                   [sty.slotName__itemType_timeline]: hasVariant(
                     variants,
                     "itemType",
@@ -314,7 +302,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   "isActive",
                   "isActive"
                 ),
-
                 [sty.iconButton__isActive_itemType_createTimeline__bxxEVw0Xu8OuGst]:
                   hasVariant(variants, "isActive", "isActive") &&
                   hasVariant(variants, "itemType", "createTimeline"),
@@ -341,7 +328,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     "isActive",
                     "isActive"
                   ),
-
                   [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
                     hasVariant(variants, "isActive", "isActive") &&
                     hasVariant(variants, "itemType", "createTimeline"),
@@ -376,9 +362,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSidebarItem__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicSidebarItem__VariantsArgs;
   args?: PlasmicSidebarItem__ArgsType;
   overrides?: NodeOverridesType<T>;

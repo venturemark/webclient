@@ -19,8 +19,7 @@
   min-width: 15px;
   border-radius: 5px;
   padding: 0px 2px;
-  background: linear-gradient(rgb(2, 157, 127), rgb(2, 157, 127))
-    /* plasmic-token: Jfzps88GdGw80SE, Jfzps88GdGw80SE */;
+  background: rgb(2, 157, 127);
 }
 .box {
   display: inline-block;

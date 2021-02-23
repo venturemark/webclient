@@ -96,7 +96,6 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           value={args.children}
           className={classNames(sty.slotChildren)}
         />
-
         <p.PlasmicSlot
           defaultContents={
             "Enter their email to invite and add them to this organization."
@@ -166,7 +165,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                 sty.text2
               )}
             >
-              {"Create"}
+              {"Done"}
             </div>
           }
         >
@@ -202,9 +201,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicAddEditMembers__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicAddEditMembers__VariantsArgs;
   args?: PlasmicAddEditMembers__ArgsType;
   overrides?: NodeOverridesType<T>;

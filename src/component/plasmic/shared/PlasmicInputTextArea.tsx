@@ -139,13 +139,11 @@ function PlasmicInputTextArea__RenderFunc(props: {
                 "error",
                 "error"
               ),
-
               [sty.inputHelperText__hasLabel]: hasVariant(
                 variants,
                 "hasLabel",
                 "hasLabel"
               ),
-
               [sty.inputHelperText__hasTextHelper]: hasVariant(
                 variants,
                 "hasTextHelper",
@@ -210,7 +208,6 @@ const PlasmicDescendants = {
     "input",
     "errorMessage",
   ],
-
   textInput: [
     "textInput",
     "labelContainer",
@@ -219,7 +216,6 @@ const PlasmicDescendants = {
     "input",
     "errorMessage",
   ],
-
   labelContainer: ["labelContainer"],
   inputHelperText: ["inputHelperText"],
   textboxContainer: ["textboxContainer", "input"],
@@ -245,9 +241,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicInputTextArea__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicInputTextArea__VariantsArgs;
   args?: PlasmicInputTextArea__ArgsType;
   overrides?: NodeOverridesType<T>;

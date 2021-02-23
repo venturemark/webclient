@@ -31,6 +31,7 @@ import MainHeader from "../../mainheader/index"; // plasmic-import: LRwT0lHdps/c
 import FeedUpdate from "../../feedupdate/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import AddEditMembers from "../../addeditmembers/index"; // plasmic-import: 3NTlJO7oDpw/component
 import AddEditVenture from "../../addeditventure/index"; // plasmic-import: xICnD3GwL-L/component
+import AddEditTimeline from "../../AddEditTimeline"; // plasmic-import: 2FtsgZCi1Kx/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -66,6 +67,7 @@ export type PlasmicMain__OverridesType = {
   feedUpdate?: p.Flex<typeof FeedUpdate>;
   addEditMembers?: p.Flex<typeof AddEditMembers>;
   addEditVenture?: p.Flex<typeof AddEditVenture>;
+  addEditTimeline?: p.Flex<typeof AddEditTimeline>;
 };
 
 export interface DefaultMainProps {
@@ -104,12 +106,14 @@ function PlasmicMain__RenderFunc(props: {
             "isActive",
             "settings"
           ),
-
           [sty.container__variantType_isTimeline]: hasVariant(
             variants,
             "variantType",
             "isTimeline"
           ),
+          [sty.container__variantType_isTimeline_isActive_settings]:
+            hasVariant(variants, "variantType", "isTimeline") &&
+            hasVariant(variants, "isActive", "settings"),
         }
       )}
     >
@@ -122,13 +126,11 @@ function PlasmicMain__RenderFunc(props: {
             "isActive",
             "feed"
           ),
-
           [sty.mainHeader__isActive_settings]: hasVariant(
             variants,
             "isActive",
             "settings"
           ),
-
           [sty.mainHeader__variantType_isTimeline]: hasVariant(
             variants,
             "variantType",
@@ -182,7 +184,6 @@ function PlasmicMain__RenderFunc(props: {
               "isActive",
               "members"
             ),
-
             [sty.feedUpdate__isActive_settings]: hasVariant(
               variants,
               "isActive",
@@ -204,7 +205,16 @@ function PlasmicMain__RenderFunc(props: {
           })}
         />
       ) : null}
-      {(hasVariant(variants, "isActive", "settings") ? true : false) ? (
+      {(
+        hasVariant(variants, "variantType", "isTimeline") &&
+        hasVariant(variants, "isActive", "settings")
+          ? false
+          : hasVariant(variants, "isActive", "settings")
+          ? true
+          : hasVariant(variants, "variantType", "isTimeline")
+          ? false
+          : false
+      ) ? (
         <AddEditVenture
           data-plasmic-name={"addEditVenture"}
           data-plasmic-override={overrides.addEditVenture}
@@ -214,12 +224,35 @@ function PlasmicMain__RenderFunc(props: {
               "isActive",
               "feed"
             ),
-
             [sty.addEditVenture__isActive_settings]: hasVariant(
               variants,
               "isActive",
               "settings"
             ),
+            [sty.addEditVenture__variantType_isTimeline]: hasVariant(
+              variants,
+              "variantType",
+              "isTimeline"
+            ),
+            [sty.addEditVenture__variantType_isTimeline_isActive_settings]:
+              hasVariant(variants, "variantType", "isTimeline") &&
+              hasVariant(variants, "isActive", "settings"),
+          })}
+        />
+      ) : null}
+      {(
+        hasVariant(variants, "variantType", "isTimeline") &&
+        hasVariant(variants, "isActive", "settings")
+          ? true
+          : false
+      ) ? (
+        <AddEditTimeline
+          data-plasmic-name={"addEditTimeline"}
+          data-plasmic-override={overrides.addEditTimeline}
+          className={classNames("__wab_instance", sty.addEditTimeline, {
+            [sty.addEditTimeline__variantType_isTimeline_isActive_settings]:
+              hasVariant(variants, "variantType", "isTimeline") &&
+              hasVariant(variants, "isActive", "settings"),
           })}
         />
       ) : null}
@@ -235,13 +268,14 @@ const PlasmicDescendants = {
     "feedUpdate",
     "addEditMembers",
     "addEditVenture",
+    "addEditTimeline",
   ],
-
   mainHeader: ["mainHeader", "box"],
   box: ["box"],
   feedUpdate: ["feedUpdate"],
   addEditMembers: ["addEditMembers"],
   addEditVenture: ["addEditVenture"],
+  addEditTimeline: ["addEditTimeline"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -254,6 +288,7 @@ type NodeDefaultElementType = {
   feedUpdate: typeof FeedUpdate;
   addEditMembers: typeof AddEditMembers;
   addEditVenture: typeof AddEditVenture;
+  addEditTimeline: typeof AddEditTimeline;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -261,9 +296,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicMain__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicMain__VariantsArgs;
   args?: PlasmicMain__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -318,6 +351,7 @@ export const PlasmicMain = Object.assign(
     feedUpdate: makeNodeComponent("feedUpdate"),
     addEditMembers: makeNodeComponent("addEditMembers"),
     addEditVenture: makeNodeComponent("addEditVenture"),
+    addEditTimeline: makeNodeComponent("addEditTimeline"),
 
     // Metadata about props expected for PlasmicMain
     internalVariantProps: PlasmicMain__VariantProps,

@@ -133,12 +133,12 @@ function ActionBar(props: ActionBarProps) {
       error={editorShape.error ? "hasError" : undefined}
       text={normalize(editorShape.progress) > 0 ? "hasText" : undefined}
       timelineSelected={isTimelineSelected}
-      timelineSelect={{
-        handleClick: () => {
-          setIsTimelineSelected(true);
-          setSelectFocused(true);
-        },
-      }}
+      // timelineSelect={{
+      //   handleClick: () => {
+      //     setIsTimelineSelected(true);
+      //     setSelectFocused(true);
+      //   },
+      // }}
       selectedItemsContainer={{
         render: () => (
           <AntSelect
@@ -151,7 +151,7 @@ function ActionBar(props: ActionBarProps) {
           />
         ),
       }}
-      errorMessage={editorShape.error}
+      // errorMessage={editorShape.error}
       textContainer={{
         render: () => (
           <ComposeEditor

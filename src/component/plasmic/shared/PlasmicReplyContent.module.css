@@ -131,7 +131,7 @@
 .span {
   position: relative;
 }
-.span___4NLge {
+.date {
   position: relative;
   width: auto;
   height: auto;
@@ -205,47 +205,4 @@
   font-size: 16px;
   font-weight: 300;
   white-space: pre-wrap;
-}
-.box__w4TSo {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  padding: 10px 0px;
-}
-.box__w4TSo > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  margin-top: calc(0px - 20px);
-  height: calc(100% + 20px);
-}
-.box__w4TSo > :global(.__wab_flex-container) > *,
-.box__w4TSo > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 20px;
-}
-.replyInput:global(.__wab_instance) {
-  position: relative;
-}
-.repliesContainer {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-}
-.userName2 {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-size: 16px;
-}
-.span__ik8Gc {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-weight: 300;
 }

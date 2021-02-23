@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-PlasmicActionsColumn,
-DefaultActionsColumnProps } from
-"component/plasmic/shared/PlasmicActionsColumn";
+  PlasmicMembers,
+  DefaultMembersProps,
+} from "./plasmic/shared/PlasmicMembers";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -13,30 +13,30 @@ DefaultActionsColumnProps } from
 // If you don't want to expose certain variants or slots as a prop, you can use
 // Omit to hide them:
 //
-// interface ActionsColumnProps extends Omit<DefaultActionsColumnProps, "hideProps1"|"hideProp2"> {
+// interface MembersProps extends Omit<DefaultMembersProps, "hideProps1"|"hideProp2"> {
 //   // etc.
 // }
 //
-// You can also stop extending from DefaultActionsColumnProps altogether and have
+// You can also stop extending from DefaultMembersProps altogether and have
 // total control over the props for your component.
-interface ActionsColumnProps extends DefaultActionsColumnProps {}
+interface MembersProps extends DefaultMembersProps {}
 
-function ActionsColumn(props: ActionsColumnProps) {
-  // Use PlasmicActionsColumn to render this component as it was
+function Members(props: MembersProps) {
+  // Use PlasmicMembers to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicActionsColumn are:
+  // Props you can pass into PlasmicMembers are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, we are just piping all ActionsColumnProps here, but feel free
+  // By default, we are just piping all MembersProps here, but feel free
   // to do whatever works for you.
-  return <PlasmicActionsColumn {...props} />;
+  return <PlasmicMembers {...props} />;
 }
 
-export default ActionsColumn;
+export default Members;

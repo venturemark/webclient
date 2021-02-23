@@ -1,0 +1,62 @@
+.settings {
+  box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
+  display: flex;
+  position: relative;
+  height: auto;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  border-radius: 10px;
+  padding: 40px /* plasmic-token: XraHK0yKz */;
+  background: #ffffff;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.settings > :global(.__wab_flex-container) {
+  flex-direction: column;
+  margin-top: calc(0px - 18px);
+  height: calc(100% + 18px);
+}
+.settings > :global(.__wab_flex-container) > *,
+.settings > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 18px;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .settings {
+    padding: 20px /* plasmic-token: dS7QCqXxp */;
+  }
+}
+.box {
+  display: flex;
+  position: relative;
+  left: auto;
+  top: auto;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.slotChildren {
+  font-size: 30px /* plasmic-token: TujpjiAsC */;
+  font-weight: 600;
+}
+.slotChildren2 {
+  font-size: 30px /* plasmic-token: TujpjiAsC */;
+  font-weight: 600;
+}
+.inputText:global(.__wab_instance) {
+  position: relative;
+  left: auto;
+  top: auto;
+}
+.inputTextArea:global(.__wab_instance) {
+  position: relative;
+  left: auto;
+  top: auto;
+}
+.radioGroup:global(.__wab_instance) {
+  position: relative;
+}
+.buttonSetEdit:global(.__wab_instance) {
+  position: relative;
+  top: auto;
+  left: auto;
+  align-self: auto;
+}

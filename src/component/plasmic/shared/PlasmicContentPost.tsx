@@ -208,7 +208,6 @@ function PlasmicContentPost__RenderFunc(props: {
               "state",
               "isPostDetails"
             ),
-
             [sty.box__state_isUser__ehjLrU0Xnn]: hasVariant(
               variants,
               "state",
@@ -397,7 +396,6 @@ const PlasmicDescendants = {
     "timelineLink",
     "button",
   ],
-
   editorContainer: [
     "editorContainer",
     "textContainer2",
@@ -411,7 +409,6 @@ const PlasmicDescendants = {
     "timelineLink",
     "button",
   ],
-
   textContainer2: ["textContainer2", "textContainer", "textContainer3"],
   textContainer: ["textContainer"],
   textContainer3: ["textContainer3"],
@@ -447,9 +444,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicContentPost__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicContentPost__VariantsArgs;
   args?: PlasmicContentPost__ArgsType;
   overrides?: NodeOverridesType<T>;
