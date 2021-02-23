@@ -9,6 +9,8 @@ import SidebarItem from "component/sidebaritem";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
+import { customers } from "module/customerdata";
+import SidebarItemGroup from "component/sidebaritemgroup";
 
 interface SidebarProps extends DefaultSidebarProps {
   isHome: boolean;
@@ -41,6 +43,8 @@ function Sidebar(props: SidebarProps) {
     organizationId,
     token,
   };
+
+  const ventures = customers;
 
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
@@ -89,7 +93,11 @@ function Sidebar(props: SidebarProps) {
       //   userId: userId,
       //   organizationId: organizationId,
       //   setHasInput: setHasInput }}
-      scrollContainer={{}}
+      scrollContainer={{
+        children: ventures.map((venture: any) => (
+          <SidebarItemGroup name={venture.name} timelines={venture.timelines} />
+        )),
+      }}
       // timelinesContainer={{
       //   children: sortedCurrentTimelines.map((timeline: ITimeline) => (
       //     <SidebarItem

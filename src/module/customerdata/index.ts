@@ -18,6 +18,14 @@ export const customers = [
         name: "Orien Wu",
       },
     ],
+    timelines: [
+      {
+        name: "Wins",
+      },
+      {
+        name: "Product",
+      },
+    ],
   },
   {
     name: "Venturemark",
@@ -33,6 +41,17 @@ export const customers = [
       },
       {
         name: "David Gowdey",
+      },
+    ],
+    timelines: [
+      {
+        name: "Product",
+      },
+      {
+        name: "Growth",
+      },
+      {
+        name: "Revenue",
       },
     ],
   },
@@ -67,6 +86,17 @@ export const customers = [
         name: "David Fellows",
       },
     ],
+    timelines: [
+      {
+        name: "Marketing",
+      },
+      {
+        name: "Production",
+      },
+      {
+        name: "Design",
+      },
+    ],
   },
   {
     name: "Memo",
@@ -90,12 +120,28 @@ export const customers = [
         name: "Rangel Spasov",
       },
     ],
+    timelines: [
+      {
+        name: "Growth",
+      },
+      {
+        name: "Learning",
+      },
+    ],
   },
   {
     name: "PluFin",
     users: [
       {
         name: "Elliot Koss",
+      },
+    ],
+    timelines: [
+      {
+        name: "Wins",
+      },
+      {
+        name: "Revenue",
       },
     ],
   },

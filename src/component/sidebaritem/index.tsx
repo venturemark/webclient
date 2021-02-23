@@ -17,8 +17,9 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   organizationId: string;
   onClick?: (e: React.MouseEvent) => void;
   onPress?: (e: PressEvent) => void;
-  isCurrent: boolean;
+  isCurrent?: boolean;
   setHasInput?: any;
+  itemType: any;
 }
 
 type FormInputs = {
@@ -30,6 +31,7 @@ function SidebarItem(props: SidebarItemProps) {
     name,
     userId,
     organizationId,
+    itemType,
     onClick,
     isCurrent,
     setHasInput,
@@ -79,7 +81,7 @@ function SidebarItem(props: SidebarItemProps) {
       //   render: () => {
       //     return <AntDropdown />;
       //   } }}
-
+      itemType={itemType}
       name={name}
       isActive={isCurrent}
       onClick={onClick}
