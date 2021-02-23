@@ -11,22 +11,28 @@
 }
 .root > :global(.__wab_flex-container) {
   flex-direction: column;
-  margin-top: calc(0px - 21px);
-  height: calc(100% + 21px);
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
 }
 .root > :global(.__wab_flex-container) > *,
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-top: 21px;
+  margin-top: 0px;
 }
 .box {
   display: flex;
-  position: relative;
+  position: absolute;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   height: 75px;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 3;
+  min-width: 0;
   flex-shrink: 0;
   padding: 0px 20px;
+  background: #ffffff;
   border-bottom: 1px solid rgb(224, 224, 224)
     /* plasmic-token: 9--4ZPcisViPq8V */;
 }
@@ -54,6 +60,9 @@
   overflow: auto;
   padding-bottom: 20px;
   margin-bottom: 75px;
+  margin-top: calc(75px + 0px) !important;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 .contentPost:global(.__wab_instance) {
   position: relative;

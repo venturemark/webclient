@@ -18,7 +18,9 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
 
   return (
     <PlasmicSidebarItemGroup
-      venture={{ name: name }}
+      venture={{
+        name: name,
+      }}
       isCollapsed={isCollapsed}
       itemContainer={{
         children: timelines.map((timeline: any) => (

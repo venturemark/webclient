@@ -15,11 +15,11 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
   userId: string;
   organizationId: string;
-  onClick?: (e: React.MouseEvent) => void;
-  onPress?: (e: PressEvent) => void;
-  isCurrent?: boolean;
+  // onClick?: (e: React.MouseEvent) => void;
+  // onPress?: (e: PressEvent) => void;
+  // isCurrent?: boolean;
   setHasInput?: any;
-  itemType: any;
+  itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
 
 type FormInputs = {
@@ -32,8 +32,8 @@ function SidebarItem(props: SidebarItemProps) {
     userId,
     organizationId,
     itemType,
-    onClick,
-    isCurrent,
+    // onClick,
+    // isCurrent,
     setHasInput,
     ...rest
   } = props;
@@ -83,8 +83,8 @@ function SidebarItem(props: SidebarItemProps) {
       //   } }}
       itemType={itemType}
       name={name}
-      isActive={isCurrent}
-      onClick={onClick}
+      // isActive={isCurrent}
+      // onClick={onClick}
       // sidebarForm={{
       //   onSubmit: handleSubmit(handleAddTimeline) }}
 
@@ -92,6 +92,7 @@ function SidebarItem(props: SidebarItemProps) {
       //   name: "name",
       //   ref: register(),
       //   maxLength: 15 }}
+      {...rest}
     />
   );
 }
