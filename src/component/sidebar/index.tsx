@@ -8,6 +8,7 @@ import {
 import SidebarItem from "component/sidebaritem";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface SidebarProps extends DefaultSidebarProps {
   isHome: boolean;
@@ -30,12 +31,15 @@ function Sidebar(props: SidebarProps) {
     userId,
     organizationId,
   } = props;
+  const { getAccessTokenSilently } = useAuth0();
 
   const [hasInput, setHasInput] = useState(false);
+  const [token, setToken] = useState<string>("");
 
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
+    token,
   };
 
   const { data: timelinesData } = useTimelines(timelineSearch);
@@ -51,8 +55,21 @@ function Sidebar(props: SidebarProps) {
     .sort((a: any, b: any) => a.name.localeCompare(b.name));
 
   useEffect(() => {
+    const getToken = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        setToken(token);
+      } catch (error) {
+        console.log(error.error);
+      }
+    };
+    if (token === "") {
+      getToken();
+    }
     setIsHome(!currentTimeline);
-  }, [currentTimeline, setIsHome]);
+  }, [currentTimeline, setIsHome, getAccessTokenSilently, token]);
+
+  console.log(sortedCurrentTimelines);
 
   return (
     <PlasmicSidebar

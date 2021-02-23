@@ -10,7 +10,7 @@ const getTimelineUpdates = async (updateQuery: IUpdateQuery) => {
 };
 
 const getAllUpdates = async (updateQuery: any) => {
-  const { timelines, organizationId, userId } = updateQuery;
+  const { timelines, organizationId, userId, token } = updateQuery;
 
   const allUpdates = await Promise.all(
     timelines.map(async (timeline: any) => {
@@ -19,6 +19,7 @@ const getAllUpdates = async (updateQuery: any) => {
         organizationId,
         timelineId,
         userId,
+        token,
       };
 
       const updates = await api.API.Update.Search(search);
@@ -32,17 +33,17 @@ const getAllUpdates = async (updateQuery: any) => {
 
 export function useTimelineUpdates(updateQuery: IUpdateQuery) {
   return useQuery<any, ErrorResponse>(
-    ["update", updateQuery.timelineId],
+    ["update", updateQuery.timelineId, updateQuery.token],
     () => getTimelineUpdates(updateQuery),
-    { enabled: !!updateQuery.timelineId }
+    { enabled: !!updateQuery.timelineId && !!updateQuery.token }
   );
 }
 
 export function useAllUpdates(updateQuery: IUpdateQuery) {
   return useQuery<any, ErrorResponse>(
-    ["update", updateQuery.timelines],
+    ["update", updateQuery.timelines, updateQuery.token],
     () => getAllUpdates(updateQuery),
-    { enabled: !!updateQuery.timelines }
+    { enabled: !!updateQuery.timelines && !!updateQuery.token }
   );
 }
 

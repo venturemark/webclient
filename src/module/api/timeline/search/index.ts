@@ -16,8 +16,6 @@ export async function Search(
   const token = timelineQuery.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
-  console.log("metadata", metadata);
-
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new SearchI();
@@ -30,7 +28,7 @@ export async function Search(
 
   const getSearchResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {
-      client.search(req, {}, function (err: any, res: any): any {
+      client.search(req, metadata, function (err: any, res: any): any {
         if (err) {
           console.log(err.code);
           console.log(err.message);
