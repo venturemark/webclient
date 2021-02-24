@@ -30,7 +30,7 @@ import {
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import InputTextArea from "../../inputtextarea/index"; // plasmic-import: Q2R-U25DUBO/component
 import RadioGroup from "../../radiogroup/index"; // plasmic-import: Q9Z-qP9n2Q/component
-import ButtonSetEdit from "../../ButtonSetEdit"; // plasmic-import: pMqUN0f4G_a/component
+import ButtonSetEdit from "../../buttonsetedit/index"; // plasmic-import: pMqUN0f4G_a/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -235,7 +235,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicAddEditTimeline__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicAddEditTimeline__VariantsArgs;
   args?: PlasmicAddEditTimeline__ArgsType;
   overrides?: NodeOverridesType<T>;

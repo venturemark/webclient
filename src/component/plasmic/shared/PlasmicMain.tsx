@@ -31,7 +31,8 @@ import MainHeader from "../../mainheader/index"; // plasmic-import: LRwT0lHdps/c
 import FeedUpdate from "../../feedupdate/index"; // plasmic-import: Fs8bTUrvZrvfhCr/component
 import AddEditMembers from "../../addeditmembers/index"; // plasmic-import: 3NTlJO7oDpw/component
 import AddEditVenture from "../../addeditventure/index"; // plasmic-import: xICnD3GwL-L/component
-import AddEditTimeline from "../../AddEditTimeline"; // plasmic-import: 2FtsgZCi1Kx/component
+import AddEditTimeline from "../../addedittimeline/index"; // plasmic-import: 2FtsgZCi1Kx/component
+import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -40,13 +41,16 @@ import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicMain.module.css"; // plasmic-import: 0c6QSqHYCk/css
 
+import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
+import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
+
 export type PlasmicMain__VariantMembers = {
-  variantType: "isVenture" | "isTimeline";
+  variantType: "isVenture" | "isTimeline" | "isEmpty";
   isActive: "feed" | "settings" | "members";
 };
 
 export type PlasmicMain__VariantsArgs = {
-  variantType?: SingleChoiceArg<"isVenture" | "isTimeline">;
+  variantType?: SingleChoiceArg<"isVenture" | "isTimeline" | "isEmpty">;
   isActive?: SingleChoiceArg<"feed" | "settings" | "members">;
 };
 
@@ -63,15 +67,18 @@ export const PlasmicMain__ArgProps = new Array<ArgPropType>();
 export type PlasmicMain__OverridesType = {
   container?: p.Flex<"div">;
   mainHeader?: p.Flex<typeof MainHeader>;
-  box?: p.Flex<"div">;
   feedUpdate?: p.Flex<typeof FeedUpdate>;
   addEditMembers?: p.Flex<typeof AddEditMembers>;
   addEditVenture?: p.Flex<typeof AddEditVenture>;
   addEditTimeline?: p.Flex<typeof AddEditTimeline>;
+  viewCreateVenture?: p.Flex<typeof Button>;
+  text2?: p.Flex<"div">;
+  viewJoinVenture?: p.Flex<typeof Button>;
+  text22?: p.Flex<"div">;
 };
 
 export interface DefaultMainProps {
-  variantType?: SingleChoiceArg<"isVenture" | "isTimeline">;
+  variantType?: SingleChoiceArg<"isVenture" | "isTimeline" | "isEmpty">;
   isActive?: SingleChoiceArg<"feed" | "settings" | "members">;
   className?: string;
 }
@@ -106,6 +113,11 @@ function PlasmicMain__RenderFunc(props: {
             "isActive",
             "settings"
           ),
+          [sty.container__variantType_isEmpty]: hasVariant(
+            variants,
+            "variantType",
+            "isEmpty"
+          ),
           [sty.container__variantType_isTimeline]: hasVariant(
             variants,
             "variantType",
@@ -117,61 +129,67 @@ function PlasmicMain__RenderFunc(props: {
         }
       )}
     >
-      <MainHeader
-        data-plasmic-name={"mainHeader"}
-        data-plasmic-override={overrides.mainHeader}
-        className={classNames("__wab_instance", sty.mainHeader, {
-          [sty.mainHeader__isActive_feed]: hasVariant(
-            variants,
-            "isActive",
-            "feed"
-          ),
-          [sty.mainHeader__isActive_settings]: hasVariant(
-            variants,
-            "isActive",
-            "settings"
-          ),
-          [sty.mainHeader__variantType_isTimeline]: hasVariant(
-            variants,
-            "variantType",
-            "isTimeline"
-          ),
-        })}
-        headerStyles={
-          hasVariant(variants, "variantType", "isTimeline")
-            ? ("timelineHeader" as const)
-            : ("ventureHeader" as const)
-        }
-        isActive={
-          hasVariant(variants, "isActive", "settings")
-            ? ("settings" as const)
-            : hasVariant(variants, "isActive", "feed")
-            ? ("feed" as const)
-            : ("feed" as const)
-        }
-        timelineDescription={
-          <div
-            data-plasmic-name={"box"}
-            data-plasmic-override={overrides.box}
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.box
-            )}
-          >
-            {hasVariant(globalVariants, "screen", "tablet")
-              ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
-              : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \nDonec nec volutpat magna."}
-          </div>
-        }
-        timelineName={"Wins"}
-        venturename={"Adbloom"}
-      />
-
+      {(hasVariant(variants, "variantType", "isEmpty") ? false : true) ? (
+        <MainHeader
+          data-plasmic-name={"mainHeader"}
+          data-plasmic-override={overrides.mainHeader}
+          className={classNames("__wab_instance", sty.mainHeader, {
+            [sty.mainHeader__isActive_feed]: hasVariant(
+              variants,
+              "isActive",
+              "feed"
+            ),
+            [sty.mainHeader__isActive_settings]: hasVariant(
+              variants,
+              "isActive",
+              "settings"
+            ),
+            [sty.mainHeader__variantType_isEmpty]: hasVariant(
+              variants,
+              "variantType",
+              "isEmpty"
+            ),
+            [sty.mainHeader__variantType_isTimeline]: hasVariant(
+              variants,
+              "variantType",
+              "isTimeline"
+            ),
+          })}
+          headerStyles={
+            hasVariant(variants, "variantType", "isTimeline")
+              ? ("timelineHeader" as const)
+              : ("ventureHeader" as const)
+          }
+          isActive={
+            hasVariant(variants, "isActive", "settings")
+              ? ("settings" as const)
+              : hasVariant(variants, "isActive", "feed")
+              ? ("feed" as const)
+              : ("feed" as const)
+          }
+          timelineDescription={
+            <div
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.box__dUFvj
+              )}
+            >
+              {hasVariant(globalVariants, "screen", "tablet")
+                ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
+                : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \nDonec nec volutpat magna."}
+            </div>
+          }
+          timelineName={"Wins"}
+          venturename={"Adbloom"}
+        />
+      ) : null}
       {(
         hasVariant(variants, "isActive", "members")
           ? false
           : hasVariant(variants, "isActive", "settings")
+          ? false
+          : hasVariant(variants, "variantType", "isEmpty")
           ? false
           : true
       ) ? (
@@ -188,6 +206,11 @@ function PlasmicMain__RenderFunc(props: {
               variants,
               "isActive",
               "settings"
+            ),
+            [sty.feedUpdate__variantType_isEmpty]: hasVariant(
+              variants,
+              "variantType",
+              "isEmpty"
             ),
           })}
         />
@@ -211,6 +234,8 @@ function PlasmicMain__RenderFunc(props: {
           ? false
           : hasVariant(variants, "isActive", "settings")
           ? true
+          : hasVariant(variants, "variantType", "isEmpty")
+          ? false
           : hasVariant(variants, "variantType", "isTimeline")
           ? false
           : false
@@ -228,6 +253,11 @@ function PlasmicMain__RenderFunc(props: {
               variants,
               "isActive",
               "settings"
+            ),
+            [sty.addEditVenture__variantType_isEmpty]: hasVariant(
+              variants,
+              "variantType",
+              "isEmpty"
             ),
             [sty.addEditVenture__variantType_isTimeline]: hasVariant(
               variants,
@@ -256,6 +286,422 @@ function PlasmicMain__RenderFunc(props: {
           })}
         />
       ) : null}
+      {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
+        <p.Stack
+          as={"div"}
+          hasGap={
+            hasVariant(variants, "variantType", "isEmpty") ||
+            (hasVariant(variants, "variantType", "isEmpty") &&
+              hasVariant(globalVariants, "screen", "mobile"))
+              ? true
+              : false
+          }
+          className={classNames(defaultcss.all, sty.box__ypqMk, {
+            [sty.box__variantType_isEmpty__ypqMknF9Ly]: hasVariant(
+              variants,
+              "variantType",
+              "isEmpty"
+            ),
+          })}
+        >
+          {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
+            <p.Stack
+              as={"div"}
+              hasGap={
+                hasVariant(variants, "variantType", "isEmpty") ? true : false
+              }
+              className={classNames(defaultcss.all, sty.box__cT8DP, {
+                [sty.box__variantType_isEmpty__cT8DPnF9Ly]: hasVariant(
+                  variants,
+                  "variantType",
+                  "isEmpty"
+                ),
+              })}
+            >
+              {(
+                hasVariant(variants, "variantType", "isEmpty") ? true : false
+              ) ? (
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.box__z2Sa,
+                    {
+                      [sty.box__variantType_isEmpty__z2SaNF9Ly]: hasVariant(
+                        variants,
+                        "variantType",
+                        "isEmpty"
+                      ),
+                    }
+                  )}
+                >
+                  {hasVariant(variants, "variantType", "isEmpty")
+                    ? "Begin with a"
+                    : "Enter some text"}
+                </div>
+              ) : null}
+              {(
+                hasVariant(variants, "variantType", "isEmpty") ? true : false
+              ) ? (
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.box___4U2J8,
+                    {
+                      [sty.box__variantType_isEmpty___4U2J8NF9Ly]: hasVariant(
+                        variants,
+                        "variantType",
+                        "isEmpty"
+                      ),
+                    }
+                  )}
+                >
+                  {hasVariant(variants, "variantType", "isEmpty")
+                    ? "Venture"
+                    : "Enter some text"}
+                </div>
+              ) : null}
+              {(
+                hasVariant(variants, "variantType", "isEmpty") ? true : false
+              ) ? (
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.box___384Ex,
+                    {
+                      [sty.box__variantType_isEmpty___384ExnF9Ly]: hasVariant(
+                        variants,
+                        "variantType",
+                        "isEmpty"
+                      ),
+                    }
+                  )}
+                >
+                  {hasVariant(variants, "variantType", "isEmpty")
+                    ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ac nisl nec elit sagittis aliquet ac imperdiet justo. Pellentesque blandit imperdiet elit vel convallis. "
+                    : "Enter some text"}
+                </div>
+              ) : null}
+            </p.Stack>
+          ) : null}
+          {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
+            <p.Stack
+              as={"div"}
+              hasGap={
+                hasVariant(variants, "variantType", "isEmpty") ||
+                (hasVariant(variants, "variantType", "isEmpty") &&
+                  hasVariant(globalVariants, "screen", "mobile"))
+                  ? true
+                  : false
+              }
+              className={classNames(defaultcss.all, sty.box__aIwV, {
+                [sty.box__variantType_isEmpty__aIwVNF9Ly]: hasVariant(
+                  variants,
+                  "variantType",
+                  "isEmpty"
+                ),
+              })}
+            >
+              {(
+                hasVariant(variants, "variantType", "isEmpty") ? true : false
+              ) ? (
+                <p.Stack
+                  as={"div"}
+                  hasGap={
+                    hasVariant(variants, "variantType", "isEmpty") &&
+                    hasVariant(globalVariants, "screen", "mobile")
+                      ? true
+                      : false
+                  }
+                  className={classNames(defaultcss.all, sty.box__kg0J8, {
+                    [sty.box__variantType_isEmpty__kg0J8NF9Ly]: hasVariant(
+                      variants,
+                      "variantType",
+                      "isEmpty"
+                    ),
+                  })}
+                >
+                  {(
+                    hasVariant(variants, "variantType", "isEmpty")
+                      ? true
+                      : false
+                  ) ? (
+                    <p.Stack
+                      as={"div"}
+                      hasGap={
+                        hasVariant(variants, "variantType", "isEmpty")
+                          ? true
+                          : false
+                      }
+                      className={classNames(defaultcss.all, sty.box__pcipa, {
+                        [sty.box__variantType_isEmpty__pcipanF9Ly]: hasVariant(
+                          variants,
+                          "variantType",
+                          "isEmpty"
+                        ),
+                      })}
+                    >
+                      {(
+                        hasVariant(variants, "variantType", "isEmpty")
+                          ? true
+                          : false
+                      ) ? (
+                        <div
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.box__oPQp,
+                            {
+                              [sty.box__variantType_isEmpty__oPQpNF9Ly]: hasVariant(
+                                variants,
+                                "variantType",
+                                "isEmpty"
+                              ),
+                            }
+                          )}
+                        >
+                          {hasVariant(variants, "variantType", "isEmpty")
+                            ? "Create a new venture"
+                            : "Create a new venture\nGet your company or organization on Venturemark."}
+                        </div>
+                      ) : null}
+                      {(
+                        hasVariant(variants, "variantType", "isEmpty")
+                          ? true
+                          : false
+                      ) ? (
+                        <div
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.box__vhCnW,
+                            {
+                              [sty.box__variantType_isEmpty__vhCnWnF9Ly]: hasVariant(
+                                variants,
+                                "variantType",
+                                "isEmpty"
+                              ),
+                            }
+                          )}
+                        >
+                          {hasVariant(variants, "variantType", "isEmpty")
+                            ? "Get your company or organization on Venturemark."
+                            : "Enter some text"}
+                        </div>
+                      ) : null}
+                    </p.Stack>
+                  ) : null}
+                  {(
+                    hasVariant(variants, "variantType", "isEmpty")
+                      ? true
+                      : false
+                  ) ? (
+                    <Button
+                      data-plasmic-name={"viewCreateVenture"}
+                      data-plasmic-override={overrides.viewCreateVenture}
+                      buttonFeatures={
+                        hasVariant(variants, "variantType", "isEmpty") &&
+                        hasVariant(globalVariants, "screen", "mobile")
+                          ? []
+                          : hasVariant(variants, "variantType", "isEmpty")
+                          ? ["nonFullWidth"]
+                          : undefined
+                      }
+                      buttonStyle={
+                        hasVariant(variants, "variantType", "isEmpty")
+                          ? ("primaryPurple" as const)
+                          : undefined
+                      }
+                      className={classNames(
+                        "__wab_instance",
+                        sty.viewCreateVenture,
+                        {
+                          [sty.viewCreateVenture__variantType_isEmpty]: hasVariant(
+                            variants,
+                            "variantType",
+                            "isEmpty"
+                          ),
+                        }
+                      )}
+                      text2={
+                        <div
+                          data-plasmic-name={"text2"}
+                          data-plasmic-override={overrides.text2}
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.text2,
+                            {
+                              [sty.text2__variantType_isEmpty]: hasVariant(
+                                variants,
+                                "variantType",
+                                "isEmpty"
+                              ),
+                            }
+                          )}
+                        >
+                          {hasVariant(variants, "variantType", "isEmpty")
+                            ? "Create"
+                            : "Button"}
+                        </div>
+                      }
+                    />
+                  ) : null}
+                </p.Stack>
+              ) : null}
+              {(
+                hasVariant(variants, "variantType", "isEmpty") ? true : false
+              ) ? (
+                <p.Stack
+                  as={"div"}
+                  hasGap={
+                    hasVariant(variants, "variantType", "isEmpty") &&
+                    hasVariant(globalVariants, "screen", "mobile")
+                      ? true
+                      : false
+                  }
+                  className={classNames(defaultcss.all, sty.box___46HUm, {
+                    [sty.box__variantType_isEmpty___46HUmnF9Ly]: hasVariant(
+                      variants,
+                      "variantType",
+                      "isEmpty"
+                    ),
+                  })}
+                >
+                  {(
+                    hasVariant(variants, "variantType", "isEmpty")
+                      ? true
+                      : false
+                  ) ? (
+                    <p.Stack
+                      as={"div"}
+                      hasGap={
+                        hasVariant(variants, "variantType", "isEmpty")
+                          ? true
+                          : false
+                      }
+                      className={classNames(defaultcss.all, sty.box___9FZdV, {
+                        [sty.box__variantType_isEmpty___9FZdVnF9Ly]: hasVariant(
+                          variants,
+                          "variantType",
+                          "isEmpty"
+                        ),
+                      })}
+                    >
+                      {(
+                        hasVariant(variants, "variantType", "isEmpty")
+                          ? true
+                          : false
+                      ) ? (
+                        <div
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.box__v6Tp5,
+                            {
+                              [sty.box__variantType_isEmpty__v6Tp5NF9Ly]: hasVariant(
+                                variants,
+                                "variantType",
+                                "isEmpty"
+                              ),
+                            }
+                          )}
+                        >
+                          {hasVariant(variants, "variantType", "isEmpty")
+                            ? "Create a new venture"
+                            : "Join an existing venture"}
+                        </div>
+                      ) : null}
+                      {(
+                        hasVariant(variants, "variantType", "isEmpty")
+                          ? true
+                          : false
+                      ) ? (
+                        <div
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.box__koSyq,
+                            {
+                              [sty.box__variantType_isEmpty__koSyqnF9Ly]: hasVariant(
+                                variants,
+                                "variantType",
+                                "isEmpty"
+                              ),
+                            }
+                          )}
+                        >
+                          {hasVariant(variants, "variantType", "isEmpty")
+                            ? "Get your company or organization on Venturemark."
+                            : "Join or sign into an existing organization"}
+                        </div>
+                      ) : null}
+                    </p.Stack>
+                  ) : null}
+                  {(
+                    hasVariant(variants, "variantType", "isEmpty")
+                      ? true
+                      : false
+                  ) ? (
+                    <Button
+                      data-plasmic-name={"viewJoinVenture"}
+                      data-plasmic-override={overrides.viewJoinVenture}
+                      buttonFeatures={
+                        hasVariant(variants, "variantType", "isEmpty") &&
+                        hasVariant(globalVariants, "screen", "mobile")
+                          ? []
+                          : hasVariant(variants, "variantType", "isEmpty")
+                          ? ["nonFullWidth"]
+                          : undefined
+                      }
+                      buttonStyle={
+                        hasVariant(variants, "variantType", "isEmpty")
+                          ? ("primaryPurple" as const)
+                          : undefined
+                      }
+                      className={classNames(
+                        "__wab_instance",
+                        sty.viewJoinVenture,
+                        {
+                          [sty.viewJoinVenture__variantType_isEmpty]: hasVariant(
+                            variants,
+                            "variantType",
+                            "isEmpty"
+                          ),
+                        }
+                      )}
+                      text2={
+                        <div
+                          data-plasmic-name={"text22"}
+                          data-plasmic-override={overrides.text22}
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.text22,
+                            {
+                              [sty.text22__variantType_isEmpty]: hasVariant(
+                                variants,
+                                "variantType",
+                                "isEmpty"
+                              ),
+                            }
+                          )}
+                        >
+                          {hasVariant(variants, "variantType", "isEmpty")
+                            ? "Join"
+                            : "Button"}
+                        </div>
+                      }
+                    />
+                  ) : null}
+                </p.Stack>
+              ) : null}
+            </p.Stack>
+          ) : null}
+        </p.Stack>
+      ) : null}
     </p.Stack>
   ) as React.ReactElement | null;
 }
@@ -264,18 +710,24 @@ const PlasmicDescendants = {
   container: [
     "container",
     "mainHeader",
-    "box",
     "feedUpdate",
     "addEditMembers",
     "addEditVenture",
     "addEditTimeline",
+    "viewCreateVenture",
+    "text2",
+    "viewJoinVenture",
+    "text22",
   ],
-  mainHeader: ["mainHeader", "box"],
-  box: ["box"],
+  mainHeader: ["mainHeader"],
   feedUpdate: ["feedUpdate"],
   addEditMembers: ["addEditMembers"],
   addEditVenture: ["addEditVenture"],
   addEditTimeline: ["addEditTimeline"],
+  viewCreateVenture: ["viewCreateVenture", "text2"],
+  text2: ["text2"],
+  viewJoinVenture: ["viewJoinVenture", "text22"],
+  text22: ["text22"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -284,11 +736,14 @@ type DescendantsType<
 type NodeDefaultElementType = {
   container: "div";
   mainHeader: typeof MainHeader;
-  box: "div";
   feedUpdate: typeof FeedUpdate;
   addEditMembers: typeof AddEditMembers;
   addEditVenture: typeof AddEditVenture;
   addEditTimeline: typeof AddEditTimeline;
+  viewCreateVenture: typeof Button;
+  text2: "div";
+  viewJoinVenture: typeof Button;
+  text22: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -347,11 +802,14 @@ export const PlasmicMain = Object.assign(
   {
     // Helper components rendering sub-elements
     mainHeader: makeNodeComponent("mainHeader"),
-    box: makeNodeComponent("box"),
     feedUpdate: makeNodeComponent("feedUpdate"),
     addEditMembers: makeNodeComponent("addEditMembers"),
     addEditVenture: makeNodeComponent("addEditVenture"),
     addEditTimeline: makeNodeComponent("addEditTimeline"),
+    viewCreateVenture: makeNodeComponent("viewCreateVenture"),
+    text2: makeNodeComponent("text2"),
+    viewJoinVenture: makeNodeComponent("viewJoinVenture"),
+    text22: makeNodeComponent("text22"),
 
     // Metadata about props expected for PlasmicMain
     internalVariantProps: PlasmicMain__VariantProps,

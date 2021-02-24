@@ -76,7 +76,6 @@ function SidebarItem(props: SidebarItemProps) {
       //   onClick: () => {
       //     setHasInput(true);
       //   } }}
-
       // itemHoverIcon={{
       //   render: () => {
       //     return <AntDropdown />;

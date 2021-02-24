@@ -30,7 +30,7 @@ import {
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import InputTextArea from "../../inputtextarea/index"; // plasmic-import: Q2R-U25DUBO/component
 import Switch from "../../switch/index"; // plasmic-import: l1Qe8RjaNW/component
-import ButtonSetEdit from "../../ButtonSetEdit"; // plasmic-import: pMqUN0f4G_a/component
+import ButtonSetEdit from "../../buttonsetedit/index"; // plasmic-import: pMqUN0f4G_a/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -277,7 +277,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicAddEditVenture__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicAddEditVenture__VariantsArgs;
   args?: PlasmicAddEditVenture__ArgsType;
   overrides?: NodeOverridesType<T>;

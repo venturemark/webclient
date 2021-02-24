@@ -20,6 +20,9 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
     <PlasmicSidebarItemGroup
       venture={{
         name: name,
+        icon: {
+          onClick: () => setIsCollapsed(!isCollapsed),
+        },
       }}
       isCollapsed={isCollapsed}
       itemContainer={{

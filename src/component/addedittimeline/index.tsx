@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   PlasmicAddEditTimeline,
   DefaultAddEditTimelineProps,
-} from "./plasmic/shared/PlasmicAddEditTimeline";
+} from "component/plasmic/shared/PlasmicAddEditTimeline";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can

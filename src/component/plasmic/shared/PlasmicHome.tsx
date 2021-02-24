@@ -156,7 +156,7 @@ function PlasmicHome__RenderFunc(props: {
                   data-plasmic-override={overrides.main}
                   className={classNames("__wab_instance", sty.main)}
                   isActive={"feed" as const}
-                  variantType={"isTimeline" as const}
+                  variantType={"isEmpty" as const}
                 />
               </div>
 

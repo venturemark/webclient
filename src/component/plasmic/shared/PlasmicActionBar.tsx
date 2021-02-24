@@ -335,6 +335,55 @@ function PlasmicActionBar__RenderFunc(props: {
                     />
                   </Tags>
 
+                  {(
+                    hasVariant(globalVariants, "screen", "mobile")
+                      ? true
+                      : false
+                  ) ? (
+                    <Tags
+                      buttonFeatures={["icon", "hasText"]}
+                      className={classNames("__wab_instance", sty.tags__k7L2Q)}
+                      text2={"Wins"}
+                    >
+                      <IconCloseIcon
+                        className={classNames(defaultcss.all, sty.svg___2Edm9)}
+                        role={"img"}
+                      />
+                    </Tags>
+                  ) : null}
+                  {(
+                    hasVariant(globalVariants, "screen", "mobile")
+                      ? true
+                      : false
+                  ) ? (
+                    <Tags
+                      buttonFeatures={["icon", "hasText"]}
+                      className={classNames("__wab_instance", sty.tags__abT49)}
+                      text2={"Wins"}
+                    >
+                      <IconCloseIcon
+                        className={classNames(defaultcss.all, sty.svg___7NQfu)}
+                        role={"img"}
+                      />
+                    </Tags>
+                  ) : null}
+                  {(
+                    hasVariant(globalVariants, "screen", "mobile")
+                      ? true
+                      : false
+                  ) ? (
+                    <Tags
+                      buttonFeatures={["icon", "hasText"]}
+                      className={classNames("__wab_instance", sty.tags__lVNj)}
+                      text2={"Wins"}
+                    >
+                      <IconCloseIcon
+                        className={classNames(defaultcss.all, sty.svg__pwFRd)}
+                        role={"img"}
+                      />
+                    </Tags>
+                  ) : null}
+
                   <Tags
                     buttonFeatures={["icon"]}
                     buttonStyle={"secondaryGreen" as const}
@@ -351,7 +400,13 @@ function PlasmicActionBar__RenderFunc(props: {
                 <Button
                   buttonFeatures={[]}
                   buttonStyle={"primaryPurple" as const}
-                  className={classNames("__wab_instance", sty.button__nAd4W)}
+                  className={classNames("__wab_instance", sty.button__nAd4W, {
+                    [sty.button__isActive__nAd4WvjQpn]: hasVariant(
+                      variants,
+                      "isActive",
+                      "isActive"
+                    ),
+                  })}
                   count={"1"}
                   slot={
                     <IconPlusIcon

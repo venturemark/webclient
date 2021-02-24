@@ -35,7 +35,6 @@
 }
 @media (min-width: 1201px) {
   .sidebar:global(.__wab_instance) {
-    width: 300px;
     flex-shrink: 0;
   }
 }
@@ -47,7 +46,6 @@
 }
 @media (max-width: 991px) {
   .sidebar:global(.__wab_instance) {
-    width: 250px;
     flex-shrink: 0;
   }
 }

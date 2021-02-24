@@ -27,6 +27,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
+import Dropdown from "../../dropdown/index"; // plasmic-import: Umq3CDOCIR/component
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import TimelineLink from "../../timelinelink/index"; // plasmic-import: PGPJmONwto/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
@@ -44,15 +45,18 @@ import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v
 
 export type PlasmicContentPost__VariantMembers = {
   state: "isUser" | "isPostDetails";
+  isUserOnClick: "isUserOnClick";
 };
 
 export type PlasmicContentPost__VariantsArgs = {
   state?: MultiChoiceArg<"isUser" | "isPostDetails">;
+  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
 };
 
 type VariantPropType = keyof PlasmicContentPost__VariantsArgs;
 export const PlasmicContentPost__VariantProps = new Array<VariantPropType>(
-  "state"
+  "state",
+  "isUserOnClick"
 );
 
 export type PlasmicContentPost__ArgsType = {
@@ -75,11 +79,14 @@ export type PlasmicContentPost__OverridesType = {
   textContainer?: p.Flex<"div">;
   textContainer3?: p.Flex<"div">;
   iconMenu?: p.Flex<"svg">;
+  dropdown?: p.Flex<typeof Dropdown>;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   userName?: p.Flex<"span">;
+  span?: p.Flex<"span">;
   date?: p.Flex<"span">;
   timelineNamesContainer?: p.Flex<"div">;
   timelineLink?: p.Flex<typeof TimelineLink>;
+  link?: p.Flex<"a">;
   button?: p.Flex<typeof Button>;
 };
 
@@ -88,6 +95,7 @@ export interface DefaultContentPostProps {
   date?: React.ReactNode;
   userInitials?: React.ReactNode;
   state?: MultiChoiceArg<"isUser" | "isPostDetails">;
+  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
   className?: string;
 }
 
@@ -98,6 +106,11 @@ function PlasmicContentPost__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode } = props;
+
+  const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
+  const triggers = {
+    hover_root: isRootHover,
+  };
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -115,16 +128,26 @@ function PlasmicContentPost__RenderFunc(props: {
           "state",
           "isPostDetails"
         ),
+        [sty.root__state_isUser]: hasVariant(variants, "state", "isUser"),
       })}
+      data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
       <div
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
         className={classNames(defaultcss.all, sty.editorContainer, {
+          [sty.editorContainer__isUserOnClick_state_isUser]:
+            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+            hasVariant(variants, "state", "isUser"),
           [sty.editorContainer__state_isPostDetails]: hasVariant(
             variants,
             "state",
             "isPostDetails"
+          ),
+          [sty.editorContainer__state_isUser]: hasVariant(
+            variants,
+            "state",
+            "isUser"
           ),
         })}
       >
@@ -192,9 +215,43 @@ function PlasmicContentPost__RenderFunc(props: {
               <IconDotMenuIcon
                 data-plasmic-name={"iconMenu"}
                 data-plasmic-override={overrides.iconMenu}
-                className={classNames(defaultcss.all, sty.iconMenu)}
+                className={classNames(defaultcss.all, sty.iconMenu, {
+                  [sty.iconMenu__state_isUser]: hasVariant(
+                    variants,
+                    "state",
+                    "isUser"
+                  ),
+                })}
                 role={"img"}
               />
+
+              {(
+                hasVariant(variants, "state", "isUser") && triggers.hover_root
+                  ? false
+                  : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+                  ? true
+                  : false
+              ) ? (
+                <Dropdown
+                  data-plasmic-name={"dropdown"}
+                  data-plasmic-override={overrides.dropdown}
+                  className={classNames("__wab_instance", sty.dropdown, {
+                    [sty.dropdown__isUserOnClick]: hasVariant(
+                      variants,
+                      "isUserOnClick",
+                      "isUserOnClick"
+                    ),
+                    [sty.dropdown__isUserOnClick_state_isUser]:
+                      hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                      hasVariant(variants, "state", "isUser"),
+                    [sty.dropdown__state_isUser]: hasVariant(
+                      variants,
+                      "state",
+                      "isUser"
+                    ),
+                  })}
+                />
+              ) : null}
             </div>
           ) : null}
         </div>
@@ -218,7 +275,11 @@ function PlasmicContentPost__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__kyNpO)}
+            className={classNames(defaultcss.all, sty.box__kyNpO, {
+              [sty.box__state_isUser_isUserOnClick__kyNpOu0XnnG87Sf]:
+                hasVariant(variants, "state", "isUser") &&
+                hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+            })}
           >
             <PhotoAvatar
               data-plasmic-name={"photoAvatar"}
@@ -279,10 +340,12 @@ function PlasmicContentPost__RenderFunc(props: {
                     defaultContents={
                       <React.Fragment>
                         <span
+                          data-plasmic-name={"span"}
+                          data-plasmic-override={overrides.span}
                           className={classNames(
                             defaultcss.all,
                             defaultcss.__wab_text,
-                            sty.span__rwEsf
+                            sty.span
                           )}
                         >
                           {"•"}
@@ -310,7 +373,11 @@ function PlasmicContentPost__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__vvzri)}
+                className={classNames(defaultcss.all, sty.box__vvzri, {
+                  [sty.box__state_isUser_isUserOnClick__vvzriu0XnnG87Sf]:
+                    hasVariant(variants, "state", "isUser") &&
+                    hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+                })}
               >
                 <p.Stack
                   as={"div"}
@@ -319,23 +386,43 @@ function PlasmicContentPost__RenderFunc(props: {
                   hasGap={true}
                   className={classNames(
                     defaultcss.all,
-                    sty.timelineNamesContainer
+                    sty.timelineNamesContainer,
+                    {
+                      [sty.timelineNamesContainer__state_isUser_isUserOnClick]:
+                        hasVariant(variants, "state", "isUser") &&
+                        hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+                    }
                   )}
                 >
                   <TimelineLink
                     data-plasmic-name={"timelineLink"}
                     data-plasmic-override={overrides.timelineLink}
-                    className={classNames("__wab_instance", sty.timelineLink)}
+                    className={classNames("__wab_instance", sty.timelineLink, {
+                      [sty.timelineLink__state_isUser_isUserOnClick]:
+                        hasVariant(variants, "state", "isUser") &&
+                        hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+                    })}
                     name={
-                      <span
+                      <a
+                        data-plasmic-name={"link"}
+                        data-plasmic-override={overrides.link}
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.span__fuKna
+                          sty.link,
+                          {
+                            [sty.link__state_isUser_isUserOnClick]:
+                              hasVariant(variants, "state", "isUser") &&
+                              hasVariant(
+                                variants,
+                                "isUserOnClick",
+                                "isUserOnClick"
+                              ),
+                          }
                         )}
                       >
                         {"#Wins"}
-                      </span>
+                      </a>
                     }
                   />
                 </p.Stack>
@@ -389,11 +476,14 @@ const PlasmicDescendants = {
     "textContainer",
     "textContainer3",
     "iconMenu",
+    "dropdown",
     "photoAvatar",
     "userName",
+    "span",
     "date",
     "timelineNamesContainer",
     "timelineLink",
+    "link",
     "button",
   ],
   editorContainer: [
@@ -402,22 +492,28 @@ const PlasmicDescendants = {
     "textContainer",
     "textContainer3",
     "iconMenu",
+    "dropdown",
     "photoAvatar",
     "userName",
+    "span",
     "date",
     "timelineNamesContainer",
     "timelineLink",
+    "link",
     "button",
   ],
   textContainer2: ["textContainer2", "textContainer", "textContainer3"],
   textContainer: ["textContainer"],
   textContainer3: ["textContainer3"],
   iconMenu: ["iconMenu"],
+  dropdown: ["dropdown"],
   photoAvatar: ["photoAvatar"],
   userName: ["userName"],
+  span: ["span"],
   date: ["date"],
-  timelineNamesContainer: ["timelineNamesContainer", "timelineLink"],
-  timelineLink: ["timelineLink"],
+  timelineNamesContainer: ["timelineNamesContainer", "timelineLink", "link"],
+  timelineLink: ["timelineLink", "link"],
+  link: ["link"],
   button: ["button"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -431,11 +527,14 @@ type NodeDefaultElementType = {
   textContainer: "div";
   textContainer3: "div";
   iconMenu: "svg";
+  dropdown: typeof Dropdown;
   photoAvatar: typeof PhotoAvatar;
   userName: "span";
+  span: "span";
   date: "span";
   timelineNamesContainer: "div";
   timelineLink: typeof TimelineLink;
+  link: "a";
   button: typeof Button;
 };
 
@@ -499,11 +598,14 @@ export const PlasmicContentPost = Object.assign(
     textContainer: makeNodeComponent("textContainer"),
     textContainer3: makeNodeComponent("textContainer3"),
     iconMenu: makeNodeComponent("iconMenu"),
+    dropdown: makeNodeComponent("dropdown"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     userName: makeNodeComponent("userName"),
+    span: makeNodeComponent("span"),
     date: makeNodeComponent("date"),
     timelineNamesContainer: makeNodeComponent("timelineNamesContainer"),
     timelineLink: makeNodeComponent("timelineLink"),
+    link: makeNodeComponent("link"),
     button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicContentPost

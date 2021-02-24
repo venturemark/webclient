@@ -156,7 +156,7 @@ function PlasmicVentureSettings__RenderFunc(props: {
                   data-plasmic-override={overrides.main}
                   className={classNames("__wab_instance", sty.main)}
                   isActive={"settings" as const}
-                  variantType={"isVenture" as const}
+                  variantType={"isTimeline" as const}
                 />
               </div>
 

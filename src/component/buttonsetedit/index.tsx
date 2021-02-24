@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-  PlasmicMembers,
-  DefaultMembersProps,
-} from "./plasmic/shared/PlasmicMembers";
+  PlasmicButtonSetEdit,
+  DefaultButtonSetEditProps,
+} from "component/plasmic/shared/PlasmicButtonSetEdit";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -13,30 +13,30 @@ import {
 // If you don't want to expose certain variants or slots as a prop, you can use
 // Omit to hide them:
 //
-// interface MembersProps extends Omit<DefaultMembersProps, "hideProps1"|"hideProp2"> {
+// interface ButtonSetEditProps extends Omit<DefaultButtonSetEditProps, "hideProps1"|"hideProp2"> {
 //   // etc.
 // }
 //
-// You can also stop extending from DefaultMembersProps altogether and have
+// You can also stop extending from DefaultButtonSetEditProps altogether and have
 // total control over the props for your component.
-interface MembersProps extends DefaultMembersProps {}
+interface ButtonSetEditProps extends DefaultButtonSetEditProps {}
 
-function Members(props: MembersProps) {
-  // Use PlasmicMembers to render this component as it was
+function ButtonSetEdit(props: ButtonSetEditProps) {
+  // Use PlasmicButtonSetEdit to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicMembers are:
+  // Props you can pass into PlasmicButtonSetEdit are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, we are just piping all MembersProps here, but feel free
+  // By default, we are just piping all ButtonSetEditProps here, but feel free
   // to do whatever works for you.
-  return <PlasmicMembers {...props} />;
+  return <PlasmicButtonSetEdit {...props} />;
 }
 
-export default Members;
+export default ButtonSetEdit;

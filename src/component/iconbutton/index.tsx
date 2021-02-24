@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicIconButton";
 
 interface IconButtonProps extends DefaultIconButtonProps {
-  onClick: any;
+  onClick?: () => void;
 }
 
 function IconButton(props: IconButtonProps) {

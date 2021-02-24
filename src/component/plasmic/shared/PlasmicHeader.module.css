@@ -97,3 +97,16 @@
   position: relative;
   flex-shrink: 0;
 }
+.photoAvatar__profileDropdown:global(.__wab_instance) {
+  flex-shrink: 0;
+}
+.profileDropdown:global(.__wab_instance) {
+  position: relative;
+  right: -23px;
+}
+.profileDropdown__profileDropdown:global(.__wab_instance) {
+  position: absolute;
+  left: auto;
+  top: 65px;
+  right: -15px;
+}
