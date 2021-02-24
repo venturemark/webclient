@@ -102,7 +102,7 @@
 .box__tyRt7 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 0px;
 }
-.slotChildren2 {
+.slotUserEmail {
   font-size: 12px /* plasmic-token: LxqIZc9hM */;
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }
@@ -125,12 +125,12 @@
 .ul > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 15px;
 }
-.listItem__mmuCm:global(.__wab_instance) {
+.viewProfile:global(.__wab_instance) {
   position: relative;
 }
-.listItem__cqSr:global(.__wab_instance) {
+.viewHelp:global(.__wab_instance) {
   position: relative;
 }
-.listItem__efj4X:global(.__wab_instance) {
+.logout:global(.__wab_instance) {
   position: relative;
 }

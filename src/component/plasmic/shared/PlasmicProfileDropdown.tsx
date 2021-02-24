@@ -45,40 +45,43 @@ type VariantPropType = keyof PlasmicProfileDropdown__VariantsArgs;
 export const PlasmicProfileDropdown__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicProfileDropdown__ArgsType = {
-  rename2?: React.ReactNode;
+  prop?: React.ReactNode;
   userInitials?: React.ReactNode;
-  children?: React.ReactNode;
-  children2?: React.ReactNode;
-  rename22?: React.ReactNode;
-  rename222?: React.ReactNode;
+  userName?: React.ReactNode;
+  userEmail?: React.ReactNode;
+  prop2?: React.ReactNode;
+  prop3?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicProfileDropdown__ArgsType;
 export const PlasmicProfileDropdown__ArgProps = new Array<ArgPropType>(
-  "rename2",
+  "prop",
   "userInitials",
-  "children",
-  "children2",
-  "rename22",
-  "rename222"
+  "userName",
+  "userEmail",
+  "prop2",
+  "prop3"
 );
 
 export type PlasmicProfileDropdown__OverridesType = {
   root?: p.Flex<"div">;
   rectangle574?: p.Flex<"div">;
-  iconButton?: p.Flex<typeof IconButton>;
+  close?: p.Flex<typeof IconButton>;
   svg?: p.Flex<"svg">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   ul?: p.Flex<"ul">;
+  viewProfile?: p.Flex<typeof ListItem>;
+  viewHelp?: p.Flex<typeof ListItem>;
+  logout?: p.Flex<typeof ListItem>;
 };
 
 export interface DefaultProfileDropdownProps {
-  rename2?: React.ReactNode;
+  prop?: React.ReactNode;
   userInitials?: React.ReactNode;
-  children?: React.ReactNode;
-  children2?: React.ReactNode;
-  rename22?: React.ReactNode;
-  rename222?: React.ReactNode;
+  userName?: React.ReactNode;
+  userEmail?: React.ReactNode;
+  prop2?: React.ReactNode;
+  prop3?: React.ReactNode;
   className?: string;
 }
 
@@ -116,9 +119,9 @@ function PlasmicProfileDropdown__RenderFunc(props: {
 
           <div className={classNames(defaultcss.all, sty.box___9FGjg)}>
             <IconButton
-              data-plasmic-name={"iconButton"}
-              data-plasmic-override={overrides.iconButton}
-              className={classNames("__wab_instance", sty.iconButton)}
+              data-plasmic-name={"close"}
+              data-plasmic-override={overrides.close}
+              className={classNames("__wab_instance", sty.close)}
             >
               <IconCloseIcon
                 data-plasmic-name={"svg"}
@@ -151,13 +154,13 @@ function PlasmicProfileDropdown__RenderFunc(props: {
           >
             <p.PlasmicSlot
               defaultContents={"User Name"}
-              value={args.children}
+              value={args.userName}
             />
 
             <p.PlasmicSlot
               defaultContents={"user@email.com"}
-              value={args.children2}
-              className={classNames(sty.slotChildren2)}
+              value={args.userEmail}
+              className={classNames(sty.slotUserEmail)}
             />
           </p.Stack>
         </p.Stack>
@@ -170,26 +173,29 @@ function PlasmicProfileDropdown__RenderFunc(props: {
           className={classNames(defaultcss.ul, sty.ul)}
         >
           <ListItem
-            className={classNames("__wab_instance", sty.listItem__mmuCm)}
+            data-plasmic-name={"viewProfile"}
+            data-plasmic-override={overrides.viewProfile}
+            className={classNames("__wab_instance", sty.viewProfile)}
             rename={
-              <p.PlasmicSlot defaultContents={"Profile"} value={args.rename2} />
+              <p.PlasmicSlot defaultContents={"Profile"} value={args.prop} />
             }
           />
 
           <ListItem
-            className={classNames("__wab_instance", sty.listItem__cqSr)}
+            data-plasmic-name={"viewHelp"}
+            data-plasmic-override={overrides.viewHelp}
+            className={classNames("__wab_instance", sty.viewHelp)}
             rename={
-              <p.PlasmicSlot defaultContents={"Help"} value={args.rename22} />
+              <p.PlasmicSlot defaultContents={"Help"} value={args.prop2} />
             }
           />
 
           <ListItem
-            className={classNames("__wab_instance", sty.listItem__efj4X)}
+            data-plasmic-name={"logout"}
+            data-plasmic-override={overrides.logout}
+            className={classNames("__wab_instance", sty.logout)}
             rename={
-              <p.PlasmicSlot
-                defaultContents={"Log Out"}
-                value={args.rename222}
-              />
+              <p.PlasmicSlot defaultContents={"Log Out"} value={args.prop3} />
             }
           />
         </p.Stack>
@@ -199,12 +205,34 @@ function PlasmicProfileDropdown__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "rectangle574", "iconButton", "svg", "photoAvatar", "ul"],
-  rectangle574: ["rectangle574", "iconButton", "svg", "photoAvatar", "ul"],
-  iconButton: ["iconButton", "svg"],
+  root: [
+    "root",
+    "rectangle574",
+    "close",
+    "svg",
+    "photoAvatar",
+    "ul",
+    "viewProfile",
+    "viewHelp",
+    "logout",
+  ],
+  rectangle574: [
+    "rectangle574",
+    "close",
+    "svg",
+    "photoAvatar",
+    "ul",
+    "viewProfile",
+    "viewHelp",
+    "logout",
+  ],
+  close: ["close", "svg"],
   svg: ["svg"],
   photoAvatar: ["photoAvatar"],
-  ul: ["ul"],
+  ul: ["ul", "viewProfile", "viewHelp", "logout"],
+  viewProfile: ["viewProfile"],
+  viewHelp: ["viewHelp"],
+  logout: ["logout"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -213,10 +241,13 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   rectangle574: "div";
-  iconButton: typeof IconButton;
+  close: typeof IconButton;
   svg: "svg";
   photoAvatar: typeof PhotoAvatar;
   ul: "ul";
+  viewProfile: typeof ListItem;
+  viewHelp: typeof ListItem;
+  logout: typeof ListItem;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -275,10 +306,13 @@ export const PlasmicProfileDropdown = Object.assign(
   {
     // Helper components rendering sub-elements
     rectangle574: makeNodeComponent("rectangle574"),
-    iconButton: makeNodeComponent("iconButton"),
+    close: makeNodeComponent("close"),
     svg: makeNodeComponent("svg"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     ul: makeNodeComponent("ul"),
+    viewProfile: makeNodeComponent("viewProfile"),
+    viewHelp: makeNodeComponent("viewHelp"),
+    logout: makeNodeComponent("logout"),
 
     // Metadata about props expected for PlasmicProfileDropdown
     internalVariantProps: PlasmicProfileDropdown__VariantProps,

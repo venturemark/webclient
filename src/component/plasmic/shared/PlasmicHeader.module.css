@@ -93,18 +93,18 @@
 .box___4Ktdl > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 20px;
 }
-.photoAvatar:global(.__wab_instance) {
+.avatar:global(.__wab_instance) {
   position: relative;
   flex-shrink: 0;
 }
-.photoAvatar__profileDropdown:global(.__wab_instance) {
+.avatar__profileDropdown:global(.__wab_instance) {
   flex-shrink: 0;
 }
-.profileDropdown:global(.__wab_instance) {
+.dropdown:global(.__wab_instance) {
   position: relative;
   right: -23px;
 }
-.profileDropdown__profileDropdown:global(.__wab_instance) {
+.dropdown__profileDropdown:global(.__wab_instance) {
   position: absolute;
   left: auto;
   top: 65px;

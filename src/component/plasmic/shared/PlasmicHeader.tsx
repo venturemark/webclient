@@ -65,8 +65,8 @@ export const PlasmicHeader__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHeader__OverridesType = {
   root?: p.Flex<"div">;
-  photoAvatar?: p.Flex<typeof PhotoAvatar>;
-  profileDropdown?: p.Flex<typeof ProfileDropdown>;
+  avatar?: p.Flex<typeof PhotoAvatar>;
+  dropdown?: p.Flex<typeof ProfileDropdown>;
 };
 
 export interface DefaultHeaderProps {
@@ -164,10 +164,10 @@ function PlasmicHeader__RenderFunc(props: {
             })}
           >
             <PhotoAvatar
-              data-plasmic-name={"photoAvatar"}
-              data-plasmic-override={overrides.photoAvatar}
-              className={classNames("__wab_instance", sty.photoAvatar, {
-                [sty.photoAvatar__profileDropdown]: hasVariant(
+              data-plasmic-name={"avatar"}
+              data-plasmic-override={overrides.avatar}
+              className={classNames("__wab_instance", sty.avatar, {
+                [sty.avatar__profileDropdown]: hasVariant(
                   variants,
                   "profileDropdown",
                   "profileDropdown"
@@ -181,15 +181,16 @@ function PlasmicHeader__RenderFunc(props: {
                 : false
             ) ? (
               <ProfileDropdown
-                data-plasmic-name={"profileDropdown"}
-                data-plasmic-override={overrides.profileDropdown}
-                className={classNames("__wab_instance", sty.profileDropdown, {
-                  [sty.profileDropdown__profileDropdown]: hasVariant(
+                data-plasmic-name={"dropdown"}
+                data-plasmic-override={overrides.dropdown}
+                className={classNames("__wab_instance", sty.dropdown, {
+                  [sty.dropdown__profileDropdown]: hasVariant(
                     variants,
                     "profileDropdown",
                     "profileDropdown"
                   ),
                 })}
+                prop3={"Log Out"}
               />
             ) : null}
           </p.Stack>
@@ -200,9 +201,9 @@ function PlasmicHeader__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "photoAvatar", "profileDropdown"],
-  photoAvatar: ["photoAvatar"],
-  profileDropdown: ["profileDropdown"],
+  root: ["root", "avatar", "dropdown"],
+  avatar: ["avatar"],
+  dropdown: ["dropdown"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -210,8 +211,8 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  photoAvatar: typeof PhotoAvatar;
-  profileDropdown: typeof ProfileDropdown;
+  avatar: typeof PhotoAvatar;
+  dropdown: typeof ProfileDropdown;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -219,8 +220,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicHeader__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicHeader__VariantsArgs;
   args?: PlasmicHeader__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -270,8 +270,8 @@ export const PlasmicHeader = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    photoAvatar: makeNodeComponent("photoAvatar"),
-    profileDropdown: makeNodeComponent("profileDropdown"),
+    avatar: makeNodeComponent("avatar"),
+    dropdown: makeNodeComponent("dropdown"),
 
     // Metadata about props expected for PlasmicHeader
     internalVariantProps: PlasmicHeader__VariantProps,
