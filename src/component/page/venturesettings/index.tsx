@@ -27,7 +27,7 @@ function VentureSettings(props: VentureSettingsProps) {
   const timelineId = currentTimeline?.id ?? undefined;
 
   //currently hardcoding until we have a plan for org / user storage
-  const organizationId = login?.organizationId ?? "venturemark";
+  const organizationId = "venturemark";
   const userId = login?.userId ?? "marcus";
 
   const token = "";

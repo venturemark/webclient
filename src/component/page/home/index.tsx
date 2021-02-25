@@ -11,12 +11,13 @@ import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { IUpdate, IUpdateQuery } from "module/interface/update";
 import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
-import { getUser } from "module/store";
+import { getUser, getVenture } from "module/store";
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Home(props: HomeProps) {
   const user = getUser();
+  const venture = getVenture();
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
   >();
@@ -26,14 +27,14 @@ export function Home(props: HomeProps) {
   const [isHome, setIsHome] = useState(true);
   const [variantType, setVariantType] = useState<
     "isEmpty" | "isTimeline" | "isVenture" | undefined
-  >("isVenture");
+  >("isEmpty");
   const [isActive, setIsActive] = useState<
     "feed" | "settings" | "members" | undefined
   >("feed");
 
   const timelineId = currentTimeline?.id ?? undefined;
   //currently hardcoding until we have a plan for org / user storage
-  const organizationId = login?.organizationId ?? "venturemark";
+  const organizationId = "venturemark";
   const userId = login?.userId ?? "marcus";
   //hook / fetch stuff:
   const token = "";
@@ -83,15 +84,8 @@ export function Home(props: HomeProps) {
   }
 
   useEffect(() => {
-    if (!login) {
-      setShowLogin(true);
-    }
-
-    if (login && showLogin) {
-      setShowLogin(false);
-      window.location.reload();
-    }
-  }, [login, showLogin]);
+    !venture && setVariantType("isEmpty");
+  }, [venture]);
 
   return (
     <PlasmicHome

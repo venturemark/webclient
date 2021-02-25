@@ -2,7 +2,15 @@ import { Node } from "slate";
 
 export interface ISaveUser {
   userId: string;
-  organizationId: string;
+  name: string;
+  role: string;
+}
+
+export interface ISaveVenture {
+  name: string;
+  description: string;
+  url: string;
+  memberWrite: boolean;
 }
 
 export const save = (content: Node[]) => {
@@ -13,6 +21,18 @@ export const save = (content: Node[]) => {
 export const saveUser = (userObj: ISaveUser) => {
   const contentString = JSON.stringify(userObj);
   localStorage.setItem("user", contentString);
+};
+
+export const saveVenture = (ventureObj: ISaveVenture) => {
+  const contentString = JSON.stringify(ventureObj);
+  localStorage.setItem("venture", contentString);
+};
+
+export const getVenture = (): ISaveVenture | undefined => {
+  if (localStorage["venture"]) {
+    return JSON.parse(localStorage["venture"]);
+  }
+  return undefined;
 };
 
 export const getUser = (): ISaveUser | undefined => {
