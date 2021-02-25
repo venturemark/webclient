@@ -6,26 +6,36 @@ import {
   DefaultMainProps,
 } from "component/plasmic/shared/PlasmicMain";
 
-interface MainProps extends DefaultMainProps {}
+interface MainProps extends DefaultMainProps {
+  isActive: any;
+  variantType: any;
+  setIsActive: any;
+  setVariantType: any;
+}
 
 function Main(props: MainProps) {
-  const [variantType, setVariantType] = useState<
-    "isEmpty" | "isTimeline" | "isVenture"
-  >("isVenture");
-  const [isActive, setIsActive] = useState<"feed" | "settings" | "members">(
-    "settings"
-  );
+  const { isActive, variantType, setIsActive, setVariantType, ...rest } = props;
+  // const [variantType, setVariantType] = useState<
+  //   "isEmpty" | "isTimeline" | "isVenture" | undefined
+  // >("isEmpty");
+  // const [isActive, setIsActive] = useState<
+  //   "feed" | "settings" | "members" | undefined
+  // >(undefined);
   return (
     <PlasmicMain
-      variantType={"isVenture"}
-      isActive={"settings"}
+      mainHeader={{
+        isActive: isActive,
+      }}
+      isActive={isActive}
+      variantType={variantType}
       viewCreateVenture={{
         onClick: () => {
+          setIsActive("settings");
           setVariantType("isVenture");
         },
       }}
       viewJoinVenture={{ onClick: () => setVariantType("isVenture") }}
-      {...props}
+      {...rest}
     />
   );
 }

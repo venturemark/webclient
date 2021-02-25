@@ -17,39 +17,40 @@ interface HomeProps extends DefaultHomeProps {}
 
 export function Home(props: HomeProps) {
   const user = getUser();
-
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
   >();
-
+  // local hooks shared with page-level elements
   const [showLogin, setShowLogin] = useState(false);
   const [login, setLogin] = useState(user);
   const [isHome, setIsHome] = useState(true);
-  const timelineId = currentTimeline?.id ?? undefined;
+  const [variantType, setVariantType] = useState<
+    "isEmpty" | "isTimeline" | "isVenture" | undefined
+  >("isVenture");
+  const [isActive, setIsActive] = useState<
+    "feed" | "settings" | "members" | undefined
+  >("feed");
 
+  const timelineId = currentTimeline?.id ?? undefined;
   //currently hardcoding until we have a plan for org / user storage
   const organizationId = login?.organizationId ?? "venturemark";
   const userId = login?.userId ?? "marcus";
-
+  //hook / fetch stuff:
   const token = "";
-
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
     token,
   };
-
   const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
     timelineSearch
   );
-
   const timelineUpdatesSearch: IUpdateQuery = {
     organizationId,
     timelineId,
     userId,
     token,
   };
-
   const allUpdatesSearch: IUpdateQuery = {
     organizationId,
     timelineId,
@@ -57,13 +58,10 @@ export function Home(props: HomeProps) {
     timelines: timelinesData,
     token,
   };
-
   const { data: allUpdates, isSuccess: updateSuccess } = useAllUpdates(
     allUpdatesSearch
   );
-
   const { data: timelineUpdates } = useTimelineUpdates(timelineUpdatesSearch);
-
   let updates = [];
 
   if (timelineSuccess && updateSuccess) {
@@ -104,6 +102,12 @@ export function Home(props: HomeProps) {
       //   setLogin: setLogin,
       // }}
       // isTimeline={!isHome}
+      main={{
+        variantType,
+        isActive,
+        setIsActive,
+        setVariantType,
+      }}
       sidebar={{
         isHome: isHome,
         setIsHome: setIsHome,

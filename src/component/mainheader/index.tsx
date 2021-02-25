@@ -7,9 +7,12 @@ import {
 } from "component/plasmic/shared/PlasmicMainHeader";
 import { useHistory } from "react-router-dom";
 
-interface MainHeaderProps extends DefaultMainHeaderProps {}
+interface MainHeaderProps extends DefaultMainHeaderProps {
+  isActive: any;
+}
 
 function MainHeader(props: MainHeaderProps) {
+  const { isActive, ...rest } = props;
   const history = useHistory();
 
   return (
@@ -17,15 +20,14 @@ function MainHeader(props: MainHeaderProps) {
       viewHome={{
         onClick: () => history.push("/"),
       }}
-      viewMembers={
-        {
-          // onClick: () => history.push("/members"),
-        }
-      }
+      viewMembers={{
+        onClick: () => history.push("/members"),
+      }}
       viewSettings={{
         onClick: () => history.push("/settings"),
       }}
-      {...props}
+      isActive={isActive}
+      {...rest}
     />
   );
 }
