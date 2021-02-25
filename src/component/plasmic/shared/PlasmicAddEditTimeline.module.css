@@ -41,17 +41,17 @@
   font-size: 30px /* plasmic-token: TujpjiAsC */;
   font-weight: 600;
 }
-.inputText:global(.__wab_instance) {
+.name:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
 }
-.inputTextArea:global(.__wab_instance) {
+.description:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
 }
-.radioGroup:global(.__wab_instance) {
+.visibility:global(.__wab_instance) {
   position: relative;
 }
 .buttonSetEdit:global(.__wab_instance) {

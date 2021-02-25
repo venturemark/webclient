@@ -27,8 +27,6 @@ function AddEditVenture(props: AddEditVentureProps) {
     saveVenture(venture);
     reset();
     setIsActive("feed");
-
-    //currently we're not storing a change here because we're waiting on backend.
   };
 
   return (

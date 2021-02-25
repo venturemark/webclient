@@ -16,7 +16,9 @@ function ButtonSetEdit(props: ButtonSetEditProps) {
 
   return (
     <PlasmicButtonSetEdit
-      createButton={{ onClick: onClick, type: type }}
+      save={{ onClick: onClick, type: type }}
+      cancel={{ onClick: onClick, type: type }}
+      _delete={{ onClick: onClick, type: type }}
       {...rest}
     />
   );
