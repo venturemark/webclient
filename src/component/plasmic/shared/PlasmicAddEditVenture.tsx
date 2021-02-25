@@ -68,10 +68,12 @@ export const PlasmicAddEditVenture__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicAddEditVenture__OverridesType = {
-  settings?: p.Flex<"div">;
-  inputTextArea?: p.Flex<typeof InputTextArea>;
-  _switch?: p.Flex<typeof Switch>;
-  buttonSetEdit?: p.Flex<typeof ButtonSetEdit>;
+  settings?: p.Flex<"form">;
+  name?: p.Flex<typeof InputText>;
+  description?: p.Flex<typeof InputTextArea>;
+  url?: p.Flex<typeof InputText>;
+  membersWrite?: p.Flex<typeof Switch>;
+  create?: p.Flex<typeof ButtonSetEdit>;
 };
 
 export interface DefaultAddEditVentureProps {
@@ -97,7 +99,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
 
   return (
     <p.Stack
-      as={"div"}
+      as={"form"}
       data-plasmic-name={"settings"}
       data-plasmic-override={overrides.settings}
       data-plasmic-root={true}
@@ -152,16 +154,18 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       </div>
 
       <InputText
-        className={classNames("__wab_instance", sty.inputText__bXf6P)}
+        data-plasmic-name={"name"}
+        data-plasmic-override={overrides.name}
+        className={classNames("__wab_instance", sty.name)}
         hasLabel={"hasLabel" as const}
         label={"Name"}
       />
 
       <InputTextArea
-        data-plasmic-name={"inputTextArea"}
-        data-plasmic-override={overrides.inputTextArea}
-        className={classNames("__wab_instance", sty.inputTextArea, {
-          [sty.inputTextArea__variantState_isEdit]: hasVariant(
+        data-plasmic-name={"description"}
+        data-plasmic-override={overrides.description}
+        className={classNames("__wab_instance", sty.description, {
+          [sty.description__variantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -186,6 +190,8 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         })}
       >
         <InputText
+          data-plasmic-name={"url"}
+          data-plasmic-override={overrides.url}
           hasLabel={"hasLabel" as const}
           hasTextHelper={"hasTextHelper" as const}
           label={"Custom URL"}
@@ -220,10 +226,10 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       </div>
 
       <Switch
-        data-plasmic-name={"_switch"}
-        data-plasmic-override={overrides._switch}
-        className={classNames("__wab_instance", sty._switch, {
-          [sty._switch__variantState_isEdit]: hasVariant(
+        data-plasmic-name={"membersWrite"}
+        data-plasmic-override={overrides.membersWrite}
+        className={classNames("__wab_instance", sty.membersWrite, {
+          [sty.membersWrite__variantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -233,10 +239,10 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       />
 
       <ButtonSetEdit
-        data-plasmic-name={"buttonSetEdit"}
-        data-plasmic-override={overrides.buttonSetEdit}
-        className={classNames("__wab_instance", sty.buttonSetEdit, {
-          [sty.buttonSetEdit__variantState_isEdit]: hasVariant(
+        data-plasmic-name={"create"}
+        data-plasmic-override={overrides.create}
+        className={classNames("__wab_instance", sty.create, {
+          [sty.create__variantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -256,20 +262,31 @@ function PlasmicAddEditVenture__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  settings: ["settings", "inputTextArea", "_switch", "buttonSetEdit"],
-  inputTextArea: ["inputTextArea"],
-  _switch: ["_switch"],
-  buttonSetEdit: ["buttonSetEdit"],
+  settings: [
+    "settings",
+    "name",
+    "description",
+    "url",
+    "membersWrite",
+    "create",
+  ],
+  name: ["name"],
+  description: ["description"],
+  url: ["url"],
+  membersWrite: ["membersWrite"],
+  create: ["create"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
   T extends NodeNameType
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
-  settings: "div";
-  inputTextArea: typeof InputTextArea;
-  _switch: typeof Switch;
-  buttonSetEdit: typeof ButtonSetEdit;
+  settings: "form";
+  name: typeof InputText;
+  description: typeof InputTextArea;
+  url: typeof InputText;
+  membersWrite: typeof Switch;
+  create: typeof ButtonSetEdit;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -277,8 +294,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicAddEditVenture__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicAddEditVenture__VariantsArgs;
   args?: PlasmicAddEditVenture__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -328,9 +344,11 @@ export const PlasmicAddEditVenture = Object.assign(
   makeNodeComponent("settings"),
   {
     // Helper components rendering sub-elements
-    inputTextArea: makeNodeComponent("inputTextArea"),
-    _switch: makeNodeComponent("_switch"),
-    buttonSetEdit: makeNodeComponent("buttonSetEdit"),
+    _name: makeNodeComponent("name"),
+    description: makeNodeComponent("description"),
+    url: makeNodeComponent("url"),
+    membersWrite: makeNodeComponent("membersWrite"),
+    create: makeNodeComponent("create"),
 
     // Metadata about props expected for PlasmicAddEditVenture
     internalVariantProps: PlasmicAddEditVenture__VariantProps,

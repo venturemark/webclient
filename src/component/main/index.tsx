@@ -17,11 +17,14 @@ function Main(props: MainProps) {
   const { isActive, variantType, setIsActive, setVariantType, ...rest } = props;
   return (
     <PlasmicMain
+      isActive={isActive}
+      variantType={variantType}
       mainHeader={{
         isActive: isActive,
       }}
-      isActive={isActive}
-      variantType={variantType}
+      addEditMembers={{}}
+      addEditVenture={{ setIsActive }}
+      addEditTimeline={{}}
       viewCreateVenture={{
         onClick: () => {
           setIsActive("settings");

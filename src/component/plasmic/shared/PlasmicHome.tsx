@@ -31,6 +31,7 @@ import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
 import Main from "../../main/index"; // plasmic-import: 0c6QSqHYCk/component
 import PostDetails from "../../postdetails/index"; // plasmic-import: 1E73LSzV2l/component
+import ProfileForm from "../../profileform/index"; // plasmic-import: _XzWccJtXuE/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -63,6 +64,7 @@ export type PlasmicHome__OverridesType = {
   mainContainer?: p.Flex<"div">;
   main?: p.Flex<typeof Main>;
   postDetails?: p.Flex<typeof PostDetails>;
+  profileForm?: p.Flex<typeof ProfileForm>;
 };
 
 export interface DefaultHomeProps {
@@ -112,7 +114,7 @@ function PlasmicHome__RenderFunc(props: {
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}
             className={classNames("__wab_instance", sty.header)}
-            photoAvatar={"photoAvatar" as const}
+            userAccount={"userAccount" as const}
           />
 
           <div
@@ -156,7 +158,7 @@ function PlasmicHome__RenderFunc(props: {
                   data-plasmic-override={overrides.main}
                   className={classNames("__wab_instance", sty.main)}
                   isActive={"feed" as const}
-                  variantType={"isEmpty" as const}
+                  variantType={"isVenture" as const}
                 />
               </div>
 
@@ -179,6 +181,16 @@ function PlasmicHome__RenderFunc(props: {
               ) : null}
             </div>
           </div>
+
+          {false ? (
+            <div className={classNames(defaultcss.all, sty.box__bSzQ)}>
+              <ProfileForm
+                data-plasmic-name={"profileForm"}
+                data-plasmic-override={overrides.profileForm}
+                className={classNames("__wab_instance", sty.profileForm)}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
     </React.Fragment>
@@ -186,12 +198,21 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "sidebar", "mainContainer", "main", "postDetails"],
+  root: [
+    "root",
+    "header",
+    "sidebar",
+    "mainContainer",
+    "main",
+    "postDetails",
+    "profileForm",
+  ],
   header: ["header"],
   sidebar: ["sidebar"],
   mainContainer: ["mainContainer", "main"],
   main: ["main"],
   postDetails: ["postDetails"],
+  profileForm: ["profileForm"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -204,6 +225,7 @@ type NodeDefaultElementType = {
   mainContainer: "div";
   main: typeof Main;
   postDetails: typeof PostDetails;
+  profileForm: typeof ProfileForm;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -266,6 +288,7 @@ export const PlasmicHome = Object.assign(
     mainContainer: makeNodeComponent("mainContainer"),
     main: makeNodeComponent("main"),
     postDetails: makeNodeComponent("postDetails"),
+    profileForm: makeNodeComponent("profileForm"),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

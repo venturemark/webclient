@@ -81,6 +81,7 @@
   width: auto;
   height: auto;
   flex-direction: row;
+  cursor: pointer;
   background: rgba(68, 192, 255, 0);
 }
 .box___4Ktdl > :global(.__wab_flex-container) {

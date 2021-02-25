@@ -85,7 +85,8 @@ export function Home(props: HomeProps) {
 
   useEffect(() => {
     !venture && setVariantType("isEmpty");
-  }, [venture]);
+    venture && variantType === "isEmpty" && setVariantType("isVenture");
+  }, [venture, variantType]);
 
   return (
     <PlasmicHome

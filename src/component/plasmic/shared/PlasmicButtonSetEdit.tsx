@@ -58,6 +58,7 @@ export const PlasmicButtonSetEdit__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicButtonSetEdit__OverridesType = {
   root?: p.Flex<"div">;
+  createButton?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
   text22?: p.Flex<"div">;
   text222?: p.Flex<"div">;
@@ -103,6 +104,8 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
     >
       <div className={classNames(defaultcss.all, sty.box__wbTrP)}>
         <Button
+          data-plasmic-name={"createButton"}
+          data-plasmic-override={overrides.createButton}
           buttonFeatures={
             hasVariant(globalVariants, "screen", "mobile") ? [] : []
           }
@@ -266,7 +269,8 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text2", "text22", "text222"],
+  root: ["root", "createButton", "text2", "text22", "text222"],
+  createButton: ["createButton", "text2"],
   text2: ["text2"],
   text22: ["text22"],
   text222: ["text222"],
@@ -277,6 +281,7 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  createButton: typeof Button;
   text2: "div";
   text22: "div";
   text222: "div";
@@ -337,6 +342,7 @@ export const PlasmicButtonSetEdit = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    createButton: makeNodeComponent("createButton"),
     text2: makeNodeComponent("text2"),
     text22: makeNodeComponent("text22"),
     text222: makeNodeComponent("text222"),

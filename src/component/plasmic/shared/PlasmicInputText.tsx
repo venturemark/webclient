@@ -167,7 +167,7 @@ function PlasmicInputText__RenderFunc(props: {
                   data-plasmic-name={"input"}
                   data-plasmic-override={overrides.input}
                   className={classNames(defaultcss.input, sty.input)}
-                  placeholder={"Placeholder" as const}
+                  placeholder={"" as const}
                   title={"" as const}
                   type={"text" as const}
                 />

@@ -7,13 +7,6 @@ import {
 } from "component/plasmic/shared/PlasmicInputText";
 
 interface InputTextProps extends DefaultInputTextProps {
-  // options: any;
-  // name: string;
-  // register: any;
-  // onChange: any;
-  // label: string;
-  // setUserFocus?: any;
-  // userFocus?: boolean;
   defaultValue?: any;
   register?: any;
   name?: string;

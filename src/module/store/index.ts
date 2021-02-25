@@ -10,7 +10,7 @@ export interface ISaveVenture {
   name: string;
   description: string;
   url: string;
-  memberWrite: boolean;
+  membersWrite: boolean;
 }
 
 export const save = (content: Node[]) => {

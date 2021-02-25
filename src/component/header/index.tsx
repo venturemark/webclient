@@ -16,7 +16,7 @@ function Header(props: HeaderProps) {
   return (
     <PlasmicHeader
       profileDropdown={profileDropdown}
-      photoAvatar={isAuthenticated}
+      userAccount={isAuthenticated}
       avatar={{
         setProfileDropdown,
         profileDropdown,

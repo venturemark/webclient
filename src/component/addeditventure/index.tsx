@@ -6,18 +6,52 @@ import {
   DefaultAddEditVentureProps,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import { useForm } from "react-hook-form";
+import { saveVenture, ISaveVenture } from "module/store";
 
-interface AddEditVentureProps extends DefaultAddEditVentureProps {}
+interface AddEditVentureProps extends DefaultAddEditVentureProps {
+  setIsActive: any;
+}
 
 function AddEditVenture(props: AddEditVentureProps) {
-  const { handleSubmit, register } = useForm();
+  const { setIsActive, ...rest } = props;
+  const { handleSubmit, register, reset } = useForm();
 
-  const updateVenture = (data: any) => {
+  const handleCreate = (data: any) => {
+    const venture: ISaveVenture = {
+      name: data.name,
+      description: data.description,
+      url: data.url,
+      membersWrite: true,
+    };
+
+    saveVenture(venture);
+    reset();
+    setIsActive("feed");
+
     //currently we're not storing a change here because we're waiting on backend.
-    console.log(data);
   };
 
-  return <PlasmicAddEditVenture {...props} />;
+  return (
+    <PlasmicAddEditVenture
+      settings={{
+        onSubmit: handleSubmit(handleCreate),
+      }}
+      name={{
+        register: register(),
+        name: "name",
+      }}
+      description={{
+        register: register(),
+        name: "description",
+      }}
+      url={{
+        register: register(),
+        name: "url",
+      }}
+      membersWrite={{}}
+      {...rest}
+    />
+  );
 }
 
 export default AddEditVenture;

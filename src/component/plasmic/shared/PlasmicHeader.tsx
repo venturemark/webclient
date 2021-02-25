@@ -41,20 +41,20 @@ import IconMenuIcon from "./icons/PlasmicIcon__IconMenu"; // plasmic-import: gDL
 import Logosvg2Icon from "./icons/PlasmicIcon__Logosvg2"; // plasmic-import: SLtbVdLFU/icon
 
 export type PlasmicHeader__VariantMembers = {
-  photoAvatar: "photoAvatar";
+  userAccount: "userAccount";
   mobileMenu: "mobileMenu";
   profileDropdown: "profileDropdown";
 };
 
 export type PlasmicHeader__VariantsArgs = {
-  photoAvatar?: SingleBooleanChoiceArg<"photoAvatar">;
+  userAccount?: SingleBooleanChoiceArg<"userAccount">;
   mobileMenu?: SingleBooleanChoiceArg<"mobileMenu">;
   profileDropdown?: SingleBooleanChoiceArg<"profileDropdown">;
 };
 
 type VariantPropType = keyof PlasmicHeader__VariantsArgs;
 export const PlasmicHeader__VariantProps = new Array<VariantPropType>(
-  "photoAvatar",
+  "userAccount",
   "mobileMenu",
   "profileDropdown"
 );
@@ -70,7 +70,7 @@ export type PlasmicHeader__OverridesType = {
 };
 
 export interface DefaultHeaderProps {
-  photoAvatar?: SingleBooleanChoiceArg<"photoAvatar">;
+  userAccount?: SingleBooleanChoiceArg<"userAccount">;
   mobileMenu?: SingleBooleanChoiceArg<"mobileMenu">;
   profileDropdown?: SingleBooleanChoiceArg<"profileDropdown">;
   className?: string;
@@ -105,7 +105,13 @@ function PlasmicHeader__RenderFunc(props: {
       <p.Stack
         as={"div"}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box__ky7Rm)}
+        className={classNames(defaultcss.all, sty.box__ky7Rm, {
+          [sty.box__userAccount__ky7RmHbxJv]: hasVariant(
+            variants,
+            "userAccount",
+            "userAccount"
+          ),
+        })}
       >
         <p.Stack
           as={"div"}
@@ -146,20 +152,20 @@ function PlasmicHeader__RenderFunc(props: {
           />
         </p.Stack>
 
-        {(hasVariant(variants, "photoAvatar", "photoAvatar") ? true : false) ? (
+        {(hasVariant(variants, "userAccount", "userAccount") ? true : false) ? (
           <p.Stack
             as={"div"}
             hasGap={true}
             className={classNames(defaultcss.all, sty.box___4Ktdl, {
-              [sty.box__photoAvatar___4KtdlHbxJv]: hasVariant(
-                variants,
-                "photoAvatar",
-                "photoAvatar"
-              ),
               [sty.box__profileDropdown___4KtdlZi9Pu]: hasVariant(
                 variants,
                 "profileDropdown",
                 "profileDropdown"
+              ),
+              [sty.box__userAccount___4KtdlHbxJv]: hasVariant(
+                variants,
+                "userAccount",
+                "userAccount"
               ),
             })}
           >
