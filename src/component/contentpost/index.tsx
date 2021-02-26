@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React, { useState } from "react";
 import {
-PlasmicContentPost,
-DefaultContentPostProps } from
-"component/plasmic/shared/PlasmicContentPost";
+  PlasmicContentPost,
+  DefaultContentPostProps,
+} from "component/plasmic/shared/PlasmicContentPost";
 import ReadEditor from "component/editor/read";
 import { Node } from "slate";
 import { AntDropdown } from "component/ant/dropdown";
@@ -19,10 +19,11 @@ interface ContentPostProps extends DefaultContentPostProps {
   timelineId: string;
   updateTimelines: ITimeline[];
   date: string;
+  setIsVisible: any;
   setCurrentTimeline: React.Dispatch<
-  React.SetStateAction<ITimeline | undefined>>;}
-
-
+    React.SetStateAction<ITimeline | undefined>
+  >;
+}
 
 function ContentPost(props: ContentPostProps) {
   const {
@@ -33,44 +34,48 @@ function ContentPost(props: ContentPostProps) {
     timelineId,
     date,
     id,
-    setCurrentTimeline } =
-  props;
+    setCurrentTimeline,
+    setIsVisible,
+  } = props;
 
   const [isPostDetails, setIsPostDetails] = useState<
-  "isPostDetails" | "isUser" | undefined>(
-  undefined);
+    "isPostDetails" | "isUser" | undefined
+  >(undefined);
 
   return (
     <PlasmicContentPost
-    state={isPostDetails}
-    // iconMenu={{
-    //   render: () => <AntDropdown />,
-    // }}
-    // reply={{
-    //   updateId: id,
-    //   timelineId: timelineId,
-    //   organizationId: organizationName,
-    //   userId: userName,
-    // }}
-    // replyButton={{
-    //   onClick: () => setIsPostDetails("isPostDetails"),
-    // }}
-    // organizationName={organizationName}
-    userName={userName}
-    date={date}
-    // timelineNamesContainer={{
-    //   children: updateTimelines.map((timeline: ITimeline) => (
-    //     <TimelineLink
-    //       timeline={timeline}
-    //       setCurrentTimeline={setCurrentTimeline}
-    //     />
-    //   )),
-    // }}
-    // textContainer={{
-    //   render: () => <ReadEditor text={text} />,
-    // }}
-    />);
-
+      state={isPostDetails}
+      // iconMenu={{
+      //   render: () => <AntDropdown />,
+      // }}
+      // reply={{
+      //   updateId: id,
+      //   timelineId: timelineId,
+      //   organizationId: organizationName,
+      //   userId: userName,
+      // }}
+      // replyButton={{
+      //   onClick: () => setIsPostDetails("isPostDetails"),
+      // }}
+      // organizationName={organizationName}
+      viewReplies={{
+        onClick: () => setIsVisible("postDetails"),
+      }}
+      userName={userName}
+      date={date}
+      // timelineNamesContainer={{
+      //   children: updateTimelines.map((timeline: ITimeline) => (
+      //     <TimelineLink
+      //       timeline={timeline}
+      //       setCurrentTimeline={setCurrentTimeline}
+      //     />
+      //   )),
+      // }}
+      // textContainer={{
+      //   render: () => <ReadEditor text={text} />,
+      // }}
+    />
+  );
 }
 
 export default ContentPost;

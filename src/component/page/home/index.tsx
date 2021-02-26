@@ -5,7 +5,6 @@ import {
   PlasmicHome,
   DefaultHomeProps,
 } from "component/plasmic/shared/PlasmicHome";
-import FeedUpdate from "component/feedupdate";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
@@ -22,8 +21,9 @@ export function Home(props: HomeProps) {
     ITimeline | undefined
   >();
   // local hooks shared with page-level elements
-  const [showLogin, setShowLogin] = useState(false);
-  const [login, setLogin] = useState(user);
+  const [isVisible, setIsVisible] = useState<
+    "postDetails" | "mobileSidebar" | undefined
+  >(undefined);
   const [isHome, setIsHome] = useState(true);
   const [variantType, setVariantType] = useState<
     "isEmpty" | "isTimeline" | "isVenture" | undefined
@@ -35,7 +35,7 @@ export function Home(props: HomeProps) {
   const timelineId = currentTimeline?.id ?? undefined;
   //currently hardcoding until we have a plan for org / user storage
   const organizationId = "venturemark";
-  const userId = login?.userId ?? "marcus";
+  const userId = user?.userId ?? "marcus";
   //hook / fetch stuff:
   const token = "";
   const timelineSearch: ITimelineQuery = {
@@ -88,8 +88,11 @@ export function Home(props: HomeProps) {
     venture && variantType === "isEmpty" && setVariantType("isVenture");
   }, [venture, variantType]);
 
+  console.log(updates);
+
   return (
     <PlasmicHome
+      isVisible={isVisible}
       // showLogin={showLogin}
       // loginModal={{
       //   organizationDescription:
@@ -102,6 +105,8 @@ export function Home(props: HomeProps) {
         isActive,
         setIsActive,
         setVariantType,
+        isVisible,
+        setIsVisible,
       }}
       sidebar={{
         isHome: isHome,
@@ -110,6 +115,9 @@ export function Home(props: HomeProps) {
         setCurrentTimeline: setCurrentTimeline,
         userId: userId,
         organizationId: organizationId,
+      }}
+      postDetails={{
+        setIsVisible,
       }}
 
       // actionBar={{

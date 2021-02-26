@@ -11,16 +11,30 @@ interface MainProps extends DefaultMainProps {
   variantType: any;
   setIsActive: any;
   setVariantType: any;
+  isVisible: any;
+  setIsVisible: any;
 }
 
 function Main(props: MainProps) {
-  const { isActive, variantType, setIsActive, setVariantType, ...rest } = props;
+  const {
+    isActive,
+    variantType,
+    setIsActive,
+    setVariantType,
+    isVisible,
+    setIsVisible,
+    ...rest
+  } = props;
   return (
     <PlasmicMain
       isActive={isActive}
       variantType={variantType}
       mainHeader={{
         isActive: isActive,
+      }}
+      feedUpdate={{
+        isVisible,
+        setIsVisible,
       }}
       addEditMembers={{}}
       addEditVenture={{ setIsActive }}

@@ -21,6 +21,8 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   setCurrentTimeline: React.Dispatch<
     React.SetStateAction<ITimeline | undefined>
   >;
+  isVisible: any;
+  setIsVisible: any;
 }
 
 function FeedUpdate(props: FeedUpdateProps) {
@@ -33,6 +35,8 @@ function FeedUpdate(props: FeedUpdateProps) {
     date,
     allUpdates,
     setCurrentTimeline,
+    isVisible,
+    setIsVisible,
   } = props;
 
   const token = "";
@@ -74,6 +78,8 @@ function FeedUpdate(props: FeedUpdateProps) {
         updateTimelines: updateTimelines,
         date: date,
         setCurrentTimeline: setCurrentTimeline,
+        isVisible,
+        setIsVisible,
       }}
     />
   );

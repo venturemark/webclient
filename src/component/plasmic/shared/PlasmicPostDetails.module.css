@@ -39,7 +39,7 @@
 .slotChildren {
   font-size: 18px /* plasmic-token: UFZg3bUaA */;
 }
-.iconButton:global(.__wab_instance) {
+.close:global(.__wab_instance) {
   position: relative;
 }
 .svg {

@@ -55,7 +55,7 @@ export const PlasmicPostDetails__ArgProps = new Array<ArgPropType>("children");
 export type PlasmicPostDetails__OverridesType = {
   root?: p.Flex<"div">;
   box?: p.Flex<"div">;
-  iconButton?: p.Flex<typeof IconButton>;
+  close?: p.Flex<typeof IconButton>;
   svg?: p.Flex<"svg">;
   replyContainer?: p.Flex<"div">;
   contentPost?: p.Flex<typeof ContentPost>;
@@ -109,9 +109,9 @@ function PlasmicPostDetails__RenderFunc(props: {
           />
 
           <IconButton
-            data-plasmic-name={"iconButton"}
-            data-plasmic-override={overrides.iconButton}
-            className={classNames("__wab_instance", sty.iconButton)}
+            data-plasmic-name={"close"}
+            data-plasmic-override={overrides.close}
+            className={classNames("__wab_instance", sty.close)}
             iconSize={"large" as const}
           >
             <IconCloseIcon
@@ -329,7 +329,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "box",
-    "iconButton",
+    "close",
     "svg",
     "replyContainer",
     "contentPost",
@@ -346,8 +346,8 @@ const PlasmicDescendants = {
     "date222",
     "replyInput",
   ],
-  box: ["box", "iconButton", "svg"],
-  iconButton: ["iconButton", "svg"],
+  box: ["box", "close", "svg"],
+  close: ["close", "svg"],
   svg: ["svg"],
   replyContainer: [
     "replyContainer",
@@ -385,7 +385,7 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   box: "div";
-  iconButton: typeof IconButton;
+  close: typeof IconButton;
   svg: "svg";
   replyContainer: "div";
   contentPost: typeof ContentPost;
@@ -459,7 +459,7 @@ export const PlasmicPostDetails = Object.assign(
   {
     // Helper components rendering sub-elements
     box: makeNodeComponent("box"),
-    iconButton: makeNodeComponent("iconButton"),
+    close: makeNodeComponent("close"),
     svg: makeNodeComponent("svg"),
     replyContainer: makeNodeComponent("replyContainer"),
     contentPost: makeNodeComponent("contentPost"),

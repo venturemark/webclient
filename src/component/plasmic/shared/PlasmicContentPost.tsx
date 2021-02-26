@@ -87,7 +87,7 @@ export type PlasmicContentPost__OverridesType = {
   timelineNamesContainer?: p.Flex<"div">;
   timelineLink?: p.Flex<typeof TimelineLink>;
   link?: p.Flex<"a">;
-  button?: p.Flex<typeof Button>;
+  viewReplies?: p.Flex<typeof Button>;
 };
 
 export interface DefaultContentPostProps {
@@ -441,11 +441,15 @@ function PlasmicContentPost__RenderFunc(props: {
               })}
             >
               <Button
-                data-plasmic-name={"button"}
-                data-plasmic-override={overrides.button}
+                data-plasmic-name={"viewReplies"}
+                data-plasmic-override={overrides.viewReplies}
                 buttonFeatures={["isRounded", "showEndIcon", "showCount"]}
                 buttonStyle={"secondaryPurple" as const}
-                className={classNames("__wab_instance", sty.button)}
+                className={classNames("__wab_instance", sty.viewReplies, {
+                  [sty.viewReplies__state_isUser_isUserOnClick]:
+                    hasVariant(variants, "state", "isUser") &&
+                    hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+                })}
                 count={"1"}
                 slot={
                   <IconPlusIcon
@@ -484,7 +488,7 @@ const PlasmicDescendants = {
     "timelineNamesContainer",
     "timelineLink",
     "link",
-    "button",
+    "viewReplies",
   ],
   editorContainer: [
     "editorContainer",
@@ -500,7 +504,7 @@ const PlasmicDescendants = {
     "timelineNamesContainer",
     "timelineLink",
     "link",
-    "button",
+    "viewReplies",
   ],
   textContainer2: ["textContainer2", "textContainer", "textContainer3"],
   textContainer: ["textContainer"],
@@ -514,7 +518,7 @@ const PlasmicDescendants = {
   timelineNamesContainer: ["timelineNamesContainer", "timelineLink", "link"],
   timelineLink: ["timelineLink", "link"],
   link: ["link"],
-  button: ["button"],
+  viewReplies: ["viewReplies"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -535,7 +539,7 @@ type NodeDefaultElementType = {
   timelineNamesContainer: "div";
   timelineLink: typeof TimelineLink;
   link: "a";
-  button: typeof Button;
+  viewReplies: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -606,7 +610,7 @@ export const PlasmicContentPost = Object.assign(
     timelineNamesContainer: makeNodeComponent("timelineNamesContainer"),
     timelineLink: makeNodeComponent("timelineLink"),
     link: makeNodeComponent("link"),
-    button: makeNodeComponent("button"),
+    viewReplies: makeNodeComponent("viewReplies"),
 
     // Metadata about props expected for PlasmicContentPost
     internalVariantProps: PlasmicContentPost__VariantProps,

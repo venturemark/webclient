@@ -14,10 +14,18 @@ interface PostDetailsProps extends DefaultPostDetailsProps {
   timelineId: string;
   organizationId: string;
   userId: string;
+  setIsVisible: any;
 }
 
 function PostDetails(props: PostDetailsProps) {
-  const { updateId, timelineId, userId, organizationId } = props;
+  const {
+    updateId,
+    timelineId,
+    userId,
+    organizationId,
+    setIsVisible,
+    ...rest
+  } = props;
   const token = "";
   const messageSearch: IMessageQuery = {
     updateId,
@@ -32,6 +40,9 @@ function PostDetails(props: PostDetailsProps) {
 
   return (
     <PlasmicPostDetails
+      close={{
+        onClick: () => setIsVisible(undefined),
+      }}
       replyInput={{
         organizationId: organizationId,
         timelineId,
@@ -49,6 +60,7 @@ function PostDetails(props: PostDetailsProps) {
             updateId={updateId}
             timelineId={timelineId}
             organizationId={organizationId}
+            {...rest}
           />
         )),
       }}
