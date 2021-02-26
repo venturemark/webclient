@@ -2,28 +2,32 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-PlasmicPhotoAvatar,
-DefaultPhotoAvatarProps } from
-"component/plasmic/shared/PlasmicPhotoAvatar";
+  PlasmicPhotoAvatar,
+  DefaultPhotoAvatarProps,
+} from "component/plasmic/shared/PlasmicPhotoAvatar";
 import { useAuth0 } from "@auth0/auth0-react";
 
-interface PhotoAvatarProps extends DefaultPhotoAvatarProps {}
+interface PhotoAvatarProps extends DefaultPhotoAvatarProps {
+  profileDropdown: boolean | "profileDropdown" | undefined;
+  setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 function PhotoAvatar(props: PhotoAvatarProps) {
-  const { user, logout } = useAuth0();
+  const { profileDropdown, setProfileDropdown, ...rest } = props;
+  const { user } = useAuth0();
 
   const userInitials =
-  user?.name.
-  split(" ").
-  map((n: string) => n[0]).
-  join("") ?? "";
+    user?.name
+      .split(" ")
+      .map((n: string) => n[0])
+      .join("") ?? "";
   return (
     <PlasmicPhotoAvatar
-    onClick={() => logout()}
-    userInitials={userInitials}
-    {...props} />);
-
-
+      onClick={() => setProfileDropdown(!profileDropdown)}
+      userInitials={userInitials}
+      {...rest}
+    />
+  );
 }
 
 export default PhotoAvatar;

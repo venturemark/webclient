@@ -89,6 +89,21 @@
   color: #4d4d4d;
   flex-shrink: 0;
 }
+.dropdown:global(.__wab_instance) {
+  position: relative;
+}
+.dropdown__isUserOnClick_state_isUser:global(.__wab_instance) {
+  position: absolute;
+  left: auto;
+  top: 33px;
+  right: 0px;
+}
+.root__state_isUser:hover .dropdown__state_isUser:global(.__wab_instance) {
+  position: absolute;
+  left: -92px;
+  top: 29px;
+  z-index: 3;
+}
 .box__ehjLr {
   display: inline-flex;
   position: relative;
@@ -232,7 +247,7 @@
 .slotDate {
   font-weight: 300;
 }
-.span__rwEsf {
+.span {
   position: relative;
 }
 .date {
@@ -286,7 +301,7 @@
   top: auto;
   left: auto;
 }
-.span__fuKna {
+.link {
   width: auto;
   height: auto;
   cursor: pointer;

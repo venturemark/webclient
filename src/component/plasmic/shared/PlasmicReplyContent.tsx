@@ -39,15 +39,18 @@ import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-impor
 
 export type PlasmicReplyContent__VariantMembers = {
   state: "isUser";
+  isUserOnClick: "isUserOnClick";
 };
 
 export type PlasmicReplyContent__VariantsArgs = {
   state?: SingleChoiceArg<"isUser">;
+  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
 };
 
 type VariantPropType = keyof PlasmicReplyContent__VariantsArgs;
 export const PlasmicReplyContent__VariantProps = new Array<VariantPropType>(
-  "state"
+  "state",
+  "isUserOnClick"
 );
 
 export type PlasmicReplyContent__ArgsType = {
@@ -80,6 +83,7 @@ export interface DefaultReplyContentProps {
   text?: React.ReactNode;
   date?: React.ReactNode;
   state?: SingleChoiceArg<"isUser">;
+  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
   className?: string;
 }
 
@@ -109,6 +113,14 @@ function PlasmicReplyContent__RenderFunc(props: {
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
         className={classNames(defaultcss.all, sty.editorContainer, {
+          [sty.editorContainer__isUserOnClick]: hasVariant(
+            variants,
+            "isUserOnClick",
+            "isUserOnClick"
+          ),
+          [sty.editorContainer__isUserOnClick_state_isUser]:
+            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+            hasVariant(variants, "state", "isUser"),
           [sty.editorContainer__state_isUser]: hasVariant(
             variants,
             "state",
@@ -228,6 +240,12 @@ function PlasmicReplyContent__RenderFunc(props: {
                         data-plasmic-name={"svg"}
                         data-plasmic-override={overrides.svg}
                         className={classNames(defaultcss.all, sty.svg, {
+                          [sty.svg__isUserOnClick_state_isUser]:
+                            hasVariant(
+                              variants,
+                              "isUserOnClick",
+                              "isUserOnClick"
+                            ) && hasVariant(variants, "state", "isUser"),
                           [sty.svg__state_isUser]: hasVariant(
                             variants,
                             "state",
@@ -237,11 +255,68 @@ function PlasmicReplyContent__RenderFunc(props: {
                         role={"img"}
                       />
 
-                      {(triggers.active_root ? true : false) ? (
+                      {(
+                        triggers.active_root
+                          ? true
+                          : hasVariant(
+                              variants,
+                              "isUserOnClick",
+                              "isUserOnClick"
+                            ) && hasVariant(variants, "state", "isUser")
+                          ? true
+                          : false
+                      ) ? (
                         <Dropdown
                           data-plasmic-name={"dropdown"}
                           data-plasmic-override={overrides.dropdown}
-                          className={classNames("__wab_instance", sty.dropdown)}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.dropdown,
+                            {
+                              [sty.dropdown__isUserOnClick]: hasVariant(
+                                variants,
+                                "isUserOnClick",
+                                "isUserOnClick"
+                              ),
+                              [sty.dropdown__isUserOnClick_state_isUser]:
+                                hasVariant(
+                                  variants,
+                                  "isUserOnClick",
+                                  "isUserOnClick"
+                                ) && hasVariant(variants, "state", "isUser"),
+                              [sty.dropdown__state_isUser]: hasVariant(
+                                variants,
+                                "state",
+                                "isUser"
+                              ),
+                            }
+                          )}
+                          rename2={
+                            <div
+                              className={classNames(
+                                defaultcss.all,
+                                defaultcss.__wab_text,
+                                sty.box___1LjC2,
+                                {
+                                  [sty.box__isUserOnClick_state_isUser___1LjC2McM8FEdPi]:
+                                    hasVariant(
+                                      variants,
+                                      "isUserOnClick",
+                                      "isUserOnClick"
+                                    ) &&
+                                    hasVariant(variants, "state", "isUser"),
+                                }
+                              )}
+                            >
+                              {hasVariant(
+                                variants,
+                                "isUserOnClick",
+                                "isUserOnClick"
+                              ) && hasVariant(variants, "state", "isUser")
+                                ? "Delete"
+                                : "Archive"}
+                            </div>
+                          }
                         />
                       ) : null}
                     </button>

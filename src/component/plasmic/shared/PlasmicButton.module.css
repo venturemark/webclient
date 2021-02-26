@@ -44,7 +44,7 @@
 }
 .button__buttonFeatures_removeText {
   min-width: 0px;
-  padding: 10px;
+  padding: 10px 15px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .button__buttonFeatures_nonFullWidth {

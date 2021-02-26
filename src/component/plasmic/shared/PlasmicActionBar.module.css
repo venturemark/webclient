@@ -177,7 +177,7 @@
   }
 }
 .box__isActive__mQqJfvjQpn > :global(.__wab_flex-container) {
-  align-items: flex-start;
+  align-items: center;
 }
 .box__timelineSelected__mQqJf75BwG {
   height: auto;
@@ -192,6 +192,21 @@
   > :global(.__wab_flex-container) {
   align-items: flex-start;
 }
+.text24 {
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+}
+.text24__isActive {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  width: 60px;
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .text24__isActive {
+    align-self: flex-start;
+    width: 100%;
+    min-width: 0;
+  }
+}
 .box__bxEbl {
   display: flex;
   position: relative;
@@ -201,6 +216,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap-reverse;
+  align-content: center;
   margin-left: calc(0px - 4px);
   width: calc(100% + 4px);
 }
@@ -208,28 +225,32 @@
 .box__bxEbl > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 4px;
 }
-.box__isActive__bxEblvjQpn > :global(.__wab_flex-container) {
-  margin-left: calc(0px - 11px);
-  width: calc(100% + 11px);
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
+.box__isActive__bxEblvjQpn {
+  display: flex;
+  width: 100%;
+  min-width: 0;
 }
-.box__isActive__bxEblvjQpn > :global(.__wab_flex-container) > *,
-.box__isActive__bxEblvjQpn
+.box__iriP {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.box__isActive__iriPvjQpn > :global(.__wab_flex-container) {
+  flex-wrap: wrap;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+  margin-top: calc(0px - 10px);
+  height: calc(100% + 10px);
+}
+.box__isActive__iriPvjQpn > :global(.__wab_flex-container) > *,
+.box__isActive__iriPvjQpn
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > * {
-  margin-left: 11px;
-  margin-top: 0px;
-}
-.text24 {
-  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
-}
-.text24__isActive {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
-}
-.tags___84GrN:global(.__wab_instance) {
-  position: relative;
+  margin-left: 5px;
+  margin-top: 10px;
 }
 .svg__dVcAh {
   position: relative;
@@ -237,7 +258,7 @@
   width: 12px;
   height: 10px;
 }
-.tags__v9Lwn:global(.__wab_instance) {
+.add:global(.__wab_instance) {
   position: relative;
 }
 .svg__aaXl8 {

@@ -6,52 +6,52 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/shared/PlasmicHome";
 import FeedUpdate from "component/feedupdate";
-
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { IUpdate, IUpdateQuery } from "module/interface/update";
 import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
-import { getUser } from "module/store";
+import { getUser, getVenture } from "module/store";
 
 interface HomeProps extends DefaultHomeProps {}
 
-export function Component(props: HomeProps) {
+export function Home(props: HomeProps) {
   const user = getUser();
-
+  const venture = getVenture();
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
   >();
-
+  // local hooks shared with page-level elements
   const [showLogin, setShowLogin] = useState(false);
   const [login, setLogin] = useState(user);
   const [isHome, setIsHome] = useState(true);
+  const [variantType, setVariantType] = useState<
+    "isEmpty" | "isTimeline" | "isVenture" | undefined
+  >("isEmpty");
+  const [isActive, setIsActive] = useState<
+    "feed" | "settings" | "members" | undefined
+  >("feed");
+
   const timelineId = currentTimeline?.id ?? undefined;
-
   //currently hardcoding until we have a plan for org / user storage
-  const organizationId = login?.organizationId ?? "venturemark";
+  const organizationId = "venturemark";
   const userId = login?.userId ?? "marcus";
-
+  //hook / fetch stuff:
   const token = "";
-
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
     token,
   };
-
   const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
     timelineSearch
   );
-
   const timelineUpdatesSearch: IUpdateQuery = {
     organizationId,
     timelineId,
     userId,
     token,
   };
-
   const allUpdatesSearch: IUpdateQuery = {
     organizationId,
     timelineId,
@@ -59,13 +59,10 @@ export function Component(props: HomeProps) {
     timelines: timelinesData,
     token,
   };
-
   const { data: allUpdates, isSuccess: updateSuccess } = useAllUpdates(
     allUpdatesSearch
   );
-
   const { data: timelineUpdates } = useTimelineUpdates(timelineUpdatesSearch);
-
   let updates = [];
 
   if (timelineSuccess && updateSuccess) {
@@ -87,15 +84,9 @@ export function Component(props: HomeProps) {
   }
 
   useEffect(() => {
-    if (!login) {
-      setShowLogin(true);
-    }
-
-    if (login && showLogin) {
-      setShowLogin(false);
-      window.location.reload();
-    }
-  }, [login, showLogin]);
+    !venture && setVariantType("isEmpty");
+    venture && variantType === "isEmpty" && setVariantType("isVenture");
+  }, [venture, variantType]);
 
   return (
     <PlasmicHome
@@ -106,6 +97,12 @@ export function Component(props: HomeProps) {
       //   setLogin: setLogin,
       // }}
       // isTimeline={!isHome}
+      main={{
+        variantType,
+        isActive,
+        setIsActive,
+        setVariantType,
+      }}
       sidebar={{
         isHome: isHome,
         setIsHome: setIsHome,
@@ -143,4 +140,4 @@ export function Component(props: HomeProps) {
   );
 }
 
-export default withAuthenticationRequired(Component);
+export default withAuthenticationRequired(Home);

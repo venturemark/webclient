@@ -28,6 +28,7 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
+import Dropdown from "../../dropdown/index"; // plasmic-import: Umq3CDOCIR/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -43,6 +44,7 @@ import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-impor
 export type PlasmicSidebarItem__VariantMembers = {
   itemType: "timeline" | "createTimeline" | "ventureCollapsed";
   isActive: "isActive";
+  isUserOnClick: "isUserOnClick";
 };
 
 export type PlasmicSidebarItem__VariantsArgs = {
@@ -50,12 +52,14 @@ export type PlasmicSidebarItem__VariantsArgs = {
     "timeline" | "createTimeline" | "ventureCollapsed"
   >;
   isActive?: SingleBooleanChoiceArg<"isActive">;
+  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
 };
 
 type VariantPropType = keyof PlasmicSidebarItem__VariantsArgs;
 export const PlasmicSidebarItem__VariantProps = new Array<VariantPropType>(
   "itemType",
-  "isActive"
+  "isActive",
+  "isUserOnClick"
 );
 
 export type PlasmicSidebarItem__ArgsType = {
@@ -68,7 +72,10 @@ export const PlasmicSidebarItem__ArgProps = new Array<ArgPropType>("name");
 export type PlasmicSidebarItem__OverridesType = {
   root?: p.Flex<"div">;
   itemContainer?: p.Flex<"div">;
+  icon?: p.Flex<typeof IconButton>;
   textbox?: p.Flex<"input">;
+  iconButton?: p.Flex<typeof IconButton>;
+  dropdown?: p.Flex<typeof Dropdown>;
 };
 
 export interface DefaultSidebarItemProps {
@@ -77,6 +84,7 @@ export interface DefaultSidebarItemProps {
     "timeline" | "createTimeline" | "ventureCollapsed"
   >;
   isActive?: SingleBooleanChoiceArg<"isActive">;
+  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
   className?: string;
 }
 
@@ -101,6 +109,14 @@ function PlasmicSidebarItem__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
+        [sty.root__isUserOnClick]: hasVariant(
+          variants,
+          "isUserOnClick",
+          "isUserOnClick"
+        ),
+        [sty.root__isUserOnClick_itemType_timeline]:
+          hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+          hasVariant(variants, "itemType", "timeline"),
         [sty.root__itemType_createTimeline]: hasVariant(
           variants,
           "itemType",
@@ -153,16 +169,18 @@ function PlasmicSidebarItem__RenderFunc(props: {
               : true
           ) ? (
             <IconButton
-              className={classNames("__wab_instance", sty.iconButton__vRhI, {
-                [sty.iconButton__isActive__vRhIw0Xu8]: hasVariant(
+              data-plasmic-name={"icon"}
+              data-plasmic-override={overrides.icon}
+              className={classNames("__wab_instance", sty.icon, {
+                [sty.icon__isActive]: hasVariant(
                   variants,
                   "isActive",
                   "isActive"
                 ),
-                [sty.iconButton__isActive_itemType_createTimeline__vRhIw0Xu8OuGst]:
+                [sty.icon__isActive_itemType_createTimeline]:
                   hasVariant(variants, "isActive", "isActive") &&
                   hasVariant(variants, "itemType", "createTimeline"),
-                [sty.iconButton__itemType_createTimeline__vRhIOuGst]: hasVariant(
+                [sty.icon__itemType_createTimeline]: hasVariant(
                   variants,
                   "itemType",
                   "createTimeline"
@@ -296,16 +314,18 @@ function PlasmicSidebarItem__RenderFunc(props: {
               : false
           ) ? (
             <IconButton
-              className={classNames("__wab_instance", sty.iconButton__bxxEv, {
-                [sty.iconButton__isActive__bxxEVw0Xu8]: hasVariant(
+              data-plasmic-name={"iconButton"}
+              data-plasmic-override={overrides.iconButton}
+              className={classNames("__wab_instance", sty.iconButton, {
+                [sty.iconButton__isActive]: hasVariant(
                   variants,
                   "isActive",
                   "isActive"
                 ),
-                [sty.iconButton__isActive_itemType_createTimeline__bxxEVw0Xu8OuGst]:
+                [sty.iconButton__isActive_itemType_createTimeline]:
                   hasVariant(variants, "isActive", "isActive") &&
                   hasVariant(variants, "itemType", "createTimeline"),
-                [sty.iconButton__itemType_createTimeline__bxxEvOuGst]: hasVariant(
+                [sty.iconButton__itemType_createTimeline]: hasVariant(
                   variants,
                   "itemType",
                   "createTimeline"
@@ -331,10 +351,45 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
                     hasVariant(variants, "isActive", "isActive") &&
                     hasVariant(variants, "itemType", "createTimeline"),
+                  [sty.svg__isUserOnClick__zhtWcXgVg8]: hasVariant(
+                    variants,
+                    "isUserOnClick",
+                    "isUserOnClick"
+                  ),
                 })}
                 role={"img"}
               />
             </IconButton>
+          ) : null}
+          {(
+            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+            triggers.hover_root
+              ? true
+              : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+              ? false
+              : false
+          ) ? (
+            <Dropdown
+              data-plasmic-name={"dropdown"}
+              data-plasmic-override={overrides.dropdown}
+              className={classNames("__wab_instance", sty.dropdown, {
+                [sty.dropdown__isUserOnClick]: hasVariant(
+                  variants,
+                  "isUserOnClick",
+                  "isUserOnClick"
+                ),
+                [sty.dropdown__isUserOnClick_itemType_timeline]:
+                  hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                  hasVariant(variants, "itemType", "timeline"),
+              })}
+              rename2={
+                hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                hasVariant(variants, "itemType", "timeline") &&
+                triggers.hover_root
+                  ? "Edit Timeline"
+                  : "Edit Venture"
+              }
+            />
           ) : null}
         </p.Stack>
       ) : null}
@@ -343,9 +398,12 @@ function PlasmicSidebarItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "itemContainer", "textbox"],
-  itemContainer: ["itemContainer", "textbox"],
+  root: ["root", "itemContainer", "icon", "textbox", "iconButton", "dropdown"],
+  itemContainer: ["itemContainer", "icon", "textbox", "iconButton", "dropdown"],
+  icon: ["icon"],
   textbox: ["textbox"],
+  iconButton: ["iconButton"],
+  dropdown: ["dropdown"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -354,7 +412,10 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   itemContainer: "div";
+  icon: typeof IconButton;
   textbox: "input";
+  iconButton: typeof IconButton;
+  dropdown: typeof Dropdown;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -413,7 +474,10 @@ export const PlasmicSidebarItem = Object.assign(
   {
     // Helper components rendering sub-elements
     itemContainer: makeNodeComponent("itemContainer"),
+    icon: makeNodeComponent("icon"),
     textbox: makeNodeComponent("textbox"),
+    iconButton: makeNodeComponent("iconButton"),
+    dropdown: makeNodeComponent("dropdown"),
 
     // Metadata about props expected for PlasmicSidebarItem
     internalVariantProps: PlasmicSidebarItem__VariantProps,

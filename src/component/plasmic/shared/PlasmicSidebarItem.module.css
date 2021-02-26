@@ -57,7 +57,7 @@
 .root__isActive:hover .itemContainer__isActive {
   background: rgb(2, 157, 127);
 }
-.iconButton__vRhI:global(.__wab_instance) {
+.icon:global(.__wab_instance) {
   position: relative;
 }
 .svg___6Fx5D {
@@ -125,7 +125,7 @@
   border-radius: 5px;
   border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.iconButton__bxxEv:global(.__wab_instance) {
+.iconButton:global(.__wab_instance) {
   position: relative;
 }
 .svg__zhtWc {
@@ -141,4 +141,10 @@
 }
 .root__isActive:hover .svg__isActive__zhtWcw0Xu8 {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.dropdown:global(.__wab_instance) {
+  position: absolute;
+  left: auto;
+  top: 29px;
+  right: 7px;
 }

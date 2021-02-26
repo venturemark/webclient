@@ -5,42 +5,12 @@ import {
   PlasmicProfile,
   DefaultProfileProps,
 } from "component/plasmic/shared/PlasmicProfile";
-import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
-  const history = useHistory();
-  const { user } = useAuth0();
-  const { handleSubmit, register } = useForm();
-
-  const handleComplete = (data: any) => {
-    //currently we're not storing a change here because we're waiting on backend.
-    console.log(data);
-    history.push("/");
-  };
-
-  return (
-    <PlasmicProfile
-      form={{
-        onSubmit: handleSubmit(handleComplete),
-      }}
-      nameField={{
-        defaultValue: user?.name ?? "",
-        register: register(),
-        name: "name",
-      }}
-      jobField={{
-        register: register(),
-        name: "job",
-      }}
-      completeProfile={{
-        type: "submit",
-      }}
-    />
-  );
+  return <PlasmicProfile />;
 }
 
 export default withAuthenticationRequired(Profile);

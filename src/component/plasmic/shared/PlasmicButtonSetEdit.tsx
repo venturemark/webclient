@@ -58,9 +58,12 @@ export const PlasmicButtonSetEdit__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicButtonSetEdit__OverridesType = {
   root?: p.Flex<"div">;
-  text2?: p.Flex<"div">;
-  text22?: p.Flex<"div">;
+  _delete?: p.Flex<typeof Button>;
   text222?: p.Flex<"div">;
+  cancel?: p.Flex<typeof Button>;
+  text22?: p.Flex<"div">;
+  save?: p.Flex<typeof Button>;
+  text2?: p.Flex<"div">;
 };
 
 export interface DefaultButtonSetEditProps {
@@ -101,54 +104,66 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
         ),
       })}
     >
-      <div className={classNames(defaultcss.all, sty.box__wbTrP)}>
-        <Button
-          buttonFeatures={
-            hasVariant(globalVariants, "screen", "mobile") ? [] : []
-          }
-          buttonStyle={
-            hasVariant(variants, "variantState", "isEdit")
-              ? ("danger" as const)
-              : ("primaryPurple" as const)
-          }
-          count={"1"}
-          slot={
-            <IconPlusIcon
-              className={classNames(defaultcss.all, sty.svg__gmFuI)}
+      <div
+        className={classNames(defaultcss.all, sty.box__wbTrP, {
+          [sty.box__variantState_isEdit__wbTrPtAumS]: hasVariant(
+            variants,
+            "variantState",
+            "isEdit"
+          ),
+        })}
+      >
+        {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
+          <Button
+            data-plasmic-name={"_delete"}
+            data-plasmic-override={overrides._delete}
+            buttonFeatures={
+              hasVariant(globalVariants, "screen", "mobile") ? [] : undefined
+            }
+            buttonStyle={
+              hasVariant(variants, "variantState", "isEdit")
+                ? ("danger" as const)
+                : ("primaryPurple" as const)
+            }
+            count={"1"}
+            slot={
+              <IconPlusIcon
+                className={classNames(defaultcss.all, sty.svg__xHKz)}
+                role={"img"}
+              />
+            }
+            text2={
+              <div
+                data-plasmic-name={"text222"}
+                data-plasmic-override={overrides.text222}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.text222,
+                  {
+                    [sty.text222__variantState_isEdit]: hasVariant(
+                      variants,
+                      "variantState",
+                      "isEdit"
+                    ),
+                  }
+                )}
+              >
+                {hasVariant(variants, "variantState", "isEdit")
+                  ? "Delete"
+                  : "Create"}
+              </div>
+            }
+          >
+            <IconRightIcon
+              className={classNames(defaultcss.all, sty.svg__s1LOr)}
               role={"img"}
             />
-          }
-          text2={
-            <div
-              data-plasmic-name={"text2"}
-              data-plasmic-override={overrides.text2}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.text2,
-                {
-                  [sty.text2__variantState_isEdit]: hasVariant(
-                    variants,
-                    "variantState",
-                    "isEdit"
-                  ),
-                }
-              )}
-            >
-              {hasVariant(variants, "variantState", "isEdit")
-                ? "Delete"
-                : "Create"}
-            </div>
-          }
-        >
-          <IconRightIcon
-            className={classNames(defaultcss.all, sty.svg__ijp8A)}
-            role={"img"}
-          />
-        </Button>
+          </Button>
+        ) : null}
       </div>
 
-      {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
+      {(hasVariant(variants, "variantState", "isEdit") ? true : true) ? (
         <p.Stack
           as={"div"}
           hasGap={
@@ -166,9 +181,19 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
             ),
           })}
         >
-          <div className={classNames(defaultcss.all, sty.box__blR7J)}>
+          <div
+            className={classNames(defaultcss.all, sty.box__blR7J, {
+              [sty.box__variantState_isEdit__blR7JtAumS]: hasVariant(
+                variants,
+                "variantState",
+                "isEdit"
+              ),
+            })}
+          >
             {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
               <Button
+                data-plasmic-name={"cancel"}
+                data-plasmic-override={overrides.cancel}
                 buttonFeatures={
                   hasVariant(globalVariants, "screen", "mobile")
                     ? []
@@ -217,48 +242,52 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
             ) : null}
           </div>
 
-          {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
-            <Button
-              buttonFeatures={
-                hasVariant(globalVariants, "screen", "mobile") ? [] : undefined
-              }
-              buttonStyle={"primaryPurple" as const}
-              count={"1"}
-              slot={
-                <IconPlusIcon
-                  className={classNames(defaultcss.all, sty.svg__xHKz)}
-                  role={"img"}
-                />
-              }
-              text2={
-                <div
-                  data-plasmic-name={"text222"}
-                  data-plasmic-override={overrides.text222}
-                  className={classNames(
-                    defaultcss.all,
-                    defaultcss.__wab_text,
-                    sty.text222,
-                    {
-                      [sty.text222__variantState_isEdit]: hasVariant(
-                        variants,
-                        "variantState",
-                        "isEdit"
-                      ),
-                    }
-                  )}
-                >
-                  {hasVariant(variants, "variantState", "isEdit")
-                    ? "Save"
-                    : "Create"}
-                </div>
-              }
-            >
-              <IconRightIcon
-                className={classNames(defaultcss.all, sty.svg__s1LOr)}
+          <Button
+            data-plasmic-name={"save"}
+            data-plasmic-override={overrides.save}
+            buttonFeatures={
+              hasVariant(globalVariants, "screen", "mobile") ? [] : []
+            }
+            buttonStyle={
+              hasVariant(variants, "variantState", "isEdit")
+                ? ("primaryPurple" as const)
+                : ("primaryPurple" as const)
+            }
+            count={"1"}
+            slot={
+              <IconPlusIcon
+                className={classNames(defaultcss.all, sty.svg__gmFuI)}
                 role={"img"}
               />
-            </Button>
-          ) : null}
+            }
+            text2={
+              <div
+                data-plasmic-name={"text2"}
+                data-plasmic-override={overrides.text2}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.text2,
+                  {
+                    [sty.text2__variantState_isEdit]: hasVariant(
+                      variants,
+                      "variantState",
+                      "isEdit"
+                    ),
+                  }
+                )}
+              >
+                {hasVariant(variants, "variantState", "isEdit")
+                  ? "Save"
+                  : "Create"}
+              </div>
+            }
+          >
+            <IconRightIcon
+              className={classNames(defaultcss.all, sty.svg__ijp8A)}
+              role={"img"}
+            />
+          </Button>
         </p.Stack>
       ) : null}
     </p.Stack>
@@ -266,10 +295,13 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text2", "text22", "text222"],
-  text2: ["text2"],
-  text22: ["text22"],
+  root: ["root", "_delete", "text222", "cancel", "text22", "save", "text2"],
+  _delete: ["_delete", "text222"],
   text222: ["text222"],
+  cancel: ["cancel", "text22"],
+  text22: ["text22"],
+  save: ["save", "text2"],
+  text2: ["text2"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -277,9 +309,12 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  text2: "div";
-  text22: "div";
+  _delete: typeof Button;
   text222: "div";
+  cancel: typeof Button;
+  text22: "div";
+  save: typeof Button;
+  text2: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -337,9 +372,12 @@ export const PlasmicButtonSetEdit = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text2: makeNodeComponent("text2"),
-    text22: makeNodeComponent("text22"),
+    _delete: makeNodeComponent("_delete"),
     text222: makeNodeComponent("text222"),
+    cancel: makeNodeComponent("cancel"),
+    text22: makeNodeComponent("text22"),
+    save: makeNodeComponent("save"),
+    text2: makeNodeComponent("text2"),
 
     // Metadata about props expected for PlasmicButtonSetEdit
     internalVariantProps: PlasmicButtonSetEdit__VariantProps,

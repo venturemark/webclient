@@ -30,7 +30,7 @@ import {
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import InputTextArea from "../../inputtextarea/index"; // plasmic-import: Q2R-U25DUBO/component
 import RadioGroup from "../../radiogroup/index"; // plasmic-import: Q9Z-qP9n2Q/component
-import ButtonSetEdit from "../../ButtonSetEdit"; // plasmic-import: pMqUN0f4G_a/component
+import ButtonSetEdit from "../../buttonsetedit/index"; // plasmic-import: pMqUN0f4G_a/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -64,11 +64,11 @@ export const PlasmicAddEditTimeline__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicAddEditTimeline__OverridesType = {
-  settings?: p.Flex<"div">;
+  settings?: p.Flex<"form">;
   box?: p.Flex<"div">;
-  inputText?: p.Flex<typeof InputText>;
-  inputTextArea?: p.Flex<typeof InputTextArea>;
-  radioGroup?: p.Flex<typeof RadioGroup>;
+  name?: p.Flex<typeof InputText>;
+  description?: p.Flex<typeof InputTextArea>;
+  visibility?: p.Flex<typeof RadioGroup>;
   buttonSetEdit?: p.Flex<typeof ButtonSetEdit>;
 };
 
@@ -90,7 +90,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
 
   return (
     <p.Stack
-      as={"div"}
+      as={"form"}
       data-plasmic-name={"settings"}
       data-plasmic-override={overrides.settings}
       data-plasmic-root={true}
@@ -151,18 +151,18 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       </div>
 
       <InputText
-        data-plasmic-name={"inputText"}
-        data-plasmic-override={overrides.inputText}
-        className={classNames("__wab_instance", sty.inputText)}
+        data-plasmic-name={"name"}
+        data-plasmic-override={overrides.name}
+        className={classNames("__wab_instance", sty.name)}
         hasLabel={"hasLabel" as const}
         label={"Name"}
       />
 
       <InputTextArea
-        data-plasmic-name={"inputTextArea"}
-        data-plasmic-override={overrides.inputTextArea}
-        className={classNames("__wab_instance", sty.inputTextArea, {
-          [sty.inputTextArea__variantState_isEdit]: hasVariant(
+        data-plasmic-name={"description"}
+        data-plasmic-override={overrides.description}
+        className={classNames("__wab_instance", sty.description, {
+          [sty.description__variantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -176,9 +176,9 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       </InputTextArea>
 
       <RadioGroup
-        data-plasmic-name={"radioGroup"}
-        data-plasmic-override={overrides.radioGroup}
-        className={classNames("__wab_instance", sty.radioGroup)}
+        data-plasmic-name={"visibility"}
+        data-plasmic-override={overrides.visibility}
+        className={classNames("__wab_instance", sty.visibility)}
         hasLabel={"hasLabel" as const}
       />
 
@@ -206,15 +206,15 @@ const PlasmicDescendants = {
   settings: [
     "settings",
     "box",
-    "inputText",
-    "inputTextArea",
-    "radioGroup",
+    "name",
+    "description",
+    "visibility",
     "buttonSetEdit",
   ],
   box: ["box"],
-  inputText: ["inputText"],
-  inputTextArea: ["inputTextArea"],
-  radioGroup: ["radioGroup"],
+  name: ["name"],
+  description: ["description"],
+  visibility: ["visibility"],
   buttonSetEdit: ["buttonSetEdit"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -222,11 +222,11 @@ type DescendantsType<
   T extends NodeNameType
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
-  settings: "div";
+  settings: "form";
   box: "div";
-  inputText: typeof InputText;
-  inputTextArea: typeof InputTextArea;
-  radioGroup: typeof RadioGroup;
+  name: typeof InputText;
+  description: typeof InputTextArea;
+  visibility: typeof RadioGroup;
   buttonSetEdit: typeof ButtonSetEdit;
 };
 
@@ -286,9 +286,9 @@ export const PlasmicAddEditTimeline = Object.assign(
   {
     // Helper components rendering sub-elements
     box: makeNodeComponent("box"),
-    inputText: makeNodeComponent("inputText"),
-    inputTextArea: makeNodeComponent("inputTextArea"),
-    radioGroup: makeNodeComponent("radioGroup"),
+    _name: makeNodeComponent("name"),
+    description: makeNodeComponent("description"),
+    visibility: makeNodeComponent("visibility"),
     buttonSetEdit: makeNodeComponent("buttonSetEdit"),
 
     // Metadata about props expected for PlasmicAddEditTimeline

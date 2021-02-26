@@ -28,8 +28,7 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
-import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
-import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
+import ProfileForm from "../../profileform/index"; // plasmic-import: _XzWccJtXuE/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -37,9 +36,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicProfile.module.css"; // plasmic-import: XqXAODV8pg/css
-
-import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
-import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 
 export type PlasmicProfile__VariantMembers = {};
 
@@ -54,10 +50,7 @@ export const PlasmicProfile__ArgProps = new Array<ArgPropType>();
 export type PlasmicProfile__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
-  form?: p.Flex<"form">;
-  nameField?: p.Flex<typeof InputText>;
-  jobField?: p.Flex<typeof InputText>;
-  completeProfile?: p.Flex<typeof Button>;
+  profileForm?: p.Flex<typeof ProfileForm>;
 };
 
 export interface DefaultProfileProps {
@@ -141,53 +134,11 @@ function PlasmicProfile__RenderFunc(props: {
                   </div>
                 </p.Stack>
 
-                <form
-                  data-plasmic-name={"form"}
-                  data-plasmic-override={overrides.form}
-                  className={classNames(defaultcss.all, sty.form)}
-                >
-                  <InputText
-                    data-plasmic-name={"nameField"}
-                    data-plasmic-override={overrides.nameField}
-                    className={classNames("__wab_instance", sty.nameField)}
-                    label={"Full Name"}
-                  >
-                    {"This will be used as your display name"}
-                  </InputText>
-
-                  <InputText
-                    data-plasmic-name={"jobField"}
-                    data-plasmic-override={overrides.jobField}
-                    className={classNames("__wab_instance", sty.jobField)}
-                    hasTextHelper={"hasTextHelper" as const}
-                    label={"What I Do"}
-                  >
-                    {"Let people know what you do"}
-                  </InputText>
-
-                  <Button
-                    data-plasmic-name={"completeProfile"}
-                    data-plasmic-override={overrides.completeProfile}
-                    buttonStyle={"primaryPurple" as const}
-                    className={classNames(
-                      "__wab_instance",
-                      sty.completeProfile
-                    )}
-                    count={"1"}
-                    slot={
-                      <IconPlusIcon
-                        className={classNames(defaultcss.all, sty.svg__l7TnU)}
-                        role={"img"}
-                      />
-                    }
-                    text2={"Complete"}
-                  >
-                    <IconRightIcon
-                      className={classNames(defaultcss.all, sty.svg__hjzAx)}
-                      role={"img"}
-                    />
-                  </Button>
-                </form>
+                <ProfileForm
+                  data-plasmic-name={"profileForm"}
+                  data-plasmic-override={overrides.profileForm}
+                  className={classNames("__wab_instance", sty.profileForm)}
+                />
               </p.Stack>
             </div>
           </div>
@@ -198,12 +149,9 @@ function PlasmicProfile__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "form", "nameField", "jobField", "completeProfile"],
+  root: ["root", "header", "profileForm"],
   header: ["header"],
-  form: ["form", "nameField", "jobField", "completeProfile"],
-  nameField: ["nameField"],
-  jobField: ["jobField"],
-  completeProfile: ["completeProfile"],
+  profileForm: ["profileForm"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -212,10 +160,7 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  form: "form";
-  nameField: typeof InputText;
-  jobField: typeof InputText;
-  completeProfile: typeof Button;
+  profileForm: typeof ProfileForm;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -223,7 +168,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicProfile__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicProfile__VariantsArgs;
   args?: PlasmicProfile__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -274,10 +220,7 @@ export const PlasmicProfile = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    form: makeNodeComponent("form"),
-    nameField: makeNodeComponent("nameField"),
-    jobField: makeNodeComponent("jobField"),
-    completeProfile: makeNodeComponent("completeProfile"),
+    profileForm: makeNodeComponent("profileForm"),
 
     // Metadata about props expected for PlasmicProfile
     internalVariantProps: PlasmicProfile__VariantProps,

@@ -13,7 +13,7 @@
 .editorContainer {
   display: flex;
   position: relative;
-  flex-direction: column;
+  flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
   top: auto;
@@ -182,10 +182,19 @@
   position: relative;
   z-index: 2;
 }
+.dropdown__isUserOnClick_state_isUser:global(.__wab_instance) {
+  position: absolute;
+  left: auto;
+  top: 33px;
+  right: 0px;
+}
 .root:active .dropdown:global(.__wab_instance) {
   position: absolute;
   left: -77px;
   top: 30px;
+}
+.box__isUserOnClick_state_isUser___1LjC2McM8FEdPi {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
 .box__wE4D {
   display: flex;

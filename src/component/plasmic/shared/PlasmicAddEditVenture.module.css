@@ -41,12 +41,12 @@
   font-size: 30px /* plasmic-token: TujpjiAsC */;
   font-weight: 600;
 }
-.inputText__bXf6P:global(.__wab_instance) {
+.name:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
 }
-.inputTextArea:global(.__wab_instance) {
+.description:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
@@ -86,7 +86,7 @@
 .box___8V79Q {
   position: relative;
   font-weight: 700;
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   font-family: "SF Pro Display";
   margin-bottom: 40px;
   margin-top: 0px;
@@ -108,16 +108,16 @@
 .slotSlot2 {
   font-weight: 600;
 }
-._switch:global(.__wab_instance) {
+.membersWrite:global(.__wab_instance) {
   position: relative;
 }
-.buttonSetEdit:global(.__wab_instance) {
+.create:global(.__wab_instance) {
   position: relative;
   top: auto;
   left: auto;
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  .buttonSetEdit:global(.__wab_instance) {
+  .create:global(.__wab_instance) {
     position: relative;
     top: auto;
     left: auto;
