@@ -21,6 +21,16 @@
       }
     },
     {
+      "name": "Container40",
+      "type": "spacing",
+      "value": "40px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "XraHK0yKz"
+      }
+    },
+    {
       "name": "UnnamedStyleToken",
       "type": "color",
       "value": "var(--token-ktdOhSoiQwPKRUS)",
@@ -163,7 +173,7 @@
     {
       "name": "black",
       "type": "color",
-      "value": "rgb(21,15,36)",
+      "value": "rgba(21,15,36,0.73)",
       "category": "color",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
@@ -203,7 +213,7 @@
     {
       "name": "fs-body",
       "type": "fontsize",
-      "value": "16px",
+      "value": "15px",
       "category": "fontsize",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
@@ -263,7 +273,7 @@
     {
       "name": "fs-h4",
       "type": "fontsize",
-      "value": "20px",
+      "value": "18px",
       "category": "fontsize",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
@@ -358,6 +368,16 @@
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
         "id": "5hSVea-ed"
+      }
+    },
+    {
+      "name": "mobileContainer20",
+      "type": "spacing",
+      "value": "20px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "dS7QCqXxp"
       }
     },
     {

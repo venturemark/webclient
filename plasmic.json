@@ -25,19 +25,6 @@
       "cssFilePath": "plasmic/shared/plasmic_shared.module.css",
       "components": [
         {
-          "id": "Fs8bTUrvZrvfhCr",
-          "name": "Update",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicUpdate.tsx",
-          "importSpec": {
-            "modulePath": "update/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicUpdate.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "eUnRsS9UXR",
           "name": "ActionBar",
           "type": "managed",
@@ -52,40 +39,14 @@
         },
         {
           "id": "A1UjtYt6k0",
-          "name": "UpdateContent",
+          "name": "ContentPost",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicUpdateContent.tsx",
+          "renderModuleFilePath": "plasmic/shared/PlasmicContentPost.tsx",
           "importSpec": {
-            "modulePath": "updatecontent/index.tsx"
+            "modulePath": "contentpost/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicUpdateContent.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
-          "id": "Ey_MwfntCV",
-          "name": "ActionsColumn",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicActionsColumn.tsx",
-          "importSpec": {
-            "modulePath": "actionscolumn/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicActionsColumn.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
-          "id": "KDElHbQmfd",
-          "name": "SidebarItem",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicSidebarItem.tsx",
-          "importSpec": {
-            "modulePath": "sidebaritem/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicSidebarItem.module.css",
+          "cssFilePath": "plasmic/shared/PlasmicContentPost.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -129,19 +90,6 @@
           "componentType": "component"
         },
         {
-          "id": "pJJQRCyJQM",
-          "name": "SidebarOrganizationName",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicSidebarOrganizationName.tsx",
-          "importSpec": {
-            "modulePath": "sidebarorganizationname/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicSidebarOrganizationName.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "Umq3CDOCIR",
           "name": "Dropdown",
           "type": "managed",
@@ -168,19 +116,6 @@
           "componentType": "component"
         },
         {
-          "id": "JU1t0P9pFY",
-          "name": "Button",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicButton.tsx",
-          "importSpec": {
-            "modulePath": "button/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicButton.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "q3VnCwfx25w",
           "name": "ReplyContent",
           "type": "managed",
@@ -190,32 +125,6 @@
             "modulePath": "replycontent/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicReplyContent.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
-          "id": "cZqz_iAjea",
-          "name": "Reply",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicReply.tsx",
-          "importSpec": {
-            "modulePath": "reply/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicReply.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
-          "id": "97K6RSBlPOz",
-          "name": "ReplyContentSecond",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicReplyContentSecond.tsx",
-          "importSpec": {
-            "modulePath": "replycontentsecond/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicReplyContentSecond.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -242,19 +151,6 @@
             "modulePath": "modalalt/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicModalAlt.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
-          "id": "fX--9UW2GgJ",
-          "name": "SelectTimeline",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicSelectTimeline.tsx",
-          "importSpec": {
-            "modulePath": "selecttimeline/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicSelectTimeline.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -311,19 +207,6 @@
           "componentType": "component"
         },
         {
-          "id": "Q9Z-qP9n2Q",
-          "name": "InputToggleSet",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicInputToggleSet.tsx",
-          "importSpec": {
-            "modulePath": "inputtoggleset/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicInputToggleSet.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "X8H70YUTyF",
           "name": "ErrorMessage",
           "type": "managed",
@@ -343,7 +226,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicSignin.tsx",
           "importSpec": {
-            "modulePath": "signin/index.tsx"
+            "modulePath": "page/signin/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicSignin.module.css",
           "scheme": "blackbox",
@@ -356,7 +239,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicProfile.tsx",
           "importSpec": {
-            "modulePath": "profile/index.tsx"
+            "modulePath": "page/profile/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicProfile.module.css",
           "scheme": "blackbox",
@@ -369,7 +252,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicHome.tsx",
           "importSpec": {
-            "modulePath": "home/index.tsx"
+            "modulePath": "page/home/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicHome.module.css",
           "scheme": "blackbox",
@@ -415,32 +298,6 @@
           "componentType": "component"
         },
         {
-          "id": "0MPePZ7ty1",
-          "name": "InputToggleSwitcher",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicInputToggleSwitcher.tsx",
-          "importSpec": {
-            "modulePath": "inputtoggleswitcher/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicInputToggleSwitcher.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
-          "id": "l1Qe8RjaNW",
-          "name": "ButtonToggleSwitcher",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicButtonToggleSwitcher.tsx",
-          "importSpec": {
-            "modulePath": "buttontoggleswitcher/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicButtonToggleSwitcher.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "q8aEgDsN8_",
           "name": "ListItem",
           "type": "managed",
@@ -480,19 +337,6 @@
           "componentType": "component"
         },
         {
-          "id": "ZvAJESOUhw",
-          "name": "Tag",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicTag.tsx",
-          "importSpec": {
-            "modulePath": "tag/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicTag.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "v0nNSTRV39",
           "name": "InputText",
           "type": "managed",
@@ -502,6 +346,214 @@
             "modulePath": "inputtext/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicInputText.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Q9Z-qP9n2Q",
+          "name": "RadioGroup",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicRadioGroup.tsx",
+          "importSpec": {
+            "modulePath": "radiogroup/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicRadioGroup.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "l1Qe8RjaNW",
+          "name": "Switch",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicSwitch.tsx",
+          "importSpec": {
+            "modulePath": "switch/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicSwitch.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Fs8bTUrvZrvfhCr",
+          "name": "FeedUpdate",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicFeedUpdate.tsx",
+          "importSpec": {
+            "modulePath": "feedupdate/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicFeedUpdate.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "0c6QSqHYCk",
+          "name": "Main",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicMain.tsx",
+          "importSpec": {
+            "modulePath": "main/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicMain.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "xICnD3GwL-L",
+          "name": "AddEditVenture",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicAddEditVenture.tsx",
+          "importSpec": {
+            "modulePath": "addeditventure/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicAddEditVenture.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "3NTlJO7oDpw",
+          "name": "AddEditMembers",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicAddEditMembers.tsx",
+          "importSpec": {
+            "modulePath": "addeditmembers/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicAddEditMembers.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "JU1t0P9pFY",
+          "name": "Button",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicButton.tsx",
+          "importSpec": {
+            "modulePath": "button/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicButton.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "1E73LSzV2l",
+          "name": "PostDetails",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicPostDetails.tsx",
+          "importSpec": {
+            "modulePath": "postdetails/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicPostDetails.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "2FtsgZCi1Kx",
+          "name": "AddEditTimeline",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicAddEditTimeline.tsx",
+          "importSpec": {
+            "modulePath": "addedittimeline/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicAddEditTimeline.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "JPP0L6JGIn",
+          "name": "Members",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicMembers.tsx",
+          "importSpec": {
+            "modulePath": "page/members/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicMembers.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "FuAQiqPeTF",
+          "name": "VentureSettings",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicVentureSettings.tsx",
+          "importSpec": {
+            "modulePath": "page/venturesettings/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicVentureSettings.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "KDElHbQmfd",
+          "name": "SidebarItem",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicSidebarItem.tsx",
+          "importSpec": {
+            "modulePath": "sidebaritem/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicSidebarItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "D8Y_2wee1o",
+          "name": "MemberItem",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicMemberItem.tsx",
+          "importSpec": {
+            "modulePath": "memberitem/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicMemberItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "bGjqf-R4Tc",
+          "name": "ProfileDropdown",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicProfileDropdown.tsx",
+          "importSpec": {
+            "modulePath": "profiledropdown/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicProfileDropdown.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "_XzWccJtXuE",
+          "name": "ProfileForm",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicProfileForm.tsx",
+          "importSpec": {
+            "modulePath": "profileform/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicProfileForm.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "pMqUN0f4G_a",
+          "name": "ButtonSetEdit",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicButtonSetEdit.tsx",
+          "importSpec": {
+            "modulePath": "buttonsetedit/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicButtonSetEdit.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -751,6 +803,11 @@
           "id": "kQoy0KbdjL",
           "name": "VectorsvgIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vectorsvg.tsx"
+        },
+        {
+          "id": "Iea8iz1ew",
+          "name": "IconSend2Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconSend2.tsx"
         }
       ],
       "images": [
@@ -798,6 +855,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.109",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.109/dist/plasmic.schema.json"
+  "cliVersion": "0.1.114",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.114/dist/plasmic.schema.json"
 }

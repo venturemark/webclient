@@ -3,9 +3,9 @@
 import React from "react";
 import { PressEvent } from "@react-types/shared";
 import {
-PlasmicSidebarItem,
-DefaultSidebarItemProps } from
-"component/plasmic/shared/PlasmicSidebarItem";
+  PlasmicSidebarItem,
+  DefaultSidebarItemProps,
+} from "component/plasmic/shared/PlasmicSidebarItem";
 import { AntDropdown } from "component/ant/dropdown";
 import { useForm } from "react-hook-form";
 import { INewTimeline } from "module/interface/timeline";
@@ -15,29 +15,28 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
   userId: string;
   organizationId: string;
-  onClick?: (e: React.MouseEvent) => void;
-  onPress?: (e: PressEvent) => void;
-  isCurrent: boolean;
-  isInput?: boolean;
-  isOrganization?: boolean;
-  setHasInput?: any;}
-
+  // onClick?: (e: React.MouseEvent) => void;
+  // onPress?: (e: PressEvent) => void;
+  // isCurrent?: boolean;
+  setHasInput?: any;
+  itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
+}
 
 type FormInputs = {
-  name: string;};
-
+  name: string;
+};
 
 function SidebarItem(props: SidebarItemProps) {
   const {
     name,
     userId,
     organizationId,
-    onClick,
-    isCurrent,
-    isInput,
-    isOrganization,
-    setHasInput } =
-  props;
+    itemType,
+    // onClick,
+    // isCurrent,
+    setHasInput,
+    ...rest
+  } = props;
 
   const { register, handleSubmit, reset } = useForm<FormInputs>();
 
@@ -48,20 +47,22 @@ function SidebarItem(props: SidebarItemProps) {
       return;
     }
 
+    const token = "";
     const newTimeline: INewTimeline = {
       name: data.name,
       desc: "edit timeline description",
       userId,
-      organizationId };
-
+      organizationId,
+      token,
+    };
 
     // audienceMutation(timelineId)
     createTimeline(newTimeline);
 
     //reset form
     reset({
-      name: "" });
-
+      name: "",
+    });
 
     //hide sidebar
     setHasInput(false);
@@ -69,30 +70,30 @@ function SidebarItem(props: SidebarItemProps) {
 
   return (
     <PlasmicSidebarItem
-    // isInput={isInput}
-    // isOrganization={isOrganization}
-    // orgHoverIcon={{
-    //   onClick: () => {
-    //     setHasInput(true);
-    //   } }}
+      // isInput={isInput}
+      // isOrganization={isOrganization}
+      // orgHoverIcon={{
+      //   onClick: () => {
+      //     setHasInput(true);
+      //   } }}
+      // itemHoverIcon={{
+      //   render: () => {
+      //     return <AntDropdown />;
+      //   } }}
+      itemType={itemType}
+      name={name}
+      // isActive={isCurrent}
+      // onClick={onClick}
+      // sidebarForm={{
+      //   onSubmit: handleSubmit(handleAddTimeline) }}
 
-    // itemHoverIcon={{
-    //   render: () => {
-    //     return <AntDropdown />;
-    //   } }}
-
-    name={name}
-    isActive={isCurrent}
-    onClick={onClick}
-    // sidebarForm={{
-    //   onSubmit: handleSubmit(handleAddTimeline) }}
-
-    // addTimelineInput={{
-    //   name: "name",
-    //   ref: register(),
-    //   maxLength: 15 }}
-    />);
-
+      // addTimelineInput={{
+      //   name: "name",
+      //   ref: register(),
+      //   maxLength: 15 }}
+      {...rest}
+    />
+  );
 }
 
 export default SidebarItem;

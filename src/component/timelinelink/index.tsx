@@ -19,7 +19,7 @@ function TimelineLink(props: TimelineLinkProps) {
 
   return (
     <PlasmicTimelineLink
-    name={timeline.name}
+    name={timeline?.name ?? ""}
     onClick={() => setCurrentTimeline(timeline)} />);
 
 

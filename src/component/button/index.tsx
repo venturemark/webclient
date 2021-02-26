@@ -7,21 +7,13 @@ DefaultButtonProps } from
 "component/plasmic/shared/PlasmicButton";
 
 interface ButtonProps extends DefaultButtonProps {
-  handleClick: any;
-  type?: string;}
+  onClick?: () => void;
+  type: string;}
 
 
 function Button(props: ButtonProps) {
-  const { handleClick, type } = props;
-
-  return (
-    <PlasmicButton
-    root={{
-      onClick: handleClick,
-      type: type }} />);
-
-
-
+  const { onClick, type, ...rest } = props;
+  return <PlasmicButton onClick={onClick} {...rest} />;
 }
 
 export default Button;

@@ -1,0 +1,51 @@
+.root {
+  display: flex;
+  padding-right: 3px;
+  padding-left: 3px;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.root__variantSettings_hasLabel {
+  width: 100%;
+  min-width: 0;
+}
+.label {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.slotInputTitle {
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  font-weight: 600;
+}
+._switch {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  top: auto;
+  left: auto;
+  align-self: center;
+  padding-right: 3px;
+  padding-left: 3px;
+  cursor: pointer;
+  width: 56px;
+  height: 29px;
+  flex-shrink: 0;
+  border-radius: 44px;
+  background: rgb(187, 187, 187);
+}
+.svg {
+  object-fit: cover;
+  width: 19px;
+  height: 19px;
+  color: #fff;
+  display: block;
+  transition-property: all;
+  transition-duration: 1s;
+  flex-shrink: 0;
+}
