@@ -5,20 +5,15 @@
   position: relative;
   min-width: 0;
 }
-@media (min-width: 0px) and (max-width: 760px) {
+@media (min-width: 0px) and (max-width: 767px) {
   .container {
     width: 100%;
     height: auto;
     min-width: 0;
-    padding: 0px 20px;
+    padding: 0px;
   }
 }
-@media (min-width: 0px) and (max-width: 319px) {
-  .container {
-    padding: 0px 20px;
-  }
-}
-@media (min-width: 0px) and (max-width: 760px) {
+@media (min-width: 0px) and (max-width: 767px) {
   .container__headerStyles_timelineHeader {
     padding: 0px;
   }
@@ -48,12 +43,12 @@
 .box___3Xg51 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 15px;
 }
-@media (min-width: 0px) and (max-width: 760px) {
+@media (min-width: 0px) and (max-width: 767px) {
   .box___3Xg51 {
     padding: 15px 10px;
   }
 }
-@media (min-width: 0px) and (max-width: 760px) {
+@media (min-width: 0px) and (max-width: 767px) {
   .box__headerStyles_timelineHeader___3Xg51Rxxpi {
     padding: 20px 0px;
   }
@@ -152,7 +147,7 @@
   font-size: 18px /* plasmic-token: UFZg3bUaA */;
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
-.iconButton___6HyIq:global(.__wab_instance) {
+.iconButton:global(.__wab_instance) {
   position: relative;
 }
 .svg__nqhCc {
@@ -175,7 +170,7 @@
   font-weight: 400;
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
-@media (min-width: 0px) and (max-width: 760px) {
+@media (min-width: 0px) and (max-width: 767px) {
   .slotTimelineDescription {
     font-size: 14px;
   }
@@ -207,12 +202,12 @@
   min-width: 0;
   min-height: 0;
 }
-.iconButtonMember:global(.__wab_instance) {
+.viewMembers:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
 }
-.iconButton__nVsD:global(.__wab_instance) {
+.viewSettings:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;

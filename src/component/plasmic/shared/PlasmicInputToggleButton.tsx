@@ -109,25 +109,21 @@ function PlasmicInputToggleButton__RenderFunc(props: {
             "position",
             "bottom"
           ),
-
           [sty.toggleSet__position_middle]: hasVariant(
             variants,
             "position",
             "middle"
           ),
-
           [sty.toggleSet__position_top]: hasVariant(
             variants,
             "position",
             "top"
           ),
-
           [sty.toggleSet__selected]: hasVariant(
             variants,
             "selected",
             "selected"
           ),
-
           [sty.toggleSet__selected_position_middle]:
             hasVariant(variants, "selected", "selected") &&
             hasVariant(variants, "position", "middle"),
@@ -184,13 +180,11 @@ function PlasmicInputToggleButton__RenderFunc(props: {
               "position",
               "middle"
             ),
-
             [sty.box__selected__jjyTr8Bz4B]: hasVariant(
               variants,
               "selected",
               "selected"
             ),
-
             [sty.box__selected_position_middle__jjyTr8Bz4BVfvwY]:
               hasVariant(variants, "selected", "selected") &&
               hasVariant(variants, "position", "middle"),
@@ -215,7 +209,6 @@ function PlasmicInputToggleButton__RenderFunc(props: {
                   "position",
                   "middle"
                 ),
-
                 [sty.svg__position_middle_selected]:
                   hasVariant(variants, "position", "middle") &&
                   hasVariant(variants, "selected", "selected"),
@@ -258,9 +251,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicInputToggleButton__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicInputToggleButton__VariantsArgs;
   args?: PlasmicInputToggleButton__ArgsType;
   overrides?: NodeOverridesType<T>;

@@ -73,7 +73,6 @@ function PlasmicReplyInput__RenderFunc(props: {
     "useFocusedWithin",
     {}
   );
-
   const triggers = {
     focusWithin_root: isRootFocusWithin,
   };
@@ -107,13 +106,14 @@ function PlasmicReplyInput__RenderFunc(props: {
             className={classNames(defaultcss.input, sty.replyInput)}
             placeholder={"Write a reply" as const}
             type={"text" as const}
+            value={"" as const}
           />
 
           {(triggers.focusWithin_root ? true : true) ? (
             <Button
               data-plasmic-name={"postReplyButton"}
               data-plasmic-override={overrides.postReplyButton}
-              buttonFeatures={["removeText", "showStartIcon"]}
+              buttonFeatures={["removeText", "showStartIcon", "nonFullWidth"]}
               buttonStyle={"primaryPurple" as const}
               className={classNames("__wab_instance", sty.postReplyButton)}
               count={
@@ -155,7 +155,6 @@ const PlasmicDescendants = {
     "text",
     "svg",
   ],
-
   box: ["box", "replyForm", "replyInput", "postReplyButton", "text", "svg"],
   replyForm: ["replyForm", "replyInput", "postReplyButton", "text", "svg"],
   replyInput: ["replyInput"],
@@ -182,9 +181,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicReplyInput__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicReplyInput__VariantsArgs;
   args?: PlasmicReplyInput__ArgsType;
   overrides?: NodeOverridesType<T>;

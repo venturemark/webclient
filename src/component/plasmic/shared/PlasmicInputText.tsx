@@ -167,7 +167,7 @@ function PlasmicInputText__RenderFunc(props: {
                   data-plasmic-name={"input"}
                   data-plasmic-override={overrides.input}
                   className={classNames(defaultcss.input, sty.input)}
-                  placeholder={"Placeholder" as const}
+                  placeholder={"" as const}
                   title={"" as const}
                   type={"text" as const}
                 />
@@ -187,7 +187,7 @@ function PlasmicInputText__RenderFunc(props: {
             <ErrorMessage
               data-plasmic-name={"errorMessage"}
               data-plasmic-override={overrides.errorMessage}
-              slot={"Error message"}
+              message={"Error message"}
             />
           ) : null}
         </div>

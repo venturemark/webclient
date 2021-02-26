@@ -15,12 +15,11 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
   userId: string;
   organizationId: string;
-  onClick?: (e: React.MouseEvent) => void;
-  onPress?: (e: PressEvent) => void;
-  isCurrent: boolean;
-  isInput?: boolean;
-  isOrganization?: boolean;
+  // onClick?: (e: React.MouseEvent) => void;
+  // onPress?: (e: PressEvent) => void;
+  // isCurrent?: boolean;
   setHasInput?: any;
+  itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
 
 type FormInputs = {
@@ -32,11 +31,11 @@ function SidebarItem(props: SidebarItemProps) {
     name,
     userId,
     organizationId,
-    onClick,
-    isCurrent,
-    isInput,
-    isOrganization,
+    itemType,
+    // onClick,
+    // isCurrent,
     setHasInput,
+    ...rest
   } = props;
 
   const { register, handleSubmit, reset } = useForm<FormInputs>();
@@ -77,15 +76,14 @@ function SidebarItem(props: SidebarItemProps) {
       //   onClick: () => {
       //     setHasInput(true);
       //   } }}
-
       // itemHoverIcon={{
       //   render: () => {
       //     return <AntDropdown />;
       //   } }}
-
+      itemType={itemType}
       name={name}
-      isActive={isCurrent}
-      onClick={onClick}
+      // isActive={isCurrent}
+      // onClick={onClick}
       // sidebarForm={{
       //   onSubmit: handleSubmit(handleAddTimeline) }}
 
@@ -93,6 +91,7 @@ function SidebarItem(props: SidebarItemProps) {
       //   name: "name",
       //   ref: register(),
       //   maxLength: 15 }}
+      {...rest}
     />
   );
 }

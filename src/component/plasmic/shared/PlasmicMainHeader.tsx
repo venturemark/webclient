@@ -74,8 +74,11 @@ export const PlasmicMainHeader__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicMainHeader__OverridesType = {
   container?: p.Flex<"div">;
+  iconButton?: p.Flex<typeof IconButton>;
   iconContainer?: p.Flex<"div">;
-  iconButtonMember?: p.Flex<typeof IconButtonMember>;
+  viewHome?: p.Flex<typeof IconButton>;
+  viewMembers?: p.Flex<typeof IconButtonMember>;
+  viewSettings?: p.Flex<typeof IconButton>;
 };
 
 export interface DefaultMainHeaderProps {
@@ -86,7 +89,6 @@ export interface DefaultMainHeaderProps {
   isActive?: SingleChoiceArg<
     "feed" | "members" | "settings" | "unnamedVariant"
   >;
-
   className?: string;
 }
 
@@ -118,7 +120,11 @@ function PlasmicMainHeader__RenderFunc(props: {
             "headerStyles",
             "timelineHeader"
           ),
-
+          [sty.container__headerStyles_ventureHeader]: hasVariant(
+            variants,
+            "headerStyles",
+            "ventureHeader"
+          ),
           [sty.container__isActive_feed]: hasVariant(
             variants,
             "isActive",
@@ -136,7 +142,6 @@ function PlasmicMainHeader__RenderFunc(props: {
             "headerStyles",
             "timelineHeader"
           ),
-
           [sty.box__headerStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
             variants,
             "headerStyles",
@@ -171,7 +176,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                 ),
               })}
             />
-
             {(
               hasVariant(variants, "headerStyles", "timelineHeader")
                 ? true
@@ -241,17 +245,15 @@ function PlasmicMainHeader__RenderFunc(props: {
                 : true
             ) ? (
               <IconButton
-                className={classNames(
-                  "__wab_instance",
-                  sty.iconButton___6HyIq,
-                  {
-                    [sty.iconButton__headerStyles_timelineHeader___6HyIqRxxpi]: hasVariant(
-                      variants,
-                      "headerStyles",
-                      "timelineHeader"
-                    ),
-                  }
-                )}
+                data-plasmic-name={"iconButton"}
+                data-plasmic-override={overrides.iconButton}
+                className={classNames("__wab_instance", sty.iconButton, {
+                  [sty.iconButton__headerStyles_timelineHeader]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "timelineHeader"
+                  ),
+                })}
                 iconSize={"large" as const}
               >
                 <IconExternalLinkIcon
@@ -276,7 +278,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                   "headerStyles",
                   "timelineHeader"
                 ),
-
                 [sty.box__headerStyles_ventureHeader__fohK2NMQ9]: hasVariant(
                   variants,
                   "headerStyles",
@@ -295,7 +296,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                     "headerStyles",
                     "timelineHeader"
                   ),
-
                   [sty.slotTimelineDescription__headerStyles_ventureHeader]: hasVariant(
                     variants,
                     "headerStyles",
@@ -321,6 +321,8 @@ function PlasmicMainHeader__RenderFunc(props: {
           })}
         >
           <IconButton
+            data-plasmic-name={"viewHome"}
+            data-plasmic-override={overrides.viewHome}
             iconSize={"large" as const}
             isActive={
               hasVariant(variants, "isActive", "feed")
@@ -330,6 +332,11 @@ function PlasmicMainHeader__RenderFunc(props: {
           >
             <IconFeedIcon
               className={classNames(defaultcss.all, sty.svg__eTdlE, {
+                [sty.svg__headerStyles_ventureHeader__eTdlEnMQ9]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "ventureHeader"
+                ),
                 [sty.svg__isActive_feed__eTdlEfnkZp]: hasVariant(
                   variants,
                   "isActive",
@@ -341,16 +348,20 @@ function PlasmicMainHeader__RenderFunc(props: {
           </IconButton>
 
           <IconButtonMember
-            data-plasmic-name={"iconButtonMember"}
-            data-plasmic-override={overrides.iconButtonMember}
-            className={classNames("__wab_instance", sty.iconButtonMember, {
-              [sty.iconButtonMember__isActive_feed]: hasVariant(
+            data-plasmic-name={"viewMembers"}
+            data-plasmic-override={overrides.viewMembers}
+            className={classNames("__wab_instance", sty.viewMembers, {
+              [sty.viewMembers__headerStyles_ventureHeader]: hasVariant(
+                variants,
+                "headerStyles",
+                "ventureHeader"
+              ),
+              [sty.viewMembers__isActive_feed]: hasVariant(
                 variants,
                 "isActive",
                 "feed"
               ),
-
-              [sty.iconButtonMember__isActive_members]: hasVariant(
+              [sty.viewMembers__isActive_members]: hasVariant(
                 variants,
                 "isActive",
                 "members"
@@ -365,8 +376,15 @@ function PlasmicMainHeader__RenderFunc(props: {
           />
 
           <IconButton
-            className={classNames("__wab_instance", sty.iconButton__nVsD, {
-              [sty.iconButton__isActive_settings__nVsDKxQfa]: hasVariant(
+            data-plasmic-name={"viewSettings"}
+            data-plasmic-override={overrides.viewSettings}
+            className={classNames("__wab_instance", sty.viewSettings, {
+              [sty.viewSettings__headerStyles_ventureHeader]: hasVariant(
+                variants,
+                "headerStyles",
+                "ventureHeader"
+              ),
+              [sty.viewSettings__isActive_settings]: hasVariant(
                 variants,
                 "isActive",
                 "settings"
@@ -391,9 +409,19 @@ function PlasmicMainHeader__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  container: ["container", "iconContainer", "iconButtonMember"],
-  iconContainer: ["iconContainer", "iconButtonMember"],
-  iconButtonMember: ["iconButtonMember"],
+  container: [
+    "container",
+    "iconButton",
+    "iconContainer",
+    "viewHome",
+    "viewMembers",
+    "viewSettings",
+  ],
+  iconButton: ["iconButton"],
+  iconContainer: ["iconContainer", "viewHome", "viewMembers", "viewSettings"],
+  viewHome: ["viewHome"],
+  viewMembers: ["viewMembers"],
+  viewSettings: ["viewSettings"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -401,8 +429,11 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   container: "div";
+  iconButton: typeof IconButton;
   iconContainer: "div";
-  iconButtonMember: typeof IconButtonMember;
+  viewHome: typeof IconButton;
+  viewMembers: typeof IconButtonMember;
+  viewSettings: typeof IconButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -410,9 +441,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicMainHeader__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicMainHeader__VariantsArgs;
   args?: PlasmicMainHeader__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -462,8 +491,11 @@ export const PlasmicMainHeader = Object.assign(
   makeNodeComponent("container"),
   {
     // Helper components rendering sub-elements
+    iconButton: makeNodeComponent("iconButton"),
     iconContainer: makeNodeComponent("iconContainer"),
-    iconButtonMember: makeNodeComponent("iconButtonMember"),
+    viewHome: makeNodeComponent("viewHome"),
+    viewMembers: makeNodeComponent("viewMembers"),
+    viewSettings: makeNodeComponent("viewSettings"),
 
     // Metadata about props expected for PlasmicMainHeader
     internalVariantProps: PlasmicMainHeader__VariantProps,

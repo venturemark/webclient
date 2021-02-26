@@ -23,8 +23,7 @@
 }
 .root:hover .container {
   border-radius: 5px;
-  background: linear-gradient(rgb(231, 231, 236), rgb(231, 231, 236))
-    /* plasmic-token: FMrtJGj8f, FMrtJGj8f */;
+  background: rgb(231, 231, 236);
 }
 .box__op1Qu {
   display: flex;
@@ -60,8 +59,7 @@
   min-width: 13px;
   border-radius: 5px;
   padding: 0px 2px;
-  background: linear-gradient(rgb(38, 26, 63), rgb(38, 26, 63))
-    /* plasmic-token: pJ8JNfS_nOyDpci, pJ8JNfS_nOyDpci */;
+  background: rgb(38, 26, 63);
 }
 .box__ysBge {
   display: inline-flex;

@@ -30,47 +30,58 @@ import {
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import InputTextArea from "../../inputtextarea/index"; // plasmic-import: Q2R-U25DUBO/component
 import Switch from "../../switch/index"; // plasmic-import: l1Qe8RjaNW/component
-import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
+import ButtonSetEdit from "../../buttonsetedit/index"; // plasmic-import: pMqUN0f4G_a/component
+
+import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicAddEditVenture.module.css"; // plasmic-import: xICnD3GwL-L/css
 
-import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
-import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
+export type PlasmicAddEditVenture__VariantMembers = {
+  variantState: "isEdit";
+};
 
-export type PlasmicAddEditVenture__VariantMembers = {};
+export type PlasmicAddEditVenture__VariantsArgs = {
+  variantState?: SingleChoiceArg<"isEdit">;
+};
 
-export type PlasmicAddEditVenture__VariantsArgs = {};
 type VariantPropType = keyof PlasmicAddEditVenture__VariantsArgs;
-export const PlasmicAddEditVenture__VariantProps = new Array<VariantPropType>();
+export const PlasmicAddEditVenture__VariantProps = new Array<VariantPropType>(
+  "variantState"
+);
 
 export type PlasmicAddEditVenture__ArgsType = {
   children?: React.ReactNode;
   slot?: React.ReactNode;
   slot2?: React.ReactNode;
+  children2?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicAddEditVenture__ArgsType;
 export const PlasmicAddEditVenture__ArgProps = new Array<ArgPropType>(
   "children",
   "slot",
-  "slot2"
+  "slot2",
+  "children2"
 );
 
 export type PlasmicAddEditVenture__OverridesType = {
-  settings?: p.Flex<"div">;
-  inputTextArea?: p.Flex<typeof InputTextArea>;
-  _switch?: p.Flex<typeof Switch>;
-  button?: p.Flex<typeof Button>;
-  text2?: p.Flex<"div">;
+  settings?: p.Flex<"form">;
+  name?: p.Flex<typeof InputText>;
+  description?: p.Flex<typeof InputTextArea>;
+  url?: p.Flex<typeof InputText>;
+  membersWrite?: p.Flex<typeof Switch>;
+  create?: p.Flex<typeof ButtonSetEdit>;
 };
 
 export interface DefaultAddEditVentureProps {
   children?: React.ReactNode;
   slot?: React.ReactNode;
   slot2?: React.ReactNode;
+  children2?: React.ReactNode;
+  variantState?: SingleChoiceArg<"isEdit">;
   className?: string;
 }
 
@@ -82,9 +93,13 @@ function PlasmicAddEditVenture__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariants(),
+  });
+
   return (
     <p.Stack
-      as={"div"}
+      as={"form"}
       data-plasmic-name={"settings"}
       data-plasmic-override={overrides.settings}
       data-plasmic-root={true}
@@ -93,31 +108,70 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       className={classNames(
         defaultcss.all,
         projectcss.root_reset,
-        sty.settings
+        sty.settings,
+        {
+          [sty.settings__variantState_isEdit]: hasVariant(
+            variants,
+            "variantState",
+            "isEdit"
+          ),
+        }
       )}
     >
       <div className={classNames(defaultcss.all, sty.box__nqvhu)}>
-        <p.PlasmicSlot
-          defaultContents={"Create a New Venture"}
-          value={args.children}
-          className={classNames(sty.slotChildren)}
-        />
-
-        <p.PlasmicSlot
-          defaultContents={"Start a new venture for your timelines."}
-          value={args.slot}
-        />
+        {(hasVariant(variants, "variantState", "isEdit") ? false : true) ? (
+          <p.PlasmicSlot
+            defaultContents={"Create a New Venture"}
+            value={args.children}
+            className={classNames(sty.slotChildren, {
+              [sty.slotChildren__variantState_isEdit]: hasVariant(
+                variants,
+                "variantState",
+                "isEdit"
+              ),
+            })}
+          />
+        ) : null}
+        {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
+          <p.PlasmicSlot
+            defaultContents={"Edit Venture"}
+            value={args.children2}
+            className={classNames(sty.slotChildren2, {
+              [sty.slotChildren2__variantState_isEdit]: hasVariant(
+                variants,
+                "variantState",
+                "isEdit"
+              ),
+            })}
+          />
+        ) : null}
+        {(hasVariant(variants, "variantState", "isEdit") ? false : true) ? (
+          <p.PlasmicSlot
+            defaultContents={"Start a new venture for your timelines."}
+            value={args.slot}
+          />
+        ) : null}
       </div>
 
       <InputText
-        className={classNames("__wab_instance", sty.inputText__bXf6P)}
+        data-plasmic-name={"name"}
+        data-plasmic-override={overrides.name}
+        className={classNames("__wab_instance", sty.name)}
+        hasLabel={"hasLabel" as const}
         label={"Name"}
       />
 
       <InputTextArea
-        data-plasmic-name={"inputTextArea"}
-        data-plasmic-override={overrides.inputTextArea}
-        className={classNames("__wab_instance", sty.inputTextArea)}
+        data-plasmic-name={"description"}
+        data-plasmic-override={overrides.description}
+        className={classNames("__wab_instance", sty.description, {
+          [sty.description__variantState_isEdit]: hasVariant(
+            variants,
+            "variantState",
+            "isEdit"
+          ),
+        })}
+        hasLabel={"hasLabel" as const}
         hasTextHelper={"hasTextHelper" as const}
         label={"Description"}
       >
@@ -127,15 +181,36 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       <p.Stack
         as={"div"}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box__uCWf)}
+        className={classNames(defaultcss.all, sty.box__uCWf, {
+          [sty.box__variantState_isEdit__uCWf2IFcI]: hasVariant(
+            variants,
+            "variantState",
+            "isEdit"
+          ),
+        })}
       >
-        <InputText label={"Custom URL"}>{"Text Helper Description"}</InputText>
+        <InputText
+          data-plasmic-name={"url"}
+          data-plasmic-override={overrides.url}
+          hasLabel={"hasLabel" as const}
+          hasTextHelper={"hasTextHelper" as const}
+          label={"Custom URL"}
+        >
+          {"Enter in a URL name for this venture"}
+        </InputText>
 
         <div
           className={classNames(
             defaultcss.all,
             defaultcss.__wab_text,
-            sty.box___8V79Q
+            sty.box___8V79Q,
+            {
+              [sty.box__variantState_isEdit___8V79Q2IFcI]: hasVariant(
+                variants,
+                "variantState",
+                "isEdit"
+              ),
+            }
           )}
         >
           {".venturemark.co"}
@@ -151,65 +226,67 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       </div>
 
       <Switch
-        data-plasmic-name={"_switch"}
-        data-plasmic-override={overrides._switch}
-        className={classNames("__wab_instance", sty._switch)}
+        data-plasmic-name={"membersWrite"}
+        data-plasmic-override={overrides.membersWrite}
+        className={classNames("__wab_instance", sty.membersWrite, {
+          [sty.membersWrite__variantState_isEdit]: hasVariant(
+            variants,
+            "variantState",
+            "isEdit"
+          ),
+        })}
         variantSettings={["hasLabel"]}
       />
 
-      <div className={classNames(defaultcss.all, sty.box___9CoNs)}>
-        <Button
-          data-plasmic-name={"button"}
-          data-plasmic-override={overrides.button}
-          buttonStyle={"primaryPurple" as const}
-          count={"1"}
-          slot={
-            <IconPlusIcon
-              className={classNames(defaultcss.all, sty.svg__ogZaY)}
-              role={"img"}
-            />
-          }
-          text2={
-            <div
-              data-plasmic-name={"text2"}
-              data-plasmic-override={overrides.text2}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.text2
-              )}
-            >
-              {"Create"}
-            </div>
-          }
-        >
-          <IconRightIcon
-            className={classNames(defaultcss.all, sty.svg__f4Aw)}
-            role={"img"}
-          />
-        </Button>
-      </div>
+      <ButtonSetEdit
+        data-plasmic-name={"create"}
+        data-plasmic-override={overrides.create}
+        className={classNames("__wab_instance", sty.create, {
+          [sty.create__variantState_isEdit]: hasVariant(
+            variants,
+            "variantState",
+            "isEdit"
+          ),
+        })}
+        variantState={
+          hasVariant(variants, "variantState", "isEdit") &&
+          hasVariant(globalVariants, "screen", "mobile")
+            ? ("isEdit" as const)
+            : hasVariant(variants, "variantState", "isEdit")
+            ? ("isEdit" as const)
+            : undefined
+        }
+      />
     </p.Stack>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  settings: ["settings", "inputTextArea", "_switch", "button", "text2"],
-  inputTextArea: ["inputTextArea"],
-  _switch: ["_switch"],
-  button: ["button", "text2"],
-  text2: ["text2"],
+  settings: [
+    "settings",
+    "name",
+    "description",
+    "url",
+    "membersWrite",
+    "create",
+  ],
+  name: ["name"],
+  description: ["description"],
+  url: ["url"],
+  membersWrite: ["membersWrite"],
+  create: ["create"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
   T extends NodeNameType
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
-  settings: "div";
-  inputTextArea: typeof InputTextArea;
-  _switch: typeof Switch;
-  button: typeof Button;
-  text2: "div";
+  settings: "form";
+  name: typeof InputText;
+  description: typeof InputTextArea;
+  url: typeof InputText;
+  membersWrite: typeof Switch;
+  create: typeof ButtonSetEdit;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -217,9 +294,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicAddEditVenture__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicAddEditVenture__VariantsArgs;
   args?: PlasmicAddEditVenture__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -269,10 +344,11 @@ export const PlasmicAddEditVenture = Object.assign(
   makeNodeComponent("settings"),
   {
     // Helper components rendering sub-elements
-    inputTextArea: makeNodeComponent("inputTextArea"),
-    _switch: makeNodeComponent("_switch"),
-    button: makeNodeComponent("button"),
-    text2: makeNodeComponent("text2"),
+    _name: makeNodeComponent("name"),
+    description: makeNodeComponent("description"),
+    url: makeNodeComponent("url"),
+    membersWrite: makeNodeComponent("membersWrite"),
+    create: makeNodeComponent("create"),
 
     // Metadata about props expected for PlasmicAddEditVenture
     internalVariantProps: PlasmicAddEditVenture__VariantProps,

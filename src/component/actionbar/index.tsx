@@ -17,6 +17,7 @@ import { get } from "module/store";
 import { useEditor } from "component/editor/compose";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface ActionBarProps extends DefaultActionBarProps {
   organizationId: string;
@@ -26,6 +27,7 @@ interface ActionBarProps extends DefaultActionBarProps {
 
 function ActionBar(props: ActionBarProps) {
   const { organizationId, userId, currentTimeline } = props;
+  const { user } = useAuth0();
 
   const store = get("composeEditor.content") ?? "";
   const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -35,6 +37,11 @@ function ActionBar(props: ActionBarProps) {
       : "hasContent";
   const defaultNumber = Search(serialize(initialValue)) ?? 0;
   const defaultProgress = serialize(initialValue).length;
+  const userInitials =
+    user?.name
+      .split(" ")
+      .map((n: string) => n[0])
+      .join("") ?? "";
 
   const defaultTimelineOption = [currentTimeline?.id] ?? [];
   const [selectedTimelines, setSelectedTimelines] = useState(
@@ -123,22 +130,21 @@ function ActionBar(props: ActionBarProps) {
   return (
     <PlasmicActionBar
       isActive={true}
-      userInitials={"Venture Mark"
-        .split(" ")
-        .map((n) => n[0])
-        .join("")}
+      photoAvatar={{
+        userInitials,
+      }}
       // sendUpdate={{
       //   handleClick: () => handleAddUpdate() }}
 
       error={editorShape.error ? "hasError" : undefined}
       text={normalize(editorShape.progress) > 0 ? "hasText" : undefined}
       timelineSelected={isTimelineSelected}
-      timelineSelect={{
-        handleClick: () => {
-          setIsTimelineSelected(true);
-          setSelectFocused(true);
-        },
-      }}
+      // timelineSelect={{
+      //   handleClick: () => {
+      //     setIsTimelineSelected(true);
+      //     setSelectFocused(true);
+      //   },
+      // }}
       selectedItemsContainer={{
         render: () => (
           <AntSelect
@@ -151,15 +157,15 @@ function ActionBar(props: ActionBarProps) {
           />
         ),
       }}
-      errorMessage={editorShape.error}
-      textContainer={{
-        render: () => (
-          <ComposeEditor
-            editorShape={editorShape}
-            setEditorShape={setEditorShape}
-          />
-        ),
-      }}
+      // errorMessage={editorShape.error}
+      // textContainer={{
+      //   render: () => (
+      //     <ComposeEditor
+      //       editorShape={editorShape}
+      //       setEditorShape={setEditorShape}
+      //     />
+      //   ),
+      // }}
     />
   );
 }
