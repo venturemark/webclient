@@ -28,8 +28,7 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
-import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
-import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
+import ProfileForm from "../../profileform/index"; // plasmic-import: _XzWccJtXuE/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -37,9 +36,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicProfile.module.css"; // plasmic-import: XqXAODV8pg/css
-
-import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
-import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 
 export type PlasmicProfile__VariantMembers = {};
 
@@ -54,9 +50,7 @@ export const PlasmicProfile__ArgProps = new Array<ArgPropType>();
 export type PlasmicProfile__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
-  input?: p.Flex<"input">;
-  input2?: p.Flex<"input">;
-  button?: p.Flex<typeof Button>;
+  profileForm?: p.Flex<typeof ProfileForm>;
 };
 
 export interface DefaultProfileProps {
@@ -140,70 +134,11 @@ function PlasmicProfile__RenderFunc(props: {
                   </div>
                 </p.Stack>
 
-                <div className={classNames(defaultcss.all, sty.box__sp7Zd)}>
-                  <InputText
-                    className={classNames(
-                      "__wab_instance",
-                      sty.inputText___2Amn1
-                    )}
-                    input={
-                      <input
-                        data-plasmic-name={"input"}
-                        data-plasmic-override={overrides.input}
-                        className={classNames(defaultcss.input, sty.input)}
-                        placeholder={"" as const}
-                        size={1 as const}
-                        title={"" as const}
-                        type={"text" as const}
-                      />
-                    }
-                    label={"Full Name"}
-                  >
-                    {"This will be used as your display name"}
-                  </InputText>
-
-                  <InputText
-                    className={classNames(
-                      "__wab_instance",
-                      sty.inputText__bjiVn
-                    )}
-                    hasTextHelper={"hasTextHelper" as const}
-                    input={
-                      <input
-                        data-plasmic-name={"input2"}
-                        data-plasmic-override={overrides.input2}
-                        className={classNames(defaultcss.input, sty.input2)}
-                        placeholder={"e.g. Investor, CTO" as const}
-                        size={1 as const}
-                        title={"" as const}
-                        type={"text" as const}
-                      />
-                    }
-                    label={"What I Do"}
-                  >
-                    {"Let people know what you do"}
-                  </InputText>
-
-                  <Button
-                    data-plasmic-name={"button"}
-                    data-plasmic-override={overrides.button}
-                    buttonStyle={"primaryPurple" as const}
-                    className={classNames("__wab_instance", sty.button)}
-                    count={"1"}
-                    slot={
-                      <IconPlusIcon
-                        className={classNames(defaultcss.all, sty.svg__l7TnU)}
-                        role={"img"}
-                      />
-                    }
-                    text2={"Complete"}
-                  >
-                    <IconRightIcon
-                      className={classNames(defaultcss.all, sty.svg__hjzAx)}
-                      role={"img"}
-                    />
-                  </Button>
-                </div>
+                <ProfileForm
+                  data-plasmic-name={"profileForm"}
+                  data-plasmic-override={overrides.profileForm}
+                  className={classNames("__wab_instance", sty.profileForm)}
+                />
               </p.Stack>
             </div>
           </div>
@@ -214,11 +149,9 @@ function PlasmicProfile__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "input", "input2", "button"],
+  root: ["root", "header", "profileForm"],
   header: ["header"],
-  input: ["input"],
-  input2: ["input2"],
-  button: ["button"],
+  profileForm: ["profileForm"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -227,9 +160,7 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  input: "input";
-  input2: "input";
-  button: typeof Button;
+  profileForm: typeof ProfileForm;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -237,7 +168,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicProfile__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicProfile__VariantsArgs;
@@ -290,9 +220,7 @@ export const PlasmicProfile = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    input: makeNodeComponent("input"),
-    input2: makeNodeComponent("input2"),
-    button: makeNodeComponent("button"),
+    profileForm: makeNodeComponent("profileForm"),
 
     // Metadata about props expected for PlasmicProfile
     internalVariantProps: PlasmicProfile__VariantProps,

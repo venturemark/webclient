@@ -29,7 +29,8 @@ function Modal(props: ModalProps) {
   const handleLogin = () => {
     const userObj: ISaveUser = {
       userId: user,
-      organizationId: organizationName,
+      name: "",
+      role: "",
     };
 
     saveUser(userObj);

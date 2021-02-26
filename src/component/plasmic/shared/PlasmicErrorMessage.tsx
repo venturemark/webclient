@@ -42,13 +42,13 @@ type VariantPropType = keyof PlasmicErrorMessage__VariantsArgs;
 export const PlasmicErrorMessage__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicErrorMessage__ArgsType = {
-  slot?: React.ReactNode;
+  message?: React.ReactNode;
   children?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicErrorMessage__ArgsType;
 export const PlasmicErrorMessage__ArgProps = new Array<ArgPropType>(
-  "slot",
+  "message",
   "children"
 );
 
@@ -59,7 +59,7 @@ export type PlasmicErrorMessage__OverridesType = {
 };
 
 export interface DefaultErrorMessageProps {
-  slot?: React.ReactNode;
+  message?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
 }
@@ -99,11 +99,10 @@ function PlasmicErrorMessage__RenderFunc(props: {
           value={args.children}
           className={classNames(sty.slotChildren)}
         />
-
         <p.PlasmicSlot
           defaultContents={"Error message"}
-          value={args.slot}
-          className={classNames(sty.slotSlot)}
+          value={args.message}
+          className={classNames(sty.slotMessage)}
         />
       </p.Stack>
     </div>
@@ -130,9 +129,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicErrorMessage__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicErrorMessage__VariantsArgs;
   args?: PlasmicErrorMessage__ArgsType;
   overrides?: NodeOverridesType<T>;

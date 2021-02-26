@@ -28,17 +28,17 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
-import Switch from "../../switch/index"; // plasmic-import: l1Qe8RjaNW/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
+import MemberItem from "../../memberitem/index"; // plasmic-import: D8Y_2wee1o/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicAddEditMembers.module.css"; // plasmic-import: 3NTlJO7oDpw/css
 
-import IconLinkIcon from "./icons/PlasmicIcon__IconLink"; // plasmic-import: 0QuxgUi0r/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
+import IconLinkIcon from "./icons/PlasmicIcon__IconLink"; // plasmic-import: 0QuxgUi0r/icon
 
 export type PlasmicAddEditMembers__VariantMembers = {};
 
@@ -50,21 +50,36 @@ export type PlasmicAddEditMembers__ArgsType = {
   children?: React.ReactNode;
   slot?: React.ReactNode;
   slot2?: React.ReactNode;
+  slot3?: React.ReactNode;
+  slot4?: React.ReactNode;
+  slot42?: React.ReactNode;
+  slot32?: React.ReactNode;
+  slot422?: React.ReactNode;
+  slot322?: React.ReactNode;
+  slot4222?: React.ReactNode;
+  slot3222?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicAddEditMembers__ArgsType;
 export const PlasmicAddEditMembers__ArgProps = new Array<ArgPropType>(
   "children",
   "slot",
-  "slot2"
+  "slot2",
+  "slot3",
+  "slot4",
+  "slot42",
+  "slot32",
+  "slot422",
+  "slot322",
+  "slot4222",
+  "slot3222"
 );
 
 export type PlasmicAddEditMembers__OverridesType = {
   root?: p.Flex<"div">;
   inputText?: p.Flex<typeof InputText>;
-  input?: p.Flex<"input">;
-  _switch?: p.Flex<typeof Switch>;
-  button?: p.Flex<typeof Button>;
+  link?: p.Flex<"a">;
+  span?: p.Flex<"span">;
   text2?: p.Flex<"div">;
 };
 
@@ -72,6 +87,14 @@ export interface DefaultAddEditMembersProps {
   children?: React.ReactNode;
   slot?: React.ReactNode;
   slot2?: React.ReactNode;
+  slot3?: React.ReactNode;
+  slot4?: React.ReactNode;
+  slot42?: React.ReactNode;
+  slot32?: React.ReactNode;
+  slot422?: React.ReactNode;
+  slot322?: React.ReactNode;
+  slot4222?: React.ReactNode;
+  slot3222?: React.ReactNode;
   className?: string;
 }
 
@@ -99,7 +122,6 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           value={args.children}
           className={classNames(sty.slotChildren)}
         />
-
         <p.PlasmicSlot
           defaultContents={
             "Enter their email to invite and add them to this organization."
@@ -109,105 +131,163 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       </div>
 
       <div className={classNames(defaultcss.all, sty.box__mpPUs)}>
-        <InputText
-          data-plasmic-name={"inputText"}
-          data-plasmic-override={overrides.inputText}
-          input={
-            <input
-              data-plasmic-name={"input"}
-              data-plasmic-override={overrides.input}
-              className={classNames(defaultcss.input, sty.input)}
-              placeholder={"e.g. example@email.com" as const}
-              size={1 as const}
-              title={"" as const}
-              type={"text" as const}
-              value={"" as const}
-            />
-          }
-          label={"Invite a member by email"}
-        >
-          {"Text Helper Description"}
-        </InputText>
-
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__cL4Gx)}
+          className={classNames(defaultcss.all, sty.box__qMkyL)}
+        >
+          <InputText
+            data-plasmic-name={"inputText"}
+            data-plasmic-override={overrides.inputText}
+            label={"Invite a member by email"}
+          >
+            {"Text Helper Description"}
+          </InputText>
+
+          <Button
+            buttonFeatures={["nonFullWidth", "removeText", "showStartIcon"]}
+            className={classNames("__wab_instance", sty.button__ddWrS)}
+            count={"1"}
+            text2={"Button"}
+          />
+        </p.Stack>
+
+        <p.Stack
+          as={"a"}
+          data-plasmic-name={"link"}
+          data-plasmic-override={overrides.link}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.link)}
         >
           <IconLinkIcon
             className={classNames(defaultcss.all, sty.svg__opzJ7)}
             role={"img"}
           />
 
-          <div
+          <span
+            data-plasmic-name={"span"}
+            data-plasmic-override={overrides.span}
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.box___77FNr
+              sty.span
             )}
           >
             {"Copy Invite Link"}
-          </div>
+          </span>
         </p.Stack>
       </div>
 
-      <div className={classNames(defaultcss.all, sty.box__guHgU)}>
-        <p.PlasmicSlot
-          defaultContents={"Current Members"}
-          value={args.slot2}
-          className={classNames(sty.slotSlot2)}
+      <div className={classNames(defaultcss.all, sty.box__yRlj0)}>
+        <div className={classNames(defaultcss.all, sty.box__guHgU)}>
+          <p.PlasmicSlot
+            defaultContents={"Current Members"}
+            value={args.slot2}
+            className={classNames(sty.slotSlot2)}
+          />
+        </div>
+
+        <MemberItem
+          className={classNames("__wab_instance", sty.memberItem__e3Lpj)}
+          isAdmin={"isAdmin" as const}
+          slot3={
+            <p.PlasmicSlot
+              defaultContents={"example@email.com"}
+              value={args.slot3}
+            />
+          }
+          slot4={
+            <p.PlasmicSlot defaultContents={"User Name"} value={args.slot4} />
+          }
+        />
+
+        <MemberItem
+          className={classNames("__wab_instance", sty.memberItem__rUmUt)}
+          slot3={
+            <p.PlasmicSlot
+              defaultContents={"example@email.com"}
+              value={args.slot32}
+            />
+          }
+          slot4={
+            <p.PlasmicSlot
+              defaultContents={"nonregistered@email.com"}
+              value={args.slot42}
+            />
+          }
+        />
+
+        <MemberItem
+          className={classNames("__wab_instance", sty.memberItem__u5CiK)}
+          slot3={
+            <p.PlasmicSlot
+              defaultContents={"example@email.com"}
+              value={args.slot322}
+            />
+          }
+          slot4={
+            <p.PlasmicSlot defaultContents={"User Name"} value={args.slot422} />
+          }
+        />
+
+        <MemberItem
+          className={classNames("__wab_instance", sty.memberItem__vCc52)}
+          slot3={
+            <p.PlasmicSlot
+              defaultContents={"example@email.com"}
+              value={args.slot3222}
+            />
+          }
+          slot4={
+            <p.PlasmicSlot
+              defaultContents={"User Name"}
+              value={args.slot4222}
+            />
+          }
         />
       </div>
 
-      <Switch
-        data-plasmic-name={"_switch"}
-        data-plasmic-override={overrides._switch}
-        className={classNames("__wab_instance", sty._switch)}
-        variantSettings={["hasLabel"]}
-      />
-
-      <div className={classNames(defaultcss.all, sty.box___1CNd9)}>
-        <Button
-          data-plasmic-name={"button"}
-          data-plasmic-override={overrides.button}
-          buttonStyle={"primaryPurple" as const}
-          count={"1"}
-          slot={
-            <IconPlusIcon
-              className={classNames(defaultcss.all, sty.svg__qlkG3)}
+      {false ? (
+        <div className={classNames(defaultcss.all, sty.box___1CNd9)}>
+          <Button
+            buttonStyle={"primaryPurple" as const}
+            count={"1"}
+            slot={
+              <IconPlusIcon
+                className={classNames(defaultcss.all, sty.svg__qlkG3)}
+                role={"img"}
+              />
+            }
+            text2={
+              <div
+                data-plasmic-name={"text2"}
+                data-plasmic-override={overrides.text2}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.text2
+                )}
+              >
+                {"Done"}
+              </div>
+            }
+          >
+            <IconRightIcon
+              className={classNames(defaultcss.all, sty.svg__zn1XH)}
               role={"img"}
             />
-          }
-          text2={
-            <div
-              data-plasmic-name={"text2"}
-              data-plasmic-override={overrides.text2}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.text2
-              )}
-            >
-              {"Create"}
-            </div>
-          }
-        >
-          <IconRightIcon
-            className={classNames(defaultcss.all, sty.svg__zn1XH)}
-            role={"img"}
-          />
-        </Button>
-      </div>
+          </Button>
+        </div>
+      ) : null}
     </p.Stack>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "inputText", "input", "_switch", "button", "text2"],
-  inputText: ["inputText", "input"],
-  input: ["input"],
-  _switch: ["_switch"],
-  button: ["button", "text2"],
+  root: ["root", "inputText", "link", "span", "text2"],
+  inputText: ["inputText"],
+  link: ["link", "span"],
+  span: ["span"],
   text2: ["text2"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -217,9 +297,8 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   inputText: typeof InputText;
-  input: "input";
-  _switch: typeof Switch;
-  button: typeof Button;
+  link: "a";
+  span: "span";
   text2: "div";
 };
 
@@ -228,7 +307,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicAddEditMembers__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicAddEditMembers__VariantsArgs;
@@ -281,9 +359,8 @@ export const PlasmicAddEditMembers = Object.assign(
   {
     // Helper components rendering sub-elements
     inputText: makeNodeComponent("inputText"),
-    input: makeNodeComponent("input"),
-    _switch: makeNodeComponent("_switch"),
-    button: makeNodeComponent("button"),
+    link: makeNodeComponent("link"),
+    span: makeNodeComponent("span"),
     text2: makeNodeComponent("text2"),
 
     // Metadata about props expected for PlasmicAddEditMembers

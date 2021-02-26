@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import React from "react";
 import {
-PlasmicFeedUpdate,
-DefaultFeedUpdateProps } from
-"component/plasmic/shared/PlasmicFeedUpdate";
+  PlasmicFeedUpdate,
+  DefaultFeedUpdateProps,
+} from "component/plasmic/shared/PlasmicFeedUpdate";
 import { Node } from "slate";
 import { useTimelines } from "module/hook/timeline";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
@@ -19,9 +19,9 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   date: string;
   allUpdates: IUpdate[];
   setCurrentTimeline: React.Dispatch<
-  React.SetStateAction<ITimeline | undefined>>;}
-
-
+    React.SetStateAction<ITimeline | undefined>
+  >;
+}
 
 function FeedUpdate(props: FeedUpdateProps) {
   const {
@@ -32,46 +32,51 @@ function FeedUpdate(props: FeedUpdateProps) {
     userName,
     date,
     allUpdates,
-    setCurrentTimeline } =
-  props;
+    setCurrentTimeline,
+  } = props;
+
+  const token = "";
 
   const timelineSearch: ITimelineQuery = {
     userId: userName,
-    organizationId: organizationName };
-
+    organizationId: organizationName,
+    token,
+  };
 
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
 
-  const updateTimelines = allUpdates.
-  filter(
-  (update: IUpdate) =>
-  Math.round(Number(update.id) / 1000000000) ===
-  Math.round(Number(id) / 1000000000)).
+  const updates = allUpdates ?? [];
 
-  map(update => {
-    const updateTimelines = timelines.filter(
-    (timeline: ITimeline) => timeline.id === update.timelineId);
+  const updateTimelines = updates
+    .filter(
+      (update: IUpdate) =>
+        Math.round(Number(update.id) / 1000000000) ===
+        Math.round(Number(id) / 1000000000)
+    )
+    .map((update) => {
+      const updateTimelines = timelines.filter(
+        (timeline: ITimeline) => timeline.id === update.timelineId
+      );
 
-
-    return updateTimelines;
-  }).
-  flat();
+      return updateTimelines;
+    })
+    .flat();
 
   return (
     <PlasmicFeedUpdate
-    updateContent={{
-      text: text,
-      id: id,
-      timelineId: timelineId,
-      organizationName: organizationName,
-      userName: userName,
-      updateTimelines: updateTimelines,
-      date: date,
-      setCurrentTimeline: setCurrentTimeline }} />);
-
-
-
+      updateContent={{
+        text: text,
+        id: id,
+        timelineId: timelineId,
+        organizationName: organizationName,
+        userName: userName,
+        updateTimelines: updateTimelines,
+        date: date,
+        setCurrentTimeline: setCurrentTimeline,
+      }}
+    />
+  );
 }
 
 export default FeedUpdate;

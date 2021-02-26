@@ -28,7 +28,7 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
-import UpdateContent from "../../updatecontent/index"; // plasmic-import: A1UjtYt6k0/component
+import ContentPost from "../../contentpost/index"; // plasmic-import: A1UjtYt6k0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -51,7 +51,7 @@ export const PlasmicFeedUpdate__ArgProps = new Array<ArgPropType>();
 export type PlasmicFeedUpdate__OverridesType = {
   root?: p.Flex<"div">;
   actionBar?: p.Flex<typeof ActionBar>;
-  updateContent?: p.Flex<typeof UpdateContent>;
+  updateContent?: p.Flex<typeof ContentPost>;
 };
 
 export interface DefaultFeedUpdateProps {
@@ -82,7 +82,7 @@ function PlasmicFeedUpdate__RenderFunc(props: {
         className={classNames("__wab_instance", sty.actionBar)}
       />
 
-      <UpdateContent
+      <ContentPost
         data-plasmic-name={"updateContent"}
         data-plasmic-override={overrides.updateContent}
         className={classNames("__wab_instance", sty.updateContent)}
@@ -103,7 +103,7 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   actionBar: typeof ActionBar;
-  updateContent: typeof UpdateContent;
+  updateContent: typeof ContentPost;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";

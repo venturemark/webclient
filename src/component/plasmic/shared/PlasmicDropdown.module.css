@@ -12,11 +12,9 @@
   height: auto;
   display: inline-flex;
   flex-direction: column;
-  min-width: 120px;
   border-radius: 5px;
-  padding: 15px 0px;
-  background: linear-gradient(#ffffff, #ffffff)
-    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
+  padding: 10px 0px;
+  background: #ffffff;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .ul {
@@ -37,9 +35,6 @@
 .ul > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 15px;
 }
-.listItem___4K0K:global(.__wab_instance) {
-  position: relative;
-}
-.listItem__hs8Xy:global(.__wab_instance) {
+.listItem:global(.__wab_instance) {
   position: relative;
 }

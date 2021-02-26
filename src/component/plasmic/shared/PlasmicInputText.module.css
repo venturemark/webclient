@@ -10,7 +10,7 @@
   width: 100%;
   height: auto;
   flex-direction: column;
-  min-width: 270px;
+  min-width: 0;
 }
 .textInput > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -32,7 +32,7 @@
 }
 .slotLabel {
   text-align: center;
-  font-size: 16px /* plasmic-token: mV0JUhpGq */;
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 600;
 }
 .inputHelperText {
@@ -49,7 +49,7 @@
   font-weight: 300;
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
 }
-.box {
+.box___9LrSw {
   display: flex;
   position: relative;
   width: 100%;
@@ -66,6 +66,20 @@
   min-width: 0;
   border-radius: 5px;
 }
+.box__lygyM {
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  border-radius: 5px;
+}
+.box__eDsPg {
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  border-radius: 5px;
+}
 .input {
   position: relative;
   width: 100%;
@@ -73,12 +87,15 @@
   top: auto;
   height: auto;
   text-align: left;
-  font-size: 16px /* plasmic-token: mV0JUhpGq */;
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
   cursor: text;
   min-width: 0;
   border-radius: 5px;
   padding: 10px;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.root .input::placeholder {
+  color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }
 .errorContainer {
   display: flex;

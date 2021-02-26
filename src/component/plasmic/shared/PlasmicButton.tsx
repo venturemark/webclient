@@ -48,7 +48,8 @@ export type PlasmicButton__VariantMembers = {
     | "showEndIcon"
     | "isRounded"
     | "showCount"
-    | "removeText";
+    | "removeText"
+    | "nonFullWidth";
   isDisabled: "isDisabled";
 };
 
@@ -60,11 +61,14 @@ export type PlasmicButton__VariantsArgs = {
     | "danger"
     | "whiteBlue"
   >;
-
   buttonFeatures?: MultiChoiceArg<
-    "showStartIcon" | "showEndIcon" | "isRounded" | "showCount" | "removeText"
+    | "showStartIcon"
+    | "showEndIcon"
+    | "isRounded"
+    | "showCount"
+    | "removeText"
+    | "nonFullWidth"
   >;
-
   isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
 };
 
@@ -108,11 +112,14 @@ export interface DefaultButtonProps {
     | "danger"
     | "whiteBlue"
   >;
-
   buttonFeatures?: MultiChoiceArg<
-    "showStartIcon" | "showEndIcon" | "isRounded" | "showCount" | "removeText"
+    | "showStartIcon"
+    | "showEndIcon"
+    | "isRounded"
+    | "showCount"
+    | "removeText"
+    | "nonFullWidth"
   >;
-
   isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
   className?: string;
 }
@@ -132,36 +139,36 @@ function PlasmicButton__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__buttonFeatures_nonFullWidth]: hasVariant(
+          variants,
+          "buttonFeatures",
+          "nonFullWidth"
+        ),
         [sty.root__buttonFeatures_removeText]: hasVariant(
           variants,
           "buttonFeatures",
           "removeText"
         ),
-
         [sty.root__buttonStyle_danger]: hasVariant(
           variants,
           "buttonStyle",
           "danger"
         ),
-
         [sty.root__buttonStyle_primaryPurple]: hasVariant(
           variants,
           "buttonStyle",
           "primaryPurple"
         ),
-
         [sty.root__buttonStyle_secondaryGreen]: hasVariant(
           variants,
           "buttonStyle",
           "secondaryGreen"
         ),
-
         [sty.root__buttonStyle_secondaryPurple]: hasVariant(
           variants,
           "buttonStyle",
           "secondaryPurple"
         ),
-
         [sty.root__buttonStyle_whiteBlue]: hasVariant(
           variants,
           "buttonStyle",
@@ -178,25 +185,26 @@ function PlasmicButton__RenderFunc(props: {
             "buttonFeatures",
             "isRounded"
           ),
-
+          [sty.button__buttonFeatures_nonFullWidth]: hasVariant(
+            variants,
+            "buttonFeatures",
+            "nonFullWidth"
+          ),
           [sty.button__buttonFeatures_removeText]: hasVariant(
             variants,
             "buttonFeatures",
             "removeText"
           ),
-
           [sty.button__buttonFeatures_showCount]: hasVariant(
             variants,
             "buttonFeatures",
             "showCount"
           ),
-
           [sty.button__buttonFeatures_showEndIcon]: hasVariant(
             variants,
             "buttonFeatures",
             "showEndIcon"
           ),
-
           [sty.button__buttonFeatures_showEndIcon_buttonFeatures_showStartIcon]:
             hasVariant(variants, "buttonFeatures", "showEndIcon") &&
             hasVariant(variants, "buttonFeatures", "showStartIcon"),
@@ -209,37 +217,31 @@ function PlasmicButton__RenderFunc(props: {
             "buttonFeatures",
             "showStartIcon"
           ),
-
           [sty.button__buttonStyle_danger]: hasVariant(
             variants,
             "buttonStyle",
             "danger"
           ),
-
           [sty.button__buttonStyle_primaryPurple]: hasVariant(
             variants,
             "buttonStyle",
             "primaryPurple"
           ),
-
           [sty.button__buttonStyle_secondaryGreen]: hasVariant(
             variants,
             "buttonStyle",
             "secondaryGreen"
           ),
-
           [sty.button__buttonStyle_secondaryPurple]: hasVariant(
             variants,
             "buttonStyle",
             "secondaryPurple"
           ),
-
           [sty.button__buttonStyle_whiteBlue]: hasVariant(
             variants,
             "buttonStyle",
             "whiteBlue"
           ),
-
           [sty.button__isDisabled]: hasVariant(
             variants,
             "isDisabled",
@@ -279,7 +281,6 @@ function PlasmicButton__RenderFunc(props: {
                   "buttonFeatures",
                   "showEndIcon"
                 ),
-
                 [sty.slotSlot__buttonFeatures_showEndIcon_buttonStyle_primaryPurple]:
                   hasVariant(variants, "buttonFeatures", "showEndIcon") &&
                   hasVariant(variants, "buttonStyle", "primaryPurple"),
@@ -291,7 +292,6 @@ function PlasmicButton__RenderFunc(props: {
                   "buttonFeatures",
                   "showStartIcon"
                 ),
-
                 [sty.slotSlot__buttonFeatures_showStartIcon_buttonFeatures_showEndIcon]:
                   hasVariant(variants, "buttonFeatures", "showStartIcon") &&
                   hasVariant(variants, "buttonFeatures", "showEndIcon"),
@@ -319,49 +319,41 @@ function PlasmicButton__RenderFunc(props: {
                   "buttonFeatures",
                   "isRounded"
                 ),
-
                 [sty.slotCount__buttonFeatures_showCount]: hasVariant(
                   variants,
                   "buttonFeatures",
                   "showCount"
                 ),
-
                 [sty.slotCount__buttonFeatures_showEndIcon]: hasVariant(
                   variants,
                   "buttonFeatures",
                   "showEndIcon"
                 ),
-
                 [sty.slotCount__buttonFeatures_showStartIcon]: hasVariant(
                   variants,
                   "buttonFeatures",
                   "showStartIcon"
                 ),
-
                 [sty.slotCount__buttonStyle_danger]: hasVariant(
                   variants,
                   "buttonStyle",
                   "danger"
                 ),
-
                 [sty.slotCount__buttonStyle_primaryPurple]: hasVariant(
                   variants,
                   "buttonStyle",
                   "primaryPurple"
                 ),
-
                 [sty.slotCount__buttonStyle_secondaryGreen]: hasVariant(
                   variants,
                   "buttonStyle",
                   "secondaryGreen"
                 ),
-
                 [sty.slotCount__buttonStyle_secondaryPurple]: hasVariant(
                   variants,
                   "buttonStyle",
                   "secondaryPurple"
                 ),
-
                 [sty.slotCount__isDisabled]: hasVariant(
                   variants,
                   "isDisabled",
@@ -382,49 +374,41 @@ function PlasmicButton__RenderFunc(props: {
                   "buttonFeatures",
                   "isRounded"
                 ),
-
                 [sty.slotText2__buttonFeatures_removeText]: hasVariant(
                   variants,
                   "buttonFeatures",
                   "removeText"
                 ),
-
                 [sty.slotText2__buttonFeatures_showCount]: hasVariant(
                   variants,
                   "buttonFeatures",
                   "showCount"
                 ),
-
                 [sty.slotText2__buttonFeatures_showStartIcon]: hasVariant(
                   variants,
                   "buttonFeatures",
                   "showStartIcon"
                 ),
-
                 [sty.slotText2__buttonStyle_danger]: hasVariant(
                   variants,
                   "buttonStyle",
                   "danger"
                 ),
-
                 [sty.slotText2__buttonStyle_primaryPurple]: hasVariant(
                   variants,
                   "buttonStyle",
                   "primaryPurple"
                 ),
-
                 [sty.slotText2__buttonStyle_secondaryGreen]: hasVariant(
                   variants,
                   "buttonStyle",
                   "secondaryGreen"
                 ),
-
                 [sty.slotText2__buttonStyle_secondaryPurple]: hasVariant(
                   variants,
                   "buttonStyle",
                   "secondaryPurple"
                 ),
-
                 [sty.slotText2__buttonStyle_whiteBlue]: hasVariant(
                   variants,
                   "buttonStyle",
@@ -450,7 +434,6 @@ function PlasmicButton__RenderFunc(props: {
                   "buttonFeatures",
                   "showEndIcon"
                 ),
-
                 [sty.slotChildren__buttonFeatures_showEndIcon_buttonStyle_danger]:
                   hasVariant(variants, "buttonFeatures", "showEndIcon") &&
                   hasVariant(variants, "buttonStyle", "danger"),
@@ -465,7 +448,6 @@ function PlasmicButton__RenderFunc(props: {
                   "buttonFeatures",
                   "showStartIcon"
                 ),
-
                 [sty.slotChildren__buttonStyle_danger]: hasVariant(
                   variants,
                   "buttonStyle",
@@ -500,9 +482,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicButton__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicButton__VariantsArgs;
   args?: PlasmicButton__ArgsType;
   overrides?: NodeOverridesType<T>;

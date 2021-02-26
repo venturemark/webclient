@@ -14,7 +14,7 @@
   top: 0px;
   z-index: 3;
 }
-.box {
+.box___70Att {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -23,27 +23,55 @@
   left: auto;
   top: auto;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   padding-top: 75px;
   min-width: 0;
-  min-height: 0;
   margin: 0px;
-  background: linear-gradient(rgb(249, 249, 250), rgb(249, 249, 250))
-    /* plasmic-token: 4lM47qJruvPIx-u, 4lM47qJruvPIx-u */;
+  background: rgb(249, 249, 250);
 }
 .sidebar:global(.__wab_instance) {
   position: relative;
-  flex-shrink: 0;
 }
-@media (min-width: 0px) and (max-width: 760px) {
+@media (min-width: 1201px) {
   .sidebar:global(.__wab_instance) {
     flex-shrink: 0;
   }
 }
-.main2 {
+@media (max-width: 1200px) {
+  .sidebar:global(.__wab_instance) {
+    width: 300px;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 991px) {
+  .sidebar:global(.__wab_instance) {
+    flex-shrink: 0;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
+    position: absolute;
+    left: 0px;
+    top: 75px;
+    z-index: 3;
+    width: 100%;
+    min-width: 0;
+  }
+}
+.box__cJlKh {
   display: flex;
   position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.mainContainer {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -52,4 +80,51 @@
   overflow: auto;
   min-width: 0;
   min-height: 0;
+}
+.postDetails:global(.__wab_instance) {
+  position: relative;
+}
+@media (min-width: 1201px) {
+  .postDetails:global(.__wab_instance) {
+    max-width: 480px;
+  }
+}
+@media (max-width: 1200px) {
+  .postDetails:global(.__wab_instance) {
+    max-width: 370px;
+  }
+}
+@media (max-width: 991px) {
+  .postDetails:global(.__wab_instance) {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    min-width: 0;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .postDetails:global(.__wab_instance) {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+}
+.box__bSzQ {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: rgba(21, 15, 36, 0.73);
+}
+.profileForm:global(.__wab_instance) {
+  position: relative;
+  max-width: 400px;
 }

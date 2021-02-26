@@ -46,7 +46,8 @@ function ModalAlt(props: ModalAltProps) {
     }
     const userObj: ISaveUser = {
       userId: user,
-      organizationId: organization,
+      name: "",
+      role: "",
     };
 
     saveUser(userObj);

@@ -33,11 +33,18 @@ import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicPhotoAvatar.module.css"; // plasmic-import: uaoIqTcPRC-/css
 
-export type PlasmicPhotoAvatar__VariantMembers = {};
+export type PlasmicPhotoAvatar__VariantMembers = {
+  variant: "isLarge";
+};
 
-export type PlasmicPhotoAvatar__VariantsArgs = {};
+export type PlasmicPhotoAvatar__VariantsArgs = {
+  variant?: MultiChoiceArg<"isLarge">;
+};
+
 type VariantPropType = keyof PlasmicPhotoAvatar__VariantsArgs;
-export const PlasmicPhotoAvatar__VariantProps = new Array<VariantPropType>();
+export const PlasmicPhotoAvatar__VariantProps = new Array<VariantPropType>(
+  "variant"
+);
 
 export type PlasmicPhotoAvatar__ArgsType = {
   userInitials?: React.ReactNode;
@@ -55,6 +62,7 @@ export type PlasmicPhotoAvatar__OverridesType = {
 
 export interface DefaultPhotoAvatarProps {
   userInitials?: React.ReactNode;
+  variant?: MultiChoiceArg<"isLarge">;
   className?: string;
 }
 
@@ -72,7 +80,9 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__variant_isLarge]: hasVariant(variants, "variant", "isLarge"),
+      })}
     >
       <div
         data-plasmic-name={"box"}
@@ -82,7 +92,13 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
         <p.PlasmicSlot
           defaultContents={"KO"}
           value={args.userInitials}
-          className={classNames(sty.slotUserInitials)}
+          className={classNames(sty.slotUserInitials, {
+            [sty.slotUserInitials__variant_isLarge]: hasVariant(
+              variants,
+              "variant",
+              "isLarge"
+            ),
+          })}
         />
       </div>
     </div>
@@ -107,9 +123,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicPhotoAvatar__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicPhotoAvatar__VariantsArgs;
   args?: PlasmicPhotoAvatar__ArgsType;
   overrides?: NodeOverridesType<T>;

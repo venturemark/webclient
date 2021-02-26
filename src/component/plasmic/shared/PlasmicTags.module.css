@@ -1,69 +1,61 @@
 .root {
   display: inline-flex;
   width: auto;
-  height: auto;
+  height: 30px;
   position: relative;
 }
 .button {
   opacity: 1;
   transform: scale(1, 1) rotate(0deg);
   width: auto;
-  height: auto;
+  height: 100%;
   display: inline-flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  min-height: 0;
   border-radius: 15px;
   padding: 4px 10px;
-  background: linear-gradient(rgb(2, 157, 127), rgb(2, 157, 127))
-    /* plasmic-token: Jfzps88GdGw80SE, Jfzps88GdGw80SE */;
+  background: rgb(2, 157, 127);
   border-style: solid;
   border-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
 .button__buttonStyle_primaryPurple {
-  background: linear-gradient(rgb(38, 26, 63), rgb(38, 26, 63))
-    /* plasmic-token: pJ8JNfS_nOyDpci, pJ8JNfS_nOyDpci */;
+  background: rgb(38, 26, 63);
 }
 .button__buttonStyle_secondaryPurple {
   background: none;
   border: 1px solid rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .button__buttonStyle_secondaryGreen {
-  background: linear-gradient(#ffffff, #ffffff)
-    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
+  background: #ffffff;
   border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .button__buttonStyle_red {
-  background: linear-gradient(#ffffff, #ffffff)
-    /* plasmic-token: sm1UmsjMUgvPdL9, sm1UmsjMUgvPdL9 */;
+  background: #ffffff;
   border: 1px solid rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
 .button__buttonStyle_blue {
-  background: linear-gradient(rgb(46, 129, 184), rgb(46, 129, 184))
-    /* plasmic-token: IfaVHQ1Yp, IfaVHQ1Yp */;
+  background: rgb(46, 129, 184);
 }
 .button__disabled {
   opacity: 0.5;
 }
 .root:hover .button {
-  background: linear-gradient(rgb(0, 142, 113), rgb(0, 142, 113))
-    /* plasmic-token: UlVSoc2FV, UlVSoc2FV */;
+  background: rgb(0, 142, 113);
 }
 .root__buttonStyle_primaryPurple:hover .button__buttonStyle_primaryPurple {
-  background: linear-gradient(rgb(56, 31, 86), rgb(56, 31, 86))
-    /* plasmic-token: BQ77SKZJQ, BQ77SKZJQ */;
+  background: rgb(56, 31, 86);
 }
 .root__buttonStyle_secondaryPurple:hover .button__buttonStyle_secondaryPurple {
-  background: linear-gradient(rgba(74, 40, 112, 0.05), rgba(74, 40, 112, 0.05))
-    /* plasmic-token: RvvnSEjNc, RvvnSEjNc */;
+  background: rgba(74, 40, 112, 0.05);
 }
 .root__buttonStyle_secondaryGreen:hover .button__buttonStyle_secondaryGreen {
   background: rgba(20, 220, 152, 0.06);
 }
 .root__buttonStyle_red:hover .button__buttonStyle_red {
-  background: linear-gradient(rgb(218, 36, 82), rgb(218, 36, 82))
-    /* plasmic-token: NYSf9tLZvxevghS, NYSf9tLZvxevghS */;
+  background: rgb(218, 36, 82);
 }
 .box {
   display: inline-flex;
@@ -74,6 +66,8 @@
   width: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
+  height: 100%;
+  min-height: 0;
 }
 .box > :global(.__wab_flex-container) {
   justify-content: center;

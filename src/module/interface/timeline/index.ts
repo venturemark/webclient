@@ -9,9 +9,11 @@ export interface ITimeline {
   isCurrent: boolean;
 }
 
+// api calls
 export interface ITimelineQuery {
   userId: string;
   organizationId: string;
+  token: string;
 }
 
 export interface INewTimeline {
@@ -19,6 +21,7 @@ export interface INewTimeline {
   desc: string;
   userId: string;
   organizationId: string;
+  token: string;
 }
 
 export interface ITimelineUpdate {
@@ -28,4 +31,5 @@ export interface ITimelineUpdate {
   desc?: string;
   name?: string;
   stat?: string | undefined;
+  token: string;
 }

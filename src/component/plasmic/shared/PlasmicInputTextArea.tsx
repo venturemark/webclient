@@ -72,7 +72,7 @@ export type PlasmicInputTextArea__OverridesType = {
   labelContainer?: p.Flex<"label">;
   inputHelperText?: p.Flex<"div">;
   textboxContainer?: p.Flex<"div">;
-  input?: p.Flex<"textarea">;
+  input?: p.Flex<"input">;
   errorMessage?: p.Flex<typeof ErrorMessage>;
 };
 
@@ -139,13 +139,11 @@ function PlasmicInputTextArea__RenderFunc(props: {
                 "error",
                 "error"
               ),
-
               [sty.inputHelperText__hasLabel]: hasVariant(
                 variants,
                 "hasLabel",
                 "hasLabel"
               ),
-
               [sty.inputHelperText__hasTextHelper]: hasVariant(
                 variants,
                 "hasTextHelper",
@@ -166,12 +164,13 @@ function PlasmicInputTextArea__RenderFunc(props: {
           data-plasmic-override={overrides.textboxContainer}
           className={classNames(defaultcss.all, sty.textboxContainer)}
         >
-          <textarea
+          <input
             data-plasmic-name={"input"}
             data-plasmic-override={overrides.input}
-            className={classNames(defaultcss.textarea, sty.input)}
+            className={classNames(defaultcss.input, sty.input)}
             placeholder={"" as const}
             title={"" as const}
+            type={"text" as const}
           />
         </div>
 
@@ -190,7 +189,7 @@ function PlasmicInputTextArea__RenderFunc(props: {
             <ErrorMessage
               data-plasmic-name={"errorMessage"}
               data-plasmic-override={overrides.errorMessage}
-              slot={"Error message"}
+              message={"Error message"}
             />
           ) : null}
         </div>
@@ -209,7 +208,6 @@ const PlasmicDescendants = {
     "input",
     "errorMessage",
   ],
-
   textInput: [
     "textInput",
     "labelContainer",
@@ -218,7 +216,6 @@ const PlasmicDescendants = {
     "input",
     "errorMessage",
   ],
-
   labelContainer: ["labelContainer"],
   inputHelperText: ["inputHelperText"],
   textboxContainer: ["textboxContainer", "input"],
@@ -235,7 +232,7 @@ type NodeDefaultElementType = {
   labelContainer: "label";
   inputHelperText: "div";
   textboxContainer: "div";
-  input: "textarea";
+  input: "input";
   errorMessage: typeof ErrorMessage;
 };
 
@@ -244,9 +241,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicInputTextArea__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicInputTextArea__VariantsArgs;
   args?: PlasmicInputTextArea__ArgsType;
   overrides?: NodeOverridesType<T>;

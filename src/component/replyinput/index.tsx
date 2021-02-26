@@ -32,6 +32,7 @@ function ReplyInput(props: ReplyInputProps) {
       return;
     }
 
+    const token = "";
     const newMessage: INewMessage = {
       text: data.text,
       organizationId,
@@ -39,6 +40,7 @@ function ReplyInput(props: ReplyInputProps) {
       updateId,
       userId,
       reid: reid,
+      token,
     };
 
     // console.log(newMessage);

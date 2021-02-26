@@ -27,7 +27,6 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
-import SidebarItem from "../../sidebaritem/index"; // plasmic-import: KDElHbQmfd/component
 import SidebarItemGroup from "../../sidebaritemgroup/index"; // plasmic-import: JQWYItyW5A/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -56,8 +55,6 @@ export type PlasmicSidebar__OverridesType = {
   root?: p.Flex<"div">;
   topSidebar?: p.Flex<"div">;
   scrollContainer?: p.Flex<"div">;
-  addTimeline?: p.Flex<typeof SidebarItem>;
-  box?: p.Flex<"div">;
   sidebarItemGroup?: p.Flex<typeof SidebarItemGroup>;
 };
 
@@ -109,37 +106,18 @@ function PlasmicSidebar__RenderFunc(props: {
           })}
         >
           {(hasVariant(variants, "hasInput", "hasInput") ? true : false) ? (
-            <SidebarItem
-              data-plasmic-name={"addTimeline"}
-              data-plasmic-override={overrides.addTimeline}
-              className={classNames("__wab_instance", sty.addTimeline, {
-                [sty.addTimeline__hasInput]: hasVariant(
+            <SidebarItemGroup
+              data-plasmic-name={"sidebarItemGroup"}
+              data-plasmic-override={overrides.sidebarItemGroup}
+              className={classNames("__wab_instance", sty.sidebarItemGroup, {
+                [sty.sidebarItemGroup__hasInput]: hasVariant(
                   variants,
                   "hasInput",
                   "hasInput"
                 ),
               })}
-              name={
-                <div
-                  data-plasmic-name={"box"}
-                  data-plasmic-override={overrides.box}
-                  className={classNames(
-                    defaultcss.all,
-                    defaultcss.__wab_text,
-                    sty.box
-                  )}
-                >
-                  {"Wins"}
-                </div>
-              }
             />
           ) : null}
-
-          <SidebarItemGroup
-            data-plasmic-name={"sidebarItemGroup"}
-            data-plasmic-override={overrides.sidebarItemGroup}
-            className={classNames("__wab_instance", sty.sidebarItemGroup)}
-          />
         </p.Stack>
       </div>
     </div>
@@ -147,32 +125,9 @@ function PlasmicSidebar__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "topSidebar",
-    "scrollContainer",
-    "addTimeline",
-    "box",
-    "sidebarItemGroup",
-  ],
-
-  topSidebar: [
-    "topSidebar",
-    "scrollContainer",
-    "addTimeline",
-    "box",
-    "sidebarItemGroup",
-  ],
-
-  scrollContainer: [
-    "scrollContainer",
-    "addTimeline",
-    "box",
-    "sidebarItemGroup",
-  ],
-
-  addTimeline: ["addTimeline", "box"],
-  box: ["box"],
+  root: ["root", "topSidebar", "scrollContainer", "sidebarItemGroup"],
+  topSidebar: ["topSidebar", "scrollContainer", "sidebarItemGroup"],
+  scrollContainer: ["scrollContainer", "sidebarItemGroup"],
   sidebarItemGroup: ["sidebarItemGroup"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -183,8 +138,6 @@ type NodeDefaultElementType = {
   root: "div";
   topSidebar: "div";
   scrollContainer: "div";
-  addTimeline: typeof SidebarItem;
-  box: "div";
   sidebarItemGroup: typeof SidebarItemGroup;
 };
 
@@ -193,9 +146,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSidebar__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicSidebar__VariantsArgs;
   args?: PlasmicSidebar__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -247,8 +198,6 @@ export const PlasmicSidebar = Object.assign(
     // Helper components rendering sub-elements
     topSidebar: makeNodeComponent("topSidebar"),
     scrollContainer: makeNodeComponent("scrollContainer"),
-    addTimeline: makeNodeComponent("addTimeline"),
-    box: makeNodeComponent("box"),
     sidebarItemGroup: makeNodeComponent("sidebarItemGroup"),
 
     // Metadata about props expected for PlasmicSidebar

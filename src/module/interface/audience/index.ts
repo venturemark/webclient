@@ -12,4 +12,5 @@ export interface INewAudience {
   members: User[];
   userId: string;
   organizationId: string;
+  token: string;
 }
