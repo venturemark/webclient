@@ -12,11 +12,13 @@ export async function Search(
   timelineQuery: ITimelineQuery
 ): Promise<ITimeline[]> {
   const objList = [];
+
+  const token = timelineQuery.token;
+  const metadata = { Authorization: `Bearer ${token}` };
+
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new SearchI();
-
-  // Need to map JSON array of objects into protobuf using the generated marshalling code.
 
   const obj = new SearchI_Obj();
   obj.getMetadataMap().set(key.OrganizationID, timelineQuery.organizationId);
@@ -26,7 +28,7 @@ export async function Search(
 
   const getSearchResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {
-      client.search(req, {}, function (err: any, res: any): any {
+      client.search(req, metadata, function (err: any, res: any): any {
         if (err) {
           console.log(err.code);
           console.log(err.message);

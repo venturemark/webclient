@@ -14,6 +14,7 @@ export interface IUpdateQuery {
   timelineId?: string;
   userId: string;
   timelines?: any;
+  token: string;
 }
 
 export interface INewUpdate {
@@ -21,6 +22,7 @@ export interface INewUpdate {
   organizationId: string;
   timelineId: string;
   userId: string;
+  token: string;
 }
 
 export interface IUpdateUpdate {
@@ -29,4 +31,5 @@ export interface IUpdateUpdate {
   userId: string;
   organizationId: string;
   timelineId: string;
+  token: string;
 }

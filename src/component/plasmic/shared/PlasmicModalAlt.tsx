@@ -282,7 +282,6 @@ const PlasmicDescendants = {
     "label2",
     "selectUserButton",
   ],
-
   group64: [
     "group64",
     "rectangle587",
@@ -297,7 +296,6 @@ const PlasmicDescendants = {
     "label2",
     "selectUserButton",
   ],
-
   rectangle587: ["rectangle587", "label3", "ventureMark"],
   label3: ["label3"],
   ventureMark: ["ventureMark"],
@@ -311,7 +309,6 @@ const PlasmicDescendants = {
     "label2",
     "selectUserButton",
   ],
-
   selectUserContainer: ["selectUserContainer", "selectOrganization", "label"],
   selectOrganization: ["selectOrganization", "label"],
   label: ["label"],
@@ -345,9 +342,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicModalAlt__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicModalAlt__VariantsArgs;
   args?: PlasmicModalAlt__ArgsType;
   overrides?: NodeOverridesType<T>;

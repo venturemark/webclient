@@ -15,6 +15,9 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
 
+  const token = newMessage.token;
+  const metadata = { Authorization: `Bearer ${token}` };
+
   objProperty.setText(newMessage.text);
   if (newMessage.reid) {
     objProperty.setReid(newMessage.reid);
@@ -28,7 +31,7 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   req.setObj(obj);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
-    client.create(req, {}, function (err: any, res: any) {
+    client.create(req, metadata, function (err: any, res: any) {
       if (err) {
         console.log(err.code);
         console.log(err.message);

@@ -42,7 +42,7 @@ export type PlasmicTags__VariantMembers = {
     | "secondaryGreen"
     | "red"
     | "blue";
-  buttonFeatures: "icon";
+  buttonFeatures: "icon" | "hasText";
   disabled: "disabled";
 };
 
@@ -50,8 +50,7 @@ export type PlasmicTags__VariantsArgs = {
   buttonStyle?: SingleChoiceArg<
     "primaryPurple" | "secondaryPurple" | "secondaryGreen" | "red" | "blue"
   >;
-
-  buttonFeatures?: MultiChoiceArg<"icon">;
+  buttonFeatures?: MultiChoiceArg<"icon" | "hasText">;
   disabled?: SingleBooleanChoiceArg<"disabled">;
 };
 
@@ -86,8 +85,7 @@ export interface DefaultTagsProps {
   buttonStyle?: SingleChoiceArg<
     "primaryPurple" | "secondaryPurple" | "secondaryGreen" | "red" | "blue"
   >;
-
-  buttonFeatures?: MultiChoiceArg<"icon">;
+  buttonFeatures?: MultiChoiceArg<"icon" | "hasText">;
   disabled?: SingleBooleanChoiceArg<"disabled">;
   className?: string;
 }
@@ -112,14 +110,12 @@ function PlasmicTags__RenderFunc(props: {
           "buttonStyle",
           "primaryPurple"
         ),
-
         [sty.root__buttonStyle_red]: hasVariant(variants, "buttonStyle", "red"),
         [sty.root__buttonStyle_secondaryGreen]: hasVariant(
           variants,
           "buttonStyle",
           "secondaryGreen"
         ),
-
         [sty.root__buttonStyle_secondaryPurple]: hasVariant(
           variants,
           "buttonStyle",
@@ -136,37 +132,31 @@ function PlasmicTags__RenderFunc(props: {
             "buttonFeatures",
             "icon"
           ),
-
           [sty.button__buttonStyle_blue]: hasVariant(
             variants,
             "buttonStyle",
             "blue"
           ),
-
           [sty.button__buttonStyle_primaryPurple]: hasVariant(
             variants,
             "buttonStyle",
             "primaryPurple"
           ),
-
           [sty.button__buttonStyle_red]: hasVariant(
             variants,
             "buttonStyle",
             "red"
           ),
-
           [sty.button__buttonStyle_secondaryGreen]: hasVariant(
             variants,
             "buttonStyle",
             "secondaryGreen"
           ),
-
           [sty.button__buttonStyle_secondaryPurple]: hasVariant(
             variants,
             "buttonStyle",
             "secondaryPurple"
           ),
-
           [sty.button__disabled]: hasVariant(variants, "disabled", "disabled"),
         })}
       >
@@ -181,7 +171,6 @@ function PlasmicTags__RenderFunc(props: {
               "buttonStyle",
               "blue"
             ),
-
             [sty.box__buttonStyle_primaryPurple]: hasVariant(
               variants,
               "buttonStyle",
@@ -189,48 +178,51 @@ function PlasmicTags__RenderFunc(props: {
             ),
           })}
         >
-          <p.PlasmicSlot
-            defaultContents={"Tag Name"}
-            value={args.text2}
-            className={classNames(sty.slotText2, {
-              [sty.slotText2__buttonFeatures_icon]: hasVariant(
-                variants,
-                "buttonFeatures",
-                "icon"
-              ),
-
-              [sty.slotText2__buttonStyle_primaryPurple]: hasVariant(
-                variants,
-                "buttonStyle",
-                "primaryPurple"
-              ),
-
-              [sty.slotText2__buttonStyle_red]: hasVariant(
-                variants,
-                "buttonStyle",
-                "red"
-              ),
-
-              [sty.slotText2__buttonStyle_secondaryGreen]: hasVariant(
-                variants,
-                "buttonStyle",
-                "secondaryGreen"
-              ),
-
-              [sty.slotText2__buttonStyle_secondaryPurple]: hasVariant(
-                variants,
-                "buttonStyle",
-                "secondaryPurple"
-              ),
-
-              [sty.slotText2__disabled]: hasVariant(
-                variants,
-                "disabled",
-                "disabled"
-              ),
-            })}
-          />
-
+          {(
+            hasVariant(variants, "buttonFeatures", "hasText") ? true : false
+          ) ? (
+            <p.PlasmicSlot
+              defaultContents={"Tag Name"}
+              value={args.text2}
+              className={classNames(sty.slotText2, {
+                [sty.slotText2__buttonFeatures_hasText]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "hasText"
+                ),
+                [sty.slotText2__buttonFeatures_icon]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "icon"
+                ),
+                [sty.slotText2__buttonStyle_primaryPurple]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "primaryPurple"
+                ),
+                [sty.slotText2__buttonStyle_red]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "red"
+                ),
+                [sty.slotText2__buttonStyle_secondaryGreen]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "secondaryGreen"
+                ),
+                [sty.slotText2__buttonStyle_secondaryPurple]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "secondaryPurple"
+                ),
+                [sty.slotText2__disabled]: hasVariant(
+                  variants,
+                  "disabled",
+                  "disabled"
+                ),
+              })}
+            />
+          ) : null}
           {(hasVariant(variants, "buttonFeatures", "icon") ? true : false) ? (
             <p.PlasmicSlot
               defaultContents={
@@ -248,7 +240,6 @@ function PlasmicTags__RenderFunc(props: {
                   "buttonFeatures",
                   "icon"
                 ),
-
                 [sty.slotChildren__buttonFeatures_icon_buttonStyle_red]:
                   hasVariant(variants, "buttonFeatures", "icon") &&
                   hasVariant(variants, "buttonStyle", "red"),
@@ -294,9 +285,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicTags__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicTags__VariantsArgs;
   args?: PlasmicTags__ArgsType;
   overrides?: NodeOverridesType<T>;

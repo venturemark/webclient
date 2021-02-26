@@ -29,12 +29,10 @@
 }
 .root:hover .container {
   border-radius: 5px;
-  background: linear-gradient(rgb(231, 231, 236), rgb(231, 231, 236))
-    /* plasmic-token: FMrtJGj8f, FMrtJGj8f */;
+  background: rgb(231, 231, 236);
 }
 .root__greenBgHover:hover .container__greenBgHover {
-  background: linear-gradient(rgb(0, 142, 113), rgb(0, 142, 113))
-    /* plasmic-token: UlVSoc2FV, UlVSoc2FV */;
+  background: rgb(0, 142, 113);
 }
 .root__greenBgHover:hover .slotChildren__greenBgHover {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;

@@ -7,6 +7,7 @@ export const configJson = {
   redirectUri: isDev()
     ? "http://localhost:3006/profile"
     : "https://venturemark.co/profile",
+  useRefreshTokens: true,
 };
 
 export function getConfig() {
@@ -26,5 +27,6 @@ export function getConfig() {
     clientId: configJson.clientId,
     ...(audience ? { audience } : null),
     redirectUri: configJson.redirectUri,
+    useRefreshTokens: configJson.useRefreshTokens,
   };
 }

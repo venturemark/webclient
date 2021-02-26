@@ -10,8 +10,10 @@ const getMessages = async (messageQuery: IMessageQuery) => {
 };
 
 export function useMessages(messageQuery: IMessageQuery) {
-  return useQuery<any, ErrorResponse>(["message"], () =>
-    getMessages(messageQuery)
+  return useQuery<any, ErrorResponse>(
+    ["message", messageQuery.token],
+    () => getMessages(messageQuery),
+    { enabled: !!messageQuery.token }
   );
 }
 

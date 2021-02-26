@@ -53,6 +53,8 @@ export const PlasmicSidebarItemGroup__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicSidebarItemGroup__OverridesType = {
   root?: p.Flex<"div">;
+  venture?: p.Flex<typeof SidebarItem>;
+  itemContainer?: p.Flex<"div">;
 };
 
 export interface DefaultSidebarItemGroupProps {
@@ -77,8 +79,10 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
       <SidebarItem
-        className={classNames("__wab_instance", sty.sidebarItem__fZxTp, {
-          [sty.sidebarItem__isCollapsed__fZxTpR1V]: hasVariant(
+        data-plasmic-name={"venture"}
+        data-plasmic-override={overrides.venture}
+        className={classNames("__wab_instance", sty.venture, {
+          [sty.venture__isCollapsed]: hasVariant(
             variants,
             "isCollapsed",
             "isCollapsed"
@@ -112,11 +116,13 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
       {(hasVariant(variants, "isCollapsed", "isCollapsed") ? false : true) ? (
         <p.Stack
           as={"div"}
+          data-plasmic-name={"itemContainer"}
+          data-plasmic-override={overrides.itemContainer}
           hasGap={
             hasVariant(variants, "isCollapsed", "isCollapsed") ? true : false
           }
-          className={classNames(defaultcss.all, sty.box__hBuxo, {
-            [sty.box__isCollapsed__hBuxoR1V]: hasVariant(
+          className={classNames(defaultcss.all, sty.itemContainer, {
+            [sty.itemContainer__isCollapsed]: hasVariant(
               variants,
               "isCollapsed",
               "isCollapsed"
@@ -173,7 +179,9 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root"],
+  root: ["root", "venture", "itemContainer"],
+  venture: ["venture"],
+  itemContainer: ["itemContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -181,6 +189,8 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  venture: typeof SidebarItem;
+  itemContainer: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -188,9 +198,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSidebarItemGroup__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicSidebarItemGroup__VariantsArgs;
   args?: PlasmicSidebarItemGroup__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -240,6 +248,8 @@ export const PlasmicSidebarItemGroup = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    venture: makeNodeComponent("venture"),
+    itemContainer: makeNodeComponent("itemContainer"),
 
     // Metadata about props expected for PlasmicSidebarItemGroup
     internalVariantProps: PlasmicSidebarItemGroup__VariantProps,

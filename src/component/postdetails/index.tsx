@@ -18,11 +18,13 @@ interface PostDetailsProps extends DefaultPostDetailsProps {
 
 function PostDetails(props: PostDetailsProps) {
   const { updateId, timelineId, userId, organizationId } = props;
+  const token = "";
   const messageSearch: IMessageQuery = {
     updateId,
     timelineId,
     userId,
     organizationId,
+    token,
   };
 
   const { data: messagesData } = useMessages(messageSearch);

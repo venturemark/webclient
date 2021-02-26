@@ -27,6 +27,7 @@ const providerConfig = {
   clientId: config.clientId,
   ...(config.audience ? { audience: config.audience } : null),
   redirectUri: config.redirectUri,
+  useRefreshTokens: config.useRefreshTokens,
   onRedirectCallback,
 };
 

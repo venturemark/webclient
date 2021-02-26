@@ -17,6 +17,7 @@ export interface IMessageQuery {
   updateId: string;
   reid?: string;
   timelines?: any;
+  token: string;
 }
 
 export interface INewMessage {
@@ -25,5 +26,6 @@ export interface INewMessage {
   timelineId: string;
   userId: string;
   updateId: string;
+  token: string;
   reid?: string;
 }

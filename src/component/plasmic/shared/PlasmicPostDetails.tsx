@@ -57,8 +57,11 @@ export type PlasmicPostDetails__OverridesType = {
   box?: p.Flex<"div">;
   iconButton?: p.Flex<typeof IconButton>;
   svg?: p.Flex<"svg">;
-  contentPost?: p.Flex<typeof ContentPost>;
   replyContainer?: p.Flex<"div">;
+  contentPost?: p.Flex<typeof ContentPost>;
+  userName3?: p.Flex<"span">;
+  span?: p.Flex<"span">;
+  date3?: p.Flex<"span">;
   userName?: p.Flex<"span">;
   date?: p.Flex<"span">;
   userName2?: p.Flex<"span">;
@@ -121,18 +124,61 @@ function PlasmicPostDetails__RenderFunc(props: {
         </div>
       ) : null}
 
-      <ContentPost
-        data-plasmic-name={"contentPost"}
-        data-plasmic-override={overrides.contentPost}
-        className={classNames("__wab_instance", sty.contentPost)}
-        state={["isPostDetails"]}
-      />
-
       <div
         data-plasmic-name={"replyContainer"}
         data-plasmic-override={overrides.replyContainer}
         className={classNames(defaultcss.all, sty.replyContainer)}
       >
+        <ContentPost
+          data-plasmic-name={"contentPost"}
+          data-plasmic-override={overrides.contentPost}
+          className={classNames("__wab_instance", sty.contentPost)}
+          date={
+            <React.Fragment>
+              <span
+                data-plasmic-name={"span"}
+                data-plasmic-override={overrides.span}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.span
+                )}
+              >
+                {"•"}
+              </span>
+
+              <span
+                data-plasmic-name={"date3"}
+                data-plasmic-override={overrides.date3}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.date3
+                )}
+              >
+                {"3 hours ago"}
+              </span>
+            </React.Fragment>
+          }
+          state={["isPostDetails"]}
+          userInitials={"KO"}
+          userName={
+            <span
+              data-plasmic-name={"userName3"}
+              data-plasmic-override={overrides.userName3}
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.userName3
+              )}
+            >
+              <span>
+                <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+              </span>
+            </span>
+          }
+        />
+
         <ReplyContent
           date={
             <span
@@ -149,9 +195,6 @@ function PlasmicPostDetails__RenderFunc(props: {
           }
           text={
             "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-          }
-          textContainer2={
-            "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mo"
           }
           userName={
             <span
@@ -187,9 +230,6 @@ function PlasmicPostDetails__RenderFunc(props: {
           text={
             "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
           }
-          textContainer2={
-            "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mo"
-          }
           userName={
             <span
               data-plasmic-name={"userName2"}
@@ -223,9 +263,6 @@ function PlasmicPostDetails__RenderFunc(props: {
           }
           text={
             "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-          }
-          textContainer2={
-            "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mo"
           }
           userName={
             <span
@@ -261,9 +298,6 @@ function PlasmicPostDetails__RenderFunc(props: {
           text={
             "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
           }
-          textContainer2={
-            "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mo"
-          }
           userName={
             <span
               data-plasmic-name={"userName222"}
@@ -297,8 +331,11 @@ const PlasmicDescendants = {
     "box",
     "iconButton",
     "svg",
-    "contentPost",
     "replyContainer",
+    "contentPost",
+    "userName3",
+    "span",
+    "date3",
     "userName",
     "date",
     "userName2",
@@ -309,13 +346,15 @@ const PlasmicDescendants = {
     "date222",
     "replyInput",
   ],
-
   box: ["box", "iconButton", "svg"],
   iconButton: ["iconButton", "svg"],
   svg: ["svg"],
-  contentPost: ["contentPost"],
   replyContainer: [
     "replyContainer",
+    "contentPost",
+    "userName3",
+    "span",
+    "date3",
     "userName",
     "date",
     "userName2",
@@ -325,7 +364,10 @@ const PlasmicDescendants = {
     "userName222",
     "date222",
   ],
-
+  contentPost: ["contentPost", "userName3", "span", "date3"],
+  userName3: ["userName3"],
+  span: ["span"],
+  date3: ["date3"],
   userName: ["userName"],
   date: ["date"],
   userName2: ["userName2"],
@@ -345,8 +387,11 @@ type NodeDefaultElementType = {
   box: "div";
   iconButton: typeof IconButton;
   svg: "svg";
-  contentPost: typeof ContentPost;
   replyContainer: "div";
+  contentPost: typeof ContentPost;
+  userName3: "span";
+  span: "span";
+  date3: "span";
   userName: "span";
   date: "span";
   userName2: "span";
@@ -363,9 +408,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicPostDetails__OverridesType,
   DescendantsType<T>
 >;
-
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicPostDetails__VariantsArgs;
   args?: PlasmicPostDetails__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -418,8 +461,11 @@ export const PlasmicPostDetails = Object.assign(
     box: makeNodeComponent("box"),
     iconButton: makeNodeComponent("iconButton"),
     svg: makeNodeComponent("svg"),
-    contentPost: makeNodeComponent("contentPost"),
     replyContainer: makeNodeComponent("replyContainer"),
+    contentPost: makeNodeComponent("contentPost"),
+    userName3: makeNodeComponent("userName3"),
+    span: makeNodeComponent("span"),
+    date3: makeNodeComponent("date3"),
     userName: makeNodeComponent("userName"),
     date: makeNodeComponent("date"),
     userName2: makeNodeComponent("userName2"),

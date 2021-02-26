@@ -6,7 +6,7 @@
   flex-direction: column;
   min-width: 0;
 }
-.sidebarItem__fZxTp:global(.__wab_instance) {
+.venture:global(.__wab_instance) {
   position: relative;
   left: auto;
   top: auto;
@@ -20,7 +20,7 @@
   overflow: hidden;
   display: inline-block;
 }
-.box__hBuxo {
+.itemContainer {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -29,17 +29,17 @@
   top: auto;
   left: auto;
 }
-.box__isCollapsed__hBuxoR1V {
+.itemContainer__isCollapsed {
   display: flex;
   flex-direction: column;
 }
-.box__isCollapsed__hBuxoR1V > :global(.__wab_flex-container) {
+.itemContainer__isCollapsed > :global(.__wab_flex-container) {
   flex-direction: column;
   margin-left: calc(0px - 0px);
   width: calc(100% + 0px);
 }
-.box__isCollapsed__hBuxoR1V > :global(.__wab_flex-container) > *,
-.box__isCollapsed__hBuxoR1V
+.itemContainer__isCollapsed > :global(.__wab_flex-container) > *,
+.itemContainer__isCollapsed
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > * {

@@ -10,8 +10,10 @@ const getTimelines = async (timelineQuery: ITimelineQuery) => {
 };
 
 export function useTimelines(timelineQuery: ITimelineQuery) {
-  return useQuery<any, ErrorResponse>(["timeline"], () =>
-    getTimelines(timelineQuery)
+  return useQuery<any, ErrorResponse>(
+    ["timeline", timelineQuery.token],
+    () => getTimelines(timelineQuery),
+    { enabled: !!timelineQuery.token }
   );
 }
 
