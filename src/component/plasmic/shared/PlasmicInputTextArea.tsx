@@ -189,7 +189,7 @@ function PlasmicInputTextArea__RenderFunc(props: {
             <ErrorMessage
               data-plasmic-name={"errorMessage"}
               data-plasmic-override={overrides.errorMessage}
-              slot={"Error message"}
+              message={"Error message"}
             />
           ) : null}
         </div>

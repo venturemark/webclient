@@ -34,7 +34,6 @@ function Sidebar(props: SidebarProps) {
     organizationId,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
-
   const [hasInput, setHasInput] = useState(false);
   const [token, setToken] = useState<string>("");
 

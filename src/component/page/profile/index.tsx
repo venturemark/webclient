@@ -10,7 +10,7 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
-  return <PlasmicProfile {...props} />;
+  return <PlasmicProfile />;
 }
 
 export default withAuthenticationRequired(Profile);

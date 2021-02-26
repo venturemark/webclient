@@ -10,14 +10,19 @@ interface InputTextProps extends DefaultInputTextProps {
   defaultValue?: any;
   register?: any;
   name?: string;
+  errorMessage?: string;
 }
 
 function InputText(props: InputTextProps) {
-  const { register, name, defaultValue, ...rest } = props;
+  const { register, name, defaultValue, errorMessage, ...rest } = props;
 
   return (
     <PlasmicInputText
       input={{ ref: register, name: name, defaultValue: defaultValue }}
+      error={errorMessage ? true : false}
+      errorMessage={{
+        message: errorMessage,
+      }}
       {...rest}
     />
   );

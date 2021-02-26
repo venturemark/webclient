@@ -8,17 +8,30 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { saveUser, ISaveUser, getUser } from "module/store";
+import { nameError, roleError } from "module/errors";
 
 interface ProfileFormProps extends DefaultProfileFormProps {}
 
 function ProfileForm(props: ProfileFormProps) {
   const history = useHistory();
-  const { user } = useAuth0();
-  const { handleSubmit, register } = useForm();
+  const { user: authUser } = useAuth0();
+  const user = getUser() ? getUser() : authUser;
+  const { handleSubmit, register, errors } = useForm();
 
   const handleComplete = (data: any) => {
-    //currently we're not storing a change here because we're waiting on backend.
-    console.log(data);
+    if (!data.name) {
+      return;
+    }
+
+    const user: ISaveUser = {
+      userId: data.name.toLowerCase().replace(/\s/g, ""),
+      name: data.name,
+      role: data.role,
+    };
+
+    saveUser(user);
+
     history.push("/");
   };
 
@@ -29,13 +42,16 @@ function ProfileForm(props: ProfileFormProps) {
         onSubmit: handleSubmit(handleComplete),
       }}
       nameField={{
-        defaultValue: user?.name ?? "",
-        register: register(),
         name: "name",
+        defaultValue: user?.name ?? "",
+        register: register({ required: true }),
+        errorMessage: errors.name && nameError,
       }}
       jobField={{
-        register: register(),
-        name: "job",
+        name: "role",
+        defaultValue: user?.role ?? "",
+        register: register({ required: true }),
+        errorMessage: errors.role && roleError,
       }}
       completeProfile={{
         type: "submit",
