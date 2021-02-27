@@ -37,6 +37,8 @@ function Sidebar(props: SidebarProps) {
   const [hasInput, setHasInput] = useState(false);
   const [token, setToken] = useState<string>("");
 
+  console.log(userId, organizationId);
+
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
@@ -74,6 +76,7 @@ function Sidebar(props: SidebarProps) {
   }, [currentTimeline, setIsHome, getAccessTokenSilently, token]);
 
   console.log(sortedCurrentTimelines);
+  console.log(timelinesData);
 
   return (
     <PlasmicSidebar

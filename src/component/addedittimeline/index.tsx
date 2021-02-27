@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { INewTimeline } from "module/interface/timeline";
 import { useCreateTimeline } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
+import { getUser, getVenture } from "module/store";
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
@@ -20,6 +21,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const { getAccessTokenSilently } = useAuth0();
   const { mutate: createTimeline } = useCreateTimeline();
   const [token, setToken] = useState<string>("");
+  const userId = getUser()?.id ?? "";
+  const organizationId = getVenture()?.id ?? "";
 
   const handleCreate = (data: any) => {
     if (!token || !data.name || !data.description) {
@@ -28,10 +31,12 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     const timeline: INewTimeline = {
       name: data.name,
       desc: data.description,
-      userId: "Marcus Ellison",
-      organizationId: "Venturemark",
+      userId,
+      organizationId,
       token: token,
     };
+
+    console.log(timeline);
 
     createTimeline(timeline);
     reset();
@@ -65,6 +70,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         register: register(),
         name: "description",
       }}
+      visibility={{}}
       {...rest}
     />
   );

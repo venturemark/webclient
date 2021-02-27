@@ -60,6 +60,9 @@ export const PlasmicRadioGroup__ArgProps = new Array<ArgPropType>("label3");
 export type PlasmicRadioGroup__OverridesType = {
   root?: p.Flex<"div">;
   labelContainer?: p.Flex<"label">;
+  _private?: p.Flex<typeof InputToggleButton>;
+  members?: p.Flex<typeof InputToggleButton>;
+  _public?: p.Flex<typeof InputToggleButton>;
 };
 
 export interface DefaultRadioGroupProps {
@@ -109,6 +112,8 @@ function PlasmicRadioGroup__RenderFunc(props: {
 
       <div className={classNames(defaultcss.all, sty.box__zgeS0)}>
         <InputToggleButton
+          data-plasmic-name={"_private"}
+          data-plasmic-override={overrides._private}
           label3={"Private"}
           position={"top" as const}
           selected={"selected" as const}
@@ -117,7 +122,9 @@ function PlasmicRadioGroup__RenderFunc(props: {
         </InputToggleButton>
 
         <InputToggleButton
-          className={classNames("__wab_instance", sty.inputToggleButton__m5Zt4)}
+          data-plasmic-name={"members"}
+          data-plasmic-override={overrides.members}
+          className={classNames("__wab_instance", sty.members)}
           label3={"Members"}
           position={"middle" as const}
         >
@@ -135,7 +142,9 @@ function PlasmicRadioGroup__RenderFunc(props: {
         </InputToggleButton>
 
         <InputToggleButton
-          className={classNames("__wab_instance", sty.inputToggleButton__zLhjs)}
+          data-plasmic-name={"_public"}
+          data-plasmic-override={overrides._public}
+          className={classNames("__wab_instance", sty._public)}
           label3={"Public"}
           position={"bottom" as const}
         >
@@ -147,8 +156,11 @@ function PlasmicRadioGroup__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "labelContainer"],
+  root: ["root", "labelContainer", "_private", "members", "_public"],
   labelContainer: ["labelContainer"],
+  _private: ["_private"],
+  members: ["members"],
+  _public: ["_public"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -157,6 +169,9 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   labelContainer: "label";
+  _private: typeof InputToggleButton;
+  members: typeof InputToggleButton;
+  _public: typeof InputToggleButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -215,6 +230,9 @@ export const PlasmicRadioGroup = Object.assign(
   {
     // Helper components rendering sub-elements
     labelContainer: makeNodeComponent("labelContainer"),
+    _private: makeNodeComponent("_private"),
+    members: makeNodeComponent("members"),
+    _public: makeNodeComponent("_public"),
 
     // Metadata about props expected for PlasmicRadioGroup
     internalVariantProps: PlasmicRadioGroup__VariantProps,

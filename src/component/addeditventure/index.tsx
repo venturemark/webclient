@@ -19,7 +19,7 @@ function AddEditVenture(props: AddEditVentureProps) {
 
   const handleCreate = (data: any) => {
     const venture: INewVenture = {
-      id: data.nametoLowerCase().replace(/\s/g, ""),
+      id: data.name.toLowerCase().replace(/\s/g, ""),
       name: data.name,
       description: data.description,
       url: data.url,
