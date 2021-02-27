@@ -28,7 +28,7 @@ function VentureSettings(props: VentureSettingsProps) {
 
   //currently hardcoding until we have a plan for org / user storage
   const organizationId = "venturemark";
-  const userId = login?.userId ?? "marcus";
+  const userId = login?.id ?? "marcus";
 
   const token = "";
 

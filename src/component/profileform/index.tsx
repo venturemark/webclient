@@ -8,7 +8,8 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { saveUser, ISaveUser, getUser } from "module/store";
+import { saveUser, getUser } from "module/store";
+import { INewUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 
 interface ProfileFormProps extends DefaultProfileFormProps {}
@@ -24,10 +25,11 @@ function ProfileForm(props: ProfileFormProps) {
       return;
     }
 
-    const user: ISaveUser = {
-      userId: data.name.toLowerCase().replace(/\s/g, ""),
+    const user: INewUser = {
+      id: data.name.toLowerCase().replace(/\s/g, ""),
       name: data.name,
-      role: data.role,
+      title: data.role,
+      token: "someToken",
     };
 
     saveUser(user);

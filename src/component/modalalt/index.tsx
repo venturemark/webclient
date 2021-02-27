@@ -6,7 +6,7 @@ import {
   DefaultModalAltProps,
 } from "component/plasmic/shared/PlasmicModalAlt";
 import { useForm } from "react-hook-form";
-import { saveUser, ISaveUser } from "module/store";
+import { saveUser } from "module/store";
 import { customers } from "module/customerdata";
 
 const organizationOptions = customers.map((customer) => {
@@ -40,19 +40,19 @@ function ModalAlt(props: ModalAltProps) {
     });
   }
 
-  const handleLogin = () => {
-    if (!organization || !user) {
-      return;
-    }
-    const userObj: ISaveUser = {
-      userId: user,
-      name: "",
-      role: "",
-    };
+  // const handleLogin = () => {
+  //   if (!organization || !user) {
+  //     return;
+  //   }
+  //   const userObj: ISaveUser = {
+  //     userId: user,
+  //     name: "",
+  //     role: "",
+  //   };
 
-    saveUser(userObj);
-    setLogin(userObj);
-  };
+  //   saveUser(userObj);
+  //   setLogin(userObj);
+  // };
 
   useEffect(() => {
     organization && setOrgSelected(true);
@@ -62,9 +62,9 @@ function ModalAlt(props: ModalAltProps) {
     <PlasmicModalAlt
       orgSelected={orgSelected}
       organizationDescription={organizationDescription}
-      welcomeForm={{
-        onSubmit: handleSubmit(handleLogin),
-      }}
+      // welcomeForm={{
+      //   onSubmit: handleSubmit(handleLogin),
+      // }}
 
       // selectUserButton={{
       //   type: "submit" }}

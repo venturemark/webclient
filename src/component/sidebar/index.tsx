@@ -5,12 +5,12 @@ import {
   PlasmicSidebar,
   DefaultSidebarProps,
 } from "component/plasmic/shared/PlasmicSidebar";
-import SidebarItem from "component/sidebaritem";
+import SidebarItemGroup from "component/sidebaritemgroup";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
 import { customers } from "module/customerdata";
-import SidebarItemGroup from "component/sidebaritemgroup";
+import { getVenture } from "module/store";
 
 interface SidebarProps extends DefaultSidebarProps {
   isHome: boolean;
@@ -43,7 +43,8 @@ function Sidebar(props: SidebarProps) {
     token,
   };
 
-  const ventures = customers;
+  const venture = getVenture();
+  const ventures = [];
 
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
@@ -93,9 +94,12 @@ function Sidebar(props: SidebarProps) {
       //   organizationId: organizationId,
       //   setHasInput: setHasInput }}
       scrollContainer={{
-        children: ventures.map((venture: any) => (
-          <SidebarItemGroup name={venture.name} timelines={venture.timelines} />
-        )),
+        children: (
+          <SidebarItemGroup name={venture?.name ?? ""} timelines={timelines} />
+        ),
+        // children: ventures.map((venture: any) => (
+        //   <SidebarItemGroup name={venture.name} timelines={venture.timelines} />
+        // )),
       }}
       // timelinesContainer={{
       //   children: sortedCurrentTimelines.map((timeline: ITimeline) => (

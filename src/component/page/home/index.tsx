@@ -35,7 +35,7 @@ export function Home(props: HomeProps) {
   const timelineId = currentTimeline?.id ?? undefined;
   //currently hardcoding until we have a plan for org / user storage
   const organizationId = "venturemark";
-  const userId = user?.userId ?? "marcus";
+  const userId = user?.id ?? "marcus";
   //hook / fetch stuff:
   const token = "";
   const timelineSearch: ITimelineQuery = {

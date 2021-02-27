@@ -6,7 +6,7 @@ import {
   DefaultModalProps,
 } from "component/plasmic/shared/PlasmicModal";
 import { useForm } from "react-hook-form";
-import { saveUser, ISaveUser } from "module/store";
+import { saveUser } from "module/store";
 
 const options = [
   { value: "Marcus Ellison" },
@@ -26,24 +26,24 @@ function Modal(props: ModalProps) {
   const { handleSubmit } = useForm<any>();
   const [user, setUser] = useState("");
 
-  const handleLogin = () => {
-    const userObj: ISaveUser = {
-      userId: user,
-      name: "",
-      role: "",
-    };
+  // const handleLogin = () => {
+  //   const userObj: ISaveUser = {
+  //     userId: user,
+  //     name: "",
+  //     role: "",
+  //   };
 
-    saveUser(userObj);
-    setLogin(userObj);
-  };
+  //   saveUser(userObj);
+  //   setLogin(userObj);
+  // };
 
   return (
     <PlasmicModal
       organizationName={organizationName}
       organizationDescription={organizationDescription}
-      welcomeForm={{
-        onSubmit: handleSubmit(handleLogin),
-      }}
+      // welcomeForm={{
+      //   onSubmit: handleSubmit(handleLogin),
+      // }}
 
       // selectUserButton={{
       //   type: "submit" }}
