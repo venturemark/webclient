@@ -28,7 +28,7 @@ export async function Search(
 
   const getSearchResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {
-      client.search(req, {}, function (err: any, res: any): any {
+      client.search(req, metadata, function (err: any, res: any): any {
         if (err) {
           console.log(err.code);
           console.log(err.message);
