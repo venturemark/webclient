@@ -34,7 +34,6 @@ function Sidebar(props: SidebarProps) {
     organizationId,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
-  const [hasInput, setHasInput] = useState(false);
   const [token, setToken] = useState<string>("");
 
   console.log(userId, organizationId);
@@ -86,16 +85,6 @@ function Sidebar(props: SidebarProps) {
       //   setHasInput: setHasInput,
       // }}
       hasInput={true}
-      // homeSidebarItem={{
-      //   onClick: () => {
-      //     setCurrentTimeline(undefined);
-      //   },
-      //   isCurrent: isHome,
-      // }}
-      // addTimeline={{
-      //   userId: userId,
-      //   organizationId: organizationId,
-      //   setHasInput: setHasInput }}
       scrollContainer={{
         children: (
           <SidebarItemGroup name={venture?.name ?? ""} timelines={timelines} />

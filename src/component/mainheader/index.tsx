@@ -9,14 +9,20 @@ import { useHistory } from "react-router-dom";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
+  currentTimeline: any;
 }
 
 function MainHeader(props: MainHeaderProps) {
-  const { isActive, ...rest } = props;
+  const { isActive, currentTimeline, ...rest } = props;
   const history = useHistory();
 
   return (
     <PlasmicMainHeader
+      {...rest}
+      timelineName={currentTimeline?.name ?? "Marcus Rules"}
+      timelineDescription={
+        currentTimeline?.desc ?? "From the beginning we were here to win"
+      }
       viewHome={{
         onClick: () => history.push("/"),
       }}
@@ -27,7 +33,6 @@ function MainHeader(props: MainHeaderProps) {
         onClick: () => history.push("/settings"),
       }}
       isActive={isActive}
-      {...rest}
     />
   );
 }

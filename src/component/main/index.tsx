@@ -5,6 +5,12 @@ import {
   PlasmicMain,
   DefaultMainProps,
 } from "component/plasmic/shared/PlasmicMain";
+import { useParams } from "react-router-dom";
+
+interface ParamTypes {
+  ventureId: string;
+  timelineId: string;
+}
 
 interface MainProps extends DefaultMainProps {
   isActive: any;
@@ -13,6 +19,7 @@ interface MainProps extends DefaultMainProps {
   setVariantType: any;
   isVisible: any;
   setIsVisible: any;
+  currentTimeline: any;
 }
 
 function Main(props: MainProps) {
@@ -23,14 +30,19 @@ function Main(props: MainProps) {
     setVariantType,
     isVisible,
     setIsVisible,
+    currentTimeline,
     ...rest
   } = props;
+
+  const { ventureId, timelineId } = useParams<ParamTypes>();
+
   return (
     <PlasmicMain
       isActive={isActive}
       variantType={variantType}
       mainHeader={{
         isActive: isActive,
+        currentTimeline,
       }}
       feedUpdate={{
         isVisible,

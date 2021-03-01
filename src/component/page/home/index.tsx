@@ -11,10 +11,15 @@ import { useTimelines } from "module/hook/timeline";
 import { IUpdate, IUpdateQuery } from "module/interface/update";
 import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
 import { getUser, getVenture } from "module/store";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+import VentureSettings from "component/page/venturesettings";
+import Members from "component/page/members";
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Home(props: HomeProps) {
+  let { path, url } = useRouteMatch();
+
   const user = getUser();
   const venture = getVenture();
   const [currentTimeline, setCurrentTimeline] = useState<
@@ -88,63 +93,74 @@ export function Home(props: HomeProps) {
     venture && variantType === "isEmpty" && setVariantType("isVenture");
   }, [venture, variantType]);
 
-  console.log(updates);
+  // console.log(updates);
+
+  console.log("path", path);
 
   return (
-    <PlasmicHome
-      isVisible={isVisible}
-      // showLogin={showLogin}
-      // loginModal={{
-      //   organizationDescription:
-      //     "Venturemark helps founders communicate to internal and external stakeholders.",
-      //   setLogin: setLogin,
-      // }}
-      // isTimeline={!isHome}
-      main={{
-        variantType,
-        isActive,
-        setIsActive,
-        setVariantType,
-        isVisible,
-        setIsVisible,
-      }}
-      sidebar={{
-        isHome: isHome,
-        setIsHome: setIsHome,
-        currentTimeline: currentTimeline,
-        setCurrentTimeline: setCurrentTimeline,
-        userId: userId,
-        organizationId: organizationId,
-      }}
-      postDetails={{
-        setIsVisible,
-      }}
+    <>
+      <PlasmicHome
+        isVisible={isVisible}
+        // showLogin={showLogin}
+        // loginModal={{
+        //   organizationDescription:
+        //     "Venturemark helps founders communicate to internal and external stakeholders.",
+        //   setLogin: setLogin,
+        // }}
+        // isTimeline={!isHome}
+        main={{
+          currentTimeline,
+          variantType,
+          isActive,
+          setIsActive,
+          setVariantType,
+          isVisible,
+          setIsVisible,
+        }}
+        sidebar={{
+          isHome: isHome,
+          setIsHome: setIsHome,
+          currentTimeline: currentTimeline,
+          setCurrentTimeline: setCurrentTimeline,
+          userId: userId,
+          organizationId: organizationId,
+        }}
+        postDetails={{
+          setIsVisible,
+        }}
 
-      // actionBar={{
-      //   organizationId: organizationId,
-      //   currentTimeline: currentTimeline,
-      //   userId: userId,
-      // }}
-      // mainHeader={{
-      //   timelineName: currentTimeline?.name ?? "",
-      //   timelineDescription: currentTimeline?.desc ?? "edit description...",
-      // }}
-      // updatesContainer={{
-      //   children: updates.map((update: IUpdate) => (
-      //     <FeedUpdate
-      //       text={update.text}
-      //       key={update.id}
-      //       id={update.id}
-      //       organizationName={update.organizationId}
-      //       timelineId={update.timelineId}
-      //       userName={update.userId}
-      //       date={update.date}
-      //       allUpdates={allUpdates}
-      //       setCurrentTimeline={setCurrentTimeline}
-      //     />
-      //   )),
-      // }}
-    />
+        // actionBar={{
+        //   organizationId: organizationId,
+        //   currentTimeline: currentTimeline,
+        //   userId: userId,
+        // }}
+        // mainHeader={{
+        //   timelineName: currentTimeline?.name ?? "",
+        //   timelineDescription: currentTimeline?.desc ?? "edit description...",
+        // }}
+        // updatesContainer={{
+        //   children: updates.map((update: IUpdate) => (
+        //     <FeedUpdate
+        //       text={update.text}
+        //       key={update.id}
+        //       id={update.id}
+        //       organizationName={update.organizationId}
+        //       timelineId={update.timelineId}
+        //       userName={update.userId}
+        //       date={update.date}
+        //       allUpdates={allUpdates}
+        //       setCurrentTimeline={setCurrentTimeline}
+        //     />
+        //   )),
+        // }}
+      />
+      {/* <Switch>
+        <Route exact path="/venturemark/settings" component={VentureSettings} />
+        <Route path={`${path}/members`}>
+          <Members />
+        </Route>
+      </Switch> */}
+    </>
   );
 }
 

@@ -6,6 +6,12 @@ import {
   DefaultSidebarItemGroupProps,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
+import { useParams } from "react-router-dom";
+
+interface ParamTypes {
+  ventureId: string;
+  timelineId: string;
+}
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   name: string;
@@ -15,6 +21,7 @@ interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
 function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { name, timelines, ...rest } = props;
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const { ventureId, timelineId } = useParams<ParamTypes>();
 
   return (
     <PlasmicSidebarItemGroup
@@ -23,6 +30,8 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
         icon: {
           onClick: () => setIsCollapsed(!isCollapsed),
         },
+        isActive:
+          name.toLowerCase().replace(/\s/g, "") === ventureId && !timelineId,
       }}
       isCollapsed={isCollapsed}
       itemContainer={{
@@ -32,6 +41,9 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
             organizationId={"Venturemark"}
             userId={"Marcus Ellison"}
             itemType={"timeline"}
+            isActive={
+              timeline.name.toLowerCase().replace(/\s/g, "") === timelineId
+            }
           />
         )),
       }}

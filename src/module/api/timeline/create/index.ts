@@ -27,8 +27,6 @@ export async function Create(newTimeline: INewTimeline): Promise<any> {
 
   req.setObj(obj);
 
-  console.log("creating this timeline:", req.toObject());
-
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, {}, function (err: any, res: CreateO) {
       if (err) {
