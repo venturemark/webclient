@@ -9,7 +9,7 @@ import SidebarItemGroup from "component/sidebaritemgroup";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
-import { customers } from "module/customerdata";
+// import { customers } from "module/customerdata";
 import { getVenture } from "module/store";
 
 interface SidebarProps extends DefaultSidebarProps {
@@ -26,10 +26,9 @@ interface SidebarProps extends DefaultSidebarProps {
 
 function Sidebar(props: SidebarProps) {
   const {
-    isHome,
+    // isHome,
     setIsHome,
     currentTimeline,
-    setCurrentTimeline,
     userId,
     organizationId,
   } = props;
@@ -45,7 +44,7 @@ function Sidebar(props: SidebarProps) {
   };
 
   const venture = getVenture();
-  const ventures = [];
+  // const ventures = [];
 
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
