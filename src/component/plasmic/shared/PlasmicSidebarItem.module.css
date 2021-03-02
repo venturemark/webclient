@@ -6,17 +6,24 @@
   min-width: 0;
   padding: 0px 20px;
 }
+.root__itemType_createTimeline {
+  opacity: 0;
+}
+.root__itemType_createTimeline:hover {
+  opacity: 1;
+}
 .itemContainer {
   display: flex;
   position: relative;
-  background-color: rgba(68, 192, 255, 0);
   width: 100%;
   height: 40px;
   flex-direction: row;
-  cursor: default;
+  cursor: pointer;
   overflow: visible;
   min-width: 0;
-  padding: 5px 20px;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(68, 192, 255, 0);
   border-left: 2px solid rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
 .itemContainer > :global(.__wab_flex-container) {
@@ -30,35 +37,54 @@
 .itemContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 12px;
 }
-.itemContainer__isCurrent {
-  border-left-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+.itemContainer__itemType_createTimeline {
+  background: none;
+  border: 1px dashed rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
-.itemContainer__hasUpdate {
-  border-left-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
+.itemContainer__isActive {
+  background: rgb(2, 157, 127);
 }
-.svg__p8Yl1 {
+.itemContainer__isActive_itemType_createTimeline {
+  background: rgb(2, 157, 127);
+}
+.root:hover .itemContainer {
+  background: rgb(249, 249, 250);
+}
+.root__itemType_createTimeline:hover .itemContainer__itemType_createTimeline {
+  background: none;
+  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.root__isActive:hover .itemContainer__isActive {
+  background: rgb(2, 157, 127);
+}
+.icon:global(.__wab_instance) {
+  position: relative;
+}
+.svg___6Fx5D {
   position: relative;
   object-fit: cover;
-  width: 8px;
-  height: 8px;
-  color: #029d7f;
-  display: block;
-  transform: scale(1, 1) rotate(0deg);
-  top: 9px;
-  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
 }
-.svg__hasUpdate__p8Yl1AoSlB {
-  position: absolute;
-  left: -13px;
-  top: 16px;
+.svg__itemType_createTimeline___6Fx5DOuGst {
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
+}
+.svg__isActive___6Fx5Dw0Xu8 {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.root__itemType_createTimeline:hover
+  .svg__itemType_createTimeline___6Fx5DOuGst {
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
 .box__zwdJs {
   display: inline-flex;
   position: relative;
   width: auto;
   height: auto;
-  cursor: pointer;
   flex-grow: 3;
+  overflow: hidden;
 }
 .box__zwdJs > :global(.__wab_flex-container) {
   align-items: center;
@@ -69,70 +95,26 @@
 .box__zwdJs > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
 }
-.box__isCurrent__zwdJs0Mgpk {
-  height: auto;
-}
-.box__hasUpdate__zwdJsaoSlB {
-  height: auto;
-}
-.box__isOrganization__zwdJsnLnuO {
-  cursor: default;
-}
-.box__isInput__zwdJsVs3Tx {
-  cursor: default;
-}
-.root:hover .box__zwdJs {
-  flex-grow: 1;
-  flex-shrink: 0;
-}
-.box__zSbSe {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: center;
-  height: 17px;
-  width: 15px;
-  flex-shrink: 0;
-}
-.slotChildren__isInput {
-  color: rgba(38, 26, 63, 0.61) /* plasmic-token: BQ77SKZJQ */;
-}
-.root:hover .slotChildren {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
-}
-.svg__mVzHz {
-  position: relative;
-  object-fit: cover;
-  width: 15px;
-  height: 15px;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  flex-shrink: 0;
-}
 .slotName {
-  font-size: 14px;
-  font-weight: 300;
-}
-.slotName__isCurrent {
-  font-size: 14px;
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 600;
 }
-.slotName__hasUpdate {
-  font-size: 14px;
-  font-weight: 300;
+.slotName__itemType_timeline {
+  font-weight: 400;
 }
-.slotName__isOrganization {
-  font-weight: 700;
+.slotName__itemType_createTimeline {
+  font-weight: 400;
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
-.root:hover .slotName {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+.slotName__isActive {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
-.root__isOrganization:hover .slotName__isOrganization {
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+.root__itemType_createTimeline:hover .slotName__itemType_createTimeline {
+  font-weight: 400;
 }
 .box__j6CkC {
-  font-weight: 300;
+  width: 100%;
+  min-width: 0;
 }
 .textbox {
   position: relative;
@@ -143,69 +125,26 @@
   border-radius: 5px;
   border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.sidebarForm {
+.iconButton:global(.__wab_instance) {
   position: relative;
-  top: auto;
-  left: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
-  width: 100%;
-  min-width: 0;
 }
-.sidebarForm__isInput {
-  left: auto;
-  top: auto;
-  height: 100%;
-  min-height: 0;
-}
-.addTimelineInput {
+.svg__zhtWc {
+  position: relative;
+  object-fit: cover;
   width: 100%;
   height: 100%;
-  padding-left: 5px;
   min-width: 0;
   min-height: 0;
-  border-radius: 5px;
-  border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.addTimelineInput__isInput {
-  font-weight: 300;
-  cursor: text;
+.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
-.box__eFeO {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
+.root__isActive:hover .svg__isActive__zhtWcw0Xu8 {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
-.itemHoverIcon {
-  object-fit: cover;
-  width: 1em;
-  height: 1em;
-}
-.root:hover .itemHoverIcon {
-  width: 16px;
-  height: 18px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-.box__xAVp {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
-}
-.orgHoverIcon {
-  object-fit: cover;
-  width: 1em;
-  height: 1em;
-}
-.root:hover .orgHoverIcon {
-  width: 16px;
-  height: 18px;
-  cursor: pointer;
-  flex-shrink: 0;
+.dropdown:global(.__wab_instance) {
+  position: absolute;
+  left: auto;
+  top: 29px;
+  right: 7px;
 }

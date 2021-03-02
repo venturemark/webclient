@@ -13,6 +13,9 @@ import { IUpdateQuery } from "module/interface/update";
 export async function Search(updateQuery: IUpdateQuery) {
   const objList = [];
 
+  const token = updateQuery.token;
+  const metadata = { Authorization: `Bearer ${token}` };
+
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new SearchI();
@@ -26,7 +29,7 @@ export async function Search(updateQuery: IUpdateQuery) {
   req.setObjList(objList);
 
   const getSearchResponsePb = await new Promise((resolve, reject) => {
-    client.search(req, {}, function (err: any, res: any) {
+    client.search(req, metadata, function (err: any, res: any) {
       if (err) {
         console.log(err.code);
         console.log(err.message);

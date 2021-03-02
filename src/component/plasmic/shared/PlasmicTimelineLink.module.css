@@ -4,6 +4,7 @@
 }
 .slotName {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  font-weight: 300;
 }
 .root:hover .slotName {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
@@ -11,8 +12,6 @@
 .name {
   width: auto;
   height: auto;
-  font-weight: 300;
   cursor: pointer;
   position: relative;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }

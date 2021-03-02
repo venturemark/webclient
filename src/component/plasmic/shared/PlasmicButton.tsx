@@ -33,25 +33,66 @@ import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicButton.module.css"; // plasmic-import: JU1t0P9pFY/css
 
+import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
+import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
+
 export type PlasmicButton__VariantMembers = {
-  buttonStyle: "primary" | "secondary";
+  buttonStyle:
+    | "primaryPurple"
+    | "secondaryPurple"
+    | "secondaryGreen"
+    | "danger"
+    | "whiteBlue";
+  buttonFeatures:
+    | "showStartIcon"
+    | "showEndIcon"
+    | "isRounded"
+    | "showCount"
+    | "removeText"
+    | "nonFullWidth";
+  isDisabled: "isDisabled";
 };
 
 export type PlasmicButton__VariantsArgs = {
-  buttonStyle?: MultiChoiceArg<"primary" | "secondary">;
+  buttonStyle?: SingleChoiceArg<
+    | "primaryPurple"
+    | "secondaryPurple"
+    | "secondaryGreen"
+    | "danger"
+    | "whiteBlue"
+  >;
+  buttonFeatures?: MultiChoiceArg<
+    | "showStartIcon"
+    | "showEndIcon"
+    | "isRounded"
+    | "showCount"
+    | "removeText"
+    | "nonFullWidth"
+  >;
+  isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
 };
 
 type VariantPropType = keyof PlasmicButton__VariantsArgs;
 export const PlasmicButton__VariantProps = new Array<VariantPropType>(
-  "buttonStyle"
+  "buttonStyle",
+  "buttonFeatures",
+  "isDisabled"
 );
 
 export type PlasmicButton__ArgsType = {
-  text?: React.ReactNode;
+  count?: React.ReactNode;
+  children?: React.ReactNode;
+  slot?: React.ReactNode;
+  text2?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicButton__ArgsType;
-export const PlasmicButton__ArgProps = new Array<ArgPropType>("text");
+export const PlasmicButton__ArgProps = new Array<ArgPropType>(
+  "count",
+  "children",
+  "slot",
+  "text2"
+);
 
 export type PlasmicButton__OverridesType = {
   root?: p.Flex<"div">;
@@ -60,8 +101,26 @@ export type PlasmicButton__OverridesType = {
 };
 
 export interface DefaultButtonProps {
-  text?: React.ReactNode;
-  buttonStyle?: MultiChoiceArg<"primary" | "secondary">;
+  count?: React.ReactNode;
+  children?: React.ReactNode;
+  slot?: React.ReactNode;
+  text2?: React.ReactNode;
+  buttonStyle?: SingleChoiceArg<
+    | "primaryPurple"
+    | "secondaryPurple"
+    | "secondaryGreen"
+    | "danger"
+    | "whiteBlue"
+  >;
+  buttonFeatures?: MultiChoiceArg<
+    | "showStartIcon"
+    | "showEndIcon"
+    | "isRounded"
+    | "showCount"
+    | "removeText"
+    | "nonFullWidth"
+  >;
+  isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
   className?: string;
 }
 
@@ -79,41 +138,325 @@ function PlasmicButton__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__buttonFeatures_nonFullWidth]: hasVariant(
+          variants,
+          "buttonFeatures",
+          "nonFullWidth"
+        ),
+        [sty.root__buttonFeatures_removeText]: hasVariant(
+          variants,
+          "buttonFeatures",
+          "removeText"
+        ),
+        [sty.root__buttonStyle_danger]: hasVariant(
+          variants,
+          "buttonStyle",
+          "danger"
+        ),
+        [sty.root__buttonStyle_primaryPurple]: hasVariant(
+          variants,
+          "buttonStyle",
+          "primaryPurple"
+        ),
+        [sty.root__buttonStyle_secondaryGreen]: hasVariant(
+          variants,
+          "buttonStyle",
+          "secondaryGreen"
+        ),
+        [sty.root__buttonStyle_secondaryPurple]: hasVariant(
+          variants,
+          "buttonStyle",
+          "secondaryPurple"
+        ),
+        [sty.root__buttonStyle_whiteBlue]: hasVariant(
+          variants,
+          "buttonStyle",
+          "whiteBlue"
+        ),
+      })}
     >
       <button
         data-plasmic-name={"button"}
         data-plasmic-override={overrides.button}
         className={classNames(defaultcss.button, sty.button, {
-          [sty.button__buttonStyle_primary]: hasVariant(
+          [sty.button__buttonFeatures_isRounded]: hasVariant(
             variants,
-            "buttonStyle",
-            "primary"
+            "buttonFeatures",
+            "isRounded"
           ),
-          [sty.button__buttonStyle_secondary]: hasVariant(
+          [sty.button__buttonFeatures_nonFullWidth]: hasVariant(
+            variants,
+            "buttonFeatures",
+            "nonFullWidth"
+          ),
+          [sty.button__buttonFeatures_removeText]: hasVariant(
+            variants,
+            "buttonFeatures",
+            "removeText"
+          ),
+          [sty.button__buttonFeatures_showCount]: hasVariant(
+            variants,
+            "buttonFeatures",
+            "showCount"
+          ),
+          [sty.button__buttonFeatures_showEndIcon]: hasVariant(
+            variants,
+            "buttonFeatures",
+            "showEndIcon"
+          ),
+          [sty.button__buttonFeatures_showEndIcon_buttonFeatures_showStartIcon]:
+            hasVariant(variants, "buttonFeatures", "showEndIcon") &&
+            hasVariant(variants, "buttonFeatures", "showStartIcon"),
+          [sty.button__buttonFeatures_showEndIcon_buttonFeatures_showStartIcon_buttonStyle_secondaryPurple]:
+            hasVariant(variants, "buttonFeatures", "showEndIcon") &&
+            hasVariant(variants, "buttonFeatures", "showStartIcon") &&
+            hasVariant(variants, "buttonStyle", "secondaryPurple"),
+          [sty.button__buttonFeatures_showStartIcon]: hasVariant(
+            variants,
+            "buttonFeatures",
+            "showStartIcon"
+          ),
+          [sty.button__buttonStyle_danger]: hasVariant(
             variants,
             "buttonStyle",
-            "secondary"
+            "danger"
+          ),
+          [sty.button__buttonStyle_primaryPurple]: hasVariant(
+            variants,
+            "buttonStyle",
+            "primaryPurple"
+          ),
+          [sty.button__buttonStyle_secondaryGreen]: hasVariant(
+            variants,
+            "buttonStyle",
+            "secondaryGreen"
+          ),
+          [sty.button__buttonStyle_secondaryPurple]: hasVariant(
+            variants,
+            "buttonStyle",
+            "secondaryPurple"
+          ),
+          [sty.button__buttonStyle_whiteBlue]: hasVariant(
+            variants,
+            "buttonStyle",
+            "whiteBlue"
+          ),
+          [sty.button__isDisabled]: hasVariant(
+            variants,
+            "isDisabled",
+            "isDisabled"
           ),
         })}
       >
-        <div
+        <p.Stack
+          as={"div"}
           data-plasmic-name={"box"}
           data-plasmic-override={overrides.box}
-          className={classNames(defaultcss.all, sty.box)}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.box, {
+            [sty.box__buttonFeatures_removeText]: hasVariant(
+              variants,
+              "buttonFeatures",
+              "removeText"
+            ),
+          })}
         >
-          <p.PlasmicSlot
-            defaultContents={"Enter"}
-            value={args.text}
-            className={classNames(sty.slotText, {
-              [sty.slotText__buttonStyle_secondary]: hasVariant(
-                variants,
-                "buttonStyle",
-                "secondary"
-              ),
-            })}
-          />
-        </div>
+          {(
+            hasVariant(variants, "buttonFeatures", "showStartIcon")
+              ? true
+              : false
+          ) ? (
+            <p.PlasmicSlot
+              defaultContents={
+                <IconPlusIcon
+                  className={classNames(defaultcss.all, sty.svg__vdEop)}
+                  role={"img"}
+                />
+              }
+              value={args.slot}
+              className={classNames(sty.slotSlot, {
+                [sty.slotSlot__buttonFeatures_showEndIcon]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showEndIcon"
+                ),
+                [sty.slotSlot__buttonFeatures_showEndIcon_buttonStyle_primaryPurple]:
+                  hasVariant(variants, "buttonFeatures", "showEndIcon") &&
+                  hasVariant(variants, "buttonStyle", "primaryPurple"),
+                [sty.slotSlot__buttonFeatures_showEndIcon_buttonStyle_secondaryPurple]:
+                  hasVariant(variants, "buttonFeatures", "showEndIcon") &&
+                  hasVariant(variants, "buttonStyle", "secondaryPurple"),
+                [sty.slotSlot__buttonFeatures_showStartIcon]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showStartIcon"
+                ),
+                [sty.slotSlot__buttonFeatures_showStartIcon_buttonFeatures_showEndIcon]:
+                  hasVariant(variants, "buttonFeatures", "showStartIcon") &&
+                  hasVariant(variants, "buttonFeatures", "showEndIcon"),
+                [sty.slotSlot__buttonFeatures_showStartIcon_buttonStyle_danger]:
+                  hasVariant(variants, "buttonFeatures", "showStartIcon") &&
+                  hasVariant(variants, "buttonStyle", "danger"),
+                [sty.slotSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryGreen]:
+                  hasVariant(variants, "buttonFeatures", "showStartIcon") &&
+                  hasVariant(variants, "buttonStyle", "secondaryGreen"),
+                [sty.slotSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryPurple]:
+                  hasVariant(variants, "buttonFeatures", "showStartIcon") &&
+                  hasVariant(variants, "buttonStyle", "secondaryPurple"),
+              })}
+            />
+          ) : null}
+          {(
+            hasVariant(variants, "buttonFeatures", "showCount") ? true : false
+          ) ? (
+            <p.PlasmicSlot
+              defaultContents={"1"}
+              value={args.count}
+              className={classNames(sty.slotCount, {
+                [sty.slotCount__buttonFeatures_isRounded]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "isRounded"
+                ),
+                [sty.slotCount__buttonFeatures_showCount]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showCount"
+                ),
+                [sty.slotCount__buttonFeatures_showEndIcon]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showEndIcon"
+                ),
+                [sty.slotCount__buttonFeatures_showStartIcon]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showStartIcon"
+                ),
+                [sty.slotCount__buttonStyle_danger]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "danger"
+                ),
+                [sty.slotCount__buttonStyle_primaryPurple]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "primaryPurple"
+                ),
+                [sty.slotCount__buttonStyle_secondaryGreen]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "secondaryGreen"
+                ),
+                [sty.slotCount__buttonStyle_secondaryPurple]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "secondaryPurple"
+                ),
+                [sty.slotCount__isDisabled]: hasVariant(
+                  variants,
+                  "isDisabled",
+                  "isDisabled"
+                ),
+              })}
+            />
+          ) : null}
+          {(
+            hasVariant(variants, "buttonFeatures", "removeText") ? false : true
+          ) ? (
+            <p.PlasmicSlot
+              defaultContents={"Button"}
+              value={args.text2}
+              className={classNames(sty.slotText2, {
+                [sty.slotText2__buttonFeatures_isRounded]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "isRounded"
+                ),
+                [sty.slotText2__buttonFeatures_removeText]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "removeText"
+                ),
+                [sty.slotText2__buttonFeatures_showCount]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showCount"
+                ),
+                [sty.slotText2__buttonFeatures_showStartIcon]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showStartIcon"
+                ),
+                [sty.slotText2__buttonStyle_danger]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "danger"
+                ),
+                [sty.slotText2__buttonStyle_primaryPurple]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "primaryPurple"
+                ),
+                [sty.slotText2__buttonStyle_secondaryGreen]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "secondaryGreen"
+                ),
+                [sty.slotText2__buttonStyle_secondaryPurple]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "secondaryPurple"
+                ),
+                [sty.slotText2__buttonStyle_whiteBlue]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "whiteBlue"
+                ),
+              })}
+            />
+          ) : null}
+          {(
+            hasVariant(variants, "buttonFeatures", "showEndIcon") ? true : false
+          ) ? (
+            <p.PlasmicSlot
+              defaultContents={
+                <IconRightIcon
+                  className={classNames(defaultcss.all, sty.svg___85Aov)}
+                  role={"img"}
+                />
+              }
+              value={args.children}
+              className={classNames(sty.slotChildren, {
+                [sty.slotChildren__buttonFeatures_showEndIcon]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showEndIcon"
+                ),
+                [sty.slotChildren__buttonFeatures_showEndIcon_buttonStyle_danger]:
+                  hasVariant(variants, "buttonFeatures", "showEndIcon") &&
+                  hasVariant(variants, "buttonStyle", "danger"),
+                [sty.slotChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryGreen]:
+                  hasVariant(variants, "buttonFeatures", "showEndIcon") &&
+                  hasVariant(variants, "buttonStyle", "secondaryGreen"),
+                [sty.slotChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryPurple]:
+                  hasVariant(variants, "buttonFeatures", "showEndIcon") &&
+                  hasVariant(variants, "buttonStyle", "secondaryPurple"),
+                [sty.slotChildren__buttonFeatures_showStartIcon]: hasVariant(
+                  variants,
+                  "buttonFeatures",
+                  "showStartIcon"
+                ),
+                [sty.slotChildren__buttonStyle_danger]: hasVariant(
+                  variants,
+                  "buttonStyle",
+                  "danger"
+                ),
+              })}
+            />
+          ) : null}
+        </p.Stack>
       </button>
     </div>
   ) as React.ReactElement | null;
@@ -139,8 +482,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicButton__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicButton__VariantsArgs;
   args?: PlasmicButton__ArgsType;
   overrides?: NodeOverridesType<T>;

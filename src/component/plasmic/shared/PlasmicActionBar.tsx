@@ -27,14 +27,20 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
-import SelectTimeline from "../../SelectTimeline"; // plasmic-import: fX--9UW2GgJ/component
-import SelectItem from "../../SelectItem"; // plasmic-import: ZvAJESOUhw/component
-import Button from "../../Button"; // plasmic-import: JU1t0P9pFY/component
+import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
+import Tags from "../../tags/index"; // plasmic-import: 0wz8hGqZgNQ/component
+import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
+
+import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicActionBar.module.css"; // plasmic-import: eUnRsS9UXR/css
+
+import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
+import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
+import IconSend2Icon from "./icons/PlasmicIcon__IconSend2"; // plasmic-import: Iea8iz1ew/icon
 
 export type PlasmicActionBar__VariantMembers = {
   error: "hasError";
@@ -59,31 +65,37 @@ export const PlasmicActionBar__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicActionBar__ArgsType = {
-  errorMessage?: React.ReactNode;
   userInitials?: React.ReactNode;
+  slot?: React.ReactNode;
+  text2?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicActionBar__ArgsType;
 export const PlasmicActionBar__ArgProps = new Array<ArgPropType>(
-  "errorMessage",
-  "userInitials"
+  "userInitials",
+  "slot",
+  "text2",
+  "children"
 );
 
 export type PlasmicActionBar__OverridesType = {
   root?: p.Flex<"div">;
+  photoAvatar?: p.Flex<typeof PhotoAvatar>;
   editorContainer?: p.Flex<"div">;
   textContainer?: p.Flex<"textarea">;
-  timelineSelect?: p.Flex<typeof SelectTimeline>;
+  textContainer2?: p.Flex<"textarea">;
+  text24?: p.Flex<"div">;
+  add?: p.Flex<typeof Tags>;
   container?: p.Flex<"div">;
   selectedItemsContainer?: p.Flex<"div">;
-  selectItem?: p.Flex<typeof SelectItem>;
-  errorContainer?: p.Flex<"div">;
-  sendUpdate?: p.Flex<typeof Button>;
 };
 
 export interface DefaultActionBarProps {
-  errorMessage?: React.ReactNode;
   userInitials?: React.ReactNode;
+  slot?: React.ReactNode;
+  text2?: React.ReactNode;
+  children?: React.ReactNode;
   error?: MultiChoiceArg<"hasError">;
   text?: MultiChoiceArg<"hasText">;
   isActive?: SingleBooleanChoiceArg<"isActive">;
@@ -98,6 +110,10 @@ function PlasmicActionBar__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode } = props;
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariants(),
+  });
 
   return (
     <p.Stack
@@ -162,45 +178,28 @@ function PlasmicActionBar__RenderFunc(props: {
             ),
           })}
         >
-          <div
-            className={classNames(defaultcss.all, sty.box__rXa4B, {
-              [sty.box__isActive__rXa4BvjQpn]: hasVariant(
+          <PhotoAvatar
+            data-plasmic-name={"photoAvatar"}
+            data-plasmic-override={overrides.photoAvatar}
+            className={classNames("__wab_instance", sty.photoAvatar, {
+              [sty.photoAvatar__isActive]: hasVariant(
                 variants,
                 "isActive",
                 "isActive"
               ),
-              [sty.box__timelineSelected__rXa4B75BwG]: hasVariant(
+              [sty.photoAvatar__timelineSelected]: hasVariant(
                 variants,
                 "timelineSelected",
                 "timelineSelected"
               ),
-              [sty.box__timelineSelected_isActive__rXa4B75BwGVjQpn]:
+              [sty.photoAvatar__timelineSelected_isActive]:
                 hasVariant(variants, "timelineSelected", "timelineSelected") &&
                 hasVariant(variants, "isActive", "isActive"),
             })}
-          >
-            <div
-              className={classNames(defaultcss.all, sty.box__eW8Ps, {
-                [sty.box__isActive__eW8PsvjQpn]: hasVariant(
-                  variants,
-                  "isActive",
-                  "isActive"
-                ),
-              })}
-            >
-              <p.PlasmicSlot
-                defaultContents={"KO"}
-                value={args.userInitials}
-                className={classNames(sty.slotUserInitials, {
-                  [sty.slotUserInitials__isActive]: hasVariant(
-                    variants,
-                    "isActive",
-                    "isActive"
-                  ),
-                })}
-              />
-            </div>
-          </div>
+            userInitials={
+              <p.PlasmicSlot defaultContents={"KO"} value={args.userInitials} />
+            }
+          />
 
           <div
             data-plasmic-name={"editorContainer"}
@@ -241,208 +240,378 @@ function PlasmicActionBar__RenderFunc(props: {
                   "timelineSelected"
                 ),
               })}
-              placeholder={"Write an update" as const}
-              value={"" as const}
+              placeholder={"Write your update..." as const}
             />
 
-            {false ? (
-              <div
-                className={classNames(defaultcss.all, sty.box__sPwRc, {
-                  [sty.box__isActive__sPwRCvjQpn]: hasVariant(
+            {(hasVariant(variants, "isActive", "isActive") ? true : false) ? (
+              <textarea
+                data-plasmic-name={"textContainer2"}
+                data-plasmic-override={overrides.textContainer2}
+                className={classNames(defaultcss.textarea, sty.textContainer2, {
+                  [sty.textContainer2__isActive]: hasVariant(
                     variants,
                     "isActive",
                     "isActive"
                   ),
+                  [sty.textContainer2__timelineSelected]: hasVariant(
+                    variants,
+                    "timelineSelected",
+                    "timelineSelected"
+                  ),
                 })}
+                placeholder={
+                  hasVariant(variants, "isActive", "isActive")
+                    ? ("Description..." as const)
+                    : ("Write a paragraph" as const)
+                }
               />
             ) : null}
-          </div>
-        </div>
+            {(hasVariant(variants, "isActive", "isActive") ? true : false) ? (
+              <p.Stack
+                as={"div"}
+                hasGap={true}
+                className={classNames(defaultcss.all, sty.box__mQqJf, {
+                  [sty.box__isActive__mQqJfvjQpn]: hasVariant(
+                    variants,
+                    "isActive",
+                    "isActive"
+                  ),
+                  [sty.box__timelineSelected__mQqJf75BwG]: hasVariant(
+                    variants,
+                    "timelineSelected",
+                    "timelineSelected"
+                  ),
+                  [sty.box__timelineSelected_isActive__mQqJf75BwGVjQpn]:
+                    hasVariant(
+                      variants,
+                      "timelineSelected",
+                      "timelineSelected"
+                    ) && hasVariant(variants, "isActive", "isActive"),
+                })}
+              >
+                {(
+                  hasVariant(variants, "isActive", "isActive")
+                    ? true
+                    : hasVariant(globalVariants, "screen", "mobile")
+                    ? false
+                    : true
+                ) ? (
+                  <div
+                    data-plasmic-name={"text24"}
+                    data-plasmic-override={overrides.text24}
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.text24,
+                      {
+                        [sty.text24__isActive]: hasVariant(
+                          variants,
+                          "isActive",
+                          "isActive"
+                        ),
+                      }
+                    )}
+                  >
+                    {"Post to: "}
+                  </div>
+                ) : null}
 
-        <p.Stack
-          as={"div"}
-          hasGap={true}
-          className={classNames(defaultcss.all, sty.box__mQqJf, {
-            [sty.box__isActive__mQqJfvjQpn]: hasVariant(
-              variants,
-              "isActive",
-              "isActive"
-            ),
-            [sty.box__timelineSelected__mQqJf75BwG]: hasVariant(
-              variants,
-              "timelineSelected",
-              "timelineSelected"
-            ),
-            [sty.box__timelineSelected_isActive__mQqJf75BwGVjQpn]:
-              hasVariant(variants, "timelineSelected", "timelineSelected") &&
-              hasVariant(variants, "isActive", "isActive"),
-          })}
-        >
-          <SelectTimeline
-            data-plasmic-name={"timelineSelect"}
-            data-plasmic-override={overrides.timelineSelect}
-            className={classNames("__wab_instance", sty.timelineSelect, {
-              [sty.timelineSelect__isActive]: hasVariant(
-                variants,
-                "isActive",
-                "isActive"
-              ),
-              [sty.timelineSelect__timelineSelected]: hasVariant(
-                variants,
-                "timelineSelected",
-                "timelineSelected"
-              ),
-              [sty.timelineSelect__timelineSelected_isActive]:
-                hasVariant(variants, "timelineSelected", "timelineSelected") &&
-                hasVariant(variants, "isActive", "isActive"),
-            })}
-            isActive={
-              hasVariant(variants, "timelineSelected", "timelineSelected") &&
-              hasVariant(variants, "isActive", "isActive")
-                ? ("isActive" as const)
-                : undefined
-            }
-            timelineSelected={
-              hasVariant(variants, "timelineSelected", "timelineSelected") &&
-              hasVariant(variants, "isActive", "isActive")
-                ? ("timelineSelected" as const)
-                : hasVariant(variants, "timelineSelected", "timelineSelected")
-                ? ("timelineSelected" as const)
-                : undefined
-            }
-          />
+                <p.Stack
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(defaultcss.all, sty.box__bxEbl, {
+                    [sty.box__isActive__bxEblvjQpn]: hasVariant(
+                      variants,
+                      "isActive",
+                      "isActive"
+                    ),
+                  })}
+                >
+                  {(
+                    hasVariant(variants, "isActive", "isActive") ? true : false
+                  ) ? (
+                    <p.Stack
+                      as={"div"}
+                      hasGap={
+                        hasVariant(variants, "isActive", "isActive")
+                          ? true
+                          : false
+                      }
+                      className={classNames(defaultcss.all, sty.box__iriP, {
+                        [sty.box__isActive__iriPvjQpn]: hasVariant(
+                          variants,
+                          "isActive",
+                          "isActive"
+                        ),
+                      })}
+                    >
+                      <Tags buttonFeatures={["icon", "hasText"]} text2={"Wins"}>
+                        <IconCloseIcon
+                          className={classNames(defaultcss.all, sty.svg__dVcAh)}
+                          role={"img"}
+                        />
+                      </Tags>
 
-          {(
-            hasVariant(variants, "timelineSelected", "timelineSelected")
-              ? true
-              : false
-          ) ? (
-            <p.Stack
-              as={"div"}
-              data-plasmic-name={"container"}
-              data-plasmic-override={overrides.container}
-              hasGap={
-                hasVariant(variants, "timelineSelected", "timelineSelected") ||
-                (hasVariant(variants, "isActive", "isActive") &&
-                  hasVariant(variants, "timelineSelected", "timelineSelected"))
-                  ? true
-                  : false
-              }
-              className={classNames(defaultcss.all, sty.container, {
-                [sty.container__isActive]: hasVariant(
-                  variants,
-                  "isActive",
-                  "isActive"
-                ),
-                [sty.container__isActive_timelineSelected]:
-                  hasVariant(variants, "isActive", "isActive") &&
-                  hasVariant(variants, "timelineSelected", "timelineSelected"),
-                [sty.container__timelineSelected]: hasVariant(
-                  variants,
-                  "timelineSelected",
-                  "timelineSelected"
-                ),
-              })}
-            >
-              {(
-                hasVariant(variants, "isActive", "isActive") &&
-                hasVariant(variants, "timelineSelected", "timelineSelected")
-                  ? true
-                  : false
-              ) ? (
-                <div
-                  data-plasmic-name={"selectedItemsContainer"}
-                  data-plasmic-override={overrides.selectedItemsContainer}
-                  className={classNames(
-                    defaultcss.all,
-                    sty.selectedItemsContainer,
-                    {
-                      [sty.selectedItemsContainer__isActive_timelineSelected]:
+                      <Tags
+                        data-plasmic-name={"add"}
+                        data-plasmic-override={overrides.add}
+                        buttonFeatures={["icon"]}
+                        buttonStyle={"secondaryGreen" as const}
+                        className={classNames("__wab_instance", sty.add, {
+                          [sty.add__isActive]: hasVariant(
+                            variants,
+                            "isActive",
+                            "isActive"
+                          ),
+                        })}
+                        text2={"Wins"}
+                      >
+                        <IconPlusIcon
+                          className={classNames(defaultcss.all, sty.svg__aaXl8)}
+                          role={"img"}
+                        />
+                      </Tags>
+                    </p.Stack>
+                  ) : null}
+                </p.Stack>
+
+                <Button
+                  buttonFeatures={[]}
+                  buttonStyle={"primaryPurple" as const}
+                  className={classNames("__wab_instance", sty.button__nAd4W, {
+                    [sty.button__isActive__nAd4WvjQpn]: hasVariant(
+                      variants,
+                      "isActive",
+                      "isActive"
+                    ),
+                  })}
+                  count={"1"}
+                  slot={
+                    <IconPlusIcon
+                      className={classNames(defaultcss.all, sty.svg__orOwz)}
+                      role={"img"}
+                    />
+                  }
+                  text2={"Post"}
+                >
+                  <IconSend2Icon
+                    className={classNames(defaultcss.all, sty.svg__ljFz)}
+                    role={"img"}
+                  />
+                </Button>
+
+                {(
+                  hasVariant(variants, "timelineSelected", "timelineSelected")
+                    ? true
+                    : false
+                ) ? (
+                  <p.Stack
+                    as={"div"}
+                    data-plasmic-name={"container"}
+                    data-plasmic-override={overrides.container}
+                    hasGap={
+                      hasVariant(
+                        variants,
+                        "timelineSelected",
+                        "timelineSelected"
+                      ) ||
+                      (hasVariant(variants, "isActive", "isActive") &&
+                        hasVariant(
+                          variants,
+                          "timelineSelected",
+                          "timelineSelected"
+                        ))
+                        ? true
+                        : false
+                    }
+                    className={classNames(defaultcss.all, sty.container, {
+                      [sty.container__isActive]: hasVariant(
+                        variants,
+                        "isActive",
+                        "isActive"
+                      ),
+                      [sty.container__isActive_timelineSelected]:
                         hasVariant(variants, "isActive", "isActive") &&
                         hasVariant(
                           variants,
                           "timelineSelected",
                           "timelineSelected"
                         ),
-                    }
-                  )}
-                >
-                  {(
-                    hasVariant(variants, "timelineSelected", "timelineSelected")
-                      ? true
-                      : false
-                  ) ? (
-                    <SelectItem
-                      data-plasmic-name={"selectItem"}
-                      data-plasmic-override={overrides.selectItem}
-                    />
-                  ) : null}
-                </div>
-              ) : null}
-            </p.Stack>
-          ) : null}
-        </p.Stack>
+                      [sty.container__timelineSelected]: hasVariant(
+                        variants,
+                        "timelineSelected",
+                        "timelineSelected"
+                      ),
+                    })}
+                  >
+                    {(
+                      hasVariant(variants, "isActive", "isActive") &&
+                      hasVariant(
+                        variants,
+                        "timelineSelected",
+                        "timelineSelected"
+                      )
+                        ? true
+                        : false
+                    ) ? (
+                      <div
+                        data-plasmic-name={"selectedItemsContainer"}
+                        data-plasmic-override={overrides.selectedItemsContainer}
+                        className={classNames(
+                          defaultcss.all,
+                          sty.selectedItemsContainer,
+                          {
+                            [sty.selectedItemsContainer__isActive_timelineSelected]:
+                              hasVariant(variants, "isActive", "isActive") &&
+                              hasVariant(
+                                variants,
+                                "timelineSelected",
+                                "timelineSelected"
+                              ),
+                          }
+                        )}
+                      >
+                        {(
+                          hasVariant(variants, "isActive", "isActive") &&
+                          hasVariant(
+                            variants,
+                            "timelineSelected",
+                            "timelineSelected"
+                          )
+                            ? false
+                            : false
+                        ) ? (
+                          <Tags
+                            className={classNames(
+                              "__wab_instance",
+                              sty.tags___81EIe,
+                              {
+                                [sty.tags__isActive_timelineSelected___81EIevjQpn75BwG]:
+                                  hasVariant(
+                                    variants,
+                                    "isActive",
+                                    "isActive"
+                                  ) &&
+                                  hasVariant(
+                                    variants,
+                                    "timelineSelected",
+                                    "timelineSelected"
+                                  ),
+                              }
+                            )}
+                            text2={"Tag Name"}
+                          >
+                            <IconCloseIcon
+                              className={classNames(
+                                defaultcss.all,
+                                sty.svg__hwNLe
+                              )}
+                              role={"img"}
+                            />
+                          </Tags>
+                        ) : null}
+                        {(
+                          hasVariant(variants, "isActive", "isActive") &&
+                          hasVariant(
+                            variants,
+                            "timelineSelected",
+                            "timelineSelected"
+                          )
+                            ? true
+                            : false
+                        ) ? (
+                          <button
+                            className={classNames(
+                              defaultcss.button,
+                              sty.button__p5MKq,
+                              {
+                                [sty.button__isActive_timelineSelected__p5MKqvjQpn75BwG]:
+                                  hasVariant(
+                                    variants,
+                                    "isActive",
+                                    "isActive"
+                                  ) &&
+                                  hasVariant(
+                                    variants,
+                                    "timelineSelected",
+                                    "timelineSelected"
+                                  ),
+                              }
+                            )}
+                          >
+                            <p.Stack
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                defaultcss.all,
+                                sty.box__kBcf
+                              )}
+                            >
+                              {(
+                                hasVariant(variants, "isActive", "isActive") &&
+                                hasVariant(
+                                  variants,
+                                  "timelineSelected",
+                                  "timelineSelected"
+                                )
+                                  ? false
+                                  : true
+                              ) ? (
+                                <p.PlasmicSlot
+                                  defaultContents={
+                                    <IconPlusIcon
+                                      className={classNames(
+                                        defaultcss.all,
+                                        sty.svg__niToo
+                                      )}
+                                      role={"img"}
+                                    />
+                                  }
+                                  value={args.slot}
+                                />
+                              ) : null}
+                              <p.PlasmicSlot
+                                defaultContents={"Metric"}
+                                value={args.text2}
+                                className={classNames(sty.slotText2, {
+                                  [sty.slotText2__isActive_timelineSelected]:
+                                    hasVariant(
+                                      variants,
+                                      "isActive",
+                                      "isActive"
+                                    ) &&
+                                    hasVariant(
+                                      variants,
+                                      "timelineSelected",
+                                      "timelineSelected"
+                                    ),
+                                })}
+                              />
+                              <p.PlasmicSlot
+                                defaultContents={
+                                  <IconCloseIcon
+                                    className={classNames(
+                                      defaultcss.all,
+                                      sty.svg__kMNxX
+                                    )}
+                                    role={"img"}
+                                  />
+                                }
+                                value={args.children}
+                                className={classNames(sty.slotChildren)}
+                              />
+                            </p.Stack>
+                          </button>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </p.Stack>
+                ) : null}
+              </p.Stack>
+            ) : null}
+          </div>
+        </div>
       </p.Stack>
-
-      {(hasVariant(variants, "isActive", "isActive") ? true : false) ? (
-        <p.Stack
-          as={"div"}
-          hasGap={hasVariant(variants, "isActive", "isActive") ? true : false}
-          className={classNames(defaultcss.all, sty.box__lmDWp, {
-            [sty.box__isActive__lmDWpvjQpn]: hasVariant(
-              variants,
-              "isActive",
-              "isActive"
-            ),
-            [sty.box__timelineSelected__lmDWp75BwG]: hasVariant(
-              variants,
-              "timelineSelected",
-              "timelineSelected"
-            ),
-          })}
-        >
-          {(hasVariant(variants, "error", "hasError") ? true : false) ? (
-            <div
-              data-plasmic-name={"errorContainer"}
-              data-plasmic-override={overrides.errorContainer}
-              className={classNames(defaultcss.all, sty.errorContainer, {
-                [sty.errorContainer__error_hasError]: hasVariant(
-                  variants,
-                  "error",
-                  "hasError"
-                ),
-                [sty.errorContainer__isActive]: hasVariant(
-                  variants,
-                  "isActive",
-                  "isActive"
-                ),
-                [sty.errorContainer__text_hasText_error_hasError]:
-                  hasVariant(variants, "text", "hasText") &&
-                  hasVariant(variants, "error", "hasError"),
-              })}
-            >
-              <p.PlasmicSlot
-                defaultContents={"Please enter a number value"}
-                value={args.errorMessage}
-                className={classNames(sty.slotErrorMessage, {
-                  [sty.slotErrorMessage__error_hasError]: hasVariant(
-                    variants,
-                    "error",
-                    "hasError"
-                  ),
-                })}
-              />
-            </div>
-          ) : null}
-
-          <Button
-            data-plasmic-name={"sendUpdate"}
-            data-plasmic-override={overrides.sendUpdate}
-            className={classNames("__wab_instance", sty.sendUpdate)}
-            text={"Send Update"}
-          />
-        </p.Stack>
-      ) : null}
     </p.Stack>
   ) as React.ReactElement | null;
 }
@@ -450,23 +619,31 @@ function PlasmicActionBar__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "photoAvatar",
     "editorContainer",
     "textContainer",
-    "timelineSelect",
+    "textContainer2",
+    "text24",
+    "add",
     "container",
     "selectedItemsContainer",
-    "selectItem",
-    "errorContainer",
-    "sendUpdate",
   ],
-  editorContainer: ["editorContainer", "textContainer"],
+  photoAvatar: ["photoAvatar"],
+  editorContainer: [
+    "editorContainer",
+    "textContainer",
+    "textContainer2",
+    "text24",
+    "add",
+    "container",
+    "selectedItemsContainer",
+  ],
   textContainer: ["textContainer"],
-  timelineSelect: ["timelineSelect"],
-  container: ["container", "selectedItemsContainer", "selectItem"],
-  selectedItemsContainer: ["selectedItemsContainer", "selectItem"],
-  selectItem: ["selectItem"],
-  errorContainer: ["errorContainer"],
-  sendUpdate: ["sendUpdate"],
+  textContainer2: ["textContainer2"],
+  text24: ["text24"],
+  add: ["add"],
+  container: ["container", "selectedItemsContainer"],
+  selectedItemsContainer: ["selectedItemsContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -474,14 +651,14 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  photoAvatar: typeof PhotoAvatar;
   editorContainer: "div";
   textContainer: "textarea";
-  timelineSelect: typeof SelectTimeline;
+  textContainer2: "textarea";
+  text24: "div";
+  add: typeof Tags;
   container: "div";
   selectedItemsContainer: "div";
-  selectItem: typeof SelectItem;
-  errorContainer: "div";
-  sendUpdate: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -489,8 +666,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicActionBar__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicActionBar__VariantsArgs;
   args?: PlasmicActionBar__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -540,14 +716,14 @@ export const PlasmicActionBar = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    photoAvatar: makeNodeComponent("photoAvatar"),
     editorContainer: makeNodeComponent("editorContainer"),
     textContainer: makeNodeComponent("textContainer"),
-    timelineSelect: makeNodeComponent("timelineSelect"),
+    textContainer2: makeNodeComponent("textContainer2"),
+    text24: makeNodeComponent("text24"),
+    add: makeNodeComponent("add"),
     container: makeNodeComponent("container"),
     selectedItemsContainer: makeNodeComponent("selectedItemsContainer"),
-    selectItem: makeNodeComponent("selectItem"),
-    errorContainer: makeNodeComponent("errorContainer"),
-    sendUpdate: makeNodeComponent("sendUpdate"),
 
     // Metadata about props expected for PlasmicActionBar
     internalVariantProps: PlasmicActionBar__VariantProps,

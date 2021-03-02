@@ -27,6 +27,8 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
+import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
+import ProfileDropdown from "../../profiledropdown/index"; // plasmic-import: bGjqf-R4Tc/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -36,27 +38,41 @@ import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w
 import sty from "./PlasmicHeader.module.css"; // plasmic-import: MkyvVOg5Ik/css
 
 import IconMenuIcon from "./icons/PlasmicIcon__IconMenu"; // plasmic-import: gDL0fFl2pD/icon
+import Logosvg2Icon from "./icons/PlasmicIcon__Logosvg2"; // plasmic-import: SLtbVdLFU/icon
 
-export type PlasmicHeader__VariantMembers = {};
-
-export type PlasmicHeader__VariantsArgs = {};
-type VariantPropType = keyof PlasmicHeader__VariantsArgs;
-export const PlasmicHeader__VariantProps = new Array<VariantPropType>();
-
-export type PlasmicHeader__ArgsType = {
-  userInitials?: React.ReactNode;
+export type PlasmicHeader__VariantMembers = {
+  userAccount: "userAccount";
+  mobileMenu: "mobileMenu";
+  profileDropdown: "profileDropdown";
 };
 
+export type PlasmicHeader__VariantsArgs = {
+  userAccount?: SingleBooleanChoiceArg<"userAccount">;
+  mobileMenu?: SingleBooleanChoiceArg<"mobileMenu">;
+  profileDropdown?: SingleBooleanChoiceArg<"profileDropdown">;
+};
+
+type VariantPropType = keyof PlasmicHeader__VariantsArgs;
+export const PlasmicHeader__VariantProps = new Array<VariantPropType>(
+  "userAccount",
+  "mobileMenu",
+  "profileDropdown"
+);
+
+export type PlasmicHeader__ArgsType = {};
 type ArgPropType = keyof PlasmicHeader__ArgsType;
-export const PlasmicHeader__ArgProps = new Array<ArgPropType>("userInitials");
+export const PlasmicHeader__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHeader__OverridesType = {
   root?: p.Flex<"div">;
-  svg?: p.Flex<"svg">;
+  avatar?: p.Flex<typeof PhotoAvatar>;
+  dropdown?: p.Flex<typeof ProfileDropdown>;
 };
 
 export interface DefaultHeaderProps {
-  userInitials?: React.ReactNode;
+  userAccount?: SingleBooleanChoiceArg<"userAccount">;
+  mobileMenu?: SingleBooleanChoiceArg<"mobileMenu">;
+  profileDropdown?: SingleBooleanChoiceArg<"profileDropdown">;
   className?: string;
 }
 
@@ -78,61 +94,122 @@ function PlasmicHeader__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__mobileMenu]: hasVariant(
+          variants,
+          "mobileMenu",
+          "mobileMenu"
+        ),
+      })}
     >
       <p.Stack
         as={"div"}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box__ky7Rm)}
+        className={classNames(defaultcss.all, sty.box__ky7Rm, {
+          [sty.box__userAccount__ky7RmHbxJv]: hasVariant(
+            variants,
+            "userAccount",
+            "userAccount"
+          ),
+        })}
       >
         <p.Stack
           as={"div"}
           hasGap={true}
           className={classNames(defaultcss.all, sty.box__wE8Ym)}
         >
-          {false ? (
+          {(
+            hasVariant(variants, "mobileMenu", "mobileMenu") &&
+            hasVariant(globalVariants, "screen", "mobile")
+              ? false
+              : hasVariant(variants, "mobileMenu", "mobileMenu")
+              ? true
+              : hasVariant(globalVariants, "screen", "mobile")
+              ? true
+              : false
+          ) ? (
             <IconMenuIcon
-              data-plasmic-name={"svg"}
-              data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg)}
+              className={classNames(defaultcss.all, sty.svg___09Qs7, {
+                [sty.svg__mobileMenu___09Qs7DUXmX]: hasVariant(
+                  variants,
+                  "mobileMenu",
+                  "mobileMenu"
+                ),
+              })}
               role={"img"}
             />
           ) : null}
 
-          <div
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.box__c0F9M
-            )}
-          >
-            {"Venturemark"}
-          </div>
+          <Logosvg2Icon
+            className={classNames(defaultcss.all, sty.svg__u6Qtf, {
+              [sty.svg__mobileMenu__u6QtfdUXmX]: hasVariant(
+                variants,
+                "mobileMenu",
+                "mobileMenu"
+              ),
+            })}
+            role={"img"}
+          />
         </p.Stack>
 
-        <p.Stack
-          as={"div"}
-          hasGap={true}
-          className={classNames(defaultcss.all, sty.box___4Ktdl)}
-        >
-          <div className={classNames(defaultcss.all, sty.box___7UEdG)}>
-            <div className={classNames(defaultcss.all, sty.box__wOx1P)}>
-              <p.PlasmicSlot
-                defaultContents={"KO"}
-                value={args.userInitials}
-                className={classNames(sty.slotUserInitials)}
+        {(hasVariant(variants, "userAccount", "userAccount") ? true : false) ? (
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(defaultcss.all, sty.box___4Ktdl, {
+              [sty.box__profileDropdown___4KtdlZi9Pu]: hasVariant(
+                variants,
+                "profileDropdown",
+                "profileDropdown"
+              ),
+              [sty.box__userAccount___4KtdlHbxJv]: hasVariant(
+                variants,
+                "userAccount",
+                "userAccount"
+              ),
+            })}
+          >
+            <PhotoAvatar
+              data-plasmic-name={"avatar"}
+              data-plasmic-override={overrides.avatar}
+              className={classNames("__wab_instance", sty.avatar, {
+                [sty.avatar__profileDropdown]: hasVariant(
+                  variants,
+                  "profileDropdown",
+                  "profileDropdown"
+                ),
+              })}
+            />
+
+            {(
+              hasVariant(variants, "profileDropdown", "profileDropdown")
+                ? true
+                : false
+            ) ? (
+              <ProfileDropdown
+                data-plasmic-name={"dropdown"}
+                data-plasmic-override={overrides.dropdown}
+                className={classNames("__wab_instance", sty.dropdown, {
+                  [sty.dropdown__profileDropdown]: hasVariant(
+                    variants,
+                    "profileDropdown",
+                    "profileDropdown"
+                  ),
+                })}
+                prop3={"Log Out"}
               />
-            </div>
-          </div>
-        </p.Stack>
+            ) : null}
+          </p.Stack>
+        ) : null}
       </p.Stack>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "svg"],
-  svg: ["svg"],
+  root: ["root", "avatar", "dropdown"],
+  avatar: ["avatar"],
+  dropdown: ["dropdown"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -140,7 +217,8 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  svg: "svg";
+  avatar: typeof PhotoAvatar;
+  dropdown: typeof ProfileDropdown;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -148,8 +226,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicHeader__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicHeader__VariantsArgs;
   args?: PlasmicHeader__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -199,7 +276,8 @@ export const PlasmicHeader = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    svg: makeNodeComponent("svg"),
+    avatar: makeNodeComponent("avatar"),
+    dropdown: makeNodeComponent("dropdown"),
 
     // Metadata about props expected for PlasmicHeader
     internalVariantProps: PlasmicHeader__VariantProps,

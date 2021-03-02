@@ -27,67 +27,64 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
+import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
+import Dropdown from "../../dropdown/index"; // plasmic-import: Umq3CDOCIR/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicSidebarItem.module.css"; // plasmic-import: KDElHbQmfd/css
 
-import OvalIcon from "./icons/PlasmicIcon__Oval"; // plasmic-import: FUAnm6q86/icon
+import IconAccordianIcon from "./icons/PlasmicIcon__IconAccordian"; // plasmic-import: UPgEusYgX/icon
 import IconHashIcon from "./icons/PlasmicIcon__IconHash"; // plasmic-import: AVLV6uMr56/icon
-import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
+import VectorsvgIcon from "./icons/PlasmicIcon__Vectorsvg"; // plasmic-import: kQoy0KbdjL/icon
+import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicSidebarItem__VariantMembers = {
-  isCurrent: "isCurrent";
-  hasUpdate: "hasUpdate";
-  isOrganization: "isOrganization";
-  isInput: "isInput";
+  itemType: "timeline" | "createTimeline" | "ventureCollapsed";
+  isActive: "isActive";
+  isUserOnClick: "isUserOnClick";
 };
 
 export type PlasmicSidebarItem__VariantsArgs = {
-  isCurrent?: SingleBooleanChoiceArg<"isCurrent">;
-  hasUpdate?: SingleBooleanChoiceArg<"hasUpdate">;
-  isOrganization?: SingleBooleanChoiceArg<"isOrganization">;
-  isInput?: SingleBooleanChoiceArg<"isInput">;
+  itemType?: SingleChoiceArg<
+    "timeline" | "createTimeline" | "ventureCollapsed"
+  >;
+  isActive?: SingleBooleanChoiceArg<"isActive">;
+  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
 };
 
 type VariantPropType = keyof PlasmicSidebarItem__VariantsArgs;
 export const PlasmicSidebarItem__VariantProps = new Array<VariantPropType>(
-  "isCurrent",
-  "hasUpdate",
-  "isOrganization",
-  "isInput"
+  "itemType",
+  "isActive",
+  "isUserOnClick"
 );
 
 export type PlasmicSidebarItem__ArgsType = {
   name?: React.ReactNode;
-  children?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicSidebarItem__ArgsType;
-export const PlasmicSidebarItem__ArgProps = new Array<ArgPropType>(
-  "name",
-  "children"
-);
+export const PlasmicSidebarItem__ArgProps = new Array<ArgPropType>("name");
 
 export type PlasmicSidebarItem__OverridesType = {
   root?: p.Flex<"div">;
   itemContainer?: p.Flex<"div">;
+  icon?: p.Flex<typeof IconButton>;
   textbox?: p.Flex<"input">;
-  sidebarForm?: p.Flex<"form">;
-  addTimelineInput?: p.Flex<"input">;
-  itemHoverIcon?: p.Flex<"svg">;
-  orgHoverIcon?: p.Flex<"svg">;
+  iconButton?: p.Flex<typeof IconButton>;
+  dropdown?: p.Flex<typeof Dropdown>;
 };
 
 export interface DefaultSidebarItemProps {
   name?: React.ReactNode;
-  children?: React.ReactNode;
-  isCurrent?: SingleBooleanChoiceArg<"isCurrent">;
-  hasUpdate?: SingleBooleanChoiceArg<"hasUpdate">;
-  isOrganization?: SingleBooleanChoiceArg<"isOrganization">;
-  isInput?: SingleBooleanChoiceArg<"isInput">;
+  itemType?: SingleChoiceArg<
+    "timeline" | "createTimeline" | "ventureCollapsed"
+  >;
+  isActive?: SingleBooleanChoiceArg<"isActive">;
+  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
   className?: string;
 }
 
@@ -111,359 +108,302 @@ function PlasmicSidebarItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__hasUpdate]: hasVariant(variants, "hasUpdate", "hasUpdate"),
-        [sty.root__isCurrent]: hasVariant(variants, "isCurrent", "isCurrent"),
-        [sty.root__isInput]: hasVariant(variants, "isInput", "isInput"),
-        [sty.root__isOrganization]: hasVariant(
+        [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
+        [sty.root__isUserOnClick]: hasVariant(
           variants,
-          "isOrganization",
-          "isOrganization"
+          "isUserOnClick",
+          "isUserOnClick"
+        ),
+        [sty.root__isUserOnClick_itemType_timeline]:
+          hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+          hasVariant(variants, "itemType", "timeline"),
+        [sty.root__itemType_createTimeline]: hasVariant(
+          variants,
+          "itemType",
+          "createTimeline"
+        ),
+        [sty.root__itemType_timeline]: hasVariant(
+          variants,
+          "itemType",
+          "timeline"
         ),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
-      <p.Stack
-        as={"div"}
-        data-plasmic-name={"itemContainer"}
-        data-plasmic-override={overrides.itemContainer}
-        hasGap={true}
-        className={classNames(defaultcss.all, sty.itemContainer, {
-          [sty.itemContainer__hasUpdate]: hasVariant(
-            variants,
-            "hasUpdate",
-            "hasUpdate"
-          ),
-          [sty.itemContainer__isCurrent]: hasVariant(
-            variants,
-            "isCurrent",
-            "isCurrent"
-          ),
-          [sty.itemContainer__isInput]: hasVariant(
-            variants,
-            "isInput",
-            "isInput"
-          ),
-          [sty.itemContainer__isOrganization]: hasVariant(
-            variants,
-            "isOrganization",
-            "isOrganization"
-          ),
-        })}
-      >
-        {(hasVariant(variants, "hasUpdate", "hasUpdate") ? true : false) ? (
-          <OvalIcon
-            className={classNames(defaultcss.all, sty.svg__p8Yl1, {
-              [sty.svg__hasUpdate__p8Yl1AoSlB]: hasVariant(
-                variants,
-                "hasUpdate",
-                "hasUpdate"
-              ),
-            })}
-            role={"img"}
-          />
-        ) : null}
-
+      {(
+        hasVariant(variants, "itemType", "createTimeline") &&
+        triggers.hover_root
+          ? true
+          : true
+      ) ? (
         <p.Stack
           as={"div"}
+          data-plasmic-name={"itemContainer"}
+          data-plasmic-override={overrides.itemContainer}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__zwdJs, {
-            [sty.box__hasUpdate__zwdJsaoSlB]: hasVariant(
+          className={classNames(defaultcss.all, sty.itemContainer, {
+            [sty.itemContainer__isActive]: hasVariant(
               variants,
-              "hasUpdate",
-              "hasUpdate"
+              "isActive",
+              "isActive"
             ),
-            [sty.box__isCurrent__zwdJs0Mgpk]: hasVariant(
+            [sty.itemContainer__isActive_itemType_createTimeline]:
+              hasVariant(variants, "isActive", "isActive") &&
+              hasVariant(variants, "itemType", "createTimeline"),
+            [sty.itemContainer__itemType_createTimeline]: hasVariant(
               variants,
-              "isCurrent",
-              "isCurrent"
+              "itemType",
+              "createTimeline"
             ),
-            [sty.box__isInput__zwdJsVs3Tx]: hasVariant(
+            [sty.itemContainer__itemType_ventureCollapsed]: hasVariant(
               variants,
-              "isInput",
-              "isInput"
-            ),
-            [sty.box__isOrganization__zwdJsnLnuO]: hasVariant(
-              variants,
-              "isOrganization",
-              "isOrganization"
+              "itemType",
+              "ventureCollapsed"
             ),
           })}
         >
           {(
-            hasVariant(variants, "isOrganization", "isOrganization")
+            hasVariant(variants, "itemType", "createTimeline") &&
+            triggers.hover_root
+              ? true
+              : true
+          ) ? (
+            <IconButton
+              data-plasmic-name={"icon"}
+              data-plasmic-override={overrides.icon}
+              className={classNames("__wab_instance", sty.icon, {
+                [sty.icon__isActive]: hasVariant(
+                  variants,
+                  "isActive",
+                  "isActive"
+                ),
+                [sty.icon__isActive_itemType_createTimeline]:
+                  hasVariant(variants, "isActive", "isActive") &&
+                  hasVariant(variants, "itemType", "createTimeline"),
+                [sty.icon__itemType_createTimeline]: hasVariant(
+                  variants,
+                  "itemType",
+                  "createTimeline"
+                ),
+              })}
+              greenBgHover={
+                hasVariant(variants, "isActive", "isActive") &&
+                triggers.hover_root
+                  ? ("greenBgHover" as const)
+                  : hasVariant(variants, "isActive", "isActive") &&
+                    hasVariant(variants, "itemType", "createTimeline")
+                  ? ("greenBgHover" as const)
+                  : undefined
+              }
+            >
+              <p.PlasmicIcon
+                PlasmicIconType={
+                  hasVariant(variants, "itemType", "ventureCollapsed")
+                    ? VectorsvgIcon
+                    : hasVariant(variants, "itemType", "createTimeline")
+                    ? IconPlusIcon
+                    : hasVariant(variants, "itemType", "timeline")
+                    ? IconHashIcon
+                    : IconAccordianIcon
+                }
+                className={classNames(defaultcss.all, sty.svg___6Fx5D, {
+                  [sty.svg__isActive___6Fx5Dw0Xu8]: hasVariant(
+                    variants,
+                    "isActive",
+                    "isActive"
+                  ),
+                  [sty.svg__itemType_createTimeline___6Fx5DOuGst]: hasVariant(
+                    variants,
+                    "itemType",
+                    "createTimeline"
+                  ),
+                  [sty.svg__itemType_timeline___6Fx5DoN3Wv]: hasVariant(
+                    variants,
+                    "itemType",
+                    "timeline"
+                  ),
+                  [sty.svg__itemType_ventureCollapsed___6Fx5D4PCv]: hasVariant(
+                    variants,
+                    "itemType",
+                    "ventureCollapsed"
+                  ),
+                })}
+                role={"img"}
+              />
+            </IconButton>
+          ) : null}
+          {(
+            hasVariant(variants, "itemType", "createTimeline") &&
+            triggers.hover_root
+              ? true
+              : hasVariant(variants, "itemType", "createTimeline")
               ? false
               : true
           ) ? (
-            <div
-              className={classNames(defaultcss.all, sty.box__zSbSe, {
-                [sty.box__isOrganization__zSbSeNLnuO]: hasVariant(
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(defaultcss.all, sty.box__zwdJs, {
+                [sty.box__itemType_createTimeline__zwdJsOuGst]: hasVariant(
                   variants,
-                  "isOrganization",
-                  "isOrganization"
+                  "itemType",
+                  "createTimeline"
+                ),
+                [sty.box__itemType_timeline__zwdJSoN3Wv]: hasVariant(
+                  variants,
+                  "itemType",
+                  "timeline"
                 ),
               })}
             >
               <p.PlasmicSlot
                 defaultContents={
-                  <IconHashIcon
-                    className={classNames(defaultcss.all, sty.svg__mVzHz)}
-                    role={"img"}
-                  />
+                  <React.Fragment>
+                    <div
+                      className={classNames(
+                        defaultcss.all,
+                        defaultcss.__wab_text,
+                        sty.box__j6CkC
+                      )}
+                    >
+                      {"Title"}
+                    </div>
+
+                    {false ? (
+                      <input
+                        data-plasmic-name={"textbox"}
+                        data-plasmic-override={overrides.textbox}
+                        className={classNames(defaultcss.input, sty.textbox)}
+                        placeholder={"Enter name" as const}
+                        size={1 as const}
+                        type={"text" as const}
+                        value={"" as const}
+                      />
+                    ) : null}
+                  </React.Fragment>
                 }
-                value={args.children}
-                className={classNames(sty.slotChildren, {
-                  [sty.slotChildren__hasUpdate]: hasVariant(
+                value={args.name}
+                className={classNames(sty.slotName, {
+                  [sty.slotName__isActive]: hasVariant(
                     variants,
-                    "hasUpdate",
-                    "hasUpdate"
+                    "isActive",
+                    "isActive"
                   ),
-                  [sty.slotChildren__isCurrent]: hasVariant(
+                  [sty.slotName__itemType_createTimeline]: hasVariant(
                     variants,
-                    "isCurrent",
-                    "isCurrent"
+                    "itemType",
+                    "createTimeline"
                   ),
-                  [sty.slotChildren__isInput]: hasVariant(
+                  [sty.slotName__itemType_timeline]: hasVariant(
                     variants,
-                    "isInput",
-                    "isInput"
-                  ),
-                  [sty.slotChildren__isOrganization]: hasVariant(
-                    variants,
-                    "isOrganization",
-                    "isOrganization"
+                    "itemType",
+                    "timeline"
                   ),
                 })}
               />
-            </div>
+            </p.Stack>
           ) : null}
-          {(hasVariant(variants, "isInput", "isInput") ? false : true) ? (
-            <p.PlasmicSlot
-              defaultContents={
-                <React.Fragment>
-                  <div
-                    className={classNames(
-                      defaultcss.all,
-                      defaultcss.__wab_text,
-                      sty.box__j6CkC
-                    )}
-                  >
-                    {"Wins"}
-                  </div>
-
-                  {false ? (
-                    <input
-                      data-plasmic-name={"textbox"}
-                      data-plasmic-override={overrides.textbox}
-                      className={classNames(defaultcss.input, sty.textbox)}
-                      placeholder={"Enter name" as const}
-                      size={1 as const}
-                      type={"text" as const}
-                      value={"" as const}
-                    />
-                  ) : null}
-                </React.Fragment>
-              }
-              value={args.name}
-              className={classNames(sty.slotName, {
-                [sty.slotName__hasUpdate]: hasVariant(
+          {(
+            hasVariant(variants, "itemType", "createTimeline") &&
+            triggers.hover_root
+              ? false
+              : triggers.hover_root
+              ? true
+              : hasVariant(variants, "itemType", "createTimeline")
+              ? false
+              : false
+          ) ? (
+            <IconButton
+              data-plasmic-name={"iconButton"}
+              data-plasmic-override={overrides.iconButton}
+              className={classNames("__wab_instance", sty.iconButton, {
+                [sty.iconButton__isActive]: hasVariant(
                   variants,
-                  "hasUpdate",
-                  "hasUpdate"
+                  "isActive",
+                  "isActive"
                 ),
-                [sty.slotName__isCurrent]: hasVariant(
+                [sty.iconButton__isActive_itemType_createTimeline]:
+                  hasVariant(variants, "isActive", "isActive") &&
+                  hasVariant(variants, "itemType", "createTimeline"),
+                [sty.iconButton__itemType_createTimeline]: hasVariant(
                   variants,
-                  "isCurrent",
-                  "isCurrent"
-                ),
-                [sty.slotName__isInput]: hasVariant(
-                  variants,
-                  "isInput",
-                  "isInput"
-                ),
-                [sty.slotName__isOrganization]: hasVariant(
-                  variants,
-                  "isOrganization",
-                  "isOrganization"
+                  "itemType",
+                  "createTimeline"
                 ),
               })}
+              greenBgHover={
+                hasVariant(variants, "isActive", "isActive") &&
+                triggers.hover_root
+                  ? ("greenBgHover" as const)
+                  : hasVariant(variants, "isActive", "isActive") &&
+                    hasVariant(variants, "itemType", "createTimeline")
+                  ? ("greenBgHover" as const)
+                  : undefined
+              }
+            >
+              <IconDotMenuIcon
+                className={classNames(defaultcss.all, sty.svg__zhtWc, {
+                  [sty.svg__isActive__zhtWcw0Xu8]: hasVariant(
+                    variants,
+                    "isActive",
+                    "isActive"
+                  ),
+                  [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
+                    hasVariant(variants, "isActive", "isActive") &&
+                    hasVariant(variants, "itemType", "createTimeline"),
+                  [sty.svg__isUserOnClick__zhtWcXgVg8]: hasVariant(
+                    variants,
+                    "isUserOnClick",
+                    "isUserOnClick"
+                  ),
+                })}
+                role={"img"}
+              />
+            </IconButton>
+          ) : null}
+          {(
+            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+            triggers.hover_root
+              ? true
+              : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+              ? false
+              : false
+          ) ? (
+            <Dropdown
+              data-plasmic-name={"dropdown"}
+              data-plasmic-override={overrides.dropdown}
+              className={classNames("__wab_instance", sty.dropdown, {
+                [sty.dropdown__isUserOnClick]: hasVariant(
+                  variants,
+                  "isUserOnClick",
+                  "isUserOnClick"
+                ),
+                [sty.dropdown__isUserOnClick_itemType_timeline]:
+                  hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                  hasVariant(variants, "itemType", "timeline"),
+              })}
+              rename2={
+                hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                hasVariant(variants, "itemType", "timeline") &&
+                triggers.hover_root
+                  ? "Edit Timeline"
+                  : "Edit Venture"
+              }
             />
           ) : null}
-          {(hasVariant(variants, "isInput", "isInput") ? true : false) ? (
-            <form
-              data-plasmic-name={"sidebarForm"}
-              data-plasmic-override={overrides.sidebarForm}
-              className={classNames(defaultcss.all, sty.sidebarForm, {
-                [sty.sidebarForm__isInput]: hasVariant(
-                  variants,
-                  "isInput",
-                  "isInput"
-                ),
-              })}
-            >
-              <input
-                data-plasmic-name={"addTimelineInput"}
-                data-plasmic-override={overrides.addTimelineInput}
-                className={classNames(defaultcss.input, sty.addTimelineInput, {
-                  [sty.addTimelineInput__isInput]: hasVariant(
-                    variants,
-                    "isInput",
-                    "isInput"
-                  ),
-                })}
-                placeholder={"Enter name" as const}
-                size={1 as const}
-                type={"text" as const}
-              />
-            </form>
-          ) : null}
         </p.Stack>
-
-        {(
-          hasVariant(variants, "isInput", "isInput") && triggers.hover_root
-            ? false
-            : hasVariant(variants, "isOrganization", "isOrganization") &&
-              triggers.hover_root
-            ? false
-            : triggers.hover_root
-            ? true
-            : hasVariant(variants, "isInput", "isInput")
-            ? false
-            : false
-        ) ? (
-          <div
-            className={classNames(defaultcss.all, sty.box__eFeO, {
-              [sty.box__isInput__eFeOVs3Tx]: hasVariant(
-                variants,
-                "isInput",
-                "isInput"
-              ),
-              [sty.box__isOrganization__eFeONLnuO]: hasVariant(
-                variants,
-                "isOrganization",
-                "isOrganization"
-              ),
-            })}
-          >
-            {(
-              triggers.hover_root
-                ? true
-                : hasVariant(variants, "isInput", "isInput")
-                ? false
-                : true
-            ) ? (
-              <p.PlasmicIcon
-                data-plasmic-name={"itemHoverIcon"}
-                data-plasmic-override={overrides.itemHoverIcon}
-                PlasmicIconType={
-                  hasVariant(variants, "isOrganization", "isOrganization") &&
-                  triggers.hover_root
-                    ? IconPlusIcon
-                    : IconDotMenuIcon
-                }
-                className={classNames(defaultcss.all, sty.itemHoverIcon, {
-                  [sty.itemHoverIcon__isInput]: hasVariant(
-                    variants,
-                    "isInput",
-                    "isInput"
-                  ),
-                  [sty.itemHoverIcon__isOrganization]: hasVariant(
-                    variants,
-                    "isOrganization",
-                    "isOrganization"
-                  ),
-                })}
-                role={"img"}
-              />
-            ) : null}
-          </div>
-        ) : null}
-        {(
-          hasVariant(variants, "isInput", "isInput") && triggers.hover_root
-            ? false
-            : hasVariant(variants, "isOrganization", "isOrganization") &&
-              triggers.hover_root
-            ? true
-            : triggers.hover_root
-            ? false
-            : hasVariant(variants, "isInput", "isInput")
-            ? false
-            : false
-        ) ? (
-          <div
-            className={classNames(defaultcss.all, sty.box__xAVp, {
-              [sty.box__isInput__xAVpVs3Tx]: hasVariant(
-                variants,
-                "isInput",
-                "isInput"
-              ),
-              [sty.box__isOrganization__xAVpNLnuO]: hasVariant(
-                variants,
-                "isOrganization",
-                "isOrganization"
-              ),
-            })}
-          >
-            {(
-              triggers.hover_root
-                ? true
-                : hasVariant(variants, "isInput", "isInput")
-                ? false
-                : true
-            ) ? (
-              <p.PlasmicIcon
-                data-plasmic-name={"orgHoverIcon"}
-                data-plasmic-override={overrides.orgHoverIcon}
-                PlasmicIconType={
-                  hasVariant(variants, "isOrganization", "isOrganization") &&
-                  triggers.hover_root
-                    ? IconPlusIcon
-                    : IconDotMenuIcon
-                }
-                className={classNames(defaultcss.all, sty.orgHoverIcon, {
-                  [sty.orgHoverIcon__isInput]: hasVariant(
-                    variants,
-                    "isInput",
-                    "isInput"
-                  ),
-                  [sty.orgHoverIcon__isOrganization]: hasVariant(
-                    variants,
-                    "isOrganization",
-                    "isOrganization"
-                  ),
-                })}
-                role={"img"}
-              />
-            ) : null}
-          </div>
-        ) : null}
-      </p.Stack>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "itemContainer",
-    "textbox",
-    "sidebarForm",
-    "addTimelineInput",
-    "itemHoverIcon",
-    "orgHoverIcon",
-  ],
-  itemContainer: [
-    "itemContainer",
-    "textbox",
-    "sidebarForm",
-    "addTimelineInput",
-    "itemHoverIcon",
-    "orgHoverIcon",
-  ],
+  root: ["root", "itemContainer", "icon", "textbox", "iconButton", "dropdown"],
+  itemContainer: ["itemContainer", "icon", "textbox", "iconButton", "dropdown"],
+  icon: ["icon"],
   textbox: ["textbox"],
-  sidebarForm: ["sidebarForm", "addTimelineInput"],
-  addTimelineInput: ["addTimelineInput"],
-  itemHoverIcon: ["itemHoverIcon"],
-  orgHoverIcon: ["orgHoverIcon"],
+  iconButton: ["iconButton"],
+  dropdown: ["dropdown"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -472,11 +412,10 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   itemContainer: "div";
+  icon: typeof IconButton;
   textbox: "input";
-  sidebarForm: "form";
-  addTimelineInput: "input";
-  itemHoverIcon: "svg";
-  orgHoverIcon: "svg";
+  iconButton: typeof IconButton;
+  dropdown: typeof Dropdown;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -484,8 +423,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSidebarItem__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicSidebarItem__VariantsArgs;
   args?: PlasmicSidebarItem__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -536,11 +474,10 @@ export const PlasmicSidebarItem = Object.assign(
   {
     // Helper components rendering sub-elements
     itemContainer: makeNodeComponent("itemContainer"),
+    icon: makeNodeComponent("icon"),
     textbox: makeNodeComponent("textbox"),
-    sidebarForm: makeNodeComponent("sidebarForm"),
-    addTimelineInput: makeNodeComponent("addTimelineInput"),
-    itemHoverIcon: makeNodeComponent("itemHoverIcon"),
-    orgHoverIcon: makeNodeComponent("orgHoverIcon"),
+    iconButton: makeNodeComponent("iconButton"),
+    dropdown: makeNodeComponent("dropdown"),
 
     // Metadata about props expected for PlasmicSidebarItem
     internalVariantProps: PlasmicSidebarItem__VariantProps,

@@ -1,0 +1,97 @@
+.root {
+  display: flex;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  min-width: 0;
+}
+.textInput {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  min-width: 0;
+}
+.textInput > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: calc(0px - 5px);
+  height: calc(100% + 5px);
+}
+.textInput > :global(.__wab_flex-container) > *,
+.textInput > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-top: 5px;
+}
+.labelContainer {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: flex-start;
+  min-width: 0;
+}
+.slotLabel {
+  text-align: center;
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  font-weight: 600;
+}
+.inputHelperText {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+.slotChildren {
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
+  font-weight: 300;
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+}
+.textboxContainer {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  top: auto;
+  left: auto;
+  width: 100%;
+  min-width: 0;
+}
+.input {
+  width: 100%;
+  height: 141px;
+  text-align: left;
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  cursor: text;
+  align-self: flex-start;
+  min-width: 0;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.root .input::placeholder {
+  color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
+}
+.box__wBY0 {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+}
+.box__ytJal {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 23px;
+  min-width: 0;
+}

@@ -27,6 +27,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
+import ListItem from "../../listitem/index"; // plasmic-import: q8aEgDsN8_/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -40,26 +41,20 @@ type VariantPropType = keyof PlasmicDropdown__VariantsArgs;
 export const PlasmicDropdown__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicDropdown__ArgsType = {
-  rename?: React.ReactNode;
   rename2?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicDropdown__ArgsType;
-export const PlasmicDropdown__ArgProps = new Array<ArgPropType>(
-  "rename",
-  "rename2"
-);
+export const PlasmicDropdown__ArgProps = new Array<ArgPropType>("rename2");
 
 export type PlasmicDropdown__OverridesType = {
   root?: p.Flex<"div">;
   rectangle574?: p.Flex<"div">;
   ul?: p.Flex<"ul">;
-  rename?: p.Flex<"li">;
-  rename2?: p.Flex<"li">;
+  listItem?: p.Flex<typeof ListItem>;
 };
 
 export interface DefaultDropdownProps {
-  rename?: React.ReactNode;
   rename2?: React.ReactNode;
   className?: string;
 }
@@ -92,43 +87,14 @@ function PlasmicDropdown__RenderFunc(props: {
           hasGap={true}
           className={classNames(defaultcss.ul, sty.ul)}
         >
-          <div className={classNames(defaultcss.all, sty.box___84NsJ)}>
-            <p.PlasmicSlot
-              defaultContents={
-                <li
-                  data-plasmic-name={"rename"}
-                  data-plasmic-override={overrides.rename}
-                  className={classNames(
-                    defaultcss.li,
-                    defaultcss.__wab_text,
-                    sty.rename
-                  )}
-                >
-                  {"Rename"}
-                </li>
-              }
-              value={args.rename}
-            />
-          </div>
-
-          <div className={classNames(defaultcss.all, sty.box__uyCPf)}>
-            <p.PlasmicSlot
-              defaultContents={
-                <li
-                  data-plasmic-name={"rename2"}
-                  data-plasmic-override={overrides.rename2}
-                  className={classNames(
-                    defaultcss.li,
-                    defaultcss.__wab_text,
-                    sty.rename2
-                  )}
-                >
-                  {"Archive"}
-                </li>
-              }
-              value={args.rename2}
-            />
-          </div>
+          <ListItem
+            data-plasmic-name={"listItem"}
+            data-plasmic-override={overrides.listItem}
+            className={classNames("__wab_instance", sty.listItem)}
+            rename={
+              <p.PlasmicSlot defaultContents={"Archive"} value={args.rename2} />
+            }
+          />
         </p.Stack>
       </div>
     </div>
@@ -136,11 +102,10 @@ function PlasmicDropdown__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "rectangle574", "ul", "rename", "rename2"],
-  rectangle574: ["rectangle574", "ul", "rename", "rename2"],
-  ul: ["ul", "rename", "rename2"],
-  rename: ["rename"],
-  rename2: ["rename2"],
+  root: ["root", "rectangle574", "ul", "listItem"],
+  rectangle574: ["rectangle574", "ul", "listItem"],
+  ul: ["ul", "listItem"],
+  listItem: ["listItem"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -150,8 +115,7 @@ type NodeDefaultElementType = {
   root: "div";
   rectangle574: "div";
   ul: "ul";
-  rename: "li";
-  rename2: "li";
+  listItem: typeof ListItem;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -159,8 +123,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicDropdown__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicDropdown__VariantsArgs;
   args?: PlasmicDropdown__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -212,8 +175,7 @@ export const PlasmicDropdown = Object.assign(
     // Helper components rendering sub-elements
     rectangle574: makeNodeComponent("rectangle574"),
     ul: makeNodeComponent("ul"),
-    rename: makeNodeComponent("rename"),
-    rename2: makeNodeComponent("rename2"),
+    listItem: makeNodeComponent("listItem"),
 
     // Metadata about props expected for PlasmicDropdown
     internalVariantProps: PlasmicDropdown__VariantProps,

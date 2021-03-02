@@ -1,0 +1,36 @@
+.root {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.background {
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  position: relative;
+  left: auto;
+  top: auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 15px;
+  border-radius: 5px;
+  padding: 0px 2px;
+  background: rgb(2, 157, 127);
+}
+.box {
+  display: inline-block;
+  position: relative;
+  left: auto;
+  top: auto;
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+  width: auto;
+  height: auto;
+  line-height: 1.2;
+  font-size: 12px /* plasmic-token: LxqIZc9hM */;
+  text-align: left;
+  align-self: center;
+}

@@ -4,30 +4,95 @@
   height: auto;
   position: relative;
 }
+@media (min-width: 0px) and (max-width: 767px) {
+  .root {
+    width: 100%;
+    min-width: 0;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .root__buttonFeatures_nonFullWidth {
+    width: auto;
+    display: inline-flex;
+  }
+}
 .button {
   opacity: 1;
   transform: scale(1, 1) rotate(0deg);
   width: auto;
   height: auto;
   display: inline-flex;
-  background-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   min-width: 120px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background: rgb(2, 157, 127);
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+.button__buttonStyle_primaryPurple {
+  background: rgb(38, 26, 63);
+}
+.button__buttonFeatures_removeText {
+  min-width: 0px;
   padding: 10px 15px;
 }
-.button__buttonStyle_secondary {
-  background-color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+@media (min-width: 0px) and (max-width: 767px) {
+  .button__buttonFeatures_nonFullWidth {
+    width: auto;
+    display: inline-flex;
+  }
+}
+.button__isDisabled {
+  opacity: 0.5;
+}
+.button__buttonStyle_secondaryPurple {
+  background: none;
+  border: 1px solid rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.button__buttonStyle_secondaryGreen {
+  background: #ffffff;
   border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.root:hover .button {
-  background-color: rgba(2, 157, 127, 0.91) /* plasmic-token: ktdOhSoiQwPKRUS */;
+.button__buttonStyle_danger {
+  background: #ffffff;
+  border: 1px solid rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
-.root:active .button {
-  background-color: rgba(2, 157, 127, 0.91) /* plasmic-token: ktdOhSoiQwPKRUS */;
+.button__buttonStyle_whiteBlue {
+  box-shadow: 2px 2px 4px 1px rgba(221, 220, 220, 0.5);
+  background: #ffffff;
+  border-width: 1px;
+  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.button__buttonFeatures_isRounded {
+  border-radius: 30px;
+}
+.root:hover .button {
+  background: rgb(0, 142, 113);
+}
+.root__buttonStyle_primaryPurple:hover .button__buttonStyle_primaryPurple {
+  background: rgb(56, 31, 86);
+}
+.root__buttonStyle_secondaryPurple:hover .button__buttonStyle_secondaryPurple {
+  background: rgba(74, 40, 112, 0.05);
+}
+.root__buttonStyle_secondaryGreen:hover .button__buttonStyle_secondaryGreen {
+  background: rgba(20, 220, 152, 0.06);
+}
+.root__buttonStyle_danger:hover .button__buttonStyle_danger {
+  background: rgb(218, 36, 82);
+}
+.root__buttonStyle_whiteBlue:hover .button__buttonStyle_whiteBlue {
+  background: #ffffff;
 }
 .box {
   display: inline-flex;
@@ -38,20 +103,112 @@
   width: auto;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
-  justify-content: center;
 }
-.slotText {
-  font-family: "SF Pro Display";
-  font-size: 14px;
-  font-weight: 900;
+.box > :global(.__wab_flex-container) {
+  justify-content: center;
+  align-items: center;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.box > :global(.__wab_flex-container) > *,
+.box > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  margin-left: 5px;
+}
+.slotSlot__buttonFeatures_showStartIcon {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotSlot__buttonFeatures_showStartIcon_buttonStyle_danger {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.slotSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryPurple {
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.slotSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryGreen {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.svg__vdEop {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.slotCount {
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  font-weight: 500;
   color: rgba(255, 255, 255, 1);
   text-align: center;
   text-transform: none;
   letter-spacing: 0px;
 }
-.slotText > * {
+.slotCount > * {
   text-decoration-line: none;
 }
-.slotText__buttonStyle_secondary {
+.slotCount__buttonStyle_secondaryPurple {
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.slotCount__buttonStyle_secondaryGreen {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.slotCount__buttonStyle_danger {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.slotCount__buttonFeatures_isRounded {
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+}
+.root__buttonStyle_danger:hover .slotCount__buttonStyle_danger {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotText2 {
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  text-transform: none;
+  letter-spacing: 0px;
+}
+.slotText2 > * {
+  text-decoration-line: none;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .slotText2 {
+    font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  }
+}
+.slotText2__buttonStyle_secondaryPurple {
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.slotText2__buttonStyle_secondaryGreen {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.slotText2__buttonStyle_danger {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.slotText2__buttonStyle_whiteBlue {
+  color: rgb(46, 129, 184) /* plasmic-token: IfaVHQ1Yp */;
+}
+.slotText2__buttonFeatures_isRounded {
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+}
+.root__buttonStyle_danger:hover .slotText2__buttonStyle_danger {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotChildren__buttonFeatures_showEndIcon {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.slotChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryGreen {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.slotChildren__buttonFeatures_showEndIcon_buttonStyle_danger {
+  color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
+}
+.slotChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryPurple {
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.svg___85Aov {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+  flex-shrink: 0;
 }

@@ -27,40 +27,68 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
+import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
+import IconButtonMember from "../../iconbuttonmember/index"; // plasmic-import: ZhI9zuyxBT/component
+
+import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicMainHeader.module.css"; // plasmic-import: LRwT0lHdps/css
 
-import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
+import IconExternalLinkIcon from "./icons/PlasmicIcon__IconExternalLink"; // plasmic-import: BDHiWdSyk/icon
+import IconFeedIcon from "./icons/PlasmicIcon__IconFeed"; // plasmic-import: gkIqWTG_m/icon
+import IconSettings2Icon from "./icons/PlasmicIcon__IconSettings2"; // plasmic-import: sumyU8-X3n/icon
 
-export type PlasmicMainHeader__VariantMembers = {};
+export type PlasmicMainHeader__VariantMembers = {
+  headerStyles: "timelineHeader" | "ventureHeader";
+  isActive: "feed" | "members" | "settings" | "unnamedVariant";
+};
 
-export type PlasmicMainHeader__VariantsArgs = {};
+export type PlasmicMainHeader__VariantsArgs = {
+  headerStyles?: SingleChoiceArg<"timelineHeader" | "ventureHeader">;
+  isActive?: SingleChoiceArg<
+    "feed" | "members" | "settings" | "unnamedVariant"
+  >;
+};
+
 type VariantPropType = keyof PlasmicMainHeader__VariantsArgs;
-export const PlasmicMainHeader__VariantProps = new Array<VariantPropType>();
+export const PlasmicMainHeader__VariantProps = new Array<VariantPropType>(
+  "headerStyles",
+  "isActive"
+);
 
 export type PlasmicMainHeader__ArgsType = {
   timelineDescription?: React.ReactNode;
   timelineName?: React.ReactNode;
+  venturename?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicMainHeader__ArgsType;
 export const PlasmicMainHeader__ArgProps = new Array<ArgPropType>(
   "timelineDescription",
-  "timelineName"
+  "timelineName",
+  "venturename"
 );
 
 export type PlasmicMainHeader__OverridesType = {
   container?: p.Flex<"div">;
-  button?: p.Flex<"button">;
-  svg?: p.Flex<"svg">;
+  iconButton?: p.Flex<typeof IconButton>;
+  iconContainer?: p.Flex<"div">;
+  viewHome?: p.Flex<typeof IconButton>;
+  viewMembers?: p.Flex<typeof IconButtonMember>;
+  viewSettings?: p.Flex<typeof IconButton>;
 };
 
 export interface DefaultMainHeaderProps {
   timelineDescription?: React.ReactNode;
   timelineName?: React.ReactNode;
+  venturename?: React.ReactNode;
+  headerStyles?: SingleChoiceArg<"timelineHeader" | "ventureHeader">;
+  isActive?: SingleChoiceArg<
+    "feed" | "members" | "settings" | "unnamedVariant"
+  >;
   className?: string;
 }
 
@@ -72,6 +100,10 @@ function PlasmicMainHeader__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariants(),
+  });
+
   return (
     <div
       data-plasmic-name={"container"}
@@ -81,70 +113,315 @@ function PlasmicMainHeader__RenderFunc(props: {
       className={classNames(
         defaultcss.all,
         projectcss.root_reset,
-        sty.container
+        sty.container,
+        {
+          [sty.container__headerStyles_timelineHeader]: hasVariant(
+            variants,
+            "headerStyles",
+            "timelineHeader"
+          ),
+          [sty.container__headerStyles_ventureHeader]: hasVariant(
+            variants,
+            "headerStyles",
+            "ventureHeader"
+          ),
+          [sty.container__isActive_feed]: hasVariant(
+            variants,
+            "isActive",
+            "feed"
+          ),
+        }
       )}
     >
       <p.Stack
         as={"div"}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box___3Xg51)}
+        className={classNames(defaultcss.all, sty.box___3Xg51, {
+          [sty.box__headerStyles_timelineHeader___3Xg51Rxxpi]: hasVariant(
+            variants,
+            "headerStyles",
+            "timelineHeader"
+          ),
+          [sty.box__headerStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
+            variants,
+            "headerStyles",
+            "ventureHeader"
+          ),
+        })}
       >
-        <p.PlasmicSlot
-          defaultContents={
-            <React.Fragment>
-              <div className={classNames(defaultcss.all, sty.box__rlXLs)} />
-
-              <div
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.box__xi1Sz
-                )}
-              >
-                {"Wins"}
-              </div>
-            </React.Fragment>
-          }
-          value={args.timelineName}
-          className={classNames(sty.slotTimelineName)}
-        />
-        {false ? (
-          <div className={classNames(defaultcss.all, sty.box__sDNfz)}>
-            <p.PlasmicSlot
-              defaultContents={
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
-              }
-              value={args.timelineDescription}
-              className={classNames(sty.slotTimelineDescription)}
-            />
-          </div>
-        ) : null}
-      </p.Stack>
-
-      {false ? (
-        <div className={classNames(defaultcss.all, sty.box__lP94A)}>
-          <button
-            data-plasmic-name={"button"}
-            data-plasmic-override={overrides.button}
-            className={classNames(defaultcss.button, sty.button)}
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.box__sDNfz)}
+        >
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(defaultcss.all, sty.box__yHtqj, {
+              [sty.box__headerStyles_timelineHeader__yHtqjRxxpi]: hasVariant(
+                variants,
+                "headerStyles",
+                "timelineHeader"
+              ),
+            })}
           >
-            <IconDotMenuIcon
-              data-plasmic-name={"svg"}
-              data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg)}
+            <p.PlasmicSlot
+              defaultContents={"Wins"}
+              value={args.timelineName}
+              className={classNames(sty.slotTimelineName, {
+                [sty.slotTimelineName__headerStyles_timelineHeader]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "timelineHeader"
+                ),
+              })}
+            />
+            {(
+              hasVariant(variants, "headerStyles", "timelineHeader")
+                ? true
+                : false
+            ) ? (
+              <p.Stack
+                as={"div"}
+                hasGap={
+                  hasVariant(variants, "headerStyles", "timelineHeader")
+                    ? true
+                    : false
+                }
+                className={classNames(defaultcss.all, sty.box___6YZlv, {
+                  [sty.box__headerStyles_timelineHeader___6YZlvRxxpi]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "timelineHeader"
+                  ),
+                })}
+              >
+                {(
+                  hasVariant(variants, "headerStyles", "timelineHeader")
+                    ? true
+                    : false
+                ) ? (
+                  <div
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.box__y7S0J,
+                      {
+                        [sty.box__headerStyles_timelineHeader__y7S0JRxxpi]: hasVariant(
+                          variants,
+                          "headerStyles",
+                          "timelineHeader"
+                        ),
+                      }
+                    )}
+                  >
+                    {hasVariant(variants, "headerStyles", "timelineHeader")
+                      ? "@"
+                      : "Enter some text"}
+                  </div>
+                ) : null}
+                {(
+                  hasVariant(variants, "headerStyles", "timelineHeader")
+                    ? true
+                    : false
+                ) ? (
+                  <p.PlasmicSlot
+                    defaultContents={"Adbloom"}
+                    value={args.venturename}
+                    className={classNames(sty.slotVenturename, {
+                      [sty.slotVenturename__headerStyles_timelineHeader]: hasVariant(
+                        variants,
+                        "headerStyles",
+                        "timelineHeader"
+                      ),
+                    })}
+                  />
+                ) : null}
+              </p.Stack>
+            ) : null}
+            {(
+              hasVariant(variants, "headerStyles", "timelineHeader")
+                ? false
+                : true
+            ) ? (
+              <IconButton
+                data-plasmic-name={"iconButton"}
+                data-plasmic-override={overrides.iconButton}
+                className={classNames("__wab_instance", sty.iconButton, {
+                  [sty.iconButton__headerStyles_timelineHeader]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "timelineHeader"
+                  ),
+                })}
+                iconSize={"large" as const}
+              >
+                <IconExternalLinkIcon
+                  className={classNames(defaultcss.all, sty.svg__nqhCc)}
+                  role={"img"}
+                />
+              </IconButton>
+            ) : null}
+          </p.Stack>
+
+          {(
+            hasVariant(variants, "headerStyles", "timelineHeader")
+              ? false
+              : hasVariant(globalVariants, "screen", "mobile")
+              ? false
+              : true
+          ) ? (
+            <div
+              className={classNames(defaultcss.all, sty.box__fohK2, {
+                [sty.box__headerStyles_timelineHeader__fohK2Rxxpi]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "timelineHeader"
+                ),
+                [sty.box__headerStyles_ventureHeader__fohK2NMQ9]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "ventureHeader"
+                ),
+              })}
+            >
+              <p.PlasmicSlot
+                defaultContents={
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
+                }
+                value={args.timelineDescription}
+                className={classNames(sty.slotTimelineDescription, {
+                  [sty.slotTimelineDescription__headerStyles_timelineHeader]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "timelineHeader"
+                  ),
+                  [sty.slotTimelineDescription__headerStyles_ventureHeader]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "ventureHeader"
+                  ),
+                })}
+              />
+            </div>
+          ) : null}
+        </p.Stack>
+
+        <p.Stack
+          as={"div"}
+          data-plasmic-name={"iconContainer"}
+          data-plasmic-override={overrides.iconContainer}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.iconContainer, {
+            [sty.iconContainer__isActive_feed]: hasVariant(
+              variants,
+              "isActive",
+              "feed"
+            ),
+          })}
+        >
+          <IconButton
+            data-plasmic-name={"viewHome"}
+            data-plasmic-override={overrides.viewHome}
+            iconSize={"large" as const}
+            isActive={
+              hasVariant(variants, "isActive", "feed")
+                ? ("isActive" as const)
+                : undefined
+            }
+          >
+            <IconFeedIcon
+              className={classNames(defaultcss.all, sty.svg__eTdlE, {
+                [sty.svg__headerStyles_ventureHeader__eTdlEnMQ9]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "ventureHeader"
+                ),
+                [sty.svg__isActive_feed__eTdlEfnkZp]: hasVariant(
+                  variants,
+                  "isActive",
+                  "feed"
+                ),
+              })}
               role={"img"}
             />
-          </button>
-        </div>
-      ) : null}
+          </IconButton>
+
+          <IconButtonMember
+            data-plasmic-name={"viewMembers"}
+            data-plasmic-override={overrides.viewMembers}
+            className={classNames("__wab_instance", sty.viewMembers, {
+              [sty.viewMembers__headerStyles_ventureHeader]: hasVariant(
+                variants,
+                "headerStyles",
+                "ventureHeader"
+              ),
+              [sty.viewMembers__isActive_feed]: hasVariant(
+                variants,
+                "isActive",
+                "feed"
+              ),
+              [sty.viewMembers__isActive_members]: hasVariant(
+                variants,
+                "isActive",
+                "members"
+              ),
+            })}
+            isActive={
+              hasVariant(variants, "isActive", "members")
+                ? ("isActive" as const)
+                : undefined
+            }
+            memberCount={"+"}
+          />
+
+          <IconButton
+            data-plasmic-name={"viewSettings"}
+            data-plasmic-override={overrides.viewSettings}
+            className={classNames("__wab_instance", sty.viewSettings, {
+              [sty.viewSettings__headerStyles_ventureHeader]: hasVariant(
+                variants,
+                "headerStyles",
+                "ventureHeader"
+              ),
+              [sty.viewSettings__isActive_settings]: hasVariant(
+                variants,
+                "isActive",
+                "settings"
+              ),
+            })}
+            iconSize={"large" as const}
+            isActive={
+              hasVariant(variants, "isActive", "settings")
+                ? ("isActive" as const)
+                : undefined
+            }
+          >
+            <IconSettings2Icon
+              className={classNames(defaultcss.all, sty.svg__isMis)}
+              role={"img"}
+            />
+          </IconButton>
+        </p.Stack>
+      </p.Stack>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  container: ["container", "button", "svg"],
-  button: ["button", "svg"],
-  svg: ["svg"],
+  container: [
+    "container",
+    "iconButton",
+    "iconContainer",
+    "viewHome",
+    "viewMembers",
+    "viewSettings",
+  ],
+  iconButton: ["iconButton"],
+  iconContainer: ["iconContainer", "viewHome", "viewMembers", "viewSettings"],
+  viewHome: ["viewHome"],
+  viewMembers: ["viewMembers"],
+  viewSettings: ["viewSettings"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -152,8 +429,11 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   container: "div";
-  button: "button";
-  svg: "svg";
+  iconButton: typeof IconButton;
+  iconContainer: "div";
+  viewHome: typeof IconButton;
+  viewMembers: typeof IconButtonMember;
+  viewSettings: typeof IconButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -161,8 +441,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicMainHeader__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicMainHeader__VariantsArgs;
   args?: PlasmicMainHeader__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -212,8 +491,11 @@ export const PlasmicMainHeader = Object.assign(
   makeNodeComponent("container"),
   {
     // Helper components rendering sub-elements
-    button: makeNodeComponent("button"),
-    svg: makeNodeComponent("svg"),
+    iconButton: makeNodeComponent("iconButton"),
+    iconContainer: makeNodeComponent("iconContainer"),
+    viewHome: makeNodeComponent("viewHome"),
+    viewMembers: makeNodeComponent("viewMembers"),
+    viewSettings: makeNodeComponent("viewSettings"),
 
     // Metadata about props expected for PlasmicMainHeader
     internalVariantProps: PlasmicMainHeader__VariantProps,
