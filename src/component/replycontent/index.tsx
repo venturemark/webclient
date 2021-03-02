@@ -5,7 +5,6 @@ import {
   PlasmicReplyContent,
   DefaultReplyContentProps,
 } from "component/plasmic/shared/PlasmicReplyContent";
-import ReplyContentSecond from "component/replycontent";
 import { IMessageQuery } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 
@@ -29,7 +28,7 @@ function ReplyContent(props: ReplyContentProps) {
     date,
     text,
   } = props;
-  const [state, setState] = useState<"isUser" | undefined>(undefined);
+  const [state] = useState<"isUser" | undefined>(undefined);
 
   const token = "";
 
@@ -45,6 +44,8 @@ function ReplyContent(props: ReplyContentProps) {
   const { data: messagesData } = useMessages(messageSearch);
   const messages =
     messagesData?.filter((message: any) => message.reid === id) ?? [];
+
+  console.log(messages);
 
   return (
     <PlasmicReplyContent

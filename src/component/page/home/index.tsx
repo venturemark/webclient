@@ -11,15 +11,10 @@ import { useTimelines } from "module/hook/timeline";
 import { IUpdate, IUpdateQuery } from "module/interface/update";
 import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
 import { getUser, getVenture } from "module/store";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
-import VentureSettings from "component/page/venturesettings";
-import Members from "component/page/members";
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Home(props: HomeProps) {
-  let { path, url } = useRouteMatch();
-
   const user = getUser();
   const venture = getVenture();
   const [currentTimeline, setCurrentTimeline] = useState<
@@ -93,9 +88,7 @@ export function Home(props: HomeProps) {
     venture && variantType === "isEmpty" && setVariantType("isVenture");
   }, [venture, variantType]);
 
-  // console.log(updates);
-
-  console.log("path", path);
+  console.log(updates);
 
   return (
     <>

@@ -198,7 +198,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSidebarItemGroup__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicSidebarItemGroup__VariantsArgs;
   args?: PlasmicSidebarItemGroup__ArgsType;
   overrides?: NodeOverridesType<T>;

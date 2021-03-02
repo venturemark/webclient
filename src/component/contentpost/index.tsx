@@ -5,10 +5,10 @@ import {
   PlasmicContentPost,
   DefaultContentPostProps,
 } from "component/plasmic/shared/PlasmicContentPost";
-import ReadEditor from "component/editor/read";
+// import ReadEditor from "component/editor/read";
 import { Node } from "slate";
-import { AntDropdown } from "component/ant/dropdown";
-import TimelineLink from "component/timelinelink";
+// import { AntDropdown } from "component/ant/dropdown";
+// import TimelineLink from "component/timelinelink";
 import { ITimeline } from "module/interface/timeline";
 
 interface ContentPostProps extends DefaultContentPostProps {
@@ -27,20 +27,20 @@ interface ContentPostProps extends DefaultContentPostProps {
 
 function ContentPost(props: ContentPostProps) {
   const {
-    text,
-    organizationName,
+    // text,
+    // organizationName,
     userName,
-    updateTimelines,
-    timelineId,
+    // updateTimelines,
+    // timelineId,
     date,
-    id,
-    setCurrentTimeline,
+    // id,
+    // setCurrentTimeline,
     setIsVisible,
   } = props;
 
-  const [isPostDetails, setIsPostDetails] = useState<
-    "isPostDetails" | "isUser" | undefined
-  >(undefined);
+  const [isPostDetails] = useState<"isPostDetails" | "isUser" | undefined>(
+    undefined
+  );
 
   return (
     <PlasmicContentPost

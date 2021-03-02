@@ -5,12 +5,12 @@ import {
   PlasmicMain,
   DefaultMainProps,
 } from "component/plasmic/shared/PlasmicMain";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
-interface ParamTypes {
-  ventureId: string;
-  timelineId: string;
-}
+// interface ParamTypes {
+//   ventureId: string;
+//   timelineId: string;
+// }
 
 interface MainProps extends DefaultMainProps {
   isActive: any;
@@ -34,7 +34,7 @@ function Main(props: MainProps) {
     ...rest
   } = props;
 
-  const { ventureId, timelineId } = useParams<ParamTypes>();
+  // const { ventureId, timelineId } = useParams<ParamTypes>();
 
   return (
     <PlasmicMain
