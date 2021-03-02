@@ -6,7 +6,7 @@ export const configJson = {
   audience: "apiserver",
   redirectUri: isDev()
     ? "http://localhost:3006/profile"
-    : "https://beta.venturemark.co/profile",
+    : "https://vm001.us.auth0.com/profile",
   useRefreshTokens: true,
 };
 
