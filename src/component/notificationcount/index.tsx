@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-PlasmicNotificationCount,
-DefaultNotificationCountProps } from
-"component/plasmic/shared/PlasmicNotificationCount";
+  PlasmicNotificationCount,
+  DefaultNotificationCountProps,
+} from "component/plasmic/shared/PlasmicNotificationCount";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can

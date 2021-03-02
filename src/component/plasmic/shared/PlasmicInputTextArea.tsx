@@ -241,7 +241,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicInputTextArea__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicInputTextArea__VariantsArgs;
   args?: PlasmicInputTextArea__ArgsType;
   overrides?: NodeOverridesType<T>;
