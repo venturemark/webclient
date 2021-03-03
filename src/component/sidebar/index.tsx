@@ -21,7 +21,7 @@ interface SidebarProps extends DefaultSidebarProps {
   >;
 
   userId: string;
-  organizationId: string;
+  ventureId: string;
 }
 
 function Sidebar(props: SidebarProps) {
@@ -30,17 +30,16 @@ function Sidebar(props: SidebarProps) {
     setIsHome,
     currentTimeline,
     userId,
-    organizationId,
+    ventureId,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
 
-  console.log(userId, organizationId);
+  console.log(userId, ventureId);
 
   const timelineSearch: ITimelineQuery = {
     userId,
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     token,
   };
 

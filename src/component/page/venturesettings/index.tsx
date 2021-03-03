@@ -27,15 +27,14 @@ function VentureSettings(props: VentureSettingsProps) {
   const timelineId = currentTimeline?.id ?? undefined;
 
   //currently hardcoding until we have a plan for org / user storage
-  const organizationId = "venturemark";
+  const ventureId = "venturemark";
   const userId = user?.id ?? "marcus";
 
   const token = "";
 
   const timelineSearch: ITimelineQuery = {
     userId,
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     token,
   };
 
@@ -44,16 +43,14 @@ function VentureSettings(props: VentureSettingsProps) {
   );
 
   const timelineUpdatesSearch: IUpdateQuery = {
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     timelineId,
     userId,
     token,
   };
 
   const allUpdatesSearch: IUpdateQuery = {
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     timelineId,
     userId,
     timelines: timelinesData,
@@ -114,7 +111,7 @@ function VentureSettings(props: VentureSettingsProps) {
         currentTimeline: currentTimeline,
         setCurrentTimeline: setCurrentTimeline,
         userId: userId,
-        organizationId: organizationId,
+        ventureId: ventureId,
       }}
 
       // actionBar={{

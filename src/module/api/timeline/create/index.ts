@@ -22,7 +22,7 @@ export async function Create(newTimeline: INewTimeline): Promise<any> {
   objProperty.setName(newTimeline.name);
   objProperty.setDesc(newTimeline.desc);
   obj.getMetadataMap().set(key.UserID, newTimeline.userId);
-  obj.getMetadataMap().set(key.OrganizationID, newTimeline.organizationId);
+  obj.getMetadataMap().set(key.OrganizationID, newTimeline.ventureId);
   obj.getMetadataMap().set(key.ventureID, newTimeline.ventureId);
   obj.setProperty(objProperty);
 

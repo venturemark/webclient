@@ -12,7 +12,7 @@ import { useMessages } from "module/hook/message";
 interface PostDetailsProps extends DefaultPostDetailsProps {
   updateId: string;
   timelineId: string;
-  organizationId: string;
+  ventureId: string;
   userId: string;
   setIsVisible: any;
 }
@@ -22,7 +22,7 @@ function PostDetails(props: PostDetailsProps) {
     updateId,
     timelineId,
     userId,
-    organizationId,
+    ventureId,
     setIsVisible,
     ...rest
   } = props;
@@ -31,8 +31,7 @@ function PostDetails(props: PostDetailsProps) {
     updateId,
     timelineId,
     userId,
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     token,
   };
 
@@ -45,7 +44,7 @@ function PostDetails(props: PostDetailsProps) {
         onClick: () => setIsVisible(undefined),
       }}
       replyInput={{
-        organizationId: organizationId,
+        ventureId,
         timelineId,
         updateId,
         userId,
@@ -60,7 +59,7 @@ function PostDetails(props: PostDetailsProps) {
             text={message.text}
             updateId={updateId}
             timelineId={timelineId}
-            organizationId={organizationId}
+            ventureId={ventureId}
             {...rest}
           />
         )),

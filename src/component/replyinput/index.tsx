@@ -16,13 +16,13 @@ type FormInputs = {
 interface ReplyInputProps extends DefaultReplyInputProps {
   updateId: string;
   timelineId: string;
-  organizationId: string;
+  ventureId: string;
   userId: string;
   reid: string;
 }
 
 function ReplyInput(props: ReplyInputProps) {
-  const { updateId, timelineId, organizationId, userId, reid } = props;
+  const { updateId, timelineId, ventureId, userId, reid } = props;
 
   const { register, handleSubmit, reset } = useForm<FormInputs>();
   const { mutate: createMessage } = useCreateMessage();
@@ -35,8 +35,7 @@ function ReplyInput(props: ReplyInputProps) {
     const token = "";
     const newMessage: INewMessage = {
       text: data.text,
-      organizationId,
-      ventureId: organizationId,
+      ventureId,
       timelineId,
       updateId,
       userId,
