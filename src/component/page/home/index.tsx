@@ -11,26 +11,43 @@ import { useTimelines } from "module/hook/timeline";
 import { IUpdate, IUpdateQuery } from "module/interface/update";
 import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
 import { getUser, getVenture } from "module/store";
+import { useParams, useRouteMatch } from "react-router-dom";
+
+interface ParamTypes {
+  ventureSlug: string;
+  timelineSlug: string;
+}
+
+type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
+type IsActive = "feed" | "settings" | "members" | undefined;
 
 interface HomeProps extends DefaultHomeProps {}
 
 export function Home(props: HomeProps) {
   const user = getUser();
   const venture = getVenture();
+  // console.log();
+  const { url } = useRouteMatch<IsActive>();
+  const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
   >();
+
+  const variant = timelineSlug
+    ? "isTimeline"
+    : ventureSlug
+    ? "isVenture"
+    : "isEmpty";
+
+  const active = url.substring(url.lastIndexOf("/") + 1) as IsActive;
+
   // local hooks shared with page-level elements
   const [isVisible, setIsVisible] = useState<
     "postDetails" | "mobileSidebar" | undefined
   >(undefined);
   const [isHome, setIsHome] = useState(true);
-  const [variantType, setVariantType] = useState<
-    "isEmpty" | "isTimeline" | "isVenture" | undefined
-  >("isEmpty");
-  const [isActive, setIsActive] = useState<
-    "feed" | "settings" | "members" | undefined
-  >("feed");
+  const [variantType, setVariantType] = useState<VariantType>(variant);
+  const [isActive, setIsActive] = useState<IsActive>(active);
 
   const timelineId = currentTimeline?.id ?? undefined;
   //currently hardcoding until we have a plan for org / user storage
@@ -87,8 +104,6 @@ export function Home(props: HomeProps) {
     !venture && setVariantType("isEmpty");
     venture && variantType === "isEmpty" && setVariantType("isVenture");
   }, [venture, variantType]);
-
-  console.log(updates);
 
   return (
     <>
