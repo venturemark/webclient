@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "component/page/home";
 import Signin from "component/page/signin";
 import Profile from "component/page/profile";
-import Members from "component/page/members";
-import VentureSettings from "component/page/venturesettings";
 
 type Props = {};
 
@@ -17,16 +15,17 @@ export function Component(props: Props) {
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/:ventureSlug" component={Home} />
+          <Route exact path="/:ventureSlug/feed" component={Home} />
           <Route exact path="/:ventureSlug/members" component={Home} />
           <Route exact path="/:ventureSlug/settings" component={Home} />
           <Route exact path="/:ventureSlug/:timelineSlug" component={Home} />
           <Route
-            exacI
+            exact
             path="/:ventureSlug/:timelineSlug/feed"
             component={Home}
           />
           <Route
-            exacI
+            exact
             path="/:ventureSlug/:timelineSlug/members"
             component={Home}
           />

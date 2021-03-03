@@ -39,7 +39,8 @@ export function Home(props: HomeProps) {
     ? "isVenture"
     : "isEmpty";
 
-  const active = url.substring(url.lastIndexOf("/") + 1) as IsActive;
+  // const active = url.substring(url.lastIndexOf("/") + 1) as IsActive;
+  const active = url.split("/")[3] as IsActive;
 
   // local hooks shared with page-level elements
   const [isVisible, setIsVisible] = useState<
@@ -105,20 +106,21 @@ export function Home(props: HomeProps) {
     !venture && setVariantType("isEmpty");
     venture && variantType === "isEmpty" && setVariantType("isVenture");
 
-    setIsActive(active);
+    console.log("active", active);
+
+    if (!active) {
+      setIsActive("feed");
+    } else {
+      setIsActive(active);
+    }
   }, [venture, variantType, variant, active]);
+
+  console.log(updates);
 
   return (
     <>
       <PlasmicHome
         isVisible={isVisible}
-        // showLogin={showLogin}
-        // loginModal={{
-        //   organizationDescription:
-        //     "Venturemark helps founders communicate to internal and external stakeholders.",
-        //   setLogin: setLogin,
-        // }}
-        // isTimeline={!isHome}
         main={{
           currentTimeline,
           variantType,
@@ -165,12 +167,6 @@ export function Home(props: HomeProps) {
         //   )),
         // }}
       />
-      {/* <Switch>
-        <Route exact path="/venturemark/settings" component={VentureSettings} />
-        <Route path={`${path}/members`}>
-          <Members />
-        </Route>
-      </Switch> */}
     </>
   );
 }
