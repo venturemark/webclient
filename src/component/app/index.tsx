@@ -16,8 +16,6 @@ export function Component(props: Props) {
           <Route exact path="/" component={Home} />
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/:ventureId/feed" component={Members} />
-          <Route exact path="/:ventureId" component={Members} />
           <Route exact path="/:ventureId" component={Home} />
           <Route exact path="/:ventureId/members" component={Members} />
           <Route
@@ -25,7 +23,7 @@ export function Component(props: Props) {
             path="/:ventureId/settings"
             component={VentureSettings}
           />
-          <Route
+          {/* <Route
             exact
             path="/:ventureId/:timelineId"
             component={VentureSettings}
@@ -44,7 +42,7 @@ export function Component(props: Props) {
             exacI
             path="/:ventureId/:timelineId/feed"
             component={VentureSettings}
-          />
+          /> */}
         </Switch>
       </Router>
     </>

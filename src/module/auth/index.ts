@@ -1,14 +1,20 @@
 import { isDev } from "module/helpers";
 
-export const configJson = {
-  domain: "vm001.us.auth0.com",
-  clientId: "OcDgIHyVoiG39haDb8Vm88dTa96mgGTg",
-  audience: "apiserver",
-  redirectUri: isDev()
-    ? "http://localhost:3006/profile"
-    : "https://vm001.us.auth0.com/profile",
-  useRefreshTokens: true,
-};
+export const configJson = isDev()
+  ? {
+      domain: "vm001.us.auth0.com",
+      clientId: "g36L8KuZbNfkDsCZY8zPzDnQPf22w5Vc",
+      audience: "apiserver",
+      redirectUri: "http://localhost:3006/profile",
+      useRefreshTokens: true,
+    }
+  : {
+      domain: "vm001.us.auth0.com",
+      clientId: "OcDgIHyVoiG39haDb8Vm88dTa96mgGTg",
+      audience: "apiserver",
+      redirectUri: "https://vm001.us.auth0.com/profile",
+      useRefreshTokens: true,
+    };
 
 export function getConfig() {
   // Configure the audience here. By default, it will take whatever is in the config
