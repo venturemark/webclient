@@ -36,6 +36,7 @@ function ReplyInput(props: ReplyInputProps) {
     const newMessage: INewMessage = {
       text: data.text,
       organizationId,
+      ventureId: organizationId,
       timelineId,
       updateId,
       userId,

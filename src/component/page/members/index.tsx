@@ -34,6 +34,7 @@ function Members(props: MembersProps) {
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
+    ventureId: organizationId,
     token,
   };
 
@@ -43,6 +44,7 @@ function Members(props: MembersProps) {
 
   const timelineUpdatesSearch: IUpdateQuery = {
     organizationId,
+    ventureId: organizationId,
     timelineId,
     userId,
     token,
@@ -50,6 +52,7 @@ function Members(props: MembersProps) {
 
   const allUpdatesSearch: IUpdateQuery = {
     organizationId,
+    ventureId: organizationId,
     timelineId,
     userId,
     timelines: timelinesData,

@@ -38,6 +38,7 @@ function ReplyContent(props: ReplyContentProps) {
     timelineId,
     userId: userName,
     organizationId,
+    ventureId: organizationId,
     token,
   };
 

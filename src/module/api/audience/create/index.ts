@@ -10,9 +10,16 @@ import * as key from "module/idkeys";
 export async function Create(
   name: string,
   userId: string,
-  organizationId: string
+  organizationId: string,
+  ventureId: string
 ): Promise<any> {
-  console.log("send to create audience:", name, userId, organizationId);
+  console.log(
+    "send to create audience:",
+    name,
+    userId,
+    organizationId,
+    ventureId
+  );
 
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
@@ -27,6 +34,7 @@ export async function Create(
   objProperty.setUserList(userList); // Right now an audience doesn't have to have members
   obj.getMetadataMap().set(key.UserID, userId);
   obj.getMetadataMap().set(key.OrganizationID, organizationId);
+  obj.getMetadataMap().set(key.OrganizationID, ventureId);
   obj.setProperty(objProperty);
 
   req.setObj(obj);

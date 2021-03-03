@@ -59,6 +59,7 @@ export function Home(props: HomeProps) {
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
+    ventureId: organizationId,
     token,
   };
   const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
@@ -66,12 +67,14 @@ export function Home(props: HomeProps) {
   );
   const timelineUpdatesSearch: IUpdateQuery = {
     organizationId,
+    ventureId: organizationId,
     timelineId,
     userId,
     token,
   };
   const allUpdatesSearch: IUpdateQuery = {
     organizationId,
+    ventureId: organizationId,
     timelineId,
     userId,
     timelines: timelinesData,

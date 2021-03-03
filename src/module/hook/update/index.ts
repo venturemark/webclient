@@ -17,6 +17,7 @@ const getAllUpdates = async (updateQuery: any) => {
       const timelineId = timeline.id;
       const search = {
         organizationId,
+        ventureId: organizationId,
         timelineId,
         userId,
         token,

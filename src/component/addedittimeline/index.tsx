@@ -33,6 +33,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       desc: data.description,
       userId,
       organizationId,
+      ventureId: organizationId,
       token: token,
     };
 

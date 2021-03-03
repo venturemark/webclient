@@ -5,6 +5,7 @@ export interface IUpdate {
   id: string;
   userId: string;
   organizationId: string;
+  ventureId: string;
   timelineId: string;
   date: string;
 }
@@ -12,6 +13,7 @@ export interface IUpdate {
 export interface IUpdateQuery {
   organizationId: string;
   timelineId?: string;
+  ventureId: string;
   userId: string;
   timelines?: any;
   token: string;
@@ -20,6 +22,7 @@ export interface IUpdateQuery {
 export interface INewUpdate {
   text: string;
   organizationId: string;
+  ventureId: string;
   timelineId: string;
   userId: string;
   token: string;
@@ -30,6 +33,7 @@ export interface IUpdateUpdate {
   id: string;
   userId: string;
   organizationId: string;
+  ventureId: string;
   timelineId: string;
   token: string;
 }

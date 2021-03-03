@@ -35,6 +35,7 @@ function VentureSettings(props: VentureSettingsProps) {
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
+    ventureId: organizationId,
     token,
   };
 
@@ -44,6 +45,7 @@ function VentureSettings(props: VentureSettingsProps) {
 
   const timelineUpdatesSearch: IUpdateQuery = {
     organizationId,
+    ventureId: organizationId,
     timelineId,
     userId,
     token,
@@ -51,6 +53,7 @@ function VentureSettings(props: VentureSettingsProps) {
 
   const allUpdatesSearch: IUpdateQuery = {
     organizationId,
+    ventureId: organizationId,
     timelineId,
     userId,
     timelines: timelinesData,

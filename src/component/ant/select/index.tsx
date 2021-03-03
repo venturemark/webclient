@@ -54,6 +54,7 @@ export function AntSelect(props: SelectProps) {
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
+    ventureId: organizationId,
     token,
   };
   const { isLoading, data: timelines } = useTimelines(timelineSearch);
