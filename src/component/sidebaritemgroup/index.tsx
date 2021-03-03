@@ -9,8 +9,8 @@ import SidebarItem from "component/sidebaritem";
 import { useParams } from "react-router-dom";
 
 interface ParamTypes {
-  ventureId: string;
-  timelineId: string;
+  ventureSlug: string;
+  timelineSlug: string;
 }
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
@@ -20,9 +20,8 @@ interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { name, timelines, ...rest } = props;
-  const [isCollapsed, setIsCollapsed] = useState(true);
-  const { ventureId, timelineId } = useParams<ParamTypes>();
-
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
   return (
     <PlasmicSidebarItemGroup
       venture={{
@@ -31,7 +30,8 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
           onClick: () => setIsCollapsed(!isCollapsed),
         },
         isActive:
-          name.toLowerCase().replace(/\s/g, "") === ventureId && !timelineId,
+          name.toLowerCase().replace(/\s/g, "") === ventureSlug &&
+          !timelineSlug,
       }}
       isCollapsed={isCollapsed}
       itemContainer={{
@@ -42,7 +42,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
             userId={"Marcus Ellison"}
             itemType={"timeline"}
             isActive={
-              timeline.name.toLowerCase().replace(/\s/g, "") === timelineId
+              timeline.name.toLowerCase().replace(/\s/g, "") === timelineSlug
             }
           />
         )),
