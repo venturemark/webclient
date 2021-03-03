@@ -12,7 +12,7 @@ export const configJson = isDev()
       domain: "vm001.us.auth0.com",
       clientId: "OcDgIHyVoiG39haDb8Vm88dTa96mgGTg",
       audience: "apiserver",
-      redirectUri: "https://vm001.us.auth0.com/profile",
+      redirectUri: "https://beta.venturemark.co/profile",
       useRefreshTokens: true,
     };
 
