@@ -11,6 +11,7 @@ import {
 // import { INewTimeline } from "module/interface/timeline";
 // import { useCreateTimeline } from "module/hook/timeline";
 import { useHistory } from "react-router-dom";
+import { getVenture } from "module/store";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
@@ -40,6 +41,13 @@ function SidebarItem(props: SidebarItemProps) {
   } = props;
   const [isUserOnClick, setIsUserOnClick] = useState(false);
   const history = useHistory();
+  const venture = getVenture();
+  const timelineSlug = name.toLowerCase().replace(/\s/g, "");
+
+  const link =
+    itemType === "timeline"
+      ? `/${venture?.id}/${timelineSlug}`
+      : `/${venture?.id}`;
   // const { register, handleSubmit, reset } = useForm<FormInputs>();
 
   // const { mutate: createTimeline } = useCreateTimeline();
@@ -86,7 +94,7 @@ function SidebarItem(props: SidebarItemProps) {
       iconButton={{
         onClick: () => setIsUserOnClick(!isUserOnClick),
       }}
-      onClick={() => history.push("/" + name.toLowerCase().replace(/\s/g, ""))}
+      onClick={() => history.push(link)}
       itemType={itemType}
       name={name}
       // isActive={isCurrent}

@@ -23,7 +23,7 @@ export function Component(props: Props) {
             path="/:ventureId/settings"
             component={VentureSettings}
           />
-          {/* <Route
+          <Route
             exact
             path="/:ventureId/:timelineId"
             component={VentureSettings}
@@ -42,7 +42,7 @@ export function Component(props: Props) {
             exacI
             path="/:ventureId/:timelineId/feed"
             component={VentureSettings}
-          /> */}
+          />
         </Switch>
       </Router>
     </>

@@ -20,7 +20,7 @@ interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { name, timelines, ...rest } = props;
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const { ventureId, timelineId } = useParams<ParamTypes>();
 
   return (

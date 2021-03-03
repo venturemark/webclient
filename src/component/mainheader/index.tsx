@@ -6,6 +6,7 @@ import {
   DefaultMainHeaderProps,
 } from "component/plasmic/shared/PlasmicMainHeader";
 import { useHistory } from "react-router-dom";
+import { getVenture } from "module/store";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
@@ -15,6 +16,7 @@ interface MainHeaderProps extends DefaultMainHeaderProps {
 function MainHeader(props: MainHeaderProps) {
   const { isActive, currentTimeline, ...rest } = props;
   const history = useHistory();
+  const venture = getVenture();
 
   return (
     <PlasmicMainHeader
@@ -24,13 +26,13 @@ function MainHeader(props: MainHeaderProps) {
         currentTimeline?.desc ?? "From the beginning we were here to win"
       }
       viewHome={{
-        onClick: () => history.push("/"),
+        onClick: () => history.push(`/${venture?.id}`),
       }}
       viewMembers={{
-        onClick: () => history.push("/members"),
+        onClick: () => history.push(`/${venture?.id}/members`),
       }}
       viewSettings={{
-        onClick: () => history.push("/settings"),
+        onClick: () => history.push(`/${venture?.id}/settings`),
       }}
       isActive={isActive}
     />
