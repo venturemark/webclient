@@ -5,6 +5,7 @@ export interface IAudience {
   members: User[];
   userId: string;
   organizationId: string;
+  ventureId: string;
 }
 
 export interface INewAudience {
@@ -12,5 +13,6 @@ export interface INewAudience {
   members: User[];
   userId: string;
   organizationId: string;
+  ventureId: string;
   token: string;
 }

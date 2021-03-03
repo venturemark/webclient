@@ -22,6 +22,7 @@ export async function Search(
 
   const obj = new SearchI_Obj();
   obj.getMetadataMap().set(key.OrganizationID, timelineQuery.organizationId);
+  obj.getMetadataMap().set(key.ventureID, timelineQuery.ventureId);
   obj.getMetadataMap().set(key.UserID, timelineQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
@@ -52,6 +53,7 @@ export async function Search(
               desc: desc,
               stat: stat,
               organizationId: organizationId,
+              ventureId: organizationId,
               id: id,
               userId: "",
               isCurrent: false,

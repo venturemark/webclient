@@ -23,6 +23,7 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
 
   obj.getMetadataMap().set(key.TimelineID, updateUpdate.timelineId);
   obj.getMetadataMap().set(key.OrganizationID, updateUpdate.organizationId);
+  obj.getMetadataMap().set(key.ventureID, updateUpdate.ventureId);
   obj.getMetadataMap().set(key.UserID, updateUpdate.userId);
   obj.getMetadataMap().set(key.UpdateID, updateUpdate.id);
   obj.setProperty(objProperty);

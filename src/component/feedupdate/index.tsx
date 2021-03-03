@@ -44,6 +44,7 @@ function FeedUpdate(props: FeedUpdateProps) {
   const timelineSearch: ITimelineQuery = {
     userId: userName,
     organizationId: organizationName,
+    ventureId: organizationName,
     token,
   };
 

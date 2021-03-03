@@ -20,6 +20,7 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
 
   objProperty.setText(newUpdate.text);
   obj.getMetadataMap().set(key.OrganizationID, newUpdate.organizationId);
+  obj.getMetadataMap().set(key.ventureID, newUpdate.ventureId);
   obj.getMetadataMap().set(key.TimelineID, newUpdate.timelineId);
   obj.getMetadataMap().set(key.UserID, newUpdate.userId);
   obj.setProperty(objProperty);

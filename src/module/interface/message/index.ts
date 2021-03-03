@@ -5,6 +5,7 @@ export interface IMessage {
   id: string;
   userId: string;
   organizationId: string;
+  ventureId: string;
   timelineId: string;
   date: string;
   reid?: string;
@@ -12,6 +13,7 @@ export interface IMessage {
 
 export interface IMessageQuery {
   organizationId: string;
+  ventureId: string;
   timelineId: string;
   userId: string;
   updateId: string;
@@ -23,6 +25,7 @@ export interface IMessageQuery {
 export interface INewMessage {
   text: string;
   organizationId: string;
+  ventureId: string;
   timelineId: string;
   userId: string;
   updateId: string;

@@ -40,6 +40,7 @@ function Sidebar(props: SidebarProps) {
   const timelineSearch: ITimelineQuery = {
     userId,
     organizationId,
+    ventureId: organizationId,
     token,
   };
 

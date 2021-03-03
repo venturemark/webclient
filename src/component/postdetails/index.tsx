@@ -32,6 +32,7 @@ function PostDetails(props: PostDetailsProps) {
     timelineId,
     userId,
     organizationId,
+    ventureId: organizationId,
     token,
   };
 

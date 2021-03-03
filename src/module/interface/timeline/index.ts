@@ -3,6 +3,7 @@ export interface ITimeline {
   desc: string;
   stat: string;
   organizationId: string;
+  ventureId: string;
   id: string;
   userId: string;
   date?: string;
@@ -13,6 +14,7 @@ export interface ITimeline {
 export interface ITimelineQuery {
   userId: string;
   organizationId: string;
+  ventureId: string;
   token: string;
 }
 
@@ -21,12 +23,14 @@ export interface INewTimeline {
   desc: string;
   userId: string;
   organizationId: string;
+  ventureId: string;
   token: string;
 }
 
 export interface ITimelineUpdate {
   id: string;
   organizationId: string;
+  ventureId: string;
   userId: string;
   desc?: string;
   name?: string;
