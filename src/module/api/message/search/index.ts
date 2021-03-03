@@ -22,7 +22,7 @@ export async function Search(messageQuery: IMessageQuery) {
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
   obj.getMetadataMap().set(key.OrganizationID, messageQuery.ventureId);
-  obj.getMetadataMap().set(key.ventureID, messageQuery.ventureId);
+  obj.getMetadataMap().set(key.VentureID, messageQuery.ventureId);
   obj.getMetadataMap().set(key.TimelineID, messageQuery.timelineId);
   obj.getMetadataMap().set(key.UpdateID, messageQuery.updateId);
   obj.getMetadataMap().set(key.UserID, messageQuery.userId);
