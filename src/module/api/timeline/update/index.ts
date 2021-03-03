@@ -29,8 +29,8 @@ export async function Update(
     objProperty.setDesc(timelineUpdate.desc);
   }
 
-  obj.getMetadataMap().set(key.OrganizationID, timelineUpdate.organizationId);
-  obj.getMetadataMap().set(key.ventureID, timelineUpdate.ventureId);
+  obj.getMetadataMap().set(key.OrganizationID, timelineUpdate.ventureId);
+  obj.getMetadataMap().set(key.VentureID, timelineUpdate.ventureId);
   obj.getMetadataMap().set(key.UserID, timelineUpdate.userId);
   obj.getMetadataMap().set(key.TimelineID, timelineUpdate.id);
   obj.setProperty(objProperty);

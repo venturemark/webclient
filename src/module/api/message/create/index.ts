@@ -22,8 +22,8 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   if (newMessage.reid) {
     objProperty.setReid(newMessage.reid);
   }
-  obj.getMetadataMap().set(key.OrganizationID, newMessage.organizationId);
-  obj.getMetadataMap().set(key.ventureID, newMessage.ventureId);
+  obj.getMetadataMap().set(key.OrganizationID, newMessage.ventureId);
+  obj.getMetadataMap().set(key.VentureID, newMessage.ventureId);
   obj.getMetadataMap().set(key.TimelineID, newMessage.timelineId);
   obj.getMetadataMap().set(key.UpdateID, newMessage.updateId);
   obj.getMetadataMap().set(key.UserID, newMessage.userId);

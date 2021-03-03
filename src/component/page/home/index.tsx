@@ -52,29 +52,26 @@ export function Home(props: HomeProps) {
 
   const timelineId = currentTimeline?.id ?? undefined;
   //currently hardcoding until we have a plan for org / user storage
-  const organizationId = "venturemark";
+  const ventureId = venture?.url ?? "";
   const userId = user?.id ?? "marcus";
   //hook / fetch stuff:
   const token = "";
   const timelineSearch: ITimelineQuery = {
     userId,
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     token,
   };
   const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
     timelineSearch
   );
   const timelineUpdatesSearch: IUpdateQuery = {
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     timelineId,
     userId,
     token,
   };
   const allUpdatesSearch: IUpdateQuery = {
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     timelineId,
     userId,
     timelines: timelinesData,
@@ -139,7 +136,7 @@ export function Home(props: HomeProps) {
           currentTimeline: currentTimeline,
           setCurrentTimeline: setCurrentTimeline,
           userId: userId,
-          organizationId: organizationId,
+          ventureId: ventureId,
         }}
         postDetails={{
           setIsVisible,

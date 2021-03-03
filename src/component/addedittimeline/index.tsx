@@ -22,7 +22,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const { mutate: createTimeline } = useCreateTimeline();
   const [token, setToken] = useState<string>("");
   const userId = getUser()?.id ?? "";
-  const organizationId = getVenture()?.id ?? "";
+  const ventureId = getVenture()?.id ?? "";
 
   const handleCreate = (data: any) => {
     if (!token || !data.name || !data.description) {
@@ -32,8 +32,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       name: data.name,
       desc: data.description,
       userId,
-      organizationId,
-      ventureId: organizationId,
+      ventureId: ventureId,
       token: token,
     };
 

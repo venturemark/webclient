@@ -12,22 +12,14 @@ interface ReplyContentProps extends DefaultReplyContentProps {
   id: string;
   updateId: string;
   timelineId: string;
-  organizationId: string;
+  ventureId: string;
   userName: string;
   text: string;
   date: string;
 }
 
 function ReplyContent(props: ReplyContentProps) {
-  const {
-    updateId,
-    timelineId,
-    userName,
-    organizationId,
-    id,
-    date,
-    text,
-  } = props;
+  const { updateId, timelineId, userName, ventureId, id, date, text } = props;
   const [state] = useState<"isUser" | undefined>(undefined);
 
   const token = "";
@@ -37,8 +29,7 @@ function ReplyContent(props: ReplyContentProps) {
     reid: id,
     timelineId,
     userId: userName,
-    organizationId,
-    ventureId: organizationId,
+    ventureId,
     token,
   };
 

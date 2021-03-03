@@ -19,13 +19,13 @@ import { ITimeline } from "module/interface/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface ActionBarProps extends DefaultActionBarProps {
-  organizationId: string;
+  ventureId: string;
   userId: string;
   currentTimeline: ITimeline;
 }
 
 function ActionBar(props: ActionBarProps) {
-  const { organizationId, userId, currentTimeline } = props;
+  const { ventureId, userId, currentTimeline } = props;
   const { user } = useAuth0();
 
   // const store = get("composeEditor.content") ?? "";
@@ -150,7 +150,7 @@ function ActionBar(props: ActionBarProps) {
         render: () => (
           <AntSelect
             userId={userId}
-            organizationId={organizationId}
+            ventureId={ventureId}
             selectedTimelines={selectedTimelines}
             setSelectedTimelines={setSelectedTimelines}
             selectFocused={selectFocused}

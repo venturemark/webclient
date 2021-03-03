@@ -30,7 +30,7 @@ function tagRender(props: any) {
 
 interface SelectProps {
   userId: string;
-  organizationId: string;
+  ventureId: string;
   setSelectedTimelines: React.Dispatch<React.SetStateAction<string[]>>;
   selectFocused: boolean;
   setSelectFocused: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,7 +40,7 @@ interface SelectProps {
 export function AntSelect(props: SelectProps) {
   const {
     userId,
-    organizationId,
+    ventureId,
     setSelectedTimelines,
     selectFocused,
     setSelectFocused,
@@ -53,8 +53,7 @@ export function AntSelect(props: SelectProps) {
 
   const timelineSearch: ITimelineQuery = {
     userId,
-    organizationId,
-    ventureId: organizationId,
+    ventureId: ventureId,
     token,
   };
   const { isLoading, data: timelines } = useTimelines(timelineSearch);
