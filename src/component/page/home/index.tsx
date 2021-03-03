@@ -101,9 +101,12 @@ export function Home(props: HomeProps) {
   }
 
   useEffect(() => {
+    setVariantType(variant);
     !venture && setVariantType("isEmpty");
     venture && variantType === "isEmpty" && setVariantType("isVenture");
-  }, [venture, variantType]);
+
+    setIsActive(active);
+  }, [venture, variantType, variant, active]);
 
   return (
     <>
