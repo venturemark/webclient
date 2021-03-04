@@ -122,7 +122,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicFeedUpdate__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicFeedUpdate__VariantsArgs;
   args?: PlasmicFeedUpdate__ArgsType;
   overrides?: NodeOverridesType<T>;
