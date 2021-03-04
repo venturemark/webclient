@@ -2,6 +2,8 @@ import { Node } from "slate";
 
 export interface IUpdate {
   text: Node[];
+  title: string;
+  description: string;
   id: string;
   userId: string;
   ventureId: string;

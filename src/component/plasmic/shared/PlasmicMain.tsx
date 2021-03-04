@@ -181,7 +181,7 @@ function PlasmicMain__RenderFunc(props: {
             </div>
           }
           timelineName={"Wins"}
-          venturename={"Adbloom"}
+          ventureName={"Adbloom"}
         />
       ) : null}
       {(

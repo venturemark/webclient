@@ -79,6 +79,7 @@ function Main(props: MainProps) {
       feedUpdate={{
         isVisible,
         setIsVisible,
+        currentTimeline,
       }}
       addEditMembers={{}}
       addEditVenture={{}}

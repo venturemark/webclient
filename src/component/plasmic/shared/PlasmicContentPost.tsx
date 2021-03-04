@@ -76,8 +76,8 @@ export type PlasmicContentPost__OverridesType = {
   root?: p.Flex<"div">;
   editorContainer?: p.Flex<"div">;
   textContainer2?: p.Flex<"div">;
-  textContainer?: p.Flex<"div">;
-  textContainer3?: p.Flex<"div">;
+  title?: p.Flex<"div">;
+  description?: p.Flex<"div">;
   iconMenu?: p.Flex<"svg">;
   dropdown?: p.Flex<typeof Dropdown>;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
@@ -160,14 +160,14 @@ function PlasmicContentPost__RenderFunc(props: {
             className={classNames(defaultcss.all, sty.textContainer2)}
           >
             <div
-              data-plasmic-name={"textContainer"}
-              data-plasmic-override={overrides.textContainer}
+              data-plasmic-name={"title"}
+              data-plasmic-override={overrides.title}
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.textContainer,
+                sty.title,
                 {
-                  [sty.textContainer__state_isPostDetails]: hasVariant(
+                  [sty.title__state_isPostDetails]: hasVariant(
                     variants,
                     "state",
                     "isPostDetails"
@@ -181,14 +181,14 @@ function PlasmicContentPost__RenderFunc(props: {
             </div>
 
             <div
-              data-plasmic-name={"textContainer3"}
-              data-plasmic-override={overrides.textContainer3}
+              data-plasmic-name={"description"}
+              data-plasmic-override={overrides.description}
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.textContainer3,
+                sty.description,
                 {
-                  [sty.textContainer3__state_isPostDetails]: hasVariant(
+                  [sty.description__state_isPostDetails]: hasVariant(
                     variants,
                     "state",
                     "isPostDetails"
@@ -477,8 +477,8 @@ const PlasmicDescendants = {
     "root",
     "editorContainer",
     "textContainer2",
-    "textContainer",
-    "textContainer3",
+    "title",
+    "description",
     "iconMenu",
     "dropdown",
     "photoAvatar",
@@ -493,8 +493,8 @@ const PlasmicDescendants = {
   editorContainer: [
     "editorContainer",
     "textContainer2",
-    "textContainer",
-    "textContainer3",
+    "title",
+    "description",
     "iconMenu",
     "dropdown",
     "photoAvatar",
@@ -506,9 +506,9 @@ const PlasmicDescendants = {
     "link",
     "viewReplies",
   ],
-  textContainer2: ["textContainer2", "textContainer", "textContainer3"],
-  textContainer: ["textContainer"],
-  textContainer3: ["textContainer3"],
+  textContainer2: ["textContainer2", "title", "description"],
+  title: ["title"],
+  description: ["description"],
   iconMenu: ["iconMenu"],
   dropdown: ["dropdown"],
   photoAvatar: ["photoAvatar"],
@@ -528,8 +528,8 @@ type NodeDefaultElementType = {
   root: "div";
   editorContainer: "div";
   textContainer2: "div";
-  textContainer: "div";
-  textContainer3: "div";
+  title: "div";
+  description: "div";
   iconMenu: "svg";
   dropdown: typeof Dropdown;
   photoAvatar: typeof PhotoAvatar;
@@ -600,8 +600,8 @@ export const PlasmicContentPost = Object.assign(
     // Helper components rendering sub-elements
     editorContainer: makeNodeComponent("editorContainer"),
     textContainer2: makeNodeComponent("textContainer2"),
-    textContainer: makeNodeComponent("textContainer"),
-    textContainer3: makeNodeComponent("textContainer3"),
+    title: makeNodeComponent("title"),
+    description: makeNodeComponent("description"),
     iconMenu: makeNodeComponent("iconMenu"),
     dropdown: makeNodeComponent("dropdown"),
     photoAvatar: makeNodeComponent("photoAvatar"),

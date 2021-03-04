@@ -51,7 +51,8 @@ export const PlasmicFeedUpdate__ArgProps = new Array<ArgPropType>();
 export type PlasmicFeedUpdate__OverridesType = {
   root?: p.Flex<"div">;
   actionBar?: p.Flex<typeof ActionBar>;
-  updateContent?: p.Flex<typeof ContentPost>;
+  feedContainer?: p.Flex<"div">;
+  contentPost?: p.Flex<typeof ContentPost>;
 };
 
 export interface DefaultFeedUpdateProps {
@@ -82,19 +83,28 @@ function PlasmicFeedUpdate__RenderFunc(props: {
         className={classNames("__wab_instance", sty.actionBar)}
       />
 
-      <ContentPost
-        data-plasmic-name={"updateContent"}
-        data-plasmic-override={overrides.updateContent}
-        className={classNames("__wab_instance", sty.updateContent)}
-      />
+      <p.Stack
+        as={"div"}
+        data-plasmic-name={"feedContainer"}
+        data-plasmic-override={overrides.feedContainer}
+        hasGap={true}
+        className={classNames(defaultcss.all, sty.feedContainer)}
+      >
+        <ContentPost
+          data-plasmic-name={"contentPost"}
+          data-plasmic-override={overrides.contentPost}
+          className={classNames("__wab_instance", sty.contentPost)}
+        />
+      </p.Stack>
     </p.Stack>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "actionBar", "updateContent"],
+  root: ["root", "actionBar", "feedContainer", "contentPost"],
   actionBar: ["actionBar"],
-  updateContent: ["updateContent"],
+  feedContainer: ["feedContainer", "contentPost"],
+  contentPost: ["contentPost"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -103,7 +113,8 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   actionBar: typeof ActionBar;
-  updateContent: typeof ContentPost;
+  feedContainer: "div";
+  contentPost: typeof ContentPost;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -163,7 +174,8 @@ export const PlasmicFeedUpdate = Object.assign(
   {
     // Helper components rendering sub-elements
     actionBar: makeNodeComponent("actionBar"),
-    updateContent: makeNodeComponent("updateContent"),
+    feedContainer: makeNodeComponent("feedContainer"),
+    contentPost: makeNodeComponent("contentPost"),
 
     // Metadata about props expected for PlasmicFeedUpdate
     internalVariantProps: PlasmicFeedUpdate__VariantProps,

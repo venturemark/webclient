@@ -117,6 +117,9 @@
 .slotChildren__buttonFeatures_icon_buttonStyle_secondaryGreen {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
+.root:focus-within .slotChildren > * {
+  outline: none;
+}
 .svg {
   position: relative;
   object-fit: cover;

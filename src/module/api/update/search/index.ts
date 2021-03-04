@@ -47,14 +47,14 @@ export async function Search(updateQuery: IUpdateQuery) {
           const organizationId = metaPb.get(key.OrganizationID);
           const timelineId = metaPb.get(key.TimelineID);
           const updateId = metaPb.get(key.UpdateID);
-          const userId = metaPb.get(key.UserID);
+          // const userId = metaPb.get(key.UserID);
           const rawDate = fromUnixTime(updateId / 1000000000);
           const date = formatDistanceToNow(rawDate) + " ago";
 
           const update: any = {
             organizationId: organizationId,
             timelineId: timelineId,
-            userId: userId,
+            userId: "not stored",
             id: updateId,
             text: text,
             date: date,

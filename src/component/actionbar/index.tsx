@@ -6,15 +6,15 @@ import {
   DefaultActionBarProps,
 } from "component/plasmic/shared/PlasmicActionBar";
 // import { EditorShape } from "component/editor/compose";
-// import { INewUpdate } from "module/interface/update";
+import { INewUpdate } from "module/interface/update";
 import { AntSelect } from "component/ant/select";
-
+import { useForm } from "react-hook-form";
 // import { initialValueEmpty } from "component/editor/config/initialValues";
 // import { Search } from "@venturemark/numnum";
 // import { serialize } from "module/serialize";
 // import { get } from "module/store";
 // import { useEditor } from "component/editor/compose";
-// import { useCreateUpdate } from "module/hook/update";
+import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -26,7 +26,9 @@ interface ActionBarProps extends DefaultActionBarProps {
 
 function ActionBar(props: ActionBarProps) {
   const { ventureId, userId, currentTimeline } = props;
-  const { user } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
+  const [token, setToken] = useState<string>("");
+  const { handleSubmit, register } = useForm();
 
   // const store = get("composeEditor.content") ?? "";
   // const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -47,6 +49,7 @@ function ActionBar(props: ActionBarProps) {
     defaultTimelineOption
   );
 
+  const [isActive, setIsActive] = useState(false);
   const [isTimelineSelected] = useState(false);
   const [selectFocused, setSelectFocused] = useState(false);
 
@@ -57,61 +60,63 @@ function ActionBar(props: ActionBarProps) {
   //   progress: defaultProgress,
   // });
 
-  // const { mutate: createUpdate } = useCreateUpdate();
+  const { mutate: createUpdate } = useCreateUpdate();
 
-  // const handleAddUpdate = () => {
-  //   if (selectedTimelines.length < 1) {
-  //     const error = "Please select a timeline";
-  //     setEditorShape({ ...editorShape, error });
-  //     return;
-  //   }
-  //   if (!editorShape.hasContent) {
-  //     const error = "Please enter some text";
-  //     setEditorShape({ ...editorShape, error });
-  //     return;
-  //   }
+  const handlePost = (data: any) => {
+    if (selectedTimelines.length < 1) {
+      // const error = "Please select a timeline";
+      // setEditorShape({ ...editorShape, error });
+      return;
+    }
+    // if (!editorShape.hasContent) {
+    //   const error = "Please enter some text";
+    //   // setEditorShape({ ...editorShape, error });
+    //   return;
+    // }
 
-  //   if (serialize(editorShape.value).length > 281) {
-  //     const error = `Your update is ${
-  //       serialize(editorShape.value).length
-  //     } characters. The limit is 280 characters`;
-  //     setEditorShape({ ...editorShape, error });
-  //     return;
-  //   }
+    // if (serialize(editorShape.value).length > 281) {
+    //   const error = `Your update is ${
+    //     serialize(editorShape.value).length
+    //   } characters. The limit is 280 characters`;
+    //   setEditorShape({ ...editorShape, error });
+    //   return;
+    // }
 
-  //   // how do we manage tokens in the same place?
-  //   const token = "";
+    // how do we manage tokens in the same place?
 
-  //   selectedTimelines.forEach((timelineId) => {
-  //     const newUpdate: INewUpdate = {
-  //       text: serialize(editorShape.value),
-  //       organizationId,
-  //       timelineId: timelineId,
-  //       userId,
-  //       token,
-  //     };
+    selectedTimelines.forEach((timelineId) => {
+      const newUpdate: INewUpdate = {
+        // text: serialize(editorShape.value),
+        text: data.description,
+        ventureId,
+        timelineId: timelineId,
+        userId,
+        token,
+      };
 
-  //     createUpdate(newUpdate);
-  //   });
+      console.log("creating this update:", newUpdate);
 
-  //   //reset store
-  //   localStorage.setItem(
-  //     "composeEditor.content",
-  //     JSON.stringify(initialValueEmpty)
-  //   );
+      createUpdate(newUpdate);
+    });
 
-  //   //reset editor
-  //   const resetEditor: EditorShape = {
-  //     value: initialValueEmpty,
-  //     string: "",
-  //     hasContent: undefined,
-  //     numberValue: 0,
-  //     error: undefined,
-  //     progress: 0,
-  //   };
+    //reset store
+    // localStorage.setItem(
+    //   "composeEditor.content",
+    //   JSON.stringify(initialValueEmpty)
+    // );
 
-  //   setEditorShape(resetEditor);
-  // };
+    //reset editor
+    // const resetEditor: EditorShape = {
+    //   value: initialValueEmpty,
+    //   string: "",
+    //   hasContent: undefined,
+    //   numberValue: 0,
+    //   error: undefined,
+    //   progress: 0,
+    // };
+
+    // setEditorShape(resetEditor);
+  };
 
   // const MIN = 0;
   // const MAX = 240;
@@ -124,13 +129,53 @@ function ActionBar(props: ActionBarProps) {
     } else {
       setSelectedTimelines([]);
     }
-  }, [currentTimeline]);
+
+    //auth
+    const getToken = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        setToken(token);
+      } catch (error) {
+        console.log(error.error);
+      }
+    };
+    if (token === "") {
+      getToken();
+    }
+  }, [currentTimeline, getAccessTokenSilently, token]);
 
   return (
     <PlasmicActionBar
-      isActive={true}
+      onClick={() => setIsActive(true)}
+      isActive={isActive}
+      form={{
+        onSubmit: handleSubmit(handlePost),
+      }}
       photoAvatar={{
         userInitials,
+      }}
+      title={{
+        ref: register(),
+        name: "title",
+      }}
+      description={{
+        ref: register(),
+        name: "description",
+      }}
+      tagsContainer={{
+        render: () => (
+          <AntSelect
+            userId={userId}
+            ventureId={ventureId}
+            selectedTimelines={selectedTimelines}
+            setSelectedTimelines={setSelectedTimelines}
+            selectFocused={selectFocused}
+            setSelectFocused={setSelectFocused}
+          />
+        ),
+      }}
+      post={{
+        type: "submit",
       }}
       // sendUpdate={{
       //   handleClick: () => handleAddUpdate() }}
@@ -140,12 +185,14 @@ function ActionBar(props: ActionBarProps) {
       // text={normalize(editorShape.progress) > 0 ? "hasText" : undefined}
       text={undefined}
       timelineSelected={isTimelineSelected}
-      // timelineSelect={{
-      //   handleClick: () => {
-      //     setIsTimelineSelected(true);
-      //     setSelectFocused(true);
-      //   },
-      // }}
+      add={
+        {
+          // onClick: () => {
+          //   setIsTimelineSelected(true);
+          //   setSelectFocused(true);
+          // },
+        }
+      }
       selectedItemsContainer={{
         render: () => (
           <AntSelect

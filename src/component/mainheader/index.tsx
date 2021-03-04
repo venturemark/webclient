@@ -33,9 +33,11 @@ function MainHeader(props: MainHeaderProps) {
   return (
     <PlasmicMainHeader
       {...rest}
-      venturename={venture?.name}
+      headerStyles={!timelineSlug ? "ventureHeader" : undefined}
+      ventureName={venture?.name}
+      ventureDescription={venture?.description}
       timelineName={currentTimeline?.name}
-      timelineDescription={"lets describe something"}
+      timelineDescription={currentTimeline?.desc}
       viewHome={{
         onClick: () => history.push(link + "/feed"),
       }}

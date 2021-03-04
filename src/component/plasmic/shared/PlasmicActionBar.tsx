@@ -81,14 +81,18 @@ export const PlasmicActionBar__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicActionBar__OverridesType = {
   root?: p.Flex<"div">;
+  form?: p.Flex<"form">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   editorContainer?: p.Flex<"div">;
-  textContainer?: p.Flex<"textarea">;
-  textContainer2?: p.Flex<"textarea">;
+  title?: p.Flex<"textarea">;
+  description?: p.Flex<"textarea">;
   text24?: p.Flex<"div">;
+  tagsContainer?: p.Flex<"div">;
   add?: p.Flex<typeof Tags>;
+  post?: p.Flex<typeof Button>;
   container?: p.Flex<"div">;
   selectedItemsContainer?: p.Flex<"div">;
+  button?: p.Flex<"button">;
 };
 
 export interface DefaultActionBarProps {
@@ -164,14 +168,12 @@ function PlasmicActionBar__RenderFunc(props: {
             hasVariant(variants, "isActive", "isActive"),
         })}
       >
-        <div
-          className={classNames(defaultcss.all, sty.box__vJy6G, {
-            [sty.box__isActive__vJy6GvjQpn]: hasVariant(
-              variants,
-              "isActive",
-              "isActive"
-            ),
-            [sty.box__timelineSelected__vJy6G75BwG]: hasVariant(
+        <form
+          data-plasmic-name={"form"}
+          data-plasmic-override={overrides.form}
+          className={classNames(defaultcss.all, sty.form, {
+            [sty.form__isActive]: hasVariant(variants, "isActive", "isActive"),
+            [sty.form__timelineSelected]: hasVariant(
               variants,
               "timelineSelected",
               "timelineSelected"
@@ -226,15 +228,15 @@ function PlasmicActionBar__RenderFunc(props: {
             })}
           >
             <textarea
-              data-plasmic-name={"textContainer"}
-              data-plasmic-override={overrides.textContainer}
-              className={classNames(defaultcss.textarea, sty.textContainer, {
-                [sty.textContainer__isActive]: hasVariant(
+              data-plasmic-name={"title"}
+              data-plasmic-override={overrides.title}
+              className={classNames(defaultcss.textarea, sty.title, {
+                [sty.title__isActive]: hasVariant(
                   variants,
                   "isActive",
                   "isActive"
                 ),
-                [sty.textContainer__timelineSelected]: hasVariant(
+                [sty.title__timelineSelected]: hasVariant(
                   variants,
                   "timelineSelected",
                   "timelineSelected"
@@ -245,15 +247,15 @@ function PlasmicActionBar__RenderFunc(props: {
 
             {(hasVariant(variants, "isActive", "isActive") ? true : false) ? (
               <textarea
-                data-plasmic-name={"textContainer2"}
-                data-plasmic-override={overrides.textContainer2}
-                className={classNames(defaultcss.textarea, sty.textContainer2, {
-                  [sty.textContainer2__isActive]: hasVariant(
+                data-plasmic-name={"description"}
+                data-plasmic-override={overrides.description}
+                className={classNames(defaultcss.textarea, sty.description, {
+                  [sty.description__isActive]: hasVariant(
                     variants,
                     "isActive",
                     "isActive"
                   ),
-                  [sty.textContainer2__timelineSelected]: hasVariant(
+                  [sty.description__timelineSelected]: hasVariant(
                     variants,
                     "timelineSelected",
                     "timelineSelected"
@@ -345,12 +347,27 @@ function PlasmicActionBar__RenderFunc(props: {
                         ),
                       })}
                     >
-                      <Tags buttonFeatures={["icon", "hasText"]} text2={"Wins"}>
-                        <IconCloseIcon
-                          className={classNames(defaultcss.all, sty.svg__dVcAh)}
-                          role={"img"}
-                        />
-                      </Tags>
+                      <div
+                        data-plasmic-name={"tagsContainer"}
+                        data-plasmic-override={overrides.tagsContainer}
+                        className={classNames(
+                          defaultcss.all,
+                          sty.tagsContainer
+                        )}
+                      >
+                        <Tags
+                          buttonFeatures={["icon", "hasText"]}
+                          text2={"Wins"}
+                        >
+                          <IconCloseIcon
+                            className={classNames(
+                              defaultcss.all,
+                              sty.svg__dVcAh
+                            )}
+                            role={"img"}
+                          />
+                        </Tags>
+                      </div>
 
                       <Tags
                         data-plasmic-name={"add"}
@@ -367,7 +384,17 @@ function PlasmicActionBar__RenderFunc(props: {
                         text2={"Wins"}
                       >
                         <IconPlusIcon
-                          className={classNames(defaultcss.all, sty.svg__aaXl8)}
+                          className={classNames(
+                            defaultcss.all,
+                            sty.svg__aaXl8,
+                            {
+                              [sty.svg__isActive__aaXl8VjQpn]: hasVariant(
+                                variants,
+                                "isActive",
+                                "isActive"
+                              ),
+                            }
+                          )}
                           role={"img"}
                         />
                       </Tags>
@@ -376,10 +403,12 @@ function PlasmicActionBar__RenderFunc(props: {
                 </p.Stack>
 
                 <Button
+                  data-plasmic-name={"post"}
+                  data-plasmic-override={overrides.post}
                   buttonFeatures={[]}
                   buttonStyle={"primaryPurple" as const}
-                  className={classNames("__wab_instance", sty.button__nAd4W, {
-                    [sty.button__isActive__nAd4WvjQpn]: hasVariant(
+                  className={classNames("__wab_instance", sty.post, {
+                    [sty.post__isActive]: hasVariant(
                       variants,
                       "isActive",
                       "isActive"
@@ -521,11 +550,13 @@ function PlasmicActionBar__RenderFunc(props: {
                             : false
                         ) ? (
                           <button
+                            data-plasmic-name={"button"}
+                            data-plasmic-override={overrides.button}
                             className={classNames(
                               defaultcss.button,
-                              sty.button__p5MKq,
+                              sty.button,
                               {
-                                [sty.button__isActive_timelineSelected__p5MKqvjQpn75BwG]:
+                                [sty.button__isActive_timelineSelected]:
                                   hasVariant(
                                     variants,
                                     "isActive",
@@ -610,7 +641,7 @@ function PlasmicActionBar__RenderFunc(props: {
               </p.Stack>
             ) : null}
           </div>
-        </div>
+        </form>
       </p.Stack>
     </p.Stack>
   ) as React.ReactElement | null;
@@ -619,31 +650,55 @@ function PlasmicActionBar__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "form",
     "photoAvatar",
     "editorContainer",
-    "textContainer",
-    "textContainer2",
+    "title",
+    "description",
     "text24",
+    "tagsContainer",
     "add",
+    "post",
     "container",
     "selectedItemsContainer",
+    "button",
+  ],
+  form: [
+    "form",
+    "photoAvatar",
+    "editorContainer",
+    "title",
+    "description",
+    "text24",
+    "tagsContainer",
+    "add",
+    "post",
+    "container",
+    "selectedItemsContainer",
+    "button",
   ],
   photoAvatar: ["photoAvatar"],
   editorContainer: [
     "editorContainer",
-    "textContainer",
-    "textContainer2",
+    "title",
+    "description",
     "text24",
+    "tagsContainer",
     "add",
+    "post",
     "container",
     "selectedItemsContainer",
+    "button",
   ],
-  textContainer: ["textContainer"],
-  textContainer2: ["textContainer2"],
+  title: ["title"],
+  description: ["description"],
   text24: ["text24"],
+  tagsContainer: ["tagsContainer"],
   add: ["add"],
-  container: ["container", "selectedItemsContainer"],
-  selectedItemsContainer: ["selectedItemsContainer"],
+  post: ["post"],
+  container: ["container", "selectedItemsContainer", "button"],
+  selectedItemsContainer: ["selectedItemsContainer", "button"],
+  button: ["button"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -651,14 +706,18 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  form: "form";
   photoAvatar: typeof PhotoAvatar;
   editorContainer: "div";
-  textContainer: "textarea";
-  textContainer2: "textarea";
+  title: "textarea";
+  description: "textarea";
   text24: "div";
+  tagsContainer: "div";
   add: typeof Tags;
+  post: typeof Button;
   container: "div";
   selectedItemsContainer: "div";
+  button: "button";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -717,14 +776,18 @@ export const PlasmicActionBar = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    form: makeNodeComponent("form"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     editorContainer: makeNodeComponent("editorContainer"),
-    textContainer: makeNodeComponent("textContainer"),
-    textContainer2: makeNodeComponent("textContainer2"),
+    title: makeNodeComponent("title"),
+    description: makeNodeComponent("description"),
     text24: makeNodeComponent("text24"),
+    tagsContainer: makeNodeComponent("tagsContainer"),
     add: makeNodeComponent("add"),
+    post: makeNodeComponent("post"),
     container: makeNodeComponent("container"),
     selectedItemsContainer: makeNodeComponent("selectedItemsContainer"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicActionBar
     internalVariantProps: PlasmicActionBar__VariantProps,

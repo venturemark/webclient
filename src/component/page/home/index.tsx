@@ -6,12 +6,11 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/shared/PlasmicHome";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { ITimeline, ITimelineQuery } from "module/interface/timeline";
+import { ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
-import { IUpdate, IUpdateQuery } from "module/interface/update";
-import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
 import { getUser, getVenture } from "module/store";
 import { useParams, useRouteMatch } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -27,18 +26,18 @@ export function Home(props: HomeProps) {
   const user = getUser();
   const venture = getVenture();
   const { url } = useRouteMatch<IsActive>();
+  const { getAccessTokenSilently } = useAuth0();
+  const [token, setToken] = useState<string>("");
   const { timelineSlug, ventureSlug } = useParams<ParamTypes>();
-  const [currentTimeline, setCurrentTimeline] = useState<
-    ITimeline | undefined
-  >();
 
-  // const variant = timelineSlug
-  //   ? "isTimeline"
-  //   : venture && !timelineSlug
-  //   ? "isTimeline"
-  //   : venture
-  //   ? "isVenture"
-  //   : "isEmpty";
+  const ventureId = venture?.url ?? "";
+  const userId = user?.id ?? "";
+  const timelineSearch: ITimelineQuery = {
+    userId,
+    ventureId,
+    token,
+  };
+  const { data: timelinesData } = useTimelines(timelineSearch);
 
   const variant =
     venture && !timelineSlug
@@ -51,6 +50,8 @@ export function Home(props: HomeProps) {
 
   const active = url.split("/")[3]
     ? (url.split("/")[3] as IsActive)
+    : timelinesData?.length > 0
+    ? (url.split("/")[2] as IsActive)
     : "settings";
 
   // local hooks shared with page-level elements
@@ -61,56 +62,23 @@ export function Home(props: HomeProps) {
   const [variantType, setVariantType] = useState<VariantType>(variant);
   const [isActive, setIsActive] = useState<IsActive>(active);
 
-  const timelineId = currentTimeline?.id ?? undefined;
-  //currently hardcoding until we have a plan for org / user storage
-  const ventureId = venture?.url ?? "";
-  const userId = user?.id ?? "marcus";
-  //hook / fetch stuff:
-  const token = "";
-  const timelineSearch: ITimelineQuery = {
-    userId,
-    ventureId,
-    token,
-  };
-  const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
-    timelineSearch
-  );
-  const timelineUpdatesSearch: IUpdateQuery = {
-    ventureId,
-    timelineId,
-    userId,
-    token,
-  };
-  const allUpdatesSearch: IUpdateQuery = {
-    ventureId,
-    timelineId,
-    userId,
-    timelines: timelinesData,
-    token,
-  };
-  const { data: allUpdates, isSuccess: updateSuccess } = useAllUpdates(
-    allUpdatesSearch
-  );
-  const { data: timelineUpdates } = useTimelineUpdates(timelineUpdatesSearch);
-  let updates = [];
+  // if (timelineSuccess && updateSuccess) {
+  //   //deduplicate updates for home
+  //   const homeUpdates: IUpdate[] = Array.from(
+  //     new Set(
+  //       allUpdates.map((update: IUpdate) =>
+  //         Math.round(Number(update.id) / 1000000000)
+  //       )
+  //     )
+  //   ).map((id) => {
+  //     return allUpdates.find(
+  //       (update: IUpdate) => Math.round(Number(update.id) / 1000000000) === id
+  //     );
+  //   });
 
-  if (timelineSuccess && updateSuccess) {
-    //deduplicate updates for home
-    const homeUpdates: IUpdate[] = Array.from(
-      new Set(
-        allUpdates.map((update: IUpdate) =>
-          Math.round(Number(update.id) / 1000000000)
-        )
-      )
-    ).map((id) => {
-      return allUpdates.find(
-        (update: IUpdate) => Math.round(Number(update.id) / 1000000000) === id
-      );
-    });
-
-    // return updates or updates of current timeline.
-    updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
-  }
+  //   // return updates or updates of current timeline.
+  //   updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
+  // }
 
   useEffect(() => {
     setVariantType(variant);
@@ -121,16 +89,34 @@ export function Home(props: HomeProps) {
     } else {
       setIsActive(active);
     }
-  }, [venture, variantType, variant, active, ventureSlug]);
 
-  console.log(updates);
+    //auth
+    const getToken = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        setToken(token);
+      } catch (error) {
+        console.log(error.error);
+      }
+    };
+    if (token === "") {
+      getToken();
+    }
+  }, [
+    venture,
+    variantType,
+    variant,
+    active,
+    ventureSlug,
+    getAccessTokenSilently,
+    token,
+  ]);
 
   return (
     <>
       <PlasmicHome
         isVisible={isVisible}
         main={{
-          currentTimeline,
           variantType: variantType,
           isActive: isActive,
           setIsActive,
@@ -141,8 +127,6 @@ export function Home(props: HomeProps) {
         sidebar={{
           isHome: isHome,
           setIsHome: setIsHome,
-          currentTimeline: currentTimeline,
-          setCurrentTimeline: setCurrentTimeline,
           userId: userId,
           ventureId: ventureId,
         }}
