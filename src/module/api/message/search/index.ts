@@ -8,7 +8,7 @@ import * as env from "module/env";
 import * as key from "module/idkeys";
 import fromUnixTime from "date-fns/fromUnixTime";
 import { formatDistanceToNow } from "date-fns";
-import { IMessageQuery } from "module/interface/message";
+import { IMessage, IMessageQuery } from "module/interface/message";
 
 export async function Search(messageQuery: IMessageQuery) {
   const objList = [];
@@ -42,8 +42,8 @@ export async function Search(messageQuery: IMessageQuery) {
           const propertyPb = messagePb.getProperty();
           const metaPb = messagePb.getMetadataMap();
 
-          const text = propertyPb?.toObject().text;
-          const reid = propertyPb?.toObject().reid;
+          const text = propertyPb?.toObject().text ?? "";
+          const reid = propertyPb?.toObject().reid ?? "";
 
           const organizationId = metaPb.get(key.OrganizationID);
           const timelineId = metaPb.get(key.TimelineID);
@@ -53,8 +53,8 @@ export async function Search(messageQuery: IMessageQuery) {
           const rawDate = fromUnixTime(messageId / 1000000000);
           const date = formatDistanceToNow(rawDate) + " ago";
 
-          const message: any = {
-            organizationId: organizationId,
+          const message: IMessage = {
+            ventureId: organizationId,
             timelineId: timelineId,
             userId: userId,
             updateId: updateId,

@@ -24,6 +24,7 @@ interface MainProps extends DefaultMainProps {
   setVariantType: any;
   isVisible: any;
   setIsVisible: any;
+  setPost: any;
 }
 
 function Main(props: MainProps) {
@@ -33,6 +34,7 @@ function Main(props: MainProps) {
     setVariantType,
     isVisible,
     setIsVisible,
+    setPost,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
@@ -80,6 +82,7 @@ function Main(props: MainProps) {
         isVisible,
         setIsVisible,
         currentTimeline,
+        setPost,
       }}
       addEditMembers={{}}
       addEditVenture={{}}

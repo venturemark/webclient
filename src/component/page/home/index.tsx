@@ -7,6 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicHome";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { ITimelineQuery } from "module/interface/timeline";
+import { IUpdate } from "module/interface/update";
 import { useTimelines } from "module/hook/timeline";
 import { getUser, getVenture } from "module/store";
 import { useParams, useRouteMatch } from "react-router-dom";
@@ -19,6 +20,7 @@ interface ParamTypes {
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
 type IsActive = "feed" | "settings" | "members" | undefined;
+type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 
 interface HomeProps extends DefaultHomeProps {}
 
@@ -55,9 +57,8 @@ export function Home(props: HomeProps) {
     : "settings";
 
   // local hooks shared with page-level elements
-  const [isVisible, setIsVisible] = useState<
-    "postDetails" | "mobileSidebar" | undefined
-  >(undefined);
+  const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
+  const [post, setPost] = useState<IUpdate>();
   const [isHome, setIsHome] = useState(true);
   const [variantType, setVariantType] = useState<VariantType>(variant);
   const [isActive, setIsActive] = useState<IsActive>(active);
@@ -123,6 +124,7 @@ export function Home(props: HomeProps) {
           setVariantType,
           isVisible,
           setIsVisible,
+          setPost,
         }}
         sidebar={{
           isHome: isHome,
@@ -132,6 +134,8 @@ export function Home(props: HomeProps) {
         }}
         postDetails={{
           setIsVisible,
+          post,
+          setPost,
         }}
 
         // actionBar={{

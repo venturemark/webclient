@@ -5,70 +5,23 @@ import {
   PlasmicReplyContent,
   DefaultReplyContentProps,
 } from "component/plasmic/shared/PlasmicReplyContent";
-import { IMessageQuery } from "module/interface/message";
-import { useMessages } from "module/hook/message";
 
 interface ReplyContentProps extends DefaultReplyContentProps {
-  id: string;
-  updateId: string;
-  timelineId: string;
-  ventureId: string;
   userName: string;
   text: string;
   date: string;
 }
 
 function ReplyContent(props: ReplyContentProps) {
-  const { updateId, timelineId, userName, ventureId, id, date, text } = props;
+  const { userName, date, text } = props;
   const [state] = useState<"isUser" | undefined>(undefined);
-
-  const token = "";
-
-  const messageSearch: IMessageQuery = {
-    updateId,
-    reid: id,
-    timelineId,
-    userId: userName,
-    ventureId,
-    token,
-  };
-
-  const { data: messagesData } = useMessages(messageSearch);
-  const messages =
-    messagesData?.filter((message: any) => message.reid === id) ?? [];
-
-  console.log(messages);
 
   return (
     <PlasmicReplyContent
       state={state}
-      // replyInput={{
-      //   organizationId: organizationId,
-      //   timelineId,
-      //   updateId,
-      //   userId: userName,
-      //   reid: id,
-      // }}
       userName={userName}
       text={text}
       date={date}
-      // repliesContainer={{
-      //   children: messages.map((message: any) => (
-      //     <ReplyContentSecond
-      //       userName={message.userId}
-      //       date={message.date}
-      //       key={message.id}
-      //       id={message.id}
-      //       text={message.text}
-      //       updateId={updateId}
-      //       timelineId={timelineId}
-      //       organizationId={organizationId}
-      //     />
-      //   )),
-      // }}
-      // replyButton={{
-      //   onClick: () => setState("isUser"),
-      // }}
     />
   );
 }
