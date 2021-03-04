@@ -51,6 +51,7 @@ export const PlasmicFeedUpdate__ArgProps = new Array<ArgPropType>();
 export type PlasmicFeedUpdate__OverridesType = {
   root?: p.Flex<"div">;
   actionBar?: p.Flex<typeof ActionBar>;
+  feedContainer?: p.Flex<"div">;
   updateContent?: p.Flex<typeof ContentPost>;
 };
 
@@ -82,18 +83,25 @@ function PlasmicFeedUpdate__RenderFunc(props: {
         className={classNames("__wab_instance", sty.actionBar)}
       />
 
-      <ContentPost
-        data-plasmic-name={"updateContent"}
-        data-plasmic-override={overrides.updateContent}
-        className={classNames("__wab_instance", sty.updateContent)}
-      />
+      <div
+        data-plasmic-name={"feedContainer"}
+        data-plasmic-override={overrides.feedContainer}
+        className={classNames(defaultcss.all, sty.feedContainer)}
+      >
+        <ContentPost
+          data-plasmic-name={"updateContent"}
+          data-plasmic-override={overrides.updateContent}
+          className={classNames("__wab_instance", sty.updateContent)}
+        />
+      </div>
     </p.Stack>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "actionBar", "updateContent"],
+  root: ["root", "actionBar", "feedContainer", "updateContent"],
   actionBar: ["actionBar"],
+  feedContainer: ["feedContainer", "updateContent"],
   updateContent: ["updateContent"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -103,6 +111,7 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   actionBar: typeof ActionBar;
+  feedContainer: "div";
   updateContent: typeof ContentPost;
 };
 
@@ -111,8 +120,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicFeedUpdate__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicFeedUpdate__VariantsArgs;
   args?: PlasmicFeedUpdate__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -163,6 +171,7 @@ export const PlasmicFeedUpdate = Object.assign(
   {
     // Helper components rendering sub-elements
     actionBar: makeNodeComponent("actionBar"),
+    feedContainer: makeNodeComponent("feedContainer"),
     updateContent: makeNodeComponent("updateContent"),
 
     // Metadata about props expected for PlasmicFeedUpdate

@@ -67,6 +67,45 @@
 .box__sDNfz > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 14px;
 }
+.box___6YZlv {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.box__headerStyles_timelineHeader___6YZlvRxxpi
+  > :global(.__wab_flex-container) {
+  align-items: baseline;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
+}
+.box__headerStyles_timelineHeader___6YZlvRxxpi
+  > :global(.__wab_flex-container)
+  > *,
+.box__headerStyles_timelineHeader___6YZlvRxxpi
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
+  margin-left: 5px;
+  margin-top: 0px;
+}
+.box__headerStyles_timelineHeader__y7S0JRxxpi {
+  font-family: "SF Pro Display";
+  font-size: 18px /* plasmic-token: UFZg3bUaA */;
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
+  font-weight: 300;
+}
+.slotVentureName {
+  font-size: 30px;
+}
+.slotVentureName__headerStyles_timelineHeader {
+  font-weight: 300;
+  font-size: 18px /* plasmic-token: UFZg3bUaA */;
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
+}
 .box__yHtqj {
   display: flex;
   position: relative;
@@ -108,45 +147,6 @@
 .slotTimelineName {
   font-size: 30px /* plasmic-token: TujpjiAsC */;
 }
-.box___6YZlv {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
-}
-.box__headerStyles_timelineHeader___6YZlvRxxpi
-  > :global(.__wab_flex-container) {
-  align-items: baseline;
-  margin-left: calc(0px - 5px);
-  width: calc(100% + 5px);
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
-}
-.box__headerStyles_timelineHeader___6YZlvRxxpi
-  > :global(.__wab_flex-container)
-  > *,
-.box__headerStyles_timelineHeader___6YZlvRxxpi
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > * {
-  margin-left: 5px;
-  margin-top: 0px;
-}
-.box__headerStyles_timelineHeader__y7S0JRxxpi {
-  font-family: "SF Pro Display";
-  font-size: 18px /* plasmic-token: UFZg3bUaA */;
-  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
-  font-weight: 300;
-}
-.slotVenturename {
-  font-size: 30px;
-}
-.slotVenturename__headerStyles_timelineHeader {
-  font-weight: 300;
-  font-size: 18px /* plasmic-token: UFZg3bUaA */;
-  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
-}
 .iconButton:global(.__wab_instance) {
   position: relative;
 }
@@ -165,6 +165,7 @@
   align-items: stretch;
   justify-content: flex-start;
   max-width: 454px;
+  align-self: auto;
 }
 .slotTimelineDescription {
   font-weight: 400;
@@ -172,6 +173,23 @@
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .slotTimelineDescription {
+    font-size: 14px;
+  }
+}
+.box__gg4AP {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  max-width: 454px;
+}
+.slotVentureDescription {
+  font-weight: 400;
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .slotVentureDescription {
     font-size: 14px;
   }
 }

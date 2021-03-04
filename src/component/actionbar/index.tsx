@@ -26,7 +26,8 @@ interface ActionBarProps extends DefaultActionBarProps {
 
 function ActionBar(props: ActionBarProps) {
   const { ventureId, userId, currentTimeline } = props;
-  const { user } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
+  const [token, setToken] = useState<string>("");
   const { handleSubmit, register, errors } = useForm();
 
   // const store = get("composeEditor.content") ?? "";
@@ -84,12 +85,11 @@ function ActionBar(props: ActionBarProps) {
     console.log("update data!", data);
 
     // how do we manage tokens in the same place?
-    const token = "";
 
     selectedTimelines.forEach((timelineId) => {
       const newUpdate: INewUpdate = {
         // text: serialize(editorShape.value),
-        text: "yah",
+        text: data.description,
         ventureId,
         timelineId: timelineId,
         userId,
@@ -129,7 +129,20 @@ function ActionBar(props: ActionBarProps) {
     } else {
       setSelectedTimelines([]);
     }
-  }, [currentTimeline]);
+
+    //auth
+    const getToken = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        setToken(token);
+      } catch (error) {
+        console.log(error.error);
+      }
+    };
+    if (token === "") {
+      getToken();
+    }
+  }, [currentTimeline, getAccessTokenSilently, token]);
 
   return (
     <PlasmicActionBar

@@ -22,8 +22,12 @@
 .actionBar:global(.__wab_instance) {
   position: relative;
 }
-.updateContent:global(.__wab_instance) {
+.feedContainer {
+  display: flex;
   position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   top: auto;
   left: auto;
   align-self: flex-start;
