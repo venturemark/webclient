@@ -8,6 +8,7 @@ import {
 import { useHistory } from "react-router-dom";
 import { getVenture } from "module/store";
 import { useParams } from "react-router-dom";
+import { ITimeline } from "module/interface/timeline";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -16,7 +17,7 @@ interface ParamTypes {
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
-  currentTimeline: any;
+  currentTimeline: ITimeline;
 }
 
 function MainHeader(props: MainHeaderProps) {
@@ -32,10 +33,9 @@ function MainHeader(props: MainHeaderProps) {
   return (
     <PlasmicMainHeader
       {...rest}
-      timelineName={currentTimeline?.name ?? "Marcus Rules"}
-      timelineDescription={
-        currentTimeline?.desc ?? "From the beginning we were here to win"
-      }
+      venturename={venture?.name}
+      timelineName={currentTimeline?.name}
+      timelineDescription={"lets describe something"}
       viewHome={{
         onClick: () => history.push(link + "/feed"),
       }}

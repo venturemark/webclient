@@ -10,6 +10,7 @@ import { INewTimeline } from "module/interface/timeline";
 import { useCreateTimeline } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUser, getVenture } from "module/store";
+import { useHistory } from "react-router-dom";
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
@@ -17,6 +18,7 @@ interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
 
 function AddEditTimeline(props: AddEditTimelineProps) {
   const { setIsActive, ...rest } = props;
+  const history = useHistory();
   const { handleSubmit, register, reset } = useForm();
   const { getAccessTokenSilently } = useAuth0();
   const { mutate: createTimeline } = useCreateTimeline();
@@ -36,11 +38,9 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       token: token,
     };
 
-    console.log(timeline);
-
     createTimeline(timeline);
     reset();
-    // setIsActive("feed"); // where do we transition after? page or state change?
+    history.push(`/${ventureId}/feed`);
   };
 
   useEffect(() => {

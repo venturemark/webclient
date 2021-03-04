@@ -26,21 +26,23 @@ interface HomeProps extends DefaultHomeProps {}
 export function Home(props: HomeProps) {
   const user = getUser();
   const venture = getVenture();
-  // console.log();
   const { url } = useRouteMatch<IsActive>();
-  const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
+  const { timelineSlug } = useParams<ParamTypes>();
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
   >();
 
   const variant = timelineSlug
     ? "isTimeline"
-    : ventureSlug
+    : venture && !timelineSlug
+    ? "isTimeline"
+    : venture
     ? "isVenture"
     : "isEmpty";
 
-  // const active = url.substring(url.lastIndexOf("/") + 1) as IsActive;
-  const active = url.split("/")[3] as IsActive;
+  const active = url.split("/")[3]
+    ? (url.split("/")[3] as IsActive)
+    : "settings";
 
   // local hooks shared with page-level elements
   const [isVisible, setIsVisible] = useState<
@@ -103,11 +105,9 @@ export function Home(props: HomeProps) {
 
   useEffect(() => {
     setVariantType(variant);
+
     !venture && setVariantType("isEmpty");
     venture && variantType === "isEmpty" && setVariantType("isVenture");
-
-    console.log("active", active);
-
     if (!active) {
       setIsActive("feed");
     } else {
@@ -123,8 +123,8 @@ export function Home(props: HomeProps) {
         isVisible={isVisible}
         main={{
           currentTimeline,
-          variantType,
-          isActive,
+          variantType: variantType,
+          isActive: isActive,
           setIsActive,
           setVariantType,
           isVisible,
