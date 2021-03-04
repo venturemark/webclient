@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Select, Tag } from "antd";
 import { useTimelines } from "module/hook/timeline";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { RefSelectProps } from "antd/lib/select";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function tagRender(props: any) {
   const { label, closable, onClose } = props;
@@ -46,10 +47,10 @@ export function AntSelect(props: SelectProps) {
     setSelectFocused,
     selectedTimelines,
   } = props;
+  const { getAccessTokenSilently } = useAuth0();
+  const [token, setToken] = useState<string>("");
 
   const select = useRef<RefSelectProps>(null);
-
-  const token = "";
 
   const timelineSearch: ITimelineQuery = {
     userId,
@@ -67,11 +68,23 @@ export function AntSelect(props: SelectProps) {
     }) ?? [];
 
   useEffect(() => {
+    const getToken = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        setToken(token);
+      } catch (error) {
+        console.log(error.error);
+      }
+    };
+    if (token === "") {
+      getToken();
+    }
+
     if (selectFocused && select && select.current) {
       select.current?.focus();
       setSelectFocused(false);
     }
-  }, [selectFocused, setSelectFocused]);
+  }, [selectFocused, setSelectFocused, getAccessTokenSilently, token]);
 
   return (
     <Select
