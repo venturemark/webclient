@@ -9,8 +9,7 @@ import SidebarItemGroup from "component/sidebaritemgroup";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
-// import { customers } from "module/customerdata";
-import { getVenture } from "module/store";
+import { getVenture, getUser } from "module/store";
 
 interface SidebarProps extends DefaultSidebarProps {
   isHome: boolean;
@@ -19,27 +18,15 @@ interface SidebarProps extends DefaultSidebarProps {
   setCurrentTimeline: React.Dispatch<
     React.SetStateAction<ITimeline | undefined>
   >;
-
-  userId: string;
-  ventureId: string;
 }
 
 function Sidebar(props: SidebarProps) {
-  const {
-    // isHome,
-    setIsHome,
-    currentTimeline,
-    userId,
-    ventureId,
-  } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
 
-  console.log(userId, ventureId);
-
   const timelineSearch: ITimelineQuery = {
-    userId,
-    ventureId,
+    userId: getUser()?.id ?? "",
+    ventureId: getVenture()?.id ?? "",
     token,
   };
 
@@ -49,14 +36,9 @@ function Sidebar(props: SidebarProps) {
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
 
-  const sortedCurrentTimelines = timelines
-    .map((timeline: any) => {
-      if (currentTimeline && timeline.id === currentTimeline.id) {
-        return { ...timeline, isCurrent: true };
-      }
-      return timeline;
-    })
-    .sort((a: any, b: any) => a.name.localeCompare(b.name));
+  const sortedCurrentTimelines = timelines.sort((a: any, b: any) =>
+    a.name.localeCompare(b.name)
+  );
 
   useEffect(() => {
     const getToken = async () => {
@@ -70,23 +52,17 @@ function Sidebar(props: SidebarProps) {
     if (token === "") {
       getToken();
     }
-    setIsHome(!currentTimeline);
-  }, [currentTimeline, setIsHome, getAccessTokenSilently, token]);
-
-  console.log(sortedCurrentTimelines);
-  console.log(timelinesData);
+  }, [getAccessTokenSilently, token]);
 
   return (
     <PlasmicSidebar
-      // organizationName={{
-      //   name: organizationId,
-      //   isOrganization: true,
-      //   setHasInput: setHasInput,
-      // }}
       hasInput={true}
       scrollContainer={{
         children: (
-          <SidebarItemGroup name={venture?.name ?? ""} timelines={timelines} />
+          <SidebarItemGroup
+            name={venture?.name ?? ""}
+            timelines={sortedCurrentTimelines}
+          />
         ),
         // children: ventures.map((venture: any) => (
         //   <SidebarItemGroup name={venture.name} timelines={venture.timelines} />

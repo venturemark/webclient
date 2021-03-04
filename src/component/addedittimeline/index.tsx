@@ -38,8 +38,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       token: token,
     };
 
-    console.log(timeline);
-
     createTimeline(timeline);
     reset();
     history.push(`/${ventureId}/feed`);
