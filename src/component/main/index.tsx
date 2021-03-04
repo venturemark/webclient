@@ -47,11 +47,12 @@ function Main(props: MainProps) {
   const { data: timelinesData } = useTimelines(timelineSearch);
 
   const timelines = timelinesData ?? [];
-  const currentTimeline = timelines.filter(
-    (timeline: ITimeline) =>
+  const currentTimeline = timelines.filter((timeline: ITimeline) => {
+    return (
       timeline.name.toLowerCase().replace(/\s/g, "") ===
-      timelineSlug.toLowerCase().replace(/\s/g, "")
-  )[0];
+        timelineSlug?.toLowerCase().replace(/\s/g, "") ?? ""
+    );
+  })[0];
 
   useEffect(() => {
     const getToken = async () => {

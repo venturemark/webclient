@@ -16,15 +16,14 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  width: 20px;
+  width: 25px;
   pointer-events: auto;
   cursor: pointer;
   flex-shrink: 0;
-  padding: 3px /* plasmic-token: 5hSVea-ed */;
+  padding: 5px /* plasmic-token: 5hSVea-ed */;
 }
 .container__iconSize_large {
-  height: 30px;
-  width: 30px;
+  width: 35px;
   flex-shrink: 0;
 }
 .root:hover .container {

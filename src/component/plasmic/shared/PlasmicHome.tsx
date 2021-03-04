@@ -27,25 +27,25 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
+import ProfileForm from "../../profileform/index"; // plasmic-import: _XzWccJtXuE/component
 import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
 import Main from "../../main/index"; // plasmic-import: 0c6QSqHYCk/component
 import PostDetails from "../../postdetails/index"; // plasmic-import: 1E73LSzV2l/component
-import ProfileForm from "../../profileform/index"; // plasmic-import: _XzWccJtXuE/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicHome.module.css"; // plasmic-import: cRgEcIgCT1/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicHome.module.css"; // plasmic-import: cRgEcIgCT1/css
 
 export type PlasmicHome__VariantMembers = {
-  isVisible: "postDetails" | "mobileSidebar";
+  isVisible: "postDetails" | "mobileSidebar" | "showModal";
 };
 
 export type PlasmicHome__VariantsArgs = {
-  isVisible?: MultiChoiceArg<"postDetails" | "mobileSidebar">;
+  isVisible?: MultiChoiceArg<"postDetails" | "mobileSidebar" | "showModal">;
 };
 
 type VariantPropType = keyof PlasmicHome__VariantsArgs;
@@ -59,16 +59,16 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHome__OverridesType = {
   root?: p.Flex<"div">;
+  profileForm?: p.Flex<typeof ProfileForm>;
   header?: p.Flex<typeof Header>;
   sidebar?: p.Flex<typeof Sidebar>;
   mainContainer?: p.Flex<"div">;
   main?: p.Flex<typeof Main>;
   postDetails?: p.Flex<typeof PostDetails>;
-  profileForm?: p.Flex<typeof ProfileForm>;
 };
 
 export interface DefaultHomeProps {
-  isVisible?: MultiChoiceArg<"postDetails" | "mobileSidebar">;
+  isVisible?: MultiChoiceArg<"postDetails" | "mobileSidebar" | "showModal">;
   className?: string;
 }
 
@@ -107,13 +107,58 @@ function PlasmicHome__RenderFunc(props: {
                 "isVisible",
                 "postDetails"
               ),
+              [sty.root__isVisible_showModal]: hasVariant(
+                variants,
+                "isVisible",
+                "showModal"
+              ),
             }
           )}
         >
+          {(hasVariant(variants, "isVisible", "showModal") ? true : false) ? (
+            <div
+              className={classNames(defaultcss.all, sty.box__bSzQ, {
+                [sty.box__isVisible_showModal__bSzQvxFZh]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "showModal"
+                ),
+              })}
+            >
+              <ProfileForm
+                data-plasmic-name={"profileForm"}
+                data-plasmic-override={overrides.profileForm}
+                className={classNames("__wab_instance", sty.profileForm, {
+                  [sty.profileForm__isVisible_showModal]: hasVariant(
+                    variants,
+                    "isVisible",
+                    "showModal"
+                  ),
+                })}
+                editProfile={
+                  hasVariant(variants, "isVisible", "showModal")
+                    ? ("editProfile" as const)
+                    : undefined
+                }
+              />
+            </div>
+          ) : null}
+
           <Header
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}
-            className={classNames("__wab_instance", sty.header)}
+            className={classNames("__wab_instance", sty.header, {
+              [sty.header__isVisible_mobileSidebar]: hasVariant(
+                variants,
+                "isVisible",
+                "mobileSidebar"
+              ),
+              [sty.header__isVisible_showModal]: hasVariant(
+                variants,
+                "isVisible",
+                "showModal"
+              ),
+            })}
             userAccount={"userAccount" as const}
           />
 
@@ -142,6 +187,9 @@ function PlasmicHome__RenderFunc(props: {
                     "isVisible",
                     "mobileSidebar"
                   ),
+                  [sty.sidebar__isVisible_mobileSidebar_isVisible_postDetails]:
+                    hasVariant(variants, "isVisible", "mobileSidebar") &&
+                    hasVariant(variants, "isVisible", "postDetails"),
                 })}
                 hasInput={"hasInput" as const}
               />
@@ -156,9 +204,15 @@ function PlasmicHome__RenderFunc(props: {
                 <Main
                   data-plasmic-name={"main"}
                   data-plasmic-override={overrides.main}
-                  className={classNames("__wab_instance", sty.main)}
+                  className={classNames("__wab_instance", sty.main, {
+                    [sty.main__isVisible_postDetails]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "postDetails"
+                    ),
+                  })}
                   isActive={"feed" as const}
-                  variantType={"isVenture" as const}
+                  variantType={"isTimeline" as const}
                 />
               </div>
 
@@ -181,16 +235,6 @@ function PlasmicHome__RenderFunc(props: {
               ) : null}
             </div>
           </div>
-
-          {false ? (
-            <div className={classNames(defaultcss.all, sty.box__bSzQ)}>
-              <ProfileForm
-                data-plasmic-name={"profileForm"}
-                data-plasmic-override={overrides.profileForm}
-                className={classNames("__wab_instance", sty.profileForm)}
-              />
-            </div>
-          ) : null}
         </div>
       </div>
     </React.Fragment>
@@ -200,19 +244,19 @@ function PlasmicHome__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "profileForm",
     "header",
     "sidebar",
     "mainContainer",
     "main",
     "postDetails",
-    "profileForm",
   ],
+  profileForm: ["profileForm"],
   header: ["header"],
   sidebar: ["sidebar"],
   mainContainer: ["mainContainer", "main"],
   main: ["main"],
   postDetails: ["postDetails"],
-  profileForm: ["profileForm"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -220,12 +264,12 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  profileForm: typeof ProfileForm;
   header: typeof Header;
   sidebar: typeof Sidebar;
   mainContainer: "div";
   main: typeof Main;
   postDetails: typeof PostDetails;
-  profileForm: typeof ProfileForm;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -284,12 +328,12 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    profileForm: makeNodeComponent("profileForm"),
     header: makeNodeComponent("header"),
     sidebar: makeNodeComponent("sidebar"),
     mainContainer: makeNodeComponent("mainContainer"),
     main: makeNodeComponent("main"),
     postDetails: makeNodeComponent("postDetails"),
-    profileForm: makeNodeComponent("profileForm"),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

@@ -32,9 +32,9 @@ import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import MemberItem from "../../memberitem/index"; // plasmic-import: D8Y_2wee1o/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicAddEditMembers.module.css"; // plasmic-import: 3NTlJO7oDpw/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicAddEditMembers.module.css"; // plasmic-import: 3NTlJO7oDpw/css
 
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
@@ -58,6 +58,8 @@ export type PlasmicAddEditMembers__ArgsType = {
   slot322?: React.ReactNode;
   slot4222?: React.ReactNode;
   slot3222?: React.ReactNode;
+  slot43?: React.ReactNode;
+  slot33?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicAddEditMembers__ArgsType;
@@ -72,7 +74,9 @@ export const PlasmicAddEditMembers__ArgProps = new Array<ArgPropType>(
   "slot422",
   "slot322",
   "slot4222",
-  "slot3222"
+  "slot3222",
+  "slot43",
+  "slot33"
 );
 
 export type PlasmicAddEditMembers__OverridesType = {
@@ -95,6 +99,8 @@ export interface DefaultAddEditMembersProps {
   slot322?: React.ReactNode;
   slot4222?: React.ReactNode;
   slot3222?: React.ReactNode;
+  slot43?: React.ReactNode;
+  slot33?: React.ReactNode;
   className?: string;
 }
 
@@ -189,7 +195,6 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 
         <MemberItem
           className={classNames("__wab_instance", sty.memberItem__e3Lpj)}
-          isAdmin={"isAdmin" as const}
           slot3={
             <p.PlasmicSlot
               defaultContents={"example@email.com"}
@@ -199,6 +204,24 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           slot4={
             <p.PlasmicSlot defaultContents={"User Name"} value={args.slot4} />
           }
+          userVariant={"isAdmin" as const}
+        />
+
+        <MemberItem
+          className={classNames("__wab_instance", sty.memberItem__ieR1F)}
+          slot3={
+            <p.PlasmicSlot
+              defaultContents={"example@email.com"}
+              value={args.slot33}
+            />
+          }
+          slot4={
+            <p.PlasmicSlot
+              defaultContents={"example@email.com"}
+              value={args.slot43}
+            />
+          }
+          userVariant={"isRequested" as const}
         />
 
         <MemberItem
@@ -210,10 +233,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             />
           }
           slot4={
-            <p.PlasmicSlot
-              defaultContents={"nonregistered@email.com"}
-              value={args.slot42}
-            />
+            <p.PlasmicSlot defaultContents={"User Name"} value={args.slot42} />
           }
         />
 

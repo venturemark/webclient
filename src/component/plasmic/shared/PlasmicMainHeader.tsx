@@ -33,9 +33,9 @@ import IconButtonMember from "../../iconbuttonmember/index"; // plasmic-import: 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicMainHeader.module.css"; // plasmic-import: LRwT0lHdps/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicMainHeader.module.css"; // plasmic-import: LRwT0lHdps/css
 
 import IconExternalLinkIcon from "./icons/PlasmicIcon__IconExternalLink"; // plasmic-import: BDHiWdSyk/icon
 import IconFeedIcon from "./icons/PlasmicIcon__IconFeed"; // plasmic-import: gkIqWTG_m/icon
@@ -44,6 +44,7 @@ import IconSettings2Icon from "./icons/PlasmicIcon__IconSettings2"; // plasmic-i
 export type PlasmicMainHeader__VariantMembers = {
   headerStyles: "timelineHeader" | "ventureHeader";
   isActive: "feed" | "members" | "settings" | "unnamedVariant";
+  showVentureDescription: "showVentureDescription";
 };
 
 export type PlasmicMainHeader__VariantsArgs = {
@@ -51,12 +52,14 @@ export type PlasmicMainHeader__VariantsArgs = {
   isActive?: SingleChoiceArg<
     "feed" | "members" | "settings" | "unnamedVariant"
   >;
+  showVentureDescription?: SingleBooleanChoiceArg<"showVentureDescription">;
 };
 
 type VariantPropType = keyof PlasmicMainHeader__VariantsArgs;
 export const PlasmicMainHeader__VariantProps = new Array<VariantPropType>(
   "headerStyles",
-  "isActive"
+  "isActive",
+  "showVentureDescription"
 );
 
 export type PlasmicMainHeader__ArgsType = {
@@ -89,6 +92,7 @@ export interface DefaultMainHeaderProps {
   isActive?: SingleChoiceArg<
     "feed" | "members" | "settings" | "unnamedVariant"
   >;
+  showVentureDescription?: SingleBooleanChoiceArg<"showVentureDescription">;
   className?: string;
 }
 
@@ -265,11 +269,17 @@ function PlasmicMainHeader__RenderFunc(props: {
           </p.Stack>
 
           {(
-            hasVariant(variants, "headerStyles", "timelineHeader")
+            hasVariant(
+              variants,
+              "showVentureDescription",
+              "showVentureDescription"
+            )
+              ? true
+              : hasVariant(variants, "headerStyles", "timelineHeader")
               ? false
               : hasVariant(globalVariants, "screen", "mobile")
               ? false
-              : true
+              : false
           ) ? (
             <div
               className={classNames(defaultcss.all, sty.box__fohK2, {
@@ -282,6 +292,11 @@ function PlasmicMainHeader__RenderFunc(props: {
                   variants,
                   "headerStyles",
                   "ventureHeader"
+                ),
+                [sty.box__showVentureDescription__fohK2CtI95]: hasVariant(
+                  variants,
+                  "showVentureDescription",
+                  "showVentureDescription"
                 ),
               })}
             >
@@ -300,6 +315,11 @@ function PlasmicMainHeader__RenderFunc(props: {
                     variants,
                     "headerStyles",
                     "ventureHeader"
+                  ),
+                  [sty.slotTimelineDescription__showVentureDescription]: hasVariant(
+                    variants,
+                    "showVentureDescription",
+                    "showVentureDescription"
                   ),
                 })}
               />

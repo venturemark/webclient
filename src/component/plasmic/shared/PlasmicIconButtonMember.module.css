@@ -17,9 +17,9 @@
   align-items: flex-end;
   justify-content: flex-start;
   width: auto;
-  height: 30px;
+  height: 35px;
   cursor: pointer;
-  padding: 3px /* plasmic-token: 5hSVea-ed */;
+  padding: 5px /* plasmic-token: 5hSVea-ed */;
 }
 .root:hover .container {
   border-radius: 5px;

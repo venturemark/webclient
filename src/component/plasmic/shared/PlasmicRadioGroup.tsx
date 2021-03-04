@@ -27,48 +27,52 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
-import InputToggleButton from "../../inputtogglebutton/index"; // plasmic-import: 0x0YjULkfHN/component
+import Radio from "../../radio/index"; // plasmic-import: 0x0YjULkfHN/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicRadioGroup.module.css"; // plasmic-import: Q9Z-qP9n2Q/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicRadioGroup.module.css"; // plasmic-import: Q9Z-qP9n2Q/css
 
 export type PlasmicRadioGroup__VariantMembers = {
   hasLabel: "hasLabel";
   isHorizontal: "isHorizontal";
+  isDisabled: "isDisabled";
 };
 
 export type PlasmicRadioGroup__VariantsArgs = {
   hasLabel?: SingleBooleanChoiceArg<"hasLabel">;
   isHorizontal?: SingleBooleanChoiceArg<"isHorizontal">;
+  isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
 };
 
 type VariantPropType = keyof PlasmicRadioGroup__VariantsArgs;
 export const PlasmicRadioGroup__VariantProps = new Array<VariantPropType>(
   "hasLabel",
-  "isHorizontal"
+  "isHorizontal",
+  "isDisabled"
 );
 
 export type PlasmicRadioGroup__ArgsType = {
-  label3?: React.ReactNode;
+  label?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicRadioGroup__ArgsType;
-export const PlasmicRadioGroup__ArgProps = new Array<ArgPropType>("label3");
+export const PlasmicRadioGroup__ArgProps = new Array<ArgPropType>("label");
 
 export type PlasmicRadioGroup__OverridesType = {
   root?: p.Flex<"div">;
   labelContainer?: p.Flex<"label">;
-  _private?: p.Flex<typeof InputToggleButton>;
-  members?: p.Flex<typeof InputToggleButton>;
-  _public?: p.Flex<typeof InputToggleButton>;
+  _private?: p.Flex<typeof Radio>;
+  members?: p.Flex<typeof Radio>;
+  _public?: p.Flex<typeof Radio>;
 };
 
 export interface DefaultRadioGroupProps {
-  label3?: React.ReactNode;
+  label?: React.ReactNode;
   hasLabel?: SingleBooleanChoiceArg<"hasLabel">;
   isHorizontal?: SingleBooleanChoiceArg<"isHorizontal">;
+  isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
   className?: string;
 }
 
@@ -104,29 +108,65 @@ function PlasmicRadioGroup__RenderFunc(props: {
         >
           <p.PlasmicSlot
             defaultContents={"Visibility"}
-            value={args.label3}
-            className={classNames(sty.slotLabel3)}
+            value={args.label}
+            className={classNames(sty.slotLabel)}
           />
         </label>
       ) : null}
 
-      <div className={classNames(defaultcss.all, sty.box__zgeS0)}>
-        <InputToggleButton
+      <p.Stack
+        as={"div"}
+        hasGap={
+          hasVariant(variants, "isHorizontal", "isHorizontal") ||
+          (hasVariant(variants, "hasLabel", "hasLabel") &&
+            hasVariant(variants, "isHorizontal", "isHorizontal"))
+            ? true
+            : false
+        }
+        className={classNames(defaultcss.all, sty.box__zgeS0, {
+          [sty.box__hasLabel__zgeS0XNm45]: hasVariant(
+            variants,
+            "hasLabel",
+            "hasLabel"
+          ),
+          [sty.box__hasLabel_isHorizontal__zgeS0XNm45LNttF]:
+            hasVariant(variants, "hasLabel", "hasLabel") &&
+            hasVariant(variants, "isHorizontal", "isHorizontal"),
+          [sty.box__isDisabled__zgeS0Zl5Fe]: hasVariant(
+            variants,
+            "isDisabled",
+            "isDisabled"
+          ),
+          [sty.box__isHorizontal__zgeS0LNttF]: hasVariant(
+            variants,
+            "isHorizontal",
+            "isHorizontal"
+          ),
+        })}
+      >
+        <Radio
           data-plasmic-name={"_private"}
           data-plasmic-override={overrides._private}
           label3={"Private"}
           position={"top" as const}
-          selected={"selected" as const}
+          radioVariants={["hasLabel", "isSelected"]}
         >
           {"Only admins and members invited by you can see this timeline. "}
-        </InputToggleButton>
+        </Radio>
 
-        <InputToggleButton
+        <Radio
           data-plasmic-name={"members"}
           data-plasmic-override={overrides.members}
-          className={classNames("__wab_instance", sty.members)}
+          className={classNames("__wab_instance", sty.members, {
+            [sty.members__isHorizontal]: hasVariant(
+              variants,
+              "isHorizontal",
+              "isHorizontal"
+            ),
+          })}
           label3={"Members"}
           position={"middle" as const}
+          radioVariants={["hasLabel"]}
         >
           <div
             className={classNames(
@@ -135,22 +175,27 @@ function PlasmicRadioGroup__RenderFunc(props: {
               sty.box___2IwyL
             )}
           >
-            {
-              "Members from this venture will automatically be invited to this timeline."
-            }
+            {"All members from this venture will be added to this timeline."}
           </div>
-        </InputToggleButton>
+        </Radio>
 
-        <InputToggleButton
+        <Radio
           data-plasmic-name={"_public"}
           data-plasmic-override={overrides._public}
-          className={classNames("__wab_instance", sty._public)}
+          className={classNames("__wab_instance", sty._public, {
+            [sty._public__isHorizontal]: hasVariant(
+              variants,
+              "isHorizontal",
+              "isHorizontal"
+            ),
+          })}
           label3={"Public"}
           position={"bottom" as const}
+          radioVariants={["hasLabel"]}
         >
           {"Anyone with the venture domain can see this timeline."}
-        </InputToggleButton>
-      </div>
+        </Radio>
+      </p.Stack>
     </p.Stack>
   ) as React.ReactElement | null;
 }
@@ -169,9 +214,9 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   labelContainer: "label";
-  _private: typeof InputToggleButton;
-  members: typeof InputToggleButton;
-  _public: typeof InputToggleButton;
+  _private: typeof Radio;
+  members: typeof Radio;
+  _public: typeof Radio;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
