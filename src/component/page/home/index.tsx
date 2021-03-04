@@ -27,18 +27,27 @@ export function Home(props: HomeProps) {
   const user = getUser();
   const venture = getVenture();
   const { url } = useRouteMatch<IsActive>();
-  const { timelineSlug } = useParams<ParamTypes>();
+  const { timelineSlug, ventureSlug } = useParams<ParamTypes>();
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
   >();
 
-  const variant = timelineSlug
-    ? "isTimeline"
-    : venture && !timelineSlug
-    ? "isTimeline"
-    : venture
-    ? "isVenture"
-    : "isEmpty";
+  // const variant = timelineSlug
+  //   ? "isTimeline"
+  //   : venture && !timelineSlug
+  //   ? "isTimeline"
+  //   : venture
+  //   ? "isVenture"
+  //   : "isEmpty";
+
+  const variant =
+    venture && !timelineSlug
+      ? "isTimeline"
+      : !venture && !ventureSlug
+      ? "isEmpty"
+      : venture
+      ? "isVenture"
+      : "isVenture";
 
   const active = url.split("/")[3]
     ? (url.split("/")[3] as IsActive)
@@ -105,15 +114,14 @@ export function Home(props: HomeProps) {
 
   useEffect(() => {
     setVariantType(variant);
-
-    !venture && setVariantType("isEmpty");
+    // !venture && setVariantType("isEmpty");
     venture && variantType === "isEmpty" && setVariantType("isVenture");
-    if (!active) {
+    if (active === "settings" && !ventureSlug) {
       setIsActive("feed");
     } else {
       setIsActive(active);
     }
-  }, [venture, variantType, variant, active]);
+  }, [venture, variantType, variant, active, ventureSlug]);
 
   console.log(updates);
 
