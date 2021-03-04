@@ -121,7 +121,7 @@ export function Home(props: HomeProps) {
     } else {
       setIsActive(active);
     }
-  }, [venture, variantType, variant, active]);
+  }, [venture, variantType, variant, active, ventureSlug]);
 
   console.log(updates);
 
