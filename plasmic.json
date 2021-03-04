@@ -103,19 +103,6 @@
           "componentType": "component"
         },
         {
-          "id": "FsY3j3NYte",
-          "name": "Modal",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicModal.tsx",
-          "importSpec": {
-            "modulePath": "modal/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicModal.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "q3VnCwfx25w",
           "name": "ReplyContent",
           "type": "managed",
@@ -182,14 +169,14 @@
         },
         {
           "id": "0x0YjULkfHN",
-          "name": "InputToggleButton",
+          "name": "Radio",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicInputToggleButton.tsx",
+          "renderModuleFilePath": "plasmic/shared/PlasmicRadio.tsx",
           "importSpec": {
-            "modulePath": "inputtogglebutton/index.tsx"
+            "modulePath": "radio/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicInputToggleButton.module.css",
+          "cssFilePath": "plasmic/shared/PlasmicRadio.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
@@ -556,6 +543,19 @@
           "cssFilePath": "plasmic/shared/PlasmicButtonSetEdit.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "I7lcqILO9Y",
+          "name": "JoinVenture",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicJoinVenture.tsx",
+          "importSpec": {
+            "modulePath": "joinventure/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicJoinVenture.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
         }
       ],
       "icons": [

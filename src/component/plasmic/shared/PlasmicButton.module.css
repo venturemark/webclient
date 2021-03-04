@@ -79,6 +79,9 @@
 .root:hover .button {
   background: rgb(0, 142, 113);
 }
+.root:focus-within .button {
+  outline: none;
+}
 .root__buttonStyle_primaryPurple:hover .button__buttonStyle_primaryPurple {
   background: rgb(56, 31, 86);
 }

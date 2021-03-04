@@ -29,9 +29,9 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicErrorMessage.module.css"; // plasmic-import: X8H70YUTyF/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicErrorMessage.module.css"; // plasmic-import: X8H70YUTyF/css
 
 import IconCautionIcon from "./icons/PlasmicIcon__IconCaution"; // plasmic-import: 9xu35mhQf/icon
 

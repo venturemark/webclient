@@ -33,9 +33,9 @@ import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/com
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicProfileForm.module.css"; // plasmic-import: _XzWccJtXuE/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicProfileForm.module.css"; // plasmic-import: _XzWccJtXuE/css
 
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
@@ -66,6 +66,7 @@ export type PlasmicProfileForm__OverridesType = {
   nameField?: p.Flex<typeof InputText>;
   jobField?: p.Flex<typeof InputText>;
   completeProfile?: p.Flex<typeof Button>;
+  text2?: p.Flex<"div">;
   completeProfile2?: p.Flex<typeof Button>;
   text22?: p.Flex<"div">;
 };
@@ -244,9 +245,26 @@ function PlasmicProfileForm__RenderFunc(props: {
               />
             }
             text2={
-              hasVariant(variants, "editProfile", "editProfile")
-                ? "Cancel"
-                : "Complete"
+              <div
+                data-plasmic-name={"text2"}
+                data-plasmic-override={overrides.text2}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.text2,
+                  {
+                    [sty.text2__editProfile]: hasVariant(
+                      variants,
+                      "editProfile",
+                      "editProfile"
+                    ),
+                  }
+                )}
+              >
+                {hasVariant(variants, "editProfile", "editProfile")
+                  ? "Cancel"
+                  : "Complete"}
+              </div>
             }
           >
             <IconRightIcon
@@ -320,6 +338,7 @@ const PlasmicDescendants = {
     "nameField",
     "jobField",
     "completeProfile",
+    "text2",
     "completeProfile2",
     "text22",
   ],
@@ -328,7 +347,8 @@ const PlasmicDescendants = {
   link: ["link"],
   nameField: ["nameField"],
   jobField: ["jobField"],
-  completeProfile: ["completeProfile"],
+  completeProfile: ["completeProfile", "text2"],
+  text2: ["text2"],
   completeProfile2: ["completeProfile2", "text22"],
   text22: ["text22"],
 } as const;
@@ -344,6 +364,7 @@ type NodeDefaultElementType = {
   nameField: typeof InputText;
   jobField: typeof InputText;
   completeProfile: typeof Button;
+  text2: "div";
   completeProfile2: typeof Button;
   text22: "div";
 };
@@ -410,6 +431,7 @@ export const PlasmicProfileForm = Object.assign(
     nameField: makeNodeComponent("nameField"),
     jobField: makeNodeComponent("jobField"),
     completeProfile: makeNodeComponent("completeProfile"),
+    text2: makeNodeComponent("text2"),
     completeProfile2: makeNodeComponent("completeProfile2"),
     text22: makeNodeComponent("text22"),
 

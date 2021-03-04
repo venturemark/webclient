@@ -16,7 +16,7 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
 }
-.toggleSet {
+.radio {
   display: flex;
   width: 100%;
   height: auto;
@@ -29,38 +29,45 @@
   padding: 10px /* plasmic-token: 4LaooeLwj */;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.toggleSet > :global(.__wab_flex-container) {
+.radio > :global(.__wab_flex-container) {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
 }
-.toggleSet > :global(.__wab_flex-container) > *,
-.toggleSet > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.radio > :global(.__wab_flex-container) > *,
+.radio > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
-.toggleSet__position_top {
+.radio__position_top {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
-.toggleSet__position_middle {
+.radio__position_middle {
   border-top-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
   border-bottom-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
   border-right-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
   border-left-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
   border-width: 1px;
 }
-.toggleSet__position_bottom {
+.radio__position_bottom {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.toggleSet__selected {
+.radio__radioVariants_isSelected {
   border-color: rgb(88, 176, 113) /* plasmic-token: xsIYHQwoE */;
 }
-.toggleSet__selected_position_middle {
+.radio__radioVariants_isDisabled {
+  opacity: 0.7 /* plasmic-token: lzdxoc8dE */;
+}
+.radio__radioVariants_isSelected_position_middle {
   border-width: 1px;
   border-color: rgb(88, 176, 113) /* plasmic-token: xsIYHQwoE */;
+}
+.root .radio____focusVisibleWithin {
+  outline: none;
+  border-color: rgb(46, 129, 184) /* plasmic-token: IfaVHQ1Yp */;
 }
 .box__itbKd {
   display: flex;
@@ -117,7 +124,7 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-.box__selected__jjyTr8Bz4B {
+.box__radioVariants_isSelected__jjyTrnYn7 {
   width: 40px;
   flex-shrink: 0;
 }
@@ -128,6 +135,6 @@
   height: 44px;
   flex-shrink: 0;
 }
-.svg__selected {
+.svg__radioVariants_isSelected {
   color: rgb(88, 176, 113) /* plasmic-token: xsIYHQwoE */;
 }

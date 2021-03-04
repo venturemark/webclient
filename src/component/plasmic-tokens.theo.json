@@ -31,6 +31,16 @@
       }
     },
     {
+      "name": "Disabled",
+      "type": "opacity",
+      "value": "0.7",
+      "category": "opacity",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "lzdxoc8dE"
+      }
+    },
+    {
       "name": "UnnamedStyleToken",
       "type": "color",
       "value": "var(--token-ktdOhSoiQwPKRUS)",
@@ -363,7 +373,7 @@
     {
       "name": "iconSpacing",
       "type": "spacing",
-      "value": "3px",
+      "value": "5px",
       "category": "spacing",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",

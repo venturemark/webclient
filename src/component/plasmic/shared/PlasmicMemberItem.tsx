@@ -32,23 +32,23 @@ import Tags from "../../tags/index"; // plasmic-import: 0wz8hGqZgNQ/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicMemberItem.module.css"; // plasmic-import: D8Y_2wee1o/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicMemberItem.module.css"; // plasmic-import: D8Y_2wee1o/css
 
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 
 export type PlasmicMemberItem__VariantMembers = {
-  isAdmin: "isAdmin";
+  userVariant: "isAdmin" | "isRequested";
 };
 
 export type PlasmicMemberItem__VariantsArgs = {
-  isAdmin?: SingleBooleanChoiceArg<"isAdmin">;
+  userVariant?: SingleChoiceArg<"isAdmin" | "isRequested">;
 };
 
 type VariantPropType = keyof PlasmicMemberItem__VariantsArgs;
 export const PlasmicMemberItem__VariantProps = new Array<VariantPropType>(
-  "isAdmin"
+  "userVariant"
 );
 
 export type PlasmicMemberItem__ArgsType = {
@@ -73,7 +73,7 @@ export type PlasmicMemberItem__OverridesType = {
 export interface DefaultMemberItemProps {
   slot4?: React.ReactNode;
   slot3?: React.ReactNode;
-  isAdmin?: SingleBooleanChoiceArg<"isAdmin">;
+  userVariant?: SingleChoiceArg<"isAdmin" | "isRequested">;
   className?: string;
 }
 
@@ -92,7 +92,16 @@ function PlasmicMemberItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isAdmin]: hasVariant(variants, "isAdmin", "isAdmin"),
+        [sty.root__userVariant_isAdmin]: hasVariant(
+          variants,
+          "userVariant",
+          "isAdmin"
+        ),
+        [sty.root__userVariant_isRequested]: hasVariant(
+          variants,
+          "userVariant",
+          "isRequested"
+        ),
       })}
     >
       <p.Stack
@@ -133,19 +142,48 @@ function PlasmicMemberItem__RenderFunc(props: {
         hasGap={true}
         className={classNames(defaultcss.all, sty.box__ymOfc)}
       >
-        {(hasVariant(variants, "isAdmin", "isAdmin") ? true : false) ? (
+        {(
+          hasVariant(variants, "userVariant", "isRequested")
+            ? true
+            : hasVariant(variants, "userVariant", "isAdmin")
+            ? true
+            : false
+        ) ? (
           <Tags
             data-plasmic-name={"tags"}
             data-plasmic-override={overrides.tags}
             buttonFeatures={["hasText"]}
-            buttonStyle={"blue" as const}
+            buttonStyle={
+              hasVariant(variants, "userVariant", "isAdmin")
+                ? ("secondaryGreen" as const)
+                : ("blue" as const)
+            }
             className={classNames("__wab_instance", sty.tags, {
-              [sty.tags__isAdmin]: hasVariant(variants, "isAdmin", "isAdmin"),
+              [sty.tags__userVariant_isAdmin]: hasVariant(
+                variants,
+                "userVariant",
+                "isAdmin"
+              ),
+              [sty.tags__userVariant_isRequested]: hasVariant(
+                variants,
+                "userVariant",
+                "isRequested"
+              ),
             })}
-            text2={"Admin"}
+            text2={
+              hasVariant(variants, "userVariant", "isRequested")
+                ? "Invited"
+                : "Admin"
+            }
           />
         ) : null}
-        {(hasVariant(variants, "isAdmin", "isAdmin") ? false : true) ? (
+        {(
+          hasVariant(variants, "userVariant", "isRequested")
+            ? false
+            : hasVariant(variants, "userVariant", "isAdmin")
+            ? false
+            : true
+        ) ? (
           <IconButton
             data-plasmic-name={"iconButton"}
             data-plasmic-override={overrides.iconButton}
@@ -153,7 +191,13 @@ function PlasmicMemberItem__RenderFunc(props: {
             <IconCloseIcon
               data-plasmic-name={"svg"}
               data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg)}
+              className={classNames(defaultcss.all, sty.svg, {
+                [sty.svg__userVariant_isRequested]: hasVariant(
+                  variants,
+                  "userVariant",
+                  "isRequested"
+                ),
+              })}
               role={"img"}
             />
           </IconButton>

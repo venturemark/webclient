@@ -29,9 +29,9 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicSwitch.module.css"; // plasmic-import: l1Qe8RjaNW/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicSwitch.module.css"; // plasmic-import: l1Qe8RjaNW/css
 
 import IconOvalIcon from "./icons/PlasmicIcon__IconOval"; // plasmic-import: FUAnm6q86/icon
 
@@ -120,12 +120,24 @@ function PlasmicSwitch__RenderFunc(props: {
       <div
         data-plasmic-name={"_switch"}
         data-plasmic-override={overrides._switch}
-        className={classNames(defaultcss.all, sty._switch)}
+        className={classNames(defaultcss.all, sty._switch, {
+          [sty._switch__variantSettings_isSelected]: hasVariant(
+            variants,
+            "variantSettings",
+            "isSelected"
+          ),
+        })}
       >
         <IconOvalIcon
           data-plasmic-name={"svg"}
           data-plasmic-override={overrides.svg}
-          className={classNames(defaultcss.all, sty.svg)}
+          className={classNames(defaultcss.all, sty.svg, {
+            [sty.svg__variantSettings_isSelected]: hasVariant(
+              variants,
+              "variantSettings",
+              "isSelected"
+            ),
+          })}
           role={"img"}
         />
       </div>

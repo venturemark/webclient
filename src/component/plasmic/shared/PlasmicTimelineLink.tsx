@@ -29,9 +29,9 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicTimelineLink.module.css"; // plasmic-import: PGPJmONwto/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicTimelineLink.module.css"; // plasmic-import: PGPJmONwto/css
 
 export type PlasmicTimelineLink__VariantMembers = {};
 
@@ -111,7 +111,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicTimelineLink__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicTimelineLink__VariantsArgs;

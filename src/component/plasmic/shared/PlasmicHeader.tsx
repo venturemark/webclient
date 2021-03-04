@@ -33,9 +33,9 @@ import ProfileDropdown from "../../profiledropdown/index"; // plasmic-import: bG
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicHeader.module.css"; // plasmic-import: MkyvVOg5Ik/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicHeader.module.css"; // plasmic-import: MkyvVOg5Ik/css
 
 import IconMenuIcon from "./icons/PlasmicIcon__IconMenu"; // plasmic-import: gDL0fFl2pD/icon
 import Logosvg2Icon from "./icons/PlasmicIcon__Logosvg2"; // plasmic-import: SLtbVdLFU/icon

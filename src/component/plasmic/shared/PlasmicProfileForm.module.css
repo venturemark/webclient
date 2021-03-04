@@ -126,6 +126,9 @@
   width: 17px;
   height: 14px;
 }
+.text2 {
+  height: auto;
+}
 .svg__sv8Ps {
   position: relative;
   object-fit: cover;

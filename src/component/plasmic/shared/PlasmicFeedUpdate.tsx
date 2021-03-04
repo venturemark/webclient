@@ -31,9 +31,9 @@ import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/com
 import ContentPost from "../../contentpost/index"; // plasmic-import: A1UjtYt6k0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
-import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import sty from "./PlasmicFeedUpdate.module.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
+import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import * as sty from "./PlasmicFeedUpdate.module.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
 
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
@@ -111,7 +111,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicFeedUpdate__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> = {
   // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicFeedUpdate__VariantsArgs;
