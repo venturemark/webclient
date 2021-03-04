@@ -17,10 +17,11 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   currentTimeline: ITimeline;
   isVisible: any;
   setIsVisible: any;
+  setPost: any;
 }
 
 function FeedUpdate(props: FeedUpdateProps) {
-  const { currentTimeline, setIsVisible } = props;
+  const { currentTimeline, setIsVisible, setPost } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
   const userId = getUser()?.id ?? "";
@@ -60,8 +61,8 @@ function FeedUpdate(props: FeedUpdateProps) {
       feedContainer={{
         children: updates.map((update: IUpdate) => (
           <ContentPost
-            title={update.title || ""}
-            description={update.description}
+            title={update.title || "no title"}
+            description={update.description || update.text}
             key={update.id}
             id={update.id}
             ventureName={update.ventureId}
@@ -75,6 +76,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             }
             date={update.date}
             setIsVisible={setIsVisible}
+            setPost={() => setPost(update)}
           />
         )),
       }}

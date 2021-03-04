@@ -18,7 +18,7 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 0px;
 }
-.box {
+.box__qxUjW {
   display: flex;
   position: absolute;
   flex-direction: row;
@@ -50,7 +50,7 @@
   min-width: 0;
   min-height: 0;
 }
-.replyContainer {
+.box__n7A9B {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -64,7 +64,7 @@
   margin-right: 0px;
   margin-left: 0px;
 }
-.contentPost:global(.__wab_instance) {
+.post:global(.__wab_instance) {
   position: relative;
 }
 .userName3 {
@@ -88,37 +88,12 @@
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
-.userName {
+.repliesContainer {
+  display: flex;
   position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-size: 16px;
-}
-.date {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-weight: 300;
-}
-.userName2 {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-size: 16px;
-}
-.date2 {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-weight: 300;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 .userName22 {
   position: relative;
@@ -145,6 +120,38 @@
   font-size: 16px;
 }
 .date222 {
+  position: relative;
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+  font-weight: 300;
+}
+.userName {
+  position: relative;
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+  font-size: 16px;
+}
+.date {
+  position: relative;
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+  font-weight: 300;
+}
+.userName2 {
+  position: relative;
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+  font-size: 16px;
+}
+.date2 {
   position: relative;
   width: auto;
   height: auto;

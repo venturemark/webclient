@@ -54,22 +54,21 @@ export const PlasmicPostDetails__ArgProps = new Array<ArgPropType>("children");
 
 export type PlasmicPostDetails__OverridesType = {
   root?: p.Flex<"div">;
-  box?: p.Flex<"div">;
   close?: p.Flex<typeof IconButton>;
   svg?: p.Flex<"svg">;
-  replyContainer?: p.Flex<"div">;
-  contentPost?: p.Flex<typeof ContentPost>;
+  post?: p.Flex<typeof ContentPost>;
   userName3?: p.Flex<"span">;
   span?: p.Flex<"span">;
   date3?: p.Flex<"span">;
-  userName?: p.Flex<"span">;
-  date?: p.Flex<"span">;
-  userName2?: p.Flex<"span">;
-  date2?: p.Flex<"span">;
+  repliesContainer?: p.Flex<"div">;
   userName22?: p.Flex<"span">;
   date22?: p.Flex<"span">;
   userName222?: p.Flex<"span">;
   date222?: p.Flex<"span">;
+  userName?: p.Flex<"span">;
+  date?: p.Flex<"span">;
+  userName2?: p.Flex<"span">;
+  date2?: p.Flex<"span">;
   replyInput?: p.Flex<typeof ReplyInput>;
 };
 
@@ -97,11 +96,7 @@ function PlasmicPostDetails__RenderFunc(props: {
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
       {true ? (
-        <div
-          data-plasmic-name={"box"}
-          data-plasmic-override={overrides.box}
-          className={classNames(defaultcss.all, sty.box)}
-        >
+        <div className={classNames(defaultcss.all, sty.box__qxUjW)}>
           <p.PlasmicSlot
             defaultContents={"Post Details"}
             value={args.children}
@@ -124,15 +119,11 @@ function PlasmicPostDetails__RenderFunc(props: {
         </div>
       ) : null}
 
-      <div
-        data-plasmic-name={"replyContainer"}
-        data-plasmic-override={overrides.replyContainer}
-        className={classNames(defaultcss.all, sty.replyContainer)}
-      >
+      <div className={classNames(defaultcss.all, sty.box__n7A9B)}>
         <ContentPost
-          data-plasmic-name={"contentPost"}
-          data-plasmic-override={overrides.contentPost}
-          className={classNames("__wab_instance", sty.contentPost)}
+          data-plasmic-name={"post"}
+          data-plasmic-override={overrides.post}
+          className={classNames("__wab_instance", sty.post)}
           date={
             <React.Fragment>
               <span
@@ -179,141 +170,147 @@ function PlasmicPostDetails__RenderFunc(props: {
           }
         />
 
-        <ReplyContent
-          date={
-            <span
-              data-plasmic-name={"date"}
-              data-plasmic-override={overrides.date}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.date
-              )}
-            >
-              {"3 hours ago"}
-            </span>
-          }
-          text={
-            "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-          }
-          userName={
-            <span
-              data-plasmic-name={"userName"}
-              data-plasmic-override={overrides.userName}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.userName
-              )}
-            >
-              <span>
-                <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+        <div
+          data-plasmic-name={"repliesContainer"}
+          data-plasmic-override={overrides.repliesContainer}
+          className={classNames(defaultcss.all, sty.repliesContainer)}
+        >
+          <ReplyContent
+            date={
+              <span
+                data-plasmic-name={"date22"}
+                data-plasmic-override={overrides.date22}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.date22
+                )}
+              >
+                {"3 hours ago"}
               </span>
-            </span>
-          }
-        />
+            }
+            text={
+              "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
+            }
+            userName={
+              <span
+                data-plasmic-name={"userName22"}
+                data-plasmic-override={overrides.userName22}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.userName22
+                )}
+              >
+                <span>
+                  <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                </span>
+              </span>
+            }
+          />
 
-        <ReplyContent
-          date={
-            <span
-              data-plasmic-name={"date2"}
-              data-plasmic-override={overrides.date2}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.date2
-              )}
-            >
-              {"3 hours ago"}
-            </span>
-          }
-          text={
-            "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-          }
-          userName={
-            <span
-              data-plasmic-name={"userName2"}
-              data-plasmic-override={overrides.userName2}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.userName2
-              )}
-            >
-              <span>
-                <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+          <ReplyContent
+            date={
+              <span
+                data-plasmic-name={"date222"}
+                data-plasmic-override={overrides.date222}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.date222
+                )}
+              >
+                {"3 hours ago"}
               </span>
-            </span>
-          }
-        />
+            }
+            text={
+              "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
+            }
+            userName={
+              <span
+                data-plasmic-name={"userName222"}
+                data-plasmic-override={overrides.userName222}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.userName222
+                )}
+              >
+                <span>
+                  <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                </span>
+              </span>
+            }
+          />
 
-        <ReplyContent
-          date={
-            <span
-              data-plasmic-name={"date22"}
-              data-plasmic-override={overrides.date22}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.date22
-              )}
-            >
-              {"3 hours ago"}
-            </span>
-          }
-          text={
-            "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-          }
-          userName={
-            <span
-              data-plasmic-name={"userName22"}
-              data-plasmic-override={overrides.userName22}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.userName22
-              )}
-            >
-              <span>
-                <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+          <ReplyContent
+            date={
+              <span
+                data-plasmic-name={"date"}
+                data-plasmic-override={overrides.date}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.date
+                )}
+              >
+                {"3 hours ago"}
               </span>
-            </span>
-          }
-        />
+            }
+            text={
+              "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
+            }
+            userName={
+              <span
+                data-plasmic-name={"userName"}
+                data-plasmic-override={overrides.userName}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.userName
+                )}
+              >
+                <span>
+                  <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                </span>
+              </span>
+            }
+          />
 
-        <ReplyContent
-          date={
-            <span
-              data-plasmic-name={"date222"}
-              data-plasmic-override={overrides.date222}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.date222
-              )}
-            >
-              {"3 hours ago"}
-            </span>
-          }
-          text={
-            "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-          }
-          userName={
-            <span
-              data-plasmic-name={"userName222"}
-              data-plasmic-override={overrides.userName222}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.userName222
-              )}
-            >
-              <span>
-                <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+          <ReplyContent
+            date={
+              <span
+                data-plasmic-name={"date2"}
+                data-plasmic-override={overrides.date2}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.date2
+                )}
+              >
+                {"3 hours ago"}
               </span>
-            </span>
-          }
-        />
+            }
+            text={
+              "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
+            }
+            userName={
+              <span
+                data-plasmic-name={"userName2"}
+                data-plasmic-override={overrides.userName2}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.userName2
+                )}
+              >
+                <span>
+                  <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                </span>
+              </span>
+            }
+          />
+        </div>
       </div>
 
       <ReplyInput
@@ -328,54 +325,48 @@ function PlasmicPostDetails__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "box",
     "close",
     "svg",
-    "replyContainer",
-    "contentPost",
+    "post",
     "userName3",
     "span",
     "date3",
-    "userName",
-    "date",
-    "userName2",
-    "date2",
+    "repliesContainer",
     "userName22",
     "date22",
     "userName222",
     "date222",
+    "userName",
+    "date",
+    "userName2",
+    "date2",
     "replyInput",
   ],
-  box: ["box", "close", "svg"],
   close: ["close", "svg"],
   svg: ["svg"],
-  replyContainer: [
-    "replyContainer",
-    "contentPost",
-    "userName3",
-    "span",
-    "date3",
-    "userName",
-    "date",
-    "userName2",
-    "date2",
-    "userName22",
-    "date22",
-    "userName222",
-    "date222",
-  ],
-  contentPost: ["contentPost", "userName3", "span", "date3"],
+  post: ["post", "userName3", "span", "date3"],
   userName3: ["userName3"],
   span: ["span"],
   date3: ["date3"],
-  userName: ["userName"],
-  date: ["date"],
-  userName2: ["userName2"],
-  date2: ["date2"],
+  repliesContainer: [
+    "repliesContainer",
+    "userName22",
+    "date22",
+    "userName222",
+    "date222",
+    "userName",
+    "date",
+    "userName2",
+    "date2",
+  ],
   userName22: ["userName22"],
   date22: ["date22"],
   userName222: ["userName222"],
   date222: ["date222"],
+  userName: ["userName"],
+  date: ["date"],
+  userName2: ["userName2"],
+  date2: ["date2"],
   replyInput: ["replyInput"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -384,22 +375,21 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  box: "div";
   close: typeof IconButton;
   svg: "svg";
-  replyContainer: "div";
-  contentPost: typeof ContentPost;
+  post: typeof ContentPost;
   userName3: "span";
   span: "span";
   date3: "span";
-  userName: "span";
-  date: "span";
-  userName2: "span";
-  date2: "span";
+  repliesContainer: "div";
   userName22: "span";
   date22: "span";
   userName222: "span";
   date222: "span";
+  userName: "span";
+  date: "span";
+  userName2: "span";
+  date2: "span";
   replyInput: typeof ReplyInput;
 };
 
@@ -459,22 +449,21 @@ export const PlasmicPostDetails = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    box: makeNodeComponent("box"),
     close: makeNodeComponent("close"),
     svg: makeNodeComponent("svg"),
-    replyContainer: makeNodeComponent("replyContainer"),
-    contentPost: makeNodeComponent("contentPost"),
+    post: makeNodeComponent("post"),
     userName3: makeNodeComponent("userName3"),
     span: makeNodeComponent("span"),
     date3: makeNodeComponent("date3"),
-    userName: makeNodeComponent("userName"),
-    date: makeNodeComponent("date"),
-    userName2: makeNodeComponent("userName2"),
-    date2: makeNodeComponent("date2"),
+    repliesContainer: makeNodeComponent("repliesContainer"),
     userName22: makeNodeComponent("userName22"),
     date22: makeNodeComponent("date22"),
     userName222: makeNodeComponent("userName222"),
     date222: makeNodeComponent("date222"),
+    userName: makeNodeComponent("userName"),
+    date: makeNodeComponent("date"),
+    userName2: makeNodeComponent("userName2"),
+    date2: makeNodeComponent("date2"),
     replyInput: makeNodeComponent("replyInput"),
 
     // Metadata about props expected for PlasmicPostDetails

@@ -19,9 +19,6 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   const metadata = { Authorization: `Bearer ${token}` };
 
   objProperty.setText(newMessage.text);
-  if (newMessage.reid) {
-    objProperty.setReid(newMessage.reid);
-  }
   obj.getMetadataMap().set(key.OrganizationID, newMessage.ventureId);
   obj.getMetadataMap().set(key.VentureID, newMessage.ventureId);
   obj.getMetadataMap().set(key.TimelineID, newMessage.timelineId);

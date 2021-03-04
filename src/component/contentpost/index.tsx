@@ -23,6 +23,8 @@ interface ContentPostProps extends DefaultContentPostProps {
   timelineId: string;
   date: string;
   setIsVisible: any;
+  setPost: any;
+  state?: "isUser" | "isPostDetails";
 }
 
 function ContentPost(props: ContentPostProps) {
@@ -32,15 +34,13 @@ function ContentPost(props: ContentPostProps) {
     userName,
     date,
     setIsVisible,
+    setPost,
     userInitials,
     id,
+    state,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-
-  const [isPostDetails] = useState<"isPostDetails" | "isUser" | undefined>(
-    undefined
-  );
   const userId = getUser()?.id ?? "";
   const ventureId = getVenture()?.id ?? "";
 
@@ -60,8 +60,6 @@ function ContentPost(props: ContentPostProps) {
     token,
   };
   const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
-
-  console.log("allupdates", allUpdates);
 
   const updateTimelines = allUpdates
     ?.filter(
@@ -92,12 +90,9 @@ function ContentPost(props: ContentPostProps) {
     }
   }, [getAccessTokenSilently, token]);
 
-  const timelineLinks = updateTimelines ?? [];
-  console.log("timelineLinks", timelineLinks);
-
   return (
     <PlasmicContentPost
-      state={isPostDetails}
+      state={state}
       title={title}
       description={description}
       userInitials={userInitials}
@@ -106,14 +101,11 @@ function ContentPost(props: ContentPostProps) {
       // iconMenu={{
       //   render: () => <AntDropdown />,
       // }}
-      // reply={{
-      //   updateId: id,
-      //   timelineId: timelineId,
-      //   organizationId: organizationName,
-      //   userId: userName,
-      // }}
       viewReplies={{
-        onClick: () => setIsVisible("postDetails"),
+        onClick: () => {
+          setIsVisible("postDetails");
+          setPost();
+        },
       }}
       timelineNamesContainer={{
         children: updateTimelines?.map((timeline: ITimeline) => (

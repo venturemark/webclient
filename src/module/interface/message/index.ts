@@ -1,11 +1,10 @@
-import { Node } from "slate";
-
 export interface IMessage {
-  text: Node[];
+  text: string;
   id: string;
   userId: string;
   ventureId: string;
   timelineId: string;
+  updateId: string;
   date: string;
   reid?: string;
 }
@@ -15,7 +14,6 @@ export interface IMessageQuery {
   timelineId: string;
   userId: string;
   updateId: string;
-  reid?: string;
   timelines?: any;
   token: string;
 }
@@ -27,5 +25,4 @@ export interface INewMessage {
   userId: string;
   updateId: string;
   token: string;
-  reid?: string;
 }

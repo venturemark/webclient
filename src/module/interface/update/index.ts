@@ -1,7 +1,5 @@
-import { Node } from "slate";
-
 export interface IUpdate {
-  text: Node[];
+  text: string;
   title: string;
   description: string;
   id: string;
