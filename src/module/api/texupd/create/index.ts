@@ -38,6 +38,8 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
         const metaPb = updatePb?.getMetadataMap();
         const updateId = metaPb.get(key.UpdateID);
 
+        console.log(updateId);
+
         resolve(updateId);
       }
     });

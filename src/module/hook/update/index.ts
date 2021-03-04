@@ -10,14 +10,13 @@ const getTimelineUpdates = async (updateQuery: IUpdateQuery) => {
 };
 
 const getAllUpdates = async (updateQuery: any) => {
-  const { timelines, organizationId, userId, token } = updateQuery;
+  const { timelines, ventureId, userId, token } = updateQuery;
 
   const allUpdates = await Promise.all(
     timelines.map(async (timeline: any) => {
       const timelineId = timeline.id;
       const search = {
-        organizationId,
-        ventureId: organizationId,
+        ventureId,
         timelineId,
         userId,
         token,

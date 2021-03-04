@@ -28,7 +28,7 @@ function ActionBar(props: ActionBarProps) {
   const { ventureId, userId, currentTimeline } = props;
   const { user, getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-  const { handleSubmit, register, errors } = useForm();
+  const { handleSubmit, register } = useForm();
 
   // const store = get("composeEditor.content") ?? "";
   // const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -64,7 +64,7 @@ function ActionBar(props: ActionBarProps) {
 
   const handlePost = (data: any) => {
     if (selectedTimelines.length < 1) {
-      const error = "Please select a timeline";
+      // const error = "Please select a timeline";
       // setEditorShape({ ...editorShape, error });
       return;
     }
@@ -82,8 +82,6 @@ function ActionBar(props: ActionBarProps) {
     //   return;
     // }
 
-    console.log("update data!", data);
-
     // how do we manage tokens in the same place?
 
     selectedTimelines.forEach((timelineId) => {
@@ -95,6 +93,8 @@ function ActionBar(props: ActionBarProps) {
         userId,
         token,
       };
+
+      console.log("creating this update:", newUpdate);
 
       createUpdate(newUpdate);
     });

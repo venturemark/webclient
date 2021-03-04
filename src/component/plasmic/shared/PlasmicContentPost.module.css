@@ -65,12 +65,12 @@
 .textContainer2 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 15px;
 }
-.textContainer {
+.title {
   position: relative;
   font-size: 18px /* plasmic-token: UFZg3bUaA */;
   font-weight: 700;
 }
-.textContainer3 {
+.description {
   position: relative;
 }
 .box__vVNrv {
