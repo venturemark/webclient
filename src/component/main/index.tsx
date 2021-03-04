@@ -5,12 +5,7 @@ import {
   PlasmicMain,
   DefaultMainProps,
 } from "component/plasmic/shared/PlasmicMain";
-// import { useParams } from "react-router-dom";
-
-// interface ParamTypes {
-//   ventureId: string;
-//   timelineId: string;
-// }
+import { useHistory } from "react-router-dom";
 
 interface MainProps extends DefaultMainProps {
   isActive: any;
@@ -33,8 +28,7 @@ function Main(props: MainProps) {
     currentTimeline,
     ...rest
   } = props;
-
-  // const { ventureId, timelineId } = useParams<ParamTypes>();
+  const history = useHistory();
 
   return (
     <PlasmicMain
@@ -49,13 +43,10 @@ function Main(props: MainProps) {
         setIsVisible,
       }}
       addEditMembers={{}}
-      addEditVenture={{ setIsActive }}
+      addEditVenture={{}}
       addEditTimeline={{}}
       viewCreateVenture={{
-        onClick: () => {
-          setIsActive("settings");
-          setVariantType("isVenture");
-        },
+        onClick: () => history.push("/new"),
       }}
       viewJoinVenture={{ onClick: () => setVariantType("isVenture") }}
       {...rest}

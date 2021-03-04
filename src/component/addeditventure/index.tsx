@@ -8,6 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 import { saveVenture } from "module/store";
 import { INewVenture } from "module/interface/venture";
+import { useHistory } from "react-router-dom";
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
@@ -16,10 +17,12 @@ interface AddEditVentureProps extends DefaultAddEditVentureProps {
 function AddEditVenture(props: AddEditVentureProps) {
   const { setIsActive, ...rest } = props;
   const { handleSubmit, register, reset } = useForm();
+  const history = useHistory();
 
   const handleCreate = (data: any) => {
+    const id = data.name.toLowerCase().replace(/\s/g, "");
     const venture: INewVenture = {
-      id: data.name.toLowerCase().replace(/\s/g, ""),
+      id: id,
       name: data.name,
       description: data.description,
       url: data.url,
@@ -30,7 +33,7 @@ function AddEditVenture(props: AddEditVentureProps) {
 
     saveVenture(venture);
     reset();
-    setIsActive("feed");
+    history.push(`/${id}/feed`);
   };
 
   return (
