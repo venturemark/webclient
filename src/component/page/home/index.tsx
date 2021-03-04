@@ -12,6 +12,7 @@ import { IUpdate, IUpdateQuery } from "module/interface/update";
 import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
 import { getUser, getVenture } from "module/store";
 import { useParams, useRouteMatch } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -27,6 +28,8 @@ export function Home(props: HomeProps) {
   const user = getUser();
   const venture = getVenture();
   const { url } = useRouteMatch<IsActive>();
+  const { getAccessTokenSilently } = useAuth0();
+  const [token, setToken] = useState<string>("");
   const { timelineSlug, ventureSlug } = useParams<ParamTypes>();
   const [currentTimeline, setCurrentTimeline] = useState<
     ITimeline | undefined
@@ -39,6 +42,16 @@ export function Home(props: HomeProps) {
   //   : venture
   //   ? "isVenture"
   //   : "isEmpty";
+  const ventureId = venture?.url ?? "";
+  const userId = user?.id ?? "";
+  const timelineSearch: ITimelineQuery = {
+    userId,
+    ventureId,
+    token,
+  };
+  const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
+    timelineSearch
+  );
 
   const variant =
     venture && !timelineSlug
@@ -51,6 +64,8 @@ export function Home(props: HomeProps) {
 
   const active = url.split("/")[3]
     ? (url.split("/")[3] as IsActive)
+    : timelinesData?.length > 0
+    ? (url.split("/")[2] as IsActive)
     : "settings";
 
   // local hooks shared with page-level elements
@@ -63,18 +78,9 @@ export function Home(props: HomeProps) {
 
   const timelineId = currentTimeline?.id ?? undefined;
   //currently hardcoding until we have a plan for org / user storage
-  const ventureId = venture?.url ?? "";
-  const userId = user?.id ?? "marcus";
+
   //hook / fetch stuff:
-  const token = "";
-  const timelineSearch: ITimelineQuery = {
-    userId,
-    ventureId,
-    token,
-  };
-  const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
-    timelineSearch
-  );
+
   const timelineUpdatesSearch: IUpdateQuery = {
     ventureId,
     timelineId,
@@ -121,7 +127,28 @@ export function Home(props: HomeProps) {
     } else {
       setIsActive(active);
     }
-  }, [venture, variantType, variant, active, ventureSlug]);
+
+    //auth
+    const getToken = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        setToken(token);
+      } catch (error) {
+        console.log(error.error);
+      }
+    };
+    if (token === "") {
+      getToken();
+    }
+  }, [
+    venture,
+    variantType,
+    variant,
+    active,
+    ventureSlug,
+    getAccessTokenSilently,
+    token,
+  ]);
 
   console.log(updates);
 
