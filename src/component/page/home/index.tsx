@@ -117,6 +117,14 @@ export function Home(props: HomeProps) {
     <>
       <PlasmicHome
         isVisible={isVisible}
+        header={{
+          isVisible,
+          setIsVisible,
+        }}
+        profileForm={{
+          isVisible,
+          setIsVisible,
+        }}
         main={{
           variantType: variantType,
           isActive: isActive,

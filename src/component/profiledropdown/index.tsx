@@ -10,10 +10,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 interface ProfileDropdownProps extends DefaultProfileDropdownProps {
   profileDropdown: boolean | "profileDropdown" | undefined;
   setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+  isVisible: any;
+  setIsVisible: any;
 }
 
 function ProfileDropdown(props: ProfileDropdownProps) {
-  const { profileDropdown, setProfileDropdown, ...rest } = props;
+  const {
+    isVisible,
+    setIsVisible,
+    profileDropdown,
+    setProfileDropdown,
+    ...rest
+  } = props;
   const { user, logout } = useAuth0();
 
   const userInitials =
@@ -28,6 +36,12 @@ function ProfileDropdown(props: ProfileDropdownProps) {
       userEmail={user?.email ?? ""}
       photoAvatar={{
         userInitials,
+      }}
+      viewProfile={{
+        onClick: () => {
+          setIsVisible("showModal");
+          setProfileDropdown(!profileDropdown);
+        },
       }}
       logout={{
         onClick: () => logout(),
