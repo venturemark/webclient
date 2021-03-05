@@ -60,14 +60,14 @@ export const PlasmicProfileForm__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicProfileForm__OverridesType = {
   form?: p.Flex<"form">;
-  iconButton?: p.Flex<typeof IconButton>;
+  close?: p.Flex<typeof IconButton>;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   link?: p.Flex<"a">;
   nameField?: p.Flex<typeof InputText>;
   jobField?: p.Flex<typeof InputText>;
-  completeProfile?: p.Flex<typeof Button>;
+  cancel?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
-  completeProfile2?: p.Flex<typeof Button>;
+  save?: p.Flex<typeof Button>;
   text22?: p.Flex<"div">;
 };
 
@@ -126,10 +126,10 @@ function PlasmicProfileForm__RenderFunc(props: {
           </div>
 
           <IconButton
-            data-plasmic-name={"iconButton"}
-            data-plasmic-override={overrides.iconButton}
-            className={classNames("__wab_instance", sty.iconButton, {
-              [sty.iconButton__editProfile]: hasVariant(
+            data-plasmic-name={"close"}
+            data-plasmic-override={overrides.close}
+            className={classNames("__wab_instance", sty.close, {
+              [sty.close__editProfile]: hasVariant(
                 variants,
                 "editProfile",
                 "editProfile"
@@ -230,8 +230,8 @@ function PlasmicProfileForm__RenderFunc(props: {
           })}
         >
           <Button
-            data-plasmic-name={"completeProfile"}
-            data-plasmic-override={overrides.completeProfile}
+            data-plasmic-name={"cancel"}
+            data-plasmic-override={overrides.cancel}
             buttonStyle={
               hasVariant(variants, "editProfile", "editProfile")
                 ? ("secondaryPurple" as const)
@@ -277,11 +277,11 @@ function PlasmicProfileForm__RenderFunc(props: {
             hasVariant(variants, "editProfile", "editProfile") ? true : false
           ) ? (
             <Button
-              data-plasmic-name={"completeProfile2"}
-              data-plasmic-override={overrides.completeProfile2}
+              data-plasmic-name={"save"}
+              data-plasmic-override={overrides.save}
               buttonStyle={"primaryPurple" as const}
-              className={classNames("__wab_instance", sty.completeProfile2, {
-                [sty.completeProfile2__editProfile]: hasVariant(
+              className={classNames("__wab_instance", sty.save, {
+                [sty.save__editProfile]: hasVariant(
                   variants,
                   "editProfile",
                   "editProfile"
@@ -332,24 +332,24 @@ function PlasmicProfileForm__RenderFunc(props: {
 const PlasmicDescendants = {
   form: [
     "form",
-    "iconButton",
+    "close",
     "photoAvatar",
     "link",
     "nameField",
     "jobField",
-    "completeProfile",
+    "cancel",
     "text2",
-    "completeProfile2",
+    "save",
     "text22",
   ],
-  iconButton: ["iconButton"],
+  close: ["close"],
   photoAvatar: ["photoAvatar"],
   link: ["link"],
   nameField: ["nameField"],
   jobField: ["jobField"],
-  completeProfile: ["completeProfile", "text2"],
+  cancel: ["cancel", "text2"],
   text2: ["text2"],
-  completeProfile2: ["completeProfile2", "text22"],
+  save: ["save", "text22"],
   text22: ["text22"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -358,14 +358,14 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   form: "form";
-  iconButton: typeof IconButton;
+  close: typeof IconButton;
   photoAvatar: typeof PhotoAvatar;
   link: "a";
   nameField: typeof InputText;
   jobField: typeof InputText;
-  completeProfile: typeof Button;
+  cancel: typeof Button;
   text2: "div";
-  completeProfile2: typeof Button;
+  save: typeof Button;
   text22: "div";
 };
 
@@ -425,14 +425,14 @@ export const PlasmicProfileForm = Object.assign(
   makeNodeComponent("form"),
   {
     // Helper components rendering sub-elements
-    iconButton: makeNodeComponent("iconButton"),
+    close: makeNodeComponent("close"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     link: makeNodeComponent("link"),
     nameField: makeNodeComponent("nameField"),
     jobField: makeNodeComponent("jobField"),
-    completeProfile: makeNodeComponent("completeProfile"),
+    cancel: makeNodeComponent("cancel"),
     text2: makeNodeComponent("text2"),
-    completeProfile2: makeNodeComponent("completeProfile2"),
+    save: makeNodeComponent("save"),
     text22: makeNodeComponent("text22"),
 
     // Metadata about props expected for PlasmicProfileForm

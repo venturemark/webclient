@@ -12,15 +12,19 @@ import { saveUser, getUser } from "module/store";
 import { INewUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 
-interface ProfileFormProps extends DefaultProfileFormProps {}
+interface ProfileFormProps extends DefaultProfileFormProps {
+  isVisible?: any;
+  setIsVisible?: any;
+}
 
 function ProfileForm(props: ProfileFormProps) {
+  const { isVisible, setIsVisible, ...rest } = props;
   const history = useHistory();
   const { user: authUser } = useAuth0();
   const user = getUser() ? getUser() : authUser;
   const { handleSubmit, register, errors } = useForm();
 
-  const handleComplete = (data: any) => {
+  const handleSave = (data: any) => {
     if (!data.name) {
       return;
     }
@@ -28,7 +32,7 @@ function ProfileForm(props: ProfileFormProps) {
     const user: INewUser = {
       id: data.name.toLowerCase().replace(/\s/g, ""),
       name: data.name,
-      title: data.role,
+      title: data.title,
       token: "someToken",
     };
 
@@ -39,9 +43,9 @@ function ProfileForm(props: ProfileFormProps) {
 
   return (
     <PlasmicProfileForm
-      {...props}
+      {...rest}
       form={{
-        onSubmit: handleSubmit(handleComplete),
+        onSubmit: handleSubmit(handleSave),
       }}
       nameField={{
         name: "name",
@@ -50,13 +54,20 @@ function ProfileForm(props: ProfileFormProps) {
         errorMessage: errors.name && nameError,
       }}
       jobField={{
-        name: "role",
-        defaultValue: user?.role ?? "",
+        name: "title",
+        defaultValue: user?.title ?? "",
         register: register({ required: true }),
         errorMessage: errors.role && roleError,
       }}
-      completeProfile={{
+      save={{
         type: "submit",
+        onClick: () => setIsVisible(undefined),
+      }}
+      cancel={{
+        onClick: () => setIsVisible(undefined),
+      }}
+      close={{
+        onClick: () => setIsVisible(undefined),
       }}
     />
   );

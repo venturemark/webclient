@@ -23,7 +23,7 @@ function PhotoAvatar(props: PhotoAvatarProps) {
       .join("") ?? "";
   return (
     <PlasmicPhotoAvatar
-      onClick={() => setProfileDropdown(!profileDropdown)}
+      onClick={() => setProfileDropdown && setProfileDropdown(!profileDropdown)}
       userInitials={userInitials}
       {...rest}
     />
