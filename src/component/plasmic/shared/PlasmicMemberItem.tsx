@@ -52,13 +52,13 @@ export const PlasmicMemberItem__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicMemberItem__ArgsType = {
-  slot4?: React.ReactNode;
+  userName?: React.ReactNode;
   slot3?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicMemberItem__ArgsType;
 export const PlasmicMemberItem__ArgProps = new Array<ArgPropType>(
-  "slot4",
+  "userName",
   "slot3"
 );
 
@@ -71,7 +71,7 @@ export type PlasmicMemberItem__OverridesType = {
 };
 
 export interface DefaultMemberItemProps {
-  slot4?: React.ReactNode;
+  userName?: React.ReactNode;
   slot3?: React.ReactNode;
   userVariant?: SingleChoiceArg<"isAdmin" | "isRequested">;
   className?: string;
@@ -113,9 +113,10 @@ function PlasmicMemberItem__RenderFunc(props: {
           data-plasmic-name={"photoAvatar"}
           data-plasmic-override={overrides.photoAvatar}
           className={classNames("__wab_instance", sty.photoAvatar)}
+          userInitials={"KO"}
         />
 
-        <p.PlasmicSlot defaultContents={"User Name"} value={args.slot4} />
+        <p.PlasmicSlot defaultContents={"User Name"} value={args.userName} />
 
         {false ? (
           <div
