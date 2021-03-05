@@ -1,8 +1,9 @@
 export interface IUser {
   id: string;
   name: string;
-  title: string;
-  token: string;
+  title?: string;
+  userType?: "isAdmin" | "isRequested";
+  token?: string;
   // audienceIds: string[];
 }
 

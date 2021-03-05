@@ -81,9 +81,13 @@ export const PlasmicAddEditMembers__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicAddEditMembers__OverridesType = {
   root?: p.Flex<"div">;
-  inputText?: p.Flex<typeof InputText>;
+  form?: p.Flex<"form">;
+  email?: p.Flex<typeof InputText>;
+  invite?: p.Flex<typeof Button>;
   link?: p.Flex<"a">;
   span?: p.Flex<"span">;
+  membersContainer?: p.Flex<"div">;
+  button?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
 };
 
@@ -138,21 +142,25 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 
       <div className={classNames(defaultcss.all, sty.box__mpPUs)}>
         <p.Stack
-          as={"div"}
+          as={"form"}
+          data-plasmic-name={"form"}
+          data-plasmic-override={overrides.form}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__qMkyL)}
+          className={classNames(defaultcss.all, sty.form)}
         >
           <InputText
-            data-plasmic-name={"inputText"}
-            data-plasmic-override={overrides.inputText}
+            data-plasmic-name={"email"}
+            data-plasmic-override={overrides.email}
             label={"Invite a member by email"}
           >
             {"Text Helper Description"}
           </InputText>
 
           <Button
+            data-plasmic-name={"invite"}
+            data-plasmic-override={overrides.invite}
             buttonFeatures={["nonFullWidth", "removeText", "showStartIcon"]}
-            className={classNames("__wab_instance", sty.button__ddWrS)}
+            className={classNames("__wab_instance", sty.invite)}
             count={"1"}
             text2={"Button"}
           />
@@ -193,83 +201,97 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           />
         </div>
 
-        <MemberItem
-          className={classNames("__wab_instance", sty.memberItem__e3Lpj)}
-          slot3={
-            <p.PlasmicSlot
-              defaultContents={"example@email.com"}
-              value={args.slot3}
-            />
-          }
-          slot4={
-            <p.PlasmicSlot defaultContents={"User Name"} value={args.slot4} />
-          }
-          userVariant={"isAdmin" as const}
-        />
+        <div
+          data-plasmic-name={"membersContainer"}
+          data-plasmic-override={overrides.membersContainer}
+          className={classNames(defaultcss.all, sty.membersContainer)}
+        >
+          <MemberItem
+            className={classNames("__wab_instance", sty.memberItem__e3Lpj)}
+            slot3={
+              <p.PlasmicSlot
+                defaultContents={"example@email.com"}
+                value={args.slot3}
+              />
+            }
+            userName={
+              <p.PlasmicSlot defaultContents={"User Name"} value={args.slot4} />
+            }
+            userVariant={"isAdmin" as const}
+          />
 
-        <MemberItem
-          className={classNames("__wab_instance", sty.memberItem__ieR1F)}
-          slot3={
-            <p.PlasmicSlot
-              defaultContents={"example@email.com"}
-              value={args.slot33}
-            />
-          }
-          slot4={
-            <p.PlasmicSlot
-              defaultContents={"example@email.com"}
-              value={args.slot43}
-            />
-          }
-          userVariant={"isRequested" as const}
-        />
+          <MemberItem
+            className={classNames("__wab_instance", sty.memberItem__ieR1F)}
+            slot3={
+              <p.PlasmicSlot
+                defaultContents={"example@email.com"}
+                value={args.slot33}
+              />
+            }
+            userName={
+              <p.PlasmicSlot
+                defaultContents={"example@email.com"}
+                value={args.slot43}
+              />
+            }
+            userVariant={"isRequested" as const}
+          />
 
-        <MemberItem
-          className={classNames("__wab_instance", sty.memberItem__rUmUt)}
-          slot3={
-            <p.PlasmicSlot
-              defaultContents={"example@email.com"}
-              value={args.slot32}
-            />
-          }
-          slot4={
-            <p.PlasmicSlot defaultContents={"User Name"} value={args.slot42} />
-          }
-        />
+          <MemberItem
+            className={classNames("__wab_instance", sty.memberItem__vCc52)}
+            slot3={
+              <p.PlasmicSlot
+                defaultContents={"example@email.com"}
+                value={args.slot3222}
+              />
+            }
+            userName={
+              <p.PlasmicSlot
+                defaultContents={"User Name"}
+                value={args.slot4222}
+              />
+            }
+          />
 
-        <MemberItem
-          className={classNames("__wab_instance", sty.memberItem__u5CiK)}
-          slot3={
-            <p.PlasmicSlot
-              defaultContents={"example@email.com"}
-              value={args.slot322}
-            />
-          }
-          slot4={
-            <p.PlasmicSlot defaultContents={"User Name"} value={args.slot422} />
-          }
-        />
+          <MemberItem
+            className={classNames("__wab_instance", sty.memberItem__u5CiK)}
+            slot3={
+              <p.PlasmicSlot
+                defaultContents={"example@email.com"}
+                value={args.slot322}
+              />
+            }
+            userName={
+              <p.PlasmicSlot
+                defaultContents={"User Name"}
+                value={args.slot422}
+              />
+            }
+          />
 
-        <MemberItem
-          className={classNames("__wab_instance", sty.memberItem__vCc52)}
-          slot3={
-            <p.PlasmicSlot
-              defaultContents={"example@email.com"}
-              value={args.slot3222}
-            />
-          }
-          slot4={
-            <p.PlasmicSlot
-              defaultContents={"User Name"}
-              value={args.slot4222}
-            />
-          }
-        />
+          <MemberItem
+            className={classNames("__wab_instance", sty.memberItem__rUmUt)}
+            slot3={
+              <p.PlasmicSlot
+                defaultContents={"example@email.com"}
+                value={args.slot32}
+              />
+            }
+            userName={
+              <p.PlasmicSlot
+                defaultContents={"User Name"}
+                value={args.slot42}
+              />
+            }
+          />
+        </div>
       </div>
 
       {false ? (
         <div className={classNames(defaultcss.all, sty.box___1CNd9)}>
           <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
             buttonStyle={"primaryPurple" as const}
             count={"1"}
             slot={
@@ -304,10 +326,24 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "inputText", "link", "span", "text2"],
-  inputText: ["inputText"],
+  root: [
+    "root",
+    "form",
+    "email",
+    "invite",
+    "link",
+    "span",
+    "membersContainer",
+    "button",
+    "text2",
+  ],
+  form: ["form", "email", "invite"],
+  email: ["email"],
+  invite: ["invite"],
   link: ["link", "span"],
   span: ["span"],
+  membersContainer: ["membersContainer"],
+  button: ["button", "text2"],
   text2: ["text2"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -316,9 +352,13 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  inputText: typeof InputText;
+  form: "form";
+  email: typeof InputText;
+  invite: typeof Button;
   link: "a";
   span: "span";
+  membersContainer: "div";
+  button: typeof Button;
   text2: "div";
 };
 
@@ -378,9 +418,13 @@ export const PlasmicAddEditMembers = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    inputText: makeNodeComponent("inputText"),
+    form: makeNodeComponent("form"),
+    email: makeNodeComponent("email"),
+    invite: makeNodeComponent("invite"),
     link: makeNodeComponent("link"),
     span: makeNodeComponent("span"),
+    membersContainer: makeNodeComponent("membersContainer"),
+    button: makeNodeComponent("button"),
     text2: makeNodeComponent("text2"),
 
     // Metadata about props expected for PlasmicAddEditMembers
