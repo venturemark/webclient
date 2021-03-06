@@ -36,10 +36,8 @@ function PostDetails(props: PostDetailsProps) {
     token,
   };
 
-  console.log("message:", messageSearch);
-
   const { data: messagesData } = useMessages(messageSearch);
-  const messages = messagesData?.filter((message: any) => !message.reid) ?? [];
+  const messages = messagesData ?? [];
 
   useEffect(() => {
     const getToken = async () => {

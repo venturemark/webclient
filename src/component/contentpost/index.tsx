@@ -10,6 +10,8 @@ import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { IUpdateQuery, IUpdate } from "module/interface/update";
 import { useAllUpdates } from "module/hook/update";
+import { IMessageQuery } from "module/interface/message";
+import { useMessages } from "module/hook/message";
 import { getUser, getVenture } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -36,6 +38,7 @@ function ContentPost(props: ContentPostProps) {
     setIsVisible,
     setPost,
     userInitials,
+    timelineId,
     id,
     state,
   } = props;
@@ -60,6 +63,18 @@ function ContentPost(props: ContentPostProps) {
     token,
   };
   const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
+
+  const messageSearch: IMessageQuery = {
+    updateId: id,
+    timelineId: timelineId,
+    userId,
+    ventureId,
+    token,
+  };
+
+  const { data: messagesData } = useMessages(messageSearch);
+  const messages = messagesData ?? [];
+  const count = messages.length > 0 ? messages.length : 0;
 
   const updateTimelines = allUpdates
     ?.filter(
@@ -102,6 +117,7 @@ function ContentPost(props: ContentPostProps) {
       //   render: () => <AntDropdown />,
       // }}
       viewReplies={{
+        count: count,
         onClick: () => {
           setIsVisible("postDetails");
           setPost();
