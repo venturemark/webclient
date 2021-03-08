@@ -29,6 +29,7 @@ import {
 } from "@plasmicapp/react-web";
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import ProfileDropdown from "../../profiledropdown/index"; // plasmic-import: bGjqf-R4Tc/component
+import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -39,24 +40,26 @@ import * as sty from "./PlasmicHeader.module.css"; // plasmic-import: MkyvVOg5Ik
 
 import IconMenuIcon from "./icons/PlasmicIcon__IconMenu"; // plasmic-import: gDL0fFl2pD/icon
 import Logosvg2Icon from "./icons/PlasmicIcon__Logosvg2"; // plasmic-import: SLtbVdLFU/icon
+import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
+import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 
 export type PlasmicHeader__VariantMembers = {
-  userAccount: "userAccount";
   mobileMenu: "mobileMenu";
   profileDropdown: "profileDropdown";
+  views: "userAccount" | "publicView";
 };
 
 export type PlasmicHeader__VariantsArgs = {
-  userAccount?: SingleBooleanChoiceArg<"userAccount">;
   mobileMenu?: SingleBooleanChoiceArg<"mobileMenu">;
   profileDropdown?: SingleBooleanChoiceArg<"profileDropdown">;
+  views?: SingleChoiceArg<"userAccount" | "publicView">;
 };
 
 type VariantPropType = keyof PlasmicHeader__VariantsArgs;
 export const PlasmicHeader__VariantProps = new Array<VariantPropType>(
-  "userAccount",
   "mobileMenu",
-  "profileDropdown"
+  "profileDropdown",
+  "views"
 );
 
 export type PlasmicHeader__ArgsType = {};
@@ -67,12 +70,13 @@ export type PlasmicHeader__OverridesType = {
   root?: p.Flex<"div">;
   avatar?: p.Flex<typeof PhotoAvatar>;
   dropdown?: p.Flex<typeof ProfileDropdown>;
+  button?: p.Flex<typeof Button>;
 };
 
 export interface DefaultHeaderProps {
-  userAccount?: SingleBooleanChoiceArg<"userAccount">;
   mobileMenu?: SingleBooleanChoiceArg<"mobileMenu">;
   profileDropdown?: SingleBooleanChoiceArg<"profileDropdown">;
+  views?: SingleChoiceArg<"userAccount" | "publicView">;
   className?: string;
 }
 
@@ -106,9 +110,19 @@ function PlasmicHeader__RenderFunc(props: {
         as={"div"}
         hasGap={true}
         className={classNames(defaultcss.all, sty.box__ky7Rm, {
-          [sty.box__userAccount__ky7RmHbxJv]: hasVariant(
+          [sty.box__mobileMenu__ky7RmdUXmX]: hasVariant(
             variants,
-            "userAccount",
+            "mobileMenu",
+            "mobileMenu"
+          ),
+          [sty.box__views_publicView__ky7RmYpLjb]: hasVariant(
+            variants,
+            "views",
+            "publicView"
+          ),
+          [sty.box__views_userAccount__ky7RmUjVqz]: hasVariant(
+            variants,
+            "views",
             "userAccount"
           ),
         })}
@@ -152,7 +166,7 @@ function PlasmicHeader__RenderFunc(props: {
           />
         </p.Stack>
 
-        {(hasVariant(variants, "userAccount", "userAccount") ? true : false) ? (
+        {(hasVariant(variants, "views", "userAccount") ? true : false) ? (
           <p.Stack
             as={"div"}
             hasGap={true}
@@ -162,9 +176,9 @@ function PlasmicHeader__RenderFunc(props: {
                 "profileDropdown",
                 "profileDropdown"
               ),
-              [sty.box__userAccount___4KtdlHbxJv]: hasVariant(
+              [sty.box__views_userAccount___4KtdlUjVqz]: hasVariant(
                 variants,
-                "userAccount",
+                "views",
                 "userAccount"
               ),
             })}
@@ -179,6 +193,7 @@ function PlasmicHeader__RenderFunc(props: {
                   "profileDropdown"
                 ),
               })}
+              userInitials={"KO"}
             />
 
             {(
@@ -201,15 +216,37 @@ function PlasmicHeader__RenderFunc(props: {
             ) : null}
           </p.Stack>
         ) : null}
+        {(hasVariant(variants, "views", "publicView") ? true : false) ? (
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            buttonStyle={
+              hasVariant(variants, "views", "publicView")
+                ? ("secondaryPurple" as const)
+                : undefined
+            }
+            className={classNames("__wab_instance", sty.button, {
+              [sty.button__views_publicView]: hasVariant(
+                variants,
+                "views",
+                "publicView"
+              ),
+            })}
+            text2={
+              hasVariant(variants, "views", "publicView") ? "Sign up" : "Button"
+            }
+          />
+        ) : null}
       </p.Stack>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "avatar", "dropdown"],
+  root: ["root", "avatar", "dropdown", "button"],
   avatar: ["avatar"],
   dropdown: ["dropdown"],
+  button: ["button"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -219,6 +256,7 @@ type NodeDefaultElementType = {
   root: "div";
   avatar: typeof PhotoAvatar;
   dropdown: typeof ProfileDropdown;
+  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -279,6 +317,7 @@ export const PlasmicHeader = Object.assign(
     // Helper components rendering sub-elements
     avatar: makeNodeComponent("avatar"),
     dropdown: makeNodeComponent("dropdown"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicHeader
     internalVariantProps: PlasmicHeader__VariantProps,

@@ -27,6 +27,7 @@
   flex-grow: 3;
   border-bottom-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
   border-bottom-style: solid;
+  cursor: default;
   min-width: 0;
   min-height: 0;
   padding: 15px 0px;
@@ -57,7 +58,7 @@
   display: inline-flex;
   position: relative;
   width: auto;
-  cursor: pointer;
+  cursor: default;
 }
 .box__sDNfz > :global(.__wab_flex-container) {
   margin-left: calc(0px - 14px);
@@ -164,8 +165,8 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  max-width: 454px;
-  align-self: auto;
+  max-width: 380px;
+  align-self: center;
 }
 .slotTimelineDescription {
   font-weight: 400;
