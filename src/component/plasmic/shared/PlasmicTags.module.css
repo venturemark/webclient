@@ -60,6 +60,9 @@
 .root__buttonStyle_red:hover .button__buttonStyle_red {
   background: rgb(218, 36, 82);
 }
+.root__buttonStyle_blue:hover .button__buttonStyle_blue {
+  background: rgb(46, 129, 184);
+}
 .box {
   display: inline-flex;
   position: relative;

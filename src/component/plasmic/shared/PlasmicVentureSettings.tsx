@@ -112,7 +112,6 @@ function PlasmicVentureSettings__RenderFunc(props: {
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}
             className={classNames("__wab_instance", sty.header)}
-            userAccount={"userAccount" as const}
           />
 
           <div

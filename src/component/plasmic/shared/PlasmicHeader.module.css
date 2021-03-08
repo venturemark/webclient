@@ -111,3 +111,6 @@
   top: 65px;
   right: -15px;
 }
+.button:global(.__wab_instance) {
+  position: relative;
+}

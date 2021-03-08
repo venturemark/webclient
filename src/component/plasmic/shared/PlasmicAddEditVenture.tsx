@@ -178,65 +178,69 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         {"Tell us a little bit about your venture."}
       </InputTextArea>
 
-      <p.Stack
-        as={"div"}
-        hasGap={true}
-        className={classNames(defaultcss.all, sty.box__uCWf, {
-          [sty.box__variantState_isEdit__uCWf2IFcI]: hasVariant(
-            variants,
-            "variantState",
-            "isEdit"
-          ),
-        })}
-      >
-        <InputText
-          data-plasmic-name={"url"}
-          data-plasmic-override={overrides.url}
-          hasLabel={"hasLabel" as const}
-          hasTextHelper={"hasTextHelper" as const}
-          label={"Custom URL"}
+      {false ? (
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.box__uCWf, {
+            [sty.box__variantState_isEdit__uCWf2IFcI]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+          })}
         >
-          {"Enter in a URL name for this venture"}
-        </InputText>
+          <InputText
+            data-plasmic-name={"url"}
+            data-plasmic-override={overrides.url}
+            hasLabel={"hasLabel" as const}
+            hasTextHelper={"hasTextHelper" as const}
+            label={"Custom URL"}
+          >
+            {"Enter in a URL name for this venture"}
+          </InputText>
 
-        <div
-          className={classNames(
-            defaultcss.all,
-            defaultcss.__wab_text,
-            sty.box___8V79Q,
-            {
-              [sty.box__variantState_isEdit___8V79Q2IFcI]: hasVariant(
-                variants,
-                "variantState",
-                "isEdit"
-              ),
-            }
-          )}
-        >
-          {".venturemark.co"}
+          <div
+            className={classNames(
+              defaultcss.all,
+              defaultcss.__wab_text,
+              sty.box___8V79Q,
+              {
+                [sty.box__variantState_isEdit___8V79Q2IFcI]: hasVariant(
+                  variants,
+                  "variantState",
+                  "isEdit"
+                ),
+              }
+            )}
+          >
+            {".venturemark.co"}
+          </div>
+        </p.Stack>
+      ) : null}
+      {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
+        <div className={classNames(defaultcss.all, sty.box__katKc)}>
+          <p.PlasmicSlot
+            defaultContents={"Permissions"}
+            value={args.slot2}
+            className={classNames(sty.slotSlot2)}
+          />
         </div>
-      </p.Stack>
-
-      <div className={classNames(defaultcss.all, sty.box__katKc)}>
-        <p.PlasmicSlot
-          defaultContents={"Permissions"}
-          value={args.slot2}
-          className={classNames(sty.slotSlot2)}
+      ) : null}
+      {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
+        <Switch
+          data-plasmic-name={"membersWrite"}
+          data-plasmic-override={overrides.membersWrite}
+          className={classNames("__wab_instance", sty.membersWrite, {
+            [sty.membersWrite__variantState_isEdit]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+          })}
+          variantSettings={["hasLabel"]}
         />
-      </div>
-
-      <Switch
-        data-plasmic-name={"membersWrite"}
-        data-plasmic-override={overrides.membersWrite}
-        className={classNames("__wab_instance", sty.membersWrite, {
-          [sty.membersWrite__variantState_isEdit]: hasVariant(
-            variants,
-            "variantState",
-            "isEdit"
-          ),
-        })}
-        variantSettings={["hasLabel"]}
-      />
+      ) : null}
 
       <ButtonSetEdit
         data-plasmic-name={"create"}

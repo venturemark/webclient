@@ -107,7 +107,7 @@
 }
 @media (min-width: 1201px) {
   .postDetails:global(.__wab_instance) {
-    max-width: 480px;
+    max-width: 430px;
   }
 }
 @media (max-width: 1200px) {

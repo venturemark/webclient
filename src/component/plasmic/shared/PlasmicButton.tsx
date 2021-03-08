@@ -260,6 +260,11 @@ function PlasmicButton__RenderFunc(props: {
               "buttonFeatures",
               "removeText"
             ),
+            [sty.box__buttonFeatures_showCount]: hasVariant(
+              variants,
+              "buttonFeatures",
+              "showCount"
+            ),
           })}
         >
           {(

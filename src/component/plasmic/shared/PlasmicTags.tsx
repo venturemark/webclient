@@ -105,6 +105,11 @@ function PlasmicTags__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__buttonStyle_blue]: hasVariant(
+          variants,
+          "buttonStyle",
+          "blue"
+        ),
         [sty.root__buttonStyle_primaryPurple]: hasVariant(
           variants,
           "buttonStyle",

@@ -53,6 +53,8 @@ export type PlasmicFeedUpdate__OverridesType = {
   actionBar?: p.Flex<typeof ActionBar>;
   feedContainer?: p.Flex<"div">;
   contentPost?: p.Flex<typeof ContentPost>;
+  span?: p.Flex<"span">;
+  date?: p.Flex<"span">;
 };
 
 export interface DefaultFeedUpdateProps {
@@ -94,6 +96,33 @@ function PlasmicFeedUpdate__RenderFunc(props: {
           data-plasmic-name={"contentPost"}
           data-plasmic-override={overrides.contentPost}
           className={classNames("__wab_instance", sty.contentPost)}
+          date={
+            <React.Fragment>
+              <span
+                data-plasmic-name={"span"}
+                data-plasmic-override={overrides.span}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.span
+                )}
+              >
+                {"•"}
+              </span>
+
+              <span
+                data-plasmic-name={"date"}
+                data-plasmic-override={overrides.date}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.date
+                )}
+              >
+                {"3h ago"}
+              </span>
+            </React.Fragment>
+          }
         />
       </p.Stack>
     </p.Stack>
@@ -101,10 +130,12 @@ function PlasmicFeedUpdate__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "actionBar", "feedContainer", "contentPost"],
+  root: ["root", "actionBar", "feedContainer", "contentPost", "span", "date"],
   actionBar: ["actionBar"],
-  feedContainer: ["feedContainer", "contentPost"],
-  contentPost: ["contentPost"],
+  feedContainer: ["feedContainer", "contentPost", "span", "date"],
+  contentPost: ["contentPost", "span", "date"],
+  span: ["span"],
+  date: ["date"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -115,6 +146,8 @@ type NodeDefaultElementType = {
   actionBar: typeof ActionBar;
   feedContainer: "div";
   contentPost: typeof ContentPost;
+  span: "span";
+  date: "span";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -176,6 +209,8 @@ export const PlasmicFeedUpdate = Object.assign(
     actionBar: makeNodeComponent("actionBar"),
     feedContainer: makeNodeComponent("feedContainer"),
     contentPost: makeNodeComponent("contentPost"),
+    span: makeNodeComponent("span"),
+    date: makeNodeComponent("date"),
 
     // Metadata about props expected for PlasmicFeedUpdate
     internalVariantProps: PlasmicFeedUpdate__VariantProps,

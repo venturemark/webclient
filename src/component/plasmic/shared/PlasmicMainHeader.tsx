@@ -304,7 +304,7 @@ function PlasmicMainHeader__RenderFunc(props: {
               ? false
               : hasVariant(globalVariants, "screen", "mobile")
               ? false
-              : true
+              : false
           ) ? (
             <div
               className={classNames(defaultcss.all, sty.box__fohK2, {
@@ -327,7 +327,7 @@ function PlasmicMainHeader__RenderFunc(props: {
             >
               <p.PlasmicSlot
                 defaultContents={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 }
                 value={args.timelineDescription}
                 className={classNames(sty.slotTimelineDescription, {
@@ -358,7 +358,7 @@ function PlasmicMainHeader__RenderFunc(props: {
             )
               ? true
               : hasVariant(variants, "headerStyles", "ventureHeader")
-              ? true
+              ? false
               : hasVariant(variants, "headerStyles", "timelineHeader")
               ? false
               : hasVariant(globalVariants, "screen", "mobile")

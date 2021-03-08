@@ -159,7 +159,6 @@ function PlasmicHome__RenderFunc(props: {
                 "showModal"
               ),
             })}
-            userAccount={"userAccount" as const}
           />
 
           <div
@@ -211,7 +210,7 @@ function PlasmicHome__RenderFunc(props: {
                       "postDetails"
                     ),
                   })}
-                  isActive={"members" as const}
+                  isActive={"feed" as const}
                   variantType={"isVenture" as const}
                 />
               </div>

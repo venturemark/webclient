@@ -111,6 +111,9 @@
 .title__isActive {
   height: auto;
 }
+.root:focus-within .title {
+  outline: none;
+}
 .root .title::placeholder {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }
@@ -124,6 +127,9 @@
   border-radius: 8px;
   padding: 0px;
   border-width: 0px;
+}
+.root:focus-within .description {
+  outline: none;
 }
 .root .description::placeholder {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
