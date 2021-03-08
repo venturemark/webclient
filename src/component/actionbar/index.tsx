@@ -28,7 +28,7 @@ function ActionBar(props: ActionBarProps) {
   const { ventureId, userId, currentTimeline } = props;
   const { user, getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
 
   // const store = get("composeEditor.content") ?? "";
   // const initialValue = store !== "" ? JSON.parse(store) : initialValueEmpty;
@@ -98,6 +98,10 @@ function ActionBar(props: ActionBarProps) {
 
       createUpdate(newUpdate);
     });
+
+    //reset
+    reset();
+    setIsActive(false);
 
     //reset store
     // localStorage.setItem(
