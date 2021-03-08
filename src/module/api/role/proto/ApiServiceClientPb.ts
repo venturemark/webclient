@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for texupd
+ * @fileoverview gRPC-Web generated client stub for role
  * @enhanceable
  * @public
  */
@@ -11,10 +11,10 @@
 
 import * as grpcWeb from "grpc-web";
 
-import * as pbf_texupd_create_pb from "module/api/texupd/proto/create_pb";
-import * as pbf_texupd_delete_pb from "module/api/texupd/proto/delete_pb";
-import * as pbf_texupd_search_pb from "module/api/texupd/proto/search_pb";
-import * as pbf_texupd_update_pb from "module/api/texupd/proto/update_pb";
+import * as pbf_role_create_pb from "module/api/role/proto/create_pb";
+import * as pbf_role_delete_pb from "module/api/role/proto/delete_pb";
+import * as pbf_role_search_pb from "module/api/role/proto/search_pb";
+import * as pbf_role_update_pb from "module/api/role/proto/update_pb";
 
 export class APIClient {
   client_: grpcWeb.AbstractClientBase;
@@ -38,38 +38,35 @@ export class APIClient {
   }
 
   methodInfoCreate = new grpcWeb.AbstractClientBase.MethodInfo(
-    pbf_texupd_create_pb.CreateO,
-    (request: pbf_texupd_create_pb.CreateI) => {
+    pbf_role_create_pb.CreateO,
+    (request: pbf_role_create_pb.CreateI) => {
       return request.serializeBinary();
     },
-    pbf_texupd_create_pb.CreateO.deserializeBinary
+    pbf_role_create_pb.CreateO.deserializeBinary
   );
 
   create(
-    request: pbf_texupd_create_pb.CreateI,
+    request: pbf_role_create_pb.CreateI,
     metadata: grpcWeb.Metadata | null
-  ): Promise<pbf_texupd_create_pb.CreateO>;
+  ): Promise<pbf_role_create_pb.CreateO>;
 
   create(
-    request: pbf_texupd_create_pb.CreateI,
+    request: pbf_role_create_pb.CreateI,
     metadata: grpcWeb.Metadata | null,
-    callback: (
-      err: grpcWeb.Error,
-      response: pbf_texupd_create_pb.CreateO
-    ) => void
-  ): grpcWeb.ClientReadableStream<pbf_texupd_create_pb.CreateO>;
+    callback: (err: grpcWeb.Error, response: pbf_role_create_pb.CreateO) => void
+  ): grpcWeb.ClientReadableStream<pbf_role_create_pb.CreateO>;
 
   create(
-    request: pbf_texupd_create_pb.CreateI,
+    request: pbf_role_create_pb.CreateI,
     metadata: grpcWeb.Metadata | null,
     callback?: (
       err: grpcWeb.Error,
-      response: pbf_texupd_create_pb.CreateO
+      response: pbf_role_create_pb.CreateO
     ) => void
   ) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        this.hostname_ + "/texupd.API/Create",
+        this.hostname_ + "/role.API/Create",
         request,
         metadata || {},
         this.methodInfoCreate,
@@ -77,7 +74,7 @@ export class APIClient {
       );
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/texupd.API/Create",
+      this.hostname_ + "/role.API/Create",
       request,
       metadata || {},
       this.methodInfoCreate
@@ -85,38 +82,35 @@ export class APIClient {
   }
 
   methodInfoDelete = new grpcWeb.AbstractClientBase.MethodInfo(
-    pbf_texupd_delete_pb.DeleteO,
-    (request: pbf_texupd_delete_pb.DeleteI) => {
+    pbf_role_delete_pb.DeleteO,
+    (request: pbf_role_delete_pb.DeleteI) => {
       return request.serializeBinary();
     },
-    pbf_texupd_delete_pb.DeleteO.deserializeBinary
+    pbf_role_delete_pb.DeleteO.deserializeBinary
   );
 
   delete(
-    request: pbf_texupd_delete_pb.DeleteI,
+    request: pbf_role_delete_pb.DeleteI,
     metadata: grpcWeb.Metadata | null
-  ): Promise<pbf_texupd_delete_pb.DeleteO>;
+  ): Promise<pbf_role_delete_pb.DeleteO>;
 
   delete(
-    request: pbf_texupd_delete_pb.DeleteI,
+    request: pbf_role_delete_pb.DeleteI,
     metadata: grpcWeb.Metadata | null,
-    callback: (
-      err: grpcWeb.Error,
-      response: pbf_texupd_delete_pb.DeleteO
-    ) => void
-  ): grpcWeb.ClientReadableStream<pbf_texupd_delete_pb.DeleteO>;
+    callback: (err: grpcWeb.Error, response: pbf_role_delete_pb.DeleteO) => void
+  ): grpcWeb.ClientReadableStream<pbf_role_delete_pb.DeleteO>;
 
   delete(
-    request: pbf_texupd_delete_pb.DeleteI,
+    request: pbf_role_delete_pb.DeleteI,
     metadata: grpcWeb.Metadata | null,
     callback?: (
       err: grpcWeb.Error,
-      response: pbf_texupd_delete_pb.DeleteO
+      response: pbf_role_delete_pb.DeleteO
     ) => void
   ) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        this.hostname_ + "/texupd.API/Delete",
+        this.hostname_ + "/role.API/Delete",
         request,
         metadata || {},
         this.methodInfoDelete,
@@ -124,7 +118,7 @@ export class APIClient {
       );
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/texupd.API/Delete",
+      this.hostname_ + "/role.API/Delete",
       request,
       metadata || {},
       this.methodInfoDelete
@@ -132,38 +126,35 @@ export class APIClient {
   }
 
   methodInfoSearch = new grpcWeb.AbstractClientBase.MethodInfo(
-    pbf_texupd_search_pb.SearchO,
-    (request: pbf_texupd_search_pb.SearchI) => {
+    pbf_role_search_pb.SearchO,
+    (request: pbf_role_search_pb.SearchI) => {
       return request.serializeBinary();
     },
-    pbf_texupd_search_pb.SearchO.deserializeBinary
+    pbf_role_search_pb.SearchO.deserializeBinary
   );
 
   search(
-    request: pbf_texupd_search_pb.SearchI,
+    request: pbf_role_search_pb.SearchI,
     metadata: grpcWeb.Metadata | null
-  ): Promise<pbf_texupd_search_pb.SearchO>;
+  ): Promise<pbf_role_search_pb.SearchO>;
 
   search(
-    request: pbf_texupd_search_pb.SearchI,
+    request: pbf_role_search_pb.SearchI,
     metadata: grpcWeb.Metadata | null,
-    callback: (
-      err: grpcWeb.Error,
-      response: pbf_texupd_search_pb.SearchO
-    ) => void
-  ): grpcWeb.ClientReadableStream<pbf_texupd_search_pb.SearchO>;
+    callback: (err: grpcWeb.Error, response: pbf_role_search_pb.SearchO) => void
+  ): grpcWeb.ClientReadableStream<pbf_role_search_pb.SearchO>;
 
   search(
-    request: pbf_texupd_search_pb.SearchI,
+    request: pbf_role_search_pb.SearchI,
     metadata: grpcWeb.Metadata | null,
     callback?: (
       err: grpcWeb.Error,
-      response: pbf_texupd_search_pb.SearchO
+      response: pbf_role_search_pb.SearchO
     ) => void
   ) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        this.hostname_ + "/texupd.API/Search",
+        this.hostname_ + "/role.API/Search",
         request,
         metadata || {},
         this.methodInfoSearch,
@@ -171,7 +162,7 @@ export class APIClient {
       );
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/texupd.API/Search",
+      this.hostname_ + "/role.API/Search",
       request,
       metadata || {},
       this.methodInfoSearch
@@ -179,38 +170,35 @@ export class APIClient {
   }
 
   methodInfoUpdate = new grpcWeb.AbstractClientBase.MethodInfo(
-    pbf_texupd_update_pb.UpdateO,
-    (request: pbf_texupd_update_pb.UpdateI) => {
+    pbf_role_update_pb.UpdateO,
+    (request: pbf_role_update_pb.UpdateI) => {
       return request.serializeBinary();
     },
-    pbf_texupd_update_pb.UpdateO.deserializeBinary
+    pbf_role_update_pb.UpdateO.deserializeBinary
   );
 
   update(
-    request: pbf_texupd_update_pb.UpdateI,
+    request: pbf_role_update_pb.UpdateI,
     metadata: grpcWeb.Metadata | null
-  ): Promise<pbf_texupd_update_pb.UpdateO>;
+  ): Promise<pbf_role_update_pb.UpdateO>;
 
   update(
-    request: pbf_texupd_update_pb.UpdateI,
+    request: pbf_role_update_pb.UpdateI,
     metadata: grpcWeb.Metadata | null,
-    callback: (
-      err: grpcWeb.Error,
-      response: pbf_texupd_update_pb.UpdateO
-    ) => void
-  ): grpcWeb.ClientReadableStream<pbf_texupd_update_pb.UpdateO>;
+    callback: (err: grpcWeb.Error, response: pbf_role_update_pb.UpdateO) => void
+  ): grpcWeb.ClientReadableStream<pbf_role_update_pb.UpdateO>;
 
   update(
-    request: pbf_texupd_update_pb.UpdateI,
+    request: pbf_role_update_pb.UpdateI,
     metadata: grpcWeb.Metadata | null,
     callback?: (
       err: grpcWeb.Error,
-      response: pbf_texupd_update_pb.UpdateO
+      response: pbf_role_update_pb.UpdateO
     ) => void
   ) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        this.hostname_ + "/texupd.API/Update",
+        this.hostname_ + "/role.API/Update",
         request,
         metadata || {},
         this.methodInfoUpdate,
@@ -218,7 +206,7 @@ export class APIClient {
       );
     }
     return this.client_.unaryCall(
-      this.hostname_ + "/texupd.API/Update",
+      this.hostname_ + "/role.API/Update",
       request,
       metadata || {},
       this.methodInfoUpdate

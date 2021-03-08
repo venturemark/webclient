@@ -6,10 +6,10 @@ export class UpdateI extends jspb.Message {
   hasApi(): boolean;
   clearApi(): UpdateI;
 
-  getObj(): UpdateI_Obj | undefined;
-  setObj(value?: UpdateI_Obj): UpdateI;
-  hasObj(): boolean;
-  clearObj(): UpdateI;
+  getObjList(): Array<UpdateI_Obj>;
+  setObjList(value: Array<UpdateI_Obj>): UpdateI;
+  clearObjList(): UpdateI;
+  addObj(value?: UpdateI_Obj, index?: number): UpdateI_Obj;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateI.AsObject;
@@ -28,7 +28,7 @@ export class UpdateI extends jspb.Message {
 export namespace UpdateI {
   export type AsObject = {
     api?: UpdateI_API.AsObject;
-    obj?: UpdateI_Obj.AsObject;
+    objList: Array<UpdateI_Obj.AsObject>;
   };
 }
 
@@ -58,10 +58,13 @@ export class UpdateI_Obj extends jspb.Message {
   getMetadataMap(): jspb.Map<string, string>;
   clearMetadataMap(): UpdateI_Obj;
 
-  getProperty(): UpdateI_Obj_Property | undefined;
-  setProperty(value?: UpdateI_Obj_Property): UpdateI_Obj;
-  hasProperty(): boolean;
-  clearProperty(): UpdateI_Obj;
+  getJsnpatchList(): Array<UpdateI_Obj_Jsnpatch>;
+  setJsnpatchList(value: Array<UpdateI_Obj_Jsnpatch>): UpdateI_Obj;
+  clearJsnpatchList(): UpdateI_Obj;
+  addJsnpatch(
+    value?: UpdateI_Obj_Jsnpatch,
+    index?: number
+  ): UpdateI_Obj_Jsnpatch;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateI_Obj.AsObject;
@@ -83,35 +86,50 @@ export class UpdateI_Obj extends jspb.Message {
 export namespace UpdateI_Obj {
   export type AsObject = {
     metadataMap: Array<[string, string]>;
-    property?: UpdateI_Obj_Property.AsObject;
+    jsnpatchList: Array<UpdateI_Obj_Jsnpatch.AsObject>;
   };
 }
 
-export class UpdateI_Obj_Property extends jspb.Message {
-  getText(): string;
-  setText(value: string): UpdateI_Obj_Property;
+export class UpdateI_Obj_Jsnpatch extends jspb.Message {
+  getOpe(): string;
+  setOpe(value: string): UpdateI_Obj_Jsnpatch;
+
+  getPat(): string;
+  setPat(value: string): UpdateI_Obj_Jsnpatch;
+
+  getVal(): string;
+  setVal(value: string): UpdateI_Obj_Jsnpatch;
+
+  getValCase(): UpdateI_Obj_Jsnpatch.ValCase;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateI_Obj_Property.AsObject;
+  toObject(includeInstance?: boolean): UpdateI_Obj_Jsnpatch.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: UpdateI_Obj_Property
-  ): UpdateI_Obj_Property.AsObject;
+    msg: UpdateI_Obj_Jsnpatch
+  ): UpdateI_Obj_Jsnpatch.AsObject;
   static serializeBinaryToWriter(
-    message: UpdateI_Obj_Property,
+    message: UpdateI_Obj_Jsnpatch,
     writer: jspb.BinaryWriter
   ): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateI_Obj_Property;
+  static deserializeBinary(bytes: Uint8Array): UpdateI_Obj_Jsnpatch;
   static deserializeBinaryFromReader(
-    message: UpdateI_Obj_Property,
+    message: UpdateI_Obj_Jsnpatch,
     reader: jspb.BinaryReader
-  ): UpdateI_Obj_Property;
+  ): UpdateI_Obj_Jsnpatch;
 }
 
-export namespace UpdateI_Obj_Property {
+export namespace UpdateI_Obj_Jsnpatch {
   export type AsObject = {
-    text: string;
+    ope: string;
+    pat: string;
+    val: string;
   };
+
+  export enum ValCase {
+    _VAL_NOT_SET = 0,
+    VAL = 3,
+  }
 }
 
 export class UpdateO extends jspb.Message {
@@ -120,10 +138,10 @@ export class UpdateO extends jspb.Message {
   hasApi(): boolean;
   clearApi(): UpdateO;
 
-  getObj(): UpdateO_Obj | undefined;
-  setObj(value?: UpdateO_Obj): UpdateO;
-  hasObj(): boolean;
-  clearObj(): UpdateO;
+  getObjList(): Array<UpdateO_Obj>;
+  setObjList(value: Array<UpdateO_Obj>): UpdateO;
+  clearObjList(): UpdateO;
+  addObj(value?: UpdateO_Obj, index?: number): UpdateO_Obj;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateO.AsObject;
@@ -142,7 +160,7 @@ export class UpdateO extends jspb.Message {
 export namespace UpdateO {
   export type AsObject = {
     api?: UpdateO_API.AsObject;
-    obj?: UpdateO_Obj.AsObject;
+    objList: Array<UpdateO_Obj.AsObject>;
   };
 }
 

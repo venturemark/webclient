@@ -16,6 +16,7 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
 
   const obj = new UpdateI_Obj();
   const objProperty = new UpdateI_Obj_Property();
+  const objList = [];
 
   if (updateUpdate.text) {
     objProperty.setText(updateUpdate.text);
@@ -27,7 +28,9 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
   obj.getMetadataMap().set(key.UserID, updateUpdate.userId);
   obj.getMetadataMap().set(key.UpdateID, updateUpdate.id);
   obj.setProperty(objProperty);
-  req.setObj(obj);
+
+  objList.push(obj);
+  req.setObjList(objList);
 
   const getUpdateResponsePb: IUpdate[] = await new Promise(
     (resolve, reject) => {

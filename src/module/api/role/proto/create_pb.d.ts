@@ -58,11 +58,6 @@ export class CreateI_Obj extends jspb.Message {
   getMetadataMap(): jspb.Map<string, string>;
   clearMetadataMap(): CreateI_Obj;
 
-  getProperty(): CreateI_Obj_Property | undefined;
-  setProperty(value?: CreateI_Obj_Property): CreateI_Obj;
-  hasProperty(): boolean;
-  clearProperty(): CreateI_Obj;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateI_Obj.AsObject;
   static toObject(
@@ -83,38 +78,6 @@ export class CreateI_Obj extends jspb.Message {
 export namespace CreateI_Obj {
   export type AsObject = {
     metadataMap: Array<[string, string]>;
-    property?: CreateI_Obj_Property.AsObject;
-  };
-}
-
-export class CreateI_Obj_Property extends jspb.Message {
-  getText(): string;
-  setText(value: string): CreateI_Obj_Property;
-
-  getReid(): string;
-  setReid(value: string): CreateI_Obj_Property;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CreateI_Obj_Property.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: CreateI_Obj_Property
-  ): CreateI_Obj_Property.AsObject;
-  static serializeBinaryToWriter(
-    message: CreateI_Obj_Property,
-    writer: jspb.BinaryWriter
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): CreateI_Obj_Property;
-  static deserializeBinaryFromReader(
-    message: CreateI_Obj_Property,
-    reader: jspb.BinaryReader
-  ): CreateI_Obj_Property;
-}
-
-export namespace CreateI_Obj_Property {
-  export type AsObject = {
-    text: string;
-    reid: string;
   };
 }
 
