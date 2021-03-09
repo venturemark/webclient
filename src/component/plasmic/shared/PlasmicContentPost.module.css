@@ -21,9 +21,11 @@
   top: auto;
   left: auto;
   width: 100%;
-  height: auto;
+  height: 100%;
   overflow: auto;
+  align-self: auto;
   min-width: 0;
+  min-height: 0;
   border-radius: 10px;
   padding: 30px 20px;
   background: #ffffff;

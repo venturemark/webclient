@@ -90,7 +90,15 @@ function PlasmicProfile__RenderFunc(props: {
               className={classNames("__wab_instance", sty.header)}
             />
 
-            <div className={classNames(defaultcss.all, sty.box__pMmw)}>
+            <p.Stack
+              as={"div"}
+              hasGap={
+                hasVariant(globalVariants, "screen", "desktopLarge")
+                  ? true
+                  : false
+              }
+              className={classNames(defaultcss.all, sty.box__pMmw)}
+            >
               <p.Stack
                 as={"div"}
                 hasGap={true}
@@ -140,7 +148,7 @@ function PlasmicProfile__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.profileForm)}
                 />
               </p.Stack>
-            </div>
+            </p.Stack>
           </div>
         </div>
       </div>
