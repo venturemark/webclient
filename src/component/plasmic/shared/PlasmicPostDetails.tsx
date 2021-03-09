@@ -62,6 +62,8 @@ export type PlasmicPostDetails__OverridesType = {
   date3?: p.Flex<"span">;
   repliesContainer?: p.Flex<"div">;
   replyContent?: p.Flex<typeof ReplyContent>;
+  userName2?: p.Flex<"span">;
+  date2?: p.Flex<"span">;
   replyInput?: p.Flex<typeof ReplyInput>;
 };
 
@@ -162,17 +164,48 @@ function PlasmicPostDetails__RenderFunc(props: {
             </span>
           }
         />
-      </div>
 
-      <div
-        data-plasmic-name={"repliesContainer"}
-        data-plasmic-override={overrides.repliesContainer}
-        className={classNames(defaultcss.all, sty.repliesContainer)}
-      >
-        <ReplyContent
-          data-plasmic-name={"replyContent"}
-          data-plasmic-override={overrides.replyContent}
-        />
+        <div
+          data-plasmic-name={"repliesContainer"}
+          data-plasmic-override={overrides.repliesContainer}
+          className={classNames(defaultcss.all, sty.repliesContainer)}
+        >
+          <ReplyContent
+            data-plasmic-name={"replyContent"}
+            data-plasmic-override={overrides.replyContent}
+            date={
+              <span
+                data-plasmic-name={"date2"}
+                data-plasmic-override={overrides.date2}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.date2
+                )}
+              >
+                {"3 hours ago"}
+              </span>
+            }
+            text={
+              "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
+            }
+            userName={
+              <span
+                data-plasmic-name={"userName2"}
+                data-plasmic-override={overrides.userName2}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.userName2
+                )}
+              >
+                <span>
+                  <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                </span>
+              </span>
+            }
+          />
+        </div>
       </div>
 
       <ReplyInput
@@ -195,6 +228,8 @@ const PlasmicDescendants = {
     "date3",
     "repliesContainer",
     "replyContent",
+    "userName2",
+    "date2",
     "replyInput",
   ],
   close: ["close", "svg"],
@@ -203,8 +238,10 @@ const PlasmicDescendants = {
   userName3: ["userName3"],
   span: ["span"],
   date3: ["date3"],
-  repliesContainer: ["repliesContainer", "replyContent"],
-  replyContent: ["replyContent"],
+  repliesContainer: ["repliesContainer", "replyContent", "userName2", "date2"],
+  replyContent: ["replyContent", "userName2", "date2"],
+  userName2: ["userName2"],
+  date2: ["date2"],
   replyInput: ["replyInput"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -221,6 +258,8 @@ type NodeDefaultElementType = {
   date3: "span";
   repliesContainer: "div";
   replyContent: typeof ReplyContent;
+  userName2: "span";
+  date2: "span";
   replyInput: typeof ReplyInput;
 };
 
@@ -288,6 +327,8 @@ export const PlasmicPostDetails = Object.assign(
     date3: makeNodeComponent("date3"),
     repliesContainer: makeNodeComponent("repliesContainer"),
     replyContent: makeNodeComponent("replyContent"),
+    userName2: makeNodeComponent("userName2"),
+    date2: makeNodeComponent("date2"),
     replyInput: makeNodeComponent("replyInput"),
 
     // Metadata about props expected for PlasmicPostDetails

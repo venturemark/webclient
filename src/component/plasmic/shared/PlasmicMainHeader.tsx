@@ -162,6 +162,66 @@ function PlasmicMainHeader__RenderFunc(props: {
           className={classNames(defaultcss.all, sty.box__sDNfz)}
         >
           {(
+            hasVariant(variants, "headerStyles", "ventureHeader") ? false : true
+          ) ? (
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(defaultcss.all, sty.box__yHtqj, {
+                [sty.box__headerStyles_timelineHeader__yHtqjRxxpi]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "timelineHeader"
+                ),
+                [sty.box__headerStyles_ventureHeader__yHtqjnMQ9]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "ventureHeader"
+                ),
+              })}
+            >
+              <p.PlasmicSlot
+                defaultContents={"Wins"}
+                value={args.timelineName}
+                className={classNames(sty.slotTimelineName, {
+                  [sty.slotTimelineName__headerStyles_timelineHeader]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "timelineHeader"
+                  ),
+                  [sty.slotTimelineName__headerStyles_ventureHeader]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "ventureHeader"
+                  ),
+                })}
+              />
+              {(
+                hasVariant(variants, "headerStyles", "timelineHeader")
+                  ? false
+                  : true
+              ) ? (
+                <IconButton
+                  data-plasmic-name={"iconButton"}
+                  data-plasmic-override={overrides.iconButton}
+                  className={classNames("__wab_instance", sty.iconButton, {
+                    [sty.iconButton__headerStyles_timelineHeader]: hasVariant(
+                      variants,
+                      "headerStyles",
+                      "timelineHeader"
+                    ),
+                  })}
+                  iconSize={"large" as const}
+                >
+                  <IconExternalLinkIcon
+                    className={classNames(defaultcss.all, sty.svg__nqhCc)}
+                    role={"img"}
+                  />
+                </IconButton>
+              ) : null}
+            </p.Stack>
+          ) : null}
+          {(
             hasVariant(variants, "headerStyles", "ventureHeader")
               ? true
               : hasVariant(variants, "headerStyles", "timelineHeader")
@@ -228,66 +288,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                     ),
                   })}
                 />
-              ) : null}
-            </p.Stack>
-          ) : null}
-          {(
-            hasVariant(variants, "headerStyles", "ventureHeader") ? false : true
-          ) ? (
-            <p.Stack
-              as={"div"}
-              hasGap={true}
-              className={classNames(defaultcss.all, sty.box__yHtqj, {
-                [sty.box__headerStyles_timelineHeader__yHtqjRxxpi]: hasVariant(
-                  variants,
-                  "headerStyles",
-                  "timelineHeader"
-                ),
-                [sty.box__headerStyles_ventureHeader__yHtqjnMQ9]: hasVariant(
-                  variants,
-                  "headerStyles",
-                  "ventureHeader"
-                ),
-              })}
-            >
-              <p.PlasmicSlot
-                defaultContents={"Wins"}
-                value={args.timelineName}
-                className={classNames(sty.slotTimelineName, {
-                  [sty.slotTimelineName__headerStyles_timelineHeader]: hasVariant(
-                    variants,
-                    "headerStyles",
-                    "timelineHeader"
-                  ),
-                  [sty.slotTimelineName__headerStyles_ventureHeader]: hasVariant(
-                    variants,
-                    "headerStyles",
-                    "ventureHeader"
-                  ),
-                })}
-              />
-              {(
-                hasVariant(variants, "headerStyles", "timelineHeader")
-                  ? false
-                  : true
-              ) ? (
-                <IconButton
-                  data-plasmic-name={"iconButton"}
-                  data-plasmic-override={overrides.iconButton}
-                  className={classNames("__wab_instance", sty.iconButton, {
-                    [sty.iconButton__headerStyles_timelineHeader]: hasVariant(
-                      variants,
-                      "headerStyles",
-                      "timelineHeader"
-                    ),
-                  })}
-                  iconSize={"large" as const}
-                >
-                  <IconExternalLinkIcon
-                    className={classNames(defaultcss.all, sty.svg__nqhCc)}
-                    role={"img"}
-                  />
-                </IconButton>
               ) : null}
             </p.Stack>
           ) : null}
