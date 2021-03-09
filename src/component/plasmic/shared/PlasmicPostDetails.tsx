@@ -29,8 +29,8 @@ import {
 } from "@plasmicapp/react-web";
 import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
 import ContentPost from "../../contentpost/index"; // plasmic-import: A1UjtYt6k0/component
-import ReplyInput from "../../replyinput/index"; // plasmic-import: PE9pgtdNju/component
 import ReplyContent from "../../replycontent/index"; // plasmic-import: q3VnCwfx25w/component
+import ReplyInput from "../../replyinput/index"; // plasmic-import: PE9pgtdNju/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -60,9 +60,9 @@ export type PlasmicPostDetails__OverridesType = {
   userName3?: p.Flex<"span">;
   span?: p.Flex<"span">;
   date3?: p.Flex<"span">;
-  replyInput?: p.Flex<typeof ReplyInput>;
   repliesContainer?: p.Flex<"div">;
   replyContent?: p.Flex<typeof ReplyContent>;
+  replyInput?: p.Flex<typeof ReplyInput>;
 };
 
 export interface DefaultPostDetailsProps {
@@ -164,12 +164,6 @@ function PlasmicPostDetails__RenderFunc(props: {
         />
       </div>
 
-      <ReplyInput
-        data-plasmic-name={"replyInput"}
-        data-plasmic-override={overrides.replyInput}
-        className={classNames("__wab_instance", sty.replyInput)}
-      />
-
       <div
         data-plasmic-name={"repliesContainer"}
         data-plasmic-override={overrides.repliesContainer}
@@ -180,6 +174,12 @@ function PlasmicPostDetails__RenderFunc(props: {
           data-plasmic-override={overrides.replyContent}
         />
       </div>
+
+      <ReplyInput
+        data-plasmic-name={"replyInput"}
+        data-plasmic-override={overrides.replyInput}
+        className={classNames("__wab_instance", sty.replyInput)}
+      />
     </p.Stack>
   ) as React.ReactElement | null;
 }
@@ -193,9 +193,9 @@ const PlasmicDescendants = {
     "userName3",
     "span",
     "date3",
-    "replyInput",
     "repliesContainer",
     "replyContent",
+    "replyInput",
   ],
   close: ["close", "svg"],
   svg: ["svg"],
@@ -203,9 +203,9 @@ const PlasmicDescendants = {
   userName3: ["userName3"],
   span: ["span"],
   date3: ["date3"],
-  replyInput: ["replyInput"],
   repliesContainer: ["repliesContainer", "replyContent"],
   replyContent: ["replyContent"],
+  replyInput: ["replyInput"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -219,9 +219,9 @@ type NodeDefaultElementType = {
   userName3: "span";
   span: "span";
   date3: "span";
-  replyInput: typeof ReplyInput;
   repliesContainer: "div";
   replyContent: typeof ReplyContent;
+  replyInput: typeof ReplyInput;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -286,9 +286,9 @@ export const PlasmicPostDetails = Object.assign(
     userName3: makeNodeComponent("userName3"),
     span: makeNodeComponent("span"),
     date3: makeNodeComponent("date3"),
-    replyInput: makeNodeComponent("replyInput"),
     repliesContainer: makeNodeComponent("repliesContainer"),
     replyContent: makeNodeComponent("replyContent"),
+    replyInput: makeNodeComponent("replyInput"),
 
     // Metadata about props expected for PlasmicPostDetails
     internalVariantProps: PlasmicPostDetails__VariantProps,

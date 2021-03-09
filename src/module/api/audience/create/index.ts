@@ -13,20 +13,13 @@ export async function Create(
   organizationId: string,
   ventureId: string
 ): Promise<any> {
-  console.log(
-    "send to create audience:",
-    name,
-    userId,
-    organizationId,
-    ventureId
-  );
-
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
 
+  const objList = [];
   const userList = ["xh3b4sd", "marcojelli"];
   // userList.push(userId);
 
@@ -37,9 +30,8 @@ export async function Create(
   obj.getMetadataMap().set(key.VentureID, ventureId);
   obj.setProperty(objProperty);
 
-  req.setObj(obj);
-
-  console.log(req.toObject());
+  objList.push(obj);
+  req.setObjList(objList);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, {}, function (err: any, res: any) {

@@ -11,10 +11,10 @@
 
 import * as grpcWeb from "grpc-web";
 
-import * as pbf_audience_create_pb from "./create_pb";
-import * as pbf_audience_delete_pb from "./delete_pb";
-import * as pbf_audience_search_pb from "./search_pb";
-import * as pbf_audience_update_pb from "./update_pb";
+import * as pbf_audience_create_pb from "module/api/audience/proto/create_pb";
+import * as pbf_audience_delete_pb from "module/api/audience/proto/delete_pb";
+import * as pbf_audience_search_pb from "module/api/audience/proto/search_pb";
+import * as pbf_audience_update_pb from "module/api/audience/proto/update_pb";
 
 export class APIClient {
   client_: grpcWeb.AbstractClientBase;

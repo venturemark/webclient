@@ -21,11 +21,11 @@ export async function Search(
   const req = new SearchI();
 
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.OrganizationID, timelineQuery.ventureId);
   obj.getMetadataMap().set(key.VentureID, timelineQuery.ventureId);
-  obj.getMetadataMap().set(key.UserID, timelineQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
+
+  console.log("search object", req.toObject());
 
   const getSearchResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {

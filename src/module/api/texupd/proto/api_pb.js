@@ -1,4 +1,3 @@
-/* eslint-disable */
 // source: pbf/texupd/api.proto
 /**
  * @fileoverview
@@ -13,11 +12,11 @@ var jspb = require("google-protobuf");
 var goog = jspb;
 var global = Function("return this")();
 
-var pbf_texupd_create_pb = require("../../pbf/texupd/create_pb.js");
+var pbf_texupd_create_pb = require("module/api/texupd/proto/create_pb.js");
 goog.object.extend(proto, pbf_texupd_create_pb);
-var pbf_texupd_delete_pb = require("../../pbf/texupd/delete_pb.js");
+var pbf_texupd_delete_pb = require("module/api/texupd/proto/delete_pb.js");
 goog.object.extend(proto, pbf_texupd_delete_pb);
-var pbf_texupd_search_pb = require("../../pbf/texupd/search_pb.js");
+var pbf_texupd_search_pb = require("module/api/texupd/proto/search_pb.js");
 goog.object.extend(proto, pbf_texupd_search_pb);
-var pbf_texupd_update_pb = require("../../pbf/texupd/update_pb.js");
+var pbf_texupd_update_pb = require("module/api/texupd/proto/update_pb.js");
 goog.object.extend(proto, pbf_texupd_update_pb);

@@ -6,10 +6,10 @@ export class DeleteI extends jspb.Message {
   hasApi(): boolean;
   clearApi(): DeleteI;
 
-  getObj(): DeleteI_Obj | undefined;
-  setObj(value?: DeleteI_Obj): DeleteI;
-  hasObj(): boolean;
-  clearObj(): DeleteI;
+  getObjList(): Array<DeleteI_Obj>;
+  setObjList(value: Array<DeleteI_Obj>): DeleteI;
+  clearObjList(): DeleteI;
+  addObj(value?: DeleteI_Obj, index?: number): DeleteI_Obj;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteI.AsObject;
@@ -28,7 +28,7 @@ export class DeleteI extends jspb.Message {
 export namespace DeleteI {
   export type AsObject = {
     api?: DeleteI_API.AsObject;
-    obj?: DeleteI_Obj.AsObject;
+    objList: Array<DeleteI_Obj.AsObject>;
   };
 }
 
@@ -87,10 +87,10 @@ export class DeleteO extends jspb.Message {
   hasApi(): boolean;
   clearApi(): DeleteO;
 
-  getObj(): DeleteO_Obj | undefined;
-  setObj(value?: DeleteO_Obj): DeleteO;
-  hasObj(): boolean;
-  clearObj(): DeleteO;
+  getObjList(): Array<DeleteO_Obj>;
+  setObjList(value: Array<DeleteO_Obj>): DeleteO;
+  clearObjList(): DeleteO;
+  addObj(value?: DeleteO_Obj, index?: number): DeleteO_Obj;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteO.AsObject;
@@ -109,7 +109,7 @@ export class DeleteO extends jspb.Message {
 export namespace DeleteO {
   export type AsObject = {
     api?: DeleteO_API.AsObject;
-    obj?: DeleteO_Obj.AsObject;
+    objList: Array<DeleteO_Obj.AsObject>;
   };
 }
 

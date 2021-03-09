@@ -102,11 +102,6 @@ export class SearchI_Obj extends jspb.Message {
   getMetadataMap(): jspb.Map<string, string>;
   clearMetadataMap(): SearchI_Obj;
 
-  getProperty(): SearchI_Obj_Property | undefined;
-  setProperty(value?: SearchI_Obj_Property): SearchI_Obj;
-  hasProperty(): boolean;
-  clearProperty(): SearchI_Obj;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchI_Obj.AsObject;
   static toObject(
@@ -127,30 +122,7 @@ export class SearchI_Obj extends jspb.Message {
 export namespace SearchI_Obj {
   export type AsObject = {
     metadataMap: Array<[string, string]>;
-    property?: SearchI_Obj_Property.AsObject;
   };
-}
-
-export class SearchI_Obj_Property extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SearchI_Obj_Property.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: SearchI_Obj_Property
-  ): SearchI_Obj_Property.AsObject;
-  static serializeBinaryToWriter(
-    message: SearchI_Obj_Property,
-    writer: jspb.BinaryWriter
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): SearchI_Obj_Property;
-  static deserializeBinaryFromReader(
-    message: SearchI_Obj_Property,
-    reader: jspb.BinaryReader
-  ): SearchI_Obj_Property;
-}
-
-export namespace SearchI_Obj_Property {
-  export type AsObject = {};
 }
 
 export class SearchO extends jspb.Message {
@@ -249,11 +221,6 @@ export class SearchO_Obj extends jspb.Message {
   getMetadataMap(): jspb.Map<string, string>;
   clearMetadataMap(): SearchO_Obj;
 
-  getProperty(): SearchO_Obj_Property | undefined;
-  setProperty(value?: SearchO_Obj_Property): SearchO_Obj;
-  hasProperty(): boolean;
-  clearProperty(): SearchO_Obj;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchO_Obj.AsObject;
   static toObject(
@@ -274,45 +241,5 @@ export class SearchO_Obj extends jspb.Message {
 export namespace SearchO_Obj {
   export type AsObject = {
     metadataMap: Array<[string, string]>;
-    property?: SearchO_Obj_Property.AsObject;
-  };
-}
-
-export class SearchO_Obj_Property extends jspb.Message {
-  getName(): string;
-  setName(value: string): SearchO_Obj_Property;
-
-  getTmlnList(): Array<string>;
-  setTmlnList(value: Array<string>): SearchO_Obj_Property;
-  clearTmlnList(): SearchO_Obj_Property;
-  addTmln(value: string, index?: number): SearchO_Obj_Property;
-
-  getUserList(): Array<string>;
-  setUserList(value: Array<string>): SearchO_Obj_Property;
-  clearUserList(): SearchO_Obj_Property;
-  addUser(value: string, index?: number): SearchO_Obj_Property;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SearchO_Obj_Property.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: SearchO_Obj_Property
-  ): SearchO_Obj_Property.AsObject;
-  static serializeBinaryToWriter(
-    message: SearchO_Obj_Property,
-    writer: jspb.BinaryWriter
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): SearchO_Obj_Property;
-  static deserializeBinaryFromReader(
-    message: SearchO_Obj_Property,
-    reader: jspb.BinaryReader
-  ): SearchO_Obj_Property;
-}
-
-export namespace SearchO_Obj_Property {
-  export type AsObject = {
-    name: string;
-    tmlnList: Array<string>;
-    userList: Array<string>;
   };
 }

@@ -15,6 +15,8 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
 
+  const objList = [];
+
   const token = newMessage.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
@@ -26,7 +28,8 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   obj.getMetadataMap().set(key.UserID, newMessage.userId);
   obj.setProperty(objProperty);
 
-  req.setObj(obj);
+  objList.push(obj);
+  req.setObjList(objList);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: any) {

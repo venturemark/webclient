@@ -6,10 +6,10 @@ export class CreateI extends jspb.Message {
   hasApi(): boolean;
   clearApi(): CreateI;
 
-  getObj(): CreateI_Obj | undefined;
-  setObj(value?: CreateI_Obj): CreateI;
-  hasObj(): boolean;
-  clearObj(): CreateI;
+  getObjList(): Array<CreateI_Obj>;
+  setObjList(value: Array<CreateI_Obj>): CreateI;
+  clearObjList(): CreateI;
+  addObj(value?: CreateI_Obj, index?: number): CreateI_Obj;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateI.AsObject;
@@ -28,7 +28,7 @@ export class CreateI extends jspb.Message {
 export namespace CreateI {
   export type AsObject = {
     api?: CreateI_API.AsObject;
-    obj?: CreateI_Obj.AsObject;
+    objList: Array<CreateI_Obj.AsObject>;
   };
 }
 
@@ -124,10 +124,10 @@ export class CreateO extends jspb.Message {
   hasApi(): boolean;
   clearApi(): CreateO;
 
-  getObj(): CreateO_Obj | undefined;
-  setObj(value?: CreateO_Obj): CreateO;
-  hasObj(): boolean;
-  clearObj(): CreateO;
+  getObjList(): Array<CreateO_Obj>;
+  setObjList(value: Array<CreateO_Obj>): CreateO;
+  clearObjList(): CreateO;
+  addObj(value?: CreateO_Obj, index?: number): CreateO_Obj;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateO.AsObject;
@@ -146,7 +146,7 @@ export class CreateO extends jspb.Message {
 export namespace CreateO {
   export type AsObject = {
     api?: CreateO_API.AsObject;
-    obj?: CreateO_Obj.AsObject;
+    objList: Array<CreateO_Obj.AsObject>;
   };
 }
 
