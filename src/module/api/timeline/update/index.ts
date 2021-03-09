@@ -2,7 +2,7 @@ import {
   UpdateI,
   UpdateI_Obj,
   UpdateO_Obj,
-  UpdateI_Obj_Property,
+  UpdateI_Obj_Jsnpatch,
 } from "module/api/timeline/proto/update_pb";
 import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import * as env from "module/env";
@@ -17,24 +17,40 @@ export async function Update(
   const req = new UpdateI();
 
   const obj = new UpdateI_Obj();
-  const objProperty = new UpdateI_Obj_Property();
-
-  if (timelineUpdate.stat) {
-    objProperty.setStat(timelineUpdate.stat);
-  }
-  if (timelineUpdate.name) {
-    objProperty.setName(timelineUpdate.name);
-  }
-  if (timelineUpdate.desc) {
-    objProperty.setDesc(timelineUpdate.desc);
-  }
+  const nameObjJsnPatch = new UpdateI_Obj_Jsnpatch();
+  const descriptionObjJsnPatch = new UpdateI_Obj_Jsnpatch();
+  const statObjJsnPatch = new UpdateI_Obj_Jsnpatch();
+  const objList = [];
+  const patchList = [];
 
   obj.getMetadataMap().set(key.OrganizationID, timelineUpdate.ventureId);
   obj.getMetadataMap().set(key.VentureID, timelineUpdate.ventureId);
   obj.getMetadataMap().set(key.UserID, timelineUpdate.userId);
   obj.getMetadataMap().set(key.TimelineID, timelineUpdate.id);
-  obj.setProperty(objProperty);
-  req.setObj(obj);
+
+  if (timelineUpdate.stat) {
+    statObjJsnPatch.setOpe("replace");
+    statObjJsnPatch.setPat("/obj/property/stat");
+    statObjJsnPatch.setVal(timelineUpdate.stat);
+  }
+  if (timelineUpdate.name) {
+    nameObjJsnPatch.setOpe("replace");
+    nameObjJsnPatch.setPat("/obj/property/name");
+    nameObjJsnPatch.setVal(timelineUpdate.name);
+  }
+  if (timelineUpdate.desc) {
+    descriptionObjJsnPatch.setOpe("replace");
+    descriptionObjJsnPatch.setPat("/obj/property/desc");
+    descriptionObjJsnPatch.setVal(timelineUpdate.desc);
+  }
+
+  patchList.push(nameObjJsnPatch);
+  patchList.push(descriptionObjJsnPatch);
+
+  obj.setJsnpatchList(patchList);
+
+  objList.push(obj);
+  req.setObjList(objList);
 
   const getUpdateResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {
