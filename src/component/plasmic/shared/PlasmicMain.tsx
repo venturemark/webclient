@@ -268,7 +268,17 @@ function PlasmicMain__RenderFunc(props: {
               hasVariant(variants, "variantType", "isTimeline") &&
               hasVariant(variants, "isActive", "settings"),
           })}
-        />
+        >
+          <div
+            className={classNames(
+              defaultcss.all,
+              defaultcss.__wab_text,
+              sty.box__fdWyB
+            )}
+          >
+            {"Create a New Venture"}
+          </div>
+        </AddEditVenture>
       ) : null}
       {(
         hasVariant(variants, "variantType", "isTimeline") &&

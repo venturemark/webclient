@@ -309,6 +309,8 @@ function PlasmicSidebarItem__RenderFunc(props: {
               ? false
               : triggers.hover_root
               ? true
+              : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+              ? true
               : hasVariant(variants, "itemType", "createTimeline")
               ? false
               : false
@@ -325,6 +327,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 [sty.iconButton__isActive_itemType_createTimeline]:
                   hasVariant(variants, "isActive", "isActive") &&
                   hasVariant(variants, "itemType", "createTimeline"),
+                [sty.iconButton__isUserOnClick]: hasVariant(
+                  variants,
+                  "isUserOnClick",
+                  "isUserOnClick"
+                ),
                 [sty.iconButton__itemType_createTimeline]: hasVariant(
                   variants,
                   "itemType",
@@ -366,7 +373,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
             triggers.hover_root
               ? true
               : hasVariant(variants, "isUserOnClick", "isUserOnClick")
-              ? false
+              ? true
               : false
           ) ? (
             <Dropdown

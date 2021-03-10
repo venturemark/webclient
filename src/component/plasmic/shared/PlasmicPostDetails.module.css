@@ -24,7 +24,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 75px;
+  height: 60px;
   left: 0px;
   top: 0px;
   width: 100%;
@@ -57,7 +57,7 @@
   align-items: stretch;
   justify-content: flex-start;
   margin-bottom: 75px;
-  margin-top: calc(75px + 0px) !important;
+  margin-top: calc(60px + 0px) !important;
   margin-right: 0px;
   margin-left: 0px;
   overflow: auto;

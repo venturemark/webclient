@@ -148,3 +148,7 @@
   top: 29px;
   right: 7px;
 }
+.dropdown__isUserOnClick:global(.__wab_instance) {
+  z-index: 30;
+  top: 33px;
+}

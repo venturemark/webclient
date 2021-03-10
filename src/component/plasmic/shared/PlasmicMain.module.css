@@ -59,6 +59,9 @@
 .addEditVenture:global(.__wab_instance) {
   position: relative;
 }
+.box__fdWyB {
+  font-size: 26px /* plasmic-token: TujpjiAsC */;
+}
 .addEditTimeline:global(.__wab_instance) {
   position: relative;
 }
@@ -113,7 +116,7 @@
   margin-left: 0px;
 }
 .box__variantType_isEmpty__z2SaNF9Ly {
-  font-size: 36px /* plasmic-token: mXYe0t8Ye */;
+  font-size: 30px /* plasmic-token: mXYe0t8Ye */;
   font-weight: 300;
   line-height: 1.2;
   height: auto;
@@ -122,7 +125,7 @@
   position: relative;
 }
 .box__variantType_isEmpty___4U2J8NF9Ly {
-  font-size: 36px /* plasmic-token: mXYe0t8Ye */;
+  font-size: 30px /* plasmic-token: mXYe0t8Ye */;
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 9px;

@@ -253,7 +253,7 @@
     {
       "name": "fs-h1",
       "type": "fontsize",
-      "value": "36px",
+      "value": "30px",
       "category": "fontsize",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
@@ -263,7 +263,7 @@
     {
       "name": "fs-h2",
       "type": "fontsize",
-      "value": "30px",
+      "value": "26px",
       "category": "fontsize",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
@@ -273,7 +273,7 @@
     {
       "name": "fs-h3",
       "type": "fontsize",
-      "value": "24px",
+      "value": "22px",
       "category": "fontsize",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
