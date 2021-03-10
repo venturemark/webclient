@@ -180,6 +180,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 [sty.icon__isActive_itemType_createTimeline]:
                   hasVariant(variants, "isActive", "isActive") &&
                   hasVariant(variants, "itemType", "createTimeline"),
+                [sty.icon__isUserOnClick]: hasVariant(
+                  variants,
+                  "isUserOnClick",
+                  "isUserOnClick"
+                ),
                 [sty.icon__itemType_createTimeline]: hasVariant(
                   variants,
                   "itemType",

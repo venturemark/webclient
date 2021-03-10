@@ -580,11 +580,6 @@
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconQuestion.tsx"
         },
         {
-          "id": "ncDyDuIGRd",
-          "name": "IconTextIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconText.tsx"
-        },
-        {
           "id": "oiAgf-ezpQ",
           "name": "IconSendIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconSend.tsx"
@@ -598,21 +593,6 @@
           "id": "zCNIMAkbig",
           "name": "IconWriteIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconWrite.tsx"
-        },
-        {
-          "id": "Exz-c1pU2x",
-          "name": "IconPersonIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconPerson.tsx"
-        },
-        {
-          "id": "o3m824rpnQ",
-          "name": "IconSettingsIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconSettings.tsx"
-        },
-        {
-          "id": "Z6YqF7wXr6",
-          "name": "IconHomeOldIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconHomeOld.tsx"
         },
         {
           "id": "gg_6iBfcsu",
@@ -653,76 +633,6 @@
           "id": "Dz069s-rE",
           "name": "IconDotMenuIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconDotMenu.tsx"
-        },
-        {
-          "id": "XUgdOgQqgl",
-          "name": "MaskIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Mask.tsx"
-        },
-        {
-          "id": "BpZ46_NMV6",
-          "name": "BgIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Bg.tsx"
-        },
-        {
-          "id": "_qd0glcNIB",
-          "name": "Mask2Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Mask2.tsx"
-        },
-        {
-          "id": "KHjXB9x4MW",
-          "name": "VectorIcon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector.tsx"
-        },
-        {
-          "id": "U-Jaeq__a_",
-          "name": "Vector2Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector2.tsx"
-        },
-        {
-          "id": "BrCOdQDBB8n",
-          "name": "Vector3Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector3.tsx"
-        },
-        {
-          "id": "q3jeL7oGzyq",
-          "name": "Vector4Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector4.tsx"
-        },
-        {
-          "id": "N6GW61430mT",
-          "name": "Vector5Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector5.tsx"
-        },
-        {
-          "id": "QiKLFwk8gHE",
-          "name": "Vector6Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector6.tsx"
-        },
-        {
-          "id": "x57pg_sjNBd",
-          "name": "Vector7Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector7.tsx"
-        },
-        {
-          "id": "iArCgrWJBDK",
-          "name": "Vector8Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector8.tsx"
-        },
-        {
-          "id": "SFV0ONnhDMP",
-          "name": "Vector9Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector9.tsx"
-        },
-        {
-          "id": "RzjjVYNqSL1",
-          "name": "Vector10Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector10.tsx"
-        },
-        {
-          "id": "74AWP6pMaxz",
-          "name": "Vector11Icon",
-          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Vector11.tsx"
         },
         {
           "id": "FUAnm6q86",
@@ -855,6 +765,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.114",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.114/dist/plasmic.schema.json"
+  "cliVersion": "0.1.116",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.116/dist/plasmic.schema.json"
 }
