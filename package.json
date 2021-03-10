@@ -31,6 +31,7 @@
     "@venturemark/numnum": "github:venturemark/numnum#v0.2.0",
     "antd": "^4.11.2",
     "date-fns": "^2.16.1",
+    "emailjs-com": "^2.6.4",
     "faker": "^5.1.0",
     "react": "^17.0.1",
     "react-card-flip": "^1.0.11",
