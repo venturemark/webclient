@@ -32,11 +32,12 @@ function AddEditMembers(props: AddEditMembersProps) {
 
     const templateParams = {
       to_name: "Marcus",
+      user_email: email,
       from_name: "Elon Musk",
       message: "hello there my old friend!",
     };
 
-    // invite(email);
+    //send invite link
     emailjs
       .send(
         "service_4fkfbos",
