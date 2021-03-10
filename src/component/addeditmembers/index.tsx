@@ -9,6 +9,9 @@ import { useForm } from "react-hook-form";
 import { getUser } from "module/store";
 import MemberItem from "component/memberitem";
 import { IUser } from "module/interface/user";
+import emailjs from "emailjs-com";
+// import { init } from "emailjs-com";
+// init("user_mRFm0l0xiY3CK24bkQMdu");
 
 interface AddEditMembersProps extends DefaultAddEditMembersProps {}
 
@@ -27,7 +30,30 @@ function AddEditMembers(props: AddEditMembersProps) {
 
     newMembers.push(user);
 
-    // invite(email);
+    const templateParams = {
+      to_name: "Marcus",
+      user_email: email,
+      from_name: "Elon Musk",
+      message: "hello there my old friend!",
+    };
+
+    //send invite link
+    emailjs
+      .send(
+        "service_4fkfbos",
+        "template_iifu2kt",
+        templateParams,
+        "user_mRFm0l0xiY3CK24bkQMdu"
+      )
+      .then(
+        function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        function (error) {
+          console.log("FAILED...", error);
+        }
+      );
+
     setMembers(newMembers);
     reset();
   };
