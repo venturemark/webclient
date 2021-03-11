@@ -5,7 +5,6 @@ import {
   PlasmicMain,
   DefaultMainProps,
 } from "component/plasmic/shared/PlasmicMain";
-import { useHistory } from "react-router-dom";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
@@ -21,7 +20,6 @@ interface MainProps extends DefaultMainProps {
   isActive: any;
   variantType: any;
   setIsActive: any;
-  setVariantType: any;
   isVisible: any;
   setIsVisible: any;
   setPost: any;
@@ -33,7 +31,6 @@ function Main(props: MainProps) {
   const {
     isActive,
     variantType,
-    setVariantType,
     isVisible,
     setIsVisible,
     setPost,
@@ -42,7 +39,6 @@ function Main(props: MainProps) {
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-  const history = useHistory();
   const { timelineSlug } = useParams<ParamTypes>();
 
   const timelineSearch: ITimelineQuery = {
