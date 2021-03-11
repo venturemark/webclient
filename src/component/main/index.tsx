@@ -25,6 +25,8 @@ interface MainProps extends DefaultMainProps {
   isVisible: any;
   setIsVisible: any;
   setPost: any;
+  viewCreateVenture?: any;
+  viewJoinVenture?: any;
 }
 
 function Main(props: MainProps) {
@@ -35,6 +37,8 @@ function Main(props: MainProps) {
     isVisible,
     setIsVisible,
     setPost,
+    viewCreateVenture,
+    viewJoinVenture,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
@@ -84,13 +88,13 @@ function Main(props: MainProps) {
         currentTimeline,
         setPost,
       }}
-      addEditMembers={{}}
-      addEditVenture={{}}
-      addEditTimeline={{}}
+      // addEditMembers={{}}
+      // addEditVenture={{}}
+      // addEditTimeline={{}}
       viewCreateVenture={{
-        onClick: () => history.push("/new"),
+        onClick: () => viewCreateVenture(),
       }}
-      viewJoinVenture={{ onClick: () => setVariantType("isVenture") }}
+      viewJoinVenture={{ onClick: () => viewJoinVenture }}
     />
   );
 }

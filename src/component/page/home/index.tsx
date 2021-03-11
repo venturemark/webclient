@@ -10,51 +10,50 @@ import { ITimelineQuery } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { useTimelines } from "module/hook/timeline";
 import { getUser, getVenture } from "module/store";
-import { useParams, useRouteMatch } from "react-router-dom";
+import { useRouteMatch, Redirect } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-interface ParamTypes {
-  ventureSlug: string;
-  timelineSlug: string;
+enum ActiveState {
+  Feed = "feed",
+  Settings = "settings",
+  Members = "members",
 }
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
 type IsActive = "feed" | "settings" | "members" | undefined;
 type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 
-interface HomeProps extends DefaultHomeProps {}
+interface HomeProps extends DefaultHomeProps {
+  timelineVariant: string;
+}
 
 export function Home(props: HomeProps) {
+  const { timelineVariant } = props;
   const user = getUser();
   const venture = getVenture();
   const { url } = useRouteMatch<IsActive>();
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-  const { timelineSlug, ventureSlug } = useParams<ParamTypes>();
 
-  const ventureId = venture?.url ?? "";
+  const ventureId = venture?.id ?? "";
   const userId = user?.id ?? "";
   const timelineSearch: ITimelineQuery = {
     userId,
     ventureId,
     token,
   };
-  const { data: timelinesData } = useTimelines(timelineSearch);
+  const { data: timelinesData, isSuccess } = useTimelines(timelineSearch);
 
-  const variant =
-    venture && !timelineSlug
-      ? "isTimeline"
-      : !venture && !ventureSlug
-      ? "isEmpty"
-      : venture
-      ? "isVenture"
-      : "isVenture";
+  const variant = timelineVariant ? "isTimeline" : "isVenture";
 
-  const active = url.split("/")[3]
-    ? (url.split("/")[3] as IsActive)
-    : timelinesData?.length > 0
-    ? (url.split("/")[2] as IsActive)
-    : "settings";
+  let active: IsActive = undefined;
+  let param = url.split("/")[3]
+    ? (url.split("/")[3] as ActiveState)
+    : (url.split("/")[2] as ActiveState);
+
+  if (!Object.values(ActiveState).includes(param)) {
+    active = "feed";
+  }
 
   // local hooks shared with page-level elements
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
@@ -82,13 +81,8 @@ export function Home(props: HomeProps) {
   // }
 
   useEffect(() => {
-    setVariantType(variant);
-    // !venture && setVariantType("isEmpty");
-    venture && variantType === "isEmpty" && setVariantType("isVenture");
-    if (active === "settings" && !ventureSlug) {
-      setIsActive("feed");
-    } else {
-      setIsActive(active);
+    if (Object.values(ActiveState).includes(param)) {
+      setIsActive(param);
     }
 
     //auth
@@ -103,16 +97,14 @@ export function Home(props: HomeProps) {
     if (token === "") {
       getToken();
     }
-  }, [
-    venture,
-    variantType,
-    variant,
-    active,
-    ventureSlug,
-    getAccessTokenSilently,
-    token,
-  ]);
+  }, [param, getAccessTokenSilently, token]);
 
+  if (!ventureId || timelinesData?.length < 1) {
+    return <Redirect to={`/new`} />;
+  }
+  if (isSuccess && timelinesData?.length < 1) {
+    return <Redirect to={`/new`} />;
+  }
   return (
     <>
       <PlasmicHome
