@@ -6,6 +6,7 @@ import {
   DefaultActionBarProps,
 } from "component/plasmic/shared/PlasmicActionBar";
 // import { EditorShape } from "component/editor/compose";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { INewUpdate } from "module/interface/update";
 import { AntSelect } from "component/ant/select";
 import { useForm } from "react-hook-form";
@@ -159,12 +160,44 @@ function ActionBar(props: ActionBarProps) {
         userInitials,
       }}
       title={{
-        ref: register(),
-        name: "title",
+        render: () => (
+          <TextareaAutosize
+            aria-label="Title"
+            style={{
+              resize: "none",
+              fontSize: "18px",
+              fontWeight: 600,
+              color: "261A3F",
+              fontFamily: "Poppins",
+              outline: "none",
+              border: "none",
+            }}
+            rowsMin={1}
+            placeholder="Write your update"
+            name="title"
+            ref={register()}
+          />
+        ),
       }}
       description={{
-        ref: register(),
-        name: "description",
+        render: () => (
+          <TextareaAutosize
+            aria-label="Description"
+            style={{
+              resize: "none",
+              fontSize: "15px",
+              fontWeight: 300,
+              color: "261A3F",
+              fontFamily: "Poppins",
+              outline: "none",
+              border: "none",
+            }}
+            rowsMin={4}
+            placeholder="Description..."
+            name="description"
+            ref={register()}
+          />
+        ),
       }}
       tagsContainer={{
         render: () => (
