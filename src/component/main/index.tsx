@@ -5,7 +5,6 @@ import {
   PlasmicMain,
   DefaultMainProps,
 } from "component/plasmic/shared/PlasmicMain";
-import { useHistory } from "react-router-dom";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
@@ -21,24 +20,25 @@ interface MainProps extends DefaultMainProps {
   isActive: any;
   variantType: any;
   setIsActive: any;
-  setVariantType: any;
   isVisible: any;
   setIsVisible: any;
   setPost: any;
+  viewCreateVenture?: any;
+  viewJoinVenture?: any;
 }
 
 function Main(props: MainProps) {
   const {
     isActive,
     variantType,
-    setVariantType,
     isVisible,
     setIsVisible,
     setPost,
+    viewCreateVenture,
+    viewJoinVenture,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-  const history = useHistory();
   const { timelineSlug } = useParams<ParamTypes>();
 
   const timelineSearch: ITimelineQuery = {
@@ -84,13 +84,13 @@ function Main(props: MainProps) {
         currentTimeline,
         setPost,
       }}
-      addEditMembers={{}}
-      addEditVenture={{}}
-      addEditTimeline={{}}
+      // addEditMembers={{}}
+      // addEditVenture={{}}
+      // addEditTimeline={{}}
       viewCreateVenture={{
-        onClick: () => history.push("/new"),
+        onClick: () => viewCreateVenture(),
       }}
-      viewJoinVenture={{ onClick: () => setVariantType("isVenture") }}
+      viewJoinVenture={{ onClick: () => viewJoinVenture }}
     />
   );
 }
