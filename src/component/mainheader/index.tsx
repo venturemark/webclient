@@ -18,10 +18,18 @@ interface ParamTypes {
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
   currentTimeline: ITimeline;
+  variantType: string;
+  isOnboarding?: boolean | "isOnboarding";
 }
 
 function MainHeader(props: MainHeaderProps) {
-  const { isActive, currentTimeline, ...rest } = props;
+  const {
+    isActive,
+    currentTimeline,
+    variantType,
+    isOnboarding,
+    ...rest
+  } = props;
   const { timelineSlug } = useParams<ParamTypes>();
   const history = useHistory();
   const venture = getVenture();
@@ -33,7 +41,9 @@ function MainHeader(props: MainHeaderProps) {
   return (
     <PlasmicMainHeader
       {...rest}
-      headerStyles={!timelineSlug ? "ventureHeader" : undefined}
+      headerStyles={
+        variantType === "isVenture" ? "ventureHeader" : "timelineHeader"
+      }
       ventureName={venture?.name}
       ventureDescription={venture?.description}
       timelineName={currentTimeline?.name}

@@ -4,13 +4,13 @@
   height: auto;
   position: relative;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .root {
     width: 100%;
     min-width: 0;
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .root__buttonFeatures_nonFullWidth {
     width: auto;
     display: inline-flex;
@@ -33,7 +33,7 @@
   border-style: solid;
   border-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .button {
     width: 100%;
     min-width: 0;
@@ -46,7 +46,7 @@
   min-width: 0px;
   padding: 10px 15px;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .button__buttonFeatures_nonFullWidth {
     width: auto;
     display: inline-flex;
@@ -173,7 +173,7 @@
 .slotText2 > * {
   text-decoration-line: none;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .slotText2 {
     font-size: 15px /* plasmic-token: mV0JUhpGq */;
   }

@@ -20,7 +20,7 @@
   min-width: 0;
   min-height: 0;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box___2Z8 {
     padding-top: 75px;
   }
@@ -47,7 +47,7 @@
   margin: 75px 0px 0px;
   background: rgb(249, 249, 250);
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__lHnLh {
     align-items: flex-start;
     overflow: auto;
@@ -75,7 +75,7 @@
 .box__sMn2A > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5%;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__sMn2A {
     display: flex;
     flex-direction: column;
@@ -84,7 +84,7 @@
     padding: 10px 0px;
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__sMn2A > :global(.__wab_flex-container) {
     flex-direction: column;
     align-items: center;
@@ -94,7 +94,7 @@
     height: calc(100% + 19px);
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__sMn2A > :global(.__wab_flex-container) > *,
   .box__sMn2A > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
     margin-left: 0px;
@@ -118,7 +118,7 @@
 .box__uwKvi > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 17px;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__uwKvi {
     width: 100%;
     padding: 10px 30px;
@@ -137,7 +137,7 @@
   font-weight: 300;
   line-height: 1.31;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .h2___608W3 {
     font-size: 22px /* plasmic-token: y8zaQOVwJ */;
     text-align: center;
@@ -149,7 +149,7 @@
   font-weight: 600;
   line-height: 1.31;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .span {
     font-size: 22px /* plasmic-token: y8zaQOVwJ */;
     text-align: center;
@@ -161,7 +161,7 @@
   font-weight: 300;
   line-height: 1.31;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .h2__vnLD {
     font-size: 22px /* plasmic-token: y8zaQOVwJ */;
     text-align: center;
@@ -173,7 +173,7 @@
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
   height: auto;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .p {
     text-align: center;
   }

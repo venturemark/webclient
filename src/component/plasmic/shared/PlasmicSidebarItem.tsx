@@ -155,6 +155,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
               "itemType",
               "createTimeline"
             ),
+            [sty.itemContainer__itemType_timeline]: hasVariant(
+              variants,
+              "itemType",
+              "timeline"
+            ),
             [sty.itemContainer__itemType_ventureCollapsed]: hasVariant(
               variants,
               "itemType",
@@ -360,6 +365,9 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     "isActive",
                     "isActive"
                   ),
+                  [sty.svg__isActive_isUserOnClick__zhtWcw0Xu8XgVg8]:
+                    hasVariant(variants, "isActive", "isActive") &&
+                    hasVariant(variants, "isUserOnClick", "isUserOnClick"),
                   [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
                     hasVariant(variants, "isActive", "isActive") &&
                     hasVariant(variants, "itemType", "createTimeline"),
@@ -398,6 +406,8 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
                 hasVariant(variants, "itemType", "timeline") &&
                 triggers.hover_root
+                  ? "Edit Timeline"
+                  : hasVariant(variants, "itemType", "timeline")
                   ? "Edit Timeline"
                   : "Edit Venture"
               }

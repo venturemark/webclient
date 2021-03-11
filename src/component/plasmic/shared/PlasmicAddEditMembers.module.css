@@ -20,7 +20,7 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 18px;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .root {
     padding: 20px /* plasmic-token: dS7QCqXxp */;
   }

@@ -34,12 +34,12 @@
   position: relative;
   flex-shrink: 0;
 }
-@media (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .sidebar:global(.__wab_instance) {
     flex-shrink: 0;
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .sidebar:global(.__wab_instance) {
     flex-shrink: 0;
   }
@@ -47,7 +47,7 @@
 .sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
   flex-shrink: 0;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
     position: absolute;
     left: 0px;
@@ -82,12 +82,12 @@
 .postDetails:global(.__wab_instance) {
   position: relative;
 }
-@media (max-width: 1200px) {
+@media (min-width: 992px) and (max-width: 1200px) {
   .postDetails:global(.__wab_instance) {
     max-width: 420px;
   }
 }
-@media (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .postDetails:global(.__wab_instance) {
     position: absolute;
     left: 0px;
@@ -96,7 +96,7 @@
     min-width: 0;
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .postDetails:global(.__wab_instance) {
     position: absolute;
     left: 0px;
