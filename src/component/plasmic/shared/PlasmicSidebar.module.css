@@ -14,16 +14,6 @@
   min-height: 0;
   background: #ffffff;
 }
-@media (min-width: 1201px) {
-  .root {
-    width: 250px;
-  }
-}
-@media (max-width: 1200px) {
-  .root {
-    width: 300px;
-  }
-}
 @media (max-width: 991px) {
   .root {
     width: 250px;

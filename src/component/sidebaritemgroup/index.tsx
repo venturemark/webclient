@@ -27,7 +27,10 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       venture={{
         name: name,
         icon: {
-          onClick: () => setIsCollapsed(!isCollapsed),
+          onClick: (e: MouseEvent) => {
+            e.stopPropagation();
+            setIsCollapsed(!isCollapsed);
+          },
         },
         isActive:
           name.toLowerCase().replace(/\s/g, "") === ventureSlug &&
