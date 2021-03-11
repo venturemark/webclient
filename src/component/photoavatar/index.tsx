@@ -21,11 +21,12 @@ function PhotoAvatar(props: PhotoAvatarProps) {
       .split(" ")
       .map((n: string) => n[0])
       .join("") ?? "";
+
   return (
     <PlasmicPhotoAvatar
+      {...rest}
       onClick={() => setProfileDropdown && setProfileDropdown(!profileDropdown)}
       userInitials={userInitials}
-      {...rest}
     />
   );
 }
