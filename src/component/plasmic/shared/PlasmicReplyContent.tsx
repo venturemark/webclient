@@ -181,7 +181,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                         >
                           <span>
                             <span style={{ fontWeight: 700 }}>
-                              {"The Rock"}
+                              {"asdasdasdasd "}
                             </span>
                           </span>
                         </span>
@@ -190,34 +190,40 @@ function PlasmicReplyContent__RenderFunc(props: {
                       className={classNames(sty.slotUserName)}
                     />
 
-                    <span
-                      data-plasmic-name={"span"}
-                      data-plasmic-override={overrides.span}
-                      className={classNames(
-                        defaultcss.all,
-                        defaultcss.__wab_text,
-                        sty.span
-                      )}
+                    <p.Stack
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(defaultcss.all, sty.box__wfm2A)}
                     >
-                      {"•"}
-                    </span>
+                      <span
+                        data-plasmic-name={"span"}
+                        data-plasmic-override={overrides.span}
+                        className={classNames(
+                          defaultcss.all,
+                          defaultcss.__wab_text,
+                          sty.span
+                        )}
+                      >
+                        {"•"}
+                      </span>
 
-                    <p.PlasmicSlot
-                      defaultContents={
-                        <span
-                          data-plasmic-name={"date"}
-                          data-plasmic-override={overrides.date}
-                          className={classNames(
-                            defaultcss.all,
-                            defaultcss.__wab_text,
-                            sty.date
-                          )}
-                        >
-                          {"3 hours ago"}
-                        </span>
-                      }
-                      value={args.date}
-                    />
+                      <p.PlasmicSlot
+                        defaultContents={
+                          <span
+                            data-plasmic-name={"date"}
+                            data-plasmic-override={overrides.date}
+                            className={classNames(
+                              defaultcss.all,
+                              defaultcss.__wab_text,
+                              sty.date
+                            )}
+                          >
+                            {"3 hours ago"}
+                          </span>
+                        }
+                        value={args.date}
+                      />
+                    </p.Stack>
                   </p.Stack>
                 </div>
 
