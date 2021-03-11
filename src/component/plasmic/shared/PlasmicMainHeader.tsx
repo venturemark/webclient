@@ -159,7 +159,13 @@ function PlasmicMainHeader__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__sDNfz)}
+          className={classNames(defaultcss.all, sty.box__sDNfz, {
+            [sty.box__headerStyles_ventureHeader__sDNfzNMQ9]: hasVariant(
+              variants,
+              "headerStyles",
+              "ventureHeader"
+            ),
+          })}
         >
           {(
             hasVariant(variants, "headerStyles", "ventureHeader") ? false : true
@@ -196,29 +202,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                   ),
                 })}
               />
-              {(
-                hasVariant(variants, "headerStyles", "timelineHeader")
-                  ? false
-                  : true
-              ) ? (
-                <IconButton
-                  data-plasmic-name={"iconButton"}
-                  data-plasmic-override={overrides.iconButton}
-                  className={classNames("__wab_instance", sty.iconButton, {
-                    [sty.iconButton__headerStyles_timelineHeader]: hasVariant(
-                      variants,
-                      "headerStyles",
-                      "timelineHeader"
-                    ),
-                  })}
-                  iconSize={"large" as const}
-                >
-                  <IconExternalLinkIcon
-                    className={classNames(defaultcss.all, sty.svg__nqhCc)}
-                    role={"img"}
-                  />
-                </IconButton>
-              ) : null}
             </p.Stack>
           ) : null}
           {(
@@ -264,6 +247,11 @@ function PlasmicMainHeader__RenderFunc(props: {
                         "headerStyles",
                         "timelineHeader"
                       ),
+                      [sty.box__headerStyles_ventureHeader__y7S0JNMQ9]: hasVariant(
+                        variants,
+                        "headerStyles",
+                        "ventureHeader"
+                      ),
                     }
                   )}
                 >
@@ -278,7 +266,39 @@ function PlasmicMainHeader__RenderFunc(props: {
                   : true
               ) ? (
                 <p.PlasmicSlot
-                  defaultContents={"Adbloom"}
+                  defaultContents={
+                    <React.Fragment>
+                      <div
+                        className={classNames(
+                          defaultcss.all,
+                          defaultcss.__wab_text,
+                          sty.box__oBTp
+                        )}
+                      >
+                        {"Adbloom"}
+                      </div>
+
+                      {false ? (
+                        <IconButton
+                          data-plasmic-name={"iconButton"}
+                          data-plasmic-override={overrides.iconButton}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.iconButton
+                          )}
+                          iconSize={"large" as const}
+                        >
+                          <IconExternalLinkIcon
+                            className={classNames(
+                              defaultcss.all,
+                              sty.svg__vIuG
+                            )}
+                            role={"img"}
+                          />
+                        </IconButton>
+                      ) : null}
+                    </React.Fragment>
+                  }
                   value={args.ventureName}
                   className={classNames(sty.slotVentureName, {
                     [sty.slotVentureName__headerStyles_timelineHeader]: hasVariant(
@@ -304,7 +324,7 @@ function PlasmicMainHeader__RenderFunc(props: {
               ? false
               : hasVariant(globalVariants, "screen", "mobile")
               ? false
-              : false
+              : true
           ) ? (
             <div
               className={classNames(defaultcss.all, sty.box__fohK2, {
@@ -363,7 +383,7 @@ function PlasmicMainHeader__RenderFunc(props: {
               ? false
               : hasVariant(globalVariants, "screen", "mobile")
               ? false
-              : false
+              : true
           ) ? (
             <div
               className={classNames(defaultcss.all, sty.box__gg4AP, {
