@@ -9,7 +9,7 @@
   border-radius: 100%;
   background: rgb(169, 54, 109);
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .root {
     width: 26px;
     height: 26px;
@@ -29,7 +29,7 @@
   font-size: 18px;
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .slotUserInitials {
     font-size: 12px /* plasmic-token: LxqIZc9hM */;
   }

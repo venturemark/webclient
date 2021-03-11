@@ -82,6 +82,7 @@ export function Onboard(props: HomeProps) {
         }}
         main={{
           variantType: variantType,
+          isOnboarding: true,
           isActive: isActive,
           setIsActive,
           setVariantType,

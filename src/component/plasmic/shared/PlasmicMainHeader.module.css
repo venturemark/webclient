@@ -5,7 +5,7 @@
   position: relative;
   min-width: 0;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .container {
     width: 100%;
     height: auto;
@@ -13,7 +13,7 @@
     padding: 0px;
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .container__headerStyles_timelineHeader {
     padding: 0px;
   }
@@ -44,12 +44,12 @@
 .box___3Xg51 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 15px;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box___3Xg51 {
     padding: 15px 10px;
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__headerStyles_timelineHeader___3Xg51Rxxpi {
     padding: 20px 0px;
   }
@@ -172,7 +172,7 @@
   font-weight: 400;
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .slotTimelineDescription {
     font-size: 14px;
   }
@@ -189,7 +189,7 @@
   font-weight: 400;
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .slotVentureDescription {
     font-size: 14px;
   }

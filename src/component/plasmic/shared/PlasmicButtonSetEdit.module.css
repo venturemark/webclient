@@ -9,13 +9,13 @@
 .root__variantState_isEdit {
   justify-content: space-between;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .root__variantState_isEdit {
     display: flex;
     flex-direction: column;
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .root__variantState_isEdit > :global(.__wab_flex-container) {
     flex-direction: column;
     margin-left: calc(0px - 0px);
@@ -24,7 +24,7 @@
     height: calc(100% + 20px);
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .root__variantState_isEdit > :global(.__wab_flex-container) > *,
   .root__variantState_isEdit
     > :global(.__wab_flex-container)
@@ -41,7 +41,7 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__wbTrP {
     order: 2;
   }
@@ -70,7 +70,7 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box___0SmAy {
     order: 1;
     align-self: stretch;
@@ -90,13 +90,13 @@
   margin-left: 15px;
   margin-top: 0px;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__variantState_isEdit___0SmAYtAumS {
     display: flex;
     flex-direction: column;
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__variantState_isEdit___0SmAYtAumS > :global(.__wab_flex-container) {
     flex-direction: column;
     margin-left: calc(0px - 0px);
@@ -105,7 +105,7 @@
     height: calc(100% + 20px);
   }
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__variantState_isEdit___0SmAYtAumS > :global(.__wab_flex-container) > *,
   .box__variantState_isEdit___0SmAYtAumS
     > :global(.__wab_flex-container)
@@ -122,7 +122,7 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .box__blR7J {
     order: 2;
   }

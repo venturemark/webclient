@@ -17,6 +17,7 @@ interface ParamTypes {
 }
 
 interface MainProps extends DefaultMainProps {
+  isOnboarding?: boolean | "isOnboarding";
   isActive: any;
   variantType: any;
   setIsActive: any;
@@ -29,6 +30,7 @@ interface MainProps extends DefaultMainProps {
 
 function Main(props: MainProps) {
   const {
+    isOnboarding,
     isActive,
     variantType,
     isVisible,
@@ -76,7 +78,9 @@ function Main(props: MainProps) {
       variantType={variantType}
       mainHeader={{
         isActive: isActive,
+        variantType: variantType,
         currentTimeline,
+        isOnboarding,
       }}
       feedUpdate={{
         isVisible,

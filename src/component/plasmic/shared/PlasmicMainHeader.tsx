@@ -45,6 +45,7 @@ export type PlasmicMainHeader__VariantMembers = {
   headerStyles: "timelineHeader" | "ventureHeader";
   isActive: "feed" | "members" | "settings" | "unnamedVariant";
   showVentureDescription: "showVentureDescription";
+  isOnboarding: "isOnboarding";
 };
 
 export type PlasmicMainHeader__VariantsArgs = {
@@ -53,13 +54,15 @@ export type PlasmicMainHeader__VariantsArgs = {
     "feed" | "members" | "settings" | "unnamedVariant"
   >;
   showVentureDescription?: SingleBooleanChoiceArg<"showVentureDescription">;
+  isOnboarding?: SingleBooleanChoiceArg<"isOnboarding">;
 };
 
 type VariantPropType = keyof PlasmicMainHeader__VariantsArgs;
 export const PlasmicMainHeader__VariantProps = new Array<VariantPropType>(
   "headerStyles",
   "isActive",
-  "showVentureDescription"
+  "showVentureDescription",
+  "isOnboarding"
 );
 
 export type PlasmicMainHeader__ArgsType = {
@@ -96,6 +99,7 @@ export interface DefaultMainHeaderProps {
     "feed" | "members" | "settings" | "unnamedVariant"
   >;
   showVentureDescription?: SingleBooleanChoiceArg<"showVentureDescription">;
+  isOnboarding?: SingleBooleanChoiceArg<"isOnboarding">;
   className?: string;
 }
 
@@ -431,102 +435,111 @@ function PlasmicMainHeader__RenderFunc(props: {
           ) : null}
         </p.Stack>
 
-        <p.Stack
-          as={"div"}
-          data-plasmic-name={"iconContainer"}
-          data-plasmic-override={overrides.iconContainer}
-          hasGap={true}
-          className={classNames(defaultcss.all, sty.iconContainer, {
-            [sty.iconContainer__isActive_feed]: hasVariant(
-              variants,
-              "isActive",
-              "feed"
-            ),
-          })}
-        >
-          <IconButton
-            data-plasmic-name={"viewHome"}
-            data-plasmic-override={overrides.viewHome}
-            iconSize={"large" as const}
-            isActive={
-              hasVariant(variants, "isActive", "feed")
-                ? ("isActive" as const)
-                : undefined
-            }
-          >
-            <IconFeedIcon
-              className={classNames(defaultcss.all, sty.svg__eTdlE, {
-                [sty.svg__headerStyles_ventureHeader__eTdlEnMQ9]: hasVariant(
-                  variants,
-                  "headerStyles",
-                  "ventureHeader"
-                ),
-                [sty.svg__isActive_feed__eTdlEfnkZp]: hasVariant(
-                  variants,
-                  "isActive",
-                  "feed"
-                ),
-              })}
-              role={"img"}
-            />
-          </IconButton>
-
-          <IconButtonMember
-            data-plasmic-name={"viewMembers"}
-            data-plasmic-override={overrides.viewMembers}
-            className={classNames("__wab_instance", sty.viewMembers, {
-              [sty.viewMembers__headerStyles_ventureHeader]: hasVariant(
-                variants,
-                "headerStyles",
-                "ventureHeader"
-              ),
-              [sty.viewMembers__isActive_feed]: hasVariant(
+        {(
+          hasVariant(variants, "isOnboarding", "isOnboarding") ? false : true
+        ) ? (
+          <p.Stack
+            as={"div"}
+            data-plasmic-name={"iconContainer"}
+            data-plasmic-override={overrides.iconContainer}
+            hasGap={true}
+            className={classNames(defaultcss.all, sty.iconContainer, {
+              [sty.iconContainer__isActive_feed]: hasVariant(
                 variants,
                 "isActive",
                 "feed"
               ),
-              [sty.viewMembers__isActive_members]: hasVariant(
+              [sty.iconContainer__isOnboarding]: hasVariant(
                 variants,
-                "isActive",
-                "members"
+                "isOnboarding",
+                "isOnboarding"
               ),
             })}
-            isActive={
-              hasVariant(variants, "isActive", "members")
-                ? ("isActive" as const)
-                : undefined
-            }
-            memberCount={"+"}
-          />
-
-          <IconButton
-            data-plasmic-name={"viewSettings"}
-            data-plasmic-override={overrides.viewSettings}
-            className={classNames("__wab_instance", sty.viewSettings, {
-              [sty.viewSettings__headerStyles_ventureHeader]: hasVariant(
-                variants,
-                "headerStyles",
-                "ventureHeader"
-              ),
-              [sty.viewSettings__isActive_settings]: hasVariant(
-                variants,
-                "isActive",
-                "settings"
-              ),
-            })}
-            iconSize={"large" as const}
-            isActive={
-              hasVariant(variants, "isActive", "settings")
-                ? ("isActive" as const)
-                : undefined
-            }
           >
-            <IconSettings2Icon
-              className={classNames(defaultcss.all, sty.svg__isMis)}
-              role={"img"}
+            <IconButton
+              data-plasmic-name={"viewHome"}
+              data-plasmic-override={overrides.viewHome}
+              iconSize={"large" as const}
+              isActive={
+                hasVariant(variants, "isActive", "feed")
+                  ? ("isActive" as const)
+                  : undefined
+              }
+            >
+              <IconFeedIcon
+                className={classNames(defaultcss.all, sty.svg__eTdlE, {
+                  [sty.svg__headerStyles_ventureHeader__eTdlEnMQ9]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "ventureHeader"
+                  ),
+                  [sty.svg__isActive_feed__eTdlEfnkZp]: hasVariant(
+                    variants,
+                    "isActive",
+                    "feed"
+                  ),
+                })}
+                role={"img"}
+              />
+            </IconButton>
+
+            <IconButtonMember
+              data-plasmic-name={"viewMembers"}
+              data-plasmic-override={overrides.viewMembers}
+              className={classNames("__wab_instance", sty.viewMembers, {
+                [sty.viewMembers__headerStyles_ventureHeader]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "ventureHeader"
+                ),
+                [sty.viewMembers__isActive_feed]: hasVariant(
+                  variants,
+                  "isActive",
+                  "feed"
+                ),
+                [sty.viewMembers__isActive_members]: hasVariant(
+                  variants,
+                  "isActive",
+                  "members"
+                ),
+              })}
+              isActive={
+                hasVariant(variants, "isActive", "members")
+                  ? ("isActive" as const)
+                  : undefined
+              }
+              memberCount={"+"}
             />
-          </IconButton>
-        </p.Stack>
+
+            <IconButton
+              data-plasmic-name={"viewSettings"}
+              data-plasmic-override={overrides.viewSettings}
+              className={classNames("__wab_instance", sty.viewSettings, {
+                [sty.viewSettings__headerStyles_ventureHeader]: hasVariant(
+                  variants,
+                  "headerStyles",
+                  "ventureHeader"
+                ),
+                [sty.viewSettings__isActive_settings]: hasVariant(
+                  variants,
+                  "isActive",
+                  "settings"
+                ),
+              })}
+              iconSize={"large" as const}
+              isActive={
+                hasVariant(variants, "isActive", "settings")
+                  ? ("isActive" as const)
+                  : undefined
+              }
+            >
+              <IconSettings2Icon
+                className={classNames(defaultcss.all, sty.svg__isMis)}
+                role={"img"}
+              />
+            </IconButton>
+          </p.Stack>
+        ) : null}
       </p.Stack>
     </div>
   ) as React.ReactElement | null;
