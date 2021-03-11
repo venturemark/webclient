@@ -6,11 +6,8 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: auto;
-  transition-property: all;
-  transition-duration: 1s;
   align-items: center;
-  width: 100%;
-  min-width: 0;
+  width: 300px;
   min-height: 0;
   background: #ffffff;
 }
