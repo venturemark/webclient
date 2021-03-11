@@ -3,6 +3,7 @@ import {
   CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
+  CreateO,
 } from "module/api/texupd/proto/create_pb";
 import * as key from "module/idkeys";
 import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
@@ -30,13 +31,14 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
   req.setObjList(objList);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
-    client.create(req, metadata, function (err: any, res: any) {
+    client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
         reject(err);
       } else {
-        const updatePb = res.getObj();
+        const updatePbList = res.getObjList();
+        const updatePb = updatePbList[0];
         const metaPb = updatePb?.getMetadataMap();
         const updateId = metaPb.get(key.UpdateID);
 
