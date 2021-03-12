@@ -5,11 +5,32 @@ import {
   PlasmicDropdown,
   DefaultDropdownProps,
 } from "component/plasmic/shared/PlasmicDropdown";
+import { useHistory } from "react-router-dom";
+import { getVenture } from "module/store";
 
-interface DropdownProps extends DefaultDropdownProps {}
+interface DropdownProps extends DefaultDropdownProps {
+  timelineSlug: string;
+  isTimeline: boolean;
+}
 
 function Dropdown(props: DropdownProps) {
-  return <PlasmicDropdown {...props} />;
+  const { timelineSlug, isTimeline, ...rest } = props;
+  const history = useHistory();
+  const venture = getVenture();
+
+  const link = isTimeline
+    ? `/${venture?.id}/${timelineSlug}`
+    : `/${venture?.id}`;
+
+  return (
+    <PlasmicDropdown
+      {...rest}
+      onClick={(e) => {
+        e.stopPropagation();
+        history.push(link + "/settings");
+      }}
+    />
+  );
 }
 
 export default Dropdown;

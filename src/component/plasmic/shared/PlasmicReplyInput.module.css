@@ -35,6 +35,7 @@
   display: flex;
   position: relative;
   flex-direction: row;
+  overflow: visible;
   min-width: 0;
   border-radius: 0px;
   border: 0px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
@@ -52,7 +53,7 @@
 }
 .replyInput {
   width: 100%;
-  height: auto;
+  height: 56px;
   font-size: 16px;
   font-weight: 300;
   min-width: 0;

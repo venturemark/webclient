@@ -104,11 +104,12 @@
 .dropdown:global(.__wab_instance) {
   position: relative;
   right: -23px;
+  top: 79px;
 }
 .dropdown__profileDropdown:global(.__wab_instance) {
   position: absolute;
   left: auto;
-  top: 65px;
+  top: 51px;
   right: -15px;
 }
 .button:global(.__wab_instance) {

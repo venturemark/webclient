@@ -27,7 +27,6 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
-import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -35,8 +34,8 @@ import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-i
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicModalAlt.module.css"; // plasmic-import: Rd6ctyxKvRM/css
 
-import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
+import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 
 export type PlasmicModalAlt__VariantMembers = {
   orgSelected: "orgSelected";
@@ -63,17 +62,12 @@ export const PlasmicModalAlt__ArgProps = new Array<ArgPropType>(
 export type PlasmicModalAlt__OverridesType = {
   root?: p.Flex<"div">;
   group64?: p.Flex<"div">;
-  rectangle587?: p.Flex<"div">;
-  label3?: p.Flex<"label">;
-  ventureMark?: p.Flex<"div">;
   welcomeForm?: p.Flex<"form">;
-  selectUserContainer?: p.Flex<"div">;
-  selectOrganization?: p.Flex<typeof InputText>;
-  label?: p.Flex<"label">;
-  selectUserContainer2?: p.Flex<"div">;
-  selectUser?: p.Flex<typeof InputText>;
-  label2?: p.Flex<"label">;
-  selectUserButton?: p.Flex<typeof Button>;
+  organizationDescription?: p.Flex<"div">;
+  cancel?: p.Flex<typeof Button>;
+  text2?: p.Flex<"div">;
+  save?: p.Flex<typeof Button>;
+  text22?: p.Flex<"div">;
 };
 
 export interface DefaultModalAltProps {
@@ -104,38 +98,6 @@ function PlasmicModalAlt__RenderFunc(props: {
         className={classNames(defaultcss.all, sty.group64)}
       >
         <p.Stack
-          as={"div"}
-          data-plasmic-name={"rectangle587"}
-          data-plasmic-override={overrides.rectangle587}
-          hasGap={true}
-          className={classNames(defaultcss.all, sty.rectangle587)}
-        >
-          <label
-            data-plasmic-name={"label3"}
-            data-plasmic-override={overrides.label3}
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.label3
-            )}
-          >
-            {"Welcome to"}
-          </label>
-
-          <div
-            data-plasmic-name={"ventureMark"}
-            data-plasmic-override={overrides.ventureMark}
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.ventureMark
-            )}
-          >
-            {"VENTUREMARK"}
-          </div>
-        </p.Stack>
-
-        <p.Stack
           as={"form"}
           data-plasmic-name={"welcomeForm"}
           data-plasmic-override={overrides.welcomeForm}
@@ -151,114 +113,113 @@ function PlasmicModalAlt__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box___0WolP, {
-              [sty.box__orgSelected___0WolPiQ4Ey]: hasVariant(
-                variants,
-                "orgSelected",
-                "orgSelected"
-              ),
-            })}
+            className={classNames(defaultcss.all, sty.box__ljTa5)}
           >
-            <div
-              data-plasmic-name={"selectUserContainer"}
-              data-plasmic-override={overrides.selectUserContainer}
-              className={classNames(defaultcss.all, sty.selectUserContainer)}
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(defaultcss.all, sty.box__aUujC)}
             >
-              <InputText
-                data-plasmic-name={"selectOrganization"}
-                data-plasmic-override={overrides.selectOrganization}
-                label={
-                  <label
-                    data-plasmic-name={"label"}
-                    data-plasmic-override={overrides.label}
-                    className={classNames(
-                      defaultcss.all,
-                      defaultcss.__wab_text,
-                      sty.label
-                    )}
-                  >
-                    {"Search your organization"}
-                  </label>
-                }
-              />
-            </div>
-
-            {(
-              hasVariant(variants, "orgSelected", "orgSelected") ? true : false
-            ) ? (
-              <div
-                data-plasmic-name={"selectUserContainer2"}
-                data-plasmic-override={overrides.selectUserContainer2}
-                className={classNames(
-                  defaultcss.all,
-                  sty.selectUserContainer2,
-                  {
-                    [sty.selectUserContainer2__orgSelected]: hasVariant(
-                      variants,
-                      "orgSelected",
-                      "orgSelected"
-                    ),
-                  }
-                )}
-              >
-                <InputText
-                  data-plasmic-name={"selectUser"}
-                  data-plasmic-override={overrides.selectUser}
-                  label={
-                    <label
-                      data-plasmic-name={"label2"}
-                      data-plasmic-override={overrides.label2}
+              <p.PlasmicSlot
+                defaultContents={
+                  <React.Fragment>
+                    <div
+                      data-plasmic-name={"organizationDescription"}
+                      data-plasmic-override={overrides.organizationDescription}
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.label2,
-                        {
-                          [sty.label2__orgSelected]: hasVariant(
-                            variants,
-                            "orgSelected",
-                            "orgSelected"
-                          ),
-                        }
+                        sty.organizationDescription
                       )}
                     >
-                      {"Select your name"}
-                    </label>
-                  }
-                />
-              </div>
-            ) : null}
-            {(
-              hasVariant(variants, "orgSelected", "orgSelected") ? true : false
-            ) ? (
-              <Button
-                data-plasmic-name={"selectUserButton"}
-                data-plasmic-override={overrides.selectUserButton}
-                className={classNames("__wab_instance", sty.selectUserButton, {
-                  [sty.selectUserButton__orgSelected]: hasVariant(
-                    variants,
-                    "orgSelected",
-                    "orgSelected"
-                  ),
-                })}
-                count={"Enter"}
-              />
-            ) : null}
-          </p.Stack>
+                      {
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
+                      }
+                    </div>
 
-          <p.Stack
-            as={"div"}
-            hasGap={true}
-            className={classNames(defaultcss.all, sty.box__ljTa5)}
-          >
-            <div className={classNames(defaultcss.all, sty.box__aUujC)}>
-              <p.PlasmicSlot
-                defaultContents={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
+                    <p.Stack
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(defaultcss.all, sty.box__hxFmc)}
+                    >
+                      <Button
+                        data-plasmic-name={"cancel"}
+                        data-plasmic-override={overrides.cancel}
+                        buttonStyle={"secondaryPurple" as const}
+                        count={"1"}
+                        slot={
+                          <IconPlusIcon
+                            className={classNames(
+                              defaultcss.all,
+                              sty.svg___3JrHd
+                            )}
+                            role={"img"}
+                          />
+                        }
+                        text2={
+                          <div
+                            data-plasmic-name={"text2"}
+                            data-plasmic-override={overrides.text2}
+                            className={classNames(
+                              defaultcss.all,
+                              defaultcss.__wab_text,
+                              sty.text2
+                            )}
+                          >
+                            {"Cancel"}
+                          </div>
+                        }
+                      >
+                        <IconRightIcon
+                          className={classNames(
+                            defaultcss.all,
+                            sty.svg___3WnXb
+                          )}
+                          role={"img"}
+                        />
+                      </Button>
+
+                      <Button
+                        data-plasmic-name={"save"}
+                        data-plasmic-override={overrides.save}
+                        buttonStyle={"primaryPurple" as const}
+                        className={classNames("__wab_instance", sty.save)}
+                        count={"1"}
+                        slot={
+                          <IconPlusIcon
+                            className={classNames(
+                              defaultcss.all,
+                              sty.svg__seQ2S
+                            )}
+                            role={"img"}
+                          />
+                        }
+                        text2={
+                          <div
+                            data-plasmic-name={"text22"}
+                            data-plasmic-override={overrides.text22}
+                            className={classNames(
+                              defaultcss.all,
+                              defaultcss.__wab_text,
+                              sty.text22
+                            )}
+                          >
+                            {"Save"}
+                          </div>
+                        }
+                      >
+                        <IconRightIcon
+                          className={classNames(defaultcss.all, sty.svg__oTsn)}
+                          role={"img"}
+                        />
+                      </Button>
+                    </p.Stack>
+                  </React.Fragment>
                 }
                 value={args.organizationDescription}
                 className={classNames(sty.slotOrganizationDescription)}
               />
-            </div>
+            </p.Stack>
           </p.Stack>
         </p.Stack>
       </div>
@@ -270,52 +231,35 @@ const PlasmicDescendants = {
   root: [
     "root",
     "group64",
-    "rectangle587",
-    "label3",
-    "ventureMark",
     "welcomeForm",
-    "selectUserContainer",
-    "selectOrganization",
-    "label",
-    "selectUserContainer2",
-    "selectUser",
-    "label2",
-    "selectUserButton",
+    "organizationDescription",
+    "cancel",
+    "text2",
+    "save",
+    "text22",
   ],
   group64: [
     "group64",
-    "rectangle587",
-    "label3",
-    "ventureMark",
     "welcomeForm",
-    "selectUserContainer",
-    "selectOrganization",
-    "label",
-    "selectUserContainer2",
-    "selectUser",
-    "label2",
-    "selectUserButton",
+    "organizationDescription",
+    "cancel",
+    "text2",
+    "save",
+    "text22",
   ],
-  rectangle587: ["rectangle587", "label3", "ventureMark"],
-  label3: ["label3"],
-  ventureMark: ["ventureMark"],
   welcomeForm: [
     "welcomeForm",
-    "selectUserContainer",
-    "selectOrganization",
-    "label",
-    "selectUserContainer2",
-    "selectUser",
-    "label2",
-    "selectUserButton",
+    "organizationDescription",
+    "cancel",
+    "text2",
+    "save",
+    "text22",
   ],
-  selectUserContainer: ["selectUserContainer", "selectOrganization", "label"],
-  selectOrganization: ["selectOrganization", "label"],
-  label: ["label"],
-  selectUserContainer2: ["selectUserContainer2", "selectUser", "label2"],
-  selectUser: ["selectUser", "label2"],
-  label2: ["label2"],
-  selectUserButton: ["selectUserButton"],
+  organizationDescription: ["organizationDescription"],
+  cancel: ["cancel", "text2"],
+  text2: ["text2"],
+  save: ["save", "text22"],
+  text22: ["text22"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -324,17 +268,12 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   group64: "div";
-  rectangle587: "div";
-  label3: "label";
-  ventureMark: "div";
   welcomeForm: "form";
-  selectUserContainer: "div";
-  selectOrganization: typeof InputText;
-  label: "label";
-  selectUserContainer2: "div";
-  selectUser: typeof InputText;
-  label2: "label";
-  selectUserButton: typeof Button;
+  organizationDescription: "div";
+  cancel: typeof Button;
+  text2: "div";
+  save: typeof Button;
+  text22: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -394,17 +333,12 @@ export const PlasmicModalAlt = Object.assign(
   {
     // Helper components rendering sub-elements
     group64: makeNodeComponent("group64"),
-    rectangle587: makeNodeComponent("rectangle587"),
-    label3: makeNodeComponent("label3"),
-    ventureMark: makeNodeComponent("ventureMark"),
     welcomeForm: makeNodeComponent("welcomeForm"),
-    selectUserContainer: makeNodeComponent("selectUserContainer"),
-    selectOrganization: makeNodeComponent("selectOrganization"),
-    label: makeNodeComponent("label"),
-    selectUserContainer2: makeNodeComponent("selectUserContainer2"),
-    selectUser: makeNodeComponent("selectUser"),
-    label2: makeNodeComponent("label2"),
-    selectUserButton: makeNodeComponent("selectUserButton"),
+    organizationDescription: makeNodeComponent("organizationDescription"),
+    cancel: makeNodeComponent("cancel"),
+    text2: makeNodeComponent("text2"),
+    save: makeNodeComponent("save"),
+    text22: makeNodeComponent("text22"),
 
     // Metadata about props expected for PlasmicModalAlt
     internalVariantProps: PlasmicModalAlt__VariantProps,

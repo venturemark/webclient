@@ -320,7 +320,13 @@ function PlasmicMainHeader__RenderFunc(props: {
               variants,
               "showVentureDescription",
               "showVentureDescription"
-            )
+            ) && hasVariant(variants, "headerStyles", "ventureHeader")
+              ? false
+              : hasVariant(
+                  variants,
+                  "showVentureDescription",
+                  "showVentureDescription"
+                )
               ? true
               : hasVariant(variants, "headerStyles", "ventureHeader")
               ? false
@@ -328,7 +334,7 @@ function PlasmicMainHeader__RenderFunc(props: {
               ? false
               : hasVariant(globalVariants, "screen", "mobile")
               ? false
-              : true
+              : false
           ) ? (
             <div
               className={classNames(defaultcss.all, sty.box__fohK2, {
@@ -347,6 +353,12 @@ function PlasmicMainHeader__RenderFunc(props: {
                   "showVentureDescription",
                   "showVentureDescription"
                 ),
+                [sty.box__showVentureDescription_headerStyles_ventureHeader__fohK2CtI95NMQ9]:
+                  hasVariant(
+                    variants,
+                    "showVentureDescription",
+                    "showVentureDescription"
+                  ) && hasVariant(variants, "headerStyles", "ventureHeader"),
               })}
             >
               <p.PlasmicSlot
@@ -360,6 +372,13 @@ function PlasmicMainHeader__RenderFunc(props: {
                     "headerStyles",
                     "timelineHeader"
                   ),
+                  [sty.slotTimelineDescription__headerStyles_timelineHeader_showVentureDescription]:
+                    hasVariant(variants, "headerStyles", "timelineHeader") &&
+                    hasVariant(
+                      variants,
+                      "showVentureDescription",
+                      "showVentureDescription"
+                    ),
                   [sty.slotTimelineDescription__headerStyles_ventureHeader]: hasVariant(
                     variants,
                     "headerStyles",
@@ -370,16 +389,29 @@ function PlasmicMainHeader__RenderFunc(props: {
                     "showVentureDescription",
                     "showVentureDescription"
                   ),
+                  [sty.slotTimelineDescription__showVentureDescription_headerStyles_ventureHeader]:
+                    hasVariant(
+                      variants,
+                      "showVentureDescription",
+                      "showVentureDescription"
+                    ) && hasVariant(variants, "headerStyles", "ventureHeader"),
                 })}
               />
             </div>
           ) : null}
           {(
+            hasVariant(variants, "headerStyles", "timelineHeader") &&
             hasVariant(
               variants,
               "showVentureDescription",
               "showVentureDescription"
             )
+              ? false
+              : hasVariant(
+                  variants,
+                  "showVentureDescription",
+                  "showVentureDescription"
+                )
               ? true
               : hasVariant(variants, "headerStyles", "ventureHeader")
               ? false
@@ -396,6 +428,13 @@ function PlasmicMainHeader__RenderFunc(props: {
                   "headerStyles",
                   "timelineHeader"
                 ),
+                [sty.box__headerStyles_timelineHeader_showVentureDescription__gg4APRxxpiCtI95]:
+                  hasVariant(variants, "headerStyles", "timelineHeader") &&
+                  hasVariant(
+                    variants,
+                    "showVentureDescription",
+                    "showVentureDescription"
+                  ),
                 [sty.box__headerStyles_ventureHeader__gg4APnMQ9]: hasVariant(
                   variants,
                   "headerStyles",

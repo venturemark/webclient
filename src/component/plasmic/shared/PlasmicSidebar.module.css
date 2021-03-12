@@ -11,11 +11,6 @@
   min-height: 0;
   background: #ffffff;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  .root {
-    width: 250px;
-  }
-}
 .root__hasInput {
   border-width: 1px;
 }
@@ -57,4 +52,20 @@
 }
 .sidebarItemGroup:global(.__wab_instance) {
   position: relative;
+}
+.box {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  left: 0px;
+  top: auto;
+  bottom: 0px;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 30px;
+}
+.link {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }

@@ -56,6 +56,8 @@ export type PlasmicSidebar__OverridesType = {
   topSidebar?: p.Flex<"div">;
   scrollContainer?: p.Flex<"div">;
   sidebarItemGroup?: p.Flex<typeof SidebarItemGroup>;
+  box?: p.Flex<"div">;
+  link?: p.Flex<"a">;
 };
 
 export interface DefaultSidebarProps {
@@ -118,6 +120,24 @@ function PlasmicSidebar__RenderFunc(props: {
               })}
             />
           ) : null}
+
+          <div
+            data-plasmic-name={"box"}
+            data-plasmic-override={overrides.box}
+            className={classNames(defaultcss.all, sty.box)}
+          >
+            <a
+              data-plasmic-name={"link"}
+              data-plasmic-override={overrides.link}
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.link
+              )}
+            >
+              {"Create New Venture"}
+            </a>
+          </div>
         </p.Stack>
       </div>
     </div>
@@ -125,10 +145,25 @@ function PlasmicSidebar__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "topSidebar", "scrollContainer", "sidebarItemGroup"],
-  topSidebar: ["topSidebar", "scrollContainer", "sidebarItemGroup"],
-  scrollContainer: ["scrollContainer", "sidebarItemGroup"],
+  root: [
+    "root",
+    "topSidebar",
+    "scrollContainer",
+    "sidebarItemGroup",
+    "box",
+    "link",
+  ],
+  topSidebar: [
+    "topSidebar",
+    "scrollContainer",
+    "sidebarItemGroup",
+    "box",
+    "link",
+  ],
+  scrollContainer: ["scrollContainer", "sidebarItemGroup", "box", "link"],
   sidebarItemGroup: ["sidebarItemGroup"],
+  box: ["box", "link"],
+  link: ["link"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -139,6 +174,8 @@ type NodeDefaultElementType = {
   topSidebar: "div";
   scrollContainer: "div";
   sidebarItemGroup: typeof SidebarItemGroup;
+  box: "div";
+  link: "a";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -200,6 +237,8 @@ export const PlasmicSidebar = Object.assign(
     topSidebar: makeNodeComponent("topSidebar"),
     scrollContainer: makeNodeComponent("scrollContainer"),
     sidebarItemGroup: makeNodeComponent("sidebarItemGroup"),
+    box: makeNodeComponent("box"),
+    link: makeNodeComponent("link"),
 
     // Metadata about props expected for PlasmicSidebar
     internalVariantProps: PlasmicSidebar__VariantProps,

@@ -17,28 +17,48 @@ export function Component(props: Props) {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/new" component={Onboard} />
           <Route exact path="/:ventureSlug" component={Home} />
-          <Route exact path="/:ventureSlug/feed" component={Home} />
-          <Route exact path="/:ventureSlug/members" component={Home} />
-          <Route exact path="/:ventureSlug/settings" component={Home} />
+          <Route
+            exact
+            path="/:ventureSlug/feed"
+            component={() => <Home activeState="feed" />}
+          />
+          <Route
+            exact
+            path="/:ventureSlug/members"
+            component={() => <Home activeState="members" />}
+          />
+          <Route
+            exact
+            path="/:ventureSlug/settings"
+            component={() => <Home activeState="settings" />}
+          />
           <Route
             exact
             path="/:ventureSlug/:timelineSlug"
-            component={() => <Home timelineVariant={`isTimeline`} />}
+            component={() => (
+              <Home timelineVariant={`isTimeline`} activeState="feed" />
+            )}
           />
           <Route
             exact
             path="/:ventureSlug/:timelineSlug/feed"
-            component={() => <Home timelineVariant={`isTimeline`} />}
+            component={() => (
+              <Home timelineVariant={`isTimeline`} activeState="feed" />
+            )}
           />
           <Route
             exact
             path="/:ventureSlug/:timelineSlug/members"
-            component={() => <Home timelineVariant={`isTimeline`} />}
+            component={() => (
+              <Home timelineVariant={`isTimeline`} activeState="members" />
+            )}
           />
           <Route
             exact
             path="/:ventureSlug/:timelineSlug/settings"
-            component={() => <Home timelineVariant={`isTimeline`} />}
+            component={() => (
+              <Home timelineVariant={`isTimeline`} activeState="settings" />
+            )}
           />
         </Switch>
       </Router>
