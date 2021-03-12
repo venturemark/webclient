@@ -5,26 +5,47 @@ import {
   PlasmicAddEditTimeline,
   DefaultAddEditTimelineProps,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
-import { useForm } from "react-hook-form";
-import { INewTimeline } from "module/interface/timeline";
-import { useCreateTimeline } from "module/hook/timeline";
+import { INewTimeline, ITimeline } from "module/interface/timeline";
+import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUser, getVenture } from "module/store";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+
+interface ParamsType {
+  timelineSlug: string;
+  ventureSlug: string;
+}
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
+  currentTimeline: ITimeline;
+  handleSubmit: any;
+  register: any;
+  reset: any;
 }
 
 function AddEditTimeline(props: AddEditTimelineProps) {
-  const { setIsActive, ...rest } = props;
+  const {
+    setIsActive,
+    currentTimeline,
+    handleSubmit,
+    register,
+    reset,
+    ...rest
+  } = props;
   const history = useHistory();
-  const { handleSubmit, register, reset } = useForm();
+  const { timelineSlug } = useParams<ParamsType>();
+
   const { getAccessTokenSilently } = useAuth0();
-  const { mutate: createTimeline } = useCreateTimeline();
+
+  const isEdit = timelineSlug ? "isEdit" : undefined;
+
   const [token, setToken] = useState<string>("");
   const userId = getUser()?.id ?? "";
   const ventureId = getVenture()?.id ?? "";
+
+  const { mutate: createTimeline } = useCreateTimeline();
+  const { mutate: updateTimeline } = useUpdateTimeline();
 
   const handleCreate = (data: any) => {
     if (!token || !data.name || !data.description) {
@@ -38,9 +59,14 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       token: token,
     };
 
-    createTimeline(timeline);
+    isEdit ? updateTimeline(timeline) : createTimeline(timeline);
     reset();
     history.push(`/${ventureId}/feed`);
+  };
+
+  const handleDelete = () => {
+    console.log("delete timeline");
+    //delete current timeline
   };
 
   useEffect(() => {
@@ -59,16 +85,23 @@ function AddEditTimeline(props: AddEditTimelineProps) {
 
   return (
     <PlasmicAddEditTimeline
+      variantState={isEdit}
       settings={{
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
         register: register(),
         name: "name",
+        defaultValue: currentTimeline?.name ?? "",
       }}
       description={{
         register: register(),
         name: "description",
+        defaultValue: currentTimeline?.desc ?? "",
+      }}
+      buttonSetEdit={{
+        handleCancel: () => history.push(`/${ventureId}/feed`),
+        handleDelete: () => handleDelete(),
       }}
       visibility={{}}
       {...rest}

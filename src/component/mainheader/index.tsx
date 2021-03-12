@@ -17,6 +17,7 @@ interface ParamTypes {
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
+  watchData: any;
   currentTimeline: ITimeline;
   variantType: string;
   isOnboarding?: boolean | "isOnboarding";
@@ -28,6 +29,7 @@ function MainHeader(props: MainHeaderProps) {
     currentTimeline,
     variantType,
     isOnboarding,
+    watchData,
     ...rest
   } = props;
   const { timelineSlug } = useParams<ParamTypes>();
@@ -38,16 +40,18 @@ function MainHeader(props: MainHeaderProps) {
     ? `/${venture?.id}/${timelineSlug}`
     : `/${venture?.id}`;
 
+  console.log(watchData);
+
   return (
     <PlasmicMainHeader
       {...rest}
       headerStyles={
         variantType === "isVenture" ? "ventureHeader" : "timelineHeader"
       }
-      ventureName={venture?.name}
-      ventureDescription={venture?.description}
-      timelineName={currentTimeline?.name}
-      timelineDescription={currentTimeline?.desc}
+      ventureName={watchData?.name || venture?.name}
+      ventureDescription={watchData?.description || venture?.description}
+      timelineName={watchData?.name || currentTimeline?.name}
+      timelineDescription={watchData?.description || currentTimeline?.desc}
       viewHome={{
         onClick: () => history.push(link + "/feed"),
       }}

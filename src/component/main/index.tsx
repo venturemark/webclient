@@ -10,6 +10,7 @@ import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
 import { getUser, getVenture } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useForm } from "react-hook-form";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -40,7 +41,10 @@ function Main(props: MainProps) {
     viewJoinVenture,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState("");
+  const { handleSubmit, register, reset, watch } = useForm();
+  const watchData = watch();
+
   const { timelineSlug } = useParams<ParamTypes>();
 
   const timelineSearch: ITimelineQuery = {
@@ -80,6 +84,7 @@ function Main(props: MainProps) {
         isActive: isActive,
         variantType: variantType,
         currentTimeline,
+        watchData,
         isOnboarding,
       }}
       feedUpdate={{
@@ -89,8 +94,17 @@ function Main(props: MainProps) {
         setPost,
       }}
       // addEditMembers={{}}
-      // addEditVenture={{}}
-      // addEditTimeline={{}}
+      addEditVenture={{
+        handleSubmit,
+        register,
+        reset,
+      }}
+      addEditTimeline={{
+        currentTimeline: currentTimeline,
+        handleSubmit,
+        register,
+        reset,
+      }}
       viewCreateVenture={{
         onClick: () => viewCreateVenture(),
       }}

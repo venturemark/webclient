@@ -66,6 +66,10 @@ function SidebarItem(props: SidebarItemProps) {
       onClick={() => history.push(link)}
       itemType={itemType}
       name={name}
+      dropdown={{
+        timelineSlug,
+        isTimeline: itemType === "timeline" ? true : false,
+      }}
       {...rest}
     />
   );

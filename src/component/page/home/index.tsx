@@ -10,28 +10,22 @@ import { ITimelineQuery } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { useTimelines } from "module/hook/timeline";
 import { getUser, getVenture } from "module/store";
-import { useRouteMatch, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
-enum ActiveState {
-  Feed = "feed",
-  Settings = "settings",
-  Members = "members",
-}
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
 type IsActive = "feed" | "settings" | "members" | undefined;
 type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 
 interface HomeProps extends DefaultHomeProps {
-  timelineVariant: string;
+  timelineVariant?: "isTimeline";
+  activeState?: IsActive;
 }
 
 export function Home(props: HomeProps) {
-  const { timelineVariant } = props;
+  const { timelineVariant, activeState } = props;
   const user = getUser();
   const venture = getVenture();
-  const { url } = useRouteMatch<IsActive>();
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
 
@@ -45,15 +39,7 @@ export function Home(props: HomeProps) {
   const { data: timelinesData, isSuccess } = useTimelines(timelineSearch);
 
   const variant = timelineVariant ? "isTimeline" : "isVenture";
-
-  let active: IsActive = undefined;
-  let param = url.split("/")[3]
-    ? (url.split("/")[3] as ActiveState)
-    : (url.split("/")[2] as ActiveState);
-
-  if (!Object.values(ActiveState).includes(param)) {
-    active = "feed";
-  }
+  const active = activeState ? activeState : "feed";
 
   // local hooks shared with page-level elements
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
@@ -80,11 +66,9 @@ export function Home(props: HomeProps) {
   //   updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
   // }
 
-  useEffect(() => {
-    if (Object.values(ActiveState).includes(param)) {
-      setIsActive(param);
-    }
+  console.log(activeState, isActive);
 
+  useEffect(() => {
     //auth
     const getToken = async () => {
       try {
@@ -97,7 +81,7 @@ export function Home(props: HomeProps) {
     if (token === "") {
       getToken();
     }
-  }, [param, getAccessTokenSilently, token]);
+  }, [getAccessTokenSilently, token]);
 
   if (!ventureId || timelinesData?.length < 1) {
     return <Redirect to={`/new`} />;
@@ -105,6 +89,7 @@ export function Home(props: HomeProps) {
   if (isSuccess && timelinesData?.length < 1) {
     return <Redirect to={`/new`} />;
   }
+
   return (
     <>
       <PlasmicHome
@@ -137,31 +122,6 @@ export function Home(props: HomeProps) {
           post,
           setPost,
         }}
-
-        // actionBar={{
-        //   organizationId: organizationId,
-        //   currentTimeline: currentTimeline,
-        //   userId: userId,
-        // }}
-        // mainHeader={{
-        //   timelineName: currentTimeline?.name ?? "",
-        //   timelineDescription: currentTimeline?.desc ?? "edit description...",
-        // }}
-        // updatesContainer={{
-        //   children: updates.map((update: IUpdate) => (
-        //     <FeedUpdate
-        //       text={update.text}
-        //       key={update.id}
-        //       id={update.id}
-        //       organizationName={update.organizationId}
-        //       timelineId={update.timelineId}
-        //       userName={update.userId}
-        //       date={update.date}
-        //       allUpdates={allUpdates}
-        //       setCurrentTimeline={setCurrentTimeline}
-        //     />
-        //   )),
-        // }}
       />
     </>
   );

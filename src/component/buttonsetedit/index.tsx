@@ -7,19 +7,21 @@ import {
 } from "component/plasmic/shared/PlasmicButtonSetEdit";
 
 interface ButtonSetEditProps extends DefaultButtonSetEditProps {
-  onClick?: () => void;
+  handleSave?: () => void;
+  handleCancel?: () => void;
+  handleDelete?: () => void;
   type: string;
 }
 
 function ButtonSetEdit(props: ButtonSetEditProps) {
-  const { onClick, type, ...rest } = props;
+  const { handleSave, handleCancel, handleDelete, type, ...rest } = props;
 
   return (
     <PlasmicButtonSetEdit
-      save={{ onClick: onClick, type: type }}
-      cancel={{ onClick: onClick, type: type }}
-      _delete={{ onClick: onClick, type: type }}
       {...rest}
+      save={{ onClick: handleSave, type: "submit" }}
+      cancel={{ onClick: handleCancel, type: "button" }}
+      _delete={{ onClick: handleDelete, type: "button" }}
     />
   );
 }

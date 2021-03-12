@@ -266,6 +266,8 @@ function PlasmicActionBar__RenderFunc(props: {
                     ? ("Description..." as const)
                     : ("Write a paragraph" as const)
                 }
+                rows={2 as const}
+                value={"" as const}
               />
             ) : null}
             {(hasVariant(variants, "isActive", "isActive") ? true : false) ? (

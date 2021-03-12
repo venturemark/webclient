@@ -51,7 +51,7 @@ export type PlasmicReplyInput__OverridesType = {
   root?: p.Flex<"div">;
   box?: p.Flex<"div">;
   replyForm?: p.Flex<"form">;
-  replyInput?: p.Flex<"input">;
+  replyInput?: p.Flex<"textarea">;
   postReplyButton?: p.Flex<typeof Button>;
   text?: p.Flex<"div">;
   svg?: p.Flex<"svg">;
@@ -100,12 +100,11 @@ function PlasmicReplyInput__RenderFunc(props: {
           hasGap={true}
           className={classNames(defaultcss.all, sty.replyForm)}
         >
-          <input
+          <textarea
             data-plasmic-name={"replyInput"}
             data-plasmic-override={overrides.replyInput}
-            className={classNames(defaultcss.input, sty.replyInput)}
+            className={classNames(defaultcss.textarea, sty.replyInput)}
             placeholder={"Write a reply" as const}
-            type={"text" as const}
           />
 
           {(triggers.focusWithin_root ? true : true) ? (
@@ -169,7 +168,7 @@ type NodeDefaultElementType = {
   root: "div";
   box: "div";
   replyForm: "form";
-  replyInput: "input";
+  replyInput: "textarea";
   postReplyButton: typeof Button;
   text: "div";
   svg: "svg";
