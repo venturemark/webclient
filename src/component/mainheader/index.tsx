@@ -17,6 +17,8 @@ interface ParamTypes {
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
+  editTimeline: any;
+  editVenture: any;
   currentTimeline: ITimeline;
   variantType: string;
   isOnboarding?: boolean | "isOnboarding";
@@ -28,6 +30,8 @@ function MainHeader(props: MainHeaderProps) {
     currentTimeline,
     variantType,
     isOnboarding,
+    editVenture,
+    editTimeline,
     ...rest
   } = props;
   const { timelineSlug } = useParams<ParamTypes>();
@@ -44,9 +48,9 @@ function MainHeader(props: MainHeaderProps) {
       headerStyles={
         variantType === "isVenture" ? "ventureHeader" : "timelineHeader"
       }
-      ventureName={venture?.name}
+      ventureName={editVenture?.name || venture?.name}
       ventureDescription={venture?.description}
-      timelineName={currentTimeline?.name}
+      timelineName={editTimeline?.name}
       timelineDescription={currentTimeline?.desc}
       viewHome={{
         onClick: () => history.push(link + "/feed"),

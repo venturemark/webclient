@@ -6,18 +6,27 @@ import {
   DefaultAddEditVentureProps,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import { useForm } from "react-hook-form";
-import { saveVenture } from "module/store";
+import { saveVenture, getVenture } from "module/store";
 import { INewVenture } from "module/interface/venture";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+
+interface ParamsType {
+  timelineSlug: string;
+  ventureSlug: string;
+}
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
+  setEditVenture: any;
 }
 
 function AddEditVenture(props: AddEditVentureProps) {
-  const { setIsActive, ...rest } = props;
+  const { setIsActive, setEditVenture, ...rest } = props;
+  const { ventureSlug } = useParams<ParamsType>();
+
   const { handleSubmit, register, reset } = useForm();
   const history = useHistory();
+  const venture = getVenture();
 
   const handleCreate = (data: any) => {
     const id = data.name.toLowerCase().replace(/\s/g, "");
@@ -38,20 +47,24 @@ function AddEditVenture(props: AddEditVentureProps) {
 
   return (
     <PlasmicAddEditVenture
+      variantState={ventureSlug ? "isEdit" : undefined}
       settings={{
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
         register: register(),
         name: "name",
+        defaultValue: venture?.name ?? "",
       }}
       description={{
         register: register(),
         name: "description",
+        defaultValue: venture?.description ?? "",
       }}
       url={{
         register: register(),
         name: "url",
+        defaultValue: venture?.url ?? "",
       }}
       membersWrite={{}}
       {...rest}

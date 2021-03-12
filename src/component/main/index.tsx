@@ -28,6 +28,11 @@ interface MainProps extends DefaultMainProps {
   viewJoinVenture?: any;
 }
 
+interface EditEntity {
+  name: string;
+  description: string;
+}
+
 function Main(props: MainProps) {
   const {
     isOnboarding,
@@ -40,7 +45,14 @@ function Main(props: MainProps) {
     viewJoinVenture,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState("");
+  const [editTimeline, setEditTimeline] = useState<EditEntity | undefined>(
+    undefined
+  );
+  const [editVenture, setEditVenture] = useState<EditEntity | undefined>(
+    undefined
+  );
+
   const { timelineSlug } = useParams<ParamTypes>();
 
   const timelineSearch: ITimelineQuery = {
@@ -80,6 +92,8 @@ function Main(props: MainProps) {
         isActive: isActive,
         variantType: variantType,
         currentTimeline,
+        editTimeline,
+        editVenture,
         isOnboarding,
       }}
       feedUpdate={{
@@ -89,8 +103,14 @@ function Main(props: MainProps) {
         setPost,
       }}
       // addEditMembers={{}}
-      // addEditVenture={{}}
-      // addEditTimeline={{}}
+      addEditVenture={{
+        setEditVenture,
+      }}
+      addEditTimeline={{
+        currentTimeline: currentTimeline,
+        setEditTimeline,
+        editTimeline,
+      }}
       viewCreateVenture={{
         onClick: () => viewCreateVenture(),
       }}

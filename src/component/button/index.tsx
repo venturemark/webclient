@@ -8,12 +8,12 @@ import {
 
 interface ButtonProps extends DefaultButtonProps {
   onClick?: () => void;
-  type: string;
+  type?: "button" | "submit" | "reset";
 }
 
 function Button(props: ButtonProps) {
   const { onClick, type, ...rest } = props;
-  return <PlasmicButton onClick={onClick} {...rest} />;
+  return <PlasmicButton {...rest} onClick={onClick} button={{ type: type }} />;
 }
 
 export default Button;
