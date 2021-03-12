@@ -5,7 +5,6 @@ import {
   PlasmicAddEditVenture,
   DefaultAddEditVentureProps,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
-import { useForm } from "react-hook-form";
 import { saveVenture, getVenture } from "module/store";
 import { INewVenture } from "module/interface/venture";
 import { useHistory, useParams } from "react-router-dom";
@@ -17,14 +16,15 @@ interface ParamsType {
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
-  setEditVenture: any;
+  handleSubmit: any;
+  register: any;
+  reset: any;
 }
 
 function AddEditVenture(props: AddEditVentureProps) {
-  const { setIsActive, setEditVenture, ...rest } = props;
+  const { setIsActive, handleSubmit, register, reset, ...rest } = props;
   const { ventureSlug } = useParams<ParamsType>();
 
-  const { handleSubmit, register, reset } = useForm();
   const history = useHistory();
   const venture = getVenture();
 

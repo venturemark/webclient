@@ -10,6 +10,7 @@ import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
 import { getUser, getVenture } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useForm } from "react-hook-form";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -28,11 +29,6 @@ interface MainProps extends DefaultMainProps {
   viewJoinVenture?: any;
 }
 
-interface EditEntity {
-  name: string;
-  description: string;
-}
-
 function Main(props: MainProps) {
   const {
     isOnboarding,
@@ -46,12 +42,8 @@ function Main(props: MainProps) {
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState("");
-  const [editTimeline, setEditTimeline] = useState<EditEntity | undefined>(
-    undefined
-  );
-  const [editVenture, setEditVenture] = useState<EditEntity | undefined>(
-    undefined
-  );
+  const { handleSubmit, register, reset, watch } = useForm();
+  const watchData = watch();
 
   const { timelineSlug } = useParams<ParamTypes>();
 
@@ -92,8 +84,7 @@ function Main(props: MainProps) {
         isActive: isActive,
         variantType: variantType,
         currentTimeline,
-        editTimeline,
-        editVenture,
+        watchData,
         isOnboarding,
       }}
       feedUpdate={{
@@ -104,12 +95,15 @@ function Main(props: MainProps) {
       }}
       // addEditMembers={{}}
       addEditVenture={{
-        setEditVenture,
+        handleSubmit,
+        register,
+        reset,
       }}
       addEditTimeline={{
         currentTimeline: currentTimeline,
-        setEditTimeline,
-        editTimeline,
+        handleSubmit,
+        register,
+        reset,
       }}
       viewCreateVenture={{
         onClick: () => viewCreateVenture(),

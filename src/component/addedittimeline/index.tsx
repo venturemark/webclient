@@ -5,7 +5,6 @@ import {
   PlasmicAddEditTimeline,
   DefaultAddEditTimelineProps,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
-import { useForm } from "react-hook-form";
 import { INewTimeline, ITimeline } from "module/interface/timeline";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -20,25 +19,26 @@ interface ParamsType {
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
   currentTimeline: ITimeline;
-  setEditTimeline: any;
-  editTimeline: any;
+  handleSubmit: any;
+  register: any;
+  reset: any;
 }
 
 function AddEditTimeline(props: AddEditTimelineProps) {
   const {
     setIsActive,
     currentTimeline,
-    setEditTimeline,
-    editTimeline,
+    handleSubmit,
+    register,
+    reset,
     ...rest
   } = props;
   const history = useHistory();
   const { timelineSlug } = useParams<ParamsType>();
-  const { handleSubmit, register, reset, watch } = useForm();
+
   const { getAccessTokenSilently } = useAuth0();
 
   const isEdit = timelineSlug ? "isEdit" : undefined;
-  const watchTimeline = watch();
 
   const [token, setToken] = useState<string>("");
   const userId = getUser()?.id ?? "";
@@ -70,12 +70,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   };
 
   useEffect(() => {
-    //
-    if (editTimeline) {
-      setEditTimeline(watchTimeline);
-    }
-    // should only be called if editTimeline is true?
-
     const getToken = async () => {
       try {
         const token = await getAccessTokenSilently();
@@ -87,7 +81,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     if (token === "") {
       getToken();
     }
-  }, [getAccessTokenSilently, token, watchTimeline, setEditTimeline]);
+  }, [getAccessTokenSilently, token]);
 
   return (
     <PlasmicAddEditTimeline
