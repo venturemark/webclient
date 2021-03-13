@@ -42,7 +42,7 @@ function Main(props: MainProps) {
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState("");
-  const { handleSubmit, register, reset, watch } = useForm();
+  const { handleSubmit, register, reset, watch, errors } = useForm();
   const watchData = watch();
 
   const { timelineSlug } = useParams<ParamTypes>();
@@ -98,12 +98,14 @@ function Main(props: MainProps) {
         handleSubmit,
         register,
         reset,
+        errors,
       }}
       addEditTimeline={{
         currentTimeline: currentTimeline,
         handleSubmit,
         register,
         reset,
+        errors,
       }}
       viewCreateVenture={{
         onClick: () => viewCreateVenture(),

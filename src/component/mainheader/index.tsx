@@ -40,8 +40,6 @@ function MainHeader(props: MainHeaderProps) {
     ? `/${venture?.id}/${timelineSlug}`
     : `/${venture?.id}`;
 
-  console.log(watchData);
-
   return (
     <PlasmicMainHeader
       {...rest}
