@@ -167,87 +167,79 @@ function PlasmicSidebarItem__RenderFunc(props: {
             ),
           })}
         >
-          {(
-            hasVariant(variants, "itemType", "createTimeline") &&
-            triggers.hover_root
-              ? true
-              : true
-          ) ? (
-            <IconButton
-              data-plasmic-name={"icon"}
-              data-plasmic-override={overrides.icon}
-              className={classNames("__wab_instance", sty.icon, {
-                [sty.icon__isActive]: hasVariant(
+          <IconButton
+            data-plasmic-name={"icon"}
+            data-plasmic-override={overrides.icon}
+            className={classNames("__wab_instance", sty.icon, {
+              [sty.icon__isActive]: hasVariant(
+                variants,
+                "isActive",
+                "isActive"
+              ),
+              [sty.icon__isActive_itemType_createTimeline]:
+                hasVariant(variants, "isActive", "isActive") &&
+                hasVariant(variants, "itemType", "createTimeline"),
+              [sty.icon__isUserOnClick]: hasVariant(
+                variants,
+                "isUserOnClick",
+                "isUserOnClick"
+              ),
+              [sty.icon__itemType_createTimeline]: hasVariant(
+                variants,
+                "itemType",
+                "createTimeline"
+              ),
+            })}
+            greenBgHover={
+              hasVariant(variants, "isActive", "isActive") &&
+              triggers.hover_root
+                ? ("greenBgHover" as const)
+                : hasVariant(variants, "isActive", "isActive") &&
+                  hasVariant(variants, "itemType", "createTimeline")
+                ? ("greenBgHover" as const)
+                : undefined
+            }
+          >
+            <p.PlasmicIcon
+              PlasmicIconType={
+                hasVariant(variants, "itemType", "ventureCollapsed")
+                  ? VectorsvgIcon
+                  : hasVariant(variants, "itemType", "createTimeline")
+                  ? IconPlusIcon
+                  : hasVariant(variants, "itemType", "timeline")
+                  ? IconHashIcon
+                  : IconAccordianIcon
+              }
+              className={classNames(defaultcss.all, sty.svg___6Fx5D, {
+                [sty.svg__isActive___6Fx5Dw0Xu8]: hasVariant(
                   variants,
                   "isActive",
                   "isActive"
                 ),
-                [sty.icon__isActive_itemType_createTimeline]:
-                  hasVariant(variants, "isActive", "isActive") &&
-                  hasVariant(variants, "itemType", "createTimeline"),
-                [sty.icon__isUserOnClick]: hasVariant(
-                  variants,
-                  "isUserOnClick",
-                  "isUserOnClick"
-                ),
-                [sty.icon__itemType_createTimeline]: hasVariant(
+                [sty.svg__itemType_createTimeline___6Fx5DOuGst]: hasVariant(
                   variants,
                   "itemType",
                   "createTimeline"
                 ),
+                [sty.svg__itemType_timeline___6Fx5DoN3Wv]: hasVariant(
+                  variants,
+                  "itemType",
+                  "timeline"
+                ),
+                [sty.svg__itemType_ventureCollapsed___6Fx5D4PCv]: hasVariant(
+                  variants,
+                  "itemType",
+                  "ventureCollapsed"
+                ),
               })}
-              greenBgHover={
-                hasVariant(variants, "isActive", "isActive") &&
-                triggers.hover_root
-                  ? ("greenBgHover" as const)
-                  : hasVariant(variants, "isActive", "isActive") &&
-                    hasVariant(variants, "itemType", "createTimeline")
-                  ? ("greenBgHover" as const)
-                  : undefined
-              }
-            >
-              <p.PlasmicIcon
-                PlasmicIconType={
-                  hasVariant(variants, "itemType", "ventureCollapsed")
-                    ? VectorsvgIcon
-                    : hasVariant(variants, "itemType", "createTimeline")
-                    ? IconPlusIcon
-                    : hasVariant(variants, "itemType", "timeline")
-                    ? IconHashIcon
-                    : IconAccordianIcon
-                }
-                className={classNames(defaultcss.all, sty.svg___6Fx5D, {
-                  [sty.svg__isActive___6Fx5Dw0Xu8]: hasVariant(
-                    variants,
-                    "isActive",
-                    "isActive"
-                  ),
-                  [sty.svg__itemType_createTimeline___6Fx5DOuGst]: hasVariant(
-                    variants,
-                    "itemType",
-                    "createTimeline"
-                  ),
-                  [sty.svg__itemType_timeline___6Fx5DoN3Wv]: hasVariant(
-                    variants,
-                    "itemType",
-                    "timeline"
-                  ),
-                  [sty.svg__itemType_ventureCollapsed___6Fx5D4PCv]: hasVariant(
-                    variants,
-                    "itemType",
-                    "ventureCollapsed"
-                  ),
-                })}
-                role={"img"}
-              />
-            </IconButton>
-          ) : null}
+              role={"img"}
+            />
+          </IconButton>
+
           {(
             hasVariant(variants, "itemType", "createTimeline") &&
             triggers.hover_root
               ? true
-              : hasVariant(variants, "itemType", "createTimeline")
-              ? false
               : true
           ) ? (
             <p.Stack

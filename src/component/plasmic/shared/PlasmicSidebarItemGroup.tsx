@@ -70,6 +70,11 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
+  const triggers = {
+    hover_root: isRootHover,
+  };
+
   return (
     <div
       data-plasmic-name={"root"}
@@ -77,6 +82,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
       <SidebarItem
         data-plasmic-name={"venture"}
@@ -151,27 +157,29 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             }
           />
 
-          <SidebarItem
-            className={classNames("__wab_instance", sty.sidebarItem__nta2O, {
-              [sty.sidebarItem__isCollapsed__nta2OR1V]: hasVariant(
-                variants,
-                "isCollapsed",
-                "isCollapsed"
-              ),
-            })}
-            itemType={"createTimeline" as const}
-            name={
-              <div
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.box__wCgwl
-                )}
-              >
-                {"New Timeline"}
-              </div>
-            }
-          />
+          {(triggers.hover_root ? true : false) ? (
+            <SidebarItem
+              className={classNames("__wab_instance", sty.sidebarItem__nta2O, {
+                [sty.sidebarItem__isCollapsed__nta2OR1V]: hasVariant(
+                  variants,
+                  "isCollapsed",
+                  "isCollapsed"
+                ),
+              })}
+              itemType={"createTimeline" as const}
+              name={
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.box__wCgwl
+                  )}
+                >
+                  {"New Timeline"}
+                </div>
+              }
+            />
+          ) : null}
         </p.Stack>
       ) : null}
     </div>

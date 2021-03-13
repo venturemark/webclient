@@ -454,32 +454,6 @@
           "componentType": "component"
         },
         {
-          "id": "JPP0L6JGIn",
-          "name": "Members",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicMembers.tsx",
-          "importSpec": {
-            "modulePath": "page/members/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicMembers.module.css",
-          "scheme": "blackbox",
-          "componentType": "page"
-        },
-        {
-          "id": "FuAQiqPeTF",
-          "name": "VentureSettings",
-          "type": "managed",
-          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicVentureSettings.tsx",
-          "importSpec": {
-            "modulePath": "page/venturesettings/index.tsx"
-          },
-          "cssFilePath": "plasmic/shared/PlasmicVentureSettings.module.css",
-          "scheme": "blackbox",
-          "componentType": "page"
-        },
-        {
           "id": "KDElHbQmfd",
           "name": "SidebarItem",
           "type": "managed",
@@ -554,6 +528,32 @@
             "modulePath": "joinventure/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicJoinVenture.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "JPP0L6JGIn",
+          "name": "Members",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicMembers.tsx",
+          "importSpec": {
+            "modulePath": "Members.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicMembers.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "FuAQiqPeTF",
+          "name": "VentureSettings",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicVentureSettings.tsx",
+          "importSpec": {
+            "modulePath": "VentureSettings.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicVentureSettings.module.css",
           "scheme": "blackbox",
           "componentType": "page"
         }

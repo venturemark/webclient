@@ -7,8 +7,8 @@
 .group64 {
   opacity: 1;
   transform: scale(1, 1) rotate(0deg);
-  width: 400px;
-  height: 200px;
+  width: 280px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
   padding: 0px;
 }
 .welcomeForm {
-  box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
+  box-shadow: none;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -27,7 +27,7 @@
   min-width: 0;
   min-height: 0;
   border-radius: 10px;
-  padding: 15px 20px;
+  padding: 20px;
   background: #ffffff;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
@@ -48,6 +48,8 @@
   flex-direction: column;
   top: auto;
   left: auto;
+  width: 100%;
+  min-width: 0;
 }
 .box__ljTa5 > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -64,10 +66,11 @@
   display: flex;
   position: relative;
   opacity: 1;
-  width: 69.15%;
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
 }
 .box__aUujC > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -90,22 +93,30 @@
 .slotOrganizationDescription > * {
   text-decoration-line: none;
 }
+.organizationDescription {
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
 .box__hxFmc {
   display: flex;
   position: relative;
   flex-direction: row;
   align-self: center;
+  width: 100%;
+  min-width: 0;
 }
 .box__hxFmc > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  margin-left: calc(0px - 22px);
-  width: calc(100% + 22px);
+  margin-left: calc(0px - 15px);
+  width: calc(100% + 15px);
 }
 .box__hxFmc > :global(.__wab_flex-container) > *,
 .box__hxFmc > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-  margin-left: 22px;
+  margin-left: 15px;
 }
 .svg___3JrHd {
   position: relative;
