@@ -6,6 +6,8 @@
   padding-right: 0px;
   flex-direction: column;
   padding-left: 0px;
+  transition-property: all;
+  transition-duration: 1s;
   min-width: 0;
 }
 .root > :global(.__wab_flex-container) {

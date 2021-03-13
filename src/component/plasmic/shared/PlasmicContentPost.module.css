@@ -24,6 +24,9 @@
   height: 100%;
   overflow: auto;
   align-self: auto;
+  transition-property: all;
+  transition-duration: 1s;
+  transition-delay: 0.2s;
   min-width: 0;
   min-height: 0;
   border-radius: 10px;

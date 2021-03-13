@@ -132,9 +132,7 @@ function PlasmicModalAlt__RenderFunc(props: {
                         sty.organizationDescription
                       )}
                     >
-                      {
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
-                      }
+                      {"Delete this timeline?"}
                     </div>
 
                     <p.Stack
@@ -145,7 +143,7 @@ function PlasmicModalAlt__RenderFunc(props: {
                       <Button
                         data-plasmic-name={"cancel"}
                         data-plasmic-override={overrides.cancel}
-                        buttonStyle={"secondaryPurple" as const}
+                        buttonStyle={"danger" as const}
                         count={"1"}
                         slot={
                           <IconPlusIcon
@@ -166,7 +164,7 @@ function PlasmicModalAlt__RenderFunc(props: {
                               sty.text2
                             )}
                           >
-                            {"Cancel"}
+                            {"Delete"}
                           </div>
                         }
                       >
@@ -182,7 +180,8 @@ function PlasmicModalAlt__RenderFunc(props: {
                       <Button
                         data-plasmic-name={"save"}
                         data-plasmic-override={overrides.save}
-                        buttonStyle={"primaryPurple" as const}
+                        buttonFeatures={[]}
+                        buttonStyle={"secondaryPurple" as const}
                         className={classNames("__wab_instance", sty.save)}
                         count={"1"}
                         slot={
@@ -204,7 +203,7 @@ function PlasmicModalAlt__RenderFunc(props: {
                               sty.text22
                             )}
                           >
-                            {"Save"}
+                            {"Cancel"}
                           </div>
                         }
                       >

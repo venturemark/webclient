@@ -7,7 +7,8 @@
   justify-content: space-between;
   overflow: auto;
   align-items: center;
-  width: 300px;
+  width: 250px;
+  min-width: 250px;
   min-height: 0;
   background: #ffffff;
 }
