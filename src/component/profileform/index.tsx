@@ -22,7 +22,9 @@ function ProfileForm(props: ProfileFormProps) {
   const history = useHistory();
   const { user: authUser } = useAuth0();
   const user = getUser() ? getUser() : authUser;
-  const { handleSubmit, register, errors } = useForm();
+  const { handleSubmit, register, errors } = useForm({
+    mode: "onChange",
+  });
 
   const handleSave = (data: any) => {
     if (!data.name) {

@@ -10,6 +10,7 @@ import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUser, getVenture } from "module/store";
 import { useHistory, useParams } from "react-router-dom";
+import { timelineNameError } from "module/errors";
 
 interface ParamsType {
   timelineSlug: string;
@@ -22,6 +23,7 @@ interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   handleSubmit: any;
   register: any;
   reset: any;
+  errors: any;
 }
 
 function AddEditTimeline(props: AddEditTimelineProps) {
@@ -31,6 +33,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     handleSubmit,
     register,
     reset,
+    errors,
     ...rest
   } = props;
   const history = useHistory();
@@ -90,12 +93,13 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        register: register(),
+        register: register({ required: true }),
         name: "name",
         defaultValue: currentTimeline?.name ?? "",
+        errorMessage: errors.name && timelineNameError,
       }}
       description={{
-        register: register(),
+        register: register({ required: true }),
         name: "description",
         defaultValue: currentTimeline?.desc ?? "",
       }}

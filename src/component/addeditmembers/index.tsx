@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { getUser } from "module/store";
 import MemberItem from "component/memberitem";
 import { IUser } from "module/interface/user";
+import { emailError } from "module/errors";
 import emailjs from "emailjs-com";
 // import { init } from "emailjs-com";
 // init("user_mRFm0l0xiY3CK24bkQMdu");
@@ -16,7 +17,9 @@ import emailjs from "emailjs-com";
 interface AddEditMembersProps extends DefaultAddEditMembersProps {}
 
 function AddEditMembers(props: AddEditMembersProps) {
-  const { handleSubmit, register, reset } = useForm();
+  const { handleSubmit, register, reset, errors } = useForm({
+    mode: "onChange",
+  });
   const defaultMembers = [];
   const me = getUser();
   defaultMembers.push(me);
@@ -65,7 +68,11 @@ function AddEditMembers(props: AddEditMembersProps) {
         onSubmit: handleSubmit(handleInvite),
       }}
       email={{
-        register: register(),
+        register: register({
+          required: true,
+          pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        }),
+        errorMessage: errors.email && emailError,
         name: "email",
       }}
       invite={{
