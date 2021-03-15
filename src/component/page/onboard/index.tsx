@@ -50,6 +50,10 @@ export function Onboard(props: HomeProps) {
       setVariantType("isTimeline");
     }
 
+    if (venture && timelinesData === undefined) {
+      setVariantType("isTimeline");
+    }
+
     //auth
     const getToken = async () => {
       try {
