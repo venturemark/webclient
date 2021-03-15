@@ -36,7 +36,7 @@ export function Home(props: HomeProps) {
     ventureId,
     token,
   };
-  const { data: timelinesData, isSuccess } = useTimelines(timelineSearch);
+  const { data: timelinesData, isError } = useTimelines(timelineSearch);
 
   const variant = timelineVariant ? "isTimeline" : "isVenture";
   const active = activeState ? activeState : "feed";
@@ -66,8 +66,6 @@ export function Home(props: HomeProps) {
   //   updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
   // }
 
-  console.log(activeState, isActive);
-
   useEffect(() => {
     //auth
     const getToken = async () => {
@@ -83,10 +81,14 @@ export function Home(props: HomeProps) {
     }
   }, [getAccessTokenSilently, token]);
 
+  if (!userId) {
+    return <Redirect to={`/signin`} />;
+  }
+
   if (!ventureId || timelinesData?.length < 1) {
     return <Redirect to={`/new`} />;
   }
-  if (isSuccess && timelinesData?.length < 1) {
+  if (isError || timelinesData?.length < 1) {
     return <Redirect to={`/new`} />;
   }
 

@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import { saveVenture, getVenture } from "module/store";
 import { INewVenture } from "module/interface/venture";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import { ventureNameError } from "module/errors";
 
 interface ParamsType {
@@ -29,6 +29,7 @@ function AddEditVenture(props: AddEditVentureProps) {
 
   const history = useHistory();
   const venture = getVenture();
+  const url = useLocation();
 
   const handleCreate = (data: any) => {
     const id = data.name.toLowerCase().replace(/\s/g, "");
@@ -56,13 +57,15 @@ function AddEditVenture(props: AddEditVentureProps) {
       name={{
         register: register({ required: true }),
         name: "name",
-        defaultValue: venture?.name ?? "",
+        defaultValue:
+          url?.pathname === "/newventure" ? "" : venture?.name ?? "",
         errorMessage: errors.name && ventureNameError,
       }}
       description={{
         register: register(),
         name: "description",
-        defaultValue: venture?.description ?? "",
+        defaultValue:
+          url?.pathname === "/newventure" ? "" : venture?.description ?? "",
       }}
       url={{
         register: register(),

@@ -16,6 +16,11 @@ export function Component(props: Props) {
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/new" component={Onboard} />
+          <Route
+            exact
+            path="/newventure"
+            component={() => <Home activeState="settings" />}
+          />
           <Route exact path="/:ventureSlug" component={Home} />
           <Route
             exact

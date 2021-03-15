@@ -55,9 +55,10 @@ export type PlasmicSidebar__OverridesType = {
   root?: p.Flex<"div">;
   topSidebar?: p.Flex<"div">;
   scrollContainer?: p.Flex<"div">;
+  itemGroupContainer?: p.Flex<"div">;
   sidebarItemGroup?: p.Flex<typeof SidebarItemGroup>;
   box?: p.Flex<"div">;
-  link?: p.Flex<"a">;
+  viewCreateVenture?: p.Flex<"a">;
 };
 
 export interface DefaultSidebarProps {
@@ -107,19 +108,20 @@ function PlasmicSidebar__RenderFunc(props: {
             ),
           })}
         >
-          {(hasVariant(variants, "hasInput", "hasInput") ? true : false) ? (
-            <SidebarItemGroup
-              data-plasmic-name={"sidebarItemGroup"}
-              data-plasmic-override={overrides.sidebarItemGroup}
-              className={classNames("__wab_instance", sty.sidebarItemGroup, {
-                [sty.sidebarItemGroup__hasInput]: hasVariant(
-                  variants,
-                  "hasInput",
-                  "hasInput"
-                ),
-              })}
-            />
-          ) : null}
+          <p.Stack
+            as={"div"}
+            data-plasmic-name={"itemGroupContainer"}
+            data-plasmic-override={overrides.itemGroupContainer}
+            hasGap={true}
+            className={classNames(defaultcss.all, sty.itemGroupContainer)}
+          >
+            {(hasVariant(variants, "hasInput", "hasInput") ? true : false) ? (
+              <SidebarItemGroup
+                data-plasmic-name={"sidebarItemGroup"}
+                data-plasmic-override={overrides.sidebarItemGroup}
+              />
+            ) : null}
+          </p.Stack>
 
           <div
             data-plasmic-name={"box"}
@@ -127,12 +129,12 @@ function PlasmicSidebar__RenderFunc(props: {
             className={classNames(defaultcss.all, sty.box)}
           >
             <a
-              data-plasmic-name={"link"}
-              data-plasmic-override={overrides.link}
+              data-plasmic-name={"viewCreateVenture"}
+              data-plasmic-override={overrides.viewCreateVenture}
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.link
+                sty.viewCreateVenture
               )}
             >
               {"Create New Venture"}
@@ -149,21 +151,30 @@ const PlasmicDescendants = {
     "root",
     "topSidebar",
     "scrollContainer",
+    "itemGroupContainer",
     "sidebarItemGroup",
     "box",
-    "link",
+    "viewCreateVenture",
   ],
   topSidebar: [
     "topSidebar",
     "scrollContainer",
+    "itemGroupContainer",
     "sidebarItemGroup",
     "box",
-    "link",
+    "viewCreateVenture",
   ],
-  scrollContainer: ["scrollContainer", "sidebarItemGroup", "box", "link"],
+  scrollContainer: [
+    "scrollContainer",
+    "itemGroupContainer",
+    "sidebarItemGroup",
+    "box",
+    "viewCreateVenture",
+  ],
+  itemGroupContainer: ["itemGroupContainer", "sidebarItemGroup"],
   sidebarItemGroup: ["sidebarItemGroup"],
-  box: ["box", "link"],
-  link: ["link"],
+  box: ["box", "viewCreateVenture"],
+  viewCreateVenture: ["viewCreateVenture"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -173,9 +184,10 @@ type NodeDefaultElementType = {
   root: "div";
   topSidebar: "div";
   scrollContainer: "div";
+  itemGroupContainer: "div";
   sidebarItemGroup: typeof SidebarItemGroup;
   box: "div";
-  link: "a";
+  viewCreateVenture: "a";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -183,8 +195,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicSidebar__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicSidebar__VariantsArgs;
   args?: PlasmicSidebar__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -236,9 +247,10 @@ export const PlasmicSidebar = Object.assign(
     // Helper components rendering sub-elements
     topSidebar: makeNodeComponent("topSidebar"),
     scrollContainer: makeNodeComponent("scrollContainer"),
+    itemGroupContainer: makeNodeComponent("itemGroupContainer"),
     sidebarItemGroup: makeNodeComponent("sidebarItemGroup"),
     box: makeNodeComponent("box"),
-    link: makeNodeComponent("link"),
+    viewCreateVenture: makeNodeComponent("viewCreateVenture"),
 
     // Metadata about props expected for PlasmicSidebar
     internalVariantProps: PlasmicSidebar__VariantProps,

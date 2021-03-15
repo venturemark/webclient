@@ -9,6 +9,7 @@ import SidebarItemGroup from "component/sidebaritemgroup";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory } from "react-router-dom";
 import { getVenture, getUser } from "module/store";
 
 interface SidebarProps extends DefaultSidebarProps {
@@ -22,6 +23,7 @@ interface SidebarProps extends DefaultSidebarProps {
 
 function Sidebar(props: SidebarProps) {
   const { getAccessTokenSilently } = useAuth0();
+  const history = useHistory();
   const [token, setToken] = useState<string>("");
 
   const timelineSearch: ITimelineQuery = {
@@ -57,7 +59,7 @@ function Sidebar(props: SidebarProps) {
   return (
     <PlasmicSidebar
       hasInput={true}
-      scrollContainer={{
+      itemGroupContainer={{
         children: (
           <SidebarItemGroup
             name={venture?.name ?? ""}
@@ -68,6 +70,7 @@ function Sidebar(props: SidebarProps) {
         //   <SidebarItemGroup name={venture.name} timelines={venture.timelines} />
         // )),
       }}
+      viewCreateVenture={{ onClick: () => history.push("/newventure") }}
       // timelinesContainer={{
       //   children: sortedCurrentTimelines.map((timeline: ITimeline) => (
       //     <SidebarItem

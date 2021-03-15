@@ -50,6 +50,10 @@ export function Onboard(props: HomeProps) {
       setVariantType("isTimeline");
     }
 
+    if (venture && timelinesData === undefined) {
+      setVariantType("isTimeline");
+    }
+
     //auth
     const getToken = async () => {
       try {
@@ -63,6 +67,10 @@ export function Onboard(props: HomeProps) {
       getToken();
     }
   }, [venture, getAccessTokenSilently, token, timelinesData]);
+
+  if (!userId) {
+    return <Redirect to={`/signin`} />;
+  }
 
   if (ventureId && timelinesData?.length > 0) {
     return <Redirect to={`/${ventureId}/feed`} />;

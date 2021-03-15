@@ -51,8 +51,24 @@
 .scrollContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
 }
-.sidebarItemGroup:global(.__wab_instance) {
+.itemGroupContainer {
+  display: flex;
   position: relative;
+  flex-direction: column;
+}
+.itemGroupContainer > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin-top: calc(0px - 5px);
+  height: calc(100% + 5px);
+}
+.itemGroupContainer > :global(.__wab_flex-container) > *,
+.itemGroupContainer
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > * {
+  margin-top: 5px;
 }
 .box {
   display: flex;
@@ -67,6 +83,6 @@
   min-width: 0;
   padding: 10px 30px;
 }
-.link {
+.viewCreateVenture {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
