@@ -64,6 +64,10 @@ export function Onboard(props: HomeProps) {
     }
   }, [venture, getAccessTokenSilently, token, timelinesData]);
 
+  if (!userId) {
+    return <Redirect to={`/signin`} />;
+  }
+
   if (ventureId && timelinesData?.length > 0) {
     return <Redirect to={`/${ventureId}/feed`} />;
   }

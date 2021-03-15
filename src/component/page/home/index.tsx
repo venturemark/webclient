@@ -83,6 +83,10 @@ export function Home(props: HomeProps) {
     }
   }, [getAccessTokenSilently, token]);
 
+  if (!userId) {
+    return <Redirect to={`/signin`} />;
+  }
+
   if (!ventureId || timelinesData?.length < 1) {
     return <Redirect to={`/new`} />;
   }
