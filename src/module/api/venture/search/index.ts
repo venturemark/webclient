@@ -5,11 +5,11 @@ import {
 } from "module/api/venture/proto/search_pb";
 import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IVenture, IVentureSearch } from "module/interface/venture/index";
-import * as key from "module/idkeys";
+import { IVenture, ISearchVenture } from "module/interface/venture/index";
+import * as key from "module/apikeys";
 
 export async function Search(
-  ventureSearch: IVentureSearch
+  ventureSearch: ISearchVenture
 ): Promise<IVenture[]> {
   const objList = [];
 
@@ -22,7 +22,7 @@ export async function Search(
 
   const obj = new SearchI_Obj();
   if (ventureSearch.userId) {
-    obj.getMetadataMap().set(key.VenturesSearch, ventureSearch.userId);
+    obj.getMetadataMap().set(key.VentureSearch, ventureSearch.userId);
   } else if (ventureSearch.id) {
     obj.getMetadataMap().set(key.VentureID, ventureSearch.id);
   }

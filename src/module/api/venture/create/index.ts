@@ -8,9 +8,9 @@ import {
 import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import * as key from "module/idkeys";
-import { INewVenture } from "module/interface/venture";
+import { ICreateVenture } from "module/interface/venture";
 
-export async function Create(newVenture: INewVenture): Promise<any> {
+export async function Create(createVenture: ICreateVenture): Promise<any> {
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
@@ -20,15 +20,15 @@ export async function Create(newVenture: INewVenture): Promise<any> {
   const objList = [];
   const objLinkList = [];
 
-  const token = newVenture.token;
+  const token = createVenture.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
-  objLink.setAddr(newVenture.url);
-  objLink.setText(newVenture.name);
+  objLink.setAddr(createVenture.url);
+  objLink.setText(createVenture.name);
   objLinkList.push(objLink);
 
-  objProperty.setName(newVenture.name);
-  objProperty.setDesc(newVenture.desc);
+  objProperty.setName(createVenture.name);
+  objProperty.setDesc(createVenture.desc);
   objProperty.setLinkList(objLinkList);
 
   obj.setProperty(objProperty);

@@ -5,15 +5,15 @@ import {
 } from "module/api/venture/proto/delete_pb";
 import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IVenture, IVentureDelete } from "module/interface/venture/index";
+import { IVenture, IDeleteVenture } from "module/interface/venture/index";
 import * as key from "module/idkeys";
 
 export async function Delete(
-  ventureQuery: IVentureDelete
+  deleteVenture: IDeleteVenture
 ): Promise<IVenture[]> {
   const objList = [];
 
-  const token = ventureQuery.token;
+  const token = deleteVenture.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
   //instantiate client and req classes
@@ -21,7 +21,7 @@ export async function Delete(
   const req = new DeleteI();
 
   const obj = new DeleteI_Obj();
-  obj.getMetadataMap().set(key.VentureID, ventureQuery.id);
+  obj.getMetadataMap().set(key.VentureID, deleteVenture.id);
   objList.push(obj);
   req.setObjList(objList);
 

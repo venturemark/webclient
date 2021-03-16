@@ -5,23 +5,18 @@ export interface IVenture {
   url?: string;
 }
 
-export interface IVentureSearch {
+export interface ISearchVenture {
   id?: string;
   userId?: string;
   token: string;
 }
 
-export interface IVenturesSearch {
+export interface IDeleteVenture {
   id: string;
   token: string;
 }
 
-export interface IVentureDelete {
-  id: string;
-  token: string;
-}
-
-export interface INewVenture {
+export interface ICreateVenture {
   name: string;
   desc: string;
   url: string;
