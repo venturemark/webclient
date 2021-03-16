@@ -8,7 +8,6 @@ import {
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
-import { getUser } from "module/store";
 import { useForm } from "react-hook-form";
 import { useGetToken } from "module/auth";
 import { ISearchVenture } from "module/interface/venture";

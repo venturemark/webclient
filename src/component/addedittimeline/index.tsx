@@ -8,7 +8,6 @@ import {
 import { INewTimeline, ITimeline } from "module/interface/timeline";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUser } from "module/store";
 import { useHistory, useParams } from "react-router-dom";
 import { timelineNameError } from "module/errors";
 

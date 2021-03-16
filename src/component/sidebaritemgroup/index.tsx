@@ -9,7 +9,6 @@ import SidebarItem from "component/sidebaritem";
 import { ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useGetToken } from "module/auth";
-import { getUser } from "module/store";
 import { useParams } from "react-router-dom";
 
 interface ParamTypes {

@@ -8,7 +8,6 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { saveUser, getUser } from "module/store";
 import { INewUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 

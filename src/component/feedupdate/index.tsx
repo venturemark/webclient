@@ -10,7 +10,6 @@ import { IUpdateQuery } from "module/interface/update";
 import { ITimeline } from "module/interface/timeline";
 import { useTimelineUpdates } from "module/hook/update";
 import { IUpdate } from "module/interface/update";
-import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IVenture } from "module/interface/venture";
 

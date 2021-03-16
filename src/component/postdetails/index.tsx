@@ -9,7 +9,6 @@ import ReplyContent from "component/replycontent";
 import { IMessageQuery } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { IUpdate } from "module/interface/update";
-import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface PostDetailsProps extends DefaultPostDetailsProps {

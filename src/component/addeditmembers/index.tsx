@@ -6,7 +6,6 @@ import {
   DefaultAddEditMembersProps,
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { useForm } from "react-hook-form";
-import { getUser } from "module/store";
 import MemberItem from "component/memberitem";
 import { IUser } from "module/interface/user";
 import { emailError } from "module/errors";

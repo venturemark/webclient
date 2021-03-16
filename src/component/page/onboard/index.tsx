@@ -9,7 +9,6 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { ITimelineQuery } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { useTimelines } from "module/hook/timeline";
-import { getUser } from "module/store";
 import { useGetToken } from "module/auth";
 import { Redirect } from "react-router-dom";
 

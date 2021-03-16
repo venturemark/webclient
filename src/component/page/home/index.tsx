@@ -11,7 +11,6 @@ import { IUpdate } from "module/interface/update";
 import { useTimelines } from "module/hook/timeline";
 // import {useVenture} from "module/hook/venture"
 import { useGetToken } from "module/auth";
-import { getUser } from "module/store";
 import { Redirect } from "react-router-dom";
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
@@ -25,7 +24,6 @@ interface HomeProps extends DefaultHomeProps {
 
 export function Home(props: HomeProps) {
   const { timelineVariant, activeState } = props;
-  const user = getUser();
   const token = useGetToken();
 
   const userId = user?.id ?? "";

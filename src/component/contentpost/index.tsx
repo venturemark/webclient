@@ -12,7 +12,6 @@ import { IUpdateQuery, IUpdate } from "module/interface/update";
 import { useAllUpdates } from "module/hook/update";
 import { IMessageQuery } from "module/interface/message";
 import { useMessages } from "module/hook/message";
-import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IVenture } from "module/interface/venture";
 
