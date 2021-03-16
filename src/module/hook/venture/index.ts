@@ -4,15 +4,15 @@ import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getVentures = async (ventureSearch: IVentureSearch) => {
+const getVenture = async (ventureSearch: IVentureSearch) => {
   const data = await api.API.Venture.Search(ventureSearch);
   return data;
 };
 
-export function useVentures(ventureSearch: IVentureSearch) {
+export function useVenture(ventureSearch: IVentureSearch) {
   return useQuery<any, ErrorResponse>(
     ["venture", ventureSearch.token],
-    () => getVentures(ventureSearch),
+    () => getVenture(ventureSearch),
     { enabled: !!ventureSearch.token }
   );
 }

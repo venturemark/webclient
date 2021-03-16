@@ -9,7 +9,7 @@ import ReplyContent from "component/replycontent";
 import { IMessageQuery } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { IUpdate } from "module/interface/update";
-import { getUser, getVenture } from "module/store";
+import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface PostDetailsProps extends DefaultPostDetailsProps {
@@ -23,7 +23,7 @@ function PostDetails(props: PostDetailsProps) {
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
   const userId = getUser()?.id ?? "";
-  const ventureId = getVenture()?.id ?? "";
+  const ventureId = "venturemark";
 
   const timelineId = post.timelineId;
   const updateId = post.id;

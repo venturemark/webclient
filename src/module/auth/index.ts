@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { isDev } from "module/helpers";
 
 export const configJson = isDev()
@@ -35,4 +37,25 @@ export function getConfig() {
     redirectUri: configJson.redirectUri,
     useRefreshTokens: configJson.useRefreshTokens,
   };
+}
+
+export function useGetToken(): string {
+  const [token, setToken] = useState("");
+  const { getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    const getToken = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        setToken(token);
+      } catch (error) {
+        console.log(error.error);
+      }
+    };
+    if (token === "") {
+      getToken();
+    }
+  }, [getAccessTokenSilently, token]);
+
+  return token;
 }

@@ -6,7 +6,7 @@ export function isDev(): boolean {
 
 export function makeVentureUrl(url: string): string {
   const address = isDev()
-    ? `https://twitter.com/${url}`
-    : `http://localhost:3006/${url}`;
+    ? `http://localhost:3006/${url}`
+    : `https://beta.venturemark.co/${url}`;
   return address;
 }

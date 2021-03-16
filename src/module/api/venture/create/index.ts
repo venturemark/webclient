@@ -47,7 +47,6 @@ export async function Create(newVenture: INewVenture): Promise<any> {
         const venturePbObject = venturePbList[0];
         const metaPb = venturePbObject?.getMetadataMap();
         const ventureId = metaPb.get(key.VentureID);
-
         resolve(ventureId);
       }
     });

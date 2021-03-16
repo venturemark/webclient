@@ -6,7 +6,8 @@ export interface IVenture {
 }
 
 export interface IVentureSearch {
-  id: string;
+  id?: string;
+  userId?: string;
   token: string;
 }
 

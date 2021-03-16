@@ -21,7 +21,11 @@ export async function Search(
   const req = new SearchI();
 
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.VentureID, ventureSearch.id);
+  if (ventureSearch.userId) {
+    obj.getMetadataMap().set(key.VenturesSearch, ventureSearch.userId);
+  } else if (ventureSearch.id) {
+    obj.getMetadataMap().set(key.VentureID, ventureSearch.id);
+  }
   objList.push(obj);
   req.setObjList(objList);
 

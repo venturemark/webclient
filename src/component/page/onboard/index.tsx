@@ -9,9 +9,9 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { ITimelineQuery } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { useTimelines } from "module/hook/timeline";
-import { getUser, getVenture } from "module/store";
+import { getUser } from "module/store";
+import { useGetToken } from "module/auth";
 import { Redirect } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
 type IsActive = "feed" | "settings" | "members" | undefined;
@@ -21,11 +21,9 @@ interface HomeProps extends DefaultHomeProps {}
 
 export function Onboard(props: HomeProps) {
   const user = getUser();
-  const venture = getVenture();
-  const { getAccessTokenSilently } = useAuth0();
-  const [token, setToken] = useState<string>("");
+  const token = useGetToken();
 
-  const ventureId = venture?.id ?? "";
+  const ventureId = "";
   const userId = user?.id ?? "";
   const timelineSearch: ITimelineQuery = {
     userId,
@@ -34,39 +32,25 @@ export function Onboard(props: HomeProps) {
   };
   const { data: timelinesData } = useTimelines(timelineSearch);
 
-  const variant = !venture ? "isEmpty" : "isVenture";
+  const variant = !ventureId ? "isEmpty" : "isVenture";
 
-  const active = venture ? "settings" : undefined;
+  const active = ventureId ? "settings" : undefined;
 
   // local hooks shared with page-level elements
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
   const [post, setPost] = useState<IUpdate>();
-  const [isHome, setIsHome] = useState(true);
   const [variantType, setVariantType] = useState<VariantType>(variant);
   const [isActive, setIsActive] = useState<IsActive>(active);
 
   useEffect(() => {
-    if (venture && timelinesData?.length < 1) {
+    if (ventureId && timelinesData?.length < 1) {
       setVariantType("isTimeline");
     }
 
-    if (venture && timelinesData === undefined) {
+    if (ventureId && timelinesData === undefined) {
       setVariantType("isTimeline");
     }
-
-    //auth
-    const getToken = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-        setToken(token);
-      } catch (error) {
-        console.log(error.error);
-      }
-    };
-    if (token === "") {
-      getToken();
-    }
-  }, [venture, getAccessTokenSilently, token, timelinesData]);
+  }, [ventureId, timelinesData]);
 
   if (!userId) {
     return <Redirect to={`/signin`} />;
@@ -105,12 +89,7 @@ export function Onboard(props: HomeProps) {
             setVariantType("isVenture");
           },
         }}
-        sidebar={{
-          isHome: isHome,
-          setIsHome: setIsHome,
-          userId: userId,
-          ventureId: ventureId,
-        }}
+        sidebar={{}}
         postDetails={{
           setIsVisible,
           post,

@@ -5,10 +5,12 @@ import {
   PlasmicAddEditVenture,
   DefaultAddEditVentureProps,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
-import { saveVenture, getVenture } from "module/store";
-import { INewVenture } from "module/interface/venture";
+import { INewVenture, IVenture } from "module/interface/venture";
 import { useHistory, useParams, useLocation } from "react-router-dom";
+import { useGetToken } from "module/auth";
 import { ventureNameError } from "module/errors";
+import { makeVentureUrl } from "module/helpers";
+import { useCreateVenture } from "module/hook/venture";
 
 interface ParamsType {
   timelineSlug: string;
@@ -17,6 +19,7 @@ interface ParamsType {
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
+  currentVenture: IVenture;
   handleSubmit: any;
   register: any;
   reset: any;
@@ -24,28 +27,35 @@ interface AddEditVentureProps extends DefaultAddEditVentureProps {
 }
 
 function AddEditVenture(props: AddEditVentureProps) {
-  const { setIsActive, handleSubmit, register, reset, errors, ...rest } = props;
+  const {
+    setIsActive,
+    handleSubmit,
+    register,
+    reset,
+    errors,
+    currentVenture,
+    ...rest
+  } = props;
   const { ventureSlug } = useParams<ParamsType>();
+  const token = useGetToken();
+  const { mutate: saveVenture } = useCreateVenture();
 
   const history = useHistory();
-  const venture = getVenture();
+  const venture = currentVenture;
   const url = useLocation();
 
   const handleCreate = (data: any) => {
-    const id = data.name.toLowerCase().replace(/\s/g, "");
+    const handle = data.name.toLowerCase().replace(/\s/g, "");
     const venture: INewVenture = {
-      id: id,
       name: data.name,
-      description: data.description,
-      url: data.url,
-      membersWrite: true,
-      adminId: "userId",
-      token: "someToken",
+      desc: data.description,
+      url: makeVentureUrl(handle),
+      token: token,
     };
 
     saveVenture(venture);
     reset();
-    history.push(`/${id}/feed`);
+    history.push(`/${handle}/feed`);
   };
 
   return (
@@ -65,7 +75,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         register: register(),
         name: "description",
         defaultValue:
-          url?.pathname === "/newventure" ? "" : venture?.description ?? "",
+          url?.pathname === "/newventure" ? "" : venture?.desc ?? "",
       }}
       url={{
         register: register(),
