@@ -10,22 +10,24 @@ import { IUpdateQuery } from "module/interface/update";
 import { ITimeline } from "module/interface/timeline";
 import { useTimelineUpdates } from "module/hook/update";
 import { IUpdate } from "module/interface/update";
-import { getUser, getVenture } from "module/store";
+import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IVenture } from "module/interface/venture";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
   currentTimeline: ITimeline;
+  currentVenture: IVenture;
   isVisible: any;
   setIsVisible: any;
   setPost: any;
 }
 
 function FeedUpdate(props: FeedUpdateProps) {
-  const { currentTimeline, setIsVisible, setPost } = props;
+  const { currentTimeline, setIsVisible, setPost, currentVenture } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
   const userId = getUser()?.id ?? "";
-  const ventureId = getVenture()?.id ?? "";
+  const ventureId = currentVenture?.id ?? "";
 
   const timelineUpdatesSearch: IUpdateQuery = {
     userId,
@@ -77,6 +79,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             date={update.date}
             setIsVisible={setIsVisible}
             setPost={() => setPost(update)}
+            currentVenture={currentVenture}
           />
         )),
       }}

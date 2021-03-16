@@ -12,8 +12,9 @@ import { IUpdateQuery, IUpdate } from "module/interface/update";
 import { useAllUpdates } from "module/hook/update";
 import { IMessageQuery } from "module/interface/message";
 import { useMessages } from "module/hook/message";
-import { getUser, getVenture } from "module/store";
+import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IVenture } from "module/interface/venture";
 
 interface ContentPostProps extends DefaultContentPostProps {
   title: string;
@@ -27,6 +28,7 @@ interface ContentPostProps extends DefaultContentPostProps {
   setIsVisible: any;
   setPost: any;
   state?: "isUser" | "isPostDetails";
+  currentVenture: IVenture;
 }
 
 function ContentPost(props: ContentPostProps) {
@@ -41,11 +43,12 @@ function ContentPost(props: ContentPostProps) {
     timelineId,
     id,
     state,
+    currentVenture,
   } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
   const userId = getUser()?.id ?? "";
-  const ventureId = getVenture()?.id ?? "";
+  const ventureId = currentVenture?.id ?? "";
 
   const timelineSearch: ITimelineQuery = {
     userId,

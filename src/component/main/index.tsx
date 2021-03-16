@@ -8,9 +8,11 @@ import {
 import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
-import { getUser, getVenture } from "module/store";
+import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
+import { IVentureSearch } from "module/interface/venture";
+import { useVenture } from "module/hook/venture";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -47,11 +49,23 @@ function Main(props: MainProps) {
 
   const { timelineSlug } = useParams<ParamTypes>();
 
+  const ventureId = "";
+
+  const ventureSearch: IVentureSearch = {
+    id: ventureId,
+    token: token,
+  };
+
   const timelineSearch: ITimelineQuery = {
     userId: getUser()?.id ?? "",
-    ventureId: getVenture()?.id ?? "",
+    ventureId: ventureId ?? "",
     token,
   };
+
+  const { data: ventureData } = useVenture(ventureSearch);
+
+  console.log(ventureData);
+
   const { data: timelinesData } = useTimelines(timelineSearch);
 
   const timelines = timelinesData ?? [];
@@ -61,6 +75,13 @@ function Main(props: MainProps) {
         timelineSlug?.toLowerCase().replace(/\s/g, "") ?? ""
     );
   })[0];
+
+  const currentVenture = {
+    name: "Venturemark",
+    desc: "Share Venture Stories",
+    id: "something",
+    url: "venturemark",
+  };
 
   useEffect(() => {
     const getToken = async () => {
@@ -86,22 +107,25 @@ function Main(props: MainProps) {
         currentTimeline,
         watchData,
         isOnboarding,
+        currentVenture,
       }}
       feedUpdate={{
         isVisible,
         setIsVisible,
         currentTimeline,
+        currentVenture,
         setPost,
       }}
       // addEditMembers={{}}
       addEditVenture={{
+        currentVenture,
         handleSubmit,
         register,
         reset,
         errors,
       }}
       addEditTimeline={{
-        currentTimeline: currentTimeline,
+        currentTimeline,
         handleSubmit,
         register,
         reset,

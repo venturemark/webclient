@@ -1,47 +1,39 @@
 export interface IVenture {
   id: string;
   name: string;
-  description: string;
-  url: string;
-  membersWrite: boolean;
-  token: string;
-  adminId: string;
-  // adminAudienceId: string[];
-  // memberAudienceId: string[];
+  desc: string;
+  url?: string;
 }
 
-export interface IVentureQuery {
-  id: string;
-  name: string;
-  description: string;
-  url: string;
-  membersWrite: boolean;
+export interface IVentureSearch {
+  id?: string;
+  userId?: string;
   token: string;
-  adminId: string;
-  // adminAudienceId: string[];
-  // memberAudienceId: string[];
+}
+
+export interface IVenturesSearch {
+  id: string;
+  token: string;
+}
+
+export interface IVentureDelete {
+  id: string;
+  token: string;
 }
 
 export interface INewVenture {
-  id: string;
   name: string;
-  description: string;
+  desc: string;
   url: string;
-  membersWrite: boolean;
   token: string;
-  adminId: string;
-  // adminAudienceId: string[];
-  // memberAudienceId: string[];
 }
 
 export interface IUpdateVenture {
   id: string;
   name: string;
-  description: string;
+  desc: string;
   url: string;
   membersWrite: boolean;
   token: string;
   adminId: string;
-  // adminAudienceId: string[];
-  // memberAudienceId: string[];
 }

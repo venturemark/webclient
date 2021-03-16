@@ -1,10 +1,12 @@
-import * as update from "./update";
-import * as timeline from "./timeline";
-import * as texUpd from "./texupd";
-import * as audience from "./audience";
-import * as message from "./message";
+import * as update from "module/api/update";
+import * as timeline from "module/api//timeline";
+import * as texUpd from "module/api/texupd";
+import * as audience from "module/api/audience";
+import * as message from "module/api/message";
+import * as venture from "module/api/venture";
 
 export const API = {
+  Venture: venture.Venture,
   Audience: audience.Audience,
   Update: update.Update,
   Timeline: timeline.Timeline,

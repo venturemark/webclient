@@ -6,6 +6,10 @@ import {
   DefaultSidebarItemGroupProps,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
+import { ITimelineQuery } from "module/interface/timeline";
+import { useTimelines } from "module/hook/timeline";
+import { useGetToken } from "module/auth";
+import { getUser } from "module/store";
 import { useParams } from "react-router-dom";
 
 interface ParamTypes {
@@ -15,13 +19,28 @@ interface ParamTypes {
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   name: string;
-  timelines: any;
+  ventureId: string;
 }
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
-  const { name, timelines, ...rest } = props;
+  const { name, ventureId, ...rest } = props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
+  const token = useGetToken();
+
+  const timelineSearch: ITimelineQuery = {
+    userId: getUser()?.id ?? "",
+    ventureId,
+    token,
+  };
+
+  const { data: timelinesData } = useTimelines(timelineSearch);
+  const timelines = timelinesData ?? [];
+
+  const sortedCurrentTimelines = timelines.sort((a: any, b: any) =>
+    a.name.localeCompare(b.name)
+  );
+
   return (
     <PlasmicSidebarItemGroup
       venture={{
@@ -38,7 +57,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       }}
       isCollapsed={isCollapsed}
       itemContainer={{
-        children: timelines.map((timeline: any) => (
+        children: sortedCurrentTimelines.map((timeline: any) => (
           <SidebarItem
             name={timeline.name}
             organizationId={"Venturemark"}

@@ -6,7 +6,6 @@ import {
   DefaultSidebarItemProps,
 } from "component/plasmic/shared/PlasmicSidebarItem";
 import { useHistory } from "react-router-dom";
-import { getVenture } from "module/store";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
@@ -26,13 +25,10 @@ function SidebarItem(props: SidebarItemProps) {
   } = props;
   const [isUserOnClick, setIsUserOnClick] = useState(false);
   const history = useHistory();
-  const venture = getVenture();
   const timelineSlug = name.toLowerCase().replace(/\s/g, "");
 
   const link =
-    itemType === "timeline"
-      ? `/${venture?.id}/${timelineSlug}`
-      : `/${venture?.id}`;
+    itemType === "timeline" ? `/venturemark/${timelineSlug}` : `/venturemark`;
 
   useEffect(() => {
     const handleWindowClick = () => setIsUserOnClick(false);

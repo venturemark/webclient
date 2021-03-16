@@ -6,9 +6,9 @@ import {
   DefaultMainHeaderProps,
 } from "component/plasmic/shared/PlasmicMainHeader";
 import { useHistory } from "react-router-dom";
-import { getVenture } from "module/store";
 import { useParams } from "react-router-dom";
 import { ITimeline } from "module/interface/timeline";
+import { IVenture } from "module/interface/venture";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -21,6 +21,7 @@ interface MainHeaderProps extends DefaultMainHeaderProps {
   currentTimeline: ITimeline;
   variantType: string;
   isOnboarding?: boolean | "isOnboarding";
+  currentVenture: IVenture;
 }
 
 function MainHeader(props: MainHeaderProps) {
@@ -30,15 +31,15 @@ function MainHeader(props: MainHeaderProps) {
     variantType,
     isOnboarding,
     watchData,
+    currentVenture,
     ...rest
   } = props;
   const { timelineSlug } = useParams<ParamTypes>();
   const history = useHistory();
-  const venture = getVenture();
 
   const link = timelineSlug
-    ? `/${venture?.id}/${timelineSlug}`
-    : `/${venture?.id}`;
+    ? `/${currentVenture.url}/${timelineSlug}`
+    : `/${currentVenture.url}`;
 
   return (
     <PlasmicMainHeader
@@ -46,8 +47,8 @@ function MainHeader(props: MainHeaderProps) {
       headerStyles={
         variantType === "isVenture" ? "ventureHeader" : "timelineHeader"
       }
-      ventureName={watchData?.name || venture?.name}
-      ventureDescription={watchData?.description || venture?.description}
+      ventureName={watchData?.name || currentVenture?.name}
+      ventureDescription={watchData?.description || currentVenture?.desc}
       timelineName={watchData?.name || currentTimeline?.name}
       timelineDescription={watchData?.description || currentTimeline?.desc}
       viewHome={{
