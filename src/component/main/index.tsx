@@ -64,6 +64,8 @@ function Main(props: MainProps) {
 
   const { data: ventureData } = useVenture(ventureSearch);
 
+  console.log(ventureData);
+
   const { data: timelinesData } = useTimelines(timelineSearch);
 
   const timelines = timelinesData ?? [];
