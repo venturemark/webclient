@@ -11,10 +11,10 @@
 
 import * as grpcWeb from "grpc-web";
 
-import * as pbf_venture_create_pb from "module/api/pbf/venture/create_pb";
-import * as pbf_venture_delete_pb from "module/api/pbf/venture/delete_pb";
-import * as pbf_venture_search_pb from "module/api/pbf/venture/search_pb";
-import * as pbf_venture_update_pb from "module/api/pbf/venture/update_pb";
+import * as pbf_venture_create_pb from "module/api/venture/proto/create_pb";
+import * as pbf_venture_delete_pb from "module/api/venture/proto/delete_pb";
+import * as pbf_venture_search_pb from "module/api/venture/proto/search_pb";
+import * as pbf_venture_update_pb from "module/api/venture/proto/update_pb";
 
 export class APIClient {
   client_: grpcWeb.AbstractClientBase;
