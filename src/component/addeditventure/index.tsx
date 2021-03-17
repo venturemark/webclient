@@ -5,7 +5,7 @@ import {
   PlasmicAddEditVenture,
   DefaultAddEditVentureProps,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
-import { INewVenture, IVenture } from "module/interface/venture";
+import { ICreateVenture, IVenture } from "module/interface/venture";
 import { useHistory, useParams, useLocation } from "react-router-dom";
 import { useGetToken } from "module/auth";
 import { ventureNameError } from "module/errors";
@@ -46,7 +46,7 @@ function AddEditVenture(props: AddEditVentureProps) {
 
   const handleCreate = (data: any) => {
     const handle = data.name.toLowerCase().replace(/\s/g, "");
-    const venture: INewVenture = {
+    const venture: ICreateVenture = {
       name: data.name,
       desc: data.description,
       url: makeVentureUrl(handle),

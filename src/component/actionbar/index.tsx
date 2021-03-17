@@ -21,12 +21,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 interface ActionBarProps extends DefaultActionBarProps {
   ventureId: string;
-  userId: string;
   currentTimeline: ITimeline;
 }
 
 function ActionBar(props: ActionBarProps) {
-  const { ventureId, userId, currentTimeline } = props;
+  const { ventureId, currentTimeline } = props;
   const { user, getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
   const { handleSubmit, register, reset } = useForm();
@@ -91,7 +90,6 @@ function ActionBar(props: ActionBarProps) {
         text: data.description,
         ventureId,
         timelineId: timelineId,
-        userId,
         token,
       };
 
@@ -202,7 +200,6 @@ function ActionBar(props: ActionBarProps) {
       tagsContainer={{
         render: () => (
           <AntSelect
-            userId={userId}
             ventureId={ventureId}
             selectedTimelines={selectedTimelines}
             setSelectedTimelines={setSelectedTimelines}
@@ -233,7 +230,6 @@ function ActionBar(props: ActionBarProps) {
       selectedItemsContainer={{
         render: () => (
           <AntSelect
-            userId={userId}
             ventureId={ventureId}
             selectedTimelines={selectedTimelines}
             setSelectedTimelines={setSelectedTimelines}

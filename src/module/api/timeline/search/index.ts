@@ -6,7 +6,7 @@ import {
 import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import { ITimeline, ITimelineQuery } from "module/interface/timeline/index";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 
 export async function Search(
   timelineQuery: ITimelineQuery
@@ -52,7 +52,6 @@ export async function Search(
               stat: stat,
               ventureId: organizationId,
               id: id,
-              userId: "",
               isCurrent: false,
             };
             return timeline;

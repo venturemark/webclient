@@ -6,7 +6,7 @@ import {
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import { IUser, IDeleteUser } from "module/interface/user/index";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 
 export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
   const objList = [];

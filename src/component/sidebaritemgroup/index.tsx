@@ -28,7 +28,6 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const token = useGetToken();
 
   const timelineSearch: ITimelineQuery = {
-    userId: getUser()?.id ?? "",
     ventureId,
     token,
   };

@@ -9,7 +9,10 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { ITimelineQuery } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { useTimelines } from "module/hook/timeline";
-// import {useVenture} from "module/hook/venture"
+import { ISearchVenture } from "module/interface/venture";
+import { ISearchUser } from "module/interface/user";
+import { useUser } from "module/hook/user";
+import { useVenture } from "module/hook/venture";
 import { useGetToken } from "module/auth";
 import { Redirect } from "react-router-dom";
 
@@ -26,18 +29,22 @@ export function Home(props: HomeProps) {
   const { timelineVariant, activeState } = props;
   const token = useGetToken();
 
-  const userId = user?.id ?? "";
-
   const ventureId = "venturemark";
 
-  // const ventureSearch: IVentureSearch = {
-  //   token: token,
-  // };
+  const userSearch: ISearchUser = {
+    token,
+  };
+  const { data: usersData } = useUser(userSearch);
+  const user = usersData;
 
-  // const { data: ventureData } = useVenture(ventureSearch);
+  const ventureSearch: ISearchVenture = {
+    userId: user.id,
+    token: token,
+  };
+
+  const { data: ventureData } = useVenture(ventureSearch);
 
   const timelineSearch: ITimelineQuery = {
-    userId,
     ventureId,
     token,
   };
@@ -70,7 +77,11 @@ export function Home(props: HomeProps) {
   //   updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
   // }
 
-  if (!userId) {
+  const venture = ventureData;
+
+  console.log(venture);
+
+  if (!user?.id) {
     return <Redirect to={`/signin`} />;
   }
 

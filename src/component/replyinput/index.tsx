@@ -18,11 +18,10 @@ interface ReplyInputProps extends DefaultReplyInputProps {
   updateId: string;
   timelineId: string;
   ventureId: string;
-  userId: string;
 }
 
 function ReplyInput(props: ReplyInputProps) {
-  const { updateId, timelineId, userId, ventureId } = props;
+  const { updateId, timelineId, ventureId } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
 
@@ -39,7 +38,6 @@ function ReplyInput(props: ReplyInputProps) {
       ventureId,
       timelineId,
       updateId,
-      userId,
       token,
     };
 

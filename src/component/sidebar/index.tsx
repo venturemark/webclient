@@ -8,7 +8,7 @@ import {
 import SidebarItemGroup from "component/sidebaritemgroup";
 import { useGetToken } from "module/auth";
 import { useHistory } from "react-router-dom";
-import { IVenture, IVentureSearch } from "module/interface/venture";
+import { IVenture, ISearchVenture } from "module/interface/venture";
 import { useVenture } from "module/hook/venture";
 
 interface SidebarProps extends DefaultSidebarProps {}
@@ -18,7 +18,7 @@ function Sidebar(props: SidebarProps) {
   const token = useGetToken();
   const userId = "";
 
-  const ventureSearch: IVentureSearch = {
+  const ventureSearch: ISearchVenture = {
     userId,
     token,
   };

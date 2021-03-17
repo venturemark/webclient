@@ -7,7 +7,7 @@ import {
 import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import { ITimeline, ITimelineUpdate } from "module/interface/timeline/index";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 
 export async function Update(
   timelineUpdate: ITimelineUpdate
@@ -25,7 +25,6 @@ export async function Update(
 
   obj.getMetadataMap().set(key.OrganizationID, timelineUpdate.ventureId);
   obj.getMetadataMap().set(key.VentureID, timelineUpdate.ventureId);
-  obj.getMetadataMap().set(key.UserID, timelineUpdate.userId);
   obj.getMetadataMap().set(key.TimelineID, timelineUpdate.id);
 
   if (timelineUpdate.stat) {

@@ -1,19 +1,19 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { IVentureSearch } from "module/interface/venture";
+import { ISearchVenture } from "module/interface/venture";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getVenture = async (ventureSearch: IVentureSearch) => {
-  const data = await api.API.Venture.Search(ventureSearch);
+const getVenture = async (searchVenture: ISearchVenture) => {
+  const data = await api.API.Venture.Search(searchVenture);
   return data;
 };
 
-export function useVenture(ventureSearch: IVentureSearch) {
+export function useVenture(searchVenture: ISearchVenture) {
   return useQuery<any, ErrorResponse>(
-    ["venture", ventureSearch.token],
-    () => getVenture(ventureSearch),
-    { enabled: !!ventureSearch.token }
+    ["venture", searchVenture.token],
+    () => getVenture(searchVenture),
+    { enabled: !!searchVenture.token }
   );
 }
 

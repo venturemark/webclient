@@ -11,10 +11,10 @@
 
 import * as grpcWeb from "grpc-web";
 
-import * as pbf_user_create_pb from "module/api/user/proto/user/create_pb";
-import * as pbf_user_delete_pb from "module/api/user/proto/user/delete_pb";
-import * as pbf_user_search_pb from "module/api/user/proto/user/search_pb";
-import * as pbf_user_update_pb from "module/api/user/proto/user/update_pb";
+import * as pbf_user_create_pb from "module/api/user/proto/create_pb";
+import * as pbf_user_delete_pb from "module/api/user/proto/delete_pb";
+import * as pbf_user_search_pb from "module/api/user/proto/search_pb";
+import * as pbf_user_update_pb from "module/api/user/proto/update_pb";
 
 export class APIClient {
   client_: grpcWeb.AbstractClientBase;

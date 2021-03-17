@@ -5,7 +5,7 @@ import {
 } from "module/api/audience/proto/create_pb";
 import { APIClient } from "module/api/audience/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 
 export async function Create(
   name: string,

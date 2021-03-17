@@ -4,7 +4,7 @@ import {
   CreateI_Obj,
   CreateI_Obj_Property,
 } from "module/api/message/proto/create_pb";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
 import { INewMessage } from "module/interface/message";
 
@@ -25,7 +25,6 @@ export async function Create(newMessage: INewMessage): Promise<any> {
   obj.getMetadataMap().set(key.VentureID, newMessage.ventureId);
   obj.getMetadataMap().set(key.TimelineID, newMessage.timelineId);
   obj.getMetadataMap().set(key.UpdateID, newMessage.updateId);
-  obj.getMetadataMap().set(key.UserID, newMessage.userId);
   obj.setProperty(objProperty);
 
   objList.push(obj);

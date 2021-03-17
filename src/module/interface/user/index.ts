@@ -6,12 +6,12 @@ export interface Job {
 export interface IUser {
   id: string;
   name: string;
-  title: string;
-  job: Job;
+  title?: string;
+  job?: Job;
 }
 
 export interface ISearchUser {
-  id: string;
+  id?: string;
   token: string;
 }
 

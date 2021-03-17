@@ -6,7 +6,7 @@ import {
 import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import { IVenture, IDeleteVenture } from "module/interface/venture/index";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 
 export async function Delete(
   deleteVenture: IDeleteVenture

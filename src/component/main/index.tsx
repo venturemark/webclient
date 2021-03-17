@@ -55,7 +55,6 @@ function Main(props: MainProps) {
   };
 
   const timelineSearch: ITimelineQuery = {
-    userId: getUser()?.id ?? "",
     ventureId: ventureId ?? "",
     token,
   };

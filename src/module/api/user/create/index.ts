@@ -7,7 +7,7 @@ import {
 } from "module/api/user/proto/create_pb";
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 import { INewUser } from "module/interface/user";
 
 export async function Create(newUser: INewUser): Promise<any> {

@@ -21,7 +21,6 @@ function PostDetails(props: PostDetailsProps) {
   const { setIsVisible, post } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-  const userId = getUser()?.id ?? "";
   const ventureId = "venturemark";
 
   const timelineId = post.timelineId;
@@ -30,7 +29,6 @@ function PostDetails(props: PostDetailsProps) {
   const messageSearch: IMessageQuery = {
     updateId,
     timelineId,
-    userId,
     ventureId,
     token,
   };
@@ -64,12 +62,8 @@ function PostDetails(props: PostDetailsProps) {
         id: updateId,
         ventureName: post.ventureId,
         timelineId: timelineId,
-        userName: post.userId,
-        userInitials:
-          post.userId
-            .split(" ")
-            .map((n: string) => n[0])
-            .join("") ?? "",
+        userName: "",
+        userInitials: "",
         date: post.date,
       }}
       repliesContainer={{
@@ -86,7 +80,6 @@ function PostDetails(props: PostDetailsProps) {
         ventureId,
         timelineId,
         updateId,
-        userId,
       }}
     />
   );

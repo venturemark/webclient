@@ -8,8 +8,10 @@ import {
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { ITimelineQuery } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
+import { ISearchUser } from "module/interface/user";
 import { useTimelines } from "module/hook/timeline";
 import { useGetToken } from "module/auth";
+import { useUser } from "module/hook/user";
 import { Redirect } from "react-router-dom";
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
@@ -19,13 +21,16 @@ type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 interface HomeProps extends DefaultHomeProps {}
 
 export function Onboard(props: HomeProps) {
-  const user = getUser();
   const token = useGetToken();
 
   const ventureId = "";
-  const userId = user?.id ?? "";
+  const userSearch: ISearchUser = {
+    token,
+  };
+  const { data: usersData } = useUser(userSearch);
+  const user = usersData;
+
   const timelineSearch: ITimelineQuery = {
-    userId,
     ventureId,
     token,
   };
@@ -51,7 +56,7 @@ export function Onboard(props: HomeProps) {
     }
   }, [ventureId, timelinesData]);
 
-  if (!userId) {
+  if (!user) {
     return <Redirect to={`/signin`} />;
   }
 

@@ -5,7 +5,7 @@ import {
 } from "module/api/message/proto/search_pb";
 import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 import fromUnixTime from "date-fns/fromUnixTime";
 import { formatDistanceToNow } from "date-fns";
 import { IMessage, IMessageQuery } from "module/interface/message";
@@ -25,7 +25,6 @@ export async function Search(messageQuery: IMessageQuery) {
   obj.getMetadataMap().set(key.VentureID, messageQuery.ventureId);
   obj.getMetadataMap().set(key.TimelineID, messageQuery.timelineId);
   obj.getMetadataMap().set(key.UpdateID, messageQuery.updateId);
-  obj.getMetadataMap().set(key.UserID, messageQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -48,7 +47,6 @@ export async function Search(messageQuery: IMessageQuery) {
           const organizationId = metaPb.get(key.OrganizationID);
           const timelineId = metaPb.get(key.TimelineID);
           const messageId = metaPb.get(key.MessageID);
-          const userId = metaPb.get(key.UserID);
           const updateId = metaPb.get(key.UpdateID);
           const rawDate = fromUnixTime(messageId / 1000000000);
           const date = formatDistanceToNow(rawDate) + " ago";
@@ -56,7 +54,6 @@ export async function Search(messageQuery: IMessageQuery) {
           const message: IMessage = {
             ventureId: organizationId,
             timelineId: timelineId,
-            userId: userId,
             updateId: updateId,
             id: messageId,
             text: text,

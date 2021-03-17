@@ -5,7 +5,7 @@ import {
 } from "module/api/update/proto/search_pb";
 import { APIClient } from "module/api/update/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 import fromUnixTime from "date-fns/fromUnixTime";
 import { formatDistanceToNow } from "date-fns";
 import { IUpdateQuery } from "module/interface/update";
@@ -25,7 +25,6 @@ export async function Search(updateQuery: IUpdateQuery) {
   obj.getMetadataMap().set(key.OrganizationID, updateQuery.ventureId);
   obj.getMetadataMap().set(key.VentureID, updateQuery.ventureId);
   obj.getMetadataMap().set(key.TimelineID, updateQuery.timelineId);
-  obj.getMetadataMap().set(key.UserID, updateQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -54,7 +53,6 @@ export async function Search(updateQuery: IUpdateQuery) {
           const update: any = {
             organizationId: organizationId,
             timelineId: timelineId,
-            userId: "not stored",
             id: updateId,
             text: text,
             date: date,

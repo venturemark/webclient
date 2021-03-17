@@ -5,7 +5,7 @@ import {
   CreateI_Obj_Property,
   CreateO,
 } from "module/api/texupd/proto/create_pb";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
 import { INewUpdate } from "module/interface/update";
 
@@ -24,7 +24,6 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
   obj.getMetadataMap().set(key.OrganizationID, newUpdate.ventureId);
   obj.getMetadataMap().set(key.VentureID, newUpdate.ventureId);
   obj.getMetadataMap().set(key.TimelineID, newUpdate.timelineId);
-  obj.getMetadataMap().set(key.UserID, newUpdate.userId);
   obj.setProperty(objProperty);
 
   objList.push(obj);
