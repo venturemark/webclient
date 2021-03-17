@@ -38,7 +38,7 @@ export function Home(props: HomeProps) {
   const user = usersData;
 
   const ventureSearch: ISearchVenture = {
-    userId: user.id,
+    userId: user?.id,
     token: token,
   };
 
@@ -79,11 +79,13 @@ export function Home(props: HomeProps) {
 
   const venture = ventureData;
 
-  console.log(venture);
+  console.log("user:", user);
 
-  if (!user?.id) {
-    return <Redirect to={`/signin`} />;
-  }
+  console.log("venture", venture);
+
+  // if (!user?.id) {
+  //   return <Redirect to={`/signin`} />;
+  // }
 
   if (!ventureId || timelinesData?.length < 1) {
     return <Redirect to={`/new`} />;
