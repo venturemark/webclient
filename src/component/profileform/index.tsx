@@ -48,7 +48,7 @@ function ProfileForm(props: ProfileFormProps) {
     };
 
     saveUser(user);
-    history.push("/");
+    history.push("/new");
   };
 
   return (

@@ -6,9 +6,9 @@ import {
 } from "module/api/message/proto/create_pb";
 import * as key from "module/apikeys";
 import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
-import { INewMessage } from "module/interface/message";
+import { ICreateMessage } from "module/interface/message";
 
-export async function Create(newMessage: INewMessage): Promise<any> {
+export async function Create(createMessage: ICreateMessage): Promise<any> {
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
@@ -17,14 +17,13 @@ export async function Create(newMessage: INewMessage): Promise<any> {
 
   const objList = [];
 
-  const token = newMessage.token;
+  const token = createMessage.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
-  objProperty.setText(newMessage.text);
-  obj.getMetadataMap().set(key.OrganizationID, newMessage.ventureId);
-  obj.getMetadataMap().set(key.VentureID, newMessage.ventureId);
-  obj.getMetadataMap().set(key.TimelineID, newMessage.timelineId);
-  obj.getMetadataMap().set(key.UpdateID, newMessage.updateId);
+  objProperty.setText(createMessage.text);
+  obj.getMetadataMap().set(key.VentureID, createMessage.ventureId);
+  obj.getMetadataMap().set(key.TimelineID, createMessage.timelineId);
+  obj.getMetadataMap().set(key.UpdateID, createMessage.updateId);
   obj.setProperty(objProperty);
 
   objList.push(obj);

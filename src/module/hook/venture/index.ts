@@ -11,9 +11,9 @@ const getVenture = async (searchVenture: ISearchVenture) => {
 
 export function useVenture(searchVenture: ISearchVenture) {
   return useQuery<any, ErrorResponse>(
-    ["venture", searchVenture.token],
+    ["venture", searchVenture.token, searchVenture.userId],
     () => getVenture(searchVenture),
-    { enabled: !!searchVenture.token }
+    { enabled: !!searchVenture.token && !!searchVenture.userId }
   );
 }
 

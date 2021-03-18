@@ -29,12 +29,10 @@ export function Home(props: HomeProps) {
   const { timelineVariant, activeState } = props;
   const token = useGetToken();
 
-  const ventureId = "venturemark";
-
   const userSearch: ISearchUser = {
     token,
   };
-  const { data: usersData } = useUser(userSearch);
+  const { data: usersData, isSuccess } = useUser(userSearch);
   const user = usersData;
 
   const ventureSearch: ISearchVenture = {
@@ -42,13 +40,19 @@ export function Home(props: HomeProps) {
     token: token,
   };
 
-  const { data: ventureData } = useVenture(ventureSearch);
+  const { data: ventureData, isSuccess: ventureSuccess } = useVenture(
+    ventureSearch
+  );
+
+  const ventureId = ventureData?.id ?? "";
 
   const timelineSearch: ITimelineQuery = {
     ventureId,
     token,
   };
-  const { data: timelinesData, isError } = useTimelines(timelineSearch);
+  const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
+    timelineSearch
+  );
 
   const variant = timelineVariant ? "isTimeline" : "isVenture";
   const active = activeState ? activeState : "feed";
@@ -83,14 +87,15 @@ export function Home(props: HomeProps) {
 
   console.log("venture", venture);
 
-  // if (!user?.id) {
-  //   return <Redirect to={`/signin`} />;
-  // }
+  if (isSuccess && !user) {
+    return <Redirect to={`/signin`} />;
+  }
 
-  if (!ventureId || timelinesData?.length < 1) {
+  if (ventureSuccess && !ventureData) {
     return <Redirect to={`/new`} />;
   }
-  if (isError || timelinesData?.length < 1) {
+
+  if (venture && timelineSuccess && !timelinesData) {
     return <Redirect to={`/new`} />;
   }
 

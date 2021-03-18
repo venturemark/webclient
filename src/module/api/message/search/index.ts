@@ -8,11 +8,11 @@ import * as env from "module/env";
 import * as key from "module/apikeys";
 import fromUnixTime from "date-fns/fromUnixTime";
 import { formatDistanceToNow } from "date-fns";
-import { IMessage, IMessageQuery } from "module/interface/message";
+import { IMessage, ISearchMessage } from "module/interface/message";
 
-export async function Search(messageQuery: IMessageQuery) {
+export async function Search(searchMessage: ISearchMessage) {
   const objList = [];
-  const token = messageQuery.token;
+  const token = searchMessage.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
   //instantiate client and req classes
@@ -21,10 +21,9 @@ export async function Search(messageQuery: IMessageQuery) {
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.OrganizationID, messageQuery.ventureId);
-  obj.getMetadataMap().set(key.VentureID, messageQuery.ventureId);
-  obj.getMetadataMap().set(key.TimelineID, messageQuery.timelineId);
-  obj.getMetadataMap().set(key.UpdateID, messageQuery.updateId);
+  obj.getMetadataMap().set(key.VentureID, searchMessage.ventureId);
+  obj.getMetadataMap().set(key.TimelineID, searchMessage.timelineId);
+  obj.getMetadataMap().set(key.UpdateID, searchMessage.updateId);
   objList.push(obj);
   req.setObjList(objList);
 

@@ -27,7 +27,7 @@ export function Onboard(props: HomeProps) {
   const userSearch: ISearchUser = {
     token,
   };
-  const { data: usersData } = useUser(userSearch);
+  const { data: usersData, isSuccess } = useUser(userSearch);
   const user = usersData;
 
   const timelineSearch: ITimelineQuery = {
@@ -56,7 +56,7 @@ export function Onboard(props: HomeProps) {
     }
   }, [ventureId, timelinesData]);
 
-  if (!user) {
+  if (isSuccess && !user) {
     return <Redirect to={`/signin`} />;
   }
 

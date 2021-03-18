@@ -10,5 +10,6 @@ export const UserStatus = "user.venturemark.co/status";
 export const VentureStatus = "venture.venturemark.co/status";
 export const TimelineStatus = "timeline.venturemark.co/status";
 export const UpdateStatus = "update.venturemark.co/status";
+export const MessageStatus = "message.venturemark.co/status";
 
 export const VentureSearch = "subject.venturemark.co/id";

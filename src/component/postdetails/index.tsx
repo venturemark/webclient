@@ -6,7 +6,7 @@ import {
   DefaultPostDetailsProps,
 } from "component/plasmic/shared/PlasmicPostDetails";
 import ReplyContent from "component/replycontent";
-import { IMessageQuery } from "module/interface/message";
+import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { IUpdate } from "module/interface/update";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -26,7 +26,7 @@ function PostDetails(props: PostDetailsProps) {
   const timelineId = post.timelineId;
   const updateId = post.id;
 
-  const messageSearch: IMessageQuery = {
+  const messageSearch: ISearchMessage = {
     updateId,
     timelineId,
     ventureId,

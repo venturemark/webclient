@@ -10,7 +10,7 @@ import { ITimeline, ITimelineQuery } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { IUpdateQuery, IUpdate } from "module/interface/update";
 import { useAllUpdates } from "module/hook/update";
-import { IMessageQuery } from "module/interface/message";
+import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { IVenture } from "module/interface/venture";
 import { useGetToken } from "module/auth";
@@ -63,7 +63,7 @@ function ContentPost(props: ContentPostProps) {
   };
   const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
 
-  const messageSearch: IMessageQuery = {
+  const messageSearch: ISearchMessage = {
     updateId: id,
     timelineId: timelineId,
     ventureId,
