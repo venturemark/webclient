@@ -10,8 +10,7 @@ import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useGetToken } from "module/auth";
-import { ISearchVenture, IVenture } from "module/interface/venture";
-import { useVenture } from "module/hook/venture";
+import { IVenture } from "module/interface/venture";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -51,19 +50,10 @@ function Main(props: MainProps) {
 
   const { timelineSlug } = useParams<ParamTypes>();
 
-  const ventureSearch: ISearchVenture = {
-    id: currentVenture?.id,
-    token: token,
-  };
-
   const timelineSearch: ISearchTimeline = {
     ventureId: ventureId,
     token,
   };
-
-  const { data: ventureData } = useVenture(ventureSearch);
-
-  console.log(ventureData);
 
   const { data: timelinesData } = useTimelines(timelineSearch);
 
@@ -103,6 +93,7 @@ function Main(props: MainProps) {
         errors,
       }}
       addEditTimeline={{
+        currentVenture,
         currentTimeline,
         handleSubmit,
         register,

@@ -10,6 +10,7 @@ import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { useHistory, useParams } from "react-router-dom";
 import { timelineNameError } from "module/errors";
 import { useGetToken } from "module/auth";
+import { IVenture } from "module/interface/venture";
 
 interface ParamsType {
   timelineSlug: string;
@@ -18,6 +19,7 @@ interface ParamsType {
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
+  currentVenture: IVenture;
   currentTimeline: ITimeline;
   handleSubmit: any;
   register: any;
@@ -33,6 +35,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     register,
     reset,
     errors,
+    currentVenture,
     ...rest
   } = props;
   const history = useHistory();
@@ -40,10 +43,11 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const token = useGetToken();
 
   const isEdit = timelineSlug ? "isEdit" : undefined;
-  const ventureId = "";
 
   const { mutate: createTimeline } = useCreateTimeline();
   const { mutate: updateTimeline } = useUpdateTimeline();
+
+  const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
   const handleCreate = (data: any) => {
     if (!token || !data.name || !data.description) {
@@ -52,13 +56,13 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     const timeline: ICreateTimeline = {
       name: data.name,
       desc: data.description,
-      ventureId: ventureId,
+      ventureId: currentVenture?.id,
       token: token,
     };
 
     isEdit ? updateTimeline(timeline) : createTimeline(timeline);
     reset();
-    history.push(`/${ventureId}/feed`);
+    history.push(`/${handle}/feed`);
   };
 
   const handleDelete = () => {
@@ -84,7 +88,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         defaultValue: currentTimeline?.desc ?? "",
       }}
       buttonSetEdit={{
-        handleCancel: () => history.push(`/${ventureId}/feed`),
+        handleCancel: () => history.push(`/${handle}/feed`),
         handleDelete: () => handleDelete(),
       }}
       visibility={{}}

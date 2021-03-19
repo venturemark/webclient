@@ -9,26 +9,29 @@ import { useHistory } from "react-router-dom";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   name: string;
-  userId: string;
-  organizationId: string;
+  ventureName: string;
+  ventureId: string;
   setHasInput?: any;
   itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
 function SidebarItem(props: SidebarItemProps) {
   const {
     name,
-    userId,
-    organizationId,
+    ventureId,
+    ventureName,
     itemType,
     setHasInput,
     ...rest
   } = props;
   const [isUserOnClick, setIsUserOnClick] = useState(false);
   const history = useHistory();
-  const timelineSlug = name.toLowerCase().replace(/\s/g, "");
+  const ventureHandle = ventureName?.toLowerCase().replace(/\s/g, "");
+  const timelineHandle = name?.toLowerCase().replace(/\s/g, "");
 
   const link =
-    itemType === "timeline" ? `/venturemark/${timelineSlug}` : `/venturemark`;
+    itemType === "timeline"
+      ? `/${ventureHandle}/${timelineHandle}`
+      : `/${ventureHandle}`;
 
   useEffect(() => {
     const handleWindowClick = () => setIsUserOnClick(false);
@@ -63,7 +66,8 @@ function SidebarItem(props: SidebarItemProps) {
       itemType={itemType}
       name={name}
       dropdown={{
-        timelineSlug,
+        timelineHandle,
+        ventureHandle,
         isTimeline: itemType === "timeline" ? true : false,
       }}
       {...rest}
