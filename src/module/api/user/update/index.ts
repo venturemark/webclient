@@ -7,7 +7,7 @@ import {
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import * as key from "module/apikeys";
-import { IUser, IUpdateUser } from "module/interface/user/index";
+import { IUser, IUpdateUser } from "module/interface/user";
 
 export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   //instantiate client and req classes

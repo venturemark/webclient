@@ -5,7 +5,7 @@ import {
 } from "module/api/user/proto/search_pb";
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IUser, ISearchUser, Job } from "module/interface/user/index";
+import { IUser, ISearchUser, Job } from "module/interface/user";
 import * as key from "module/apikeys";
 
 export async function Search(searchUser: ISearchUser): Promise<IUser[]> {
