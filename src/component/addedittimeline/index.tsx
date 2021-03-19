@@ -5,7 +5,7 @@ import {
   PlasmicAddEditTimeline,
   DefaultAddEditTimelineProps,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
-import { INewTimeline, ITimeline } from "module/interface/timeline";
+import { ICreateTimeline, ITimeline } from "module/interface/timeline";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { useHistory, useParams } from "react-router-dom";
 import { timelineNameError } from "module/errors";
@@ -49,7 +49,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     if (!token || !data.name || !data.description) {
       return;
     }
-    const timeline: INewTimeline = {
+    const timeline: ICreateTimeline = {
       name: data.name,
       desc: data.description,
       ventureId: ventureId,

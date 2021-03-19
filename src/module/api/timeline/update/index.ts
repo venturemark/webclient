@@ -23,7 +23,6 @@ export async function Update(
   const objList = [];
   const patchList = [];
 
-  obj.getMetadataMap().set(key.OrganizationID, timelineUpdate.ventureId);
   obj.getMetadataMap().set(key.VentureID, timelineUpdate.ventureId);
   obj.getMetadataMap().set(key.TimelineID, timelineUpdate.id);
 

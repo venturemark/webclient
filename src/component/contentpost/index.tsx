@@ -6,7 +6,7 @@ import {
   DefaultContentPostProps,
 } from "component/plasmic/shared/PlasmicContentPost";
 import TimelineLink from "component/timelinelink";
-import { ITimeline, ITimelineQuery } from "module/interface/timeline";
+import { ITimeline, ISearchTimeline } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { IUpdateQuery, IUpdate } from "module/interface/update";
 import { useAllUpdates } from "module/hook/update";
@@ -48,7 +48,7 @@ function ContentPost(props: ContentPostProps) {
 
   const ventureId = currentVenture?.id ?? "";
 
-  const timelineSearch: ITimelineQuery = {
+  const timelineSearch: ISearchTimeline = {
     ventureId,
     token,
   };

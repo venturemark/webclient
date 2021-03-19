@@ -9,15 +9,20 @@ export interface ITimeline {
 }
 
 // api calls
-export interface ITimelineQuery {
+export interface ISearchTimeline {
   ventureId: string;
   token: string;
 }
 
-export interface INewTimeline {
+export interface ICreateTimeline {
   name: string;
   desc: string;
   ventureId: string;
+  token: string;
+}
+
+export interface IDeleteTimeline {
+  id: string;
   token: string;
 }
 

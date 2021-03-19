@@ -43,7 +43,7 @@ export async function Search(searchMessage: ISearchMessage) {
           const text = propertyPb?.toObject().text ?? "";
           const reid = propertyPb?.toObject().reid ?? "";
 
-          const organizationId = metaPb.get(key.OrganizationID);
+          const ventureId = metaPb.get(key.VentureID);
           const timelineId = metaPb.get(key.TimelineID);
           const messageId = metaPb.get(key.MessageID);
           const updateId = metaPb.get(key.UpdateID);
@@ -51,7 +51,7 @@ export async function Search(searchMessage: ISearchMessage) {
           const date = formatDistanceToNow(rawDate) + " ago";
 
           const message: IMessage = {
-            ventureId: organizationId,
+            ventureId: ventureId,
             timelineId: timelineId,
             updateId: updateId,
             id: messageId,

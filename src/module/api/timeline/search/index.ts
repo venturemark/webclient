@@ -5,11 +5,11 @@ import {
 } from "module/api/timeline/proto/search_pb";
 import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { ITimeline, ITimelineQuery } from "module/interface/timeline/index";
+import { ITimeline, ISearchTimeline } from "module/interface/timeline/index";
 import * as key from "module/apikeys";
 
 export async function Search(
-  timelineQuery: ITimelineQuery
+  timelineQuery: ISearchTimeline
 ): Promise<ITimeline[]> {
   const objList = [];
 
@@ -43,14 +43,14 @@ export async function Search(
             const name = propertiesPb?.getName() as string;
             const desc = propertiesPb?.getDesc() as string;
             const stat = propertiesPb?.getStat() as string;
-            const organizationId = metaPb.get(key.OrganizationID);
+            const ventureId = metaPb.get(key.VentureID);
             const id = metaPb.get(key.TimelineID);
 
             const timeline: ITimeline = {
               name: name,
               desc: desc,
               stat: stat,
-              ventureId: organizationId,
+              ventureId: ventureId,
               id: id,
               isCurrent: false,
             };

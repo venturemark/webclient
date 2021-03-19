@@ -6,7 +6,7 @@ import {
   DefaultSidebarItemGroupProps,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
-import { ITimelineQuery } from "module/interface/timeline";
+import { ISearchTimeline } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useGetToken } from "module/auth";
 import { useParams } from "react-router-dom";
@@ -27,7 +27,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
   const token = useGetToken();
 
-  const timelineSearch: ITimelineQuery = {
+  const timelineSearch: ISearchTimeline = {
     ventureId,
     token,
   };

@@ -5,7 +5,7 @@ import {
   PlasmicMain,
   DefaultMainProps,
 } from "component/plasmic/shared/PlasmicMain";
-import { ITimeline, ITimelineQuery } from "module/interface/timeline";
+import { ITimeline, ISearchTimeline } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -54,7 +54,7 @@ function Main(props: MainProps) {
     token: token,
   };
 
-  const timelineSearch: ITimelineQuery = {
+  const timelineSearch: ISearchTimeline = {
     ventureId: ventureId ?? "",
     token,
   };

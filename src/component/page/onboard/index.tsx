@@ -6,7 +6,7 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/shared/PlasmicHome";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { ITimelineQuery } from "module/interface/timeline";
+import { ISearchTimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { ISearchUser } from "module/interface/user";
 import { useTimelines } from "module/hook/timeline";
@@ -30,7 +30,7 @@ export function Onboard(props: HomeProps) {
   const { data: usersData, isSuccess } = useUser(userSearch);
   const user = usersData;
 
-  const timelineSearch: ITimelineQuery = {
+  const timelineSearch: ISearchTimeline = {
     ventureId,
     token,
   };
