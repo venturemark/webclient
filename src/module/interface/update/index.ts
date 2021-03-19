@@ -15,10 +15,15 @@ export interface IUpdateQuery {
   token: string;
 }
 
-export interface INewUpdate {
+export interface ICreateUpdate {
   text: string;
   ventureId: string;
   timelineId: string;
+  token: string;
+}
+
+export interface IDeleteUpdate {
+  id: string;
   token: string;
 }
 

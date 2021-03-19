@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 // import { EditorShape } from "component/editor/compose";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import { INewUpdate } from "module/interface/update";
+import { ICreateUpdate } from "module/interface/update";
 import { AntSelect } from "component/ant/select";
 import { useForm } from "react-hook-form";
 // import { initialValueEmpty } from "component/editor/config/initialValues";
@@ -85,7 +85,7 @@ function ActionBar(props: ActionBarProps) {
     // how do we manage tokens in the same place?
 
     selectedTimelines.forEach((timelineId) => {
-      const newUpdate: INewUpdate = {
+      const newUpdate: ICreateUpdate = {
         // text: serialize(editorShape.value),
         text: data.description,
         ventureId,

@@ -7,9 +7,9 @@ import {
 } from "module/api/texupd/proto/create_pb";
 import * as key from "module/apikeys";
 import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
-import { INewUpdate } from "module/interface/update";
+import { ICreateUpdate } from "module/interface/update";
 
-export async function Create(newUpdate: INewUpdate): Promise<any> {
+export async function Create(createUpdate: ICreateUpdate): Promise<any> {
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
@@ -17,13 +17,12 @@ export async function Create(newUpdate: INewUpdate): Promise<any> {
   const objProperty = new CreateI_Obj_Property();
   const objList = [];
 
-  const token = newUpdate.token;
+  const token = createUpdate.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
-  objProperty.setText(newUpdate.text);
-  obj.getMetadataMap().set(key.OrganizationID, newUpdate.ventureId);
-  obj.getMetadataMap().set(key.VentureID, newUpdate.ventureId);
-  obj.getMetadataMap().set(key.TimelineID, newUpdate.timelineId);
+  objProperty.setText(createUpdate.text);
+  obj.getMetadataMap().set(key.VentureID, createUpdate.ventureId);
+  obj.getMetadataMap().set(key.TimelineID, createUpdate.timelineId);
   obj.setProperty(objProperty);
 
   objList.push(obj);

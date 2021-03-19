@@ -22,7 +22,6 @@ export async function Search(updateQuery: IUpdateQuery) {
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.OrganizationID, updateQuery.ventureId);
   obj.getMetadataMap().set(key.VentureID, updateQuery.ventureId);
   obj.getMetadataMap().set(key.TimelineID, updateQuery.timelineId);
   objList.push(obj);
@@ -43,7 +42,7 @@ export async function Search(updateQuery: IUpdateQuery) {
 
           const text = propertyPb?.toObject().text;
 
-          const organizationId = metaPb.get(key.OrganizationID);
+          const ventureId = metaPb.get(key.VentureID);
           const timelineId = metaPb.get(key.TimelineID);
           const updateId = metaPb.get(key.UpdateID);
           // const userId = metaPb.get(key.UserID);
@@ -51,7 +50,7 @@ export async function Search(updateQuery: IUpdateQuery) {
           const date = formatDistanceToNow(rawDate) + " ago";
 
           const update: any = {
-            organizationId: organizationId,
+            ventureId: ventureId,
             timelineId: timelineId,
             id: updateId,
             text: text,
