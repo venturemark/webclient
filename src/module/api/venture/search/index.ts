@@ -22,7 +22,7 @@ export async function Search(
 
   const obj = new SearchI_Obj();
   if (ventureSearch.userId) {
-    obj.getMetadataMap().set(key.VentureSearch, ventureSearch.userId);
+    obj.getMetadataMap().set(key.SubjectID, ventureSearch.userId);
   } else if (ventureSearch.id) {
     obj.getMetadataMap().set(key.VentureID, ventureSearch.id);
   }
