@@ -6,9 +6,9 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/shared/PlasmicHome";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { ISearchTimeline } from "module/interface/timeline";
+// import { ISearchTimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
-import { useTimelines } from "module/hook/timeline";
+// import { useTimelines } from "module/hook/timeline";
 import { ISearchVenture } from "module/interface/venture";
 import { ISearchUser } from "module/interface/user";
 import { useUser } from "module/hook/user";
@@ -44,15 +44,20 @@ export function Home(props: HomeProps) {
     ventureSearch
   );
 
-  const ventureId = ventureData?.id ?? "";
+  const ventures = ventureData ?? [];
+  const currentVenture = ventureSuccess ? ventures[0] : {};
 
-  const timelineSearch: ISearchTimeline = {
-    ventureId,
-    token,
-  };
-  const { data: timelinesData, isSuccess: timelineSuccess } = useTimelines(
-    timelineSearch
-  );
+  const ventureId = currentVenture?.id ?? "";
+
+  // const timelineSearch: ISearchTimeline = {
+  //   ventureId,
+  //   token,
+  // };
+  // const {
+  //   data: timelinesData,
+  //   isError: timelineError,
+  //   isSuccess: timelineSuccess,
+  // } = useTimelines(timelineSearch);
 
   const variant = timelineVariant ? "isTimeline" : "isVenture";
   const active = activeState ? activeState : "feed";
@@ -81,23 +86,21 @@ export function Home(props: HomeProps) {
   //   updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
   // }
 
-  const venture = ventureData;
-
-  console.log("user:", user);
-
-  console.log("venture", venture);
-
   if (isSuccess && !user) {
     return <Redirect to={`/signin`} />;
   }
 
-  if (ventureSuccess && !ventureData) {
-    return <Redirect to={`/new`} />;
-  }
+  // if (ventureSuccess && !ventureData) {
+  //   return <Redirect to={`/newventure`} />;
+  // }
 
-  if (venture && timelineSuccess && !timelinesData) {
-    return <Redirect to={`/new`} />;
-  }
+  // if (timelineSuccess && !timelinesData) {
+  //   return <Redirect to={`/new`} />;
+  // }
+
+  // if (timelineError) {
+  //   return <Redirect to={`/new`} />;
+  // }
 
   return (
     <>
@@ -119,8 +122,13 @@ export function Home(props: HomeProps) {
           isVisible,
           setIsVisible,
           setPost,
+          currentVenture: currentVenture,
+          ventureId,
         }}
-        sidebar={{}}
+        sidebar={{
+          userId: user?.id,
+          ventures: ventures,
+        }}
         postDetails={{
           setIsVisible,
           post,

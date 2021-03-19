@@ -10,7 +10,7 @@ import { useTimelines } from "module/hook/timeline";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useGetToken } from "module/auth";
-import { ISearchVenture } from "module/interface/venture";
+import { ISearchVenture, IVenture } from "module/interface/venture";
 import { useVenture } from "module/hook/venture";
 
 interface ParamTypes {
@@ -28,6 +28,8 @@ interface MainProps extends DefaultMainProps {
   setPost: any;
   viewCreateVenture?: any;
   viewJoinVenture?: any;
+  ventureId: string;
+  currentVenture: IVenture;
 }
 
 function Main(props: MainProps) {
@@ -40,6 +42,8 @@ function Main(props: MainProps) {
     setPost,
     viewCreateVenture,
     viewJoinVenture,
+    ventureId,
+    currentVenture,
   } = props;
   const token = useGetToken();
   const { handleSubmit, register, reset, watch, errors } = useForm();
@@ -47,15 +51,13 @@ function Main(props: MainProps) {
 
   const { timelineSlug } = useParams<ParamTypes>();
 
-  const ventureId = "";
-
   const ventureSearch: ISearchVenture = {
-    id: ventureId,
+    id: currentVenture?.id,
     token: token,
   };
 
   const timelineSearch: ISearchTimeline = {
-    ventureId: ventureId ?? "",
+    ventureId: ventureId,
     token,
   };
 
@@ -72,13 +74,6 @@ function Main(props: MainProps) {
         timelineSlug?.toLowerCase().replace(/\s/g, "") ?? ""
     );
   })[0];
-
-  const currentVenture = {
-    name: "Venturemark",
-    desc: "Share Venture Stories",
-    id: "something",
-    url: "venturemark",
-  };
 
   return (
     <PlasmicMain

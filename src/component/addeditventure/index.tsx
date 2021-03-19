@@ -43,6 +43,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   const history = useHistory();
   const venture = currentVenture;
   const url = useLocation();
+  const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
   const handleCreate = (data: any) => {
     const handle = data.name.toLowerCase().replace(/\s/g, "");
@@ -55,12 +56,12 @@ function AddEditVenture(props: AddEditVentureProps) {
 
     saveVenture(venture);
     reset();
-    history.push(`/${handle}/feed`);
+    history.push(`/${handle}/newtimeline`);
   };
 
   return (
     <PlasmicAddEditVenture
-      variantState={ventureSlug ? "isEdit" : undefined}
+      variantState={ventureSlug === handle ? "isEdit" : undefined}
       settings={{
         onSubmit: handleSubmit(handleCreate),
       }}

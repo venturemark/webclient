@@ -9,7 +9,10 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { ISearchTimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { ISearchUser } from "module/interface/user";
+import { ISearchVenture } from "module/interface/venture";
 import { useTimelines } from "module/hook/timeline";
+import { useVenture } from "module/hook/venture";
+
 import { useGetToken } from "module/auth";
 import { useUser } from "module/hook/user";
 import { Redirect } from "react-router-dom";
@@ -23,12 +26,25 @@ interface HomeProps extends DefaultHomeProps {}
 export function Onboard(props: HomeProps) {
   const token = useGetToken();
 
-  const ventureId = "";
   const userSearch: ISearchUser = {
     token,
   };
   const { data: usersData, isSuccess } = useUser(userSearch);
   const user = usersData;
+
+  const ventureSearch: ISearchVenture = {
+    userId: user?.id,
+    token: token,
+  };
+
+  const { data: ventureData, isSuccess: ventureSuccess } = useVenture(
+    ventureSearch
+  );
+
+  const ventures = ventureData ?? [];
+  const currentVenture = ventureSuccess ? ventures[0] : {};
+
+  const ventureId = currentVenture?.id ?? "";
 
   const timelineSearch: ISearchTimeline = {
     ventureId,
@@ -54,7 +70,7 @@ export function Onboard(props: HomeProps) {
     if (ventureId && timelinesData === undefined) {
       setVariantType("isTimeline");
     }
-  }, [ventureId, timelinesData]);
+  }, [timelinesData, ventureId]);
 
   if (isSuccess && !user) {
     return <Redirect to={`/signin`} />;
