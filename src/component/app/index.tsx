@@ -21,6 +21,13 @@ export function Component(props: Props) {
             path="/newventure"
             component={() => <Home activeState="settings" />}
           />
+          <Route
+            exact
+            path="/:ventureSlug/newtimeline"
+            component={() => (
+              <Home activeState="settings" timelineVariant={`isTimeline`} />
+            )}
+          />
           <Route exact path="/:ventureSlug" component={Home} />
           <Route
             exact

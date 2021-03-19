@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicReplyInput";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
-import { INewMessage } from "module/interface/message";
+import { ICreateMessage } from "module/interface/message";
 import { useCreateMessage } from "module/hook/message";
 
 type FormInputs = {
@@ -18,11 +18,10 @@ interface ReplyInputProps extends DefaultReplyInputProps {
   updateId: string;
   timelineId: string;
   ventureId: string;
-  userId: string;
 }
 
 function ReplyInput(props: ReplyInputProps) {
-  const { updateId, timelineId, userId, ventureId } = props;
+  const { updateId, timelineId, ventureId } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
 
@@ -34,12 +33,11 @@ function ReplyInput(props: ReplyInputProps) {
       return;
     }
 
-    const newMessage: INewMessage = {
+    const newMessage: ICreateMessage = {
       text: data.text,
       ventureId,
       timelineId,
       updateId,
-      userId,
       token,
     };
 

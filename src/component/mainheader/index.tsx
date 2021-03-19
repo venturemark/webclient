@@ -37,9 +37,9 @@ function MainHeader(props: MainHeaderProps) {
   const { timelineSlug } = useParams<ParamTypes>();
   const history = useHistory();
 
-  const link = timelineSlug
-    ? `/${currentVenture.url}/${timelineSlug}`
-    : `/${currentVenture.url}`;
+  const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
+
+  const link = timelineSlug ? `/${handle}/${timelineSlug}` : `/${handle}`;
 
   return (
     <PlasmicMainHeader

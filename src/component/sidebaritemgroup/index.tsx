@@ -6,10 +6,9 @@ import {
   DefaultSidebarItemGroupProps,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
-import { ITimelineQuery } from "module/interface/timeline";
+import { ISearchTimeline, ITimeline } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useGetToken } from "module/auth";
-import { getUser } from "module/store";
 import { useParams } from "react-router-dom";
 
 interface ParamTypes {
@@ -28,8 +27,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
   const token = useGetToken();
 
-  const timelineSearch: ITimelineQuery = {
-    userId: getUser()?.id ?? "",
+  const timelineSearch: ISearchTimeline = {
     ventureId,
     token,
   };
@@ -57,11 +55,12 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       }}
       isCollapsed={isCollapsed}
       itemContainer={{
-        children: sortedCurrentTimelines.map((timeline: any) => (
+        children: sortedCurrentTimelines.map((timeline: ITimeline) => (
           <SidebarItem
             name={timeline.name}
-            organizationId={"Venturemark"}
-            userId={"Marcus Ellison"}
+            key={timeline.id}
+            ventureId={timeline.ventureId}
+            ventureName={name}
             itemType={"timeline"}
             isActive={
               timeline.name.toLowerCase().replace(/\s/g, "") === timelineSlug

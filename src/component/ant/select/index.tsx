@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Select, Tag } from "antd";
 import { useTimelines } from "module/hook/timeline";
-import { ITimeline, ITimelineQuery } from "module/interface/timeline";
+import { ITimeline, ISearchTimeline } from "module/interface/timeline";
 import { RefSelectProps } from "antd/lib/select";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -30,7 +30,6 @@ function tagRender(props: any) {
 }
 
 interface SelectProps {
-  userId: string;
   ventureId: string;
   setSelectedTimelines: React.Dispatch<React.SetStateAction<string[]>>;
   selectFocused: boolean;
@@ -40,7 +39,6 @@ interface SelectProps {
 
 export function AntSelect(props: SelectProps) {
   const {
-    userId,
     ventureId,
     setSelectedTimelines,
     selectFocused,
@@ -52,8 +50,7 @@ export function AntSelect(props: SelectProps) {
 
   const select = useRef<RefSelectProps>(null);
 
-  const timelineSearch: ITimelineQuery = {
-    userId,
+  const timelineSearch: ISearchTimeline = {
     ventureId: ventureId,
     token,
   };

@@ -10,7 +10,6 @@ import { IUpdateQuery } from "module/interface/update";
 import { ITimeline } from "module/interface/timeline";
 import { useTimelineUpdates } from "module/hook/update";
 import { IUpdate } from "module/interface/update";
-import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IVenture } from "module/interface/venture";
 
@@ -26,11 +25,9 @@ function FeedUpdate(props: FeedUpdateProps) {
   const { currentTimeline, setIsVisible, setPost, currentVenture } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-  const userId = getUser()?.id ?? "";
   const ventureId = currentVenture?.id ?? "";
 
   const timelineUpdatesSearch: IUpdateQuery = {
-    userId,
     ventureId,
     timelineId: currentTimeline?.id ?? "",
     token,
@@ -57,8 +54,7 @@ function FeedUpdate(props: FeedUpdateProps) {
   return (
     <PlasmicFeedUpdate
       actionBar={{
-        userId: userId,
-        ventureId: ventureId,
+        ventureId,
       }}
       feedContainer={{
         children: updates.map((update: IUpdate) => (
@@ -69,13 +65,8 @@ function FeedUpdate(props: FeedUpdateProps) {
             id={update.id}
             ventureName={update.ventureId}
             timelineId={update.timelineId}
-            userName={update.userId}
-            userInitials={
-              update.userId
-                .split(" ")
-                .map((n: string) => n[0])
-                .join("") ?? ""
-            }
+            userName={""}
+            userInitials={""}
             date={update.date}
             setIsVisible={setIsVisible}
             setPost={() => setPost(update)}

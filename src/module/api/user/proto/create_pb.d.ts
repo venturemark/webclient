@@ -88,18 +88,19 @@ export namespace CreateI_Obj {
 }
 
 export class CreateI_Obj_Property extends jspb.Message {
+  getDesc(): string;
+  setDesc(value: string): CreateI_Obj_Property;
+
   getName(): string;
   setName(value: string): CreateI_Obj_Property;
 
-  getTmlnList(): Array<string>;
-  setTmlnList(value: Array<string>): CreateI_Obj_Property;
-  clearTmlnList(): CreateI_Obj_Property;
-  addTmln(value: string, index?: number): CreateI_Obj_Property;
-
-  getUserList(): Array<string>;
-  setUserList(value: Array<string>): CreateI_Obj_Property;
-  clearUserList(): CreateI_Obj_Property;
-  addUser(value: string, index?: number): CreateI_Obj_Property;
+  getProfList(): Array<CreateI_Obj_Property_Prof>;
+  setProfList(value: Array<CreateI_Obj_Property_Prof>): CreateI_Obj_Property;
+  clearProfList(): CreateI_Obj_Property;
+  addProf(
+    value?: CreateI_Obj_Property_Prof,
+    index?: number
+  ): CreateI_Obj_Property_Prof;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateI_Obj_Property.AsObject;
@@ -120,9 +121,40 @@ export class CreateI_Obj_Property extends jspb.Message {
 
 export namespace CreateI_Obj_Property {
   export type AsObject = {
+    desc: string;
     name: string;
-    tmlnList: Array<string>;
-    userList: Array<string>;
+    profList: Array<CreateI_Obj_Property_Prof.AsObject>;
+  };
+}
+
+export class CreateI_Obj_Property_Prof extends jspb.Message {
+  getDesc(): string;
+  setDesc(value: string): CreateI_Obj_Property_Prof;
+
+  getVent(): string;
+  setVent(value: string): CreateI_Obj_Property_Prof;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateI_Obj_Property_Prof.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: CreateI_Obj_Property_Prof
+  ): CreateI_Obj_Property_Prof.AsObject;
+  static serializeBinaryToWriter(
+    message: CreateI_Obj_Property_Prof,
+    writer: jspb.BinaryWriter
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): CreateI_Obj_Property_Prof;
+  static deserializeBinaryFromReader(
+    message: CreateI_Obj_Property_Prof,
+    reader: jspb.BinaryReader
+  ): CreateI_Obj_Property_Prof;
+}
+
+export namespace CreateI_Obj_Property_Prof {
+  export type AsObject = {
+    desc: string;
+    vent: string;
   };
 }
 

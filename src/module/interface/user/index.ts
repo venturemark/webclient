@@ -1,26 +1,31 @@
+export interface Job {
+  title?: string;
+  venture?: string;
+}
+
 export interface IUser {
   id: string;
   name: string;
   title?: string;
-  userType?: "isAdmin" | "isRequested";
-  token?: string;
-  // audienceIds: string[];
+  job?: Job;
 }
 
-export interface IUserQuery {
-  id: string;
-  name: string;
-  title: string;
+export interface ISearchUser {
+  id?: string;
   token: string;
-  // audienceIds: string[];
 }
 
 export interface INewUser {
-  id: string;
   name: string;
   title: string;
+  ventureName?: string;
+  ventureTitle?: string;
   token: string;
-  // audienceIds: string[];
+}
+
+export interface IDeleteUser {
+  id: string;
+  token: string;
 }
 
 export interface IUpdateUser {
@@ -28,5 +33,4 @@ export interface IUpdateUser {
   name: string;
   title: string;
   token: string;
-  // audienceIds: string[];
 }

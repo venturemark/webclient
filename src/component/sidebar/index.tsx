@@ -6,30 +6,24 @@ import {
   DefaultSidebarProps,
 } from "component/plasmic/shared/PlasmicSidebar";
 import SidebarItemGroup from "component/sidebaritemgroup";
-import { useGetToken } from "module/auth";
 import { useHistory } from "react-router-dom";
-import { IVenture, IVentureSearch } from "module/interface/venture";
-import { useVenture } from "module/hook/venture";
+import { IVenture } from "module/interface/venture";
 
-interface SidebarProps extends DefaultSidebarProps {}
+interface SidebarProps extends DefaultSidebarProps {
+  userId: string;
+  ventures: IVenture[];
+}
 
 function Sidebar(props: SidebarProps) {
+  const { userId, ventures, ...rest } = props;
   const history = useHistory();
-  const token = useGetToken();
-  const userId = "";
-
-  const ventureSearch: IVentureSearch = {
-    userId,
-    token,
-  };
-  const { data: venturesData } = useVenture(ventureSearch);
-  const ventures = venturesData ?? [];
 
   return (
     <PlasmicSidebar
+      {...rest}
       hasInput={true}
       itemGroupContainer={{
-        children: ventures.map((venture: IVenture) => (
+        children: ventures?.map((venture: IVenture) => (
           <SidebarItemGroup
             name={venture.name}
             key={venture.id}

@@ -2,18 +2,18 @@ import {
   DeleteI,
   DeleteI_Obj,
   DeleteO_Obj,
-} from "module/api/venture/proto/delete_pb";
-import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
+} from "module/api/timeline/proto/delete_pb";
+import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IVenture, IDeleteVenture } from "module/interface/venture/index";
+import { ITimeline, IDeleteTimeline } from "module/interface/timeline/index";
 import * as key from "module/apikeys";
 
 export async function Delete(
-  deleteVenture: IDeleteVenture
-): Promise<IVenture[]> {
+  IDeleteTimeline: IDeleteTimeline
+): Promise<ITimeline[]> {
   const objList = [];
 
-  const token = deleteVenture.token;
+  const token = IDeleteTimeline.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
   //instantiate client and req classes
@@ -21,11 +21,11 @@ export async function Delete(
   const req = new DeleteI();
 
   const obj = new DeleteI_Obj();
-  obj.getMetadataMap().set(key.VentureID, deleteVenture.id);
+  obj.getMetadataMap().set(key.TimelineID, IDeleteTimeline.id);
   objList.push(obj);
   req.setObjList(objList);
 
-  const getDeleteResponsePb: IVenture[] = await new Promise(
+  const getDeleteResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {
       client.delete(req, metadata, function (err: any, res: any): any {
         if (err) {
@@ -34,11 +34,11 @@ export async function Delete(
           reject(err);
           return;
         } else {
-          const venturesPb = res.getObjList();
+          const timelinesPb = res.getObjList();
 
-          const status = venturesPb.map((venturePb: DeleteO_Obj) => {
-            const metaPb = venturePb.getMetadataMap();
-            const id = metaPb.get(key.VentureStatus);
+          const status = timelinesPb.map((timelinePb: DeleteO_Obj) => {
+            const metaPb = timelinePb.getMetadataMap();
+            const id = metaPb.get(key.TimelineStatus);
             return id;
           });
           resolve(status);

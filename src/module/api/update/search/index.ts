@@ -5,7 +5,7 @@ import {
 } from "module/api/update/proto/search_pb";
 import { APIClient } from "module/api/update/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import * as key from "module/idkeys";
+import * as key from "module/apikeys";
 import fromUnixTime from "date-fns/fromUnixTime";
 import { formatDistanceToNow } from "date-fns";
 import { IUpdateQuery } from "module/interface/update";
@@ -22,10 +22,8 @@ export async function Search(updateQuery: IUpdateQuery) {
 
   // Need to map JSON array of objects into protobuf using the generated marshalling code.
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.OrganizationID, updateQuery.ventureId);
   obj.getMetadataMap().set(key.VentureID, updateQuery.ventureId);
   obj.getMetadataMap().set(key.TimelineID, updateQuery.timelineId);
-  obj.getMetadataMap().set(key.UserID, updateQuery.userId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -44,17 +42,15 @@ export async function Search(updateQuery: IUpdateQuery) {
 
           const text = propertyPb?.toObject().text;
 
-          const organizationId = metaPb.get(key.OrganizationID);
+          const ventureId = metaPb.get(key.VentureID);
           const timelineId = metaPb.get(key.TimelineID);
           const updateId = metaPb.get(key.UpdateID);
-          // const userId = metaPb.get(key.UserID);
           const rawDate = fromUnixTime(updateId / 1000000000);
           const date = formatDistanceToNow(rawDate) + " ago";
 
           const update: any = {
-            organizationId: organizationId,
+            ventureId: ventureId,
             timelineId: timelineId,
-            userId: "not stored",
             id: updateId,
             text: text,
             date: date,

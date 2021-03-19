@@ -6,7 +6,6 @@ import {
   DefaultAddEditMembersProps,
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { useForm } from "react-hook-form";
-import { getUser } from "module/store";
 import MemberItem from "component/memberitem";
 import { IUser } from "module/interface/user";
 import { emailError } from "module/errors";
@@ -20,18 +19,18 @@ function AddEditMembers(props: AddEditMembersProps) {
   const { handleSubmit, register, reset, errors } = useForm({
     mode: "onChange",
   });
-  const defaultMembers = [];
-  const me = getUser();
-  defaultMembers.push(me);
+  // const defaultMembers = [];
+  // const me = getUser();
+  // defaultMembers.push(me);
 
-  const [members, setMembers] = useState(defaultMembers);
+  const [members, setMembers] = useState<IUser[]>();
 
-  const handleInvite = (data: any) => {
+  const handleInvite = (data: { email: string }) => {
     const email = data.email;
-    const user: IUser = { name: email, userType: "isRequested", id: email };
+    const user: IUser = { name: email, id: email };
     const newMembers = members;
 
-    newMembers.push(user);
+    newMembers?.push(user);
 
     const templateParams = {
       to_name: "Marcus",
@@ -79,7 +78,7 @@ function AddEditMembers(props: AddEditMembersProps) {
         type: "submit",
       }}
       membersContainer={{
-        children: members.map((user) => (
+        children: members?.map((user) => (
           <MemberItem
             userName={user?.name}
             userInitials={
@@ -88,7 +87,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                 .map((n: string) => n[0])
                 .join("") ?? ""
             }
-            userVariant={user?.userType ?? "isAdmin"}
+            userVariant={"isRequested"}
           />
         )),
       }}

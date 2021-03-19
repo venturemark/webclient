@@ -5,7 +5,7 @@ import {
   PlasmicAddEditVenture,
   DefaultAddEditVentureProps,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
-import { INewVenture, IVenture } from "module/interface/venture";
+import { ICreateVenture, IVenture } from "module/interface/venture";
 import { useHistory, useParams, useLocation } from "react-router-dom";
 import { useGetToken } from "module/auth";
 import { ventureNameError } from "module/errors";
@@ -43,10 +43,11 @@ function AddEditVenture(props: AddEditVentureProps) {
   const history = useHistory();
   const venture = currentVenture;
   const url = useLocation();
+  const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
   const handleCreate = (data: any) => {
     const handle = data.name.toLowerCase().replace(/\s/g, "");
-    const venture: INewVenture = {
+    const venture: ICreateVenture = {
       name: data.name,
       desc: data.description,
       url: makeVentureUrl(handle),
@@ -55,12 +56,12 @@ function AddEditVenture(props: AddEditVentureProps) {
 
     saveVenture(venture);
     reset();
-    history.push(`/${handle}/feed`);
+    history.push(`/${handle}/newtimeline`);
   };
 
   return (
     <PlasmicAddEditVenture
-      variantState={ventureSlug ? "isEdit" : undefined}
+      variantState={ventureSlug === handle ? "isEdit" : undefined}
       settings={{
         onSubmit: handleSubmit(handleCreate),
       }}

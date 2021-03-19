@@ -279,18 +279,19 @@ export namespace SearchO_Obj {
 }
 
 export class SearchO_Obj_Property extends jspb.Message {
+  getDesc(): string;
+  setDesc(value: string): SearchO_Obj_Property;
+
   getName(): string;
   setName(value: string): SearchO_Obj_Property;
 
-  getTmlnList(): Array<string>;
-  setTmlnList(value: Array<string>): SearchO_Obj_Property;
-  clearTmlnList(): SearchO_Obj_Property;
-  addTmln(value: string, index?: number): SearchO_Obj_Property;
-
-  getUserList(): Array<string>;
-  setUserList(value: Array<string>): SearchO_Obj_Property;
-  clearUserList(): SearchO_Obj_Property;
-  addUser(value: string, index?: number): SearchO_Obj_Property;
+  getProfList(): Array<SearchO_Obj_Property_Prof>;
+  setProfList(value: Array<SearchO_Obj_Property_Prof>): SearchO_Obj_Property;
+  clearProfList(): SearchO_Obj_Property;
+  addProf(
+    value?: SearchO_Obj_Property_Prof,
+    index?: number
+  ): SearchO_Obj_Property_Prof;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchO_Obj_Property.AsObject;
@@ -311,8 +312,39 @@ export class SearchO_Obj_Property extends jspb.Message {
 
 export namespace SearchO_Obj_Property {
   export type AsObject = {
+    desc: string;
     name: string;
-    tmlnList: Array<string>;
-    userList: Array<string>;
+    profList: Array<SearchO_Obj_Property_Prof.AsObject>;
+  };
+}
+
+export class SearchO_Obj_Property_Prof extends jspb.Message {
+  getDesc(): string;
+  setDesc(value: string): SearchO_Obj_Property_Prof;
+
+  getVent(): string;
+  setVent(value: string): SearchO_Obj_Property_Prof;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchO_Obj_Property_Prof.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: SearchO_Obj_Property_Prof
+  ): SearchO_Obj_Property_Prof.AsObject;
+  static serializeBinaryToWriter(
+    message: SearchO_Obj_Property_Prof,
+    writer: jspb.BinaryWriter
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): SearchO_Obj_Property_Prof;
+  static deserializeBinaryFromReader(
+    message: SearchO_Obj_Property_Prof,
+    reader: jspb.BinaryReader
+  ): SearchO_Obj_Property_Prof;
+}
+
+export namespace SearchO_Obj_Property_Prof {
+  export type AsObject = {
+    desc: string;
+    vent: string;
   };
 }

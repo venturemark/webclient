@@ -8,9 +8,10 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { saveUser, getUser } from "module/store";
-import { INewUser } from "module/interface/user";
+import { INewUser, ISearchUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
+import { useCreateUser, useUser } from "module/hook/user";
+import { useGetToken } from "module/auth";
 
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
@@ -20,11 +21,20 @@ interface ProfileFormProps extends DefaultProfileFormProps {
 function ProfileForm(props: ProfileFormProps) {
   const { isVisible, setIsVisible, ...rest } = props;
   const history = useHistory();
+  const token = useGetToken();
   const { user: authUser } = useAuth0();
-  const user = getUser() ? getUser() : authUser;
+
   const { handleSubmit, register, errors } = useForm({
     mode: "onChange",
   });
+
+  const userSearch: ISearchUser = {
+    token,
+  };
+  const { data: usersData } = useUser(userSearch);
+  const user = usersData ?? authUser;
+
+  const { mutate: saveUser } = useCreateUser();
 
   const handleSave = (data: any) => {
     if (!data.name) {
@@ -32,15 +42,13 @@ function ProfileForm(props: ProfileFormProps) {
     }
 
     const user: INewUser = {
-      id: data.name.toLowerCase().replace(/\s/g, ""),
       name: data.name,
       title: data.title,
-      token: "someToken",
+      token: token,
     };
 
     saveUser(user);
-
-    history.push("/");
+    history.push("/new");
   };
 
   return (

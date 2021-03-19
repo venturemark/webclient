@@ -8,16 +8,18 @@ import {
 import { useHistory } from "react-router-dom";
 
 interface DropdownProps extends DefaultDropdownProps {
-  timelineSlug: string;
+  timelineHandle: string;
   isTimeline: boolean;
-  ventureId: string;
+  ventureHandle: string;
 }
 
 function Dropdown(props: DropdownProps) {
-  const { timelineSlug, isTimeline, ventureId, ...rest } = props;
+  const { timelineHandle, isTimeline, ventureHandle, ...rest } = props;
   const history = useHistory();
 
-  const link = isTimeline ? `/${ventureId}/${timelineSlug}` : `/${ventureId}`;
+  const link = isTimeline
+    ? `/${ventureHandle}/${timelineHandle}`
+    : `/${ventureHandle}`;
 
   return (
     <PlasmicDropdown

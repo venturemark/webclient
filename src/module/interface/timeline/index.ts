@@ -4,30 +4,31 @@ export interface ITimeline {
   stat: string;
   ventureId: string;
   id: string;
-  userId: string;
   date?: string;
   isCurrent: boolean;
 }
 
 // api calls
-export interface ITimelineQuery {
-  userId: string;
+export interface ISearchTimeline {
   ventureId: string;
   token: string;
 }
 
-export interface INewTimeline {
+export interface ICreateTimeline {
   name: string;
   desc: string;
-  userId: string;
   ventureId: string;
+  token: string;
+}
+
+export interface IDeleteTimeline {
+  id: string;
   token: string;
 }
 
 export interface ITimelineUpdate {
   id: string;
   ventureId: string;
-  userId: string;
   desc?: string;
   name?: string;
   stat?: string | undefined;

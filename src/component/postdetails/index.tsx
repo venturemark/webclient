@@ -6,10 +6,9 @@ import {
   DefaultPostDetailsProps,
 } from "component/plasmic/shared/PlasmicPostDetails";
 import ReplyContent from "component/replycontent";
-import { IMessageQuery } from "module/interface/message";
+import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { IUpdate } from "module/interface/update";
-import { getUser } from "module/store";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface PostDetailsProps extends DefaultPostDetailsProps {
@@ -22,16 +21,14 @@ function PostDetails(props: PostDetailsProps) {
   const { setIsVisible, post } = props;
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
-  const userId = getUser()?.id ?? "";
   const ventureId = "venturemark";
 
   const timelineId = post.timelineId;
   const updateId = post.id;
 
-  const messageSearch: IMessageQuery = {
+  const messageSearch: ISearchMessage = {
     updateId,
     timelineId,
-    userId,
     ventureId,
     token,
   };
@@ -65,12 +62,8 @@ function PostDetails(props: PostDetailsProps) {
         id: updateId,
         ventureName: post.ventureId,
         timelineId: timelineId,
-        userName: post.userId,
-        userInitials:
-          post.userId
-            .split(" ")
-            .map((n: string) => n[0])
-            .join("") ?? "",
+        userName: "",
+        userInitials: "",
         date: post.date,
       }}
       repliesContainer={{
@@ -87,7 +80,6 @@ function PostDetails(props: PostDetailsProps) {
         ventureId,
         timelineId,
         updateId,
-        userId,
       }}
     />
   );

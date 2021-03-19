@@ -6,11 +6,15 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/shared/PlasmicHome";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { ITimelineQuery } from "module/interface/timeline";
+import { ISearchTimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
+import { ISearchUser } from "module/interface/user";
+import { ISearchVenture } from "module/interface/venture";
 import { useTimelines } from "module/hook/timeline";
-import { getUser } from "module/store";
+import { useVenture } from "module/hook/venture";
+
 import { useGetToken } from "module/auth";
+import { useUser } from "module/hook/user";
 import { Redirect } from "react-router-dom";
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
@@ -20,13 +24,29 @@ type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 interface HomeProps extends DefaultHomeProps {}
 
 export function Onboard(props: HomeProps) {
-  const user = getUser();
   const token = useGetToken();
 
-  const ventureId = "";
-  const userId = user?.id ?? "";
-  const timelineSearch: ITimelineQuery = {
-    userId,
+  const userSearch: ISearchUser = {
+    token,
+  };
+  const { data: usersData, isSuccess } = useUser(userSearch);
+  const user = usersData;
+
+  const ventureSearch: ISearchVenture = {
+    userId: user?.id,
+    token: token,
+  };
+
+  const { data: ventureData, isSuccess: ventureSuccess } = useVenture(
+    ventureSearch
+  );
+
+  const ventures = ventureData ?? [];
+  const currentVenture = ventureSuccess ? ventures[0] : {};
+
+  const ventureId = currentVenture?.id ?? "";
+
+  const timelineSearch: ISearchTimeline = {
     ventureId,
     token,
   };
@@ -50,9 +70,9 @@ export function Onboard(props: HomeProps) {
     if (ventureId && timelinesData === undefined) {
       setVariantType("isTimeline");
     }
-  }, [ventureId, timelinesData]);
+  }, [timelinesData, ventureId]);
 
-  if (!userId) {
+  if (isSuccess && !user) {
     return <Redirect to={`/signin`} />;
   }
 

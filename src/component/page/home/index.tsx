@@ -6,12 +6,14 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/shared/PlasmicHome";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { ITimelineQuery } from "module/interface/timeline";
+// import { ISearchTimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
-import { useTimelines } from "module/hook/timeline";
-// import {useVenture} from "module/hook/venture"
+// import { useTimelines } from "module/hook/timeline";
+import { ISearchVenture } from "module/interface/venture";
+import { ISearchUser } from "module/interface/user";
+import { useUser } from "module/hook/user";
+import { useVenture } from "module/hook/venture";
 import { useGetToken } from "module/auth";
-import { getUser } from "module/store";
 import { Redirect } from "react-router-dom";
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
@@ -25,25 +27,37 @@ interface HomeProps extends DefaultHomeProps {
 
 export function Home(props: HomeProps) {
   const { timelineVariant, activeState } = props;
-  const user = getUser();
   const token = useGetToken();
 
-  const userId = user?.id ?? "";
-
-  const ventureId = "venturemark";
-
-  // const ventureSearch: IVentureSearch = {
-  //   token: token,
-  // };
-
-  // const { data: ventureData } = useVenture(ventureSearch);
-
-  const timelineSearch: ITimelineQuery = {
-    userId,
-    ventureId,
+  const userSearch: ISearchUser = {
     token,
   };
-  const { data: timelinesData, isError } = useTimelines(timelineSearch);
+  const { data: usersData, isSuccess } = useUser(userSearch);
+  const user = usersData;
+
+  const ventureSearch: ISearchVenture = {
+    userId: user?.id,
+    token: token,
+  };
+
+  const { data: ventureData, isSuccess: ventureSuccess } = useVenture(
+    ventureSearch
+  );
+
+  const ventures = ventureData ?? [];
+  const currentVenture = ventureSuccess ? ventures[0] : {};
+
+  const ventureId = currentVenture?.id ?? "";
+
+  // const timelineSearch: ISearchTimeline = {
+  //   ventureId,
+  //   token,
+  // };
+  // const {
+  //   data: timelinesData,
+  //   isError: timelineError,
+  //   isSuccess: timelineSuccess,
+  // } = useTimelines(timelineSearch);
 
   const variant = timelineVariant ? "isTimeline" : "isVenture";
   const active = activeState ? activeState : "feed";
@@ -72,16 +86,21 @@ export function Home(props: HomeProps) {
   //   updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
   // }
 
-  if (!userId) {
+  if (isSuccess && !user) {
     return <Redirect to={`/signin`} />;
   }
 
-  if (!ventureId || timelinesData?.length < 1) {
-    return <Redirect to={`/new`} />;
-  }
-  if (isError || timelinesData?.length < 1) {
-    return <Redirect to={`/new`} />;
-  }
+  // if (ventureSuccess && !ventureData) {
+  //   return <Redirect to={`/newventure`} />;
+  // }
+
+  // if (timelineSuccess && !timelinesData) {
+  //   return <Redirect to={`/new`} />;
+  // }
+
+  // if (timelineError) {
+  //   return <Redirect to={`/new`} />;
+  // }
 
   return (
     <>
@@ -103,8 +122,13 @@ export function Home(props: HomeProps) {
           isVisible,
           setIsVisible,
           setPost,
+          currentVenture: currentVenture,
+          ventureId,
         }}
-        sidebar={{}}
+        sidebar={{
+          userId: user?.id,
+          ventures: ventures,
+        }}
         postDetails={{
           setIsVisible,
           post,
