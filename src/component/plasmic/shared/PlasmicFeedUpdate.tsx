@@ -52,10 +52,9 @@ export type PlasmicFeedUpdate__OverridesType = {
   root?: p.Flex<"div">;
   actionBar?: p.Flex<typeof ActionBar>;
   feedContainer?: p.Flex<"div">;
+  contentPost?: p.Flex<typeof ContentPost>;
+  span?: p.Flex<"span">;
   date?: p.Flex<"span">;
-  date2?: p.Flex<"span">;
-  date22?: p.Flex<"span">;
-  date222?: p.Flex<"span">;
 };
 
 export interface DefaultFeedUpdateProps {
@@ -94,14 +93,18 @@ function PlasmicFeedUpdate__RenderFunc(props: {
         className={classNames(defaultcss.all, sty.feedContainer)}
       >
         <ContentPost
-          className={classNames("__wab_instance", sty.contentPost___4JU8W)}
+          data-plasmic-name={"contentPost"}
+          data-plasmic-override={overrides.contentPost}
+          className={classNames("__wab_instance", sty.contentPost)}
           date={
             <React.Fragment>
               <span
+                data-plasmic-name={"span"}
+                data-plasmic-override={overrides.span}
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.span__jMRtz
+                  sty.span
                 )}
               >
                 {"•"}
@@ -121,114 +124,18 @@ function PlasmicFeedUpdate__RenderFunc(props: {
             </React.Fragment>
           }
         />
-
-        <ContentPost
-          className={classNames("__wab_instance", sty.contentPost__ihVXa)}
-          date={
-            <React.Fragment>
-              <span
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.span___6IIjC
-                )}
-              >
-                {"•"}
-              </span>
-
-              <span
-                data-plasmic-name={"date2"}
-                data-plasmic-override={overrides.date2}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.date2
-                )}
-              >
-                {"3h ago"}
-              </span>
-            </React.Fragment>
-          }
-        />
-
-        <ContentPost
-          className={classNames("__wab_instance", sty.contentPost__b3Yhu)}
-          date={
-            <React.Fragment>
-              <span
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.span__wX5Uc
-                )}
-              >
-                {"•"}
-              </span>
-
-              <span
-                data-plasmic-name={"date22"}
-                data-plasmic-override={overrides.date22}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.date22
-                )}
-              >
-                {"3h ago"}
-              </span>
-            </React.Fragment>
-          }
-        />
-
-        <ContentPost
-          className={classNames("__wab_instance", sty.contentPost__pYig)}
-          date={
-            <React.Fragment>
-              <span
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.span__dLmNt
-                )}
-              >
-                {"•"}
-              </span>
-
-              <span
-                data-plasmic-name={"date222"}
-                data-plasmic-override={overrides.date222}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.date222
-                )}
-              >
-                {"3h ago"}
-              </span>
-            </React.Fragment>
-          }
-        />
       </p.Stack>
     </p.Stack>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "actionBar",
-    "feedContainer",
-    "date",
-    "date2",
-    "date22",
-    "date222",
-  ],
+  root: ["root", "actionBar", "feedContainer", "contentPost", "span", "date"],
   actionBar: ["actionBar"],
-  feedContainer: ["feedContainer", "date", "date2", "date22", "date222"],
+  feedContainer: ["feedContainer", "contentPost", "span", "date"],
+  contentPost: ["contentPost", "span", "date"],
+  span: ["span"],
   date: ["date"],
-  date2: ["date2"],
-  date22: ["date22"],
-  date222: ["date222"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -238,10 +145,9 @@ type NodeDefaultElementType = {
   root: "div";
   actionBar: typeof ActionBar;
   feedContainer: "div";
+  contentPost: typeof ContentPost;
+  span: "span";
   date: "span";
-  date2: "span";
-  date22: "span";
-  date222: "span";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -302,10 +208,9 @@ export const PlasmicFeedUpdate = Object.assign(
     // Helper components rendering sub-elements
     actionBar: makeNodeComponent("actionBar"),
     feedContainer: makeNodeComponent("feedContainer"),
+    contentPost: makeNodeComponent("contentPost"),
+    span: makeNodeComponent("span"),
     date: makeNodeComponent("date"),
-    date2: makeNodeComponent("date2"),
-    date22: makeNodeComponent("date22"),
-    date222: makeNodeComponent("date222"),
 
     // Metadata about props expected for PlasmicFeedUpdate
     internalVariantProps: PlasmicFeedUpdate__VariantProps,

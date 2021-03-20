@@ -517,7 +517,7 @@ function PlasmicMain__RenderFunc(props: {
                           ? []
                           : hasVariant(variants, "variantType", "isEmpty")
                           ? ["nonFullWidth"]
-                          : undefined
+                          : []
                       }
                       buttonStyle={
                         hasVariant(variants, "variantType", "isEmpty")

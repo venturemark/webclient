@@ -86,9 +86,7 @@ export type PlasmicActionBar__OverridesType = {
   editorContainer?: p.Flex<"div">;
   title?: p.Flex<"textarea">;
   description?: p.Flex<"textarea">;
-  text24?: p.Flex<"div">;
   tagsContainer?: p.Flex<"div">;
-  add?: p.Flex<typeof Tags>;
   post?: p.Flex<typeof Button>;
   container?: p.Flex<"div">;
   selectedItemsContainer?: p.Flex<"div">;
@@ -293,116 +291,98 @@ function PlasmicActionBar__RenderFunc(props: {
                     ) && hasVariant(variants, "isActive", "isActive"),
                 })}
               >
-                {(
-                  hasVariant(variants, "isActive", "isActive")
-                    ? true
-                    : hasVariant(globalVariants, "screen", "mobile")
-                    ? false
-                    : true
-                ) ? (
-                  <div
-                    data-plasmic-name={"text24"}
-                    data-plasmic-override={overrides.text24}
-                    className={classNames(
-                      defaultcss.all,
-                      defaultcss.__wab_text,
-                      sty.text24,
-                      {
-                        [sty.text24__isActive]: hasVariant(
-                          variants,
-                          "isActive",
-                          "isActive"
-                        ),
-                      }
-                    )}
-                  >
-                    {"Post to: "}
-                  </div>
-                ) : null}
-
-                <p.Stack
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(defaultcss.all, sty.box__bxEbl, {
-                    [sty.box__isActive__bxEblvjQpn]: hasVariant(
+                <div
+                  className={classNames(defaultcss.all, sty.box__kjkQr, {
+                    [sty.box__isActive__kjkQrvjQpn]: hasVariant(
                       variants,
                       "isActive",
                       "isActive"
                     ),
                   })}
                 >
-                  {(
-                    hasVariant(variants, "isActive", "isActive") ? true : false
-                  ) ? (
+                  <div
+                    className={classNames(defaultcss.all, sty.box__dWUd, {
+                      [sty.box__isActive__dWUdvjQpn]: hasVariant(
+                        variants,
+                        "isActive",
+                        "isActive"
+                      ),
+                    })}
+                  >
                     <p.Stack
                       as={"div"}
-                      hasGap={
-                        hasVariant(variants, "isActive", "isActive")
-                          ? true
-                          : false
-                      }
-                      className={classNames(defaultcss.all, sty.box__iriP, {
-                        [sty.box__isActive__iriPvjQpn]: hasVariant(
+                      hasGap={true}
+                      className={classNames(defaultcss.all, sty.box__bxEbl, {
+                        [sty.box__isActive__bxEblvjQpn]: hasVariant(
                           variants,
                           "isActive",
                           "isActive"
                         ),
                       })}
                     >
-                      <div
-                        data-plasmic-name={"tagsContainer"}
-                        data-plasmic-override={overrides.tagsContainer}
-                        className={classNames(
-                          defaultcss.all,
-                          sty.tagsContainer
-                        )}
-                      >
-                        <Tags
-                          buttonFeatures={["icon", "hasText"]}
-                          text2={"Wins"}
+                      {(
+                        hasVariant(variants, "isActive", "isActive")
+                          ? true
+                          : false
+                      ) ? (
+                        <p.Stack
+                          as={"div"}
+                          hasGap={
+                            hasVariant(variants, "isActive", "isActive")
+                              ? true
+                              : false
+                          }
+                          className={classNames(defaultcss.all, sty.box__iriP, {
+                            [sty.box__isActive__iriPvjQpn]: hasVariant(
+                              variants,
+                              "isActive",
+                              "isActive"
+                            ),
+                          })}
                         >
-                          <IconCloseIcon
+                          <div
+                            data-plasmic-name={"tagsContainer"}
+                            data-plasmic-override={overrides.tagsContainer}
                             className={classNames(
                               defaultcss.all,
-                              sty.svg__dVcAh
+                              sty.tagsContainer
                             )}
-                            role={"img"}
-                          />
-                        </Tags>
-                      </div>
+                          >
+                            <div
+                              className={classNames(
+                                defaultcss.all,
+                                defaultcss.__wab_text,
+                                sty.box__pYpv,
+                                {
+                                  [sty.box__isActive__pYpVvjQpn]: hasVariant(
+                                    variants,
+                                    "isActive",
+                                    "isActive"
+                                  ),
+                                }
+                              )}
+                            >
+                              {"Share to:"}
+                            </div>
 
-                      <Tags
-                        data-plasmic-name={"add"}
-                        data-plasmic-override={overrides.add}
-                        buttonFeatures={["icon"]}
-                        buttonStyle={"secondaryGreen" as const}
-                        className={classNames("__wab_instance", sty.add, {
-                          [sty.add__isActive]: hasVariant(
-                            variants,
-                            "isActive",
-                            "isActive"
-                          ),
-                        })}
-                        text2={"Wins"}
-                      >
-                        <IconPlusIcon
-                          className={classNames(
-                            defaultcss.all,
-                            sty.svg__aaXl8,
-                            {
-                              [sty.svg__isActive__aaXl8VjQpn]: hasVariant(
-                                variants,
-                                "isActive",
-                                "isActive"
-                              ),
-                            }
-                          )}
-                          role={"img"}
-                        />
-                      </Tags>
+                            <Tags
+                              buttonFeatures={["icon", "hasText"]}
+                              text2={"Wins"}
+                            >
+                              <IconCloseIcon
+                                className={classNames(
+                                  defaultcss.all,
+                                  sty.svg__dVcAh
+                                )}
+                                role={"img"}
+                              />
+                            </Tags>
+                          </div>
+                        </p.Stack>
+                      ) : null}
                     </p.Stack>
-                  ) : null}
-                </p.Stack>
+                  </div>
+                </div>
 
                 <Button
                   data-plasmic-name={"post"}
@@ -657,9 +637,7 @@ const PlasmicDescendants = {
     "editorContainer",
     "title",
     "description",
-    "text24",
     "tagsContainer",
-    "add",
     "post",
     "container",
     "selectedItemsContainer",
@@ -671,9 +649,7 @@ const PlasmicDescendants = {
     "editorContainer",
     "title",
     "description",
-    "text24",
     "tagsContainer",
-    "add",
     "post",
     "container",
     "selectedItemsContainer",
@@ -684,9 +660,7 @@ const PlasmicDescendants = {
     "editorContainer",
     "title",
     "description",
-    "text24",
     "tagsContainer",
-    "add",
     "post",
     "container",
     "selectedItemsContainer",
@@ -694,9 +668,7 @@ const PlasmicDescendants = {
   ],
   title: ["title"],
   description: ["description"],
-  text24: ["text24"],
   tagsContainer: ["tagsContainer"],
-  add: ["add"],
   post: ["post"],
   container: ["container", "selectedItemsContainer", "button"],
   selectedItemsContainer: ["selectedItemsContainer", "button"],
@@ -713,9 +685,7 @@ type NodeDefaultElementType = {
   editorContainer: "div";
   title: "textarea";
   description: "textarea";
-  text24: "div";
   tagsContainer: "div";
-  add: typeof Tags;
   post: typeof Button;
   container: "div";
   selectedItemsContainer: "div";
@@ -783,9 +753,7 @@ export const PlasmicActionBar = Object.assign(
     editorContainer: makeNodeComponent("editorContainer"),
     title: makeNodeComponent("title"),
     description: makeNodeComponent("description"),
-    text24: makeNodeComponent("text24"),
     tagsContainer: makeNodeComponent("tagsContainer"),
-    add: makeNodeComponent("add"),
     post: makeNodeComponent("post"),
     container: makeNodeComponent("container"),
     selectedItemsContainer: makeNodeComponent("selectedItemsContainer"),

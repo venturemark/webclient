@@ -27,7 +27,6 @@
 }
 .profileForm:global(.__wab_instance) {
   position: relative;
-  max-width: 400px;
 }
 .header:global(.__wab_instance) {
   position: absolute;
