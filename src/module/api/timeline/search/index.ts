@@ -52,7 +52,6 @@ export async function Search(
               stat: stat,
               ventureId: ventureId,
               id: id,
-              isCurrent: false,
             };
             return timeline;
           });

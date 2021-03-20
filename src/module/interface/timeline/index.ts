@@ -5,7 +5,6 @@ export interface ITimeline {
   ventureId: string;
   id: string;
   date?: string;
-  isCurrent: boolean;
 }
 
 // api calls
@@ -26,11 +25,11 @@ export interface IDeleteTimeline {
   token: string;
 }
 
-export interface ITimelineUpdate {
+export interface IUpdateTimeline {
   id: string;
   ventureId: string;
   desc?: string;
   name?: string;
-  stat?: string | undefined;
+  stat?: string;
   token: string;
 }

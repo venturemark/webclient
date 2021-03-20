@@ -5,7 +5,11 @@ import {
   PlasmicAddEditTimeline,
   DefaultAddEditTimelineProps,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
-import { ICreateTimeline, ITimeline } from "module/interface/timeline";
+import {
+  ICreateTimeline,
+  ITimeline,
+  IUpdateTimeline,
+} from "module/interface/timeline";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { useHistory, useParams } from "react-router-dom";
 import { timelineNameError } from "module/errors";
@@ -50,17 +54,25 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
   const handleCreate = (data: any) => {
-    if (!token || !data.name || !data.description) {
+    if (!token || !data.timelineName || !data.timelineDescription) {
       return;
     }
-    const timeline: ICreateTimeline = {
-      name: data.name,
-      desc: data.description,
+    const newTimeline: ICreateTimeline = {
+      name: data.timelineName,
+      desc: data.timelineDescription,
       ventureId: currentVenture?.id,
       token: token,
     };
 
-    isEdit ? updateTimeline(timeline) : createTimeline(timeline);
+    const timelineUpdate: IUpdateTimeline = {
+      id: currentTimeline?.id,
+      name: data.timelineName,
+      desc: data.timelineDescription,
+      ventureId: currentVenture?.id,
+      token: token,
+    };
+
+    isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
     reset();
     history.push(`/${handle}/feed`);
   };
@@ -78,13 +90,13 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       }}
       name={{
         register: register({ required: true }),
-        name: "name",
+        name: "timelineName",
         defaultValue: currentTimeline?.name ?? "",
         errorMessage: errors.name && timelineNameError,
       }}
       description={{
         register: register({ required: true }),
-        name: "description",
+        name: "timelineDescription",
         defaultValue: currentTimeline?.desc ?? "",
       }}
       buttonSetEdit={{
