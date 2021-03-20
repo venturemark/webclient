@@ -88,12 +88,10 @@ export function Onboard(props: HomeProps) {
           isVisible,
           setIsVisible,
         }}
-        profileForm={
-          {
-            // isVisible,
-            // setIsVisible,
-          }
-        }
+        modal={{
+          isVisible,
+          setIsVisible,
+        }}
         main={{
           variantType: variantType,
           isOnboarding: true,

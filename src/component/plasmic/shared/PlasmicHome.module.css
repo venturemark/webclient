@@ -25,7 +25,7 @@
 .box__isVisible_showModal__bSzQvxFZh {
   z-index: 70;
 }
-.profileForm:global(.__wab_instance) {
+.modal:global(.__wab_instance) {
   position: relative;
 }
 .header:global(.__wab_instance) {

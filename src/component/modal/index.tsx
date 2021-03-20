@@ -5,16 +5,81 @@ import {
   PlasmicModal,
   DefaultModalProps,
 } from "component/plasmic/shared/PlasmicModal";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import { INewUser, ISearchUser } from "module/interface/user";
+import { nameError, roleError } from "module/errors";
+import { useCreateUser, useUser } from "module/hook/user";
+import { useGetToken } from "module/auth";
 
 interface ModalProps extends DefaultModalProps {
-  users: string[];
-  organizationDescription: string;
-  setLogin: any;
+  isVisible?: any;
+  setIsVisible?: any;
 }
 
 function Modal(props: ModalProps) {
-  const { organizationDescription } = props;
-  return <PlasmicModal organizationDescription={organizationDescription} />;
+  const { isVisible, setIsVisible, ...rest } = props;
+  const history = useHistory();
+  const token = useGetToken();
+  const { user: authUser } = useAuth0();
+
+  const { handleSubmit, register, errors } = useForm({
+    mode: "onChange",
+  });
+
+  const userSearch: ISearchUser = {
+    token,
+  };
+  const { data: usersData } = useUser(userSearch);
+  const user = usersData ?? authUser;
+
+  const { mutate: saveUser } = useCreateUser();
+
+  const handleSave = (data: any) => {
+    if (!data.name) {
+      return;
+    }
+
+    const user: INewUser = {
+      name: data.name,
+      title: data.title,
+      token: token,
+    };
+
+    saveUser(user);
+    history.push("/new");
+  };
+  return (
+    <PlasmicModal
+      {...rest}
+      editProfile={{
+        onSubmit: handleSubmit(handleSave),
+      }}
+      nameField={{
+        name: "name",
+        defaultValue: user?.name ?? "",
+        register: register({ required: true }),
+        errorMessage: errors.name && nameError,
+      }}
+      jobField={{
+        name: "title",
+        defaultValue: user?.title ?? "",
+        register: register({ required: true }),
+        errorMessage: errors.role && roleError,
+      }}
+      save={{
+        type: "submit",
+        onClick: () => setIsVisible(undefined),
+      }}
+      cancel={{
+        onClick: () => setIsVisible(undefined),
+      }}
+      close={{
+        onClick: () => setIsVisible(undefined),
+      }}
+    />
+  );
 }
 
 export default Modal;
