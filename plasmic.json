@@ -135,7 +135,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicModal.tsx",
           "importSpec": {
-            "modulePath": "modalalt/index.tsx"
+            "modulePath": "modal/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicModal.module.css",
           "scheme": "blackbox",
@@ -765,6 +765,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.118",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.118/dist/plasmic.schema.json"
+  "cliVersion": "0.1.120",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.120/dist/plasmic.schema.json"
 }

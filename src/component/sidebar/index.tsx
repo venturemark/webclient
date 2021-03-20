@@ -21,7 +21,7 @@ function Sidebar(props: SidebarProps) {
   return (
     <PlasmicSidebar
       {...rest}
-      hasInput={true}
+      hasInput={ventures?.length > 0 ? true : false}
       itemGroupContainer={{
         children: ventures?.map((venture: IVenture) => (
           <SidebarItemGroup
