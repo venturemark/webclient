@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "component/page/home";
 import Signin from "component/page/signin";
 import Profile from "component/page/profile";
-import Onboard from "component/page/onboard";
 
 type Props = {};
 
@@ -15,7 +14,6 @@ export function Component(props: Props) {
           <Route exact path="/" component={Home} />
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/new" component={Onboard} />
           <Route
             exact
             path="/newventure"
