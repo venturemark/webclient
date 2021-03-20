@@ -6,11 +6,11 @@ import {
 } from "module/api/timeline/proto/update_pb";
 import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { ITimeline, ITimelineUpdate } from "module/interface/timeline/index";
+import { ITimeline, IUpdateTimeline } from "module/interface/timeline/index";
 import * as key from "module/apikeys";
 
 export async function Update(
-  timelineUpdate: ITimelineUpdate
+  updateTimeline: IUpdateTimeline
 ): Promise<ITimeline[]> {
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
@@ -23,27 +23,27 @@ export async function Update(
   const objList = [];
   const patchList = [];
 
-  obj.getMetadataMap().set(key.VentureID, timelineUpdate.ventureId);
-  obj.getMetadataMap().set(key.TimelineID, timelineUpdate.id);
+  obj.getMetadataMap().set(key.TimelineID, updateTimeline.id);
+  obj.getMetadataMap().set(key.VentureID, updateTimeline.ventureId);
 
-  if (timelineUpdate.stat) {
+  if (updateTimeline.stat) {
     statObjJsnPatch.setOpe("replace");
     statObjJsnPatch.setPat("/obj/property/stat");
-    statObjJsnPatch.setVal(timelineUpdate.stat);
+    statObjJsnPatch.setVal(updateTimeline.stat);
+    patchList.push(statObjJsnPatch);
   }
-  if (timelineUpdate.name) {
+  if (updateTimeline.name) {
     nameObjJsnPatch.setOpe("replace");
     nameObjJsnPatch.setPat("/obj/property/name");
-    nameObjJsnPatch.setVal(timelineUpdate.name);
+    nameObjJsnPatch.setVal(updateTimeline.name);
+    patchList.push(nameObjJsnPatch);
   }
-  if (timelineUpdate.desc) {
+  if (updateTimeline.desc) {
     descriptionObjJsnPatch.setOpe("replace");
     descriptionObjJsnPatch.setPat("/obj/property/desc");
-    descriptionObjJsnPatch.setVal(timelineUpdate.desc);
+    descriptionObjJsnPatch.setVal(updateTimeline.desc);
+    patchList.push(descriptionObjJsnPatch);
   }
-
-  patchList.push(nameObjJsnPatch);
-  patchList.push(descriptionObjJsnPatch);
 
   obj.setJsnpatchList(patchList);
 
