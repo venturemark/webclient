@@ -46,10 +46,10 @@ function AddEditVenture(props: AddEditVentureProps) {
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
   const handleCreate = (data: any) => {
-    const handle = data.name.toLowerCase().replace(/\s/g, "");
+    const handle = data.ventureName.toLowerCase().replace(/\s/g, "");
     const venture: ICreateVenture = {
-      name: data.name,
-      desc: data.description,
+      name: data.ventureName,
+      desc: data.ventureDescription,
       url: makeVentureUrl(handle),
       token: token,
     };
@@ -67,14 +67,14 @@ function AddEditVenture(props: AddEditVentureProps) {
       }}
       name={{
         register: register({ required: true }),
-        name: "name",
+        name: "ventureName",
         defaultValue:
           url?.pathname === "/newventure" ? "" : venture?.name ?? "",
         errorMessage: errors.name && ventureNameError,
       }}
       description={{
         register: register(),
-        name: "description",
+        name: "ventureDescription",
         defaultValue:
           url?.pathname === "/newventure" ? "" : venture?.desc ?? "",
       }}

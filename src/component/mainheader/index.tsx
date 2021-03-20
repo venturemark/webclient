@@ -47,11 +47,13 @@ function MainHeader(props: MainHeaderProps) {
       headerStyles={
         variantType === "isVenture" ? "ventureHeader" : "timelineHeader"
       }
-      ventureName={watchData?.name || currentVenture?.name || " "}
-      ventureDescription={watchData?.description || currentVenture?.desc || " "}
-      timelineName={watchData?.name || currentTimeline?.name || " "}
+      ventureName={watchData?.ventureName || currentVenture?.name || " "}
+      ventureDescription={
+        watchData?.ventureDescription || currentVenture?.desc || " "
+      }
+      timelineName={watchData?.timelineName || currentTimeline?.name || " "}
       timelineDescription={
-        watchData?.description || currentTimeline?.desc || " "
+        watchData?.timelineDescription || currentTimeline?.desc || " "
       }
       viewHome={{
         onClick: () => history.push(link + "/feed"),

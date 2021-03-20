@@ -50,12 +50,12 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
   const handleCreate = (data: any) => {
-    if (!token || !data.name || !data.description) {
+    if (!token || !data.timelineName || !data.timelineDescription) {
       return;
     }
     const timeline: ICreateTimeline = {
-      name: data.name,
-      desc: data.description,
+      name: data.timelineName,
+      desc: data.timelineDescription,
       ventureId: currentVenture?.id,
       token: token,
     };
@@ -78,13 +78,13 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       }}
       name={{
         register: register({ required: true }),
-        name: "name",
+        name: "timelineName",
         defaultValue: currentTimeline?.name ?? "",
         errorMessage: errors.name && timelineNameError,
       }}
       description={{
         register: register({ required: true }),
-        name: "description",
+        name: "timelineDescription",
         defaultValue: currentTimeline?.desc ?? "",
       }}
       buttonSetEdit={{
