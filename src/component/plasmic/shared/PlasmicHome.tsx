@@ -27,7 +27,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
-import ProfileForm from "../../profileform/index"; // plasmic-import: _XzWccJtXuE/component
+import Modal from "../../modalalt/index"; // plasmic-import: Rd6ctyxKvRM/component
 import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
 import Main from "../../main/index"; // plasmic-import: 0c6QSqHYCk/component
@@ -59,7 +59,7 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHome__OverridesType = {
   root?: p.Flex<"div">;
-  profileForm?: p.Flex<typeof ProfileForm>;
+  modal?: p.Flex<typeof Modal>;
   header?: p.Flex<typeof Header>;
   sidebar?: p.Flex<typeof Sidebar>;
   mainContainer?: p.Flex<"div">;
@@ -125,22 +125,26 @@ function PlasmicHome__RenderFunc(props: {
                 ),
               })}
             >
-              <ProfileForm
-                data-plasmic-name={"profileForm"}
-                data-plasmic-override={overrides.profileForm}
-                className={classNames("__wab_instance", sty.profileForm, {
-                  [sty.profileForm__isVisible_showModal]: hasVariant(
-                    variants,
-                    "isVisible",
-                    "showModal"
-                  ),
-                })}
-                editProfile={
-                  hasVariant(variants, "isVisible", "showModal")
-                    ? ("editProfile" as const)
-                    : undefined
-                }
-              />
+              {(
+                hasVariant(variants, "isVisible", "showModal") ? true : false
+              ) ? (
+                <Modal
+                  data-plasmic-name={"modal"}
+                  data-plasmic-override={overrides.modal}
+                  className={classNames("__wab_instance", sty.modal, {
+                    [sty.modal__isVisible_showModal]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "showModal"
+                    ),
+                  })}
+                  modalType={
+                    hasVariant(variants, "isVisible", "showModal")
+                      ? ("editProfile" as const)
+                      : undefined
+                  }
+                />
+              ) : null}
             </div>
           ) : null}
 
@@ -243,14 +247,14 @@ function PlasmicHome__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "profileForm",
+    "modal",
     "header",
     "sidebar",
     "mainContainer",
     "main",
     "postDetails",
   ],
-  profileForm: ["profileForm"],
+  modal: ["modal"],
   header: ["header"],
   sidebar: ["sidebar"],
   mainContainer: ["mainContainer", "main"],
@@ -263,7 +267,7 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  profileForm: typeof ProfileForm;
+  modal: typeof Modal;
   header: typeof Header;
   sidebar: typeof Sidebar;
   mainContainer: "div";
@@ -276,8 +280,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicHome__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicHome__VariantsArgs;
   args?: PlasmicHome__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -327,7 +330,7 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    profileForm: makeNodeComponent("profileForm"),
+    modal: makeNodeComponent("modal"),
     header: makeNodeComponent("header"),
     sidebar: makeNodeComponent("sidebar"),
     mainContainer: makeNodeComponent("mainContainer"),

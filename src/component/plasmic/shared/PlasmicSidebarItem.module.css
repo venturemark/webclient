@@ -36,7 +36,7 @@
 }
 .itemContainer__itemType_createTimeline {
   background: none;
-  border: 1px dashed rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border: 1px dashed rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
 .itemContainer__isActive {
   background: rgb(2, 157, 127);
@@ -53,6 +53,29 @@
 }
 .root__isActive:hover .itemContainer__isActive {
   background: rgb(2, 157, 127);
+}
+.box__lklH {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.box__itemType_createTimeline__lklHOuGst {
+  align-items: center;
+  justify-content: flex-start;
+  height: auto;
+  width: auto;
+  display: inline-flex;
+  padding: 6px;
+}
+.svg__w77Z {
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.svg__itemType_createTimeline__w77ZOuGst {
+  color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }
 .icon:global(.__wab_instance) {
   position: relative;
@@ -92,6 +115,12 @@
 .box__zwdJs > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
 }
+.box__itemType_createTimeline__zwdJsOuGst {
+  opacity: 0;
+}
+.root__itemType_createTimeline:hover .box__itemType_createTimeline__zwdJsOuGst {
+  opacity: 1;
+}
 .slotName {
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 600;
@@ -111,7 +140,6 @@
 }
 .box__j6CkC {
   width: 100%;
-  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   min-width: 0;
 }
 .textbox {

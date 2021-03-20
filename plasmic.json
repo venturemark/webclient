@@ -130,14 +130,14 @@
         },
         {
           "id": "Rd6ctyxKvRM",
-          "name": "ModalAlt",
+          "name": "Modal",
           "type": "managed",
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-          "renderModuleFilePath": "plasmic/shared/PlasmicModalAlt.tsx",
+          "renderModuleFilePath": "plasmic/shared/PlasmicModal.tsx",
           "importSpec": {
             "modulePath": "modalalt/index.tsx"
           },
-          "cssFilePath": "plasmic/shared/PlasmicModalAlt.module.css",
+          "cssFilePath": "plasmic/shared/PlasmicModal.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },

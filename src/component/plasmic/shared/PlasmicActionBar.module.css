@@ -8,6 +8,7 @@
   padding-left: 0px;
   transition-property: all;
   transition-duration: 1s;
+  max-height: 70px;
   min-width: 0;
 }
 .root > :global(.__wab_flex-container) {
@@ -25,6 +26,9 @@
 }
 .root__text_hasText {
   padding-bottom: 0px;
+}
+.root__isActive {
+  max-height: 431px;
 }
 .root__isActive_error_hasError {
   padding-bottom: 0px;
@@ -157,12 +161,9 @@
   width: 100%;
   height: auto;
   flex-direction: row;
-  padding-top: 15px;
   align-self: auto;
-  min-height: 50px;
   flex-shrink: 0;
   min-width: 0;
-  border-top: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .box__mQqJf > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -215,20 +216,30 @@
   > :global(.__wab_flex-container) {
   align-items: flex-start;
 }
-.text24 {
-  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
-}
-.text24__isActive {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
-  width: 60px;
-  flex-shrink: 0;
+.box__kjkQr {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
 }
 @media (max-width: 767px) {
-  .text24__isActive {
+  .box__isActive__kjkQrvjQpn {
     align-self: flex-start;
-    width: 100%;
-    min-width: 0;
   }
+}
+.box__dWUd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .box__bxEbl {
   display: flex;
@@ -282,26 +293,19 @@
   align-items: stretch;
   justify-content: flex-start;
 }
+.box__pYpv {
+  position: relative;
+  width: 77px;
+  height: auto;
+  align-self: center;
+  color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
+  flex-shrink: 0;
+}
 .svg__dVcAh {
   position: relative;
   object-fit: cover;
   width: 12px;
   height: 10px;
-}
-.add:global(.__wab_instance) {
-  position: relative;
-}
-.svg__aaXl8 {
-  position: relative;
-  object-fit: cover;
-  width: 12px;
-  height: 10px;
-}
-@media (max-width: 767px) {
-  .svg__isActive__aaXl8VjQpn {
-    height: 1em;
-    width: 1em;
-  }
 }
 .post:global(.__wab_instance) {
   position: relative;
