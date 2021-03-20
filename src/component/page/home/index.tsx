@@ -32,8 +32,12 @@ export function Home(props: HomeProps) {
   const userSearch: ISearchUser = {
     token,
   };
-  const { data: usersData, isSuccess } = useUser(userSearch);
-  const user = usersData;
+  const {
+    data: userData,
+    isSuccess: userSuccess,
+    isError: userError,
+  } = useUser(userSearch);
+  const user = userData;
 
   const ventureSearch: ISearchVenture = {
     userId: user?.id,
@@ -86,16 +90,20 @@ export function Home(props: HomeProps) {
   //   updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
   // }
 
-  if (isSuccess && !user) {
+  if (userSuccess && !user) {
     return <Redirect to={`/signin`} />;
   }
 
-  // if (ventureSuccess && !ventureData) {
-  //   return <Redirect to={`/newventure`} />;
-  // }
+  if (userError && !user) {
+    return <Redirect to={`/signin`} />;
+  }
+
+  if (ventureSuccess && !ventureData) {
+    return <Redirect to={`/newventure`} />;
+  }
 
   // if (timelineSuccess && !timelinesData) {
-  //   return <Redirect to={`/new`} />;
+  //   return <Redirect to={`/newtimeline`} />;
   // }
 
   // if (timelineError) {

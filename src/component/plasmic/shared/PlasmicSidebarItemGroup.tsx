@@ -55,6 +55,7 @@ export type PlasmicSidebarItemGroup__OverridesType = {
   root?: p.Flex<"div">;
   venture?: p.Flex<typeof SidebarItem>;
   itemContainer?: p.Flex<"div">;
+  newTimeline?: p.Flex<typeof SidebarItem>;
 };
 
 export interface DefaultSidebarItemGroupProps {
@@ -151,28 +152,6 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             }
           />
 
-          <SidebarItem
-            className={classNames("__wab_instance", sty.sidebarItem__iVekh, {
-              [sty.sidebarItem__isCollapsed__iVekhR1V]: hasVariant(
-                variants,
-                "isCollapsed",
-                "isCollapsed"
-              ),
-            })}
-            itemType={"createTimeline" as const}
-            name={
-              <div
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.box__f9Ow1
-                )}
-              >
-                {"New Timeline"}
-              </div>
-            }
-          />
-
           {false ? (
             <SidebarItem
               className={classNames("__wab_instance", sty.sidebarItem__nta2O, {
@@ -198,14 +177,39 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           ) : null}
         </p.Stack>
       ) : null}
+
+      <SidebarItem
+        data-plasmic-name={"newTimeline"}
+        data-plasmic-override={overrides.newTimeline}
+        className={classNames("__wab_instance", sty.newTimeline, {
+          [sty.newTimeline__isCollapsed]: hasVariant(
+            variants,
+            "isCollapsed",
+            "isCollapsed"
+          ),
+        })}
+        itemType={"createTimeline" as const}
+        name={
+          <div
+            className={classNames(
+              defaultcss.all,
+              defaultcss.__wab_text,
+              sty.box__f9Ow1
+            )}
+          >
+            {"New Timeline"}
+          </div>
+        }
+      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "venture", "itemContainer"],
+  root: ["root", "venture", "itemContainer", "newTimeline"],
   venture: ["venture"],
   itemContainer: ["itemContainer"],
+  newTimeline: ["newTimeline"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -215,6 +219,7 @@ type NodeDefaultElementType = {
   root: "div";
   venture: typeof SidebarItem;
   itemContainer: "div";
+  newTimeline: typeof SidebarItem;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -275,6 +280,7 @@ export const PlasmicSidebarItemGroup = Object.assign(
     // Helper components rendering sub-elements
     venture: makeNodeComponent("venture"),
     itemContainer: makeNodeComponent("itemContainer"),
+    newTimeline: makeNodeComponent("newTimeline"),
 
     // Metadata about props expected for PlasmicSidebarItemGroup
     internalVariantProps: PlasmicSidebarItemGroup__VariantProps,

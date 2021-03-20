@@ -20,7 +20,9 @@ export async function Search(searchUser: ISearchUser): Promise<IUser[]> {
 
   const obj = new SearchI_Obj();
 
-  obj.getMetadataMap().set(key.UserID, searchUser.id);
+  if (searchUser.id) {
+    obj.getMetadataMap().set(key.UserID, searchUser.id);
+  }
   objList.push(obj);
   req.setObjList(objList);
 

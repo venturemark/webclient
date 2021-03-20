@@ -54,15 +54,6 @@
   overflow: hidden;
   display: inline-block;
 }
-.box__f9Ow1 {
-  font-size: 16px;
-  height: auto;
-  width: auto;
-  white-space: pre;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: inline-block;
-}
 .sidebarItem__nta2O:global(.__wab_instance) {
   position: relative;
   left: auto;
@@ -73,6 +64,15 @@
   top: auto;
 }
 .box__wCgwl {
+  font-size: 16px;
+  height: auto;
+  width: auto;
+  white-space: pre;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+}
+.box__f9Ow1 {
   font-size: 16px;
   height: auto;
   width: auto;

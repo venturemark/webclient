@@ -4,16 +4,16 @@ import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getTimelines = async (timelineQuery: ISearchTimeline) => {
-  const data = await api.API.Timeline.Search(timelineQuery);
+const getTimelines = async (searchTimeline: ISearchTimeline) => {
+  const data = await api.API.Timeline.Search(searchTimeline);
   return data;
 };
 
-export function useTimelines(timelineQuery: ISearchTimeline) {
+export function useTimelines(searchTimeline: ISearchTimeline) {
   return useQuery<any, ErrorResponse>(
-    ["timeline", timelineQuery.token],
-    () => getTimelines(timelineQuery),
-    { enabled: !!timelineQuery.token }
+    ["timeline", searchTimeline.token, searchTimeline.ventureId],
+    () => getTimelines(searchTimeline),
+    { enabled: !!searchTimeline.token && !!searchTimeline.ventureId }
   );
 }
 

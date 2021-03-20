@@ -26,7 +26,8 @@ function SidebarItem(props: SidebarItemProps) {
   const [isUserOnClick, setIsUserOnClick] = useState(false);
   const history = useHistory();
   const ventureHandle = ventureName?.toLowerCase().replace(/\s/g, "");
-  const timelineHandle = name?.toLowerCase().replace(/\s/g, "");
+  const timelineHandle =
+    itemType !== "createTimeline" ? name?.toLowerCase().replace(/\s/g, "") : "";
 
   const link =
     itemType === "timeline"
@@ -50,6 +51,7 @@ function SidebarItem(props: SidebarItemProps) {
 
   return (
     <PlasmicSidebarItem
+      {...rest}
       isUserOnClick={isUserOnClick}
       icon={{
         onClick: (e) => {
@@ -62,7 +64,11 @@ function SidebarItem(props: SidebarItemProps) {
           setIsUserOnClick(!isUserOnClick);
         },
       }}
-      onClick={() => history.push(link)}
+      onClick={() =>
+        itemType !== "createTimeline"
+          ? history.push(link)
+          : history.push(`/${ventureHandle}/newtimeline`)
+      }
       itemType={itemType}
       name={name}
       dropdown={{
@@ -70,7 +76,6 @@ function SidebarItem(props: SidebarItemProps) {
         ventureHandle,
         isTimeline: itemType === "timeline" ? true : false,
       }}
-      {...rest}
     />
   );
 }
