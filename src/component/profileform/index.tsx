@@ -8,7 +8,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { INewUser, ISearchUser } from "module/interface/user";
+import { ICreateUser, ISearchUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 import { useCreateUser, useUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
@@ -41,14 +41,14 @@ function ProfileForm(props: ProfileFormProps) {
       return;
     }
 
-    const user: INewUser = {
+    const user: ICreateUser = {
       name: data.name,
       title: data.title,
       token: token,
     };
 
     saveUser(user);
-    history.push("/new");
+    history.push("/");
   };
 
   return (

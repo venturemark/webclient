@@ -106,10 +106,6 @@ export function Home(props: HomeProps) {
   //   return <Redirect to={`/newtimeline`} />;
   // }
 
-  // if (timelineError) {
-  //   return <Redirect to={`/new`} />;
-  // }
-
   return (
     <>
       <PlasmicHome

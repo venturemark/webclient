@@ -8,9 +8,9 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { INewUser, ISearchUser } from "module/interface/user";
+import { ICreateUser, ISearchUser, IUpdateUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
-import { useCreateUser, useUser } from "module/hook/user";
+import { useCreateUser, useUpdateUser, useUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 
 interface ModalProps extends DefaultModalProps {
@@ -31,23 +31,30 @@ function Modal(props: ModalProps) {
   const userSearch: ISearchUser = {
     token,
   };
-  const { data: usersData } = useUser(userSearch);
-  const user = usersData ?? authUser;
+  const { data: userData } = useUser(userSearch);
+  const user = userData ?? authUser;
 
   const { mutate: saveUser } = useCreateUser();
+  const { mutate: updateUser } = useUpdateUser();
 
   const handleSave = (data: any) => {
     if (!data.name) {
       return;
     }
 
-    const user: INewUser = {
+    const createUser: ICreateUser = {
+      name: data.name,
+      title: data.title,
+      token: token,
+    };
+    const userUpdate: IUpdateUser = {
+      id: user?.id,
       name: data.name,
       title: data.title,
       token: token,
     };
 
-    saveUser(user);
+    user?.id ? saveUser(createUser) : updateUser(userUpdate);
     history.push("/new");
   };
   return (
