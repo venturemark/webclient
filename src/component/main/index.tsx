@@ -95,6 +95,7 @@ function Main(props: MainProps) {
       addEditTimeline={{
         currentVenture,
         currentTimeline,
+        setIsVisible,
         handleSubmit,
         register,
         reset,

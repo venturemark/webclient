@@ -18,15 +18,23 @@ import { Redirect } from "react-router-dom";
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
 type IsActive = "feed" | "settings" | "members" | undefined;
-type IsVisible = "postDetails" | "mobileSidebar" | undefined;
+type IsVisible = "postDetails" | "mobileSidebar" | "showModal" | undefined;
+type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
 interface HomeProps extends DefaultHomeProps {
   timelineVariant?: "isTimeline";
   activeState?: IsActive;
+  modalType?: ModalType;
+  isVisible?: IsVisible;
 }
 
 export function Home(props: HomeProps) {
-  const { timelineVariant, activeState } = props;
+  const {
+    timelineVariant,
+    activeState,
+    modalType,
+    isVisible: visibleProp,
+  } = props;
   const token = useGetToken();
 
   const userSearch: ISearchUser = {
@@ -67,9 +75,9 @@ export function Home(props: HomeProps) {
   const active = activeState ? activeState : "feed";
 
   // local hooks shared with page-level elements
-  const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
+  const [isVisible, setIsVisible] = useState<IsVisible>(visibleProp);
   const [post, setPost] = useState<IUpdate>();
-  const [variantType, setVariantType] = useState<VariantType>(variant);
+  const [variantType] = useState<VariantType>(variant);
   const [isActive, setIsActive] = useState<IsActive>(active);
 
   // if (timelineSuccess && updateSuccess) {
@@ -117,12 +125,12 @@ export function Home(props: HomeProps) {
         modal={{
           isVisible,
           setIsVisible,
+          modalType,
         }}
         main={{
           variantType: variantType,
           isActive: isActive,
           setIsActive,
-          setVariantType,
           isVisible,
           setIsVisible,
           setPost,

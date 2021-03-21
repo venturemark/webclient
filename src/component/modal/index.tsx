@@ -7,20 +7,29 @@ import {
 } from "component/plasmic/shared/PlasmicModal";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import { ICreateUser, ISearchUser, IUpdateUser } from "module/interface/user";
+import { useHistory, useParams } from "react-router-dom";
+import { ISearchUser, IUpdateUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
-import { useCreateUser, useUpdateUser, useUser } from "module/hook/user";
+import { useUpdateUser, useUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
+
+interface ParamsType {
+  timelineSlug: string;
+  ventureSlug: string;
+}
+
+type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
 interface ModalProps extends DefaultModalProps {
   isVisible?: any;
   setIsVisible?: any;
+  modalType?: ModalType;
 }
 
 function Modal(props: ModalProps) {
-  const { isVisible, setIsVisible, ...rest } = props;
+  const { isVisible, setIsVisible, modalType, ...rest } = props;
   const history = useHistory();
+  const { timelineSlug, ventureSlug } = useParams<ParamsType>();
   const token = useGetToken();
   const { user: authUser } = useAuth0();
 
@@ -34,7 +43,6 @@ function Modal(props: ModalProps) {
   const { data: userData } = useUser(userSearch);
   const user = userData ?? authUser;
 
-  const { mutate: saveUser } = useCreateUser();
   const { mutate: updateUser } = useUpdateUser();
 
   const handleSave = (data: any) => {
@@ -42,11 +50,6 @@ function Modal(props: ModalProps) {
       return;
     }
 
-    const createUser: ICreateUser = {
-      name: data.name,
-      title: data.title,
-      token: token,
-    };
     const userUpdate: IUpdateUser = {
       id: user?.id,
       name: data.name,
@@ -54,12 +57,13 @@ function Modal(props: ModalProps) {
       token: token,
     };
 
-    user?.id ? saveUser(createUser) : updateUser(userUpdate);
-    history.push("/new");
+    updateUser(userUpdate);
+    history.push("/");
   };
   return (
     <PlasmicModal
       {...rest}
+      modalType={modalType}
       editProfile={{
         onSubmit: handleSubmit(handleSave),
       }}
@@ -75,12 +79,24 @@ function Modal(props: ModalProps) {
         register: register({ required: true }),
         errorMessage: errors.role && roleError,
       }}
-      save={{
+      deleteTimeline={{
+        onClick: () => setIsVisible(undefined),
+      }}
+      deleteVenture={{
+        onClick: () => setIsVisible(undefined),
+      }}
+      saveUser={{
         type: "submit",
         onClick: () => setIsVisible(undefined),
       }}
-      cancel={{
-        onClick: () => setIsVisible(undefined),
+      cancelEdit={{
+        onClick: () => history.push(`/`),
+      }}
+      cancelTimeline={{
+        onClick: () => history.push(`/${ventureSlug}/${timelineSlug}/settings`),
+      }}
+      cancelVenture={{
+        onClick: () => history.push(`/${ventureSlug}/settings`),
       }}
       close={{
         onClick: () => setIsVisible(undefined),
