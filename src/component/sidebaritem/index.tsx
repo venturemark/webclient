@@ -25,14 +25,19 @@ function SidebarItem(props: SidebarItemProps) {
   } = props;
   const [isUserOnClick, setIsUserOnClick] = useState(false);
   const history = useHistory();
-  const ventureHandle = ventureName?.toLowerCase().replace(/\s/g, "");
+  const ventureHandle =
+    itemType === "timeline"
+      ? ventureName?.toLowerCase().replace(/\s/g, "")
+      : typeof name === "string"
+      ? name?.toLowerCase().replace(/\s/g, "")
+      : "";
   const timelineHandle =
     itemType !== "createTimeline" ? name?.toLowerCase().replace(/\s/g, "") : "";
 
   const link =
     itemType === "timeline"
-      ? `/${ventureHandle}/${timelineHandle}`
-      : `/${ventureHandle}`;
+      ? `/${ventureHandle}/${timelineHandle}/feed`
+      : `/${name}/feed`;
 
   useEffect(() => {
     const handleWindowClick = () => setIsUserOnClick(false);
@@ -55,7 +60,7 @@ function SidebarItem(props: SidebarItemProps) {
       isUserOnClick={isUserOnClick}
       icon={{
         onClick: (e) => {
-          e.stopPropagation();
+          itemType === "timeline" && e.stopPropagation();
         },
       }}
       iconButton={{
@@ -75,6 +80,7 @@ function SidebarItem(props: SidebarItemProps) {
         timelineHandle,
         ventureHandle,
         isTimeline: itemType === "timeline" ? true : false,
+        setIsUserOnClick,
       }}
     />
   );

@@ -6,6 +6,7 @@ import {
   DefaultProfileDropdownProps,
 } from "component/plasmic/shared/PlasmicProfileDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory } from "react-router-dom";
 
 interface ProfileDropdownProps extends DefaultProfileDropdownProps {
   profileDropdown: boolean | "profileDropdown" | undefined;
@@ -23,6 +24,7 @@ function ProfileDropdown(props: ProfileDropdownProps) {
     ...rest
   } = props;
   const { user, logout } = useAuth0();
+  const history = useHistory();
 
   const userInitials =
     user?.name
@@ -39,8 +41,8 @@ function ProfileDropdown(props: ProfileDropdownProps) {
       }}
       viewProfile={{
         onClick: () => {
-          setIsVisible("showModal");
           setProfileDropdown(!profileDropdown);
+          history.push("/editprofile");
         },
       }}
       logout={{

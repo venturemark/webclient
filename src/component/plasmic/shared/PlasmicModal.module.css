@@ -135,7 +135,7 @@
   width: 17px;
   height: 14px;
 }
-.save:global(.__wab_instance) {
+.cancelTimeline:global(.__wab_instance) {
   position: relative;
   align-self: center;
 }
@@ -188,7 +188,7 @@
   left: auto;
   top: auto;
 }
-.deleteTimeline2__modalType_unnamedVariant {
+.deleteTimeline2__modalType_deleteVenture {
   left: auto;
   top: auto;
 }
@@ -286,7 +286,7 @@
   width: 17px;
   height: 14px;
 }
-.save3:global(.__wab_instance) {
+.cancelVenture:global(.__wab_instance) {
   position: relative;
   align-self: center;
 }
@@ -418,7 +418,7 @@
   width: 17px;
   height: 14px;
 }
-.save2:global(.__wab_instance) {
+.saveUser:global(.__wab_instance) {
   position: relative;
   align-self: center;
 }

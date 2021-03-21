@@ -11,10 +11,17 @@ interface DropdownProps extends DefaultDropdownProps {
   timelineHandle: string;
   isTimeline: boolean;
   ventureHandle: string;
+  setIsUserOnClick: any;
 }
 
 function Dropdown(props: DropdownProps) {
-  const { timelineHandle, isTimeline, ventureHandle, ...rest } = props;
+  const {
+    timelineHandle,
+    isTimeline,
+    ventureHandle,
+    setIsUserOnClick,
+    ...rest
+  } = props;
   const history = useHistory();
 
   const link = isTimeline
@@ -27,6 +34,7 @@ function Dropdown(props: DropdownProps) {
       onClick={(e) => {
         e.stopPropagation();
         history.push(link + "/settings");
+        setIsUserOnClick(false);
       }}
     />
   );

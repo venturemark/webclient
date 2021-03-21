@@ -111,13 +111,13 @@
 .membersWrite:global(.__wab_instance) {
   position: relative;
 }
-.create:global(.__wab_instance) {
+.buttons:global(.__wab_instance) {
   position: relative;
   top: auto;
   left: auto;
 }
 @media (max-width: 767px) {
-  .create:global(.__wab_instance) {
+  .buttons:global(.__wab_instance) {
     position: relative;
     top: auto;
     left: auto;

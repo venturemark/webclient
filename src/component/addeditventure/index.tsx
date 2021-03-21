@@ -61,6 +61,7 @@ function AddEditVenture(props: AddEditVentureProps) {
 
   return (
     <PlasmicAddEditVenture
+      {...rest}
       variantState={ventureSlug === handle ? "isEdit" : undefined}
       settings={{
         onSubmit: handleSubmit(handleCreate),
@@ -84,7 +85,11 @@ function AddEditVenture(props: AddEditVentureProps) {
         defaultValue: venture?.url ?? "",
       }}
       membersWrite={{}}
-      {...rest}
+      buttons={{
+        handleDelete: () => history.push(`/${handle}/delete`),
+        handleCancel: () => history.goBack(),
+        handleSave: () => handleSubmit(handleCreate),
+      }}
     />
   );
 }

@@ -16,6 +16,13 @@ export function Component(props: Props) {
           <Route exact path="/profile" component={Profile} />
           <Route
             exact
+            path="/editprofile"
+            component={() => (
+              <Home modalType={"editProfile"} isVisible={"showModal"} />
+            )}
+          />
+          <Route
+            exact
             path="/newventure"
             component={() => <Home activeState="settings" />}
           />
@@ -24,6 +31,17 @@ export function Component(props: Props) {
             path="/:ventureSlug/newtimeline"
             component={() => (
               <Home activeState="settings" timelineVariant={`isTimeline`} />
+            )}
+          />
+          <Route
+            exact
+            path="/:ventureSlug/delete"
+            component={() => (
+              <Home
+                activeState="settings"
+                modalType="deleteVenture"
+                isVisible={"showModal"}
+              />
             )}
           />
           <Route exact path="/:ventureSlug" component={Home} />
@@ -47,6 +65,18 @@ export function Component(props: Props) {
             path="/:ventureSlug/:timelineSlug"
             component={() => (
               <Home timelineVariant={`isTimeline`} activeState="feed" />
+            )}
+          />
+          <Route
+            exact
+            path="/:ventureSlug/:timelineSlug/delete"
+            component={() => (
+              <Home
+                timelineVariant={`isTimeline`}
+                activeState="settings"
+                modalType="deleteTimeline"
+                isVisible={"showModal"}
+              />
             )}
           />
           <Route

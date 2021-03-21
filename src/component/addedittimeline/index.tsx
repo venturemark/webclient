@@ -23,6 +23,7 @@ interface ParamsType {
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
+  setIsVisible: any;
   currentVenture: IVenture;
   currentTimeline: ITimeline;
   handleSubmit: any;
@@ -34,6 +35,7 @@ interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
 function AddEditTimeline(props: AddEditTimelineProps) {
   const {
     setIsActive,
+    setIsVisible,
     currentTimeline,
     handleSubmit,
     register,
@@ -78,8 +80,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   };
 
   const handleDelete = () => {
-    console.log("delete timeline");
-    //delete current timeline
+    history.push(`/${handle}/${timelineSlug}/delete`);
   };
 
   return (
@@ -100,7 +101,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         defaultValue: currentTimeline?.desc ?? "",
       }}
       buttonSetEdit={{
-        handleCancel: () => history.push(`/${handle}/feed`),
+        handleCancel: () => history.goBack(),
         handleDelete: () => handleDelete(),
       }}
       visibility={{}}

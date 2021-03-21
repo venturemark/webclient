@@ -73,7 +73,7 @@ export type PlasmicAddEditVenture__OverridesType = {
   description?: p.Flex<typeof InputTextArea>;
   url?: p.Flex<typeof InputText>;
   membersWrite?: p.Flex<typeof Switch>;
-  create?: p.Flex<typeof ButtonSetEdit>;
+  buttons?: p.Flex<typeof ButtonSetEdit>;
 };
 
 export interface DefaultAddEditVentureProps {
@@ -243,10 +243,10 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       ) : null}
 
       <ButtonSetEdit
-        data-plasmic-name={"create"}
-        data-plasmic-override={overrides.create}
-        className={classNames("__wab_instance", sty.create, {
-          [sty.create__variantState_isEdit]: hasVariant(
+        data-plasmic-name={"buttons"}
+        data-plasmic-override={overrides.buttons}
+        className={classNames("__wab_instance", sty.buttons, {
+          [sty.buttons__variantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -272,13 +272,13 @@ const PlasmicDescendants = {
     "description",
     "url",
     "membersWrite",
-    "create",
+    "buttons",
   ],
   name: ["name"],
   description: ["description"],
   url: ["url"],
   membersWrite: ["membersWrite"],
-  create: ["create"],
+  buttons: ["buttons"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -290,7 +290,7 @@ type NodeDefaultElementType = {
   description: typeof InputTextArea;
   url: typeof InputText;
   membersWrite: typeof Switch;
-  create: typeof ButtonSetEdit;
+  buttons: typeof ButtonSetEdit;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -353,7 +353,7 @@ export const PlasmicAddEditVenture = Object.assign(
     description: makeNodeComponent("description"),
     url: makeNodeComponent("url"),
     membersWrite: makeNodeComponent("membersWrite"),
-    create: makeNodeComponent("create"),
+    buttons: makeNodeComponent("buttons"),
 
     // Metadata about props expected for PlasmicAddEditVenture
     internalVariantProps: PlasmicAddEditVenture__VariantProps,
