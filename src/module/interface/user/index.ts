@@ -15,7 +15,7 @@ export interface ISearchUser {
   token: string;
 }
 
-export interface INewUser {
+export interface ICreateUser {
   name: string;
   title: string;
   ventureName?: string;

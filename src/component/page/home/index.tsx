@@ -106,10 +106,6 @@ export function Home(props: HomeProps) {
   //   return <Redirect to={`/newtimeline`} />;
   // }
 
-  // if (timelineError) {
-  //   return <Redirect to={`/new`} />;
-  // }
-
   return (
     <>
       <PlasmicHome
@@ -118,12 +114,10 @@ export function Home(props: HomeProps) {
           isVisible,
           setIsVisible,
         }}
-        profileForm={
-          {
-            // isVisible,
-            // setIsVisible,
-          }
-        }
+        modal={{
+          isVisible,
+          setIsVisible,
+        }}
         main={{
           variantType: variantType,
           isActive: isActive,

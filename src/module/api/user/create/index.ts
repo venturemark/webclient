@@ -8,9 +8,9 @@ import {
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import * as key from "module/apikeys";
-import { INewUser } from "module/interface/user";
+import { ICreateUser } from "module/interface/user";
 
-export async function Create(newUser: INewUser): Promise<any> {
+export async function Create(newUser: ICreateUser): Promise<any> {
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
