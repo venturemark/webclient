@@ -12,6 +12,8 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   ventureName: string;
   ventureId: string;
   setHasInput?: any;
+  setIsCollapsed?: any;
+  isCollapsed?: boolean;
   itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
 function SidebarItem(props: SidebarItemProps) {
@@ -21,6 +23,8 @@ function SidebarItem(props: SidebarItemProps) {
     ventureName,
     itemType,
     setHasInput,
+    setIsCollapsed,
+    isCollapsed,
     ...rest
   } = props;
   const [isUserOnClick, setIsUserOnClick] = useState(false);
@@ -37,7 +41,7 @@ function SidebarItem(props: SidebarItemProps) {
   const link =
     itemType === "timeline"
       ? `/${ventureHandle}/${timelineHandle}/feed`
-      : `/${name}/feed`;
+      : `/${ventureHandle}/feed`;
 
   useEffect(() => {
     const handleWindowClick = () => setIsUserOnClick(false);
@@ -60,20 +64,25 @@ function SidebarItem(props: SidebarItemProps) {
       isUserOnClick={isUserOnClick}
       icon={{
         onClick: (e) => {
-          itemType === "timeline" && e.stopPropagation();
+          e.stopPropagation();
+          itemType !== "createTimeline" &&
+            itemType !== "timeline" &&
+            setIsCollapsed(!isCollapsed);
         },
       }}
       iconButton={{
-        onClick: (event) => {
-          event.stopPropagation();
+        onClick: (e) => {
+          e.stopPropagation();
           setIsUserOnClick(!isUserOnClick);
         },
       }}
-      onClick={() =>
+      onClick={() => {
+        console.log(name);
+        console.log(link);
         itemType !== "createTimeline"
           ? history.push(link)
-          : history.push(`/${ventureHandle}/newtimeline`)
-      }
+          : history.push(`/${ventureHandle}/newtimeline`);
+      }}
       itemType={itemType}
       name={name}
       dropdown={{

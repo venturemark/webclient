@@ -43,12 +43,8 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
     <PlasmicSidebarItemGroup
       venture={{
         name: name,
-        icon: {
-          onClick: (e: MouseEvent) => {
-            e.stopPropagation();
-            setIsCollapsed(!isCollapsed);
-          },
-        },
+        setIsCollapsed,
+        isCollapsed,
         isActive:
           name.toLowerCase().replace(/\s/g, "") === ventureSlug &&
           !timelineSlug,
