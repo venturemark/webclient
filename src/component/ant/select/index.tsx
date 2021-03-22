@@ -89,8 +89,8 @@ export function AntSelect(props: SelectProps) {
       onChange={(timelines: string[]) => {
         setSelectedTimelines(timelines);
       }}
-      dropdownStyle={{ width: "200px" }}
-      placeholder={"Select Timeline"}
+      // dropdownStyle={{ width: "200px" }}
+      placeholder={"Share to: "}
       loading={isLoading}
       showAction={["focus"]}
       value={selectedTimelines}
@@ -98,7 +98,7 @@ export function AntSelect(props: SelectProps) {
       ref={select}
       tagRender={tagRender}
       bordered={false}
-      style={{ width: "80%", marginTop: "8px" }}
+      style={{ width: "372px", marginBottom: "-8px" }}
       options={options}
     />
   );

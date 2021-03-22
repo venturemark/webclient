@@ -54,8 +54,6 @@ function ActionBar(props: ActionBarProps) {
         token,
       };
 
-      console.log("creating this update:", newUpdate);
-
       createUpdate(newUpdate);
     });
 
