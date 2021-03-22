@@ -55,6 +55,7 @@ function FeedUpdate(props: FeedUpdateProps) {
     <PlasmicFeedUpdate
       actionBar={{
         ventureId,
+        currentTimeline,
       }}
       feedContainer={{
         children: updates.map((update: IUpdate) => (
