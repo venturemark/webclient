@@ -47,7 +47,6 @@ function Main(props: MainProps) {
   const token = useGetToken();
   const { handleSubmit, register, reset, watch, errors } = useForm();
   const watchData = watch();
-
   const { timelineSlug } = useParams<ParamTypes>();
 
   const timelineSearch: ISearchTimeline = {

@@ -9,12 +9,17 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 // import { ISearchTimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 // import { useTimelines } from "module/hook/timeline";
-import { ISearchVenture } from "module/interface/venture";
+import { ISearchVenture, IVenture } from "module/interface/venture";
 import { ISearchUser } from "module/interface/user";
 import { useUser } from "module/hook/user";
 import { useVenture } from "module/hook/venture";
 import { useGetToken } from "module/auth";
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
+
+interface ParamTypes {
+  ventureSlug: string;
+  timelineSlug: string;
+}
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
 type IsActive = "feed" | "settings" | "members" | undefined;
@@ -36,6 +41,7 @@ export function Home(props: HomeProps) {
     isVisible: visibleProp,
   } = props;
   const token = useGetToken();
+  const { ventureSlug } = useParams<ParamTypes>();
 
   const userSearch: ISearchUser = {
     token,
@@ -57,9 +63,16 @@ export function Home(props: HomeProps) {
   );
 
   const ventures = ventureData ?? [];
-  const currentVenture = ventureSuccess ? ventures[0] : {};
+  const currentVenture = ventureSlug
+    ? ventures.filter(
+        (venture: IVenture) =>
+          venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
+      )[0]
+    : ventures[0];
 
+  const ventureName = currentVenture?.name ?? "";
   const ventureId = currentVenture?.id ?? "";
+  const ventureHandle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
   // const timelineSearch: ISearchTimeline = {
   //   ventureId,
@@ -110,6 +123,10 @@ export function Home(props: HomeProps) {
     return <Redirect to={`/newventure`} />;
   }
 
+  if (ventureSlug === undefined && ventureHandle) {
+    return <Redirect to={`/${ventureHandle}/feed`} />;
+  }
+
   // if (timelineSuccess && !timelinesData) {
   //   return <Redirect to={`/newtimeline`} />;
   // }
@@ -128,23 +145,23 @@ export function Home(props: HomeProps) {
           modalType,
         }}
         main={{
-          variantType: variantType,
-          isActive: isActive,
+          variantType,
+          isActive,
           setIsActive,
           isVisible,
           setIsVisible,
           setPost,
-          currentVenture: currentVenture,
+          currentVenture,
           ventureId,
         }}
         sidebar={{
           userId: user?.id,
-          ventures: ventures,
+          ventures,
         }}
         postDetails={{
           setIsVisible,
           post,
-          ventureName: currentVenture?.name,
+          ventureName,
           ventureId,
         }}
       />
