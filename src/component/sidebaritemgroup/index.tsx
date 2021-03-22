@@ -43,6 +43,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
 
   return (
     <PlasmicSidebarItemGroup
+      {...rest}
       venture={{
         ventureName: name,
         setIsCollapsed,
@@ -70,7 +71,6 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
           />
         )),
       }}
-      {...rest}
     />
   );
 }
