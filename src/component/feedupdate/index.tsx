@@ -70,7 +70,6 @@ function FeedUpdate(props: FeedUpdateProps) {
             date={update.date}
             setIsVisible={setIsVisible}
             setPost={() => setPost(update)}
-            post={update}
             currentVenture={currentVenture}
           />
         )),
