@@ -5,6 +5,7 @@ import {
   PlasmicReplyInput,
   DefaultReplyInputProps,
 } from "component/plasmic/shared/PlasmicReplyInput";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { useForm } from "react-hook-form";
 import { ICreateMessage } from "module/interface/message";
 import { useCreateMessage } from "module/hook/message";
@@ -53,8 +54,24 @@ function ReplyInput(props: ReplyInputProps) {
         onSubmit: handleSubmit(handleAddMessage),
       }}
       replyInput={{
-        name: "text",
-        ref: register(),
+        render: () => (
+          <TextareaAutosize
+            aria-label="Description"
+            style={{
+              resize: "none",
+              fontSize: "15px",
+              fontWeight: 300,
+              color: "261A3F",
+              fontFamily: "Poppins",
+              outline: "none",
+              border: "none",
+            }}
+            rowsMin={4}
+            placeholder="Description..."
+            name="text"
+            ref={register()}
+          />
+        ),
       }}
       postReplyButton={{
         type: "submit",
