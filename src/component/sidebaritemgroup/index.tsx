@@ -10,6 +10,7 @@ import { ISearchTimeline, ITimeline } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useGetToken } from "module/auth";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -26,6 +27,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
   const token = useGetToken();
+  const history = useHistory();
 
   const timelineSearch: ISearchTimeline = {
     ventureId,
@@ -42,7 +44,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   return (
     <PlasmicSidebarItemGroup
       venture={{
-        name: name,
+        ventureName: name,
         setIsCollapsed,
         isCollapsed,
         isActive:
@@ -52,11 +54,12 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       isCollapsed={isCollapsed}
       newTimeline={{
         ventureName: ventureSlug,
+        onClick: () => history.push(`${ventureSlug}/newventure`),
       }}
       itemContainer={{
         children: sortedCurrentTimelines.map((timeline: ITimeline) => (
           <SidebarItem
-            name={timeline.name}
+            timelineName={timeline.name}
             key={timeline.id}
             ventureId={timeline.ventureId}
             ventureName={name}

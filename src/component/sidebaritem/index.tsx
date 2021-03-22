@@ -8,7 +8,7 @@ import {
 import { useHistory } from "react-router-dom";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
-  name: string;
+  timelineName: string;
   ventureName: string;
   ventureId: string;
   setHasInput?: any;
@@ -18,7 +18,7 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
 }
 function SidebarItem(props: SidebarItemProps) {
   const {
-    name,
+    timelineName,
     ventureId,
     ventureName,
     itemType,
@@ -30,13 +30,13 @@ function SidebarItem(props: SidebarItemProps) {
   const [isUserOnClick, setIsUserOnClick] = useState(false);
   const history = useHistory();
   const ventureHandle =
-    itemType === "timeline"
+    typeof ventureName === "string"
       ? ventureName?.toLowerCase().replace(/\s/g, "")
-      : typeof name === "string"
-      ? name?.toLowerCase().replace(/\s/g, "")
       : "";
   const timelineHandle =
-    itemType !== "createTimeline" ? name?.toLowerCase().replace(/\s/g, "") : "";
+    itemType !== "createTimeline"
+      ? timelineName?.toLowerCase().replace(/\s/g, "")
+      : "";
 
   const link =
     itemType === "timeline"
@@ -77,14 +77,12 @@ function SidebarItem(props: SidebarItemProps) {
         },
       }}
       onClick={() => {
-        console.log(name);
-        console.log(link);
         itemType !== "createTimeline"
           ? history.push(link)
           : history.push(`/${ventureHandle}/newtimeline`);
       }}
       itemType={itemType}
-      name={name}
+      name={timelineName}
       dropdown={{
         timelineHandle,
         ventureHandle,
