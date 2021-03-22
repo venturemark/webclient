@@ -3,6 +3,7 @@ import {
   CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
+  CreateO,
 } from "module/api/message/proto/create_pb";
 import * as key from "module/apikeys";
 import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
@@ -30,14 +31,15 @@ export async function Create(createMessage: ICreateMessage): Promise<any> {
   req.setObjList(objList);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
-    client.create(req, metadata, function (err: any, res: any) {
+    client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
         reject(err);
       } else {
-        const messagePb = res.getObj();
-        const metaPb = messagePb?.getMetadataMap();
+        const messagePbList = res.getObjList();
+        const messagePbObject = messagePbList[0];
+        const metaPb = messagePbObject?.getMetadataMap();
         const messageId = metaPb.get(key.MessageID);
 
         resolve(messageId);

@@ -144,7 +144,8 @@ export function Home(props: HomeProps) {
         postDetails={{
           setIsVisible,
           post,
-          setPost,
+          ventureName: currentVenture?.name,
+          ventureId,
         }}
       />
     </>

@@ -1,7 +1,6 @@
 export interface IUpdate {
   text: string;
   title: string;
-  description: string;
   id: string;
   ventureId: string;
   timelineId: string;
