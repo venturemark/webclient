@@ -59,14 +59,19 @@ function ReplyInput(props: ReplyInputProps) {
             aria-label="Description"
             style={{
               resize: "none",
-              fontSize: "15px",
+              fontSize: "16px",
               fontWeight: 300,
               color: "261A3F",
               fontFamily: "Poppins",
               outline: "none",
-              border: "none",
+              border: "1px",
+              borderColor: "1px solid #E0E0E0",
+              width: "100%",
+              padding: "20px 15px",
+              borderRadius: "10px",
+              backgroundColor: "white",
             }}
-            rowsMin={4}
+            rowsMin={1}
             placeholder="Description..."
             name="text"
             ref={register()}
