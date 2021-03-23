@@ -86,7 +86,10 @@ function Main(props: MainProps) {
         setPost,
         user,
       }}
-      // addEditMembers={{}}
+      addEditMembers={{
+        currentVenture,
+        currentTimeline,
+      }}
       addEditVenture={{
         currentVenture,
         handleSubmit,

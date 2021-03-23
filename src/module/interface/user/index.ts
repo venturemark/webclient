@@ -15,6 +15,11 @@ export interface ISearchUser {
   token: string;
 }
 
+export interface ISearchAllUser {
+  subjectIds: string[];
+  token: string;
+}
+
 export interface ICreateUser {
   name: string;
   title: string;

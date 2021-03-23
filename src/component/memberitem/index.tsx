@@ -5,17 +5,18 @@ import {
   PlasmicMemberItem,
   DefaultMemberItemProps,
 } from "component/plasmic/shared/PlasmicMemberItem";
+import { IUser } from "module/interface/user";
 
 interface MemberItemProps extends DefaultMemberItemProps {
-  userInitials: string;
+  user: IUser;
 }
 
 function MemberItem(props: MemberItemProps) {
-  const { userInitials, ...rest } = props;
+  const { user, ...rest } = props;
   return (
     <PlasmicMemberItem
       photoAvatar={{
-        userInitials: userInitials,
+        user,
       }}
       {...rest}
     />
