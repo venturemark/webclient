@@ -28,7 +28,5 @@ export interface IUpdateVenture {
   name: string;
   desc: string;
   url: string;
-  membersWrite: boolean;
   token: string;
-  adminId: string;
 }

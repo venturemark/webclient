@@ -1,7 +1,7 @@
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO_Obj,
+  UpdateO,
   UpdateI_Obj_Jsnpatch,
 } from "module/api/venture/proto/update_pb";
 import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
@@ -12,6 +12,9 @@ import * as key from "module/apikeys";
 export async function Update(
   ventureUpdate: IUpdateVenture
 ): Promise<IVenture[]> {
+  const token = ventureUpdate.token;
+  const metadata = { Authorization: `Bearer ${token}` };
+
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new UpdateI();
@@ -45,14 +48,14 @@ export async function Update(
 
   const getUpdateResponsePb: IVenture[] = await new Promise(
     (resolve, reject) => {
-      client.update(req, {}, function (err: any, res: any): any {
+      client.update(req, metadata, function (err: any, res: UpdateO): any {
         if (err) {
           console.log(err.code);
           console.log(err.message);
           reject(err);
           return;
         } else {
-          const venturePb: UpdateO_Obj = res.getObj();
+          const venturePb = res.getObjList()[0];
           const metaPb = venturePb.getMetadataMap();
           const status = metaPb.get(key.VentureStatus);
 

@@ -82,7 +82,13 @@ function SidebarItem(props: SidebarItemProps) {
           : history.push(`/${ventureHandle}/newtimeline`);
       }}
       itemType={itemType}
-      name={timelineName ? timelineName : ventureName}
+      name={
+        itemType === "createTimeline"
+          ? "Create Timeline"
+          : timelineName
+          ? timelineName
+          : ventureName
+      }
       dropdown={{
         timelineHandle,
         ventureHandle,

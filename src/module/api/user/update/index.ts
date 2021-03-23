@@ -15,6 +15,10 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   const req = new UpdateI();
 
   const obj = new UpdateI_Obj();
+
+  const token = updateUser.token;
+  const metadata = { Authorization: `Bearer ${token}` };
+
   const nameObjJsnPatch = new UpdateI_Obj_Jsnpatch();
   const titleObjJsnPatch = new UpdateI_Obj_Jsnpatch();
   const objList = [];
@@ -42,7 +46,7 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   req.setObjList(objList);
 
   const getUpdateResponsePb: IUser[] = await new Promise((resolve, reject) => {
-    client.update(req, {}, function (err: any, res: any): any {
+    client.update(req, metadata, function (err: any, res: any): any {
       if (err) {
         console.log(err.code);
         console.log(err.message);

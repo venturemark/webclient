@@ -14,7 +14,7 @@ import { ISearchUser } from "module/interface/user";
 import { useUser } from "module/hook/user";
 import { useVenture } from "module/hook/venture";
 import { useGetToken } from "module/auth";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams, useLocation } from "react-router-dom";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -42,6 +42,7 @@ export function Home(props: HomeProps) {
   } = props;
   const token = useGetToken();
   const { ventureSlug } = useParams<ParamTypes>();
+  const url = useLocation();
 
   const userSearch: ISearchUser = {
     token,
@@ -123,7 +124,12 @@ export function Home(props: HomeProps) {
     return <Redirect to={`/newventure`} />;
   }
 
-  if (ventureSlug === undefined && ventureHandle) {
+  if (
+    ventureSlug === undefined &&
+    ventureHandle &&
+    url.pathname !== "/newventure" &&
+    url.pathname !== "/editprofile"
+  ) {
     return <Redirect to={`/${ventureHandle}/feed`} />;
   }
 

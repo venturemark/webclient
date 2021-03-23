@@ -47,6 +47,8 @@ function ProfileForm(props: ProfileFormProps) {
       token: token,
     };
 
+    console.log("save or edit");
+
     saveUser(user);
     history.push("/");
   };

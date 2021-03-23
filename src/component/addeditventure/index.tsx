@@ -5,12 +5,16 @@ import {
   PlasmicAddEditVenture,
   DefaultAddEditVentureProps,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
-import { ICreateVenture, IVenture } from "module/interface/venture";
+import {
+  ICreateVenture,
+  IVenture,
+  IUpdateVenture,
+} from "module/interface/venture";
 import { useHistory, useParams, useLocation } from "react-router-dom";
 import { useGetToken } from "module/auth";
 import { ventureNameError } from "module/errors";
 import { makeVentureUrl } from "module/helpers";
-import { useCreateVenture } from "module/hook/venture";
+import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
 
 interface ParamsType {
   timelineSlug: string;
@@ -38,23 +42,32 @@ function AddEditVenture(props: AddEditVentureProps) {
   } = props;
   const { ventureSlug } = useParams<ParamsType>();
   const token = useGetToken();
-  const { mutate: saveVenture } = useCreateVenture();
+  const { mutate: createVenture } = useCreateVenture();
+  const { mutate: updateVenture } = useUpdateVenture();
 
   const history = useHistory();
   const venture = currentVenture;
   const url = useLocation();
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
+  const isEdit = ventureSlug === handle ? "isEdit" : undefined;
 
   const handleCreate = (data: any) => {
     const handle = data.ventureName.toLowerCase().replace(/\s/g, "");
-    const venture: ICreateVenture = {
+    const ventureCreate: ICreateVenture = {
+      name: data.ventureName,
+      desc: data.ventureDescription,
+      url: makeVentureUrl(handle),
+      token: token,
+    };
+    const ventureUpdate: IUpdateVenture = {
+      id: venture?.id,
       name: data.ventureName,
       desc: data.ventureDescription,
       url: makeVentureUrl(handle),
       token: token,
     };
 
-    saveVenture(venture);
+    isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
     reset();
     history.push(`/${handle}/newtimeline`);
   };
@@ -62,7 +75,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   return (
     <PlasmicAddEditVenture
       {...rest}
-      variantState={ventureSlug === handle ? "isEdit" : undefined}
+      variantState={isEdit}
       settings={{
         onSubmit: handleSubmit(handleCreate),
       }}
