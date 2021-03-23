@@ -216,7 +216,7 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  padding: 15px 0px;
+  padding: 5px 0px 15px;
 }
 .box__ly8Vh {
   display: inline-flex;

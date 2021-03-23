@@ -72,7 +72,7 @@ export type PlasmicInputTextArea__OverridesType = {
   labelContainer?: p.Flex<"label">;
   inputHelperText?: p.Flex<"div">;
   textboxContainer?: p.Flex<"div">;
-  input?: p.Flex<"input">;
+  input?: p.Flex<"textarea">;
   errorMessage?: p.Flex<typeof ErrorMessage>;
 };
 
@@ -164,13 +164,13 @@ function PlasmicInputTextArea__RenderFunc(props: {
           data-plasmic-override={overrides.textboxContainer}
           className={classNames(defaultcss.all, sty.textboxContainer)}
         >
-          <input
+          <textarea
             data-plasmic-name={"input"}
             data-plasmic-override={overrides.input}
-            className={classNames(defaultcss.input, sty.input)}
+            className={classNames(defaultcss.textarea, sty.input)}
             placeholder={"" as const}
             title={"" as const}
-            type={"text" as const}
+            value={"asdasdasd" as const}
           />
         </div>
 
@@ -232,7 +232,7 @@ type NodeDefaultElementType = {
   labelContainer: "label";
   inputHelperText: "div";
   textboxContainer: "div";
-  input: "input";
+  input: "textarea";
   errorMessage: typeof ErrorMessage;
 };
 

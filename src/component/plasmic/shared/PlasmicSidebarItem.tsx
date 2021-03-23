@@ -303,7 +303,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                         sty.box__j6CkC
                       )}
                     >
-                      {"Title"}
+                      {"Add Timeline"}
                     </div>
 
                     {false ? (

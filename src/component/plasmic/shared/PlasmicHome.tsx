@@ -215,27 +215,15 @@ function PlasmicHome__RenderFunc(props: {
                     ),
                   })}
                   isActive={"feed" as const}
-                  variantType={"isEmpty" as const}
+                  variantType={"isVenture" as const}
                 />
               </div>
 
-              {(
-                hasVariant(variants, "isVisible", "postDetails") ? true : false
-              ) ? (
-                <PostDetails
-                  data-plasmic-name={"postDetails"}
-                  data-plasmic-override={overrides.postDetails}
-                  className={classNames("__wab_instance", sty.postDetails, {
-                    [sty.postDetails__isVisible_postDetails]: hasVariant(
-                      variants,
-                      "isVisible",
-                      "postDetails"
-                    ),
-                  })}
-                >
-                  {"Post Details"}
-                </PostDetails>
-              ) : null}
+              <PostDetails
+                data-plasmic-name={"postDetails"}
+                data-plasmic-override={overrides.postDetails}
+                className={classNames("__wab_instance", sty.postDetails)}
+              />
             </div>
           </div>
         </div>
