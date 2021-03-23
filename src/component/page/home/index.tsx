@@ -92,7 +92,6 @@ export function Home(props: HomeProps) {
   const [isVisible, setIsVisible] = useState<IsVisible>(visibleProp);
   const [post, setPost] = useState<IUpdate>();
   const [variantType] = useState<VariantType>(variant);
-  const [isActive, setIsActive] = useState<IsActive>(active);
 
   // if (timelineSuccess && updateSuccess) {
   //   //deduplicate updates for home
@@ -156,7 +155,7 @@ export function Home(props: HomeProps) {
         }}
         main={{
           variantType,
-          isActive,
+          isActive: active,
           setIsVisible,
           setPost,
           currentVenture,

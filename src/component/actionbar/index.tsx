@@ -25,12 +25,6 @@ function ActionBar(props: ActionBarProps) {
   const { handleSubmit, register, reset } = useForm();
   const token = useGetToken();
 
-  const userInitials =
-    user?.name
-      .split(" ")
-      .map((n: string) => n[0])
-      .join("") ?? "";
-
   const defaultTimelineOption = [currentTimeline?.id] ?? [];
   const [selectedTimelines, setSelectedTimelines] = useState(
     defaultTimelineOption
