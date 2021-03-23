@@ -57,6 +57,8 @@ function Modal(props: ModalProps) {
       token: token,
     };
 
+    console.log(userUpdate);
+
     updateUser(userUpdate);
     history.push("/");
   };
@@ -82,27 +84,30 @@ function Modal(props: ModalProps) {
         register: register({ required: true }),
         errorMessage: errors.role && roleError,
       }}
-      deleteTimeline={{
-        onClick: () => setIsVisible(undefined),
-      }}
-      deleteVenture={{
-        onClick: () => setIsVisible(undefined),
-      }}
+      deleteTimeline={
+        {
+          // onClick: () => setIsVisible(undefined),
+        }
+      }
+      deleteVenture={
+        {
+          // onClick: () => setIsVisible(undefined),
+        }
+      }
       saveUser={{
         type: "submit",
-        onClick: () => setIsVisible(undefined),
       }}
       cancelEdit={{
-        onClick: () => history.push(`/`),
+        onClick: () => history.goBack(),
       }}
       cancelTimeline={{
-        onClick: () => history.push(`/${ventureSlug}/${timelineSlug}/settings`),
+        onClick: () => history.goBack(),
       }}
       cancelVenture={{
-        onClick: () => history.push(`/${ventureSlug}/settings`),
+        onClick: () => history.goBack(),
       }}
       close={{
-        onClick: () => setIsVisible(undefined),
+        onClick: () => history.goBack(),
       }}
     />
   );
