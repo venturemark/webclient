@@ -170,7 +170,6 @@ function PlasmicInputTextArea__RenderFunc(props: {
             className={classNames(defaultcss.textarea, sty.input)}
             placeholder={"" as const}
             title={"" as const}
-            value={"asdasdasd" as const}
           />
         </div>
 

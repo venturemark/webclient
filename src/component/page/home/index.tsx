@@ -120,10 +120,13 @@ export function Home(props: HomeProps) {
     return <Redirect to={`/signin`} />;
   }
 
-  if (ventureSuccess && !ventureData) {
+  if (
+    ventureSuccess &&
+    ventureData.length < 1 &&
+    url.pathname !== "/newventure"
+  ) {
     return <Redirect to={`/newventure`} />;
   }
-
   if (
     ventureSlug === undefined &&
     ventureHandle &&

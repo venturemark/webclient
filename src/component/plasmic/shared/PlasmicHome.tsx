@@ -219,11 +219,21 @@ function PlasmicHome__RenderFunc(props: {
                 />
               </div>
 
-              <PostDetails
-                data-plasmic-name={"postDetails"}
-                data-plasmic-override={overrides.postDetails}
-                className={classNames("__wab_instance", sty.postDetails)}
-              />
+              {(
+                hasVariant(variants, "isVisible", "postDetails") ? true : false
+              ) ? (
+                <PostDetails
+                  data-plasmic-name={"postDetails"}
+                  data-plasmic-override={overrides.postDetails}
+                  className={classNames("__wab_instance", sty.postDetails, {
+                    [sty.postDetails__isVisible_postDetails]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "postDetails"
+                    ),
+                  })}
+                />
+              ) : null}
             </div>
           </div>
         </div>
