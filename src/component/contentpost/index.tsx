@@ -8,7 +8,7 @@ import {
 import TimelineLink from "component/timelinelink";
 import { ITimeline, ISearchTimeline } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
-import { IUpdateQuery, IUpdate } from "module/interface/update";
+import { ISearchAllUpdate, IUpdate } from "module/interface/update";
 import { useAllUpdates } from "module/hook/update";
 import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
@@ -56,7 +56,7 @@ function ContentPost(props: ContentPostProps) {
   const { data: timelinesData } = useTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
 
-  const allUpdatesSearch: IUpdateQuery = {
+  const allUpdatesSearch: ISearchAllUpdate = {
     ventureId,
     timelines: timelinesData,
     token,

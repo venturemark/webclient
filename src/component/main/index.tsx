@@ -80,6 +80,7 @@ function Main(props: MainProps) {
       }}
       feedUpdate={{
         setIsVisible,
+        timelines,
         currentTimeline,
         currentVenture,
         setPost,

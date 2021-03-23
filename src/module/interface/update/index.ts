@@ -7,10 +7,15 @@ export interface IUpdate {
   date: string;
 }
 
-export interface IUpdateQuery {
-  timelineId?: string;
+export interface ISearchUpdate {
+  timelineId: string;
   ventureId: string;
-  timelines?: any;
+  token: string;
+}
+
+export interface ISearchAllUpdate {
+  ventureId: string;
+  timelines: any;
   token: string;
 }
 
