@@ -7,16 +7,11 @@ import {
 } from "component/plasmic/shared/PlasmicModal";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { ISearchUser, IUpdateUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 import { useUpdateUser, useUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
-
-interface ParamsType {
-  timelineSlug: string;
-  ventureSlug: string;
-}
 
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
@@ -29,7 +24,6 @@ interface ModalProps extends DefaultModalProps {
 function Modal(props: ModalProps) {
   const { isVisible, setIsVisible, modalType, ...rest } = props;
   const history = useHistory();
-  const { timelineSlug, ventureSlug } = useParams<ParamsType>();
   const token = useGetToken();
   const { user: authUser } = useAuth0();
 
