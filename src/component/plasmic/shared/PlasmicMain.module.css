@@ -112,6 +112,9 @@
   > * {
   margin-left: 0px;
 }
+.box__z2Sa {
+  margin-top: 56px;
+}
 .box__variantType_isEmpty__z2SaNF9Ly {
   font-size: 30px /* plasmic-token: mXYe0t8Ye */;
   font-weight: 300;
@@ -173,6 +176,7 @@
 .box__variantType_isEmpty__kg0J8NF9Ly {
   justify-content: space-between;
   width: 100%;
+  align-items: center;
   min-width: 0;
   padding: 30px;
   border-bottom: 1px solid rgb(224, 224, 224)
@@ -253,6 +257,7 @@
 .box__variantType_isEmpty___46HUmnF9Ly {
   justify-content: space-between;
   width: 100%;
+  align-items: center;
   min-width: 0;
   padding: 30px;
 }
