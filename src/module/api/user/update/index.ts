@@ -1,7 +1,7 @@
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO_Obj,
+  UpdateO,
   UpdateI_Obj_Jsnpatch,
 } from "module/api/user/proto/update_pb";
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
@@ -35,7 +35,7 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
 
   if (updateUser.title) {
     nameObjJsnPatch.setOpe("replace");
-    nameObjJsnPatch.setPat("/obj/property/title");
+    nameObjJsnPatch.setPat("/obj/property/desc");
     nameObjJsnPatch.setVal(updateUser.title);
     patchList.push(titleObjJsnPatch);
   }
@@ -46,14 +46,14 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   req.setObjList(objList);
 
   const getUpdateResponsePb: IUser[] = await new Promise((resolve, reject) => {
-    client.update(req, metadata, function (err: any, res: any): any {
+    client.update(req, metadata, function (err: any, res: UpdateO): any {
       if (err) {
         console.log(err.code);
         console.log(err.message);
         reject(err);
         return;
       } else {
-        const userPb: UpdateO_Obj = res.getObj();
+        const userPb = res.getObjList()[0];
         const metaPb = userPb.getMetadataMap();
         const status = metaPb.get(key.UserStatus);
 
