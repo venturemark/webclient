@@ -1,7 +1,7 @@
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO_Obj,
+  UpdateO,
   UpdateI_Obj_Jsnpatch,
 } from "module/api/texupd/proto/update_pb";
 import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
@@ -16,6 +16,10 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
 
   const obj = new UpdateI_Obj();
   const objJsnPatch = new UpdateI_Obj_Jsnpatch();
+
+  const token = updateUpdate.token;
+  const metadata = { Authorization: `Bearer ${token}` };
+
   const objList = [];
   const patchList = [];
 
@@ -35,14 +39,14 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
 
   const getUpdateResponsePb: IUpdate[] = await new Promise(
     (resolve, reject) => {
-      client.update(req, {}, function (err: any, res: any): any {
+      client.update(req, metadata, function (err: any, res: UpdateO): any {
         if (err) {
           console.log(err.code);
           console.log(err.message);
           reject(err);
           return;
         } else {
-          const updatePb: UpdateO_Obj = res.getObj();
+          const updatePb = res.getObjList()[0];
           const metaPb = updatePb.getMetadataMap();
           const status = metaPb.get(key.UpdateStatus);
 
