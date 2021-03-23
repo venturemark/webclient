@@ -147,6 +147,7 @@ export function Home(props: HomeProps) {
         header={{
           isVisible,
           setIsVisible,
+          user,
         }}
         modal={{
           isVisible,
@@ -156,12 +157,11 @@ export function Home(props: HomeProps) {
         main={{
           variantType,
           isActive,
-          setIsActive,
-          isVisible,
           setIsVisible,
           setPost,
           currentVenture,
           ventureId,
+          user,
         }}
         sidebar={{
           userId: user?.id,

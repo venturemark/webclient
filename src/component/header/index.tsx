@@ -6,14 +6,16 @@ import {
   DefaultHeaderProps,
 } from "component/plasmic/shared/PlasmicHeader";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IUser } from "module/interface/user";
 
 interface HeaderProps extends DefaultHeaderProps {
   isVisible: any;
   setIsVisible: any;
+  user: IUser;
 }
 
 function Header(props: HeaderProps) {
-  const { isVisible, setIsVisible, ...rest } = props;
+  const { isVisible, setIsVisible, user, ...rest } = props;
   const { isAuthenticated } = useAuth0();
   const [profileDropdown, setProfileDropdown] = useState(false);
 
@@ -40,6 +42,7 @@ function Header(props: HeaderProps) {
       avatar={{
         setProfileDropdown,
         profileDropdown,
+        user,
       }}
       dropdown={{
         profileDropdown,

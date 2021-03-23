@@ -67,6 +67,9 @@ function Modal(props: ModalProps) {
       editProfile={{
         onSubmit: handleSubmit(handleSave),
       }}
+      photoAvatar={{
+        user,
+      }}
       nameField={{
         name: "name",
         defaultValue: user?.name ?? "",

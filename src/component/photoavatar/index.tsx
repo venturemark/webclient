@@ -5,16 +5,16 @@ import {
   PlasmicPhotoAvatar,
   DefaultPhotoAvatarProps,
 } from "component/plasmic/shared/PlasmicPhotoAvatar";
-import { useAuth0 } from "@auth0/auth0-react";
+import { IUser } from "module/interface/user";
 
 interface PhotoAvatarProps extends DefaultPhotoAvatarProps {
   profileDropdown: boolean | "profileDropdown" | undefined;
   setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+  user: IUser;
 }
 
 function PhotoAvatar(props: PhotoAvatarProps) {
-  const { profileDropdown, setProfileDropdown, ...rest } = props;
-  const { user } = useAuth0();
+  const { profileDropdown, setProfileDropdown, user, ...rest } = props;
 
   const userInitials =
     user?.name

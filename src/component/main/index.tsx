@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
+import { IUser } from "module/interface/user";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -21,14 +22,13 @@ interface MainProps extends DefaultMainProps {
   isOnboarding?: boolean | "isOnboarding";
   isActive: any;
   variantType: any;
-  setIsActive: any;
-  isVisible: any;
   setIsVisible: any;
   setPost: any;
   viewCreateVenture?: any;
   viewJoinVenture?: any;
   ventureId: string;
   currentVenture: IVenture;
+  user: IUser;
 }
 
 function Main(props: MainProps) {
@@ -36,13 +36,14 @@ function Main(props: MainProps) {
     isOnboarding,
     isActive,
     variantType,
-    isVisible,
     setIsVisible,
     setPost,
     viewCreateVenture,
     viewJoinVenture,
     ventureId,
     currentVenture,
+    user,
+    ...rest
   } = props;
   const token = useGetToken();
   const { handleSubmit, register, reset, watch, errors } = useForm();
@@ -66,22 +67,23 @@ function Main(props: MainProps) {
 
   return (
     <PlasmicMain
+      {...rest}
       isActive={isActive}
       variantType={variantType}
       mainHeader={{
-        isActive: isActive,
-        variantType: variantType,
+        isActive,
+        variantType,
         currentTimeline,
         watchData,
         isOnboarding,
         currentVenture,
       }}
       feedUpdate={{
-        isVisible,
         setIsVisible,
         currentTimeline,
         currentVenture,
         setPost,
+        user,
       }}
       // addEditMembers={{}}
       addEditVenture={{

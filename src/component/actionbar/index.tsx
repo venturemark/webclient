@@ -11,18 +11,19 @@ import { AntSelect } from "component/ant/select";
 import { useForm } from "react-hook-form";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useGetToken } from "module/auth";
+import { IUser } from "module/interface/user";
 
 interface ActionBarProps extends DefaultActionBarProps {
   ventureId: string;
   currentTimeline: ITimeline;
+  user: IUser;
 }
 
 function ActionBar(props: ActionBarProps) {
-  const { ventureId, currentTimeline } = props;
-  const { user, getAccessTokenSilently } = useAuth0();
-  const [token, setToken] = useState<string>("");
+  const { ventureId, currentTimeline, user, ...rest } = props;
   const { handleSubmit, register, reset } = useForm();
+  const token = useGetToken();
 
   const userInitials =
     user?.name
@@ -69,30 +70,18 @@ function ActionBar(props: ActionBarProps) {
     } else {
       setSelectedTimelines([]);
     }
-
-    //auth
-    const getToken = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-        setToken(token);
-      } catch (error) {
-        console.log(error.error);
-      }
-    };
-    if (token === "") {
-      getToken();
-    }
-  }, [currentTimeline, getAccessTokenSilently, token]);
+  }, [currentTimeline]);
 
   return (
     <PlasmicActionBar
+      {...rest}
       onClick={() => setIsActive(true)}
       isActive={isActive}
       form={{
         onSubmit: handleSubmit(handlePost),
       }}
       photoAvatar={{
-        userInitials,
+        user,
       }}
       title={{
         render: () => (
