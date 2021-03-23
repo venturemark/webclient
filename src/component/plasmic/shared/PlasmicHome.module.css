@@ -123,14 +123,15 @@
 }
 @media (min-width: 992px) and (max-width: 1200px) {
   .postDetails:global(.__wab_instance) {
-    max-width: 370px;
+    max-width: 430px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .postDetails:global(.__wab_instance) {
     position: absolute;
-    left: 0px;
+    left: auto;
     top: 0px;
+    right: 0px;
     width: 100%;
     min-width: 0;
   }
@@ -138,7 +139,8 @@
 @media (max-width: 767px) {
   .postDetails:global(.__wab_instance) {
     position: absolute;
-    left: 0px;
+    left: auto;
     top: 0px;
+    right: 0px;
   }
 }

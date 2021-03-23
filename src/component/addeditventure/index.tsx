@@ -49,10 +49,10 @@ function AddEditVenture(props: AddEditVentureProps) {
   const venture = currentVenture;
   const url = useLocation();
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
-  const isEdit = ventureSlug === handle ? "isEdit" : undefined;
+  const isEdit = ventureSlug && ventureSlug === handle ? "isEdit" : undefined;
 
   const handleCreate = (data: any) => {
-    const handle = data.ventureName.toLowerCase().replace(/\s/g, "");
+    const createHandle = data.ventureName.toLowerCase().replace(/\s/g, "");
     const ventureCreate: ICreateVenture = {
       name: data.ventureName,
       desc: data.ventureDescription,
@@ -69,7 +69,9 @@ function AddEditVenture(props: AddEditVentureProps) {
 
     isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
     reset();
-    history.push(`/${handle}/newtimeline`);
+    isEdit
+      ? history.push(`/${handle}/newtimeline`)
+      : history.push(`/${createHandle}/newtimeline`);
   };
 
   return (

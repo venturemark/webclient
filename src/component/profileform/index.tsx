@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicProfileForm";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { ICreateUser, ISearchUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 import { useCreateUser, useUser } from "module/hook/user";
@@ -31,7 +31,7 @@ function ProfileForm(props: ProfileFormProps) {
   const userSearch: ISearchUser = {
     token,
   };
-  const { data: usersData } = useUser(userSearch);
+  const { data: usersData, isSuccess: userSuccess } = useUser(userSearch);
   const user = usersData ?? authUser;
 
   const { mutate: saveUser } = useCreateUser();
@@ -47,11 +47,13 @@ function ProfileForm(props: ProfileFormProps) {
       token: token,
     };
 
-    console.log("save or edit");
-
     saveUser(user);
-    history.push("/");
+    history.push("/newventure");
   };
+
+  if (userSuccess && usersData) {
+    return <Redirect to={`/`} />;
+  }
 
   return (
     <PlasmicProfileForm

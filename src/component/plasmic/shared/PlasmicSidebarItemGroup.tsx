@@ -177,30 +177,31 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           ) : null}
         </p.Stack>
       ) : null}
-
-      <SidebarItem
-        data-plasmic-name={"newTimeline"}
-        data-plasmic-override={overrides.newTimeline}
-        className={classNames("__wab_instance", sty.newTimeline, {
-          [sty.newTimeline__isCollapsed]: hasVariant(
-            variants,
-            "isCollapsed",
-            "isCollapsed"
-          ),
-        })}
-        itemType={"createTimeline" as const}
-        name={
-          <div
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.box__f9Ow1
-            )}
-          >
-            {"New Timeline"}
-          </div>
-        }
-      />
+      {(hasVariant(variants, "isCollapsed", "isCollapsed") ? false : true) ? (
+        <SidebarItem
+          data-plasmic-name={"newTimeline"}
+          data-plasmic-override={overrides.newTimeline}
+          className={classNames("__wab_instance", sty.newTimeline, {
+            [sty.newTimeline__isCollapsed]: hasVariant(
+              variants,
+              "isCollapsed",
+              "isCollapsed"
+            ),
+          })}
+          itemType={"createTimeline" as const}
+          name={
+            <div
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.box__f9Ow1
+              )}
+            >
+              {"New Timeline"}
+            </div>
+          }
+        />
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }

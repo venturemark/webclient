@@ -151,7 +151,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
           position={"top" as const}
           radioVariants={["hasLabel", "isSelected"]}
         >
-          {"Only admins and members invited by you can see this timeline. "}
+          {"Only members invited by you can see this timeline. "}
         </Radio>
 
         <Radio
