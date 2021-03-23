@@ -6,16 +6,23 @@ import {
   DefaultFeedUpdateProps,
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import ContentPost from "component/contentpost";
-import { IUpdateQuery } from "module/interface/update";
+import { ISearchUpdate, ISearchAllUpdate } from "module/interface/update";
 import { ITimeline } from "module/interface/timeline";
-import { useTimelineUpdates } from "module/hook/update";
+import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
 import { IUpdate } from "module/interface/update";
 import { IVenture } from "module/interface/venture";
 import { IUser } from "module/interface/user";
 import { useGetToken } from "module/auth";
+import { useParams } from "react-router-dom";
+
+interface ParamTypes {
+  ventureSlug: string;
+  timelineSlug: string;
+}
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
   currentTimeline: ITimeline;
+  timelines: ITimeline[];
   currentVenture: IVenture;
   user: IUser;
   setIsVisible: any;
@@ -25,24 +32,54 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
 function FeedUpdate(props: FeedUpdateProps) {
   const {
     currentTimeline,
+    timelines,
     setIsVisible,
     setPost,
     currentVenture,
     user,
     ...rest
   } = props;
+  const { timelineSlug } = useParams<ParamTypes>();
   const token = useGetToken();
   const ventureId = currentVenture?.id ?? "";
 
-  const timelineUpdatesSearch: IUpdateQuery = {
+  const timelineUpdatesSearch: ISearchUpdate = {
     ventureId,
     timelineId: currentTimeline?.id ?? "",
     token,
   };
 
+  const allUpdatesSearch: ISearchAllUpdate = {
+    ventureId,
+    timelines,
+    token,
+  };
+
   const { data: timelineUpdates } = useTimelineUpdates(timelineUpdatesSearch);
 
-  const updates = timelineUpdates ?? [];
+  let updates = timelineUpdates ?? [];
+
+  const { data: allUpdates, isSuccess: updateSuccess } = useAllUpdates(
+    allUpdatesSearch
+  );
+
+  if (updateSuccess) {
+    //deduplicate updates for home
+    const homeUpdates: IUpdate[] = Array.from(
+      new Set(
+        allUpdates.map((update: IUpdate) =>
+          Math.round(Number(update.id) / 1000000000)
+        )
+      )
+    ).map((id) => {
+      return allUpdates.find(
+        (update: IUpdate) => Math.round(Number(update.id) / 1000000000) === id
+      );
+    });
+
+    // return updates or updates of current timeline.
+    updates = timelineSlug ? timelineUpdates ?? [] : homeUpdates ?? [];
+  }
 
   return (
     <PlasmicFeedUpdate

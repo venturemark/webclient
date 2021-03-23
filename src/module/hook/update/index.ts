@@ -1,24 +1,24 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { IUpdateQuery } from "module/interface/update";
+import { ISearchAllUpdate, ISearchUpdate } from "module/interface/update";
 import * as api from "module/api";
+import { ITimeline } from "module/interface/timeline";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getTimelineUpdates = async (updateQuery: IUpdateQuery) => {
-  const data = await api.API.Update.Search(updateQuery);
+const getTimelineUpdates = async (searchUpdate: ISearchUpdate) => {
+  const data = await api.API.Update.Search(searchUpdate);
   return data;
 };
 
-const getAllUpdates = async (updateQuery: any) => {
-  const { timelines, ventureId, userId, token } = updateQuery;
+const getAllUpdates = async (searchAllUpdate: ISearchAllUpdate) => {
+  const { timelines, ventureId, token } = searchAllUpdate;
 
   const allUpdates = await Promise.all(
-    timelines.map(async (timeline: any) => {
+    timelines.map(async (timeline: ITimeline) => {
       const timelineId = timeline.id;
       const search = {
         ventureId,
         timelineId,
-        userId,
         token,
       };
 
@@ -31,19 +31,19 @@ const getAllUpdates = async (updateQuery: any) => {
   return flattenedUpdates;
 };
 
-export function useTimelineUpdates(updateQuery: IUpdateQuery) {
+export function useTimelineUpdates(searchUpdate: ISearchUpdate) {
   return useQuery<any, ErrorResponse>(
-    ["update", updateQuery.timelineId, updateQuery.token],
-    () => getTimelineUpdates(updateQuery),
-    { enabled: !!updateQuery.timelineId && !!updateQuery.token }
+    ["update", searchUpdate.timelineId, searchUpdate.token],
+    () => getTimelineUpdates(searchUpdate),
+    { enabled: !!searchUpdate.timelineId && !!searchUpdate.token }
   );
 }
 
-export function useAllUpdates(updateQuery: IUpdateQuery) {
+export function useAllUpdates(searchAllUpdate: ISearchAllUpdate) {
   return useQuery<any, ErrorResponse>(
-    ["update", updateQuery.timelines, updateQuery.token],
-    () => getAllUpdates(updateQuery),
-    { enabled: !!updateQuery.timelines && !!updateQuery.token }
+    ["update", searchAllUpdate.timelines, searchAllUpdate.token],
+    () => getAllUpdates(searchAllUpdate),
+    { enabled: !!searchAllUpdate.timelines && !!searchAllUpdate.token }
   );
 }
 

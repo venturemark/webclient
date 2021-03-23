@@ -75,16 +75,6 @@ export function Home(props: HomeProps) {
   const ventureId = currentVenture?.id ?? "";
   const ventureHandle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
-  // const timelineSearch: ISearchTimeline = {
-  //   ventureId,
-  //   token,
-  // };
-  // const {
-  //   data: timelinesData,
-  //   isError: timelineError,
-  //   isSuccess: timelineSuccess,
-  // } = useTimelines(timelineSearch);
-
   const variant = timelineVariant ? "isTimeline" : "isVenture";
   const active = activeState ? activeState : "feed";
 
@@ -92,24 +82,6 @@ export function Home(props: HomeProps) {
   const [isVisible, setIsVisible] = useState<IsVisible>(visibleProp);
   const [post, setPost] = useState<IUpdate>();
   const [variantType] = useState<VariantType>(variant);
-
-  // if (timelineSuccess && updateSuccess) {
-  //   //deduplicate updates for home
-  //   const homeUpdates: IUpdate[] = Array.from(
-  //     new Set(
-  //       allUpdates.map((update: IUpdate) =>
-  //         Math.round(Number(update.id) / 1000000000)
-  //       )
-  //     )
-  //   ).map((id) => {
-  //     return allUpdates.find(
-  //       (update: IUpdate) => Math.round(Number(update.id) / 1000000000) === id
-  //     );
-  //   });
-
-  //   // return updates or updates of current timeline.
-  //   updates = isHome ? homeUpdates ?? [] : timelineUpdates ?? [];
-  // }
 
   if (userSuccess && !user) {
     return <Redirect to={`/signin`} />;
