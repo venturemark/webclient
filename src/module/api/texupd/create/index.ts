@@ -40,8 +40,6 @@ export async function Create(createUpdate: ICreateUpdate): Promise<any> {
         const metaPb = updatePb?.getMetadataMap();
         const updateId = metaPb.get(key.UpdateID);
 
-        console.log(updateId);
-
         resolve(updateId);
       }
     });

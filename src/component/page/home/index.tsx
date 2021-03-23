@@ -127,7 +127,8 @@ export function Home(props: HomeProps) {
   if (
     ventureSlug === undefined &&
     ventureHandle &&
-    url.pathname !== "/newventure"
+    url.pathname !== "/newventure" &&
+    url.pathname !== "/editprofile"
   ) {
     return <Redirect to={`/${ventureHandle}/feed`} />;
   }

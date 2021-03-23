@@ -37,7 +37,6 @@ function Header(props: HeaderProps) {
       {...rest}
       profileDropdown={profileDropdown}
       views={isAuthenticated ? "userAccount" : "publicView"}
-      // userAccount={isAuthenticated}
       avatar={{
         setProfileDropdown,
         profileDropdown,
