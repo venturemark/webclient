@@ -4,15 +4,15 @@ import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getRole = async (searchRole: ISearchRole) => {
+const getVentureRole = async (searchRole: ISearchRole) => {
   const data = await api.API.Role.Search(searchRole);
   return data;
 };
 
-export function useRole(searchRole: ISearchRole) {
+export function useVentureRole(searchRole: ISearchRole) {
   return useQuery<any, ErrorResponse>(
-    ["role", searchRole.token],
-    () => getRole(searchRole),
+    ["ventureRole", searchRole.token],
+    () => getVentureRole(searchRole),
     { enabled: !!searchRole.token }
   );
 }
@@ -27,7 +27,7 @@ export function useCreateRole() {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("role");
+        queryClient.invalidateQueries("ventureRole");
       },
     }
   );

@@ -1,8 +1,38 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { ISearchUser } from "module/interface/user";
+import { ISearchUser, ISearchAllUser, IUser } from "module/interface/user";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
+
+const getAllUser = async (searchAllUser: ISearchAllUser) => {
+  const { subjectIds, token } = searchAllUser;
+
+  const allUsers = await Promise.all(
+    subjectIds.map(async (id) => {
+      const search = {
+        id,
+        token,
+      };
+
+      const user = await api.API.User.Search(search);
+      return user;
+    })
+  );
+
+  console.log("allUsers in hook", allUsers);
+
+  const flattenedUsers: IUser[] = allUsers.flat();
+
+  return flattenedUsers;
+};
+
+export function useAllUser(searchAllUser: ISearchAllUser) {
+  return useQuery<any, ErrorResponse>(
+    ["user", searchAllUser.token, searchAllUser.subjectIds],
+    () => getAllUser(searchAllUser),
+    { enabled: !!searchAllUser.token && !!searchAllUser.subjectIds }
+  );
+}
 
 const getUser = async (searchUser: ISearchUser) => {
   const data = await api.API.User.Search(searchUser);
