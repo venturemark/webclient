@@ -127,7 +127,13 @@ function AddEditMembers(props: AddEditMembersProps) {
           <MemberItem
             userName={member.name}
             user={member}
-            userVariant={"isAdmin"}
+            userVariant={
+              ventureRolesData.filter(
+                (role: IRole) => role.subjectId === member.id
+              ).length > 0
+                ? "isAdmin"
+                : undefined
+            }
           />
         )),
       }}
