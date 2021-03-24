@@ -56,13 +56,18 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   let subjectIds = [];
   if (ventureRolesSuccess) {
-    subjectIds = currentTimeline
-      ? timelineRolesData?.map((role: IRole) => role.subjectId)
-      : ventureRolesData?.map((role: IRole) => role.subjectId);
-  } else if (timelineRolesSuccess) {
-    subjectIds = currentTimeline
-      ? timelineRolesData?.map((role: IRole) => role.subjectId)
-      : ventureRolesData?.map((role: IRole) => role.subjectId);
+    subjectIds = ventureRolesData?.map((role: IRole) => role.subjectId);
+
+    if (timelineRolesSuccess) {
+      let array1: IRole[] = ventureRolesData?.map(
+        (role: IRole) => role.subjectId
+      );
+      let array2: IRole[] = timelineRolesData?.map(
+        (role: IRole) => role.subjectId
+      );
+      subjectIds = array1.concat(array2);
+      subjectIds = [...new Set([...array1, ...array2])];
+    }
   }
 
   const ventureMembersSearch: ISearchAllUser = {
