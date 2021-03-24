@@ -19,8 +19,6 @@ const getAllUser = async (searchAllUser: ISearchAllUser) => {
     })
   );
 
-  console.log("allUsers in hook", allUsers);
-
   const flattenedUsers: IUser[] = allUsers.flat();
 
   return flattenedUsers;
