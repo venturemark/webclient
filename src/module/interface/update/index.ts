@@ -1,6 +1,6 @@
 export interface IUpdate {
-  text: string;
-  title: string;
+  title?: string;
+  text?: string;
   id: string;
   ventureId: string;
   timelineId: string;
@@ -20,6 +20,7 @@ export interface ISearchAllUpdate {
 }
 
 export interface ICreateUpdate {
+  title: string;
   text: string;
   ventureId: string;
   timelineId: string;
@@ -32,6 +33,7 @@ export interface IDeleteUpdate {
 }
 
 export interface IUpdateUpdate {
+  title: string;
   text: string;
   id: string;
   ventureId: string;
