@@ -13,7 +13,7 @@ import emailjs from "emailjs-com";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
 import { ITimeline } from "module/interface/timeline";
-import { useVentureRole } from "module/hook/role";
+import { useVentureRole, useTimelineRole } from "module/hook/role";
 import { useAllUser } from "module/hook/user";
 import { IRole, ISearchRole } from "module/interface/role";
 // import { init } from "emailjs-com";
@@ -22,20 +22,32 @@ import { IRole, ISearchRole } from "module/interface/role";
 interface AddEditMembersProps extends DefaultAddEditMembersProps {
   currentVenture: IVenture;
   currentTimeline: ITimeline;
+  user: IUser;
 }
 
 function AddEditMembers(props: AddEditMembersProps) {
-  const { currentVenture, currentTimeline, ...rest } = props;
+  const { currentVenture, currentTimeline, user, ...rest } = props;
   const { handleSubmit, register, reset, errors } = useForm({
     mode: "onChange",
   });
   const token = useGetToken();
 
   const ventureRoleSearch: ISearchRole = {
-    resource: "user",
+    resource: "venture",
     ventureId: currentVenture?.id ?? "",
     token,
   };
+
+  const timelineRoleSearch: ISearchRole = {
+    resource: "timeline",
+    timelineId: currentTimeline?.id ?? "",
+    token,
+  };
+
+  const {
+    data: timelineRolesData,
+    isSuccess: timelineRolesSuccess,
+  } = useTimelineRole(timelineRoleSearch);
 
   const {
     data: ventureRolesData,
@@ -44,9 +56,13 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   let subjectIds = [];
   if (ventureRolesSuccess) {
-    const ventureRoles = ventureRolesData;
-    subjectIds = ventureRolesData.map((role: IRole) => role.subjectId);
-    console.log(ventureRoles);
+    subjectIds = currentTimeline
+      ? timelineRolesData?.map((role: IRole) => role.subjectId)
+      : ventureRolesData?.map((role: IRole) => role.subjectId);
+  } else if (timelineRolesSuccess) {
+    subjectIds = currentTimeline
+      ? timelineRolesData?.map((role: IRole) => role.subjectId)
+      : ventureRolesData?.map((role: IRole) => role.subjectId);
   }
 
   const ventureMembersSearch: ISearchAllUser = {
@@ -54,15 +70,7 @@ function AddEditMembers(props: AddEditMembersProps) {
     token,
   };
 
-  const {
-    data: ventureMembersData,
-    isSuccess: ventureMembersSuccess,
-  } = useAllUser(ventureMembersSearch);
-
-  if (ventureMembersSuccess) {
-    console.log(ventureMembersData);
-    // Here we should map venture members to roles by id, subjectId
-  }
+  const { data: ventureMembersData } = useAllUser(ventureMembersSearch);
 
   const [members, setMembers] = useState<IUser[]>(ventureMembersData);
 
@@ -74,10 +82,11 @@ function AddEditMembers(props: AddEditMembersProps) {
     newMembers?.push(user);
 
     const templateParams = {
-      to_name: "Marcus",
+      to_name: "",
       user_email: email,
-      from_name: "Elon Musk",
-      message: "hello there my old friend!",
+      from_name: user?.name,
+      message:
+        "I would like to invite you to follow my venture on Venturemark.co",
     };
 
     //send invite link
@@ -123,13 +132,33 @@ function AddEditMembers(props: AddEditMembersProps) {
         type: "submit",
       }}
       membersContainer={{
-        children: members?.map((member) => (
-          <MemberItem
-            userName={member.name}
-            user={member}
-            userVariant={"isAdmin"}
-          />
-        )),
+        children: currentTimeline
+          ? members?.map((member) => (
+              <MemberItem
+                userName={member.name}
+                user={member}
+                userVariant={
+                  ventureRolesData.filter(
+                    (role: IRole) => role.subjectId === member.id
+                  ).length > 0
+                    ? "isAdmin"
+                    : undefined
+                }
+              />
+            ))
+          : members?.map((member) => (
+              <MemberItem
+                userName={member.name}
+                user={member}
+                userVariant={
+                  timelineRolesData?.filter(
+                    (role: IRole) => role.subjectId === member.id
+                  ).length > 0
+                    ? "isAdmin"
+                    : undefined
+                }
+              />
+            )),
       }}
     />
   );

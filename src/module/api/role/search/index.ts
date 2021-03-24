@@ -1,8 +1,4 @@
-import {
-  SearchI,
-  SearchI_Obj,
-  SearchO_Obj,
-} from "module/api/role/proto/search_pb";
+import { SearchI, SearchI_Obj, SearchO } from "module/api/role/proto/search_pb";
 import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import { IRole, ISearchRole } from "module/interface/role";
@@ -21,12 +17,15 @@ export async function Search(searchRole: ISearchRole): Promise<IRole[]> {
   const obj = new SearchI_Obj();
 
   obj.getMetadataMap().set(key.ResourceKind, searchRole.resource);
-  obj.getMetadataMap().set(key.VentureID, searchRole.ventureId);
+  searchRole.ventureId &&
+    obj.getMetadataMap().set(key.VentureID, searchRole.ventureId);
+  searchRole.timelineId &&
+    obj.getMetadataMap().set(key.TimelineID, searchRole.timelineId);
   objList.push(obj);
   req.setObjList(objList);
 
   const getSearchResponsePb: IRole[] = await new Promise((resolve, reject) => {
-    client.search(req, metadata, function (err: any, res: any): any {
+    client.search(req, metadata, function (err: any, res: SearchO): any {
       if (err) {
         console.log(err.code);
         console.log(err.message);
@@ -35,7 +34,7 @@ export async function Search(searchRole: ISearchRole): Promise<IRole[]> {
       } else {
         const rolesPb = res.getObjList();
 
-        const roles = rolesPb.map((rolePb: SearchO_Obj) => {
+        const roles = rolesPb.map((rolePb) => {
           const metaPb = rolePb.getMetadataMap();
 
           const id = metaPb.get(key.RoleID);

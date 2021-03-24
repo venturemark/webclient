@@ -89,6 +89,7 @@ function Main(props: MainProps) {
       addEditMembers={{
         currentVenture,
         currentTimeline,
+        user,
       }}
       addEditVenture={{
         currentVenture,
