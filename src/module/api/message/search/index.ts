@@ -45,19 +45,23 @@ export async function Search(searchMessage: ISearchMessage) {
 
           const ventureId = metaPb.get(key.VentureID);
           const timelineId = metaPb.get(key.TimelineID);
-          const messageId = metaPb.get(key.MessageID);
+          const id = metaPb.get(key.MessageID);
           const updateId = metaPb.get(key.UpdateID);
-          const rawDate = fromUnixTime(messageId / 1000000000);
+          const userId = metaPb.get(key.UserID);
+          const subjectId = metaPb.get(key.SubjectID);
+          const rawDate = fromUnixTime(id / 1000000000);
           const date = formatDistanceToNowStrict(rawDate) + " ago";
 
           const message: IMessage = {
-            ventureId: ventureId,
-            timelineId: timelineId,
-            updateId: updateId,
-            id: messageId,
-            text: text,
-            date: date,
-            reid: reid,
+            ventureId,
+            timelineId,
+            updateId,
+            userId,
+            subjectId,
+            id,
+            text,
+            date,
+            reid,
           };
           return message;
         });

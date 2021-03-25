@@ -6,15 +6,13 @@ import {
   DefaultHomeProps,
 } from "component/plasmic/shared/PlasmicHome";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-// import { ISearchTimeline } from "module/interface/timeline";
-import { IUpdate } from "module/interface/update";
-// import { useTimelines } from "module/hook/timeline";
 import { ISearchVenture, IVenture } from "module/interface/venture";
 import { ISearchUser } from "module/interface/user";
 import { useUser } from "module/hook/user";
 import { useVenture } from "module/hook/venture";
 import { useGetToken } from "module/auth";
 import { Redirect, useParams, useLocation } from "react-router-dom";
+import { IUpdate } from "module/interface/update";
 
 interface ParamTypes {
   ventureSlug: string;
@@ -71,7 +69,6 @@ export function Home(props: HomeProps) {
       )[0]
     : ventures[0];
 
-  const ventureName = currentVenture?.name ?? "";
   const ventureId = currentVenture?.id ?? "";
   const ventureHandle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
@@ -141,7 +138,6 @@ export function Home(props: HomeProps) {
         postDetails={{
           setIsVisible,
           post,
-          ventureName,
           ventureId,
         }}
       />

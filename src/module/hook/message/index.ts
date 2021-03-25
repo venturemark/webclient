@@ -11,9 +11,21 @@ const getMessages = async (messageQuery: ISearchMessage) => {
 
 export function useMessages(messageQuery: ISearchMessage) {
   return useQuery<any, ErrorResponse>(
-    ["message", messageQuery.token],
+    [
+      "message",
+      messageQuery.token,
+      messageQuery.updateId,
+      messageQuery.timelineId,
+      messageQuery.ventureId,
+    ],
     () => getMessages(messageQuery),
-    { enabled: !!messageQuery.token }
+    {
+      enabled:
+        !!messageQuery.token &&
+        !!messageQuery.updateId &&
+        !!messageQuery.timelineId &&
+        !!messageQuery.ventureId,
+    }
   );
 }
 

@@ -9,9 +9,10 @@ import ContentPost from "component/contentpost";
 import { ISearchUpdate, ISearchAllUpdate } from "module/interface/update";
 import { ITimeline } from "module/interface/timeline";
 import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
+import { useAllUser } from "module/hook/user";
 import { IUpdate } from "module/interface/update";
 import { IVenture } from "module/interface/venture";
-import { IUser } from "module/interface/user";
+import { ISearchAllUser, IUser } from "module/interface/user";
 import { useGetToken } from "module/auth";
 import { useParams } from "react-router-dom";
 
@@ -81,6 +82,15 @@ function FeedUpdate(props: FeedUpdateProps) {
     updates = timelineSlug ? timelineUpdates ?? [] : homeUpdates ?? [];
   }
 
+  const subjectIds = updates.map((update: IUpdate) => update.userId);
+
+  const userAllSearch: ISearchAllUser = {
+    subjectIds,
+    token,
+  };
+
+  const { data: userData, isSuccess: userSuccess } = useAllUser(userAllSearch);
+
   return (
     <PlasmicFeedUpdate
       {...rest}
@@ -96,13 +106,38 @@ function FeedUpdate(props: FeedUpdateProps) {
             description={update.text ?? ""}
             key={update.id}
             id={update.id}
-            ventureName={update.ventureId}
             timelineId={update.timelineId}
-            userName={""}
-            userInitials={""}
+            userName={
+              userSuccess
+                ? userData?.filter(
+                    (user: IUser) => user.id === update.userId
+                  )[0].name
+                : ""
+            }
+            user={
+              userSuccess
+                ? userData?.filter(
+                    (user: IUser) => user.id === update.userId
+                  )[0]
+                : { name: "" }
+            }
             date={update.date}
             setIsVisible={setIsVisible}
-            setPost={() => setPost(update)}
+            setPost={() =>
+              setPost({
+                ...update,
+                user: userSuccess
+                  ? userData?.filter(
+                      (user: IUser) => user.id === update.userId
+                    )[0]
+                  : { name: "" },
+                userName: userSuccess
+                  ? userData?.filter(
+                      (user: IUser) => user.id === update.userId
+                    )[0].name
+                  : "",
+              })
+            }
             currentVenture={currentVenture}
           />
         )),

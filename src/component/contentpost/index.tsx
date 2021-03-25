@@ -14,13 +14,12 @@ import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { IVenture } from "module/interface/venture";
 import { useGetToken } from "module/auth";
+import { IUser } from "module/interface/user";
 
 interface ContentPostProps extends DefaultContentPostProps {
   title: string;
   description: string;
   id: string;
-  ventureName: string;
-  userInitials: string;
   userName: string;
   timelineId: string;
   date: string;
@@ -28,6 +27,7 @@ interface ContentPostProps extends DefaultContentPostProps {
   setPost: any;
   state?: "isUser" | "isPostDetails";
   currentVenture: IVenture;
+  user: IUser;
 }
 
 function ContentPost(props: ContentPostProps) {
@@ -38,11 +38,12 @@ function ContentPost(props: ContentPostProps) {
     date,
     setIsVisible,
     setPost,
-    userInitials,
+    user,
     timelineId,
     id,
     state,
     currentVenture,
+    ...rest
   } = props;
   const token = useGetToken();
 
@@ -91,11 +92,14 @@ function ContentPost(props: ContentPostProps) {
 
   return (
     <PlasmicContentPost
+      {...rest}
       state={state}
       title={title}
       description={description}
-      userInitials={userInitials}
       userName={userName}
+      photoAvatar={{
+        user,
+      }}
       date={date}
       // iconMenu={{
       //   render: () => <AntDropdown />,

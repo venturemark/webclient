@@ -46,12 +46,16 @@ export async function Search(searchUpdate: ISearchUpdate) {
           const ventureId = metaPb.get(key.VentureID);
           const timelineId = metaPb.get(key.TimelineID);
           const updateId = metaPb.get(key.UpdateID);
+          const userId = metaPb.get(key.UserID);
+          const subjectId = metaPb.get(key.SubjectID);
           const rawDate = fromUnixTime(updateId / 1000000000);
           const date = formatDistanceToNowStrict(rawDate) + " ago";
 
           const update: IUpdate = {
             ventureId: ventureId,
             timelineId: timelineId,
+            userId: userId,
+            subjectId: subjectId,
             id: updateId,
             text: text,
             title: head,
