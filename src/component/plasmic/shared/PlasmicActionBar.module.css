@@ -69,7 +69,7 @@
   flex-direction: row;
   align-self: auto;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   min-width: 0;
   background: rgba(68, 192, 255, 0);
 }
@@ -83,6 +83,7 @@
   position: relative;
   top: auto;
   left: auto;
+  margin-top: 8px;
   flex-shrink: 0;
 }
 .photoAvatar__isActive:global(.__wab_instance) {
@@ -143,8 +144,9 @@
   display: flex;
   width: 100%;
   height: auto;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-width: 0;
   border-radius: 8px;
   padding: 0px;
@@ -200,6 +202,7 @@
   height: auto;
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 300;
+  align-self: auto;
   min-width: 0;
   border-radius: 8px;
   padding: 0px;

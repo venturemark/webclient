@@ -40,11 +40,18 @@ import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5Q
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 import IconLinkIcon from "./icons/PlasmicIcon__IconLink"; // plasmic-import: 0QuxgUi0r/icon
 
-export type PlasmicAddEditMembers__VariantMembers = {};
+export type PlasmicAddEditMembers__VariantMembers = {
+  type: "isTimeline";
+};
 
-export type PlasmicAddEditMembers__VariantsArgs = {};
+export type PlasmicAddEditMembers__VariantsArgs = {
+  type?: SingleChoiceArg<"isTimeline">;
+};
+
 type VariantPropType = keyof PlasmicAddEditMembers__VariantsArgs;
-export const PlasmicAddEditMembers__VariantProps = new Array<VariantPropType>();
+export const PlasmicAddEditMembers__VariantProps = new Array<VariantPropType>(
+  "type"
+);
 
 export type PlasmicAddEditMembers__ArgsType = {
   children?: React.ReactNode;
@@ -60,6 +67,8 @@ export type PlasmicAddEditMembers__ArgsType = {
   slot3222?: React.ReactNode;
   slot43?: React.ReactNode;
   slot33?: React.ReactNode;
+  children2?: React.ReactNode;
+  slot5?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicAddEditMembers__ArgsType;
@@ -76,7 +85,9 @@ export const PlasmicAddEditMembers__ArgProps = new Array<ArgPropType>(
   "slot4222",
   "slot3222",
   "slot43",
-  "slot33"
+  "slot33",
+  "children2",
+  "slot5"
 );
 
 export type PlasmicAddEditMembers__OverridesType = {
@@ -105,6 +116,9 @@ export interface DefaultAddEditMembersProps {
   slot3222?: React.ReactNode;
   slot43?: React.ReactNode;
   slot33?: React.ReactNode;
+  children2?: React.ReactNode;
+  slot5?: React.ReactNode;
+  type?: SingleChoiceArg<"isTimeline">;
   className?: string;
 }
 
@@ -124,23 +138,76 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__type_isTimeline]: hasVariant(variants, "type", "isTimeline"),
+      })}
     >
-      <div className={classNames(defaultcss.all, sty.box__sLr04)}>
-        <p.PlasmicSlot
-          defaultContents={"Venture Members"}
-          value={args.children}
-          className={classNames(sty.slotChildren)}
-        />
-        <p.PlasmicSlot
-          defaultContents={
-            "Enter their email to invite and add them to this organization."
-          }
-          value={args.slot}
-        />
-      </div>
+      {(hasVariant(variants, "type", "isTimeline") ? false : true) ? (
+        <div
+          className={classNames(defaultcss.all, sty.box__sLr04, {
+            [sty.box__type_isTimeline__sLr04Qs8Io]: hasVariant(
+              variants,
+              "type",
+              "isTimeline"
+            ),
+          })}
+        >
+          <p.PlasmicSlot
+            defaultContents={"Venture Members"}
+            value={args.children}
+            className={classNames(sty.slotChildren, {
+              [sty.slotChildren__type_isTimeline]: hasVariant(
+                variants,
+                "type",
+                "isTimeline"
+              ),
+            })}
+          />
+          <p.PlasmicSlot
+            defaultContents={
+              "Enter their email to invite and add them to this organization."
+            }
+            value={args.slot}
+          />
+        </div>
+      ) : null}
+      {(hasVariant(variants, "type", "isTimeline") ? true : false) ? (
+        <div
+          className={classNames(defaultcss.all, sty.box___8X9J3, {
+            [sty.box__type_isTimeline___8X9J3Qs8Io]: hasVariant(
+              variants,
+              "type",
+              "isTimeline"
+            ),
+          })}
+        >
+          <p.PlasmicSlot
+            defaultContents={"Timeline Members"}
+            value={args.children2}
+            className={classNames(sty.slotChildren2, {
+              [sty.slotChildren2__type_isTimeline]: hasVariant(
+                variants,
+                "type",
+                "isTimeline"
+              ),
+            })}
+          />
+          <p.PlasmicSlot
+            defaultContents={"Add members from your venture to the timeline"}
+            value={args.slot5}
+          />
+        </div>
+      ) : null}
 
-      <div className={classNames(defaultcss.all, sty.box__mpPUs)}>
+      <div
+        className={classNames(defaultcss.all, sty.box__mpPUs, {
+          [sty.box__type_isTimeline__mpPUsqs8Io]: hasVariant(
+            variants,
+            "type",
+            "isTimeline"
+          ),
+        })}
+      >
         <p.Stack
           as={"form"}
           data-plasmic-name={"form"}
@@ -166,30 +233,45 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           />
         </p.Stack>
 
-        <p.Stack
-          as={"a"}
-          data-plasmic-name={"link"}
-          data-plasmic-override={overrides.link}
-          hasGap={true}
-          className={classNames(defaultcss.all, sty.link)}
-        >
-          <IconLinkIcon
-            className={classNames(defaultcss.all, sty.svg__opzJ7)}
-            role={"img"}
-          />
-
-          <span
-            data-plasmic-name={"span"}
-            data-plasmic-override={overrides.span}
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.span
-            )}
+        {(hasVariant(variants, "type", "isTimeline") ? false : true) ? (
+          <p.Stack
+            as={"a"}
+            data-plasmic-name={"link"}
+            data-plasmic-override={overrides.link}
+            hasGap={true}
+            className={classNames(defaultcss.all, sty.link, {
+              [sty.link__type_isTimeline]: hasVariant(
+                variants,
+                "type",
+                "isTimeline"
+              ),
+            })}
           >
-            {"Copy Invite Link"}
-          </span>
-        </p.Stack>
+            <IconLinkIcon
+              className={classNames(defaultcss.all, sty.svg__opzJ7)}
+              role={"img"}
+            />
+
+            <span
+              data-plasmic-name={"span"}
+              data-plasmic-override={overrides.span}
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.span,
+                {
+                  [sty.span__type_isTimeline]: hasVariant(
+                    variants,
+                    "type",
+                    "isTimeline"
+                  ),
+                }
+              )}
+            >
+              {"Copy Invite Link"}
+            </span>
+          </p.Stack>
+        ) : null}
       </div>
 
       <div className={classNames(defaultcss.all, sty.box__yRlj0)}>
