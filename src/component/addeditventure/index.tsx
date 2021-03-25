@@ -42,8 +42,14 @@ function AddEditVenture(props: AddEditVentureProps) {
   } = props;
   const { ventureSlug } = useParams<ParamsType>();
   const token = useGetToken();
-  const { mutate: createVenture } = useCreateVenture();
-  const { mutate: updateVenture } = useUpdateVenture();
+  const {
+    mutate: createVenture,
+    isSuccess: isCreateSuccess,
+  } = useCreateVenture();
+  const {
+    mutate: updateVenture,
+    isSuccess: isUpdateSuccess,
+  } = useUpdateVenture();
 
   const history = useHistory();
   const venture = currentVenture;
@@ -69,9 +75,8 @@ function AddEditVenture(props: AddEditVentureProps) {
 
     isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
     reset();
-    isEdit
-      ? history.push(`/${handle}/newtimeline`)
-      : history.push(`/${createHandle}/newtimeline`);
+    isCreateSuccess && history.push(`/${createHandle}/newtimeline`);
+    isUpdateSuccess && history.push(`/${handle}/newtimeline`);
   };
 
   return (

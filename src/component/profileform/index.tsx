@@ -34,7 +34,7 @@ function ProfileForm(props: ProfileFormProps) {
   const { data: usersData, isSuccess: userSuccess } = useUser(userSearch);
   const user = usersData ?? authUser;
 
-  const { mutate: saveUser } = useCreateUser();
+  const { mutate: saveUser, isSuccess } = useCreateUser();
 
   const handleSave = (data: any) => {
     if (!data.name) {
@@ -48,7 +48,7 @@ function ProfileForm(props: ProfileFormProps) {
     };
 
     saveUser(user);
-    history.push("/newventure");
+    isSuccess && history.push("/newventure");
   };
 
   if (userSuccess && usersData) {
