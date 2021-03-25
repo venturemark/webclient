@@ -21,6 +21,7 @@ export async function Create(createUpdate: ICreateUpdate): Promise<any> {
   const metadata = { Authorization: `Bearer ${token}` };
 
   objProperty.setText(createUpdate.text);
+  objProperty.setHead(createUpdate.title);
   obj.getMetadataMap().set(key.VentureID, createUpdate.ventureId);
   obj.getMetadataMap().set(key.TimelineID, createUpdate.timelineId);
   obj.setProperty(objProperty);

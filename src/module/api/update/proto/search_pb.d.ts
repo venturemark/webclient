@@ -279,6 +279,9 @@ export namespace SearchO_Obj {
 }
 
 export class SearchO_Obj_Property extends jspb.Message {
+  getHead(): string;
+  setHead(value: string): SearchO_Obj_Property;
+
   getText(): string;
   setText(value: string): SearchO_Obj_Property;
 
@@ -301,6 +304,7 @@ export class SearchO_Obj_Property extends jspb.Message {
 
 export namespace SearchO_Obj_Property {
   export type AsObject = {
+    head: string;
     text: string;
   };
 }

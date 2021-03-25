@@ -1,14 +1,14 @@
 import {
   SearchI,
   SearchI_Obj,
-  SearchO_Obj,
+  SearchO,
 } from "module/api/update/proto/search_pb";
 import { APIClient } from "module/api/update/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import * as key from "module/apikeys";
 import fromUnixTime from "date-fns/fromUnixTime";
 import { formatDistanceToNowStrict } from "date-fns";
-import { ISearchUpdate } from "module/interface/update";
+import { ISearchUpdate, IUpdate } from "module/interface/update";
 
 export async function Search(searchUpdate: ISearchUpdate) {
   const objList = [];
@@ -28,7 +28,7 @@ export async function Search(searchUpdate: ISearchUpdate) {
   req.setObjList(objList);
 
   const getSearchResponsePb = await new Promise((resolve, reject) => {
-    client.search(req, metadata, function (err: any, res: any) {
+    client.search(req, metadata, function (err: any, res: SearchO) {
       if (err) {
         console.log(err.code);
         console.log(err.message);
@@ -36,11 +36,12 @@ export async function Search(searchUpdate: ISearchUpdate) {
       } else {
         const updatesPb = res.getObjList();
 
-        const updates = updatesPb.map((updatePb: SearchO_Obj) => {
+        const updates = updatesPb.map((updatePb) => {
           const propertyPb = updatePb.getProperty();
           const metaPb = updatePb.getMetadataMap();
 
-          const text = propertyPb?.toObject().text;
+          const text = propertyPb?.getText();
+          const head = propertyPb?.getHead();
 
           const ventureId = metaPb.get(key.VentureID);
           const timelineId = metaPb.get(key.TimelineID);
@@ -48,11 +49,12 @@ export async function Search(searchUpdate: ISearchUpdate) {
           const rawDate = fromUnixTime(updateId / 1000000000);
           const date = formatDistanceToNowStrict(rawDate) + " ago";
 
-          const update: any = {
+          const update: IUpdate = {
             ventureId: ventureId,
             timelineId: timelineId,
             id: updateId,
             text: text,
+            title: head,
             date: date,
           };
           return update;
