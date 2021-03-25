@@ -752,7 +752,7 @@
           "filePath": "plasmic/shared/images/backgroundpng.png"
         }
       ],
-      "jsBundleThemes": []
+      "projectApiToken": "JmYCf6lyEqM7EiZtDziaLGIpSvhdusaKVvvFgGrGK5gGNtHra4ux9jUVroNOeGMWR16Tm0H6lDcE38TWvQ"
     }
   ],
   "globalVariants": {
@@ -765,6 +765,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.120",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.120/dist/plasmic.schema.json"
+  "cliVersion": "0.1.125",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.125/dist/plasmic.schema.json"
 }

@@ -120,7 +120,7 @@ function PlasmicRadio__RenderFunc(props: {
         data-plasmic-override={overrides.radio}
         hasGap={true}
         className={classNames(defaultcss.all, sty.radio, {
-          [sty.radio____focusVisibleWithin]: triggers.focusVisibleWithin_root,
+          [sty.radio_____focusVisibleWithin]: triggers.focusVisibleWithin_root,
           [sty.radio__position_bottom]: hasVariant(
             variants,
             "position",

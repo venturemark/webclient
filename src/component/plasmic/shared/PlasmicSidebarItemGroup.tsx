@@ -89,6 +89,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             "isCollapsed"
           ),
         })}
+        isActive={"isActive" as const}
         itemType={
           hasVariant(variants, "isCollapsed", "isCollapsed")
             ? ("ventureCollapsed" as const)
