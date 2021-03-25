@@ -5,23 +5,29 @@ import {
   PlasmicReplyContent,
   DefaultReplyContentProps,
 } from "component/plasmic/shared/PlasmicReplyContent";
+import { IUser } from "module/interface/user";
 
 interface ReplyContentProps extends DefaultReplyContentProps {
   userName: string;
   text: string;
   date: string;
+  user: IUser;
 }
 
 function ReplyContent(props: ReplyContentProps) {
-  const { userName, date, text } = props;
+  const { userName, date, text, user, ...rest } = props;
   const [state] = useState<"isUser" | undefined>(undefined);
 
   return (
     <PlasmicReplyContent
+      {...rest}
       state={state}
       userName={userName}
       text={text}
       date={date}
+      photoAvatar={{
+        user,
+      }}
     />
   );
 }

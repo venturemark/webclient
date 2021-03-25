@@ -1,6 +1,8 @@
 export interface IMessage {
   text: string;
   id: string;
+  userId: string;
+  subjectId: string;
   ventureId: string;
   timelineId: string;
   updateId: string;

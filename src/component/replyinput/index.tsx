@@ -41,7 +41,6 @@ function ReplyInput(props: ReplyInputProps) {
       token,
     };
 
-    console.log(newMessage);
     createMessage(newMessage);
 
     //reset form

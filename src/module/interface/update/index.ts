@@ -1,9 +1,15 @@
+import { IUser } from "../user";
+
 export interface IUpdate {
   title?: string;
   text?: string;
+  userName?: string;
+  user?: IUser;
   id: string;
   ventureId: string;
   timelineId: string;
+  userId: string;
+  subjectId: string;
   date: string;
 }
 
