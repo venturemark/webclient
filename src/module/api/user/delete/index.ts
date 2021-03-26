@@ -1,8 +1,4 @@
-import {
-  DeleteI,
-  DeleteI_Obj,
-  DeleteO_Obj,
-} from "module/api/user/proto/delete_pb";
+import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/user/proto/delete_pb";
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import { IUser, IDeleteUser } from "module/interface/user/index";
@@ -24,7 +20,7 @@ export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
   req.setObjList(objList);
 
   const getDeleteResponsePb: IUser[] = await new Promise((resolve, reject) => {
-    client.delete(req, metadata, function (err: any, res: any): any {
+    client.delete(req, metadata, function (err: any, res: DeleteO): any {
       if (err) {
         console.log(err.code);
         console.log(err.message);
@@ -33,7 +29,7 @@ export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
       } else {
         const usersPb = res.getObjList();
 
-        const status = usersPb.map((userPb: DeleteO_Obj) => {
+        const status = usersPb.map((userPb) => {
           const metaPb = userPb.getMetadataMap();
           const id = metaPb.get(key.UserStatus);
           return id;

@@ -1,8 +1,4 @@
-import {
-  DeleteI,
-  DeleteI_Obj,
-  DeleteO_Obj,
-} from "module/api/role/proto/delete_pb";
+import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/role/proto/delete_pb";
 import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import { IRole, IDeleteRole } from "module/interface/role";
@@ -26,7 +22,7 @@ export async function Delete(IDeleteRole: IDeleteRole): Promise<IRole[]> {
   req.setObjList(objList);
 
   const getDeleteResponsePb: IRole[] = await new Promise((resolve, reject) => {
-    client.delete(req, metadata, function (err: any, res: any): any {
+    client.delete(req, metadata, function (err: any, res: DeleteO): any {
       if (err) {
         console.log(err.code);
         console.log(err.message);
@@ -35,7 +31,7 @@ export async function Delete(IDeleteRole: IDeleteRole): Promise<IRole[]> {
       } else {
         const rolesPb = res.getObjList();
 
-        const status = rolesPb.map((rolePb: DeleteO_Obj) => {
+        const status = rolesPb.map((rolePb) => {
           const metaPb = rolePb.getMetadataMap();
           const id = metaPb.get(key.RoleStatus);
           return id;
