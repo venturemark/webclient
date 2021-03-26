@@ -6,11 +6,19 @@ import {
   DefaultSigninProps,
 } from "component/plasmic/shared/PlasmicSignin";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useQuery } from "module/helpers";
 
 interface SigninProps extends DefaultSigninProps {}
 
 function Signin(props: SigninProps) {
   const { loginWithRedirect } = useAuth0();
+  const query = useQuery();
+
+  const ventureId = query.get("ventureId") ?? "";
+  const code = query.get("code") ?? "";
+
+  localStorage.setItem("ventureId", ventureId);
+  localStorage.setItem("code", code);
 
   return (
     <PlasmicSignin

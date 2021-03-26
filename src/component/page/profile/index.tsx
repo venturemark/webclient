@@ -14,9 +14,16 @@ interface ProfileProps extends DefaultProfileProps {}
 function Profile(props: ProfileProps) {
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
 
+  const hasInvite =
+    localStorage.getItem("ventureId") && localStorage.getItem("code");
+
   return (
     <PlasmicProfile
-      profileForm={{ isVisible: isVisible, setIsVisible: setIsVisible }}
+      profileForm={{
+        isVisible: isVisible,
+        setIsVisible: setIsVisible,
+        hasInvite,
+      }}
     />
   );
 }

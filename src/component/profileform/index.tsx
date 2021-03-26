@@ -16,10 +16,11 @@ import { useGetToken } from "module/auth";
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
   setIsVisible?: any;
+  hasInvite: string | null;
 }
 
 function ProfileForm(props: ProfileFormProps) {
-  const { isVisible, setIsVisible, ...rest } = props;
+  const { isVisible, setIsVisible, hasInvite, ...rest } = props;
   const history = useHistory();
   const token = useGetToken();
   const { user: authUser } = useAuth0();
@@ -48,6 +49,7 @@ function ProfileForm(props: ProfileFormProps) {
     };
 
     saveUser(user);
+    isSuccess && hasInvite && history.push("/join");
     isSuccess && history.push("/newventure");
   };
 

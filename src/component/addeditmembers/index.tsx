@@ -16,6 +16,9 @@ import { ITimeline } from "module/interface/timeline";
 import { useVentureRole, useTimelineRole } from "module/hook/role";
 import { useAllUser } from "module/hook/user";
 import { IRole, ISearchRole } from "module/interface/role";
+import { useCreateInvite } from "module/hook/invite";
+import { ICreateInvite } from "module/interface/invite";
+import { makeInviteLink } from "module/helpers";
 // import { init } from "emailjs-com";
 // init("user_mRFm0l0xiY3CK24bkQMdu");
 
@@ -31,6 +34,11 @@ function AddEditMembers(props: AddEditMembersProps) {
     mode: "onChange",
   });
   const token = useGetToken();
+  const {
+    mutate: createInvite,
+    data: inviteData,
+    isSuccess: isCreateSuccess,
+  } = useCreateInvite();
 
   const ventureRoleSearch: ISearchRole = {
     resource: "venture",
@@ -82,37 +90,53 @@ function AddEditMembers(props: AddEditMembersProps) {
   const handleInvite = (data: { email: string }) => {
     const email = data.email;
     const user: IUser = { name: email, id: email };
-    const newMembers = members;
 
+    const params = new URLSearchParams({
+      ventureId: currentVenture?.id,
+      code: inviteData.code,
+    });
+
+    const invite: ICreateInvite = {
+      ventureId: currentVenture?.id,
+      email,
+      token,
+    };
+
+    createInvite(invite);
+
+    const newMembers = members;
     newMembers?.push(user);
 
     const templateParams = {
       to_name: "",
       user_email: email,
       from_name: user?.name,
-      message:
-        "I would like to invite you to follow my venture on Venturemark.co",
+      venture_name: currentVenture?.name,
+      invite_link: makeInviteLink(params),
+      message: `Please click the link to receive updates about ${currentVenture?.name} on Venturemark.co`,
     };
 
     //send invite link
-    emailjs
-      .send(
-        "service_4fkfbos",
-        "template_iifu2kt",
-        templateParams,
-        "user_mRFm0l0xiY3CK24bkQMdu"
-      )
-      .then(
-        function (response) {
-          console.log("SUCCESS!", response.status, response.text);
-        },
-        function (error) {
-          console.log("FAILED...", error);
-        }
-      );
+    if (isCreateSuccess) {
+      emailjs
+        .send(
+          "service_4fkfbos",
+          "template_iifu2kt",
+          templateParams,
+          "user_mRFm0l0xiY3CK24bkQMdu"
+        )
+        .then(
+          function (response) {
+            console.log("SUCCESS!", response.status, response.text);
+          },
+          function (error) {
+            console.log("FAILED...", error);
+          }
+        );
 
-    setMembers(newMembers);
-    reset();
+      setMembers(newMembers);
+      reset();
+    }
   };
 
   useEffect(() => {
