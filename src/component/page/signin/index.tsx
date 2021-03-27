@@ -16,9 +16,11 @@ function Signin(props: SigninProps) {
 
   const ventureId = query.get("ventureId") ?? "";
   const code = query.get("code") ?? "";
+  const id = query.get("id") ?? "";
 
   localStorage.setItem("ventureId", ventureId);
   localStorage.setItem("code", code);
+  localStorage.setItem("id", id);
 
   return (
     <PlasmicSignin

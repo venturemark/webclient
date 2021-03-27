@@ -15,7 +15,9 @@ function Profile(props: ProfileProps) {
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
 
   const hasInvite =
-    localStorage.getItem("ventureId") && localStorage.getItem("code");
+    localStorage.getItem("ventureId") &&
+    localStorage.getItem("code") &&
+    localStorage.getItem("id");
 
   return (
     <PlasmicProfile

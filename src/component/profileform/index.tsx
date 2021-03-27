@@ -49,7 +49,7 @@ function ProfileForm(props: ProfileFormProps) {
     };
 
     saveUser(user);
-    isSuccess && hasInvite && history.push("/join");
+    isSuccess && hasInvite && history.push("/joinventure");
     isSuccess && history.push("/newventure");
   };
 
