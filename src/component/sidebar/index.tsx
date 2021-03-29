@@ -25,7 +25,7 @@ function Sidebar(props: SidebarProps) {
       itemGroupContainer={{
         children: ventures?.map((venture: IVenture) => (
           <SidebarItemGroup
-            name={venture.name}
+            ventureName={venture.name}
             key={venture.id}
             ventureId={venture.id}
           />
