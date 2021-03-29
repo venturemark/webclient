@@ -107,7 +107,7 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   const handleInvite = (data: { email: string }) => {
     const email = data.email;
-    const user: IUser = { name: email, id: email };
+    const newUser: IUser = { name: email, id: email };
 
     const invite: ICreateInvite = {
       ventureId: currentVenture?.id ?? "",
@@ -120,7 +120,7 @@ function AddEditMembers(props: AddEditMembersProps) {
     createInvite(invite);
 
     const newMembers = members;
-    newMembers?.push(user);
+    newMembers?.push(newUser);
 
     setMembers(newMembers);
     reset();
@@ -148,7 +148,7 @@ function AddEditMembers(props: AddEditMembersProps) {
         type: "submit",
       }}
       membersContainer={{
-        children: currentTimeline
+        children: !currentTimeline
           ? membersAndInvites?.map((member: any) => (
               <MemberItem
                 userName={member.name}
@@ -158,7 +158,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                     (role: IRole) => role.subjectId === member.id
                   ).length > 0
                     ? "isAdmin"
-                    : undefined
+                    : "isRequested"
                 }
               />
             ))
@@ -171,7 +171,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                     (role: IRole) => role.subjectId === member.id
                   ).length > 0
                     ? "isAdmin"
-                    : undefined
+                    : "isRequested"
                 }
               />
             )),
