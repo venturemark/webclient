@@ -44,12 +44,9 @@ function AddEditVenture(props: AddEditVentureProps) {
   const token = useGetToken();
   const {
     mutate: createVenture,
-    isSuccess: isCreateSuccess,
+    // isSuccess: isCreateSuccess,
   } = useCreateVenture();
-  const {
-    mutate: updateVenture,
-    isSuccess: isUpdateSuccess,
-  } = useUpdateVenture();
+  const { mutate: updateVenture } = useUpdateVenture();
 
   const history = useHistory();
   const venture = currentVenture;
@@ -63,6 +60,7 @@ function AddEditVenture(props: AddEditVentureProps) {
       name: data.ventureName,
       desc: data.ventureDescription,
       url: makeVentureUrl(handle),
+      successUrl: `/${createHandle}/newtimeline`,
       token: token,
     };
     const ventureUpdate: IUpdateVenture = {
@@ -70,13 +68,12 @@ function AddEditVenture(props: AddEditVentureProps) {
       name: data.ventureName,
       desc: data.ventureDescription,
       url: makeVentureUrl(handle),
+      successUrl: `/${handle}`,
       token: token,
     };
 
     isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
     reset();
-    isCreateSuccess && history.push(`/${createHandle}/newtimeline`);
-    isUpdateSuccess && history.push(`/${handle}/newtimeline`);
   };
 
   return (

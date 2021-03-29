@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchVenture } from "module/interface/venture";
+import { useHistory } from "react-router";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -19,15 +20,19 @@ export function useVenture(searchVenture: ISearchVenture) {
 
 export function useCreateVenture() {
   const queryClient = useQueryClient();
+  const history = useHistory();
 
   return useMutation<any, any, any>(
     (newVenture) => {
       return api.API.Venture.Create(newVenture);
     },
     {
-      onSuccess: () => {
+      onSuccess: (_, newVenture) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("venture");
+
+        //redirect on success
+        newVenture.successUrl && history.push(newVenture.successUrl);
       },
     }
   );
@@ -35,15 +40,19 @@ export function useCreateVenture() {
 
 export function useUpdateVenture() {
   const queryClient = useQueryClient();
+  const history = useHistory();
 
   return useMutation<any, any, any>(
     (ventureUpdate) => {
       return api.API.Venture.Update(ventureUpdate);
     },
     {
-      onSuccess: () => {
+      onSuccess: (_, ventureUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("venture");
+
+        //redirect on success
+        ventureUpdate.successUrl && history.push(ventureUpdate.successUrl);
       },
     }
   );

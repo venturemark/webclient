@@ -17,6 +17,7 @@ export interface ICreateTimeline {
   name: string;
   desc: string;
   ventureId: string;
+  successUrl?: string;
   token: string;
 }
 
@@ -31,5 +32,6 @@ export interface IUpdateTimeline {
   desc?: string;
   name?: string;
   stat?: string;
+  successUrl?: string;
   token: string;
 }

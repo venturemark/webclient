@@ -5,6 +5,7 @@ import * as message from "module/api/message";
 import * as venture from "module/api/venture";
 import * as user from "module/api/user";
 import * as role from "module/api/role";
+import * as invite from "module/api/invite";
 
 export const API = {
   User: user.User,
@@ -14,4 +15,5 @@ export const API = {
   TexUpd: texUpd.TexUpd,
   Message: message.Message,
   Role: role.Role,
+  Invite: invite.Invite,
 };

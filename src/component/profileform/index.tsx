@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicProfileForm";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
-import { useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { ICreateUser, ISearchUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 import { useCreateUser, useUser } from "module/hook/user";
@@ -16,11 +16,11 @@ import { useGetToken } from "module/auth";
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
   setIsVisible?: any;
+  hasInvite: string | null;
 }
 
 function ProfileForm(props: ProfileFormProps) {
-  const { isVisible, setIsVisible, ...rest } = props;
-  const history = useHistory();
+  const { isVisible, setIsVisible, hasInvite, ...rest } = props;
   const token = useGetToken();
   const { user: authUser } = useAuth0();
 
@@ -34,7 +34,7 @@ function ProfileForm(props: ProfileFormProps) {
   const { data: usersData, isSuccess: userSuccess } = useUser(userSearch);
   const user = usersData ?? authUser;
 
-  const { mutate: saveUser, isSuccess } = useCreateUser();
+  const { mutate: saveUser } = useCreateUser();
 
   const handleSave = (data: any) => {
     if (!data.name) {
@@ -47,8 +47,8 @@ function ProfileForm(props: ProfileFormProps) {
       token: token,
     };
 
+    user.successUrl = hasInvite ? "/joinventure" : "/newventure";
     saveUser(user);
-    isSuccess && history.push("/newventure");
   };
 
   if (userSuccess && usersData) {

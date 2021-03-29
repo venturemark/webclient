@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchTimeline } from "module/interface/timeline";
+import { useHistory } from "react-router";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -19,15 +20,19 @@ export function useTimelines(searchTimeline: ISearchTimeline) {
 
 export function useCreateTimeline() {
   const queryClient = useQueryClient();
+  const history = useHistory();
 
   return useMutation<any, any, any>(
     (newTimeline) => {
       return api.API.Timeline.Create(newTimeline);
     },
     {
-      onSuccess: () => {
+      onSuccess: (_, newTimeline) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("timeline");
+
+        //redirect on success
+        newTimeline.successUrl && history.push(newTimeline.successUrl);
       },
     }
   );
@@ -35,15 +40,19 @@ export function useCreateTimeline() {
 
 export function useUpdateTimeline() {
   const queryClient = useQueryClient();
+  const history = useHistory();
 
   return useMutation<any, any, any>(
     (timelineUpdate) => {
       return api.API.Timeline.Update(timelineUpdate);
     },
     {
-      onSuccess: () => {
+      onSuccess: (_, timelineUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("timeline");
+
+        //redirect on success
+        timelineUpdate.successUrl && history.push(timelineUpdate.successUrl);
       },
     }
   );

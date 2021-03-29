@@ -25,6 +25,7 @@ export interface ICreateUser {
   title: string;
   ventureName?: string;
   ventureTitle?: string;
+  successUrl?: string;
   token: string;
 }
 
@@ -37,5 +38,6 @@ export interface IUpdateUser {
   id: string;
   name: string;
   title: string;
+  successUrl?: string;
   token: string;
 }

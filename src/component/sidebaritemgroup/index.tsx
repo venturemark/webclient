@@ -18,12 +18,12 @@ interface ParamTypes {
 }
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
-  name: string;
+  ventureName: string;
   ventureId: string;
 }
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
-  const { name, ventureId, ...rest } = props;
+  const { ventureName, ventureId, ...rest } = props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
   const token = useGetToken();
@@ -45,16 +45,16 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
     <PlasmicSidebarItemGroup
       {...rest}
       venture={{
-        ventureName: name,
+        ventureName,
         setIsCollapsed,
         isCollapsed,
         isActive:
-          name.toLowerCase().replace(/\s/g, "") === ventureSlug &&
+          ventureName.toLowerCase().replace(/\s/g, "") === ventureSlug &&
           !timelineSlug,
       }}
       isCollapsed={isCollapsed}
       newTimeline={{
-        ventureName: ventureSlug,
+        ventureName: ventureName,
         onClick: () => history.push(`${ventureSlug}/newventure`),
       }}
       itemContainer={{
@@ -63,7 +63,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
             timelineName={timeline.name}
             key={timeline.id}
             ventureId={timeline.ventureId}
-            ventureName={name}
+            ventureName={ventureName}
             itemType={"timeline"}
             isActive={
               timeline.name.toLowerCase().replace(/\s/g, "") === timelineSlug

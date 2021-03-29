@@ -1,7 +1,7 @@
 import {
   DeleteI,
   DeleteI_Obj,
-  DeleteO_Obj,
+  DeleteO,
 } from "module/api/venture/proto/delete_pb";
 import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import * as env from "module/env";
@@ -27,7 +27,7 @@ export async function Delete(
 
   const getDeleteResponsePb: IVenture[] = await new Promise(
     (resolve, reject) => {
-      client.delete(req, metadata, function (err: any, res: any): any {
+      client.delete(req, metadata, function (err: any, res: DeleteO): any {
         if (err) {
           console.log(err.code);
           console.log(err.message);
@@ -36,7 +36,7 @@ export async function Delete(
         } else {
           const venturesPb = res.getObjList();
 
-          const status = venturesPb.map((venturePb: DeleteO_Obj) => {
+          const status = venturesPb.map((venturePb) => {
             const metaPb = venturePb.getMetadataMap();
             const id = metaPb.get(key.VentureStatus);
             return id;

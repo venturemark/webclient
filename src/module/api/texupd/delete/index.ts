@@ -1,7 +1,7 @@
 import {
   DeleteI,
   DeleteI_Obj,
-  DeleteO_Obj,
+  DeleteO,
 } from "module/api/texupd/proto/delete_pb";
 import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
 import * as env from "module/env";
@@ -25,7 +25,7 @@ export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
 
   const getDeleteResponsePb: IUpdate[] = await new Promise(
     (resolve, reject) => {
-      client.delete(req, metadata, function (err: any, res: any): any {
+      client.delete(req, metadata, function (err: any, res: DeleteO): any {
         if (err) {
           console.log(err.code);
           console.log(err.message);
@@ -34,7 +34,7 @@ export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
         } else {
           const updatesPb = res.getObjList();
 
-          const status = updatesPb.map((updatePb: DeleteO_Obj) => {
+          const status = updatesPb.map((updatePb) => {
             const metaPb = updatePb.getMetadataMap();
             const id = metaPb.get(key.UpdateStatus);
             return id;
