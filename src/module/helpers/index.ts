@@ -30,6 +30,7 @@ export function useQuery() {
 export function sendInvite(inviteData: any, invite: ICreateInvite) {
   const params = new URLSearchParams({
     ventureId: invite.ventureId,
+    ventureName: invite.fromVentureName,
     code: inviteData.code,
     id: inviteData.id,
   });

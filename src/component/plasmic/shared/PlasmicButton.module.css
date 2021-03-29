@@ -85,6 +85,10 @@
 .root__buttonStyle_primaryPurple:hover .button__buttonStyle_primaryPurple {
   background: rgb(56, 31, 86);
 }
+.root__isDisabled:focus-within .button__isDisabled {
+  outline: none;
+  background: rgb(2, 157, 127);
+}
 .root__buttonStyle_secondaryPurple:hover .button__buttonStyle_secondaryPurple {
   background: rgba(74, 40, 112, 0.05);
 }
@@ -96,6 +100,14 @@
 }
 .root__buttonStyle_whiteBlue:hover .button__buttonStyle_whiteBlue {
   background: #ffffff;
+}
+.root__isDisabled_buttonStyle_primaryPurple:focus-within
+  .button__isDisabled_buttonStyle_primaryPurple {
+  outline: none;
+}
+.root__isDisabled_buttonStyle_primaryPurple:hover
+  .button__isDisabled_buttonStyle_primaryPurple {
+  background: rgb(38, 26, 63);
 }
 .box {
   display: inline-flex;

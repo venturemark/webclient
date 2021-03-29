@@ -32,7 +32,7 @@ function ProfileForm(props: ProfileFormProps) {
     token,
   };
   const { data: usersData, isSuccess: userSuccess } = useUser(userSearch);
-  const user = usersData ?? authUser;
+  const user = userSuccess ? usersData[0] : authUser;
 
   const { mutate: saveUser } = useCreateUser();
 
@@ -51,6 +51,7 @@ function ProfileForm(props: ProfileFormProps) {
     saveUser(user);
   };
 
+  // this redirect relies on querying different users
   if (userSuccess && usersData) {
     return <Redirect to={`/`} />;
   }

@@ -63,13 +63,15 @@ export type PlasmicContentPost__ArgsType = {
   userName?: React.ReactNode;
   date?: React.ReactNode;
   userInitials?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicContentPost__ArgsType;
 export const PlasmicContentPost__ArgProps = new Array<ArgPropType>(
   "userName",
   "date",
-  "userInitials"
+  "userInitials",
+  "children"
 );
 
 export type PlasmicContentPost__OverridesType = {
@@ -86,7 +88,6 @@ export type PlasmicContentPost__OverridesType = {
   date?: p.Flex<"span">;
   timelineNamesContainer?: p.Flex<"div">;
   timelineLink?: p.Flex<typeof TimelineLink>;
-  link?: p.Flex<"a">;
   viewReplies?: p.Flex<typeof Button>;
 };
 
@@ -94,6 +95,7 @@ export interface DefaultContentPostProps {
   userName?: React.ReactNode;
   date?: React.ReactNode;
   userInitials?: React.ReactNode;
+  children?: React.ReactNode;
   state?: MultiChoiceArg<"isUser" | "isPostDetails">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
   className?: string;
@@ -403,26 +405,11 @@ function PlasmicContentPost__RenderFunc(props: {
                         hasVariant(variants, "isUserOnClick", "isUserOnClick"),
                     })}
                     name={
-                      <a
-                        data-plasmic-name={"link"}
-                        data-plasmic-override={overrides.link}
-                        className={classNames(
-                          defaultcss.all,
-                          defaultcss.__wab_text,
-                          sty.link,
-                          {
-                            [sty.link__state_isUser_isUserOnClick]:
-                              hasVariant(variants, "state", "isUser") &&
-                              hasVariant(
-                                variants,
-                                "isUserOnClick",
-                                "isUserOnClick"
-                              ),
-                          }
-                        )}
-                      >
-                        {"#Wins"}
-                      </a>
+                      <p.PlasmicSlot
+                        defaultContents={"Wins"}
+                        value={args.children}
+                        className={classNames(sty.slotChildren)}
+                      />
                     }
                   />
                 </p.Stack>
@@ -487,7 +474,6 @@ const PlasmicDescendants = {
     "date",
     "timelineNamesContainer",
     "timelineLink",
-    "link",
     "viewReplies",
   ],
   editorContainer: [
@@ -503,7 +489,6 @@ const PlasmicDescendants = {
     "date",
     "timelineNamesContainer",
     "timelineLink",
-    "link",
     "viewReplies",
   ],
   textContainer2: ["textContainer2", "title", "description"],
@@ -515,9 +500,8 @@ const PlasmicDescendants = {
   userName: ["userName"],
   span: ["span"],
   date: ["date"],
-  timelineNamesContainer: ["timelineNamesContainer", "timelineLink", "link"],
-  timelineLink: ["timelineLink", "link"],
-  link: ["link"],
+  timelineNamesContainer: ["timelineNamesContainer", "timelineLink"],
+  timelineLink: ["timelineLink"],
   viewReplies: ["viewReplies"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -538,7 +522,6 @@ type NodeDefaultElementType = {
   date: "span";
   timelineNamesContainer: "div";
   timelineLink: typeof TimelineLink;
-  link: "a";
   viewReplies: typeof Button;
 };
 
@@ -547,8 +530,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicContentPost__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicContentPost__VariantsArgs;
   args?: PlasmicContentPost__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -610,7 +592,6 @@ export const PlasmicContentPost = Object.assign(
     date: makeNodeComponent("date"),
     timelineNamesContainer: makeNodeComponent("timelineNamesContainer"),
     timelineLink: makeNodeComponent("timelineLink"),
-    link: makeNodeComponent("link"),
     viewReplies: makeNodeComponent("viewReplies"),
 
     // Metadata about props expected for PlasmicContentPost

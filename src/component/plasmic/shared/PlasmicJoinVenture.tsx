@@ -46,9 +46,14 @@ export type PlasmicJoinVenture__VariantsArgs = {};
 type VariantPropType = keyof PlasmicJoinVenture__VariantsArgs;
 export const PlasmicJoinVenture__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicJoinVenture__ArgsType = {};
+export type PlasmicJoinVenture__ArgsType = {
+  ventureName?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicJoinVenture__ArgsType;
-export const PlasmicJoinVenture__ArgProps = new Array<ArgPropType>();
+export const PlasmicJoinVenture__ArgProps = new Array<ArgPropType>(
+  "ventureName"
+);
 
 export type PlasmicJoinVenture__OverridesType = {
   root?: p.Flex<"div">;
@@ -60,6 +65,7 @@ export type PlasmicJoinVenture__OverridesType = {
 };
 
 export interface DefaultJoinVentureProps {
+  ventureName?: React.ReactNode;
   className?: string;
 }
 
@@ -121,13 +127,13 @@ function PlasmicJoinVenture__RenderFunc(props: {
                     <span
                       data-plasmic-name={"span"}
                       data-plasmic-override={overrides.span}
-                      className={classNames(
-                        defaultcss.all,
-                        defaultcss.__wab_text,
-                        sty.span
-                      )}
+                      className={classNames(defaultcss.all, sty.span)}
                     >
-                      {"BaronFig"}
+                      <p.PlasmicSlot
+                        defaultContents={"BaronFig"}
+                        value={args.ventureName}
+                        className={classNames(sty.slotVentureName)}
+                      />
                     </span>
 
                     <h2
@@ -217,8 +223,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicJoinVenture__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicJoinVenture__VariantsArgs;
   args?: PlasmicJoinVenture__ArgsType;
   overrides?: NodeOverridesType<T>;

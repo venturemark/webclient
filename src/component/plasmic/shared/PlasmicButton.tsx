@@ -174,6 +174,14 @@ function PlasmicButton__RenderFunc(props: {
           "buttonStyle",
           "whiteBlue"
         ),
+        [sty.root__isDisabled]: hasVariant(
+          variants,
+          "isDisabled",
+          "isDisabled"
+        ),
+        [sty.root__isDisabled_buttonStyle_primaryPurple]:
+          hasVariant(variants, "isDisabled", "isDisabled") &&
+          hasVariant(variants, "buttonStyle", "primaryPurple"),
       })}
     >
       <button
@@ -247,6 +255,9 @@ function PlasmicButton__RenderFunc(props: {
             "isDisabled",
             "isDisabled"
           ),
+          [sty.button__isDisabled_buttonStyle_primaryPurple]:
+            hasVariant(variants, "isDisabled", "isDisabled") &&
+            hasVariant(variants, "buttonStyle", "primaryPurple"),
         })}
       >
         <p.Stack
@@ -487,8 +498,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicButton__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicButton__VariantsArgs;
   args?: PlasmicButton__ArgsType;
   overrides?: NodeOverridesType<T>;
