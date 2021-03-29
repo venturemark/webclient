@@ -145,12 +145,16 @@
   }
 }
 .span {
+  display: flex;
+  flex-direction: row;
+}
+.slotVentureName {
   font-size: 26px /* plasmic-token: TujpjiAsC */;
   font-weight: 600;
   line-height: 1.31;
 }
 @media (max-width: 767px) {
-  .span {
+  .slotVentureName {
     font-size: 22px /* plasmic-token: y8zaQOVwJ */;
     text-align: center;
     line-height: 1.1;

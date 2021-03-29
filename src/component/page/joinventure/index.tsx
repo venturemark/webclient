@@ -14,6 +14,7 @@ interface JoinVentureProps extends DefaultJoinVentureProps {}
 function JoinVenture(props: JoinVentureProps) {
   const { mutate: updateInvite } = useUpdateInvite();
   const token = useGetToken();
+  const ventureName = localStorage.getItem("ventureName");
 
   const handleAcceptJoin = () => {
     const ventureId = localStorage.getItem("ventureId");
@@ -34,6 +35,7 @@ function JoinVenture(props: JoinVentureProps) {
 
   return (
     <PlasmicJoinVenture
+      ventureName={ventureName}
       viewCreateVenture={{ onClick: () => handleAcceptJoin() }}
       {...props}
     />

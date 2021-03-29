@@ -174,6 +174,14 @@ function PlasmicButton__RenderFunc(props: {
           "buttonStyle",
           "whiteBlue"
         ),
+        [sty.root__isDisabled]: hasVariant(
+          variants,
+          "isDisabled",
+          "isDisabled"
+        ),
+        [sty.root__isDisabled_buttonStyle_primaryPurple]:
+          hasVariant(variants, "isDisabled", "isDisabled") &&
+          hasVariant(variants, "buttonStyle", "primaryPurple"),
       })}
     >
       <button
@@ -247,6 +255,9 @@ function PlasmicButton__RenderFunc(props: {
             "isDisabled",
             "isDisabled"
           ),
+          [sty.button__isDisabled_buttonStyle_primaryPurple]:
+            hasVariant(variants, "isDisabled", "isDisabled") &&
+            hasVariant(variants, "buttonStyle", "primaryPurple"),
         })}
       >
         <p.Stack

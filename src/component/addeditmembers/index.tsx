@@ -154,7 +154,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                 userName={member.name}
                 user={member}
                 userVariant={
-                  ventureRolesData.filter(
+                  ventureRolesData?.filter(
                     (role: IRole) => role.subjectId === member.id
                   ).length > 0
                     ? "isAdmin"

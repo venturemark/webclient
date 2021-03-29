@@ -1,14 +1,10 @@
-import {
-  SearchI,
-  SearchI_Obj,
-  SearchO_Obj,
-} from "module/api/user/proto/search_pb";
+import { SearchI, SearchI_Obj, SearchO } from "module/api/user/proto/search_pb";
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import { IUser, ISearchUser, Job } from "module/interface/user";
 import * as key from "module/apikeys";
 
-export async function Search(searchUser: ISearchUser): Promise<IUser[]> {
+export async function Search(searchUser: ISearchUser): Promise<IUser> {
   const objList = [];
 
   const token = searchUser.token;
@@ -26,8 +22,8 @@ export async function Search(searchUser: ISearchUser): Promise<IUser[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb: IUser[] = await new Promise((resolve, reject) => {
-    client.search(req, metadata, function (err: any, res: any): any {
+  const getSearchResponsePb: IUser = await new Promise((resolve, reject) => {
+    client.search(req, metadata, function (err: any, res: SearchO): any {
       if (err) {
         console.log(err.code);
         console.log(err.message);
@@ -36,7 +32,7 @@ export async function Search(searchUser: ISearchUser): Promise<IUser[]> {
       } else {
         const usersPb = res.getObjList();
 
-        const users = usersPb.map((userPb: SearchO_Obj) => {
+        const users = usersPb.map((userPb) => {
           const propertiesPb = userPb.getProperty();
           const metaPb = userPb.getMetadataMap();
 
