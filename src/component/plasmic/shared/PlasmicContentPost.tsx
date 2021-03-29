@@ -530,7 +530,8 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicContentPost__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = {
+  // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicContentPost__VariantsArgs;
   args?: PlasmicContentPost__ArgsType;
   overrides?: NodeOverridesType<T>;
