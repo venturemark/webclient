@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchUser, ISearchAllUser, IUser } from "module/interface/user";
+import { useHistory } from "react-router";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -47,15 +48,19 @@ export function useUser(searchUser: ISearchUser) {
 
 export function useCreateUser() {
   const queryClient = useQueryClient();
+  const history = useHistory();
 
   return useMutation<any, any, any>(
     (newUser) => {
       return api.API.User.Create(newUser);
     },
     {
-      onSuccess: () => {
+      onSuccess: (_, newUser) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("user");
+
+        //redirect on success
+        newUser.successUrl && history.push(newUser.successUrl);
       },
     }
   );
@@ -63,15 +68,19 @@ export function useCreateUser() {
 
 export function useUpdateUser() {
   const queryClient = useQueryClient();
+  const history = useHistory();
 
   return useMutation<any, any, any>(
     (userUpdate) => {
       return api.API.User.Update(userUpdate);
     },
     {
-      onSuccess: () => {
+      onSuccess: (_, userUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("user");
+
+        //redirect on success
+        userUpdate.successUrl && history.push(userUpdate.successUrl);
       },
     }
   );

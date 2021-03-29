@@ -50,14 +50,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
 
   const isEdit = timelineSlug ? "isEdit" : undefined;
 
-  const {
-    mutate: createTimeline,
-    isSuccess: isCreateSuccess,
-  } = useCreateTimeline();
-  const {
-    mutate: updateTimeline,
-    isSuccess: isUpdateSuccess,
-  } = useUpdateTimeline();
+  const { mutate: createTimeline } = useCreateTimeline();
+  const { mutate: updateTimeline } = useUpdateTimeline();
 
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
@@ -69,6 +63,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       name: data.timelineName,
       desc: data.timelineDescription,
       ventureId: currentVenture?.id,
+      successUrl: `/${handle}/feed`,
       token: token,
     };
 
@@ -77,13 +72,12 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       name: data.timelineName,
       desc: data.timelineDescription,
       ventureId: currentVenture?.id,
+      successUrl: `/${handle}/feed`,
       token: token,
     };
 
     isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
     reset();
-    isCreateSuccess && history.push(`/${handle}/feed`);
-    isUpdateSuccess && history.push(`/${handle}/feed`);
   };
 
   const handleDelete = () => {

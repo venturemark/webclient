@@ -18,6 +18,8 @@ export interface ISearchAllInvite {
 export interface ICreateInvite {
   ventureId: string;
   email: string;
+  fromName: string;
+  fromVentureName: string;
   token: string;
 }
 

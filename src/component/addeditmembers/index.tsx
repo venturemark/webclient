@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import MemberItem from "component/memberitem";
 import { ISearchAllUser, IUser } from "module/interface/user";
 import { emailError } from "module/errors";
-import emailjs from "emailjs-com";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
 import { ITimeline } from "module/interface/timeline";
@@ -18,9 +17,6 @@ import { useAllUser } from "module/hook/user";
 import { IRole, ISearchRole } from "module/interface/role";
 import { useCreateInvite, useInvites } from "module/hook/invite";
 import { ICreateInvite, IInvite, ISearchInvite } from "module/interface/invite";
-import { makeInviteLink } from "module/helpers";
-// import { init } from "emailjs-com";
-// init("user_mRFm0l0xiY3CK24bkQMdu");
 
 interface AddEditMembersProps extends DefaultAddEditMembersProps {
   currentVenture: IVenture;
@@ -44,11 +40,7 @@ function AddEditMembers(props: AddEditMembersProps) {
     searchInvite
   );
 
-  const {
-    mutate: createInvite,
-    data: inviteData,
-    isSuccess: isCreateSuccess,
-  } = useCreateInvite();
+  const { mutate: createInvite } = useCreateInvite();
 
   const ventureRoleSearch: ISearchRole = {
     resource: "venture",
@@ -118,7 +110,9 @@ function AddEditMembers(props: AddEditMembersProps) {
     const user: IUser = { name: email, id: email };
 
     const invite: ICreateInvite = {
-      ventureId: currentVenture?.id,
+      ventureId: currentVenture?.id ?? "",
+      fromName: user?.name ?? "",
+      fromVentureName: currentVenture?.name ?? "",
       email,
       token,
     };
@@ -128,43 +122,8 @@ function AddEditMembers(props: AddEditMembersProps) {
     const newMembers = members;
     newMembers?.push(user);
 
-    //send invite link
-    if (isCreateSuccess) {
-      console.log("create success add members");
-      const params = new URLSearchParams({
-        ventureId: currentVenture?.id,
-        code: inviteData.code,
-        id: inviteData.id,
-      });
-
-      const templateParams = {
-        to_name: "",
-        user_email: email,
-        from_name: user?.name,
-        venture_name: currentVenture?.name,
-        invite_link: makeInviteLink(params),
-        message: `Please click the link to receive updates about ${currentVenture?.name} on Venturemark.co`,
-      };
-
-      emailjs
-        .send(
-          "service_4fkfbos",
-          "template_iifu2kt",
-          templateParams,
-          "user_mRFm0l0xiY3CK24bkQMdu"
-        )
-        .then(
-          function (response) {
-            console.log("SUCCESS!", response.status, response.text);
-          },
-          function (error) {
-            console.log("FAILED...", error);
-          }
-        );
-
-      setMembers(newMembers);
-      reset();
-    }
+    setMembers(newMembers);
+    reset();
   };
 
   useEffect(() => {

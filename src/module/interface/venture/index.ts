@@ -20,6 +20,7 @@ export interface ICreateVenture {
   name: string;
   desc: string;
   url: string;
+  successUrl?: string;
   token: string;
 }
 
@@ -28,5 +29,6 @@ export interface IUpdateVenture {
   name: string;
   desc: string;
   url: string;
+  successUrl?: string;
   token: string;
 }

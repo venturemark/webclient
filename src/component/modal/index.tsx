@@ -48,13 +48,11 @@ function Modal(props: ModalProps) {
       id: user?.id,
       name: data.name,
       title: data.title,
+      successUrl: "/",
       token: token,
     };
 
-    console.log(userUpdate);
-
     updateUser(userUpdate);
-    history.push("/");
   };
   return (
     <PlasmicModal
