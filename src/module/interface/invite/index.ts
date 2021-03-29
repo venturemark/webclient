@@ -34,6 +34,7 @@ export interface IUpdateInvite {
   status: string;
   id: string;
   ventureId: string;
+  successUrl?: string;
   token: string;
 }
 
