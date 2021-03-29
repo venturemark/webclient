@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ICreateInvite, ISearchInvite } from "module/interface/invite";
+import { useHistory } from "react-router";
 import * as api from "module/api";
 import { sendInvite } from "module/helpers";
 
@@ -38,15 +39,19 @@ export function useCreateInvite() {
 
 export function useUpdateInvite() {
   const queryClient = useQueryClient();
+  const history = useHistory();
 
   return useMutation<any, any, any>(
     (inviteUpdate) => {
       return api.API.Invite.Update(inviteUpdate);
     },
     {
-      onSuccess: () => {
+      onSuccess: (_, inviteUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("invite");
+
+        //redirect on success
+        inviteUpdate.successUrl && history.push(inviteUpdate.successUrl);
       },
     }
   );

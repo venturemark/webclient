@@ -48,7 +48,6 @@ export function useUser(searchUser: ISearchUser) {
 
 export function useCreateUser() {
   const queryClient = useQueryClient();
-  const history = useHistory();
 
   return useMutation<any, any, any>(
     (newUser) => {
@@ -58,9 +57,6 @@ export function useCreateUser() {
       onSuccess: (_, newUser) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("user");
-
-        //redirect on success
-        newUser.successUrl && history.push(newUser.successUrl);
       },
     }
   );
