@@ -7,16 +7,36 @@ import {
 } from "component/plasmic/shared/PlasmicSidebar";
 import SidebarItemGroup from "component/sidebaritemgroup";
 import { useHistory } from "react-router-dom";
-import { IVenture } from "module/interface/venture";
+import { ISearchVenture, IVenture } from "module/interface/venture";
+import { useTimelines } from "module/hook/timeline";
+import { useGetToken } from "module/auth";
+import { ISearchTimeline } from "module/interface/timeline";
+import { useVentureByTimeline } from "module/hook/venture";
 
 interface SidebarProps extends DefaultSidebarProps {
   userId: string;
-  ventures: IVenture[];
 }
 
 function Sidebar(props: SidebarProps) {
-  const { userId, ventures, ...rest } = props;
+  const { userId, ...rest } = props;
   const history = useHistory();
+  const token = useGetToken();
+
+  const timelineSearch: ISearchTimeline = {
+    userId,
+    token,
+  };
+
+  const { data: timelinesData } = useTimelines(timelineSearch);
+  const timelines = timelinesData ?? [];
+
+  const ventureSearch: ISearchVenture = {
+    timelines: timelines ?? [],
+    token,
+  };
+
+  const { data: venturesData } = useVentureByTimeline(ventureSearch);
+  const ventures = venturesData ?? [];
 
   return (
     <PlasmicSidebar

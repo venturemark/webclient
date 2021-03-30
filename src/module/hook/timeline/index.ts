@@ -12,9 +12,9 @@ const getTimelines = async (searchTimeline: ISearchTimeline) => {
 
 export function useTimelines(searchTimeline: ISearchTimeline) {
   return useQuery<any, ErrorResponse>(
-    ["timeline", searchTimeline.token, searchTimeline.ventureId],
+    ["timeline", searchTimeline.token],
     () => getTimelines(searchTimeline),
-    { enabled: !!searchTimeline.token && !!searchTimeline.ventureId }
+    { enabled: !!searchTimeline.token }
   );
 }
 

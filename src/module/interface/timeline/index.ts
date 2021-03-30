@@ -3,13 +3,15 @@ export interface ITimeline {
   desc: string;
   stat: string;
   ventureId: string;
+  userId: string;
   id: string;
   date?: string;
 }
 
 // api calls
 export interface ISearchTimeline {
-  ventureId: string;
+  ventureId?: string;
+  userId?: string;
   token: string;
 }
 

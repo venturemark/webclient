@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchVenture } from "module/interface/venture";
 import { useHistory } from "react-router";
 import * as api from "module/api";
+import { ITimeline } from "module/interface/timeline";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -15,6 +16,45 @@ export function useVenture(searchVenture: ISearchVenture) {
     ["venture", searchVenture.token, searchVenture.userId],
     () => getVenture(searchVenture),
     { enabled: !!searchVenture.token && !!searchVenture.userId }
+  );
+}
+
+const getVentureByTimeline = async (
+  searchVentureByTimeline: ISearchVenture
+) => {
+  const { timelines: timelinesData, token } = searchVentureByTimeline;
+
+  const timelines = timelinesData ?? [];
+
+  const allVentures = await Promise.all(
+    timelines.map(async (timeline: ITimeline) => {
+      const id = timeline.ventureId;
+      const search = {
+        id,
+        token,
+      };
+
+      const ventures = await api.API.Venture.Search(search);
+      return ventures;
+    })
+  );
+  const flattenedVentures: any = allVentures.flat();
+
+  return flattenedVentures;
+};
+
+export function useVentureByTimeline(searchVentureByTimeline: ISearchVenture) {
+  return useQuery<any, ErrorResponse>(
+    [
+      "venture",
+      searchVentureByTimeline.token,
+      searchVentureByTimeline.timelines,
+    ],
+    () => getVentureByTimeline(searchVentureByTimeline),
+    {
+      enabled:
+        !!searchVentureByTimeline.token && !!searchVentureByTimeline.timelines,
+    }
   );
 }
 
