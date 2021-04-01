@@ -10,16 +10,11 @@ import {
   IVenture,
   IUpdateVenture,
 } from "module/interface/venture";
-import { useHistory, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useGetToken } from "module/auth";
 import { ventureNameError } from "module/errors";
 import { makeVentureUrl } from "module/helpers";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
-
-interface ParamsType {
-  timelineSlug: string;
-  ventureSlug: string;
-}
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
@@ -40,7 +35,7 @@ function AddEditVenture(props: AddEditVentureProps) {
     currentVenture,
     ...rest
   } = props;
-  const { ventureSlug } = useParams<ParamsType>();
+  const { ventureSlug } = useParams();
   const token = useGetToken();
   const {
     mutate: createVenture,
@@ -48,7 +43,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   } = useCreateVenture();
   const { mutate: updateVenture } = useUpdateVenture();
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const venture = currentVenture;
   const url = useLocation();
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
@@ -103,8 +98,8 @@ function AddEditVenture(props: AddEditVentureProps) {
       }}
       membersWrite={{}}
       buttons={{
-        handleDelete: () => history.push(`/${handle}/delete`),
-        handleCancel: () => history.goBack(),
+        handleDelete: () => navigate(`/${handle}/delete`),
+        handleCancel: () => navigate(-1),
         handleSave: () => handleSubmit(handleCreate),
       }}
     />

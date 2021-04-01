@@ -5,7 +5,7 @@ import {
   PlasmicSidebarItem,
   DefaultSidebarItemProps,
 } from "component/plasmic/shared/PlasmicSidebarItem";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   timelineName: string;
@@ -28,7 +28,7 @@ function SidebarItem(props: SidebarItemProps) {
     ...rest
   } = props;
   const [isUserOnClick, setIsUserOnClick] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const ventureHandle =
     typeof ventureName === "string"
       ? ventureName?.toLowerCase().replace(/\s/g, "")
@@ -78,8 +78,8 @@ function SidebarItem(props: SidebarItemProps) {
       }}
       onClick={() => {
         itemType !== "createTimeline"
-          ? history.push(link)
-          : history.push(`/${ventureHandle}/newtimeline`);
+          ? navigate(link)
+          : navigate(`/${ventureHandle}/newtimeline`);
       }}
       itemType={itemType}
       name={

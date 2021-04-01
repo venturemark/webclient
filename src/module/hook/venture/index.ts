@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchVenture } from "module/interface/venture";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -62,7 +62,7 @@ export function useVentureByTimeline(searchVentureByTimeline: ISearchVenture) {
 
 export function useCreateVenture() {
   const queryClient = useQueryClient();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (newVenture) => {
@@ -74,7 +74,7 @@ export function useCreateVenture() {
         queryClient.invalidateQueries("venture");
 
         //redirect on success
-        newVenture.successUrl && history.push(newVenture.successUrl);
+        newVenture.successUrl && navigate(newVenture.successUrl);
       },
     }
   );
@@ -82,7 +82,7 @@ export function useCreateVenture() {
 
 export function useUpdateVenture() {
   const queryClient = useQueryClient();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (ventureUpdate) => {
@@ -94,7 +94,7 @@ export function useUpdateVenture() {
         queryClient.invalidateQueries("venture");
 
         //redirect on success
-        ventureUpdate.successUrl && history.push(ventureUpdate.successUrl);
+        ventureUpdate.successUrl && navigate(ventureUpdate.successUrl);
       },
     }
   );

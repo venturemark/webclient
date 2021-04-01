@@ -13,11 +13,6 @@ import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
 import { IUser } from "module/interface/user";
 
-interface ParamTypes {
-  ventureSlug: string;
-  timelineSlug: string;
-}
-
 interface MainProps extends DefaultMainProps {
   isOnboarding?: boolean | "isOnboarding";
   isActive: any;
@@ -48,7 +43,7 @@ function Main(props: MainProps) {
   const token = useGetToken();
   const { handleSubmit, register, reset, watch, errors } = useForm();
   const watchData = watch();
-  const { timelineSlug } = useParams<ParamTypes>();
+  const { timelineSlug } = useParams();
 
   const timelineSearch: ISearchTimeline = {
     ventureId: ventureId,

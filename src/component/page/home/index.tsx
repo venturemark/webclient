@@ -11,7 +11,7 @@ import { ISearchUser } from "module/interface/user";
 import { useUser } from "module/hook/user";
 import { useVenture } from "module/hook/venture";
 import { useGetToken } from "module/auth";
-import { Redirect, useParams, useLocation } from "react-router-dom";
+import { Navigate, useParams, useLocation } from "react-router-dom";
 import { IUpdate } from "module/interface/update";
 
 interface ParamTypes {
@@ -31,15 +31,15 @@ interface HomeProps extends DefaultHomeProps {
   isVisible?: IsVisible;
 }
 
-function VentureRoute(props) {
-  const controller = useVentureRoute();
+// function VentureRoute(props) {
+//   const controller = useVentureRoute();
 
-  if (controller.verntureQuery.isError) {
-    return <Redirect to={`/newventure`} />;
-  }
+//   if (controller.ventureQuery.isError) {
+//     return <Navigate to={`/newventure`} />;
+//   }
 
-  return <>props.children</>;
-}
+//   return <>props.children</>;
+// }
 
 export function Home(props: HomeProps) {
   const {
@@ -49,7 +49,7 @@ export function Home(props: HomeProps) {
     isVisible: visibleProp,
   } = props;
   const token = useGetToken();
-  const { ventureSlug } = useParams<ParamTypes>();
+  const { ventureSlug } = useParams();
   const url = useLocation();
 
   const userSearch: ISearchUser = {
@@ -94,11 +94,11 @@ export function Home(props: HomeProps) {
   const [variantType] = useState<VariantType>(variant);
 
   if (userSuccess && !user) {
-    return <Redirect to={`/signin`} />;
+    return <Navigate to={`/signin`} />;
   }
 
   if (userError && !user) {
-    return <Redirect to={`/signin`} />;
+    return <Navigate to={`/signin`} />;
   }
 
   if (
@@ -106,7 +106,7 @@ export function Home(props: HomeProps) {
     ventureData.length < 1 &&
     url.pathname !== "/newventure"
   ) {
-    return <Redirect to={`/newventure`} />;
+    return <Navigate to={`/newventure`} />;
   }
   if (
     ventureSlug === undefined &&
@@ -114,7 +114,7 @@ export function Home(props: HomeProps) {
     url.pathname !== "/newventure" &&
     url.pathname !== "/editprofile"
   ) {
-    return <Redirect to={`/${ventureHandle}/feed`} />;
+    return <Navigate to={`/${ventureHandle}/feed`} />;
   }
 
   // if (timelineSuccess && !timelinesData) {

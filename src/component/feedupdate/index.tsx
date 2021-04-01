@@ -16,11 +16,6 @@ import { ISearchAllUser, IUser } from "module/interface/user";
 import { useGetToken } from "module/auth";
 import { useParams } from "react-router-dom";
 
-interface ParamTypes {
-  ventureSlug: string;
-  timelineSlug: string;
-}
-
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
   currentTimeline: ITimeline;
   timelines: ITimeline[];
@@ -40,7 +35,7 @@ function FeedUpdate(props: FeedUpdateProps) {
     user,
     ...rest
   } = props;
-  const { timelineSlug } = useParams<ParamTypes>();
+  const { timelineSlug } = useParams();
   const token = useGetToken();
   const ventureId = currentVenture?.id ?? "";
 

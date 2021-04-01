@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicModal";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ISearchUser, IUpdateUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 import { useUpdateUser, useUser } from "module/hook/user";
@@ -23,7 +23,7 @@ interface ModalProps extends DefaultModalProps {
 
 function Modal(props: ModalProps) {
   const { isVisible, setIsVisible, modalType, ...rest } = props;
-  const history = useHistory();
+  const navigate = useNavigate();
   const token = useGetToken();
   const { user: authUser } = useAuth0();
 
@@ -90,16 +90,16 @@ function Modal(props: ModalProps) {
         type: "submit",
       }}
       cancelEdit={{
-        onClick: () => history.goBack(),
+        onClick: () => navigate(-1),
       }}
       cancelTimeline={{
-        onClick: () => history.goBack(),
+        onClick: () => navigate(-1),
       }}
       cancelVenture={{
-        onClick: () => history.goBack(),
+        onClick: () => navigate(-1),
       }}
       close={{
-        onClick: () => history.goBack(),
+        onClick: () => navigate(-1),
       }}
     />
   );

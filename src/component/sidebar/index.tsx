@@ -6,7 +6,7 @@ import {
   DefaultSidebarProps,
 } from "component/plasmic/shared/PlasmicSidebar";
 import SidebarItemGroup from "component/sidebaritemgroup";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ISearchVenture, IVenture } from "module/interface/venture";
 import { useAllTimelines } from "module/hook/timeline";
 import { useGetToken } from "module/auth";
@@ -19,7 +19,7 @@ interface SidebarProps extends DefaultSidebarProps {
 
 function Sidebar(props: SidebarProps) {
   const { userId, ...rest } = props;
-  const history = useHistory();
+  const navigate = useNavigate();
   const token = useGetToken();
 
   console.log("users in sidebar", userId);
@@ -56,7 +56,7 @@ function Sidebar(props: SidebarProps) {
           />
         )),
       }}
-      viewCreateVenture={{ onClick: () => history.push("/newventure") }}
+      viewCreateVenture={{ onClick: () => navigate("/newventure") }}
     />
   );
 }

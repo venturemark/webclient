@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicProfileForm";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { ICreateUser, ISearchUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 import { useCreateUser, useUser } from "module/hook/user";
@@ -53,7 +53,7 @@ function ProfileForm(props: ProfileFormProps) {
 
   // this redirect relies on querying different users
   if (userSuccess && usersData) {
-    return <Redirect to={`/`} />;
+    return <Navigate to={`/`} />;
   }
 
   return (

@@ -10,12 +10,7 @@ import { ISearchTimeline, ITimeline } from "module/interface/timeline";
 import { useTimelines } from "module/hook/timeline";
 import { useGetToken } from "module/auth";
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-
-interface ParamTypes {
-  ventureSlug: string;
-  timelineSlug: string;
-}
+import { useNavigate } from "react-router-dom";
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;
@@ -26,9 +21,9 @@ interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
 function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { ventureName, ventureId, timelines, ...rest } = props;
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
+  const { ventureSlug, timelineSlug } = useParams();
   const token = useGetToken();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   console.log("all venture timelines:", timelines);
   console.log("ventureId for this venture", ventureId);
@@ -66,7 +61,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       isCollapsed={isCollapsed}
       newTimeline={{
         ventureName: ventureName,
-        onClick: () => history.push(`${ventureSlug}/newventure`),
+        onClick: () => navigate(`${ventureSlug}/newventure`),
       }}
       itemContainer={{
         children: sortedVentureTimelines.map((timeline: ITimeline) => (

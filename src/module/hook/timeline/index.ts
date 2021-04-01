@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchTimeline } from "module/interface/timeline";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -33,7 +33,7 @@ export function useAllTimelines(searchTimeline: ISearchTimeline) {
 
 export function useCreateTimeline() {
   const queryClient = useQueryClient();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (newTimeline) => {
@@ -45,7 +45,7 @@ export function useCreateTimeline() {
         queryClient.invalidateQueries("timeline");
 
         //redirect on success
-        newTimeline.successUrl && history.push(newTimeline.successUrl);
+        newTimeline.successUrl && navigate(newTimeline.successUrl);
       },
     }
   );
@@ -53,7 +53,7 @@ export function useCreateTimeline() {
 
 export function useUpdateTimeline() {
   const queryClient = useQueryClient();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (timelineUpdate) => {
@@ -65,7 +65,7 @@ export function useUpdateTimeline() {
         queryClient.invalidateQueries("timeline");
 
         //redirect on success
-        timelineUpdate.successUrl && history.push(timelineUpdate.successUrl);
+        timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
       },
     }
   );
