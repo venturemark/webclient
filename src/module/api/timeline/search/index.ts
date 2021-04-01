@@ -21,7 +21,11 @@ export async function Search(
   const req = new SearchI();
 
   const obj = new SearchI_Obj();
-  obj.getMetadataMap().set(key.VentureID, timelineQuery.ventureId);
+  timelineQuery.userId &&
+    obj.getMetadataMap().set(key.SubjectID, timelineQuery.userId);
+  timelineQuery.ventureId &&
+    obj.getMetadataMap().set(key.VentureID, timelineQuery.ventureId);
+
   objList.push(obj);
   req.setObjList(objList);
 
@@ -44,12 +48,14 @@ export async function Search(
             const desc = propertiesPb?.getDesc() as string;
             const stat = propertiesPb?.getStat() as string;
             const ventureId = metaPb.get(key.VentureID);
+            const userId = metaPb.get(key.UserID);
             const id = metaPb.get(key.TimelineID);
 
             const timeline: ITimeline = {
               name: name,
               desc: desc,
               stat: stat,
+              userId: userId,
               ventureId: ventureId,
               id: id,
             };
