@@ -8,7 +8,7 @@ import {
 import SidebarItemGroup from "component/sidebaritemgroup";
 import { useHistory } from "react-router-dom";
 import { ISearchVenture, IVenture } from "module/interface/venture";
-import { useTimelines } from "module/hook/timeline";
+import { useAllTimelines } from "module/hook/timeline";
 import { useGetToken } from "module/auth";
 import { ISearchTimeline } from "module/interface/timeline";
 import { useVentureByTimeline } from "module/hook/venture";
@@ -22,13 +22,17 @@ function Sidebar(props: SidebarProps) {
   const history = useHistory();
   const token = useGetToken();
 
+  console.log("users in sidebar", userId);
+
   const timelineSearch: ISearchTimeline = {
     userId,
     token,
   };
 
-  const { data: timelinesData } = useTimelines(timelineSearch);
+  const { data: timelinesData } = useAllTimelines(timelineSearch);
   const timelines = timelinesData ?? [];
+
+  console.log(timelines);
 
   const ventureSearch: ISearchVenture = {
     timelines: timelines ?? [],
@@ -45,6 +49,7 @@ function Sidebar(props: SidebarProps) {
       itemGroupContainer={{
         children: ventures?.map((venture: IVenture) => (
           <SidebarItemGroup
+            timelines={timelines}
             ventureName={venture.name}
             key={venture.id}
             ventureId={venture.id}

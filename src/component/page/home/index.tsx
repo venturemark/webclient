@@ -31,6 +31,16 @@ interface HomeProps extends DefaultHomeProps {
   isVisible?: IsVisible;
 }
 
+function VentureRoute(props) {
+  const controller = useVentureRoute();
+
+  if (controller.verntureQuery.isError) {
+    return <Redirect to={`/newventure`} />;
+  }
+
+  return <>props.children</>;
+}
+
 export function Home(props: HomeProps) {
   const {
     timelineVariant,
@@ -51,6 +61,9 @@ export function Home(props: HomeProps) {
     isError: userError,
   } = useUser(userSearch);
   const user = userData;
+  const userId = user.id;
+
+  console.log("user in home", user);
 
   const ventureSearch: ISearchVenture = {
     userId: user?.id,
@@ -132,7 +145,7 @@ export function Home(props: HomeProps) {
           user,
         }}
         sidebar={{
-          userId: user?.id,
+          userId: userId,
           ventures,
         }}
         postDetails={{

@@ -20,26 +20,37 @@ interface ParamTypes {
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;
   ventureId: string;
+  timelines: ITimeline[];
 }
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
-  const { ventureName, ventureId, ...rest } = props;
+  const { ventureName, ventureId, timelines, ...rest } = props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
   const token = useGetToken();
   const history = useHistory();
 
-  const timelineSearch: ISearchTimeline = {
-    ventureId,
-    token,
-  };
+  console.log("all venture timelines:", timelines);
+  console.log("ventureId for this venture", ventureId);
 
-  const { data: timelinesData } = useTimelines(timelineSearch);
-  const timelines = timelinesData ?? [];
+  const ventureTimelines = timelines.filter(
+    (timeline) => (timeline.ventureId = ventureId)
+  );
+  console.log("timelines after filter", ventureTimelines);
 
-  const sortedCurrentTimelines = timelines.sort((a: any, b: any) =>
+  // const timelineSearch: ISearchTimeline = {
+  //   ventureId,
+  //   token,
+  // };
+
+  // const { data: timelinesData } = useTimelines(timelineSearch);
+  // const timelines = timelinesData ?? [];
+
+  const sortedVentureTimelines = ventureTimelines.sort((a: any, b: any) =>
     a.name.localeCompare(b.name)
   );
+
+  console.log("sorted timelines after filter", sortedVentureTimelines);
 
   return (
     <PlasmicSidebarItemGroup
@@ -58,7 +69,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
         onClick: () => history.push(`${ventureSlug}/newventure`),
       }}
       itemContainer={{
-        children: sortedCurrentTimelines.map((timeline: ITimeline) => (
+        children: sortedVentureTimelines.map((timeline: ITimeline) => (
           <SidebarItem
             timelineName={timeline.name}
             key={timeline.id}

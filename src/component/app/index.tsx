@@ -7,13 +7,111 @@ import JoinVenture from "component/page/joinventure";
 
 type Props = {};
 
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/signin" component={Signin} />
+        <Route path="*" element={<AuthenticatedRoute />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function AuthenticatedRoute() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/profile" component={VentureRoutes} />
+        <Route exact path="/invite" component={Signin} />
+        <Route exact path="/:ventureSlug" component={VentureRoutes} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+/ventureslug/feed
+
+function VentureRoutes() {
+  const {
+    timelineVariant,
+    activeState,
+    modalType,
+    isVisible: visibleProp,
+  } = props;
+  const token = useGetToken();
+  const { ventureSlug } = useParams<ParamTypes>();
+  const url = useLocation();
+
+  const userSearch: ISearchUser = {
+    token,
+  };
+  const {
+    data: userData,
+    isSuccess: userSuccess,
+    isError: userError,
+  } = useUser(userSearch);
+  const user = userData;
+  const userId = user.id;
+
+  console.log("user in home", user);
+
+  const ventureSearch: ISearchVenture = {
+    userId: user?.id,
+    token: token,
+  };
+
+  const { data: ventureData, isSuccess: ventureSuccess } = useVenture(
+    ventureSearch
+  );
+
+  const ventures = ventureData ?? [];
+  const currentVenture = ventureSlug
+    ? ventures.filter(
+        (venture: IVenture) =>
+          venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
+      )[0]
+    : ventures[0];
+
+  if(currentVenture === undefined) {
+    return <Redirect />
+  }
+
+  return (
+    <VentureContext.Provider value={currentVenture}>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="feed" component={VentureFeed} />
+        </Routes>
+      </BrowserRouter>
+    </VentureContext.Provider>
+  );
+}
+
+function VentureFeed() {
+  const venture = useContext(VentureContext);
+
+  
+}
+
 export function Component(props: Props) {
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route path="/:ventureSlug" element={<Ventures />} />
+          <RootHome>
+            <VentureRoute>
+              <Switch>
+                <Route exact path="feed" component={VetureFeed} />
+                <Route exact path="joinventure" component={VetureFeed} />
+                <Route exact path="invite" component={VetureFeed} />
+              </Switch>/
+            </VentureRoute>
+          </RootHome>
+          <Route exact path="/" component={<RootHome?} />
           <Route exact path="/signin" component={Signin} />
+          <Route exact path="/:ventureSlug/feed" component={Feed} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/invite" component={Signin} />
           <Route exact path="/joinventure" component={JoinVenture} />

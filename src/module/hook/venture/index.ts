@@ -2,7 +2,6 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchVenture } from "module/interface/venture";
 import { useHistory } from "react-router";
 import * as api from "module/api";
-import { ITimeline } from "module/interface/timeline";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -26,9 +25,12 @@ const getVentureByTimeline = async (
 
   const timelines = timelinesData ?? [];
 
+  const ventureIds = timelines.map((timeline) => timeline.ventureId);
+
+  let uniqueVentureIds = [...new Set(ventureIds)];
+
   const allVentures = await Promise.all(
-    timelines.map(async (timeline: ITimeline) => {
-      const id = timeline.ventureId;
+    uniqueVentureIds.map(async (id: string) => {
       const search = {
         id,
         token,

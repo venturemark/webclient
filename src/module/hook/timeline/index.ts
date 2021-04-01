@@ -12,9 +12,22 @@ const getTimelines = async (searchTimeline: ISearchTimeline) => {
 
 export function useTimelines(searchTimeline: ISearchTimeline) {
   return useQuery<any, ErrorResponse>(
-    ["timeline", searchTimeline.token],
+    ["timeline", searchTimeline.token, searchTimeline.ventureId],
     () => getTimelines(searchTimeline),
-    { enabled: !!searchTimeline.token }
+    { enabled: !!searchTimeline.token && !!searchTimeline.ventureId }
+  );
+}
+
+const getAllTimelines = async (searchTimeline: ISearchTimeline) => {
+  const data = await api.API.Timeline.Search(searchTimeline);
+  return data;
+};
+
+export function useAllTimelines(searchTimeline: ISearchTimeline) {
+  return useQuery<any, ErrorResponse>(
+    ["timeline", searchTimeline.token, searchTimeline.userId],
+    () => getAllTimelines(searchTimeline),
+    { enabled: !!searchTimeline.token && !!searchTimeline.userId }
   );
 }
 
