@@ -61,10 +61,8 @@ export async function Search(
               ventureId: ventureId,
               id: id,
             };
-            console.log("timeline in search", timeline);
             return timeline;
           });
-          console.log("timelines output", timelines);
           resolve(timelines);
         }
       });

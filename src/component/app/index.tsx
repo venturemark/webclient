@@ -31,6 +31,7 @@ export function Component() {
     <BrowserRouter>
       <Routes>
         <Route path="/signin" element={<Signin />} />
+        <Route path="invite" element={<Signin />} />
         <Route path="*" element={<AuthenticatedRoute />} />
       </Routes>
     </BrowserRouter>
@@ -96,7 +97,6 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
 
   return (
     <Routes>
-      <Route path="invite" element={<Signin />} />
       <Route path="joinventure" element={<JoinVenture />} />
       <Route path="begin" element={<Begin />} />
       <Route path="editprofile" element={<EditProfile />} />

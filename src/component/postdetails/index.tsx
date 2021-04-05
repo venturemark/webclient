@@ -16,15 +16,15 @@ import { useGetToken } from "module/auth";
 interface PostDetailsProps extends DefaultPostDetailsProps {
   setIsVisible: any;
   post: IUpdate;
-  ventureId: string;
 }
 
 function PostDetails(props: PostDetailsProps) {
-  const { setIsVisible, post, ventureId, ...rest } = props;
+  const { setIsVisible, post, ...rest } = props;
   const token = useGetToken();
 
   const timelineId = post?.timelineId ?? "";
   const updateId = post?.id ?? "";
+  const ventureId = post?.ventureId ?? "";
 
   const messageSearch: ISearchMessage = {
     updateId,
