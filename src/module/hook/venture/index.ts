@@ -10,14 +10,6 @@ const getVenture = async (searchVenture: ISearchVenture) => {
   return data;
 };
 
-export function useVenture(searchVenture: ISearchVenture) {
-  return useQuery<any, ErrorResponse>(
-    ["venture", searchVenture.token, searchVenture.userId],
-    () => getVenture(searchVenture),
-    { enabled: !!searchVenture.token && !!searchVenture.userId }
-  );
-}
-
 const getVentureByTimeline = async (
   searchVentureByTimeline: ISearchVenture
 ) => {
@@ -26,6 +18,7 @@ const getVentureByTimeline = async (
   const timelines = timelinesData ?? [];
 
   const ventureIds = timelines.map((timeline) => timeline.ventureId);
+  // console.log(ventureIds, "venture ids in get venture by timeline");
 
   let uniqueVentureIds = [...new Set(ventureIds)];
 
@@ -44,6 +37,14 @@ const getVentureByTimeline = async (
 
   return flattenedVentures;
 };
+
+export function useVenture(searchVenture: ISearchVenture) {
+  return useQuery<any, ErrorResponse>(
+    ["venture", searchVenture.token, searchVenture.userId],
+    () => getVenture(searchVenture),
+    { enabled: !!searchVenture.token && !!searchVenture.userId }
+  );
+}
 
 export function useVentureByTimeline(searchVentureByTimeline: ISearchVenture) {
   return useQuery<any, ErrorResponse>(

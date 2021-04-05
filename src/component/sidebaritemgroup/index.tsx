@@ -6,9 +6,7 @@ import {
   DefaultSidebarItemGroupProps,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
-import { ISearchTimeline, ITimeline } from "module/interface/timeline";
-import { useTimelines } from "module/hook/timeline";
-import { useGetToken } from "module/auth";
+import { ITimeline } from "module/interface/timeline";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -22,30 +20,15 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { ventureName, ventureId, timelines, ...rest } = props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { ventureSlug, timelineSlug } = useParams();
-  const token = useGetToken();
   const navigate = useNavigate();
 
-  console.log("all venture timelines:", timelines);
-  console.log("ventureId for this venture", ventureId);
-
   const ventureTimelines = timelines.filter(
-    (timeline) => (timeline.ventureId = ventureId)
-  );
-  console.log("timelines after filter", ventureTimelines);
-
-  // const timelineSearch: ISearchTimeline = {
-  //   ventureId,
-  //   token,
-  // };
-
-  // const { data: timelinesData } = useTimelines(timelineSearch);
-  // const timelines = timelinesData ?? [];
-
-  const sortedVentureTimelines = ventureTimelines.sort((a: any, b: any) =>
-    a.name.localeCompare(b.name)
+    (timeline) => timeline.ventureId === ventureId
   );
 
-  console.log("sorted timelines after filter", sortedVentureTimelines);
+  const sortedVentureTimelines = ventureTimelines.sort(
+    (a: ITimeline, b: ITimeline) => a.name.localeCompare(b.name)
+  );
 
   return (
     <PlasmicSidebarItemGroup

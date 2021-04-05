@@ -22,8 +22,6 @@ export async function Search(
 
   const obj = new SearchI_Obj();
 
-  console.log("timeline search", timelineSearch);
-
   timelineSearch.userId &&
     obj.getMetadataMap().set(key.SubjectID, timelineSearch.userId);
   // timelineSearch.ventureId &&
@@ -32,7 +30,7 @@ export async function Search(
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb: ITimeline[] = await new Promise(
+  let getSearchResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {
       client.search(req, metadata, function (err: any, res: SearchO): any {
         if (err) {
@@ -41,23 +39,21 @@ export async function Search(
           reject(err);
           return;
         } else {
-          const timelinesPb = res.getObjList();
+          let timelinesPb = res.getObjList();
 
-          const timelines = timelinesPb.map((timelinePb) => {
-            const propertiesPb = timelinePb.getProperty();
-            const metaPb = timelinePb.getMetadataMap();
+          let timelines = timelinesPb.map((timelinePb) => {
+            let propertiesPb = timelinePb.getProperty();
+            let metaPb = timelinePb.getMetadataMap();
 
-            const name = propertiesPb?.getName() as string;
-            const desc = propertiesPb?.getDesc() as string;
-            const stat = propertiesPb?.getStat() as string;
+            let name = propertiesPb?.getName() as string;
+            let desc = propertiesPb?.getDesc() as string;
+            let stat = propertiesPb?.getStat() as string;
 
-            const userId = metaPb.get(key.UserID);
-            const id = metaPb.get(key.TimelineID);
-            const ventureId = metaPb.get(key.VentureID);
+            let ventureId = metaPb.get(key.VentureID);
+            let userId = metaPb.get(key.UserID);
+            let id = metaPb.get(key.TimelineID);
 
-            console.log("timelines returned:", ventureId);
-
-            const timeline: ITimeline = {
+            let timeline: ITimeline = {
               name: name,
               desc: desc,
               stat: stat,
@@ -65,10 +61,10 @@ export async function Search(
               ventureId: ventureId,
               id: id,
             };
-            console.log("timelines returned:", timeline);
+            console.log("timeline in search", timeline);
             return timeline;
           });
-          console.log("timelines returned:", timelines);
+          console.log("timelines output", timelines);
           resolve(timelines);
         }
       });

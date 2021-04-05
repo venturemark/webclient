@@ -35,6 +35,7 @@ function FeedUpdate(props: FeedUpdateProps) {
     user,
     ...rest
   } = props;
+
   const { timelineSlug } = useParams();
   const token = useGetToken();
   const ventureId = currentVenture?.id ?? "";

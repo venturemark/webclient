@@ -8,10 +8,11 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
-import { ICreateUser, ISearchUser } from "module/interface/user";
+import { ICreateUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
-import { useCreateUser, useUser } from "module/hook/user";
+import { useCreateUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
+import { UserContext } from "component/app";
 
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
@@ -22,17 +23,12 @@ interface ProfileFormProps extends DefaultProfileFormProps {
 function ProfileForm(props: ProfileFormProps) {
   const { isVisible, setIsVisible, hasInvite, ...rest } = props;
   const token = useGetToken();
+  const user = React.useContext(UserContext);
   const { user: authUser } = useAuth0();
 
   const { handleSubmit, register, errors } = useForm({
     mode: "onChange",
   });
-
-  const userSearch: ISearchUser = {
-    token,
-  };
-  const { data: usersData, isSuccess: userSuccess } = useUser(userSearch);
-  const user = userSuccess ? usersData[0] : authUser;
 
   const { mutate: saveUser } = useCreateUser();
 
@@ -47,12 +43,11 @@ function ProfileForm(props: ProfileFormProps) {
       token: token,
     };
 
-    user.successUrl = hasInvite ? "/joinventure" : "/newventure";
+    user.successUrl = hasInvite ? "../joinventure" : "../newventure";
     saveUser(user);
   };
 
-  // this redirect relies on querying different users
-  if (userSuccess && usersData) {
+  if (user) {
     return <Navigate to={`/`} />;
   }
 
@@ -64,13 +59,13 @@ function ProfileForm(props: ProfileFormProps) {
       }}
       nameField={{
         name: "name",
-        defaultValue: user?.name ?? "",
+        defaultValue: authUser?.name,
         register: register({ required: true }),
         errorMessage: errors.name && nameError,
       }}
       jobField={{
         name: "title",
-        defaultValue: user?.title ?? "",
+        defaultValue: "",
         register: register({ required: true }),
         errorMessage: errors.role && roleError,
       }}

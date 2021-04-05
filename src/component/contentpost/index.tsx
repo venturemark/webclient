@@ -6,8 +6,7 @@ import {
   DefaultContentPostProps,
 } from "component/plasmic/shared/PlasmicContentPost";
 import TimelineLink from "component/timelinelink";
-import { ITimeline, ISearchTimeline } from "module/interface/timeline";
-import { useTimelines } from "module/hook/timeline";
+import { ITimeline } from "module/interface/timeline";
 import { ISearchAllUpdate, IUpdate } from "module/interface/update";
 import { useAllUpdates } from "module/hook/update";
 import { ISearchMessage } from "module/interface/message";
@@ -15,6 +14,8 @@ import { useMessages } from "module/hook/message";
 import { IVenture } from "module/interface/venture";
 import { useGetToken } from "module/auth";
 import { IUser } from "module/interface/user";
+import { useContext } from "react";
+import { TimelineContext } from "component/app";
 
 interface ContentPostProps extends DefaultContentPostProps {
   title: string;
@@ -49,17 +50,11 @@ function ContentPost(props: ContentPostProps) {
 
   const ventureId = currentVenture?.id ?? "";
 
-  const timelineSearch: ISearchTimeline = {
-    ventureId,
-    token,
-  };
-
-  const { data: timelinesData } = useTimelines(timelineSearch);
-  const timelines = timelinesData ?? [];
+  const timelines = useContext(TimelineContext);
 
   const allUpdatesSearch: ISearchAllUpdate = {
     ventureId,
-    timelines: timelinesData,
+    timelines,
     token,
   };
   const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
@@ -101,9 +96,6 @@ function ContentPost(props: ContentPostProps) {
         user,
       }}
       date={date}
-      // iconMenu={{
-      //   render: () => <AntDropdown />,
-      // }}
       viewReplies={{
         count: count,
         onClick: () => {

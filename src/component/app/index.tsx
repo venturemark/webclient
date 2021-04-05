@@ -1,20 +1,30 @@
-import React, { createContext, useContext } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import React, { createContext } from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useParams,
+} from "react-router-dom";
 import Home from "component/page/home";
 import Signin from "component/page/signin";
 import Profile from "component/page/profile";
 import JoinVenture from "component/page/joinventure";
 
 //component specific
-import { ISearchUser } from "module/interface/user";
+import { ISearchUser, IUser } from "module/interface/user";
 import { useUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 
-const UserContext = createContext(undefined);
-const VentureContext = createContext(undefined);
-const TimelineContext = createContext(undefined);
+import { useAuth0 } from "@auth0/auth0-react";
+import { ISearchVenture, IVenture } from "module/interface/venture";
+import { useVenture } from "module/hook/venture";
+import { ISearchTimeline, ITimeline } from "module/interface/timeline";
+import { useAllTimelines } from "module/hook/timeline";
 
-type Props = {};
+export const UserContext = createContext<IUser | undefined>(undefined);
+export const VentureContext = createContext<IVenture[]>([]);
+export const TimelineContext = createContext<ITimeline[]>([]);
 
 export function Component() {
   return (
@@ -29,234 +39,213 @@ export function Component() {
 
 function AuthenticatedRoute() {
   const token = useGetToken();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   const userSearch: ISearchUser = {
     token,
   };
   const {
-    data: userData,
+    data: user,
     isSuccess: userSuccess,
-    isError: userError,
+    isLoading: userLoading,
   } = useUser(userSearch);
-  const user = userData;
 
-  if (userSuccess && !user) {
+  if (isLoading) {
+    return <span>Checking auth...</span>;
+  }
+
+  if (!isLoading && !isAuthenticated) {
     return <Navigate to={`signin`} />;
   }
 
   return (
     <UserContext.Provider value={user}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="createprofile" element={<Profile />} />
-          <Route path="invite" element={<Signin />} />
-          <Route path="joinventure" element={<JoinVenture />} />
-          {/* <Route path="newventure" element={<NewVenture/>} /> */}
-          <Route path=":ventureSlug" element={<VentureRoutes />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="profile" element={<Profile />} />
+        <Route
+          path="*"
+          element={
+            <RegisteredUserRoute
+              userSuccess={userSuccess}
+              user={user}
+              userLoading={userLoading}
+            />
+          }
+        />
+      </Routes>
     </UserContext.Provider>
   );
 }
 
-function VentureRoutes() {
-  // const {
-  //   timelineVariant,
-  //   activeState,
-  //   modalType,
-  //   isVisible: visibleProp,
-  // } = props;
-  // const token = useGetToken();
-  // const { ventureSlug } = useParams<ParamTypes>();
-  // const url = useLocation();
+interface RegisteredUserRouteProps {
+  userSuccess: boolean;
+  user: IUser;
+  userLoading: boolean;
+}
 
-  // const userSearch: ISearchUser = {
-  //   token,
-  // };
-  // const {
-  //   data: userData,
-  //   isSuccess: userSuccess,
-  //   isError: userError,
-  // } = useUser(userSearch);
-  // const user = userData;
-  // const userId = user.id;
+function RegisteredUserRoute(props: RegisteredUserRouteProps) {
+  const { userSuccess, user, userLoading } = props;
 
-  // console.log("user in home", user);
+  if (userLoading) {
+    return <span>Loading user...</span>;
+  }
 
-  // const ventureSearch: ISearchVenture = {
-  //   userId: user?.id,
-  //   token: token,
-  // };
-
-  // const { data: ventureData, isSuccess: ventureSuccess } = useVenture(
-  //   ventureSearch
-  // );
-
-  // const ventures = ventureData ?? [];
-  // const currentVenture = ventureSlug
-  //   ? ventures.filter(
-  //       (venture: IVenture) =>
-  //         venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
-  //     )[0]
-  //   : ventures[0];
-
-  // if(currentVenture === undefined) {
-  //   return <Redirect />
-  // }
-
-  let currentVenture = undefined;
+  if (userSuccess && !user) {
+    return <Navigate to={"../profile"} />;
+  }
 
   return (
-    <VentureContext.Provider value={currentVenture}>
-      <BrowserRouter>
+    <Routes>
+      <Route path="invite" element={<Signin />} />
+      <Route path="joinventure" element={<JoinVenture />} />
+      <Route path="begin" element={<Begin />} />
+      <Route path="editprofile" element={<EditProfile />} />
+      <Route path="newventure" element={<NewVenture />} />
+      <Route path="/" element={<VentureRoutes user={user} />} />
+      <Route path=":ventureSlug/*" element={<VentureRoutes user={user} />} />
+    </Routes>
+  );
+}
+
+function Begin() {
+  const variantType = "isEmpty";
+  const isActive = "feed";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function NewVenture() {
+  const variantType = "isVenture";
+  const isActive = "settings";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+function EditProfile() {
+  const modalType = "editProfile";
+  const isVisible = "showModal";
+  return <Home modalType={modalType} isVisible={isVisible} />;
+}
+
+interface VentureRoutesProps {
+  user: IUser;
+}
+
+function VentureRoutes(props: VentureRoutesProps) {
+  const { user } = props;
+  const token = useGetToken();
+  const { ventureSlug } = useParams();
+  const userId = user?.id;
+
+  const timelineSearch: ISearchTimeline = {
+    userId,
+    token,
+  };
+
+  const { data: timelinesData } = useAllTimelines(timelineSearch);
+
+  // console.log(timelines, "timelines in sidebar");
+
+  const ventureSearch: ISearchVenture = {
+    userId,
+    token,
+  };
+
+  const { data: ventureData, isSuccess: ventureSuccess } = useVenture(
+    ventureSearch
+  );
+
+  const ventures = ventureData ?? [];
+
+  const currentVenture = ventureSlug
+    ? ventures.filter(
+        (venture: IVenture) =>
+          venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
+      )[0]
+    : ventures[0];
+
+  // redirect "/"" to "ventureSlug"
+  if (ventureSuccess && ventureSlug === undefined) {
+    const ventureSlugRedirect = currentVenture.name
+      .toLowerCase()
+      .replace(/\s/g, "");
+    return <Navigate replace to={`${ventureSlugRedirect}`} />;
+  }
+
+  // redirect to newVenture if there is not venture
+  if (ventureSuccess && ventureData.length < 0) {
+    return <Navigate to="../newventure" />;
+  }
+
+  return (
+    <VentureContext.Provider value={ventureData}>
+      <TimelineContext.Provider value={timelinesData}>
         <Routes>
+          <Route path="/" element={<VentureFeed />} />
           <Route path="feed" element={<VentureFeed />} />
-          {/* <Route path="members" element={<VentureMembers/>} />
-          <Route path="settings" element={<VentureSettings/>} /> */}
-          {/* <Route path=":timelineSlug" element={<TimelineRoutes/>} /> */}
+          <Route path="members" element={<VentureMembers />} />
+          <Route path="settings" element={<VentureSettings />} />
+          <Route path="newtimeline" element={<NewTimeline />} />
+          <Route path=":timelineSlug/*" element={<TimelineRoutes />} />
         </Routes>
-      </BrowserRouter>
+      </TimelineContext.Provider>
+      3
     </VentureContext.Provider>
   );
 }
 
+function NewTimeline() {
+  const variantType = "isTimeline";
+  const isActive = "settings";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+
 function VentureFeed() {
-  const venture = useContext(VentureContext);
+  const variantType = "isVenture";
+  const isActive = "feed";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function VentureMembers() {
+  const variantType = "isVenture";
+  const isActive = "members";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function VentureSettings() {
+  const variantType = "isVenture";
+  const isActive = "settings";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function TimelineRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="profile" element={<VentureRoutes />} />
-        <Route path="invite" element={<Signin />} />
-        <Route path=":ventureSlug" element={<VentureRoutes />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<TimelineFeed />} />
+      <Route path="feed" element={<TimelineFeed />} />
+      <Route path="members" element={<TimelineMembers />} />
+      <Route path="settings" element={<TimelineSettings />} />
+      <Route path="postdetail" element={<PostDetail />} />
+    </Routes>
   );
 }
 
-// function TimelineRoutes() {
-//   const currentTimeline = {}
-//   return (
-//     <TimelineContext.Provider value={currentTimeline}>
-//       <BrowserRouter>
-//         <Routes>
-//           <Route path="feed" element={<TimelineFeed/>} />
-//           <Route path="members" element={<TimelineMembers/>} />
-//           <Route path="settings" element={<TimelineSettings/>} />
-//         </Routes>
-//       </BrowserRouter>
-//     </TimelineContext.Provider>
-//   );
-// }
+function TimelineFeed() {
+  const variantType = "isTimeline";
+  const isActive = "feed";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
 
-// export function Component(props: Props) {
-//   return (
-//     <>
-//       <Router>
-//         <Switch>
-//           <Route path="/:ventureSlug" element={<Ventures />} />
-//           <RootHome>
-//             <VentureRoute>
-//               <Switch>
-//                 <Route exact path="feed" component={VetureFeed} />
-//                 <Route exact path="joinventure" component={VetureFeed} />
-//                 <Route exact path="invite" component={VetureFeed} />
-//               </Switch>/
-//             </VentureRoute>
-//           </RootHome>
-//           <Route exact path="/" component={<RootHome?} />
-//           <Route exact path="/signin" component={Signin} />
-//           <Route exact path="/:ventureSlug/feed" component={Feed} />
-//           <Route exact path="/profile" component={Profile} />
-//           <Route exact path="/invite" component={Signin} />
-//           <Route exact path="/joinventure" component={JoinVenture} />
-//           <Route
-//             exact
-//             path="/newventure"
-//             component={() => <Home activeState="settings" />}
-//           />
-//           <Route
-//             exact
-//             path="/editprofile"
-//             component={() => (
-//               <Home modalType={"editProfile"} isVisible={"showModal"} />
-//             )}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/newtimeline"
-//             component={() => (
-//               <Home activeState="settings" timelineVariant={`isTimeline`} />
-//             )}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/delete"
-//             component={() => (
-//               <Home
-//                 activeState="settings"
-//                 modalType="deleteVenture"
-//                 isVisible={"showModal"}
-//               />
-//             )}
-//           />
-//           <Route exact path="/:ventureSlug" component={Home} />
-//           <Route
-//             exact
-//             path="/:ventureSlug/feed"
-//             component={() => <Home activeState="feed" />}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/members"
-//             component={() => <Home activeState="members" />}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/settings"
-//             component={() => <Home activeState="settings" />}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/:timelineSlug"
-//             component={() => (
-//               <Home timelineVariant={`isTimeline`} activeState="feed" />
-//             )}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/:timelineSlug/delete"
-//             component={() => (
-//               <Home
-//                 timelineVariant={`isTimeline`}
-//                 activeState="settings"
-//                 modalType="deleteTimeline"
-//                 isVisible={"showModal"}
-//               />
-//             )}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/:timelineSlug/feed"
-//             component={() => (
-//               <Home timelineVariant={`isTimeline`} activeState="feed" />
-//             )}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/:timelineSlug/members"
-//             component={() => (
-//               <Home timelineVariant={`isTimeline`} activeState="members" />
-//             )}
-//           />
-//           <Route
-//             exact
-//             path="/:ventureSlug/:timelineSlug/settings"
-//             component={() => (
-//               <Home timelineVariant={`isTimeline`} activeState="settings" />
-//             )}
-//           />
-//         </Switch>
-//       </Router>
-//     </>
-//   );
-// }
+function TimelineMembers() {
+  const variantType = "isTimeline";
+  const isActive = "members";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function TimelineSettings() {
+  const variantType = "isTimeline";
+  const isActive = "settings";
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function PostDetail() {
+  const isVisible = "postDetails";
+  return <Home isVisible={isVisible} />;
+}
