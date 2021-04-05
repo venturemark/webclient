@@ -5,21 +5,18 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { createBrowserHistory } from "history";
 import { getConfig } from "module/auth";
 
 import * as app from "component/app";
 import reportWebVitals from "reportWebVitals";
 
-// export default createBrowserHistory();
-const history = createBrowserHistory();
 const config = getConfig();
 
 //how do we set this up?
 const onRedirectCallback = (appState: any) => {
-  history.push(
-    appState && appState.returnTo ? appState.returnTo : window.location.pathname
-  );
+  return appState && appState.returnTo
+    ? appState.returnTo
+    : window.location.pathname;
 };
 
 const providerConfig = {
