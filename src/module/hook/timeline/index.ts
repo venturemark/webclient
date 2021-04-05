@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchTimeline } from "module/interface/timeline";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -10,17 +10,30 @@ const getTimelines = async (searchTimeline: ISearchTimeline) => {
   return data;
 };
 
+const getAllTimelines = async (searchTimeline: ISearchTimeline) => {
+  const data = await api.API.Timeline.Search(searchTimeline);
+  return data;
+};
+
 export function useTimelines(searchTimeline: ISearchTimeline) {
   return useQuery<any, ErrorResponse>(
-    ["timeline", searchTimeline.token],
+    ["timeline", searchTimeline.token, searchTimeline.ventureId],
     () => getTimelines(searchTimeline),
-    { enabled: !!searchTimeline.token }
+    { enabled: !!searchTimeline.token && !!searchTimeline.ventureId }
+  );
+}
+
+export function useAllTimelines(searchTimeline: ISearchTimeline) {
+  return useQuery<any, ErrorResponse>(
+    ["timeline", searchTimeline.token, searchTimeline.userId],
+    () => getAllTimelines(searchTimeline),
+    { enabled: !!searchTimeline.token && !!searchTimeline.userId }
   );
 }
 
 export function useCreateTimeline() {
   const queryClient = useQueryClient();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (newTimeline) => {
@@ -32,7 +45,7 @@ export function useCreateTimeline() {
         queryClient.invalidateQueries("timeline");
 
         //redirect on success
-        newTimeline.successUrl && history.push(newTimeline.successUrl);
+        newTimeline.successUrl && navigate(newTimeline.successUrl);
       },
     }
   );
@@ -40,7 +53,7 @@ export function useCreateTimeline() {
 
 export function useUpdateTimeline() {
   const queryClient = useQueryClient();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (timelineUpdate) => {
@@ -52,7 +65,7 @@ export function useUpdateTimeline() {
         queryClient.invalidateQueries("timeline");
 
         //redirect on success
-        timelineUpdate.successUrl && history.push(timelineUpdate.successUrl);
+        timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
       },
     }
   );

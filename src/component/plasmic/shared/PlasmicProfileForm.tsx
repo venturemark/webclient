@@ -229,52 +229,55 @@ function PlasmicProfileForm__RenderFunc(props: {
             ),
           })}
         >
-          <Button
-            data-plasmic-name={"cancel"}
-            data-plasmic-override={overrides.cancel}
-            buttonStyle={
-              hasVariant(variants, "editProfile", "editProfile")
-                ? ("secondaryPurple" as const)
-                : ("primaryPurple" as const)
-            }
-            count={"1"}
-            slot={
-              <IconPlusIcon
-                className={classNames(defaultcss.all, sty.svg__dVu44)}
-                role={"img"}
-              />
-            }
-            text2={
-              <div
-                data-plasmic-name={"text2"}
-                data-plasmic-override={overrides.text2}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.text2,
-                  {
-                    [sty.text2__editProfile]: hasVariant(
-                      variants,
-                      "editProfile",
-                      "editProfile"
-                    ),
-                  }
-                )}
-              >
-                {hasVariant(variants, "editProfile", "editProfile")
-                  ? "Cancel"
-                  : "Complete"}
-              </div>
-            }
-          >
-            <IconRightIcon
-              className={classNames(defaultcss.all, sty.svg__sv8Ps)}
-              role={"img"}
-            />
-          </Button>
-
           {(
             hasVariant(variants, "editProfile", "editProfile") ? true : false
+          ) ? (
+            <Button
+              data-plasmic-name={"cancel"}
+              data-plasmic-override={overrides.cancel}
+              buttonStyle={
+                hasVariant(variants, "editProfile", "editProfile")
+                  ? ("secondaryPurple" as const)
+                  : ("primaryPurple" as const)
+              }
+              count={"1"}
+              slot={
+                <IconPlusIcon
+                  className={classNames(defaultcss.all, sty.svg__dVu44)}
+                  role={"img"}
+                />
+              }
+              text2={
+                <div
+                  data-plasmic-name={"text2"}
+                  data-plasmic-override={overrides.text2}
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.text2,
+                    {
+                      [sty.text2__editProfile]: hasVariant(
+                        variants,
+                        "editProfile",
+                        "editProfile"
+                      ),
+                    }
+                  )}
+                >
+                  {hasVariant(variants, "editProfile", "editProfile")
+                    ? "Cancel"
+                    : "Complete"}
+                </div>
+              }
+            >
+              <IconRightIcon
+                className={classNames(defaultcss.all, sty.svg__sv8Ps)}
+                role={"img"}
+              />
+            </Button>
+          ) : null}
+          {(
+            hasVariant(variants, "editProfile", "editProfile") ? true : true
           ) ? (
             <Button
               data-plasmic-name={"save"}

@@ -1,8 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ISearchVenture } from "module/interface/venture";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import * as api from "module/api";
-import { ITimeline } from "module/interface/timeline";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -11,14 +10,6 @@ const getVenture = async (searchVenture: ISearchVenture) => {
   return data;
 };
 
-export function useVenture(searchVenture: ISearchVenture) {
-  return useQuery<any, ErrorResponse>(
-    ["venture", searchVenture.token, searchVenture.userId],
-    () => getVenture(searchVenture),
-    { enabled: !!searchVenture.token && !!searchVenture.userId }
-  );
-}
-
 const getVentureByTimeline = async (
   searchVentureByTimeline: ISearchVenture
 ) => {
@@ -26,9 +17,13 @@ const getVentureByTimeline = async (
 
   const timelines = timelinesData ?? [];
 
+  const ventureIds = timelines.map((timeline) => timeline.ventureId);
+  // console.log(ventureIds, "venture ids in get venture by timeline");
+
+  let uniqueVentureIds = [...new Set(ventureIds)];
+
   const allVentures = await Promise.all(
-    timelines.map(async (timeline: ITimeline) => {
-      const id = timeline.ventureId;
+    uniqueVentureIds.map(async (id: string) => {
       const search = {
         id,
         token,
@@ -42,6 +37,14 @@ const getVentureByTimeline = async (
 
   return flattenedVentures;
 };
+
+export function useVenture(searchVenture: ISearchVenture) {
+  return useQuery<any, ErrorResponse>(
+    ["venture", searchVenture.token, searchVenture.userId],
+    () => getVenture(searchVenture),
+    { enabled: !!searchVenture.token && !!searchVenture.userId }
+  );
+}
 
 export function useVentureByTimeline(searchVentureByTimeline: ISearchVenture) {
   return useQuery<any, ErrorResponse>(
@@ -60,7 +63,7 @@ export function useVentureByTimeline(searchVentureByTimeline: ISearchVenture) {
 
 export function useCreateVenture() {
   const queryClient = useQueryClient();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (newVenture) => {
@@ -72,7 +75,7 @@ export function useCreateVenture() {
         queryClient.invalidateQueries("venture");
 
         //redirect on success
-        newVenture.successUrl && history.push(newVenture.successUrl);
+        newVenture.successUrl && navigate(newVenture.successUrl);
       },
     }
   );
@@ -80,7 +83,7 @@ export function useCreateVenture() {
 
 export function useUpdateVenture() {
   const queryClient = useQueryClient();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (ventureUpdate) => {
@@ -92,7 +95,7 @@ export function useUpdateVenture() {
         queryClient.invalidateQueries("venture");
 
         //redirect on success
-        ventureUpdate.successUrl && history.push(ventureUpdate.successUrl);
+        ventureUpdate.successUrl && navigate(ventureUpdate.successUrl);
       },
     }
   );

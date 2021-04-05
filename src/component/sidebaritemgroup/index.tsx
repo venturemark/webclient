@@ -6,39 +6,28 @@ import {
   DefaultSidebarItemGroupProps,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
-import { ISearchTimeline, ITimeline } from "module/interface/timeline";
-import { useTimelines } from "module/hook/timeline";
-import { useGetToken } from "module/auth";
+import { ITimeline } from "module/interface/timeline";
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-
-interface ParamTypes {
-  ventureSlug: string;
-  timelineSlug: string;
-}
+import { useNavigate } from "react-router-dom";
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;
   ventureId: string;
+  timelines: ITimeline[];
 }
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
-  const { ventureName, ventureId, ...rest } = props;
+  const { ventureName, ventureId, timelines, ...rest } = props;
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const { ventureSlug, timelineSlug } = useParams<ParamTypes>();
-  const token = useGetToken();
-  const history = useHistory();
+  const { ventureSlug, timelineSlug } = useParams();
+  const navigate = useNavigate();
 
-  const timelineSearch: ISearchTimeline = {
-    ventureId,
-    token,
-  };
+  const ventureTimelines = timelines.filter(
+    (timeline) => timeline.ventureId === ventureId
+  );
 
-  const { data: timelinesData } = useTimelines(timelineSearch);
-  const timelines = timelinesData ?? [];
-
-  const sortedCurrentTimelines = timelines.sort((a: any, b: any) =>
-    a.name.localeCompare(b.name)
+  const sortedVentureTimelines = ventureTimelines.sort(
+    (a: ITimeline, b: ITimeline) => a.name.localeCompare(b.name)
   );
 
   return (
@@ -55,10 +44,10 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       isCollapsed={isCollapsed}
       newTimeline={{
         ventureName: ventureName,
-        onClick: () => history.push(`${ventureSlug}/newventure`),
+        onClick: () => navigate(`${ventureSlug}/newventure`),
       }}
       itemContainer={{
-        children: sortedCurrentTimelines.map((timeline: ITimeline) => (
+        children: sortedVentureTimelines.map((timeline: ITimeline) => (
           <SidebarItem
             timelineName={timeline.name}
             key={timeline.id}

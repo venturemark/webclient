@@ -11,15 +11,10 @@ import {
   IUpdateTimeline,
 } from "module/interface/timeline";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { timelineNameError } from "module/errors";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
-
-interface ParamsType {
-  timelineSlug: string;
-  ventureSlug: string;
-}
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
@@ -44,8 +39,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     currentVenture,
     ...rest
   } = props;
-  const history = useHistory();
-  const { timelineSlug } = useParams<ParamsType>();
+  const navigate = useNavigate();
+  const { timelineSlug } = useParams();
   const token = useGetToken();
 
   const isEdit = timelineSlug ? "isEdit" : undefined;
@@ -81,7 +76,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   };
 
   const handleDelete = () => {
-    history.push(`/${handle}/${timelineSlug}/delete`);
+    navigate(`/${handle}/${timelineSlug}/delete`);
   };
 
   return (
@@ -102,7 +97,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         defaultValue: currentTimeline?.desc ?? "",
       }}
       buttonSetEdit={{
-        handleCancel: () => history.goBack(),
+        handleCancel: () => navigate(-1),
         handleDelete: () => handleDelete(),
       }}
       visibility={{}}

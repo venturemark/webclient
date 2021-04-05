@@ -5,13 +5,13 @@ import {
   PlasmicProfile,
   DefaultProfileProps,
 } from "component/plasmic/shared/PlasmicProfile";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
+  const { ...rest } = props;
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
 
   const hasInvite =
@@ -21,6 +21,7 @@ function Profile(props: ProfileProps) {
 
   return (
     <PlasmicProfile
+      {...rest}
       profileForm={{
         isVisible: isVisible,
         setIsVisible: setIsVisible,
@@ -30,4 +31,4 @@ function Profile(props: ProfileProps) {
   );
 }
 
-export default withAuthenticationRequired(Profile);
+export default Profile;

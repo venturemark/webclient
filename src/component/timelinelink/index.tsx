@@ -6,12 +6,7 @@ import {
   DefaultTimelineLinkProps,
 } from "component/plasmic/shared/PlasmicTimelineLink";
 import { ITimeline } from "module/interface/timeline";
-import { useHistory, useParams } from "react-router-dom";
-
-interface ParamTypes {
-  ventureSlug: string;
-  timelineSlug: string;
-}
+import { useNavigate, useParams } from "react-router-dom";
 
 interface TimelineLinkProps extends DefaultTimelineLinkProps {
   timeline: ITimeline;
@@ -19,13 +14,13 @@ interface TimelineLinkProps extends DefaultTimelineLinkProps {
 
 function TimelineLink(props: TimelineLinkProps) {
   const { timeline } = props;
-  const history = useHistory();
-  const { timelineSlug, ventureSlug } = useParams<ParamTypes>();
+  const navigate = useNavigate();
+  const { timelineSlug, ventureSlug } = useParams();
 
   return (
     <PlasmicTimelineLink
       name={timeline?.name ?? ""}
-      onClick={() => history.push(`/${ventureSlug}/${timelineSlug}/feed`)}
+      onClick={() => navigate(`/${ventureSlug}/${timelineSlug}/feed`)}
     />
   );
 }

@@ -5,15 +5,10 @@ import {
   PlasmicMainHeader,
   DefaultMainHeaderProps,
 } from "component/plasmic/shared/PlasmicMainHeader";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
-
-interface ParamTypes {
-  ventureSlug: string;
-  timelineSlug: string;
-}
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
@@ -34,8 +29,8 @@ function MainHeader(props: MainHeaderProps) {
     currentVenture,
     ...rest
   } = props;
-  const { timelineSlug } = useParams<ParamTypes>();
-  const history = useHistory();
+  const { timelineSlug } = useParams();
+  const navigate = useNavigate();
 
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
@@ -56,13 +51,13 @@ function MainHeader(props: MainHeaderProps) {
         watchData?.timelineDescription || currentTimeline?.desc || " "
       }
       viewHome={{
-        onClick: () => history.push(link + "/feed"),
+        onClick: () => navigate(link + "/feed"),
       }}
       viewMembers={{
-        onClick: () => history.push(link + "/members"),
+        onClick: () => navigate(link + "/members"),
       }}
       viewSettings={{
-        onClick: () => history.push(link + "/settings"),
+        onClick: () => navigate(link + "/settings"),
       }}
       isActive={isActive}
     />

@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Select, Tag } from "antd";
-import { useTimelines } from "module/hook/timeline";
-import { ITimeline, ISearchTimeline } from "module/interface/timeline";
+import { ITimeline } from "module/interface/timeline";
 import { RefSelectProps } from "antd/lib/select";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useContext } from "react";
+import { TimelineContext } from "component/app";
 
 function tagRender(props: any) {
   const { label, closable, onClose } = props;
@@ -50,14 +51,18 @@ export function AntSelect(props: SelectProps) {
 
   const select = useRef<RefSelectProps>(null);
 
-  const timelineSearch: ISearchTimeline = {
-    ventureId: ventureId,
-    token,
-  };
-  const { isLoading, data: timelines } = useTimelines(timelineSearch);
+  const timelines = useContext(TimelineContext);
+
+  const ventureTimelines = timelines.filter(
+    (timeline) => timeline.ventureId === ventureId
+  );
+
+  const sortedVentureTimelines = ventureTimelines.sort((a: any, b: any) =>
+    a.name.localeCompare(b.name)
+  );
 
   const options =
-    timelines?.map((timeline: ITimeline) => {
+    sortedVentureTimelines?.map((timeline: ITimeline) => {
       return {
         value: timeline.id,
         label: timeline.name,
@@ -91,7 +96,7 @@ export function AntSelect(props: SelectProps) {
       }}
       // dropdownStyle={{ width: "200px" }}
       placeholder={"Share to: "}
-      loading={isLoading}
+      // loading={isLoading}
       showAction={["focus"]}
       value={selectedTimelines}
       defaultOpen
