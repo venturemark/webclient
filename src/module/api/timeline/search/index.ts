@@ -5,11 +5,12 @@ import {
 } from "module/api/timeline/proto/search_pb";
 import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { ITimeline, ISearchTimeline } from "module/interface/timeline/index";
+import { ITimeline } from "module/interface/timeline/index";
 import * as key from "module/apikeys";
+import { IAPISearchTimeline } from "module/interface/api";
 
 export async function Search(
-  timelineSearch: ISearchTimeline
+  timelineSearch: IAPISearchTimeline
 ): Promise<ITimeline[]> {
   const objList = [];
 

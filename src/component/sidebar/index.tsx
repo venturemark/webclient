@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicSidebar";
 import SidebarItemGroup from "component/sidebaritemgroup";
 import { useNavigate } from "react-router-dom";
-import { ISearchVenture, IVenture } from "module/interface/venture";
+import { ISearchVenturesByTimeline, IVenture } from "module/interface/venture";
 import { useGetToken } from "module/auth";
 import { useVentureByTimeline } from "module/hook/venture";
 import { TimelineContext, VentureContext } from "component/app";
@@ -20,8 +20,11 @@ function Sidebar(props: SidebarProps) {
   const timelines = useContext(TimelineContext);
   const venturesContext = useContext(VentureContext);
 
-  const ventureSearch: ISearchVenture = {
-    timelines: timelines ?? [],
+  const ventureIds = timelines.map((timeline) => timeline.ventureId);
+  let uniqueVentureIds = [...new Set(ventureIds)];
+
+  const ventureSearch: ISearchVenturesByTimeline = {
+    ventureIds: uniqueVentureIds,
     token,
   };
 

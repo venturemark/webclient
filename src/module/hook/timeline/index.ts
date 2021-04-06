@@ -1,33 +1,59 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { ISearchTimeline } from "module/interface/timeline";
+import {
+  ISearchTimelinesbyUserId,
+  ISearchTimelinesbyVentureId,
+} from "module/interface/timeline";
 import { useNavigate } from "react-router";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getTimelines = async (searchTimeline: ISearchTimeline) => {
+const getTimelinesbyVentureId = async (
+  searchTimeline: ISearchTimelinesbyVentureId
+) => {
   const data = await api.API.Timeline.Search(searchTimeline);
   return data;
 };
 
-const getAllTimelines = async (searchTimeline: ISearchTimeline) => {
+const getTimelinesByUserId = async (
+  searchTimeline: ISearchTimelinesbyUserId
+) => {
   const data = await api.API.Timeline.Search(searchTimeline);
   return data;
 };
 
-export function useTimelines(searchTimeline: ISearchTimeline) {
+export function useTimelinesByVentureId(
+  searchTimelinesbyVentureId: ISearchTimelinesbyVentureId
+) {
   return useQuery<any, ErrorResponse>(
-    ["timeline", searchTimeline.token, searchTimeline.ventureId],
-    () => getTimelines(searchTimeline),
-    { enabled: !!searchTimeline.token && !!searchTimeline.ventureId }
+    [
+      `timelines-${searchTimelinesbyVentureId.ventureId}`,
+      searchTimelinesbyVentureId.token,
+      searchTimelinesbyVentureId.ventureId,
+    ],
+    () => getTimelinesbyVentureId(searchTimelinesbyVentureId),
+    {
+      enabled:
+        !!searchTimelinesbyVentureId.token &&
+        !!searchTimelinesbyVentureId.ventureId,
+    }
   );
 }
 
-export function useAllTimelines(searchTimeline: ISearchTimeline) {
+export function useTimelinesByUserId(
+  searchTimelinesByUserId: ISearchTimelinesbyUserId
+) {
   return useQuery<any, ErrorResponse>(
-    ["timeline", searchTimeline.token, searchTimeline.userId],
-    () => getAllTimelines(searchTimeline),
-    { enabled: !!searchTimeline.token && !!searchTimeline.userId }
+    [
+      `timelines-${searchTimelinesByUserId.userId}`,
+      searchTimelinesByUserId.token,
+      searchTimelinesByUserId.userId,
+    ],
+    () => getTimelinesByUserId(searchTimelinesByUserId),
+    {
+      enabled:
+        !!searchTimelinesByUserId.token && !!searchTimelinesByUserId.userId,
+    }
   );
 }
 
@@ -42,7 +68,7 @@ export function useCreateTimeline() {
     {
       onSuccess: (_, newTimeline) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("timeline");
+        queryClient.invalidateQueries("timelines");
 
         //redirect on success
         newTimeline.successUrl && navigate(newTimeline.successUrl);
@@ -62,7 +88,7 @@ export function useUpdateTimeline() {
     {
       onSuccess: (_, timelineUpdate) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("timeline");
+        queryClient.invalidateQueries("timelines");
 
         //redirect on success
         timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);

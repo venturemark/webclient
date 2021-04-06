@@ -53,7 +53,7 @@ const getTimelineMembers = async (
 export function useVentureMembers(searchVentureMembers: ISearchVentureMembers) {
   return useQuery<any, ErrorResponse>(
     [
-      `ventureMembers-${searchVentureMembers.ventureId}`,
+      `users-${searchVentureMembers.ventureId}`,
       searchVentureMembers.token,
       searchVentureMembers.ventureId,
     ],
@@ -69,7 +69,7 @@ export function useTimelineMembers(
 ) {
   return useQuery<any, ErrorResponse>(
     [
-      `timelineMembers-${searchTimelineMembers.timelineId}`,
+      `users-${searchTimelineMembers.timelineId}`,
       searchTimelineMembers.token,
       searchTimelineMembers.timelineId,
     ],
@@ -83,7 +83,7 @@ export function useTimelineMembers(
 
 export function useAllUser(searchAllUser: ISearchAllUser) {
   return useQuery<any, ErrorResponse>(
-    ["user", searchAllUser.token, searchAllUser.subjectIds],
+    ["users", searchAllUser.token, searchAllUser.subjectIds],
     () => getAllUser(searchAllUser),
     { enabled: !!searchAllUser.token && !!searchAllUser.subjectIds }
   );
@@ -108,7 +108,7 @@ export function useCreateUser() {
     {
       onSuccess: (_, newUser) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("user");
+        queryClient.invalidateQueries("users");
 
         newUser.successUrl && navigate(newUser.successUrl);
       },
@@ -128,6 +128,7 @@ export function useUpdateUser() {
       onSuccess: (_, userUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("user");
+        queryClient.invalidateQueries("users");
 
         //redirect on success
         userUpdate.successUrl && navigate(userUpdate.successUrl);

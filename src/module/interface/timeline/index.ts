@@ -8,10 +8,13 @@ export interface ITimeline {
   date?: string;
 }
 
-// api calls
-export interface ISearchTimeline {
-  ventureId?: string;
-  userId?: string;
+export interface ISearchTimelinesbyUserId {
+  userId: string;
+  token: string;
+}
+
+export interface ISearchTimelinesbyVentureId {
+  ventureId: string;
   token: string;
 }
 
