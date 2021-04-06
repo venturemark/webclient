@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { ISearchVenture, IVenture } from "module/interface/venture";
 import { useGetToken } from "module/auth";
 import { useVentureByTimeline } from "module/hook/venture";
-import { TimelineContext } from "component/app";
+import { TimelineContext, VentureContext } from "component/app";
 
 interface SidebarProps extends DefaultSidebarProps {}
 
@@ -18,6 +18,7 @@ function Sidebar(props: SidebarProps) {
   const navigate = useNavigate();
   const token = useGetToken();
   const timelines = useContext(TimelineContext);
+  const venturesContext = useContext(VentureContext);
 
   const ventureSearch: ISearchVenture = {
     timelines: timelines ?? [],
@@ -25,9 +26,9 @@ function Sidebar(props: SidebarProps) {
   };
 
   const { data: venturesData, isLoading } = useVentureByTimeline(ventureSearch);
-  const ventures = venturesData ?? [];
+  const ventures = venturesData?.length > 0 ? venturesData : venturesContext;
 
-  const sortedVentures = ventures.sort((a: IVenture, b: IVenture) =>
+  const sortedVentures = ventures?.sort((a: IVenture, b: IVenture) =>
     a.name.localeCompare(b.name)
   );
 

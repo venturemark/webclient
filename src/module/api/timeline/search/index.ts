@@ -24,8 +24,8 @@ export async function Search(
 
   timelineSearch.userId &&
     obj.getMetadataMap().set(key.SubjectID, timelineSearch.userId);
-  // timelineSearch.ventureId &&
-  //   obj.getMetadataMap().set(key.VentureID, timelineSearch.ventureId);
+  timelineSearch.ventureId &&
+    obj.getMetadataMap().set(key.VentureID, timelineSearch.ventureId);
 
   objList.push(obj);
   req.setObjList(objList);

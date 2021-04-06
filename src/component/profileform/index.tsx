@@ -18,10 +18,11 @@ interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
   setIsVisible?: any;
   hasInvite: string | null;
+  userLoading?: boolean;
 }
 
 function ProfileForm(props: ProfileFormProps) {
-  const { isVisible, setIsVisible, hasInvite, ...rest } = props;
+  const { isVisible, setIsVisible, hasInvite, userLoading, ...rest } = props;
   const token = useGetToken();
   const user = React.useContext(UserContext);
   const { user: authUser } = useAuth0();
@@ -46,6 +47,10 @@ function ProfileForm(props: ProfileFormProps) {
     user.successUrl = hasInvite ? "../joinventure" : "../newventure";
     saveUser(user);
   };
+
+  if (userLoading) {
+    return <span>Loading user...</span>;
+  }
 
   if (user) {
     return <Navigate to={`/`} />;

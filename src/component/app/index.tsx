@@ -20,7 +20,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ISearchVenture, IVenture } from "module/interface/venture";
 import { useVenture } from "module/hook/venture";
 import { ISearchTimeline, ITimeline } from "module/interface/timeline";
-import { useAllTimelines } from "module/hook/timeline";
+import { useAllTimelines, useTimelines } from "module/hook/timeline";
 
 export const UserContext = createContext<IUser | undefined>(undefined);
 export const VentureContext = createContext<IVenture[]>([]);
@@ -62,7 +62,7 @@ function AuthenticatedRoute() {
   return (
     <UserContext.Provider value={user}>
       <Routes>
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile userLoading={userLoading} />} />
         <Route
           path="*"
           element={
@@ -134,14 +134,12 @@ function VentureRoutes(props: VentureRoutesProps) {
   const { ventureSlug } = useParams();
   const userId = user?.id;
 
-  const timelineSearch: ISearchTimeline = {
+  const allTimelineSearch: ISearchTimeline = {
     userId,
     token,
   };
 
-  const { data: timelinesData } = useAllTimelines(timelineSearch);
-
-  // console.log(timelines, "timelines in sidebar");
+  const { data: allTimelinesData } = useAllTimelines(allTimelineSearch);
 
   const ventureSearch: ISearchVenture = {
     userId,
@@ -161,6 +159,24 @@ function VentureRoutes(props: VentureRoutesProps) {
       )[0]
     : ventures[0];
 
+  const timelineSearch: ISearchTimeline = {
+    ventureId: currentVenture?.id,
+    token,
+  };
+
+  const { data: timelinesData } = useTimelines(timelineSearch);
+
+  const timelines =
+    allTimelinesData?.length > 0 ? allTimelinesData : timelinesData;
+
+  if (ventureData === undefined) {
+    return <span>Loading venture...</span>;
+  }
+
+  if (allTimelinesData === undefined && timelinesData === undefined) {
+    return <span>Loading Timelines...</span>;
+  }
+
   // redirect "/"" to "ventureSlug"
   if (ventureSuccess && ventureSlug === undefined) {
     const ventureSlugRedirect = currentVenture.name
@@ -176,7 +192,7 @@ function VentureRoutes(props: VentureRoutesProps) {
 
   return (
     <VentureContext.Provider value={ventureData}>
-      <TimelineContext.Provider value={timelinesData}>
+      <TimelineContext.Provider value={timelines}>
         <Routes>
           <Route path="/" element={<VentureFeed />} />
           <Route path="feed" element={<VentureFeed />} />
