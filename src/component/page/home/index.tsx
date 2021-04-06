@@ -24,16 +24,6 @@ interface HomeProps extends DefaultHomeProps {
   variantType?: VariantType;
 }
 
-// function VentureRoute(props) {
-//   const controller = useVentureRoute();
-
-//   if (controller.ventureQuery.isError) {
-//     return <Navigate to={`/newventure`} />;
-//   }
-
-//   return <>props.children</>;
-// }
-
 export function Home(props: HomeProps) {
   const { isActive, variantType, modalType, isVisible: visibleProp } = props;
 

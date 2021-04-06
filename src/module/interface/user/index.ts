@@ -12,6 +12,8 @@ export interface IUser {
 
 export interface ISearchUser {
   id?: string;
+  // resource?: string;
+  // timelineId?: string;
   token: string;
 }
 

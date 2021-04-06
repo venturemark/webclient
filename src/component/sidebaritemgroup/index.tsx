@@ -22,11 +22,11 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { ventureSlug, timelineSlug } = useParams();
   const navigate = useNavigate();
 
-  const ventureTimelines = timelines.filter(
+  const ventureTimelines = timelines?.filter(
     (timeline) => timeline.ventureId === ventureId
   );
 
-  const sortedVentureTimelines = ventureTimelines.sort(
+  const sortedVentureTimelines = ventureTimelines?.sort(
     (a: ITimeline, b: ITimeline) => a.name.localeCompare(b.name)
   );
 
@@ -47,7 +47,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
         onClick: () => navigate(`${ventureSlug}/newventure`),
       }}
       itemContainer={{
-        children: sortedVentureTimelines.map((timeline: ITimeline) => (
+        children: sortedVentureTimelines?.map((timeline: ITimeline) => (
           <SidebarItem
             timelineName={timeline.name}
             key={timeline.id}

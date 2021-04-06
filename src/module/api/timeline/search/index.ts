@@ -24,8 +24,8 @@ export async function Search(
 
   timelineSearch.userId &&
     obj.getMetadataMap().set(key.SubjectID, timelineSearch.userId);
-  // timelineSearch.ventureId &&
-  //   obj.getMetadataMap().set(key.VentureID, timelineSearch.ventureId);
+  timelineSearch.ventureId &&
+    obj.getMetadataMap().set(key.VentureID, timelineSearch.ventureId);
 
   objList.push(obj);
   req.setObjList(objList);
@@ -61,10 +61,8 @@ export async function Search(
               ventureId: ventureId,
               id: id,
             };
-            console.log("timeline in search", timeline);
             return timeline;
           });
-          console.log("timelines output", timelines);
           resolve(timelines);
         }
       });

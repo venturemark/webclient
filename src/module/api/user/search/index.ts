@@ -16,9 +16,13 @@ export async function Search(searchUser: ISearchUser): Promise<IUser> {
 
   const obj = new SearchI_Obj();
 
-  if (searchUser.id) {
-    obj.getMetadataMap().set(key.UserID, searchUser.id);
-  }
+  searchUser.id && obj.getMetadataMap().set(key.UserID, searchUser.id);
+  // do we need this?
+  // searchUser.resource &&
+  //   obj.getMetadataMap().set(key.ResourceKind, searchUser.resource);
+  // searchUser.timelineId &&
+  //   obj.getMetadataMap().set(key.TimelineID, searchUser.timelineId);
+
   objList.push(obj);
   req.setObjList(objList);
 
