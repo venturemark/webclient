@@ -1,6 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
-  ISearchUser,
   ISearchAllUser,
   IUser,
   ISearchVentureMembers,
