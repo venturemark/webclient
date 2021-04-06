@@ -1,5 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { ISearchUser, ISearchAllUser, IUser } from "module/interface/user";
+import {
+  ISearchAllUser,
+  IUser,
+  ISearchVentureMembers,
+  ISearchTimelineMembers,
+  ISearchCurrentUser,
+} from "module/interface/user";
 import { useNavigate } from "react-router-dom";
 import * as api from "module/api";
 
@@ -25,6 +31,56 @@ const getAllUser = async (searchAllUser: ISearchAllUser) => {
   return flattenedUsers;
 };
 
+const getCurrentUser = async (searchCurrentUser: ISearchCurrentUser) => {
+  const data = await api.API.User.Search(searchCurrentUser);
+  return data;
+};
+
+const getVentureMembers = async (
+  searchVentureMembers: ISearchVentureMembers
+) => {
+  const data = await api.API.User.Search(searchVentureMembers);
+  return data;
+};
+
+const getTimelineMembers = async (
+  searchTimelineMembers: ISearchTimelineMembers
+) => {
+  const data = await api.API.User.Search(searchTimelineMembers);
+  return data;
+};
+
+export function useVentureMembers(searchVentureMembers: ISearchVentureMembers) {
+  return useQuery<any, ErrorResponse>(
+    [
+      `ventureMembers-${searchVentureMembers.ventureId}`,
+      searchVentureMembers.token,
+      searchVentureMembers.ventureId,
+    ],
+    () => getVentureMembers(searchVentureMembers),
+    {
+      enabled: !!searchVentureMembers.token && !!searchVentureMembers.ventureId,
+    }
+  );
+}
+
+export function useTimelineMembers(
+  searchTimelineMembers: ISearchTimelineMembers
+) {
+  return useQuery<any, ErrorResponse>(
+    [
+      `timelineMembers-${searchTimelineMembers.timelineId}`,
+      searchTimelineMembers.token,
+      searchTimelineMembers.timelineId,
+    ],
+    () => getTimelineMembers(searchTimelineMembers),
+    {
+      enabled:
+        !!searchTimelineMembers.token && !!searchTimelineMembers.timelineId,
+    }
+  );
+}
+
 export function useAllUser(searchAllUser: ISearchAllUser) {
   return useQuery<any, ErrorResponse>(
     ["user", searchAllUser.token, searchAllUser.subjectIds],
@@ -33,16 +89,11 @@ export function useAllUser(searchAllUser: ISearchAllUser) {
   );
 }
 
-const getUser = async (searchUser: ISearchUser) => {
-  const data = await api.API.User.Search(searchUser);
-  return data;
-};
-
-export function useUser(searchUser: ISearchUser) {
+export function useCurrentUser(searchCurrentUser: ISearchCurrentUser) {
   return useQuery<any, ErrorResponse>(
-    ["user", searchUser.token],
-    () => getUser(searchUser),
-    { enabled: !!searchUser.token }
+    [`user-${searchCurrentUser.token}`, searchCurrentUser.token],
+    () => getCurrentUser(searchCurrentUser),
+    { enabled: !!searchCurrentUser.token }
   );
 }
 

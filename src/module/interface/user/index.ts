@@ -10,10 +10,25 @@ export interface IUser {
   job?: Job;
 }
 
+export interface ISearchCurrentUser {
+  token: string;
+}
+
 export interface ISearchUser {
-  id?: string;
-  // resource?: string;
-  // timelineId?: string;
+  id: string;
+  token: string;
+}
+
+export interface ISearchVentureMembers {
+  resource: string;
+  ventureId: string;
+  token: string;
+}
+
+export interface ISearchTimelineMembers {
+  resource: string;
+  timelineId: string;
+  ventureId: string;
   token: string;
 }
 

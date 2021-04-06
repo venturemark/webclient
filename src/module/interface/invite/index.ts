@@ -2,6 +2,7 @@ export interface IInvite {
   id: string;
   code?: string;
   email?: string;
+  status?: string;
   ventureId: string;
 }
 

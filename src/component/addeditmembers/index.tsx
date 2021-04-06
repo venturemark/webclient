@@ -7,13 +7,13 @@ import {
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { useForm } from "react-hook-form";
 import MemberItem from "component/memberitem";
-import { ISearchAllUser, IUser } from "module/interface/user";
+import { IUser, ISearchVentureMembers } from "module/interface/user";
 import { emailError } from "module/errors";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
 import { ITimeline } from "module/interface/timeline";
 import { useVentureRole, useTimelineRole } from "module/hook/role";
-import { useAllUser } from "module/hook/user";
+import { useVentureMembers } from "module/hook/user";
 import { IRole, ISearchRole } from "module/interface/role";
 import { useCreateInvite, useInvites } from "module/hook/invite";
 import { ICreateInvite, IInvite, ISearchInvite } from "module/interface/invite";
@@ -54,56 +54,55 @@ function AddEditMembers(props: AddEditMembersProps) {
     token,
   };
 
-  const {
-    data: timelineRolesData,
-    isSuccess: timelineRolesSuccess,
-  } = useTimelineRole(timelineRoleSearch);
-
-  const {
-    data: ventureRolesData,
-    isSuccess: ventureRolesSuccess,
-  } = useVentureRole(ventureRoleSearch);
-
-  let subjectIds = [];
-  if (ventureRolesSuccess) {
-    subjectIds = ventureRolesData?.map((role: IRole) => role.subjectId);
-
-    if (timelineRolesSuccess) {
-      let array1: IRole[] = ventureRolesData?.map(
-        (role: IRole) => role.subjectId
-      );
-      let array2: IRole[] = timelineRolesData?.map(
-        (role: IRole) => role.subjectId
-      );
-      subjectIds = array1.concat(array2);
-      subjectIds = [...new Set([...array1, ...array2])];
-    }
-  }
-
-  const ventureMembersSearch: ISearchAllUser = {
-    subjectIds,
+  const userTimelineSearch: ISearchVentureMembers = {
+    resource: "venture",
+    ventureId: currentVenture?.id ?? undefined,
     token,
   };
 
   const {
-    data: ventureMembersData,
-    isSuccess: ventureMembersSuccess,
-  } = useAllUser(ventureMembersSearch);
+    data: timelineUsersData,
+    isSuccess: timelineUsersSuccess,
+  } = useVentureMembers(userTimelineSearch);
+
+  const userVentureSearch: ISearchVentureMembers = {
+    resource: "venture",
+    ventureId: currentVenture?.id ?? undefined,
+    token,
+  };
+
+  const {
+    data: ventureUsersData,
+    isSuccess: ventureUsersSuccess,
+  } = useVentureMembers(userVentureSearch);
+
+  const { data: timelineRolesData } = useTimelineRole(timelineRoleSearch);
+
+  const { data: ventureRolesData } = useVentureRole(ventureRoleSearch);
+
+  const ventureMembers = !currentTimeline
+    ? timelineUsersData
+    : ventureUsersData;
+  const membersSuccess = !currentTimeline
+    ? timelineUsersSuccess
+    : ventureUsersSuccess;
 
   const membersAndInvites = useMemo(() => {
-    if (ventureMembersSuccess && invitesSuccess) {
-      let array1 = ventureMembersData;
-      let array2 = invitesData.map((invite: IInvite) => ({
-        name: invite.email,
-      }));
+    if (membersSuccess && invitesSuccess) {
+      let array1 = ventureMembers;
+      const array2 = invitesData
+        ?.filter((invite: IInvite) => invite.status === "pending")
+        .map((invite: IInvite) => ({
+          name: invite.email,
+        }));
       let array3 = array1.concat(array2);
       array3 = [...new Set([...array1, ...array2])];
 
       return array3;
     }
-  }, [ventureMembersSuccess, invitesSuccess, ventureMembersData, invitesData]);
+  }, [membersSuccess, invitesSuccess, ventureMembers, invitesData]);
 
-  const [members, setMembers] = useState<IUser[]>(ventureMembersData);
+  const [members, setMembers] = useState<IUser[]>(ventureMembers);
 
   const handleInvite = (data: { email: string }) => {
     const email = data.email;
@@ -154,11 +153,13 @@ function AddEditMembers(props: AddEditMembersProps) {
                 userName={member.name}
                 user={member}
                 userVariant={
-                  ventureRolesData?.filter(
-                    (role: IRole) => role.subjectId === member.id
-                  ).length > 0
+                  member.title === undefined
+                    ? "isRequested"
+                    : ventureRolesData?.filter(
+                        (role: IRole) => role.subjectId === member.id
+                      )[0]?.role === "owner"
                     ? "isAdmin"
-                    : "isRequested"
+                    : undefined
                 }
               />
             ))
@@ -167,11 +168,13 @@ function AddEditMembers(props: AddEditMembersProps) {
                 userName={member.name}
                 user={member}
                 userVariant={
-                  timelineRolesData?.filter(
-                    (role: IRole) => role.subjectId === member.id
-                  ).length > 0
+                  member.title === undefined
+                    ? "isRequested"
+                    : timelineRolesData?.filter(
+                        (role: IRole) => role.subjectId === member.id
+                      )[0]?.role === "owner"
                     ? "isAdmin"
-                    : "isRequested"
+                    : undefined
                 }
               />
             )),
