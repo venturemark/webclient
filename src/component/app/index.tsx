@@ -19,15 +19,8 @@ import { useGetToken } from "module/auth";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ISearchVenturesByUser, IVenture } from "module/interface/venture";
 import { useVenturesByUser } from "module/hook/venture";
-import {
-  ISearchTimelinesbyUserId,
-  ISearchTimelinesbyVentureId,
-  ITimeline,
-} from "module/interface/timeline";
-import {
-  useTimelinesByUserId,
-  useTimelinesByVentureId,
-} from "module/hook/timeline";
+import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
+import { useTimelinesByUserId } from "module/hook/timeline";
 
 export const UserContext = createContext<IUser | undefined>(undefined);
 export const VentureContext = createContext<IVenture[]>([]);
@@ -153,9 +146,7 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const { data: timelinesByUserData } = useTimelinesByUserId(
-    timelineByUserIdSearch
-  );
+  const { data: timelines } = useTimelinesByUserId(timelineByUserIdSearch);
 
   const ventureSearch: ISearchVenturesByUser = {
     userId,
@@ -175,28 +166,11 @@ function VentureRoutes(props: VentureRoutesProps) {
       )[0]
     : ventures[0];
 
-  const timelinebyVentureIdSearch: ISearchTimelinesbyVentureId = {
-    ventureId: currentVenture?.id,
-    token,
-  };
-
-  const { data: timelinesByVentureData } = useTimelinesByVentureId(
-    timelinebyVentureIdSearch
-  );
-
-  const timelines =
-    timelinesByUserData?.length > 0
-      ? timelinesByUserData
-      : timelinesByVentureData;
-
   if (ventureData === undefined) {
     return <span>Loading venture...</span>;
   }
 
-  if (
-    timelinesByUserData === undefined &&
-    timelinesByVentureData === undefined
-  ) {
+  if (timelines === undefined) {
     return <span>Loading Timelines...</span>;
   }
 
