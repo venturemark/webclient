@@ -1,29 +1,25 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { ISearchVenture } from "module/interface/venture";
+import {
+  ISearchVenturesByTimeline,
+  ISearchVenturesByUser,
+} from "module/interface/venture";
 import { useNavigate } from "react-router";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getVenture = async (searchVenture: ISearchVenture) => {
+const getVenturesByUser = async (searchVenture: ISearchVenturesByUser) => {
   const data = await api.API.Venture.Search(searchVenture);
   return data;
 };
 
 const getVentureByTimeline = async (
-  searchVentureByTimeline: ISearchVenture
+  searchVenturesByTimeline: ISearchVenturesByTimeline
 ) => {
-  const { timelines: timelinesData, token } = searchVentureByTimeline;
-
-  const timelines = timelinesData ?? [];
-
-  const ventureIds = timelines.map((timeline) => timeline.ventureId);
-  // console.log(ventureIds, "venture ids in get venture by timeline");
-
-  let uniqueVentureIds = [...new Set(ventureIds)];
+  const { ventureIds, token } = searchVenturesByTimeline;
 
   const allVentures = await Promise.all(
-    uniqueVentureIds.map(async (id: string) => {
+    ventureIds.map(async (id: string) => {
       const search = {
         id,
         token,
@@ -38,25 +34,32 @@ const getVentureByTimeline = async (
   return flattenedVentures;
 };
 
-export function useVenture(searchVenture: ISearchVenture) {
+export function useVenturesByUser(searchVentureByUser: ISearchVenturesByUser) {
   return useQuery<any, ErrorResponse>(
-    ["venture", searchVenture.token, searchVenture.userId],
-    () => getVenture(searchVenture),
-    { enabled: !!searchVenture.token && !!searchVenture.userId }
+    [
+      `ventures-${searchVentureByUser.userId}`,
+      searchVentureByUser.token,
+      searchVentureByUser.userId,
+    ],
+    () => getVenturesByUser(searchVentureByUser),
+    { enabled: !!searchVentureByUser.token && !!searchVentureByUser.userId }
   );
 }
 
-export function useVentureByTimeline(searchVentureByTimeline: ISearchVenture) {
+export function useVentureByTimeline(
+  searchVenturesByTimeline: ISearchVenturesByTimeline
+) {
   return useQuery<any, ErrorResponse>(
     [
-      "venture",
-      searchVentureByTimeline.token,
-      searchVentureByTimeline.timelines,
+      `ventures-${searchVenturesByTimeline.ventureIds}`,
+      searchVenturesByTimeline.token,
+      searchVenturesByTimeline.ventureIds,
     ],
-    () => getVentureByTimeline(searchVentureByTimeline),
+    () => getVentureByTimeline(searchVenturesByTimeline),
     {
       enabled:
-        !!searchVentureByTimeline.token && !!searchVentureByTimeline.timelines,
+        !!searchVenturesByTimeline.token &&
+        !!searchVenturesByTimeline.ventureIds,
     }
   );
 }
@@ -72,7 +75,7 @@ export function useCreateVenture() {
     {
       onSuccess: (_, newVenture) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("venture");
+        queryClient.invalidateQueries("ventures");
 
         //redirect on success
         newVenture.successUrl && navigate(newVenture.successUrl);
@@ -92,7 +95,7 @@ export function useUpdateVenture() {
     {
       onSuccess: (_, ventureUpdate) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("venture");
+        queryClient.invalidateQueries("ventures");
 
         //redirect on success
         ventureUpdate.successUrl && navigate(ventureUpdate.successUrl);

@@ -1,5 +1,3 @@
-import { ITimeline } from "../timeline";
-
 export interface IVenture {
   id: string;
   name: string;
@@ -7,10 +5,13 @@ export interface IVenture {
   url?: string;
 }
 
-export interface ISearchVenture {
-  id?: string;
-  userId?: string;
-  timelines?: ITimeline[];
+export interface ISearchVenturesByUser {
+  userId: string;
+  token: string;
+}
+
+export interface ISearchVenturesByTimeline {
+  ventureIds: string[];
   token: string;
 }
 

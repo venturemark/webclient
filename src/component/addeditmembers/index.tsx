@@ -102,7 +102,7 @@ function AddEditMembers(props: AddEditMembersProps) {
     }
   }, [membersSuccess, invitesSuccess, ventureMembers, invitesData]);
 
-  const [members, setMembers] = useState<IUser[]>(ventureMembers);
+  const [members, setMembers] = useState<IUser[]>(membersAndInvites);
 
   const handleInvite = (data: { email: string }) => {
     const email = data.email;

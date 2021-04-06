@@ -17,10 +17,10 @@ import { useCurrentUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import { ISearchVenture, IVenture } from "module/interface/venture";
-import { useVenture } from "module/hook/venture";
-import { ISearchTimeline, ITimeline } from "module/interface/timeline";
-import { useAllTimelines, useTimelines } from "module/hook/timeline";
+import { ISearchVenturesByUser, IVenture } from "module/interface/venture";
+import { useVenturesByUser } from "module/hook/venture";
+import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
+import { useTimelinesByUserId } from "module/hook/timeline";
 
 export const UserContext = createContext<IUser | undefined>(undefined);
 export const VentureContext = createContext<IVenture[]>([]);
@@ -141,19 +141,19 @@ function VentureRoutes(props: VentureRoutesProps) {
   const { ventureSlug } = useParams();
   const userId = user?.id;
 
-  const allTimelineSearch: ISearchTimeline = {
+  const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
     userId,
     token,
   };
 
-  const { data: allTimelinesData } = useAllTimelines(allTimelineSearch);
+  const { data: timelines } = useTimelinesByUserId(timelineByUserIdSearch);
 
-  const ventureSearch: ISearchVenture = {
+  const ventureSearch: ISearchVenturesByUser = {
     userId,
     token,
   };
 
-  const { data: ventureData, isSuccess: ventureSuccess } = useVenture(
+  const { data: ventureData, isSuccess: ventureSuccess } = useVenturesByUser(
     ventureSearch
   );
 
@@ -166,21 +166,11 @@ function VentureRoutes(props: VentureRoutesProps) {
       )[0]
     : ventures[0];
 
-  const timelineSearch: ISearchTimeline = {
-    ventureId: currentVenture?.id,
-    token,
-  };
-
-  const { data: timelinesData } = useTimelines(timelineSearch);
-
-  const timelines =
-    allTimelinesData?.length > 0 ? allTimelinesData : timelinesData;
-
   if (ventureData === undefined) {
     return <span>Loading venture...</span>;
   }
 
-  if (allTimelinesData === undefined && timelinesData === undefined) {
+  if (timelines === undefined) {
     return <span>Loading Timelines...</span>;
   }
 

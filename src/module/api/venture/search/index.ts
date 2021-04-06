@@ -5,11 +5,12 @@ import {
 } from "module/api/venture/proto/search_pb";
 import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IVenture, ISearchVenture } from "module/interface/venture/index";
+import { IVenture } from "module/interface/venture/index";
 import * as key from "module/apikeys";
+import { IAPISearchVenture } from "module/interface/api";
 
 export async function Search(
-  ventureSearch: ISearchVenture
+  ventureSearch: IAPISearchVenture
 ): Promise<IVenture[]> {
   const objList = [];
 
