@@ -37,10 +37,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   } = props;
   const { ventureSlug } = useParams();
   const token = useGetToken();
-  const {
-    mutate: createVenture,
-    // isSuccess: isCreateSuccess,
-  } = useCreateVenture();
+  const { mutate: createVenture } = useCreateVenture();
   const { mutate: updateVenture } = useUpdateVenture();
 
   const navigate = useNavigate();
@@ -54,7 +51,7 @@ function AddEditVenture(props: AddEditVentureProps) {
     const ventureCreate: ICreateVenture = {
       name: data.ventureName,
       desc: data.ventureDescription,
-      url: makeVentureUrl(handle),
+      url: makeVentureUrl(createHandle),
       successUrl: `/${createHandle}/newtimeline`,
       token: token,
     };
