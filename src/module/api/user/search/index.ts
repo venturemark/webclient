@@ -1,10 +1,11 @@
 import { SearchI, SearchI_Obj, SearchO } from "module/api/user/proto/search_pb";
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IUser, ISearchUser, Job } from "module/interface/user";
+import { IUser, Job } from "module/interface/user";
 import * as key from "module/apikeys";
+import { IAPISearchUser } from "module/interface/api";
 
-export async function Search(searchUser: ISearchUser): Promise<IUser> {
+export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
   const objList = [];
 
   const token = searchUser.token;
@@ -17,16 +18,17 @@ export async function Search(searchUser: ISearchUser): Promise<IUser> {
   const obj = new SearchI_Obj();
 
   searchUser.id && obj.getMetadataMap().set(key.UserID, searchUser.id);
-  // do we need this?
-  // searchUser.resource &&
-  //   obj.getMetadataMap().set(key.ResourceKind, searchUser.resource);
-  // searchUser.timelineId &&
-  //   obj.getMetadataMap().set(key.TimelineID, searchUser.timelineId);
+  searchUser.resource &&
+    obj.getMetadataMap().set(key.ResourceKind, searchUser.resource);
+  searchUser.timelineId &&
+    obj.getMetadataMap().set(key.TimelineID, searchUser.timelineId);
+  searchUser.ventureId &&
+    obj.getMetadataMap().set(key.VentureID, searchUser.ventureId);
 
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb: IUser = await new Promise((resolve, reject) => {
+  const getSearchResponsePb: IUser[] = await new Promise((resolve, reject) => {
     client.search(req, metadata, function (err: any, res: SearchO): any {
       if (err) {
         console.log(err.code);
@@ -56,7 +58,7 @@ export async function Search(searchUser: ISearchUser): Promise<IUser> {
           };
           return user;
         });
-        resolve(users[0]);
+        resolve(users);
       }
     });
   });

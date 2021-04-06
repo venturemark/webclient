@@ -12,8 +12,8 @@ import Profile from "component/page/profile";
 import JoinVenture from "component/page/joinventure";
 
 //component specific
-import { ISearchUser, IUser } from "module/interface/user";
-import { useUser } from "module/hook/user";
+import { ISearchCurrentUser, IUser } from "module/interface/user";
+import { useCurrentUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -42,22 +42,29 @@ function AuthenticatedRoute() {
   const token = useGetToken();
   const { isAuthenticated, isLoading } = useAuth0();
 
-  const userSearch: ISearchUser = {
+  const currentUserSearch: ISearchCurrentUser = {
     token,
   };
   const {
-    data: user,
+    data: userData,
     isSuccess: userSuccess,
     isLoading: userLoading,
-  } = useUser(userSearch);
+    isError: userError,
+  } = useCurrentUser(currentUserSearch);
 
   if (isLoading) {
     return <span>Checking auth...</span>;
   }
 
+  if (userError) {
+    return <span>error fetching user</span>;
+  }
+
   if (!isLoading && !isAuthenticated) {
     return <Navigate to={`signin`} />;
   }
+
+  const user = userSuccess ? userData[0] : undefined;
 
   return (
     <UserContext.Provider value={user}>
