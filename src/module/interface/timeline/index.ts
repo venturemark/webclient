@@ -6,6 +6,7 @@ export interface ITimeline {
   userId: string;
   id: string;
   date?: string;
+  userRole?: string;
 }
 
 export interface ISearchTimelinesbyUserId {

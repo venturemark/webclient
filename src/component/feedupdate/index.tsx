@@ -6,13 +6,19 @@ import {
   DefaultFeedUpdateProps,
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import ContentPost from "component/contentpost";
-import { ISearchUpdate, ISearchAllUpdate } from "module/interface/update";
+import {
+  ISearchUpdate,
+  ISearchUpdateByTimelineIds,
+} from "module/interface/update";
 import { ITimeline } from "module/interface/timeline";
-import { useTimelineUpdates, useAllUpdates } from "module/hook/update";
-import { useAllUser } from "module/hook/user";
+import {
+  useUpdatesByTimeline,
+  useUpdatesByTimelineIds,
+} from "module/hook/update";
+import { useTimelineMembers } from "module/hook/user";
 import { IUpdate } from "module/interface/update";
 import { IVenture } from "module/interface/venture";
-import { ISearchAllUser, IUser } from "module/interface/user";
+import { ISearchTimelineMembers, IUser } from "module/interface/user";
 import { useGetToken } from "module/auth";
 import { useParams } from "react-router-dom";
 
@@ -39,26 +45,32 @@ function FeedUpdate(props: FeedUpdateProps) {
   const { timelineSlug } = useParams();
   const token = useGetToken();
   const ventureId = currentVenture?.id ?? "";
+  const timelineId = currentTimeline?.id ?? "";
 
-  const timelineUpdatesSearch: ISearchUpdate = {
+  const updatesByTimelineSearch: ISearchUpdate = {
     ventureId,
-    timelineId: currentTimeline?.id ?? "",
+    timelineId,
     token,
   };
 
-  const allUpdatesSearch: ISearchAllUpdate = {
-    ventureId,
-    timelines,
-    token,
-  };
+  const timelineIds = timelines?.map((timeline: ITimeline) => timeline.id);
 
-  const { data: timelineUpdates } = useTimelineUpdates(timelineUpdatesSearch);
+  const { data: timelineUpdates } = useUpdatesByTimeline(
+    updatesByTimelineSearch
+  );
 
   let updates = timelineUpdates ?? [];
 
-  const { data: allUpdates, isSuccess: updateSuccess } = useAllUpdates(
-    allUpdatesSearch
-  );
+  const updatesByTimelineIdsSearch: ISearchUpdateByTimelineIds = {
+    ventureId,
+    timelineIds,
+    token,
+  };
+
+  const {
+    data: allUpdates,
+    isSuccess: updateSuccess,
+  } = useUpdatesByTimelineIds(updatesByTimelineIdsSearch);
 
   if (updateSuccess) {
     //deduplicate updates for home
@@ -78,14 +90,14 @@ function FeedUpdate(props: FeedUpdateProps) {
     updates = timelineSlug ? timelineUpdates ?? [] : homeUpdates ?? [];
   }
 
-  const subjectIds = updates.map((update: IUpdate) => update.userId);
-
-  const userAllSearch: ISearchAllUser = {
-    subjectIds,
+  const userTimelineSearch: ISearchTimelineMembers = {
+    resource: "timeline",
+    timelineId,
+    ventureId,
     token,
   };
 
-  const { data: userData, isSuccess: userSuccess } = useAllUser(userAllSearch);
+  const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
 
   return (
     <PlasmicFeedUpdate
@@ -103,38 +115,17 @@ function FeedUpdate(props: FeedUpdateProps) {
             key={update.id}
             id={update.id}
             timelineId={update.timelineId}
-            userName={
-              userSuccess
-                ? userData?.filter(
-                    (user: IUser) => user.id === update.userId
-                  )[0].name
-                : ""
-            }
-            user={
-              userSuccess
-                ? userData?.filter(
-                    (user: IUser) => user.id === update.userId
-                  )[0]
-                : { name: "" }
-            }
             date={update.date}
             setIsVisible={setIsVisible}
             setPost={() =>
               setPost({
                 ...update,
-                user: userSuccess
-                  ? userData?.filter(
-                      (user: IUser) => user.id === update.userId
-                    )[0]
-                  : { name: "" },
-                userName: userSuccess
-                  ? userData?.filter(
-                      (user: IUser) => user.id === update.userId
-                    )[0].name
-                  : "",
+                users: timelineUsersData,
               })
             }
             currentVenture={currentVenture}
+            allUpdates={allUpdates}
+            userId={update.userId}
           />
         )),
       }}

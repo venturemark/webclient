@@ -17,8 +17,10 @@ interface SidebarProps extends DefaultSidebarProps {}
 function Sidebar(props: SidebarProps) {
   const navigate = useNavigate();
   const token = useGetToken();
-  const timelines = useContext(TimelineContext);
-  const venturesContext = useContext(VentureContext);
+  const timelineContext = useContext(TimelineContext);
+  const ventureContext = useContext(VentureContext);
+
+  const timelines = timelineContext?.timelines ?? [];
 
   const ventureIds = timelines.map((timeline) => timeline.ventureId);
   let uniqueVentureIds = [...new Set(ventureIds)];
@@ -29,7 +31,8 @@ function Sidebar(props: SidebarProps) {
   };
 
   const { data: venturesData, isLoading } = useVentureByTimeline(ventureSearch);
-  const ventures = venturesData?.length > 0 ? venturesData : venturesContext;
+  const ventures =
+    venturesData?.length > 0 ? venturesData : ventureContext?.ventures;
 
   const sortedVentures = ventures?.sort((a: IVenture, b: IVenture) =>
     a.name.localeCompare(b.name)
@@ -50,6 +53,7 @@ function Sidebar(props: SidebarProps) {
             ventureName={venture.name}
             key={venture.id}
             ventureId={venture.id}
+            userRole={venture.userRole}
           />
         )),
       }}

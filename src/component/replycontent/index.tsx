@@ -8,10 +8,10 @@ import {
 import { IUser } from "module/interface/user";
 
 interface ReplyContentProps extends DefaultReplyContentProps {
-  userName: string;
+  userName?: string;
   text: string;
   date: string;
-  user: IUser;
+  user?: IUser;
 }
 
 function ReplyContent(props: ReplyContentProps) {

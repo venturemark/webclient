@@ -7,14 +7,22 @@ import {
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { useForm } from "react-hook-form";
 import MemberItem from "component/memberitem";
-import { IUser, ISearchVentureMembers } from "module/interface/user";
+import {
+  IUser,
+  ISearchVentureMembers,
+  ISearchTimelineMembers,
+} from "module/interface/user";
 import { emailError } from "module/errors";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
 import { ITimeline } from "module/interface/timeline";
 import { useVentureRole, useTimelineRole } from "module/hook/role";
-import { useVentureMembers } from "module/hook/user";
-import { IRole, ISearchRole } from "module/interface/role";
+import { useTimelineMembers, useVentureMembers } from "module/hook/user";
+import {
+  IRole,
+  ISearchTimelineRoles,
+  ISearchVentureRoles,
+} from "module/interface/role";
 import { useCreateInvite, useInvites } from "module/hook/invite";
 import { ICreateInvite, IInvite, ISearchInvite } from "module/interface/invite";
 
@@ -42,20 +50,21 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   const { mutate: createInvite } = useCreateInvite();
 
-  const ventureRoleSearch: ISearchRole = {
+  const ventureRoleSearch: ISearchVentureRoles = {
     resource: "venture",
     ventureId: currentVenture?.id ?? "",
     token,
   };
 
-  const timelineRoleSearch: ISearchRole = {
+  const timelineRoleSearch: ISearchTimelineRoles = {
     resource: "timeline",
     timelineId: currentTimeline?.id ?? "",
     token,
   };
 
-  const userTimelineSearch: ISearchVentureMembers = {
-    resource: "venture",
+  const userTimelineSearch: ISearchTimelineMembers = {
+    resource: "timeline",
+    timelineId: currentTimeline?.id ?? undefined,
     ventureId: currentVenture?.id ?? undefined,
     token,
   };
@@ -63,7 +72,7 @@ function AddEditMembers(props: AddEditMembersProps) {
   const {
     data: timelineUsersData,
     isSuccess: timelineUsersSuccess,
-  } = useVentureMembers(userTimelineSearch);
+  } = useTimelineMembers(userTimelineSearch);
 
   const userVentureSearch: ISearchVentureMembers = {
     resource: "venture",

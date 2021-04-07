@@ -7,57 +7,55 @@ import {
 } from "component/plasmic/shared/PlasmicContentPost";
 import TimelineLink from "component/timelinelink";
 import { ITimeline } from "module/interface/timeline";
-import { ISearchAllUpdate, IUpdate } from "module/interface/update";
-import { useAllUpdates } from "module/hook/update";
+import { IUpdate } from "module/interface/update";
 import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { IVenture } from "module/interface/venture";
 import { useGetToken } from "module/auth";
-import { IUser } from "module/interface/user";
+import { ISearchTimelineMembers, IUser } from "module/interface/user";
 import { useContext } from "react";
 import { TimelineContext } from "component/app";
+import { useTimelineMembers } from "module/hook/user";
 
 interface ContentPostProps extends DefaultContentPostProps {
   title: string;
   description: string;
   id: string;
-  userName: string;
   timelineId: string;
   date: string;
   setIsVisible: any;
   setPost: any;
+  userId: string;
+  userName?: string;
+  user?: IUser;
   state?: "isUser" | "isPostDetails";
   currentVenture: IVenture;
-  user: IUser;
+  allUpdates: IUpdate[];
 }
 
 function ContentPost(props: ContentPostProps) {
   const {
     title,
     description,
-    userName,
     date,
     setIsVisible,
     setPost,
-    user,
     timelineId,
     id,
     state,
     currentVenture,
+    allUpdates,
+    userId,
+    userName,
+    user,
     ...rest
   } = props;
   const token = useGetToken();
 
   const ventureId = currentVenture?.id ?? "";
 
-  const timelines = useContext(TimelineContext);
-
-  const allUpdatesSearch: ISearchAllUpdate = {
-    ventureId,
-    timelines,
-    token,
-  };
-  const { data: allUpdates } = useAllUpdates(allUpdatesSearch);
+  const timelineContext = useContext(TimelineContext);
+  const timelines = timelineContext?.timelines ?? [];
 
   const messageSearch: ISearchMessage = {
     updateId: id,
@@ -76,7 +74,7 @@ function ContentPost(props: ContentPostProps) {
         Math.round(Number(update.id) / 1000000000) ===
         Math.round(Number(id) / 1000000000)
     )
-    .map((update: any) => {
+    .map((update: IUpdate) => {
       const updateTimelines = timelines.filter(
         (timeline: ITimeline) => timeline.id === update.timelineId
       );
@@ -85,16 +83,33 @@ function ContentPost(props: ContentPostProps) {
     })
     .flat();
 
+  const userTimelineSearch: ISearchTimelineMembers = {
+    resource: "timeline",
+    timelineId,
+    ventureId,
+    token,
+  };
+
+  const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
+
+  const userData = timelineUsersData?.filter(
+    (user: IUser) => user.id === userId
+  )[0];
+
+  const userNameData = timelineUsersData?.filter(
+    (user: IUser) => user.id === userId
+  )[0]?.name;
+
+  const postUser = userData ?? user;
+
   return (
     <PlasmicContentPost
       {...rest}
       state={state}
       title={title}
       description={description}
-      userName={userName}
-      photoAvatar={{
-        user,
-      }}
+      userName={userNameData || userName}
+      photoAvatar={{ user: postUser }}
       date={date}
       viewReplies={{
         count: count,
@@ -104,7 +119,7 @@ function ContentPost(props: ContentPostProps) {
         },
       }}
       timelineNamesContainer={{
-        children: updateTimelines?.map((timeline: ITimeline) => (
+        children: updateTimelines?.map((timeline) => (
           <TimelineLink timeline={timeline} />
         )),
       }}

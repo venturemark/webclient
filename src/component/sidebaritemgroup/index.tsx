@@ -14,10 +14,11 @@ interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;
   ventureId: string;
   timelines: ITimeline[];
+  userRole?: string;
 }
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
-  const { ventureName, ventureId, timelines, ...rest } = props;
+  const { ventureName, ventureId, timelines, userRole, ...rest } = props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { ventureSlug, timelineSlug } = useParams();
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       itemContainer={{
         children: sortedVentureTimelines?.map((timeline: ITimeline) => (
           <SidebarItem
+            userRole={timeline.userRole}
             timelineName={timeline.name}
             key={timeline.id}
             ventureId={timeline.ventureId}

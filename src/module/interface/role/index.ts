@@ -6,10 +6,21 @@ export interface IRole {
   ventureId: string;
 }
 
-export interface ISearchRole {
+export interface ISearchTimelineRoles {
   resource: string;
-  ventureId?: string;
-  timelineId?: string;
+  timelineId: string;
+  token: string;
+}
+
+export interface ISearchVentureRoles {
+  resource: string;
+  ventureId: string;
+  token: string;
+}
+
+export interface ISearchRoleByTimelineIds {
+  resource: string;
+  timelineIds: string[];
   token: string;
 }
 

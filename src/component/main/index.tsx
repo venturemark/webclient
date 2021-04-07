@@ -5,12 +5,11 @@ import {
   PlasmicMain,
   DefaultMainProps,
 } from "component/plasmic/shared/PlasmicMain";
-import { useParams } from "react-router-dom";
 import { TimelineContext, VentureContext } from "component/app";
 import { useForm } from "react-hook-form";
 import { IUser } from "module/interface/user";
+import { useParams } from "react-router-dom";
 import { ITimeline } from "module/interface/timeline";
-import { IVenture } from "module/interface/venture";
 
 interface MainProps extends DefaultMainProps {
   isOnboarding?: boolean | "isOnboarding";
@@ -37,27 +36,24 @@ function Main(props: MainProps) {
     user,
     ...rest
   } = props;
+  const { timelineSlug } = useParams();
 
-  const { timelineSlug, ventureSlug } = useParams();
-
-  const timelines = useContext(TimelineContext);
-  const ventures = useContext(VentureContext);
-  const currentVenture = ventureSlug
-    ? ventures?.filter(
-        (venture: IVenture) =>
-          venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
-      )[0]
-    : ventures[0];
-
-  const currentTimeline = timelines?.filter((timeline: ITimeline) => {
-    return (
-      timeline.name.toLowerCase().replace(/\s/g, "") ===
-        timelineSlug?.toLowerCase().replace(/\s/g, "") ?? ""
-    );
-  })[0];
+  const timelineContext = useContext(TimelineContext);
+  const ventureContext = useContext(VentureContext);
+  const currentVenture = ventureContext?.currentVenture;
+  const timelines = timelineContext?.timelines ?? [];
 
   const { handleSubmit, register, reset, watch, errors } = useForm();
   const watchData = watch();
+
+  const currentTimeline = timelineSlug
+    ? timelines?.filter((timeline: ITimeline) => {
+        return (
+          timeline.name.toLowerCase().replace(/\s/g, "") ===
+            timelineSlug?.toLowerCase().replace(/\s/g, "") ?? ""
+        );
+      })[0]
+    : undefined;
 
   return (
     <PlasmicMain

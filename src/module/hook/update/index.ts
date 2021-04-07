@@ -1,21 +1,25 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { ISearchAllUpdate, ISearchUpdate } from "module/interface/update";
+import {
+  ISearchUpdate,
+  ISearchUpdateByTimelineId,
+  ISearchUpdateByTimelineIds,
+} from "module/interface/update";
 import * as api from "module/api";
-import { ITimeline } from "module/interface/timeline";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getTimelineUpdates = async (searchUpdate: ISearchUpdate) => {
+const getUpdatesByTimelineId = async (searchUpdate: ISearchUpdate) => {
   const data = await api.API.Update.Search(searchUpdate);
   return data;
 };
 
-const getAllUpdates = async (searchAllUpdate: ISearchAllUpdate) => {
-  const { timelines, ventureId, token } = searchAllUpdate;
+const getUpdatesByTimelineIds = async (
+  searchAllUpdate: ISearchUpdateByTimelineIds
+) => {
+  const { timelineIds, ventureId, token } = searchAllUpdate;
 
   const allUpdates = await Promise.all(
-    timelines.map(async (timeline: ITimeline) => {
-      const timelineId = timeline.id;
+    timelineIds.map(async (timelineId) => {
       const search = {
         ventureId,
         timelineId,
@@ -31,19 +35,43 @@ const getAllUpdates = async (searchAllUpdate: ISearchAllUpdate) => {
   return flattenedUpdates;
 };
 
-export function useTimelineUpdates(searchUpdate: ISearchUpdate) {
+export function useUpdatesByTimeline(
+  searchUpdateByTimelineId: ISearchUpdateByTimelineId
+) {
   return useQuery<any, ErrorResponse>(
-    ["update", searchUpdate.timelineId, searchUpdate.token],
-    () => getTimelineUpdates(searchUpdate),
-    { enabled: !!searchUpdate.timelineId && !!searchUpdate.token }
+    [
+      `updates-${searchUpdateByTimelineId.timelineId}`,
+      searchUpdateByTimelineId.timelineId,
+      searchUpdateByTimelineId.token,
+      searchUpdateByTimelineId.ventureId,
+    ],
+    () => getUpdatesByTimelineId(searchUpdateByTimelineId),
+    {
+      enabled:
+        !!searchUpdateByTimelineId.timelineId &&
+        !!searchUpdateByTimelineId.token &&
+        !!searchUpdateByTimelineId.ventureId,
+    }
   );
 }
 
-export function useAllUpdates(searchAllUpdate: ISearchAllUpdate) {
+export function useUpdatesByTimelineIds(
+  searchUpdateByTimelineIds: ISearchUpdateByTimelineIds
+) {
   return useQuery<any, ErrorResponse>(
-    ["update", searchAllUpdate.timelines, searchAllUpdate.token],
-    () => getAllUpdates(searchAllUpdate),
-    { enabled: !!searchAllUpdate.timelines && !!searchAllUpdate.token }
+    [
+      `updates-${searchUpdateByTimelineIds.timelineIds}`,
+      searchUpdateByTimelineIds.timelineIds,
+      !!searchUpdateByTimelineIds.ventureId,
+      searchUpdateByTimelineIds.token,
+    ],
+    () => getUpdatesByTimelineIds(searchUpdateByTimelineIds),
+    {
+      enabled:
+        !!searchUpdateByTimelineIds.timelineIds &&
+        !!searchUpdateByTimelineIds.token &&
+        !!searchUpdateByTimelineIds.ventureId,
+    }
   );
 }
 
@@ -57,7 +85,7 @@ export function useCreateUpdate() {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("update");
+        queryClient.invalidateQueries("updates");
       },
     }
   );
@@ -73,7 +101,7 @@ export function useUpdateUpdate() {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("update");
+        queryClient.invalidateQueries("updates");
       },
     }
   );
