@@ -1,10 +1,11 @@
 import { SearchI, SearchI_Obj, SearchO } from "module/api/role/proto/search_pb";
 import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IRole, ISearchRole } from "module/interface/role";
+import { IRole } from "module/interface/role";
 import * as key from "module/apikeys";
+import { IAPISearchRole } from "module/interface/api";
 
-export async function Search(searchRole: ISearchRole): Promise<IRole[]> {
+export async function Search(searchRole: IAPISearchRole): Promise<IRole[]> {
   const objList = [];
 
   const token = searchRole.token;

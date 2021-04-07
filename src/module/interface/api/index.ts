@@ -17,3 +17,10 @@ export interface IAPISearchVenture {
   userId?: string;
   token: string;
 }
+
+export interface IAPISearchRole {
+  resource: string;
+  ventureId?: string;
+  timelineId?: string;
+  token: string;
+}

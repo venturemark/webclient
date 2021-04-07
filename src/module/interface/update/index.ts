@@ -19,9 +19,15 @@ export interface ISearchUpdate {
   token: string;
 }
 
-export interface ISearchAllUpdate {
+export interface ISearchUpdateByTimelineId {
+  timelineId: string;
   ventureId: string;
-  timelines: any;
+  token: string;
+}
+
+export interface ISearchUpdateByTimelineIds {
+  timelineIds: string[];
+  ventureId: string;
   token: string;
 }
 
