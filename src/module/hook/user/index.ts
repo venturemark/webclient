@@ -83,7 +83,11 @@ export function useTimelineMembers(
 
 export function useAllUser(searchAllUser: ISearchAllUser) {
   return useQuery<any, ErrorResponse>(
-    ["users", searchAllUser.token, searchAllUser.subjectIds],
+    [
+      `users-${searchAllUser.subjectIds}`,
+      searchAllUser.token,
+      searchAllUser.subjectIds,
+    ],
     () => getAllUser(searchAllUser),
     { enabled: !!searchAllUser.token && !!searchAllUser.subjectIds }
   );

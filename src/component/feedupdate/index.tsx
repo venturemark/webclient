@@ -97,10 +97,7 @@ function FeedUpdate(props: FeedUpdateProps) {
     token,
   };
 
-  const {
-    data: timelineUsersData,
-    isSuccess: timelineUsersSuccess,
-  } = useTimelineMembers(userTimelineSearch);
+  const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
 
   return (
     <PlasmicFeedUpdate
@@ -123,16 +120,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             setPost={() =>
               setPost({
                 ...update,
-                user: timelineUsersSuccess
-                  ? timelineUsersData?.filter(
-                      (user: IUser) => user.id === update.userId
-                    )[0]
-                  : { name: "" },
-                userName: timelineUsersSuccess
-                  ? timelineUsersData?.filter(
-                      (user: IUser) => user.id === update.userId
-                    )[0]?.name
-                  : "",
+                users: timelineUsersData,
               })
             }
             currentVenture={currentVenture}

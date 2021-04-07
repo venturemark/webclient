@@ -26,6 +26,8 @@ interface ContentPostProps extends DefaultContentPostProps {
   setIsVisible: any;
   setPost: any;
   userId: string;
+  userName?: string;
+  user?: IUser;
   state?: "isUser" | "isPostDetails";
   currentVenture: IVenture;
   allUpdates: IUpdate[];
@@ -44,6 +46,8 @@ function ContentPost(props: ContentPostProps) {
     currentVenture,
     allUpdates,
     userId,
+    userName,
+    user,
     ...rest
   } = props;
   const token = useGetToken();
@@ -88,13 +92,15 @@ function ContentPost(props: ContentPostProps) {
 
   const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
 
-  const user = timelineUsersData?.filter(
+  const userData = timelineUsersData?.filter(
     (user: IUser) => user.id === userId
   )[0];
 
-  const userName = timelineUsersData?.filter(
+  const userNameData = timelineUsersData?.filter(
     (user: IUser) => user.id === userId
   )[0]?.name;
+
+  const postUser = userData ?? user;
 
   return (
     <PlasmicContentPost
@@ -102,10 +108,8 @@ function ContentPost(props: ContentPostProps) {
       state={state}
       title={title}
       description={description}
-      userName={userName}
-      photoAvatar={{
-        user,
-      }}
+      userName={userNameData || userName}
+      photoAvatar={{ user: postUser }}
       date={date}
       viewReplies={{
         count: count,

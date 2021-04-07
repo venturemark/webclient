@@ -7,9 +7,8 @@ import {
 } from "component/plasmic/shared/PlasmicPostDetails";
 import ReplyContent from "component/replycontent";
 import { IMessage, ISearchMessage } from "module/interface/message";
-import { ISearchAllUser, IUser } from "module/interface/user";
+import { IUser } from "module/interface/user";
 import { useMessages } from "module/hook/message";
-import { useAllUser } from "module/hook/user";
 import { IUpdate } from "module/interface/update";
 import { useGetToken } from "module/auth";
 
@@ -34,16 +33,11 @@ function PostDetails(props: PostDetailsProps) {
   };
 
   const { data: messagesData } = useMessages(messageSearch);
-  const messages = messagesData ?? [];
+  const messages = messagesData;
 
-  const subjectIds = messages.map((message: IMessage) => message.userId);
-
-  const userAllSearch: ISearchAllUser = {
-    subjectIds,
-    token,
-  };
-
-  const { data: userData, isSuccess: userSuccess } = useAllUser(userAllSearch);
+  const postUser = post?.users?.filter(
+    (user: IUser) => (post.userId = user.id)
+  )[0];
 
   return (
     <PlasmicPostDetails
@@ -57,26 +51,22 @@ function PostDetails(props: PostDetailsProps) {
         description: post?.text ?? "",
         id: updateId,
         timelineId: timelineId,
-        userName: post.userName,
-        user: post.user,
+        userName: postUser?.name,
+        user: postUser,
         date: post?.date ?? "",
       }}
       repliesContainer={{
-        children: messages.map((message: IMessage) => (
+        children: messages?.map((message: IMessage) => (
           <ReplyContent
             userName={
-              userSuccess
-                ? userData?.filter(
-                    (user: IUser) => user.id === message.userId
-                  )[0].name
-                : ""
+              post?.users?.filter(
+                (user: IUser) => user.id === message.userId
+              )[0]?.name
             }
             user={
-              userSuccess
-                ? userData?.filter(
-                    (user: IUser) => user.id === message.userId
-                  )[0]
-                : { name: "" }
+              post?.users?.filter(
+                (user: IUser) => user.id === message.userId
+              )[0]
             }
             date={message.date}
             key={message.id}
