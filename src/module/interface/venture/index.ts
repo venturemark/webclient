@@ -3,6 +3,7 @@ export interface IVenture {
   name: string;
   desc: string;
   url?: string;
+  userRole?: string;
 }
 
 export interface ISearchVenturesByUser {

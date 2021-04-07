@@ -50,7 +50,8 @@ function ContentPost(props: ContentPostProps) {
 
   const ventureId = currentVenture?.id ?? "";
 
-  const timelines = useContext(TimelineContext);
+  const timelineContext = useContext(TimelineContext);
+  const timelines = timelineContext?.timelines ?? [];
 
   const allUpdatesSearch: ISearchAllUpdate = {
     ventureId,

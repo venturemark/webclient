@@ -13,6 +13,7 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   ventureId: string;
   setHasInput?: any;
   setIsCollapsed?: any;
+  userRole?: string;
   isCollapsed?: boolean;
   itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
@@ -25,6 +26,7 @@ function SidebarItem(props: SidebarItemProps) {
     setHasInput,
     setIsCollapsed,
     isCollapsed,
+    userRole,
     ...rest
   } = props;
   const [isUserOnClick, setIsUserOnClick] = useState(false);
@@ -56,12 +58,12 @@ function SidebarItem(props: SidebarItemProps) {
       window.removeEventListener("click", handleWindowClick);
       window.removeEventListener("keydown", handleWindowClick);
     };
-  }, [isUserOnClick, setIsUserOnClick]);
+  }, [isUserOnClick, setIsUserOnClick, userRole]);
 
   return (
     <PlasmicSidebarItem
       {...rest}
-      isUserOnClick={isUserOnClick}
+      isUserOnClick={userRole === "admin" ? isUserOnClick : false}
       icon={{
         onClick: (e) => {
           e.stopPropagation();

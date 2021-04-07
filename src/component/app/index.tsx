@@ -21,10 +21,28 @@ import { ISearchVenturesByUser, IVenture } from "module/interface/venture";
 import { useVenturesByUser } from "module/hook/venture";
 import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
 import { useTimelinesByUserId } from "module/hook/timeline";
+import { useTimelineRole, useVentureRole } from "module/hook/role";
+import { IRole, ISearchRole } from "module/interface/role";
+
+interface IVentureContext {
+  ventures: IVenture[];
+  currentVenture: IVenture;
+  currentVentureRole: string;
+}
+
+interface ITimelineContext {
+  timelines: ITimeline[];
+  currentTimeline: ITimeline;
+  currentTimelineRole: string;
+}
 
 export const UserContext = createContext<IUser | undefined>(undefined);
-export const VentureContext = createContext<IVenture[]>([]);
-export const TimelineContext = createContext<ITimeline[]>([]);
+export const VentureContext = createContext<IVentureContext | undefined>(
+  undefined
+);
+export const TimelineContext = createContext<ITimelineContext | undefined>(
+  undefined
+);
 
 export function Component() {
   return (
@@ -138,7 +156,7 @@ interface VentureRoutesProps {
 function VentureRoutes(props: VentureRoutesProps) {
   const { user } = props;
   const token = useGetToken();
-  const { ventureSlug } = useParams();
+  const { ventureSlug, timelineSlug } = useParams();
   const userId = user?.id;
 
   const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
@@ -146,7 +164,7 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const { data: timelines } = useTimelinesByUserId(timelineByUserIdSearch);
+  const { data: timelinesData } = useTimelinesByUserId(timelineByUserIdSearch);
 
   const ventureSearch: ISearchVenturesByUser = {
     userId,
@@ -157,22 +175,39 @@ function VentureRoutes(props: VentureRoutesProps) {
     ventureSearch
   );
 
-  const ventures = ventureData ?? [];
-
   const currentVenture = ventureSlug
-    ? ventures.filter(
+    ? ventureData?.filter(
         (venture: IVenture) =>
           venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
       )[0]
-    : ventures[0];
+    : ventureSuccess
+    ? ventureData[0]
+    : undefined;
 
-  if (ventureData === undefined) {
-    return <span>Loading venture...</span>;
-  }
+  const ventureRoleSearch: ISearchRole = {
+    resource: "venture",
+    ventureId: currentVenture?.id ?? "",
+    token,
+  };
 
-  if (timelines === undefined) {
-    return <span>Loading Timelines...</span>;
-  }
+  const currentTimeline = timelineSlug
+    ? timelinesData?.filter((timeline: ITimeline) => {
+        return (
+          timeline.name.toLowerCase().replace(/\s/g, "") ===
+            timelineSlug?.toLowerCase().replace(/\s/g, "") ?? ""
+        );
+      })[0]
+    : undefined;
+
+  const timelineRoleSearch: ISearchRole = {
+    resource: "timeline",
+    timelineId: currentTimeline?.id ?? "",
+    token,
+  };
+
+  const { data: timelineRolesData } = useTimelineRole(timelineRoleSearch);
+
+  const { data: ventureRolesData } = useVentureRole(ventureRoleSearch);
 
   // redirect "/"" to "ventureSlug"
   if (ventureSuccess && ventureSlug === undefined) {
@@ -187,9 +222,58 @@ function VentureRoutes(props: VentureRoutesProps) {
     return <Navigate to="../newventure" />;
   }
 
+  // add permission to venture
+  const ventures =
+    ventureData?.map((venture: IVenture) => {
+      const userRole =
+        ventureRolesData?.filter((role: IRole) => role.subjectId === userId)[0]
+          ?.role === "owner"
+          ? "isAdmin"
+          : undefined;
+
+      return { ...venture, userRole };
+    }) ?? [];
+
+  const timelines = timelinesData?.map((timeline: ITimeline) => {
+    const userRole =
+      timelineRolesData?.filter((role: IRole) => role.subjectId === userId)[0]
+        ?.role === "owner"
+        ? "isAdmin"
+        : [];
+    return { ...timeline, userRole };
+  });
+
+  const currentVentureRole = ventureSuccess
+    ? ventures?.filter(
+        (venture: IVenture) => venture.id === currentVenture?.id
+      )[0].userRole
+    : undefined;
+
+  let currentTimelineRole = currentTimeline
+    ? timelinesData?.filter(
+        (timeline: ITimeline) => timeline?.id === currentTimeline?.id
+      )[0].userRole
+    : undefined;
+
+  const ventureContext: IVentureContext = {
+    ventures,
+    currentVenture,
+    currentVentureRole,
+  };
+  const timelineContext: ITimelineContext = {
+    timelines,
+    currentTimeline,
+    currentTimelineRole,
+  };
+
+  ventureContext.ventures = ventures;
+  ventureContext.currentVenture = currentVenture;
+  timelineContext.timelines = timelines;
+  timelineContext.currentTimeline = currentTimeline;
+
   return (
-    <VentureContext.Provider value={ventureData}>
-      <TimelineContext.Provider value={timelines}>
+    <VentureContext.Provider value={ventureContext}>
+      <TimelineContext.Provider value={timelineContext}>
         <Routes>
           <Route path="/" element={<VentureFeed />} />
           <Route path="feed" element={<VentureFeed />} />
