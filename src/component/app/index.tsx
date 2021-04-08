@@ -16,8 +16,12 @@ import { useCurrentUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import { ISearchVenturesByTimeline, IVenture } from "module/interface/venture";
-import { useVentureByTimeline } from "module/hook/venture";
+import {
+  ISearchVenturesByTimeline,
+  ISearchVenturesByUser,
+  IVenture,
+} from "module/interface/venture";
+import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
 import { useTimelinesByUserId } from "module/hook/timeline";
 import { useRoleByTimelineIds, useRoleByVentureIds } from "module/hook/role";
@@ -26,6 +30,7 @@ import {
   ISearchRoleByTimelineIds,
   ISearchRoleByVentureIds,
 } from "module/interface/role";
+import { getUniqueListBy } from "module/helpers";
 
 interface IVentureContext {
   ventures: IVenture[];
@@ -177,17 +182,33 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const { data: ventureData, isSuccess: ventureSuccess } = useVentureByTimeline(
-    ventureSearch
-  );
+  const {
+    data: ventureByTimelineData,
+    isSuccess: ventureSuccess,
+  } = useVentureByTimeline(ventureSearch);
+
+  const ventureUserSearch: ISearchVenturesByUser = {
+    userId,
+    token,
+  };
+
+  const {
+    data: ventureByUserData,
+    isSuccess: ventureUserSuccess,
+  } = useVenturesByUser(ventureUserSearch);
+
+  const allVentures =
+    ventureUserSuccess && ventureSuccess
+      ? getUniqueListBy([...ventureByTimelineData, ...ventureByUserData], "id")
+      : ventureByTimelineData;
 
   const currentVenture = ventureSlug
-    ? ventureData?.filter(
+    ? allVentures?.filter(
         (venture: IVenture) =>
           venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
       )[0]
-    : ventureSuccess
-    ? ventureData[0]
+    : ventureSuccess || ventureUserSuccess
+    ? allVentures[0]
     : undefined;
 
   const ventureRoleSearch: ISearchRoleByVentureIds = {
@@ -226,13 +247,13 @@ function VentureRoutes(props: VentureRoutesProps) {
   }
 
   // redirect to newVenture if there is not venture
-  if (ventureSuccess && ventureData.length < 0) {
+  if (ventureSuccess && allVentures.length < 0) {
     return <Navigate to="../newventure" />;
   }
 
   // add permission to venture
   const ventures =
-    ventureData?.map((venture: IVenture) => {
+    allVentures?.map((venture: IVenture) => {
       const userRole =
         ventureRolesData?.filter((role: IRole) => role.subjectId === userId)[0]
           ?.role === "owner"

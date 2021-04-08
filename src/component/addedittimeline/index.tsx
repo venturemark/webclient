@@ -49,6 +49,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const { mutate: updateTimeline } = useUpdateTimeline();
 
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
+  const timelineId = currentTimeline?.id;
 
   const handleCreate = (data: any) => {
     if (!token || !data.timelineName || !data.timelineDescription) {
@@ -63,7 +64,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     };
 
     const timelineUpdate: IUpdateTimeline = {
-      id: currentTimeline?.id,
+      id: timelineId,
       name: data.timelineName,
       desc: data.timelineDescription,
       ventureId: currentVenture?.id,
@@ -74,11 +75,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
     reset();
   };
-
-  const handleDelete = () => {
-    navigate(`/${handle}/${timelineSlug}/delete`);
-  };
-
   return (
     <PlasmicAddEditTimeline
       variantState={isEdit}
@@ -98,7 +94,10 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       }}
       buttonSetEdit={{
         handleCancel: () => navigate(-1),
-        handleDelete: () => handleDelete(),
+        handleDelete: () =>
+          navigate(
+            `/${handle}/${timelineSlug}/delete?timelineId=${timelineId}`
+          ),
       }}
       visibility={{}}
       {...rest}

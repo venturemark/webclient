@@ -19,6 +19,7 @@ export interface ISearchVenturesByTimeline {
 export interface IDeleteVenture {
   id: string;
   token: string;
+  successUrl: string;
 }
 
 export interface ICreateVenture {

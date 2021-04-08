@@ -19,8 +19,8 @@ export async function Delete(
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new DeleteI();
-
   const obj = new DeleteI_Obj();
+
   obj.getMetadataMap().set(key.VentureID, deleteVenture.id);
   objList.push(obj);
   req.setObjList(objList);
@@ -41,6 +41,7 @@ export async function Delete(
             const id = metaPb.get(key.VentureStatus);
             return id;
           });
+          console.log("delete status", status);
           resolve(status);
         }
       });

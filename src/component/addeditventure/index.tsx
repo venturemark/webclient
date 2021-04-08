@@ -44,6 +44,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   const venture = currentVenture;
   const url = useLocation();
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
+  const ventureId = currentVenture?.id;
   const isEdit = ventureSlug && ventureSlug === handle ? "isEdit" : undefined;
 
   const handleCreate = (data: any) => {
@@ -56,7 +57,7 @@ function AddEditVenture(props: AddEditVentureProps) {
       token: token,
     };
     const ventureUpdate: IUpdateVenture = {
-      id: venture?.id,
+      id: ventureId,
       name: data.ventureName,
       desc: data.ventureDescription,
       url: makeVentureUrl(handle),
@@ -95,7 +96,8 @@ function AddEditVenture(props: AddEditVentureProps) {
       }}
       membersWrite={{}}
       buttons={{
-        handleDelete: () => navigate(`/${handle}/delete`),
+        handleDelete: () =>
+          navigate(`/${handle}/delete?ventureId=${ventureId}`),
         handleCancel: () => navigate(-1),
         handleSave: () => handleSubmit(handleCreate),
       }}

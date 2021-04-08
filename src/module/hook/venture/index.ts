@@ -103,3 +103,23 @@ export function useUpdateVenture() {
     }
   );
 }
+
+export function useDeleteVenture() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useMutation<any, any, any>(
+    (ventureDelete) => {
+      return api.API.Venture.Delete(ventureDelete);
+    },
+    {
+      onSuccess: (_, ventureDelete) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("ventures");
+
+        //redirect on success
+        ventureDelete.successUrl && navigate(ventureDelete.successUrl);
+      },
+    }
+  );
+}
