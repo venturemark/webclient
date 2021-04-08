@@ -278,6 +278,7 @@ function VentureRoutes(props: VentureRoutesProps) {
           <Route path="feed" element={<VentureFeed />} />
           <Route path="members" element={<VentureMembers />} />
           <Route path="settings" element={<VentureSettings />} />
+          <Route path="delete" element={<VentureDelete />} />
           <Route path="newtimeline" element={<NewTimeline />} />
           <Route path=":timelineSlug/*" element={<TimelineRoutes />} />
         </Routes>
@@ -311,6 +312,21 @@ function VentureSettings() {
   return <Home variantType={variantType} isActive={isActive} />;
 }
 
+function VentureDelete() {
+  const variantType = "isVenture";
+  const isActive = "settings";
+  const modalType = "deleteVenture";
+  const isVisible = "showModal";
+  return (
+    <Home
+      variantType={variantType}
+      isActive={isActive}
+      modalType={modalType}
+      isVisible={isVisible}
+    />
+  );
+}
+
 function TimelineRoutes() {
   return (
     <Routes>
@@ -318,6 +334,7 @@ function TimelineRoutes() {
       <Route path="feed" element={<TimelineFeed />} />
       <Route path="members" element={<TimelineMembers />} />
       <Route path="settings" element={<TimelineSettings />} />
+      <Route path="delete" element={<TimelineDelete />} />
       <Route path="postdetail" element={<PostDetail />} />
     </Routes>
   );
@@ -339,6 +356,21 @@ function TimelineSettings() {
   const variantType = "isTimeline";
   const isActive = "settings";
   return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function TimelineDelete() {
+  const variantType = "isTimeline";
+  const isActive = "settings";
+  const modalType = "deleteTimeline";
+  const isVisible = "showModal";
+  return (
+    <Home
+      variantType={variantType}
+      isActive={isActive}
+      modalType={modalType}
+      isVisible={isVisible}
+    />
+  );
 }
 
 function PostDetail() {
