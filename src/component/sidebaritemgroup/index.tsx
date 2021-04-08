@@ -36,6 +36,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       {...rest}
       venture={{
         ventureName,
+        userRole,
         setIsCollapsed,
         isCollapsed,
         isActive:

@@ -63,7 +63,7 @@ function SidebarItem(props: SidebarItemProps) {
   return (
     <PlasmicSidebarItem
       {...rest}
-      isUserOnClick={userRole === "admin" ? isUserOnClick : false}
+      isUserOnClick={userRole === "isAdmin" ? isUserOnClick : false}
       icon={{
         onClick: (e) => {
           e.stopPropagation();
