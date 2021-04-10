@@ -11,10 +11,12 @@ import { IUpdateUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 import { useUpdateUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
-import { UserContext } from "component/app";
+import { UserContext, VentureContext } from "component/app";
 import { useQuery } from "module/helpers";
 import { IDeleteVenture } from "module/interface/venture";
 import { useDeleteVenture } from "module/hook/venture";
+import { IUpdateTimeline } from "module/interface/timeline";
+import { useArchiveDeleteTimeline } from "module/hook/timeline";
 
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
@@ -29,6 +31,7 @@ function Modal(props: ModalProps) {
   const navigate = useNavigate();
   const token = useGetToken();
   const user = useContext(UserContext);
+  const venture = useContext(VentureContext);
   const query = useQuery();
   const ventureId = query.get("ventureId") ?? "";
   const timelineId = query.get("timelineId") ?? "";
@@ -39,6 +42,7 @@ function Modal(props: ModalProps) {
 
   const { mutate: updateUser } = useUpdateUser();
   const { mutate: deleteVenture } = useDeleteVenture();
+  const { mutate: archiveDeleteTimeline } = useArchiveDeleteTimeline();
 
   const handleSave = (data: any) => {
     if (!data.name) {
@@ -56,13 +60,23 @@ function Modal(props: ModalProps) {
     updateUser(userUpdate);
   };
 
-  const deleteTimeline = () => {
-    console.log(timelineId);
+  const handleDeleteTimeline = async () => {
+    console.log(timelineId, "Yarrr!");
+    const ventureId = venture?.currentVenture.id ?? "";
+    console.log(ventureId, "venture id");
+    const timelineArchive: IUpdateTimeline = {
+      id: timelineId,
+      ventureId: ventureId,
+      stat: "archived",
+      token: token,
+    };
+
+    archiveDeleteTimeline(timelineArchive);
+
+    // console.log(status, "status of archive in modal");
   };
 
   const handleDeleteVenture = () => {
-    console.log("here is the venture being deleted.");
-    console.log(ventureId);
     const ventureDelete: IDeleteVenture = {
       id: ventureId,
       successUrl: `/`,
@@ -94,11 +108,9 @@ function Modal(props: ModalProps) {
         register: register({ required: true }),
         errorMessage: errors.role && roleError,
       }}
-      deleteTimeline={
-        {
-          // onClick: () => deleteTimeline(),
-        }
-      }
+      deleteTimeline={{
+        onClick: () => handleDeleteTimeline(),
+      }}
       deleteVenture={{
         onClick: () => handleDeleteVenture(),
         type: "button",
@@ -109,11 +121,9 @@ function Modal(props: ModalProps) {
       cancelEdit={{
         onClick: () => navigate("../settings"),
       }}
-      cancelTimeline={
-        {
-          // onClick: () => navigate("../settings"),
-        }
-      }
+      cancelTimeline={{
+        onClick: () => navigate("../settings"),
+      }}
       cancelVenture={{
         onClick: () => navigate("../settings"),
       }}

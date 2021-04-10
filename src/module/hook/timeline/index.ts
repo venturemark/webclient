@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
+  IDeleteTimeline,
   ISearchTimelinesbyUserId,
   ISearchTimelinesbyVentureId,
 } from "module/interface/timeline";
@@ -84,6 +85,27 @@ export function useUpdateTimeline() {
 
         //redirect on success
         timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
+      },
+    }
+  );
+}
+
+export function useArchiveDeleteTimeline() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useMutation<any, any, any>(
+    (timelineUpdate) => {
+      return api.API.Timeline.Update(timelineUpdate);
+    },
+    {
+      onSuccess: (_, timelineUpdate) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("timelines-");
+
+        //redirect on success
+        api.API.Timeline.Delete(timelineUpdate);
+        // timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
       },
     }
   );

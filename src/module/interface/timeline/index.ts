@@ -29,6 +29,7 @@ export interface ICreateTimeline {
 
 export interface IDeleteTimeline {
   id: string;
+  ventureId: string;
   token: string;
 }
 

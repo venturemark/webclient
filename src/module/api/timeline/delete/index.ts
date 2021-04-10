@@ -22,6 +22,7 @@ export async function Delete(
 
   const obj = new DeleteI_Obj();
   obj.getMetadataMap().set(key.TimelineID, IDeleteTimeline.id);
+  obj.getMetadataMap().set(key.VentureID, IDeleteTimeline.ventureId);
   objList.push(obj);
   req.setObjList(objList);
 
