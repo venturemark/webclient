@@ -26,11 +26,7 @@ export function useTimelinesByVentureId(
   searchTimelinesbyVentureId: ISearchTimelinesbyVentureId
 ) {
   return useQuery<any, ErrorResponse>(
-    [
-      `timelines-${searchTimelinesbyVentureId.ventureId}`,
-      searchTimelinesbyVentureId.token,
-      searchTimelinesbyVentureId.ventureId,
-    ],
+    `timelines-${searchTimelinesbyVentureId.ventureId}`,
     () => getTimelinesbyVentureId(searchTimelinesbyVentureId),
     {
       enabled:
@@ -44,11 +40,7 @@ export function useTimelinesByUserId(
   searchTimelinesByUserId: ISearchTimelinesbyUserId
 ) {
   return useQuery<any, ErrorResponse>(
-    [
-      `timelines-${searchTimelinesByUserId.userId}`,
-      searchTimelinesByUserId.token,
-      searchTimelinesByUserId.userId,
-    ],
+    `timelines-${searchTimelinesByUserId.userId}`,
     () => getTimelinesByUserId(searchTimelinesByUserId),
     {
       enabled:
@@ -68,7 +60,7 @@ export function useCreateTimeline() {
     {
       onSuccess: (_, newTimeline) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("timelines");
+        queryClient.invalidateQueries("timelines-");
 
         //redirect on success
         newTimeline.successUrl && navigate(newTimeline.successUrl);
@@ -88,7 +80,7 @@ export function useUpdateTimeline() {
     {
       onSuccess: (_, timelineUpdate) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("timelines");
+        queryClient.invalidateQueries("timelines-");
 
         //redirect on success
         timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);

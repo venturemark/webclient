@@ -195,6 +195,7 @@ function VentureRoutes(props: VentureRoutesProps) {
   const {
     data: ventureByUserData,
     isSuccess: ventureUserSuccess,
+    status,
   } = useVenturesByUser(ventureUserSearch);
 
   const allVentures =
@@ -207,7 +208,7 @@ function VentureRoutes(props: VentureRoutesProps) {
         (venture: IVenture) =>
           venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
       )[0]
-    : ventureSuccess || ventureUserSuccess
+    : ventureSuccess && ventureUserSuccess
     ? allVentures[0]
     : undefined;
 
@@ -246,8 +247,11 @@ function VentureRoutes(props: VentureRoutesProps) {
     return <Navigate replace to={`${ventureSlugRedirect}`} />;
   }
 
+  console.log("allVentures:", allVentures);
+
   // redirect to newVenture if there is not venture
-  if (ventureSuccess && allVentures.length < 0) {
+  if (ventureSuccess && ventureUserSuccess && allVentures.length < 1) {
+    console.log(status);
     return <Navigate to="../newventure" />;
   }
 
