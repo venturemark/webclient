@@ -35,7 +35,6 @@ export async function Create(createVenture: ICreateVenture): Promise<any> {
 
   objList.push(obj);
   req.setObjList(objList);
-  console.log("success", createVenture);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {

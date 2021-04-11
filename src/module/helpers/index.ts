@@ -31,6 +31,10 @@ export function getUniqueListBy(arr: any[], key: string) {
   return [...new Map(arr.map((item) => [item[key], item])).values()];
 }
 
+export function getLastItem(thePath: string) {
+  return thePath.substring(thePath.lastIndexOf("/") + 1);
+}
+
 export function sendInvite(inviteData: any, invite: ICreateInvite) {
   const params = new URLSearchParams({
     ventureId: invite.ventureId,
