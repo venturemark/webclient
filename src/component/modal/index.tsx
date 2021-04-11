@@ -30,7 +30,8 @@ function Modal(props: ModalProps) {
   const { isVisible, setIsVisible, modalType, ...rest } = props;
   const navigate = useNavigate();
   const token = useGetToken();
-  const user = useContext(UserContext);
+  const userContext = useContext(UserContext);
+  const user = userContext?.user;
   const venture = useContext(VentureContext);
   const query = useQuery();
   const ventureId = query.get("ventureId") ?? "";

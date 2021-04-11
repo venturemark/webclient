@@ -27,7 +27,8 @@ interface HomeProps extends DefaultHomeProps {
 export function Home(props: HomeProps) {
   const { isActive, variantType, modalType, isVisible: visibleProp } = props;
 
-  const user = useContext(UserContext);
+  const userContext = useContext(UserContext);
+  const user = userContext?.user;
 
   // local hooks shared with page-level elements
   const [isVisible, setIsVisible] = useState<IsVisible>(visibleProp);

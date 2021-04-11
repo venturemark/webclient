@@ -5,6 +5,7 @@ import {
   ISearchVentureMembers,
   ISearchTimelineMembers,
   ISearchCurrentUser,
+  ICreateUser,
 } from "module/interface/user";
 import { useNavigate } from "react-router-dom";
 import * as api from "module/api";
@@ -52,11 +53,7 @@ const getTimelineMembers = async (
 
 export function useVentureMembers(searchVentureMembers: ISearchVentureMembers) {
   return useQuery<any, ErrorResponse>(
-    [
-      `users-${searchVentureMembers.ventureId}`,
-      searchVentureMembers.token,
-      searchVentureMembers.ventureId,
-    ],
+    ["users", searchVentureMembers.token, searchVentureMembers.ventureId],
     () => getVentureMembers(searchVentureMembers),
     {
       enabled: !!searchVentureMembers.token && !!searchVentureMembers.ventureId,
@@ -68,11 +65,7 @@ export function useTimelineMembers(
   searchTimelineMembers: ISearchTimelineMembers
 ) {
   return useQuery<any, ErrorResponse>(
-    [
-      `users-${searchTimelineMembers.timelineId}`,
-      searchTimelineMembers.token,
-      searchTimelineMembers.timelineId,
-    ],
+    ["users", searchTimelineMembers.token, searchTimelineMembers.timelineId],
     () => getTimelineMembers(searchTimelineMembers),
     {
       enabled:
@@ -83,11 +76,7 @@ export function useTimelineMembers(
 
 export function useAllUser(searchAllUser: ISearchAllUser) {
   return useQuery<any, ErrorResponse>(
-    [
-      `users-${searchAllUser.subjectIds}`,
-      searchAllUser.token,
-      searchAllUser.subjectIds,
-    ],
+    ["users", searchAllUser.subjectIds, searchAllUser.token],
     () => getAllUser(searchAllUser),
     { enabled: !!searchAllUser.token && !!searchAllUser.subjectIds }
   );
@@ -95,7 +84,7 @@ export function useAllUser(searchAllUser: ISearchAllUser) {
 
 export function useCurrentUser(searchCurrentUser: ISearchCurrentUser) {
   return useQuery<any, ErrorResponse>(
-    [`user-${searchCurrentUser.token}`, searchCurrentUser.token],
+    ["users", searchCurrentUser.token],
     () => getCurrentUser(searchCurrentUser),
     { enabled: !!searchCurrentUser.token }
   );
@@ -110,11 +99,39 @@ export function useCreateUser() {
       return api.API.User.Create(newUser);
     },
     {
-      onSuccess: (_, newUser) => {
+      // When mutate is called:
+      onMutate: async (newUser: ICreateUser) => {
+        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+        await queryClient.cancelQueries("users");
+
+        // Snapshot the previous value
+        const previousUsers = queryClient.getQueryData<IUser[]>("users");
+
+        // Optimistically update to the new value
+        if (previousUsers) {
+          queryClient.setQueryData<IUser[]>("users", [
+            ...previousUsers,
+            { ...newUser, id: Math.random().toString() },
+          ]);
+        }
+
+        return { previousUsers };
+      },
+      // If the mutation fails, use the context returned from onMutate to roll back
+      onError: (err, variables, context: any) => {
+        if (context?.previousUsers) {
+          queryClient.setQueryData<IUser[]>("users", context.previousUsers);
+        }
+      },
+      onSuccess: (data, newUser) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("users");
 
         newUser.successUrl && navigate(newUser.successUrl);
+      },
+      // Always refetch after error or success:
+      onSettled: () => {
+        queryClient.invalidateQueries("users");
       },
     }
   );
@@ -129,9 +146,8 @@ export function useUpdateUser() {
       return api.API.User.Update(userUpdate);
     },
     {
-      onSuccess: (_, userUpdate) => {
+      onSuccess: (data, userUpdate) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("user");
         queryClient.invalidateQueries("users");
 
         //redirect on success
