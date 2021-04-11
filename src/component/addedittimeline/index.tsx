@@ -82,7 +82,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        register: register({ required: true }),
+        register: register({ required: true, maxLength: 23 }),
         name: "timelineName",
         defaultValue: currentTimeline?.name ?? "",
         errorMessage: errors.name && timelineNameError,

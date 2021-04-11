@@ -77,7 +77,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        register: register({ required: true }),
+        register: register({ required: true, maxLength: 23 }),
         name: "ventureName",
         defaultValue:
           url?.pathname === "/newventure" ? "" : venture?.name ?? "",
