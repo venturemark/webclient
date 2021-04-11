@@ -1,3 +1,5 @@
+export type UserRole = boolean | "isOwner" | undefined;
+
 export interface Job {
   title?: string;
   venture?: string;

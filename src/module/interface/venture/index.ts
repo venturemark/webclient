@@ -1,9 +1,11 @@
+import { UserRole } from "../user";
+
 export interface IVenture {
   id: string;
   name: string;
   desc: string;
   url?: string;
-  userRole?: string;
+  userRole?: UserRole;
 }
 
 export interface ISearchVenturesByUser {

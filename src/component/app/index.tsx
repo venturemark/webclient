@@ -11,7 +11,7 @@ import Signin from "component/page/signin";
 import Profile from "component/page/profile";
 import JoinVenture from "component/page/joinventure";
 
-import { ISearchCurrentUser, IUser } from "module/interface/user";
+import { ISearchCurrentUser, IUser, UserRole } from "module/interface/user";
 import { useCurrentUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 
@@ -263,20 +263,20 @@ function VentureRoutes(props: VentureRoutesProps) {
   // add permission to venture
   const ventures =
     allVentures?.map((venture: IVenture) => {
-      const userRole =
+      const userRole: UserRole =
         ventureRolesData?.filter((role: IRole) => role.subjectId === userId)[0]
           ?.role === "owner"
-          ? "isAdmin"
+          ? "isOwner"
           : undefined;
 
       return { ...venture, userRole };
     }) ?? [];
 
   const timelines = timelinesData?.map((timeline: ITimeline) => {
-    const userRole =
+    const userRole: UserRole =
       timelineRoles?.filter((role: IRole) => role.subjectId === userId)[0]
         ?.role === "owner"
-        ? "isAdmin"
+        ? "isOwner"
         : undefined;
     return { ...timeline, userRole };
   });

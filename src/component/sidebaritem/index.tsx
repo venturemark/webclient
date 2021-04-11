@@ -6,6 +6,7 @@ import {
   DefaultSidebarItemProps,
 } from "component/plasmic/shared/PlasmicSidebarItem";
 import { useNavigate } from "react-router-dom";
+import { UserRole } from "module/interface/user";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   timelineName: string;
@@ -13,7 +14,7 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   ventureId: string;
   setHasInput?: any;
   setIsCollapsed?: any;
-  userRole?: string;
+  userRole?: UserRole;
   isCollapsed?: boolean;
   itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
@@ -63,7 +64,7 @@ function SidebarItem(props: SidebarItemProps) {
   return (
     <PlasmicSidebarItem
       {...rest}
-      isUserOnClick={userRole === "isAdmin" ? isUserOnClick : false}
+      isUserOnClick={userRole === "isOwner" ? isUserOnClick : false}
       icon={{
         onClick: (e) => {
           e.stopPropagation();

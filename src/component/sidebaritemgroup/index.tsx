@@ -9,12 +9,13 @@ import SidebarItem from "component/sidebaritem";
 import { ITimeline } from "module/interface/timeline";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { UserRole } from "module/interface/user";
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;
   ventureId: string;
   timelines: ITimeline[];
-  userRole?: string;
+  userRole?: UserRole;
 }
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
@@ -31,9 +32,18 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
     (a: ITimeline, b: ITimeline) => a.name.localeCompare(b.name)
   );
 
+  function timelineIsActive(timelineName: string, ventureName: string) {
+    const slugTimelineName = timelineName.toLowerCase().replace(/\s/g, "");
+    const slugVentureName = ventureName.toLowerCase().replace(/\s/g, "");
+
+    if (slugTimelineName === timelineSlug && slugVentureName === ventureSlug)
+      return true;
+  }
+
   return (
     <PlasmicSidebarItemGroup
       {...rest}
+      isOwner={userRole}
       venture={{
         ventureName,
         userRole,
@@ -57,9 +67,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
             ventureId={timeline.ventureId}
             ventureName={ventureName}
             itemType={"timeline"}
-            isActive={
-              timeline.name.toLowerCase().replace(/\s/g, "") === timelineSlug
-            }
+            isActive={timelineIsActive(timeline.name, ventureName)}
           />
         )),
       }}
