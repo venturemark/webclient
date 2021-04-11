@@ -68,6 +68,8 @@ export const PlasmicHeader__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHeader__OverridesType = {
   root?: p.Flex<"div">;
+  toggleMobileSidebar?: p.Flex<"svg">;
+  svg?: p.Flex<"svg">;
   avatar?: p.Flex<typeof PhotoAvatar>;
   dropdown?: p.Flex<typeof ProfileDropdown>;
   button?: p.Flex<typeof Button>;
@@ -143,8 +145,10 @@ function PlasmicHeader__RenderFunc(props: {
               : false
           ) ? (
             <IconMenuIcon
-              className={classNames(defaultcss.all, sty.svg___09Qs7, {
-                [sty.svg__mobileMenu___09Qs7DUXmX]: hasVariant(
+              data-plasmic-name={"toggleMobileSidebar"}
+              data-plasmic-override={overrides.toggleMobileSidebar}
+              className={classNames(defaultcss.all, sty.toggleMobileSidebar, {
+                [sty.toggleMobileSidebar__mobileMenu]: hasVariant(
                   variants,
                   "mobileMenu",
                   "mobileMenu"
@@ -155,8 +159,10 @@ function PlasmicHeader__RenderFunc(props: {
           ) : null}
 
           <Logosvg2Icon
-            className={classNames(defaultcss.all, sty.svg__u6Qtf, {
-              [sty.svg__mobileMenu__u6QtfdUXmX]: hasVariant(
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames(defaultcss.all, sty.svg, {
+              [sty.svg__mobileMenu]: hasVariant(
                 variants,
                 "mobileMenu",
                 "mobileMenu"
@@ -243,7 +249,9 @@ function PlasmicHeader__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "avatar", "dropdown", "button"],
+  root: ["root", "toggleMobileSidebar", "svg", "avatar", "dropdown", "button"],
+  toggleMobileSidebar: ["toggleMobileSidebar"],
+  svg: ["svg"],
   avatar: ["avatar"],
   dropdown: ["dropdown"],
   button: ["button"],
@@ -254,6 +262,8 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  toggleMobileSidebar: "svg";
+  svg: "svg";
   avatar: typeof PhotoAvatar;
   dropdown: typeof ProfileDropdown;
   button: typeof Button;
@@ -264,8 +274,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicHeader__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicHeader__VariantsArgs;
   args?: PlasmicHeader__ArgsType;
   overrides?: NodeOverridesType<T>;
@@ -315,6 +324,8 @@ export const PlasmicHeader = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    toggleMobileSidebar: makeNodeComponent("toggleMobileSidebar"),
+    svg: makeNodeComponent("svg"),
     avatar: makeNodeComponent("avatar"),
     dropdown: makeNodeComponent("dropdown"),
     button: makeNodeComponent("button"),

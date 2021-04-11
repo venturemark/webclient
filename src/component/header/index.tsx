@@ -21,6 +21,9 @@ function Header(props: HeaderProps) {
   const { isAuthenticated } = useAuth0();
   const [profileDropdown, setProfileDropdown] = useState(false);
 
+  const mobileSidebar =
+    isVisible === "mobileSidebar" ? undefined : "mobileSidebar";
+
   const userContext = useContext(UserContext);
   const hasUser = userContext?.user;
 
@@ -43,6 +46,7 @@ function Header(props: HeaderProps) {
     <PlasmicHeader
       {...rest}
       profileDropdown={profileDropdown}
+      toggleMobileSidebar={{ onClick: () => setIsVisible(mobileSidebar) }}
       views={
         hasUser && isAuthenticated
           ? "userAccount"
