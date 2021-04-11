@@ -3,7 +3,7 @@ export interface ITimeline {
   desc: string;
   stat: string;
   ventureId: string;
-  userId: string;
+  userId?: string;
   id: string;
   date?: string;
   userRole?: string;
