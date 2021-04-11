@@ -28,7 +28,7 @@ interface ContentPostProps extends DefaultContentPostProps {
   userId: string;
   userName?: string;
   user?: IUser;
-  state?: "isUser" | "isPostDetails";
+  state?: "isOwner" | "isPostDetails";
   currentVenture: IVenture;
   allUpdates: IUpdate[];
 }

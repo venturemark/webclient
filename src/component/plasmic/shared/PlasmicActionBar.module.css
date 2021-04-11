@@ -350,7 +350,7 @@
   margin-left: 5px;
   margin-top: 10px;
 }
-.tagsContainer {
+.box__vnwRg {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -431,7 +431,7 @@
   height: auto;
   min-width: 0;
 }
-.tags___81EIe:global(.__wab_instance) {
+.tags:global(.__wab_instance) {
   position: relative;
 }
 .svg__hwNLe {

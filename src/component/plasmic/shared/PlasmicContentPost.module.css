@@ -97,13 +97,13 @@
 .dropdown:global(.__wab_instance) {
   position: relative;
 }
-.dropdown__isUserOnClick_state_isUser:global(.__wab_instance) {
+.dropdown__isUserOnClick_state_isOwner:global(.__wab_instance) {
   position: absolute;
   left: auto;
   top: 33px;
   right: 0px;
 }
-.root__state_isUser:hover .dropdown__state_isUser:global(.__wab_instance) {
+.root__state_isOwner:hover .dropdown__state_isOwner:global(.__wab_instance) {
   position: absolute;
   left: -92px;
   top: 29px;

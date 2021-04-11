@@ -36,15 +36,18 @@ import * as sty from "./PlasmicSidebarItemGroup.module.css"; // plasmic-import: 
 
 export type PlasmicSidebarItemGroup__VariantMembers = {
   isCollapsed: "isCollapsed";
+  isOwner: "isOwner";
 };
 
 export type PlasmicSidebarItemGroup__VariantsArgs = {
   isCollapsed?: SingleBooleanChoiceArg<"isCollapsed">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
 };
 
 type VariantPropType = keyof PlasmicSidebarItemGroup__VariantsArgs;
 export const PlasmicSidebarItemGroup__VariantProps = new Array<VariantPropType>(
-  "isCollapsed"
+  "isCollapsed",
+  "isOwner"
 );
 
 export type PlasmicSidebarItemGroup__ArgsType = {};
@@ -55,11 +58,13 @@ export type PlasmicSidebarItemGroup__OverridesType = {
   root?: p.Flex<"div">;
   venture?: p.Flex<typeof SidebarItem>;
   itemContainer?: p.Flex<"div">;
+  sidebarItem?: p.Flex<typeof SidebarItem>;
   newTimeline?: p.Flex<typeof SidebarItem>;
 };
 
 export interface DefaultSidebarItemGroupProps {
   isCollapsed?: SingleBooleanChoiceArg<"isCollapsed">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
   className?: string;
 }
 
@@ -71,13 +76,21 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
+  const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
+  const triggers = {
+    hover_root: isRootHover,
+  };
+
   return (
     <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
+      })}
+      data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
       <SidebarItem
         data-plasmic-name={"venture"}
@@ -88,8 +101,11 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             "isCollapsed",
             "isCollapsed"
           ),
+          [sty.venture__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
         })}
-        isActive={"isActive" as const}
+        isActive={
+          triggers.hover_root ? ("isActive" as const) : ("isActive" as const)
+        }
         itemType={
           hasVariant(variants, "isCollapsed", "isCollapsed")
             ? ("ventureCollapsed" as const)
@@ -132,11 +148,18 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           })}
         >
           <SidebarItem
-            className={classNames("__wab_instance", sty.sidebarItem__p6TUu, {
-              [sty.sidebarItem__isCollapsed__p6TUuR1V]: hasVariant(
+            data-plasmic-name={"sidebarItem"}
+            data-plasmic-override={overrides.sidebarItem}
+            className={classNames("__wab_instance", sty.sidebarItem, {
+              [sty.sidebarItem__isCollapsed]: hasVariant(
                 variants,
                 "isCollapsed",
                 "isCollapsed"
+              ),
+              [sty.sidebarItem__isOwner]: hasVariant(
+                variants,
+                "isOwner",
+                "isOwner"
               ),
             })}
             itemType={"timeline" as const}
@@ -152,33 +175,15 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
               </div>
             }
           />
-
-          {false ? (
-            <SidebarItem
-              className={classNames("__wab_instance", sty.sidebarItem__nta2O, {
-                [sty.sidebarItem__isCollapsed__nta2OR1V]: hasVariant(
-                  variants,
-                  "isCollapsed",
-                  "isCollapsed"
-                ),
-              })}
-              itemType={"createTimeline" as const}
-              name={
-                <div
-                  className={classNames(
-                    defaultcss.all,
-                    defaultcss.__wab_text,
-                    sty.box__wCgwl
-                  )}
-                >
-                  {"New Timeline"}
-                </div>
-              }
-            />
-          ) : null}
         </p.Stack>
       ) : null}
-      {(hasVariant(variants, "isCollapsed", "isCollapsed") ? false : true) ? (
+      {(
+        hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "isCollapsed", "isCollapsed")
+          ? false
+          : false
+      ) ? (
         <SidebarItem
           data-plasmic-name={"newTimeline"}
           data-plasmic-override={overrides.newTimeline}
@@ -188,7 +193,17 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
               "isCollapsed",
               "isCollapsed"
             ),
+            [sty.newTimeline__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
           })}
+          isVisible={
+            hasVariant(variants, "isOwner", "isOwner") && triggers.hover_root
+              ? ("isVisible" as const)
+              : undefined
+          }
           itemType={"createTimeline" as const}
           name={
             <div
@@ -208,9 +223,10 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "venture", "itemContainer", "newTimeline"],
+  root: ["root", "venture", "itemContainer", "sidebarItem", "newTimeline"],
   venture: ["venture"],
-  itemContainer: ["itemContainer"],
+  itemContainer: ["itemContainer", "sidebarItem"],
+  sidebarItem: ["sidebarItem"],
   newTimeline: ["newTimeline"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -221,6 +237,7 @@ type NodeDefaultElementType = {
   root: "div";
   venture: typeof SidebarItem;
   itemContainer: "div";
+  sidebarItem: typeof SidebarItem;
   newTimeline: typeof SidebarItem;
 };
 
@@ -282,6 +299,7 @@ export const PlasmicSidebarItemGroup = Object.assign(
     // Helper components rendering sub-elements
     venture: makeNodeComponent("venture"),
     itemContainer: makeNodeComponent("itemContainer"),
+    sidebarItem: makeNodeComponent("sidebarItem"),
     newTimeline: makeNodeComponent("newTimeline"),
 
     // Metadata about props expected for PlasmicSidebarItemGroup

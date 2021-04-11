@@ -39,15 +39,18 @@ import * as sty from "./PlasmicAddEditTimeline.module.css"; // plasmic-import: 2
 
 export type PlasmicAddEditTimeline__VariantMembers = {
   variantState: "isEdit";
+  isOwner: "isOwner";
 };
 
 export type PlasmicAddEditTimeline__VariantsArgs = {
   variantState?: SingleChoiceArg<"isEdit">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
 };
 
 type VariantPropType = keyof PlasmicAddEditTimeline__VariantsArgs;
 export const PlasmicAddEditTimeline__VariantProps = new Array<VariantPropType>(
-  "variantState"
+  "variantState",
+  "isOwner"
 );
 
 export type PlasmicAddEditTimeline__ArgsType = {
@@ -77,6 +80,7 @@ export interface DefaultAddEditTimelineProps {
   slot?: React.ReactNode;
   children2?: React.ReactNode;
   variantState?: SingleChoiceArg<"isEdit">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
   className?: string;
 }
 
@@ -129,7 +133,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         ) : null}
         {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
           <p.PlasmicSlot
-            defaultContents={"Edit Timeline"}
+            defaultContents={"Timeline Info"}
             value={args.children2}
             className={classNames(sty.slotChildren2, {
               [sty.slotChildren2__variantState_isEdit]: hasVariant(
@@ -153,8 +157,25 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       <InputText
         data-plasmic-name={"name"}
         data-plasmic-override={overrides.name}
-        className={classNames("__wab_instance", sty.name)}
+        className={classNames("__wab_instance", sty.name, {
+          [sty.name__isOwner_variantState_isEdit]:
+            hasVariant(variants, "isOwner", "isOwner") &&
+            hasVariant(variants, "variantState", "isEdit"),
+          [sty.name__variantState_isEdit]: hasVariant(
+            variants,
+            "variantState",
+            "isEdit"
+          ),
+        })}
         hasLabel={"hasLabel" as const}
+        isDisabled={
+          hasVariant(variants, "isOwner", "isOwner") &&
+          hasVariant(variants, "variantState", "isEdit")
+            ? undefined
+            : hasVariant(variants, "variantState", "isEdit")
+            ? ("isDisabled" as const)
+            : undefined
+        }
         label={"Name"}
       />
 
@@ -162,6 +183,14 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         data-plasmic-name={"description"}
         data-plasmic-override={overrides.description}
         className={classNames("__wab_instance", sty.description, {
+          [sty.description__isOwner]: hasVariant(
+            variants,
+            "isOwner",
+            "isOwner"
+          ),
+          [sty.description__isOwner_variantState_isEdit]:
+            hasVariant(variants, "isOwner", "isOwner") &&
+            hasVariant(variants, "variantState", "isEdit"),
           [sty.description__variantState_isEdit]: hasVariant(
             variants,
             "variantState",
@@ -170,34 +199,76 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         })}
         hasLabel={"hasLabel" as const}
         hasTextHelper={"hasTextHelper" as const}
+        isDisabled={
+          hasVariant(variants, "isOwner", "isOwner") &&
+          hasVariant(variants, "variantState", "isEdit")
+            ? undefined
+            : hasVariant(variants, "variantState", "isEdit")
+            ? ("isDisabled" as const)
+            : undefined
+        }
         label={"Description"}
       >
         {"Tell us a little bit about your venture."}
       </InputTextArea>
 
-      <RadioGroup
-        data-plasmic-name={"visibility"}
-        data-plasmic-override={overrides.visibility}
-        className={classNames("__wab_instance", sty.visibility)}
-        hasLabel={"hasLabel" as const}
-      />
-
-      <ButtonSetEdit
-        data-plasmic-name={"buttonSetEdit"}
-        data-plasmic-override={overrides.buttonSetEdit}
-        className={classNames("__wab_instance", sty.buttonSetEdit, {
-          [sty.buttonSetEdit__variantState_isEdit]: hasVariant(
-            variants,
-            "variantState",
-            "isEdit"
-          ),
-        })}
-        variantState={
-          hasVariant(variants, "variantState", "isEdit")
-            ? ("isEdit" as const)
-            : undefined
-        }
-      />
+      {(
+        hasVariant(variants, "isOwner", "isOwner") &&
+        hasVariant(variants, "variantState", "isEdit")
+          ? true
+          : hasVariant(variants, "variantState", "isEdit")
+          ? false
+          : true
+      ) ? (
+        <RadioGroup
+          data-plasmic-name={"visibility"}
+          data-plasmic-override={overrides.visibility}
+          className={classNames("__wab_instance", sty.visibility, {
+            [sty.visibility__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.visibility__isOwner_variantState_isEdit]:
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "variantState", "isEdit"),
+            [sty.visibility__variantState_isEdit]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+          })}
+          hasLabel={"hasLabel" as const}
+        />
+      ) : null}
+      {(
+        hasVariant(variants, "isOwner", "isOwner") &&
+        hasVariant(variants, "variantState", "isEdit")
+          ? true
+          : hasVariant(variants, "variantState", "isEdit")
+          ? false
+          : true
+      ) ? (
+        <ButtonSetEdit
+          data-plasmic-name={"buttonSetEdit"}
+          data-plasmic-override={overrides.buttonSetEdit}
+          className={classNames("__wab_instance", sty.buttonSetEdit, {
+            [sty.buttonSetEdit__isOwner_variantState_isEdit]:
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "variantState", "isEdit"),
+            [sty.buttonSetEdit__variantState_isEdit]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+          })}
+          variantState={
+            hasVariant(variants, "variantState", "isEdit")
+              ? ("isEdit" as const)
+              : undefined
+          }
+        />
+      ) : null}
     </p.Stack>
   ) as React.ReactElement | null;
 }

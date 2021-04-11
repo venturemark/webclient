@@ -167,7 +167,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                     : ventureRolesData?.filter(
                         (role: IRole) => role.subjectId === member.id
                       )[0]?.role === "owner"
-                    ? "isAdmin"
+                    ? "isOwner"
                     : undefined
                 }
               />
@@ -182,7 +182,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                     : timelineRolesData?.filter(
                         (role: IRole) => role.subjectId === member.id
                       )[0]?.role === "owner"
-                    ? "isAdmin"
+                    ? "isOwner"
                     : undefined
                 }
               />

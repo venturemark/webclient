@@ -41,15 +41,18 @@ import * as sty from "./PlasmicAddEditVenture.module.css"; // plasmic-import: xI
 
 export type PlasmicAddEditVenture__VariantMembers = {
   variantState: "isEdit";
+  isOwner: "isOwner";
 };
 
 export type PlasmicAddEditVenture__VariantsArgs = {
   variantState?: SingleChoiceArg<"isEdit">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
 };
 
 type VariantPropType = keyof PlasmicAddEditVenture__VariantsArgs;
 export const PlasmicAddEditVenture__VariantProps = new Array<VariantPropType>(
-  "variantState"
+  "variantState",
+  "isOwner"
 );
 
 export type PlasmicAddEditVenture__ArgsType = {
@@ -82,6 +85,7 @@ export interface DefaultAddEditVentureProps {
   slot2?: React.ReactNode;
   children2?: React.ReactNode;
   variantState?: SingleChoiceArg<"isEdit">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
   className?: string;
 }
 
@@ -134,7 +138,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         ) : null}
         {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
           <p.PlasmicSlot
-            defaultContents={"Edit Venture"}
+            defaultContents={"Venture Info"}
             value={args.children2}
             className={classNames(sty.slotChildren2, {
               [sty.slotChildren2__variantState_isEdit]: hasVariant(
@@ -156,8 +160,25 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       <InputText
         data-plasmic-name={"name"}
         data-plasmic-override={overrides.name}
-        className={classNames("__wab_instance", sty.name)}
+        className={classNames("__wab_instance", sty.name, {
+          [sty.name__variantState_isEdit]: hasVariant(
+            variants,
+            "variantState",
+            "isEdit"
+          ),
+          [sty.name__variantState_isEdit_isOwner]:
+            hasVariant(variants, "variantState", "isEdit") &&
+            hasVariant(variants, "isOwner", "isOwner"),
+        })}
         hasLabel={"hasLabel" as const}
+        isDisabled={
+          hasVariant(variants, "variantState", "isEdit") &&
+          hasVariant(variants, "isOwner", "isOwner")
+            ? undefined
+            : hasVariant(variants, "variantState", "isEdit")
+            ? ("isDisabled" as const)
+            : undefined
+        }
         label={"Name"}
       />
 
@@ -165,24 +186,51 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         data-plasmic-name={"description"}
         data-plasmic-override={overrides.description}
         className={classNames("__wab_instance", sty.description, {
+          [sty.description__isOwner]: hasVariant(
+            variants,
+            "isOwner",
+            "isOwner"
+          ),
           [sty.description__variantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
           ),
+          [sty.description__variantState_isEdit_isOwner]:
+            hasVariant(variants, "variantState", "isEdit") &&
+            hasVariant(variants, "isOwner", "isOwner"),
         })}
         hasLabel={"hasLabel" as const}
-        hasTextHelper={"hasTextHelper" as const}
+        hasTextHelper={
+          hasVariant(variants, "isOwner", "isOwner")
+            ? ("hasTextHelper" as const)
+            : hasVariant(variants, "variantState", "isEdit")
+            ? undefined
+            : ("hasTextHelper" as const)
+        }
+        isDisabled={
+          hasVariant(variants, "variantState", "isEdit") &&
+          hasVariant(variants, "isOwner", "isOwner")
+            ? undefined
+            : hasVariant(variants, "variantState", "isEdit")
+            ? ("isDisabled" as const)
+            : undefined
+        }
         label={"Description"}
       >
         {"Tell us a little bit about your venture."}
       </InputTextArea>
 
-      {false ? (
+      {(hasVariant(variants, "isOwner", "isOwner") ? false : false) ? (
         <p.Stack
           as={"div"}
           hasGap={true}
           className={classNames(defaultcss.all, sty.box__uCWf, {
+            [sty.box__isOwner__uCWfmdraL]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
             [sty.box__variantState_isEdit__uCWf2IFcI]: hasVariant(
               variants,
               "variantState",
@@ -218,8 +266,35 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           </div>
         </p.Stack>
       ) : null}
-      {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
-        <div className={classNames(defaultcss.all, sty.box__katKc)}>
+      {(
+        hasVariant(variants, "variantState", "isEdit") &&
+        hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "variantState", "isEdit")
+          ? false
+          : hasVariant(globalVariants, "screen", "mobile")
+          ? false
+          : true
+      ) ? (
+        <div
+          className={classNames(defaultcss.all, sty.box__katKc, {
+            [sty.box__isOwner__katKcmdraL]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.box__variantState_isEdit__katKc2IFcI]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+            [sty.box__variantState_isEdit_isOwner__katKc2IFcIMdraL]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+          })}
+        >
           <p.PlasmicSlot
             defaultContents={"Permissions"}
             value={args.slot2}
@@ -227,40 +302,73 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           />
         </div>
       ) : null}
-      {(hasVariant(globalVariants, "screen", "mobile") ? false : true) ? (
+      {(
+        hasVariant(variants, "variantState", "isEdit") &&
+        hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "variantState", "isEdit")
+          ? false
+          : hasVariant(globalVariants, "screen", "mobile")
+          ? false
+          : true
+      ) ? (
         <Switch
           data-plasmic-name={"membersWrite"}
           data-plasmic-override={overrides.membersWrite}
           className={classNames("__wab_instance", sty.membersWrite, {
+            [sty.membersWrite__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
             [sty.membersWrite__variantState_isEdit]: hasVariant(
               variants,
               "variantState",
               "isEdit"
             ),
+            [sty.membersWrite__variantState_isEdit_isOwner]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
           })}
           variantSettings={["hasLabel"]}
         />
       ) : null}
-
-      <ButtonSetEdit
-        data-plasmic-name={"buttons"}
-        data-plasmic-override={overrides.buttons}
-        className={classNames("__wab_instance", sty.buttons, {
-          [sty.buttons__variantState_isEdit]: hasVariant(
-            variants,
-            "variantState",
-            "isEdit"
-          ),
-        })}
-        variantState={
-          hasVariant(variants, "variantState", "isEdit") &&
-          hasVariant(globalVariants, "screen", "mobile")
-            ? ("isEdit" as const)
-            : hasVariant(variants, "variantState", "isEdit")
-            ? ("isEdit" as const)
-            : undefined
-        }
-      />
+      {(
+        hasVariant(variants, "variantState", "isEdit") &&
+        hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "variantState", "isEdit")
+          ? false
+          : true
+      ) ? (
+        <ButtonSetEdit
+          data-plasmic-name={"buttons"}
+          data-plasmic-override={overrides.buttons}
+          className={classNames("__wab_instance", sty.buttons, {
+            [sty.buttons__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
+            [sty.buttons__variantState_isEdit]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+            [sty.buttons__variantState_isEdit_isOwner]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+          })}
+          variantState={
+            hasVariant(variants, "variantState", "isEdit") &&
+            hasVariant(globalVariants, "screen", "mobile")
+              ? ("isEdit" as const)
+              : hasVariant(variants, "variantState", "isEdit")
+              ? ("isEdit" as const)
+              : undefined
+          }
+        />
+      ) : null}
     </p.Stack>
   ) as React.ReactElement | null;
 }

@@ -38,11 +38,18 @@ import * as sty from "./PlasmicFeedUpdate.module.css"; // plasmic-import: Fs8bTU
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 
-export type PlasmicFeedUpdate__VariantMembers = {};
+export type PlasmicFeedUpdate__VariantMembers = {
+  isOwner: "isOwner";
+};
 
-export type PlasmicFeedUpdate__VariantsArgs = {};
+export type PlasmicFeedUpdate__VariantsArgs = {
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
+};
+
 type VariantPropType = keyof PlasmicFeedUpdate__VariantsArgs;
-export const PlasmicFeedUpdate__VariantProps = new Array<VariantPropType>();
+export const PlasmicFeedUpdate__VariantProps = new Array<VariantPropType>(
+  "isOwner"
+);
 
 export type PlasmicFeedUpdate__ArgsType = {};
 type ArgPropType = keyof PlasmicFeedUpdate__ArgsType;
@@ -58,6 +65,7 @@ export type PlasmicFeedUpdate__OverridesType = {
 };
 
 export interface DefaultFeedUpdateProps {
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
   className?: string;
 }
 
@@ -79,11 +87,19 @@ function PlasmicFeedUpdate__RenderFunc(props: {
       hasGap={true}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
-      <ActionBar
-        data-plasmic-name={"actionBar"}
-        data-plasmic-override={overrides.actionBar}
-        className={classNames("__wab_instance", sty.actionBar)}
-      />
+      {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
+        <ActionBar
+          data-plasmic-name={"actionBar"}
+          data-plasmic-override={overrides.actionBar}
+          className={classNames("__wab_instance", sty.actionBar, {
+            [sty.actionBar__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+          })}
+        />
+      ) : null}
 
       <p.Stack
         as={"div"}

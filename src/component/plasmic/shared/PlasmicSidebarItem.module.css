@@ -35,6 +35,7 @@
   margin-left: 12px;
 }
 .itemContainer__itemType_createTimeline {
+  opacity: 0;
   background: none;
   border: 1px dashed rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
@@ -43,6 +44,9 @@
 }
 .itemContainer__isActive_itemType_createTimeline {
   background: rgb(2, 157, 127);
+}
+.itemContainer__itemType_createTimeline_isVisible {
+  opacity: 1;
 }
 .root:hover .itemContainer {
   background: rgb(249, 249, 250);

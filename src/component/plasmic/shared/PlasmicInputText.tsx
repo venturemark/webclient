@@ -40,19 +40,22 @@ export type PlasmicInputText__VariantMembers = {
   hasTextHelper: "hasTextHelper";
   error: "error";
   hasLabel: "hasLabel";
+  isDisabled: "isDisabled";
 };
 
 export type PlasmicInputText__VariantsArgs = {
   hasTextHelper?: SingleBooleanChoiceArg<"hasTextHelper">;
   error?: SingleBooleanChoiceArg<"error">;
   hasLabel?: SingleBooleanChoiceArg<"hasLabel">;
+  isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
 };
 
 type VariantPropType = keyof PlasmicInputText__VariantsArgs;
 export const PlasmicInputText__VariantProps = new Array<VariantPropType>(
   "hasTextHelper",
   "error",
-  "hasLabel"
+  "hasLabel",
+  "isDisabled"
 );
 
 export type PlasmicInputText__ArgsType = {
@@ -83,6 +86,7 @@ export interface DefaultInputTextProps {
   hasTextHelper?: SingleBooleanChoiceArg<"hasTextHelper">;
   error?: SingleBooleanChoiceArg<"error">;
   hasLabel?: SingleBooleanChoiceArg<"hasLabel">;
+  isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
   className?: string;
 }
 
@@ -166,7 +170,13 @@ function PlasmicInputText__RenderFunc(props: {
                 <input
                   data-plasmic-name={"input"}
                   data-plasmic-override={overrides.input}
-                  className={classNames(defaultcss.input, sty.input)}
+                  className={classNames(defaultcss.input, sty.input, {
+                    [sty.input__isDisabled]: hasVariant(
+                      variants,
+                      "isDisabled",
+                      "isDisabled"
+                    ),
+                  })}
                   placeholder={"" as const}
                   title={"" as const}
                   type={"text" as const}
