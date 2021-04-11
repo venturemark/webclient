@@ -70,9 +70,8 @@ export const PlasmicModal__ArgProps = new Array<ArgPropType>(
 export type PlasmicModal__OverridesType = {
   root?: p.Flex<"div">;
   modalTypes?: p.Flex<"div">;
-  deleteTimeline?: p.Flex<"form">;
   organizationDescription?: p.Flex<"div">;
-  deleteTimeline3?: p.Flex<typeof Button>;
+  deleteTimeline?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
   cancelTimeline?: p.Flex<typeof Button>;
   text22?: p.Flex<"div">;
@@ -140,22 +139,20 @@ function PlasmicModal__RenderFunc(props: {
             : false
         ) ? (
           <p.Stack
-            as={"form"}
-            data-plasmic-name={"deleteTimeline"}
-            data-plasmic-override={overrides.deleteTimeline}
+            as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.deleteTimeline, {
-              [sty.deleteTimeline__modalType_deleteTimeline]: hasVariant(
+            className={classNames(defaultcss.all, sty.box___60GYf, {
+              [sty.box__modalType_deleteTimeline___60GYfkpjFe]: hasVariant(
                 variants,
                 "modalType",
                 "deleteTimeline"
               ),
-              [sty.deleteTimeline__modalType_deleteVenture]: hasVariant(
+              [sty.box__modalType_deleteVenture___60GYfbglY9]: hasVariant(
                 variants,
                 "modalType",
                 "deleteVenture"
               ),
-              [sty.deleteTimeline__modalType_editProfile]: hasVariant(
+              [sty.box__modalType_editProfile___60GYfORiet]: hasVariant(
                 variants,
                 "modalType",
                 "editProfile"
@@ -165,7 +162,13 @@ function PlasmicModal__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__ljTa5)}
+              className={classNames(defaultcss.all, sty.box__ljTa5, {
+                [sty.box__modalType_deleteTimeline__ljTa5KpjFe]: hasVariant(
+                  variants,
+                  "modalType",
+                  "deleteTimeline"
+                ),
+              })}
             >
               <p.Stack
                 as={"div"}
@@ -197,8 +200,8 @@ function PlasmicModal__RenderFunc(props: {
                 className={classNames(defaultcss.all, sty.box__hxFmc)}
               >
                 <Button
-                  data-plasmic-name={"deleteTimeline3"}
-                  data-plasmic-override={overrides.deleteTimeline3}
+                  data-plasmic-name={"deleteTimeline"}
+                  data-plasmic-override={overrides.deleteTimeline}
                   buttonStyle={"danger" as const}
                   count={"1"}
                   slot={
@@ -232,7 +235,13 @@ function PlasmicModal__RenderFunc(props: {
                   data-plasmic-override={overrides.cancelTimeline}
                   buttonFeatures={[]}
                   buttonStyle={"secondaryPurple" as const}
-                  className={classNames("__wab_instance", sty.cancelTimeline)}
+                  className={classNames("__wab_instance", sty.cancelTimeline, {
+                    [sty.cancelTimeline__modalType_deleteTimeline]: hasVariant(
+                      variants,
+                      "modalType",
+                      "deleteTimeline"
+                    ),
+                  })}
                   count={"1"}
                   slot={
                     <IconPlusIcon
@@ -321,7 +330,7 @@ function PlasmicModal__RenderFunc(props: {
                         sty.organizationDescription2
                       )}
                     >
-                      {"Remove from Venture"}
+                      {"Remove this Venture?"}
                     </div>
                   }
                   value={args.organizationDescription2}
@@ -586,9 +595,8 @@ const PlasmicDescendants = {
   root: [
     "root",
     "modalTypes",
-    "deleteTimeline",
     "organizationDescription",
-    "deleteTimeline3",
+    "deleteTimeline",
     "text2",
     "cancelTimeline",
     "text22",
@@ -611,9 +619,8 @@ const PlasmicDescendants = {
   ],
   modalTypes: [
     "modalTypes",
-    "deleteTimeline",
     "organizationDescription",
-    "deleteTimeline3",
+    "deleteTimeline",
     "text2",
     "cancelTimeline",
     "text22",
@@ -634,16 +641,8 @@ const PlasmicDescendants = {
     "saveUser",
     "text222",
   ],
-  deleteTimeline: [
-    "deleteTimeline",
-    "organizationDescription",
-    "deleteTimeline3",
-    "text2",
-    "cancelTimeline",
-    "text22",
-  ],
   organizationDescription: ["organizationDescription"],
-  deleteTimeline3: ["deleteTimeline3", "text2"],
+  deleteTimeline: ["deleteTimeline", "text2"],
   text2: ["text2"],
   cancelTimeline: ["cancelTimeline", "text22"],
   text22: ["text22"],
@@ -689,9 +688,8 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   modalTypes: "div";
-  deleteTimeline: "form";
   organizationDescription: "div";
-  deleteTimeline3: typeof Button;
+  deleteTimeline: typeof Button;
   text2: "div";
   cancelTimeline: typeof Button;
   text22: "div";
@@ -770,9 +768,8 @@ export const PlasmicModal = Object.assign(
   {
     // Helper components rendering sub-elements
     modalTypes: makeNodeComponent("modalTypes"),
-    deleteTimeline: makeNodeComponent("deleteTimeline"),
     organizationDescription: makeNodeComponent("organizationDescription"),
-    deleteTimeline3: makeNodeComponent("deleteTimeline3"),
+    deleteTimeline: makeNodeComponent("deleteTimeline"),
     text2: makeNodeComponent("text2"),
     cancelTimeline: makeNodeComponent("cancelTimeline"),
     text22: makeNodeComponent("text22"),

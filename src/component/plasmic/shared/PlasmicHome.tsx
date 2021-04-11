@@ -215,7 +215,7 @@ function PlasmicHome__RenderFunc(props: {
                     ),
                   })}
                   isActive={"feed" as const}
-                  variantType={"isVenture" as const}
+                  variantType={"isEmpty" as const}
                 />
               </div>
 

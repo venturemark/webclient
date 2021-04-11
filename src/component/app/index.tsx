@@ -16,16 +16,21 @@ import { useCurrentUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import { ISearchVenturesByUser, IVenture } from "module/interface/venture";
-import { useVenturesByUser } from "module/hook/venture";
+import {
+  ISearchVenturesByTimeline,
+  ISearchVenturesByUser,
+  IVenture,
+} from "module/interface/venture";
+import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
 import { useTimelinesByUserId } from "module/hook/timeline";
-import { useRoleByTimelineIds, useVentureRole } from "module/hook/role";
+import { useRoleByTimelineIds, useRoleByVentureIds } from "module/hook/role";
 import {
   IRole,
   ISearchRoleByTimelineIds,
-  ISearchVentureRoles,
+  ISearchRoleByVentureIds,
 } from "module/interface/role";
+import { getUniqueListBy } from "module/helpers";
 
 interface IVentureContext {
   ventures: IVenture[];
@@ -75,10 +80,6 @@ function AuthenticatedRoute() {
     return <span>Checking auth...</span>;
   }
 
-  if (userError) {
-    return <span>error fetching user</span>;
-  }
-
   if (!isLoading && !isAuthenticated) {
     return <Navigate to={`signin`} />;
   }
@@ -96,6 +97,7 @@ function AuthenticatedRoute() {
               userSuccess={userSuccess}
               user={user}
               userLoading={userLoading}
+              userError={userError}
             />
           }
         />
@@ -108,14 +110,15 @@ interface RegisteredUserRouteProps {
   userSuccess: boolean;
   user: IUser;
   userLoading: boolean;
+  userError: boolean;
 }
 
 function RegisteredUserRoute(props: RegisteredUserRouteProps) {
-  const { userSuccess, user, userLoading } = props;
+  const { userSuccess, user, userLoading, userError } = props;
 
-  if (userLoading) {
-    return <span>Loading user...</span>;
-  }
+  if (userLoading) return <span>Loading user...</span>;
+
+  if (userError) return <Navigate to={"../profile"} />;
 
   if (userSuccess && !user) {
     return <Navigate to={"../profile"} />;
@@ -167,29 +170,52 @@ function VentureRoutes(props: VentureRoutesProps) {
 
   const { data: timelinesData } = useTimelinesByUserId(timelineByUserIdSearch);
 
-  const ventureSearch: ISearchVenturesByUser = {
+  const ventureIds: string[] = timelinesData?.map(
+    (timeline: ITimeline) => timeline.ventureId
+  );
+  let uniqueVentureIds = [...new Set(ventureIds)];
+
+  const ventureSearch: ISearchVenturesByTimeline = {
+    ventureIds: uniqueVentureIds,
+    token,
+  };
+
+  const {
+    data: ventureByTimelineData,
+    isSuccess: ventureSuccess,
+  } = useVentureByTimeline(ventureSearch);
+
+  const ventureUserSearch: ISearchVenturesByUser = {
     userId,
     token,
   };
 
-  const { data: ventureData, isSuccess: ventureSuccess } = useVenturesByUser(
-    ventureSearch
-  );
+  const {
+    data: ventureByUserData,
+    isSuccess: ventureUserSuccess,
+    status,
+  } = useVenturesByUser(ventureUserSearch);
+
+  const allVentures =
+    ventureUserSuccess && ventureSuccess
+      ? getUniqueListBy([...ventureByTimelineData, ...ventureByUserData], "id")
+      : ventureByTimelineData;
 
   const currentVenture = ventureSlug
-    ? ventureData?.filter(
+    ? allVentures?.filter(
         (venture: IVenture) =>
           venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
       )[0]
-    : ventureSuccess
-    ? ventureData[0]
+    : ventureSuccess && ventureUserSuccess
+    ? allVentures[0]
     : undefined;
 
-  const ventureRoleSearch: ISearchVentureRoles = {
+  const ventureRoleSearch: ISearchRoleByVentureIds = {
     resource: "venture",
-    ventureId: currentVenture?.id ?? "",
+    ventureIds: uniqueVentureIds,
     token,
   };
+  const { data: ventureRolesData } = useRoleByVentureIds(ventureRoleSearch);
 
   const timelineIds = timelinesData?.map((timeline: ITimeline) => timeline.id);
 
@@ -199,14 +225,20 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const { data: timelineRolesData } = useRoleByTimelineIds(
-    searchRolesByTimelineIds
-  );
+  const {
+    data: timelineRolesData,
+    isSuccess: timelineRolesSuccess,
+  } = useRoleByTimelineIds(searchRolesByTimelineIds);
 
-  const { data: ventureRolesData } = useVentureRole(ventureRoleSearch);
+  // Right now we don't have timeline specific roles,
+  // and timeline permissions default to parent venture
+  const timelineRoles =
+    timelineRolesSuccess && timelineRolesData.length < 1
+      ? ventureRolesData
+      : timelineRolesData;
 
   // redirect "/"" to "ventureSlug"
-  if (ventureSuccess && ventureSlug === undefined) {
+  if (ventureSuccess && ventureSlug === undefined && currentVenture) {
     const ventureSlugRedirect = currentVenture.name
       .toLowerCase()
       .replace(/\s/g, "");
@@ -214,13 +246,14 @@ function VentureRoutes(props: VentureRoutesProps) {
   }
 
   // redirect to newVenture if there is not venture
-  if (ventureSuccess && ventureData.length < 0) {
+  if (ventureSuccess && ventureUserSuccess && allVentures.length < 1) {
+    console.log(status);
     return <Navigate to="../newventure" />;
   }
 
   // add permission to venture
   const ventures =
-    ventureData?.map((venture: IVenture) => {
+    allVentures?.map((venture: IVenture) => {
       const userRole =
         ventureRolesData?.filter((role: IRole) => role.subjectId === userId)[0]
           ?.role === "owner"
@@ -232,17 +265,17 @@ function VentureRoutes(props: VentureRoutesProps) {
 
   const timelines = timelinesData?.map((timeline: ITimeline) => {
     const userRole =
-      timelineRolesData?.filter((role: IRole) => role.subjectId === userId)[0]
+      timelineRoles?.filter((role: IRole) => role.subjectId === userId)[0]
         ?.role === "owner"
         ? "isAdmin"
-        : [];
+        : undefined;
     return { ...timeline, userRole };
   });
 
   const currentVentureRole = ventureSuccess
     ? ventures?.filter(
         (venture: IVenture) => venture.id === currentVenture?.id
-      )[0].userRole
+      )[0]?.userRole
     : undefined;
 
   const ventureContext: IVentureContext = {
@@ -266,6 +299,7 @@ function VentureRoutes(props: VentureRoutesProps) {
           <Route path="feed" element={<VentureFeed />} />
           <Route path="members" element={<VentureMembers />} />
           <Route path="settings" element={<VentureSettings />} />
+          <Route path="delete" element={<VentureDelete />} />
           <Route path="newtimeline" element={<NewTimeline />} />
           <Route path=":timelineSlug/*" element={<TimelineRoutes />} />
         </Routes>
@@ -299,6 +333,21 @@ function VentureSettings() {
   return <Home variantType={variantType} isActive={isActive} />;
 }
 
+function VentureDelete() {
+  const variantType = "isVenture";
+  const isActive = "settings";
+  const modalType = "deleteVenture";
+  const isVisible = "showModal";
+  return (
+    <Home
+      variantType={variantType}
+      isActive={isActive}
+      modalType={modalType}
+      isVisible={isVisible}
+    />
+  );
+}
+
 function TimelineRoutes() {
   return (
     <Routes>
@@ -306,6 +355,7 @@ function TimelineRoutes() {
       <Route path="feed" element={<TimelineFeed />} />
       <Route path="members" element={<TimelineMembers />} />
       <Route path="settings" element={<TimelineSettings />} />
+      <Route path="delete" element={<TimelineDelete />} />
       <Route path="postdetail" element={<PostDetail />} />
     </Routes>
   );
@@ -327,6 +377,21 @@ function TimelineSettings() {
   const variantType = "isTimeline";
   const isActive = "settings";
   return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function TimelineDelete() {
+  const variantType = "isTimeline";
+  const isActive = "settings";
+  const modalType = "deleteTimeline";
+  const isVisible = "showModal";
+  return (
+    <Home
+      variantType={variantType}
+      isActive={isActive}
+      modalType={modalType}
+      isVisible={isVisible}
+    />
+  );
 }
 
 function PostDetail() {

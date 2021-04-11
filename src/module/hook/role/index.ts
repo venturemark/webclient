@@ -1,12 +1,52 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
   ISearchRoleByTimelineIds,
+  ISearchRoleByVentureIds,
   ISearchTimelineRoles,
   ISearchVentureRoles,
 } from "module/interface/role";
 import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
+
+const getRoleByVentureIds = async (
+  searchRoleByVentureIds: ISearchRoleByVentureIds
+) => {
+  const { ventureIds, resource, token } = searchRoleByVentureIds;
+
+  const allRoles = await Promise.all(
+    ventureIds.map(async (id: string) => {
+      const search = {
+        ventureId: id,
+        resource,
+        token,
+      };
+
+      const roles = await api.API.Role.Search(search);
+      return roles;
+    })
+  );
+  const flattenedRoles: any = allRoles.flat();
+
+  return flattenedRoles;
+};
+
+export function useRoleByVentureIds(
+  searchRoleByVentureIds: ISearchRoleByVentureIds
+) {
+  return useQuery<any, ErrorResponse>(
+    [
+      `role-${searchRoleByVentureIds.ventureIds}`,
+      searchRoleByVentureIds.token,
+      searchRoleByVentureIds.ventureIds,
+    ],
+    () => getRoleByVentureIds(searchRoleByVentureIds),
+    {
+      enabled:
+        !!searchRoleByVentureIds.token && !!searchRoleByVentureIds.ventureIds,
+    }
+  );
+}
 
 const getRoleByTimelineIds = async (
   searchRoleByTimelineIds: ISearchRoleByTimelineIds
@@ -16,7 +56,7 @@ const getRoleByTimelineIds = async (
   const allRoles = await Promise.all(
     timelineIds.map(async (id: string) => {
       const search = {
-        id,
+        timelineId: id,
         resource,
         token,
       };
@@ -84,7 +124,7 @@ export function useCreateRole() {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("ventureRole");
+        queryClient.invalidateQueries("role");
       },
     }
   );

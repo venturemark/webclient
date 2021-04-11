@@ -11,7 +11,12 @@ import { IUpdateUser } from "module/interface/user";
 import { nameError, roleError } from "module/errors";
 import { useUpdateUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
-import { UserContext } from "component/app";
+import { UserContext, VentureContext } from "component/app";
+import { useQuery } from "module/helpers";
+import { IDeleteVenture } from "module/interface/venture";
+import { useDeleteVenture } from "module/hook/venture";
+import { IUpdateTimeline } from "module/interface/timeline";
+import { useArchiveDeleteTimeline } from "module/hook/timeline";
 
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
@@ -26,12 +31,18 @@ function Modal(props: ModalProps) {
   const navigate = useNavigate();
   const token = useGetToken();
   const user = useContext(UserContext);
+  const venture = useContext(VentureContext);
+  const query = useQuery();
+  const ventureId = query.get("ventureId") ?? "";
+  const timelineId = query.get("timelineId") ?? "";
 
   const { handleSubmit, register, errors } = useForm({
     mode: "onChange",
   });
 
   const { mutate: updateUser } = useUpdateUser();
+  const { mutate: deleteVenture } = useDeleteVenture();
+  const { mutate: archiveDeleteTimeline } = useArchiveDeleteTimeline();
 
   const handleSave = (data: any) => {
     if (!data.name) {
@@ -48,6 +59,30 @@ function Modal(props: ModalProps) {
 
     updateUser(userUpdate);
   };
+
+  const handleDeleteTimeline = async () => {
+    const ventureId = venture?.currentVenture.id ?? "";
+    const timelineArchive: IUpdateTimeline = {
+      id: timelineId,
+      ventureId: ventureId,
+      stat: "archived",
+      successUrl: `/`,
+      token: token,
+    };
+
+    archiveDeleteTimeline(timelineArchive);
+  };
+
+  const handleDeleteVenture = () => {
+    const ventureDelete: IDeleteVenture = {
+      id: ventureId,
+      successUrl: `/`,
+      token: token,
+    };
+
+    deleteVenture(ventureDelete);
+  };
+
   return (
     <PlasmicModal
       {...rest}
@@ -70,30 +105,27 @@ function Modal(props: ModalProps) {
         register: register({ required: true }),
         errorMessage: errors.role && roleError,
       }}
-      deleteTimeline={
-        {
-          // onClick: () => setIsVisible(undefined),
-        }
-      }
-      deleteVenture={
-        {
-          // onClick: () => setIsVisible(undefined),
-        }
-      }
+      deleteTimeline={{
+        onClick: () => handleDeleteTimeline(),
+      }}
+      deleteVenture={{
+        onClick: () => handleDeleteVenture(),
+        type: "button",
+      }}
       saveUser={{
         type: "submit",
       }}
       cancelEdit={{
-        onClick: () => navigate(-1),
+        onClick: () => navigate("../settings"),
       }}
       cancelTimeline={{
-        onClick: () => navigate(-1),
+        onClick: () => navigate("../"),
       }}
       cancelVenture={{
-        onClick: () => navigate(-1),
+        onClick: () => navigate("../settings"),
       }}
       close={{
-        onClick: () => navigate(-1),
+        onClick: () => navigate("../"),
       }}
     />
   );

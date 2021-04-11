@@ -36,11 +36,7 @@ const getVentureByTimeline = async (
 
 export function useVenturesByUser(searchVentureByUser: ISearchVenturesByUser) {
   return useQuery<any, ErrorResponse>(
-    [
-      `ventures-${searchVentureByUser.userId}`,
-      searchVentureByUser.token,
-      searchVentureByUser.userId,
-    ],
+    ["ventures", searchVentureByUser.userId],
     () => getVenturesByUser(searchVentureByUser),
     { enabled: !!searchVentureByUser.token && !!searchVentureByUser.userId }
   );
@@ -50,11 +46,7 @@ export function useVentureByTimeline(
   searchVenturesByTimeline: ISearchVenturesByTimeline
 ) {
   return useQuery<any, ErrorResponse>(
-    [
-      `ventures-${searchVenturesByTimeline.ventureIds}`,
-      searchVenturesByTimeline.token,
-      searchVenturesByTimeline.ventureIds,
-    ],
+    ["ventures", searchVenturesByTimeline.ventureIds],
     () => getVentureByTimeline(searchVenturesByTimeline),
     {
       enabled:
@@ -99,6 +91,25 @@ export function useUpdateVenture() {
 
         //redirect on success
         ventureUpdate.successUrl && navigate(ventureUpdate.successUrl);
+      },
+    }
+  );
+}
+
+export function useDeleteVenture() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useMutation<any, any, any>(
+    (ventureDelete) => {
+      return api.API.Venture.Delete(ventureDelete);
+    },
+    {
+      onSuccess: (_, ventureDelete) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("ventures");
+        //redirect on success
+        ventureDelete.successUrl && navigate(ventureDelete.successUrl);
       },
     }
   );

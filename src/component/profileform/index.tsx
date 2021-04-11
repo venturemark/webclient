@@ -48,13 +48,9 @@ function ProfileForm(props: ProfileFormProps) {
     saveUser(user);
   };
 
-  if (userLoading) {
-    return <span>Loading user...</span>;
-  }
+  if (userLoading) return <span>Loading user...</span>;
 
-  if (user) {
-    return <Navigate to={`/`} />;
-  }
+  if (user) return <Navigate to={`/`} />;
 
   return (
     <PlasmicProfileForm

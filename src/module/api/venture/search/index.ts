@@ -20,8 +20,8 @@ export async function Search(
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new SearchI();
-
   const obj = new SearchI_Obj();
+
   ventureSearch.id && obj.getMetadataMap().set(key.VentureID, ventureSearch.id);
   ventureSearch.userId &&
     obj.getMetadataMap().set(key.SubjectID, ventureSearch.userId);

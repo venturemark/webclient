@@ -68,6 +68,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@plasmicapp/cli": "^0.1.94"
+    "@plasmicapp/cli": "^0.1.129"
   }
 }

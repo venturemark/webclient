@@ -26,11 +26,7 @@ export function useTimelinesByVentureId(
   searchTimelinesbyVentureId: ISearchTimelinesbyVentureId
 ) {
   return useQuery<any, ErrorResponse>(
-    [
-      `timelines-${searchTimelinesbyVentureId.ventureId}`,
-      searchTimelinesbyVentureId.token,
-      searchTimelinesbyVentureId.ventureId,
-    ],
+    ["timelines", searchTimelinesbyVentureId.ventureId],
     () => getTimelinesbyVentureId(searchTimelinesbyVentureId),
     {
       enabled:
@@ -44,11 +40,7 @@ export function useTimelinesByUserId(
   searchTimelinesByUserId: ISearchTimelinesbyUserId
 ) {
   return useQuery<any, ErrorResponse>(
-    [
-      `timelines-${searchTimelinesByUserId.userId}`,
-      searchTimelinesByUserId.token,
-      searchTimelinesByUserId.userId,
-    ],
+    [`timelines`, searchTimelinesByUserId.userId],
     () => getTimelinesByUserId(searchTimelinesByUserId),
     {
       enabled:
@@ -88,6 +80,29 @@ export function useUpdateTimeline() {
     {
       onSuccess: (_, timelineUpdate) => {
         // Invalidate and refetch
+        queryClient.invalidateQueries("timelines");
+
+        //redirect on success
+        timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
+      },
+    }
+  );
+}
+
+export function useArchiveDeleteTimeline() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useMutation<any, any, any>(
+    (timelineUpdate) => {
+      return api.API.Timeline.Update(timelineUpdate);
+    },
+    {
+      onSuccess: async (_, timelineUpdate) => {
+        //perform delete on success of archive
+        await api.API.Timeline.Delete(timelineUpdate);
+
+        //invalidate queries for refetch
         queryClient.invalidateQueries("timelines");
 
         //redirect on success

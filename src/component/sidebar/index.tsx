@@ -7,40 +7,22 @@ import {
 } from "component/plasmic/shared/PlasmicSidebar";
 import SidebarItemGroup from "component/sidebaritemgroup";
 import { useNavigate } from "react-router-dom";
-import { ISearchVenturesByTimeline, IVenture } from "module/interface/venture";
-import { useGetToken } from "module/auth";
-import { useVentureByTimeline } from "module/hook/venture";
+import { IVenture } from "module/interface/venture";
 import { TimelineContext, VentureContext } from "component/app";
 
 interface SidebarProps extends DefaultSidebarProps {}
 
 function Sidebar(props: SidebarProps) {
   const navigate = useNavigate();
-  const token = useGetToken();
   const timelineContext = useContext(TimelineContext);
   const ventureContext = useContext(VentureContext);
 
   const timelines = timelineContext?.timelines ?? [];
-
-  const ventureIds = timelines.map((timeline) => timeline.ventureId);
-  let uniqueVentureIds = [...new Set(ventureIds)];
-
-  const ventureSearch: ISearchVenturesByTimeline = {
-    ventureIds: uniqueVentureIds,
-    token,
-  };
-
-  const { data: venturesData, isLoading } = useVentureByTimeline(ventureSearch);
-  const ventures =
-    venturesData?.length > 0 ? venturesData : ventureContext?.ventures;
+  const ventures = ventureContext?.ventures ?? [];
 
   const sortedVentures = ventures?.sort((a: IVenture, b: IVenture) =>
     a.name.localeCompare(b.name)
   );
-
-  if (isLoading) {
-    return <span>loading sidebar...</span>;
-  }
 
   return (
     <PlasmicSidebar

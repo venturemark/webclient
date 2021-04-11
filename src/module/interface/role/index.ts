@@ -24,6 +24,12 @@ export interface ISearchRoleByTimelineIds {
   token: string;
 }
 
+export interface ISearchRoleByVentureIds {
+  resource: string;
+  ventureIds: string[];
+  token: string;
+}
+
 export interface INewRole {
   resource: string;
   role: string;
