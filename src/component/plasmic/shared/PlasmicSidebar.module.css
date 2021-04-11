@@ -1,5 +1,5 @@
 .root {
-  box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
   display: flex;
   height: 100%;
   position: relative;
@@ -10,7 +10,6 @@
   width: 250px;
   min-width: 250px;
   min-height: 0;
-  background: #ffffff;
 }
 .root__hasInput {
   border-width: 1px;

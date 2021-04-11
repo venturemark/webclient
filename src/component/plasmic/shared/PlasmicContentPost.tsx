@@ -44,12 +44,12 @@ import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5Q
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 
 export type PlasmicContentPost__VariantMembers = {
-  state: "isUser" | "isPostDetails";
+  state: "isOwner" | "isPostDetails";
   isUserOnClick: "isUserOnClick";
 };
 
 export type PlasmicContentPost__VariantsArgs = {
-  state?: MultiChoiceArg<"isUser" | "isPostDetails">;
+  state?: MultiChoiceArg<"isOwner" | "isPostDetails">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
 };
 
@@ -96,7 +96,7 @@ export interface DefaultContentPostProps {
   date?: React.ReactNode;
   userInitials?: React.ReactNode;
   children?: React.ReactNode;
-  state?: MultiChoiceArg<"isUser" | "isPostDetails">;
+  state?: MultiChoiceArg<"isOwner" | "isPostDetails">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
   className?: string;
 }
@@ -125,12 +125,12 @@ function PlasmicContentPost__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__state_isOwner]: hasVariant(variants, "state", "isOwner"),
         [sty.root__state_isPostDetails]: hasVariant(
           variants,
           "state",
           "isPostDetails"
         ),
-        [sty.root__state_isUser]: hasVariant(variants, "state", "isUser"),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -138,18 +138,18 @@ function PlasmicContentPost__RenderFunc(props: {
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
         className={classNames(defaultcss.all, sty.editorContainer, {
-          [sty.editorContainer__isUserOnClick_state_isUser]:
+          [sty.editorContainer__isUserOnClick_state_isOwner]:
             hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
-            hasVariant(variants, "state", "isUser"),
+            hasVariant(variants, "state", "isOwner"),
+          [sty.editorContainer__state_isOwner]: hasVariant(
+            variants,
+            "state",
+            "isOwner"
+          ),
           [sty.editorContainer__state_isPostDetails]: hasVariant(
             variants,
             "state",
             "isPostDetails"
-          ),
-          [sty.editorContainer__state_isUser]: hasVariant(
-            variants,
-            "state",
-            "isUser"
           ),
         })}
       >
@@ -204,13 +204,13 @@ function PlasmicContentPost__RenderFunc(props: {
             </div>
           </p.Stack>
 
-          {(hasVariant(variants, "state", "isUser") ? true : false) ? (
+          {(hasVariant(variants, "state", "isOwner") ? true : false) ? (
             <div
               className={classNames(defaultcss.all, sty.box__vVNrv, {
-                [sty.box__state_isUser__vVNrvU0Xnn]: hasVariant(
+                [sty.box__state_isOwner__vVNrvU0Xnn]: hasVariant(
                   variants,
                   "state",
-                  "isUser"
+                  "isOwner"
                 ),
               })}
             >
@@ -218,17 +218,17 @@ function PlasmicContentPost__RenderFunc(props: {
                 data-plasmic-name={"iconMenu"}
                 data-plasmic-override={overrides.iconMenu}
                 className={classNames(defaultcss.all, sty.iconMenu, {
-                  [sty.iconMenu__state_isUser]: hasVariant(
+                  [sty.iconMenu__state_isOwner]: hasVariant(
                     variants,
                     "state",
-                    "isUser"
+                    "isOwner"
                   ),
                 })}
                 role={"img"}
               />
 
               {(
-                hasVariant(variants, "state", "isUser") && triggers.hover_root
+                hasVariant(variants, "state", "isOwner") && triggers.hover_root
                   ? false
                   : hasVariant(variants, "isUserOnClick", "isUserOnClick")
                   ? true
@@ -243,13 +243,13 @@ function PlasmicContentPost__RenderFunc(props: {
                       "isUserOnClick",
                       "isUserOnClick"
                     ),
-                    [sty.dropdown__isUserOnClick_state_isUser]:
+                    [sty.dropdown__isUserOnClick_state_isOwner]:
                       hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
-                      hasVariant(variants, "state", "isUser"),
-                    [sty.dropdown__state_isUser]: hasVariant(
+                      hasVariant(variants, "state", "isOwner"),
+                    [sty.dropdown__state_isOwner]: hasVariant(
                       variants,
                       "state",
-                      "isUser"
+                      "isOwner"
                     ),
                   })}
                 />
@@ -262,15 +262,15 @@ function PlasmicContentPost__RenderFunc(props: {
           as={"div"}
           hasGap={true}
           className={classNames(defaultcss.all, sty.box__ehjLr, {
+            [sty.box__state_isOwner__ehjLrU0Xnn]: hasVariant(
+              variants,
+              "state",
+              "isOwner"
+            ),
             [sty.box__state_isPostDetails__ehjLrNeiX5]: hasVariant(
               variants,
               "state",
               "isPostDetails"
-            ),
-            [sty.box__state_isUser__ehjLrU0Xnn]: hasVariant(
-              variants,
-              "state",
-              "isUser"
             ),
           })}
         >
@@ -278,8 +278,8 @@ function PlasmicContentPost__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(defaultcss.all, sty.box__kyNpO, {
-              [sty.box__state_isUser_isUserOnClick__kyNpOu0XnnG87Sf]:
-                hasVariant(variants, "state", "isUser") &&
+              [sty.box__state_isOwner_isUserOnClick__kyNpOu0XnnG87Sf]:
+                hasVariant(variants, "state", "isOwner") &&
                 hasVariant(variants, "isUserOnClick", "isUserOnClick"),
             })}
           >
@@ -304,10 +304,10 @@ function PlasmicContentPost__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(defaultcss.all, sty.box__fjL5B, {
-                  [sty.box__state_isUser__fjL5Bu0Xnn]: hasVariant(
+                  [sty.box__state_isOwner__fjL5Bu0Xnn]: hasVariant(
                     variants,
                     "state",
-                    "isUser"
+                    "isOwner"
                   ),
                 })}
               >
@@ -376,8 +376,8 @@ function PlasmicContentPost__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(defaultcss.all, sty.box__vvzri, {
-                  [sty.box__state_isUser_isUserOnClick__vvzriu0XnnG87Sf]:
-                    hasVariant(variants, "state", "isUser") &&
+                  [sty.box__state_isOwner_isUserOnClick__vvzriu0XnnG87Sf]:
+                    hasVariant(variants, "state", "isOwner") &&
                     hasVariant(variants, "isUserOnClick", "isUserOnClick"),
                 })}
               >
@@ -390,8 +390,8 @@ function PlasmicContentPost__RenderFunc(props: {
                     defaultcss.all,
                     sty.timelineNamesContainer,
                     {
-                      [sty.timelineNamesContainer__state_isUser_isUserOnClick]:
-                        hasVariant(variants, "state", "isUser") &&
+                      [sty.timelineNamesContainer__state_isOwner_isUserOnClick]:
+                        hasVariant(variants, "state", "isOwner") &&
                         hasVariant(variants, "isUserOnClick", "isUserOnClick"),
                     }
                   )}
@@ -400,8 +400,8 @@ function PlasmicContentPost__RenderFunc(props: {
                     data-plasmic-name={"timelineLink"}
                     data-plasmic-override={overrides.timelineLink}
                     className={classNames("__wab_instance", sty.timelineLink, {
-                      [sty.timelineLink__state_isUser_isUserOnClick]:
-                        hasVariant(variants, "state", "isUser") &&
+                      [sty.timelineLink__state_isOwner_isUserOnClick]:
+                        hasVariant(variants, "state", "isOwner") &&
                         hasVariant(variants, "isUserOnClick", "isUserOnClick"),
                     })}
                     name={
@@ -433,8 +433,8 @@ function PlasmicContentPost__RenderFunc(props: {
                 buttonFeatures={["isRounded", "showEndIcon", "showCount"]}
                 buttonStyle={"secondaryPurple" as const}
                 className={classNames("__wab_instance", sty.viewReplies, {
-                  [sty.viewReplies__state_isUser_isUserOnClick]:
-                    hasVariant(variants, "state", "isUser") &&
+                  [sty.viewReplies__state_isOwner_isUserOnClick]:
+                    hasVariant(variants, "state", "isOwner") &&
                     hasVariant(variants, "isUserOnClick", "isUserOnClick"),
                 })}
                 count={"1"}

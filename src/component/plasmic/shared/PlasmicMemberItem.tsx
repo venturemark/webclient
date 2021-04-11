@@ -39,11 +39,11 @@ import * as sty from "./PlasmicMemberItem.module.css"; // plasmic-import: D8Y_2w
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 
 export type PlasmicMemberItem__VariantMembers = {
-  userVariant: "isAdmin" | "isRequested";
+  userVariant: "isOwner" | "isRequested" | "isMember";
 };
 
 export type PlasmicMemberItem__VariantsArgs = {
-  userVariant?: SingleChoiceArg<"isAdmin" | "isRequested">;
+  userVariant?: SingleChoiceArg<"isOwner" | "isRequested" | "isMember">;
 };
 
 type VariantPropType = keyof PlasmicMemberItem__VariantsArgs;
@@ -73,7 +73,7 @@ export type PlasmicMemberItem__OverridesType = {
 export interface DefaultMemberItemProps {
   userName?: React.ReactNode;
   slot3?: React.ReactNode;
-  userVariant?: SingleChoiceArg<"isAdmin" | "isRequested">;
+  userVariant?: SingleChoiceArg<"isOwner" | "isRequested" | "isMember">;
   className?: string;
 }
 
@@ -92,10 +92,15 @@ function PlasmicMemberItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__userVariant_isAdmin]: hasVariant(
+        [sty.root__userVariant_isMember]: hasVariant(
           variants,
           "userVariant",
-          "isAdmin"
+          "isMember"
+        ),
+        [sty.root__userVariant_isOwner]: hasVariant(
+          variants,
+          "userVariant",
+          "isOwner"
         ),
         [sty.root__userVariant_isRequested]: hasVariant(
           variants,
@@ -138,72 +143,85 @@ function PlasmicMemberItem__RenderFunc(props: {
         ) : null}
       </p.Stack>
 
-      <p.Stack
-        as={"div"}
-        hasGap={true}
-        className={classNames(defaultcss.all, sty.box__ymOfc)}
-      >
-        {(
-          hasVariant(variants, "userVariant", "isRequested")
-            ? true
-            : hasVariant(variants, "userVariant", "isAdmin")
-            ? true
-            : false
-        ) ? (
-          <Tags
-            data-plasmic-name={"tags"}
-            data-plasmic-override={overrides.tags}
-            buttonFeatures={["hasText"]}
-            buttonStyle={
-              hasVariant(variants, "userVariant", "isAdmin")
-                ? ("secondaryGreen" as const)
-                : ("blue" as const)
-            }
-            className={classNames("__wab_instance", sty.tags, {
-              [sty.tags__userVariant_isAdmin]: hasVariant(
-                variants,
-                "userVariant",
-                "isAdmin"
-              ),
-              [sty.tags__userVariant_isRequested]: hasVariant(
-                variants,
-                "userVariant",
-                "isRequested"
-              ),
-            })}
-            text2={
-              hasVariant(variants, "userVariant", "isRequested")
-                ? "Invited"
-                : "Admin"
-            }
-          />
-        ) : null}
-        {(
-          hasVariant(variants, "userVariant", "isRequested")
-            ? false
-            : hasVariant(variants, "userVariant", "isAdmin")
-            ? false
-            : true
-        ) ? (
-          <IconButton
-            data-plasmic-name={"iconButton"}
-            data-plasmic-override={overrides.iconButton}
-          >
-            <IconCloseIcon
-              data-plasmic-name={"svg"}
-              data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg, {
-                [sty.svg__userVariant_isRequested]: hasVariant(
+      {(hasVariant(variants, "userVariant", "isMember") ? false : true) ? (
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(defaultcss.all, sty.box__ymOfc, {
+            [sty.box__userVariant_isMember__ymOfcGdyZr]: hasVariant(
+              variants,
+              "userVariant",
+              "isMember"
+            ),
+          })}
+        >
+          {(
+            hasVariant(variants, "userVariant", "isRequested")
+              ? true
+              : hasVariant(variants, "userVariant", "isOwner")
+              ? true
+              : false
+          ) ? (
+            <Tags
+              data-plasmic-name={"tags"}
+              data-plasmic-override={overrides.tags}
+              buttonFeatures={["hasText"]}
+              buttonStyle={
+                hasVariant(variants, "userVariant", "isOwner")
+                  ? ("secondaryGreen" as const)
+                  : ("blue" as const)
+              }
+              className={classNames("__wab_instance", sty.tags, {
+                [sty.tags__userVariant_isOwner]: hasVariant(
+                  variants,
+                  "userVariant",
+                  "isOwner"
+                ),
+                [sty.tags__userVariant_isRequested]: hasVariant(
                   variants,
                   "userVariant",
                   "isRequested"
                 ),
               })}
-              role={"img"}
+              text2={
+                hasVariant(variants, "userVariant", "isRequested")
+                  ? "Invited"
+                  : "Admin"
+              }
             />
-          </IconButton>
-        ) : null}
-      </p.Stack>
+          ) : null}
+          {(
+            hasVariant(variants, "userVariant", "isRequested")
+              ? false
+              : hasVariant(variants, "userVariant", "isOwner")
+              ? false
+              : true
+          ) ? (
+            <IconButton
+              data-plasmic-name={"iconButton"}
+              data-plasmic-override={overrides.iconButton}
+            >
+              <IconCloseIcon
+                data-plasmic-name={"svg"}
+                data-plasmic-override={overrides.svg}
+                className={classNames(defaultcss.all, sty.svg, {
+                  [sty.svg__userVariant_isMember]: hasVariant(
+                    variants,
+                    "userVariant",
+                    "isMember"
+                  ),
+                  [sty.svg__userVariant_isRequested]: hasVariant(
+                    variants,
+                    "userVariant",
+                    "isRequested"
+                  ),
+                })}
+                role={"img"}
+              />
+            </IconButton>
+          ) : null}
+        </p.Stack>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }

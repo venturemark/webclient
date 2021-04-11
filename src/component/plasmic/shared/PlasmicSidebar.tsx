@@ -119,6 +119,7 @@ function PlasmicSidebar__RenderFunc(props: {
               <SidebarItemGroup
                 data-plasmic-name={"sidebarItemGroup"}
                 data-plasmic-override={overrides.sidebarItemGroup}
+                isOwner={"isOwner" as const}
               />
             ) : null}
           </p.Stack>

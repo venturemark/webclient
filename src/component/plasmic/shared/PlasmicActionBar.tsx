@@ -86,10 +86,11 @@ export type PlasmicActionBar__OverridesType = {
   editorContainer?: p.Flex<"div">;
   title?: p.Flex<"textarea">;
   description?: p.Flex<"textarea">;
-  tagsContainer?: p.Flex<"div">;
+  tagsContainer?: p.Flex<typeof Tags>;
   post?: p.Flex<typeof Button>;
   container?: p.Flex<"div">;
   selectedItemsContainer?: p.Flex<"div">;
+  tags?: p.Flex<typeof Tags>;
   button?: p.Flex<"button">;
 };
 
@@ -365,11 +366,9 @@ function PlasmicActionBar__RenderFunc(props: {
                             )}
                           >
                             <div
-                              data-plasmic-name={"tagsContainer"}
-                              data-plasmic-override={overrides.tagsContainer}
                               className={classNames(
                                 defaultcss.all,
-                                sty.tagsContainer
+                                sty.box__vnwRg
                               )}
                             >
                               <div
@@ -390,6 +389,8 @@ function PlasmicActionBar__RenderFunc(props: {
                               </div>
 
                               <Tags
+                                data-plasmic-name={"tagsContainer"}
+                                data-plasmic-override={overrides.tagsContainer}
                                 buttonFeatures={["icon", "hasText"]}
                                 text2={"Wins"}
                               >
@@ -523,23 +524,17 @@ function PlasmicActionBar__RenderFunc(props: {
                             : false
                         ) ? (
                           <Tags
-                            className={classNames(
-                              "__wab_instance",
-                              sty.tags___81EIe,
-                              {
-                                [sty.tags__isActive_timelineSelected___81EIevjQpn75BwG]:
-                                  hasVariant(
-                                    variants,
-                                    "isActive",
-                                    "isActive"
-                                  ) &&
-                                  hasVariant(
-                                    variants,
-                                    "timelineSelected",
-                                    "timelineSelected"
-                                  ),
-                              }
-                            )}
+                            data-plasmic-name={"tags"}
+                            data-plasmic-override={overrides.tags}
+                            className={classNames("__wab_instance", sty.tags, {
+                              [sty.tags__isActive_timelineSelected]:
+                                hasVariant(variants, "isActive", "isActive") &&
+                                hasVariant(
+                                  variants,
+                                  "timelineSelected",
+                                  "timelineSelected"
+                                ),
+                            })}
                             text2={"Tag Name"}
                           >
                             <IconCloseIcon
@@ -671,6 +666,7 @@ const PlasmicDescendants = {
     "post",
     "container",
     "selectedItemsContainer",
+    "tags",
     "button",
   ],
   form: [
@@ -683,6 +679,7 @@ const PlasmicDescendants = {
     "post",
     "container",
     "selectedItemsContainer",
+    "tags",
     "button",
   ],
   photoAvatar: ["photoAvatar"],
@@ -691,8 +688,9 @@ const PlasmicDescendants = {
   description: ["description"],
   tagsContainer: ["tagsContainer"],
   post: ["post"],
-  container: ["container", "selectedItemsContainer", "button"],
-  selectedItemsContainer: ["selectedItemsContainer", "button"],
+  container: ["container", "selectedItemsContainer", "tags", "button"],
+  selectedItemsContainer: ["selectedItemsContainer", "tags", "button"],
+  tags: ["tags"],
   button: ["button"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -706,10 +704,11 @@ type NodeDefaultElementType = {
   editorContainer: "div";
   title: "textarea";
   description: "textarea";
-  tagsContainer: "div";
+  tagsContainer: typeof Tags;
   post: typeof Button;
   container: "div";
   selectedItemsContainer: "div";
+  tags: typeof Tags;
   button: "button";
 };
 
@@ -778,6 +777,7 @@ export const PlasmicActionBar = Object.assign(
     post: makeNodeComponent("post"),
     container: makeNodeComponent("container"),
     selectedItemsContainer: makeNodeComponent("selectedItemsContainer"),
+    tags: makeNodeComponent("tags"),
     button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicActionBar

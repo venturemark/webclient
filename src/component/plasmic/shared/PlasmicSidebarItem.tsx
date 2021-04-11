@@ -45,6 +45,7 @@ export type PlasmicSidebarItem__VariantMembers = {
   itemType: "timeline" | "createTimeline" | "ventureCollapsed";
   isActive: "isActive";
   isUserOnClick: "isUserOnClick";
+  isVisible: "isVisible";
 };
 
 export type PlasmicSidebarItem__VariantsArgs = {
@@ -53,13 +54,15 @@ export type PlasmicSidebarItem__VariantsArgs = {
   >;
   isActive?: SingleBooleanChoiceArg<"isActive">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
+  isVisible?: SingleBooleanChoiceArg<"isVisible">;
 };
 
 type VariantPropType = keyof PlasmicSidebarItem__VariantsArgs;
 export const PlasmicSidebarItem__VariantProps = new Array<VariantPropType>(
   "itemType",
   "isActive",
-  "isUserOnClick"
+  "isUserOnClick",
+  "isVisible"
 );
 
 export type PlasmicSidebarItem__ArgsType = {
@@ -85,6 +88,7 @@ export interface DefaultSidebarItemProps {
   >;
   isActive?: SingleBooleanChoiceArg<"isActive">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
+  isVisible?: SingleBooleanChoiceArg<"isVisible">;
   className?: string;
 }
 
@@ -150,11 +154,24 @@ function PlasmicSidebarItem__RenderFunc(props: {
             [sty.itemContainer__isActive_itemType_createTimeline]:
               hasVariant(variants, "isActive", "isActive") &&
               hasVariant(variants, "itemType", "createTimeline"),
+            [sty.itemContainer__isUserOnClick]: hasVariant(
+              variants,
+              "isUserOnClick",
+              "isUserOnClick"
+            ),
+            [sty.itemContainer__isVisible]: hasVariant(
+              variants,
+              "isVisible",
+              "isVisible"
+            ),
             [sty.itemContainer__itemType_createTimeline]: hasVariant(
               variants,
               "itemType",
               "createTimeline"
             ),
+            [sty.itemContainer__itemType_createTimeline_isVisible]:
+              hasVariant(variants, "itemType", "createTimeline") &&
+              hasVariant(variants, "isVisible", "isVisible"),
             [sty.itemContainer__itemType_timeline]: hasVariant(
               variants,
               "itemType",

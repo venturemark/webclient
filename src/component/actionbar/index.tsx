@@ -136,17 +136,6 @@ function ActionBar(props: ActionBarProps) {
       error={undefined}
       text={undefined}
       timelineSelected={isTimelineSelected}
-      selectedItemsContainer={{
-        render: () => (
-          <AntSelect
-            ventureId={ventureId}
-            selectedTimelines={selectedTimelines}
-            setSelectedTimelines={setSelectedTimelines}
-            selectFocused={selectFocused}
-            setSelectFocused={setSelectFocused}
-          />
-        ),
-      }}
     />
   );
 }

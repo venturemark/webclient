@@ -47,17 +47,20 @@ import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v
 export type PlasmicMain__VariantMembers = {
   variantType: "isVenture" | "isTimeline" | "isEmpty";
   isActive: "feed" | "settings" | "members";
+  isOwner: "isOwner";
 };
 
 export type PlasmicMain__VariantsArgs = {
   variantType?: SingleChoiceArg<"isVenture" | "isTimeline" | "isEmpty">;
   isActive?: SingleChoiceArg<"feed" | "settings" | "members">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
 };
 
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
 export const PlasmicMain__VariantProps = new Array<VariantPropType>(
   "variantType",
-  "isActive"
+  "isActive",
+  "isOwner"
 );
 
 export type PlasmicMain__ArgsType = {};
@@ -80,6 +83,7 @@ export type PlasmicMain__OverridesType = {
 export interface DefaultMainProps {
   variantType?: SingleChoiceArg<"isVenture" | "isTimeline" | "isEmpty">;
   isActive?: SingleChoiceArg<"feed" | "settings" | "members">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
   className?: string;
 }
 
@@ -207,12 +211,22 @@ function PlasmicMain__RenderFunc(props: {
               "isActive",
               "settings"
             ),
+            [sty.feedUpdate__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
             [sty.feedUpdate__variantType_isEmpty]: hasVariant(
               variants,
               "variantType",
               "isEmpty"
             ),
           })}
+          isOwner={
+            hasVariant(variants, "isOwner", "isOwner")
+              ? ("isOwner" as const)
+              : undefined
+          }
         />
       ) : null}
       {(hasVariant(variants, "isActive", "members") ? true : false) ? (
@@ -225,7 +239,54 @@ function PlasmicMain__RenderFunc(props: {
               "isActive",
               "members"
             ),
+            [sty.addEditMembers__isActive_members_isOwner]:
+              hasVariant(variants, "isActive", "members") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+            [sty.addEditMembers__isActive_members_isOwner_variantType_isTimeline]:
+              hasVariant(variants, "isActive", "members") &&
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "variantType", "isTimeline"),
+            [sty.addEditMembers__isActive_members_variantType_isTimeline]:
+              hasVariant(variants, "isActive", "members") &&
+              hasVariant(variants, "variantType", "isTimeline"),
+            [sty.addEditMembers__isActive_settings]: hasVariant(
+              variants,
+              "isActive",
+              "settings"
+            ),
+            [sty.addEditMembers__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.addEditMembers__variantType_isTimeline]: hasVariant(
+              variants,
+              "variantType",
+              "isTimeline"
+            ),
+            [sty.addEditMembers__variantType_isVenture]: hasVariant(
+              variants,
+              "variantType",
+              "isVenture"
+            ),
+            [sty.addEditMembers__variantType_isVenture_isActive_members]:
+              hasVariant(variants, "variantType", "isVenture") &&
+              hasVariant(variants, "isActive", "members"),
+            [sty.addEditMembers__variantType_isVenture_isActive_members_isOwner]:
+              hasVariant(variants, "variantType", "isVenture") &&
+              hasVariant(variants, "isActive", "members") &&
+              hasVariant(variants, "isOwner", "isOwner"),
           })}
+          isOwner={
+            hasVariant(variants, "isActive", "members") &&
+            hasVariant(variants, "isOwner", "isOwner") &&
+            hasVariant(variants, "variantType", "isTimeline")
+              ? ("isOwner" as const)
+              : hasVariant(variants, "isActive", "members") &&
+                hasVariant(variants, "isOwner", "isOwner")
+              ? ("isOwner" as const)
+              : undefined
+          }
         />
       ) : null}
       {(
@@ -254,6 +315,11 @@ function PlasmicMain__RenderFunc(props: {
               "isActive",
               "settings"
             ),
+            [sty.addEditVenture__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
             [sty.addEditVenture__variantType_isEmpty]: hasVariant(
               variants,
               "variantType",
@@ -268,6 +334,12 @@ function PlasmicMain__RenderFunc(props: {
               hasVariant(variants, "variantType", "isTimeline") &&
               hasVariant(variants, "isActive", "settings"),
           })}
+          isOwner={
+            hasVariant(variants, "isOwner", "isOwner")
+              ? ("isOwner" as const)
+              : undefined
+          }
+          variantState={"isEdit" as const}
         >
           <div
             className={classNames(
@@ -290,10 +362,55 @@ function PlasmicMain__RenderFunc(props: {
           data-plasmic-name={"addEditTimeline"}
           data-plasmic-override={overrides.addEditTimeline}
           className={classNames("__wab_instance", sty.addEditTimeline, {
+            [sty.addEditTimeline__isActive_members]: hasVariant(
+              variants,
+              "isActive",
+              "members"
+            ),
+            [sty.addEditTimeline__isActive_members_isOwner]:
+              hasVariant(variants, "isActive", "members") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+            [sty.addEditTimeline__isActive_members_isOwner_variantType_isTimeline]:
+              hasVariant(variants, "isActive", "members") &&
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "variantType", "isTimeline"),
+            [sty.addEditTimeline__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.addEditTimeline__isOwner_isActive_settings]:
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "isActive", "settings"),
+            [sty.addEditTimeline__variantType_isTimeline]: hasVariant(
+              variants,
+              "variantType",
+              "isTimeline"
+            ),
             [sty.addEditTimeline__variantType_isTimeline_isActive_settings]:
               hasVariant(variants, "variantType", "isTimeline") &&
               hasVariant(variants, "isActive", "settings"),
+            [sty.addEditTimeline__variantType_isTimeline_isActive_settings_isOwner]:
+              hasVariant(variants, "variantType", "isTimeline") &&
+              hasVariant(variants, "isActive", "settings") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+            [sty.addEditTimeline__variantType_isTimeline_isOwner]:
+              hasVariant(variants, "variantType", "isTimeline") &&
+              hasVariant(variants, "isOwner", "isOwner"),
           })}
+          isOwner={
+            hasVariant(variants, "variantType", "isTimeline") &&
+            hasVariant(variants, "isActive", "settings") &&
+            hasVariant(variants, "isOwner", "isOwner")
+              ? ("isOwner" as const)
+              : undefined
+          }
+          variantState={
+            hasVariant(variants, "variantType", "isTimeline") &&
+            hasVariant(variants, "isActive", "settings")
+              ? ("isEdit" as const)
+              : undefined
+          }
         />
       ) : null}
       {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
