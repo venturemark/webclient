@@ -61,19 +61,16 @@ function Modal(props: ModalProps) {
   };
 
   const handleDeleteTimeline = async () => {
-    console.log(timelineId, "Yarrr!");
     const ventureId = venture?.currentVenture.id ?? "";
-    console.log(ventureId, "venture id");
     const timelineArchive: IUpdateTimeline = {
       id: timelineId,
       ventureId: ventureId,
       stat: "archived",
+      successUrl: `/`,
       token: token,
     };
 
     archiveDeleteTimeline(timelineArchive);
-
-    // console.log(status, "status of archive in modal");
   };
 
   const handleDeleteVenture = () => {
@@ -122,13 +119,13 @@ function Modal(props: ModalProps) {
         onClick: () => navigate("../settings"),
       }}
       cancelTimeline={{
-        onClick: () => navigate("../settings"),
+        onClick: () => navigate("../"),
       }}
       cancelVenture={{
         onClick: () => navigate("../settings"),
       }}
       close={{
-        onClick: () => navigate("../settings"),
+        onClick: () => navigate("../"),
       }}
     />
   );

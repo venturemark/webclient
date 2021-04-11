@@ -1,6 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
-  IDeleteTimeline,
   ISearchTimelinesbyUserId,
   ISearchTimelinesbyVentureId,
 } from "module/interface/timeline";
@@ -27,7 +26,7 @@ export function useTimelinesByVentureId(
   searchTimelinesbyVentureId: ISearchTimelinesbyVentureId
 ) {
   return useQuery<any, ErrorResponse>(
-    `timelines-${searchTimelinesbyVentureId.ventureId}`,
+    ["timelines", searchTimelinesbyVentureId.ventureId],
     () => getTimelinesbyVentureId(searchTimelinesbyVentureId),
     {
       enabled:
@@ -41,7 +40,7 @@ export function useTimelinesByUserId(
   searchTimelinesByUserId: ISearchTimelinesbyUserId
 ) {
   return useQuery<any, ErrorResponse>(
-    `timelines-${searchTimelinesByUserId.userId}`,
+    [`timelines`, searchTimelinesByUserId.userId],
     () => getTimelinesByUserId(searchTimelinesByUserId),
     {
       enabled:
@@ -61,7 +60,7 @@ export function useCreateTimeline() {
     {
       onSuccess: (_, newTimeline) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("timelines-");
+        queryClient.invalidateQueries("timelines");
 
         //redirect on success
         newTimeline.successUrl && navigate(newTimeline.successUrl);
@@ -81,7 +80,7 @@ export function useUpdateTimeline() {
     {
       onSuccess: (_, timelineUpdate) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("timelines-");
+        queryClient.invalidateQueries("timelines");
 
         //redirect on success
         timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
@@ -99,13 +98,15 @@ export function useArchiveDeleteTimeline() {
       return api.API.Timeline.Update(timelineUpdate);
     },
     {
-      onSuccess: (_, timelineUpdate) => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries("timelines-");
+      onSuccess: async (_, timelineUpdate) => {
+        //perform delete on success of archive
+        await api.API.Timeline.Delete(timelineUpdate);
+
+        //invalidate queries for refetch
+        queryClient.invalidateQueries("timelines");
 
         //redirect on success
-        api.API.Timeline.Delete(timelineUpdate);
-        // timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
+        timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
       },
     }
   );

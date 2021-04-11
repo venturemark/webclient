@@ -80,10 +80,6 @@ function AuthenticatedRoute() {
     return <span>Checking auth...</span>;
   }
 
-  if (userError) {
-    return <span>error fetching user</span>;
-  }
-
   if (!isLoading && !isAuthenticated) {
     return <Navigate to={`signin`} />;
   }
@@ -101,6 +97,7 @@ function AuthenticatedRoute() {
               userSuccess={userSuccess}
               user={user}
               userLoading={userLoading}
+              userError={userError}
             />
           }
         />
@@ -113,14 +110,15 @@ interface RegisteredUserRouteProps {
   userSuccess: boolean;
   user: IUser;
   userLoading: boolean;
+  userError: boolean;
 }
 
 function RegisteredUserRoute(props: RegisteredUserRouteProps) {
-  const { userSuccess, user, userLoading } = props;
+  const { userSuccess, user, userLoading, userError } = props;
 
-  if (userLoading) {
-    return <span>Loading user...</span>;
-  }
+  if (userLoading) return <span>Loading user...</span>;
+
+  if (userError) return <Navigate to={"../profile"} />;
 
   if (userSuccess && !user) {
     return <Navigate to={"../profile"} />;
@@ -246,8 +244,6 @@ function VentureRoutes(props: VentureRoutesProps) {
       .replace(/\s/g, "");
     return <Navigate replace to={`${ventureSlugRedirect}`} />;
   }
-
-  console.log("allVentures:", allVentures);
 
   // redirect to newVenture if there is not venture
   if (ventureSuccess && ventureUserSuccess && allVentures.length < 1) {

@@ -35,6 +35,7 @@ export async function Create(newUser: ICreateUser): Promise<any> {
 
   objList.push(obj);
   req.setObjList(objList);
+  console.log("new user to create", newUser);
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
