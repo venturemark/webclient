@@ -61,14 +61,14 @@
     margin-top: 0px;
   }
 }
-.svg___09Qs7 {
+.toggleMobileSidebar {
   object-fit: cover;
   width: 30px;
   height: 30px;
   cursor: pointer;
   flex-shrink: 0;
 }
-.svg__u6Qtf {
+.svg {
   position: relative;
   object-fit: cover;
   width: 148px;

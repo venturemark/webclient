@@ -1,3 +1,5 @@
+import { UserRole } from "../user";
+
 export interface ITimeline {
   name: string;
   desc: string;
@@ -6,7 +8,7 @@ export interface ITimeline {
   userId?: string;
   id: string;
   date?: string;
-  userRole?: string;
+  userRole?: UserRole;
 }
 
 export interface ISearchTimelinesbyUserId {
