@@ -32,6 +32,11 @@ import {
 } from "module/interface/role";
 import { getUniqueListBy } from "module/helpers";
 
+interface IUserContext {
+  user: IUser;
+  status: string;
+}
+
 interface IVentureContext {
   ventures: IVenture[];
   currentVenture: IVenture;
@@ -42,7 +47,7 @@ interface ITimelineContext {
   timelines: ITimeline[];
 }
 
-export const UserContext = createContext<IUser | undefined>(undefined);
+export const UserContext = createContext<IUserContext | undefined>(undefined);
 export const VentureContext = createContext<IVentureContext | undefined>(
   undefined
 );
@@ -71,6 +76,7 @@ function AuthenticatedRoute() {
   };
   const {
     data: userData,
+    status: userStatus,
     isSuccess: userSuccess,
     isLoading: userLoading,
     isError: userError,
@@ -80,16 +86,19 @@ function AuthenticatedRoute() {
     return <span>Checking auth...</span>;
   }
 
-  if (!isLoading && !isAuthenticated) {
-    return <Navigate to={`signin`} />;
-  }
+  if (!isLoading && !isAuthenticated) return <Navigate to={`signin`} />;
 
-  const user = userSuccess ? userData[0] : undefined;
+  const user = userData ? userData[0] : undefined;
+
+  const userContext: IUserContext = {
+    user: user,
+    status: userStatus,
+  };
 
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={userContext}>
       <Routes>
-        <Route path="profile" element={<Profile userLoading={userLoading} />} />
+        <Route path="profile" element={<Profile />} />
         <Route
           path="*"
           element={

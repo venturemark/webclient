@@ -7,6 +7,8 @@ import {
 } from "component/plasmic/shared/PlasmicHeader";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IUser } from "module/interface/user";
+import { useContext } from "react";
+import { UserContext } from "component/app";
 
 interface HeaderProps extends DefaultHeaderProps {
   isVisible: any;
@@ -18,6 +20,9 @@ function Header(props: HeaderProps) {
   const { isVisible, setIsVisible, user, ...rest } = props;
   const { isAuthenticated } = useAuth0();
   const [profileDropdown, setProfileDropdown] = useState(false);
+
+  const userContext = useContext(UserContext);
+  const hasUser = userContext?.user;
 
   useEffect(() => {
     const handleWindowClick = () => setProfileDropdown(false);
@@ -38,7 +43,13 @@ function Header(props: HeaderProps) {
     <PlasmicHeader
       {...rest}
       profileDropdown={profileDropdown}
-      views={isAuthenticated ? "userAccount" : "publicView"}
+      views={
+        hasUser && isAuthenticated
+          ? "userAccount"
+          : isAuthenticated
+          ? undefined
+          : "publicView"
+      }
       avatar={{
         setProfileDropdown,
         profileDropdown,

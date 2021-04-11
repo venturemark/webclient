@@ -8,12 +8,10 @@ import {
 
 type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 
-interface ProfileProps extends DefaultProfileProps {
-  userLoading?: boolean;
-}
+interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
-  const { userLoading, ...rest } = props;
+  const { ...rest } = props;
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
 
   const hasInvite =
@@ -28,7 +26,6 @@ function Profile(props: ProfileProps) {
         isVisible: isVisible,
         setIsVisible: setIsVisible,
         hasInvite,
-        userLoading,
       }}
     />
   );

@@ -1,7 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
+  ICreateVenture,
   ISearchVenturesByTimeline,
   ISearchVenturesByUser,
+  IVenture,
 } from "module/interface/venture";
 import { useNavigate } from "react-router";
 import * as api from "module/api";
@@ -65,12 +67,44 @@ export function useCreateVenture() {
       return api.API.Venture.Create(newVenture);
     },
     {
-      onSuccess: (_, newVenture) => {
+      // When mutate is called:
+      onMutate: async (newVenture: ICreateVenture) => {
+        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+        await queryClient.cancelQueries("ventures");
+
+        // Snapshot the previous value
+        const previousVentures = queryClient.getQueryData<IVenture[]>(
+          "ventures"
+        );
+
+        // Optimistically update to the new value
+        if (previousVentures) {
+          queryClient.setQueryData<IVenture[]>("ventures", [
+            ...previousVentures,
+            { ...newVenture, id: Math.random().toString() },
+          ]);
+        }
+
+        return { previousVentures };
+      },
+      // If the mutation fails, use the context returned from onMutate to roll back
+      onError: (err, variables, context: any) => {
+        if (context?.previousVentures) {
+          queryClient.setQueryData<IVenture[]>(
+            "ventures",
+            context.previousVentures
+          );
+        }
+      },
+      onSuccess: (data, newVenture) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("ventures");
 
-        //redirect on success
         newVenture.successUrl && navigate(newVenture.successUrl);
+      },
+      // Always refetch after error or success:
+      onSettled: () => {
+        queryClient.invalidateQueries("ventures");
       },
     }
   );
@@ -85,7 +119,7 @@ export function useUpdateVenture() {
       return api.API.Venture.Update(ventureUpdate);
     },
     {
-      onSuccess: (_, ventureUpdate) => {
+      onSuccess: (data, ventureUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("ventures");
 
@@ -105,7 +139,7 @@ export function useDeleteVenture() {
       return api.API.Venture.Delete(ventureDelete);
     },
     {
-      onSuccess: (_, ventureDelete) => {
+      onSuccess: (data, ventureDelete) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("ventures");
         //redirect on success

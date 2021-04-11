@@ -1,8 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
+  ICreateUpdate,
   ISearchUpdate,
   ISearchUpdateByTimelineId,
   ISearchUpdateByTimelineIds,
+  IUpdate,
 } from "module/interface/update";
 import * as api from "module/api";
 
@@ -83,8 +85,39 @@ export function useCreateUpdate() {
       return api.API.TexUpd.Create(newUpdate);
     },
     {
-      onSuccess: () => {
+      // When mutate is called:
+      onMutate: async (newUpdate: ICreateUpdate) => {
+        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+        await queryClient.cancelQueries("updates");
+
+        // Snapshot the previous value
+        const previousUpdates = queryClient.getQueryData<IUpdate[]>("updates");
+
+        // Optimistically update to the new value
+        if (previousUpdates) {
+          queryClient.setQueryData<IUpdate[]>("updates", [
+            ...previousUpdates,
+            { ...newUpdate, id: Math.random().toString() },
+          ]);
+        }
+
+        return { previousUpdates };
+      },
+      // If the mutation fails, use the context returned from onMutate to roll back
+      onError: (err, variables, context: any) => {
+        if (context?.previousUpdates) {
+          queryClient.setQueryData<IUpdate[]>(
+            "updates",
+            context.previousUpdates
+          );
+        }
+      },
+      onSuccess: (data, newUpdate) => {
         // Invalidate and refetch
+        queryClient.invalidateQueries("updates");
+      },
+      // Always refetch after error or success:
+      onSettled: () => {
         queryClient.invalidateQueries("updates");
       },
     }

@@ -1,7 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
+  ICreateTimeline,
   ISearchTimelinesbyUserId,
   ISearchTimelinesbyVentureId,
+  ITimeline,
 } from "module/interface/timeline";
 import { useNavigate } from "react-router";
 import * as api from "module/api";
@@ -58,12 +60,44 @@ export function useCreateTimeline() {
       return api.API.Timeline.Create(newTimeline);
     },
     {
-      onSuccess: (_, newTimeline) => {
+      // When mutate is called:
+      onMutate: async (newTimeline: ICreateTimeline) => {
+        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+        await queryClient.cancelQueries("timelines");
+
+        // Snapshot the previous value
+        const previousTimelines = queryClient.getQueryData<ITimeline[]>(
+          "timelines"
+        );
+
+        // Optimistically update to the new value
+        if (previousTimelines) {
+          queryClient.setQueryData<ITimeline[]>("timelines", [
+            ...previousTimelines,
+            { ...newTimeline, id: Math.random().toString(), stat: "active" },
+          ]);
+        }
+
+        return { previousTimelines };
+      },
+      // If the mutation fails, use the context returned from onMutate to roll back
+      onError: (err, variables, context: any) => {
+        if (context?.previousTimelines) {
+          queryClient.setQueryData<ITimeline[]>(
+            "timelines",
+            context.previousTimelines
+          );
+        }
+      },
+      onSuccess: (data, newTimeline) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("timelines");
 
-        //redirect on success
         newTimeline.successUrl && navigate(newTimeline.successUrl);
+      },
+      // Always refetch after error or success:
+      onSettled: () => {
+        queryClient.invalidateQueries("timelines");
       },
     }
   );

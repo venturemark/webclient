@@ -9,9 +9,9 @@ export interface IUpdate {
   id: string;
   ventureId: string;
   timelineId: string;
-  userId: string;
-  subjectId: string;
-  date: string;
+  userId?: string;
+  subjectId?: string;
+  date?: string;
 }
 
 export interface ISearchUpdate {
