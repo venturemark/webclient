@@ -115,7 +115,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             key={update.id}
             id={update.id}
             timelineId={update.timelineId}
-            date={update.date}
+            date={update.date ?? ""}
             setIsVisible={setIsVisible}
             setPost={() =>
               setPost({
@@ -125,7 +125,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             }
             currentVenture={currentVenture}
             allUpdates={allUpdates}
-            userId={update.userId}
+            userId={update.userId ?? ""}
           />
         )),
       }}
