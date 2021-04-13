@@ -332,7 +332,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
               hasVariant(variants, "variantState", "isEdit") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}
-          variantSettings={["hasLabel"]}
+          variantSettings={["hasLabel", "isSelected"]}
         />
       ) : null}
       {(

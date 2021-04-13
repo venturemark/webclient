@@ -65,8 +65,10 @@ function AddEditVenture(props: AddEditVentureProps) {
       token: token,
     };
 
-    isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
-    reset();
+    console.log(data);
+
+    // isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
+    // reset();
   };
 
   return (
@@ -94,7 +96,10 @@ function AddEditVenture(props: AddEditVentureProps) {
         name: "url",
         defaultValue: venture?.url ?? "",
       }}
-      membersWrite={{}}
+      membersWrite={{
+        ref: register("membersWrite"),
+        name: "membersWrite",
+      }}
       buttons={{
         handleDelete: () =>
           navigate(`/${handle}/delete?ventureId=${ventureId}`),

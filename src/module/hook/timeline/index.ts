@@ -112,7 +112,7 @@ export function useUpdateTimeline() {
       return api.API.Timeline.Update(timelineUpdate);
     },
     {
-      onSuccess: (_, timelineUpdate) => {
+      onSuccess: (data, timelineUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("timelines");
 
@@ -132,7 +132,8 @@ export function useArchiveDeleteTimeline() {
       return api.API.Timeline.Update(timelineUpdate);
     },
     {
-      onSuccess: async (_, timelineUpdate) => {
+      onSuccess: async (data, timelineUpdate) => {
+        console.log("deleting timeline in hook");
         //perform delete on success of archive
         await api.API.Timeline.Delete(timelineUpdate);
 

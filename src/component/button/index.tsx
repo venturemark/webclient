@@ -5,15 +5,29 @@ import {
   PlasmicButton,
   DefaultButtonProps,
 } from "component/plasmic/shared/PlasmicButton";
+import { PlumeButtonProps, PlumeButtonRef, useButton } from "@plasmicapp/plume";
 
-interface ButtonProps extends DefaultButtonProps {
+interface ButtonProps extends PlumeButtonProps {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
 }
 
-function Button(props: ButtonProps) {
-  const { onClick, type, ...rest } = props;
-  return <PlasmicButton {...rest} onClick={onClick} button={{ type: type }} />;
+function Button_(props: ButtonProps & DefaultButtonProps, ref: PlumeButtonRef) {
+  const { onClick, type } = props;
+  const { plumeProps } = useButton(
+    PlasmicButton,
+    props,
+    {
+      isDisabledVariant: ["isDisabled", "isDisabled"],
+      contentSlot: "children",
+      root: "root",
+    },
+    ref
+  );
+  return (
+    <PlasmicButton {...plumeProps} onClick={onClick} button={{ type: type }} />
+  );
 }
 
+const Button = React.forwardRef(Button_);
 export default Button;

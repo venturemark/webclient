@@ -7,7 +7,7 @@
   align-items: center;
   position: relative;
   border-radius: 100%;
-  background: rgb(169, 54, 109);
+  background: rgb(38, 26, 63);
 }
 @media (max-width: 767px) {
   .root {
@@ -28,6 +28,7 @@
 .slotUserInitials {
   font-size: 18px;
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+  font-weight: 600;
 }
 @media (max-width: 767px) {
   .slotUserInitials {

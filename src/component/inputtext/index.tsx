@@ -5,27 +5,50 @@ import {
   PlasmicInputText,
   DefaultInputTextProps,
 } from "component/plasmic/shared/PlasmicInputText";
+import {
+  PlumeTextFieldProps,
+  PlumeTextFieldRef,
+  useTextField,
+} from "@plasmicapp/plume";
 
-interface InputTextProps extends DefaultInputTextProps {
+interface TextFieldProps extends PlumeTextFieldProps {
   defaultValue?: any;
   register?: any;
   name?: string;
   errorMessage?: string;
 }
+function TextField_(
+  props: TextFieldProps & DefaultInputTextProps,
+  ref: PlumeTextFieldRef
+) {
+  const { register, name, defaultValue, errorMessage } = props;
+  const { plumeProps } = useTextField(
+    PlasmicInputText,
+    props,
+    {
+      isDisabledVariant: ["isDisabled", "isDisabled"],
+      hasLabelVariant: ["hasLabel", "hasLabel"],
 
-function InputText(props: InputTextProps) {
-  const { register, name, defaultValue, errorMessage, ...rest } = props;
+      labelSlot: "label",
 
+      root: "root",
+      textbox: "textInput",
+      textboxContainer: "textboxContainer",
+      labelContainer: "labelContainer",
+    },
+    ref
+  );
   return (
     <PlasmicInputText
+      {...plumeProps}
       input={{ ref: register, name: name, defaultValue: defaultValue }}
       error={errorMessage ? true : false}
       errorMessage={{
         message: errorMessage,
       }}
-      {...rest}
     />
   );
 }
 
-export default InputText;
+const TextField = React.forwardRef(TextField_);
+export default TextField;
