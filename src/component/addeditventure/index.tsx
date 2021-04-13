@@ -96,10 +96,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         name: "url",
         defaultValue: venture?.url ?? "",
       }}
-      membersWrite={{
-        ref: register("membersWrite"),
-        name: "membersWrite",
-      }}
+      membersWrite={{ variantSettings: ["isDisabled", "hasLabel"] }}
       buttons={{
         handleDelete: () =>
           navigate(`/${handle}/delete?ventureId=${ventureId}`),

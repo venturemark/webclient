@@ -11,20 +11,29 @@ interface SwitchProps extends PlumeSwitchProps {
   hasLabelVariant: string;
 }
 function Switch_(props: SwitchProps & DefaultSwitchProps, ref: PlumeSwitchRef) {
-  const { plumeProps, state } = useSwitch(
+  const { plumeProps } = useSwitch(
     PlasmicSwitch,
     props,
     {
       isSelectedVariant: ["variantSettings", "isSelected"],
       isDisabledVariant: ["variantSettings", "isDisabled"],
-      hasLabelVariant: ["variantSettings", "isSelected"],
+      hasLabelVariant: ["variantSettings", "hasLabel"],
 
       labelSlot: "inputTitle",
       root: "root",
     },
     ref
   );
-  return <PlasmicSwitch {...plumeProps} />;
+
+  return (
+    <PlasmicSwitch
+      {...plumeProps}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+      }}
+    />
+  );
 }
 
 const Switch = React.forwardRef(Switch_);
