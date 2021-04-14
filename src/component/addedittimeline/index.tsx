@@ -73,14 +73,14 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       successUrl: `/${handle}/feed`,
       token: token,
     };
-    console.log(data);
 
     // isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
     // reset();
   };
   return (
     <PlasmicAddEditTimeline
-      variantState={undefined}
+      {...rest}
+      variantState={isEdit}
       settings={{
         onSubmit: handleSubmit(handleCreate),
       }}
@@ -106,7 +106,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       visibility={{
         "aria-label": "Timeline visibility",
       }}
-      {...rest}
     />
   );
 }
