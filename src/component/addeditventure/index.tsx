@@ -65,10 +65,8 @@ function AddEditVenture(props: AddEditVentureProps) {
       token: token,
     };
 
-    console.log(data);
-
-    // isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
-    // reset();
+    isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
+    reset();
   };
 
   return (
@@ -96,12 +94,15 @@ function AddEditVenture(props: AddEditVentureProps) {
         name: "url",
         defaultValue: venture?.url ?? "",
       }}
-      membersWrite={{ variantSettings: ["isDisabled", "hasLabel"] }}
+      membersWrite={{
+        variantSettings: ["isDisabled", "hasLabel"],
+        "aria-label": "members have write access switch",
+      }}
       buttons={{
         handleDelete: () =>
           navigate(`/${handle}/delete?ventureId=${ventureId}`),
         handleCancel: () => navigate(-1),
-        handleSave: () => handleSubmit(handleCreate),
+        handleSave: () => handleSubmit(handleCreate)(),
       }}
     />
   );

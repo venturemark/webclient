@@ -6,16 +6,10 @@ import {
   useRadioGroup,
 } from "@plasmicapp/plume";
 import * as React from "react";
-import {
-  PlasmicRadioGroup,
-  DefaultRadioGroupProps,
-} from "../plasmic/shared/PlasmicRadioGroup";
+import { PlasmicRadioGroup } from "../plasmic/shared/PlasmicRadioGroup";
 
 interface RadioGroupProps extends PlumeRadioGroupProps {}
-function RadioGroup_(
-  props: RadioGroupProps & DefaultRadioGroupProps,
-  ref: PlumeRadioGroupRef
-) {
+function RadioGroup_(props: RadioGroupProps, ref: PlumeRadioGroupRef) {
   const { plumeProps, state } = useRadioGroup(
     PlasmicRadioGroup,
     props,

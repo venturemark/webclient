@@ -107,23 +107,23 @@ function Modal(props: ModalProps) {
         errorMessage: errors.role && roleError,
       }}
       deleteTimeline={{
-        onClick: () => handleDeleteTimeline(),
+        onPress: () => handleDeleteTimeline(),
       }}
       deleteVenture={{
-        onClick: () => handleDeleteVenture(),
-        type: "button",
+        onPress: () => handleDeleteVenture(),
+        elementType: "button",
       }}
       saveUser={{
-        type: "submit",
+        onPress: () => handleSubmit(handleSave)(),
       }}
       cancelEdit={{
-        onClick: () => navigate("../settings"),
+        onPress: () => navigate("../settings"),
       }}
       cancelTimeline={{
-        onClick: () => navigate("../"),
+        onPress: () => navigate("../"),
       }}
       cancelVenture={{
-        onClick: () => navigate("../settings"),
+        onPress: () => navigate("../settings"),
       }}
       close={{
         onClick: () => navigate("../"),

@@ -130,8 +130,8 @@ function ActionBar(props: ActionBarProps) {
         ),
       }}
       post={{
-        type: "submit",
         isDisabled: !isActive,
+        onPress: () => handleSubmit(handlePost)(),
       }}
       error={undefined}
       text={undefined}

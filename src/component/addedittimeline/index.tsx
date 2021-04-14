@@ -45,6 +45,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
 
   const isEdit = timelineSlug ? "isEdit" : undefined;
 
+  console.log("isEdit", isEdit);
+
   const { mutate: createTimeline } = useCreateTimeline();
   const { mutate: updateTimeline } = useUpdateTimeline();
 
@@ -71,13 +73,14 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       successUrl: `/${handle}/feed`,
       token: token,
     };
+    console.log(data);
 
-    isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
-    reset();
+    // isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
+    // reset();
   };
   return (
     <PlasmicAddEditTimeline
-      variantState={isEdit}
+      variantState={undefined}
       settings={{
         onSubmit: handleSubmit(handleCreate),
       }}
@@ -98,8 +101,11 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           navigate(
             `/${handle}/${timelineSlug}/delete?timelineId=${timelineId}`
           ),
+        handleSave: () => handleSubmit(handleCreate)(),
       }}
-      visibility={{}}
+      visibility={{
+        "aria-label": "Timeline visibility",
+      }}
       {...rest}
     />
   );

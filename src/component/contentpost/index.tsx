@@ -113,7 +113,7 @@ function ContentPost(props: ContentPostProps) {
       date={date}
       viewReplies={{
         count: count,
-        onClick: () => {
+        onPress: () => {
           setIsVisible("postDetails");
           setPost();
         },

@@ -96,7 +96,7 @@ export const PlasmicButton__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicButton__OverridesType = {
   root?: p.Flex<"div">;
-  button?: p.Flex<"button">;
+  button?: p.Flex<"div">;
   box?: p.Flex<"div">;
 };
 
@@ -184,10 +184,10 @@ function PlasmicButton__RenderFunc(props: {
           hasVariant(variants, "buttonStyle", "primaryPurple"),
       })}
     >
-      <button
+      <div
         data-plasmic-name={"button"}
         data-plasmic-override={overrides.button}
-        className={classNames(defaultcss.button, sty.button, {
+        className={classNames(defaultcss.all, sty.button, {
           [sty.button__buttonFeatures_isRounded]: hasVariant(
             variants,
             "buttonFeatures",
@@ -473,7 +473,7 @@ function PlasmicButton__RenderFunc(props: {
             />
           ) : null}
         </p.Stack>
-      </button>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
@@ -489,7 +489,7 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  button: "button";
+  button: "div";
   box: "div";
 };
 
@@ -498,8 +498,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicButton__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicButton__VariantsArgs;
   args?: PlasmicButton__ArgsType;
   overrides?: NodeOverridesType<T>;

@@ -78,7 +78,7 @@ function ReplyInput(props: ReplyInputProps) {
         ),
       }}
       postReplyButton={{
-        type: "submit",
+        onPress: () => handleSubmit(handleAddMessage)(),
       }}
     />
   );

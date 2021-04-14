@@ -98,9 +98,9 @@ function Main(props: MainProps) {
         errors,
       }}
       viewCreateVenture={{
-        onClick: () => viewCreateVenture(),
+        onPress: () => viewCreateVenture(),
       }}
-      viewJoinVenture={{ onClick: () => viewJoinVenture }}
+      viewJoinVenture={{ onPress: () => viewJoinVenture }}
     />
   );
 }

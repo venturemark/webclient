@@ -153,7 +153,7 @@ function AddEditMembers(props: AddEditMembersProps) {
         name: "email",
       }}
       invite={{
-        type: "submit",
+        onPress: () => handleSubmit(handleInvite)(),
       }}
       membersContainer={{
         children: !currentTimeline
