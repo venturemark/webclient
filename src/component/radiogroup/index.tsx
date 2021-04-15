@@ -8,8 +8,11 @@ import {
 import React from "react";
 import { PlasmicRadioGroup } from "../plasmic/shared/PlasmicRadioGroup";
 
-interface RadioGroupProps extends PlumeRadioGroupProps {}
+interface RadioGroupProps extends PlumeRadioGroupProps {
+  setVisibility: React.Dispatch<React.SetStateAction<string>>;
+}
 function RadioGroup_(props: RadioGroupProps, ref: PlumeRadioGroupRef) {
+  const { setVisibility } = props;
   const { plumeProps } = useRadioGroup(
     PlasmicRadioGroup,
     props,
@@ -28,9 +31,9 @@ function RadioGroup_(props: RadioGroupProps, ref: PlumeRadioGroupRef) {
     <>
       <PlasmicRadioGroup
         {...plumeProps}
-        _private={{ value: "private" }}
-        members={{ value: "members" }}
-        _public={{ value: "public" }}
+        _private={{ value: "private", setVisibility }}
+        members={{ value: "members", setVisibility }}
+        _public={{ value: "public", setVisibility }}
       />
     </>
   );

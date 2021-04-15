@@ -5,9 +5,11 @@ import * as React from "react";
 import { PlasmicRadio } from "component/plasmic/shared/PlasmicRadio";
 import { PlumeRadioProps, PlumeRadioRef, useRadio } from "@plasmicapp/plume";
 
-interface RadioProps extends PlumeRadioProps {}
+interface RadioProps extends PlumeRadioProps {
+  setVisibility: React.Dispatch<React.SetStateAction<string>>;
+}
 function Radio_(props: RadioProps, ref: PlumeRadioRef) {
-  const { value } = props;
+  const { value, setVisibility } = props;
   const { plumeProps, state } = useRadio(
     PlasmicRadio,
     props,
@@ -26,7 +28,10 @@ function Radio_(props: RadioProps, ref: PlumeRadioRef) {
   return (
     <PlasmicRadio
       {...plumeProps}
-      onClick={() => state.setSelectedValue(value)}
+      onClick={() => {
+        state.setSelectedValue(value);
+        setVisibility(value);
+      }}
     />
   );
 }
