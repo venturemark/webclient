@@ -5,12 +5,12 @@ import {
   PlumeRadioGroupRef,
   useRadioGroup,
 } from "@plasmicapp/plume";
-import * as React from "react";
+import React from "react";
 import { PlasmicRadioGroup } from "../plasmic/shared/PlasmicRadioGroup";
 
 interface RadioGroupProps extends PlumeRadioGroupProps {}
 function RadioGroup_(props: RadioGroupProps, ref: PlumeRadioGroupRef) {
-  const { plumeProps, state } = useRadioGroup(
+  const { plumeProps } = useRadioGroup(
     PlasmicRadioGroup,
     props,
     {
@@ -24,7 +24,16 @@ function RadioGroup_(props: RadioGroupProps, ref: PlumeRadioGroupRef) {
     },
     ref
   );
-  return <PlasmicRadioGroup {...plumeProps} />;
+  return (
+    <>
+      <PlasmicRadioGroup
+        {...plumeProps}
+        _private={{ value: "private" }}
+        members={{ value: "members" }}
+        _public={{ value: "public" }}
+      />
+    </>
+  );
 }
 
 const RadioGroup = React.forwardRef(RadioGroup_);

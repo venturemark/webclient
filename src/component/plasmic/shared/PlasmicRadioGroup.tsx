@@ -147,11 +147,11 @@ function PlasmicRadioGroup__RenderFunc(props: {
         <Radio
           data-plasmic-name={"_private"}
           data-plasmic-override={overrides._private}
-          label3={"Private"}
+          helperText={"Only members invited by you can see this timeline. "}
           position={"top" as const}
           radioVariants={["hasLabel", "isSelected"]}
         >
-          {"Only members invited by you can see this timeline. "}
+          {"Private"}
         </Radio>
 
         <Radio
@@ -164,19 +164,21 @@ function PlasmicRadioGroup__RenderFunc(props: {
               "isHorizontal"
             ),
           })}
-          label3={"Members"}
+          helperText={
+            <div
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.box___2IwyL
+              )}
+            >
+              {"All members from this venture will be added to this timeline."}
+            </div>
+          }
           position={"middle" as const}
           radioVariants={["hasLabel"]}
         >
-          <div
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.box___2IwyL
-            )}
-          >
-            {"All members from this venture will be added to this timeline."}
-          </div>
+          {"Members"}
         </Radio>
 
         <Radio
@@ -189,11 +191,11 @@ function PlasmicRadioGroup__RenderFunc(props: {
               "isHorizontal"
             ),
           })}
-          label3={"Public"}
+          helperText={"Anyone with the venture domain can see this timeline."}
           position={"bottom" as const}
           radioVariants={["hasLabel"]}
         >
-          {"Anyone with the venture domain can see this timeline."}
+          {"Public"}
         </Radio>
       </p.Stack>
     </p.Stack>
