@@ -75,8 +75,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       token: token,
     };
 
-    // isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
-    // reset();
+    isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
+    reset();
   };
   return (
     <PlasmicAddEditTimeline
