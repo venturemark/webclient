@@ -94,12 +94,15 @@ function AddEditVenture(props: AddEditVentureProps) {
         name: "url",
         defaultValue: venture?.url ?? "",
       }}
-      membersWrite={{}}
+      membersWrite={{
+        variantSettings: ["isDisabled", "hasLabel"],
+        "aria-label": "members have write access switch",
+      }}
       buttons={{
         handleDelete: () =>
           navigate(`/${handle}/delete?ventureId=${ventureId}`),
         handleCancel: () => navigate(-1),
-        handleSave: () => handleSubmit(handleCreate),
+        handleSave: () => handleSubmit(handleCreate)(),
       }}
     />
   );

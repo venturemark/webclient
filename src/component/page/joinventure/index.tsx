@@ -36,7 +36,7 @@ function JoinVenture(props: JoinVentureProps) {
   return (
     <PlasmicJoinVenture
       ventureName={ventureName}
-      viewCreateVenture={{ onClick: () => handleAcceptJoin() }}
+      viewCreateVenture={{ onPress: () => handleAcceptJoin() }}
       {...props}
     />
   );

@@ -27,10 +27,10 @@ function Signin(props: SigninProps) {
   return (
     <PlasmicSignin
       googleButton={{
-        onClick: () => loginWithRedirect(),
+        onPress: () => loginWithRedirect(),
       }}
       linkedinButton={{
-        onClick: () => alert("Linkedin inactive"),
+        onPress: () => alert("Linkedin inactive"),
       }}
     />
   );

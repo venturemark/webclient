@@ -69,7 +69,7 @@
   outline: none;
   border-color: rgb(46, 129, 184) /* plasmic-token: IfaVHQ1Yp */;
 }
-.box__itbKd {
+.labelContainer {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -80,15 +80,15 @@
   min-width: 0;
   min-height: 0;
 }
-.box__itbKd > :global(.__wab_flex-container) {
+.labelContainer > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
   margin-top: calc(0px - 5px);
   height: calc(100% + 5px);
 }
-.box__itbKd > :global(.__wab_flex-container) > *,
-.box__itbKd > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.labelContainer > :global(.__wab_flex-container) > *,
+.labelContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
 }
 .label {
@@ -98,7 +98,7 @@
   cursor: pointer;
   min-width: 0;
 }
-.slotLabel3 {
+.slotChildren {
   text-align: center;
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 600;
@@ -112,19 +112,19 @@
   width: 100%;
   min-width: 0;
 }
-.slotChildren {
+.slotHelperText {
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
   font-weight: 300;
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
 }
-.box__jjyTr {
+.buttonContainer {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
 }
-.box__radioVariants_isSelected__jjyTrnYn7 {
+.buttonContainer__radioVariants_isSelected {
   width: 40px;
   flex-shrink: 0;
 }

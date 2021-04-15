@@ -52,27 +52,29 @@ export const PlasmicRadio__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicRadio__ArgsType = {
+  helperText?: React.ReactNode;
   children?: React.ReactNode;
-  label3?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicRadio__ArgsType;
 export const PlasmicRadio__ArgProps = new Array<ArgPropType>(
-  "children",
-  "label3"
+  "helperText",
+  "children"
 );
 
 export type PlasmicRadio__OverridesType = {
   root?: p.Flex<"div">;
   radio?: p.Flex<"div">;
+  labelContainer?: p.Flex<"div">;
   label?: p.Flex<"label">;
   inputHelperText?: p.Flex<"div">;
+  buttonContainer?: p.Flex<"div">;
   svg?: p.Flex<"svg">;
 };
 
 export interface DefaultRadioProps {
+  helperText?: React.ReactNode;
   children?: React.ReactNode;
-  label3?: React.ReactNode;
   position?: SingleChoiceArg<"top" | "middle" | "bottom">;
   radioVariants?: MultiChoiceArg<"isSelected" | "isDisabled" | "hasLabel">;
   className?: string;
@@ -155,14 +157,16 @@ function PlasmicRadio__RenderFunc(props: {
         {(hasVariant(variants, "radioVariants", "hasLabel") ? true : false) ? (
           <p.Stack
             as={"div"}
+            data-plasmic-name={"labelContainer"}
+            data-plasmic-override={overrides.labelContainer}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__itbKd, {
-              [sty.box__radioVariants_hasLabel__itbKdmQaP]: hasVariant(
+            className={classNames(defaultcss.all, sty.labelContainer, {
+              [sty.labelContainer__radioVariants_hasLabel]: hasVariant(
                 variants,
                 "radioVariants",
                 "hasLabel"
               ),
-              [sty.box__radioVariants_isSelected__itbKdNYn7]: hasVariant(
+              [sty.labelContainer__radioVariants_isSelected]: hasVariant(
                 variants,
                 "radioVariants",
                 "isSelected"
@@ -187,8 +191,14 @@ function PlasmicRadio__RenderFunc(props: {
             >
               <p.PlasmicSlot
                 defaultContents={"Private"}
-                value={args.label3}
-                className={classNames(sty.slotLabel3)}
+                value={args.children}
+                className={classNames(sty.slotChildren, {
+                  [sty.slotChildren__radioVariants_hasLabel]: hasVariant(
+                    variants,
+                    "radioVariants",
+                    "hasLabel"
+                  ),
+                })}
               />
             </label>
 
@@ -201,8 +211,14 @@ function PlasmicRadio__RenderFunc(props: {
                 defaultContents={
                   "Only admins and members invited by you can see this timeline. "
                 }
-                value={args.children}
-                className={classNames(sty.slotChildren)}
+                value={args.helperText}
+                className={classNames(sty.slotHelperText, {
+                  [sty.slotHelperText__radioVariants_hasLabel]: hasVariant(
+                    variants,
+                    "radioVariants",
+                    "hasLabel"
+                  ),
+                })}
               />
             </div>
           </p.Stack>
@@ -211,23 +227,25 @@ function PlasmicRadio__RenderFunc(props: {
           hasVariant(variants, "radioVariants", "isSelected") ? true : false
         ) ? (
           <div
-            className={classNames(defaultcss.all, sty.box__jjyTr, {
-              [sty.box__position_middle__jjyTrVfvwY]: hasVariant(
+            data-plasmic-name={"buttonContainer"}
+            data-plasmic-override={overrides.buttonContainer}
+            className={classNames(defaultcss.all, sty.buttonContainer, {
+              [sty.buttonContainer__position_middle]: hasVariant(
                 variants,
                 "position",
                 "middle"
               ),
-              [sty.box__radioVariants_isDisabled__jjyTr8UOt2]: hasVariant(
+              [sty.buttonContainer__radioVariants_isDisabled]: hasVariant(
                 variants,
                 "radioVariants",
                 "isDisabled"
               ),
-              [sty.box__radioVariants_isSelected__jjyTrnYn7]: hasVariant(
+              [sty.buttonContainer__radioVariants_isSelected]: hasVariant(
                 variants,
                 "radioVariants",
                 "isSelected"
               ),
-              [sty.box__radioVariants_isSelected_position_middle__jjyTrnYn7VfvwY]:
+              [sty.buttonContainer__radioVariants_isSelected_position_middle]:
                 hasVariant(variants, "radioVariants", "isSelected") &&
                 hasVariant(variants, "position", "middle"),
             })}
@@ -271,10 +289,27 @@ function PlasmicRadio__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "radio", "label", "inputHelperText", "svg"],
-  radio: ["radio", "label", "inputHelperText", "svg"],
+  root: [
+    "root",
+    "radio",
+    "labelContainer",
+    "label",
+    "inputHelperText",
+    "buttonContainer",
+    "svg",
+  ],
+  radio: [
+    "radio",
+    "labelContainer",
+    "label",
+    "inputHelperText",
+    "buttonContainer",
+    "svg",
+  ],
+  labelContainer: ["labelContainer", "label", "inputHelperText"],
   label: ["label"],
   inputHelperText: ["inputHelperText"],
+  buttonContainer: ["buttonContainer", "svg"],
   svg: ["svg"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -284,8 +319,10 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   radio: "div";
+  labelContainer: "div";
   label: "label";
   inputHelperText: "div";
+  buttonContainer: "div";
   svg: "svg";
 };
 
@@ -346,8 +383,10 @@ export const PlasmicRadio = Object.assign(
   {
     // Helper components rendering sub-elements
     radio: makeNodeComponent("radio"),
+    labelContainer: makeNodeComponent("labelContainer"),
     label: makeNodeComponent("label"),
     inputHelperText: makeNodeComponent("inputHelperText"),
+    buttonContainer: makeNodeComponent("buttonContainer"),
     svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicRadio

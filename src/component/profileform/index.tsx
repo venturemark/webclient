@@ -69,11 +69,10 @@ function ProfileForm(props: ProfileFormProps) {
         errorMessage: errors.role && roleError,
       }}
       save={{
-        type: "submit",
-        onClick: () => setIsVisible(undefined),
+        onPress: () => handleSubmit(handleSave)(),
       }}
       cancel={{
-        onClick: () => setIsVisible(undefined),
+        onPress: () => setIsVisible(undefined),
       }}
       close={{
         onClick: () => setIsVisible(undefined),
