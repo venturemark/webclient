@@ -92,6 +92,7 @@
   width: 23px;
   height: 26px;
   color: #4d4d4d;
+  cursor: pointer;
   flex-shrink: 0;
 }
 .dropdown:global(.__wab_instance) {

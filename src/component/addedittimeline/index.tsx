@@ -106,7 +106,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       }}
       visibility={{
         "aria-label": "Timeline Visibility",
-        defaultValue: "private",
+        defaultValue: "members",
         setVisibility,
       }}
     />

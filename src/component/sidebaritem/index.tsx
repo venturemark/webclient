@@ -96,7 +96,10 @@ function SidebarItem(props: SidebarItemProps) {
         timelineHandle,
         ventureHandle,
         isTimeline: itemType === "timeline" ? true : false,
-        setIsUserOnClick,
+        handleClick: () => {
+          navigate(link + "/settings");
+          setIsUserOnClick(false);
+        },
       }}
     />
   );
