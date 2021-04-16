@@ -193,6 +193,9 @@ function PlasmicContentPost__RenderFunc(props: {
                 defaultcss.__wab_text,
                 sty.description,
                 {
+                  [sty.description__isUserOnClick_state_isOwner]:
+                    hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                    hasVariant(variants, "state", "isOwner"),
                   [sty.description__state_isOwner]: hasVariant(
                     variants,
                     "state",

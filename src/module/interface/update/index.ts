@@ -42,6 +42,8 @@ export interface ICreateUpdate {
 
 export interface IDeleteUpdate {
   id: string;
+  ventureId: string;
+  timelineId: string;
   token: string;
 }
 

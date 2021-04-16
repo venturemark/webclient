@@ -58,6 +58,10 @@ function PostDetails(props: PostDetailsProps) {
       repliesContainer={{
         children: messages?.map((message: IMessage) => (
           <ReplyContent
+            id={message.id}
+            updateId={message.updateId}
+            timelineId={message.timelineId}
+            ventureId={message.ventureId}
             userName={
               post?.users?.filter(
                 (user: IUser) => user.id === message.userId
