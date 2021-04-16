@@ -5,13 +5,12 @@ import {
   PlasmicDropdown,
   DefaultDropdownProps,
 } from "component/plasmic/shared/PlasmicDropdown";
-import { useNavigate } from "react-router-dom";
 
 interface DropdownProps extends DefaultDropdownProps {
   timelineHandle: string;
   isTimeline: boolean;
   ventureHandle: string;
-  setIsUserOnClick: any;
+  handleClick: any;
 }
 
 function Dropdown(props: DropdownProps) {
@@ -19,22 +18,16 @@ function Dropdown(props: DropdownProps) {
     timelineHandle,
     isTimeline,
     ventureHandle,
-    setIsUserOnClick,
+    handleClick,
     ...rest
   } = props;
-  const navigate = useNavigate();
-
-  const link = isTimeline
-    ? `/${ventureHandle}/${timelineHandle}`
-    : `/${ventureHandle}`;
 
   return (
     <PlasmicDropdown
       {...rest}
       onClick={(e) => {
         e.stopPropagation();
-        navigate(link + "/settings");
-        setIsUserOnClick(false);
+        handleClick();
       }}
     />
   );

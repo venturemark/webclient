@@ -125,6 +125,9 @@ function PlasmicContentPost__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__isUserOnClick_state_isOwner]:
+          hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+          hasVariant(variants, "state", "isOwner"),
         [sty.root__state_isOwner]: hasVariant(variants, "state", "isOwner"),
         [sty.root__state_isPostDetails]: hasVariant(
           variants,
@@ -190,6 +193,11 @@ function PlasmicContentPost__RenderFunc(props: {
                 defaultcss.__wab_text,
                 sty.description,
                 {
+                  [sty.description__state_isOwner]: hasVariant(
+                    variants,
+                    "state",
+                    "isOwner"
+                  ),
                   [sty.description__state_isPostDetails]: hasVariant(
                     variants,
                     "state",
@@ -228,8 +236,15 @@ function PlasmicContentPost__RenderFunc(props: {
               />
 
               {(
-                hasVariant(variants, "state", "isOwner") && triggers.hover_root
+                hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                hasVariant(variants, "state", "isOwner") &&
+                triggers.hover_root
+                  ? true
+                  : hasVariant(variants, "state", "isOwner") &&
+                    triggers.hover_root
                   ? false
+                  : triggers.hover_root
+                  ? true
                   : hasVariant(variants, "isUserOnClick", "isUserOnClick")
                   ? true
                   : false
@@ -252,6 +267,7 @@ function PlasmicContentPost__RenderFunc(props: {
                       "isOwner"
                     ),
                   })}
+                  rename2={"Archive"}
                 />
               ) : null}
             </div>

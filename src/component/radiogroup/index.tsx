@@ -31,9 +31,9 @@ function RadioGroup_(props: RadioGroupProps, ref: PlumeRadioGroupRef) {
     <>
       <PlasmicRadioGroup
         {...plumeProps}
-        _private={{ value: "private", setVisibility }}
-        members={{ value: "members", setVisibility }}
-        _public={{ value: "public", setVisibility }}
+        _private={{ value: "private", setVisibility, isDisabled: true }}
+        members={{ value: "members", setVisibility, isDisabled: true }}
+        _public={{ value: "public", setVisibility, isDisabled: true }}
       />
     </>
   );

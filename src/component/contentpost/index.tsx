@@ -14,8 +14,9 @@ import { IVenture } from "module/interface/venture";
 import { useGetToken } from "module/auth";
 import { ISearchTimelineMembers, IUser } from "module/interface/user";
 import { useContext } from "react";
-import { TimelineContext } from "component/app";
+import { TimelineContext, UserContext } from "component/app";
 import { useTimelineMembers } from "module/hook/user";
+import { useState } from "react";
 
 interface ContentPostProps extends DefaultContentPostProps {
   title: string;
@@ -52,9 +53,12 @@ function ContentPost(props: ContentPostProps) {
   } = props;
   const token = useGetToken();
 
+  const [showMenu, setShowMenu] = useState(false);
+
   const ventureId = currentVenture?.id ?? "";
 
   const timelineContext = useContext(TimelineContext);
+  const userContext = useContext(UserContext);
   const timelines = timelineContext?.timelines ?? [];
 
   const messageSearch: ISearchMessage = {
@@ -102,15 +106,29 @@ function ContentPost(props: ContentPostProps) {
 
   const postUser = userData ?? user;
 
+  const isOwner = userId === userContext?.user.id ? "isOwner" : undefined;
+
+  console.log(isOwner);
+  console.log(showMenu);
+
   return (
     <PlasmicContentPost
       {...rest}
-      state={state}
+      iconMenu={{
+        onClick: () => setShowMenu(!showMenu),
+      }}
+      isUserOnClick={showMenu}
+      state={isOwner}
       title={title}
       description={description}
       userName={userNameData || userName}
       photoAvatar={{ user: postUser }}
       date={date}
+      dropdown={{
+        handleClick: () => {
+          console.log("do something");
+        },
+      }}
       viewReplies={{
         count: count,
         onPress: () => {

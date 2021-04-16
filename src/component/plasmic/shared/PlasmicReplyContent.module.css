@@ -176,7 +176,7 @@
   left: auto;
   top: auto;
 }
-.button {
+.iconMenu {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -207,7 +207,7 @@
   left: -77px;
   top: 30px;
 }
-.box__isUserOnClick_state_isUser___1LjC2McM8FEdPi {
+.deleteOption__isUserOnClick_state_isUser {
   color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
 .box__wE4D {

@@ -73,9 +73,10 @@ export type PlasmicReplyContent__OverridesType = {
   userName?: p.Flex<"span">;
   span?: p.Flex<"span">;
   date?: p.Flex<"span">;
-  button?: p.Flex<"button">;
+  iconMenu?: p.Flex<"button">;
   svg?: p.Flex<"svg">;
   dropdown?: p.Flex<typeof Dropdown>;
+  deleteOption?: p.Flex<"div">;
 };
 
 export interface DefaultReplyContentProps {
@@ -238,9 +239,9 @@ function PlasmicReplyContent__RenderFunc(props: {
                     })}
                   >
                     <button
-                      data-plasmic-name={"button"}
-                      data-plasmic-override={overrides.button}
-                      className={classNames(defaultcss.button, sty.button)}
+                      data-plasmic-name={"iconMenu"}
+                      data-plasmic-override={overrides.iconMenu}
+                      className={classNames(defaultcss.button, sty.iconMenu)}
                     >
                       <IconDotMenuIcon
                         data-plasmic-name={"svg"}
@@ -299,12 +300,14 @@ function PlasmicReplyContent__RenderFunc(props: {
                           )}
                           rename2={
                             <div
+                              data-plasmic-name={"deleteOption"}
+                              data-plasmic-override={overrides.deleteOption}
                               className={classNames(
                                 defaultcss.all,
                                 defaultcss.__wab_text,
-                                sty.box___1LjC2,
+                                sty.deleteOption,
                                 {
-                                  [sty.box__isUserOnClick_state_isUser___1LjC2McM8FEdPi]:
+                                  [sty.deleteOption__isUserOnClick_state_isUser]:
                                     hasVariant(
                                       variants,
                                       "isUserOnClick",
@@ -357,9 +360,10 @@ const PlasmicDescendants = {
     "userName",
     "span",
     "date",
-    "button",
+    "iconMenu",
     "svg",
     "dropdown",
+    "deleteOption",
   ],
   editorContainer: [
     "editorContainer",
@@ -367,17 +371,19 @@ const PlasmicDescendants = {
     "userName",
     "span",
     "date",
-    "button",
+    "iconMenu",
     "svg",
     "dropdown",
+    "deleteOption",
   ],
   photoAvatar: ["photoAvatar"],
   userName: ["userName"],
   span: ["span"],
   date: ["date"],
-  button: ["button", "svg", "dropdown"],
+  iconMenu: ["iconMenu", "svg", "dropdown", "deleteOption"],
   svg: ["svg"],
-  dropdown: ["dropdown"],
+  dropdown: ["dropdown", "deleteOption"],
+  deleteOption: ["deleteOption"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -390,9 +396,10 @@ type NodeDefaultElementType = {
   userName: "span";
   span: "span";
   date: "span";
-  button: "button";
+  iconMenu: "button";
   svg: "svg";
   dropdown: typeof Dropdown;
+  deleteOption: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -456,9 +463,10 @@ export const PlasmicReplyContent = Object.assign(
     userName: makeNodeComponent("userName"),
     span: makeNodeComponent("span"),
     date: makeNodeComponent("date"),
-    button: makeNodeComponent("button"),
+    iconMenu: makeNodeComponent("iconMenu"),
     svg: makeNodeComponent("svg"),
     dropdown: makeNodeComponent("dropdown"),
+    deleteOption: makeNodeComponent("deleteOption"),
 
     // Metadata about props expected for PlasmicReplyContent
     internalVariantProps: PlasmicReplyContent__VariantProps,
