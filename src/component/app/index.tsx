@@ -182,10 +182,10 @@ function VentureRoutes(props: VentureRoutesProps) {
   const ventureIds: string[] = timelinesData?.map(
     (timeline: ITimeline) => timeline.ventureId
   );
-  let uniqueVentureIds = [...new Set(ventureIds)];
+  const uniqueTimelineVentureIds = [...new Set(ventureIds)];
 
   const ventureSearch: ISearchVenturesByTimeline = {
-    ventureIds: uniqueVentureIds,
+    ventureIds: uniqueTimelineVentureIds,
     token,
   };
 
@@ -218,9 +218,13 @@ function VentureRoutes(props: VentureRoutesProps) {
     ? allVentures[0]
     : undefined;
 
+  const uniqueAllVentureIds = allVentures?.map(
+    (venture: IVenture) => venture.id
+  );
+
   const ventureRoleSearch: ISearchRoleByVentureIds = {
     resource: "venture",
-    ventureIds: uniqueVentureIds,
+    ventureIds: uniqueAllVentureIds,
     token,
   };
   const { data: ventureRolesData } = useRoleByVentureIds(ventureRoleSearch);
