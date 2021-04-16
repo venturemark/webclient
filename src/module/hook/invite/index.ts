@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { ICreateInvite, ISearchInvite } from "module/interface/invite";
+import { ICreateInvite, IInvite, ISearchInvite } from "module/interface/invite";
 import { useNavigate } from "react-router";
 import * as api from "module/api";
 import { sendInvite } from "module/helpers";
@@ -13,7 +13,7 @@ const getInvites = async (searchInvite: ISearchInvite) => {
 
 export function useInvites(searchInvite: ISearchInvite) {
   return useQuery<any, ErrorResponse>(
-    ["invite", searchInvite.token, searchInvite.ventureId],
+    ["invites", searchInvite.ventureId],
     () => getInvites(searchInvite),
     { enabled: !!searchInvite.token && !!searchInvite.ventureId }
   );
@@ -27,11 +27,41 @@ export function useCreateInvite() {
       return api.API.Invite.Create(newInvite);
     },
     {
-      onSuccess: (data, newInvite: ICreateInvite) => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries("invite");
+      // When mutate is called:
+      onMutate: async (newInvite: ICreateInvite) => {
+        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+        await queryClient.cancelQueries("invites");
 
+        // Snapshot the previous value
+        const previousInvites = queryClient.getQueryData<IInvite[]>("invites");
+
+        // Optimistically update to the new value
+        if (previousInvites) {
+          queryClient.setQueryData<IInvite[]>("invites", [
+            ...previousInvites,
+            { ...newInvite, id: Math.random().toString() },
+          ]);
+        }
+
+        return { previousInvites };
+      },
+      // If the mutation fails, use the context returned from onMutate to roll back
+      onError: (err, variables, context: any) => {
+        if (context?.previousInvites) {
+          queryClient.setQueryData<IInvite[]>(
+            "invites",
+            context.previousInvites
+          );
+        }
+      },
+      onSuccess: (data, newInvite) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("invites");
         sendInvite(data, newInvite);
+      },
+      // Always refetch after error or success:
+      onSettled: () => {
+        queryClient.invalidateQueries("invites");
       },
     }
   );
@@ -48,7 +78,7 @@ export function useUpdateInvite() {
     {
       onSuccess: (_, inviteUpdate) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("invite");
+        queryClient.invalidateQueries("invites");
 
         //redirect on success
         inviteUpdate.successUrl && navigate(inviteUpdate.successUrl);

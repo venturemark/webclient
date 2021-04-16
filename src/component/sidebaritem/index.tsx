@@ -46,6 +46,11 @@ function SidebarItem(props: SidebarItemProps) {
       ? `/${ventureHandle}/${timelineHandle}/feed`
       : `/${ventureHandle}/feed`;
 
+  const editLink =
+    itemType === "timeline"
+      ? `/${ventureHandle}/${timelineHandle}`
+      : `/${ventureHandle}`;
+
   useEffect(() => {
     const handleWindowClick = () => setIsUserOnClick(false);
     if (isUserOnClick) {
@@ -97,7 +102,7 @@ function SidebarItem(props: SidebarItemProps) {
         ventureHandle,
         isTimeline: itemType === "timeline" ? true : false,
         handleClick: () => {
-          navigate(link + "/settings");
+          navigate(editLink + "/settings");
           setIsUserOnClick(false);
         },
       }}
