@@ -119,6 +119,7 @@ function ContentPost(props: ContentPostProps) {
     };
 
     deleteUpdate(updateDelete);
+    setIsVisible(undefined);
   };
 
   return (
@@ -128,7 +129,7 @@ function ContentPost(props: ContentPostProps) {
         onClick: () => setShowMenu(!showMenu),
       }}
       isUserOnClick={showMenu}
-      state={isOwner}
+      state={state || isOwner}
       title={title}
       description={description}
       userName={userNameData || userName}

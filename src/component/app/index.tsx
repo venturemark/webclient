@@ -202,7 +202,6 @@ function VentureRoutes(props: VentureRoutesProps) {
   const {
     data: ventureByUserData,
     isSuccess: ventureUserSuccess,
-    status,
   } = useVenturesByUser(ventureUserSearch);
 
   const allVentures =
@@ -256,7 +255,6 @@ function VentureRoutes(props: VentureRoutesProps) {
 
   // redirect to newVenture if there is not venture
   if (ventureSuccess && ventureUserSuccess && allVentures.length < 1) {
-    console.log(status);
     return <Navigate to="../newventure" />;
   }
 
