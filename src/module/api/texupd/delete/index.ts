@@ -41,7 +41,6 @@ export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
             const id = metaPb.get(key.UpdateStatus);
             return id;
           });
-          console.log(status, "how we're doing!");
           resolve(status);
         }
       });

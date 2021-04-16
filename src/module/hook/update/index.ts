@@ -7,7 +7,6 @@ import {
   IUpdate,
 } from "module/interface/update";
 import * as api from "module/api";
-import { useNavigate } from "react-router-dom";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -133,7 +132,6 @@ export function useUpdateUpdate() {
 
 export function useDeleteUpdate() {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
 
   return useMutation<any, any, any>(
     (updateDelete) => {
@@ -143,8 +141,6 @@ export function useDeleteUpdate() {
       onSuccess: (data, updateDelete) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("updates");
-        //redirect on success
-        updateDelete.successUrl && navigate(updateDelete.successUrl);
       },
     }
   );

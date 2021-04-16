@@ -110,9 +110,6 @@ function ContentPost(props: ContentPostProps) {
 
   const isOwner = userId === userContext?.user.id ? "isOwner" : undefined;
 
-  console.log(isOwner);
-  console.log(showMenu);
-
   const handleDeleteUpdate = () => {
     const updateDelete: IDeleteUpdate = {
       id,

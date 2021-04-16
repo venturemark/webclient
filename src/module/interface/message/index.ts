@@ -2,7 +2,7 @@ export interface IMessage {
   text: string;
   id: string;
   userId: string;
-  subjectId: string;
+  subjectId?: string;
   ventureId: string;
   timelineId: string;
   updateId: string;
@@ -20,11 +20,15 @@ export interface ISearchMessage {
 
 export interface IDeleteMessage {
   id: string;
+  updateId: string;
+  timelineId: string;
+  ventureId: string;
   token: string;
 }
 
 export interface ICreateMessage {
   text: string;
+  userId: string;
   ventureId: string;
   timelineId: string;
   updateId: string;

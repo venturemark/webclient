@@ -19,9 +19,12 @@ export async function Delete(
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new DeleteI();
-
   const obj = new DeleteI_Obj();
+
   obj.getMetadataMap().set(key.MessageID, IDeleteMessage.id);
+  obj.getMetadataMap().set(key.UpdateID, IDeleteMessage.updateId);
+  obj.getMetadataMap().set(key.TimelineID, IDeleteMessage.timelineId);
+  obj.getMetadataMap().set(key.VentureID, IDeleteMessage.ventureId);
   objList.push(obj);
   req.setObjList(objList);
 

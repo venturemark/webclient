@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 import { ICreateMessage } from "module/interface/message";
 import { useCreateMessage } from "module/hook/message";
 import { useGetToken } from "module/auth";
+import { useContext } from "react";
+import { UserContext } from "component/app";
 
 type FormInputs = {
   text: string;
@@ -24,6 +26,7 @@ interface ReplyInputProps extends DefaultReplyInputProps {
 function ReplyInput(props: ReplyInputProps) {
   const { updateId, timelineId, ventureId } = props;
   const token = useGetToken();
+  const userContext = useContext(UserContext);
 
   const { register, handleSubmit, reset } = useForm<FormInputs>();
   const { mutate: createMessage } = useCreateMessage();
@@ -35,6 +38,7 @@ function ReplyInput(props: ReplyInputProps) {
 
     const newMessage: ICreateMessage = {
       text: data.text,
+      userId: userContext?.user.id ?? "",
       ventureId,
       timelineId,
       updateId,

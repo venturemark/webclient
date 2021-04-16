@@ -7,8 +7,15 @@ import {
 } from "component/plasmic/shared/PlasmicReplyContent";
 import { IUser } from "module/interface/user";
 import { UserContext } from "component/app";
+import { useDeleteMessage } from "module/hook/message";
+import { IDeleteMessage } from "module/interface/message";
+import { useGetToken } from "module/auth";
 
 interface ReplyContentProps extends DefaultReplyContentProps {
+  id: string;
+  updateId: string;
+  timelineId: string;
+  ventureId: string;
   userName?: string;
   text: string;
   date: string;
@@ -16,12 +23,36 @@ interface ReplyContentProps extends DefaultReplyContentProps {
 }
 
 function ReplyContent(props: ReplyContentProps) {
-  const { userName, date, text, user, ...rest } = props;
-  // const [state] = useState<"isUser" | undefined>(undefined);
+  const {
+    userName,
+    date,
+    text,
+    user,
+    id,
+    timelineId,
+    ventureId,
+    updateId,
+    ...rest
+  } = props;
+  const token = useGetToken();
+
+  const { mutate: deleteMessage } = useDeleteMessage();
   const userContext = useContext(UserContext);
   const [showMenu, setShowMenu] = useState(false);
 
   const isOwner = user?.id === userContext?.user.id ? "isUser" : undefined;
+
+  const handleDeleteMessage = () => {
+    const messageDelete: IDeleteMessage = {
+      id,
+      timelineId,
+      updateId,
+      ventureId,
+      token: token,
+    };
+
+    deleteMessage(messageDelete);
+  };
 
   return (
     <PlasmicReplyContent
@@ -33,7 +64,7 @@ function ReplyContent(props: ReplyContentProps) {
       isUserOnClick={showMenu}
       dropdown={{
         handleClick: () => {
-          console.log("do something");
+          handleDeleteMessage();
         },
       }}
       userName={userName}
