@@ -33,6 +33,7 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     },
     ref
   );
+
   return (
     <PlasmicInputText
       {...plumeProps}
@@ -42,10 +43,12 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
           name: name,
           defaultValue: defaultValue,
         },
+        errorMessage: {
+          message: errorMessage,
+        },
       }}
-      error={errorMessage ? true : false}
-      errorMessage={{
-        message: errorMessage,
+      variants={{
+        error: errorMessage ? true : false,
       }}
     />
   );

@@ -15,7 +15,10 @@ interface TimelineLinkProps extends DefaultTimelineLinkProps {
 function TimelineLink(props: TimelineLinkProps) {
   const { timeline } = props;
   const navigate = useNavigate();
-  const { timelineSlug, ventureSlug } = useParams();
+  const { ventureSlug } = useParams();
+
+  const timelineName = timeline?.name ?? "";
+  const timelineSlug = timelineName.toLowerCase().replace(/\s/g, "");
 
   return (
     <PlasmicTimelineLink
