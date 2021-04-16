@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicContentPost";
 import TimelineLink from "component/timelinelink";
 import { ITimeline } from "module/interface/timeline";
-import { IUpdate } from "module/interface/update";
+import { IDeleteUpdate, IUpdate } from "module/interface/update";
 import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { IVenture } from "module/interface/venture";
@@ -17,6 +17,7 @@ import { useContext } from "react";
 import { TimelineContext, UserContext } from "component/app";
 import { useTimelineMembers } from "module/hook/user";
 import { useState } from "react";
+import { useDeleteUpdate } from "module/hook/update";
 
 interface ContentPostProps extends DefaultContentPostProps {
   title: string;
@@ -95,6 +96,7 @@ function ContentPost(props: ContentPostProps) {
   };
 
   const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
+  const { mutate: deleteUpdate } = useDeleteUpdate();
 
   const userData = timelineUsersData?.filter(
     (user: IUser) => user.id === userId
@@ -111,6 +113,17 @@ function ContentPost(props: ContentPostProps) {
   console.log(isOwner);
   console.log(showMenu);
 
+  const handleDeleteUpdate = () => {
+    const updateDelete: IDeleteUpdate = {
+      id,
+      timelineId,
+      ventureId,
+      token: token,
+    };
+
+    deleteUpdate(updateDelete);
+  };
+
   return (
     <PlasmicContentPost
       {...rest}
@@ -126,7 +139,7 @@ function ContentPost(props: ContentPostProps) {
       date={date}
       dropdown={{
         handleClick: () => {
-          console.log("do something");
+          handleDeleteUpdate();
         },
       }}
       viewReplies={{

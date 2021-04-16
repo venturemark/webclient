@@ -20,6 +20,8 @@ export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
 
   const obj = new DeleteI_Obj();
   obj.getMetadataMap().set(key.UpdateID, deleteUpdate.id);
+  obj.getMetadataMap().set(key.VentureID, deleteUpdate.ventureId);
+  obj.getMetadataMap().set(key.TimelineID, deleteUpdate.timelineId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -39,6 +41,7 @@ export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
             const id = metaPb.get(key.UpdateStatus);
             return id;
           });
+          console.log(status, "how we're doing!");
           resolve(status);
         }
       });

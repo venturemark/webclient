@@ -7,6 +7,7 @@ import {
   IUpdate,
 } from "module/interface/update";
 import * as api from "module/api";
+import { useNavigate } from "react-router-dom";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -41,12 +42,7 @@ export function useUpdatesByTimeline(
   searchUpdateByTimelineId: ISearchUpdateByTimelineId
 ) {
   return useQuery<any, ErrorResponse>(
-    [
-      `updates-${searchUpdateByTimelineId.timelineId}`,
-      searchUpdateByTimelineId.timelineId,
-      searchUpdateByTimelineId.token,
-      searchUpdateByTimelineId.ventureId,
-    ],
+    ["updates", searchUpdateByTimelineId.timelineId],
     () => getUpdatesByTimelineId(searchUpdateByTimelineId),
     {
       enabled:
@@ -61,12 +57,7 @@ export function useUpdatesByTimelineIds(
   searchUpdateByTimelineIds: ISearchUpdateByTimelineIds
 ) {
   return useQuery<any, ErrorResponse>(
-    [
-      `updates-${searchUpdateByTimelineIds.timelineIds}`,
-      searchUpdateByTimelineIds.timelineIds,
-      !!searchUpdateByTimelineIds.ventureId,
-      searchUpdateByTimelineIds.token,
-    ],
+    ["updates", searchUpdateByTimelineIds.timelineIds],
     () => getUpdatesByTimelineIds(searchUpdateByTimelineIds),
     {
       enabled:
@@ -135,6 +126,25 @@ export function useUpdateUpdate() {
       onSuccess: () => {
         // Invalidate and refetch
         queryClient.invalidateQueries("updates");
+      },
+    }
+  );
+}
+
+export function useDeleteUpdate() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useMutation<any, any, any>(
+    (updateDelete) => {
+      return api.API.TexUpd.Delete(updateDelete);
+    },
+    {
+      onSuccess: (data, updateDelete) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("updates");
+        //redirect on success
+        updateDelete.successUrl && navigate(updateDelete.successUrl);
       },
     }
   );

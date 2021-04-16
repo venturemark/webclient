@@ -193,6 +193,9 @@ function PlasmicContentPost__RenderFunc(props: {
                 defaultcss.__wab_text,
                 sty.description,
                 {
+                  [sty.description__isUserOnClick_state_isOwner]:
+                    hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                    hasVariant(variants, "state", "isOwner"),
                   [sty.description__state_isOwner]: hasVariant(
                     variants,
                     "state",
@@ -546,8 +549,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicContentPost__OverridesType,
   DescendantsType<T>
 >;
-type NodeComponentProps<T extends NodeNameType> = {
-  // Explicitly specify variants, args, and overrides as objects
+type NodeComponentProps<T extends NodeNameType> = { // Explicitly specify variants, args, and overrides as objects
   variants?: PlasmicContentPost__VariantsArgs;
   args?: PlasmicContentPost__ArgsType;
   overrides?: NodeOverridesType<T>;
