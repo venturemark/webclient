@@ -118,19 +118,19 @@ export function useCreateUser() {
         return { previousUsers };
       },
       // If the mutation fails, use the context returned from onMutate to roll back
-      onError: (err, variables, context: any) => {
+      onError: async (err, variables, context: any) => {
         if (context?.previousUsers) {
           queryClient.setQueryData<IUser[]>("users", context.previousUsers);
         }
       },
-      onSuccess: (data, newUser) => {
+      onSuccess: async (data, newUser) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("users");
 
         newUser.successUrl && navigate(newUser.successUrl);
       },
       // Always refetch after error or success:
-      onSettled: () => {
+      onSettled: async () => {
         queryClient.invalidateQueries("users");
       },
     }

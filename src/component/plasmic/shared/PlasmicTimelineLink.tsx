@@ -48,6 +48,7 @@ export const PlasmicTimelineLink__ArgProps = new Array<ArgPropType>("name");
 
 export type PlasmicTimelineLink__OverridesType = {
   root?: p.Flex<"div">;
+  box?: p.Flex<"div">;
   name?: p.Flex<"span">;
 };
 
@@ -72,6 +73,14 @@ function PlasmicTimelineLink__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
+      <div
+        data-plasmic-name={"box"}
+        data-plasmic-override={overrides.box}
+        className={classNames(defaultcss.all, defaultcss.__wab_text, sty.box)}
+      >
+        {"#"}
+      </div>
+
       <p.PlasmicSlot
         defaultContents={
           <span
@@ -94,7 +103,8 @@ function PlasmicTimelineLink__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "name"],
+  root: ["root", "box", "name"],
+  box: ["box"],
   name: ["name"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -103,6 +113,7 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  box: "div";
   name: "span";
 };
 
@@ -162,6 +173,7 @@ export const PlasmicTimelineLink = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    box: makeNodeComponent("box"),
     _name: makeNodeComponent("name"),
 
     // Metadata about props expected for PlasmicTimelineLink

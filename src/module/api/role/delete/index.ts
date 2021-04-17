@@ -1,10 +1,11 @@
 import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/role/proto/delete_pb";
 import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IRole, IDeleteRole } from "module/interface/role";
+import { IRole } from "module/interface/role";
 import * as key from "module/apikeys";
+import { IAPIDeleteRole } from "module/interface/api";
 
-export async function Delete(IDeleteRole: IDeleteRole): Promise<IRole[]> {
+export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
   const objList = [];
 
   const token = IDeleteRole.token;
@@ -17,7 +18,10 @@ export async function Delete(IDeleteRole: IDeleteRole): Promise<IRole[]> {
   const obj = new DeleteI_Obj();
   obj.getMetadataMap().set(key.ResourceKind, IDeleteRole.resource);
   obj.getMetadataMap().set(key.RoleID, IDeleteRole.id);
-  obj.getMetadataMap().set(key.VentureID, IDeleteRole.ventureId);
+  IDeleteRole.ventureId &&
+    obj.getMetadataMap().set(key.VentureID, IDeleteRole.ventureId);
+  IDeleteRole.timelineId &&
+    obj.getMetadataMap().set(key.TimelineID, IDeleteRole.timelineId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -36,6 +40,7 @@ export async function Delete(IDeleteRole: IDeleteRole): Promise<IRole[]> {
           const id = metaPb.get(key.RoleStatus);
           return id;
         });
+        console.log("role state", status);
         resolve(status);
       }
     });

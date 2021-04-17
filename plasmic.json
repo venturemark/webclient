@@ -718,6 +718,11 @@
           "id": "Iea8iz1ew",
           "name": "IconSend2Icon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconSend2.tsx"
+        },
+        {
+          "id": "o58_ERQlgq",
+          "name": "Logosvg3Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Logosvg3.tsx"
         }
       ],
       "images": [

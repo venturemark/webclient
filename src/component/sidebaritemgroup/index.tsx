@@ -56,7 +56,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       isCollapsed={isCollapsed}
       newTimeline={{
         ventureName: ventureName,
-        onClick: () => navigate(`${ventureSlug}/newventure`),
+        onClick: () => navigate(`${ventureSlug}/newtimeline`),
       }}
       itemContainer={{
         children: sortedVentureTimelines?.map((timeline: ITimeline) => (

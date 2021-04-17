@@ -16,9 +16,15 @@ import { emailError } from "module/errors";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
 import { ITimeline } from "module/interface/timeline";
-import { useVentureRole, useTimelineRole } from "module/hook/role";
+import {
+  useVentureRole,
+  useTimelineRole,
+  useDeleteRole,
+} from "module/hook/role";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import {
+  IDeleteTimelineRole,
+  IDeleteVentureRole,
   IRole,
   ISearchTimelineRoles,
   ISearchVentureRoles,
@@ -39,8 +45,11 @@ function AddEditMembers(props: AddEditMembersProps) {
     mode: "onChange",
   });
   const token = useGetToken();
+  const ventureId = currentVenture?.id ?? "";
+  const timelineId = currentTimeline?.id ?? "";
 
   const { mutate: createInvite } = useCreateInvite();
+  const { mutate: deleteRole } = useDeleteRole();
 
   // get invites
   const searchInvite: ISearchInvite = {
@@ -101,16 +110,24 @@ function AddEditMembers(props: AddEditMembersProps) {
   console.log("venture roles:", ventureRolesData);
   console.log("venture users data:", ventureUsersData);
 
-  const allSuccess =
-    timelineUsersSuccess && ventureUsersSuccess && invitesSuccess;
-
-  console.log("all members:", allMembers);
+  const allSuccess = ventureUsersSuccess && invitesSuccess;
 
   const array2 = invitesData
     ?.filter((invite: IInvite) => invite.status === "pending")
     .map((invite: IInvite) => ({
       name: invite.email,
     }));
+
+  console.log("all members, array 2:", allMembers, array2);
+
+  console.log("invitesData:", invitesData);
+
+  console.log(
+    "who failing: timeline, venture, invites?",
+    timelineUsersSuccess,
+    ventureUsersSuccess,
+    invitesSuccess
+  );
 
   const membersAndInvites = allSuccess
     ? [...new Set([...allMembers, ...array2])]
@@ -131,6 +148,34 @@ function AddEditMembers(props: AddEditMembersProps) {
 
     createInvite(invite);
     reset();
+  };
+
+  const handleRemoveMemberRole = (userId: string) => {
+    const roleId = !currentTimeline
+      ? ventureRolesData.filter((role: IRole) => role.subjectId === userId)[0]
+          .id
+      : timelineRolesData.filter((role: IRole) => role.subjectId === userId)[0]
+          .id;
+    const deleteVentureRole: IDeleteVentureRole = {
+      resource: "venture",
+      id: roleId,
+      ventureId,
+      token: token,
+    };
+    const deleteTimelineRole: IDeleteTimelineRole = {
+      resource: "timeline",
+      id: roleId,
+      timelineId,
+      token: token,
+    };
+
+    const deleteRoleQuery = !currentTimeline
+      ? deleteVentureRole
+      : deleteTimelineRole;
+
+    console.log("delete query:", deleteRoleQuery);
+
+    deleteRole(deleteRoleQuery);
   };
 
   console.log("members and invites", membersAndInvites);
@@ -159,7 +204,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                 userName={member.name}
                 user={member}
                 userVariant={
-                  member.title === undefined
+                  member.title === "undefined"
                     ? "isRequested"
                     : ventureRolesData?.filter(
                         (role: IRole) => role.subjectId === member.id
@@ -167,6 +212,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                     ? "isOwner"
                     : undefined
                 }
+                handleClick={() => handleRemoveMemberRole(member.id)}
               />
             ))
           : membersAndInvites?.map((member: any) => (
@@ -182,6 +228,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                     ? "isOwner"
                     : undefined
                 }
+                handleClick={() => handleRemoveMemberRole(member.id)}
               />
             )),
       }}

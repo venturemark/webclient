@@ -2,9 +2,13 @@
   display: flex;
   position: relative;
 }
+.box {
+  position: relative;
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
 .slotName {
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  font-weight: 300;
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  font-weight: 400;
 }
 .root:hover .slotName {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
@@ -14,4 +18,5 @@
   height: auto;
   cursor: pointer;
   position: relative;
+  font-weight: 400;
 }

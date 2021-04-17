@@ -81,7 +81,7 @@
   .sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
     position: absolute;
     left: 0px;
-    top: 75px;
+    top: 0px;
     z-index: 10;
     width: 100%;
     min-width: 0;

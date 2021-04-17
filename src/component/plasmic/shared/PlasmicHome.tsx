@@ -163,6 +163,7 @@ function PlasmicHome__RenderFunc(props: {
                 "showModal"
               ),
             })}
+            views={"userAccount" as const}
           />
 
           <div

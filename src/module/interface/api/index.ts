@@ -24,3 +24,11 @@ export interface IAPISearchRole {
   timelineId?: string;
   token: string;
 }
+
+export interface IAPIDeleteRole {
+  id: string;
+  resource: string;
+  ventureId?: string;
+  timelineId?: string;
+  token: string;
+}

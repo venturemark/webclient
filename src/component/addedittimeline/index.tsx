@@ -78,6 +78,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
     reset();
   };
+
+  console.log(errors);
   return (
     <PlasmicAddEditTimeline
       {...rest}
@@ -89,7 +91,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         register: register({ required: true, maxLength: 23 }),
         name: "timelineName",
         defaultValue: currentTimeline?.name ?? "",
-        errorMessage: errors.name && timelineNameError,
+        errorMessage: errors.timelineName && timelineNameError,
       }}
       description={{
         register: register({ required: true }),

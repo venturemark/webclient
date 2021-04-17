@@ -38,10 +38,17 @@ export interface INewRole {
   token: string;
 }
 
-export interface IDeleteRole {
+export interface IDeleteVentureRole {
   id: string;
   resource: string;
   ventureId: string;
+  token: string;
+}
+
+export interface IDeleteTimelineRole {
+  id: string;
+  resource: string;
+  timelineId: string;
   token: string;
 }
 

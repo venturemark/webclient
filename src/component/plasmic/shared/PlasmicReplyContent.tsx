@@ -223,6 +223,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                           </span>
                         }
                         value={args.date}
+                        className={classNames(sty.slotDate)}
                       />
                     </p.Stack>
                   </p.Stack>
@@ -314,6 +315,11 @@ function PlasmicReplyContent__RenderFunc(props: {
                                       "isUserOnClick"
                                     ) &&
                                     hasVariant(variants, "state", "isUser"),
+                                  [sty.deleteOption__state_isUser]: hasVariant(
+                                    variants,
+                                    "state",
+                                    "isUser"
+                                  ),
                                 }
                               )}
                             >

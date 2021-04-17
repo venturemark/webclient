@@ -177,6 +177,7 @@ function PlasmicInputText__RenderFunc(props: {
                       "isDisabled"
                     ),
                   })}
+                  disabled={false}
                   placeholder={"" as const}
                   title={"" as const}
                   type={"text" as const}
@@ -186,21 +187,27 @@ function PlasmicInputText__RenderFunc(props: {
           </div>
         </div>
 
-        <div
-          data-plasmic-name={"errorContainer"}
-          data-plasmic-override={overrides.errorContainer}
-          className={classNames(defaultcss.all, sty.errorContainer, {
-            [sty.errorContainer__error]: hasVariant(variants, "error", "error"),
-          })}
-        >
-          {(hasVariant(variants, "error", "error") ? true : false) ? (
-            <ErrorMessage
-              data-plasmic-name={"errorMessage"}
-              data-plasmic-override={overrides.errorMessage}
-              message={"Error message"}
-            />
-          ) : null}
-        </div>
+        {false ? (
+          <div
+            data-plasmic-name={"errorContainer"}
+            data-plasmic-override={overrides.errorContainer}
+            className={classNames(defaultcss.all, sty.errorContainer, {
+              [sty.errorContainer__error]: hasVariant(
+                variants,
+                "error",
+                "error"
+              ),
+            })}
+          >
+            {(hasVariant(variants, "error", "error") ? true : false) ? (
+              <ErrorMessage
+                data-plasmic-name={"errorMessage"}
+                data-plasmic-override={overrides.errorMessage}
+                message={"Error message"}
+              />
+            ) : null}
+          </div>
+        ) : null}
       </p.Stack>
     </div>
   ) as React.ReactElement | null;

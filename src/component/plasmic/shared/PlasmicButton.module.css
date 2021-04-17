@@ -3,6 +3,8 @@
   width: auto;
   height: auto;
   position: relative;
+  transition-property: all;
+  transition-duration: 1s;
   background: rgba(255, 255, 255, 0);
 }
 @media (max-width: 767px) {
@@ -16,6 +18,11 @@
     width: auto;
     display: inline-flex;
   }
+}
+.root:focus-within {
+  box-shadow: none;
+  outline: none;
+  border: 0px solid rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
 .button {
   opacity: 1;
@@ -132,6 +139,9 @@
 .box > :global(.__wab_flex-container) > *,
 .box > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
+}
+.root:focus-within .box {
+  outline: none;
 }
 .slotSlot__buttonFeatures_showStartIcon {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
