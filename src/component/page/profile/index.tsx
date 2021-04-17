@@ -17,7 +17,9 @@ function Profile(props: ProfileProps) {
   const hasInvite =
     localStorage.getItem("ventureId") &&
     localStorage.getItem("code") &&
-    localStorage.getItem("id");
+    localStorage.getItem("id")
+      ? true
+      : false;
 
   return (
     <PlasmicProfile

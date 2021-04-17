@@ -1,10 +1,11 @@
 import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/role/proto/delete_pb";
 import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
 import * as env from "module/env";
-import { IRole, IDeleteRole } from "module/interface/role";
+import { IRole } from "module/interface/role";
 import * as key from "module/apikeys";
+import { IAPIDeleteRole } from "module/interface/api";
 
-export async function Delete(IDeleteRole: IDeleteRole): Promise<IRole[]> {
+export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
   const objList = [];
 
   const token = IDeleteRole.token;

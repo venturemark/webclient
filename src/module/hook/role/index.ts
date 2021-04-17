@@ -145,3 +145,19 @@ export function useUpdateRole() {
     }
   );
 }
+
+export function useDeleteRole() {
+  const queryClient = useQueryClient();
+
+  return useMutation<any, any, any>(
+    (roleDelete) => {
+      return api.API.Role.Delete(roleDelete);
+    },
+    {
+      onSuccess: (data, roleDelete) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("roles");
+      },
+    }
+  );
+}

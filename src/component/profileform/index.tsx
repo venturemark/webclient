@@ -17,7 +17,7 @@ import { UserContext } from "component/app";
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
   setIsVisible?: any;
-  hasInvite: string | null;
+  hasInvite: boolean;
 }
 
 function ProfileForm(props: ProfileFormProps) {
@@ -33,6 +33,9 @@ function ProfileForm(props: ProfileFormProps) {
 
   const { mutate: saveUser } = useCreateUser();
 
+  console.log("hasInvite", hasInvite);
+  const link = hasInvite ? "../joinventure" : "/";
+
   const handleSave = (data: any) => {
     if (!data.name) {
       return;
@@ -45,10 +48,11 @@ function ProfileForm(props: ProfileFormProps) {
     };
 
     user.successUrl = hasInvite ? "../joinventure" : "../newventure";
+    console.log(user);
     saveUser(user);
   };
 
-  if (user) return <Navigate to={`/`} />;
+  if (user) return <Navigate to={`${link}`} />;
 
   return (
     <PlasmicProfileForm

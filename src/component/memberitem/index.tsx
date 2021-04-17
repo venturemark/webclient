@@ -9,14 +9,18 @@ import { IUser } from "module/interface/user";
 
 interface MemberItemProps extends DefaultMemberItemProps {
   user: IUser;
+  handleClick: any;
 }
 
 function MemberItem(props: MemberItemProps) {
-  const { user, ...rest } = props;
+  const { user, handleClick, ...rest } = props;
   return (
     <PlasmicMemberItem
       photoAvatar={{
         user,
+      }}
+      iconButton={{
+        onClick: handleClick,
       }}
       {...rest}
     />

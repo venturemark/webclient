@@ -30,6 +30,8 @@ function JoinVenture(props: JoinVentureProps) {
       token,
     };
 
+    console.log(inviteUpdate);
+
     updateInvite(inviteUpdate);
   };
 

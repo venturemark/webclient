@@ -57,11 +57,13 @@ export function useCreateInvite() {
       onSuccess: (data, newInvite) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("invites");
+        queryClient.invalidateQueries("users");
         sendInvite(data, newInvite);
       },
       // Always refetch after error or success:
       onSettled: () => {
         queryClient.invalidateQueries("invites");
+        queryClient.invalidateQueries("users");
       },
     }
   );

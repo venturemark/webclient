@@ -94,7 +94,7 @@ export function useCreateUpdate() {
         return { previousUpdates };
       },
       // If the mutation fails, use the context returned from onMutate to roll back
-      onError: (err, variables, context: any) => {
+      onError: async (err, variables, context: any) => {
         if (context?.previousUpdates) {
           queryClient.setQueryData<IUpdate[]>(
             "updates",
@@ -102,12 +102,12 @@ export function useCreateUpdate() {
           );
         }
       },
-      onSuccess: (data, newUpdate) => {
+      onSuccess: async (data, newUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("updates");
       },
       // Always refetch after error or success:
-      onSettled: () => {
+      onSettled: async () => {
         queryClient.invalidateQueries("updates");
       },
     }

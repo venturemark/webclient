@@ -88,7 +88,7 @@ export function useCreateVenture() {
         return { previousVentures };
       },
       // If the mutation fails, use the context returned from onMutate to roll back
-      onError: (err, variables, context: any) => {
+      onError: async (err, variables, context: any) => {
         if (context?.previousVentures) {
           queryClient.setQueryData<IVenture[]>(
             "ventures",
@@ -96,14 +96,14 @@ export function useCreateVenture() {
           );
         }
       },
-      onSuccess: (data, newVenture) => {
+      onSuccess: async (data, newVenture) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("ventures");
+        await queryClient.invalidateQueries("ventures");
 
         newVenture.successUrl && navigate(newVenture.successUrl);
       },
       // Always refetch after error or success:
-      onSettled: () => {
+      onSettled: async () => {
         queryClient.invalidateQueries("ventures");
       },
     }
