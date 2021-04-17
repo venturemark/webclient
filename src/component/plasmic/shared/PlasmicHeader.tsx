@@ -39,7 +39,7 @@ import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mT
 import * as sty from "./PlasmicHeader.module.css"; // plasmic-import: MkyvVOg5Ik/css
 
 import IconMenuIcon from "./icons/PlasmicIcon__IconMenu"; // plasmic-import: gDL0fFl2pD/icon
-import Logosvg2Icon from "./icons/PlasmicIcon__Logosvg2"; // plasmic-import: SLtbVdLFU/icon
+import Logosvg3Icon from "./icons/PlasmicIcon__Logosvg3"; // plasmic-import: o58_ERQlgq/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 
@@ -129,48 +129,50 @@ function PlasmicHeader__RenderFunc(props: {
           ),
         })}
       >
-        <p.Stack
-          as={"div"}
-          hasGap={true}
-          className={classNames(defaultcss.all, sty.box__wE8Ym)}
-        >
-          {(
-            hasVariant(variants, "mobileMenu", "mobileMenu") &&
-            hasVariant(globalVariants, "screen", "mobile")
-              ? false
-              : hasVariant(variants, "mobileMenu", "mobileMenu")
-              ? true
-              : hasVariant(globalVariants, "screen", "mobile")
-              ? true
-              : false
-          ) ? (
-            <IconMenuIcon
-              data-plasmic-name={"toggleMobileSidebar"}
-              data-plasmic-override={overrides.toggleMobileSidebar}
-              className={classNames(defaultcss.all, sty.toggleMobileSidebar, {
-                [sty.toggleMobileSidebar__mobileMenu]: hasVariant(
-                  variants,
-                  "mobileMenu",
-                  "mobileMenu"
-                ),
-              })}
-              role={"img"}
-            />
-          ) : null}
+        {(hasVariant(globalVariants, "screen", "mobile") ? true : false) ? (
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(defaultcss.all, sty.box__wE8Ym)}
+          >
+            {(
+              hasVariant(variants, "mobileMenu", "mobileMenu") &&
+              hasVariant(globalVariants, "screen", "mobile")
+                ? false
+                : hasVariant(variants, "mobileMenu", "mobileMenu")
+                ? true
+                : hasVariant(globalVariants, "screen", "mobile")
+                ? true
+                : false
+            ) ? (
+              <IconMenuIcon
+                data-plasmic-name={"toggleMobileSidebar"}
+                data-plasmic-override={overrides.toggleMobileSidebar}
+                className={classNames(defaultcss.all, sty.toggleMobileSidebar, {
+                  [sty.toggleMobileSidebar__mobileMenu]: hasVariant(
+                    variants,
+                    "mobileMenu",
+                    "mobileMenu"
+                  ),
+                })}
+                role={"img"}
+              />
+            ) : null}
+          </p.Stack>
+        ) : null}
 
-          <Logosvg2Icon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(defaultcss.all, sty.svg, {
-              [sty.svg__mobileMenu]: hasVariant(
-                variants,
-                "mobileMenu",
-                "mobileMenu"
-              ),
-            })}
-            role={"img"}
-          />
-        </p.Stack>
+        <Logosvg3Icon
+          data-plasmic-name={"svg"}
+          data-plasmic-override={overrides.svg}
+          className={classNames(defaultcss.all, sty.svg, {
+            [sty.svg__mobileMenu]: hasVariant(
+              variants,
+              "mobileMenu",
+              "mobileMenu"
+            ),
+          })}
+          role={"img"}
+        />
 
         {(hasVariant(variants, "views", "userAccount") ? true : false) ? (
           <p.Stack

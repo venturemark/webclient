@@ -18,7 +18,10 @@ export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
   const obj = new DeleteI_Obj();
   obj.getMetadataMap().set(key.ResourceKind, IDeleteRole.resource);
   obj.getMetadataMap().set(key.RoleID, IDeleteRole.id);
-  obj.getMetadataMap().set(key.VentureID, IDeleteRole.ventureId);
+  IDeleteRole.ventureId &&
+    obj.getMetadataMap().set(key.VentureID, IDeleteRole.ventureId);
+  IDeleteRole.timelineId &&
+    obj.getMetadataMap().set(key.TimelineID, IDeleteRole.timelineId);
   objList.push(obj);
   req.setObjList(objList);
 
@@ -37,6 +40,7 @@ export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
           const id = metaPb.get(key.RoleStatus);
           return id;
         });
+        console.log("role state", status);
         resolve(status);
       }
     });

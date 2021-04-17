@@ -157,6 +157,7 @@ export function useDeleteRole() {
       onSuccess: (data, roleDelete) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("roles");
+        queryClient.invalidateQueries("users");
       },
     }
   );

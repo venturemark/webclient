@@ -152,8 +152,10 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   const handleRemoveMemberRole = (userId: string) => {
     const roleId = !currentTimeline
-      ? ventureRolesData.filter((role: IRole) => role.subjectId === userId)
-      : timelineRolesData.filter((role: IRole) => role.subjectId === userId);
+      ? ventureRolesData.filter((role: IRole) => role.subjectId === userId)[0]
+          .id
+      : timelineRolesData.filter((role: IRole) => role.subjectId === userId)[0]
+          .id;
     const deleteVentureRole: IDeleteVentureRole = {
       resource: "venture",
       id: roleId,
@@ -167,9 +169,13 @@ function AddEditMembers(props: AddEditMembersProps) {
       token: token,
     };
 
-    !currentTimeline
-      ? deleteRole(deleteVentureRole)
-      : deleteRole(deleteTimelineRole);
+    const deleteRoleQuery = !currentTimeline
+      ? deleteVentureRole
+      : deleteTimelineRole;
+
+    console.log("delete query:", deleteRoleQuery);
+
+    deleteRole(deleteRoleQuery);
   };
 
   console.log("members and invites", membersAndInvites);

@@ -156,13 +156,27 @@ function PlasmicContentPost__RenderFunc(props: {
           ),
         })}
       >
-        <div className={classNames(defaultcss.all, sty.box__z3Q65)}>
+        <div
+          className={classNames(defaultcss.all, sty.box__z3Q65, {
+            [sty.box__state_isOwner__z3Q65U0Xnn]: hasVariant(
+              variants,
+              "state",
+              "isOwner"
+            ),
+          })}
+        >
           <p.Stack
             as={"div"}
             data-plasmic-name={"textContainer2"}
             data-plasmic-override={overrides.textContainer2}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.textContainer2)}
+            className={classNames(defaultcss.all, sty.textContainer2, {
+              [sty.textContainer2__state_isOwner]: hasVariant(
+                variants,
+                "state",
+                "isOwner"
+              ),
+            })}
           >
             <div
               data-plasmic-name={"title"}
@@ -172,6 +186,11 @@ function PlasmicContentPost__RenderFunc(props: {
                 defaultcss.__wab_text,
                 sty.title,
                 {
+                  [sty.title__state_isOwner]: hasVariant(
+                    variants,
+                    "state",
+                    "isOwner"
+                  ),
                   [sty.title__state_isPostDetails]: hasVariant(
                     variants,
                     "state",
@@ -180,9 +199,9 @@ function PlasmicContentPost__RenderFunc(props: {
                 }
               )}
             >
-              {
-                "Lorem ipsumNam mollis varius ex. In ornare #scelerisque ex, ut ullamcorper dui "
-              }
+              {hasVariant(variants, "state", "isOwner")
+                ? "Lorem i ut ullamcorper dui "
+                : "Lorem ipsumNam mollis varius ex. In ornare #scelerisque ex, ut ullamcorper dui "}
             </div>
 
             <div
@@ -209,9 +228,9 @@ function PlasmicContentPost__RenderFunc(props: {
                 }
               )}
             >
-              {
-                "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-              }
+              {hasVariant(variants, "state", "isOwner")
+                ? "Lorem ipsum #dolor sit amet, consectetur "
+                : "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"}
             </div>
           </p.Stack>
 

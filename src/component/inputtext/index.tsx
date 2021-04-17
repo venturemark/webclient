@@ -47,9 +47,6 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
           message: errorMessage,
         },
       }}
-      variants={{
-        error: errorMessage ? true : false,
-      }}
     />
   );
 }

@@ -114,37 +114,45 @@ function PlasmicJoinVenture__RenderFunc(props: {
                   className={classNames(defaultcss.all, sty.box__uwKvi)}
                 >
                   <div className={classNames(defaultcss.all, sty.box__hRcye)}>
-                    <h2
-                      className={classNames(
-                        defaultcss.h2,
-                        defaultcss.__wab_text,
-                        sty.h2___608W3
-                      )}
+                    <div
+                      className={classNames(defaultcss.all, sty.box___3W6Kg)}
                     >
-                      {"Join "}
-                    </h2>
+                      <h2 className={classNames(defaultcss.h2, sty.h2___608W3)}>
+                        <div
+                          className={classNames(
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.box__u899S
+                          )}
+                        >
+                          {"Join "}
+                        </div>
 
-                    <span
-                      data-plasmic-name={"span"}
-                      data-plasmic-override={overrides.span}
-                      className={classNames(defaultcss.all, sty.span)}
-                    >
-                      <p.PlasmicSlot
-                        defaultContents={"BaronFig"}
-                        value={args.ventureName}
-                        className={classNames(sty.slotVentureName)}
-                      />
-                    </span>
+                        <span
+                          data-plasmic-name={"span"}
+                          data-plasmic-override={overrides.span}
+                          className={classNames(defaultcss.all, sty.span)}
+                        >
+                          <p.PlasmicSlot
+                            defaultContents={"BaronFig"}
+                            value={args.ventureName}
+                            className={classNames(sty.slotVentureName)}
+                          />
+                        </span>
+                      </h2>
+                    </div>
 
-                    <h2
-                      className={classNames(
-                        defaultcss.h2,
-                        defaultcss.__wab_text,
-                        sty.h2__vnLD
-                      )}
-                    >
-                      {"on Venturemark"}
-                    </h2>
+                    <div className={classNames(defaultcss.all, sty.box__zlDnp)}>
+                      <h2
+                        className={classNames(
+                          defaultcss.h2,
+                          defaultcss.__wab_text,
+                          sty.h2__vnLD
+                        )}
+                      >
+                        {"on Venturemark"}
+                      </h2>
+                    </div>
                   </div>
 
                   <p
@@ -157,7 +165,7 @@ function PlasmicJoinVenture__RenderFunc(props: {
                     )}
                   >
                     {
-                      "You have been invited to be part of this venture. Join this venture to stay up to date with updates."
+                      "You have been invited to be part of this venture. \nJoin this venture to stay up to date with updates."
                     }
                   </p>
 

@@ -54,6 +54,9 @@
   padding: 0px;
   margin: 0px 0px 20px;
 }
+.box__state_isOwner__z3Q65U0Xnn {
+  justify-content: space-between;
+}
 .textContainer2 {
   display: inline-flex;
   position: relative;
@@ -226,7 +229,7 @@
 .slotUserName {
   font-size: 16px;
   font-weight: 700;
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .userName {
   position: relative;

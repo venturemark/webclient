@@ -11,6 +11,11 @@
   min-width: 250px;
   min-height: 0;
 }
+@media (max-width: 767px) {
+  .root {
+    background: #ffffff;
+  }
+}
 .root__hasInput {
   border-width: 1px;
 }
@@ -49,6 +54,11 @@
 .scrollContainer > :global(.__wab_flex-container) > *,
 .scrollContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 5px;
+}
+@media (max-width: 767px) {
+  .scrollContainer {
+    padding-top: 96px;
+  }
 }
 .itemGroupContainer {
   display: flex;

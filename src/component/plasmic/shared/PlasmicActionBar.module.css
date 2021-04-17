@@ -107,7 +107,7 @@
   left: auto;
   width: 100%;
   min-width: 0;
-  margin: 5px 10px;
+  margin: 5px 0px 5px 10px;
 }
 .box__ptnBs > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -139,6 +139,10 @@
 .root:focus-within .box__ptnBs {
   outline: none;
   margin: 5px 10px;
+}
+.root__isActive:focus-within .box__isActive__ptnBsvjQpn {
+  outline: none;
+  margin: 5px 0px 5px 10px;
 }
 .editorContainer {
   display: flex;

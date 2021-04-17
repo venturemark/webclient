@@ -276,7 +276,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           ? false
           : hasVariant(globalVariants, "screen", "mobile")
           ? false
-          : true
+          : false
       ) ? (
         <div
           className={classNames(defaultcss.all, sty.box__katKc, {
@@ -312,7 +312,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           ? false
           : hasVariant(globalVariants, "screen", "mobile")
           ? false
-          : true
+          : false
       ) ? (
         <Switch
           data-plasmic-name={"membersWrite"}
