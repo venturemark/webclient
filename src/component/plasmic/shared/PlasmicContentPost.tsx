@@ -125,6 +125,11 @@ function PlasmicContentPost__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__isUserOnClick]: hasVariant(
+          variants,
+          "isUserOnClick",
+          "isUserOnClick"
+        ),
         [sty.root__isUserOnClick_state_isOwner]:
           hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
           hasVariant(variants, "state", "isOwner"),
@@ -374,38 +379,55 @@ function PlasmicContentPost__RenderFunc(props: {
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.box__wDBh5)}
+                  className={classNames(defaultcss.all, sty.box__wDBh5, {
+                    [sty.box__state_isOwner__wDBh5U0Xnn]: hasVariant(
+                      variants,
+                      "state",
+                      "isOwner"
+                    ),
+                  })}
                 >
+                  <span
+                    data-plasmic-name={"span"}
+                    data-plasmic-override={overrides.span}
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.span,
+                      {
+                        [sty.span__state_isOwner]: hasVariant(
+                          variants,
+                          "state",
+                          "isOwner"
+                        ),
+                      }
+                    )}
+                  >
+                    {"•"}
+                  </span>
+
                   <p.PlasmicSlot
                     defaultContents={
-                      <React.Fragment>
-                        <span
-                          data-plasmic-name={"span"}
-                          data-plasmic-override={overrides.span}
-                          className={classNames(
-                            defaultcss.all,
-                            defaultcss.__wab_text,
-                            sty.span
-                          )}
-                        >
-                          {"•"}
-                        </span>
-
-                        <span
-                          data-plasmic-name={"date"}
-                          data-plasmic-override={overrides.date}
-                          className={classNames(
-                            defaultcss.all,
-                            defaultcss.__wab_text,
-                            sty.date
-                          )}
-                        >
-                          {"3 hours ago"}
-                        </span>
-                      </React.Fragment>
+                      <span
+                        data-plasmic-name={"date"}
+                        data-plasmic-override={overrides.date}
+                        className={classNames(
+                          defaultcss.all,
+                          defaultcss.__wab_text,
+                          sty.date
+                        )}
+                      >
+                        {"3 hours ago"}
+                      </span>
                     }
                     value={args.date}
-                    className={classNames(sty.slotDate)}
+                    className={classNames(sty.slotDate, {
+                      [sty.slotDate__state_isOwner]: hasVariant(
+                        variants,
+                        "state",
+                        "isOwner"
+                      ),
+                    })}
                   />
                 </p.Stack>
               </p.Stack>

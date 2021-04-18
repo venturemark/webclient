@@ -45,9 +45,6 @@
 .feedContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 10px /* plasmic-token: 4LaooeLwj */;
 }
-.span {
-  position: relative;
-}
 .date {
   position: relative;
   width: auto;

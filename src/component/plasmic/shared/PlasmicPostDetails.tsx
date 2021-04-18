@@ -58,7 +58,6 @@ export type PlasmicPostDetails__OverridesType = {
   svg?: p.Flex<"svg">;
   post?: p.Flex<typeof ContentPost>;
   userName3?: p.Flex<"span">;
-  span?: p.Flex<"span">;
   date3?: p.Flex<"span">;
   repliesContainer?: p.Flex<"div">;
   replyContent?: p.Flex<typeof ReplyContent>;
@@ -120,31 +119,17 @@ function PlasmicPostDetails__RenderFunc(props: {
           data-plasmic-override={overrides.post}
           className={classNames("__wab_instance", sty.post)}
           date={
-            <React.Fragment>
-              <span
-                data-plasmic-name={"span"}
-                data-plasmic-override={overrides.span}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.span
-                )}
-              >
-                {"•"}
-              </span>
-
-              <span
-                data-plasmic-name={"date3"}
-                data-plasmic-override={overrides.date3}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.date3
-                )}
-              >
-                {"3 hours ago"}
-              </span>
-            </React.Fragment>
+            <span
+              data-plasmic-name={"date3"}
+              data-plasmic-override={overrides.date3}
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.date3
+              )}
+            >
+              {"3 hours ago"}
+            </span>
           }
           state={["isPostDetails"]}
           userInitials={"KO"}
@@ -224,7 +209,6 @@ const PlasmicDescendants = {
     "svg",
     "post",
     "userName3",
-    "span",
     "date3",
     "repliesContainer",
     "replyContent",
@@ -234,9 +218,8 @@ const PlasmicDescendants = {
   ],
   close: ["close", "svg"],
   svg: ["svg"],
-  post: ["post", "userName3", "span", "date3"],
+  post: ["post", "userName3", "date3"],
   userName3: ["userName3"],
-  span: ["span"],
   date3: ["date3"],
   repliesContainer: ["repliesContainer", "replyContent", "userName2", "date2"],
   replyContent: ["replyContent", "userName2", "date2"],
@@ -254,7 +237,6 @@ type NodeDefaultElementType = {
   svg: "svg";
   post: typeof ContentPost;
   userName3: "span";
-  span: "span";
   date3: "span";
   repliesContainer: "div";
   replyContent: typeof ReplyContent;
@@ -323,7 +305,6 @@ export const PlasmicPostDetails = Object.assign(
     svg: makeNodeComponent("svg"),
     post: makeNodeComponent("post"),
     userName3: makeNodeComponent("userName3"),
-    span: makeNodeComponent("span"),
     date3: makeNodeComponent("date3"),
     repliesContainer: makeNodeComponent("repliesContainer"),
     replyContent: makeNodeComponent("replyContent"),

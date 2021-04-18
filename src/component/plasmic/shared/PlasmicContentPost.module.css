@@ -101,17 +101,14 @@
 .dropdown:global(.__wab_instance) {
   position: relative;
 }
+.dropdown__isUserOnClick:global(.__wab_instance) {
+  right: auto;
+}
 .dropdown__isUserOnClick_state_isOwner:global(.__wab_instance) {
   position: absolute;
   left: auto;
   top: 33px;
   right: 0px;
-}
-.root__state_isOwner:hover .dropdown__state_isOwner:global(.__wab_instance) {
-  position: absolute;
-  left: -92px;
-  top: 29px;
-  z-index: 3;
 }
 .box__ehjLr {
   display: inline-flex;
@@ -253,11 +250,11 @@
 .box__wDBh5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 4px;
 }
-.slotDate {
-  font-weight: 300;
-}
 .span {
   position: relative;
+}
+.slotDate {
+  font-weight: 300;
 }
 .date {
   position: relative;

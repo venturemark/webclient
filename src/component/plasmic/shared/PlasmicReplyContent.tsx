@@ -202,7 +202,16 @@ function PlasmicReplyContent__RenderFunc(props: {
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.span
+                          sty.span,
+                          {
+                            [sty.span__state_isUser_isUserOnClick]:
+                              hasVariant(variants, "state", "isUser") &&
+                              hasVariant(
+                                variants,
+                                "isUserOnClick",
+                                "isUserOnClick"
+                              ),
+                          }
                         )}
                       >
                         {"•"}

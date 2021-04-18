@@ -9,8 +9,8 @@ interface RadioProps extends PlumeRadioProps {
   setVisibility: React.Dispatch<React.SetStateAction<string>>;
 }
 function Radio_(props: RadioProps, ref: PlumeRadioRef) {
-  // const { value, setVisibility } = props;
-  const { plumeProps } = useRadio(
+  const { value, setVisibility } = props;
+  const { plumeProps, state } = useRadio(
     PlasmicRadio,
     props,
     {
@@ -28,10 +28,9 @@ function Radio_(props: RadioProps, ref: PlumeRadioRef) {
   return (
     <PlasmicRadio
       {...plumeProps}
-      onClick={(e) => {
-        e.preventDefault();
-        // state.setSelectedValue(value);
-        // setVisibility(value);
+      onClick={() => {
+        state.setSelectedValue(value);
+        setVisibility(value);
       }}
     />
   );

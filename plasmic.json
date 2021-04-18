@@ -767,6 +767,12 @@
         "name": "Screen",
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
         "contextFilePath": "plasmic/shared/PlasmicGlobalVariant__Screen.tsx"
+      },
+      {
+        "id": "AfkkBCaq2g",
+        "name": "UnnamedGlobalGroupOfVariants",
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "contextFilePath": "plasmic/shared/PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants.tsx"
       }
     ]
   },

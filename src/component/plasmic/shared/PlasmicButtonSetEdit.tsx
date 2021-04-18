@@ -190,7 +190,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
               ),
             })}
           >
-            {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
+            {(hasVariant(variants, "variantState", "isEdit") ? true : true) ? (
               <Button
                 data-plasmic-name={"cancel"}
                 data-plasmic-override={overrides.cancel}
