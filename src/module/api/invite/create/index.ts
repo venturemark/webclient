@@ -27,7 +27,6 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
 
   objList.push(obj);
   req.setObjList(objList);
-  console.log("invite to send request:", req.toObject());
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
@@ -36,7 +35,6 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
         console.log(err.message);
         reject(err);
       } else {
-        console.log("invite created! success");
         const invitePbList = res.getObjList();
         const invitePbObject = invitePbList[0];
         const metaPb = invitePbObject?.getMetadataMap();
@@ -49,7 +47,6 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
           email: newInvite.email,
           ventureId: newInvite.ventureId,
         };
-        console.log("created invite", invite);
         resolve(invite);
       }
     });

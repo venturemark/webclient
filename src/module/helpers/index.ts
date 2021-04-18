@@ -61,10 +61,10 @@ export function sendInvite(inviteData: any, invite: ICreateInvite) {
     )
     .then(
       function (response) {
-        console.log("SUCCESS!", response.status, response.text);
+        console.log("email sent!", response.status, response.text);
       },
       function (error) {
-        console.log("FAILED...", error);
+        console.log("failed to send email", error);
       }
     );
 }

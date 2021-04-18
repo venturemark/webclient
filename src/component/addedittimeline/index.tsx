@@ -53,7 +53,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const timelineId = currentTimeline?.id;
 
   const handleCreate = (data: any) => {
-    console.log("timeline data:", data);
     console.log("visibility", visibility);
     if (!token || !data.timelineName || !data.timelineDescription) {
       return;
@@ -79,7 +78,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     reset();
   };
 
-  console.log(errors);
   return (
     <PlasmicAddEditTimeline
       {...rest}

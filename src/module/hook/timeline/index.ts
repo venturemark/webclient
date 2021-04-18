@@ -133,7 +133,6 @@ export function useArchiveDeleteTimeline() {
     },
     {
       onSuccess: async (data, timelineUpdate) => {
-        console.log("deleting timeline in hook");
         //perform delete on success of archive
         await api.API.Timeline.Delete(timelineUpdate);
 

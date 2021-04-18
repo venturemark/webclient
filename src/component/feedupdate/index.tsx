@@ -123,7 +123,7 @@ function FeedUpdate(props: FeedUpdateProps) {
                 users: timelineUsersData,
               })
             }
-            currentVenture={currentVenture}
+            ventureId={update.ventureId}
             allUpdates={allUpdates}
             userId={update.userId ?? ""}
           />

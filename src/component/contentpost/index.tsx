@@ -10,7 +10,6 @@ import { ITimeline } from "module/interface/timeline";
 import { IDeleteUpdate, IUpdate } from "module/interface/update";
 import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
-import { IVenture } from "module/interface/venture";
 import { useGetToken } from "module/auth";
 import { ISearchTimelineMembers, IUser } from "module/interface/user";
 import { useContext } from "react";
@@ -31,7 +30,7 @@ interface ContentPostProps extends DefaultContentPostProps {
   userName?: string;
   user?: IUser;
   state?: "isOwner" | "isPostDetails";
-  currentVenture: IVenture;
+  ventureId: string;
   allUpdates: IUpdate[];
 }
 
@@ -45,7 +44,7 @@ function ContentPost(props: ContentPostProps) {
     timelineId,
     id,
     state,
-    currentVenture,
+    ventureId,
     allUpdates,
     userId,
     userName,
@@ -55,8 +54,6 @@ function ContentPost(props: ContentPostProps) {
   const token = useGetToken();
 
   const [showMenu, setShowMenu] = useState(false);
-
-  const ventureId = currentVenture?.id ?? "";
 
   const timelineContext = useContext(TimelineContext);
   const userContext = useContext(UserContext);

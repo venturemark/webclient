@@ -52,7 +52,6 @@ export async function Update(
 
   objList.push(obj);
   req.setObjList(objList);
-  console.log(req.toObject());
 
   const getUpdateResponsePb: ITimeline[] = await new Promise(
     (resolve, reject) => {
