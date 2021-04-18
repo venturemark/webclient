@@ -218,7 +218,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           ? true
           : hasVariant(variants, "variantState", "isEdit")
           ? false
-          : true
+          : false
       ) ? (
         <RadioGroup
           data-plasmic-name={"visibility"}

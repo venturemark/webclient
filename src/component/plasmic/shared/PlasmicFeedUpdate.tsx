@@ -60,7 +60,6 @@ export type PlasmicFeedUpdate__OverridesType = {
   actionBar?: p.Flex<typeof ActionBar>;
   feedContainer?: p.Flex<"div">;
   contentPost?: p.Flex<typeof ContentPost>;
-  span?: p.Flex<"span">;
   date?: p.Flex<"span">;
 };
 
@@ -113,31 +112,17 @@ function PlasmicFeedUpdate__RenderFunc(props: {
           data-plasmic-override={overrides.contentPost}
           className={classNames("__wab_instance", sty.contentPost)}
           date={
-            <React.Fragment>
-              <span
-                data-plasmic-name={"span"}
-                data-plasmic-override={overrides.span}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.span
-                )}
-              >
-                {"•"}
-              </span>
-
-              <span
-                data-plasmic-name={"date"}
-                data-plasmic-override={overrides.date}
-                className={classNames(
-                  defaultcss.all,
-                  defaultcss.__wab_text,
-                  sty.date
-                )}
-              >
-                {"3h ago"}
-              </span>
-            </React.Fragment>
+            <span
+              data-plasmic-name={"date"}
+              data-plasmic-override={overrides.date}
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.date
+              )}
+            >
+              {"3h ago"}
+            </span>
           }
         />
       </p.Stack>
@@ -146,11 +131,10 @@ function PlasmicFeedUpdate__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "actionBar", "feedContainer", "contentPost", "span", "date"],
+  root: ["root", "actionBar", "feedContainer", "contentPost", "date"],
   actionBar: ["actionBar"],
-  feedContainer: ["feedContainer", "contentPost", "span", "date"],
-  contentPost: ["contentPost", "span", "date"],
-  span: ["span"],
+  feedContainer: ["feedContainer", "contentPost", "date"],
+  contentPost: ["contentPost", "date"],
   date: ["date"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -162,7 +146,6 @@ type NodeDefaultElementType = {
   actionBar: typeof ActionBar;
   feedContainer: "div";
   contentPost: typeof ContentPost;
-  span: "span";
   date: "span";
 };
 
@@ -225,7 +208,6 @@ export const PlasmicFeedUpdate = Object.assign(
     actionBar: makeNodeComponent("actionBar"),
     feedContainer: makeNodeComponent("feedContainer"),
     contentPost: makeNodeComponent("contentPost"),
-    span: makeNodeComponent("span"),
     date: makeNodeComponent("date"),
 
     // Metadata about props expected for PlasmicFeedUpdate

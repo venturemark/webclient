@@ -177,7 +177,7 @@ function PlasmicInputText__RenderFunc(props: {
                       "isDisabled"
                     ),
                   })}
-                  disabled={false}
+                  disabled={true}
                   placeholder={"" as const}
                   title={"" as const}
                   type={"text" as const}
@@ -187,7 +187,7 @@ function PlasmicInputText__RenderFunc(props: {
           </div>
         </div>
 
-        {false ? (
+        {(hasVariant(variants, "error", "error") ? true : true) ? (
           <div
             data-plasmic-name={"errorContainer"}
             data-plasmic-override={overrides.errorContainer}

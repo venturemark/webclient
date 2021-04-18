@@ -167,12 +167,14 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               ),
             })}
           />
-          <p.PlasmicSlot
-            defaultContents={
-              "Enter their email to invite and add them to this organization."
-            }
-            value={args.slot}
-          />
+          {false ? (
+            <p.PlasmicSlot
+              defaultContents={
+                "Enter their email to invite and add them to this organization."
+              }
+              value={args.slot}
+            />
+          ) : null}
         </div>
       ) : null}
       {(hasVariant(variants, "type", "isTimeline") ? true : false) ? (
@@ -205,7 +207,9 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         </div>
       ) : null}
       {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
-        <div
+        <p.Stack
+          as={"div"}
+          hasGap={true}
           className={classNames(defaultcss.all, sty.box__mpPUs, {
             [sty.box__isOwner__mpPUsyBfUd]: hasVariant(
               variants,
@@ -229,9 +233,11 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             <InputText
               data-plasmic-name={"email"}
               data-plasmic-override={overrides.email}
+              hasLabel={"hasLabel" as const}
+              hasTextHelper={"hasTextHelper" as const}
               label={"Invite a member by email"}
             >
-              {"Text Helper Description"}
+              {"Enter their email to invite and add them to this organization."}
             </InputText>
 
             <Button
@@ -283,7 +289,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               </span>
             </p.Stack>
           ) : null}
-        </div>
+        </p.Stack>
       ) : null}
 
       <div className={classNames(defaultcss.all, sty.box__yRlj0)}>
