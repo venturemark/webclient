@@ -315,7 +315,6 @@ function VentureRoutes(props: VentureRoutesProps) {
           <Route path=":timelineSlug/*" element={<TimelineRoutes />} />
         </Routes>
       </TimelineContext.Provider>
-      3
     </VentureContext.Provider>
   );
 }
