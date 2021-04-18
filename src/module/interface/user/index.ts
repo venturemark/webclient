@@ -16,11 +16,6 @@ export interface ISearchCurrentUser {
   token: string;
 }
 
-export interface ISearchUser {
-  id: string;
-  token: string;
-}
-
 export interface ISearchVentureMembers {
   resource: string;
   ventureId: string;

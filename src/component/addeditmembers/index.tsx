@@ -80,7 +80,6 @@ function AddEditMembers(props: AddEditMembersProps) {
     ventureId: currentVenture?.id ?? undefined,
     token,
   };
-
   const {
     data: timelineUsersData,
     isSuccess: timelineUsersSuccess,
@@ -91,7 +90,6 @@ function AddEditMembers(props: AddEditMembersProps) {
     ventureId: currentVenture?.id ?? undefined,
     token,
   };
-
   const {
     data: ventureUsersData,
     isSuccess: ventureUsersSuccess,
@@ -106,10 +104,6 @@ function AddEditMembers(props: AddEditMembersProps) {
       ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
       : ventureUsersData;
 
-  console.log("timeline roles:", timelineRolesData);
-  console.log("venture roles:", ventureRolesData);
-  console.log("venture users data:", ventureUsersData);
-
   const allSuccess = ventureUsersSuccess && invitesSuccess;
 
   const array2 = invitesData
@@ -118,22 +112,9 @@ function AddEditMembers(props: AddEditMembersProps) {
       name: invite.email,
     }));
 
-  console.log("all members, array 2:", allMembers, array2);
-
-  console.log("invitesData:", invitesData);
-
-  console.log(
-    "who failing: timeline, venture, invites?",
-    timelineUsersSuccess,
-    ventureUsersSuccess,
-    invitesSuccess
-  );
-
   const membersAndInvites = allSuccess
     ? [...new Set([...allMembers, ...array2])]
     : allMembers;
-
-  console.log("members and invites", membersAndInvites);
 
   const handleInvite = (data: { email: string }) => {
     const email = data.email;
@@ -173,12 +154,8 @@ function AddEditMembers(props: AddEditMembersProps) {
       ? deleteVentureRole
       : deleteTimelineRole;
 
-    console.log("delete query:", deleteRoleQuery);
-
     deleteRole(deleteRoleQuery);
   };
-
-  console.log("members and invites", membersAndInvites);
 
   return (
     <PlasmicAddEditMembers

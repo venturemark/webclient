@@ -51,6 +51,7 @@ function PostDetails(props: PostDetailsProps) {
         description: post?.text ?? "",
         id: updateId,
         timelineId: timelineId,
+        ventureId: ventureId,
         userName: postUser?.name,
         user: postUser,
         date: post?.date ?? "",
@@ -62,16 +63,7 @@ function PostDetails(props: PostDetailsProps) {
             updateId={message.updateId}
             timelineId={message.timelineId}
             ventureId={message.ventureId}
-            userName={
-              post?.users?.filter(
-                (user: IUser) => user.id === message.userId
-              )[0]?.name
-            }
-            user={
-              post?.users?.filter(
-                (user: IUser) => user.id === message.userId
-              )[0]
-            }
+            userId={message.userId}
             date={message.date}
             key={message.id}
             text={message.text}

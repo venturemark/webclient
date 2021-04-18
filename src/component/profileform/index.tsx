@@ -32,8 +32,6 @@ function ProfileForm(props: ProfileFormProps) {
   });
 
   const { mutate: saveUser } = useCreateUser();
-
-  console.log("hasInvite", hasInvite);
   const link = hasInvite ? "../joinventure" : "/";
 
   const handleSave = (data: any) => {
@@ -48,7 +46,6 @@ function ProfileForm(props: ProfileFormProps) {
     };
 
     user.successUrl = hasInvite ? "../joinventure" : "../newventure";
-    console.log(user);
     saveUser(user);
   };
 

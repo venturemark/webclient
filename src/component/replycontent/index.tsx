@@ -5,29 +5,33 @@ import {
   PlasmicReplyContent,
   DefaultReplyContentProps,
 } from "component/plasmic/shared/PlasmicReplyContent";
-import { IUser } from "module/interface/user";
+import {
+  ISearchTimelineMembers,
+  ISearchVentureMembers,
+  IUser,
+} from "module/interface/user";
 import { UserContext } from "component/app";
 import { useDeleteMessage } from "module/hook/message";
 import { IDeleteMessage } from "module/interface/message";
 import { useGetToken } from "module/auth";
+import { useTimelineMembers, useVentureMembers } from "module/hook/user";
+import { getUniqueListBy } from "module/helpers";
 
 interface ReplyContentProps extends DefaultReplyContentProps {
   id: string;
   updateId: string;
   timelineId: string;
   ventureId: string;
-  userName?: string;
+  userId: string;
   text: string;
   date: string;
-  user?: IUser;
 }
 
 function ReplyContent(props: ReplyContentProps) {
   const {
-    userName,
     date,
     text,
-    user,
+    userId,
     id,
     timelineId,
     ventureId,
@@ -40,7 +44,35 @@ function ReplyContent(props: ReplyContentProps) {
   const userContext = useContext(UserContext);
   const [showMenu, setShowMenu] = useState(false);
 
-  const isOwner = user?.id === userContext?.user.id ? "isUser" : undefined;
+  const userTimelineSearch: ISearchTimelineMembers = {
+    resource: "timeline",
+    timelineId: timelineId ?? undefined,
+    ventureId: ventureId ?? undefined,
+    token,
+  };
+  const {
+    data: timelineUsersData,
+    isSuccess: timelineUsersSuccess,
+  } = useTimelineMembers(userTimelineSearch);
+
+  const userVentureSearch: ISearchVentureMembers = {
+    resource: "venture",
+    ventureId: ventureId ?? undefined,
+    token,
+  };
+  const {
+    data: ventureUsersData,
+    isSuccess: ventureUsersSuccess,
+  } = useVentureMembers(userVentureSearch);
+
+  const allMembers =
+    timelineUsersSuccess && ventureUsersSuccess
+      ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
+      : ventureUsersData;
+
+  const isOwner = userId === userContext?.user.id ? "isUser" : undefined;
+
+  const user = allMembers?.filter((user: IUser) => user.id === userId)[0];
 
   const handleDeleteMessage = () => {
     const messageDelete: IDeleteMessage = {
@@ -67,7 +99,7 @@ function ReplyContent(props: ReplyContentProps) {
           handleDeleteMessage();
         },
       }}
-      userName={userName}
+      userName={user?.name}
       text={text}
       date={date}
       photoAvatar={{

@@ -5,8 +5,6 @@ import { IconDotMenuIcon } from "component/plasmic/shared/icons/PlasmicIcon__Ico
 function handleMenuClick(e: any) {
   // e.preventDefault()
   e.domEvent.preventDefault();
-  message.info("Click on menu item.");
-  console.log("click", e);
 }
 
 const menu = (

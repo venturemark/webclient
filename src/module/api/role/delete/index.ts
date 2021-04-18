@@ -40,7 +40,6 @@ export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
           const id = metaPb.get(key.RoleStatus);
           return id;
         });
-        console.log("role state", status);
         resolve(status);
       }
     });

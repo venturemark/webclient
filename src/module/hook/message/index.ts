@@ -87,7 +87,6 @@ export function useDeleteMessage() {
       onSuccess: (data, messageDelete) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("messages");
-        console.log("deleted");
       },
     }
   );
