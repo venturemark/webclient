@@ -177,7 +177,7 @@ function PlasmicInputText__RenderFunc(props: {
                       "isDisabled"
                     ),
                   })}
-                  disabled={true}
+                  disabled={false}
                   placeholder={"" as const}
                   title={"" as const}
                   type={"text" as const}

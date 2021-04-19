@@ -29,7 +29,7 @@ function MainHeader(props: MainHeaderProps) {
     currentVenture,
     ...rest
   } = props;
-  const { timelineSlug } = useParams();
+  const { timelineSlug, ventureSlug } = useParams();
   const navigate = useNavigate();
 
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
@@ -40,7 +40,11 @@ function MainHeader(props: MainHeaderProps) {
     <PlasmicMainHeader
       {...rest}
       headerStyles={
-        variantType === "isVenture" ? "ventureHeader" : "timelineHeader"
+        variantType === "isVenture" && !ventureSlug
+          ? "createNewVenture"
+          : !timelineSlug
+          ? "ventureHeader"
+          : "timelineHeader"
       }
       ventureName={watchData?.ventureName || currentVenture?.name || " "}
       ventureDescription={

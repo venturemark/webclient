@@ -81,7 +81,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         name: "ventureName",
         defaultValue:
           url?.pathname === "/newventure" ? "" : venture?.name ?? "",
-        errorMessage: errors.name && ventureNameError,
+        message: errors.ventureName && ventureNameError,
       }}
       description={{
         register: register(),

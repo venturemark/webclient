@@ -168,7 +168,7 @@ function AddEditMembers(props: AddEditMembersProps) {
           required: true,
           pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         }),
-        errorMessage: errors.email && emailError,
+        message: errors.email && emailError,
         name: "email",
       }}
       invite={{

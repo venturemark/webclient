@@ -166,13 +166,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
       {(hasVariant(variants, "variantState", "isEdit") ? true : true) ? (
         <p.Stack
           as={"div"}
-          hasGap={
-            hasVariant(variants, "variantState", "isEdit") ||
-            (hasVariant(variants, "variantState", "isEdit") &&
-              hasVariant(globalVariants, "screen", "mobile"))
-              ? true
-              : false
-          }
+          hasGap={true}
           className={classNames(defaultcss.all, sty.box___0SmAy, {
             [sty.box__variantState_isEdit___0SmAYtAumS]: hasVariant(
               variants,
@@ -202,7 +196,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                 buttonStyle={
                   hasVariant(variants, "variantState", "isEdit")
                     ? ("secondaryPurple" as const)
-                    : ("primaryPurple" as const)
+                    : ("secondaryPurple" as const)
                 }
                 count={"1"}
                 slot={
@@ -230,7 +224,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                   >
                     {hasVariant(variants, "variantState", "isEdit")
                       ? "Cancel"
-                      : "Create"}
+                      : "Cancel"}
                   </div>
                 }
               >

@@ -215,9 +215,8 @@ function PlasmicHome__RenderFunc(props: {
                       "postDetails"
                     ),
                   })}
-                  isActive={"feed" as const}
                   isOwner={"isOwner" as const}
-                  variantType={"isVenture" as const}
+                  variantType={"isEmpty" as const}
                 />
               </div>
 

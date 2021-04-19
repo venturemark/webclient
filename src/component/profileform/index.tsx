@@ -61,13 +61,13 @@ function ProfileForm(props: ProfileFormProps) {
         name: "name",
         defaultValue: authUser?.name,
         register: register({ required: true }),
-        errorMessage: errors.name && nameError,
+        message: errors.name && nameError,
       }}
       jobField={{
         name: "title",
         defaultValue: "",
         register: register({ required: true }),
-        errorMessage: errors.role && roleError,
+        message: errors.role && roleError,
       }}
       save={{
         onPress: () => handleSubmit(handleSave)(),

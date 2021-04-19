@@ -44,7 +44,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const token = useGetToken();
 
   const isEdit = timelineSlug ? "isEdit" : undefined;
-  const [visibility, setVisibility] = useState("private");
+  const [visibility] = useState("private");
 
   const { mutate: createTimeline } = useCreateTimeline();
   const { mutate: updateTimeline } = useUpdateTimeline();
@@ -89,7 +89,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         register: register({ required: true, maxLength: 23 }),
         name: "timelineName",
         defaultValue: currentTimeline?.name ?? "",
-        errorMessage: errors.timelineName && timelineNameError,
+        message: errors.timelineName && timelineNameError,
       }}
       description={{
         register: register({ required: true }),
@@ -105,9 +105,10 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         handleSave: () => handleSubmit(handleCreate)(),
       }}
       visibility={{
-        "aria-label": "Timeline Visibility",
-        defaultValue: "members",
-        setVisibility,
+        render: () => null,
+        // "aria-label": "Timeline Visibility",
+        // defaultValue: "members",
+        // setVisibility,
       }}
     />
   );

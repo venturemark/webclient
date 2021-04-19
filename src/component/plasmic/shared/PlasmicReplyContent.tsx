@@ -257,6 +257,11 @@ function PlasmicReplyContent__RenderFunc(props: {
                         data-plasmic-name={"svg"}
                         data-plasmic-override={overrides.svg}
                         className={classNames(defaultcss.all, sty.svg, {
+                          [sty.svg__isUserOnClick]: hasVariant(
+                            variants,
+                            "isUserOnClick",
+                            "isUserOnClick"
+                          ),
                           [sty.svg__isUserOnClick_state_isUser]:
                             hasVariant(
                               variants,

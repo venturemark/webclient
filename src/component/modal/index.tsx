@@ -98,13 +98,13 @@ function Modal(props: ModalProps) {
         name: "name",
         defaultValue: user?.name ?? "",
         register: register({ required: true }),
-        errorMessage: errors.name && nameError,
+        message: errors.name && nameError,
       }}
       jobField={{
         name: "title",
         defaultValue: user?.title ?? "",
         register: register({ required: true }),
-        errorMessage: errors.role && roleError,
+        message: errors.role && roleError,
       }}
       deleteTimeline={{
         onPress: () => handleDeleteTimeline(),

@@ -7,21 +7,46 @@ import {
 } from "component/plasmic/shared/PlasmicSidebar";
 import SidebarItemGroup from "component/sidebaritemgroup";
 import { useNavigate } from "react-router-dom";
-import { IVenture } from "module/interface/venture";
-import { TimelineContext, VentureContext } from "component/app";
+import { ISearchVenturesByTimeline, IVenture } from "module/interface/venture";
+import { TimelineContext, UserContext, VentureContext } from "component/app";
+import { useGetToken } from "module/auth";
+import { useVentureByTimeline } from "module/hook/venture";
+import { useTimelinesByUserId } from "module/hook/timeline";
+import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
 
 interface SidebarProps extends DefaultSidebarProps {}
 
 function Sidebar(props: SidebarProps) {
   const navigate = useNavigate();
+  const userContext = useContext(UserContext);
   const timelineContext = useContext(TimelineContext);
   const ventureContext = useContext(VentureContext);
+  const token = useGetToken();
 
-  const timelines = timelineContext?.timelines ?? [];
-  const ventures = ventureContext?.ventures ?? [];
+  const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
+    userId: userContext?.user.id ?? "",
+    token,
+  };
 
-  const sortedVentures = ventures?.sort((a: IVenture, b: IVenture) =>
-    a.name.localeCompare(b.name)
+  const { data: timelinesData } = useTimelinesByUserId(timelineByUserIdSearch);
+
+  const ventureIds: string[] = timelinesData?.map(
+    (timeline: ITimeline) => timeline.ventureId
+  );
+  const uniqueTimelineVentureIds = [...new Set(ventureIds)];
+
+  const ventureSearch: ISearchVenturesByTimeline = {
+    ventureIds: uniqueTimelineVentureIds,
+    token,
+  };
+
+  const { data: venturesData } = useVentureByTimeline(ventureSearch);
+
+  const timelines = timelineContext?.timelines ?? timelinesData ?? [];
+  const ventures = ventureContext?.ventures ?? venturesData ?? [];
+
+  const sortedVentures = ventures?.sort(
+    (a: IVenture, b: IVenture) => a.name.localeCompare(b.name) ?? []
   );
 
   return (
