@@ -92,7 +92,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         message: errors.timelineName && timelineNameError,
       }}
       description={{
-        register: register({ required: true }),
+        register: register(),
         name: "timelineDescription",
         defaultValue: currentTimeline?.desc ?? "",
       }}
