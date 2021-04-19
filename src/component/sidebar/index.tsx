@@ -7,14 +7,10 @@ import {
 } from "component/plasmic/shared/PlasmicSidebar";
 import SidebarItemGroup from "component/sidebaritemgroup";
 import { useNavigate } from "react-router-dom";
-import {
-  ISearchVenturesByTimeline,
-  ISearchVenturesByUser,
-  IVenture,
-} from "module/interface/venture";
+import { ISearchVenturesByTimeline, IVenture } from "module/interface/venture";
 import { TimelineContext, UserContext, VentureContext } from "component/app";
 import { useGetToken } from "module/auth";
-import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
+import { useVentureByTimeline } from "module/hook/venture";
 import { useTimelinesByUserId } from "module/hook/timeline";
 import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
 
@@ -44,10 +40,7 @@ function Sidebar(props: SidebarProps) {
     token,
   };
 
-  const {
-    data: venturesData,
-    isSuccess: ventureSuccess,
-  } = useVentureByTimeline(ventureSearch);
+  const { data: venturesData } = useVentureByTimeline(ventureSearch);
 
   const timelines = timelineContext?.timelines ?? timelinesData ?? [];
   const ventures = ventureContext?.ventures ?? venturesData ?? [];

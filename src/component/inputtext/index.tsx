@@ -12,11 +12,11 @@ interface TextFieldProps extends PlumeTextFieldProps {
   defaultValue?: any;
   register?: any;
   name?: string;
-  errorMessage?: string;
+  message?: string;
 }
 
 function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
-  const { errorMessage, register, name, defaultValue } = props;
+  const { message, register, name, defaultValue } = props;
   const { plumeProps } = useTextField(
     PlasmicInputText,
     props,
@@ -33,7 +33,8 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     },
     ref
   );
-
+  console.log(plumeProps);
+  // console.log(props);
   return (
     <PlasmicInputText
       {...plumeProps}
@@ -44,9 +45,13 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
           defaultValue: defaultValue,
         },
         errorMessage: {
-          message: errorMessage,
+          message: message,
         },
       }}
+      // ref={props.register}
+      // errorMessage={{
+      //   message: props.message,
+      // }}
     />
   );
 }

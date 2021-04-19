@@ -12,6 +12,7 @@ interface InputTextAreaProps extends PlumeTextFieldProps {
   defaultValue?: any;
   register?: any;
   name?: string;
+  ref?: any;
 }
 function TextField_(props: InputTextAreaProps, ref: PlumeTextFieldRef) {
   const { register, name, defaultValue } = props;
