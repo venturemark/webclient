@@ -77,7 +77,7 @@ function Modal(props: ModalProps) {
   const handleDeleteVenture = () => {
     const ventureDelete: IDeleteVenture = {
       id: ventureId,
-      successUrl: `/`,
+      successUrl: `../../`,
       token: token,
     };
 
