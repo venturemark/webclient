@@ -132,6 +132,11 @@ function AddEditMembers(props: AddEditMembersProps) {
   };
 
   const handleRemoveMemberRole = (userId: string) => {
+    if (userId === user.id) {
+      alert("You can't delete yourself from a timeline");
+      return;
+    }
+
     const roleId = !currentTimeline
       ? ventureRolesData.filter((role: IRole) => role.subjectId === userId)[0]
           .id
