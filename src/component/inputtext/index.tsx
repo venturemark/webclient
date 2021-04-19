@@ -42,10 +42,11 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
           name: name,
           defaultValue: defaultValue,
         },
+        errorMessage: {
+          message: message,
+        },
       }}
-      errorMessage={{
-        message: message,
-      }}
+      variants={{ error: message ? "error" : undefined }}
     />
   );
 }
