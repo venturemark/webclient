@@ -43,7 +43,13 @@ function Main(props: MainProps) {
   const currentVenture = ventureContext?.currentVenture;
   const timelines = timelineContext?.timelines ?? [];
 
-  const { handleSubmit, register, reset, watch, errors } = useForm();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm();
   const watchData = watch();
 
   const currentTimeline = timelineSlug

@@ -27,7 +27,11 @@ function ProfileForm(props: ProfileFormProps) {
   const user = userContext?.user;
   const { user: authUser } = useAuth0();
 
-  const { handleSubmit, register, errors } = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
     mode: "onChange",
   });
 
@@ -67,7 +71,7 @@ function ProfileForm(props: ProfileFormProps) {
         name: "title",
         defaultValue: "",
         register: register({ required: true }),
-        message: errors.role && roleError,
+        message: errors.title && roleError,
       }}
       save={{
         onPress: () => handleSubmit(handleSave)(),
