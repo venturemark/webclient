@@ -7,12 +7,12 @@ import {
   PlumeTextFieldRef,
   useTextField,
 } from "@plasmicapp/plume";
+import { message } from "antd";
 
 interface InputTextAreaProps extends PlumeTextFieldProps {
   defaultValue?: any;
   register?: any;
   name?: string;
-  ref?: any;
 }
 function TextField_(props: InputTextAreaProps, ref: PlumeTextFieldRef) {
   const { register, name, defaultValue } = props;
@@ -40,6 +40,9 @@ function TextField_(props: InputTextAreaProps, ref: PlumeTextFieldRef) {
           ref: register,
           name: name,
           defaultValue: defaultValue,
+        },
+        errorMessage: {
+          message: message,
         },
       }}
     />

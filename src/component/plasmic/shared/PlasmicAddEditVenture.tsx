@@ -151,7 +151,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         ) : null}
         {(hasVariant(variants, "variantState", "isEdit") ? false : true) ? (
           <p.PlasmicSlot
-            defaultContents={"Start a new venture for your timelines."}
+            defaultContents={"Start a new venture to share stories."}
             value={args.slot}
           />
         ) : null}
@@ -269,7 +269,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       {(
         hasVariant(variants, "variantState", "isEdit") &&
         hasVariant(variants, "isOwner", "isOwner")
-          ? true
+          ? false
           : hasVariant(variants, "isOwner", "isOwner")
           ? true
           : hasVariant(variants, "variantState", "isEdit")
@@ -298,14 +298,28 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           <p.PlasmicSlot
             defaultContents={"Permissions"}
             value={args.slot2}
-            className={classNames(sty.slotSlot2)}
+            className={classNames(sty.slotSlot2, {
+              [sty.slotSlot2__isOwner]: hasVariant(
+                variants,
+                "isOwner",
+                "isOwner"
+              ),
+              [sty.slotSlot2__isOwner_variantState_isEdit]:
+                hasVariant(variants, "isOwner", "isOwner") &&
+                hasVariant(variants, "variantState", "isEdit"),
+              [sty.slotSlot2__variantState_isEdit]: hasVariant(
+                variants,
+                "variantState",
+                "isEdit"
+              ),
+            })}
           />
         </div>
       ) : null}
       {(
         hasVariant(variants, "variantState", "isEdit") &&
         hasVariant(variants, "isOwner", "isOwner")
-          ? true
+          ? false
           : hasVariant(variants, "isOwner", "isOwner")
           ? true
           : hasVariant(variants, "variantState", "isEdit")

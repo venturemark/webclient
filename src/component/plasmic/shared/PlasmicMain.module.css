@@ -176,11 +176,12 @@
 .box__variantType_isEmpty__kg0J8NF9Ly {
   justify-content: space-between;
   width: 100%;
+  border-bottom-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-bottom-style: solid;
   align-items: center;
   min-width: 0;
   padding: 30px;
-  border-bottom: 1px solid rgb(224, 224, 224)
-    /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-width: 0px;
 }
 @media (max-width: 767px) {
   .box__variantType_isEmpty__kg0J8NF9Ly {
@@ -243,6 +244,9 @@
 }
 .viewCreateVenture:global(.__wab_instance) {
   position: relative;
+}
+.text2 {
+  height: auto;
 }
 .text2__variantType_isEmpty {
   height: auto;

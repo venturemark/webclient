@@ -215,7 +215,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       {(
         hasVariant(variants, "isOwner", "isOwner") &&
         hasVariant(variants, "variantState", "isEdit")
-          ? true
+          ? false
           : hasVariant(variants, "variantState", "isEdit")
           ? false
           : false

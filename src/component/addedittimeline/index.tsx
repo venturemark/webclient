@@ -44,7 +44,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const token = useGetToken();
 
   const isEdit = timelineSlug ? "isEdit" : undefined;
-  const [visibility, setVisibility] = useState("private");
+  const [visibility] = useState("private");
 
   const { mutate: createTimeline } = useCreateTimeline();
   const { mutate: updateTimeline } = useUpdateTimeline();

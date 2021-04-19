@@ -69,8 +69,6 @@ function AddEditVenture(props: AddEditVentureProps) {
     reset();
   };
 
-  console.log(errors.name && ventureNameError);
-
   return (
     <PlasmicAddEditVenture
       {...rest}
@@ -83,7 +81,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         name: "ventureName",
         defaultValue:
           url?.pathname === "/newventure" ? "" : venture?.name ?? "",
-        message: errors.name && ventureNameError,
+        message: errors.ventureName && ventureNameError,
       }}
       description={{
         register: register(),

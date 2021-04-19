@@ -463,12 +463,12 @@ function PlasmicMain__RenderFunc(props: {
                   )}
                 >
                   {hasVariant(variants, "variantType", "isEmpty")
-                    ? "Begin with a"
+                    ? "Begin with a Venture"
                     : "Enter some text"}
                 </div>
               ) : null}
               {(
-                hasVariant(variants, "variantType", "isEmpty") ? true : false
+                hasVariant(variants, "variantType", "isEmpty") ? false : false
               ) ? (
                 <div
                   className={classNames(
@@ -490,7 +490,7 @@ function PlasmicMain__RenderFunc(props: {
                 </div>
               ) : null}
               {(
-                hasVariant(variants, "variantType", "isEmpty") ? true : false
+                hasVariant(variants, "variantType", "isEmpty") ? false : false
               ) ? (
                 <div
                   className={classNames(
@@ -508,7 +508,7 @@ function PlasmicMain__RenderFunc(props: {
                 >
                   {hasVariant(variants, "variantType", "isEmpty")
                     ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ac nisl nec elit sagittis aliquet ac imperdiet justo. Pellentesque blandit imperdiet elit vel convallis. "
-                    : "Enter some text"}
+                    : "A venture is a "}
                 </div>
               ) : null}
             </p.Stack>
@@ -591,7 +591,7 @@ function PlasmicMain__RenderFunc(props: {
                         >
                           {hasVariant(variants, "variantType", "isEmpty")
                             ? "Create a new venture"
-                            : "Create a new venture\nGet your company or organization on Venturemark."}
+                            : "Start a new venture"}
                         </div>
                       ) : null}
                       {(
@@ -671,7 +671,7 @@ function PlasmicMain__RenderFunc(props: {
                         >
                           {hasVariant(variants, "variantType", "isEmpty")
                             ? "Create"
-                            : "Button"}
+                            : "Begin"}
                         </div>
                       }
                     />
@@ -679,7 +679,7 @@ function PlasmicMain__RenderFunc(props: {
                 </p.Stack>
               ) : null}
               {(
-                hasVariant(variants, "variantType", "isEmpty") ? true : false
+                hasVariant(variants, "variantType", "isEmpty") ? false : false
               ) ? (
                 <p.Stack
                   as={"div"}
