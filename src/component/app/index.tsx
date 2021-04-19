@@ -31,6 +31,10 @@ import {
   ISearchRoleByVentureIds,
 } from "module/interface/role";
 import { getUniqueListBy } from "module/helpers";
+import ReactGA from "react-ga";
+// Google analytics
+const TRACKING_ID = "UA-118904227-1";
+ReactGA.initialize(TRACKING_ID);
 
 interface IUserContext {
   user: IUser;
