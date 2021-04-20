@@ -45,7 +45,7 @@ export function sendInvite(inviteData: any, invite: ICreateInvite) {
 
   const templateParams: IEmailInvite = {
     to_name: "",
-    user_email: invite.email,
+    to_email: invite.email,
     from_name: invite.fromName,
     venture_name: invite.fromVentureName,
     invite_link: makeInviteLink(params),
