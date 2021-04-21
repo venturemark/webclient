@@ -39,6 +39,10 @@ function PostDetails(props: PostDetailsProps) {
     (user: IUser) => (post.userId = user.id)
   )[0];
 
+  const sortedMessages = messages?.sort((a: IMessage, b: IMessage) =>
+    a.id.localeCompare(b.id)
+  );
+
   return (
     <PlasmicPostDetails
       {...rest}
@@ -57,7 +61,7 @@ function PostDetails(props: PostDetailsProps) {
         date: post?.date ?? "",
       }}
       repliesContainer={{
-        children: messages?.map((message: IMessage) => (
+        children: sortedMessages?.map((message: IMessage) => (
           <ReplyContent
             id={message.id}
             updateId={message.updateId}
