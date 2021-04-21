@@ -32,6 +32,7 @@ import {
 } from "module/interface/role";
 import { getUniqueListBy } from "module/helpers";
 import ReactGA from "react-ga";
+
 // Google analytics
 const TRACKING_ID = "UA-118904227-1";
 ReactGA.initialize(TRACKING_ID);
@@ -48,7 +49,8 @@ interface IVentureContext {
 }
 
 interface ITimelineContext {
-  timelines: ITimeline[];
+  allTimelines: ITimeline[];
+  ventureRoleTimelines: ITimeline[];
 }
 
 export const UserContext = createContext<IUserContext | undefined>(undefined);
@@ -253,19 +255,6 @@ function VentureRoutes(props: VentureRoutesProps) {
       ? ventureRolesData
       : timelineRolesData;
 
-  // redirect "/"" to "ventureSlug"
-  if (ventureSuccess && ventureSlug === undefined && currentVenture) {
-    const ventureSlugRedirect = currentVenture.name
-      .toLowerCase()
-      .replace(/\s/g, "");
-    return <Navigate replace to={`${ventureSlugRedirect}`} />;
-  }
-
-  // redirect to newVenture if there is not venture
-  if (ventureSuccess && ventureUserSuccess && allVentures.length < 1) {
-    return <Navigate to="../begin" />;
-  }
-
   // add permission to venture
   const ventures =
     allVentures?.map((venture: IVenture) => {
@@ -278,8 +267,21 @@ function VentureRoutes(props: VentureRoutesProps) {
       return { ...venture, userRole };
     }) ?? [];
 
-  const timelines = timelinesData?.map((timeline: ITimeline) => {
-    const userRole: UserRole =
+  const allTimelines = timelinesData?.map((timeline: ITimeline) => {
+    let userRole: UserRole =
+      timelineRoles?.filter((role: IRole) => role.subjectId === userId)[0]
+        ?.role === "owner"
+        ? "isOwner"
+        : undefined;
+    return { ...timeline, userRole };
+  });
+
+  const ventureTimelines = timelinesData?.filter(
+    (timeline: ITimeline) => timeline.ventureId === currentVenture?.id
+  );
+
+  const ventureRoleTimelines = ventureTimelines?.map((timeline: ITimeline) => {
+    let userRole: UserRole =
       timelineRoles?.filter((role: IRole) => role.subjectId === userId)[0]
         ?.role === "owner"
         ? "isOwner"
@@ -299,12 +301,22 @@ function VentureRoutes(props: VentureRoutesProps) {
     currentVentureRole,
   };
   const timelineContext: ITimelineContext = {
-    timelines,
+    allTimelines,
+    ventureRoleTimelines,
   };
 
-  ventureContext.ventures = ventures;
-  ventureContext.currentVenture = currentVenture;
-  timelineContext.timelines = timelines;
+  // redirect "/"" to "ventureSlug"
+  if (ventureSuccess && ventureSlug === undefined && currentVenture) {
+    const ventureSlugRedirect = currentVenture.name
+      .toLowerCase()
+      .replace(/\s/g, "");
+    return <Navigate replace to={`${ventureSlugRedirect}`} />;
+  }
+
+  // redirect to newVenture if there is not venture
+  if (ventureSuccess && ventureUserSuccess && allVentures.length < 1) {
+    return <Navigate to="../begin" />;
+  }
 
   return (
     <VentureContext.Provider value={ventureContext}>

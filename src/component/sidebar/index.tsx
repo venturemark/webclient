@@ -42,7 +42,7 @@ function Sidebar(props: SidebarProps) {
 
   const { data: venturesData } = useVentureByTimeline(ventureSearch);
 
-  const timelines = timelineContext?.timelines ?? timelinesData ?? [];
+  const timelines = timelineContext?.allTimelines ?? timelinesData ?? [];
   const ventures = ventureContext?.ventures ?? venturesData ?? [];
 
   const sortedVentures = ventures?.sort(

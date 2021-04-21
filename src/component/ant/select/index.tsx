@@ -52,7 +52,7 @@ export function AntSelect(props: SelectProps) {
   const select = useRef<RefSelectProps>(null);
 
   const timelineContext = useContext(TimelineContext);
-  const timelines = timelineContext?.timelines ?? [];
+  const timelines = timelineContext?.allTimelines ?? [];
 
   const ventureTimelines = timelines.filter(
     (timeline) => timeline.ventureId === ventureId
