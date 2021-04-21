@@ -57,7 +57,7 @@ function ContentPost(props: ContentPostProps) {
 
   const timelineContext = useContext(TimelineContext);
   const userContext = useContext(UserContext);
-  const timelines = timelineContext?.timelines ?? [];
+  const timelines = timelineContext?.ventureRoleTimelines ?? [];
 
   const messageSearch: ISearchMessage = {
     updateId: id,

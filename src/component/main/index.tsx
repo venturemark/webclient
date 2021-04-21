@@ -38,7 +38,7 @@ function Main(props: MainProps) {
   const timelineContext = useContext(TimelineContext);
   const ventureContext = useContext(VentureContext);
   const currentVenture = ventureContext?.currentVenture;
-  const timelines = timelineContext?.timelines ?? [];
+  const timelines = timelineContext?.allTimelines ?? [];
   const hasVentures =
     ventureContext && ventureContext?.ventures?.length > 0 ? true : false;
   const navigate = useNavigate();

@@ -104,6 +104,7 @@ function FeedUpdate(props: FeedUpdateProps) {
       {...rest}
       actionBar={{
         ventureId,
+        timelines,
         currentTimeline,
         user,
       }}
