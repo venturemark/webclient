@@ -51,6 +51,13 @@ function ReplyInput(props: ReplyInputProps) {
     reset();
   };
 
+  const handleUserKeyDown = (e: any) => {
+    if (e.key === "Enter" && e.metaKey) {
+      e.preventDefault();
+      handleSubmit(handleAddMessage)();
+    }
+  };
+
   return (
     <PlasmicReplyInput
       replyForm={{
@@ -77,6 +84,7 @@ function ReplyInput(props: ReplyInputProps) {
             rowsMin={1}
             placeholder="Description..."
             name="text"
+            onKeyDown={handleUserKeyDown}
             ref={register()}
           />
         ),
