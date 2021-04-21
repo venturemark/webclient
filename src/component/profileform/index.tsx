@@ -49,7 +49,7 @@ function ProfileForm(props: ProfileFormProps) {
       token: token,
     };
 
-    user.successUrl = hasInvite ? "../joinventure" : "../newventure";
+    user.successUrl = hasInvite ? "../joinventure" : "../begin";
     saveUser(user);
   };
 

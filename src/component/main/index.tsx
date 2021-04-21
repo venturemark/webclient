@@ -8,7 +8,7 @@ import {
 import { TimelineContext, VentureContext } from "component/app";
 import { useForm } from "react-hook-form";
 import { IUser } from "module/interface/user";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ITimeline } from "module/interface/timeline";
 
 interface MainProps extends DefaultMainProps {
@@ -17,7 +17,6 @@ interface MainProps extends DefaultMainProps {
   variantType: any;
   setIsVisible: any;
   setPost: any;
-  viewCreateVenture?: any;
   viewJoinVenture?: any;
   ventureId?: string;
   user: IUser;
@@ -30,18 +29,19 @@ function Main(props: MainProps) {
     variantType,
     setIsVisible,
     setPost,
-    viewCreateVenture,
     viewJoinVenture,
     ventureId,
     user,
     ...rest
   } = props;
   const { timelineSlug } = useParams();
-
   const timelineContext = useContext(TimelineContext);
   const ventureContext = useContext(VentureContext);
   const currentVenture = ventureContext?.currentVenture;
   const timelines = timelineContext?.timelines ?? [];
+  const hasVentures =
+    ventureContext && ventureContext?.ventures?.length > 0 ? true : false;
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -89,6 +89,7 @@ function Main(props: MainProps) {
       }}
       addEditVenture={{
         currentVenture,
+        hasVentures,
         handleSubmit,
         register,
         reset,
@@ -104,7 +105,7 @@ function Main(props: MainProps) {
         errors,
       }}
       viewCreateVenture={{
-        onPress: () => viewCreateVenture(),
+        onPress: () => navigate("../newventure"),
       }}
       viewJoinVenture={{ onPress: () => viewJoinVenture }}
     />

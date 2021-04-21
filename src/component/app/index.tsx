@@ -263,7 +263,7 @@ function VentureRoutes(props: VentureRoutesProps) {
 
   // redirect to newVenture if there is not venture
   if (ventureSuccess && ventureUserSuccess && allVentures.length < 1) {
-    return <Navigate to="../newventure" />;
+    return <Navigate to="../begin" />;
   }
 
   // add permission to venture

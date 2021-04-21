@@ -19,6 +19,7 @@ import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
   currentVenture: IVenture;
+  hasVentures: boolean;
   handleSubmit: any;
   register: any;
   reset: any;
@@ -33,6 +34,7 @@ function AddEditVenture(props: AddEditVentureProps) {
     reset,
     errors,
     currentVenture,
+    hasVentures,
     ...rest
   } = props;
   const { ventureSlug } = useParams();
@@ -101,7 +103,9 @@ function AddEditVenture(props: AddEditVentureProps) {
       buttons={{
         handleDelete: () =>
           navigate(`/${handle}/delete?ventureId=${ventureId}`),
-        handleCancel: () => navigate(-1),
+        handleCancel: () => {
+          hasVentures ? navigate("begin") : navigate(-1);
+        },
         handleSave: () => handleSubmit(handleCreate)(),
       }}
     />
