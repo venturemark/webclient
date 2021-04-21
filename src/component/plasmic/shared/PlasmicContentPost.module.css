@@ -110,6 +110,9 @@
   top: 33px;
   right: 0px;
 }
+.archiveOption {
+  height: auto;
+}
 .box__ehjLr {
   display: inline-flex;
   position: relative;

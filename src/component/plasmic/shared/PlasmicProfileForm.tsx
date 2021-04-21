@@ -164,26 +164,28 @@ function PlasmicProfileForm__RenderFunc(props: {
               variant={["isLarge"]}
             />
 
-            <a
-              data-plasmic-name={"link"}
-              data-plasmic-override={overrides.link}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.link,
-                {
-                  [sty.link__editProfile]: hasVariant(
-                    variants,
-                    "editProfile",
-                    "editProfile"
-                  ),
-                }
-              )}
-            >
-              {hasVariant(variants, "editProfile", "editProfile")
-                ? "Remove Photo"
-                : "Upload Photo"}
-            </a>
+            {false ? (
+              <a
+                data-plasmic-name={"link"}
+                data-plasmic-override={overrides.link}
+                className={classNames(
+                  defaultcss.all,
+                  defaultcss.__wab_text,
+                  sty.link,
+                  {
+                    [sty.link__editProfile]: hasVariant(
+                      variants,
+                      "editProfile",
+                      "editProfile"
+                    ),
+                  }
+                )}
+              >
+                {hasVariant(variants, "editProfile", "editProfile")
+                  ? "Remove Photo"
+                  : "Upload Photo"}
+              </a>
+            ) : null}
           </p.Stack>
         </div>
       ) : null}
