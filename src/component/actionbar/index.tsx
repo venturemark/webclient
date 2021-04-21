@@ -114,7 +114,7 @@ function ActionBar(props: ActionBarProps) {
             rowsMin={4}
             placeholder="Description..."
             name="description"
-            ref={register()}
+            ref={register({ required: true, maxLength: 280 })}
           />
         ),
       }}
