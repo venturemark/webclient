@@ -53,7 +53,6 @@ function ReplyInput(props: ReplyInputProps) {
 
   const handleUserKeyDown = (e: any) => {
     if (e.key === "Enter" && e.metaKey) {
-      console.log("magic sauce 2");
       e.preventDefault();
       handleSubmit(handleAddMessage)();
     }
