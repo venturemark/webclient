@@ -82,6 +82,7 @@ export type PlasmicContentPost__OverridesType = {
   description?: p.Flex<"div">;
   iconMenu?: p.Flex<"svg">;
   dropdown?: p.Flex<typeof Dropdown>;
+  archiveOption?: p.Flex<"div">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   userName?: p.Flex<"span">;
   span?: p.Flex<"span">;
@@ -294,7 +295,32 @@ function PlasmicContentPost__RenderFunc(props: {
                       "isOwner"
                     ),
                   })}
-                  rename2={"Archive"}
+                  rename2={
+                    <div
+                      data-plasmic-name={"archiveOption"}
+                      data-plasmic-override={overrides.archiveOption}
+                      className={classNames(
+                        defaultcss.all,
+                        defaultcss.__wab_text,
+                        sty.archiveOption,
+                        {
+                          [sty.archiveOption__isUserOnClick_state_isOwner]:
+                            hasVariant(
+                              variants,
+                              "isUserOnClick",
+                              "isUserOnClick"
+                            ) && hasVariant(variants, "state", "isOwner"),
+                          [sty.archiveOption__state_isOwner]: hasVariant(
+                            variants,
+                            "state",
+                            "isOwner"
+                          ),
+                        }
+                      )}
+                    >
+                      {"Remove"}
+                    </div>
+                  }
                 />
               ) : null}
             </div>
@@ -528,6 +554,7 @@ const PlasmicDescendants = {
     "description",
     "iconMenu",
     "dropdown",
+    "archiveOption",
     "photoAvatar",
     "userName",
     "span",
@@ -543,6 +570,7 @@ const PlasmicDescendants = {
     "description",
     "iconMenu",
     "dropdown",
+    "archiveOption",
     "photoAvatar",
     "userName",
     "span",
@@ -555,7 +583,8 @@ const PlasmicDescendants = {
   title: ["title"],
   description: ["description"],
   iconMenu: ["iconMenu"],
-  dropdown: ["dropdown"],
+  dropdown: ["dropdown", "archiveOption"],
+  archiveOption: ["archiveOption"],
   photoAvatar: ["photoAvatar"],
   userName: ["userName"],
   span: ["span"],
@@ -576,6 +605,7 @@ type NodeDefaultElementType = {
   description: "div";
   iconMenu: "svg";
   dropdown: typeof Dropdown;
+  archiveOption: "div";
   photoAvatar: typeof PhotoAvatar;
   userName: "span";
   span: "span";
@@ -647,6 +677,7 @@ export const PlasmicContentPost = Object.assign(
     description: makeNodeComponent("description"),
     iconMenu: makeNodeComponent("iconMenu"),
     dropdown: makeNodeComponent("dropdown"),
+    archiveOption: makeNodeComponent("archiveOption"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     userName: makeNodeComponent("userName"),
     span: makeNodeComponent("span"),

@@ -96,11 +96,6 @@ function PlasmicReplyContent__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode } = props;
 
-  const [isRootActive, triggerRootActiveProps] = useTrigger("usePressed", {});
-  const triggers = {
-    active_root: isRootActive,
-  };
-
   return (
     <div
       data-plasmic-name={"root"}
@@ -108,7 +103,6 @@ function PlasmicReplyContent__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
-      data-plasmic-trigger-props={[triggerRootActiveProps]}
     >
       <div
         data-plasmic-name={"editorContainer"}
@@ -278,13 +272,11 @@ function PlasmicReplyContent__RenderFunc(props: {
                       />
 
                       {(
-                        triggers.active_root
-                          ? true
-                          : hasVariant(
-                              variants,
-                              "isUserOnClick",
-                              "isUserOnClick"
-                            ) && hasVariant(variants, "state", "isUser")
+                        hasVariant(
+                          variants,
+                          "isUserOnClick",
+                          "isUserOnClick"
+                        ) && hasVariant(variants, "state", "isUser")
                           ? true
                           : false
                       ) ? (
@@ -343,7 +335,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                                 "isUserOnClick"
                               ) && hasVariant(variants, "state", "isUser")
                                 ? "Delete"
-                                : "Archive"}
+                                : "Remove"}
                             </div>
                           }
                         />
@@ -356,9 +348,7 @@ function PlasmicReplyContent__RenderFunc(props: {
               <div className={classNames(defaultcss.all, sty.box__wE4D)}>
                 <div className={classNames(defaultcss.all, sty.box__ly8Vh)}>
                   <p.PlasmicSlot
-                    defaultContents={
-                      "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-                    }
+                    defaultContents={""}
                     value={args.text}
                     className={classNames(sty.slotText)}
                   />

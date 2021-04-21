@@ -739,12 +739,12 @@
         {
           "id": "zo-_ZEkWm",
           "name": "Google Logo",
-          "filePath": "plasmic/shared/images/googleLogo.png"
+          "filePath": "plasmic/shared/images/googleLogo.bin"
         },
         {
           "id": "peTQl8yxq",
           "name": "LinkedIn Logo",
-          "filePath": "plasmic/shared/images/linkedInLogo.png"
+          "filePath": "plasmic/shared/images/linkedInLogo.bin"
         },
         {
           "id": "O43ycn2NW",
@@ -754,7 +754,12 @@
         {
           "id": "fd83YzSqp",
           "name": "background.png",
-          "filePath": "plasmic/shared/images/backgroundpng.png"
+          "filePath": "plasmic/shared/images/backgroundpng.bin"
+        },
+        {
+          "id": "JPhKEtrftg",
+          "name": "signin-bg.svg",
+          "filePath": "plasmic/shared/images/signinBgsvg.svg"
         }
       ],
       "projectApiToken": "JmYCf6lyEqM7EiZtDziaLGIpSvhdusaKVvvFgGrGK5gGNtHra4ux9jUVroNOeGMWR16Tm0H6lDcE38TWvQ"
@@ -776,6 +781,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.135",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.135/dist/plasmic.schema.json"
+  "cliVersion": "0.1.136",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.136/dist/plasmic.schema.json"
 }

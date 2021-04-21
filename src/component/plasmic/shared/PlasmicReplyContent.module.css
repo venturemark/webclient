@@ -29,11 +29,12 @@
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .box__cyQ9E {
-  display: inline-flex;
+  display: flex;
   position: relative;
-  width: auto;
+  width: 100%;
   height: auto;
   flex-direction: row;
+  min-width: 0;
   background: rgba(68, 192, 255, 0);
 }
 .box__cyQ9E > :global(.__wab_flex-container) {
@@ -55,13 +56,16 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
 }
 .box__rqpD {
-  display: inline-flex;
-  width: auto;
+  display: flex;
+  width: 100%;
   height: auto;
   flex-direction: column;
   flex-grow: 3;
+  min-width: 0;
 }
 .box__rqpD > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -177,10 +181,6 @@
   margin-bottom: 0px;
   margin-left: calc(0px + 5px) !important;
 }
-.root:active .box___2Fduc {
-  left: auto;
-  top: auto;
-}
 .iconMenu {
   display: flex;
   position: relative;
@@ -195,6 +195,7 @@
   width: 23px;
   height: 26px;
   color: #4d4d4d;
+  cursor: pointer;
   flex-shrink: 0;
 }
 .dropdown:global(.__wab_instance) {
@@ -207,10 +208,8 @@
   top: 33px;
   right: 0px;
 }
-.root:active .dropdown:global(.__wab_instance) {
-  position: absolute;
-  left: -77px;
-  top: 30px;
+.deleteOption {
+  height: auto;
 }
 .deleteOption__isUserOnClick_state_isUser {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
