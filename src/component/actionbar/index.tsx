@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { ICreateUpdate } from "module/interface/update";
-import { TimelineSelect } from "component/ant/select";
+import { TimelineSelect } from "component/materialui/select";
 import { useForm } from "react-hook-form";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
@@ -29,7 +29,7 @@ function ActionBar(props: ActionBarProps) {
   const timelineContext = useContext(TimelineContext);
   const ventureTimelines = timelineContext?.ventureRoleTimelines ?? [];
 
-  const defaultTimelineOption = [currentTimeline?.id] ?? [];
+  const defaultTimelineOption = [currentTimeline] ?? [];
   const [selectedTimelines, setSelectedTimelines] = useState(
     defaultTimelineOption
   );
@@ -56,7 +56,7 @@ function ActionBar(props: ActionBarProps) {
         title: data.title ?? "",
         text: data.description ?? "",
         ventureId,
-        timelineId: timelineId,
+        timelineId: timelineId.id,
         token,
       };
 
@@ -70,7 +70,7 @@ function ActionBar(props: ActionBarProps) {
 
   useEffect(() => {
     if (currentTimeline) {
-      const option = [currentTimeline.id];
+      const option = [currentTimeline];
       setSelectedTimelines(option);
     } else {
       setSelectedTimelines([]);
@@ -130,7 +130,7 @@ function ActionBar(props: ActionBarProps) {
           />
         ),
       }}
-      tagsContainer={{
+      shareToContainer={{
         render: () => (
           <TimelineSelect
             ventureId={ventureId}

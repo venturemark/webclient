@@ -126,14 +126,6 @@
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 700;
 }
-.userName {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-size: 15px /* plasmic-token: mV0JUhpGq */;
-}
 .box__wfm2A {
   display: flex;
   position: relative;
@@ -152,15 +144,6 @@
 }
 .slotDate {
   font-weight: 300;
-}
-.date {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-weight: 300;
-  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
 .box___2Fduc {
   display: flex;

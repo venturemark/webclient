@@ -55,7 +55,6 @@ export const PlasmicErrorMessage__ArgProps = new Array<ArgPropType>(
 export type PlasmicErrorMessage__OverridesType = {
   root?: p.Flex<"div">;
   container?: p.Flex<"div">;
-  svg?: p.Flex<"svg">;
 };
 
 export interface DefaultErrorMessageProps {
@@ -90,9 +89,7 @@ function PlasmicErrorMessage__RenderFunc(props: {
         <p.PlasmicSlot
           defaultContents={
             <IconCautionIcon
-              data-plasmic-name={"svg"}
-              data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg)}
+              className={classNames(defaultcss.all, sty.svg__eqR5W)}
               role={"img"}
             />
           }
@@ -110,9 +107,8 @@ function PlasmicErrorMessage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "container", "svg"],
-  container: ["container", "svg"],
-  svg: ["svg"],
+  root: ["root", "container"],
+  container: ["container"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -121,7 +117,6 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   container: "div";
-  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -181,7 +176,6 @@ export const PlasmicErrorMessage = Object.assign(
   {
     // Helper components rendering sub-elements
     container: makeNodeComponent("container"),
-    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicErrorMessage
     internalVariantProps: PlasmicErrorMessage__VariantProps,

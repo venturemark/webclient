@@ -70,9 +70,7 @@ export type PlasmicReplyContent__OverridesType = {
   root?: p.Flex<"div">;
   editorContainer?: p.Flex<"div">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
-  userName?: p.Flex<"span">;
   span?: p.Flex<"span">;
-  date?: p.Flex<"span">;
   iconMenu?: p.Flex<"button">;
   svg?: p.Flex<"svg">;
   dropdown?: p.Flex<typeof Dropdown>;
@@ -166,12 +164,10 @@ function PlasmicReplyContent__RenderFunc(props: {
                     <p.PlasmicSlot
                       defaultContents={
                         <span
-                          data-plasmic-name={"userName"}
-                          data-plasmic-override={overrides.userName}
                           className={classNames(
                             defaultcss.all,
                             defaultcss.__wab_text,
-                            sty.userName
+                            sty.span__l1Yn1
                           )}
                         >
                           <span>
@@ -214,12 +210,10 @@ function PlasmicReplyContent__RenderFunc(props: {
                       <p.PlasmicSlot
                         defaultContents={
                           <span
-                            data-plasmic-name={"date"}
-                            data-plasmic-override={overrides.date}
                             className={classNames(
                               defaultcss.all,
                               defaultcss.__wab_text,
-                              sty.date
+                              sty.span___4NLge
                             )}
                           >
                             {"3 hours ago"}
@@ -367,9 +361,7 @@ const PlasmicDescendants = {
     "root",
     "editorContainer",
     "photoAvatar",
-    "userName",
     "span",
-    "date",
     "iconMenu",
     "svg",
     "dropdown",
@@ -378,18 +370,14 @@ const PlasmicDescendants = {
   editorContainer: [
     "editorContainer",
     "photoAvatar",
-    "userName",
     "span",
-    "date",
     "iconMenu",
     "svg",
     "dropdown",
     "deleteOption",
   ],
   photoAvatar: ["photoAvatar"],
-  userName: ["userName"],
   span: ["span"],
-  date: ["date"],
   iconMenu: ["iconMenu", "svg", "dropdown", "deleteOption"],
   svg: ["svg"],
   dropdown: ["dropdown", "deleteOption"],
@@ -403,9 +391,7 @@ type NodeDefaultElementType = {
   root: "div";
   editorContainer: "div";
   photoAvatar: typeof PhotoAvatar;
-  userName: "span";
   span: "span";
-  date: "span";
   iconMenu: "button";
   svg: "svg";
   dropdown: typeof Dropdown;
@@ -470,9 +456,7 @@ export const PlasmicReplyContent = Object.assign(
     // Helper components rendering sub-elements
     editorContainer: makeNodeComponent("editorContainer"),
     photoAvatar: makeNodeComponent("photoAvatar"),
-    userName: makeNodeComponent("userName"),
     span: makeNodeComponent("span"),
-    date: makeNodeComponent("date"),
     iconMenu: makeNodeComponent("iconMenu"),
     svg: makeNodeComponent("svg"),
     dropdown: makeNodeComponent("dropdown"),
