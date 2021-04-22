@@ -7,7 +7,7 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { ICreateUpdate } from "module/interface/update";
-import { AntSelect } from "component/ant/select";
+import { TimelineSelect } from "component/ant/select";
 import { useForm } from "react-hook-form";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
@@ -132,7 +132,7 @@ function ActionBar(props: ActionBarProps) {
       }}
       tagsContainer={{
         render: () => (
-          <AntSelect
+          <TimelineSelect
             ventureId={ventureId}
             selectedTimelines={selectedTimelines}
             setSelectedTimelines={setSelectedTimelines}
