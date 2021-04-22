@@ -64,7 +64,6 @@ export const PlasmicIconButton__ArgProps = new Array<ArgPropType>("children");
 export type PlasmicIconButton__OverridesType = {
   root?: p.Flex<"div">;
   container?: p.Flex<"div">;
-  svg?: p.Flex<"svg">;
 };
 
 export interface DefaultIconButtonProps {
@@ -122,9 +121,7 @@ function PlasmicIconButton__RenderFunc(props: {
         <p.PlasmicSlot
           defaultContents={
             <IconFeedIcon
-              data-plasmic-name={"svg"}
-              data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg)}
+              className={classNames(defaultcss.all, sty.svg__toCuH)}
               role={"img"}
             />
           }
@@ -148,9 +145,8 @@ function PlasmicIconButton__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "container", "svg"],
-  container: ["container", "svg"],
-  svg: ["svg"],
+  root: ["root", "container"],
+  container: ["container"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -159,7 +155,6 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   container: "div";
-  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -219,7 +214,6 @@ export const PlasmicIconButton = Object.assign(
   {
     // Helper components rendering sub-elements
     container: makeNodeComponent("container"),
-    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicIconButton
     internalVariantProps: PlasmicIconButton__VariantProps,

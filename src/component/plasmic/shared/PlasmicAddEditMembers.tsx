@@ -167,6 +167,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               ),
             })}
           />
+
           {false ? (
             <p.PlasmicSlot
               defaultContents={
@@ -198,6 +199,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               ),
             })}
           />
+
           {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
             <p.PlasmicSlot
               defaultContents={"Add members from your venture to the timeline"}

@@ -70,13 +70,11 @@ export const PlasmicModal__ArgProps = new Array<ArgPropType>(
 export type PlasmicModal__OverridesType = {
   root?: p.Flex<"div">;
   modalTypes?: p.Flex<"div">;
-  organizationDescription?: p.Flex<"div">;
   deleteTimeline?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
   cancelTimeline?: p.Flex<typeof Button>;
   text22?: p.Flex<"div">;
   deleteTimeline2?: p.Flex<"form">;
-  organizationDescription2?: p.Flex<"div">;
   deleteVenture?: p.Flex<typeof Button>;
   text24?: p.Flex<"div">;
   cancelVenture?: p.Flex<typeof Button>;
@@ -178,12 +176,10 @@ function PlasmicModal__RenderFunc(props: {
                 <p.PlasmicSlot
                   defaultContents={
                     <div
-                      data-plasmic-name={"organizationDescription"}
-                      data-plasmic-override={overrides.organizationDescription}
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.organizationDescription
+                        sty.box__yHkt8
                       )}
                     >
                       {"Delete this timeline?"}
@@ -322,12 +318,10 @@ function PlasmicModal__RenderFunc(props: {
                 <p.PlasmicSlot
                   defaultContents={
                     <div
-                      data-plasmic-name={"organizationDescription2"}
-                      data-plasmic-override={overrides.organizationDescription2}
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.organizationDescription2
+                        sty.box__o2J7M
                       )}
                     >
                       {"Remove this Venture?"}
@@ -595,13 +589,11 @@ const PlasmicDescendants = {
   root: [
     "root",
     "modalTypes",
-    "organizationDescription",
     "deleteTimeline",
     "text2",
     "cancelTimeline",
     "text22",
     "deleteTimeline2",
-    "organizationDescription2",
     "deleteVenture",
     "text24",
     "cancelVenture",
@@ -619,13 +611,11 @@ const PlasmicDescendants = {
   ],
   modalTypes: [
     "modalTypes",
-    "organizationDescription",
     "deleteTimeline",
     "text2",
     "cancelTimeline",
     "text22",
     "deleteTimeline2",
-    "organizationDescription2",
     "deleteVenture",
     "text24",
     "cancelVenture",
@@ -641,20 +631,17 @@ const PlasmicDescendants = {
     "saveUser",
     "text222",
   ],
-  organizationDescription: ["organizationDescription"],
   deleteTimeline: ["deleteTimeline", "text2"],
   text2: ["text2"],
   cancelTimeline: ["cancelTimeline", "text22"],
   text22: ["text22"],
   deleteTimeline2: [
     "deleteTimeline2",
-    "organizationDescription2",
     "deleteVenture",
     "text24",
     "cancelVenture",
     "text223",
   ],
-  organizationDescription2: ["organizationDescription2"],
   deleteVenture: ["deleteVenture", "text24"],
   text24: ["text24"],
   cancelVenture: ["cancelVenture", "text223"],
@@ -688,13 +675,11 @@ type DescendantsType<
 type NodeDefaultElementType = {
   root: "div";
   modalTypes: "div";
-  organizationDescription: "div";
   deleteTimeline: typeof Button;
   text2: "div";
   cancelTimeline: typeof Button;
   text22: "div";
   deleteTimeline2: "form";
-  organizationDescription2: "div";
   deleteVenture: typeof Button;
   text24: "div";
   cancelVenture: typeof Button;
@@ -768,13 +753,11 @@ export const PlasmicModal = Object.assign(
   {
     // Helper components rendering sub-elements
     modalTypes: makeNodeComponent("modalTypes"),
-    organizationDescription: makeNodeComponent("organizationDescription"),
     deleteTimeline: makeNodeComponent("deleteTimeline"),
     text2: makeNodeComponent("text2"),
     cancelTimeline: makeNodeComponent("cancelTimeline"),
     text22: makeNodeComponent("text22"),
     deleteTimeline2: makeNodeComponent("deleteTimeline2"),
-    organizationDescription2: makeNodeComponent("organizationDescription2"),
     deleteVenture: makeNodeComponent("deleteVenture"),
     text24: makeNodeComponent("text24"),
     cancelVenture: makeNodeComponent("cancelVenture"),

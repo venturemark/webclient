@@ -76,7 +76,6 @@ export type PlasmicTags__OverridesType = {
   root?: p.Flex<"div">;
   button?: p.Flex<"button">;
   box?: p.Flex<"div">;
-  svg?: p.Flex<"svg">;
 };
 
 export interface DefaultTagsProps {
@@ -232,9 +231,7 @@ function PlasmicTags__RenderFunc(props: {
             <p.PlasmicSlot
               defaultContents={
                 <IconCloseIcon
-                  data-plasmic-name={"svg"}
-                  data-plasmic-override={overrides.svg}
-                  className={classNames(defaultcss.all, sty.svg)}
+                  className={classNames(defaultcss.all, sty.svg__vEG)}
                   role={"img"}
                 />
               }
@@ -269,10 +266,9 @@ function PlasmicTags__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "button", "box", "svg"],
-  button: ["button", "box", "svg"],
-  box: ["box", "svg"],
-  svg: ["svg"],
+  root: ["root", "button", "box"],
+  button: ["button", "box"],
+  box: ["box"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<
@@ -282,7 +278,6 @@ type NodeDefaultElementType = {
   root: "div";
   button: "button";
   box: "div";
-  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -343,7 +338,6 @@ export const PlasmicTags = Object.assign(
     // Helper components rendering sub-elements
     button: makeNodeComponent("button"),
     box: makeNodeComponent("box"),
-    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicTags
     internalVariantProps: PlasmicTags__VariantProps,

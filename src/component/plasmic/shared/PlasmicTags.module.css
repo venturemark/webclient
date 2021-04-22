@@ -123,10 +123,3 @@
 .root:focus-within .slotChildren > * {
   outline: none;
 }
-.svg {
-  position: relative;
-  object-fit: cover;
-  width: 12px;
-  height: 10px;
-  flex-shrink: 0;
-}

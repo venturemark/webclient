@@ -739,12 +739,12 @@
         {
           "id": "zo-_ZEkWm",
           "name": "Google Logo",
-          "filePath": "plasmic/shared/images/googleLogo.bin"
+          "filePath": "plasmic/shared/images/googleLogo.png"
         },
         {
           "id": "peTQl8yxq",
           "name": "LinkedIn Logo",
-          "filePath": "plasmic/shared/images/linkedInLogo.bin"
+          "filePath": "plasmic/shared/images/linkedInLogo.png"
         },
         {
           "id": "O43ycn2NW",
@@ -754,7 +754,7 @@
         {
           "id": "fd83YzSqp",
           "name": "background.png",
-          "filePath": "plasmic/shared/images/backgroundpng.bin"
+          "filePath": "plasmic/shared/images/backgroundpng.png"
         },
         {
           "id": "JPhKEtrftg",

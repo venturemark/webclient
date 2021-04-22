@@ -95,12 +95,6 @@
 .slotOrganizationDescription > * {
   text-decoration-line: none;
 }
-.organizationDescription {
-  font-size: 15px /* plasmic-token: mV0JUhpGq */;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
 .box__hxFmc {
   display: flex;
   position: relative;
@@ -245,12 +239,6 @@
 }
 .slotOrganizationDescription2 > * {
   text-decoration-line: none;
-}
-.organizationDescription2 {
-  font-size: 15px /* plasmic-token: mV0JUhpGq */;
-  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-  font-weight: 600;
-  margin-bottom: 12px;
 }
 .box__fFh {
   display: flex;

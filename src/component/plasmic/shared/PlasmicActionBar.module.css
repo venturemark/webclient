@@ -309,12 +309,12 @@
   border-style: solid;
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.box__bxEbl {
+.shareToContainer {
   display: flex;
   position: relative;
   flex-direction: row;
 }
-.box__bxEbl > :global(.__wab_flex-container) {
+.shareToContainer > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -323,11 +323,11 @@
   margin-left: calc(0px - 4px);
   width: calc(100% + 4px);
 }
-.box__bxEbl > :global(.__wab_flex-container) > *,
-.box__bxEbl > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.shareToContainer > :global(.__wab_flex-container) > *,
+.shareToContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 4px;
 }
-.box__isActive__bxEblvjQpn {
+.shareToContainer__isActive {
   display: flex;
   width: 100%;
   min-width: 0;
@@ -480,13 +480,6 @@
 .box__kBcf > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
 }
-.svg__niToo {
-  position: relative;
-  object-fit: cover;
-  width: 17px;
-  height: 14px;
-  flex-shrink: 0;
-}
 .slotText2 {
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
   font-weight: 400;
@@ -500,11 +493,4 @@
 }
 .slotChildren {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
-}
-.svg__kMNxX {
-  position: relative;
-  object-fit: cover;
-  width: 12px;
-  height: 10px;
-  flex-shrink: 0;
 }

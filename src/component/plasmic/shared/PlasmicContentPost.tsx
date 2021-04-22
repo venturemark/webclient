@@ -84,9 +84,7 @@ export type PlasmicContentPost__OverridesType = {
   dropdown?: p.Flex<typeof Dropdown>;
   archiveOption?: p.Flex<"div">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
-  userName?: p.Flex<"span">;
   span?: p.Flex<"span">;
-  date?: p.Flex<"span">;
   timelineNamesContainer?: p.Flex<"div">;
   timelineLink?: p.Flex<typeof TimelineLink>;
   viewReplies?: p.Flex<typeof Button>;
@@ -384,12 +382,10 @@ function PlasmicContentPost__RenderFunc(props: {
                   <p.PlasmicSlot
                     defaultContents={
                       <span
-                        data-plasmic-name={"userName"}
-                        data-plasmic-override={overrides.userName}
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.userName
+                          sty.span__kq2PL
                         )}
                       >
                         <span>
@@ -435,12 +431,10 @@ function PlasmicContentPost__RenderFunc(props: {
                   <p.PlasmicSlot
                     defaultContents={
                       <span
-                        data-plasmic-name={"date"}
-                        data-plasmic-override={overrides.date}
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.date
+                          sty.span__iEzaX
                         )}
                       >
                         {"3 hours ago"}
@@ -556,9 +550,7 @@ const PlasmicDescendants = {
     "dropdown",
     "archiveOption",
     "photoAvatar",
-    "userName",
     "span",
-    "date",
     "timelineNamesContainer",
     "timelineLink",
     "viewReplies",
@@ -572,9 +564,7 @@ const PlasmicDescendants = {
     "dropdown",
     "archiveOption",
     "photoAvatar",
-    "userName",
     "span",
-    "date",
     "timelineNamesContainer",
     "timelineLink",
     "viewReplies",
@@ -586,9 +576,7 @@ const PlasmicDescendants = {
   dropdown: ["dropdown", "archiveOption"],
   archiveOption: ["archiveOption"],
   photoAvatar: ["photoAvatar"],
-  userName: ["userName"],
   span: ["span"],
-  date: ["date"],
   timelineNamesContainer: ["timelineNamesContainer", "timelineLink"],
   timelineLink: ["timelineLink"],
   viewReplies: ["viewReplies"],
@@ -607,9 +595,7 @@ type NodeDefaultElementType = {
   dropdown: typeof Dropdown;
   archiveOption: "div";
   photoAvatar: typeof PhotoAvatar;
-  userName: "span";
   span: "span";
-  date: "span";
   timelineNamesContainer: "div";
   timelineLink: typeof TimelineLink;
   viewReplies: typeof Button;
@@ -679,9 +665,7 @@ export const PlasmicContentPost = Object.assign(
     dropdown: makeNodeComponent("dropdown"),
     archiveOption: makeNodeComponent("archiveOption"),
     photoAvatar: makeNodeComponent("photoAvatar"),
-    userName: makeNodeComponent("userName"),
     span: makeNodeComponent("span"),
-    date: makeNodeComponent("date"),
     timelineNamesContainer: makeNodeComponent("timelineNamesContainer"),
     timelineLink: makeNodeComponent("timelineLink"),
     viewReplies: makeNodeComponent("viewReplies"),

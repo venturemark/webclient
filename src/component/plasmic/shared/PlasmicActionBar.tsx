@@ -86,6 +86,7 @@ export type PlasmicActionBar__OverridesType = {
   editorContainer?: p.Flex<"div">;
   title?: p.Flex<"textarea">;
   description?: p.Flex<"textarea">;
+  shareToContainer?: p.Flex<"div">;
   tagsContainer?: p.Flex<typeof Tags>;
   post?: p.Flex<typeof Button>;
   container?: p.Flex<"div">;
@@ -332,14 +333,20 @@ function PlasmicActionBar__RenderFunc(props: {
                     >
                       <p.Stack
                         as={"div"}
+                        data-plasmic-name={"shareToContainer"}
+                        data-plasmic-override={overrides.shareToContainer}
                         hasGap={true}
-                        className={classNames(defaultcss.all, sty.box__bxEbl, {
-                          [sty.box__isActive__bxEblvjQpn]: hasVariant(
-                            variants,
-                            "isActive",
-                            "isActive"
-                          ),
-                        })}
+                        className={classNames(
+                          defaultcss.all,
+                          sty.shareToContainer,
+                          {
+                            [sty.shareToContainer__isActive]: hasVariant(
+                              variants,
+                              "isActive",
+                              "isActive"
+                            ),
+                          }
+                        )}
                       >
                         {(
                           hasVariant(variants, "isActive", "isActive")
@@ -625,6 +632,7 @@ function PlasmicActionBar__RenderFunc(props: {
                                     ),
                                 })}
                               />
+
                               <p.PlasmicSlot
                                 defaultContents={
                                   <IconCloseIcon
@@ -662,6 +670,7 @@ const PlasmicDescendants = {
     "editorContainer",
     "title",
     "description",
+    "shareToContainer",
     "tagsContainer",
     "post",
     "container",
@@ -675,6 +684,7 @@ const PlasmicDescendants = {
     "editorContainer",
     "title",
     "description",
+    "shareToContainer",
     "tagsContainer",
     "post",
     "container",
@@ -686,6 +696,7 @@ const PlasmicDescendants = {
   editorContainer: ["editorContainer", "title", "description"],
   title: ["title"],
   description: ["description"],
+  shareToContainer: ["shareToContainer", "tagsContainer"],
   tagsContainer: ["tagsContainer"],
   post: ["post"],
   container: ["container", "selectedItemsContainer", "tags", "button"],
@@ -704,6 +715,7 @@ type NodeDefaultElementType = {
   editorContainer: "div";
   title: "textarea";
   description: "textarea";
+  shareToContainer: "div";
   tagsContainer: typeof Tags;
   post: typeof Button;
   container: "div";
@@ -773,6 +785,7 @@ export const PlasmicActionBar = Object.assign(
     editorContainer: makeNodeComponent("editorContainer"),
     title: makeNodeComponent("title"),
     description: makeNodeComponent("description"),
+    shareToContainer: makeNodeComponent("shareToContainer"),
     tagsContainer: makeNodeComponent("tagsContainer"),
     post: makeNodeComponent("post"),
     container: makeNodeComponent("container"),

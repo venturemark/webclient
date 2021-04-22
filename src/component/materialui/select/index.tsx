@@ -74,6 +74,7 @@ export function TimelineSelect(props: SelectProps) {
           label="Share to:"
           variant="standard"
           placeholder="Add timeline"
+          style={{ fontFamily: "Poppins" }}
           InputProps={{ ...params.InputProps, disableUnderline: true }}
         />
       )}

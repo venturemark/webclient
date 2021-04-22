@@ -84,7 +84,6 @@ export const PlasmicMainHeader__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicMainHeader__OverridesType = {
   container?: p.Flex<"div">;
-  iconButton?: p.Flex<typeof IconButton>;
   iconContainer?: p.Flex<"div">;
   viewHome?: p.Flex<typeof IconButton>;
   viewMembers?: p.Flex<typeof IconButtonMember>;
@@ -303,11 +302,9 @@ function PlasmicMainHeader__RenderFunc(props: {
 
                       {false ? (
                         <IconButton
-                          data-plasmic-name={"iconButton"}
-                          data-plasmic-override={overrides.iconButton}
                           className={classNames(
                             "__wab_instance",
-                            sty.iconButton
+                            sty.iconButton__buruf
                           )}
                           iconSize={"large" as const}
                         >
@@ -622,13 +619,11 @@ function PlasmicMainHeader__RenderFunc(props: {
 const PlasmicDescendants = {
   container: [
     "container",
-    "iconButton",
     "iconContainer",
     "viewHome",
     "viewMembers",
     "viewSettings",
   ],
-  iconButton: ["iconButton"],
   iconContainer: ["iconContainer", "viewHome", "viewMembers", "viewSettings"],
   viewHome: ["viewHome"],
   viewMembers: ["viewMembers"],
@@ -640,7 +635,6 @@ type DescendantsType<
 > = typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   container: "div";
-  iconButton: typeof IconButton;
   iconContainer: "div";
   viewHome: typeof IconButton;
   viewMembers: typeof IconButtonMember;
@@ -703,7 +697,6 @@ export const PlasmicMainHeader = Object.assign(
   makeNodeComponent("container"),
   {
     // Helper components rendering sub-elements
-    iconButton: makeNodeComponent("iconButton"),
     iconContainer: makeNodeComponent("iconContainer"),
     viewHome: makeNodeComponent("viewHome"),
     viewMembers: makeNodeComponent("viewMembers"),

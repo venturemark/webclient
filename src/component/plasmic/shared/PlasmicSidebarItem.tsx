@@ -76,7 +76,6 @@ export type PlasmicSidebarItem__OverridesType = {
   root?: p.Flex<"div">;
   itemContainer?: p.Flex<"div">;
   icon?: p.Flex<typeof IconButton>;
-  textbox?: p.Flex<"input">;
   iconButton?: p.Flex<typeof IconButton>;
   dropdown?: p.Flex<typeof Dropdown>;
 };
@@ -325,9 +324,10 @@ function PlasmicSidebarItem__RenderFunc(props: {
 
                     {false ? (
                       <input
-                        data-plasmic-name={"textbox"}
-                        data-plasmic-override={overrides.textbox}
-                        className={classNames(defaultcss.input, sty.textbox)}
+                        className={classNames(
+                          defaultcss.input,
+                          sty.textbox__ogebi
+                        )}
                         placeholder={"Enter name" as const}
                         size={1 as const}
                         type={"text" as const}
@@ -464,10 +464,9 @@ function PlasmicSidebarItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "itemContainer", "icon", "textbox", "iconButton", "dropdown"],
-  itemContainer: ["itemContainer", "icon", "textbox", "iconButton", "dropdown"],
+  root: ["root", "itemContainer", "icon", "iconButton", "dropdown"],
+  itemContainer: ["itemContainer", "icon", "iconButton", "dropdown"],
   icon: ["icon"],
-  textbox: ["textbox"],
   iconButton: ["iconButton"],
   dropdown: ["dropdown"],
 } as const;
@@ -479,7 +478,6 @@ type NodeDefaultElementType = {
   root: "div";
   itemContainer: "div";
   icon: typeof IconButton;
-  textbox: "input";
   iconButton: typeof IconButton;
   dropdown: typeof Dropdown;
 };
@@ -542,7 +540,6 @@ export const PlasmicSidebarItem = Object.assign(
     // Helper components rendering sub-elements
     itemContainer: makeNodeComponent("itemContainer"),
     icon: makeNodeComponent("icon"),
-    textbox: makeNodeComponent("textbox"),
     iconButton: makeNodeComponent("iconButton"),
     dropdown: makeNodeComponent("dropdown"),
 

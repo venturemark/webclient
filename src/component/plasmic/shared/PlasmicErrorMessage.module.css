@@ -23,13 +23,6 @@
 .slotChildren {
   color: rgb(218, 36, 82) /* plasmic-token: 56n5925l5 */;
 }
-.svg {
-  position: relative;
-  object-fit: cover;
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
-}
 .slotMessage {
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
   font-weight: 300;
