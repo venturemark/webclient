@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import {
   BrowserRouter,
   Route,
@@ -31,11 +31,14 @@ import {
   ISearchRoleByVentureIds,
 } from "module/interface/role";
 import { getUniqueListBy } from "module/helpers";
-import ReactGA from "react-ga";
+import TagManager from "react-gtm-module";
 
-// Google analytics
-const TRACKING_ID = "UA-118904227-1";
-ReactGA.initialize(TRACKING_ID);
+const tagManagerArgs = {
+  gtmId: "G-H891NY4GM6",
+  dataLayerName: "UserDataLayer",
+};
+
+TagManager.initialize(tagManagerArgs);
 
 interface IUserContext {
   user: IUser;
@@ -304,6 +307,16 @@ function VentureRoutes(props: VentureRoutesProps) {
     allTimelines,
     ventureRoleTimelines,
   };
+
+  useEffect(() => {
+    const tagManagerArgs = {
+      dataLayer: {
+        userId: userId,
+      },
+      dataLayerName: "UserDataLayer",
+    };
+    userId && TagManager.dataLayer(tagManagerArgs);
+  }, [userId]);
 
   // redirect "/"" to "ventureSlug"
   if (ventureSuccess && ventureSlug === undefined && currentVenture) {

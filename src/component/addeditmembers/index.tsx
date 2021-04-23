@@ -168,6 +168,7 @@ function AddEditMembers(props: AddEditMembersProps) {
       form={{
         onSubmit: handleSubmit(handleInvite),
       }}
+      type={!currentTimeline ? undefined : "isTimeline"}
       email={{
         register: register({
           required: true,
