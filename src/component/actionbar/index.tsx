@@ -40,7 +40,7 @@ function ActionBar(props: ActionBarProps) {
       ? true
       : false;
 
-  const [isActive, setIsActive] = useState(hasTimelines);
+  const [isActive, setIsActive] = useState(false);
   const [isTimelineSelected] = useState(false);
   const [selectFocused, setSelectFocused] = useState(false);
 
