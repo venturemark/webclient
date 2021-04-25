@@ -53,6 +53,7 @@ export function TimelineSelect(props: SelectProps) {
       }}
       ref={select}
       options={sortedVentureTimelines}
+      disableClearable={true}
       getOptionLabel={(option) => option?.name ?? ""}
       renderTags={(tagValue, getTagProps) =>
         tagValue.map((option, index) => (
@@ -73,7 +74,6 @@ export function TimelineSelect(props: SelectProps) {
           {...params}
           label="Share to:"
           variant="standard"
-          placeholder="Add timeline"
           style={{ fontFamily: "Poppins" }}
           InputProps={{ ...params.InputProps, disableUnderline: true }}
         />

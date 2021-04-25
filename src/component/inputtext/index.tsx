@@ -31,22 +31,30 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
       textboxContainer: "textboxContainer",
       labelContainer: "labelContainer",
     },
-    ref
+    register
   );
   return (
     <PlasmicInputText
       {...plumeProps}
+      args={{
+        label: plumeProps.args.label,
+      }}
       overrides={{
         input: {
           ref: register,
           name: name,
           defaultValue: defaultValue,
+          "aria-label": props["aria-label"],
         },
         errorMessage: {
           message: message,
         },
       }}
-      variants={{ error: message ? "error" : undefined }}
+      variants={{
+        error: message ? "error" : undefined,
+        hasLabel: plumeProps.variants.hasLabel,
+        hasTextHelper: plumeProps.variants.hasTextHelper,
+      }}
     />
   );
 }

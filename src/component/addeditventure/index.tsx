@@ -50,6 +50,8 @@ function AddEditVenture(props: AddEditVentureProps) {
   const isEdit = ventureSlug && ventureSlug === handle ? "isEdit" : undefined;
 
   const handleCreate = (data: any) => {
+    if (!data.ventureName) return;
+
     const createHandle = data.ventureName.toLowerCase().replace(/\s/g, "");
     const ventureCreate: ICreateVenture = {
       name: data.ventureName,
