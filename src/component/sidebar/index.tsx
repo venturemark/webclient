@@ -40,9 +40,7 @@ function Sidebar(props: SidebarProps) {
     token,
   };
 
-  const { data: venturesData, isLoading, isFetching } = useVentureByTimeline(
-    ventureSearch
-  );
+  const { data: venturesData } = useVentureByTimeline(ventureSearch);
 
   const timelines = timelineContext?.allTimelines ?? timelinesData ?? [];
   const ventures = ventureContext?.ventures ?? venturesData ?? [];
