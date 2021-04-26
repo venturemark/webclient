@@ -19,7 +19,7 @@ interface TextFieldProps extends PlumeTextFieldProps {
 }
 
 function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
-  const { message, register, name } = props;
+  const { message, register } = props;
   const { plumeProps } = useTextField(
     PlasmicInputText,
     props,
