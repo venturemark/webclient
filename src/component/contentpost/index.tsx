@@ -11,10 +11,10 @@ import { IDeleteUpdate, IUpdate } from "module/interface/update";
 import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { useGetToken } from "module/auth";
-import { ISearchTimelineMembers, IUser } from "module/interface/user";
+import { ISearchVentureMembers, IUser } from "module/interface/user";
 import { useContext } from "react";
 import { TimelineContext, UserContext } from "component/app";
-import { useTimelineMembers } from "module/hook/user";
+import { useVentureMembers } from "module/hook/user";
 import { useState } from "react";
 import { useDeleteUpdate } from "module/hook/update";
 
@@ -85,21 +85,31 @@ function ContentPost(props: ContentPostProps) {
     })
     .flat();
 
-  const userTimelineSearch: ISearchTimelineMembers = {
-    resource: "timeline",
-    timelineId,
+  // currently no timeline roles so searching by venture
+  // const userTimelineSearch: ISearchTimelineMembers = {
+  //   resource: "timeline",
+  //   timelineId,
+  //   ventureId,
+  //   token,
+  // };
+
+  // const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
+
+  const userVentureSearch: ISearchVentureMembers = {
+    resource: "venture",
     ventureId,
     token,
   };
 
-  const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
+  const { data: ventureUsersData } = useVentureMembers(userVentureSearch);
+
   const { mutate: deleteUpdate } = useDeleteUpdate();
 
-  const userData = timelineUsersData?.filter(
+  const userData = ventureUsersData?.filter(
     (user: IUser) => user.id === userId
   )[0];
 
-  const userNameData = timelineUsersData?.filter(
+  const userNameData = ventureUsersData?.filter(
     (user: IUser) => user.id === userId
   )[0]?.name;
 
