@@ -252,7 +252,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             />
           </p.Stack>
 
-          {(hasVariant(variants, "type", "isTimeline") ? false : true) ? (
+          {(hasVariant(variants, "type", "isTimeline") ? false : false) ? (
             <p.Stack
               as={"a"}
               data-plasmic-name={"link"}

@@ -47,6 +47,7 @@ export type PlasmicActionBar__VariantMembers = {
   text: "hasText";
   isActive: "isActive";
   timelineSelected: "timelineSelected";
+  mobileLayout: "mobileLayout";
 };
 
 export type PlasmicActionBar__VariantsArgs = {
@@ -54,6 +55,7 @@ export type PlasmicActionBar__VariantsArgs = {
   text?: MultiChoiceArg<"hasText">;
   isActive?: SingleBooleanChoiceArg<"isActive">;
   timelineSelected?: SingleBooleanChoiceArg<"timelineSelected">;
+  mobileLayout?: SingleBooleanChoiceArg<"mobileLayout">;
 };
 
 type VariantPropType = keyof PlasmicActionBar__VariantsArgs;
@@ -61,7 +63,8 @@ export const PlasmicActionBar__VariantProps = new Array<VariantPropType>(
   "error",
   "text",
   "isActive",
-  "timelineSelected"
+  "timelineSelected",
+  "mobileLayout"
 );
 
 export type PlasmicActionBar__ArgsType = {
@@ -104,6 +107,7 @@ export interface DefaultActionBarProps {
   text?: MultiChoiceArg<"hasText">;
   isActive?: SingleBooleanChoiceArg<"isActive">;
   timelineSelected?: SingleBooleanChoiceArg<"timelineSelected">;
+  mobileLayout?: SingleBooleanChoiceArg<"mobileLayout">;
   className?: string;
 }
 
@@ -297,6 +301,11 @@ function PlasmicActionBar__RenderFunc(props: {
                     "isActive",
                     "isActive"
                   ),
+                  [sty.box__mobileLayout__mQqJfr8WpI]: hasVariant(
+                    variants,
+                    "mobileLayout",
+                    "mobileLayout"
+                  ),
                   [sty.box__timelineSelected__mQqJf75BwG]: hasVariant(
                     variants,
                     "timelineSelected",
@@ -344,6 +353,11 @@ function PlasmicActionBar__RenderFunc(props: {
                               variants,
                               "isActive",
                               "isActive"
+                            ),
+                            [sty.shareToContainer__mobileLayout]: hasVariant(
+                              variants,
+                              "mobileLayout",
+                              "mobileLayout"
                             ),
                           }
                         )}
@@ -420,13 +434,22 @@ function PlasmicActionBar__RenderFunc(props: {
                 <Button
                   data-plasmic-name={"post"}
                   data-plasmic-override={overrides.post}
-                  buttonFeatures={[]}
+                  buttonFeatures={
+                    hasVariant(variants, "mobileLayout", "mobileLayout")
+                      ? []
+                      : []
+                  }
                   buttonStyle={"primaryPurple" as const}
                   className={classNames("__wab_instance", sty.post, {
                     [sty.post__isActive]: hasVariant(
                       variants,
                       "isActive",
                       "isActive"
+                    ),
+                    [sty.post__mobileLayout]: hasVariant(
+                      variants,
+                      "mobileLayout",
+                      "mobileLayout"
                     ),
                   })}
                   count={"1"}

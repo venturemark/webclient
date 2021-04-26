@@ -59,7 +59,7 @@ function ProfileForm(props: ProfileFormProps) {
 
   if (user) return <Navigate to={`${link}`} />;
 
-  console.log("errors", errors);
+  // console.log("errors", errors);
 
   return (
     <PlasmicProfileForm

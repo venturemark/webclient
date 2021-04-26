@@ -176,11 +176,11 @@ function AddEditMembers(props: AddEditMembersProps) {
             as={TextField}
             name="email"
             control={control}
-            label={
-              "Enter their email to invite and add them to this organization"
-            }
+            label={"Invite a member by email"}
             hasTextHelper={true}
-            children={"Let people know what you do"}
+            children={
+              "Enter their email to invite and add them to this organization."
+            }
             rules={{
               required: true,
               pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
