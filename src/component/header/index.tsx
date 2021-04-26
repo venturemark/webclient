@@ -64,6 +64,7 @@ function Header(props: HeaderProps) {
         setProfileDropdown,
         isVisible,
         setIsVisible,
+        user,
       }}
     />
   );

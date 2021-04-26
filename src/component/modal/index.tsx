@@ -5,7 +5,7 @@ import {
   PlasmicModal,
   DefaultModalProps,
 } from "component/plasmic/shared/PlasmicModal";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { IUpdateUser } from "module/interface/user";
 import { nameError, titleError } from "module/errors";
@@ -17,6 +17,7 @@ import { IDeleteVenture } from "module/interface/venture";
 import { useDeleteVenture } from "module/hook/venture";
 import { IUpdateTimeline } from "module/interface/timeline";
 import { useArchiveDeleteTimeline } from "module/hook/timeline";
+import TextField from "component/inputtext";
 
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
@@ -37,7 +38,7 @@ function Modal(props: ModalProps) {
   const ventureId = query.get("ventureId") ?? "";
   const timelineId = query.get("timelineId") ?? "";
 
-  const { handleSubmit, register, errors } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     mode: "onChange",
   });
 
@@ -95,16 +96,33 @@ function Modal(props: ModalProps) {
         user,
       }}
       nameField={{
-        name: "name",
-        defaultValue: user?.name ?? "",
-        register: register({ required: true }),
-        message: errors.name && nameError,
+        wrap: (node) => (
+          <Controller
+            as={TextField}
+            name="name"
+            control={control}
+            label={"Full Name"}
+            defaultValue={user?.name ?? ""}
+            hasTextHelper={false}
+            rules={{ required: true }}
+            message={errors.name && nameError}
+          />
+        ),
       }}
       jobField={{
-        name: "title",
-        defaultValue: user?.title ?? "",
-        register: register({ required: true }),
-        message: errors.title && titleError,
+        wrap: (node) => (
+          <Controller
+            as={TextField}
+            name="title"
+            control={control}
+            label={"What I Do"}
+            hasTextHelper={true}
+            children={"Let people know what you do"}
+            defaultValue={user?.title ?? ""}
+            rules={{ required: true }}
+            message={errors.title && titleError}
+          />
+        ),
       }}
       deleteTimeline={{
         onPress: () => handleDeleteTimeline(),

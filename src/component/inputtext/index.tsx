@@ -36,7 +36,7 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     },
     register
   );
-  console.log("plume", plumeProps, name, message);
+  // console.log("plume", plumeProps, name, message);
   return (
     <PlasmicInputText
       {...plumeProps}

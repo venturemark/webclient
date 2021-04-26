@@ -7,12 +7,14 @@ import {
 } from "component/plasmic/shared/PlasmicProfileDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { IUser } from "module/interface/user";
 
 interface ProfileDropdownProps extends DefaultProfileDropdownProps {
   profileDropdown: boolean | "profileDropdown" | undefined;
   setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
   isVisible: any;
   setIsVisible: any;
+  user: IUser;
 }
 
 function ProfileDropdown(props: ProfileDropdownProps) {
@@ -21,9 +23,10 @@ function ProfileDropdown(props: ProfileDropdownProps) {
     setIsVisible,
     profileDropdown,
     setProfileDropdown,
+    user,
     ...rest
   } = props;
-  const { user, logout } = useAuth0();
+  const { user: authUser, logout } = useAuth0();
   const navigate = useNavigate();
 
   const userInitials =
@@ -32,12 +35,15 @@ function ProfileDropdown(props: ProfileDropdownProps) {
       .map((n: string) => n[0])
       .join("") ?? "";
 
+  const userEmail = authUser.email ?? "";
+
   return (
     <PlasmicProfileDropdown
       userName={user?.name ?? ""}
-      userEmail={user?.email ?? ""}
+      userEmail={userEmail}
+      userInitials={userInitials}
       photoAvatar={{
-        userInitials,
+        user,
       }}
       viewProfile={{
         onClick: () => {
