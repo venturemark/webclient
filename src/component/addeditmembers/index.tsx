@@ -5,7 +5,7 @@ import {
   PlasmicAddEditMembers,
   DefaultAddEditMembersProps,
 } from "component/plasmic/shared/PlasmicAddEditMembers";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import MemberItem from "component/memberitem";
 import {
   IUser,
@@ -32,6 +32,7 @@ import {
 import { useCreateInvite, useInvites } from "module/hook/invite";
 import { ICreateInvite, IInvite, ISearchInvite } from "module/interface/invite";
 import { getUniqueListBy } from "module/helpers";
+import TextField from "component/inputtext";
 
 interface AddEditMembersProps extends DefaultAddEditMembersProps {
   currentVenture: IVenture;
@@ -41,7 +42,7 @@ interface AddEditMembersProps extends DefaultAddEditMembersProps {
 
 function AddEditMembers(props: AddEditMembersProps) {
   const { currentVenture, currentTimeline, user, ...rest } = props;
-  const { handleSubmit, register, reset, errors } = useForm({
+  const { handleSubmit, control, reset, errors } = useForm({
     mode: "onChange",
   });
   const token = useGetToken();
@@ -170,12 +171,23 @@ function AddEditMembers(props: AddEditMembersProps) {
       }}
       type={!currentTimeline ? undefined : "isTimeline"}
       email={{
-        register: register({
-          required: true,
-          pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        }),
-        message: errors.email && emailError,
-        name: "email",
+        wrap: (node) => (
+          <Controller
+            as={TextField}
+            name="email"
+            control={control}
+            label={
+              "Enter their email to invite and add them to this organization"
+            }
+            hasTextHelper={true}
+            children={"Let people know what you do"}
+            rules={{
+              required: true,
+              pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            }}
+            message={errors.email && emailError}
+          />
+        ),
       }}
       invite={{
         onPress: () => handleSubmit(handleInvite)(),
