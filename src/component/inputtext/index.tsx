@@ -33,11 +33,13 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     },
     register
   );
+  // console.log(plumeProps, name);
   return (
     <PlasmicInputText
       {...plumeProps}
       args={{
         label: plumeProps.args.label,
+        children: plumeProps.args.children,
       }}
       overrides={{
         input: {
