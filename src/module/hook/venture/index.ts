@@ -73,9 +73,8 @@ export function useCreateVenture() {
         await queryClient.cancelQueries("ventures");
 
         // Snapshot the previous value
-        const previousVentures = queryClient.getQueryData<IVenture[]>(
-          "ventures"
-        );
+        const previousVentures =
+          queryClient.getQueryData<IVenture[]>("ventures") ?? [];
 
         // Optimistically update to the new value
         if (previousVentures) {
@@ -100,6 +99,11 @@ export function useCreateVenture() {
         // Invalidate and refetch
         await queryClient.invalidateQueries("ventures");
 
+        //necessary to get query data synchronously so that redirect works.
+        console.log(
+          "in on success state",
+          queryClient.getQueryData<IVenture[]>("ventures")
+        );
         newVenture.successUrl && navigate(newVenture.successUrl);
       },
       // Always refetch after error or success:
