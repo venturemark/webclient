@@ -25,7 +25,9 @@ function PhotoAvatar(props: PhotoAvatarProps) {
   return (
     <PlasmicPhotoAvatar
       {...rest}
-      onClick={() => setProfileDropdown && setProfileDropdown(!profileDropdown)}
+      onClick={() => {
+        setProfileDropdown && setProfileDropdown(!profileDropdown);
+      }}
       userInitials={userInitials}
     />
   );
