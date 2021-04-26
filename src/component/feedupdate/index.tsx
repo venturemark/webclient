@@ -15,10 +15,10 @@ import {
   useUpdatesByTimeline,
   useUpdatesByTimelineIds,
 } from "module/hook/update";
-import { useTimelineMembers } from "module/hook/user";
+import { useVentureMembers } from "module/hook/user";
 import { IUpdate } from "module/interface/update";
 import { IVenture } from "module/interface/venture";
-import { ISearchTimelineMembers, IUser } from "module/interface/user";
+import { ISearchVentureMembers, IUser } from "module/interface/user";
 import { useGetToken } from "module/auth";
 import { useParams } from "react-router-dom";
 
@@ -90,14 +90,23 @@ function FeedUpdate(props: FeedUpdateProps) {
     updates = timelineSlug ? timelineUpdates ?? [] : homeUpdates ?? [];
   }
 
-  const userTimelineSearch: ISearchTimelineMembers = {
-    resource: "timeline",
-    timelineId,
+  // currently no timeline roles so searching by venture
+  // const userTimelineSearch: ISearchTimelineMembers = {
+  //   resource: "timeline",
+  //   timelineId,
+  //   ventureId,
+  //   token,
+  // };
+
+  // const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
+
+  const userVentureSearch: ISearchVentureMembers = {
+    resource: "venture",
     ventureId,
     token,
   };
 
-  const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
+  const { data: ventureUsersData } = useVentureMembers(userVentureSearch);
 
   return (
     <PlasmicFeedUpdate
@@ -121,8 +130,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             setPost={() =>
               setPost({
                 ...update,
-                users:
-                  timelineUsersData ?? update.userId === user?.id ? [user] : [],
+                users: ventureUsersData ?? [],
               })
             }
             ventureId={update.ventureId}
