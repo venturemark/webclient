@@ -129,9 +129,6 @@
 .viewProfile:global(.__wab_instance) {
   position: relative;
 }
-.viewHelp:global(.__wab_instance) {
-  position: relative;
-}
 .logout:global(.__wab_instance) {
   position: relative;
 }

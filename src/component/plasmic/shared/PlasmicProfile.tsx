@@ -131,15 +131,19 @@ function PlasmicProfile__RenderFunc(props: {
                     </div>
                   </div>
 
-                  <div
-                    className={classNames(
-                      defaultcss.all,
-                      defaultcss.__wab_text,
-                      sty.box__xRb1Y
-                    )}
-                  >
-                    {"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
-                  </div>
+                  {false ? (
+                    <div
+                      className={classNames(
+                        defaultcss.all,
+                        defaultcss.__wab_text,
+                        sty.box__xRb1Y
+                      )}
+                    >
+                      {
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                      }
+                    </div>
+                  ) : null}
                 </p.Stack>
 
                 <ProfileForm

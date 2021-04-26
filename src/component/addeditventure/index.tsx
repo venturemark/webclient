@@ -112,7 +112,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         defaultValue: venture?.url ?? "",
       }}
       membersWrite={{
-        variantSettings: ["isDisabled", "hasLabel"],
+        variantSettings: ["isSelected", "hasLabel"],
         "aria-label": "members have write access switch",
       }}
       buttons={{

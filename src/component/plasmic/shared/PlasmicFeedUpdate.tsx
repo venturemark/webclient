@@ -97,6 +97,7 @@ function PlasmicFeedUpdate__RenderFunc(props: {
               "isOwner"
             ),
           })}
+          isActive={"isActive" as const}
         />
       ) : null}
 

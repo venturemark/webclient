@@ -209,7 +209,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         }
         label={"Description"}
       >
-        {"Tell us a little bit about your venture."}
+        {"Tell us a little bit about your timeline."}
       </InputTextArea>
 
       {(
