@@ -15,6 +15,8 @@ import { useGetToken } from "module/auth";
 import { ventureNameError } from "module/errors";
 import { makeVentureUrl } from "module/helpers";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
+import { Controller } from "react-hook-form";
+import TextField from "component/inputtext";
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
@@ -22,6 +24,7 @@ interface AddEditVentureProps extends DefaultAddEditVentureProps {
   hasVentures: boolean;
   handleSubmit: any;
   register: any;
+  control: any;
   reset: any;
   errors: any;
 }
@@ -35,6 +38,7 @@ function AddEditVenture(props: AddEditVentureProps) {
     errors,
     currentVenture,
     hasVentures,
+    control,
     ...rest
   } = props;
   const { ventureSlug } = useParams();
@@ -81,11 +85,20 @@ function AddEditVenture(props: AddEditVentureProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        name: "ventureName",
-        defaultValue:
-          url?.pathname === "/newventure" ? "" : venture?.name ?? "",
-        register: register({ required: true }),
-        message: errors.ventureName && ventureNameError,
+        wrap: (node) => (
+          <Controller
+            as={TextField}
+            name="ventureName"
+            control={control}
+            label={"Name"}
+            defaultValue={
+              url?.pathname === "/newventure" ? "" : venture?.name ?? ""
+            }
+            hasTextHelper={false}
+            rules={{ required: true }}
+            message={errors.ventureName && ventureNameError}
+          />
+        ),
       }}
       description={{
         register: register(),

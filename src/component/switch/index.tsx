@@ -6,6 +6,7 @@ import { PlumeSwitchProps, PlumeSwitchRef, useSwitch } from "@plasmicapp/plume";
 
 interface SwitchProps extends PlumeSwitchProps {
   hasLabelVariant: string;
+  variantSettings: string[];
 }
 function Switch_(props: SwitchProps, ref: PlumeSwitchRef) {
   const { plumeProps } = useSwitch(

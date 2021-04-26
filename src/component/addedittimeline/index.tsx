@@ -15,6 +15,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { timelineNameError } from "module/errors";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
+import { Controller } from "react-hook-form";
+import TextField from "component/inputtext";
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
@@ -23,6 +25,7 @@ interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   currentTimeline: ITimeline;
   handleSubmit: any;
   register: any;
+  control: any;
   reset: any;
   errors: any;
 }
@@ -36,6 +39,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     register,
     reset,
     errors,
+    control,
     currentVenture,
     ...rest
   } = props;
@@ -86,10 +90,18 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        register: register({ required: true, maxLength: 23 }),
-        name: "timelineName",
-        defaultValue: currentTimeline?.name ?? "",
-        message: errors.timelineName && timelineNameError,
+        wrap: (node) => (
+          <Controller
+            as={TextField}
+            name="timelineName"
+            control={control}
+            label={"Name"}
+            defaultValue={currentTimeline?.name ?? ""}
+            hasTextHelper={false}
+            rules={{ required: true, maxLength: 23 }}
+            message={errors.timelineName && timelineNameError}
+          />
+        ),
       }}
       description={{
         register: register(),
