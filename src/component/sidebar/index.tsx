@@ -24,7 +24,7 @@ function Sidebar(props: SidebarProps) {
   const token = useGetToken();
 
   const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
-    userId: userContext?.user.id ?? "",
+    userId: userContext?.user?.id ?? "",
     token,
   };
 
