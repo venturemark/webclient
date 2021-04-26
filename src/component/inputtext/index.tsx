@@ -11,12 +11,15 @@ import {
 interface TextFieldProps extends PlumeTextFieldProps {
   defaultValue?: any;
   register?: any;
-  name?: string;
+  name: string;
+  label: string;
   message?: string;
+  children?: string;
+  hasTextHelper: boolean;
 }
 
 function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
-  const { message, register, name, defaultValue } = props;
+  const { message, register, name } = props;
   const { plumeProps } = useTextField(
     PlasmicInputText,
     props,
@@ -33,25 +36,30 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     },
     register
   );
-  // console.log(plumeProps, name);
+  console.log("plume", plumeProps, name, message);
   return (
     <PlasmicInputText
       {...plumeProps}
-      args={{
-        label: plumeProps.args.label,
-        children: plumeProps.args.children,
+      errorMessage={{
+        message: message,
       }}
-      overrides={{
-        input: {
-          ref: register,
-          name: name,
-          defaultValue: defaultValue,
-          "aria-label": props["aria-label"],
-        },
-        errorMessage: {
-          message: message,
-        },
-      }}
+      // children={children}
+      // error={message ? "error" : undefined}
+      // args={{
+      //   label: plumeProps.args.label,
+      //   children: plumeProps.args.children,
+      // }}
+      // overrides={{
+      //   input: {
+      //     ref: register,
+      //     name: name,
+      //     defaultValue: defaultValue,
+      //     "aria-label": props["aria-label"],
+      //   },
+      //   errorMessage: {
+      //     message: message,
+      //   },
+      // }}
       variants={{
         error: message ? "error" : undefined,
         hasLabel: plumeProps.variants.hasLabel,

@@ -8,7 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { IUpdateUser } from "module/interface/user";
-import { nameError, roleError } from "module/errors";
+import { nameError, titleError } from "module/errors";
 import { useUpdateUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 import { UserContext, VentureContext } from "component/app";
@@ -104,7 +104,7 @@ function Modal(props: ModalProps) {
         name: "title",
         defaultValue: user?.title ?? "",
         register: register({ required: true }),
-        message: errors.role && roleError,
+        message: errors.title && titleError,
       }}
       deleteTimeline={{
         onPress: () => handleDeleteTimeline(),

@@ -6,13 +6,14 @@ import {
   DefaultProfileFormProps,
 } from "component/plasmic/shared/PlasmicProfileForm";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { ICreateUser } from "module/interface/user";
-import { nameError, roleError } from "module/errors";
+import { nameError, titleError } from "module/errors";
 import { useCreateUser } from "module/hook/user";
 import { useGetToken } from "module/auth";
 import { UserContext } from "component/app";
+import TextField from "component/inputtext";
 
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
@@ -29,16 +30,19 @@ function ProfileForm(props: ProfileFormProps) {
 
   const {
     handleSubmit,
-    register,
     formState: { errors },
+    control,
   } = useForm({
     mode: "onChange",
   });
+
+  // const {onChange, onBlur, ref, name} = register("name");
 
   const { mutate: saveUser } = useCreateUser();
   const link = hasInvite ? "../joinventure" : "/";
 
   const handleSave = (data: any) => {
+    console.log(data);
     if (!data.name) {
       return;
     }
@@ -55,23 +59,53 @@ function ProfileForm(props: ProfileFormProps) {
 
   if (user) return <Navigate to={`${link}`} />;
 
+  console.log("errors", errors);
+
   return (
     <PlasmicProfileForm
       {...rest}
       form={{
         onSubmit: handleSubmit(handleSave),
       }}
+      // nameField={{
+      //   name: "name",
+      //   defaultValue: authUser?.name,
+      //   register: register("name", { required: true }),
+      //   message: errors.name && nameError,
+      // }}
       nameField={{
-        name: "name",
-        defaultValue: authUser?.name,
-        register: register("name", { required: true }),
-        message: errors.name && nameError,
+        wrap: (node) => (
+          <Controller
+            as={TextField}
+            name="name"
+            control={control}
+            label={"Full Name"}
+            defaultValue={authUser?.name}
+            hasTextHelper={false}
+            rules={{ required: true }}
+            message={errors.name && nameError}
+          />
+        ),
       }}
+      // jobField={{
+      //   name: "title",
+      //   defaultValue: "",
+      //   register: register("title", { required: true }),
+      //   message: errors.title && roleError,
+      // }}
       jobField={{
-        name: "title",
-        defaultValue: "",
-        register: register("title", { required: true }),
-        message: errors.title && roleError,
+        wrap: (node) => (
+          <Controller
+            as={TextField}
+            name="title"
+            control={control}
+            label={"What I Do"}
+            hasTextHelper={true}
+            children={"Let people know what you do"}
+            rules={{ required: true }}
+            message={errors.title && titleError}
+          />
+        ),
       }}
       save={{
         onPress: () => handleSubmit(handleSave)(),
