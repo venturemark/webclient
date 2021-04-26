@@ -121,7 +121,8 @@ function FeedUpdate(props: FeedUpdateProps) {
             setPost={() =>
               setPost({
                 ...update,
-                users: timelineUsersData,
+                users:
+                  timelineUsersData ?? update.userId === user?.id ? [user] : [],
               })
             }
             ventureId={update.ventureId}

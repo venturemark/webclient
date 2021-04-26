@@ -48,6 +48,7 @@ function Main(props: MainProps) {
     register,
     reset,
     watch,
+    control,
     formState: { errors },
   } = useForm();
   const watchData = watch();
@@ -91,6 +92,7 @@ function Main(props: MainProps) {
         currentVenture,
         hasVentures,
         handleSubmit,
+        control,
         register,
         reset,
         errors,
@@ -100,6 +102,7 @@ function Main(props: MainProps) {
         currentTimeline,
         setIsVisible,
         handleSubmit,
+        control,
         register,
         reset,
         errors,
