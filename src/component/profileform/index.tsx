@@ -36,10 +36,8 @@ function ProfileForm(props: ProfileFormProps) {
     mode: "onChange",
   });
 
-  // const {onChange, onBlur, ref, name} = register("name");
-
   const { mutate: saveUser } = useCreateUser();
-  const link = hasInvite ? "../joinventure" : "/";
+  const link = hasInvite ? "../joinventure" : "/begin";
 
   const handleSave = (data: any) => {
     console.log(data);
@@ -58,8 +56,6 @@ function ProfileForm(props: ProfileFormProps) {
   };
 
   if (user) return <Navigate to={`${link}`} />;
-
-  // console.log("errors", errors);
 
   return (
     <PlasmicProfileForm

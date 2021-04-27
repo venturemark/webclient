@@ -326,11 +326,6 @@ function VentureRoutes(props: VentureRoutesProps) {
     return <Navigate replace to={`${ventureSlugRedirect}`} />;
   }
 
-  // redirect to newVenture if there is not venture
-  if (ventureSuccess && ventureUserSuccess && allVentures.length < 1) {
-    return <Navigate to="../begin" />;
-  }
-
   return (
     <VentureContext.Provider value={ventureContext}>
       <TimelineContext.Provider value={timelineContext}>
