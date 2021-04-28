@@ -10,6 +10,7 @@ import { getConfig } from "module/auth";
 
 import * as app from "component/app";
 import reportWebVitals from "reportWebVitals";
+import TagManager from "react-gtm-module";
 
 // export default createBrowserHistory();
 const history = createBrowserHistory();
@@ -32,6 +33,13 @@ const providerConfig = {
 };
 
 const queryClient = new QueryClient();
+
+const tagManagerArgs = {
+  gtmId: "G-H891NY4GM6",
+  dataLayerName: "UserDataLayer",
+};
+
+TagManager.initialize(tagManagerArgs);
 
 ReactDOM.render(
   <React.StrictMode>
