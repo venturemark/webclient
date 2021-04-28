@@ -35,7 +35,7 @@ const providerConfig = {
 const queryClient = new QueryClient();
 
 const tagManagerArgs = {
-  gtmId: "G-H891NY4GM6",
+  gtmId: "GTM-PV3PGVX",
   dataLayerName: "UserDataLayer",
 };
 
