@@ -33,13 +33,6 @@ import {
 import { getUniqueListBy } from "module/helpers";
 import TagManager from "react-gtm-module";
 
-const tagManagerArgs = {
-  gtmId: "G-H891NY4GM6",
-  dataLayerName: "UserDataLayer",
-};
-
-TagManager.initialize(tagManagerArgs);
-
 interface IUserContext {
   user: IUser;
   status: string;
@@ -309,13 +302,15 @@ function VentureRoutes(props: VentureRoutesProps) {
   };
 
   useEffect(() => {
-    const tagManagerArgs = {
-      dataLayer: {
-        userId: userId,
-      },
-      dataLayerName: "UserDataLayer",
-    };
-    userId && TagManager.dataLayer(tagManagerArgs);
+    if (userId) {
+      const tagManagerArgs = {
+        dataLayer: {
+          userId: userId,
+        },
+        dataLayerName: "UserDataLayer",
+      };
+      TagManager.dataLayer(tagManagerArgs);
+    }
   }, [userId]);
 
   // redirect "/"" to "ventureSlug"
