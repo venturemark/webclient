@@ -11,6 +11,13 @@ import { getConfig } from "module/auth";
 import * as app from "component/app";
 import reportWebVitals from "reportWebVitals";
 import TagManager from "react-gtm-module";
+import WebFont from "webfontloader";
+
+WebFont.load({
+  google: {
+    families: ["Poppins:100, 300,400,700"],
+  },
+});
 
 // export default createBrowserHistory();
 const history = createBrowserHistory();
@@ -41,17 +48,45 @@ const tagManagerArgs = {
 
 TagManager.initialize(tagManagerArgs);
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Auth0Provider {...providerConfig}>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <app.Component />
-      </QueryClientProvider>
-    </Auth0Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Auth0Provider {...providerConfig}>
+//       <QueryClientProvider client={queryClient}>
+//         <ReactQueryDevtools initialIsOpen={false} />
+//         <app.Component />
+//       </QueryClientProvider>
+//     </Auth0Provider>
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );
+
+const rootElement = document.getElementById("root");
+
+if (rootElement?.hasChildNodes()) {
+  ReactDOM.hydrate(
+    <React.StrictMode>
+      <Auth0Provider {...providerConfig}>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <app.Component />
+        </QueryClientProvider>
+      </Auth0Provider>
+    </React.StrictMode>,
+    rootElement
+  );
+} else {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Auth0Provider {...providerConfig}>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <app.Component />
+        </QueryClientProvider>
+      </Auth0Provider>
+    </React.StrictMode>,
+    rootElement
+  );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
