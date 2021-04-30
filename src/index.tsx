@@ -36,6 +36,7 @@ const providerConfig = {
   ...(config.audience ? { audience: config.audience } : null),
   redirectUri: config.redirectUri,
   useRefreshTokens: config.useRefreshTokens,
+  cacheLocation: config.cacheLocation,
   onRedirectCallback,
 };
 
@@ -47,18 +48,6 @@ const tagManagerArgs = {
 };
 
 TagManager.initialize(tagManagerArgs);
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <Auth0Provider {...providerConfig}>
-//       <QueryClientProvider client={queryClient}>
-//         <ReactQueryDevtools initialIsOpen={false} />
-//         <app.Component />
-//       </QueryClientProvider>
-//     </Auth0Provider>
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
 
 const rootElement = document.getElementById("root");
 
