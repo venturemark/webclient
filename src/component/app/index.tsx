@@ -63,9 +63,8 @@ const ga4react = new GA4React("G-H891NY4GM6");
 
 export function Component() {
   const ga = useGA4React();
-  console.log(ga);
 
-  ga4react.initialize();
+  ga && ga4react.initialize();
 
   return (
     <BrowserRouter>
@@ -80,7 +79,7 @@ export function Component() {
 
 function AuthenticatedRoute() {
   const token = useGetToken();
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, error } = useAuth0();
 
   const currentUserSearch: ISearchCurrentUser = {
     token,
@@ -96,6 +95,16 @@ function AuthenticatedRoute() {
   if (isLoading) {
     return <span>Checking auth...</span>;
   }
+
+  if (error) return <Navigate to={`signin`} />;
+
+  console.log(
+    "auth blues: isLoading, error, isAuthenticated, token",
+    isLoading,
+    error,
+    isAuthenticated,
+    token
+  );
 
   if (!isLoading && !isAuthenticated) return <Navigate to={`signin`} />;
 

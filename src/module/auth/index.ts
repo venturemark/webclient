@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { CacheLocation, useAuth0 } from "@auth0/auth0-react";
 import { isDev } from "module/helpers";
+
+const cacheLocation: CacheLocation = "localstorage";
 
 export const configJson = isDev()
   ? {
@@ -9,6 +11,7 @@ export const configJson = isDev()
       audience: "apiserver",
       redirectUri: "http://localhost:3006/profile",
       useRefreshTokens: true,
+      cacheLocation: cacheLocation,
     }
   : {
       domain: "vm001.us.auth0.com",
@@ -16,6 +19,7 @@ export const configJson = isDev()
       audience: "apiserver",
       redirectUri: "https://beta.venturemark.co/profile",
       useRefreshTokens: true,
+      cacheLocation: cacheLocation,
     };
 
 export function getConfig() {
@@ -36,6 +40,7 @@ export function getConfig() {
     ...(audience ? { audience } : null),
     redirectUri: configJson.redirectUri,
     useRefreshTokens: configJson.useRefreshTokens,
+    cacheLocation: configJson.cacheLocation,
   };
 }
 
