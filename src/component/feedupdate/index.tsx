@@ -28,6 +28,7 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   currentVenture: IVenture;
   user: IUser;
   setIsVisible: any;
+  isVisible: any;
   setPost: any;
 }
 
@@ -38,6 +39,7 @@ function FeedUpdate(props: FeedUpdateProps) {
     setIsVisible,
     setPost,
     currentVenture,
+    isVisible,
     user,
     ...rest
   } = props;
@@ -127,6 +129,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             timelineId={update.timelineId}
             date={update.date ?? ""}
             setIsVisible={setIsVisible}
+            isVisible={isVisible}
             setPost={() =>
               setPost({
                 ...update,

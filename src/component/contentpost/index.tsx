@@ -25,6 +25,7 @@ interface ContentPostProps extends DefaultContentPostProps {
   timelineId: string;
   date: string;
   setIsVisible: any;
+  isVisible: any;
   setPost: any;
   userId: string;
   userName?: string;
@@ -48,6 +49,7 @@ function ContentPost(props: ContentPostProps) {
     allUpdates,
     userId,
     userName,
+    isVisible,
     user,
     ...rest
   } = props;
@@ -150,8 +152,12 @@ function ContentPost(props: ContentPostProps) {
       viewReplies={{
         count: count,
         onPress: () => {
-          setIsVisible("postDetails");
-          setPost();
+          if (isVisible === "postDetails") {
+            setIsVisible(undefined);
+          } else {
+            setIsVisible("postDetails");
+            setPost();
+          }
         },
       }}
       timelineNamesContainer={{

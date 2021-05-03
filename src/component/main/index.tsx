@@ -16,6 +16,7 @@ interface MainProps extends DefaultMainProps {
   isActive: any;
   variantType: any;
   setIsVisible: any;
+  isVisible: any;
   setPost: any;
   viewJoinVenture?: any;
   ventureId?: string;
@@ -31,6 +32,7 @@ function Main(props: MainProps) {
     setPost,
     viewJoinVenture,
     ventureId,
+    isVisible,
     user,
     ...rest
   } = props;
@@ -81,6 +83,7 @@ function Main(props: MainProps) {
         currentTimeline,
         currentVenture,
         setPost,
+        isVisible,
         user,
       }}
       addEditMembers={{
