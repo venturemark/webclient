@@ -151,6 +151,7 @@ function ContentPost(props: ContentPostProps) {
       }}
       viewReplies={{
         count: count,
+        text2: count === 1 ? "reply" : "replies",
         onPress: () => {
           if (isVisible === "postDetails") {
             setIsVisible(undefined);
