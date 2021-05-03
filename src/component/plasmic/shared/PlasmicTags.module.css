@@ -93,7 +93,10 @@
   text-transform: none;
   letter-spacing: 0px;
 }
-.slotText2 > * {
+.slotText2 > *,
+.slotText2 > .__wab_slot > *,
+.slotText2 > .__wab_slot > .__wab_slot > *,
+.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > * {
   text-decoration-line: none;
 }
 .slotText2__buttonStyle_secondaryPurple {
@@ -120,6 +123,16 @@
 .slotChildren__buttonFeatures_icon_buttonStyle_secondaryGreen {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.root:focus-within .slotChildren > * {
+.root:focus-within .slotChildren > *,
+.root:focus-within .slotChildren > .__wab_slot > *,
+.root:focus-within .slotChildren > .__wab_slot > .__wab_slot > *,
+.root:focus-within .slotChildren > .__wab_slot > .__wab_slot > .__wab_slot > * {
   outline: none;
+}
+.svg__vEG {
+  position: relative;
+  object-fit: cover;
+  width: 12px;
+  height: 10px;
+  flex-shrink: 0;
 }

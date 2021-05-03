@@ -22,6 +22,18 @@
 .actionBar:global(.__wab_instance) {
   position: relative;
 }
+.svg__s9Ejf {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
+.svg___1751V {
+  position: relative;
+  object-fit: cover;
+  width: 12px;
+  height: 10px;
+}
 .feedContainer {
   display: flex;
   position: relative;
@@ -44,6 +56,14 @@
 .feedContainer > :global(.__wab_flex-container) > *,
 .feedContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 10px /* plasmic-token: 4LaooeLwj */;
+}
+.span__cMnx {
+  position: relative;
+  width: auto;
+  height: auto;
+  left: auto;
+  top: auto;
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
 }
 .date {
   position: relative;

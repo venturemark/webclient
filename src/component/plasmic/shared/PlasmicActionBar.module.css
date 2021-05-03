@@ -500,6 +500,13 @@
 .box__kBcf > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
 }
+.svg__niToo {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+  flex-shrink: 0;
+}
 .slotText2 {
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
   font-weight: 400;
@@ -508,9 +515,19 @@
   text-transform: none;
   letter-spacing: 0px;
 }
-.slotText2 > * {
+.slotText2 > *,
+.slotText2 > .__wab_slot > *,
+.slotText2 > .__wab_slot > .__wab_slot > *,
+.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > * {
   text-decoration-line: none;
 }
 .slotChildren {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.svg__kMNxX {
+  position: relative;
+  object-fit: cover;
+  width: 12px;
+  height: 10px;
+  flex-shrink: 0;
 }

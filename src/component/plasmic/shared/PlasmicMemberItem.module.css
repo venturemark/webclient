@@ -52,6 +52,12 @@
 .tags:global(.__wab_instance) {
   position: relative;
 }
+.svg__nb0Dj {
+  position: relative;
+  object-fit: cover;
+  width: 12px;
+  height: 10px;
+}
 .svg {
   position: relative;
   object-fit: cover;
