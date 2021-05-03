@@ -137,8 +137,10 @@
   margin-left: 0px;
 }
 .root:focus-within .box__ptnBs {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
   outline: none;
-  margin: 5px 10px;
 }
 .root__isActive:focus-within .box__isActive__ptnBsvjQpn {
   outline: none;
