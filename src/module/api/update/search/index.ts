@@ -59,7 +59,7 @@ export async function Search(searchUpdate: ISearchUpdate) {
             subjectId: subjectId,
             id: updateId,
             text: text,
-            title: head ?? defaultDate,
+            title: head || defaultDate,
             date: date,
           };
           return update;
