@@ -119,7 +119,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         handleDelete: () =>
           navigate(`/${handle}/delete?ventureId=${ventureId}`),
         handleCancel: () => {
-          hasVentures ? navigate("begin") : navigate(-1);
+          hasVentures ? navigate(-1) : navigate("begin");
         },
         handleSave: () => handleSubmit(handleCreate)(),
       }}
