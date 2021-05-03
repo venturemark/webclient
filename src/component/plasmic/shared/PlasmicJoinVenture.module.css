@@ -209,8 +209,20 @@
 .viewCreateVenture:global(.__wab_instance) {
   position: relative;
 }
+.svg__s6MQ5 {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
 .text2 {
   height: auto;
   width: auto;
   display: inline-block;
+}
+.svg__mgWdW {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
 }

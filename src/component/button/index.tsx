@@ -6,6 +6,7 @@ import { PlumeButtonProps, PlumeButtonRef, useButton } from "@plasmicapp/plume";
 
 interface ButtonProps extends PlumeButtonProps {
   // onPress?: (e: MouseEvent) => void;
+  text2: string;
 }
 
 function Button_(props: ButtonProps, ref: PlumeButtonRef) {

@@ -28,6 +28,18 @@
 .modal:global(.__wab_instance) {
   position: relative;
 }
+.box___2S56J {
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.box__hsgFg {
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
 .header:global(.__wab_instance) {
   position: absolute;
   left: 0px;
@@ -47,6 +59,7 @@
   overflow: hidden;
   padding-top: 55px;
   min-width: 0;
+  flex-shrink: 0;
   margin: 0px;
   background: rgb(249, 249, 250);
 }

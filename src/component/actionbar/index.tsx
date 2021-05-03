@@ -53,7 +53,7 @@ function ActionBar(props: ActionBarProps) {
 
     selectedTimelines.forEach((timelineId) => {
       const newUpdate: ICreateUpdate = {
-        title: data.title ?? "",
+        title: data.title,
         text: data.description ?? "",
         ventureId,
         timelineId: timelineId.id,
@@ -143,7 +143,13 @@ function ActionBar(props: ActionBarProps) {
       }}
       post={{
         isDisabled: !hasTimelines,
-        onPress: () => handleSubmit(handlePost)(),
+        onPress: () => {
+          if (!isActive) {
+            setIsActive(true);
+          } else {
+            handleSubmit(handlePost)();
+          }
+        },
       }}
       error={undefined}
       text={undefined}

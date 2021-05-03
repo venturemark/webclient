@@ -7,7 +7,7 @@ import { APIClient } from "module/api/update/proto/ApiServiceClientPb";
 import * as env from "module/env";
 import * as key from "module/apikeys";
 import fromUnixTime from "date-fns/fromUnixTime";
-import { formatDistanceToNowStrict } from "date-fns";
+import { formatDistanceToNowStrict, format } from "date-fns";
 import { ISearchUpdate, IUpdate } from "module/interface/update";
 
 export async function Search(searchUpdate: ISearchUpdate) {
@@ -50,6 +50,7 @@ export async function Search(searchUpdate: ISearchUpdate) {
           const subjectId = metaPb.get(key.SubjectID);
           const rawDate = fromUnixTime(updateId / 1000000000);
           const date = formatDistanceToNowStrict(rawDate) + " ago";
+          const defaultDate = format(rawDate, "MM/dd/yyyy");
 
           const update: IUpdate = {
             ventureId: ventureId,
@@ -58,7 +59,7 @@ export async function Search(searchUpdate: ISearchUpdate) {
             subjectId: subjectId,
             id: updateId,
             text: text,
-            title: head,
+            title: head || defaultDate,
             date: date,
           };
           return update;

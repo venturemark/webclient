@@ -155,6 +155,13 @@
 .slotSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryGreen {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
+.svg__vdEop {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+  flex-shrink: 0;
+}
 .slotCount {
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 500;
@@ -163,7 +170,10 @@
   text-transform: none;
   letter-spacing: 0px;
 }
-.slotCount > * {
+.slotCount > *,
+.slotCount > .__wab_slot > *,
+.slotCount > .__wab_slot > .__wab_slot > *,
+.slotCount > .__wab_slot > .__wab_slot > .__wab_slot > * {
   text-decoration-line: none;
 }
 .slotCount__buttonStyle_secondaryPurple {
@@ -189,7 +199,10 @@
   text-transform: none;
   letter-spacing: 0px;
 }
-.slotText2 > * {
+.slotText2 > *,
+.slotText2 > .__wab_slot > *,
+.slotText2 > .__wab_slot > .__wab_slot > *,
+.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > * {
   text-decoration-line: none;
 }
 @media (max-width: 767px) {
@@ -226,4 +239,11 @@
 }
 .slotChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryPurple {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.svg___85Aov {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+  flex-shrink: 0;
 }

@@ -92,8 +92,17 @@
   text-transform: none;
   letter-spacing: 0px;
 }
-.slotOrganizationDescription > * {
+.slotOrganizationDescription > *,
+.slotOrganizationDescription > .__wab_slot > *,
+.slotOrganizationDescription > .__wab_slot > .__wab_slot > *,
+.slotOrganizationDescription > .__wab_slot > .__wab_slot > .__wab_slot > * {
   text-decoration-line: none;
+}
+.box__yHkt8 {
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 .box__hxFmc {
   display: flex;
@@ -237,8 +246,17 @@
   text-transform: none;
   letter-spacing: 0px;
 }
-.slotOrganizationDescription2 > * {
+.slotOrganizationDescription2 > *,
+.slotOrganizationDescription2 > .__wab_slot > *,
+.slotOrganizationDescription2 > .__wab_slot > .__wab_slot > *,
+.slotOrganizationDescription2 > .__wab_slot > .__wab_slot > .__wab_slot > * {
   text-decoration-line: none;
+}
+.box__o2J7M {
+  font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 .box__fFh {
   display: flex;

@@ -85,6 +85,12 @@
 .root:focus-within .text {
   outline: none;
 }
+.svg___7KKO {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
 .svg {
   position: relative;
   object-fit: cover;

@@ -27,6 +27,7 @@
   overflow: auto;
   padding-top: 75px;
   min-width: 0;
+  flex-shrink: 0;
   margin: 0px;
   background: rgb(249, 249, 250);
 }

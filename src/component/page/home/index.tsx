@@ -52,6 +52,7 @@ export function Home(props: HomeProps) {
           variantType,
           isActive,
           setIsVisible,
+          isVisible,
           setPost,
           user,
         }}

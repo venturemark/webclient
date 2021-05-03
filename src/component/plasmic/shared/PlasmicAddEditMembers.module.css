@@ -98,6 +98,18 @@
   height: 40px;
   margin-bottom: 28px;
 }
+.svg__bXwI0 {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
+.svg___7Yi1O {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
 .link {
   display: inline-flex;
   position: relative;
@@ -120,6 +132,7 @@
   object-fit: cover;
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
   width: 1em;
+  flex-shrink: 0;
   height: 1em;
 }
 .span {

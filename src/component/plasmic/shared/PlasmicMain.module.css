@@ -245,11 +245,23 @@
 .viewCreateVenture:global(.__wab_instance) {
   position: relative;
 }
+.svg__lkvLf {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
 .text2 {
   height: auto;
 }
 .text2__variantType_isEmpty {
   height: auto;
+}
+.svg__kfKox {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
 }
 .box___46HUm {
   display: flex;
@@ -327,6 +339,12 @@
 .viewJoinVenture:global(.__wab_instance) {
   position: relative;
 }
+.svg__zvGsD {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
 .text22 {
   height: auto;
   width: auto;
@@ -334,4 +352,10 @@
 }
 .text22__variantType_isEmpty {
   height: auto;
+}
+.svg___933Zp {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
 }
