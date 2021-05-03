@@ -391,6 +391,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   "itemType",
                   "createTimeline"
                 ),
+                [sty.iconButton__itemType_timeline]: hasVariant(
+                  variants,
+                  "itemType",
+                  "timeline"
+                ),
               })}
               greenBgHover={
                 hasVariant(variants, "isActive", "isActive") &&

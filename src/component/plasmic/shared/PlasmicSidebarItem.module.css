@@ -120,8 +120,16 @@
 .box__zwdJs > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 10px;
 }
+.box__itemType_timeline__zwdJSoN3Wv {
+  width: 30px;
+  flex-shrink: 0;
+}
 .box__itemType_createTimeline__zwdJsOuGst {
   opacity: 0;
+}
+.root__itemType_timeline:hover .box__itemType_timeline__zwdJSoN3Wv {
+  width: 132px;
+  flex-shrink: 0;
 }
 .root__itemType_createTimeline:hover .box__itemType_createTimeline__zwdJsOuGst {
   opacity: 1;
@@ -144,7 +152,7 @@
   font-weight: 400;
 }
 .box__j6CkC {
-  width: 151px;
+  width: 132px;
   height: auto;
   flex-shrink: 0;
 }
