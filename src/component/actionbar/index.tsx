@@ -53,7 +53,7 @@ function ActionBar(props: ActionBarProps) {
 
     selectedTimelines.forEach((timelineId) => {
       const newUpdate: ICreateUpdate = {
-        title: data.title ?? "",
+        title: data.title,
         text: data.description ?? "",
         ventureId,
         timelineId: timelineId.id,
