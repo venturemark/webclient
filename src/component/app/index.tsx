@@ -98,14 +98,6 @@ function AuthenticatedRoute() {
 
   if (error) return <Navigate to={`signin`} />;
 
-  console.log(
-    "auth blues: isLoading, error, isAuthenticated, token",
-    isLoading,
-    error,
-    isAuthenticated,
-    token
-  );
-
   if (!isLoading && !isAuthenticated) return <Navigate to={`signin`} />;
 
   const user = userData ? userData[0] : undefined;

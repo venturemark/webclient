@@ -36,30 +36,12 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     },
     register
   );
-  // console.log("plume", plumeProps, name, message);
   return (
     <PlasmicInputText
       {...plumeProps}
       errorMessage={{
         message: message,
       }}
-      // children={children}
-      // error={message ? "error" : undefined}
-      // args={{
-      //   label: plumeProps.args.label,
-      //   children: plumeProps.args.children,
-      // }}
-      // overrides={{
-      //   input: {
-      //     ref: register,
-      //     name: name,
-      //     defaultValue: defaultValue,
-      //     "aria-label": props["aria-label"],
-      //   },
-      //   errorMessage: {
-      //     message: message,
-      //   },
-      // }}
       variants={{
         error: message ? "error" : undefined,
         hasLabel: plumeProps.variants.hasLabel,
