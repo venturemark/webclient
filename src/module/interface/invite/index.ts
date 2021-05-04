@@ -1,5 +1,7 @@
 export interface IInvite {
   id: string;
+  resource: string;
+  role: string;
   code?: string;
   email?: string;
   status?: string;
@@ -21,6 +23,8 @@ export interface ICreateInvite {
   email: string;
   fromName: string;
   fromVentureName: string;
+  resource: string;
+  role: string;
   token: string;
 }
 
@@ -33,6 +37,8 @@ export interface IDeleteInvite {
 export interface IUpdateInvite {
   code: string;
   status: string;
+  resource: string;
+  role: string;
   id: string;
   ventureId: string;
   successUrl?: string;
