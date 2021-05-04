@@ -20,11 +20,15 @@ function JoinVenture(props: JoinVentureProps) {
     const ventureId = localStorage.getItem("ventureId");
     const code = localStorage.getItem("code");
     const id = localStorage.getItem("id");
+    const resource = localStorage.getItem("resource");
+    const role = localStorage.getItem("role");
 
     const inviteUpdate: IUpdateInvite = {
       id: id ?? "",
       ventureId: ventureId ?? "",
       code: code ?? "",
+      resource: resource ?? "",
+      role: role ?? "",
       successUrl: "/",
       status: "accepted",
       token,

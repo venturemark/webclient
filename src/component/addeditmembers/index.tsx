@@ -123,6 +123,8 @@ function AddEditMembers(props: AddEditMembersProps) {
     const invite: ICreateInvite = {
       ventureId: currentVenture?.id ?? "",
       fromName: user?.name ?? "",
+      resource: !currentTimeline ? "venture" : "timeline",
+      role: "member",
       fromVentureName: currentVenture?.name ?? "",
       email,
       token,

@@ -24,6 +24,8 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
 
   obj.setProperty(objProperty);
   obj.getMetadataMap().set(key.VentureID, newInvite.ventureId);
+  obj.getMetadataMap().set(key.RoleKind, newInvite.role);
+  obj.getMetadataMap().set(key.ResourceKind, newInvite.resource);
 
   objList.push(obj);
   req.setObjList(objList);
@@ -40,11 +42,15 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
         const metaPb = invitePbObject?.getMetadataMap();
         const id = metaPb.get(key.InviteID);
         const code = metaPb.get(key.InviteCode);
+        const resource = metaPb.get(key.ResourceKind);
+        const role = metaPb.get(key.RoleKind);
 
         const invite: IInvite = {
           id,
           code,
           email: newInvite.email,
+          resource,
+          role,
           ventureId: newInvite.ventureId,
         };
         resolve(invite);

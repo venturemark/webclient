@@ -26,6 +26,8 @@ export async function Update(updateInvite: IUpdateInvite): Promise<any> {
   obj.getMetadataMap().set(key.InviteID, updateInvite.id);
   obj.getMetadataMap().set(key.VentureID, updateInvite.ventureId);
   obj.getMetadataMap().set(key.InviteCode, updateInvite.code);
+  obj.getMetadataMap().set(key.RoleKind, updateInvite.role);
+  obj.getMetadataMap().set(key.ResourceKind, updateInvite.resource);
 
   if (updateInvite.status) {
     nameObjJsnPatch.setOpe("replace");

@@ -41,6 +41,8 @@ export function sendInvite(inviteData: any, invite: ICreateInvite) {
     ventureName: invite.fromVentureName,
     code: inviteData.code,
     id: inviteData.id,
+    resource: invite.resource,
+    role: invite.role,
   });
 
   const templateParams: IEmailInvite = {

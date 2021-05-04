@@ -18,11 +18,15 @@ function Signin(props: SigninProps) {
   const code = query.get("code") ?? "";
   const id = query.get("id") ?? "";
   const ventureName = query.get("ventureName") ?? "";
+  const resource = query.get("resource") ?? "";
+  const role = query.get("role") ?? "";
 
   localStorage.setItem("ventureId", ventureId);
   localStorage.setItem("code", code);
   localStorage.setItem("id", id);
   localStorage.setItem("ventureName", ventureName);
+  localStorage.setItem("resource", resource);
+  localStorage.setItem("role", role);
 
   return (
     <PlasmicSignin
