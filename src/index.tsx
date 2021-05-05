@@ -6,7 +6,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { createBrowserHistory } from "history";
-import GA4React, { useGA4React } from "ga-4-react";
+import GA4React from "ga-4-react";
 import { getConfig } from "module/auth";
 
 import * as app from "component/app";
