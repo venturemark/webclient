@@ -110,7 +110,7 @@ function AuthenticatedRoute() {
   return (
     <UserContext.Provider value={userContext}>
       <Routes>
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile userLoading={userLoading} />} />
         <Route
           path="*"
           element={
@@ -139,7 +139,7 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
 
   if (userLoading) return <span>Loading user...</span>;
 
-  if (userError) return <Navigate to={"../profile"} />;
+  if (userError) return <Navigate to={"../signin"} />;
 
   if (userSuccess && !user) {
     return <Navigate to={"../profile"} />;
