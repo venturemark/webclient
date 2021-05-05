@@ -148,7 +148,7 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
   return (
     <Routes>
       <Route path="joinventure" element={<JoinVenture />} />
-      <Route path="begin" element={<Begin />} />
+      <Route path="begin" element={<Begin user={user} />} />
       <Route path="editprofile" element={<EditProfile />} />
       <Route path="newventure" element={<NewVenture />} />
       <Route path="/" element={<VentureRoutes user={user} />} />
@@ -157,9 +157,29 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
   );
 }
 
-function Begin() {
+interface BeginProps {
+  user: IUser;
+}
+
+function Begin(props: BeginProps) {
+  const { user } = props;
+  const token = useGetToken();
+  const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
+    userId: user?.id,
+    token,
+  };
+  const { data: timelinesData, isLoading } = useTimelinesByUserId(
+    timelineByUserIdSearch
+  );
+
   const variantType = "isEmpty";
   const isActive = "feed";
+  if (isLoading) {
+    return <span>loading data...</span>;
+  }
+  if (timelinesData) {
+    return <Navigate replace to={`../`} />;
+  }
   return <Home variantType={variantType} isActive={isActive} />;
 }
 
@@ -215,8 +235,6 @@ function VentureRoutes(props: VentureRoutesProps) {
     data: ventureByUserData,
     isSuccess: ventureUserSuccess,
   } = useVenturesByUser(ventureUserSearch);
-
-  console.log("venture by user id:", ventureByUserData);
 
   const allVentures =
     ventureUserSuccess && ventureSuccess

@@ -110,6 +110,8 @@ function FeedUpdate(props: FeedUpdateProps) {
 
   const { data: ventureUsersData } = useVentureMembers(userVentureSearch);
 
+  console.log("venture users data", ventureUsersData);
+
   return (
     <PlasmicFeedUpdate
       {...rest}

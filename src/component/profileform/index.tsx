@@ -40,7 +40,6 @@ function ProfileForm(props: ProfileFormProps) {
   const link = hasInvite ? "../joinventure" : "/begin";
 
   const handleSave = (data: any) => {
-    console.log(data);
     if (!data.name) {
       return;
     }
