@@ -32,7 +32,6 @@ import {
 } from "module/interface/role";
 import { getUniqueListBy } from "module/helpers";
 import TagManager from "react-gtm-module";
-import GA4React, { useGA4React } from "ga-4-react";
 
 interface IUserContext {
   user: IUser;
@@ -58,14 +57,7 @@ export const TimelineContext = createContext<ITimelineContext | undefined>(
   undefined
 );
 
-//google analytics
-const ga4react = new GA4React("G-H891NY4GM6");
-
 export function Component() {
-  const ga = useGA4React();
-
-  ga && ga4react.initialize();
-
   return (
     <BrowserRouter>
       <Routes>
