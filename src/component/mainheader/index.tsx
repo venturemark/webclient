@@ -36,11 +36,14 @@ function MainHeader(props: MainHeaderProps) {
 
   const link = timelineSlug ? `/${handle}/${timelineSlug}` : `/${handle}`;
 
+  console.log(ventureSlug);
+  console.log(variantType);
+
   return (
     <PlasmicMainHeader
       {...rest}
       headerStyles={
-        variantType === "isVenture" && !ventureSlug
+        (variantType === "isVenture" && !ventureSlug) || !ventureSlug
           ? "createNewVenture"
           : !timelineSlug
           ? "ventureHeader"
