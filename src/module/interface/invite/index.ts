@@ -5,6 +5,7 @@ export interface IInvite {
   code?: string;
   email?: string;
   status?: string;
+  timelineId?: string;
   ventureId: string;
 }
 
@@ -20,6 +21,7 @@ export interface ISearchAllInvite {
 
 export interface ICreateInvite {
   ventureId: string;
+  timelineId?: string;
   email: string;
   fromName: string;
   fromVentureName: string;
@@ -41,6 +43,7 @@ export interface IUpdateInvite {
   role: string;
   id: string;
   ventureId: string;
+  timelineId?: string;
   successUrl?: string;
   token: string;
 }

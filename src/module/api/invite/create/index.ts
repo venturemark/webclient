@@ -24,6 +24,8 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
 
   obj.setProperty(objProperty);
   obj.getMetadataMap().set(key.VentureID, newInvite.ventureId);
+  newInvite.timelineId &&
+    obj.getMetadataMap().set(key.TimelineID, newInvite.timelineId);
   obj.getMetadataMap().set(key.RoleKind, newInvite.role);
   obj.getMetadataMap().set(key.ResourceKind, newInvite.resource);
 
@@ -50,6 +52,7 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
           email: newInvite.email,
           resource: newInvite.resource,
           role: newInvite.role,
+          timelineId: newInvite.timelineId,
           ventureId: newInvite.ventureId,
         };
         console.log("invite created:", invite);

@@ -38,6 +38,7 @@ export function getLastItem(thePath: string) {
 export function sendInvite(inviteData: any, invite: ICreateInvite) {
   const params = new URLSearchParams({
     ventureId: invite.ventureId,
+    timelineId: invite.timelineId ?? "",
     ventureName: invite.fromVentureName,
     code: inviteData.code,
     id: inviteData.id,

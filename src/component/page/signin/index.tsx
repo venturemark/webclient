@@ -15,6 +15,7 @@ function Signin(props: SigninProps) {
   const query = useQuery();
 
   const ventureId = query.get("ventureId") ?? "";
+  const timelineId = query.get("timelineId") ?? "";
   const code = query.get("code") ?? "";
   const id = query.get("id") ?? "";
   const ventureName = query.get("ventureName") ?? "";
@@ -22,6 +23,7 @@ function Signin(props: SigninProps) {
   const role = query.get("role") ?? "";
 
   localStorage.setItem("ventureId", ventureId);
+  localStorage.setItem("timelineId", timelineId);
   localStorage.setItem("code", code);
   localStorage.setItem("id", id);
   localStorage.setItem("ventureName", ventureName);
