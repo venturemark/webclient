@@ -216,6 +216,8 @@ function VentureRoutes(props: VentureRoutesProps) {
     isSuccess: ventureUserSuccess,
   } = useVenturesByUser(ventureUserSearch);
 
+  console.log("venture by user id:", ventureByUserData);
+
   const allVentures =
     ventureUserSuccess && ventureSuccess
       ? getUniqueListBy([...ventureByTimelineData, ...ventureByUserData], "id")

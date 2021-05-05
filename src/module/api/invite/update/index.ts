@@ -60,6 +60,8 @@ export async function Update(updateInvite: IUpdateInvite): Promise<any> {
             status,
           };
 
+          console.log("invite status", inviteStatus);
+
           resolve(inviteStatus);
         }
       });
