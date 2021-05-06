@@ -11,12 +11,17 @@ import { IDeleteUpdate, IUpdate } from "module/interface/update";
 import { ISearchMessage } from "module/interface/message";
 import { useMessages } from "module/hook/message";
 import { useGetToken } from "module/auth";
-import { ISearchVentureMembers, IUser } from "module/interface/user";
+import {
+  ISearchTimelineMembers,
+  ISearchVentureMembers,
+  IUser,
+} from "module/interface/user";
 import { useContext } from "react";
 import { TimelineContext, UserContext } from "component/app";
-import { useVentureMembers } from "module/hook/user";
+import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { useState } from "react";
 import { useDeleteUpdate } from "module/hook/update";
+import { getUniqueListBy } from "module/helpers";
 
 interface ContentPostProps extends DefaultContentPostProps {
   title: string;
@@ -87,31 +92,37 @@ function ContentPost(props: ContentPostProps) {
     })
     .flat();
 
-  // currently no timeline roles so searching by venture
-  // const userTimelineSearch: ISearchTimelineMembers = {
-  //   resource: "timeline",
-  //   timelineId,
-  //   ventureId,
-  //   token,
-  // };
-
-  // const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
+  const userTimelineSearch: ISearchTimelineMembers = {
+    resource: "timeline",
+    timelineId: timelineId ?? undefined,
+    ventureId: ventureId ?? undefined,
+    token,
+  };
+  const {
+    data: timelineUsersData,
+    isSuccess: timelineUsersSuccess,
+  } = useTimelineMembers(userTimelineSearch);
 
   const userVentureSearch: ISearchVentureMembers = {
     resource: "venture",
-    ventureId,
+    ventureId: ventureId ?? undefined,
     token,
   };
+  const {
+    data: ventureUsersData,
+    isSuccess: ventureUsersSuccess,
+  } = useVentureMembers(userVentureSearch);
 
-  const { data: ventureUsersData } = useVentureMembers(userVentureSearch);
+  const allMembers =
+    timelineUsersSuccess && ventureUsersSuccess
+      ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
+      : timelineUsersData;
 
   const { mutate: deleteUpdate } = useDeleteUpdate();
 
-  const userData = ventureUsersData?.filter(
-    (user: IUser) => user.id === userId
-  )[0];
+  const userData = allMembers?.filter((user: IUser) => user.id === userId)[0];
 
-  const userNameData = ventureUsersData?.filter(
+  const userNameData = allMembers?.filter(
     (user: IUser) => user.id === userId
   )[0]?.name;
 

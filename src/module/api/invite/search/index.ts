@@ -44,11 +44,15 @@ export async function Search(searchInvite: ISearchInvite): Promise<IInvite[]> {
             const ventureId = metaPb.get(key.VentureID);
             const email = propertiesPb?.getMail();
             const status = propertiesPb?.getStat();
+            const resource = metaPb.get(key.ResourceKind);
+            const role = metaPb.get(key.RoleKind);
 
             const invite: IInvite = {
               id: id,
               ventureId,
               email,
+              resource,
+              role,
               status,
             };
             return invite;

@@ -15,12 +15,17 @@ import {
   useUpdatesByTimeline,
   useUpdatesByTimelineIds,
 } from "module/hook/update";
-import { useVentureMembers } from "module/hook/user";
+import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { IUpdate } from "module/interface/update";
 import { IVenture } from "module/interface/venture";
-import { ISearchVentureMembers, IUser } from "module/interface/user";
+import {
+  ISearchTimelineMembers,
+  ISearchVentureMembers,
+  IUser,
+} from "module/interface/user";
 import { useGetToken } from "module/auth";
 import { useParams } from "react-router-dom";
+import { getUniqueListBy } from "module/helpers";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
   currentTimeline: ITimeline;
@@ -92,23 +97,33 @@ function FeedUpdate(props: FeedUpdateProps) {
     updates = timelineSlug ? timelineUpdates ?? [] : homeUpdates ?? [];
   }
 
-  // currently no timeline roles so searching by venture
-  // const userTimelineSearch: ISearchTimelineMembers = {
-  //   resource: "timeline",
-  //   timelineId,
-  //   ventureId,
-  //   token,
-  // };
-
-  // const { data: timelineUsersData } = useTimelineMembers(userTimelineSearch);
+  const userTimelineSearch: ISearchTimelineMembers = {
+    resource: "timeline",
+    timelineId: timelineId ?? undefined,
+    ventureId: ventureId ?? undefined,
+    token,
+  };
+  const {
+    data: timelineUsersData,
+    isSuccess: timelineUsersSuccess,
+  } = useTimelineMembers(userTimelineSearch);
 
   const userVentureSearch: ISearchVentureMembers = {
     resource: "venture",
-    ventureId,
+    ventureId: ventureId ?? undefined,
     token,
   };
+  const {
+    data: ventureUsersData,
+    isSuccess: ventureUsersSuccess,
+  } = useVentureMembers(userVentureSearch);
 
-  const { data: ventureUsersData } = useVentureMembers(userVentureSearch);
+  const allMembers =
+    timelineUsersSuccess && ventureUsersSuccess
+      ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
+      : timelineUsersData;
+
+  console.log("venture users data", ventureUsersData);
 
   return (
     <PlasmicFeedUpdate
@@ -133,7 +148,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             setPost={() =>
               setPost({
                 ...update,
-                users: ventureUsersData ?? [],
+                users: allMembers ?? [],
               })
             }
             ventureId={update.ventureId}

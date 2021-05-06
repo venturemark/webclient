@@ -25,7 +25,13 @@ export async function Update(updateInvite: IUpdateInvite): Promise<any> {
 
   obj.getMetadataMap().set(key.InviteID, updateInvite.id);
   obj.getMetadataMap().set(key.VentureID, updateInvite.ventureId);
+  updateInvite.timelineId &&
+    obj.getMetadataMap().set(key.TimelineID, updateInvite.timelineId);
   obj.getMetadataMap().set(key.InviteCode, updateInvite.code);
+  obj.getMetadataMap().set(key.RoleKind, updateInvite.role);
+  obj.getMetadataMap().set(key.ResourceKind, updateInvite.resource);
+
+  console.log(updateInvite);
 
   if (updateInvite.status) {
     nameObjJsnPatch.setOpe("replace");
@@ -57,6 +63,8 @@ export async function Update(updateInvite: IUpdateInvite): Promise<any> {
             role,
             status,
           };
+
+          console.log("invite status", inviteStatus);
 
           resolve(inviteStatus);
         }

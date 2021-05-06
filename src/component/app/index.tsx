@@ -98,14 +98,6 @@ function AuthenticatedRoute() {
 
   if (error) return <Navigate to={`signin`} />;
 
-  console.log(
-    "auth blues: isLoading, error, isAuthenticated, token",
-    isLoading,
-    error,
-    isAuthenticated,
-    token
-  );
-
   if (!isLoading && !isAuthenticated) return <Navigate to={`signin`} />;
 
   const user = userData ? userData[0] : undefined;
@@ -118,7 +110,7 @@ function AuthenticatedRoute() {
   return (
     <UserContext.Provider value={userContext}>
       <Routes>
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile userLoading={userLoading} />} />
         <Route
           path="*"
           element={
@@ -147,7 +139,7 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
 
   if (userLoading) return <span>Loading user...</span>;
 
-  if (userError) return <Navigate to={"../profile"} />;
+  if (userError) return <Navigate to={"../signin"} />;
 
   if (userSuccess && !user) {
     return <Navigate to={"../profile"} />;
@@ -156,7 +148,7 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
   return (
     <Routes>
       <Route path="joinventure" element={<JoinVenture />} />
-      <Route path="begin" element={<Begin />} />
+      <Route path="begin" element={<Begin user={user} />} />
       <Route path="editprofile" element={<EditProfile />} />
       <Route path="newventure" element={<NewVenture />} />
       <Route path="/" element={<VentureRoutes user={user} />} />
@@ -165,9 +157,29 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
   );
 }
 
-function Begin() {
+interface BeginProps {
+  user: IUser;
+}
+
+function Begin(props: BeginProps) {
+  const { user } = props;
+  const token = useGetToken();
+  const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
+    userId: user?.id,
+    token,
+  };
+  const { data: timelinesData, isLoading } = useTimelinesByUserId(
+    timelineByUserIdSearch
+  );
+
   const variantType = "isEmpty";
   const isActive = "feed";
+  if (isLoading) {
+    return <span>loading data...</span>;
+  }
+  if (timelinesData) {
+    return <Navigate replace to={`../`} />;
+  }
   return <Home variantType={variantType} isActive={isActive} />;
 }
 
