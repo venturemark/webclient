@@ -40,7 +40,6 @@ function ProfileForm(props: ProfileFormProps) {
   const link = hasInvite ? "../joinventure" : "/begin";
 
   const handleSave = (data: any) => {
-    console.log(data);
     if (!data.name) {
       return;
     }
@@ -63,12 +62,6 @@ function ProfileForm(props: ProfileFormProps) {
       form={{
         onSubmit: handleSubmit(handleSave),
       }}
-      // nameField={{
-      //   name: "name",
-      //   defaultValue: authUser?.name,
-      //   register: register("name", { required: true }),
-      //   message: errors.name && nameError,
-      // }}
       nameField={{
         wrap: (node) => (
           <Controller
@@ -83,12 +76,6 @@ function ProfileForm(props: ProfileFormProps) {
           />
         ),
       }}
-      // jobField={{
-      //   name: "title",
-      //   defaultValue: "",
-      //   register: register("title", { required: true }),
-      //   message: errors.title && roleError,
-      // }}
       jobField={{
         wrap: (node) => (
           <Controller

@@ -8,10 +8,12 @@ import {
 
 type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 
-interface ProfileProps extends DefaultProfileProps {}
+interface ProfileProps extends DefaultProfileProps {
+  userLoading: boolean;
+}
 
 function Profile(props: ProfileProps) {
-  const { ...rest } = props;
+  const { userLoading, ...rest } = props;
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
 
   const hasInvite =
@@ -20,6 +22,8 @@ function Profile(props: ProfileProps) {
     localStorage.getItem("id")
       ? true
       : false;
+
+  if (userLoading) return <span>Loading User</span>;
 
   return (
     <PlasmicProfile

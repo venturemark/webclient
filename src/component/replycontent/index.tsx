@@ -68,7 +68,7 @@ function ReplyContent(props: ReplyContentProps) {
   const allMembers =
     timelineUsersSuccess && ventureUsersSuccess
       ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
-      : ventureUsersData;
+      : timelineUsersData;
 
   const isOwner = userId === userContext?.user.id ? "isUser" : undefined;
 
