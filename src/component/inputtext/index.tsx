@@ -36,6 +36,15 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     },
     register
   );
+  if (
+    typeof plumeProps.overrides.input === "object" &&
+    plumeProps.overrides.input !== null &&
+    "defaultValue" in plumeProps.overrides.input &&
+    plumeProps.overrides.input.defaultValue === undefined
+  ) {
+    delete plumeProps.overrides.input.defaultValue;
+  }
+
   return (
     <PlasmicInputText
       {...plumeProps}
