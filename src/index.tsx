@@ -6,12 +6,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { createBrowserHistory } from "history";
+import GA4React from "ga-4-react";
 import { getConfig } from "module/auth";
 
 import * as app from "component/app";
 import reportWebVitals from "reportWebVitals";
 import TagManager from "react-gtm-module";
 import WebFont from "webfontloader";
+
+const ga4react = new GA4React("G-H891NY4GM6");
 
 WebFont.load({
   google: {
@@ -51,31 +54,39 @@ TagManager.initialize(tagManagerArgs);
 
 const rootElement = document.getElementById("root");
 
-if (rootElement?.hasChildNodes()) {
-  ReactDOM.hydrate(
-    <React.StrictMode>
-      <Auth0Provider {...providerConfig}>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <app.Component />
-        </QueryClientProvider>
-      </Auth0Provider>
-    </React.StrictMode>,
-    rootElement
-  );
-} else {
-  ReactDOM.render(
-    <React.StrictMode>
-      <Auth0Provider {...providerConfig}>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <app.Component />
-        </QueryClientProvider>
-      </Auth0Provider>
-    </React.StrictMode>,
-    rootElement
-  );
-}
+(async () => {
+  try {
+    await ga4react.initialize();
+  } catch (e) {
+    console.log("something went wrong with GA4");
+  }
+
+  if (rootElement?.hasChildNodes()) {
+    ReactDOM.hydrate(
+      <React.StrictMode>
+        <Auth0Provider {...providerConfig}>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <app.Component />
+          </QueryClientProvider>
+        </Auth0Provider>
+      </React.StrictMode>,
+      rootElement
+    );
+  } else {
+    ReactDOM.render(
+      <React.StrictMode>
+        <Auth0Provider {...providerConfig}>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <app.Component />
+          </QueryClientProvider>
+        </Auth0Provider>
+      </React.StrictMode>,
+      rootElement
+    );
+  }
+})();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
