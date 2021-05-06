@@ -55,7 +55,11 @@ TagManager.initialize(tagManagerArgs);
 const rootElement = document.getElementById("root");
 
 (async () => {
-  await ga4react.initialize();
+  try {
+    await ga4react.initialize();
+  } catch (e) {
+    console.log("something went wrong with GA4");
+  }
 
   if (rootElement?.hasChildNodes()) {
     ReactDOM.hydrate(
