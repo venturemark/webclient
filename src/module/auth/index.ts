@@ -46,21 +46,27 @@ export function getConfig() {
 
 export function useGetToken(): string {
   const [token, setToken] = useState("");
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     const getToken = async () => {
       try {
         const token = await getAccessTokenSilently();
         setToken(token);
-      } catch (error) {
-        console.log(error.error);
+      } catch (e) {
+        if (e.error === "login_required") {
+          loginWithRedirect();
+        }
+        if (e.error === "consent_required") {
+          loginWithRedirect();
+        }
+        throw e;
       }
     };
     if (token === "") {
       getToken();
     }
-  }, [getAccessTokenSilently, token]);
+  }, [getAccessTokenSilently, loginWithRedirect, token]);
 
   return token;
 }
