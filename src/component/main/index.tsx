@@ -8,7 +8,7 @@ import {
 import { TimelineContext, VentureContext } from "component/app";
 import { useForm } from "react-hook-form";
 import { IUser } from "module/interface/user";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ITimeline } from "module/interface/timeline";
 
 interface MainProps extends DefaultMainProps {
@@ -63,8 +63,6 @@ function Main(props: MainProps) {
       })[0]
     : undefined;
 
-  console.log("variant type:", variantType);
-
   return (
     <PlasmicMain
       {...rest}
@@ -116,7 +114,6 @@ function Main(props: MainProps) {
         variantType: "isEmpty",
         isActive: variantType === "isVenture" ? "isNew" : undefined,
       }}
-      // viewJoinVenture={{ onPress: () => viewJoinVenture }}
     />
   );
 }

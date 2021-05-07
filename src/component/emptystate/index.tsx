@@ -5,7 +5,7 @@ import {
   PlasmicEmptyState,
   DefaultEmptyStateProps,
 } from "component/plasmic/shared/PlasmicEmptyState";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface EmptyStateProps extends DefaultEmptyStateProps {
   variantType?: any;
@@ -14,6 +14,7 @@ interface EmptyStateProps extends DefaultEmptyStateProps {
 
 function EmptyState(props: EmptyStateProps) {
   const { variantType, isActive, ...rest } = props;
+  const { ventureSlug } = useParams();
   const navigate = useNavigate();
   console.log(variantType, isActive);
   return (
@@ -25,7 +26,7 @@ function EmptyState(props: EmptyStateProps) {
         onPress: () => navigate("/newventure"),
       }}
       viewCreateTimeline={{
-        onPress: () => navigate("../newtimeline"),
+        onPress: () => navigate(`/${ventureSlug}/newtimeline`),
       }}
     />
   );
