@@ -428,7 +428,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                 hasVariant(variants, "variantType", "isEmpty")
                   ? true
                   : hasVariant(variants, "variantType", "isEmpty")
-                  ? true
+                  ? false
                   : false
               ) ? (
                 <Button

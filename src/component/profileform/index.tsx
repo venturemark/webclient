@@ -83,6 +83,7 @@ function ProfileForm(props: ProfileFormProps) {
             name="title"
             control={control}
             label={"What I Do"}
+            defaultValue={""}
             hasTextHelper={true}
             children={"Let people know what you do"}
             rules={{ required: true }}
