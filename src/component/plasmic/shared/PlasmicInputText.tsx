@@ -94,9 +94,10 @@ function PlasmicInputText__RenderFunc(props: {
   variants: PlasmicInputText__VariantsArgs;
   args: PlasmicInputText__ArgsType;
   overrides: PlasmicInputText__OverridesType;
+  dataFetches?: PlasmicInputText__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -125,11 +126,11 @@ function PlasmicInputText__RenderFunc(props: {
               ),
             })}
           >
-            <p.PlasmicSlot
-              defaultContents={"Label Name"}
-              value={args.label}
-              className={classNames(sty.slotLabel)}
-            />
+            {p.renderPlasmicSlot({
+              defaultContents: "Label Name",
+              value: args.label,
+              className: classNames(sty.slotLabel),
+            })}
           </label>
         ) : null}
         {(
@@ -151,11 +152,11 @@ function PlasmicInputText__RenderFunc(props: {
               ),
             })}
           >
-            <p.PlasmicSlot
-              defaultContents={"Text Helper Description"}
-              value={args.children}
-              className={classNames(sty.slotChildren)}
-            />
+            {p.renderPlasmicSlot({
+              defaultContents: "Text Helper Description",
+              value: args.children,
+              className: classNames(sty.slotChildren),
+            })}
           </div>
         ) : null}
 
@@ -265,6 +266,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicInputText__VariantsArgs;
   args?: PlasmicInputText__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicInputText__Fetches;
 } & Omit<PlasmicInputText__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicInputText__ArgsType, ReservedPropsType> &
@@ -291,10 +293,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicInputText__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicInputText__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

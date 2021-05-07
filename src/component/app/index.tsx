@@ -169,7 +169,7 @@ function Begin(props: BeginProps) {
   if (isLoading) {
     return <span>loading data...</span>;
   }
-  if (timelinesData) {
+  if (timelinesData?.length > 0) {
     return <Navigate replace to={`../`} />;
   }
   return <Home variantType={variantType} isActive={isActive} />;
@@ -367,8 +367,9 @@ function NewTimeline() {
 }
 
 function VentureFeed() {
+  const { timelineSlug } = useParams();
   const variantType = "isVenture";
-  const isActive = "feed";
+  const isActive = !timelineSlug ? "isNewVenture" : "feed";
   return <Home variantType={variantType} isActive={isActive} />;
 }
 

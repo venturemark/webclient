@@ -63,9 +63,10 @@ function PlasmicDropdown__RenderFunc(props: {
   variants: PlasmicDropdown__VariantsArgs;
   args: PlasmicDropdown__ArgsType;
   overrides: PlasmicDropdown__OverridesType;
+  dataFetches?: PlasmicDropdown__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -91,9 +92,10 @@ function PlasmicDropdown__RenderFunc(props: {
             data-plasmic-name={"listItem"}
             data-plasmic-override={overrides.listItem}
             className={classNames("__wab_instance", sty.listItem)}
-            rename={
-              <p.PlasmicSlot defaultContents={"Archive"} value={args.rename2} />
-            }
+            rename={p.renderPlasmicSlot({
+              defaultContents: "Archive",
+              value: args.rename2,
+            })}
           />
         </p.Stack>
       </div>
@@ -128,6 +130,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicDropdown__VariantsArgs;
   args?: PlasmicDropdown__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicDropdown__Fetches;
 } & Omit<PlasmicDropdown__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicDropdown__ArgsType, ReservedPropsType> &
@@ -154,10 +157,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicDropdown__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicDropdown__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

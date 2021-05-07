@@ -75,9 +75,10 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
   variants: PlasmicButtonSetEdit__VariantsArgs;
   args: PlasmicButtonSetEdit__ArgsType;
   overrides: PlasmicButtonSetEdit__OverridesType;
+  dataFetches?: PlasmicButtonSetEdit__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -321,6 +322,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicButtonSetEdit__VariantsArgs;
   args?: PlasmicButtonSetEdit__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicButtonSetEdit__Fetches;
 } & Omit<PlasmicButtonSetEdit__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicButtonSetEdit__ArgsType, ReservedPropsType> &
@@ -347,10 +349,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicButtonSetEdit__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicButtonSetEdit__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

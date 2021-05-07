@@ -93,9 +93,10 @@ function PlasmicTags__RenderFunc(props: {
   variants: PlasmicTags__VariantsArgs;
   args: PlasmicTags__ArgsType;
   overrides: PlasmicTags__OverridesType;
+  dataFetches?: PlasmicTags__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -182,83 +183,82 @@ function PlasmicTags__RenderFunc(props: {
             ),
           })}
         >
-          {(
-            hasVariant(variants, "buttonFeatures", "hasText") ? true : false
-          ) ? (
-            <p.PlasmicSlot
-              defaultContents={"Tag Name"}
-              value={args.text2}
-              className={classNames(sty.slotText2, {
-                [sty.slotText2__buttonFeatures_hasText]: hasVariant(
-                  variants,
-                  "buttonFeatures",
-                  "hasText"
+          {(hasVariant(variants, "buttonFeatures", "hasText") ? true : false)
+            ? p.renderPlasmicSlot({
+                defaultContents: "Tag Name",
+                value: args.text2,
+                className: classNames(sty.slotText2, {
+                  [sty.slotText2__buttonFeatures_hasText]: hasVariant(
+                    variants,
+                    "buttonFeatures",
+                    "hasText"
+                  ),
+                  [sty.slotText2__buttonFeatures_icon]: hasVariant(
+                    variants,
+                    "buttonFeatures",
+                    "icon"
+                  ),
+                  [sty.slotText2__buttonStyle_primaryPurple]: hasVariant(
+                    variants,
+                    "buttonStyle",
+                    "primaryPurple"
+                  ),
+                  [sty.slotText2__buttonStyle_red]: hasVariant(
+                    variants,
+                    "buttonStyle",
+                    "red"
+                  ),
+                  [sty.slotText2__buttonStyle_secondaryGreen]: hasVariant(
+                    variants,
+                    "buttonStyle",
+                    "secondaryGreen"
+                  ),
+                  [sty.slotText2__buttonStyle_secondaryPurple]: hasVariant(
+                    variants,
+                    "buttonStyle",
+                    "secondaryPurple"
+                  ),
+                  [sty.slotText2__disabled]: hasVariant(
+                    variants,
+                    "disabled",
+                    "disabled"
+                  ),
+                }),
+              })
+            : null}
+          {(hasVariant(variants, "buttonFeatures", "icon") ? true : false)
+            ? p.renderPlasmicSlot({
+                defaultContents: (
+                  <IconCloseIcon
+                    className={classNames(defaultcss.all, sty.svg__vEG)}
+                    role={"img"}
+                  />
                 ),
-                [sty.slotText2__buttonFeatures_icon]: hasVariant(
-                  variants,
-                  "buttonFeatures",
-                  "icon"
-                ),
-                [sty.slotText2__buttonStyle_primaryPurple]: hasVariant(
-                  variants,
-                  "buttonStyle",
-                  "primaryPurple"
-                ),
-                [sty.slotText2__buttonStyle_red]: hasVariant(
-                  variants,
-                  "buttonStyle",
-                  "red"
-                ),
-                [sty.slotText2__buttonStyle_secondaryGreen]: hasVariant(
-                  variants,
-                  "buttonStyle",
-                  "secondaryGreen"
-                ),
-                [sty.slotText2__buttonStyle_secondaryPurple]: hasVariant(
-                  variants,
-                  "buttonStyle",
-                  "secondaryPurple"
-                ),
-                [sty.slotText2__disabled]: hasVariant(
-                  variants,
-                  "disabled",
-                  "disabled"
-                ),
-              })}
-            />
-          ) : null}
-          {(hasVariant(variants, "buttonFeatures", "icon") ? true : false) ? (
-            <p.PlasmicSlot
-              defaultContents={
-                <IconCloseIcon
-                  className={classNames(defaultcss.all, sty.svg__vEG)}
-                  role={"img"}
-                />
-              }
-              value={args.children}
-              className={classNames(sty.slotChildren, {
-                [sty.slotChildren__buttonFeatures_icon]: hasVariant(
-                  variants,
-                  "buttonFeatures",
-                  "icon"
-                ),
-                [sty.slotChildren__buttonFeatures_icon_buttonStyle_red]:
-                  hasVariant(variants, "buttonFeatures", "icon") &&
-                  hasVariant(variants, "buttonStyle", "red"),
-                [sty.slotChildren__buttonFeatures_icon_buttonStyle_secondaryGreen]:
-                  hasVariant(variants, "buttonFeatures", "icon") &&
-                  hasVariant(variants, "buttonStyle", "secondaryGreen"),
-                [sty.slotChildren__buttonFeatures_icon_buttonStyle_secondaryPurple]:
-                  hasVariant(variants, "buttonFeatures", "icon") &&
-                  hasVariant(variants, "buttonStyle", "secondaryPurple"),
-                [sty.slotChildren__buttonStyle_red]: hasVariant(
-                  variants,
-                  "buttonStyle",
-                  "red"
-                ),
-              })}
-            />
-          ) : null}
+
+                value: args.children,
+                className: classNames(sty.slotChildren, {
+                  [sty.slotChildren__buttonFeatures_icon]: hasVariant(
+                    variants,
+                    "buttonFeatures",
+                    "icon"
+                  ),
+                  [sty.slotChildren__buttonFeatures_icon_buttonStyle_red]:
+                    hasVariant(variants, "buttonFeatures", "icon") &&
+                    hasVariant(variants, "buttonStyle", "red"),
+                  [sty.slotChildren__buttonFeatures_icon_buttonStyle_secondaryGreen]:
+                    hasVariant(variants, "buttonFeatures", "icon") &&
+                    hasVariant(variants, "buttonStyle", "secondaryGreen"),
+                  [sty.slotChildren__buttonFeatures_icon_buttonStyle_secondaryPurple]:
+                    hasVariant(variants, "buttonFeatures", "icon") &&
+                    hasVariant(variants, "buttonStyle", "secondaryPurple"),
+                  [sty.slotChildren__buttonStyle_red]: hasVariant(
+                    variants,
+                    "buttonStyle",
+                    "red"
+                  ),
+                }),
+              })
+            : null}
         </p.Stack>
       </button>
     </div>
@@ -290,6 +290,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicTags__VariantsArgs;
   args?: PlasmicTags__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicTags__Fetches;
 } & Omit<PlasmicTags__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicTags__ArgsType, ReservedPropsType> &
@@ -316,10 +317,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicTags__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicTags__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

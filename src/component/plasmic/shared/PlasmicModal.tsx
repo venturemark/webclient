@@ -104,9 +104,10 @@ function PlasmicModal__RenderFunc(props: {
   variants: PlasmicModal__VariantsArgs;
   args: PlasmicModal__ArgsType;
   overrides: PlasmicModal__OverridesType;
+  dataFetches?: PlasmicModal__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -173,8 +174,8 @@ function PlasmicModal__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(defaultcss.all, sty.box__aUujC)}
               >
-                <p.PlasmicSlot
-                  defaultContents={
+                {p.renderPlasmicSlot({
+                  defaultContents: (
                     <div
                       className={classNames(
                         defaultcss.all,
@@ -184,10 +185,11 @@ function PlasmicModal__RenderFunc(props: {
                     >
                       {"Delete this timeline?"}
                     </div>
-                  }
-                  value={args.organizationDescription}
-                  className={classNames(sty.slotOrganizationDescription)}
-                />
+                  ),
+
+                  value: args.organizationDescription,
+                  className: classNames(sty.slotOrganizationDescription),
+                })}
               </p.Stack>
 
               <p.Stack
@@ -315,8 +317,8 @@ function PlasmicModal__RenderFunc(props: {
                   ),
                 })}
               >
-                <p.PlasmicSlot
-                  defaultContents={
+                {p.renderPlasmicSlot({
+                  defaultContents: (
                     <div
                       className={classNames(
                         defaultcss.all,
@@ -326,10 +328,11 @@ function PlasmicModal__RenderFunc(props: {
                     >
                       {"Remove this Venture?"}
                     </div>
-                  }
-                  value={args.organizationDescription2}
-                  className={classNames(sty.slotOrganizationDescription2)}
-                />
+                  ),
+
+                  value: args.organizationDescription2,
+                  className: classNames(sty.slotOrganizationDescription2),
+                })}
               </p.Stack>
 
               <p.Stack
@@ -706,6 +709,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicModal__VariantsArgs;
   args?: PlasmicModal__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicModal__Fetches;
 } & Omit<PlasmicModal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicModal__ArgsType, ReservedPropsType> &
@@ -732,10 +736,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicModal__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicModal__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

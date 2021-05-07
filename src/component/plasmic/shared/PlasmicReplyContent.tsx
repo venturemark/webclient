@@ -90,9 +90,10 @@ function PlasmicReplyContent__RenderFunc(props: {
   variants: PlasmicReplyContent__VariantsArgs;
   args: PlasmicReplyContent__ArgsType;
   overrides: PlasmicReplyContent__OverridesType;
+  dataFetches?: PlasmicReplyContent__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -161,8 +162,8 @@ function PlasmicReplyContent__RenderFunc(props: {
                     hasGap={true}
                     className={classNames(defaultcss.all, sty.box__oKSfs)}
                   >
-                    <p.PlasmicSlot
-                      defaultContents={
+                    {p.renderPlasmicSlot({
+                      defaultContents: (
                         <span
                           className={classNames(
                             defaultcss.all,
@@ -176,10 +177,11 @@ function PlasmicReplyContent__RenderFunc(props: {
                             </span>
                           </span>
                         </span>
-                      }
-                      value={args.userName}
-                      className={classNames(sty.slotUserName)}
-                    />
+                      ),
+
+                      value: args.userName,
+                      className: classNames(sty.slotUserName),
+                    })}
 
                     <p.Stack
                       as={"div"}
@@ -207,8 +209,8 @@ function PlasmicReplyContent__RenderFunc(props: {
                         {"•"}
                       </span>
 
-                      <p.PlasmicSlot
-                        defaultContents={
+                      {p.renderPlasmicSlot({
+                        defaultContents: (
                           <span
                             className={classNames(
                               defaultcss.all,
@@ -218,10 +220,11 @@ function PlasmicReplyContent__RenderFunc(props: {
                           >
                             {"3 hours ago"}
                           </span>
-                        }
-                        value={args.date}
-                        className={classNames(sty.slotDate)}
-                      />
+                        ),
+
+                        value: args.date,
+                        className: classNames(sty.slotDate),
+                      })}
                     </p.Stack>
                   </p.Stack>
                 </div>
@@ -341,11 +344,11 @@ function PlasmicReplyContent__RenderFunc(props: {
 
               <div className={classNames(defaultcss.all, sty.box__wE4D)}>
                 <div className={classNames(defaultcss.all, sty.box__ly8Vh)}>
-                  <p.PlasmicSlot
-                    defaultContents={""}
-                    value={args.text}
-                    className={classNames(sty.slotText)}
-                  />
+                  {p.renderPlasmicSlot({
+                    defaultContents: "",
+                    value: args.text,
+                    className: classNames(sty.slotText),
+                  })}
                 </div>
               </div>
             </p.Stack>
@@ -408,6 +411,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicReplyContent__VariantsArgs;
   args?: PlasmicReplyContent__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicReplyContent__Fetches;
 } & Omit<PlasmicReplyContent__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicReplyContent__ArgsType, ReservedPropsType> &
@@ -434,10 +438,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicReplyContent__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicReplyContent__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

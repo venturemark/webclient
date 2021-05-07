@@ -80,9 +80,10 @@ function PlasmicProfileForm__RenderFunc(props: {
   variants: PlasmicProfileForm__VariantsArgs;
   args: PlasmicProfileForm__ArgsType;
   overrides: PlasmicProfileForm__OverridesType;
+  dataFetches?: PlasmicProfileForm__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <form
@@ -384,6 +385,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicProfileForm__VariantsArgs;
   args?: PlasmicProfileForm__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicProfileForm__Fetches;
 } & Omit<PlasmicProfileForm__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicProfileForm__ArgsType, ReservedPropsType> &
@@ -410,10 +412,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicProfileForm__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicProfileForm__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

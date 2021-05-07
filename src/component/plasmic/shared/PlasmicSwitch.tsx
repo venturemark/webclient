@@ -72,9 +72,10 @@ function PlasmicSwitch__RenderFunc(props: {
   variants: PlasmicSwitch__VariantsArgs;
   args: PlasmicSwitch__ArgsType;
   overrides: PlasmicSwitch__OverridesType;
+  dataFetches?: PlasmicSwitch__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -100,21 +101,19 @@ function PlasmicSwitch__RenderFunc(props: {
         data-plasmic-override={overrides.label}
         className={classNames(defaultcss.all, sty.label)}
       >
-        {(
-          hasVariant(variants, "variantSettings", "hasLabel") ? true : false
-        ) ? (
-          <p.PlasmicSlot
-            defaultContents={"Allow members to create timelines"}
-            value={args.inputTitle}
-            className={classNames(sty.slotInputTitle, {
-              [sty.slotInputTitle__variantSettings_hasLabel]: hasVariant(
-                variants,
-                "variantSettings",
-                "hasLabel"
-              ),
-            })}
-          />
-        ) : null}
+        {(hasVariant(variants, "variantSettings", "hasLabel") ? true : false)
+          ? p.renderPlasmicSlot({
+              defaultContents: "Allow members to create timelines",
+              value: args.inputTitle,
+              className: classNames(sty.slotInputTitle, {
+                [sty.slotInputTitle__variantSettings_hasLabel]: hasVariant(
+                  variants,
+                  "variantSettings",
+                  "hasLabel"
+                ),
+              }),
+            })
+          : null}
       </div>
 
       <div
@@ -172,6 +171,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicSwitch__VariantsArgs;
   args?: PlasmicSwitch__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicSwitch__Fetches;
 } & Omit<PlasmicSwitch__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicSwitch__ArgsType, ReservedPropsType> &
@@ -198,10 +198,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSwitch__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicSwitch__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

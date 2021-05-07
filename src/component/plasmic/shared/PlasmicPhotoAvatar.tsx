@@ -70,9 +70,10 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
   variants: PlasmicPhotoAvatar__VariantsArgs;
   args: PlasmicPhotoAvatar__ArgsType;
   overrides: PlasmicPhotoAvatar__OverridesType;
+  dataFetches?: PlasmicPhotoAvatar__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -89,17 +90,17 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
         data-plasmic-override={overrides.box}
         className={classNames(defaultcss.all, sty.box)}
       >
-        <p.PlasmicSlot
-          defaultContents={"KO"}
-          value={args.userInitials}
-          className={classNames(sty.slotUserInitials, {
+        {p.renderPlasmicSlot({
+          defaultContents: "KO",
+          value: args.userInitials,
+          className: classNames(sty.slotUserInitials, {
             [sty.slotUserInitials__variant_isLarge]: hasVariant(
               variants,
               "variant",
               "isLarge"
             ),
-          })}
-        />
+          }),
+        })}
       </div>
     </div>
   ) as React.ReactElement | null;
@@ -128,6 +129,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicPhotoAvatar__VariantsArgs;
   args?: PlasmicPhotoAvatar__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicPhotoAvatar__Fetches;
 } & Omit<PlasmicPhotoAvatar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicPhotoAvatar__ArgsType, ReservedPropsType> &
@@ -154,10 +156,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicPhotoAvatar__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicPhotoAvatar__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

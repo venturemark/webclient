@@ -73,9 +73,10 @@ function PlasmicJoinVenture__RenderFunc(props: {
   variants: PlasmicJoinVenture__VariantsArgs;
   args: PlasmicJoinVenture__ArgsType;
   overrides: PlasmicJoinVenture__OverridesType;
+  dataFetches?: PlasmicJoinVenture__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -133,11 +134,11 @@ function PlasmicJoinVenture__RenderFunc(props: {
                           data-plasmic-override={overrides.span}
                           className={classNames(defaultcss.all, sty.span)}
                         >
-                          <p.PlasmicSlot
-                            defaultContents={"BaronFig"}
-                            value={args.ventureName}
-                            className={classNames(sty.slotVentureName)}
-                          />
+                          {p.renderPlasmicSlot({
+                            defaultContents: "BaronFig",
+                            value: args.ventureName,
+                            className: classNames(sty.slotVentureName),
+                          })}
                         </span>
                       </h2>
                     </div>
@@ -236,6 +237,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicJoinVenture__VariantsArgs;
   args?: PlasmicJoinVenture__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicJoinVenture__Fetches;
 } & Omit<PlasmicJoinVenture__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicJoinVenture__ArgsType, ReservedPropsType> &
@@ -262,10 +264,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicJoinVenture__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicJoinVenture__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

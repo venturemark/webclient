@@ -115,9 +115,10 @@ function PlasmicActionBar__RenderFunc(props: {
   variants: PlasmicActionBar__VariantsArgs;
   args: PlasmicActionBar__ArgsType;
   overrides: PlasmicActionBar__OverridesType;
+  dataFetches?: PlasmicActionBar__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -202,9 +203,10 @@ function PlasmicActionBar__RenderFunc(props: {
                 hasVariant(variants, "timelineSelected", "timelineSelected") &&
                 hasVariant(variants, "isActive", "isActive"),
             })}
-            userInitials={
-              <p.PlasmicSlot defaultContents={"KO"} value={args.userInitials} />
-            }
+            userInitials={p.renderPlasmicSlot({
+              defaultContents: "KO",
+              value: args.userInitials,
+            })}
           />
 
           <p.Stack
@@ -291,7 +293,7 @@ function PlasmicActionBar__RenderFunc(props: {
               ) : null}
             </p.Stack>
 
-            {(hasVariant(variants, "isActive", "isActive") ? true : true) ? (
+            {(hasVariant(variants, "isActive", "isActive") ? true : false) ? (
               <p.Stack
                 as={"div"}
                 hasGap={true}
@@ -624,24 +626,25 @@ function PlasmicActionBar__RenderFunc(props: {
                                 )
                                   ? false
                                   : true
-                              ) ? (
-                                <p.PlasmicSlot
-                                  defaultContents={
-                                    <IconPlusIcon
-                                      className={classNames(
-                                        defaultcss.all,
-                                        sty.svg__niToo
-                                      )}
-                                      role={"img"}
-                                    />
-                                  }
-                                  value={args.slot}
-                                />
-                              ) : null}
-                              <p.PlasmicSlot
-                                defaultContents={"Metric"}
-                                value={args.text2}
-                                className={classNames(sty.slotText2, {
+                              )
+                                ? p.renderPlasmicSlot({
+                                    defaultContents: (
+                                      <IconPlusIcon
+                                        className={classNames(
+                                          defaultcss.all,
+                                          sty.svg__niToo
+                                        )}
+                                        role={"img"}
+                                      />
+                                    ),
+
+                                    value: args.slot,
+                                  })
+                                : null}
+                              {p.renderPlasmicSlot({
+                                defaultContents: "Metric",
+                                value: args.text2,
+                                className: classNames(sty.slotText2, {
                                   [sty.slotText2__isActive_timelineSelected]:
                                     hasVariant(
                                       variants,
@@ -653,11 +656,11 @@ function PlasmicActionBar__RenderFunc(props: {
                                       "timelineSelected",
                                       "timelineSelected"
                                     ),
-                                })}
-                              />
+                                }),
+                              })}
 
-                              <p.PlasmicSlot
-                                defaultContents={
+                              {p.renderPlasmicSlot({
+                                defaultContents: (
                                   <IconCloseIcon
                                     className={classNames(
                                       defaultcss.all,
@@ -665,10 +668,11 @@ function PlasmicActionBar__RenderFunc(props: {
                                     )}
                                     role={"img"}
                                   />
-                                }
-                                value={args.children}
-                                className={classNames(sty.slotChildren)}
-                              />
+                                ),
+
+                                value: args.children,
+                                className: classNames(sty.slotChildren),
+                              })}
                             </p.Stack>
                           </button>
                         ) : null}
@@ -757,6 +761,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicActionBar__VariantsArgs;
   args?: PlasmicActionBar__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicActionBar__Fetches;
 } & Omit<PlasmicActionBar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicActionBar__ArgsType, ReservedPropsType> &
@@ -783,10 +788,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicActionBar__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicActionBar__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

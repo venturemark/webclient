@@ -43,7 +43,6 @@ function Main(props: MainProps) {
   const timelines = timelineContext?.allTimelines ?? [];
   const hasVentures =
     ventureContext && ventureContext?.ventures?.length > 0 ? true : false;
-  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -64,9 +63,12 @@ function Main(props: MainProps) {
       })[0]
     : undefined;
 
+  console.log("variant type:", variantType);
+
   return (
     <PlasmicMain
       {...rest}
+      isOwner={true}
       isActive={isActive}
       variantType={variantType}
       mainHeader={{
@@ -110,10 +112,11 @@ function Main(props: MainProps) {
         reset,
         errors,
       }}
-      viewCreateVenture={{
-        onPress: () => navigate("../newventure"),
+      emptyState={{
+        variantType: "isEmpty",
+        isActive: variantType === "isVenture" ? "isNew" : undefined,
       }}
-      viewJoinVenture={{ onPress: () => viewJoinVenture }}
+      // viewJoinVenture={{ onPress: () => viewJoinVenture }}
     />
   );
 }

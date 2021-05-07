@@ -88,9 +88,10 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
   variants: PlasmicAddEditTimeline__VariantsArgs;
   args: PlasmicAddEditTimeline__ArgsType;
   overrides: PlasmicAddEditTimeline__OverridesType;
+  dataFetches?: PlasmicAddEditTimeline__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <p.Stack
@@ -118,40 +119,39 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         data-plasmic-override={overrides.box}
         className={classNames(defaultcss.all, sty.box)}
       >
-        {(hasVariant(variants, "variantState", "isEdit") ? false : true) ? (
-          <p.PlasmicSlot
-            defaultContents={"Create New Timeline"}
-            value={args.children}
-            className={classNames(sty.slotChildren, {
-              [sty.slotChildren__variantState_isEdit]: hasVariant(
-                variants,
-                "variantState",
-                "isEdit"
-              ),
-            })}
-          />
-        ) : null}
-        {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
-          <p.PlasmicSlot
-            defaultContents={"Timeline Info"}
-            value={args.children2}
-            className={classNames(sty.slotChildren2, {
-              [sty.slotChildren2__variantState_isEdit]: hasVariant(
-                variants,
-                "variantState",
-                "isEdit"
-              ),
-            })}
-          />
-        ) : null}
-        {(hasVariant(variants, "variantState", "isEdit") ? false : true) ? (
-          <p.PlasmicSlot
-            defaultContents={
-              "A timeline is a group of updates that tells a particular story."
-            }
-            value={args.slot}
-          />
-        ) : null}
+        {(hasVariant(variants, "variantState", "isEdit") ? false : true)
+          ? p.renderPlasmicSlot({
+              defaultContents: "Create New Timeline",
+              value: args.children,
+              className: classNames(sty.slotChildren, {
+                [sty.slotChildren__variantState_isEdit]: hasVariant(
+                  variants,
+                  "variantState",
+                  "isEdit"
+                ),
+              }),
+            })
+          : null}
+        {(hasVariant(variants, "variantState", "isEdit") ? true : false)
+          ? p.renderPlasmicSlot({
+              defaultContents: "Timeline Info",
+              value: args.children2,
+              className: classNames(sty.slotChildren2, {
+                [sty.slotChildren2__variantState_isEdit]: hasVariant(
+                  variants,
+                  "variantState",
+                  "isEdit"
+                ),
+              }),
+            })
+          : null}
+        {(hasVariant(variants, "variantState", "isEdit") ? false : true)
+          ? p.renderPlasmicSlot({
+              defaultContents:
+                "A timeline is a group of updates that tells a particular story.",
+              value: args.slot,
+            })
+          : null}
       </div>
 
       <InputText
@@ -311,6 +311,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicAddEditTimeline__VariantsArgs;
   args?: PlasmicAddEditTimeline__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicAddEditTimeline__Fetches;
 } & Omit<PlasmicAddEditTimeline__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicAddEditTimeline__ArgsType, ReservedPropsType> &
@@ -337,10 +338,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicAddEditTimeline__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicAddEditTimeline__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

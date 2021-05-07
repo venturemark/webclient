@@ -84,9 +84,10 @@ function PlasmicRadio__RenderFunc(props: {
   variants: PlasmicRadio__VariantsArgs;
   args: PlasmicRadio__ArgsType;
   overrides: PlasmicRadio__OverridesType;
+  dataFetches?: PlasmicRadio__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const [
     isRootFocusVisibleWithin,
@@ -189,17 +190,17 @@ function PlasmicRadio__RenderFunc(props: {
                 ),
               })}
             >
-              <p.PlasmicSlot
-                defaultContents={"Private"}
-                value={args.children}
-                className={classNames(sty.slotChildren, {
+              {p.renderPlasmicSlot({
+                defaultContents: "Private",
+                value: args.children,
+                className: classNames(sty.slotChildren, {
                   [sty.slotChildren__radioVariants_hasLabel]: hasVariant(
                     variants,
                     "radioVariants",
                     "hasLabel"
                   ),
-                })}
-              />
+                }),
+              })}
             </label>
 
             <div
@@ -207,19 +208,18 @@ function PlasmicRadio__RenderFunc(props: {
               data-plasmic-override={overrides.inputHelperText}
               className={classNames(defaultcss.all, sty.inputHelperText)}
             >
-              <p.PlasmicSlot
-                defaultContents={
-                  "Only admins and members invited by you can see this timeline. "
-                }
-                value={args.helperText}
-                className={classNames(sty.slotHelperText, {
+              {p.renderPlasmicSlot({
+                defaultContents:
+                  "Only admins and members invited by you can see this timeline. ",
+                value: args.helperText,
+                className: classNames(sty.slotHelperText, {
                   [sty.slotHelperText__radioVariants_hasLabel]: hasVariant(
                     variants,
                     "radioVariants",
                     "hasLabel"
                   ),
-                })}
-              />
+                }),
+              })}
             </div>
           </p.Stack>
         ) : null}
@@ -336,6 +336,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicRadio__VariantsArgs;
   args?: PlasmicRadio__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicRadio__Fetches;
 } & Omit<PlasmicRadio__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicRadio__ArgsType, ReservedPropsType> &
@@ -362,10 +363,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicRadio__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicRadio__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

@@ -93,9 +93,10 @@ function PlasmicAddEditVenture__RenderFunc(props: {
   variants: PlasmicAddEditVenture__VariantsArgs;
   args: PlasmicAddEditVenture__ArgsType;
   overrides: PlasmicAddEditVenture__OverridesType;
+  dataFetches?: PlasmicAddEditVenture__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -123,38 +124,38 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       )}
     >
       <div className={classNames(defaultcss.all, sty.box__nqvhu)}>
-        {(hasVariant(variants, "variantState", "isEdit") ? false : true) ? (
-          <p.PlasmicSlot
-            defaultContents={"Create a New Venture"}
-            value={args.children}
-            className={classNames(sty.slotChildren, {
-              [sty.slotChildren__variantState_isEdit]: hasVariant(
-                variants,
-                "variantState",
-                "isEdit"
-              ),
-            })}
-          />
-        ) : null}
-        {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
-          <p.PlasmicSlot
-            defaultContents={"Venture Info"}
-            value={args.children2}
-            className={classNames(sty.slotChildren2, {
-              [sty.slotChildren2__variantState_isEdit]: hasVariant(
-                variants,
-                "variantState",
-                "isEdit"
-              ),
-            })}
-          />
-        ) : null}
-        {(hasVariant(variants, "variantState", "isEdit") ? false : true) ? (
-          <p.PlasmicSlot
-            defaultContents={"Start a new venture to share stories."}
-            value={args.slot}
-          />
-        ) : null}
+        {(hasVariant(variants, "variantState", "isEdit") ? false : true)
+          ? p.renderPlasmicSlot({
+              defaultContents: "Create a New Venture",
+              value: args.children,
+              className: classNames(sty.slotChildren, {
+                [sty.slotChildren__variantState_isEdit]: hasVariant(
+                  variants,
+                  "variantState",
+                  "isEdit"
+                ),
+              }),
+            })
+          : null}
+        {(hasVariant(variants, "variantState", "isEdit") ? true : false)
+          ? p.renderPlasmicSlot({
+              defaultContents: "Venture Info",
+              value: args.children2,
+              className: classNames(sty.slotChildren2, {
+                [sty.slotChildren2__variantState_isEdit]: hasVariant(
+                  variants,
+                  "variantState",
+                  "isEdit"
+                ),
+              }),
+            })
+          : null}
+        {(hasVariant(variants, "variantState", "isEdit") ? false : true)
+          ? p.renderPlasmicSlot({
+              defaultContents: "Start a new venture to share stories.",
+              value: args.slot,
+            })
+          : null}
       </div>
 
       <InputText
@@ -221,7 +222,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         {"Tell us a little bit about your venture."}
       </InputTextArea>
 
-      {(hasVariant(variants, "isOwner", "isOwner") ? false : false) ? (
+      {(hasVariant(variants, "isOwner", "isOwner") ? false : true) ? (
         <p.Stack
           as={"div"}
           hasGap={true}
@@ -295,10 +296,10 @@ function PlasmicAddEditVenture__RenderFunc(props: {
               hasVariant(variants, "isOwner", "isOwner"),
           })}
         >
-          <p.PlasmicSlot
-            defaultContents={"Permissions"}
-            value={args.slot2}
-            className={classNames(sty.slotSlot2, {
+          {p.renderPlasmicSlot({
+            defaultContents: "Permissions",
+            value: args.slot2,
+            className: classNames(sty.slotSlot2, {
               [sty.slotSlot2__isOwner]: hasVariant(
                 variants,
                 "isOwner",
@@ -312,8 +313,8 @@ function PlasmicAddEditVenture__RenderFunc(props: {
                 "variantState",
                 "isEdit"
               ),
-            })}
-          />
+            }),
+          })}
         </div>
       ) : null}
       {(
@@ -425,6 +426,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicAddEditVenture__VariantsArgs;
   args?: PlasmicAddEditVenture__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicAddEditVenture__Fetches;
 } & Omit<PlasmicAddEditVenture__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicAddEditVenture__ArgsType, ReservedPropsType> &
@@ -451,10 +453,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicAddEditVenture__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicAddEditVenture__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

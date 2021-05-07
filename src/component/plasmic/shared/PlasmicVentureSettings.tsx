@@ -74,9 +74,10 @@ function PlasmicVentureSettings__RenderFunc(props: {
   variants: PlasmicVentureSettings__VariantsArgs;
   args: PlasmicVentureSettings__ArgsType;
   overrides: PlasmicVentureSettings__OverridesType;
+  dataFetches?: PlasmicVentureSettings__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -215,6 +216,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicVentureSettings__VariantsArgs;
   args?: PlasmicVentureSettings__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicVentureSettings__Fetches;
 } & Omit<PlasmicVentureSettings__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicVentureSettings__ArgsType, ReservedPropsType> &
@@ -241,10 +243,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicVentureSettings__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicVentureSettings__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

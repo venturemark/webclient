@@ -130,9 +130,10 @@ function PlasmicAddEditMembers__RenderFunc(props: {
   variants: PlasmicAddEditMembers__VariantsArgs;
   args: PlasmicAddEditMembers__ArgsType;
   overrides: PlasmicAddEditMembers__OverridesType;
+  dataFetches?: PlasmicAddEditMembers__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <p.Stack
@@ -156,26 +157,25 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             ),
           })}
         >
-          <p.PlasmicSlot
-            defaultContents={"Venture Members"}
-            value={args.children}
-            className={classNames(sty.slotChildren, {
+          {p.renderPlasmicSlot({
+            defaultContents: "Venture Members",
+            value: args.children,
+            className: classNames(sty.slotChildren, {
               [sty.slotChildren__type_isTimeline]: hasVariant(
                 variants,
                 "type",
                 "isTimeline"
               ),
-            })}
-          />
+            }),
+          })}
 
-          {false ? (
-            <p.PlasmicSlot
-              defaultContents={
-                "Enter their email to invite and add them to this organization."
-              }
-              value={args.slot}
-            />
-          ) : null}
+          {false
+            ? p.renderPlasmicSlot({
+                defaultContents:
+                  "Enter their email to invite and add them to this organization.",
+                value: args.slot,
+              })
+            : null}
         </div>
       ) : null}
       {(hasVariant(variants, "type", "isTimeline") ? true : false) ? (
@@ -188,24 +188,25 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             ),
           })}
         >
-          <p.PlasmicSlot
-            defaultContents={"Timeline Members"}
-            value={args.children2}
-            className={classNames(sty.slotChildren2, {
+          {p.renderPlasmicSlot({
+            defaultContents: "Timeline Members",
+            value: args.children2,
+            className: classNames(sty.slotChildren2, {
               [sty.slotChildren2__type_isTimeline]: hasVariant(
                 variants,
                 "type",
                 "isTimeline"
               ),
-            })}
-          />
+            }),
+          })}
 
-          {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
-            <p.PlasmicSlot
-              defaultContents={"Add members from your venture to the timeline"}
-              value={args.slot5}
-            />
-          ) : null}
+          {(hasVariant(variants, "isOwner", "isOwner") ? true : false)
+            ? p.renderPlasmicSlot({
+                defaultContents:
+                  "Add members from your venture to the timeline",
+                value: args.slot5,
+              })
+            : null}
         </div>
       ) : null}
       {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
@@ -296,11 +297,11 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 
       <div className={classNames(defaultcss.all, sty.box__yRlj0)}>
         <div className={classNames(defaultcss.all, sty.box__guHgU)}>
-          <p.PlasmicSlot
-            defaultContents={"Current Members"}
-            value={args.slot2}
-            className={classNames(sty.slotSlot2)}
-          />
+          {p.renderPlasmicSlot({
+            defaultContents: "Current Members",
+            value: args.slot2,
+            className: classNames(sty.slotSlot2),
+          })}
         </div>
 
         <div
@@ -310,32 +311,27 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         >
           <MemberItem
             className={classNames("__wab_instance", sty.memberItem__e3Lpj)}
-            slot3={
-              <p.PlasmicSlot
-                defaultContents={"example@email.com"}
-                value={args.slot3}
-              />
-            }
-            userName={
-              <p.PlasmicSlot defaultContents={"User Name"} value={args.slot4} />
-            }
+            slot3={p.renderPlasmicSlot({
+              defaultContents: "example@email.com",
+              value: args.slot3,
+            })}
+            userName={p.renderPlasmicSlot({
+              defaultContents: "User Name",
+              value: args.slot4,
+            })}
             userVariant={"isOwner" as const}
           />
 
           <MemberItem
             className={classNames("__wab_instance", sty.memberItem__ieR1F)}
-            slot3={
-              <p.PlasmicSlot
-                defaultContents={"example@email.com"}
-                value={args.slot33}
-              />
-            }
-            userName={
-              <p.PlasmicSlot
-                defaultContents={"example@email.com"}
-                value={args.slot43}
-              />
-            }
+            slot3={p.renderPlasmicSlot({
+              defaultContents: "example@email.com",
+              value: args.slot33,
+            })}
+            userName={p.renderPlasmicSlot({
+              defaultContents: "example@email.com",
+              value: args.slot43,
+            })}
             userVariant={"isRequested" as const}
           />
 
@@ -347,18 +343,14 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                 "isOwner"
               ),
             })}
-            slot3={
-              <p.PlasmicSlot
-                defaultContents={"example@email.com"}
-                value={args.slot3222}
-              />
-            }
-            userName={
-              <p.PlasmicSlot
-                defaultContents={"User Name"}
-                value={args.slot4222}
-              />
-            }
+            slot3={p.renderPlasmicSlot({
+              defaultContents: "example@email.com",
+              value: args.slot3222,
+            })}
+            userName={p.renderPlasmicSlot({
+              defaultContents: "User Name",
+              value: args.slot4222,
+            })}
             userVariant={
               hasVariant(variants, "isOwner", "isOwner")
                 ? undefined
@@ -374,18 +366,14 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                 "isOwner"
               ),
             })}
-            slot3={
-              <p.PlasmicSlot
-                defaultContents={"example@email.com"}
-                value={args.slot322}
-              />
-            }
-            userName={
-              <p.PlasmicSlot
-                defaultContents={"User Name"}
-                value={args.slot422}
-              />
-            }
+            slot3={p.renderPlasmicSlot({
+              defaultContents: "example@email.com",
+              value: args.slot322,
+            })}
+            userName={p.renderPlasmicSlot({
+              defaultContents: "User Name",
+              value: args.slot422,
+            })}
             userVariant={
               hasVariant(variants, "isOwner", "isOwner")
                 ? undefined
@@ -401,18 +389,14 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                 "isOwner"
               ),
             })}
-            slot3={
-              <p.PlasmicSlot
-                defaultContents={"example@email.com"}
-                value={args.slot32}
-              />
-            }
-            userName={
-              <p.PlasmicSlot
-                defaultContents={"User Name"}
-                value={args.slot42}
-              />
-            }
+            slot3={p.renderPlasmicSlot({
+              defaultContents: "example@email.com",
+              value: args.slot32,
+            })}
+            userName={p.renderPlasmicSlot({
+              defaultContents: "User Name",
+              value: args.slot42,
+            })}
             userVariant={
               hasVariant(variants, "isOwner", "isOwner")
                 ? undefined
@@ -507,6 +491,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicAddEditMembers__VariantsArgs;
   args?: PlasmicAddEditMembers__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicAddEditMembers__Fetches;
 } & Omit<PlasmicAddEditMembers__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicAddEditMembers__ArgsType, ReservedPropsType> &
@@ -533,10 +518,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicAddEditMembers__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicAddEditMembers__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

@@ -86,9 +86,10 @@ function PlasmicHeader__RenderFunc(props: {
   variants: PlasmicHeader__VariantsArgs;
   args: PlasmicHeader__ArgsType;
   overrides: PlasmicHeader__OverridesType;
+  dataFetches?: PlasmicHeader__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -281,6 +282,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicHeader__VariantsArgs;
   args?: PlasmicHeader__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicHeader__Fetches;
 } & Omit<PlasmicHeader__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicHeader__ArgsType, ReservedPropsType> &
@@ -307,10 +309,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicHeader__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicHeader__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

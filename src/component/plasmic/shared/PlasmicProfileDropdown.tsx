@@ -85,9 +85,10 @@ function PlasmicProfileDropdown__RenderFunc(props: {
   variants: PlasmicProfileDropdown__VariantsArgs;
   args: PlasmicProfileDropdown__ArgsType;
   overrides: PlasmicProfileDropdown__OverridesType;
+  dataFetches?: PlasmicProfileDropdown__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -138,9 +139,10 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             data-plasmic-name={"photoAvatar"}
             data-plasmic-override={overrides.photoAvatar}
             className={classNames("__wab_instance", sty.photoAvatar)}
-            userInitials={
-              <p.PlasmicSlot defaultContents={"KO"} value={args.userInitials} />
-            }
+            userInitials={p.renderPlasmicSlot({
+              defaultContents: "KO",
+              value: args.userInitials,
+            })}
           />
 
           <p.Stack
@@ -148,16 +150,16 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             hasGap={true}
             className={classNames(defaultcss.all, sty.box__tyRt7)}
           >
-            <p.PlasmicSlot
-              defaultContents={"User Name"}
-              value={args.userName}
-            />
+            {p.renderPlasmicSlot({
+              defaultContents: "User Name",
+              value: args.userName,
+            })}
 
-            <p.PlasmicSlot
-              defaultContents={"user@email.com"}
-              value={args.userEmail}
-              className={classNames(sty.slotUserEmail)}
-            />
+            {p.renderPlasmicSlot({
+              defaultContents: "user@email.com",
+              value: args.userEmail,
+              className: classNames(sty.slotUserEmail),
+            })}
           </p.Stack>
         </p.Stack>
 
@@ -172,18 +174,20 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             data-plasmic-name={"viewProfile"}
             data-plasmic-override={overrides.viewProfile}
             className={classNames("__wab_instance", sty.viewProfile)}
-            rename={
-              <p.PlasmicSlot defaultContents={"Profile"} value={args.prop} />
-            }
+            rename={p.renderPlasmicSlot({
+              defaultContents: "Profile",
+              value: args.prop,
+            })}
           />
 
           <ListItem
             data-plasmic-name={"logout"}
             data-plasmic-override={overrides.logout}
             className={classNames("__wab_instance", sty.logout)}
-            rename={
-              <p.PlasmicSlot defaultContents={"Log Out"} value={args.prop3} />
-            }
+            rename={p.renderPlasmicSlot({
+              defaultContents: "Log Out",
+              value: args.prop3,
+            })}
           />
         </p.Stack>
       </div>
@@ -243,6 +247,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicProfileDropdown__VariantsArgs;
   args?: PlasmicProfileDropdown__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicProfileDropdown__Fetches;
 } & Omit<PlasmicProfileDropdown__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicProfileDropdown__ArgsType, ReservedPropsType> &
@@ -269,10 +274,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicProfileDropdown__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicProfileDropdown__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

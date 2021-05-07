@@ -80,9 +80,10 @@ function PlasmicRadioGroup__RenderFunc(props: {
   variants: PlasmicRadioGroup__VariantsArgs;
   args: PlasmicRadioGroup__ArgsType;
   overrides: PlasmicRadioGroup__OverridesType;
+  dataFetches?: PlasmicRadioGroup__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <p.Stack
@@ -106,11 +107,11 @@ function PlasmicRadioGroup__RenderFunc(props: {
             ),
           })}
         >
-          <p.PlasmicSlot
-            defaultContents={"Visibility"}
-            value={args.label}
-            className={classNames(sty.slotLabel)}
-          />
+          {p.renderPlasmicSlot({
+            defaultContents: "Visibility",
+            value: args.label,
+            className: classNames(sty.slotLabel),
+          })}
         </label>
       ) : null}
 
@@ -231,6 +232,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicRadioGroup__VariantsArgs;
   args?: PlasmicRadioGroup__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicRadioGroup__Fetches;
 } & Omit<PlasmicRadioGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicRadioGroup__ArgsType, ReservedPropsType> &
@@ -257,10 +259,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicRadioGroup__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicRadioGroup__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

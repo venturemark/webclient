@@ -60,9 +60,10 @@ function PlasmicTimelineLink__RenderFunc(props: {
   variants: PlasmicTimelineLink__VariantsArgs;
   args: PlasmicTimelineLink__ArgsType;
   overrides: PlasmicTimelineLink__OverridesType;
+  dataFetches?: PlasmicTimelineLink__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -80,8 +81,8 @@ function PlasmicTimelineLink__RenderFunc(props: {
         {"#"}
       </div>
 
-      <p.PlasmicSlot
-        defaultContents={
+      {p.renderPlasmicSlot({
+        defaultContents: (
           <span
             className={classNames(
               defaultcss.all,
@@ -91,10 +92,11 @@ function PlasmicTimelineLink__RenderFunc(props: {
           >
             {"Wins"}
           </span>
-        }
-        value={args.name}
-        className={classNames(sty.slotName)}
-      />
+        ),
+
+        value: args.name,
+        className: classNames(sty.slotName),
+      })}
     </div>
   ) as React.ReactElement | null;
 }
@@ -122,6 +124,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicTimelineLink__VariantsArgs;
   args?: PlasmicTimelineLink__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicTimelineLink__Fetches;
 } & Omit<PlasmicTimelineLink__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicTimelineLink__ArgsType, ReservedPropsType> &
@@ -148,10 +151,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicTimelineLink__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicTimelineLink__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };
