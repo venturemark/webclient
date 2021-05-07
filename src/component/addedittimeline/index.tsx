@@ -12,7 +12,7 @@ import {
 } from "module/interface/timeline";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { useNavigate, useParams } from "react-router-dom";
-import { timelineNameError } from "module/errors";
+import { nameTooLongError, timelineNameError } from "module/errors";
 import { useGetToken } from "module/auth";
 import { IVenture } from "module/interface/venture";
 import { Controller } from "react-hook-form";
@@ -82,6 +82,13 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     reset();
   };
 
+  console.log(errors);
+
+  let errorMessage = timelineNameError;
+  if (errors?.timelineName?.type === "maxLength") {
+    errorMessage = nameTooLongError;
+  }
+
   return (
     <PlasmicAddEditTimeline
       {...rest}
@@ -99,7 +106,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
             defaultValue={currentTimeline?.name ?? ""}
             hasTextHelper={false}
             rules={{ required: true, maxLength: 23 }}
-            message={errors.timelineName && timelineNameError}
+            message={errors.timelineName && errorMessage}
           />
         ),
       }}
@@ -109,7 +116,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         defaultValue: currentTimeline?.desc ?? "",
       }}
       buttonSetEdit={{
-        handleCancel: () => navigate("../"),
+        handleCancel: () => navigate("/"),
         handleDelete: () =>
           navigate(
             `/${handle}/${timelineSlug}/delete?timelineId=${timelineId}`

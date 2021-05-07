@@ -30,8 +30,6 @@ function Sidebar(props: SidebarProps) {
 
   const { data: timelinesData } = useTimelinesByUserId(timelineByUserIdSearch);
 
-  console.log("timelinesData", timelinesData);
-
   const ventureIds: string[] = timelinesData?.map(
     (timeline: ITimeline) => timeline.ventureId
   );

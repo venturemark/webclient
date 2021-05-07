@@ -182,7 +182,7 @@ function PlasmicMain__RenderFunc(props: {
               ? ("settings" as const)
               : hasVariant(variants, "isActive", "feed")
               ? ("feed" as const)
-              : ("feed" as const)
+              : ("unnamedVariant" as const)
           }
           timelineDescription={
             <div

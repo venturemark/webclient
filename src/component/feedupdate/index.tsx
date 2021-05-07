@@ -123,8 +123,6 @@ function FeedUpdate(props: FeedUpdateProps) {
       ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
       : timelineUsersData;
 
-  console.log("venture users data", ventureUsersData);
-
   return (
     <PlasmicFeedUpdate
       {...rest}
