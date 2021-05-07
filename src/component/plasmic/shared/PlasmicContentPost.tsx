@@ -104,9 +104,10 @@ function PlasmicContentPost__RenderFunc(props: {
   variants: PlasmicContentPost__VariantsArgs;
   args: PlasmicContentPost__ArgsType;
   overrides: PlasmicContentPost__OverridesType;
+  dataFetches?: PlasmicContentPost__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
   const triggers = {
@@ -354,12 +355,10 @@ function PlasmicContentPost__RenderFunc(props: {
               data-plasmic-name={"photoAvatar"}
               data-plasmic-override={overrides.photoAvatar}
               className={classNames("__wab_instance", sty.photoAvatar)}
-              userInitials={
-                <p.PlasmicSlot
-                  defaultContents={"KO"}
-                  value={args.userInitials}
-                />
-              }
+              userInitials={p.renderPlasmicSlot({
+                defaultContents: "KO",
+                value: args.userInitials,
+              })}
             />
 
             <p.Stack
@@ -379,8 +378,8 @@ function PlasmicContentPost__RenderFunc(props: {
                 })}
               >
                 <div className={classNames(defaultcss.all, sty.box__nwWG)}>
-                  <p.PlasmicSlot
-                    defaultContents={
+                  {p.renderPlasmicSlot({
+                    defaultContents: (
                       <span
                         className={classNames(
                           defaultcss.all,
@@ -392,10 +391,11 @@ function PlasmicContentPost__RenderFunc(props: {
                           <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
                         </span>
                       </span>
-                    }
-                    value={args.userName}
-                    className={classNames(sty.slotUserName)}
-                  />
+                    ),
+
+                    value: args.userName,
+                    className: classNames(sty.slotUserName),
+                  })}
                 </div>
 
                 <p.Stack
@@ -428,8 +428,8 @@ function PlasmicContentPost__RenderFunc(props: {
                     {"•"}
                   </span>
 
-                  <p.PlasmicSlot
-                    defaultContents={
+                  {p.renderPlasmicSlot({
+                    defaultContents: (
                       <span
                         className={classNames(
                           defaultcss.all,
@@ -439,16 +439,17 @@ function PlasmicContentPost__RenderFunc(props: {
                       >
                         {"3 hours ago"}
                       </span>
-                    }
-                    value={args.date}
-                    className={classNames(sty.slotDate, {
+                    ),
+
+                    value: args.date,
+                    className: classNames(sty.slotDate, {
                       [sty.slotDate__state_isOwner]: hasVariant(
                         variants,
                         "state",
                         "isOwner"
                       ),
-                    })}
-                  />
+                    }),
+                  })}
                 </p.Stack>
               </p.Stack>
 
@@ -484,13 +485,11 @@ function PlasmicContentPost__RenderFunc(props: {
                         hasVariant(variants, "state", "isOwner") &&
                         hasVariant(variants, "isUserOnClick", "isUserOnClick"),
                     })}
-                    name={
-                      <p.PlasmicSlot
-                        defaultContents={"Wins"}
-                        value={args.children}
-                        className={classNames(sty.slotChildren)}
-                      />
-                    }
+                    name={p.renderPlasmicSlot({
+                      defaultContents: "Wins",
+                      value: args.children,
+                      className: classNames(sty.slotChildren),
+                    })}
                   />
                 </p.Stack>
               </p.Stack>
@@ -611,6 +610,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicContentPost__VariantsArgs;
   args?: PlasmicContentPost__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicContentPost__Fetches;
 } & Omit<PlasmicContentPost__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicContentPost__ArgsType, ReservedPropsType> &
@@ -637,10 +637,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicContentPost__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicContentPost__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

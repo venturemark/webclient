@@ -81,9 +81,10 @@ function PlasmicMemberItem__RenderFunc(props: {
   variants: PlasmicMemberItem__VariantsArgs;
   args: PlasmicMemberItem__ArgsType;
   overrides: PlasmicMemberItem__OverridesType;
+  dataFetches?: PlasmicMemberItem__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -121,7 +122,10 @@ function PlasmicMemberItem__RenderFunc(props: {
           userInitials={"KO"}
         />
 
-        <p.PlasmicSlot defaultContents={"User Name"} value={args.userName} />
+        {p.renderPlasmicSlot({
+          defaultContents: "User Name",
+          value: args.userName,
+        })}
 
         {false ? (
           <div
@@ -134,13 +138,13 @@ function PlasmicMemberItem__RenderFunc(props: {
             {"-"}
           </div>
         ) : null}
-        {false ? (
-          <p.PlasmicSlot
-            defaultContents={"example@email.com"}
-            value={args.slot3}
-            className={classNames(sty.slotSlot3)}
-          />
-        ) : null}
+        {false
+          ? p.renderPlasmicSlot({
+              defaultContents: "example@email.com",
+              value: args.slot3,
+              className: classNames(sty.slotSlot3),
+            })
+          : null}
       </p.Stack>
 
       {(hasVariant(variants, "userVariant", "isMember") ? false : true) ? (
@@ -255,6 +259,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicMemberItem__VariantsArgs;
   args?: PlasmicMemberItem__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicMemberItem__Fetches;
 } & Omit<PlasmicMemberItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicMemberItem__ArgsType, ReservedPropsType> &
@@ -281,10 +286,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicMemberItem__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicMemberItem__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

@@ -60,9 +60,10 @@ function PlasmicListItem__RenderFunc(props: {
   variants: PlasmicListItem__VariantsArgs;
   args: PlasmicListItem__ArgsType;
   overrides: PlasmicListItem__OverridesType;
+  dataFetches?: PlasmicListItem__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <li
@@ -77,11 +78,11 @@ function PlasmicListItem__RenderFunc(props: {
         data-plasmic-override={overrides.link}
         className={classNames(defaultcss.all, sty.link)}
       >
-        <p.PlasmicSlot
-          defaultContents={"Edit"}
-          value={args.rename}
-          className={classNames(sty.slotRename)}
-        />
+        {p.renderPlasmicSlot({
+          defaultContents: "Edit",
+          value: args.rename,
+          className: classNames(sty.slotRename),
+        })}
       </a>
     </li>
   ) as React.ReactElement | null;
@@ -110,6 +111,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicListItem__VariantsArgs;
   args?: PlasmicListItem__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicListItem__Fetches;
 } & Omit<PlasmicListItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicListItem__ArgsType, ReservedPropsType> &
@@ -136,10 +138,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicListItem__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicListItem__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

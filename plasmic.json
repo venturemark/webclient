@@ -538,7 +538,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicMembers.tsx",
           "importSpec": {
-            "modulePath": "Members.tsx"
+            "modulePath": "members/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicMembers.module.css",
           "scheme": "blackbox",
@@ -551,11 +551,24 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicVentureSettings.tsx",
           "importSpec": {
-            "modulePath": "VentureSettings.tsx"
+            "modulePath": "venturesettings/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicVentureSettings.module.css",
           "scheme": "blackbox",
           "componentType": "page"
+        },
+        {
+          "id": "jggPyChG2Zg",
+          "name": "EmptyState",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicEmptyState.tsx",
+          "importSpec": {
+            "modulePath": "emptystate/index.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicEmptyState.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -781,6 +794,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.143",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.143/dist/plasmic.schema.json"
+  "cliVersion": "0.1.145",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.145/dist/plasmic.schema.json"
 }

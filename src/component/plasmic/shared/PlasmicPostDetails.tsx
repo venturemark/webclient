@@ -75,9 +75,10 @@ function PlasmicPostDetails__RenderFunc(props: {
   variants: PlasmicPostDetails__VariantsArgs;
   args: PlasmicPostDetails__ArgsType;
   overrides: PlasmicPostDetails__OverridesType;
+  dataFetches?: PlasmicPostDetails__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <p.Stack
@@ -91,11 +92,11 @@ function PlasmicPostDetails__RenderFunc(props: {
     >
       {true ? (
         <div className={classNames(defaultcss.all, sty.box__qxUjW)}>
-          <p.PlasmicSlot
-            defaultContents={"Post Details"}
-            value={args.children}
-            className={classNames(sty.slotChildren)}
-          />
+          {p.renderPlasmicSlot({
+            defaultContents: "Post Details",
+            value: args.children,
+            className: classNames(sty.slotChildren),
+          })}
 
           <IconButton
             data-plasmic-name={"close"}
@@ -255,6 +256,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicPostDetails__VariantsArgs;
   args?: PlasmicPostDetails__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicPostDetails__Fetches;
 } & Omit<PlasmicPostDetails__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicPostDetails__ArgsType, ReservedPropsType> &
@@ -281,10 +283,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicPostDetails__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicPostDetails__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

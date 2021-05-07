@@ -110,9 +110,10 @@ function PlasmicMainHeader__RenderFunc(props: {
   variants: PlasmicMainHeader__VariantsArgs;
   args: PlasmicMainHeader__ArgsType;
   overrides: PlasmicMainHeader__OverridesType;
+  dataFetches?: PlasmicMainHeader__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -208,10 +209,10 @@ function PlasmicMainHeader__RenderFunc(props: {
                 ),
               })}
             >
-              <p.PlasmicSlot
-                defaultContents={"Wins"}
-                value={args.timelineName}
-                className={classNames(sty.slotTimelineName, {
+              {p.renderPlasmicSlot({
+                defaultContents: "Wins",
+                value: args.timelineName,
+                className: classNames(sty.slotTimelineName, {
                   [sty.slotTimelineName__headerStyles_timelineHeader]: hasVariant(
                     variants,
                     "headerStyles",
@@ -222,8 +223,8 @@ function PlasmicMainHeader__RenderFunc(props: {
                     "headerStyles",
                     "ventureHeader"
                   ),
-                })}
-              />
+                }),
+              })}
             </p.Stack>
           ) : null}
           {(
@@ -286,49 +287,49 @@ function PlasmicMainHeader__RenderFunc(props: {
                 hasVariant(variants, "headerStyles", "timelineHeader")
                   ? true
                   : true
-              ) ? (
-                <p.PlasmicSlot
-                  defaultContents={
-                    <React.Fragment>
-                      <div
-                        className={classNames(
-                          defaultcss.all,
-                          defaultcss.__wab_text,
-                          sty.box__oBTp
-                        )}
-                      >
-                        {"Adbloom"}
-                      </div>
-
-                      {false ? (
-                        <IconButton
+              )
+                ? p.renderPlasmicSlot({
+                    defaultContents: (
+                      <React.Fragment>
+                        <div
                           className={classNames(
-                            "__wab_instance",
-                            sty.iconButton__buruf
+                            defaultcss.all,
+                            defaultcss.__wab_text,
+                            sty.box__oBTp
                           )}
-                          iconSize={"large" as const}
                         >
-                          <IconExternalLinkIcon
+                          {"Adbloom"}
+                        </div>
+
+                        {false ? (
+                          <IconButton
                             className={classNames(
-                              defaultcss.all,
-                              sty.svg__vIuG
+                              "__wab_instance",
+                              sty.iconButton__buruf
                             )}
-                            role={"img"}
-                          />
-                        </IconButton>
-                      ) : null}
-                    </React.Fragment>
-                  }
-                  value={args.ventureName}
-                  className={classNames(sty.slotVentureName, {
-                    [sty.slotVentureName__headerStyles_timelineHeader]: hasVariant(
-                      variants,
-                      "headerStyles",
-                      "timelineHeader"
+                            iconSize={"large" as const}
+                          >
+                            <IconExternalLinkIcon
+                              className={classNames(
+                                defaultcss.all,
+                                sty.svg__vIuG
+                              )}
+                              role={"img"}
+                            />
+                          </IconButton>
+                        ) : null}
+                      </React.Fragment>
                     ),
-                  })}
-                />
-              ) : null}
+                    value: args.ventureName,
+                    className: classNames(sty.slotVentureName, {
+                      [sty.slotVentureName__headerStyles_timelineHeader]: hasVariant(
+                        variants,
+                        "headerStyles",
+                        "timelineHeader"
+                      ),
+                    }),
+                  })
+                : null}
             </p.Stack>
           ) : null}
           {(
@@ -377,12 +378,11 @@ function PlasmicMainHeader__RenderFunc(props: {
                   ) && hasVariant(variants, "headerStyles", "ventureHeader"),
               })}
             >
-              <p.PlasmicSlot
-                defaultContents={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                }
-                value={args.timelineDescription}
-                className={classNames(sty.slotTimelineDescription, {
+              {p.renderPlasmicSlot({
+                defaultContents:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                value: args.timelineDescription,
+                className: classNames(sty.slotTimelineDescription, {
                   [sty.slotTimelineDescription__headerStyles_timelineHeader]: hasVariant(
                     variants,
                     "headerStyles",
@@ -411,8 +411,8 @@ function PlasmicMainHeader__RenderFunc(props: {
                       "showVentureDescription",
                       "showVentureDescription"
                     ) && hasVariant(variants, "headerStyles", "ventureHeader"),
-                })}
-              />
+                }),
+              })}
             </div>
           ) : null}
           {(
@@ -470,12 +470,11 @@ function PlasmicMainHeader__RenderFunc(props: {
                 ),
               })}
             >
-              <p.PlasmicSlot
-                defaultContents={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna."
-                }
-                value={args.ventureDescription}
-                className={classNames(sty.slotVentureDescription, {
+              {p.renderPlasmicSlot({
+                defaultContents:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.",
+                value: args.ventureDescription,
+                className: classNames(sty.slotVentureDescription, {
                   [sty.slotVentureDescription__headerStyles_timelineHeader]: hasVariant(
                     variants,
                     "headerStyles",
@@ -491,8 +490,8 @@ function PlasmicMainHeader__RenderFunc(props: {
                     "showVentureDescription",
                     "showVentureDescription"
                   ),
-                })}
-              />
+                }),
+              })}
             </div>
           ) : null}
         </p.Stack>
@@ -651,6 +650,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicMainHeader__VariantsArgs;
   args?: PlasmicMainHeader__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicMainHeader__Fetches;
 } & Omit<PlasmicMainHeader__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicMainHeader__ArgsType, ReservedPropsType> &
@@ -677,10 +677,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicMainHeader__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicMainHeader__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

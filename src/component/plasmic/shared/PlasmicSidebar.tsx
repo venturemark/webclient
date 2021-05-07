@@ -70,9 +70,10 @@ function PlasmicSidebar__RenderFunc(props: {
   variants: PlasmicSidebar__VariantsArgs;
   args: PlasmicSidebar__ArgsType;
   overrides: PlasmicSidebar__OverridesType;
+  dataFetches?: PlasmicSidebar__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -201,6 +202,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicSidebar__VariantsArgs;
   args?: PlasmicSidebar__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicSidebar__Fetches;
 } & Omit<PlasmicSidebar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicSidebar__ArgsType, ReservedPropsType> &
@@ -227,10 +229,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSidebar__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicSidebar__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

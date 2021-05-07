@@ -57,9 +57,10 @@ function PlasmicNotificationCount__RenderFunc(props: {
   variants: PlasmicNotificationCount__VariantsArgs;
   args: PlasmicNotificationCount__ArgsType;
   overrides: PlasmicNotificationCount__OverridesType;
+  dataFetches?: PlasmicNotificationCount__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -111,6 +112,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicNotificationCount__VariantsArgs;
   args?: PlasmicNotificationCount__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicNotificationCount__Fetches;
 } & Omit<PlasmicNotificationCount__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicNotificationCount__ArgsType, ReservedPropsType> &
@@ -137,10 +139,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicNotificationCount__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicNotificationCount__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

@@ -76,9 +76,10 @@ function PlasmicHome__RenderFunc(props: {
   variants: PlasmicHome__VariantsArgs;
   args: PlasmicHome__ArgsType;
   overrides: PlasmicHome__OverridesType;
+  dataFetches?: PlasmicHome__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -215,7 +216,7 @@ function PlasmicHome__RenderFunc(props: {
                       "postDetails"
                     ),
                   })}
-                  isActive={"feed" as const}
+                  isActive={"isNewVenture" as const}
                   isOwner={"isOwner" as const}
                   variantType={"isVenture" as const}
                 />
@@ -285,6 +286,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicHome__VariantsArgs;
   args?: PlasmicHome__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicHome__Fetches;
 } & Omit<PlasmicHome__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicHome__ArgsType, ReservedPropsType> &
@@ -311,10 +313,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicHome__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicHome__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

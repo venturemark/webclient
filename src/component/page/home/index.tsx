@@ -10,7 +10,7 @@ import { IUpdate } from "module/interface/update";
 import { UserContext } from "component/app";
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
-type IsActive = "feed" | "settings" | "members" | undefined;
+type IsActive = "feed" | "settings" | "members" | "isNewVenture" | undefined;
 type IsVisible = "postDetails" | "mobileSidebar" | "showModal" | undefined;
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 

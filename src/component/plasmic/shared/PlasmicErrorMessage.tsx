@@ -67,9 +67,10 @@ function PlasmicErrorMessage__RenderFunc(props: {
   variants: PlasmicErrorMessage__VariantsArgs;
   args: PlasmicErrorMessage__ArgsType;
   overrides: PlasmicErrorMessage__OverridesType;
+  dataFetches?: PlasmicErrorMessage__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -86,21 +87,23 @@ function PlasmicErrorMessage__RenderFunc(props: {
         hasGap={true}
         className={classNames(defaultcss.all, sty.container)}
       >
-        <p.PlasmicSlot
-          defaultContents={
+        {p.renderPlasmicSlot({
+          defaultContents: (
             <IconCautionIcon
               className={classNames(defaultcss.all, sty.svg__eqR5W)}
               role={"img"}
             />
-          }
-          value={args.children}
-          className={classNames(sty.slotChildren)}
-        />
-        <p.PlasmicSlot
-          defaultContents={"Error message"}
-          value={args.message}
-          className={classNames(sty.slotMessage)}
-        />
+          ),
+
+          value: args.children,
+          className: classNames(sty.slotChildren),
+        })}
+
+        {p.renderPlasmicSlot({
+          defaultContents: "Error message",
+          value: args.message,
+          className: classNames(sty.slotMessage),
+        })}
       </p.Stack>
     </div>
   ) as React.ReactElement | null;
@@ -129,6 +132,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicErrorMessage__VariantsArgs;
   args?: PlasmicErrorMessage__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicErrorMessage__Fetches;
 } & Omit<PlasmicErrorMessage__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicErrorMessage__ArgsType, ReservedPropsType> &
@@ -155,10 +159,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicErrorMessage__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicErrorMessage__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

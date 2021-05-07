@@ -61,9 +61,10 @@ function PlasmicProfile__RenderFunc(props: {
   variants: PlasmicProfile__VariantsArgs;
   args: PlasmicProfile__ArgsType;
   overrides: PlasmicProfile__OverridesType;
+  dataFetches?: PlasmicProfile__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -185,6 +186,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicProfile__VariantsArgs;
   args?: PlasmicProfile__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicProfile__Fetches;
 } & Omit<PlasmicProfile__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicProfile__ArgsType, ReservedPropsType> &
@@ -211,10 +213,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicProfile__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicProfile__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

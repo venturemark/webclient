@@ -95,9 +95,10 @@ function PlasmicSidebarItem__RenderFunc(props: {
   variants: PlasmicSidebarItem__VariantsArgs;
   args: PlasmicSidebarItem__ArgsType;
   overrides: PlasmicSidebarItem__OverridesType;
+  dataFetches?: PlasmicSidebarItem__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
   const triggers = {
@@ -309,8 +310,8 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 ),
               })}
             >
-              <p.PlasmicSlot
-                defaultContents={
+              {p.renderPlasmicSlot({
+                defaultContents: (
                   <React.Fragment>
                     <div
                       className={classNames(
@@ -335,9 +336,9 @@ function PlasmicSidebarItem__RenderFunc(props: {
                       />
                     ) : null}
                   </React.Fragment>
-                }
-                value={args.name}
-                className={classNames(sty.slotName, {
+                ),
+                value: args.name,
+                className: classNames(sty.slotName, {
                   [sty.slotName__isActive]: hasVariant(
                     variants,
                     "isActive",
@@ -353,8 +354,8 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     "itemType",
                     "timeline"
                   ),
-                })}
-              />
+                }),
+              })}
             </p.Stack>
           ) : null}
           {(
@@ -497,6 +498,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicSidebarItem__VariantsArgs;
   args?: PlasmicSidebarItem__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicSidebarItem__Fetches;
 } & Omit<PlasmicSidebarItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicSidebarItem__ArgsType, ReservedPropsType> &
@@ -523,10 +525,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSidebarItem__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicSidebarItem__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

@@ -74,9 +74,10 @@ function PlasmicMembers__RenderFunc(props: {
   variants: PlasmicMembers__VariantsArgs;
   args: PlasmicMembers__ArgsType;
   overrides: PlasmicMembers__OverridesType;
+  dataFetches?: PlasmicMembers__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants(),
@@ -215,6 +216,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicMembers__VariantsArgs;
   args?: PlasmicMembers__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicMembers__Fetches;
 } & Omit<PlasmicMembers__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicMembers__ArgsType, ReservedPropsType> &
@@ -241,10 +243,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicMembers__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicMembers__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

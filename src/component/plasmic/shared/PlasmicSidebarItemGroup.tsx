@@ -72,9 +72,10 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
   variants: PlasmicSidebarItemGroup__VariantsArgs;
   args: PlasmicSidebarItemGroup__ArgsType;
   overrides: PlasmicSidebarItemGroup__OverridesType;
+  dataFetches?: PlasmicSidebarItemGroup__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
   const triggers = {
@@ -251,6 +252,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicSidebarItemGroup__VariantsArgs;
   args?: PlasmicSidebarItemGroup__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicSidebarItemGroup__Fetches;
 } & Omit<PlasmicSidebarItemGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicSidebarItemGroup__ArgsType, ReservedPropsType> &
@@ -277,10 +279,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSidebarItemGroup__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicSidebarItemGroup__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

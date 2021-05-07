@@ -169,7 +169,7 @@ function Begin(props: BeginProps) {
   if (isLoading) {
     return <span>loading data...</span>;
   }
-  if (timelinesData) {
+  if (timelinesData?.length > 0) {
     return <Navigate replace to={`../`} />;
   }
   return <Home variantType={variantType} isActive={isActive} />;
@@ -323,6 +323,11 @@ function VentureRoutes(props: VentureRoutesProps) {
     ventureRoleTimelines,
   };
 
+  const hasTimelines =
+    allTimelines?.filter(
+      (timeline: ITimeline) => timeline.ventureId === currentVenture?.id
+    ).length > 0;
+
   useEffect(() => {
     if (userId) {
       const tagManagerArgs = {
@@ -347,8 +352,14 @@ function VentureRoutes(props: VentureRoutesProps) {
     <VentureContext.Provider value={ventureContext}>
       <TimelineContext.Provider value={timelineContext}>
         <Routes>
-          <Route path="/" element={<VentureFeed />} />
-          <Route path="feed" element={<VentureFeed />} />
+          <Route
+            path="/"
+            element={<VentureFeed hasTimelines={hasTimelines} />}
+          />
+          <Route
+            path="feed"
+            element={<VentureFeed hasTimelines={hasTimelines} />}
+          />
           <Route path="members" element={<VentureMembers />} />
           <Route path="settings" element={<VentureSettings />} />
           <Route path="delete" element={<VentureDelete />} />
@@ -366,9 +377,14 @@ function NewTimeline() {
   return <Home variantType={variantType} isActive={isActive} />;
 }
 
-function VentureFeed() {
+interface FeedProps {
+  hasTimelines: boolean;
+}
+
+function VentureFeed(props: FeedProps) {
+  const { hasTimelines } = props;
   const variantType = "isVenture";
-  const isActive = "feed";
+  const isActive = hasTimelines ? "feed" : "isNewVenture";
   return <Home variantType={variantType} isActive={isActive} />;
 }
 

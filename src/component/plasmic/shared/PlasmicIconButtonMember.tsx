@@ -74,9 +74,10 @@ function PlasmicIconButtonMember__RenderFunc(props: {
   variants: PlasmicIconButtonMember__VariantsArgs;
   args: PlasmicIconButtonMember__ArgsType;
   overrides: PlasmicIconButtonMember__OverridesType;
+  dataFetches?: PlasmicIconButtonMember__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <div
@@ -114,11 +115,11 @@ function PlasmicIconButtonMember__RenderFunc(props: {
           className={classNames(defaultcss.all, sty.background)}
         >
           <div className={classNames(defaultcss.all, sty.box__ysBge)}>
-            <p.PlasmicSlot
-              defaultContents={"+"}
-              value={args.memberCount}
-              className={classNames(sty.slotMemberCount)}
-            />
+            {p.renderPlasmicSlot({
+              defaultContents: "+",
+              value: args.memberCount,
+              className: classNames(sty.slotMemberCount),
+            })}
           </div>
         </div>
       </div>
@@ -153,6 +154,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicIconButtonMember__VariantsArgs;
   args?: PlasmicIconButtonMember__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicIconButtonMember__Fetches;
 } & Omit<PlasmicIconButtonMember__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicIconButtonMember__ArgsType, ReservedPropsType> &
@@ -179,10 +181,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicIconButtonMember__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicIconButtonMember__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };

@@ -72,9 +72,10 @@ function PlasmicFeedUpdate__RenderFunc(props: {
   variants: PlasmicFeedUpdate__VariantsArgs;
   args: PlasmicFeedUpdate__ArgsType;
   overrides: PlasmicFeedUpdate__OverridesType;
+  dataFetches?: PlasmicFeedUpdate__Fetches;
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode } = props;
+  const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
     <p.Stack
@@ -160,6 +161,7 @@ type NodeComponentProps<T extends NodeNameType> = {
   variants?: PlasmicFeedUpdate__VariantsArgs;
   args?: PlasmicFeedUpdate__ArgsType;
   overrides?: NodeOverridesType<T>;
+  dataFetches?: PlasmicFeedUpdate__Fetches;
 } & Omit<PlasmicFeedUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
   // Specify args directly as props
   Omit<PlasmicFeedUpdate__ArgsType, ReservedPropsType> &
@@ -186,10 +188,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicFeedUpdate__VariantProps,
     });
 
+    const { dataFetches } = props;
+
     return PlasmicFeedUpdate__RenderFunc({
       variants,
       args,
       overrides,
+      dataFetches,
       forNode: nodeName,
     });
   };
