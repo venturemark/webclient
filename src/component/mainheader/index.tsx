@@ -35,10 +35,6 @@ function MainHeader(props: MainHeaderProps) {
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
 
   const link = timelineSlug ? `/${handle}/${timelineSlug}` : `/${handle}`;
-
-  console.log(ventureSlug);
-  console.log(variantType);
-
   return (
     <PlasmicMainHeader
       {...rest}

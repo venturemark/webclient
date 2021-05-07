@@ -33,7 +33,7 @@ function Modal(props: ModalProps) {
   const token = useGetToken();
   const userContext = useContext(UserContext);
   const user = userContext?.user;
-  const venture = useContext(VentureContext);
+  const ventureContext = useContext(VentureContext);
   const query = useQuery();
   const ventureId = query.get("ventureId") ?? "";
   const timelineId = query.get("timelineId") ?? "";
@@ -63,7 +63,7 @@ function Modal(props: ModalProps) {
   };
 
   const handleDeleteTimeline = async () => {
-    const ventureId = venture?.currentVenture.id ?? "";
+    const ventureId = ventureContext?.currentVenture.id ?? "";
     const timelineArchive: IUpdateTimeline = {
       id: timelineId,
       ventureId: ventureId,
@@ -135,16 +135,16 @@ function Modal(props: ModalProps) {
         onPress: () => handleSubmit(handleSave)(),
       }}
       cancelEdit={{
-        onPress: () => navigate("../settings"),
+        onPress: () => navigate("/"),
       }}
       cancelTimeline={{
-        onPress: () => navigate("../"),
+        onPress: () => navigate("/"),
       }}
       cancelVenture={{
-        onPress: () => navigate("../settings"),
+        onPress: () => navigate("/"),
       }}
       close={{
-        onClick: () => navigate("../"),
+        onClick: () => navigate("/"),
       }}
     />
   );

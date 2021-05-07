@@ -116,7 +116,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         defaultValue: currentTimeline?.desc ?? "",
       }}
       buttonSetEdit={{
-        handleCancel: () => navigate("../"),
+        handleCancel: () => navigate("/"),
         handleDelete: () =>
           navigate(
             `/${handle}/${timelineSlug}/delete?timelineId=${timelineId}`

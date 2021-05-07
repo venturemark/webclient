@@ -16,7 +16,6 @@ function EmptyState(props: EmptyStateProps) {
   const { variantType, isActive, ...rest } = props;
   const { ventureSlug } = useParams();
   const navigate = useNavigate();
-  console.log(variantType, isActive);
   return (
     <PlasmicEmptyState
       {...rest}
