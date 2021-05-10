@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { createBrowserHistory } from "history";
+import { Navigate } from "react-router-dom";
 import GA4React from "ga-4-react";
 import { getConfig } from "module/auth";
 
@@ -22,15 +22,14 @@ WebFont.load({
   },
 });
 
-// export default createBrowserHistory();
-const history = createBrowserHistory();
 const config = getConfig();
 
-//how do we set this up?
 const onRedirectCallback = (appState: any) => {
-  history.push(
-    appState && appState.returnTo ? appState.returnTo : window.location.pathname
-  );
+  const url =
+    appState && appState.returnTo
+      ? appState.returnTo
+      : window.location.pathname;
+  return <Navigate to={`${url}`} replace />;
 };
 
 const providerConfig = {
