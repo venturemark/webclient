@@ -66,9 +66,8 @@ export function useCreateTimeline() {
         await queryClient.cancelQueries("timelines");
 
         // Snapshot the previous value
-        const previousTimelines = queryClient.getQueryData<ITimeline[]>(
-          "timelines"
-        );
+        const previousTimelines =
+          queryClient.getQueryData<ITimeline[]>("timelines");
 
         // Optimistically update to the new value
         if (previousTimelines) {

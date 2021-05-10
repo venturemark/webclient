@@ -114,9 +114,8 @@ const PlasmicDescendants = {
   container: ["container"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
-type DescendantsType<
-  T extends NodeNameType
-> = typeof PlasmicDescendants[T][number];
+type DescendantsType<T extends NodeNameType> =
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   container: "div";

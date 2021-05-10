@@ -58,9 +58,8 @@ function AddEditMembers(props: AddEditMembersProps) {
     token,
   };
 
-  const { data: invitesData, isSuccess: invitesSuccess } = useInvites(
-    searchInvite
-  );
+  const { data: invitesData, isSuccess: invitesSuccess } =
+    useInvites(searchInvite);
   /// <===
 
   const ventureRoleSearch: ISearchVentureRoles = {
@@ -81,20 +80,16 @@ function AddEditMembers(props: AddEditMembersProps) {
     ventureId: currentVenture?.id ?? undefined,
     token,
   };
-  const {
-    data: timelineUsersData,
-    isSuccess: timelineUsersSuccess,
-  } = useTimelineMembers(userTimelineSearch);
+  const { data: timelineUsersData, isSuccess: timelineUsersSuccess } =
+    useTimelineMembers(userTimelineSearch);
 
   const userVentureSearch: ISearchVentureMembers = {
     resource: "venture",
     ventureId: currentVenture?.id ?? undefined,
     token,
   };
-  const {
-    data: ventureUsersData,
-    isSuccess: ventureUsersSuccess,
-  } = useVentureMembers(userVentureSearch);
+  const { data: ventureUsersData, isSuccess: ventureUsersSuccess } =
+    useVentureMembers(userVentureSearch);
 
   const { data: timelineRolesData } = useTimelineRole(timelineRoleSearch);
 
@@ -186,7 +181,8 @@ function AddEditMembers(props: AddEditMembersProps) {
             }
             rules={{
               required: true,
-              pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              pattern:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             }}
             message={errors.email && emailError}
           />

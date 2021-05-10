@@ -89,12 +89,10 @@ function PlasmicRadio__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
-  const [
-    isRootFocusVisibleWithin,
-    triggerRootFocusVisibleWithinProps,
-  ] = useTrigger("useFocusVisibleWithin", {
-    isTextInput: false,
-  });
+  const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
+    useTrigger("useFocusVisibleWithin", {
+      isTextInput: false,
+    });
 
   const triggers = {
     focusVisibleWithin_root: isRootFocusVisibleWithin,
@@ -313,9 +311,8 @@ const PlasmicDescendants = {
   svg: ["svg"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
-type DescendantsType<
-  T extends NodeNameType
-> = typeof PlasmicDescendants[T][number];
+type DescendantsType<T extends NodeNameType> =
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   radio: "div";

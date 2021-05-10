@@ -305,9 +305,8 @@ const PlasmicDescendants = {
   text22: ["text22"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
-type DescendantsType<
-  T extends NodeNameType
-> = typeof PlasmicDescendants[T][number];
+type DescendantsType<T extends NodeNameType> =
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   googleButton: typeof Button;

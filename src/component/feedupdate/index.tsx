@@ -74,10 +74,8 @@ function FeedUpdate(props: FeedUpdateProps) {
     token,
   };
 
-  const {
-    data: allUpdates,
-    isSuccess: updateSuccess,
-  } = useUpdatesByTimelineIds(updatesByTimelineIdsSearch);
+  const { data: allUpdates, isSuccess: updateSuccess } =
+    useUpdatesByTimelineIds(updatesByTimelineIdsSearch);
 
   if (updateSuccess) {
     //deduplicate updates for home
@@ -103,20 +101,16 @@ function FeedUpdate(props: FeedUpdateProps) {
     ventureId: ventureId ?? undefined,
     token,
   };
-  const {
-    data: timelineUsersData,
-    isSuccess: timelineUsersSuccess,
-  } = useTimelineMembers(userTimelineSearch);
+  const { data: timelineUsersData, isSuccess: timelineUsersSuccess } =
+    useTimelineMembers(userTimelineSearch);
 
   const userVentureSearch: ISearchVentureMembers = {
     resource: "venture",
     ventureId: ventureId ?? undefined,
     token,
   };
-  const {
-    data: ventureUsersData,
-    isSuccess: ventureUsersSuccess,
-  } = useVentureMembers(userVentureSearch);
+  const { data: ventureUsersData, isSuccess: ventureUsersSuccess } =
+    useVentureMembers(userVentureSearch);
 
   const allMembers =
     timelineUsersSuccess && ventureUsersSuccess
