@@ -98,20 +98,16 @@ function ContentPost(props: ContentPostProps) {
     ventureId: ventureId ?? undefined,
     token,
   };
-  const {
-    data: timelineUsersData,
-    isSuccess: timelineUsersSuccess,
-  } = useTimelineMembers(userTimelineSearch);
+  const { data: timelineUsersData, isSuccess: timelineUsersSuccess } =
+    useTimelineMembers(userTimelineSearch);
 
   const userVentureSearch: ISearchVentureMembers = {
     resource: "venture",
     ventureId: ventureId ?? undefined,
     token,
   };
-  const {
-    data: ventureUsersData,
-    isSuccess: ventureUsersSuccess,
-  } = useVentureMembers(userVentureSearch);
+  const { data: ventureUsersData, isSuccess: ventureUsersSuccess } =
+    useVentureMembers(userVentureSearch);
 
   const allMembers =
     timelineUsersSuccess && ventureUsersSuccess

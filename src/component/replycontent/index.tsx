@@ -28,16 +28,8 @@ interface ReplyContentProps extends DefaultReplyContentProps {
 }
 
 function ReplyContent(props: ReplyContentProps) {
-  const {
-    date,
-    text,
-    userId,
-    id,
-    timelineId,
-    ventureId,
-    updateId,
-    ...rest
-  } = props;
+  const { date, text, userId, id, timelineId, ventureId, updateId, ...rest } =
+    props;
   const token = useGetToken();
 
   const { mutate: deleteMessage } = useDeleteMessage();
@@ -50,20 +42,16 @@ function ReplyContent(props: ReplyContentProps) {
     ventureId: ventureId ?? undefined,
     token,
   };
-  const {
-    data: timelineUsersData,
-    isSuccess: timelineUsersSuccess,
-  } = useTimelineMembers(userTimelineSearch);
+  const { data: timelineUsersData, isSuccess: timelineUsersSuccess } =
+    useTimelineMembers(userTimelineSearch);
 
   const userVentureSearch: ISearchVentureMembers = {
     resource: "venture",
     ventureId: ventureId ?? undefined,
     token,
   };
-  const {
-    data: ventureUsersData,
-    isSuccess: ventureUsersSuccess,
-  } = useVentureMembers(userVentureSearch);
+  const { data: ventureUsersData, isSuccess: ventureUsersSuccess } =
+    useVentureMembers(userVentureSearch);
 
   const allMembers =
     timelineUsersSuccess && ventureUsersSuccess

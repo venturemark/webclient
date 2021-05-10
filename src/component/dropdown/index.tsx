@@ -14,13 +14,8 @@ interface DropdownProps extends DefaultDropdownProps {
 }
 
 function Dropdown(props: DropdownProps) {
-  const {
-    timelineHandle,
-    isTimeline,
-    ventureHandle,
-    handleClick,
-    ...rest
-  } = props;
+  const { timelineHandle, isTimeline, ventureHandle, handleClick, ...rest } =
+    props;
 
   return (
     <PlasmicDropdown

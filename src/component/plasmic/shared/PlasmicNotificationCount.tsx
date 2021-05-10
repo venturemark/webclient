@@ -37,7 +37,8 @@ export type PlasmicNotificationCount__VariantMembers = {};
 
 export type PlasmicNotificationCount__VariantsArgs = {};
 type VariantPropType = keyof PlasmicNotificationCount__VariantsArgs;
-export const PlasmicNotificationCount__VariantProps = new Array<VariantPropType>();
+export const PlasmicNotificationCount__VariantProps =
+  new Array<VariantPropType>();
 
 export type PlasmicNotificationCount__ArgsType = {};
 type ArgPropType = keyof PlasmicNotificationCount__ArgsType;
@@ -93,9 +94,8 @@ const PlasmicDescendants = {
   box: ["box"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
-type DescendantsType<
-  T extends NodeNameType
-> = typeof PlasmicDescendants[T][number];
+type DescendantsType<T extends NodeNameType> =
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   background: "div";

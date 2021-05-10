@@ -108,28 +108,26 @@ export const createList = (
   items: string[],
   { splitSeparator = "`" }: { splitSeparator?: string } = {}
 ): SlateDocumentFragment => {
-  const children = items.map(
-    (item): SlateDocumentDescendant => {
-      const texts = item.split(splitSeparator);
-      const marks: Text[] = texts.map((text, index) => {
-        const res: any = { text };
-        if (index % 2 === 1) {
-          res.code = true;
-        }
-        return res;
-      });
+  const children = items.map((item): SlateDocumentDescendant => {
+    const texts = item.split(splitSeparator);
+    const marks: Text[] = texts.map((text, index) => {
+      const res: any = { text };
+      if (index % 2 === 1) {
+        res.code = true;
+      }
+      return res;
+    });
 
-      return {
-        type: options.li.type,
-        children: [
-          {
-            type: options.p.type,
-            children: marks,
-          },
-        ],
-      } as any;
-    }
-  ) as SlateDocumentFragment;
+    return {
+      type: options.li.type,
+      children: [
+        {
+          type: options.p.type,
+          children: marks,
+        },
+      ],
+    } as any;
+  }) as SlateDocumentFragment;
 
   return [
     {
@@ -165,8 +163,7 @@ export const initialValueEmbeds: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "In addition to simple image nodes, you can actually create complex embedded nodes. For example, this one contains an input element that lets you change the video being rendered!",
+            text: "In addition to simple image nodes, you can actually create complex embedded nodes. For example, this one contains an input element that lets you change the video being rendered!",
           },
         ],
       },
@@ -179,8 +176,7 @@ export const initialValueEmbeds: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "Try it out! This editor is built to handle Vimeo embeds, but you could handle any type.",
+            text: "Try it out! This editor is built to handle Vimeo embeds, but you could handle any type.",
           },
         ],
       },
@@ -199,8 +195,7 @@ export const initialValueForcedLayout: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "This example shows how to enforce your layout with domain-specific constraints. This document will always have a title block at the top and a trailing paragraph. Try deleting them and see what happens!",
+            text: "This example shows how to enforce your layout with domain-specific constraints. This document will always have a title block at the top and a trailing paragraph. Try deleting them and see what happens!",
           },
         ],
       },
@@ -293,8 +288,7 @@ export const initialValueImages: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "In addition to nodes that contain editable text, you can also create other types of nodes, like images or videos.",
+            text: "In addition to nodes that contain editable text, you can also create other types of nodes, like images or videos.",
           },
         ],
       },
@@ -307,8 +301,7 @@ export const initialValueImages: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "This example shows images in action. It features two ways to add images. You can either add an image via the toolbar icon above, or if you want in on a little secret, copy an image URL to your keyboard and paste it anywhere in the editor!",
+            text: "This example shows images in action. It features two ways to add images. You can either add an image via the toolbar icon above, or if you want in on a little secret, copy an image URL to your keyboard and paste it anywhere in the editor!",
           },
         ],
       },
@@ -331,8 +324,7 @@ export const initialValueLinks: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "In addition to block nodes, you can create inline nodes, like ",
+            text: "In addition to block nodes, you can create inline nodes, like ",
           },
           {
             type: options.link.type,
@@ -348,8 +340,7 @@ export const initialValueLinks: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "This example shows hyperlinks in action. It features two ways to add links. You can either add a link via the toolbar icon above, or if you want in on a little secret, copy a URL to your keyboard and paste it while a range of text is selected.",
+            text: "This example shows hyperlinks in action. It features two ways to add links. You can either add a link via the toolbar icon above, or if you want in on a little secret, copy a URL to your keyboard and paste it while a range of text is selected.",
           },
         ],
       },
@@ -372,8 +363,7 @@ export const initialValuePreview: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "Slate is flexible enough to add **decorations** that can format text based on its content. For example, this editor has **Markdown** preview decorations on it, to make it _dead_ simple to make an editor with built-in `Markdown` previewing.",
+            text: "Slate is flexible enough to add **decorations** that can format text based on its content. For example, this editor has **Markdown** preview decorations on it, to make it _dead_ simple to make an editor with built-in `Markdown` previewing.",
           },
         ],
       },
@@ -416,8 +406,7 @@ export const initialValueAutoformat: any[] = [
         type: options.p.type,
         children: [
           {
-            text:
-              "The editor gives you full control over the logic you can add. For example, it's fairly common to want to add markdown-like shortcuts to editors.",
+            text: "The editor gives you full control over the logic you can add. For example, it's fairly common to want to add markdown-like shortcuts to editors.",
           },
         ],
       },
@@ -445,8 +434,7 @@ export const initialValueAutoformat: any[] = [
         type: options.p.type,
         children: [
           {
-            text:
-              "At the beginning of any new block or existing block, try these:",
+            text: "At the beginning of any new block or existing block, try these:",
           },
         ],
       },
@@ -485,8 +473,7 @@ export const initialValueMentions: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "This example shows how you might implement a simple @-mentions feature that lets users autocomplete mentioning a user by their username. Which, in this case means Star Wars characters. The mentions are rendered as void inline elements inside the document.",
+            text: "This example shows how you might implement a simple @-mentions feature that lets users autocomplete mentioning a user by their username. Which, in this case means Star Wars characters. The mentions are rendered as void inline elements inside the document.",
           },
         ],
       },
@@ -527,13 +514,11 @@ export const initialValuePasteHtml: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "By default, pasting content into a Slate editor will use the clipboard's ",
+            text: "By default, pasting content into a Slate editor will use the clipboard's ",
           },
           { text: "'text/plain'", code: true },
           {
-            text:
-              " data. That's okay for some use cases, but sometimes you want users to be able to paste in content and have it maintain its formatting. To do this, your editor needs to handle ",
+            text: " data. That's okay for some use cases, but sometimes you want users to be able to paste in content and have it maintain its formatting. To do this, your editor needs to handle ",
           },
           { text: "'text/html'", code: true },
           { text: " data. " },
@@ -547,8 +532,7 @@ export const initialValuePasteHtml: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "Try it out for yourself! Copy and paste some rendered HTML rich text content (not the source code) from another site into this editor and it's formatting should be preserved.",
+            text: "Try it out for yourself! Copy and paste some rendered HTML rich text content (not the source code) from another site into this editor and it's formatting should be preserved.",
           },
         ],
       },
@@ -571,13 +555,11 @@ export const initialValuePasteMd: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "By default, pasting content into a Slate editor will use the clipboard's ",
+            text: "By default, pasting content into a Slate editor will use the clipboard's ",
           },
           { text: "'text/plain'", code: true },
           {
-            text:
-              " data. That's okay for some use cases, but sometimes you want users to be able to paste in content and have it maintain its formatting. To do this, your editor needs to handle ",
+            text: " data. That's okay for some use cases, but sometimes you want users to be able to paste in content and have it maintain its formatting. To do this, your editor needs to handle ",
           },
           { text: "'text/html'", code: true },
           { text: " data. " },
@@ -591,8 +573,7 @@ export const initialValuePasteMd: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "Try it out for yourself! Copy and paste Markdown content from ",
+            text: "Try it out for yourself! Copy and paste Markdown content from ",
           },
           {
             type: options.link.type,
@@ -644,8 +625,7 @@ export const initialValueBasicMarks: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "The basic marks consist of text formatting such as bold, italic, underline, strikethrough, subscript, superscript, and code.",
+            text: "The basic marks consist of text formatting such as bold, italic, underline, strikethrough, subscript, superscript, and code.",
           },
         ],
       },
@@ -653,8 +633,7 @@ export const initialValueBasicMarks: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "You can customize the type, the component and the hotkey for each of these.",
+            text: "You can customize the type, the component and the hotkey for each of these.",
           },
         ],
       },
@@ -724,8 +703,7 @@ export const initialValueHighlight: SlateDocument = [
             [options.highlight.type]: true,
           },
           {
-            text:
-              ", useful when reviewing content or highlighting it for future reference.",
+            text: ", useful when reviewing content or highlighting it for future reference.",
           },
         ],
       },
@@ -827,8 +805,7 @@ export const initialValueList: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "With Slate you can build complex block types that have their own embedded content and behaviors, like rendering checkboxes inside check list items!",
+            text: "With Slate you can build complex block types that have their own embedded content and behaviors, like rendering checkboxes inside check list items!",
           },
         ],
       },
@@ -877,8 +854,7 @@ export const initialValueSearchHighlighting: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "This is editable text that you can search. As you search, it looks for matching strings of text, and adds ",
+            text: "This is editable text that you can search. As you search, it looks for matching strings of text, and adds ",
           },
           { text: "decorations", [options.bold.type]: true },
           { text: " to them in realtime." },
@@ -1009,8 +985,7 @@ export const initialValueTables: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "Since the editor is based on a recursive tree model, similar to an HTML document, you can create complex nested structures, like tables:",
+            text: "Since the editor is based on a recursive tree model, similar to an HTML document, you can create complex nested structures, like tables:",
           },
         ],
       },
@@ -1019,8 +994,7 @@ export const initialValueTables: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "This table is just a basic example of rendering a table, and it doesn't have fancy functionality. But you could augment it to add support for navigating with arrow keys, displaying table headers, adding column and rows, or even formulas if you wanted to get really crazy!",
+            text: "This table is just a basic example of rendering a table, and it doesn't have fancy functionality. But you could augment it to add support for navigating with arrow keys, displaying table headers, adding column and rows, or even formulas if you wanted to get really crazy!",
           },
         ],
       },
@@ -1029,8 +1003,7 @@ export const initialValueTables: SlateDocument = [
         type: options.p.type,
         children: [
           {
-            text:
-              "This table is an example of rendering a table spanning multiple columns.",
+            text: "This table is an example of rendering a table spanning multiple columns.",
           },
         ],
       },

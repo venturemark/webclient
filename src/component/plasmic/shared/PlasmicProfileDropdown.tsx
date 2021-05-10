@@ -42,7 +42,8 @@ export type PlasmicProfileDropdown__VariantMembers = {};
 
 export type PlasmicProfileDropdown__VariantsArgs = {};
 type VariantPropType = keyof PlasmicProfileDropdown__VariantsArgs;
-export const PlasmicProfileDropdown__VariantProps = new Array<VariantPropType>();
+export const PlasmicProfileDropdown__VariantProps =
+  new Array<VariantPropType>();
 
 export type PlasmicProfileDropdown__ArgsType = {
   prop?: React.ReactNode;
@@ -223,9 +224,8 @@ const PlasmicDescendants = {
   logout: ["logout"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
-type DescendantsType<
-  T extends NodeNameType
-> = typeof PlasmicDescendants[T][number];
+type DescendantsType<T extends NodeNameType> =
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   rectangle574: "div";

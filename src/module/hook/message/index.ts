@@ -41,9 +41,8 @@ export function useCreateMessage() {
         await queryClient.cancelQueries("messages");
 
         // Snapshot the previous value
-        const previousMessages = queryClient.getQueryData<IMessage[]>(
-          "messages"
-        );
+        const previousMessages =
+          queryClient.getQueryData<IMessage[]>("messages");
 
         // Optimistically update to the new value
         if (previousMessages) {
