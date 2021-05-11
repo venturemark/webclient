@@ -18,7 +18,6 @@ interface MainProps extends DefaultMainProps {
   setIsVisible: any;
   isVisible: any;
   setPost: any;
-  viewJoinVenture?: any;
   ventureId?: string;
   user: IUser;
 }
@@ -30,7 +29,6 @@ function Main(props: MainProps) {
     variantType,
     setIsVisible,
     setPost,
-    viewJoinVenture,
     ventureId,
     isVisible,
     user,
