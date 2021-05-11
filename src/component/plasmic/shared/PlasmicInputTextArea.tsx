@@ -76,6 +76,7 @@ export type PlasmicInputTextArea__OverridesType = {
   inputHelperText?: p.Flex<"div">;
   textboxContainer?: p.Flex<"div">;
   input?: p.Flex<"textarea">;
+  svg?: p.Flex<"svg">;
   errorMessage?: p.Flex<typeof ErrorMessage>;
 };
 
@@ -188,6 +189,13 @@ function PlasmicInputTextArea__RenderFunc(props: {
             placeholder={"" as const}
             title={"" as const}
           />
+
+          <svg
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames(defaultcss.all, sty.svg)}
+            role={"img"}
+          />
         </div>
 
         <div className={classNames(defaultcss.all, sty.box__wBY0)} />
@@ -222,6 +230,7 @@ const PlasmicDescendants = {
     "inputHelperText",
     "textboxContainer",
     "input",
+    "svg",
     "errorMessage",
   ],
   textInput: [
@@ -230,12 +239,14 @@ const PlasmicDescendants = {
     "inputHelperText",
     "textboxContainer",
     "input",
+    "svg",
     "errorMessage",
   ],
   labelContainer: ["labelContainer"],
   inputHelperText: ["inputHelperText"],
-  textboxContainer: ["textboxContainer", "input"],
+  textboxContainer: ["textboxContainer", "input", "svg"],
   input: ["input"],
+  svg: ["svg"],
   errorMessage: ["errorMessage"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -248,6 +259,7 @@ type NodeDefaultElementType = {
   inputHelperText: "div";
   textboxContainer: "div";
   input: "textarea";
+  svg: "svg";
   errorMessage: typeof ErrorMessage;
 };
 
@@ -316,6 +328,7 @@ export const PlasmicInputTextArea = Object.assign(
     inputHelperText: makeNodeComponent("inputHelperText"),
     textboxContainer: makeNodeComponent("textboxContainer"),
     input: makeNodeComponent("input"),
+    svg: makeNodeComponent("svg"),
     errorMessage: makeNodeComponent("errorMessage"),
 
     // Metadata about props expected for PlasmicInputTextArea

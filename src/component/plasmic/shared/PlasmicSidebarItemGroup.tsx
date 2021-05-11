@@ -127,7 +127,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
               }
             )}
           >
-            {"Adbloom"}
+            {"Venture Name"}
           </div>
         }
       />
@@ -172,7 +172,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                   sty.box__fPdD
                 )}
               >
-                {"Wins"}
+                {"Cool Startup Friends"}
               </div>
             }
           />
