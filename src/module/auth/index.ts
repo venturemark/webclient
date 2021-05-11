@@ -55,10 +55,10 @@ export function useGetToken(): string {
         setToken(token);
       } catch (e) {
         if (e.error === "login_required") {
-          // loginWithRedirect();
+          loginWithRedirect();
         }
         if (e.error === "consent_required") {
-          // loginWithRedirect();
+          loginWithRedirect();
         }
         throw e;
       }
