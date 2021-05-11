@@ -349,7 +349,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                           ? "Organize your stories for specific audiences with timelines."
                           : hasVariant(variants, "variantType", "isEmpty")
                           ? "Get your company or organization on Venturemark."
-                          : "Enter some text"}
+                          : "Use timelines to organize stories for your group of audiences."}
                       </div>
                     ) : null}
                   </p.Stack>

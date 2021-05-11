@@ -298,6 +298,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(defaultcss.all, sty.box__zwdJs, {
+                [sty.box__isVisible__zwdJsb7AAs]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "isVisible"
+                ),
                 [sty.box__itemType_createTimeline__zwdJsOuGst]: hasVariant(
                   variants,
                   "itemType",
@@ -307,6 +312,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   variants,
                   "itemType",
                   "timeline"
+                ),
+                [sty.box__itemType_ventureCollapsed__zwdJs4PCv]: hasVariant(
+                  variants,
+                  "itemType",
+                  "ventureCollapsed"
                 ),
               })}
             >
@@ -358,79 +368,58 @@ function PlasmicSidebarItem__RenderFunc(props: {
               })}
             </p.Stack>
           ) : null}
-          {(
-            hasVariant(variants, "itemType", "createTimeline") &&
-            triggers.hover_root
-              ? false
-              : triggers.hover_root
-              ? true
-              : hasVariant(variants, "isUserOnClick", "isUserOnClick")
-              ? true
-              : hasVariant(variants, "itemType", "createTimeline")
-              ? false
-              : false
-          ) ? (
-            <IconButton
-              data-plasmic-name={"iconButton"}
-              data-plasmic-override={overrides.iconButton}
-              className={classNames("__wab_instance", sty.iconButton, {
-                [sty.iconButton__isActive]: hasVariant(
-                  variants,
-                  "isActive",
-                  "isActive"
-                ),
-                [sty.iconButton__isActive_itemType_createTimeline]:
+
+          <div className={classNames(defaultcss.all, sty.box__xZeoS)}>
+            {(
+              hasVariant(variants, "itemType", "createTimeline") &&
+              triggers.hover_root
+                ? false
+                : triggers.hover_root
+                ? true
+                : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+                ? true
+                : hasVariant(variants, "itemType", "createTimeline")
+                ? false
+                : false
+            ) ? (
+              <IconButton
+                data-plasmic-name={"iconButton"}
+                data-plasmic-override={overrides.iconButton}
+                greenBgHover={
                   hasVariant(variants, "isActive", "isActive") &&
-                  hasVariant(variants, "itemType", "createTimeline"),
-                [sty.iconButton__isUserOnClick]: hasVariant(
-                  variants,
-                  "isUserOnClick",
-                  "isUserOnClick"
-                ),
-                [sty.iconButton__itemType_createTimeline]: hasVariant(
-                  variants,
-                  "itemType",
-                  "createTimeline"
-                ),
-                [sty.iconButton__itemType_timeline]: hasVariant(
-                  variants,
-                  "itemType",
-                  "timeline"
-                ),
-              })}
-              greenBgHover={
-                hasVariant(variants, "isActive", "isActive") &&
-                triggers.hover_root
-                  ? ("greenBgHover" as const)
-                  : hasVariant(variants, "isActive", "isActive") &&
-                    hasVariant(variants, "itemType", "createTimeline")
-                  ? ("greenBgHover" as const)
-                  : undefined
-              }
-            >
-              <IconDotMenuIcon
-                className={classNames(defaultcss.all, sty.svg__zhtWc, {
-                  [sty.svg__isActive__zhtWcw0Xu8]: hasVariant(
-                    variants,
-                    "isActive",
-                    "isActive"
-                  ),
-                  [sty.svg__isActive_isUserOnClick__zhtWcw0Xu8XgVg8]:
-                    hasVariant(variants, "isActive", "isActive") &&
-                    hasVariant(variants, "isUserOnClick", "isUserOnClick"),
-                  [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
-                    hasVariant(variants, "isActive", "isActive") &&
-                    hasVariant(variants, "itemType", "createTimeline"),
-                  [sty.svg__isUserOnClick__zhtWcXgVg8]: hasVariant(
-                    variants,
-                    "isUserOnClick",
-                    "isUserOnClick"
-                  ),
-                })}
-                role={"img"}
-              />
-            </IconButton>
-          ) : null}
+                  triggers.hover_root
+                    ? ("greenBgHover" as const)
+                    : hasVariant(variants, "isActive", "isActive") &&
+                      hasVariant(variants, "itemType", "createTimeline")
+                    ? ("greenBgHover" as const)
+                    : undefined
+                }
+              >
+                <IconDotMenuIcon
+                  className={classNames(defaultcss.all, sty.svg__zhtWc, {
+                    [sty.svg__isActive__zhtWcw0Xu8]: hasVariant(
+                      variants,
+                      "isActive",
+                      "isActive"
+                    ),
+                    [sty.svg__isActive_isUserOnClick__zhtWcw0Xu8XgVg8]:
+                      hasVariant(variants, "isActive", "isActive") &&
+                      hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+                    [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
+                      hasVariant(variants, "isActive", "isActive") &&
+                      hasVariant(variants, "itemType", "createTimeline"),
+                    [sty.svg__isUserOnClick__zhtWcXgVg8]: hasVariant(
+                      variants,
+                      "isUserOnClick",
+                      "isUserOnClick"
+                    ),
+                  })}
+                  role={"img"}
+                />
+              </IconButton>
+            ) : null}
+          </div>
+
           {(
             hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
             triggers.hover_root

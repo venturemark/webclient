@@ -176,6 +176,8 @@
 }
 .box__tVef {
   position: relative;
+  width: 336px;
+  flex-shrink: 0;
 }
 .box__variantType_isEmpty__tVefHwthy {
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
@@ -183,7 +185,9 @@
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
 .box__isActive_isNew_variantType_isEmpty__tVefTn7O1Hwthy {
-  width: 343px;
+  width: auto;
+  max-width: 323px;
+  display: inline-block;
 }
 .viewCreateVenture:global(.__wab_instance) {
   position: relative;
