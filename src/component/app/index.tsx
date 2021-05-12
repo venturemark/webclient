@@ -51,12 +51,10 @@ interface ITimelineContext {
 }
 
 export const UserContext = createContext<IUserContext | undefined>(undefined);
-export const VentureContext = createContext<IVentureContext | undefined>(
-  undefined
-);
-export const TimelineContext = createContext<ITimelineContext | undefined>(
-  undefined
-);
+export const VentureContext =
+  createContext<IVentureContext | undefined>(undefined);
+export const TimelineContext =
+  createContext<ITimelineContext | undefined>(undefined);
 
 export function Component() {
   return (
@@ -217,20 +215,16 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const {
-    data: ventureByTimelineData,
-    isSuccess: ventureSuccess,
-  } = useVentureByTimeline(ventureSearch);
+  const { data: ventureByTimelineData, isSuccess: ventureSuccess } =
+    useVentureByTimeline(ventureSearch);
 
   const ventureUserSearch: ISearchVenturesByUser = {
     userId,
     token,
   };
 
-  const {
-    data: ventureByUserData,
-    isSuccess: ventureUserSuccess,
-  } = useVenturesByUser(ventureUserSearch);
+  const { data: ventureByUserData, isSuccess: ventureUserSuccess } =
+    useVenturesByUser(ventureUserSearch);
 
   const allVentures =
     ventureUserSuccess && ventureSuccess
@@ -267,10 +261,8 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const {
-    data: timelineRolesData,
-    isSuccess: timelineRolesSuccess,
-  } = useRoleByTimelineIds(searchRolesByTimelineIds);
+  const { data: timelineRolesData, isSuccess: timelineRolesSuccess } =
+    useRoleByTimelineIds(searchRolesByTimelineIds);
 
   // Right now we don't have timeline specific roles,
   // and timeline permissions default to parent venture
