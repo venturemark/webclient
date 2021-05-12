@@ -333,7 +333,6 @@ https://stackoverflow.com/questions/41676054/how-to-add-fonts-to-create-react-ap
     /* Safari, Android, iOS */
       url("./fonts/poppins/poppins-v15-latin-100.svg#Poppins") format("svg"); /* Legacy iOS */
 }
-@import "~antd/dist/antd.css";
 #root,
 html,
 body {
