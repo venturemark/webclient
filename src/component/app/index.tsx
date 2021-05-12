@@ -42,6 +42,7 @@ interface IVentureContext {
   ventures: IVenture[];
   currentVenture: IVenture;
   currentVentureRole: string;
+  venturesLoaded: boolean;
 }
 
 interface ITimelineContext {
@@ -90,6 +91,9 @@ function AuthenticatedRoute() {
 
   if (!isLoading && !isAuthenticated) return <Navigate to={`signin`} />;
 
+  if (userLoading || isLoading || userStatus === "idle")
+    return <span>User loading</span>;
+
   const user = userData ? userData[0] : undefined;
 
   const userContext: IUserContext = {
@@ -102,7 +106,7 @@ function AuthenticatedRoute() {
       <Routes>
         <Route path="profile" element={<Profile userLoading={userLoading} />} />
         <Route
-          path="*"
+          path="/*"
           element={
             <RegisteredUserRoute
               userSuccess={userSuccess}
@@ -141,7 +145,7 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
       <Route path="begin" element={<Begin user={user} />} />
       <Route path="editprofile" element={<EditProfile />} />
       <Route path="newventure" element={<NewVenture />} />
-      <Route path="/" element={<VentureRoutes user={user} />} />
+      <Route path="/*" element={<VentureRoutes user={user} />} />
       <Route path=":ventureSlug/*" element={<VentureRoutes user={user} />} />
     </Routes>
   );
@@ -227,6 +231,8 @@ function VentureRoutes(props: VentureRoutesProps) {
       ? getUniqueListBy([...ventureByTimelineData, ...ventureByUserData], "id")
       : ventureByTimelineData;
 
+  const venturesLoaded = ventureUserSuccess && ventureSuccess;
+
   const currentVenture = ventureSlug
     ? allVentures?.filter(
         (venture: IVenture) =>
@@ -307,6 +313,7 @@ function VentureRoutes(props: VentureRoutesProps) {
 
   const ventureContext: IVentureContext = {
     ventures,
+    venturesLoaded,
     currentVenture,
     currentVentureRole,
   };

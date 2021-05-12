@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import Chip from "@material-ui/core/Chip";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { RefSelectProps } from "antd/lib/select";
 import { useContext } from "react";
 import { TimelineContext } from "component/app";
 import { ITimeline } from "module/interface/timeline";
@@ -24,7 +23,7 @@ export function TimelineSelect(props: SelectProps) {
     selectedTimelines,
   } = props;
 
-  const select = useRef<RefSelectProps>(null);
+  const select = useRef<any>(null);
 
   const timelineContext = useContext(TimelineContext);
   const timelines = timelineContext?.allTimelines ?? [];

@@ -82,8 +82,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     reset();
   };
 
-  console.log(errors);
-
   let errorMessage = timelineNameError;
   if (errors?.timelineName?.type === "maxLength") {
     errorMessage = nameTooLongError;
