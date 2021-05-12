@@ -42,6 +42,7 @@ interface IVentureContext {
   ventures: IVenture[];
   currentVenture: IVenture;
   currentVentureRole: string;
+  venturesLoaded: boolean;
 }
 
 interface ITimelineContext {
@@ -50,10 +51,12 @@ interface ITimelineContext {
 }
 
 export const UserContext = createContext<IUserContext | undefined>(undefined);
-export const VentureContext =
-  createContext<IVentureContext | undefined>(undefined);
-export const TimelineContext =
-  createContext<ITimelineContext | undefined>(undefined);
+export const VentureContext = createContext<IVentureContext | undefined>(
+  undefined
+);
+export const TimelineContext = createContext<ITimelineContext | undefined>(
+  undefined
+);
 
 export function Component() {
   return (
@@ -90,6 +93,9 @@ function AuthenticatedRoute() {
 
   if (!isLoading && !isAuthenticated) return <Navigate to={`signin`} />;
 
+  if (userLoading || isLoading || userStatus === "idle")
+    return <span>User loading</span>;
+
   const user = userData ? userData[0] : undefined;
 
   const userContext: IUserContext = {
@@ -102,7 +108,7 @@ function AuthenticatedRoute() {
       <Routes>
         <Route path="profile" element={<Profile userLoading={userLoading} />} />
         <Route
-          path="*"
+          path="/*"
           element={
             <RegisteredUserRoute
               userSuccess={userSuccess}
@@ -141,7 +147,7 @@ function RegisteredUserRoute(props: RegisteredUserRouteProps) {
       <Route path="begin" element={<Begin user={user} />} />
       <Route path="editprofile" element={<EditProfile />} />
       <Route path="newventure" element={<NewVenture />} />
-      <Route path="/" element={<VentureRoutes user={user} />} />
+      <Route path="/*" element={<VentureRoutes user={user} />} />
       <Route path=":ventureSlug/*" element={<VentureRoutes user={user} />} />
     </Routes>
   );
@@ -211,21 +217,27 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const { data: ventureByTimelineData, isSuccess: ventureSuccess } =
-    useVentureByTimeline(ventureSearch);
+  const {
+    data: ventureByTimelineData,
+    isSuccess: ventureSuccess,
+  } = useVentureByTimeline(ventureSearch);
 
   const ventureUserSearch: ISearchVenturesByUser = {
     userId,
     token,
   };
 
-  const { data: ventureByUserData, isSuccess: ventureUserSuccess } =
-    useVenturesByUser(ventureUserSearch);
+  const {
+    data: ventureByUserData,
+    isSuccess: ventureUserSuccess,
+  } = useVenturesByUser(ventureUserSearch);
 
   const allVentures =
     ventureUserSuccess && ventureSuccess
       ? getUniqueListBy([...ventureByTimelineData, ...ventureByUserData], "id")
       : ventureByTimelineData;
+
+  const venturesLoaded = ventureUserSuccess && ventureSuccess;
 
   const currentVenture = ventureSlug
     ? allVentures?.filter(
@@ -255,8 +267,10 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const { data: timelineRolesData, isSuccess: timelineRolesSuccess } =
-    useRoleByTimelineIds(searchRolesByTimelineIds);
+  const {
+    data: timelineRolesData,
+    isSuccess: timelineRolesSuccess,
+  } = useRoleByTimelineIds(searchRolesByTimelineIds);
 
   // Right now we don't have timeline specific roles,
   // and timeline permissions default to parent venture
@@ -307,6 +321,7 @@ function VentureRoutes(props: VentureRoutesProps) {
 
   const ventureContext: IVentureContext = {
     ventures,
+    venturesLoaded,
     currentVenture,
     currentVentureRole,
   };

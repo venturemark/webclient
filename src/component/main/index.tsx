@@ -61,6 +61,8 @@ function Main(props: MainProps) {
       })[0]
     : undefined;
 
+  if (!ventureContext?.venturesLoaded) return <span>loading Ventures...</span>;
+
   return (
     <PlasmicMain
       {...rest}
