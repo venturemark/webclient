@@ -34,7 +34,7 @@ function Main(props: MainProps) {
     user,
     ...rest
   } = props;
-  const { timelineSlug } = useParams();
+  const { timelineSlug, ventureSlug } = useParams();
   const timelineContext = useContext(TimelineContext);
   const ventureContext = useContext(VentureContext);
   const currentVenture = ventureContext?.currentVenture;
@@ -61,7 +61,8 @@ function Main(props: MainProps) {
       })[0]
     : undefined;
 
-  if (!ventureContext?.venturesLoaded) return <span>loading Ventures...</span>;
+  if (!ventureContext?.venturesLoaded && ventureSlug)
+    return <span>loading Ventures...</span>;
 
   return (
     <PlasmicMain
