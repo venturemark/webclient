@@ -1,37 +1,36 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { createContext, useEffect } from "react";
+import TagManager from "react-gtm-module";
 import {
   BrowserRouter,
+  Navigate,
   Route,
   Routes,
-  Navigate,
   useParams,
 } from "react-router-dom";
+
 import Home from "component/page/home";
-import Signin from "component/page/signin";
-import Profile from "component/page/profile";
 import JoinVenture from "component/page/joinventure";
-
-import { ISearchCurrentUser, IUser, UserRole } from "module/interface/user";
-import { useCurrentUser } from "module/hook/user";
+import Profile from "component/page/profile";
+import Signin from "component/page/signin";
 import { useGetToken } from "module/auth";
-
-import { useAuth0 } from "@auth0/auth0-react";
-import {
-  ISearchVenturesByTimeline,
-  ISearchVenturesByUser,
-  IVenture,
-} from "module/interface/venture";
-import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
-import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
-import { useTimelinesByUserId } from "module/hook/timeline";
+import { getUniqueListBy } from "module/helpers";
 import { useRoleByTimelineIds, useRoleByVentureIds } from "module/hook/role";
+import { useTimelinesByUserId } from "module/hook/timeline";
+import { useCurrentUser } from "module/hook/user";
+import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import {
   IRole,
   ISearchRoleByTimelineIds,
   ISearchRoleByVentureIds,
 } from "module/interface/role";
-import { getUniqueListBy } from "module/helpers";
-import TagManager from "react-gtm-module";
+import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
+import { IUser, UserRole } from "module/interface/user";
+import {
+  ISearchVenturesByTimeline,
+  ISearchVenturesByUser,
+  IVenture,
+} from "module/interface/venture";
 
 interface IUserContext {
   user: IUser;
@@ -70,29 +69,24 @@ export function Component() {
 
 function AuthenticatedRoute() {
   const token = useGetToken();
-  const { isAuthenticated, isLoading, error } = useAuth0();
-
-  const currentUserSearch: ISearchCurrentUser = {
-    token,
-  };
+  const {
+    isAuthenticated,
+    isLoading: authLoading,
+    error: authError,
+  } = useAuth0();
   const {
     data: userData,
     status: userStatus,
     isSuccess: userSuccess,
     isLoading: userLoading,
     isError: userError,
-  } = useCurrentUser(currentUserSearch);
+  } = useCurrentUser({ token });
 
-  if (isLoading) {
+  if (authLoading) {
     return <span>Checking auth...</span>;
+  } else if (authError || (!authLoading && !isAuthenticated)) {
+    return <Navigate to={`signin`} />;
   }
-
-  if (error) return <Navigate to={`signin`} />;
-
-  if (!isLoading && !isAuthenticated) return <Navigate to={`signin`} />;
-
-  if (userLoading || isLoading || userStatus === "idle")
-    return <span>User loading</span>;
 
   const user = userData ? userData[0] : undefined;
 

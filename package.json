@@ -72,12 +72,14 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
+    "lint": "prettier --write $(find ./src -name '*.ts' -o -name '*.tsx')",
     "start": "PORT=3006 react-scripts start",
     "postbuild": "react-snap"
   },
   "version": "0.1.0",
   "devDependencies": {
     "@plasmicapp/cli": "^0.1.129",
+    "prettier": "^2.3.0",
     "react-snap": "^1.23.0"
   }
 }

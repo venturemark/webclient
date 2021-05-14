@@ -1,18 +1,18 @@
 import "index.css";
 
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { Auth0Provider } from "@auth0/auth0-react";
+import GA4React from "ga-4-react";
 import React from "react";
 import ReactDOM from "react-dom";
-import { Auth0Provider } from "@auth0/auth0-react";
+import TagManager from "react-gtm-module";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Navigate } from "react-router-dom";
-import GA4React from "ga-4-react";
-import { getConfig } from "module/auth";
+import reportWebVitals from "reportWebVitals";
+import WebFont from "webfontloader";
 
 import * as app from "component/app";
-import reportWebVitals from "reportWebVitals";
-import TagManager from "react-gtm-module";
-import WebFont from "webfontloader";
+import { getConfig } from "module/auth";
 
 const ga4react = new GA4React("G-H891NY4GM6");
 
