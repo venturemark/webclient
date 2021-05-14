@@ -1,14 +1,15 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import {
-  ISearchAllUser,
-  IUser,
-  ISearchVentureMembers,
-  ISearchTimelineMembers,
-  ISearchCurrentUser,
-  ICreateUser,
-} from "module/interface/user";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
+
 import * as api from "module/api";
+import {
+  ICreateUser,
+  ISearchAllUser,
+  ISearchCurrentUser,
+  ISearchTimelineMembers,
+  ISearchVentureMembers,
+  IUser
+} from "module/interface/user";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -33,8 +34,16 @@ const getAllUser = async (searchAllUser: ISearchAllUser) => {
 };
 
 const getCurrentUser = async (searchCurrentUser: ISearchCurrentUser) => {
-  const data = await api.API.User.Search(searchCurrentUser);
-  return data;
+  try {
+    const data = await api.API.User.Search(searchCurrentUser);
+    return data;
+  } catch (err) {
+    if (err.message === 'index must not be empty') {
+      // indicates that the user doesn't exist in the DB yet, not an error
+      return [];
+    }
+    throw err;
+  }
 };
 
 const getVentureMembers = async (

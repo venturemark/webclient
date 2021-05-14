@@ -1,9 +1,9 @@
-import { SearchI, SearchI_Obj, SearchO } from "module/api/user/proto/search_pb";
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IUser, Job } from "module/interface/user";
+import { SearchI, SearchI_Obj, SearchO } from "module/api/user/proto/search_pb";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { IAPISearchUser } from "module/interface/api";
+import { IUser, Job } from "module/interface/user";
 
 export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
   const objList = [];
