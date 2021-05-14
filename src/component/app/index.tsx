@@ -6,7 +6,7 @@ import {
   Navigate,
   Route,
   Routes,
-  useParams
+  useParams,
 } from "react-router-dom";
 
 import Home from "component/page/home";
@@ -22,14 +22,14 @@ import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import {
   IRole,
   ISearchRoleByTimelineIds,
-  ISearchRoleByVentureIds
+  ISearchRoleByVentureIds,
 } from "module/interface/role";
 import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
 import { IUser, UserRole } from "module/interface/user";
 import {
   ISearchVenturesByTimeline,
   ISearchVenturesByUser,
-  IVenture
+  IVenture,
 } from "module/interface/venture";
 
 interface IUserContext {
@@ -69,7 +69,11 @@ export function Component() {
 
 function AuthenticatedRoute() {
   const token = useGetToken();
-  const { isAuthenticated, isLoading: authLoading, error: authError } = useAuth0();
+  const {
+    isAuthenticated,
+    isLoading: authLoading,
+    error: authError,
+  } = useAuth0();
   const {
     data: userData,
     status: userStatus,
