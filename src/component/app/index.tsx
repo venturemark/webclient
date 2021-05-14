@@ -86,8 +86,6 @@ function AuthenticatedRoute() {
     return <span>Checking auth...</span>;
   } else if (authError || (!authLoading && !isAuthenticated)) {
     return <Navigate to={`signin`} />;
-  } else if (userLoading || userStatus === "idle") {
-    return <span>User loading</span>;
   }
 
   const user = userData ? userData[0] : undefined;
@@ -100,7 +98,7 @@ function AuthenticatedRoute() {
   return (
     <UserContext.Provider value={userContext}>
       <Routes>
-        <Route path="profile" element={<Profile userLoading={false} />} />
+        <Route path="profile" element={<Profile userLoading={userLoading} />} />
         <Route
           path="/*"
           element={
