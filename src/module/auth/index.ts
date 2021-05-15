@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 import { CacheLocation, useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
+
 import { isDev } from "module/helpers";
 
 const cacheLocation: CacheLocation = "localstorage";
@@ -56,11 +57,11 @@ export function useGetToken(): string {
       } catch (e) {
         if (e.error === "login_required") {
           loginWithRedirect();
-        }
-        if (e.error === "consent_required") {
+        } else if (e.error === "consent_required") {
           loginWithRedirect();
+        } else {
+          throw e;
         }
-        throw e;
       }
     };
     if (token === "") {
