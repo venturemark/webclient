@@ -98,7 +98,10 @@ function AuthenticatedRoute() {
   return (
     <UserContext.Provider value={userContext}>
       <Routes>
-        <Route path="profile" element={<Profile userLoading={userLoading} />} />
+        <Route
+          path="profile"
+          element={<Profile user={user} userLoading={userLoading} />}
+        />
         <Route
           path="/*"
           element={
@@ -332,6 +335,10 @@ function VentureRoutes(props: VentureRoutesProps) {
       TagManager.dataLayer(tagManagerArgs);
     }
   }, [userId]);
+
+  if (ventureSuccess && !ventures.length) {
+    return <Navigate replace to={`/begin`} />;
+  }
 
   // redirect "/"" to "ventureSlug"
   if (ventureSuccess && ventureSlug === undefined && currentVenture) {
