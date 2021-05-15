@@ -2,11 +2,14 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {missingRequire} reports error on implicit type usages.
  * @suppress {messageConventions} JS Compiler reports an error if a variable or
  *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 var jspb = require('google-protobuf');
 var goog = jspb;
@@ -1829,7 +1832,7 @@ proto.user.SearchO_Obj.prototype.hasProperty = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.user.SearchO_Obj_Property.repeatedFields_ = [3];
+proto.user.SearchO_Obj_Property.repeatedFields_ = [4];
 
 
 
@@ -1863,7 +1866,8 @@ proto.user.SearchO_Obj_Property.prototype.toObject = function(opt_includeInstanc
 proto.user.SearchO_Obj_Property.toObject = function(includeInstance, msg) {
   var f, obj = {
     desc: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mail: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     profList: jspb.Message.toObjectList(msg.getProfList(),
     proto.user.SearchO_Obj_Property_Prof.toObject, includeInstance)
   };
@@ -1908,9 +1912,13 @@ proto.user.SearchO_Obj_Property.deserializeBinaryFromReader = function(msg, read
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
+      msg.setMail(value);
       break;
     case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 4:
       var value = new proto.user.SearchO_Obj_Property_Prof;
       reader.readMessage(value,proto.user.SearchO_Obj_Property_Prof.deserializeBinaryFromReader);
       msg.addProf(value);
@@ -1951,17 +1959,24 @@ proto.user.SearchO_Obj_Property.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getName();
+  f = message.getMail();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
   f = message.getProfList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      3,
+      4,
       f,
       proto.user.SearchO_Obj_Property_Prof.serializeBinaryToWriter
     );
@@ -1988,10 +2003,10 @@ proto.user.SearchO_Obj_Property.prototype.setDesc = function(value) {
 
 
 /**
- * optional string name = 2;
+ * optional string mail = 2;
  * @return {string}
  */
-proto.user.SearchO_Obj_Property.prototype.getName = function() {
+proto.user.SearchO_Obj_Property.prototype.getMail = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -2000,18 +2015,36 @@ proto.user.SearchO_Obj_Property.prototype.getName = function() {
  * @param {string} value
  * @return {!proto.user.SearchO_Obj_Property} returns this
  */
-proto.user.SearchO_Obj_Property.prototype.setName = function(value) {
+proto.user.SearchO_Obj_Property.prototype.setMail = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * repeated SearchO_Obj_Property_Prof prof = 3;
+ * optional string name = 3;
+ * @return {string}
+ */
+proto.user.SearchO_Obj_Property.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.user.SearchO_Obj_Property} returns this
+ */
+proto.user.SearchO_Obj_Property.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated SearchO_Obj_Property_Prof prof = 4;
  * @return {!Array<!proto.user.SearchO_Obj_Property_Prof>}
  */
 proto.user.SearchO_Obj_Property.prototype.getProfList = function() {
   return /** @type{!Array<!proto.user.SearchO_Obj_Property_Prof>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.user.SearchO_Obj_Property_Prof, 3));
+    jspb.Message.getRepeatedWrapperField(this, proto.user.SearchO_Obj_Property_Prof, 4));
 };
 
 
@@ -2020,7 +2053,7 @@ proto.user.SearchO_Obj_Property.prototype.getProfList = function() {
  * @return {!proto.user.SearchO_Obj_Property} returns this
 */
 proto.user.SearchO_Obj_Property.prototype.setProfList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
 
@@ -2030,7 +2063,7 @@ proto.user.SearchO_Obj_Property.prototype.setProfList = function(value) {
  * @return {!proto.user.SearchO_Obj_Property_Prof}
  */
 proto.user.SearchO_Obj_Property.prototype.addProf = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.user.SearchO_Obj_Property_Prof, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.user.SearchO_Obj_Property_Prof, opt_index);
 };
 
 

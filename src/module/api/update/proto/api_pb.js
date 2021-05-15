@@ -11,15 +11,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-var jspb = require("google-protobuf");
+var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function("return this")();
+var global = Function('return this')();
 
-var pbf_update_create_pb = require("module/api/update/proto/create_pb.js");
+var pbf_update_create_pb = require('module/api/update/proto/create_pb.js');
 goog.object.extend(proto, pbf_update_create_pb);
-var pbf_update_delete_pb = require("module/api/update/proto/delete_pb.js");
+var pbf_update_delete_pb = require('module/api/update/proto/delete_pb.js');
 goog.object.extend(proto, pbf_update_delete_pb);
-var pbf_update_search_pb = require("module/api/update/proto/search_pb.js");
+var pbf_update_search_pb = require('module/api/update/proto/search_pb.js');
 goog.object.extend(proto, pbf_update_search_pb);
-var pbf_update_update_pb = require("module/api/update/proto/update_pb.js");
+var pbf_update_update_pb = require('module/api/update/proto/update_pb.js');
 goog.object.extend(proto, pbf_update_update_pb);
