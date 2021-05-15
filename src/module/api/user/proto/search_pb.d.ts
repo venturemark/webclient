@@ -282,6 +282,9 @@ export class SearchO_Obj_Property extends jspb.Message {
   getDesc(): string;
   setDesc(value: string): SearchO_Obj_Property;
 
+  getMail(): string;
+  setMail(value: string): SearchO_Obj_Property;
+
   getName(): string;
   setName(value: string): SearchO_Obj_Property;
 
@@ -313,6 +316,7 @@ export class SearchO_Obj_Property extends jspb.Message {
 export namespace SearchO_Obj_Property {
   export type AsObject = {
     desc: string;
+    mail: string;
     name: string;
     profList: Array<SearchO_Obj_Property_Prof.AsObject>;
   };
