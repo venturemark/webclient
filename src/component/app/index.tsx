@@ -159,7 +159,7 @@ function Begin(props: BeginProps) {
     userId: user?.id,
     token,
   };
-  const { data: timelinesData, isLoading } = useTimelinesByUserId(
+  const { data: timelinesData = [], isLoading } = useTimelinesByUserId(
     timelineByUserIdSearch
   );
 
@@ -168,7 +168,7 @@ function Begin(props: BeginProps) {
   if (isLoading) {
     return <span>loading data...</span>;
   }
-  if (timelinesData?.length > 0) {
+  if (timelinesData.length > 0) {
     return <Navigate replace to={`../`} />;
   }
   return <Home variantType={variantType} isActive={isActive} />;
@@ -200,7 +200,9 @@ function VentureRoutes(props: VentureRoutesProps) {
     token,
   };
 
-  const { data: timelinesData } = useTimelinesByUserId(timelineByUserIdSearch);
+  const { data: timelinesData = [] } = useTimelinesByUserId(
+    timelineByUserIdSearch
+  );
 
   const ventureIds: string[] = timelinesData?.map(
     (timeline: ITimeline) => timeline.ventureId
@@ -336,7 +338,7 @@ function VentureRoutes(props: VentureRoutesProps) {
     }
   }, [userId]);
 
-  if (ventureSuccess && !ventures.length) {
+  if (venturesLoaded && !ventures.length) {
     return <Navigate replace to={`/begin`} />;
   }
 

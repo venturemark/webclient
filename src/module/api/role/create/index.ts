@@ -1,7 +1,7 @@
-import { CreateI, CreateI_Obj, CreateO } from "module/api/role/proto/create_pb";
 import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
-import * as env from "module/env";
+import { CreateI, CreateI_Obj, CreateO } from "module/api/role/proto/create_pb";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { INewRole } from "module/interface/role";
 
 export async function Create(newRole: INewRole): Promise<any> {
@@ -25,8 +25,6 @@ export async function Create(newRole: INewRole): Promise<any> {
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
       } else {
         const rolePbList = res.getObjList();

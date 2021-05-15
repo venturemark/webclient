@@ -1,12 +1,12 @@
+import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
 import {
   DeleteI,
   DeleteI_Obj,
   DeleteO,
 } from "module/api/message/proto/delete_pb";
-import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IMessage, IDeleteMessage } from "module/interface/message/index";
 import * as key from "module/apikeys";
+import * as env from "module/env";
+import { IDeleteMessage, IMessage } from "module/interface/message";
 
 export async function Delete(
   IDeleteMessage: IDeleteMessage
@@ -32,8 +32,6 @@ export async function Delete(
     (resolve, reject) => {
       client.delete(req, metadata, function (err: any, res: DeleteO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {

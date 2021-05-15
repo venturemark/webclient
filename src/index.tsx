@@ -57,7 +57,7 @@ const rootElement = document.getElementById("root");
   try {
     await ga4react.initialize();
   } catch (e) {
-    console.log("something went wrong with GA4");
+    console.error("failed to initialize ga");
   }
 
   if (rootElement?.hasChildNodes()) {

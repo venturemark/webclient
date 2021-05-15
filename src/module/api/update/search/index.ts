@@ -1,13 +1,14 @@
+import { format, formatDistanceToNowStrict } from "date-fns";
+import fromUnixTime from "date-fns/fromUnixTime";
+
+import { APIClient } from "module/api/update/proto/ApiServiceClientPb";
 import {
   SearchI,
   SearchI_Obj,
   SearchO,
 } from "module/api/update/proto/search_pb";
-import { APIClient } from "module/api/update/proto/ApiServiceClientPb";
-import * as env from "module/env";
 import * as key from "module/apikeys";
-import fromUnixTime from "date-fns/fromUnixTime";
-import { formatDistanceToNowStrict, format } from "date-fns";
+import * as env from "module/env";
 import { ISearchUpdate, IUpdate } from "module/interface/update";
 
 export async function Search(searchUpdate: ISearchUpdate) {
@@ -30,8 +31,6 @@ export async function Search(searchUpdate: ISearchUpdate) {
   const getSearchResponsePb = await new Promise((resolve, reject) => {
     client.search(req, metadata, function (err: any, res: SearchO) {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
       } else {
         const updatesPb = res.getObjList();

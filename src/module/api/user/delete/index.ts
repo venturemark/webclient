@@ -1,8 +1,8 @@
-import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/user/proto/delete_pb";
 import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IUser, IDeleteUser } from "module/interface/user/index";
+import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/user/proto/delete_pb";
 import * as key from "module/apikeys";
+import * as env from "module/env";
+import { IDeleteUser, IUser } from "module/interface/user";
 
 export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
   const objList = [];
@@ -22,8 +22,6 @@ export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
   const getDeleteResponsePb: IUser[] = await new Promise((resolve, reject) => {
     client.delete(req, metadata, function (err: any, res: DeleteO): any {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
         return;
       } else {

@@ -1,13 +1,13 @@
+import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO,
   UpdateI_Obj_Jsnpatch,
+  UpdateO,
 } from "module/api/texupd/proto/update_pb";
-import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IUpdate, IUpdateUpdate } from "module/interface/update/";
 import * as key from "module/apikeys";
+import * as env from "module/env";
+import { IUpdate, IUpdateUpdate } from "module/interface/update";
 
 export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
   //instantiate client and req classes
@@ -41,8 +41,6 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
     (resolve, reject) => {
       client.update(req, metadata, function (err: any, res: UpdateO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {

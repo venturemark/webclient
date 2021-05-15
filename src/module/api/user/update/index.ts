@@ -1,13 +1,13 @@
+import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO,
   UpdateI_Obj_Jsnpatch,
+  UpdateO,
 } from "module/api/user/proto/update_pb";
-import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
-import * as env from "module/env";
 import * as key from "module/apikeys";
-import { IUser, IUpdateUser } from "module/interface/user";
+import * as env from "module/env";
+import { IUpdateUser, IUser } from "module/interface/user";
 
 export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   //instantiate client and req classes
@@ -48,8 +48,6 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   const getUpdateResponsePb: IUser[] = await new Promise((resolve, reject) => {
     client.update(req, metadata, function (err: any, res: UpdateO): any {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
         return;
       } else {

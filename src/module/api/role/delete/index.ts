@@ -1,9 +1,9 @@
-import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/role/proto/delete_pb";
 import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IRole } from "module/interface/role";
+import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/role/proto/delete_pb";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { IAPIDeleteRole } from "module/interface/api";
+import { IRole } from "module/interface/role";
 
 export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
   const objList = [];
@@ -28,8 +28,6 @@ export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
   const getDeleteResponsePb: IRole[] = await new Promise((resolve, reject) => {
     client.delete(req, metadata, function (err: any, res: DeleteO): any {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
         return;
       } else {

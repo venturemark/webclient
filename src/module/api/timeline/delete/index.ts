@@ -1,12 +1,12 @@
+import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import {
   DeleteI,
   DeleteI_Obj,
   DeleteO,
 } from "module/api/timeline/proto/delete_pb";
-import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { ITimeline, IDeleteTimeline } from "module/interface/timeline/index";
 import * as key from "module/apikeys";
+import * as env from "module/env";
+import { IDeleteTimeline, ITimeline } from "module/interface/timeline";
 
 export async function Delete(
   IDeleteTimeline: IDeleteTimeline
@@ -30,8 +30,6 @@ export async function Delete(
     (resolve, reject) => {
       client.delete(req, metadata, function (err: any, res: DeleteO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {

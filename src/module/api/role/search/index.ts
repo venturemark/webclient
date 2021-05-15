@@ -1,9 +1,9 @@
-import { SearchI, SearchI_Obj, SearchO } from "module/api/role/proto/search_pb";
 import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IRole } from "module/interface/role";
+import { SearchI, SearchI_Obj, SearchO } from "module/api/role/proto/search_pb";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { IAPISearchRole } from "module/interface/api";
+import { IRole } from "module/interface/role";
 
 export async function Search(searchRole: IAPISearchRole): Promise<IRole[]> {
   const objList = [];
@@ -28,8 +28,6 @@ export async function Search(searchRole: IAPISearchRole): Promise<IRole[]> {
   const getSearchResponsePb: IRole[] = await new Promise((resolve, reject) => {
     client.search(req, metadata, function (err: any, res: SearchO): any {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
         return;
       } else {
