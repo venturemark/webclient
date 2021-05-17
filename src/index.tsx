@@ -13,6 +13,7 @@ import WebFont from "webfontloader";
 
 import * as app from "component/app";
 import { getConfig } from "module/auth";
+import { isDev } from "module/helpers";
 
 const ga4react = new GA4React("G-H891NY4GM6");
 
@@ -44,22 +45,25 @@ const providerConfig = {
 
 const queryClient = new QueryClient();
 
-const tagManagerArgs = {
-  gtmId: "GTM-PV3PGVX",
-  dataLayerName: "UserDataLayer",
-};
+if (!isDev) {
+  const tagManagerArgs = {
+    gtmId: "GTM-PV3PGVX",
+    dataLayerName: "UserDataLayer",
+  };
 
-TagManager.initialize(tagManagerArgs);
+  TagManager.initialize(tagManagerArgs);
+}
 
 const rootElement = document.getElementById("root");
 
 (async () => {
-  try {
-    await ga4react.initialize();
-  } catch (e) {
-    console.log("something went wrong with GA4");
+  if (!isDev) {
+    try {
+      await ga4react.initialize();
+    } catch (e) {
+      console.log("something went wrong with GA4");
+    }
   }
-
   if (rootElement?.hasChildNodes()) {
     ReactDOM.hydrate(
       <React.StrictMode>
