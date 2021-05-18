@@ -45,6 +45,8 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   objList.push(obj);
   req.setObjList(objList);
 
+  console.log(JSON.stringify(objList));
+
   const getUpdateResponsePb: IUser[] = await new Promise((resolve, reject) => {
     client.update(req, metadata, function (err: any, res: UpdateO): any {
       if (err) {

@@ -152,6 +152,7 @@ export function useUpdateUser() {
 
   return useMutation<any, any, any>(
     (userUpdate) => {
+      console.log(userUpdate);
       return api.API.User.Update(userUpdate);
     },
     {
