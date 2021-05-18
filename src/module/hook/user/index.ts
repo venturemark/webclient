@@ -8,7 +8,7 @@ import {
   ISearchCurrentUser,
   ISearchTimelineMembers,
   ISearchVentureMembers,
-  IUser,
+  IUser
 } from "module/interface/user";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -152,7 +152,6 @@ export function useUpdateUser() {
 
   return useMutation<any, any, any>(
     (userUpdate) => {
-      console.log(userUpdate);
       return api.API.User.Update(userUpdate);
     },
     {
