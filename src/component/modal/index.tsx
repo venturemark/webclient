@@ -64,7 +64,7 @@ function Modal(props: ModalProps) {
   };
 
   const handleDeleteTimeline = async () => {
-    const ventureId = ventureContext?.currentVenture.id ?? "";
+    const ventureId = ventureContext?.currentVenture?.id ?? "";
     const timelineArchive: IUpdateTimeline = {
       id: timelineId,
       ventureId: ventureId,
