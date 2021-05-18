@@ -24,13 +24,9 @@ import {
   ISearchRoleByTimelineIds,
   ISearchRoleByVentureIds,
 } from "module/interface/role";
-import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
+import { ITimeline } from "module/interface/timeline";
 import { IUser, UserRole } from "module/interface/user";
-import {
-  ISearchVenturesByTimeline,
-  ISearchVenturesByUser,
-  IVenture,
-} from "module/interface/venture";
+import { IVenture } from "module/interface/venture";
 
 interface IUserContext {
   user: IUser;
@@ -39,8 +35,8 @@ interface IUserContext {
 
 interface IVentureContext {
   ventures: IVenture[];
-  currentVenture: IVenture;
-  currentVentureRole: string;
+  currentVenture?: IVenture;
+  currentVentureRole?: string;
   venturesLoaded: boolean;
 }
 
@@ -155,20 +151,19 @@ interface BeginProps {
 function Begin(props: BeginProps) {
   const { user } = props;
   const token = useGetToken();
-  const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
-    userId: user?.id,
-    token,
-  };
-  const { data: timelinesData = [], isLoading } = useTimelinesByUserId(
-    timelineByUserIdSearch
-  );
+
+  const { data: venturesData = [], isLoading: venturesLoading } =
+    useVenturesByUser({
+      userId: user?.id,
+      token,
+    });
 
   const variantType = "isEmpty";
   const isActive = "feed";
-  if (isLoading) {
+  if (venturesLoading) {
     return <span>loading data...</span>;
   }
-  if (timelinesData.length > 0) {
+  if (venturesData.length > 0) {
     return <Navigate replace to={`../`} />;
   }
   return <Home variantType={variantType} isActive={isActive} />;
@@ -195,35 +190,28 @@ function VentureRoutes(props: VentureRoutesProps) {
   const { ventureSlug } = useParams();
   const userId = user?.id;
 
-  const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
-    userId,
-    token,
-  };
-
-  const { data: timelinesData = [] } = useTimelinesByUserId(
-    timelineByUserIdSearch
-  );
+  const { data: timelinesData = [], isLoading: timelinesLoading } =
+    useTimelinesByUserId({
+      userId,
+      token,
+    });
 
   const ventureIds: string[] = timelinesData?.map(
     (timeline: ITimeline) => timeline.ventureId
   );
   const uniqueTimelineVentureIds = [...new Set(ventureIds)];
 
-  const ventureSearch: ISearchVenturesByTimeline = {
-    ventureIds: uniqueTimelineVentureIds,
-    token,
-  };
+  const { data: ventureByTimelineData = [], isSuccess: ventureSuccess } =
+    useVentureByTimeline({
+      ventureIds: uniqueTimelineVentureIds,
+      token,
+    });
 
-  const { data: ventureByTimelineData, isSuccess: ventureSuccess } =
-    useVentureByTimeline(ventureSearch);
-
-  const ventureUserSearch: ISearchVenturesByUser = {
-    userId,
-    token,
-  };
-
-  const { data: ventureByUserData, isSuccess: ventureUserSuccess } =
-    useVenturesByUser(ventureUserSearch);
+  const { data: ventureByUserData = [], isSuccess: ventureUserSuccess } =
+    useVenturesByUser({
+      userId,
+      token,
+    });
 
   const allVentures =
     ventureUserSuccess && ventureSuccess
@@ -232,14 +220,25 @@ function VentureRoutes(props: VentureRoutesProps) {
 
   const venturesLoaded = ventureUserSuccess && ventureSuccess;
 
-  const currentVenture = ventureSlug
-    ? allVentures?.filter(
-        (venture: IVenture) =>
-          venture.name.toLowerCase().replace(/\s/g, "") === ventureSlug
-      )[0]
-    : ventureSuccess && ventureUserSuccess
-    ? allVentures[0]
-    : undefined;
+  function calcVentureSlug(venture: IVenture): string {
+    return venture.name.toLowerCase().replace(/\s/g, "");
+  }
+
+  let currentVenture: IVenture | undefined;
+  if (ventureSlug) {
+    currentVenture = allVentures?.find(
+      (venture: IVenture) => calcVentureSlug(venture) === ventureSlug
+    );
+  } else if (ventureSuccess && ventureUserSuccess) {
+    const sortedVentures = [...allVentures].sort((a: IVenture, b: IVenture) => {
+      const aSlug = calcVentureSlug(a);
+      const bSlug = calcVentureSlug(b);
+      if (aSlug < bSlug) return -1;
+      if (bSlug < aSlug) return 1;
+      return 0;
+    });
+    currentVenture = sortedVentures[0];
+  }
 
   const uniqueAllVentureIds = allVentures?.map(
     (venture: IVenture) => venture.id
@@ -356,11 +355,21 @@ function VentureRoutes(props: VentureRoutesProps) {
         <Routes>
           <Route
             path="/"
-            element={<VentureFeed hasTimelines={hasTimelines} />}
+            element={
+              <VentureFeed
+                loading={timelinesLoading}
+                hasTimelines={hasTimelines}
+              />
+            }
           />
           <Route
             path="feed"
-            element={<VentureFeed hasTimelines={hasTimelines} />}
+            element={
+              <VentureFeed
+                loading={timelinesLoading}
+                hasTimelines={hasTimelines}
+              />
+            }
           />
           <Route path="members" element={<VentureMembers />} />
           <Route path="settings" element={<VentureSettings />} />
@@ -380,11 +389,15 @@ function NewTimeline() {
 }
 
 interface FeedProps {
+  loading: boolean;
   hasTimelines: boolean;
 }
 
 function VentureFeed(props: FeedProps) {
-  const { hasTimelines } = props;
+  const { hasTimelines, loading } = props;
+  if (loading) {
+    return <span>Loading</span>;
+  }
   const variantType = "isVenture";
   const isActive = hasTimelines ? "feed" : "isNewVenture";
   return <Home variantType={variantType} isActive={isActive} />;

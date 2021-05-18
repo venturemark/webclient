@@ -10,8 +10,9 @@ import {
 } from "component/plasmic/shared/PlasmicSidebar";
 import SidebarItemGroup from "component/sidebaritemgroup";
 import { useGetToken } from "module/auth";
+import { getUniqueListBy } from "module/helpers";
 import { useTimelinesByUserId } from "module/hook/timeline";
-import { useVentureByTimeline } from "module/hook/venture";
+import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
 
@@ -33,13 +34,25 @@ function Sidebar(props: SidebarProps) {
   );
   const uniqueTimelineVentureIds = [...new Set(ventureIds)];
 
-  const { data: venturesData } = useVentureByTimeline({
-    ventureIds: uniqueTimelineVentureIds,
-    token,
-  });
+  const { data: ventureByTimelineData = [], isSuccess: ventureSuccess } =
+    useVentureByTimeline({
+      ventureIds: uniqueTimelineVentureIds,
+      token,
+    });
+
+  const { data: ventureByUserData = [], isSuccess: ventureUserSuccess } =
+    useVenturesByUser({
+      userId: userContext?.user?.id ?? "",
+      token,
+    });
+
+  const allVentures =
+    ventureUserSuccess && ventureSuccess
+      ? getUniqueListBy([...ventureByTimelineData, ...ventureByUserData], "id")
+      : ventureByTimelineData;
 
   const timelines = timelineContext?.allTimelines ?? timelinesData ?? [];
-  const ventures = ventureContext?.ventures ?? venturesData ?? [];
+  const ventures = ventureContext?.ventures ?? allVentures ?? [];
 
   const sortedVentures = ventures?.sort(
     (a: IVenture, b: IVenture) => a.name.localeCompare(b.name) ?? []

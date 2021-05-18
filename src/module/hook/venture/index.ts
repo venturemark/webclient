@@ -1,12 +1,13 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate } from "react-router";
+
+import * as api from "module/api";
 import {
   ICreateVenture,
   ISearchVenturesByTimeline,
   ISearchVenturesByUser,
   IVenture,
 } from "module/interface/venture";
-import { useNavigate } from "react-router";
-import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -31,13 +32,12 @@ const getVentureByTimeline = async (
       return ventures;
     })
   );
-  const flattenedVentures: any = allVentures.flat();
 
-  return flattenedVentures;
+  return allVentures.flat();
 };
 
 export function useVenturesByUser(searchVentureByUser: ISearchVenturesByUser) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IVenture[], ErrorResponse>(
     ["ventures", searchVentureByUser.userId],
     () => getVenturesByUser(searchVentureByUser),
     { enabled: !!searchVentureByUser.token && !!searchVentureByUser.userId }
@@ -47,7 +47,7 @@ export function useVenturesByUser(searchVentureByUser: ISearchVenturesByUser) {
 export function useVentureByTimeline(
   searchVenturesByTimeline: ISearchVenturesByTimeline
 ) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IVenture[], ErrorResponse>(
     ["ventures", searchVenturesByTimeline.ventureIds],
     () => getVentureByTimeline(searchVenturesByTimeline),
     {
