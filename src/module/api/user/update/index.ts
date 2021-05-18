@@ -3,7 +3,7 @@ import {
   UpdateI,
   UpdateI_Obj,
   UpdateI_Obj_Jsnpatch,
-  UpdateO
+  UpdateO,
 } from "module/api/user/proto/update_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";

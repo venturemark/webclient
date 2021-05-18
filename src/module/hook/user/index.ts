@@ -8,7 +8,7 @@ import {
   ISearchCurrentUser,
   ISearchTimelineMembers,
   ISearchVentureMembers,
-  IUser
+  IUser,
 } from "module/interface/user";
 
 type ErrorResponse = { code: number; message: string; metadata: any };

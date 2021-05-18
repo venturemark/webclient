@@ -6,7 +6,7 @@ import {
   Navigate,
   Route,
   Routes,
-  useParams
+  useParams,
 } from "react-router-dom";
 
 import Home from "component/page/home";
@@ -22,7 +22,7 @@ import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import {
   IRole,
   ISearchRoleByTimelineIds,
-  ISearchRoleByVentureIds
+  ISearchRoleByVentureIds,
 } from "module/interface/role";
 import { ITimeline } from "module/interface/timeline";
 import { IUser, UserRole } from "module/interface/user";
