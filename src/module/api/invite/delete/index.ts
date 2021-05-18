@@ -1,12 +1,12 @@
+import { APIClient } from "module/api/invite/proto/ApiServiceClientPb";
 import {
   DeleteI,
   DeleteI_Obj,
   DeleteO,
 } from "module/api/invite/proto/delete_pb";
-import { APIClient } from "module/api/invite/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IInvite, IDeleteInvite } from "module/interface/invite/index";
 import * as key from "module/apikeys";
+import * as env from "module/env";
+import { IDeleteInvite, IInvite } from "module/interface/invite";
 
 export async function Delete(IDeleteInvite: IDeleteInvite): Promise<IInvite[]> {
   const objList = [];
@@ -28,8 +28,6 @@ export async function Delete(IDeleteInvite: IDeleteInvite): Promise<IInvite[]> {
     (resolve, reject) => {
       client.delete(req, metadata, function (err: any, res: DeleteO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {

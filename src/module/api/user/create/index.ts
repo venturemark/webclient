@@ -1,13 +1,13 @@
+import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import {
   CreateI,
   CreateI_Obj,
-  CreateO,
   CreateI_Obj_Property,
   CreateI_Obj_Property_Prof,
+  CreateO,
 } from "module/api/user/proto/create_pb";
-import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
-import * as env from "module/env";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { ICreateUser } from "module/interface/user";
 
 export async function Create(newUser: ICreateUser): Promise<any> {
@@ -39,8 +39,6 @@ export async function Create(newUser: ICreateUser): Promise<any> {
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
       } else {
         const userPbList = res.getObjList();

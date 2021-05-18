@@ -1,13 +1,13 @@
+import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO,
   UpdateI_Obj_Jsnpatch,
+  UpdateO,
 } from "module/api/timeline/proto/update_pb";
-import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { ITimeline, IUpdateTimeline } from "module/interface/timeline/index";
 import * as key from "module/apikeys";
+import * as env from "module/env";
+import { ITimeline, IUpdateTimeline } from "module/interface/timeline";
 
 export async function Update(
   updateTimeline: IUpdateTimeline
@@ -57,8 +57,6 @@ export async function Update(
     (resolve, reject) => {
       client.update(req, metadata, function (err: any, res: UpdateO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {

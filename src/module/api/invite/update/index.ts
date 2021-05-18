@@ -1,12 +1,12 @@
+import { APIClient } from "module/api/invite/proto/ApiServiceClientPb";
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO,
   UpdateI_Obj_Jsnpatch,
+  UpdateO,
 } from "module/api/invite/proto/update_pb";
-import { APIClient } from "module/api/invite/proto/ApiServiceClientPb";
-import * as env from "module/env";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { IUpdateInvite, IUpdateStatus } from "module/interface/invite";
 
 export async function Update(updateInvite: IUpdateInvite): Promise<any> {
@@ -31,8 +31,6 @@ export async function Update(updateInvite: IUpdateInvite): Promise<any> {
   obj.getMetadataMap().set(key.RoleKind, updateInvite.role);
   obj.getMetadataMap().set(key.ResourceKind, updateInvite.resource);
 
-  console.log(updateInvite);
-
   if (updateInvite.status) {
     nameObjJsnPatch.setOpe("replace");
     nameObjJsnPatch.setPat("/obj/property/stat");
@@ -49,8 +47,6 @@ export async function Update(updateInvite: IUpdateInvite): Promise<any> {
     (resolve, reject) => {
       client.update(req, metadata, function (err: any, res: UpdateO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {
@@ -63,8 +59,6 @@ export async function Update(updateInvite: IUpdateInvite): Promise<any> {
             role,
             status,
           };
-
-          console.log("invite status", inviteStatus);
 
           resolve(inviteStatus);
         }

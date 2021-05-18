@@ -1,13 +1,13 @@
+import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO,
   UpdateI_Obj_Jsnpatch,
+  UpdateO,
 } from "module/api/venture/proto/update_pb";
-import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IVenture, IUpdateVenture } from "module/interface/venture/index";
 import * as key from "module/apikeys";
+import * as env from "module/env";
+import { IUpdateVenture, IVenture } from "module/interface/venture";
 
 export async function Update(
   ventureUpdate: IUpdateVenture
@@ -50,8 +50,6 @@ export async function Update(
     (resolve, reject) => {
       client.update(req, metadata, function (err: any, res: UpdateO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {

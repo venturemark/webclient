@@ -1,4 +1,4 @@
-import * as env from "module/env";
+import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
 import {
   CreateI,
   CreateI_Obj,
@@ -6,7 +6,7 @@ import {
   CreateO,
 } from "module/api/texupd/proto/create_pb";
 import * as key from "module/apikeys";
-import { APIClient } from "module/api/texupd/proto/ApiServiceClientPb";
+import * as env from "module/env";
 import { ICreateUpdate } from "module/interface/update";
 
 export async function Create(createUpdate: ICreateUpdate): Promise<any> {
@@ -32,8 +32,6 @@ export async function Create(createUpdate: ICreateUpdate): Promise<any> {
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
       } else {
         const updatePbList = res.getObjList();

@@ -1,12 +1,12 @@
+import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
 import {
   UpdateI,
   UpdateI_Obj,
-  UpdateO_Obj,
   UpdateI_Obj_Jsnpatch,
+  UpdateO_Obj,
 } from "module/api/role/proto/update_pb";
-import { APIClient } from "module/api/role/proto/ApiServiceClientPb";
-import * as env from "module/env";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { IRole, IUpdateRole } from "module/interface/role";
 
 export async function Update(updateRole: IUpdateRole): Promise<IRole[]> {
@@ -39,8 +39,6 @@ export async function Update(updateRole: IUpdateRole): Promise<IRole[]> {
   const getUpdateResponsePb: IRole[] = await new Promise((resolve, reject) => {
     client.update(req, {}, function (err: any, res: any): any {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
         return;
       } else {

@@ -12,8 +12,8 @@ import SidebarItemGroup from "component/sidebaritemgroup";
 import { useGetToken } from "module/auth";
 import { useTimelinesByUserId } from "module/hook/timeline";
 import { useVentureByTimeline } from "module/hook/venture";
-import { ISearchTimelinesbyUserId, ITimeline } from "module/interface/timeline";
-import { ISearchVenturesByTimeline, IVenture } from "module/interface/venture";
+import { ITimeline } from "module/interface/timeline";
+import { IVenture } from "module/interface/venture";
 
 interface SidebarProps extends DefaultSidebarProps {}
 
@@ -23,24 +23,20 @@ function Sidebar(props: SidebarProps) {
   const ventureContext = useContext(VentureContext);
   const token = useGetToken();
 
-  const timelineByUserIdSearch: ISearchTimelinesbyUserId = {
+  const { data: timelinesData = [] } = useTimelinesByUserId({
     userId: userContext?.user?.id ?? "",
     token,
-  };
-
-  const { data: timelinesData } = useTimelinesByUserId(timelineByUserIdSearch);
+  });
 
   const ventureIds: string[] = timelinesData?.map(
     (timeline: ITimeline) => timeline.ventureId
   );
   const uniqueTimelineVentureIds = [...new Set(ventureIds)];
 
-  const ventureSearch: ISearchVenturesByTimeline = {
+  const { data: venturesData } = useVentureByTimeline({
     ventureIds: uniqueTimelineVentureIds,
     token,
-  };
-
-  const { data: venturesData } = useVentureByTimeline(ventureSearch);
+  });
 
   const timelines = timelineContext?.allTimelines ?? timelinesData ?? [];
   const ventures = ventureContext?.ventures ?? venturesData ?? [];
@@ -65,8 +61,9 @@ function Sidebar(props: SidebarProps) {
         )),
       }}
       viewCreateVenture={{
-        wrap(node) {
-          return <Link to="/newventure">{node}</Link>;
+        as: Link,
+        props: {
+          to: "/newventure",
         },
       }}
     />

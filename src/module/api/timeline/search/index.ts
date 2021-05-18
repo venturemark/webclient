@@ -1,13 +1,13 @@
+import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
 import {
   SearchI,
   SearchI_Obj,
   SearchO,
 } from "module/api/timeline/proto/search_pb";
-import { APIClient } from "module/api/timeline/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { ITimeline } from "module/interface/timeline/index";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { IAPISearchTimeline } from "module/interface/api";
+import { ITimeline } from "module/interface/timeline";
 
 export async function Search(
   timelineSearch: IAPISearchTimeline
@@ -35,8 +35,6 @@ export async function Search(
     (resolve, reject) => {
       client.search(req, metadata, function (err: any, res: SearchO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {

@@ -31,8 +31,6 @@ export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
   const getSearchResponsePb: IUser[] = await new Promise((resolve, reject) => {
     client.search(req, metadata, function (err: any, res: SearchO): any {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
         return;
       } else {

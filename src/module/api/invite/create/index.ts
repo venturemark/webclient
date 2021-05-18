@@ -1,12 +1,12 @@
+import { APIClient } from "module/api/invite/proto/ApiServiceClientPb";
 import {
   CreateI,
   CreateI_Obj,
-  CreateO,
   CreateI_Obj_Property,
+  CreateO,
 } from "module/api/invite/proto/create_pb";
-import { APIClient } from "module/api/invite/proto/ApiServiceClientPb";
-import * as env from "module/env";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { ICreateInvite, IInvite } from "module/interface/invite";
 
 export async function Create(newInvite: ICreateInvite): Promise<any> {
@@ -31,13 +31,10 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
 
   objList.push(obj);
   req.setObjList(objList);
-  console.log("made invite", req.toObject());
 
   const getCreateResponsePb = await new Promise((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
-        console.log(err.code);
-        console.log(err.message);
         reject(err);
       } else {
         const invitePbList = res.getObjList();
@@ -55,7 +52,6 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
           timelineId: newInvite.timelineId,
           ventureId: newInvite.ventureId,
         };
-        console.log("invite created:", invite);
         resolve(invite);
       }
     });

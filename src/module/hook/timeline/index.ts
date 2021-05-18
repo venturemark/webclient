@@ -1,12 +1,13 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate } from "react-router";
+
+import * as api from "module/api";
 import {
   ICreateTimeline,
   ISearchTimelinesbyUserId,
   ISearchTimelinesbyVentureId,
   ITimeline,
 } from "module/interface/timeline";
-import { useNavigate } from "react-router";
-import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -41,13 +42,13 @@ export function useTimelinesByVentureId(
 export function useTimelinesByUserId(
   searchTimelinesByUserId: ISearchTimelinesbyUserId
 ) {
-  return useQuery<any, ErrorResponse>(
+  const enabled = Boolean(
+    searchTimelinesByUserId.token && searchTimelinesByUserId.userId
+  );
+  return useQuery<ITimeline[], ErrorResponse>(
     [`timelines`, searchTimelinesByUserId.userId],
     () => getTimelinesByUserId(searchTimelinesByUserId),
-    {
-      enabled:
-        !!searchTimelinesByUserId.token && !!searchTimelinesByUserId.userId,
-    }
+    { enabled }
   );
 }
 

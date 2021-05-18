@@ -1,12 +1,12 @@
+import { APIClient } from "module/api/invite/proto/ApiServiceClientPb";
 import {
   SearchI,
   SearchI_Obj,
   SearchO,
 } from "module/api/invite/proto/search_pb";
-import { APIClient } from "module/api/invite/proto/ApiServiceClientPb";
+import * as key from "module/apikeys";
 import * as env from "module/env";
 import { IInvite, ISearchInvite } from "module/interface/invite";
-import * as key from "module/apikeys";
 
 export async function Search(searchInvite: ISearchInvite): Promise<IInvite[]> {
   const objList = [];
@@ -29,8 +29,6 @@ export async function Search(searchInvite: ISearchInvite): Promise<IInvite[]> {
     (resolve, reject) => {
       client.search(req, metadata, function (err: any, res: SearchO): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {

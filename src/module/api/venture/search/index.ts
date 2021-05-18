@@ -1,13 +1,13 @@
+import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import {
   SearchI,
   SearchI_Obj,
   SearchO_Obj,
 } from "module/api/venture/proto/search_pb";
-import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
-import * as env from "module/env";
-import { IVenture } from "module/interface/venture/index";
 import * as key from "module/apikeys";
+import * as env from "module/env";
 import { IAPISearchVenture } from "module/interface/api";
+import { IVenture } from "module/interface/venture";
 
 export async function Search(
   ventureSearch: IAPISearchVenture
@@ -32,8 +32,6 @@ export async function Search(
     (resolve, reject) => {
       client.search(req, metadata, function (err: any, res: any): any {
         if (err) {
-          console.log(err.code);
-          console.log(err.message);
           reject(err);
           return;
         } else {
