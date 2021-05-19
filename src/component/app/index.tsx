@@ -158,6 +158,17 @@ function Begin(props: BeginProps) {
       token,
     });
 
+  const hasInvite =
+    localStorage.getItem("ventureId") &&
+    localStorage.getItem("code") &&
+    localStorage.getItem("id")
+      ? true
+      : false;
+
+  if (hasInvite) {
+    return <Navigate replace to={`/joinventure`} />;
+  }
+
   const variantType = "isEmpty";
   const isActive = "feed";
   if (venturesLoading) {
