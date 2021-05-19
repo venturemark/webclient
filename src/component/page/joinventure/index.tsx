@@ -51,6 +51,7 @@ function JoinVenture(props: JoinVentureProps) {
       }}
       ventureName={ventureName}
       viewCreateVenture={{ onPress: () => handleAcceptJoin() }}
+      {...props}
     />
   );
 }
