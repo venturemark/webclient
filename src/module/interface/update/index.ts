@@ -17,19 +17,19 @@ export interface IUpdate {
 export interface ISearchUpdate {
   timelineId: string;
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ISearchUpdateByTimelineId {
   timelineId: string;
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ISearchUpdateByTimelineIds {
   timelineIds: string[];
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ICreateUpdate {
@@ -37,14 +37,14 @@ export interface ICreateUpdate {
   text: string;
   ventureId: string;
   timelineId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IDeleteUpdate {
   id: string;
   ventureId: string;
   timelineId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IUpdateUpdate {
@@ -53,5 +53,5 @@ export interface IUpdateUpdate {
   id: string;
   ventureId: string;
   timelineId: string;
-  token: string;
+  token: string | null;
 }

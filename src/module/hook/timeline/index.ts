@@ -7,6 +7,7 @@ import {
   ISearchTimelinesbyUserId,
   ISearchTimelinesbyVentureId,
   ITimeline,
+  IUpdateTimeline,
 } from "module/interface/timeline";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
@@ -14,21 +15,19 @@ type ErrorResponse = { code: number; message: string; metadata: any };
 const getTimelinesbyVentureId = async (
   searchTimeline: ISearchTimelinesbyVentureId
 ) => {
-  const data = await api.API.Timeline.Search(searchTimeline);
-  return data;
+  return api.API.Timeline.Search(searchTimeline);
 };
 
 const getTimelinesByUserId = async (
   searchTimeline: ISearchTimelinesbyUserId
 ) => {
-  const data = await api.API.Timeline.Search(searchTimeline);
-  return data;
+  return api.API.Timeline.Search(searchTimeline);
 };
 
 export function useTimelinesByVentureId(
   searchTimelinesbyVentureId: ISearchTimelinesbyVentureId
 ) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<ITimeline[], ErrorResponse>(
     ["timelines", searchTimelinesbyVentureId.ventureId],
     () => getTimelinesbyVentureId(searchTimelinesbyVentureId),
     {
@@ -56,7 +55,7 @@ export function useCreateTimeline() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
+  return useMutation<string, any, ICreateTimeline>(
     (newTimeline) => {
       return api.API.Timeline.Create(newTimeline);
     },
@@ -107,7 +106,7 @@ export function useUpdateTimeline() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
+  return useMutation<ITimeline[], any, IUpdateTimeline>(
     (timelineUpdate) => {
       return api.API.Timeline.Update(timelineUpdate);
     },
@@ -127,7 +126,7 @@ export function useArchiveDeleteTimeline() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
+  return useMutation<ITimeline[], any, IUpdateTimeline>(
     (timelineUpdate) => {
       return api.API.Timeline.Update(timelineUpdate);
     },

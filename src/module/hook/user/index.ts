@@ -8,29 +8,23 @@ import {
   ISearchCurrentUser,
   ISearchTimelineMembers,
   ISearchVentureMembers,
+  IUpdateUser,
   IUser,
 } from "module/interface/user";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getAllUser = async (searchAllUser: ISearchAllUser) => {
-  const { subjectIds, token } = searchAllUser;
-
+const getAllUser = async ({ subjectIds, token }: ISearchAllUser) => {
   const allUsers = await Promise.all(
     subjectIds.map(async (id) => {
-      const search = {
+      return api.API.User.Search({
         id,
         token,
-      };
-
-      const user = await api.API.User.Search(search);
-      return user;
+      });
     })
   );
 
-  const flattenedUsers: IUser[] = allUsers.flat();
-
-  return flattenedUsers;
+  return allUsers.flat();
 };
 
 const getCurrentUser = async (searchCurrentUser: ISearchCurrentUser) => {
@@ -49,19 +43,17 @@ const getCurrentUser = async (searchCurrentUser: ISearchCurrentUser) => {
 const getVentureMembers = async (
   searchVentureMembers: ISearchVentureMembers
 ) => {
-  const data = await api.API.User.Search(searchVentureMembers);
-  return data;
+  return api.API.User.Search(searchVentureMembers);
 };
 
 const getTimelineMembers = async (
   searchTimelineMembers: ISearchTimelineMembers
 ) => {
-  const data = await api.API.User.Search(searchTimelineMembers);
-  return data;
+  return api.API.User.Search(searchTimelineMembers);
 };
 
 export function useVentureMembers(searchVentureMembers: ISearchVentureMembers) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IUser[], ErrorResponse>(
     ["users", searchVentureMembers.token, searchVentureMembers.ventureId],
     () => getVentureMembers(searchVentureMembers),
     {
@@ -73,7 +65,7 @@ export function useVentureMembers(searchVentureMembers: ISearchVentureMembers) {
 export function useTimelineMembers(
   searchTimelineMembers: ISearchTimelineMembers
 ) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IUser[], ErrorResponse>(
     ["users", searchTimelineMembers.token, searchTimelineMembers.timelineId],
     () => getTimelineMembers(searchTimelineMembers),
     {
@@ -84,7 +76,7 @@ export function useTimelineMembers(
 }
 
 export function useAllUser(searchAllUser: ISearchAllUser) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IUser[], ErrorResponse>(
     ["users", searchAllUser.subjectIds, searchAllUser.token],
     () => getAllUser(searchAllUser),
     { enabled: !!searchAllUser.token && !!searchAllUser.subjectIds }
@@ -92,7 +84,7 @@ export function useAllUser(searchAllUser: ISearchAllUser) {
 }
 
 export function useCurrentUser(searchCurrentUser: ISearchCurrentUser) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IUser[], ErrorResponse>(
     ["users", searchCurrentUser.token],
     () => getCurrentUser(searchCurrentUser),
     { enabled: !!searchCurrentUser.token }
@@ -103,7 +95,7 @@ export function useCreateUser() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
+  return useMutation<string, any, ICreateUser>(
     (newUser) => {
       return api.API.User.Create(newUser);
     },
@@ -150,8 +142,8 @@ export function useUpdateUser() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
-    (userUpdate) => {
+  return useMutation<IUser[], any, IUpdateUser>(
+    (userUpdate: IUpdateUser) => {
       return api.API.User.Update(userUpdate);
     },
     {

@@ -1,4 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
+import * as api from "module/api";
 import {
   ICreateUpdate,
   ISearchUpdate,
@@ -6,7 +8,6 @@ import {
   ISearchUpdateByTimelineIds,
   IUpdate,
 } from "module/interface/update";
-import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
@@ -71,7 +72,7 @@ export function useCreateUpdate() {
   const queryClient = useQueryClient();
 
   return useMutation<any, any, any>(
-    (newUpdate) => {
+    (newUpdate: ICreateUpdate) => {
       return api.API.TexUpd.Create(newUpdate);
     },
     {

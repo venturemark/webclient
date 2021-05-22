@@ -8,10 +8,9 @@ import TagManager from "react-gtm-module";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Navigate } from "react-router-dom";
-import reportWebVitals from "reportWebVitals";
 import WebFont from "webfontloader";
 
-import * as app from "component/app";
+import { App } from "component/app";
 import { getConfig } from "module/auth";
 import { isDev } from "module/helpers";
 
@@ -64,34 +63,21 @@ const rootElement = document.getElementById("root");
       console.error("failed to initialize ga");
     }
   }
+
+  const app = (
+    <React.StrictMode>
+      <Auth0Provider {...providerConfig}>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <App />
+        </QueryClientProvider>
+      </Auth0Provider>
+    </React.StrictMode>
+  );
+
   if (rootElement?.hasChildNodes()) {
-    ReactDOM.hydrate(
-      <React.StrictMode>
-        <Auth0Provider {...providerConfig}>
-          <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} />
-            <app.Component />
-          </QueryClientProvider>
-        </Auth0Provider>
-      </React.StrictMode>,
-      rootElement
-    );
+    ReactDOM.hydrate(app, rootElement);
   } else {
-    ReactDOM.render(
-      <React.StrictMode>
-        <Auth0Provider {...providerConfig}>
-          <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} />
-            <app.Component />
-          </QueryClientProvider>
-        </Auth0Provider>
-      </React.StrictMode>,
-      rootElement
-    );
+    ReactDOM.render(app, rootElement);
   }
 })();
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

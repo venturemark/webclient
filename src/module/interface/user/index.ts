@@ -13,25 +13,25 @@ export interface IUser {
 }
 
 export interface ISearchCurrentUser {
-  token: string;
+  token: string | null;
 }
 
 export interface ISearchVentureMembers {
   resource: string;
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ISearchTimelineMembers {
   resource: string;
   timelineId: string;
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ISearchAllUser {
   subjectIds: string[];
-  token: string;
+  token: string | null;
 }
 
 export interface ICreateUser {
@@ -40,12 +40,12 @@ export interface ICreateUser {
   ventureName?: string;
   ventureTitle?: string;
   successUrl?: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IDeleteUser {
   id: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IUpdateUser {
@@ -53,5 +53,5 @@ export interface IUpdateUser {
   name: string;
   title: string;
   successUrl?: string;
-  token: string;
+  token: string | null;
 }

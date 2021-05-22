@@ -15,7 +15,7 @@ export interface ISearchMessage {
   timelineId: string;
   updateId: string;
   timelines?: any;
-  token: string;
+  token: string | null;
 }
 
 export interface IDeleteMessage {
@@ -23,7 +23,7 @@ export interface IDeleteMessage {
   updateId: string;
   timelineId: string;
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ICreateMessage {
@@ -32,5 +32,5 @@ export interface ICreateMessage {
   ventureId: string;
   timelineId: string;
   updateId: string;
-  token: string;
+  token: string | null;
 }
