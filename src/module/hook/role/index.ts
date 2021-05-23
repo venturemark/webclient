@@ -1,40 +1,41 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
+import * as api from "module/api";
+import { IAPIDeleteRole } from "module/interface/api";
 import {
+  INewRole,
+  IRole,
   ISearchRoleByTimelineIds,
   ISearchRoleByVentureIds,
   ISearchTimelineRoles,
   ISearchVentureRoles,
+  IUpdateRole,
 } from "module/interface/role";
-import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getRoleByVentureIds = async (
-  searchRoleByVentureIds: ISearchRoleByVentureIds
-) => {
-  const { ventureIds, resource, token } = searchRoleByVentureIds;
-
+const getRoleByVentureIds = async ({
+  ventureIds,
+  resource,
+  token,
+}: ISearchRoleByVentureIds) => {
   const allRoles = await Promise.all(
     ventureIds.map(async (id: string) => {
-      const search = {
+      return api.API.Role.Search({
         ventureId: id,
         resource,
         token,
-      };
-
-      const roles = await api.API.Role.Search(search);
-      return roles;
+      });
     })
   );
-  const flattenedRoles: any = allRoles.flat();
 
-  return flattenedRoles;
+  return allRoles.flat();
 };
 
 export function useRoleByVentureIds(
   searchRoleByVentureIds: ISearchRoleByVentureIds
 ) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IRole[], ErrorResponse>(
     [
       `role-${searchRoleByVentureIds.ventureIds}`,
       searchRoleByVentureIds.token,
@@ -48,32 +49,28 @@ export function useRoleByVentureIds(
   );
 }
 
-const getRoleByTimelineIds = async (
-  searchRoleByTimelineIds: ISearchRoleByTimelineIds
-) => {
-  const { timelineIds, resource, token } = searchRoleByTimelineIds;
-
+const getRoleByTimelineIds = async ({
+  timelineIds,
+  resource,
+  token,
+}: ISearchRoleByTimelineIds) => {
   const allRoles = await Promise.all(
     timelineIds.map(async (id: string) => {
-      const search = {
+      return api.API.Role.Search({
         timelineId: id,
         resource,
         token,
-      };
-
-      const roles = await api.API.Role.Search(search);
-      return roles;
+      });
     })
   );
-  const flattenedRoles: any = allRoles.flat();
 
-  return flattenedRoles;
+  return allRoles.flat();
 };
 
 export function useRoleByTimelineIds(
   searchRoleByTimelineIds: ISearchRoleByTimelineIds
 ) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IRole[], ErrorResponse>(
     [
       `role-${searchRoleByTimelineIds.timelineIds}`,
       searchRoleByTimelineIds.token,
@@ -89,12 +86,11 @@ export function useRoleByTimelineIds(
 }
 
 const getTimelineRole = async (searchRole: ISearchTimelineRoles) => {
-  const data = await api.API.Role.Search(searchRole);
-  return data;
+  return api.API.Role.Search(searchRole);
 };
 
 export function useTimelineRole(searchRole: ISearchTimelineRoles) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IRole[], ErrorResponse>(
     [`role-${searchRole.timelineId}`, searchRole.token, searchRole.timelineId],
     () => getTimelineRole(searchRole),
     { enabled: !!searchRole.token && !!searchRole.timelineId }
@@ -102,12 +98,11 @@ export function useTimelineRole(searchRole: ISearchTimelineRoles) {
 }
 
 const getVentureRole = async (searchRole: ISearchVentureRoles) => {
-  const data = await api.API.Role.Search(searchRole);
-  return data;
+  return api.API.Role.Search(searchRole);
 };
 
 export function useVentureRole(searchRole: ISearchVentureRoles) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IRole[], ErrorResponse>(
     [`role-${searchRole.ventureId}`, searchRole.token, searchRole.ventureId],
     () => getVentureRole(searchRole),
     { enabled: !!searchRole.token && !!searchRole.ventureId }
@@ -117,7 +112,7 @@ export function useVentureRole(searchRole: ISearchVentureRoles) {
 export function useCreateRole() {
   const queryClient = useQueryClient();
 
-  return useMutation<any, any, any>(
+  return useMutation<string, any, INewRole>(
     (newRole) => {
       return api.API.Role.Create(newRole);
     },
@@ -133,7 +128,7 @@ export function useCreateRole() {
 export function useUpdateRole() {
   const queryClient = useQueryClient();
 
-  return useMutation<any, any, any>(
+  return useMutation<IRole[], any, IUpdateRole>(
     (roleUpdate) => {
       return api.API.Role.Update(roleUpdate);
     },
@@ -149,7 +144,7 @@ export function useUpdateRole() {
 export function useDeleteRole() {
   const queryClient = useQueryClient();
 
-  return useMutation<any, any, any>(
+  return useMutation<IRole[], any, IAPIDeleteRole>(
     (roleDelete) => {
       return api.API.Role.Delete(roleDelete);
     },

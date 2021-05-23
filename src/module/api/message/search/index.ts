@@ -5,6 +5,7 @@ import { APIClient } from "module/api/message/proto/ApiServiceClientPb";
 import {
   SearchI,
   SearchI_Obj,
+  SearchO,
   SearchO_Obj,
 } from "module/api/message/proto/search_pb";
 import * as key from "module/apikeys";
@@ -28,8 +29,8 @@ export async function Search(searchMessage: ISearchMessage) {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb = await new Promise((resolve, reject) => {
-    client.search(req, metadata, function (err: any, res: any) {
+  return new Promise<IMessage[]>((resolve, reject) => {
+    client.search(req, metadata, function (err: any, res: SearchO) {
       if (err) {
         reject(err);
       } else {
@@ -68,6 +69,4 @@ export async function Search(searchMessage: ISearchMessage) {
       }
     });
   });
-
-  return getSearchResponsePb;
 }

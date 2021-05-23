@@ -28,7 +28,7 @@ export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb: IUser[] = await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     client.search(req, metadata, function (err: any, res: SearchO): any {
       if (err) {
         reject(err);
@@ -60,5 +60,4 @@ export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
       }
     });
   });
-  return getSearchResponsePb;
 }

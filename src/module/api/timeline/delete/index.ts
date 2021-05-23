@@ -26,24 +26,21 @@ export async function Delete(
   objList.push(obj);
   req.setObjList(objList);
 
-  const getDeleteResponsePb: ITimeline[] = await new Promise(
-    (resolve, reject) => {
-      client.delete(req, metadata, function (err: any, res: DeleteO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const timelinesPb = res.getObjList();
+  return new Promise((resolve, reject) => {
+    client.delete(req, metadata, function (err: any, res: DeleteO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const timelinesPb = res.getObjList();
 
-          const status = timelinesPb.map((timelinePb) => {
-            const metaPb = timelinePb.getMetadataMap();
-            const id = metaPb.get(key.TimelineStatus);
-            return id;
-          });
-          resolve(status);
-        }
-      });
-    }
-  );
-  return getDeleteResponsePb;
+        const status = timelinesPb.map((timelinePb) => {
+          const metaPb = timelinePb.getMetadataMap();
+          const id = metaPb.get(key.TimelineStatus);
+          return id as ITimeline;
+        });
+        resolve(status);
+      }
+    });
+  });
 }

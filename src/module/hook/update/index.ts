@@ -1,46 +1,44 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
+import * as api from "module/api";
 import {
   ICreateUpdate,
+  IDeleteUpdate,
   ISearchUpdate,
   ISearchUpdateByTimelineId,
   ISearchUpdateByTimelineIds,
   IUpdate,
+  IUpdateUpdate,
 } from "module/interface/update";
-import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
 const getUpdatesByTimelineId = async (searchUpdate: ISearchUpdate) => {
-  const data = await api.API.Update.Search(searchUpdate);
-  return data;
+  return api.API.Update.Search(searchUpdate);
 };
 
-const getUpdatesByTimelineIds = async (
-  searchAllUpdate: ISearchUpdateByTimelineIds
-) => {
-  const { timelineIds, ventureId, token } = searchAllUpdate;
-
+const getUpdatesByTimelineIds = async ({
+  timelineIds,
+  ventureId,
+  token,
+}: ISearchUpdateByTimelineIds) => {
   const allUpdates = await Promise.all(
     timelineIds.map(async (timelineId) => {
-      const search = {
+      return api.API.Update.Search({
         ventureId,
         timelineId,
         token,
-      };
-
-      const updates = await api.API.Update.Search(search);
-      return updates;
+      });
     })
   );
-  const flattenedUpdates: any = allUpdates.flat();
 
-  return flattenedUpdates;
+  return allUpdates.flat();
 };
 
 export function useUpdatesByTimeline(
   searchUpdateByTimelineId: ISearchUpdateByTimelineId
 ) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IUpdate[], ErrorResponse>(
     ["updates", searchUpdateByTimelineId.timelineId],
     () => getUpdatesByTimelineId(searchUpdateByTimelineId),
     {
@@ -55,8 +53,12 @@ export function useUpdatesByTimeline(
 export function useUpdatesByTimelineIds(
   searchUpdateByTimelineIds: ISearchUpdateByTimelineIds
 ) {
-  return useQuery<any, ErrorResponse>(
-    ["updates", searchUpdateByTimelineIds.timelineIds],
+  return useQuery<IUpdate[], ErrorResponse>(
+    [
+      "updates",
+      searchUpdateByTimelineIds.ventureId,
+      searchUpdateByTimelineIds.timelineIds,
+    ],
     () => getUpdatesByTimelineIds(searchUpdateByTimelineIds),
     {
       enabled:
@@ -70,8 +72,8 @@ export function useUpdatesByTimelineIds(
 export function useCreateUpdate() {
   const queryClient = useQueryClient();
 
-  return useMutation<any, any, any>(
-    (newUpdate) => {
+  return useMutation<string, any, ICreateUpdate>(
+    (newUpdate: ICreateUpdate) => {
       return api.API.TexUpd.Create(newUpdate);
     },
     {
@@ -117,7 +119,7 @@ export function useCreateUpdate() {
 export function useUpdateUpdate() {
   const queryClient = useQueryClient();
 
-  return useMutation<any, any, any>(
+  return useMutation<IUpdate[], any, IUpdateUpdate>(
     (newUpdate) => {
       return api.API.TexUpd.Update(newUpdate);
     },
@@ -133,7 +135,7 @@ export function useUpdateUpdate() {
 export function useDeleteUpdate() {
   const queryClient = useQueryClient();
 
-  return useMutation<any, any, any>(
+  return useMutation<IUpdate[], any, IDeleteUpdate>(
     (updateDelete) => {
       return api.API.TexUpd.Delete(updateDelete);
     },

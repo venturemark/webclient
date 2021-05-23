@@ -10,17 +10,17 @@ export interface IVenture {
 
 export interface ISearchVenturesByUser {
   userId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ISearchVenturesByTimeline {
   ventureIds: string[];
-  token: string;
+  token: string | null;
 }
 
 export interface IDeleteVenture {
   id: string;
-  token: string;
+  token: string | null;
   successUrl: string;
 }
 
@@ -29,7 +29,7 @@ export interface ICreateVenture {
   desc: string;
   url: string;
   successUrl?: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IUpdateVenture {
@@ -38,5 +38,5 @@ export interface IUpdateVenture {
   desc: string;
   url: string;
   successUrl?: string;
-  token: string;
+  token: string | null;
 }

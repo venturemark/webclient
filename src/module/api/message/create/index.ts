@@ -9,7 +9,7 @@ import * as key from "module/apikeys";
 import * as env from "module/env";
 import { ICreateMessage } from "module/interface/message";
 
-export async function Create(createMessage: ICreateMessage): Promise<any> {
+export async function Create(createMessage: ICreateMessage): Promise<string> {
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
@@ -30,7 +30,7 @@ export async function Create(createMessage: ICreateMessage): Promise<any> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getCreateResponsePb = await new Promise((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
         reject(err);
@@ -44,6 +44,4 @@ export async function Create(createMessage: ICreateMessage): Promise<any> {
       }
     });
   });
-
-  return getCreateResponsePb;
 }

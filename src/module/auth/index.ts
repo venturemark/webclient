@@ -45,29 +45,96 @@ export function getConfig() {
   };
 }
 
-export function useGetToken(): string {
-  const [token, setToken] = useState("");
-  const { getAccessTokenSilently, loginWithRedirect } = useAuth0();
+type AuthStateAuthenticated = {
+  authenticated: true;
+  error: null;
+  loading: false;
+  token: string;
+};
+
+type AuthStateUnauthenticated = {
+  authenticated: false;
+  error: null;
+  loading: false;
+  token: null;
+};
+
+type AuthStateLoading = {
+  authenticated: false;
+  error: null;
+  loading: true;
+  token: null;
+};
+
+type AuthStateError = {
+  authenticated: boolean;
+  error: string;
+  loading: false;
+  token: null;
+};
+
+export type AuthState =
+  | AuthStateAuthenticated
+  | AuthStateUnauthenticated
+  | AuthStateLoading
+  | AuthStateError;
+
+export function useAuth(): AuthState {
+  const {
+    error: authError,
+    getAccessTokenSilently,
+    isAuthenticated,
+    isLoading: authLoading,
+  } = useAuth0();
+  const [token, setToken] = useState<string | null>(null);
+  const [tokenError, setTokenError] = useState<string | null>(null);
 
   useEffect(() => {
-    const getToken = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-        setToken(token);
-      } catch (e) {
-        if (e.error === "login_required") {
-          loginWithRedirect();
-        } else if (e.error === "consent_required") {
-          loginWithRedirect();
-        } else {
-          throw e;
-        }
+    (async function getToken() {
+      if (authLoading || !isAuthenticated) {
+        setToken(null);
+        setTokenError(null);
+        return;
       }
-    };
-    if (token === "") {
-      getToken();
-    }
-  }, [getAccessTokenSilently, loginWithRedirect, token]);
+      try {
+        setToken(await getAccessTokenSilently());
+      } catch (err) {
+        const errorString = err.error as string;
+        setTokenError(errorString);
+      }
+    })();
+  }, [getAccessTokenSilently, isAuthenticated, authLoading]);
 
-  return token;
+  const loading = authLoading || (isAuthenticated && !token);
+  const error = authError?.message || tokenError;
+
+  if (loading) {
+    return {
+      authenticated: false,
+      error: null,
+      loading: true,
+      token: null,
+    };
+  } else if (!isAuthenticated) {
+    return {
+      authenticated: false,
+      error: null,
+      loading: false,
+      token: null,
+    };
+  } else if (error) {
+    return {
+      authenticated: isAuthenticated,
+      error,
+      loading: false,
+      token: null,
+    };
+  }
+
+  return {
+    authenticated: true,
+    error: null,
+    loading: false,
+    token: token!,
+  };
 }

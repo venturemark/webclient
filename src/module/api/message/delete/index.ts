@@ -28,24 +28,21 @@ export async function Delete(
   objList.push(obj);
   req.setObjList(objList);
 
-  const getDeleteResponsePb: IMessage[] = await new Promise(
-    (resolve, reject) => {
-      client.delete(req, metadata, function (err: any, res: DeleteO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const messagesPb = res.getObjList();
+  return new Promise((resolve, reject) => {
+    client.delete(req, metadata, function (err: any, res: DeleteO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const messagesPb = res.getObjList();
 
-          const status = messagesPb.map((messagePb) => {
-            const metaPb = messagePb.getMetadataMap();
-            const id = metaPb.get(key.MessageStatus);
-            return id;
-          });
-          resolve(status);
-        }
-      });
-    }
-  );
-  return getDeleteResponsePb;
+        const status = messagesPb.map((messagePb) => {
+          const metaPb = messagePb.getMetadataMap();
+          const id = metaPb.get(key.MessageStatus);
+          return id as IMessage;
+        });
+        resolve(status);
+      }
+    });
+  });
 }

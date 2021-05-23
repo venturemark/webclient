@@ -37,21 +37,18 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
 
   req.setObjList(objList);
 
-  const getUpdateResponsePb: IUpdate[] = await new Promise(
-    (resolve, reject) => {
-      client.update(req, metadata, function (err: any, res: UpdateO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const updatePb = res.getObjList()[0];
-          const metaPb = updatePb.getMetadataMap();
-          const status = metaPb.get(key.UpdateStatus);
+  return new Promise((resolve, reject) => {
+    client.update(req, metadata, function (err: any, res: UpdateO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const updatePb = res.getObjList()[0];
+        const metaPb = updatePb.getMetadataMap();
+        const status = metaPb.get(key.UpdateStatus);
 
-          resolve(status);
-        }
-      });
-    }
-  );
-  return getUpdateResponsePb;
+        resolve(status as IUpdate[]);
+      }
+    });
+  });
 }

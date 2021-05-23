@@ -9,7 +9,7 @@ import * as key from "module/apikeys";
 import * as env from "module/env";
 import { ICreateInvite, IInvite } from "module/interface/invite";
 
-export async function Create(newInvite: ICreateInvite): Promise<any> {
+export async function Create(newInvite: ICreateInvite) {
   const client = new APIClient(env.APIEndpoint());
   const req = new CreateI();
 
@@ -32,7 +32,7 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getCreateResponsePb = await new Promise((resolve, reject) => {
+  return new Promise<IInvite>((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
         reject(err);
@@ -43,7 +43,7 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
         const id = metaPb.get(key.InviteID);
         const code = metaPb.get(key.InviteCode);
 
-        const invite: IInvite = {
+        resolve({
           id,
           code,
           email: newInvite.email,
@@ -51,11 +51,8 @@ export async function Create(newInvite: ICreateInvite): Promise<any> {
           role: newInvite.role,
           timelineId: newInvite.timelineId,
           ventureId: newInvite.ventureId,
-        };
-        resolve(invite);
+        });
       }
     });
   });
-
-  return getCreateResponsePb;
 }

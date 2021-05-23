@@ -24,24 +24,21 @@ export async function Delete(IDeleteInvite: IDeleteInvite): Promise<IInvite[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getDeleteResponsePb: IInvite[] = await new Promise(
-    (resolve, reject) => {
-      client.delete(req, metadata, function (err: any, res: DeleteO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const invitesPb = res.getObjList();
+  return new Promise((resolve, reject) => {
+    client.delete(req, metadata, function (err: any, res: DeleteO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const invitesPb = res.getObjList();
 
-          const status = invitesPb.map((invitePb) => {
-            const metaPb = invitePb.getMetadataMap();
-            const id = metaPb.get(key.InviteStatus);
-            return id;
-          });
-          resolve(status);
-        }
-      });
-    }
-  );
-  return getDeleteResponsePb;
+        const status = invitesPb.map((invitePb) => {
+          const metaPb = invitePb.getMetadataMap();
+          const id = metaPb.get(key.InviteStatus);
+          return id as IInvite;
+        });
+        resolve(status);
+      }
+    });
+  });
 }

@@ -3,26 +3,26 @@ export interface IAPISearchUser {
   resource?: string;
   timelineId?: string;
   ventureId?: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IAPISearchTimeline {
   ventureId?: string;
   userId?: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IAPISearchVenture {
   id?: string;
   userId?: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IAPISearchRole {
   resource: string;
   ventureId?: string;
   timelineId?: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IAPIDeleteRole {
@@ -30,5 +30,5 @@ export interface IAPIDeleteRole {
   resource: string;
   ventureId?: string;
   timelineId?: string;
-  token: string;
+  token: string | null;
 }

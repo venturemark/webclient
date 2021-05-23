@@ -1,7 +1,8 @@
-import { useLocation } from "react-router-dom";
 import emailjs from "emailjs-com";
+import { useLocation } from "react-router-dom";
+
 import { IEmailInvite } from "module/interface/email";
-import { ICreateInvite } from "module/interface/invite";
+import { ICreateInvite, IInvite } from "module/interface/invite";
 
 export function isDev(): boolean {
   const development: boolean =
@@ -35,7 +36,7 @@ export function getLastItem(thePath: string) {
   return thePath.substring(thePath.lastIndexOf("/") + 1);
 }
 
-export function sendInvite(inviteData: any, invite: ICreateInvite) {
+export function sendInvite(inviteData: IInvite, invite: ICreateInvite) {
   const params = new URLSearchParams({
     ventureId: invite.ventureId,
     timelineId: invite.timelineId ?? "",
@@ -44,7 +45,7 @@ export function sendInvite(inviteData: any, invite: ICreateInvite) {
     id: inviteData.id,
     resource: invite.resource,
     role: invite.role,
-  });
+  } as Record<string, string>);
 
   const templateParams: IEmailInvite = {
     to_name: "",

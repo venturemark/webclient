@@ -25,40 +25,37 @@ export async function Search(searchInvite: ISearchInvite): Promise<IInvite[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb: IInvite[] = await new Promise(
-    (resolve, reject) => {
-      client.search(req, metadata, function (err: any, res: SearchO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const invitesPb = res.getObjList();
+  return new Promise((resolve, reject) => {
+    client.search(req, metadata, function (err: any, res: SearchO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const invitesPb = res.getObjList();
 
-          const invites = invitesPb.map((invitePb) => {
-            const propertiesPb = invitePb.getProperty();
-            const metaPb = invitePb.getMetadataMap();
+        const invites = invitesPb.map((invitePb) => {
+          const propertiesPb = invitePb.getProperty();
+          const metaPb = invitePb.getMetadataMap();
 
-            const id = metaPb.get(key.InviteID);
-            const ventureId = metaPb.get(key.VentureID);
-            const email = propertiesPb?.getMail();
-            const status = propertiesPb?.getStat();
-            const resource = metaPb.get(key.ResourceKind);
-            const role = metaPb.get(key.RoleKind);
+          const id = metaPb.get(key.InviteID);
+          const ventureId = metaPb.get(key.VentureID);
+          const email = propertiesPb?.getMail();
+          const status = propertiesPb?.getStat();
+          const resource = metaPb.get(key.ResourceKind);
+          const role = metaPb.get(key.RoleKind);
 
-            const invite: IInvite = {
-              id: id,
-              ventureId,
-              email,
-              resource,
-              role,
-              status,
-            };
-            return invite;
-          });
-          resolve(invites);
-        }
-      });
-    }
-  );
-  return getSearchResponsePb;
+          const invite: IInvite = {
+            id: id,
+            ventureId,
+            email,
+            resource,
+            role,
+            status,
+          };
+          return invite;
+        });
+        resolve(invites);
+      }
+    });
+  });
 }

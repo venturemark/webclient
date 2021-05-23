@@ -53,21 +53,18 @@ export async function Update(
   objList.push(obj);
   req.setObjList(objList);
 
-  const getUpdateResponsePb: ITimeline[] = await new Promise(
-    (resolve, reject) => {
-      client.update(req, metadata, function (err: any, res: UpdateO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const timelinePb = res.getObjList()[0];
-          const metaPb = timelinePb.getMetadataMap();
-          const status = metaPb.get(key.TimelineStatus);
+  return new Promise((resolve, reject) => {
+    client.update(req, metadata, function (err: any, res: UpdateO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const timelinePb = res.getObjList()[0];
+        const metaPb = timelinePb.getMetadataMap();
+        const status = metaPb.get(key.TimelineStatus);
 
-          resolve(status);
-        }
-      });
-    }
-  );
-  return getUpdateResponsePb;
+        resolve(status as ITimeline[]);
+      }
+    });
+  });
 }

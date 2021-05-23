@@ -13,12 +13,12 @@ export interface ITimeline {
 
 export interface ISearchTimelinesbyUserId {
   userId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ISearchTimelinesbyVentureId {
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ICreateTimeline {
@@ -26,13 +26,13 @@ export interface ICreateTimeline {
   desc: string;
   ventureId: string;
   successUrl?: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IDeleteTimeline {
   id: string;
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IUpdateTimeline {
@@ -42,5 +42,5 @@ export interface IUpdateTimeline {
   name?: string;
   stat?: string;
   successUrl?: string;
-  token: string;
+  token: string | null;
 }

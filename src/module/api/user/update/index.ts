@@ -45,7 +45,7 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getUpdateResponsePb: IUser[] = await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     client.update(req, metadata, function (err: any, res: UpdateO): any {
       if (err) {
         reject(err);
@@ -55,9 +55,8 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
         const metaPb = userPb.getMetadataMap();
         const status = metaPb.get(key.UserStatus);
 
-        resolve(status);
+        resolve(status as IUser[]);
       }
     });
   });
-  return getUpdateResponsePb;
 }

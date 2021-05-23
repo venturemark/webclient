@@ -46,21 +46,18 @@ export async function Update(
   objList.push(obj);
   req.setObjList(objList);
 
-  const getUpdateResponsePb: IVenture[] = await new Promise(
-    (resolve, reject) => {
-      client.update(req, metadata, function (err: any, res: UpdateO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const venturePb = res.getObjList()[0];
-          const metaPb = venturePb.getMetadataMap();
-          const status = metaPb.get(key.VentureStatus);
+  return new Promise<IVenture[]>((resolve, reject) => {
+    client.update(req, metadata, function (err: any, res: UpdateO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const venturePb = res.getObjList()[0];
+        const metaPb = venturePb.getMetadataMap();
+        const status = metaPb.get(key.VentureStatus);
 
-          resolve(status);
-        }
-      });
-    }
-  );
-  return getUpdateResponsePb;
+        resolve(status);
+      }
+    });
+  });
 }

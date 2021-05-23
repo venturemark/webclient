@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from "react";
 import Chip from "@material-ui/core/Chip";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { useContext } from "react";
-import { TimelineContext } from "component/app";
+import React, { useContext, useEffect, useRef } from "react";
+
+import { TimelineContext } from "context/TimelineContext";
 import { ITimeline } from "module/interface/timeline";
 
 interface SelectProps {

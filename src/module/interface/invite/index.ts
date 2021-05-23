@@ -11,12 +11,12 @@ export interface IInvite {
 
 export interface ISearchInvite {
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface ISearchAllInvite {
   subjectIds: string[];
-  token: string;
+  token: string | null;
 }
 
 export interface ICreateInvite {
@@ -27,13 +27,13 @@ export interface ICreateInvite {
   fromVentureName: string;
   resource: string;
   role: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IDeleteInvite {
   id: string;
   ventureId: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IUpdateInvite {
@@ -45,7 +45,7 @@ export interface IUpdateInvite {
   ventureId: string;
   timelineId?: string;
   successUrl?: string;
-  token: string;
+  token: string | null;
 }
 
 export interface IUpdateStatus {

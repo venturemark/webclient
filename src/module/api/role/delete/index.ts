@@ -25,7 +25,7 @@ export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getDeleteResponsePb: IRole[] = await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     client.delete(req, metadata, function (err: any, res: DeleteO): any {
       if (err) {
         reject(err);
@@ -36,11 +36,10 @@ export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
         const status = rolesPb.map((rolePb) => {
           const metaPb = rolePb.getMetadataMap();
           const id = metaPb.get(key.RoleStatus);
-          return id;
+          return id as IRole;
         });
         resolve(status);
       }
     });
   });
-  return getDeleteResponsePb;
 }

@@ -25,25 +25,21 @@ export async function Delete(
   objList.push(obj);
   req.setObjList(objList);
 
-  const getDeleteResponsePb: IVenture[] = await new Promise(
-    (resolve, reject) => {
-      client.delete(req, metadata, function (err: any, res: DeleteO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const venturesPb = res.getObjList();
+  return new Promise((resolve, reject) => {
+    client.delete(req, metadata, function (err: any, res: DeleteO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const venturesPb = res.getObjList();
 
-          const status = venturesPb.map((venturePb) => {
-            const metaPb = venturePb.getMetadataMap();
-            const id = metaPb.get(key.VentureStatus);
-            return id;
-          });
+        const status = venturesPb.map((venturePb) => {
+          const metaPb = venturePb.getMetadataMap();
+          return metaPb.get(key.VentureStatus) as IVenture;
+        });
 
-          resolve(status);
-        }
-      });
-    }
-  );
-  return getDeleteResponsePb;
+        resolve(status);
+      }
+    });
+  });
 }

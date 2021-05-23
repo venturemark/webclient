@@ -4,32 +4,29 @@ import { useNavigate } from "react-router";
 import * as api from "module/api";
 import {
   ICreateVenture,
+  IDeleteVenture,
   ISearchVenturesByTimeline,
   ISearchVenturesByUser,
+  IUpdateVenture,
   IVenture,
 } from "module/interface/venture";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
 const getVenturesByUser = async (searchVenture: ISearchVenturesByUser) => {
-  const data = await api.API.Venture.Search(searchVenture);
-  return data;
+  return api.API.Venture.Search(searchVenture);
 };
 
-const getVentureByTimeline = async (
-  searchVenturesByTimeline: ISearchVenturesByTimeline
-) => {
-  const { ventureIds, token } = searchVenturesByTimeline;
-
+const getVentureByTimeline = async ({
+  ventureIds,
+  token,
+}: ISearchVenturesByTimeline) => {
   const allVentures = await Promise.all(
     ventureIds.map(async (id: string) => {
-      const search = {
+      return api.API.Venture.Search({
         id,
         token,
-      };
-
-      const ventures = await api.API.Venture.Search(search);
-      return ventures;
+      });
     })
   );
 
@@ -62,7 +59,7 @@ export function useCreateVenture() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
+  return useMutation<string, any, ICreateVenture>(
     (newVenture) => {
       return api.API.Venture.Create(newVenture);
     },
@@ -113,7 +110,7 @@ export function useUpdateVenture() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
+  return useMutation<IVenture[], any, IUpdateVenture>(
     (ventureUpdate) => {
       return api.API.Venture.Update(ventureUpdate);
     },
@@ -133,7 +130,7 @@ export function useDeleteVenture() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
+  return useMutation<IVenture[], any, IDeleteVenture>(
     (ventureDelete) => {
       return api.API.Venture.Delete(ventureDelete);
     },

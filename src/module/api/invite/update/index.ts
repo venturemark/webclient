@@ -9,7 +9,7 @@ import * as key from "module/apikeys";
 import * as env from "module/env";
 import { IUpdateInvite, IUpdateStatus } from "module/interface/invite";
 
-export async function Update(updateInvite: IUpdateInvite): Promise<any> {
+export async function Update(updateInvite: IUpdateInvite) {
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new UpdateI();
@@ -43,27 +43,22 @@ export async function Update(updateInvite: IUpdateInvite): Promise<any> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getUpdateResponsePb: IUpdateStatus = await new Promise(
-    (resolve, reject) => {
-      client.update(req, metadata, function (err: any, res: UpdateO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const invitePb = res.getObjList()[0];
-          const metaPb = invitePb.getMetadataMap();
-          const status = metaPb.get(key.InviteStatus);
-          const role = metaPb.get(key.RoleStatus);
+  return new Promise<IUpdateStatus>((resolve, reject) => {
+    client.update(req, metadata, function (err: any, res: UpdateO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const invitePb = res.getObjList()[0];
+        const metaPb = invitePb.getMetadataMap();
+        const status = metaPb.get(key.InviteStatus);
+        const role = metaPb.get(key.RoleStatus);
 
-          const inviteStatus: IUpdateStatus = {
-            role,
-            status,
-          };
-
-          resolve(inviteStatus);
-        }
-      });
-    }
-  );
-  return getUpdateResponsePb;
+        resolve({
+          role,
+          status,
+        });
+      }
+    });
+  });
 }

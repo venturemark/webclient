@@ -2,7 +2,7 @@ import { APIClient } from "module/api/venture/proto/ApiServiceClientPb";
 import {
   SearchI,
   SearchI_Obj,
-  SearchO_Obj,
+  SearchO,
 } from "module/api/venture/proto/search_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
@@ -28,36 +28,32 @@ export async function Search(
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb: IVenture[] = await new Promise(
-    (resolve, reject) => {
-      client.search(req, metadata, function (err: any, res: any): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const venturesPb = res.getObjList();
+  return new Promise<IVenture[]>((resolve, reject) => {
+    client.search(req, metadata, function (err: any, res: SearchO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const venturesPb = res.getObjList();
 
-          const ventures = venturesPb.map((venturePb: SearchO_Obj) => {
-            const propertiesPb = venturePb.getProperty();
-            const metaPb = venturePb.getMetadataMap();
+        const ventures = venturesPb.map((venturePb) => {
+          const propertiesPb = venturePb.getProperty();
+          const metaPb = venturePb.getMetadataMap();
 
-            const name = propertiesPb?.getName() as string;
-            const desc = propertiesPb?.getDesc() as string;
-            const linkAddress = propertiesPb?.getLinkList()[0].getAddr();
-            const id = metaPb.get(key.VentureID);
+          const name = propertiesPb?.getName() as string;
+          const desc = propertiesPb?.getDesc() as string;
+          const linkAddress = propertiesPb?.getLinkList()[0].getAddr();
+          const id = metaPb.get(key.VentureID);
 
-            const venture: IVenture = {
-              name: name,
-              desc: desc,
-              id: id,
-              url: linkAddress,
-            };
-            return venture;
-          });
-          resolve(ventures);
-        }
-      });
-    }
-  );
-  return getSearchResponsePb;
+          return {
+            name: name,
+            desc: desc,
+            id: id,
+            url: linkAddress,
+          };
+        });
+        resolve(ventures);
+      }
+    });
+  });
 }
