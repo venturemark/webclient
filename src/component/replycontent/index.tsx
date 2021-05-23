@@ -9,12 +9,7 @@ import { UserContext } from "context/UserContext";
 import { getUniqueListBy } from "module/helpers";
 import { useDeleteMessage } from "module/hook/message";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
-import { IDeleteMessage } from "module/interface/message";
-import {
-  ISearchTimelineMembers,
-  ISearchVentureMembers,
-  IUser,
-} from "module/interface/user";
+import { IUser } from "module/interface/user";
 
 interface ReplyContentProps extends DefaultReplyContentProps {
   id: string;
@@ -35,22 +30,20 @@ function ReplyContent(props: ReplyContentProps) {
   const userContext = useContext(UserContext);
   const [showMenu, setShowMenu] = useState(false);
 
-  const userTimelineSearch: ISearchTimelineMembers = {
-    resource: "timeline",
-    timelineId: timelineId ?? undefined,
-    ventureId: ventureId ?? undefined,
-    token,
-  };
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
-    useTimelineMembers(userTimelineSearch);
+    useTimelineMembers({
+      resource: "timeline",
+      timelineId: timelineId ?? undefined,
+      ventureId: ventureId ?? undefined,
+      token,
+    });
 
-  const userVentureSearch: ISearchVentureMembers = {
-    resource: "venture",
-    ventureId: ventureId ?? undefined,
-    token,
-  };
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
-    useVentureMembers(userVentureSearch);
+    useVentureMembers({
+      resource: "venture",
+      ventureId: ventureId ?? undefined,
+      token,
+    });
 
   const allMembers =
     timelineUsersSuccess && ventureUsersSuccess
@@ -62,15 +55,13 @@ function ReplyContent(props: ReplyContentProps) {
   const user = allMembers?.filter((user: IUser) => user.id === userId)[0];
 
   const handleDeleteMessage = () => {
-    const messageDelete: IDeleteMessage = {
+    deleteMessage({
       id,
       timelineId,
       updateId,
       ventureId,
       token: token,
-    };
-
-    deleteMessage(messageDelete);
+    });
   };
 
   return (

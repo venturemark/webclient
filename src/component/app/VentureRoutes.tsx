@@ -10,11 +10,7 @@ import { getUniqueListBy } from "module/helpers";
 import { useRoleByTimelineIds, useRoleByVentureIds } from "module/hook/role";
 import { useTimelinesByUserId } from "module/hook/timeline";
 import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
-import {
-  IRole,
-  ISearchRoleByTimelineIds,
-  ISearchRoleByVentureIds,
-} from "module/interface/role";
+import { IRole } from "module/interface/role";
 import { ITimeline } from "module/interface/timeline";
 import { IUser, UserRole } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
@@ -85,23 +81,20 @@ export function VentureRoutes(props: VentureRoutesProps) {
     (venture: IVenture) => venture.id
   );
 
-  const ventureRoleSearch: ISearchRoleByVentureIds = {
+  const { data: ventureRolesData } = useRoleByVentureIds({
     resource: "venture",
     ventureIds: uniqueAllVentureIds,
     token,
-  };
-  const { data: ventureRolesData } = useRoleByVentureIds(ventureRoleSearch);
+  });
 
   const timelineIds = timelinesData?.map((timeline: ITimeline) => timeline.id);
 
-  const searchRolesByTimelineIds: ISearchRoleByTimelineIds = {
-    resource: "timeline",
-    timelineIds: timelineIds,
-    token,
-  };
-
-  const { data: timelineRolesData, isSuccess: timelineRolesSuccess } =
-    useRoleByTimelineIds(searchRolesByTimelineIds);
+  const { data: timelineRolesData = [], isSuccess: timelineRolesSuccess } =
+    useRoleByTimelineIds({
+      resource: "timeline",
+      timelineIds: timelineIds,
+      token,
+    });
 
   // Right now we don't have timeline specific roles,
   // and timeline permissions default to parent venture

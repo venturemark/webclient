@@ -36,7 +36,7 @@ export async function Update(updateRole: IUpdateRole): Promise<IRole[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getUpdateResponsePb: IRole[] = await new Promise((resolve, reject) => {
+  return new Promise<IRole[]>((resolve, reject) => {
     client.update(req, {}, function (err: any, res: any): any {
       if (err) {
         reject(err);
@@ -50,5 +50,4 @@ export async function Update(updateRole: IUpdateRole): Promise<IRole[]> {
       }
     });
   });
-  return getUpdateResponsePb;
 }

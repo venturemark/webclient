@@ -10,11 +10,7 @@ import {
 import { AuthContext } from "context/AuthContext";
 import { nameTooLongError, timelineNameError } from "module/errors";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
-import {
-  ICreateTimeline,
-  ITimeline,
-  IUpdateTimeline,
-} from "module/interface/timeline";
+import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
@@ -58,24 +54,26 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     if (!token || !data.timelineName || !data.timelineDescription) {
       return;
     }
-    const newTimeline: ICreateTimeline = {
-      name: data.timelineName,
-      desc: data.timelineDescription,
-      ventureId: currentVenture?.id,
-      successUrl: `../${data.timelineName}/feed`,
-      token,
-    };
 
-    const timelineUpdate: IUpdateTimeline = {
-      id: timelineId,
-      name: data.timelineName,
-      desc: data.timelineDescription,
-      ventureId: currentVenture?.id,
-      successUrl: `../${timelineSlug}/feed`,
-      token,
-    };
+    if (isEdit) {
+      updateTimeline({
+        id: timelineId,
+        name: data.timelineName,
+        desc: data.timelineDescription,
+        ventureId: currentVenture?.id,
+        successUrl: `../${timelineSlug}/feed`,
+        token,
+      });
+    } else {
+      createTimeline({
+        name: data.timelineName,
+        desc: data.timelineDescription,
+        ventureId: currentVenture?.id,
+        successUrl: `../${data.timelineName}/feed`,
+        token,
+      });
+    }
 
-    isEdit ? updateTimeline(timelineUpdate) : createTimeline(newTimeline);
     reset();
   };
 

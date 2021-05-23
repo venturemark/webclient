@@ -15,8 +15,6 @@ import { useQuery } from "module/helpers";
 import { useArchiveDeleteTimeline } from "module/hook/timeline";
 import { useUpdateUser } from "module/hook/user";
 import { useDeleteVenture } from "module/hook/venture";
-import { IUpdateTimeline } from "module/interface/timeline";
-import { IDeleteVenture } from "module/interface/venture";
 
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
@@ -61,25 +59,21 @@ function Modal(props: ModalProps) {
 
   const handleDeleteTimeline = async () => {
     const ventureId = ventureContext?.currentVenture?.id ?? "";
-    const timelineArchive: IUpdateTimeline = {
+    archiveDeleteTimeline({
       id: timelineId,
-      ventureId: ventureId,
+      ventureId,
       stat: "archived",
       successUrl: `/`,
       token,
-    };
-
-    archiveDeleteTimeline(timelineArchive);
+    });
   };
 
   const handleDeleteVenture = () => {
-    const ventureDelete: IDeleteVenture = {
+    deleteVenture({
       id: ventureId,
       successUrl: `../../`,
       token,
-    };
-
-    deleteVenture(ventureDelete);
+    });
   };
 
   return (

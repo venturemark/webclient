@@ -1,18 +1,24 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import { ICreateInvite, IInvite, ISearchInvite } from "module/interface/invite";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router";
+
 import * as api from "module/api";
 import { sendInvite } from "module/helpers";
+import {
+  ICreateInvite,
+  IInvite,
+  ISearchInvite,
+  IUpdateInvite,
+  IUpdateStatus,
+} from "module/interface/invite";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
 const getInvites = async (searchInvite: ISearchInvite) => {
-  const data = await api.API.Invite.Search(searchInvite);
-  return data;
+  return api.API.Invite.Search(searchInvite);
 };
 
 export function useInvites(searchInvite: ISearchInvite) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IInvite[], ErrorResponse>(
     ["invites", searchInvite.ventureId],
     () => getInvites(searchInvite),
     { enabled: !!searchInvite.token && !!searchInvite.ventureId }
@@ -22,7 +28,7 @@ export function useInvites(searchInvite: ISearchInvite) {
 export function useCreateInvite() {
   const queryClient = useQueryClient();
 
-  return useMutation<any, any, any>(
+  return useMutation<IInvite, any, ICreateInvite>(
     (newInvite) => {
       return api.API.Invite.Create(newInvite);
     },
@@ -73,7 +79,7 @@ export function useUpdateInvite() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<any, any, any>(
+  return useMutation<IUpdateStatus, any, IUpdateInvite>(
     (inviteUpdate) => {
       return api.API.Invite.Update(inviteUpdate);
     },

@@ -12,7 +12,6 @@ import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { nameError, titleError } from "module/errors";
 import { useCreateUser } from "module/hook/user";
-import { ICreateUser } from "module/interface/user";
 
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
@@ -37,24 +36,25 @@ function ProfileForm(props: ProfileFormProps) {
   });
 
   const { mutate: saveUser } = useCreateUser();
-  const link = hasInvite ? "../joinventure" : "/begin";
 
   const handleSave = (data: any) => {
     if (!data.name) {
       return;
     }
 
-    const user: ICreateUser = {
+    saveUser({
       name: data.name,
+      successUrl: hasInvite ? "../joinventure" : "../begin",
       title: data.title,
       token: token,
-    };
-
-    user.successUrl = hasInvite ? "../joinventure" : "../begin";
-    saveUser(user);
+    });
   };
 
-  if (user) return <Navigate to={`${link}`} />;
+  if (user) {
+    // User already exists, go straight to joining or creating venture.
+    const link = hasInvite ? "../joinventure" : "/begin";
+    return <Navigate to={`${link}`} />;
+  }
 
   return (
     <PlasmicProfileForm

@@ -25,24 +25,21 @@ export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getDeleteResponsePb: IUpdate[] = await new Promise(
-    (resolve, reject) => {
-      client.delete(req, metadata, function (err: any, res: DeleteO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          const updatesPb = res.getObjList();
+  return new Promise((resolve, reject) => {
+    client.delete(req, metadata, function (err: any, res: DeleteO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        const updatesPb = res.getObjList();
 
-          const status = updatesPb.map((updatePb) => {
-            const metaPb = updatePb.getMetadataMap();
-            const id = metaPb.get(key.UpdateStatus);
-            return id;
-          });
-          resolve(status);
-        }
-      });
-    }
-  );
-  return getDeleteResponsePb;
+        const status = updatesPb.map((updatePb) => {
+          const metaPb = updatePb.getMetadataMap();
+          const id = metaPb.get(key.UpdateStatus);
+          return id as IUpdate;
+        });
+        resolve(status);
+      }
+    });
+  });
 }

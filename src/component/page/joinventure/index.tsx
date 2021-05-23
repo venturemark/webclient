@@ -7,7 +7,6 @@ import {
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { useUpdateInvite } from "module/hook/invite";
-import { IUpdateInvite } from "module/interface/invite";
 
 interface JoinVentureProps extends DefaultJoinVentureProps {}
 
@@ -24,7 +23,7 @@ function JoinVenture(props: JoinVentureProps) {
     const resource = localStorage.getItem("resource");
     const role = localStorage.getItem("role");
 
-    const inviteUpdate: IUpdateInvite = {
+    updateInvite({
       id: id ?? "",
       ventureId: ventureId ?? "",
       timelineId: timelineId ?? "",
@@ -34,9 +33,7 @@ function JoinVenture(props: JoinVentureProps) {
       successUrl: "/",
       status: "accepted",
       token,
-    };
-
-    updateInvite(inviteUpdate);
+    });
   };
 
   const userContext = useContext(UserContext);

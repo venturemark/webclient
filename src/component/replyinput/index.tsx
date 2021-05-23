@@ -9,7 +9,6 @@ import {
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { useCreateMessage } from "module/hook/message";
-import { ICreateMessage } from "module/interface/message";
 
 type FormInputs = {
   text: string;
@@ -34,16 +33,14 @@ function ReplyInput(props: ReplyInputProps) {
       return;
     }
 
-    const newMessage: ICreateMessage = {
+    createMessage({
       text: data.text,
       userId: userContext.user?.id ?? "",
       ventureId,
       timelineId,
       updateId,
       token,
-    };
-
-    createMessage(newMessage);
+    });
 
     //reset form
     reset();

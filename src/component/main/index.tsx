@@ -55,8 +55,8 @@ function Main(props: MainProps) {
   const currentTimeline = timelineSlug
     ? timelines?.filter((timeline: ITimeline) => {
         return (
-          timeline.name.toLowerCase().replace(/\s/g, "") ===
-            timelineSlug?.toLowerCase().replace(/\s/g, "") ?? ""
+          timeline.name.toLowerCase().replace(/\s/g, "") === timelineSlug &&
+          timeline.ventureId === currentVenture?.id
         );
       })[0]
     : undefined;

@@ -31,41 +31,38 @@ export async function Search(
   objList.push(obj);
   req.setObjList(objList);
 
-  let getSearchResponsePb: ITimeline[] = await new Promise(
-    (resolve, reject) => {
-      client.search(req, metadata, function (err: any, res: SearchO): any {
-        if (err) {
-          reject(err);
-          return;
-        } else {
-          let timelinesPb = res.getObjList();
+  return new Promise((resolve, reject) => {
+    client.search(req, metadata, function (err: any, res: SearchO): any {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        let timelinesPb = res.getObjList();
 
-          let timelines = timelinesPb.map((timelinePb) => {
-            let propertiesPb = timelinePb.getProperty();
-            let metaPb = timelinePb.getMetadataMap();
+        let timelines = timelinesPb.map((timelinePb) => {
+          let propertiesPb = timelinePb.getProperty();
+          let metaPb = timelinePb.getMetadataMap();
 
-            let name = propertiesPb?.getName() as string;
-            let desc = propertiesPb?.getDesc() as string;
-            let stat = propertiesPb?.getStat() as string;
+          let name = propertiesPb?.getName() as string;
+          let desc = propertiesPb?.getDesc() as string;
+          let stat = propertiesPb?.getStat() as string;
 
-            let ventureId = metaPb.get(key.VentureID);
-            let userId = metaPb.get(key.UserID);
-            let id = metaPb.get(key.TimelineID);
+          let ventureId = metaPb.get(key.VentureID);
+          let userId = metaPb.get(key.UserID);
+          let id = metaPb.get(key.TimelineID);
 
-            let timeline: ITimeline = {
-              name: name,
-              desc: desc,
-              stat: stat,
-              userId: userId,
-              ventureId: ventureId,
-              id: id,
-            };
-            return timeline;
-          });
-          resolve(timelines);
-        }
-      });
-    }
-  );
-  return getSearchResponsePb;
+          let timeline: ITimeline = {
+            name: name,
+            desc: desc,
+            stat: stat,
+            userId: userId,
+            ventureId: ventureId,
+            id: id,
+          };
+          return timeline;
+        });
+        resolve(timelines);
+      }
+    });
+  });
 }

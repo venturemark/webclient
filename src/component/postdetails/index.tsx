@@ -7,7 +7,7 @@ import {
 import ReplyContent from "component/replycontent";
 import { AuthContext } from "context/AuthContext";
 import { useMessages } from "module/hook/message";
-import { IMessage, ISearchMessage } from "module/interface/message";
+import { IMessage } from "module/interface/message";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 
@@ -24,14 +24,12 @@ function PostDetails(props: PostDetailsProps) {
   const updateId = post?.id ?? "";
   const ventureId = post?.ventureId ?? "";
 
-  const messageSearch: ISearchMessage = {
+  const { data: messagesData } = useMessages({
     updateId,
     timelineId,
     ventureId,
     token,
-  };
-
-  const { data: messagesData } = useMessages(messageSearch);
+  });
   const messages = messagesData;
 
   const postUser = post?.users?.filter(

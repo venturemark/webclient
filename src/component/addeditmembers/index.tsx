@@ -17,20 +17,10 @@ import {
   useVentureRole,
 } from "module/hook/role";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
-import { ICreateInvite, IInvite, ISearchInvite } from "module/interface/invite";
-import {
-  IDeleteTimelineRole,
-  IDeleteVentureRole,
-  IRole,
-  ISearchTimelineRoles,
-  ISearchVentureRoles,
-} from "module/interface/role";
+import { IInvite } from "module/interface/invite";
+import { IRole } from "module/interface/role";
 import { ITimeline } from "module/interface/timeline";
-import {
-  ISearchTimelineMembers,
-  ISearchVentureMembers,
-  IUser,
-} from "module/interface/user";
+import { IUser } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
 interface AddEditMembersProps extends DefaultAddEditMembersProps {
@@ -51,48 +41,37 @@ function AddEditMembers(props: AddEditMembersProps) {
   const { mutate: createInvite } = useCreateInvite();
   const { mutate: deleteRole } = useDeleteRole();
 
-  // get invites
-  const searchInvite: ISearchInvite = {
+  const { data: invitesData = [], isSuccess: invitesSuccess } = useInvites({
     ventureId: currentVenture?.id,
     token,
-  };
+  });
 
-  const { data: invitesData, isSuccess: invitesSuccess } =
-    useInvites(searchInvite);
-  /// <===
+  const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
+    useTimelineMembers({
+      resource: "timeline",
+      timelineId: currentTimeline?.id ?? undefined,
+      ventureId: currentVenture?.id ?? undefined,
+      token,
+    });
 
-  const ventureRoleSearch: ISearchVentureRoles = {
-    resource: "venture",
-    ventureId: currentVenture?.id ?? "",
-    token,
-  };
+  const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
+    useVentureMembers({
+      resource: "venture",
+      ventureId: currentVenture?.id ?? undefined,
+      token,
+    });
 
-  const timelineRoleSearch: ISearchTimelineRoles = {
+  const { data: timelineRolesData = [] } = useTimelineRole({
     resource: "timeline",
     timelineId: currentTimeline?.id ?? "",
     token,
-  };
+  });
 
-  const userTimelineSearch: ISearchTimelineMembers = {
-    resource: "timeline",
-    timelineId: currentTimeline?.id ?? undefined,
-    ventureId: currentVenture?.id ?? undefined,
-    token,
-  };
-  const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
-    useTimelineMembers(userTimelineSearch);
-
-  const userVentureSearch: ISearchVentureMembers = {
+  const { data: ventureRolesData = [] } = useVentureRole({
     resource: "venture",
-    ventureId: currentVenture?.id ?? undefined,
+    ventureId: currentVenture?.id ?? "",
     token,
-  };
-  const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
-    useVentureMembers(userVentureSearch);
-
-  const { data: timelineRolesData } = useTimelineRole(timelineRoleSearch);
-
-  const { data: ventureRolesData } = useVentureRole(ventureRoleSearch);
+  });
 
   const allMembers =
     timelineUsersSuccess && ventureUsersSuccess
@@ -112,20 +91,16 @@ function AddEditMembers(props: AddEditMembersProps) {
     : allMembers;
 
   const handleInvite = (data: { email: string }) => {
-    const email = data.email;
-
-    const invite: ICreateInvite = {
+    createInvite({
       ventureId: currentVenture?.id ?? "",
       timelineId,
       fromName: user?.name ?? "",
       resource: !currentTimeline ? "venture" : "timeline",
       role: "member",
       fromVentureName: currentVenture?.name ?? "",
-      email,
+      email: data.email,
       token,
-    };
-
-    createInvite(invite);
+    });
     reset();
   };
 
@@ -140,24 +115,22 @@ function AddEditMembers(props: AddEditMembersProps) {
           .id
       : timelineRolesData.filter((role: IRole) => role.subjectId === userId)[0]
           .id;
-    const deleteVentureRole: IDeleteVentureRole = {
-      resource: "venture",
-      id: roleId,
-      ventureId,
-      token: token,
-    };
-    const deleteTimelineRole: IDeleteTimelineRole = {
-      resource: "timeline",
-      id: roleId,
-      timelineId,
-      token: token,
-    };
 
-    const deleteRoleQuery = !currentTimeline
-      ? deleteVentureRole
-      : deleteTimelineRole;
-
-    deleteRole(deleteRoleQuery);
+    deleteRole(
+      !currentTimeline
+        ? {
+            resource: "venture",
+            id: roleId,
+            ventureId,
+            token: token,
+          }
+        : {
+            resource: "timeline",
+            id: roleId,
+            timelineId,
+            token: token,
+          }
+    );
   };
 
   return (

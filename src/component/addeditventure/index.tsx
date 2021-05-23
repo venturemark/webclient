@@ -11,11 +11,7 @@ import { AuthContext } from "context/AuthContext";
 import { ventureNameError } from "module/errors";
 import { makeVentureUrl } from "module/helpers";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
-import {
-  ICreateVenture,
-  IUpdateVenture,
-  IVenture,
-} from "module/interface/venture";
+import { IVenture } from "module/interface/venture";
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
@@ -55,24 +51,25 @@ function AddEditVenture(props: AddEditVentureProps) {
   const handleCreate = (data: any) => {
     if (!data.ventureName) return;
 
-    const createHandle = data.ventureName.toLowerCase().replace(/\s/g, "");
-    const ventureCreate: ICreateVenture = {
-      name: data.ventureName,
-      desc: data.ventureDescription,
-      url: makeVentureUrl(createHandle),
-      successUrl: `/${createHandle}/feed`,
-      token,
-    };
-    const ventureUpdate: IUpdateVenture = {
-      id: ventureId,
-      name: data.ventureName,
-      desc: data.ventureDescription,
-      url: makeVentureUrl(handle),
-      successUrl: `/${handle}/feed`,
-      token,
-    };
-
-    isEdit ? updateVenture(ventureUpdate) : createVenture(ventureCreate);
+    if (isEdit) {
+      updateVenture({
+        id: ventureId,
+        name: data.ventureName,
+        desc: data.ventureDescription,
+        url: makeVentureUrl(handle),
+        successUrl: `/${handle}/feed`,
+        token,
+      });
+    } else {
+      const createHandle = data.ventureName.toLowerCase().replace(/\s/g, "");
+      createVenture({
+        name: data.ventureName,
+        desc: data.ventureDescription,
+        url: makeVentureUrl(createHandle),
+        successUrl: `/${createHandle}/feed`,
+        token,
+      });
+    }
     reset();
   };
 

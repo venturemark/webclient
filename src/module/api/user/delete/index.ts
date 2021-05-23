@@ -19,7 +19,7 @@ export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getDeleteResponsePb: IUser[] = await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     client.delete(req, metadata, function (err: any, res: DeleteO): any {
       if (err) {
         reject(err);
@@ -29,12 +29,10 @@ export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
 
         const status = usersPb.map((userPb) => {
           const metaPb = userPb.getMetadataMap();
-          const id = metaPb.get(key.UserStatus);
-          return id;
+          return metaPb.get(key.UserStatus) as IUser;
         });
         resolve(status);
       }
     });
   });
-  return getDeleteResponsePb;
 }

@@ -36,7 +36,7 @@ export async function Create(newUser: ICreateUser) {
   objList.push(obj);
   req.setObjList(objList);
 
-  return await new Promise<string>((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     client.create(req, metadata, function (err: any, res: CreateO) {
       if (err) {
         reject(err);
@@ -44,7 +44,7 @@ export async function Create(newUser: ICreateUser) {
         const userPbList = res.getObjList();
         const userPbObject = userPbList[0];
         const metaPb = userPbObject?.getMetadataMap();
-        const userId = metaPb.get(key.UserID);
+        const userId = metaPb.get(key.UserID) as string;
         resolve(userId);
       }
     });

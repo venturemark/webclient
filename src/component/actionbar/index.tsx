@@ -11,7 +11,6 @@ import { AuthContext } from "context/AuthContext";
 import { TimelineContext } from "context/TimelineContext";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
-import { ICreateUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 
 interface ActionBarProps extends DefaultActionBarProps {
@@ -51,15 +50,13 @@ function ActionBar(props: ActionBarProps) {
     }
 
     selectedTimelines.forEach((timelineId) => {
-      const newUpdate: ICreateUpdate = {
+      createUpdate({
         title: data.title,
         text: data.description ?? "",
         ventureId,
         timelineId: timelineId.id,
         token,
-      };
-
-      createUpdate(newUpdate);
+      });
     });
 
     //reset

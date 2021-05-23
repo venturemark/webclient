@@ -25,7 +25,7 @@ export async function Search(searchRole: IAPISearchRole): Promise<IRole[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb: IRole[] = await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     client.search(req, metadata, function (err: any, res: SearchO): any {
       if (err) {
         reject(err);
@@ -55,5 +55,4 @@ export async function Search(searchRole: IAPISearchRole): Promise<IRole[]> {
       }
     });
   });
-  return getSearchResponsePb;
 }

@@ -12,14 +12,9 @@ import { getUniqueListBy } from "module/helpers";
 import { useMessages } from "module/hook/message";
 import { useDeleteUpdate } from "module/hook/update";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
-import { ISearchMessage } from "module/interface/message";
 import { ITimeline } from "module/interface/timeline";
-import { IDeleteUpdate, IUpdate } from "module/interface/update";
-import {
-  ISearchTimelineMembers,
-  ISearchVentureMembers,
-  IUser,
-} from "module/interface/user";
+import { IUpdate } from "module/interface/update";
+import { IUser } from "module/interface/user";
 
 interface ContentPostProps extends DefaultContentPostProps {
   title: string;
@@ -64,14 +59,12 @@ function ContentPost(props: ContentPostProps) {
   const userContext = useContext(UserContext);
   const timelines = timelineContext?.ventureRoleTimelines ?? [];
 
-  const messageSearch: ISearchMessage = {
+  const { data: messagesData } = useMessages({
     updateId: id,
     timelineId: timelineId,
     ventureId,
     token,
-  };
-
-  const { data: messagesData } = useMessages(messageSearch);
+  });
   const messages = messagesData ?? [];
   const count = messages.length > 0 ? messages.length : 0;
 
@@ -81,31 +74,27 @@ function ContentPost(props: ContentPostProps) {
         Math.round(Number(update.id) / 1000000000) ===
         Math.round(Number(id) / 1000000000)
     )
-    .map((update: IUpdate) => {
-      const updateTimelines = timelines.filter(
+    .map((update: IUpdate) =>
+      timelines.filter(
         (timeline: ITimeline) => timeline.id === update.timelineId
-      );
-
-      return updateTimelines;
-    })
+      )
+    )
     .flat();
 
-  const userTimelineSearch: ISearchTimelineMembers = {
-    resource: "timeline",
-    timelineId: timelineId ?? undefined,
-    ventureId: ventureId ?? undefined,
-    token,
-  };
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
-    useTimelineMembers(userTimelineSearch);
+    useTimelineMembers({
+      resource: "timeline",
+      timelineId: timelineId ?? undefined,
+      ventureId: ventureId ?? undefined,
+      token,
+    });
 
-  const userVentureSearch: ISearchVentureMembers = {
-    resource: "venture",
-    ventureId: ventureId ?? undefined,
-    token,
-  };
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
-    useVentureMembers(userVentureSearch);
+    useVentureMembers({
+      resource: "venture",
+      ventureId: ventureId ?? undefined,
+      token,
+    });
 
   const allMembers =
     timelineUsersSuccess && ventureUsersSuccess
@@ -125,14 +114,12 @@ function ContentPost(props: ContentPostProps) {
   const isOwner = userId === userContext.user?.id ? "isOwner" : undefined;
 
   const handleDeleteUpdate = () => {
-    const updateDelete: IDeleteUpdate = {
+    deleteUpdate({
       id,
       timelineId,
       ventureId,
       token: token,
-    };
-
-    deleteUpdate(updateDelete);
+    });
     setIsVisible(undefined);
   };
 

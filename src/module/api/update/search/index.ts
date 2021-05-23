@@ -28,7 +28,7 @@ export async function Search(searchUpdate: ISearchUpdate) {
   objList.push(obj);
   req.setObjList(objList);
 
-  const getSearchResponsePb = await new Promise((resolve, reject) => {
+  return new Promise<IUpdate[]>((resolve, reject) => {
     client.search(req, metadata, function (err: any, res: SearchO) {
       if (err) {
         reject(err);
@@ -67,6 +67,4 @@ export async function Search(searchUpdate: ISearchUpdate) {
       }
     });
   });
-
-  return getSearchResponsePb;
 }
