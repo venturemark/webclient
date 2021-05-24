@@ -44,7 +44,7 @@ const providerConfig = {
 
 const queryClient = new QueryClient();
 
-if (!isDev) {
+if (!isDev()) {
   const tagManagerArgs = {
     gtmId: "GTM-PV3PGVX",
     dataLayerName: "UserDataLayer",
@@ -56,7 +56,7 @@ if (!isDev) {
 const rootElement = document.getElementById("root");
 
 (async () => {
-  if (!isDev) {
+  if (!isDev()) {
     try {
       await ga4react.initialize();
     } catch (e) {
