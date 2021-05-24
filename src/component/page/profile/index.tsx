@@ -27,6 +27,8 @@ function Profile(props: ProfileProps) {
 
   if (userLoading) {
     return <span>Loading User</span>;
+  } else if (user && hasInvite) {
+    return <Navigate to={`/joinventure`} />;
   } else if (user) {
     return <Navigate to={`/`} />;
   }
