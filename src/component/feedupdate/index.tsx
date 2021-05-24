@@ -62,14 +62,6 @@ function FeedUpdate(props: FeedUpdateProps) {
       token,
     });
 
-  console.log(
-    ventureId,
-    timelineIds,
-    timelineUpdates,
-    allUpdates,
-    timelineUpdates
-  );
-
   if (updateSuccess) {
     //deduplicate updates for home
     const homeUpdates = Array.from(

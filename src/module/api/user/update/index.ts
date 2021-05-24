@@ -34,9 +34,9 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
   }
 
   if (updateUser.title) {
-    nameObjJsnPatch.setOpe("replace");
-    nameObjJsnPatch.setPat("/obj/property/desc");
-    nameObjJsnPatch.setVal(updateUser.title);
+    titleObjJsnPatch.setOpe("replace");
+    titleObjJsnPatch.setPat("/obj/property/desc");
+    titleObjJsnPatch.setVal(updateUser.title);
     patchList.push(titleObjJsnPatch);
   }
 
