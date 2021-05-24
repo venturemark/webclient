@@ -31,7 +31,10 @@ interface AddEditMembersProps extends DefaultAddEditMembersProps {
 
 function AddEditMembers(props: AddEditMembersProps) {
   const { currentVenture, currentTimeline, user, ...rest } = props;
-  const { handleSubmit, control, reset, errors } = useForm({
+  const { handleSubmit, control, reset, errors } = useForm<{ email: string }>({
+    defaultValues: {
+      email: "",
+    },
     mode: "onChange",
   });
   const { token } = useContext(AuthContext);
@@ -91,17 +94,23 @@ function AddEditMembers(props: AddEditMembersProps) {
     : allMembers;
 
   const handleInvite = (data: { email: string }) => {
-    createInvite({
-      ventureId: currentVenture?.id ?? "",
-      timelineId,
-      fromName: user?.name ?? "",
-      resource: !currentTimeline ? "venture" : "timeline",
-      role: "member",
-      fromVentureName: currentVenture?.name ?? "",
-      email: data.email,
-      token,
-    });
-    reset();
+    createInvite(
+      {
+        ventureId: currentVenture?.id ?? "",
+        timelineId,
+        fromName: user?.name ?? "",
+        resource: !currentTimeline ? "venture" : "timeline",
+        role: "member",
+        fromVentureName: currentVenture?.name ?? "",
+        email: data.email,
+        token,
+      },
+      {
+        onSuccess() {
+          reset();
+        },
+      }
+    );
   };
 
   const handleRemoveMemberRole = (userId: string) => {

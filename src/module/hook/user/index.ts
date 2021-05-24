@@ -32,10 +32,6 @@ const getCurrentUser = async (searchCurrentUser: ISearchCurrentUser) => {
     const data = await api.API.User.Search(searchCurrentUser);
     return data;
   } catch (err) {
-    if (err.message === "index must not be empty") {
-      // indicates that the user doesn't exist in the DB yet, not an error
-      return [];
-    }
     throw err;
   }
 };
