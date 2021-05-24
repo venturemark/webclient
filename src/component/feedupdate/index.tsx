@@ -47,13 +47,13 @@ function FeedUpdate(props: FeedUpdateProps) {
 
   const timelineIds = timelines?.map((timeline: ITimeline) => timeline.id);
 
-  const { data: timelineUpdates } = useUpdatesByTimeline({
+  const { data: timelineUpdates = [] } = useUpdatesByTimeline({
     ventureId,
     timelineId,
     token,
   });
 
-  let updates = timelineUpdates ?? [];
+  let updates = timelineUpdates;
 
   const { data: allUpdates = [], isSuccess: updateSuccess } =
     useUpdatesByTimelineIds({
@@ -97,10 +97,17 @@ function FeedUpdate(props: FeedUpdateProps) {
       token,
     });
 
-  const allMembers =
-    timelineUsersSuccess && ventureUsersSuccess
-      ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
-      : timelineUsersData;
+  let allMembers: IUser[] = [];
+  if (timelineUsersSuccess && ventureUsersSuccess) {
+    allMembers = getUniqueListBy(
+      [...timelineUsersData, ...ventureUsersData],
+      "id"
+    );
+  } else if (timelineUsersSuccess) {
+    allMembers = timelineUsersData;
+  } else if (ventureUsersSuccess) {
+    allMembers = ventureUsersData;
+  }
 
   return (
     <PlasmicFeedUpdate
