@@ -121,6 +121,12 @@ export function useCreateUser() {
         }
       },
       onSuccess: async (data, newUser) => {
+        // Prevent flash of default data while refetching
+        queryClient.setQueryData<IUser[]>(
+          ["users", newUser.token],
+          [{ id: data, ...newUser }]
+        );
+
         // Invalidate and refetch
         queryClient.invalidateQueries("users");
 

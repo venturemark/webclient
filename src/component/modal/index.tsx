@@ -24,6 +24,11 @@ interface ModalProps extends DefaultModalProps {
   modalType?: ModalType;
 }
 
+type FormData = {
+  name: string;
+  title: string;
+};
+
 function Modal(props: ModalProps) {
   const { isVisible, setIsVisible, modalType, ...rest } = props;
   const navigate = useNavigate();
@@ -35,7 +40,11 @@ function Modal(props: ModalProps) {
   const ventureId = query.get("ventureId") ?? "";
   const timelineId = query.get("timelineId") ?? "";
 
-  const { handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, reset, control } = useForm<FormData>({
+    defaultValues: {
+      name: user?.name || "",
+      title: user?.title || "",
+    },
     mode: "onChange",
   });
 
@@ -43,18 +52,25 @@ function Modal(props: ModalProps) {
   const { mutate: deleteVenture } = useDeleteVenture();
   const { mutate: archiveDeleteTimeline } = useArchiveDeleteTimeline();
 
-  const handleSave = (data: any) => {
-    if (!data.name) {
+  const handleSave = (data: FormData) => {
+    if (!data.name || !data.title) {
       return;
     }
 
-    updateUser({
-      id: user?.id ?? "",
-      name: data.name,
-      title: data.title,
-      successUrl: "/",
-      token: token,
-    });
+    updateUser(
+      {
+        id: user?.id ?? "",
+        name: data.name,
+        title: data.title,
+        successUrl: "/",
+        token: token,
+      },
+      {
+        onSuccess() {
+          reset();
+        },
+      }
+    );
   };
 
   const handleDeleteTimeline = async () => {
@@ -93,7 +109,6 @@ function Modal(props: ModalProps) {
             name="name"
             control={control}
             label={"Full Name"}
-            defaultValue={user?.name ?? ""}
             hasTextHelper={false}
             rules={{ required: true }}
             message={errors.name && nameError}
@@ -109,7 +124,6 @@ function Modal(props: ModalProps) {
             label={"What I Do"}
             hasTextHelper={true}
             children={"Let people know what you do"}
-            defaultValue={user?.title ?? ""}
             rules={{ required: true }}
             message={errors.title && titleError}
           />
