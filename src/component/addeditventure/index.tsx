@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { Controller } from "react-hook-form";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 
 import TextField from "component/inputtext";
 import {
@@ -8,34 +8,44 @@ import {
   PlasmicAddEditVenture,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import { AuthContext } from "context/AuthContext";
-import { ventureNameError } from "module/errors";
+import { descriptionError, ventureNameError } from "module/errors";
 import { makeVentureUrl } from "module/helpers";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
 import { IVenture } from "module/interface/venture";
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
   setIsActive: any;
-  currentVenture: IVenture;
+  currentVenture?: IVenture;
   hasVentures: boolean;
-  handleSubmit: any;
-  register: any;
-  control: any;
-  reset: any;
-  errors: any;
+  onChange?: (data: FormData) => void;
 }
 
+export type FormData = {
+  ventureName: string;
+  ventureDescription: string;
+};
+
 function AddEditVenture(props: AddEditVentureProps) {
+  const { setIsActive, currentVenture, hasVentures, onChange, ...rest } = props;
+
   const {
-    setIsActive,
     handleSubmit,
-    register,
-    reset,
-    errors,
-    currentVenture,
-    hasVentures,
     control,
-    ...rest
-  } = props;
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      ventureName: currentVenture?.name || "",
+      ventureDescription: currentVenture?.desc || "",
+    },
+  });
+
+  const values = watch();
+  useEffect(() => {
+    onChange && onChange(values);
+  }, [values, onChange]);
+
   const { ventureSlug } = useParams();
   const { token } = useContext(AuthContext);
   const { mutate: createVenture } = useCreateVenture();
@@ -43,30 +53,30 @@ function AddEditVenture(props: AddEditVentureProps) {
 
   const navigate = useNavigate();
   const venture = currentVenture;
-  const url = useLocation();
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
   const ventureId = currentVenture?.id;
   const isEdit = ventureSlug && ventureSlug === handle ? "isEdit" : undefined;
 
-  const handleCreate = (data: any) => {
-    if (!data.ventureName) return;
+  const handleCreate = (data: FormData) => {
+    if (!data.ventureName || !data.ventureDescription) return;
+    const newHandle = data.ventureName.toLowerCase().replace(/\s/g, "");
 
     if (isEdit) {
+      if (!ventureId || !handle) return;
       updateVenture({
         id: ventureId,
         name: data.ventureName,
         desc: data.ventureDescription,
-        url: makeVentureUrl(handle),
-        successUrl: `/${handle}/feed`,
+        url: makeVentureUrl(newHandle),
+        successUrl: `/${newHandle}/feed`,
         token,
       });
     } else {
-      const createHandle = data.ventureName.toLowerCase().replace(/\s/g, "");
       createVenture({
         name: data.ventureName,
         desc: data.ventureDescription,
-        url: makeVentureUrl(createHandle),
-        successUrl: `/${createHandle}/feed`,
+        url: makeVentureUrl(newHandle),
+        successUrl: `/${newHandle}/feed`,
         token,
       });
     }
@@ -81,29 +91,48 @@ function AddEditVenture(props: AddEditVentureProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        wrap: (node) => (
-          <Controller
-            as={TextField}
-            name="ventureName"
-            control={control}
-            label={"Name"}
-            defaultValue={
-              url?.pathname === "/newventure" ? "" : venture?.name ?? ""
-            }
-            hasTextHelper={false}
-            rules={{ required: true }}
-            message={errors.ventureName && ventureNameError}
-          />
-        ),
+        render() {
+          return (
+            <Controller
+              name="ventureName"
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"Name"}
+                  hasTextHelper={false}
+                  message={errors.ventureName && ventureNameError}
+                />
+              )}
+            />
+          );
+        },
       }}
       description={{
-        register: register(),
-        name: "ventureDescription",
-        defaultValue:
-          url?.pathname === "/newventure" ? "" : venture?.desc ?? "",
+        render() {
+          return (
+            <Controller
+              name="ventureDescription"
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"Description"}
+                  hasTextHelper={false}
+                  message={errors.ventureDescription && descriptionError}
+                />
+              )}
+            />
+          );
+        },
       }}
       url={{
-        register: register(),
         name: "url",
         defaultValue: venture?.url ?? "",
       }}

@@ -54,6 +54,7 @@ export function TimelineSelect(props: SelectProps) {
       options={sortedVentureTimelines}
       disableClearable={true}
       getOptionLabel={(option) => option?.name ?? ""}
+      getOptionSelected={(option, value) => option.id === value.id}
       renderTags={(tagValue, getTagProps) =>
         tagValue.map((option, index) => (
           <Chip

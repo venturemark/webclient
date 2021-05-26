@@ -9,6 +9,7 @@ export interface IRole {
 export interface ISearchTimelineRoles {
   resource: string;
   timelineId: string;
+  ventureId: string;
   token: string | null;
 }
 

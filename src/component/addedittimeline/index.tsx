@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Controller } from "react-hook-form";
+import { useContext, useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
 import TextField from "component/inputtext";
@@ -8,7 +8,11 @@ import {
   PlasmicAddEditTimeline,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
 import { AuthContext } from "context/AuthContext";
-import { nameTooLongError, timelineNameError } from "module/errors";
+import {
+  descriptionError,
+  nameTooLongError,
+  timelineNameError,
+} from "module/errors";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
@@ -16,28 +20,44 @@ import { IVenture } from "module/interface/venture";
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   setIsActive: any;
   setIsVisible: any;
-  currentVenture: IVenture;
-  currentTimeline: ITimeline;
-  handleSubmit: any;
-  register: any;
-  control: any;
-  reset: any;
-  errors: any;
+  currentVenture?: IVenture;
+  currentTimeline?: ITimeline;
+  onChange?: (data: FormData) => void;
 }
+
+export type FormData = {
+  timelineDescription: string;
+  timelineName: string;
+};
 
 function AddEditTimeline(props: AddEditTimelineProps) {
   const {
     setIsActive,
     setIsVisible,
     currentTimeline,
-    handleSubmit,
-    register,
-    reset,
-    errors,
-    control,
     currentVenture,
+    onChange,
     ...rest
   } = props;
+
+  const {
+    handleSubmit,
+    control,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      timelineDescription: currentTimeline?.desc || "",
+      timelineName: currentTimeline?.name || "",
+    },
+  });
+
+  const values = watch();
+  useEffect(() => {
+    onChange && onChange(values);
+  }, [values, onChange]);
+
   const navigate = useNavigate();
   const { timelineSlug } = useParams();
   const { token } = useContext(AuthContext);
@@ -49,32 +69,51 @@ function AddEditTimeline(props: AddEditTimelineProps) {
 
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
   const timelineId = currentTimeline?.id;
+  const ventureId = currentVenture?.id;
 
   const handleCreate = (data: any) => {
-    if (!token || !data.timelineName || !data.timelineDescription) {
+    if (
+      !token ||
+      !ventureId ||
+      !data.timelineName ||
+      !data.timelineDescription
+    ) {
       return;
     }
 
     if (isEdit) {
-      updateTimeline({
-        id: timelineId,
-        name: data.timelineName,
-        desc: data.timelineDescription,
-        ventureId: currentVenture?.id,
-        successUrl: `../${timelineSlug}/feed`,
-        token,
-      });
+      if (!timelineId) return;
+      updateTimeline(
+        {
+          id: timelineId,
+          name: data.timelineName,
+          desc: data.timelineDescription,
+          ventureId,
+          successUrl: `../../${data.timelineName}/feed`,
+          token,
+        },
+        {
+          onSuccess() {
+            reset();
+          },
+        }
+      );
     } else {
-      createTimeline({
-        name: data.timelineName,
-        desc: data.timelineDescription,
-        ventureId: currentVenture?.id,
-        successUrl: `../${data.timelineName}/feed`,
-        token,
-      });
+      createTimeline(
+        {
+          name: data.timelineName,
+          desc: data.timelineDescription,
+          ventureId,
+          successUrl: `../${data.timelineName}/feed`,
+          token,
+        },
+        {
+          onSuccess() {
+            reset();
+          },
+        }
+      );
     }
-
-    reset();
   };
 
   let errorMessage = timelineNameError;
@@ -90,23 +129,47 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        wrap: (node) => (
-          <Controller
-            as={TextField}
-            name="timelineName"
-            control={control}
-            label={"Name"}
-            defaultValue={currentTimeline?.name ?? ""}
-            hasTextHelper={false}
-            rules={{ required: true, maxLength: 23 }}
-            message={errors.timelineName && errorMessage}
-          />
-        ),
+        render() {
+          return (
+            <Controller
+              name="timelineName"
+              rules={{
+                required: true,
+                maxLength: 23,
+              }}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"Name"}
+                  hasTextHelper={false}
+                  message={errors.timelineName && errorMessage}
+                />
+              )}
+            />
+          );
+        },
       }}
       description={{
-        register: register(),
-        name: "timelineDescription",
-        defaultValue: currentTimeline?.desc ?? "",
+        render() {
+          return (
+            <Controller
+              name="timelineDescription"
+              rules={{
+                required: true,
+              }}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"Description"}
+                  hasTextHelper={false}
+                  message={errors.timelineDescription && descriptionError}
+                />
+              )}
+            />
+          );
+        },
       }}
       buttonSetEdit={{
         handleCancel: () => navigate(".."),

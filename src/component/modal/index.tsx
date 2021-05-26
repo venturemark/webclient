@@ -40,7 +40,12 @@ function Modal(props: ModalProps) {
   const ventureId = query.get("ventureId") ?? "";
   const timelineId = query.get("timelineId") ?? "";
 
-  const { handleSubmit, errors, reset, control } = useForm<FormData>({
+  const {
+    handleSubmit,
+    formState: { errors },
+    reset,
+    control,
+  } = useForm<FormData>({
     defaultValues: {
       name: user?.name || "",
       title: user?.title || "",
@@ -103,31 +108,43 @@ function Modal(props: ModalProps) {
         user,
       }}
       nameField={{
-        wrap: (node) => (
-          <Controller
-            as={TextField}
-            name="name"
-            control={control}
-            label={"Full Name"}
-            hasTextHelper={false}
-            rules={{ required: true }}
-            message={errors.name && nameError}
-          />
-        ),
+        render() {
+          return (
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"Full Name"}
+                  hasTextHelper={false}
+                  message={errors.name && nameError}
+                />
+              )}
+            />
+          );
+        },
       }}
       jobField={{
-        wrap: (node) => (
-          <Controller
-            as={TextField}
-            name="title"
-            control={control}
-            label={"What I Do"}
-            hasTextHelper={true}
-            children={"Let people know what you do"}
-            rules={{ required: true }}
-            message={errors.title && titleError}
-          />
-        ),
+        render() {
+          return (
+            <Controller
+              name="title"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"What I Do"}
+                  hasTextHelper={true}
+                  children={"Let people know what you do"}
+                  message={errors.title && titleError}
+                />
+              )}
+            />
+          );
+        },
       }}
       deleteTimeline={{
         onPress: () => handleDeleteTimeline(),
