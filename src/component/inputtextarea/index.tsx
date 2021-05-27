@@ -3,17 +3,18 @@ import {
   PlumeTextFieldRef,
   useTextField,
 } from "@plasmicapp/plume";
-import { forwardRef } from "react";
+import { forwardRef, ReactNode } from "react";
 
 import { PlasmicInputTextArea } from "component/plasmic/shared/PlasmicInputTextArea";
 
 interface InputTextAreaProps extends PlumeTextFieldProps {
-  defaultValue?: any;
-  register?: any;
-  name?: string;
+  children?: ReactNode;
+  message?: string;
+  hasTextHelper: boolean;
 }
+
 function TextField_(props: InputTextAreaProps, ref: PlumeTextFieldRef) {
-  const { register, name, defaultValue } = props;
+  const { hasTextHelper, message, ...rest } = props;
   const { plumeProps } = useTextField(
     PlasmicInputTextArea,
     props,
@@ -34,14 +35,10 @@ function TextField_(props: InputTextAreaProps, ref: PlumeTextFieldRef) {
     <PlasmicInputTextArea
       {...plumeProps}
       overrides={{
-        input: {
-          ref: register,
-          name: name,
-          defaultValue: defaultValue,
-        },
         errorMessage: {
-          // message: message,
+          message: props.message,
         },
+        input: rest as any, // TODO: fix types here
       }}
     />
   );

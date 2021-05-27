@@ -1,7 +1,8 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { FormData as TimelineFormData } from "component/addedittimeline";
+import { FormData as VentureFormData } from "component/addeditventure";
 import {
   DefaultMainProps,
   PlasmicMain,
@@ -42,15 +43,15 @@ function Main(props: MainProps) {
   const hasVentures =
     ventureContext && ventureContext?.ventures?.length > 0 ? true : false;
 
-  const {
-    handleSubmit,
-    register,
-    reset,
-    watch,
-    control,
-    formState: { errors },
-  } = useForm();
-  const watchData = watch();
+  const [ventureData, setVentureData] = useState<VentureFormData>({
+    ventureName: "",
+    ventureDescription: "",
+  });
+
+  const [timelineData, setTimelineData] = useState<TimelineFormData>({
+    timelineDescription: "",
+    timelineName: "",
+  });
 
   const currentTimeline = timelineSlug
     ? timelines?.filter((timeline: ITimeline) => {
@@ -74,7 +75,8 @@ function Main(props: MainProps) {
         isActive,
         variantType,
         currentTimeline,
-        watchData,
+        ventureData,
+        timelineData,
         isOnboarding,
         currentVenture,
       }}
@@ -95,21 +97,27 @@ function Main(props: MainProps) {
       addEditVenture={{
         currentVenture,
         hasVentures,
-        handleSubmit,
-        control,
-        register,
-        reset,
-        errors,
+        onChange(data: VentureFormData) {
+          if (
+            data.ventureDescription !== ventureData.ventureDescription ||
+            data.ventureName !== ventureData.ventureName
+          ) {
+            setVentureData(data);
+          }
+        },
       }}
       addEditTimeline={{
         currentVenture,
         currentTimeline,
         setIsVisible,
-        handleSubmit,
-        control,
-        register,
-        reset,
-        errors,
+        onChange(data: TimelineFormData) {
+          if (
+            data.timelineDescription !== timelineData.timelineDescription ||
+            data.timelineName !== timelineData.timelineName
+          ) {
+            setTimelineData(data);
+          }
+        },
       }}
       emptyState={{
         variantType: "isEmpty",

@@ -1,6 +1,6 @@
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import { TextareaAutosize } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldError, useForm } from "react-hook-form";
 
 import { TimelineSelect } from "component/materialui/select";
 import {
@@ -20,9 +20,36 @@ interface ActionBarProps extends DefaultActionBarProps {
   user: IUser;
 }
 
+type FormData = {
+  title: string;
+  description: string;
+};
+
+function ErrorMessage(props: { error?: FieldError }) {
+  if (!props.error) {
+    return null;
+  }
+  return (
+    <p style={{ color: "red", fontSize: "12px" }}>{props.error.message}</p>
+  );
+}
+
 function ActionBar(props: ActionBarProps) {
   const { ventureId, currentTimeline, user, timelines, ...rest } = props;
-  const { handleSubmit, register, reset } = useForm();
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors, isValid, isSubmitted },
+  } = useForm<FormData>({
+    defaultValues: {
+      description: "",
+      title: "",
+    },
+    mode: "onChange",
+  });
+
   const { token } = useContext(AuthContext);
   const timelineContext = useContext(TimelineContext);
   const ventureTimelines = timelineContext?.ventureRoleTimelines ?? [];
@@ -32,6 +59,7 @@ function ActionBar(props: ActionBarProps) {
     defaultTimelineOption
   );
   const hasTimelines =
+    selectedTimelines.length > 0 &&
     ventureTimelines?.filter(
       (timeline: ITimeline) => (timeline.ventureId = ventureId)
     ).length > 0
@@ -44,7 +72,7 @@ function ActionBar(props: ActionBarProps) {
 
   const { mutate: createUpdate } = useCreateUpdate();
 
-  const handlePost = (data: any) => {
+  const handlePost = (data: FormData) => {
     if (selectedTimelines.length < 1) {
       return;
     }
@@ -76,7 +104,7 @@ function ActionBar(props: ActionBarProps) {
   return (
     <PlasmicActionBar
       {...rest}
-      onClick={() => (hasTimelines ? setIsActive(true) : null)}
+      onClick={() => setIsActive(true)}
       isActive={isActive}
       form={{
         onSubmit: handleSubmit(handlePost),
@@ -85,47 +113,72 @@ function ActionBar(props: ActionBarProps) {
         user,
       }}
       title={{
-        render: () => (
-          <TextareaAutosize
-            aria-label="Title"
-            style={{
-              resize: "none",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: "261A3F",
-              fontFamily: "Poppins",
-              outline: "none",
-              border: "none",
-            }}
-            maxLength={280}
-            rowsMin={1}
-            disabled={!hasTimelines}
-            placeholder="Write your update"
-            name="title"
-            ref={register()}
-          />
-        ),
+        render() {
+          return (
+            <>
+              <TextareaAutosize
+                aria-label="Title"
+                style={{
+                  resize: "none",
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  color: "261A3F",
+                  fontFamily: "Poppins",
+                  outline: "none",
+                  border: "none",
+                }}
+                rowsMin={1}
+                disabled={!hasTimelines}
+                placeholder="Write your update"
+                {...register("title", {
+                  required: {
+                    message: "Required",
+                    value: true,
+                  },
+                  maxLength: {
+                    message: "Too long",
+                    value: 100,
+                  },
+                })}
+              />
+              <ErrorMessage error={errors.title} />
+            </>
+          );
+        },
       }}
       description={{
-        render: () => (
-          <TextareaAutosize
-            aria-label="Description"
-            style={{
-              resize: "none",
-              fontSize: "15px",
-              fontWeight: 300,
-              color: "261A3F",
-              fontFamily: "Poppins",
-              outline: "none",
-              border: "none",
-            }}
-            rowsMin={4}
-            disabled={!hasTimelines}
-            placeholder="Description..."
-            name="description"
-            ref={register({ required: true, maxLength: 280 })}
-          />
-        ),
+        render() {
+          return (
+            <>
+              <TextareaAutosize
+                aria-label="Description"
+                style={{
+                  resize: "none",
+                  fontSize: "15px",
+                  fontWeight: 300,
+                  color: "261A3F",
+                  fontFamily: "Poppins",
+                  outline: "none",
+                  border: "none",
+                }}
+                rowsMin={4}
+                disabled={!hasTimelines}
+                placeholder="Description..."
+                {...register("description", {
+                  required: {
+                    message: "Required",
+                    value: true,
+                  },
+                  maxLength: {
+                    message: "Too long",
+                    value: 280,
+                  },
+                })}
+              />
+              <ErrorMessage error={errors.description} />
+            </>
+          );
+        },
       }}
       shareToContainer={{
         render: () => (
@@ -139,13 +192,9 @@ function ActionBar(props: ActionBarProps) {
         ),
       }}
       post={{
-        isDisabled: !hasTimelines,
-        onPress: () => {
-          if (!isActive) {
-            setIsActive(true);
-          } else {
-            handleSubmit(handlePost)();
-          }
+        isDisabled: !hasTimelines || (!isValid && isSubmitted),
+        onPress() {
+          handleSubmit(handlePost)();
         },
       }}
       error={undefined}

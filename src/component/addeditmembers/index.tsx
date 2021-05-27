@@ -23,15 +23,27 @@ import { ITimeline } from "module/interface/timeline";
 import { IUser } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
+const emailRegex =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 interface AddEditMembersProps extends DefaultAddEditMembersProps {
   currentVenture: IVenture;
   currentTimeline: ITimeline;
   user: IUser;
 }
 
+type FormData = {
+  email: string;
+};
+
 function AddEditMembers(props: AddEditMembersProps) {
   const { currentVenture, currentTimeline, user, ...rest } = props;
-  const { handleSubmit, control, reset, errors } = useForm<{ email: string }>({
+  const {
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm<FormData>({
     defaultValues: {
       email: "",
     },
@@ -67,6 +79,7 @@ function AddEditMembers(props: AddEditMembersProps) {
   const { data: timelineRolesData = [] } = useTimelineRole({
     resource: "timeline",
     timelineId: currentTimeline?.id ?? "",
+    ventureId: currentVenture?.id ?? "",
     token,
   });
 
@@ -93,7 +106,7 @@ function AddEditMembers(props: AddEditMembersProps) {
     ? [...new Set([...allMembers, ...array2])]
     : allMembers;
 
-  const handleInvite = (data: { email: string }) => {
+  const handleInvite = (data: FormData) => {
     createInvite(
       {
         ventureId: currentVenture?.id ?? "",
@@ -150,24 +163,29 @@ function AddEditMembers(props: AddEditMembersProps) {
       }}
       type={!currentTimeline ? undefined : "isTimeline"}
       email={{
-        wrap: (node) => (
-          <Controller
-            as={TextField}
-            name="email"
-            control={control}
-            label={"Invite a member by email"}
-            hasTextHelper={true}
-            children={
-              "Enter their email to invite and add them to this organization."
-            }
-            rules={{
-              required: true,
-              pattern:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            }}
-            message={errors.email && emailError}
-          />
-        ),
+        render() {
+          return (
+            <Controller
+              name="email"
+              control={control}
+              rules={{
+                required: true,
+                pattern: emailRegex,
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"Invite a member by email"}
+                  hasTextHelper={true}
+                  children={
+                    "Enter their email to invite and add them to this organization."
+                  }
+                  message={errors.email && emailError}
+                />
+              )}
+            />
+          );
+        },
       }}
       invite={{
         onPress: () => handleSubmit(handleInvite)(),

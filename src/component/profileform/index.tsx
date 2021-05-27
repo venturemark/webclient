@@ -19,6 +19,11 @@ interface ProfileFormProps extends DefaultProfileFormProps {
   hasInvite: boolean;
 }
 
+type FormData = {
+  name: string;
+  title: string;
+};
+
 function ProfileForm(props: ProfileFormProps) {
   const { isVisible, setIsVisible, hasInvite, ...rest } = props;
   const { token } = useContext(AuthContext);
@@ -31,7 +36,11 @@ function ProfileForm(props: ProfileFormProps) {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm({
+  } = useForm<FormData>({
+    defaultValues: {
+      name: user?.name || authUser.name || "",
+      title: user?.title || "",
+    },
     mode: "onChange",
   });
 
@@ -63,33 +72,44 @@ function ProfileForm(props: ProfileFormProps) {
         onSubmit: handleSubmit(handleSave),
       }}
       nameField={{
-        wrap: (node) => (
-          <Controller
-            as={TextField}
-            name="name"
-            control={control}
-            label={"Full Name"}
-            defaultValue={authUser?.name}
-            hasTextHelper={false}
-            rules={{ required: true }}
-            message={errors.name && nameError}
-          />
-        ),
+        render() {
+          return (
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"Full Name"}
+                  hasTextHelper={false}
+                  message={errors.name && nameError}
+                />
+              )}
+            />
+          );
+        },
       }}
       jobField={{
-        wrap: (node) => (
-          <Controller
-            as={TextField}
-            name="title"
-            control={control}
-            label={"What I Do"}
-            defaultValue={""}
-            hasTextHelper={true}
-            children={"Let people know what you do"}
-            rules={{ required: true }}
-            message={errors.title && titleError}
-          />
-        ),
+        render() {
+          return (
+            <Controller
+              name="title"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={"What I Do"}
+                  defaultValue={""}
+                  hasTextHelper={true}
+                  children={"Let people know what you do"}
+                  message={errors.title && titleError}
+                />
+              )}
+            />
+          );
+        },
       }}
       save={{
         onPress: () => handleSubmit(handleSave)(),

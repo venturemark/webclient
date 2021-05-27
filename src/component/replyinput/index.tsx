@@ -10,7 +10,7 @@ import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { useCreateMessage } from "module/hook/message";
 
-type FormInputs = {
+type FormData = {
   text: string;
 };
 
@@ -25,10 +25,14 @@ function ReplyInput(props: ReplyInputProps) {
   const { token } = useContext(AuthContext);
   const userContext = useContext(UserContext);
 
-  const { register, handleSubmit, reset } = useForm<FormInputs>();
+  const { register, handleSubmit, reset } = useForm<FormData>({
+    defaultValues: {
+      text: "",
+    },
+  });
   const { mutate: createMessage } = useCreateMessage();
 
-  const handleAddMessage = (data: FormInputs) => {
+  const handleAddMessage = (data: FormData) => {
     if (!data.text) {
       return;
     }
@@ -78,9 +82,8 @@ function ReplyInput(props: ReplyInputProps) {
             }}
             rowsMin={1}
             placeholder="Description..."
-            name="text"
             onKeyDown={handleUserKeyDown}
-            ref={register()}
+            {...register("text")}
           />
         ),
       }}
