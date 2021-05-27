@@ -43,7 +43,6 @@ function AddEditVenture(props: AddEditVentureProps) {
   });
 
   const values = watch();
-  console.log(values);
   useEffect(() => {
     onChange && onChange(values);
   }, [values, onChange]);
