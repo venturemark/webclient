@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
 import TextField from "component/inputtext";
+import InputTextArea from "component/inputtextarea";
 import {
   DefaultAddEditVentureProps,
   PlasmicAddEditVenture,
@@ -42,6 +43,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   });
 
   const values = watch();
+  console.log(values);
   useEffect(() => {
     onChange && onChange(values);
   }, [values, onChange]);
@@ -121,10 +123,11 @@ function AddEditVenture(props: AddEditVentureProps) {
                 required: true,
               }}
               render={({ field }) => (
-                <TextField
+                <InputTextArea
                   {...field}
+                  children="Tell us a little bit about your venture."
                   label={"Description"}
-                  hasTextHelper={false}
+                  hasTextHelper={true}
                   message={errors.ventureDescription && descriptionError}
                 />
               )}

@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
 import TextField from "component/inputtext";
+import InputTextArea from "component/inputtextarea";
 import {
   DefaultAddEditTimelineProps,
   PlasmicAddEditTimeline,
@@ -160,10 +161,11 @@ function AddEditTimeline(props: AddEditTimelineProps) {
               }}
               control={control}
               render={({ field }) => (
-                <TextField
+                <InputTextArea
                   {...field}
+                  children="Tell us a little bit about your timeline."
                   label={"Description"}
-                  hasTextHelper={false}
+                  hasTextHelper={true}
                   message={errors.timelineDescription && descriptionError}
                 />
               )}
