@@ -24,7 +24,7 @@ import { IUser } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
 const emailRegex =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  /^\s*(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;
 
 interface AddEditMembersProps extends DefaultAddEditMembersProps {
   currentVenture: IVenture;
@@ -115,7 +115,7 @@ function AddEditMembers(props: AddEditMembersProps) {
         resource: !currentTimeline ? "venture" : "timeline",
         role: "member",
         fromVentureName: currentVenture?.name ?? "",
-        email: data.email,
+        email: data.email.trim(),
         token,
       },
       {
