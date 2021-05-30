@@ -4,7 +4,7 @@
   height: auto;
   position: relative;
   min-width: 0;
-  padding: 0px 20px;
+  padding: 0px 0px 0px 20px;
 }
 .root__itemType_createTimeline:hover {
   opacity: 1;
@@ -127,6 +127,9 @@
 .box__itemType_createTimeline__zwdJsOuGst {
   opacity: 0;
 }
+.box__isPublic__zwdJsPZwt {
+  padding-left: 6px;
+}
 .root__itemType_timeline:hover .box__itemType_timeline__zwdJSoN3Wv {
   width: 100%;
   min-width: 0;
@@ -154,6 +157,7 @@
 .box__j6CkC {
   width: 100%;
   height: auto;
+  padding-left: 11px;
   min-width: 0;
 }
 .textbox__ogebi {

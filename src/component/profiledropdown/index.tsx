@@ -33,7 +33,7 @@ function ProfileDropdown(props: ProfileDropdownProps) {
       .map((n: string) => n[0])
       .join("") ?? "";
 
-  const userEmail = authUser.email ?? "";
+  const userEmail = authUser?.email || "";
 
   return (
     <PlasmicProfileDropdown

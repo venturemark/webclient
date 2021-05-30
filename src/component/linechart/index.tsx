@@ -1,13 +1,10 @@
 import React from "react";
-import { AreaChart, Area, Tooltip, XAxis } from "recharts";
+import { Area, AreaChart, DotProps, Tooltip, XAxis } from "recharts";
 
 interface ChartProps {
   dataKey: string;
   data: any;
-  handleChangeContext: (
-    e: React.MouseEvent<HTMLInputElement>,
-    payload: any
-  ) => void;
+  handleChangeContext: (e: DotProps, payload: any) => void;
 }
 
 export const Component: React.FC<ChartProps> = ({
@@ -35,8 +32,7 @@ export const Component: React.FC<ChartProps> = ({
         dot={{ strokeWidth: 1, fill: "#FFFFFF" }}
         activeDot={{
           style: { cursor: "pointer" },
-          onClick: (e: React.MouseEvent<HTMLInputElement>, payload: any) =>
-            handleChangeContext(e, payload),
+          onClick: (e, payload: any) => handleChangeContext(e, payload),
         }}
         dataKey={dataKey}
         stroke={"#029D7F"}
