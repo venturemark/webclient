@@ -1,3 +1,7 @@
+// @refresh reset - this comment:
+// - is local
+// - forces "react fast refresh" to remount all components defined in the file on every edit.
+// only affects development
 import {
   BlockquotePlugin,
   BoldPlugin,
@@ -23,10 +27,6 @@ import {
   withMarks,
 } from "@udecode/slate-plugins";
 import { Search } from "@venturemark/numnum";
-// @refresh reset - this comment:
-// - is local
-// - forces "react fast refresh" to remount all components defined in the file on every edit.
-// only affects development
 import React, { useMemo, useRef, useState } from "react";
 import { BaseEditor, createEditor, Descendant, Editor } from "slate";
 import { withHistory } from "slate-history";
