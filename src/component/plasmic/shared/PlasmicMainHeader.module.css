@@ -18,6 +18,9 @@
     padding: 0px;
   }
 }
+.container__headerStyles_createNewVenture {
+  height: 35px;
+}
 .box___3Xg51 {
   display: flex;
   position: relative;

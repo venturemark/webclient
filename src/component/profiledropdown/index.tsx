@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   DefaultProfileDropdownProps,
-  PlasmicProfileDropdown,
+  PlasmicProfileDropdown
 } from "component/plasmic/shared/PlasmicProfileDropdown";
 import { IUser } from "module/interface/user";
 
@@ -33,7 +33,7 @@ function ProfileDropdown(props: ProfileDropdownProps) {
       .map((n: string) => n[0])
       .join("") ?? "";
 
-  const userEmail = authUser.email ?? "";
+  const userEmail = authUser?.email || "";
 
   return (
     <PlasmicProfileDropdown

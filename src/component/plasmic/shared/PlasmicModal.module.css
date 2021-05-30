@@ -381,6 +381,9 @@
 .photoAvatar:global(.__wab_instance) {
   flex-shrink: 0;
 }
+.photoAvatar__modalType_editProfile:global(.__wab_instance) {
+  flex-shrink: 0;
+}
 .link {
   position: relative;
   align-self: center;
