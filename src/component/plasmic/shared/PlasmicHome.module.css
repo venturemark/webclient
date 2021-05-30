@@ -87,6 +87,9 @@
     flex-shrink: 0;
   }
 }
+.sidebar__isVisible_postDetails:global(.__wab_instance) {
+  flex-shrink: 0;
+}
 .sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
   flex-shrink: 0;
 }
@@ -99,6 +102,9 @@
     width: 100%;
     min-width: 0;
   }
+}
+.sidebar__isVisible_isPublic:global(.__wab_instance) {
+  flex-shrink: 0;
 }
 .sidebar__isVisible_mobileSidebar_isVisible_postDetails:global(.__wab_instance) {
   flex-shrink: 0;

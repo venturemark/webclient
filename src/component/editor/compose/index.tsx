@@ -2,46 +2,59 @@
 // - is local
 // - forces "react fast refresh" to remount all components defined in the file on every edit.
 // only affects development
-import React, { useMemo, useRef, useState } from "react";
-import { createEditor, Node, Editor } from "slate";
-import { withHistory } from "slate-history";
-import { Slate, withReact } from "slate-react";
 import {
-  ParagraphPlugin,
-  HeadingPlugin,
+  BlockquotePlugin,
   BoldPlugin,
   EditablePlugins,
-  ItalicPlugin,
-  UnderlinePlugin,
-  StrikethroughPlugin,
-  BlockquotePlugin,
-  ListPlugin,
-  ResetBlockTypePlugin,
-  SoftBreakPlugin,
   ExitBreakPlugin,
+  HeadingPlugin,
+  ItalicPlugin,
+  ListPlugin,
   MentionPlugin,
   MentionSelect,
-  useMention,
+  ParagraphPlugin,
   pipe,
+  ResetBlockTypePlugin,
+  SoftBreakPlugin,
+  StrikethroughPlugin,
+  UnderlinePlugin,
+  useMention,
   withAutoformat,
   withImageUpload,
+  withInlineVoid,
   withLink,
   withList,
   withMarks,
-  withInlineVoid,
 } from "@udecode/slate-plugins";
+import { Search } from "@venturemark/numnum";
+import React, { useMemo, useRef, useState } from "react";
+import { BaseEditor, createEditor, Descendant, Editor } from "slate";
+import { withHistory } from "slate-history";
+import { ReactEditor, Slate, withReact } from "slate-react";
+
+import { autoformatRules } from "component/editor/config/autoformatRules";
 import {
   headingTypes,
+  initialValueEmpty,
   options,
   optionsResetBlockTypes,
-  initialValueEmpty,
 } from "component/editor/config/initialValues";
-import { MENTIONABLES } from "../config/mentionables";
-import { autoformatRules } from "component/editor/config/autoformatRules";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
-import { Search } from "@venturemark/numnum";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
+
+import { MENTIONABLES } from "../config/mentionables";
+
+type CustomText = { text: string };
+type CustomElement = { type: "paragraph"; children: CustomText[] };
+
+declare module "slate" {
+  interface CustomTypes {
+    Editor: BaseEditor & ReactEditor;
+    Element: CustomElement;
+    Text: CustomText;
+  }
+}
 
 const plugins = [
   ParagraphPlugin(options),
@@ -90,7 +103,7 @@ type ErrorMessage = undefined | string;
 type HasContent = undefined | "hasContent";
 
 export type EditorShape = {
-  value: Node[];
+  value: Descendant[];
   string: string;
   numberValue: number;
   error: ErrorMessage;
@@ -136,7 +149,7 @@ const withPlugins = [
   withImageUpload(),
   withAutoformat({ rules: autoformatRules }),
   withInlineVoid({ plugins }),
-] as const;
+];
 
 const DEFAULT_HEIGHT = 44;
 const HEIGHT_LIMIT = 188;
@@ -180,7 +193,7 @@ const ComposeEditor = (props: EditorProps) => {
     insertText(text);
   };
 
-  const handleChange = (newValue: Node[]) => {
+  const handleChange = (newValue: Descendant[]) => {
     //store serialized value
     const serializedValue = serialize(newValue);
 

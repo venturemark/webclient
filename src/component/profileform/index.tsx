@@ -38,7 +38,7 @@ function ProfileForm(props: ProfileFormProps) {
     control,
   } = useForm<FormData>({
     defaultValues: {
-      name: user?.name || authUser.name || "",
+      name: user?.name || authUser?.name || "",
       title: user?.title || "",
     },
     mode: "onChange",

@@ -2,7 +2,8 @@
   "platform": "react",
   "code": {
     "lang": "ts",
-    "scheme": "blackbox"
+    "scheme": "blackbox",
+    "reactRuntime": "classic"
   },
   "style": {
     "scheme": "css-modules",
@@ -736,6 +737,16 @@
           "id": "o58_ERQlgq",
           "name": "Logosvg3Icon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Logosvg3.tsx"
+        },
+        {
+          "id": "goVw5oohlB",
+          "name": "InfosvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__Infosvg.tsx"
+        },
+        {
+          "id": "1tBTTGMGvG",
+          "name": "LockIconsvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__LockIconsvg.tsx"
         }
       ],
       "images": [
@@ -794,6 +805,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.145",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.145/dist/plasmic.schema.json"
+  "cliVersion": "0.1.152",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.152/dist/plasmic.schema.json"
 }
