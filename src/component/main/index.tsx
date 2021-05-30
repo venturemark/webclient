@@ -5,7 +5,7 @@ import { FormData as TimelineFormData } from "component/addedittimeline";
 import { FormData as VentureFormData } from "component/addeditventure";
 import {
   DefaultMainProps,
-  PlasmicMain,
+  PlasmicMain
 } from "component/plasmic/shared/PlasmicMain";
 import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
@@ -21,6 +21,11 @@ interface MainProps extends DefaultMainProps {
   setPost: any;
   ventureId?: string;
   user: IUser;
+}
+
+type EditData = {
+  description: string
+  name: string
 }
 
 function Main(props: MainProps) {
@@ -43,14 +48,14 @@ function Main(props: MainProps) {
   const hasVentures =
     ventureContext && ventureContext?.ventures?.length > 0 ? true : false;
 
-  const [ventureData, setVentureData] = useState<VentureFormData>({
-    ventureName: "",
-    ventureDescription: "",
+  const [ventureData, setVentureData] = useState<EditData>({
+    name: "",
+    description: "",
   });
 
-  const [timelineData, setTimelineData] = useState<TimelineFormData>({
-    timelineDescription: "",
-    timelineName: "",
+  const [timelineData, setTimelineData] = useState<EditData>({
+    name: "",
+    description: "",
   });
 
   const currentTimeline = timelineSlug
@@ -99,10 +104,13 @@ function Main(props: MainProps) {
         hasVentures,
         onChange(data: VentureFormData) {
           if (
-            data.ventureDescription !== ventureData.ventureDescription ||
-            data.ventureName !== ventureData.ventureName
+            data.ventureDescription !== ventureData.description ||
+            data.ventureName !== ventureData.name
           ) {
-            setVentureData(data);
+            setVentureData({
+              name: data.ventureName,
+              description: data.ventureDescription
+            });
           }
         },
       }}
@@ -112,10 +120,13 @@ function Main(props: MainProps) {
         setIsVisible,
         onChange(data: TimelineFormData) {
           if (
-            data.timelineDescription !== timelineData.timelineDescription ||
-            data.timelineName !== timelineData.timelineName
+            data.timelineDescription !== timelineData.description ||
+            data.timelineName !== timelineData.name
           ) {
-            setTimelineData(data);
+            setTimelineData({
+              name: data.timelineName,
+              description: data.timelineDescription
+            });
           }
         },
       }}

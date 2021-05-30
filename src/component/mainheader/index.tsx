@@ -1,18 +1,22 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import { FormData as TimelineFormData } from "component/addedittimeline";
-import { FormData as VentureFormData } from "component/addeditventure";
 import {
   DefaultMainHeaderProps,
-  PlasmicMainHeader,
+  PlasmicMainHeader
 } from "component/plasmic/shared/PlasmicMainHeader";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
-  ventureData: VentureFormData;
-  timelineData: TimelineFormData;
+  ventureData: {
+    description: string
+    name: string
+  };
+  timelineData: {
+    description: string
+    name: string
+  };
   currentTimeline: ITimeline;
   variantType: string;
   isOnboarding?: boolean | "isOnboarding";
@@ -46,13 +50,13 @@ function MainHeader(props: MainHeaderProps) {
           ? "ventureHeader"
           : "timelineHeader"
       }
-      ventureName={ventureData?.ventureName || currentVenture?.name || " "}
+      ventureName={ventureData?.name || currentVenture?.name || " "}
       ventureDescription={
-        ventureData?.ventureDescription || currentVenture?.desc || " "
+        ventureData?.description || currentVenture?.desc || " "
       }
-      timelineName={timelineData?.timelineName || currentTimeline?.name || " "}
+      timelineName={timelineData?.name || currentTimeline?.name || " "}
       timelineDescription={
-        timelineData?.timelineDescription || currentTimeline?.desc || " "
+        timelineData?.description || currentTimeline?.desc || " "
       }
       viewHome={{
         onClick: () => navigate(link + "/feed"),

@@ -6,8 +6,9 @@ import TextField from "component/inputtext";
 import InputTextArea from "component/inputtextarea";
 import {
   DefaultAddEditVentureProps,
-  PlasmicAddEditVenture,
+  PlasmicAddEditVenture
 } from "component/plasmic/shared/PlasmicAddEditVenture";
+import Switch from "component/switch";
 import { AuthContext } from "context/AuthContext";
 import { descriptionError, ventureNameError } from "module/errors";
 import { makeVentureUrl } from "module/helpers";
@@ -22,6 +23,8 @@ interface AddEditVentureProps extends DefaultAddEditVentureProps {
 }
 
 export type FormData = {
+  url: string;
+  memberWrite: boolean;
   ventureName: string;
   ventureDescription: string;
 };
@@ -37,10 +40,13 @@ function AddEditVenture(props: AddEditVentureProps) {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
+      memberWrite: true,
       ventureName: currentVenture?.name || "",
       ventureDescription: currentVenture?.desc || "",
     },
   });
+
+  console.log(currentVenture)
 
   const values = watch();
   useEffect(() => {
@@ -53,7 +59,6 @@ function AddEditVenture(props: AddEditVentureProps) {
   const { mutate: updateVenture } = useUpdateVenture();
 
   const navigate = useNavigate();
-  const venture = currentVenture;
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
   const ventureId = currentVenture?.id;
   const isEdit = ventureSlug && ventureSlug === handle ? "isEdit" : undefined;
@@ -135,12 +140,46 @@ function AddEditVenture(props: AddEditVentureProps) {
         },
       }}
       url={{
-        name: "url",
-        defaultValue: venture?.url ?? "",
+        render() {
+          return (
+            <Controller
+              name="url"
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field }) => (
+                <InputTextArea
+                  {...field}
+                  children="Tell us a little bit about your venture."
+                  label={"Description"}
+                  hasTextHelper={true}
+                  message={errors.ventureDescription && descriptionError}
+                />
+              )}
+            />
+          );
+        },
       }}
       membersWrite={{
-        variantSettings: ["isSelected", "hasLabel"],
-        "aria-label": "members have write access switch",
+        render() {
+          return (
+            <Controller
+              name="memberWrite"
+              control={control}
+              render={({ field }) => (
+                <Switch
+                  {...field}
+                  value={field.value ? 'checked' : 'unchecked'}
+                  children="Tell us a little bit about your venture."
+                  hasLabelVariant={''}
+                  variantSettings={field.value ? ["isSelected", "hasLabel"] : ["hasLabel"]}
+                  aria-label={"members have write access switch"}
+                />
+              )}
+            />
+          );
+        }
       }}
       buttons={{
         handleDelete: () =>

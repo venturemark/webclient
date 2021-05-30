@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import TextField from "component/inputtext";
 import {
   DefaultProfileFormProps,
-  PlasmicProfileForm,
+  PlasmicProfileForm
 } from "component/plasmic/shared/PlasmicProfileForm";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
@@ -101,7 +101,6 @@ function ProfileForm(props: ProfileFormProps) {
                 <TextField
                   {...field}
                   label={"What I Do"}
-                  defaultValue={""}
                   hasTextHelper={true}
                   children={"Let people know what you do"}
                   message={errors.title && titleError}

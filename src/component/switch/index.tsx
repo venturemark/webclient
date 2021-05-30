@@ -7,6 +7,7 @@ interface SwitchProps extends PlumeSwitchProps {
   hasLabelVariant: string;
   variantSettings: string[];
 }
+
 function Switch_(props: SwitchProps, ref: PlumeSwitchRef) {
   const { plumeProps } = useSwitch(
     PlasmicSwitch,
@@ -22,15 +23,7 @@ function Switch_(props: SwitchProps, ref: PlumeSwitchRef) {
     ref
   );
 
-  return (
-    <PlasmicSwitch
-      {...plumeProps}
-      onClick={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-      }}
-    />
-  );
+  return <PlasmicSwitch {...plumeProps} />;
 }
 
 export default forwardRef(Switch_);

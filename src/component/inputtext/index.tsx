@@ -1,14 +1,13 @@
 import {
   PlumeTextFieldProps,
   PlumeTextFieldRef,
-  useTextField,
+  useTextField
 } from "@plasmicapp/plume";
 import { forwardRef, ReactNode } from "react";
 
 import { PlasmicInputText } from "component/plasmic/shared/PlasmicInputText";
 
 interface TextFieldProps extends PlumeTextFieldProps {
-  defaultValue?: any;
   name: string;
   label: string;
   message?: string;
@@ -34,14 +33,6 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     },
     ref
   );
-  if (
-    typeof plumeProps.overrides.input === "object" &&
-    plumeProps.overrides.input !== null &&
-    "defaultValue" in plumeProps.overrides.input &&
-    plumeProps.overrides.input.defaultValue === undefined
-  ) {
-    delete plumeProps.overrides.input.defaultValue;
-  }
 
   return (
     <PlasmicInputText
