@@ -32,7 +32,7 @@ import {
   setDefaults,
   SlateDocument,
   SlateDocumentDescendant,
-  SlateDocumentFragment
+  SlateDocumentFragment,
 } from "@udecode/slate-plugins";
 import faker from "faker";
 import { Descendant, Text } from "slate";
@@ -257,7 +257,9 @@ export const initialValueBalloonToolbar: SlateDocument = [
 
 const HEADINGS = 100;
 const PARAGRAPHS = 7;
-export const initialValueHugeDocument: Descendant[] = [{ type: 'paragraph', children: [] }];
+export const initialValueHugeDocument: Descendant[] = [
+  { type: "paragraph", children: [] },
+];
 
 for (let h = 0; h < HEADINGS; h++) {
   (initialValueHugeDocument[0] as any).children.push({

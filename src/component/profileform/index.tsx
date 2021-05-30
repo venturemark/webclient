@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import TextField from "component/inputtext";
 import {
   DefaultProfileFormProps,
-  PlasmicProfileForm
+  PlasmicProfileForm,
 } from "component/plasmic/shared/PlasmicProfileForm";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";

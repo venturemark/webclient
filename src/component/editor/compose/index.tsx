@@ -20,7 +20,7 @@ import {
   withInlineVoid,
   withLink,
   withList,
-  withMarks
+  withMarks,
 } from "@udecode/slate-plugins";
 import { Search } from "@venturemark/numnum";
 // @refresh reset - this comment:
@@ -37,7 +37,7 @@ import {
   headingTypes,
   initialValueEmpty,
   options,
-  optionsResetBlockTypes
+  optionsResetBlockTypes,
 } from "component/editor/config/initialValues";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
@@ -45,14 +45,14 @@ import { save } from "module/store";
 
 import { MENTIONABLES } from "../config/mentionables";
 
-type CustomText = { text: string }
-type CustomElement = { type: 'paragraph'; children: CustomText[] }
+type CustomText = { text: string };
+type CustomElement = { type: "paragraph"; children: CustomText[] };
 
-declare module 'slate' {
+declare module "slate" {
   interface CustomTypes {
-    Editor: BaseEditor & ReactEditor
-    Element: CustomElement
-    Text: CustomText
+    Editor: BaseEditor & ReactEditor;
+    Element: CustomElement;
+    Text: CustomText;
   }
 }
 

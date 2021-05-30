@@ -5,7 +5,7 @@ import { FieldError, useForm } from "react-hook-form";
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
-  PlasmicActionBar
+  PlasmicActionBar,
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
 import { TimelineContext } from "context/TimelineContext";

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   DefaultProfileDropdownProps,
-  PlasmicProfileDropdown
+  PlasmicProfileDropdown,
 } from "component/plasmic/shared/PlasmicProfileDropdown";
 import { IUser } from "module/interface/user";
 
