@@ -9,6 +9,7 @@ interface SwitchProps extends PlumeSwitchProps {
 }
 
 function Switch_(props: SwitchProps, ref: PlumeSwitchRef) {
+  console.log(props);
   const { plumeProps } = useSwitch(
     PlasmicSwitch,
     props,

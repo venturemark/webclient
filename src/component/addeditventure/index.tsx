@@ -2,16 +2,15 @@ import { useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-import TextField from "component/inputtext";
+import InputText from "component/inputtext";
 import InputTextArea from "component/inputtextarea";
 import {
   DefaultAddEditVentureProps,
-  PlasmicAddEditVenture
+  PlasmicAddEditVenture,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import Switch from "component/switch";
 import { AuthContext } from "context/AuthContext";
 import { descriptionError, ventureNameError } from "module/errors";
-import { makeVentureUrl } from "module/helpers";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
 import { IVenture } from "module/interface/venture";
 
@@ -24,7 +23,7 @@ interface AddEditVentureProps extends DefaultAddEditVentureProps {
 
 export type FormData = {
   url: string;
-  memberWrite: boolean;
+  membersWrite: boolean;
   ventureName: string;
   ventureDescription: string;
 };
@@ -40,13 +39,12 @@ function AddEditVenture(props: AddEditVentureProps) {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      memberWrite: true,
+      membersWrite: true,
+      url: currentVenture?.url || "",
       ventureName: currentVenture?.name || "",
       ventureDescription: currentVenture?.desc || "",
     },
   });
-
-  console.log(currentVenture)
 
   const values = watch();
   useEffect(() => {
@@ -69,24 +67,37 @@ function AddEditVenture(props: AddEditVentureProps) {
 
     if (isEdit) {
       if (!ventureId || !handle) return;
-      updateVenture({
-        id: ventureId,
-        name: data.ventureName,
-        desc: data.ventureDescription,
-        url: makeVentureUrl(newHandle),
-        successUrl: `/${newHandle}/feed`,
-        token,
-      });
+      updateVenture(
+        {
+          id: ventureId,
+          name: data.ventureName,
+          desc: data.ventureDescription,
+          url: data.url,
+          successUrl: `/${newHandle}/feed`,
+          token,
+        },
+        {
+          onSuccess() {
+            reset();
+          },
+        }
+      );
     } else {
-      createVenture({
-        name: data.ventureName,
-        desc: data.ventureDescription,
-        url: makeVentureUrl(newHandle),
-        successUrl: `/${newHandle}/feed`,
-        token,
-      });
+      createVenture(
+        {
+          name: data.ventureName,
+          desc: data.ventureDescription,
+          url: data.url,
+          successUrl: `/${newHandle}/feed`,
+          token,
+        },
+        {
+          onSuccess() {
+            reset();
+          },
+        }
+      );
     }
-    reset();
   };
 
   return (
@@ -106,7 +117,7 @@ function AddEditVenture(props: AddEditVentureProps) {
                 required: true,
               }}
               render={({ field }) => (
-                <TextField
+                <InputText
                   {...field}
                   label={"Name"}
                   hasTextHelper={false}
@@ -145,16 +156,16 @@ function AddEditVenture(props: AddEditVentureProps) {
             <Controller
               name="url"
               control={control}
-              rules={{
-                required: true,
-              }}
               render={({ field }) => (
-                <InputTextArea
+                <InputText
                   {...field}
-                  children="Tell us a little bit about your venture."
-                  label={"Description"}
+                  placeholder={values.ventureName
+                    .toLowerCase()
+                    .replace(/\s/g, "")}
+                  children="Enter in a URL name for this venture"
+                  label={"Custom URL"}
                   hasTextHelper={true}
-                  message={errors.ventureDescription && descriptionError}
+                  message={errors.url && errors.url.message}
                 />
               )}
             />
@@ -165,21 +176,23 @@ function AddEditVenture(props: AddEditVentureProps) {
         render() {
           return (
             <Controller
-              name="memberWrite"
+              name="membersWrite"
               control={control}
               render={({ field }) => (
                 <Switch
                   {...field}
-                  value={field.value ? 'checked' : 'unchecked'}
-                  children="Tell us a little bit about your venture."
-                  hasLabelVariant={''}
-                  variantSettings={field.value ? ["isSelected", "hasLabel"] : ["hasLabel"]}
+                  value={field.value ? "checked" : "unchecked"}
+                  children="Allow all members to create timelines"
+                  hasLabelVariant={""}
+                  variantSettings={
+                    field.value ? ["isSelected", "hasLabel"] : ["hasLabel"]
+                  }
                   aria-label={"members have write access switch"}
                 />
               )}
             />
           );
-        }
+        },
       }}
       buttons={{
         handleDelete: () =>

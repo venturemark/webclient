@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import {
   DefaultMainHeaderProps,
-  PlasmicMainHeader
+  PlasmicMainHeader,
 } from "component/plasmic/shared/PlasmicMainHeader";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
@@ -10,12 +10,12 @@ import { IVenture } from "module/interface/venture";
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
   ventureData: {
-    description: string
-    name: string
+    description: string;
+    name: string;
   };
   timelineData: {
-    description: string
-    name: string
+    description: string;
+    name: string;
   };
   currentTimeline: ITimeline;
   variantType: string;

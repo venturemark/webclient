@@ -5,7 +5,7 @@ import { FormData as TimelineFormData } from "component/addedittimeline";
 import { FormData as VentureFormData } from "component/addeditventure";
 import {
   DefaultMainProps,
-  PlasmicMain
+  PlasmicMain,
 } from "component/plasmic/shared/PlasmicMain";
 import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
@@ -24,9 +24,9 @@ interface MainProps extends DefaultMainProps {
 }
 
 type EditData = {
-  description: string
-  name: string
-}
+  description: string;
+  name: string;
+};
 
 function Main(props: MainProps) {
   const {
@@ -109,7 +109,7 @@ function Main(props: MainProps) {
           ) {
             setVentureData({
               name: data.ventureName,
-              description: data.ventureDescription
+              description: data.ventureDescription,
             });
           }
         },
@@ -125,7 +125,7 @@ function Main(props: MainProps) {
           ) {
             setTimelineData({
               name: data.timelineName,
-              description: data.timelineDescription
+              description: data.timelineDescription,
             });
           }
         },

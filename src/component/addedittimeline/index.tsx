@@ -8,6 +8,7 @@ import {
   DefaultAddEditTimelineProps,
   PlasmicAddEditTimeline,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
+import Switch from "component/switch";
 import { AuthContext } from "context/AuthContext";
 import {
   descriptionError,
@@ -27,6 +28,7 @@ interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
 }
 
 export type FormData = {
+  membersWrite: boolean;
   timelineDescription: string;
   timelineName: string;
 };
@@ -49,6 +51,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
+      membersWrite: true,
       timelineDescription: currentTimeline?.desc || "",
       timelineName: currentTimeline?.name || "",
     },
@@ -167,6 +170,28 @@ function AddEditTimeline(props: AddEditTimelineProps) {
                   label={"Description"}
                   hasTextHelper={true}
                   message={errors.timelineDescription && descriptionError}
+                />
+              )}
+            />
+          );
+        },
+      }}
+      _switch={{
+        render() {
+          return (
+            <Controller
+              name="membersWrite"
+              control={control}
+              render={({ field }) => (
+                <Switch
+                  {...field}
+                  value={field.value ? "checked" : "unchecked"}
+                  children="Allow all members to create updates"
+                  hasLabelVariant={""}
+                  variantSettings={
+                    field.value ? ["isSelected", "hasLabel"] : ["hasLabel"]
+                  }
+                  aria-label={"members have write access switch"}
                 />
               )}
             />
