@@ -4,15 +4,20 @@ import { forwardRef } from "react";
 import { PlasmicSwitch } from "component/plasmic/shared/PlasmicSwitch";
 
 interface SwitchProps extends PlumeSwitchProps {
+  onChange?: (e: boolean) => void
   hasLabelVariant: string;
   variantSettings: string[];
 }
 
-function Switch_(props: SwitchProps, ref: PlumeSwitchRef) {
-  console.log(props);
-  const { plumeProps } = useSwitch(
+function Switch_({ onChange, ...props }: SwitchProps, ref: PlumeSwitchRef) {
+  const switchState = useSwitch(
     PlasmicSwitch,
-    props,
+    {
+      ...props,
+      onChange(e) {
+        onChange && onChange(e.valueOf())
+      }
+    },
     {
       isSelectedVariant: ["variantSettings", "isSelected"],
       isDisabledVariant: ["variantSettings", "isDisabled"],
@@ -24,7 +29,7 @@ function Switch_(props: SwitchProps, ref: PlumeSwitchRef) {
     ref
   );
 
-  return <PlasmicSwitch {...plumeProps} />;
+  return <PlasmicSwitch {...switchState.plumeProps} />
 }
 
 export default forwardRef(Switch_);

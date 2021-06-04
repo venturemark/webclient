@@ -1,16 +1,12 @@
 import { useContext, useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-import InputText from "component/inputtext";
-import InputTextArea from "component/inputtextarea";
 import {
   DefaultAddEditVentureProps,
-  PlasmicAddEditVenture,
+  PlasmicAddEditVenture
 } from "component/plasmic/shared/PlasmicAddEditVenture";
-import Switch from "component/switch";
 import { AuthContext } from "context/AuthContext";
-import { descriptionError, ventureNameError } from "module/errors";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
 import { IVenture } from "module/interface/venture";
 
@@ -33,11 +29,14 @@ function AddEditVenture(props: AddEditVentureProps) {
 
   const {
     handleSubmit,
-    control,
     watch,
     reset,
+    register,
+    setValue,
+    trigger,
     formState: { errors },
   } = useForm<FormData>({
+    mode: 'onChange',
     defaultValues: {
       membersWrite: true,
       url: currentVenture?.url || "",
@@ -50,6 +49,8 @@ function AddEditVenture(props: AddEditVentureProps) {
   useEffect(() => {
     onChange && onChange(values);
   }, [values, onChange]);
+
+  console.log(values, errors)
 
   const { ventureSlug } = useParams();
   const { token } = useContext(AuthContext);
@@ -108,91 +109,60 @@ function AddEditVenture(props: AddEditVentureProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        render() {
-          return (
-            <Controller
-              name="ventureName"
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field }) => (
-                <InputText
-                  {...field}
-                  label={"Name"}
-                  hasTextHelper={false}
-                  message={errors.ventureName && ventureNameError}
-                />
-              )}
-            />
-          );
+        ...register("ventureName", {
+          required: {
+            message: "Required",
+            value: true,
+          }
+        }),
+        defaultValue: currentVenture?.name,
+        onChange(e) {
+          setValue('ventureName', e)
+          trigger('ventureName')
         },
+        message: errors.ventureName?.message
       }}
       description={{
-        render() {
-          return (
-            <Controller
-              name="ventureDescription"
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field }) => (
-                <InputTextArea
-                  {...field}
-                  children="Tell us a little bit about your venture."
-                  label={"Description"}
-                  hasTextHelper={true}
-                  message={errors.ventureDescription && descriptionError}
-                />
-              )}
-            />
-          );
+        ...register("ventureDescription", {
+          required: {
+            message: "Required",
+            value: true,
+          }
+        }),
+        defaultValue: currentVenture?.desc,
+        onChange(e) {
+          setValue('ventureDescription', e)
+          trigger('ventureDescription')
         },
+        message: errors.ventureDescription?.message
       }}
       url={{
-        render() {
-          return (
-            <Controller
-              name="url"
-              control={control}
-              render={({ field }) => (
-                <InputText
-                  {...field}
-                  placeholder={values.ventureName
-                    .toLowerCase()
-                    .replace(/\s/g, "")}
-                  children="Enter in a URL name for this venture"
-                  label={"Custom URL"}
-                  hasTextHelper={true}
-                  message={errors.url && errors.url.message}
-                />
-              )}
-            />
-          );
+        ...register("url", {
+          required: {
+            message: "Required",
+            value: true,
+          },
+          pattern: {
+            message: "Bad format",
+            value: /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/
+          }
+        }),
+        defaultValue: currentVenture?.url,
+        onChange(e) {
+          setValue('url', e)
+          trigger('url')
         },
+        placeholder: values.ventureName.toLowerCase().replace(/\s/g, ""),
+        message: errors.url?.message
       }}
       membersWrite={{
-        render() {
-          return (
-            <Controller
-              name="membersWrite"
-              control={control}
-              render={({ field }) => (
-                <Switch
-                  {...field}
-                  value={field.value ? "checked" : "unchecked"}
-                  children="Allow all members to create timelines"
-                  hasLabelVariant={""}
-                  variantSettings={
-                    field.value ? ["isSelected", "hasLabel"] : ["hasLabel"]
-                  }
-                  aria-label={"members have write access switch"}
-                />
-              )}
-            />
-          );
+        ...register("membersWrite"),
+        onChange(e) {
+          setValue('membersWrite', e)
         },
+        defaultSelected: true,
+        name: 'membersWrite',
+        children: 'Allow members to create timelines'
       }}
       buttons={{
         handleDelete: () =>

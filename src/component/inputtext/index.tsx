@@ -1,7 +1,7 @@
 import {
   PlumeTextFieldProps,
   PlumeTextFieldRef,
-  useTextField,
+  useTextField
 } from "@plasmicapp/plume";
 import { forwardRef, ReactNode } from "react";
 
@@ -15,8 +15,7 @@ interface TextFieldProps extends PlumeTextFieldProps {
   hasTextHelper: boolean;
 }
 
-function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
-  const { message } = props;
+function InputText_({ message, ...props }: TextFieldProps, ref: PlumeTextFieldRef) {
   const { plumeProps } = useTextField(
     PlasmicInputText,
     props,
@@ -34,19 +33,29 @@ function TextField_(props: TextFieldProps, ref: PlumeTextFieldRef) {
     ref
   );
 
+  // React warns when setting value when defaultValue is defined, even if value is undefined.
+  // We're using this component as an uncontrolled component so we destructure to avoid passing
+  // in a value at all.
+  const { value, ...inputOverrides } = plumeProps.overrides.input as any
+
   return (
     <PlasmicInputText
       {...plumeProps}
       errorMessage={{
         message: message,
       }}
+      overrides={{
+        ...plumeProps.overrides,
+        input: {
+          ...inputOverrides
+        }
+      }}
       variants={{
+        ...plumeProps.variants,
         error: message ? "error" : undefined,
-        hasLabel: plumeProps.variants.hasLabel,
-        hasTextHelper: plumeProps.variants.hasTextHelper,
       }}
     />
   );
 }
 
-export default forwardRef(TextField_);
+export default forwardRef(InputText_);

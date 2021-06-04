@@ -1,20 +1,12 @@
 import { useContext, useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-import TextField from "component/inputtext";
-import InputTextArea from "component/inputtextarea";
 import {
   DefaultAddEditTimelineProps,
-  PlasmicAddEditTimeline,
+  PlasmicAddEditTimeline
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
-import Switch from "component/switch";
 import { AuthContext } from "context/AuthContext";
-import {
-  descriptionError,
-  nameTooLongError,
-  timelineNameError,
-} from "module/errors";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
@@ -45,9 +37,10 @@ function AddEditTimeline(props: AddEditTimelineProps) {
 
   const {
     handleSubmit,
-    control,
     watch,
+    register,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
@@ -61,6 +54,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   useEffect(() => {
     onChange && onChange(values);
   }, [values, onChange]);
+
+  console.log(values)
 
   const navigate = useNavigate();
   const { timelineSlug } = useParams();
@@ -120,11 +115,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     }
   };
 
-  let errorMessage = timelineNameError;
-  if (errors?.timelineName?.type === "maxLength") {
-    errorMessage = nameTooLongError;
-  }
-
   return (
     <PlasmicAddEditTimeline
       {...rest}
@@ -133,70 +123,37 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        render() {
-          return (
-            <Controller
-              name="timelineName"
-              rules={{
-                required: true,
-                maxLength: 23,
-              }}
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label={"Name"}
-                  hasTextHelper={false}
-                  message={errors.timelineName && errorMessage}
-                />
-              )}
-            />
-          );
+        ...register("timelineName", {
+          required: {
+            message: "Required",
+            value: true,
+          }
+        }),
+        onChange(e) {
+          setValue('timelineName', e)
         },
+        message: errors.timelineName?.message
       }}
       description={{
-        render() {
-          return (
-            <Controller
-              name="timelineDescription"
-              rules={{
-                required: true,
-              }}
-              control={control}
-              render={({ field }) => (
-                <InputTextArea
-                  {...field}
-                  children="Tell us a little bit about your timeline."
-                  label={"Description"}
-                  hasTextHelper={true}
-                  message={errors.timelineDescription && descriptionError}
-                />
-              )}
-            />
-          );
+        ...register("timelineDescription", {
+          required: {
+            message: "Required",
+            value: true,
+          }
+        }),
+        onChange(e) {
+          setValue('timelineDescription', e)
         },
+        message: errors.timelineDescription?.message
       }}
       _switch={{
-        render() {
-          return (
-            <Controller
-              name="membersWrite"
-              control={control}
-              render={({ field }) => (
-                <Switch
-                  {...field}
-                  value={field.value ? "checked" : "unchecked"}
-                  children="Allow all members to create updates"
-                  hasLabelVariant={""}
-                  variantSettings={
-                    field.value ? ["isSelected", "hasLabel"] : ["hasLabel"]
-                  }
-                  aria-label={"members have write access switch"}
-                />
-              )}
-            />
-          );
+        ...register("membersWrite"),
+        onChange(e) {
+          setValue('membersWrite', e)
         },
+        defaultSelected: true,
+        name: 'membersWrite',
+        children: 'Allow members to create updates'
       }}
       buttonSetEdit={{
         handleCancel: () => navigate(".."),

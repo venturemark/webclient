@@ -1,11 +1,11 @@
 import { TextareaAutosize } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
-import { FieldError, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
-  PlasmicActionBar,
+  PlasmicActionBar
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
 import { TimelineContext } from "context/TimelineContext";
@@ -25,15 +25,6 @@ type FormData = {
   description: string;
 };
 
-function ErrorMessage(props: { error?: FieldError }) {
-  if (!props.error) {
-    return null;
-  }
-  return (
-    <p style={{ color: "red", fontSize: "12px" }}>{props.error.message}</p>
-  );
-}
-
 function ActionBar(props: ActionBarProps) {
   const { ventureId, currentTimeline, user, timelines, ...rest } = props;
 
@@ -41,7 +32,9 @@ function ActionBar(props: ActionBarProps) {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isValid, isSubmitted },
+    watch,
+    setValue,
+    formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
       description: "",
@@ -49,6 +42,8 @@ function ActionBar(props: ActionBarProps) {
     },
     mode: "onChange",
   });
+
+  console.log(watch())
 
   const { token } = useContext(AuthContext);
   const timelineContext = useContext(TimelineContext);
@@ -113,92 +108,61 @@ function ActionBar(props: ActionBarProps) {
         user,
       }}
       title={{
-        render() {
-          return (
-            <>
-              <TextareaAutosize
-                aria-label="Title"
-                style={{
-                  resize: "none",
-                  fontSize: "18px",
-                  fontWeight: 600,
-                  color: "261A3F",
-                  fontFamily: "Poppins",
-                  outline: "none",
-                  border: "none",
-                }}
-                rowsMin={1}
-                disabled={!hasTimelines}
-                placeholder="Write your update"
-                {...register("title", {
-                  required: {
-                    message: "Required",
-                    value: true,
-                  },
-                  maxLength: {
-                    message: "Too long",
-                    value: 100,
-                  },
-                })}
-              />
-              <ErrorMessage error={errors.title} />
-            </>
-          );
-        },
+        as: TextareaAutosize,
+        props: {
+          ...register("title", {
+            required: {
+              message: "Required",
+              value: true,
+            },
+            maxLength: {
+              message: "Too long",
+              value: 100,
+            },
+          }),
+          onChange(e: any) {
+            setValue('title', e.target.value)
+          }
+        }
       }}
       description={{
-        render() {
-          return (
-            <>
-              <TextareaAutosize
-                aria-label="Description"
-                style={{
-                  resize: "none",
-                  fontSize: "15px",
-                  fontWeight: 300,
-                  color: "261A3F",
-                  fontFamily: "Poppins",
-                  outline: "none",
-                  border: "none",
-                }}
-                rowsMin={4}
-                disabled={!hasTimelines}
-                placeholder="Description..."
-                {...register("description", {
-                  required: {
-                    message: "Required",
-                    value: true,
-                  },
-                  maxLength: {
-                    message: "Too long",
-                    value: 280,
-                  },
-                })}
-              />
-              <ErrorMessage error={errors.description} />
-            </>
-          );
-        },
+        as: TextareaAutosize,
+        props: {
+          ...register("description", {
+            required: {
+              message: "Required",
+              value: true,
+            },
+            maxLength: {
+              message: "Too long",
+              value: 280,
+            },
+          }),
+          onChange(e: any) {
+            setValue('description', e.target.value)
+          }
+        }
       }}
       shareToContainer={{
-        render: () => (
-          <TimelineSelect
-            ventureId={ventureId}
-            selectedTimelines={selectedTimelines}
-            setSelectedTimelines={setSelectedTimelines}
-            selectFocused={selectFocused}
-            setSelectFocused={setSelectFocused}
-          />
-        ),
+        as: TimelineSelect,
+        props: {
+          ventureId,
+          selectedTimelines,
+          setSelectedTimelines,
+          selectFocused,
+          setSelectFocused,
+        }
       }}
       post={{
-        isDisabled: !hasTimelines || (!isValid && isSubmitted),
+        isDisabled: !hasTimelines,
         onPress() {
           handleSubmit(handlePost)();
         },
       }}
-      error={undefined}
-      text={undefined}
+      error={(errors.title?.message || errors.description?.message) ? 'hasError' : undefined}
+      errorMessage={{
+        message: errors.title?.message || errors.description?.message
+      }}
       timelineSelected={isTimelineSelected}
     />
   );

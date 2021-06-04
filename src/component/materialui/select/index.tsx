@@ -1,7 +1,7 @@
 import Chip from "@material-ui/core/Chip";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { ReactNode, useContext, useEffect, useRef } from "react";
 
 import { TimelineContext } from "context/TimelineContext";
 import { ITimeline } from "module/interface/timeline";
@@ -14,7 +14,7 @@ interface SelectProps {
   selectedTimelines: ITimeline[];
 }
 
-export function TimelineSelect(props: SelectProps) {
+export function TimelineSelect(props: SelectProps): ReactNode {
   const {
     ventureId,
     setSelectedTimelines,

@@ -4,7 +4,7 @@ import {
   CreateI_Obj,
   CreateI_Obj_Property,
   CreateI_Obj_Property_Link,
-  CreateO,
+  CreateO
 } from "module/api/venture/proto/create_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
