@@ -72,7 +72,6 @@ export function TimelineSelect(props: SelectProps): ReactNode {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Share to:"
           variant="standard"
           style={{ fontFamily: "Poppins" }}
           InputProps={{ ...params.InputProps, disableUnderline: true }}

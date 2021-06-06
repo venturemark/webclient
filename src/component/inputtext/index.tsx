@@ -1,7 +1,7 @@
 import {
   PlumeTextFieldProps,
   PlumeTextFieldRef,
-  useTextField
+  useTextField,
 } from "@plasmicapp/plume";
 import { forwardRef, ReactNode } from "react";
 
@@ -15,7 +15,10 @@ interface TextFieldProps extends PlumeTextFieldProps {
   hasTextHelper: boolean;
 }
 
-function InputText_({ message, ...props }: TextFieldProps, ref: PlumeTextFieldRef) {
+function InputText_(
+  { message, ...props }: TextFieldProps,
+  ref: PlumeTextFieldRef
+) {
   const { plumeProps } = useTextField(
     PlasmicInputText,
     props,
@@ -33,22 +36,19 @@ function InputText_({ message, ...props }: TextFieldProps, ref: PlumeTextFieldRe
     ref
   );
 
-  // React warns when setting value when defaultValue is defined, even if value is undefined.
-  // We're using this component as an uncontrolled component so we destructure to avoid passing
-  // in a value at all.
-  const { value, ...inputOverrides } = plumeProps.overrides.input as any
+  const input = plumeProps.overrides.input as JSX.IntrinsicElements["input"];
+  if (input.value !== undefined) {
+    // React reports an error (in dev mode) when defaultValue and value are both used
+    // even if one is set to undefined. By deleting it from the props entirely, this
+    // can be avoided.
+    delete input.defaultValue;
+  }
 
   return (
     <PlasmicInputText
       {...plumeProps}
       errorMessage={{
         message: message,
-      }}
-      overrides={{
-        ...plumeProps.overrides,
-        input: {
-          ...inputOverrides
-        }
       }}
       variants={{
         ...plumeProps.variants,

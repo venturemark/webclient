@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import {
   DefaultAddEditTimelineProps,
-  PlasmicAddEditTimeline
+  PlasmicAddEditTimeline,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
 import { AuthContext } from "context/AuthContext";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
@@ -41,6 +41,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     register,
     reset,
     setValue,
+    trigger,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
@@ -54,8 +55,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   useEffect(() => {
     onChange && onChange(values);
   }, [values, onChange]);
-
-  console.log(values)
 
   const navigate = useNavigate();
   const { timelineSlug } = useParams();
@@ -127,33 +126,35 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           required: {
             message: "Required",
             value: true,
-          }
+          },
         }),
         onChange(e) {
-          setValue('timelineName', e)
+          setValue("timelineName", e);
+          trigger("timelineName");
         },
-        message: errors.timelineName?.message
+        message: errors.timelineName?.message,
       }}
       description={{
         ...register("timelineDescription", {
           required: {
             message: "Required",
             value: true,
-          }
+          },
         }),
         onChange(e) {
-          setValue('timelineDescription', e)
+          setValue("timelineDescription", e);
+          trigger("timelineDescription");
         },
-        message: errors.timelineDescription?.message
+        message: errors.timelineDescription?.message,
       }}
       _switch={{
         ...register("membersWrite"),
         onChange(e) {
-          setValue('membersWrite', e)
+          setValue("membersWrite", e);
         },
         defaultSelected: true,
-        name: 'membersWrite',
-        children: 'Allow members to create updates'
+        name: "membersWrite",
+        children: "Allow members to create updates",
       }}
       buttonSetEdit={{
         handleCancel: () => navigate(".."),

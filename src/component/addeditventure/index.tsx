@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import {
   DefaultAddEditVentureProps,
-  PlasmicAddEditVenture
+  PlasmicAddEditVenture,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import { AuthContext } from "context/AuthContext";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
@@ -36,7 +36,7 @@ function AddEditVenture(props: AddEditVentureProps) {
     trigger,
     formState: { errors },
   } = useForm<FormData>({
-    mode: 'onChange',
+    mode: "onChange",
     defaultValues: {
       membersWrite: true,
       url: currentVenture?.url || "",
@@ -49,8 +49,6 @@ function AddEditVenture(props: AddEditVentureProps) {
   useEffect(() => {
     onChange && onChange(values);
   }, [values, onChange]);
-
-  console.log(values, errors)
 
   const { ventureSlug } = useParams();
   const { token } = useContext(AuthContext);
@@ -113,28 +111,28 @@ function AddEditVenture(props: AddEditVentureProps) {
           required: {
             message: "Required",
             value: true,
-          }
+          },
         }),
-        defaultValue: currentVenture?.name,
         onChange(e) {
-          setValue('ventureName', e)
-          trigger('ventureName')
+          setValue("ventureName", e);
+          trigger("ventureName");
         },
-        message: errors.ventureName?.message
+        message: errors.ventureName?.message,
+        value: values.ventureName,
       }}
       description={{
         ...register("ventureDescription", {
           required: {
             message: "Required",
             value: true,
-          }
+          },
         }),
-        defaultValue: currentVenture?.desc,
         onChange(e) {
-          setValue('ventureDescription', e)
-          trigger('ventureDescription')
+          setValue("ventureDescription", e);
+          trigger("ventureDescription");
         },
-        message: errors.ventureDescription?.message
+        message: errors.ventureDescription?.message,
+        value: values.ventureDescription,
       }}
       url={{
         ...register("url", {
@@ -144,25 +142,26 @@ function AddEditVenture(props: AddEditVentureProps) {
           },
           pattern: {
             message: "Bad format",
-            value: /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/
-          }
+            value: /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/,
+          },
         }),
-        defaultValue: currentVenture?.url,
         onChange(e) {
-          setValue('url', e)
-          trigger('url')
+          setValue("url", e);
+          trigger("url");
         },
         placeholder: values.ventureName.toLowerCase().replace(/\s/g, ""),
-        message: errors.url?.message
+        message: errors.url?.message,
+        value: values.url,
       }}
       membersWrite={{
         ...register("membersWrite"),
         onChange(e) {
-          setValue('membersWrite', e)
+          setValue("membersWrite", e);
+          trigger("membersWrite");
         },
-        defaultSelected: true,
-        name: 'membersWrite',
-        children: 'Allow members to create timelines'
+        name: "membersWrite",
+        children: "Allow members to create timelines",
+        isSelected: values.membersWrite,
       }}
       buttons={{
         handleDelete: () =>

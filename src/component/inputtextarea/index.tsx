@@ -1,21 +1,24 @@
+import { TextareaAutosize, TextareaAutosizeProps } from "@material-ui/core";
 import {
   PlumeTextFieldProps,
   PlumeTextFieldRef,
-  useTextField
+  useTextField,
 } from "@plasmicapp/plume";
 import { forwardRef, ReactNode } from "react";
 
-import {
-  PlasmicInputTextArea
-} from "component/plasmic/shared/PlasmicInputTextArea";
+import { PlasmicInputTextArea } from "component/plasmic/shared/PlasmicInputTextArea";
 
 interface InputTextAreaProps extends PlumeTextFieldProps {
-  children?: ReactNode
+  autosize?: boolean;
+  children?: ReactNode;
   hasTextHelper: boolean;
   message?: string;
 }
 
-function InputTextArea_({ message, ...props }: InputTextAreaProps, ref: PlumeTextFieldRef) {
+function InputTextArea_(
+  { message, ...props }: InputTextAreaProps,
+  ref: PlumeTextFieldRef
+) {
   const { plumeProps } = useTextField(
     PlasmicInputTextArea,
     props,
@@ -33,22 +36,34 @@ function InputTextArea_({ message, ...props }: InputTextAreaProps, ref: PlumeTex
     ref
   );
 
-  // React warns when setting value when defaultValue is defined, even if value is undefined.
-  // We're using this component as an uncontrolled component so we destructure to avoid passing
-  // in a value at all.
-  const { value, ...inputOverrides } = plumeProps.overrides.input as any
+  const input = plumeProps.overrides.input as JSX.IntrinsicElements["input"];
+  if (input.value !== undefined) {
+    // React reports an error (in dev mode) when defaultValue and value are both used
+    // even if one is set to undefined. By deleting it from the props entirely, this
+    // can be avoided.
+    delete input.defaultValue;
+  }
+
+  const textareaAutosizeProps: TextareaAutosizeProps = {
+    style: {
+      border: "none",
+      padding: "0px",
+    },
+  };
 
   return (
     <PlasmicInputTextArea
       {...plumeProps}
+      input={
+        props.autosize
+          ? {
+              as: TextareaAutosize,
+              props: textareaAutosizeProps,
+            }
+          : {}
+      }
       errorMessage={{
-        message
-      }}
-      overrides={{
-        ...plumeProps.overrides,
-        input: {
-          ...inputOverrides
-        }
+        message,
       }}
       variants={{
         ...plumeProps.variants,

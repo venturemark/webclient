@@ -1,7 +1,7 @@
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
+import InputTextArea from "component/inputtextarea";
 import {
   DefaultReplyInputProps,
   PlasmicReplyInput,
@@ -25,11 +25,13 @@ function ReplyInput(props: ReplyInputProps) {
   const { token } = useContext(AuthContext);
   const userContext = useContext(UserContext);
 
-  const { register, handleSubmit, reset } = useForm<FormData>({
-    defaultValues: {
-      text: "",
-    },
-  });
+  const { register, handleSubmit, reset, setValue, trigger, watch } =
+    useForm<FormData>({
+      defaultValues: {
+        text: "",
+      },
+    });
+  const values = watch();
   const { mutate: createMessage } = useCreateMessage();
 
   const handleAddMessage = (data: FormData) => {
@@ -50,42 +52,32 @@ function ReplyInput(props: ReplyInputProps) {
     reset();
   };
 
-  const handleUserKeyDown = (e: any) => {
-    if (e.key === "Enter" && e.metaKey) {
-      e.preventDefault();
-      handleSubmit(handleAddMessage)();
-    }
-  };
-
   return (
     <PlasmicReplyInput
       replyForm={{
         onSubmit: handleSubmit(handleAddMessage),
       }}
       replyInput={{
-        render: () => (
-          <TextareaAutosize
-            aria-label="Description"
-            style={{
-              resize: "none",
-              fontSize: "16px",
-              fontWeight: 300,
-              color: "261A3F",
-              fontFamily: "Poppins",
-              outline: "none",
-              border: "1px",
-              borderColor: "1px solid #E0E0E0",
-              width: "100%",
-              padding: "20px 15px",
-              borderRadius: "10px",
-              backgroundColor: "white",
-            }}
-            rowsMin={1}
-            placeholder="Description..."
-            onKeyDown={handleUserKeyDown}
-            {...register("text")}
-          />
-        ),
+        as: InputTextArea,
+        props: {
+          ...register("text", {
+            required: {
+              message: "Required",
+              value: true,
+            },
+            maxLength: {
+              message: "Too long",
+              value: 100,
+            },
+          }),
+          autosize: true,
+          "aria-label": "Text",
+          onChange(e: string) {
+            setValue("text", e);
+            trigger("text");
+          },
+          value: values.text,
+        },
       }}
       postReplyButton={{
         onPress: () => handleSubmit(handleAddMessage)(),

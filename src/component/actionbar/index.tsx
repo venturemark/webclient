@@ -1,11 +1,11 @@
-import { TextareaAutosize } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
+import InputTextArea from "component/inputtextarea";
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
-  PlasmicActionBar
+  PlasmicActionBar,
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
 import { TimelineContext } from "context/TimelineContext";
@@ -34,6 +34,7 @@ function ActionBar(props: ActionBarProps) {
     reset,
     watch,
     setValue,
+    trigger,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
@@ -43,7 +44,7 @@ function ActionBar(props: ActionBarProps) {
     mode: "onChange",
   });
 
-  console.log(watch())
+  const values = watch();
 
   const { token } = useContext(AuthContext);
   const timelineContext = useContext(TimelineContext);
@@ -54,12 +55,9 @@ function ActionBar(props: ActionBarProps) {
     defaultTimelineOption
   );
   const hasTimelines =
-    selectedTimelines.length > 0 &&
     ventureTimelines?.filter(
       (timeline: ITimeline) => (timeline.ventureId = ventureId)
-    ).length > 0
-      ? true
-      : false;
+    ).length > 0;
 
   const [isActive, setIsActive] = useState(false);
   const [isTimelineSelected] = useState(false);
@@ -108,7 +106,7 @@ function ActionBar(props: ActionBarProps) {
         user,
       }}
       title={{
-        as: TextareaAutosize,
+        as: InputTextArea,
         props: {
           ...register("title", {
             required: {
@@ -120,13 +118,17 @@ function ActionBar(props: ActionBarProps) {
               value: 100,
             },
           }),
-          onChange(e: any) {
-            setValue('title', e.target.value)
-          }
-        }
+          autosize: true,
+          "aria-label": "Title",
+          onChange(e: string) {
+            setValue("title", e);
+            trigger("title");
+          },
+          value: values.title,
+        },
       }}
       description={{
-        as: TextareaAutosize,
+        as: InputTextArea,
         props: {
           ...register("description", {
             required: {
@@ -138,12 +140,26 @@ function ActionBar(props: ActionBarProps) {
               value: 280,
             },
           }),
-          onChange(e: any) {
-            setValue('description', e.target.value)
-          }
-        }
+          autosize: true,
+          "aria-label": "Description",
+          onChange(e: string) {
+            setValue("description", e);
+            trigger("description");
+          },
+          value: values.description,
+        },
+      }}
+      container={{
+        style: {
+          width: "100%",
+        },
       }}
       shareToContainer={{
+        style: {
+          width: "100%",
+        },
+      }}
+      tagsContainer={{
         as: TimelineSelect,
         props: {
           ventureId,
@@ -151,7 +167,7 @@ function ActionBar(props: ActionBarProps) {
           setSelectedTimelines,
           selectFocused,
           setSelectFocused,
-        }
+        },
       }}
       post={{
         isDisabled: !hasTimelines,
@@ -159,9 +175,13 @@ function ActionBar(props: ActionBarProps) {
           handleSubmit(handlePost)();
         },
       }}
-      error={(errors.title?.message || errors.description?.message) ? 'hasError' : undefined}
+      error={
+        errors.title?.message || errors.description?.message
+          ? "hasError"
+          : undefined
+      }
       errorMessage={{
-        message: errors.title?.message || errors.description?.message
+        message: errors.title?.message || errors.description?.message,
       }}
       timelineSelected={isTimelineSelected}
     />

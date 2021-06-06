@@ -1,14 +1,12 @@
 import { useContext } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-import TextField from "component/inputtext";
 import MemberItem from "component/memberitem";
 import {
   DefaultAddEditMembersProps,
   PlasmicAddEditMembers,
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { AuthContext } from "context/AuthContext";
-import { emailError } from "module/errors";
 import { getUniqueListBy } from "module/helpers";
 import { useCreateInvite, useInvites } from "module/hook/invite";
 import {
@@ -41,7 +39,10 @@ function AddEditMembers(props: AddEditMembersProps) {
   const {
     handleSubmit,
     reset,
-    control,
+    register,
+    setValue,
+    watch,
+    trigger,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
@@ -49,6 +50,9 @@ function AddEditMembers(props: AddEditMembersProps) {
     },
     mode: "onChange",
   });
+
+  const values = watch();
+
   const { token } = useContext(AuthContext);
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
@@ -163,29 +167,16 @@ function AddEditMembers(props: AddEditMembersProps) {
       }}
       type={!currentTimeline ? undefined : "isTimeline"}
       email={{
-        render() {
-          return (
-            <Controller
-              name="email"
-              control={control}
-              rules={{
-                required: true,
-                pattern: emailRegex,
-              }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label={"Invite a member by email"}
-                  hasTextHelper={true}
-                  children={
-                    "Enter their email to invite and add them to this organization."
-                  }
-                  message={errors.email && emailError}
-                />
-              )}
-            />
-          );
+        ...register("email", {
+          required: true,
+          pattern: emailRegex,
+        }),
+        onChange(e: string) {
+          setValue("email", e);
+          trigger("email");
         },
+        value: values.email,
+        message: errors.email?.message,
       }}
       invite={{
         onPress: () => handleSubmit(handleInvite)(),
