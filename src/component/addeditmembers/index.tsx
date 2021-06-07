@@ -100,8 +100,14 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   const allSuccess = ventureUsersSuccess && invitesSuccess;
 
+  console.log(currentVenture, currentTimeline);
+
   const array2 = invitesData
-    ?.filter((invite: IInvite) => invite.status === "pending")
+    ?.filter(
+      (invite: IInvite) =>
+        invite.status === "pending" &&
+        (!currentTimeline || currentTimeline.id === invite.timelineId)
+    )
     .map((invite: IInvite) => ({
       name: invite.email,
     }));

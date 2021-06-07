@@ -69,7 +69,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const timelineId = currentTimeline?.id;
   const ventureId = currentVenture?.id;
 
-  const handleCreate = (data: any) => {
+  const handleCreate = (data: FormData) => {
     if (
       !token ||
       !ventureId ||
@@ -99,6 +99,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     } else {
       createTimeline(
         {
+          membersWrite: data.membersWrite,
           name: data.timelineName,
           desc: data.timelineDescription,
           ventureId,

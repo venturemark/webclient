@@ -33,6 +33,12 @@ export async function Create(createVenture: ICreateVenture) {
 
   obj.setProperty(objProperty);
 
+  if (!createVenture.membersWrite) {
+    obj.getMetadataMap().set(key.PermissionModel, "reader");
+  }
+
+  console.log(obj);
+
   objList.push(obj);
   req.setObjList(objList);
 

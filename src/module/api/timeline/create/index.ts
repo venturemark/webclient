@@ -25,6 +25,10 @@ export async function Create(newTimeline: ICreateTimeline) {
   obj.getMetadataMap().set(key.VentureID, newTimeline.ventureId);
   obj.setProperty(objProperty);
 
+  if (!newTimeline.membersWrite) {
+    obj.getMetadataMap().set(key.PermissionModel, "reader");
+  }
+
   objList.push(obj);
   req.setObjList(objList);
 

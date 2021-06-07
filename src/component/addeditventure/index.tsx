@@ -87,6 +87,7 @@ function AddEditVenture(props: AddEditVentureProps) {
           name: data.ventureName,
           desc: data.ventureDescription,
           url: data.url,
+          membersWrite: data.membersWrite,
           successUrl: `/${newHandle}/feed`,
           token,
         },

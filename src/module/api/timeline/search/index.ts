@@ -43,6 +43,11 @@ export async function Search(
           let propertiesPb = timelinePb.getProperty();
           let metaPb = timelinePb.getMetadataMap();
 
+          let membersWrite = true;
+          if (metaPb.get(key.PermissionModel) === "reader") {
+            membersWrite = false;
+          }
+
           let name = propertiesPb?.getName() as string;
           let desc = propertiesPb?.getDesc() as string;
           let stat = propertiesPb?.getStat() as string;
@@ -52,15 +57,17 @@ export async function Search(
           let id = metaPb.get(key.TimelineID);
 
           let timeline: ITimeline = {
-            name: name,
-            desc: desc,
-            stat: stat,
-            userId: userId,
-            ventureId: ventureId,
-            id: id,
+            name,
+            desc,
+            stat,
+            userId,
+            ventureId,
+            id,
+            membersWrite,
           };
           return timeline;
         });
+        console.log(timelines);
         resolve(timelines);
       }
     });
