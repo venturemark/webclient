@@ -35,7 +35,7 @@ export async function Delete(
 
         const status = venturesPb.map((venturePb) => {
           const metaPb = venturePb.getMetadataMap();
-          return metaPb.get(key.VentureStatus) as IVenture;
+          return metaPb.get(key.VentureStatus) as unknown as IVenture; // TODO: check
         });
 
         resolve(status);

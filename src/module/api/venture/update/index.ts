@@ -63,7 +63,7 @@ export async function Update(
         const metaPb = venturePb.getMetadataMap();
         const status = metaPb.get(key.VentureStatus);
 
-        resolve(status);
+        resolve(status as unknown as IVenture[]); // TODO: check
       }
     });
   });

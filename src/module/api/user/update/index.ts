@@ -55,7 +55,7 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
         const metaPb = userPb.getMetadataMap();
         const status = metaPb.get(key.UserStatus);
 
-        resolve(status as IUser[]);
+        resolve(status as unknown as IUser[]); // TODO: check
       }
     });
   });

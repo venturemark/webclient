@@ -48,7 +48,7 @@ export async function Search(
           const name = propertiesPb?.getName() as string;
           const desc = propertiesPb?.getDesc() as string;
           const url = propertiesPb?.getLinkList()[0].getAddr();
-          const id = metaPb.get(key.VentureID);
+          const id = metaPb.get(key.VentureID)!;
 
           return {
             name,

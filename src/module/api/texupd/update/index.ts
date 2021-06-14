@@ -47,7 +47,7 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
         const metaPb = updatePb.getMetadataMap();
         const status = metaPb.get(key.UpdateStatus);
 
-        resolve(status as IUpdate[]);
+        resolve(status as unknown as IUpdate[]); // TODO: this is wrong
       }
     });
   });

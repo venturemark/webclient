@@ -28,7 +28,10 @@ export function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export function getUniqueListBy(arr: any[], key: string) {
+export function getUniqueListBy<T extends Record<K, any>, K extends string>(
+  arr: Array<T>,
+  key: K
+) {
   return [...new Map(arr.map((item) => [item[key], item])).values()];
 }
 

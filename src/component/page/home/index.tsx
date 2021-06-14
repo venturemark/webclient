@@ -49,6 +49,7 @@ export function Home(props: HomeProps) {
         }}
         main={{
           variantType,
+          isOwner: undefined,
           isActive,
           setIsVisible,
           isVisible,

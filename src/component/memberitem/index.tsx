@@ -2,10 +2,11 @@ import {
   DefaultMemberItemProps,
   PlasmicMemberItem,
 } from "component/plasmic/shared/PlasmicMemberItem";
-import { IUser } from "module/interface/user";
 
 interface MemberItemProps extends DefaultMemberItemProps {
-  user: IUser;
+  user: {
+    name?: string;
+  };
   handleClick: any;
 }
 

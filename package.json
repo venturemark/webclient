@@ -78,6 +78,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "@plasmicapp/cli": "^0.1.152",
+    "@types/google-protobuf": "^3.15.2",
     "prettier": "^2.3.0",
     "react-snap": "^1.23.0"
   }

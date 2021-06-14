@@ -68,7 +68,7 @@ function SidebarItem(props: SidebarItemProps) {
   return (
     <PlasmicSidebarItem
       {...rest}
-      isUserOnClick={userRole === "isOwner" ? isUserOnClick : false}
+      isUserOnClick={userRole === "owner" ? isUserOnClick : false}
       icon={{
         onClick: (e) => {
           e.stopPropagation();
@@ -78,9 +78,14 @@ function SidebarItem(props: SidebarItemProps) {
         },
       }}
       iconButton={{
-        onClick: (e) => {
-          e.stopPropagation();
-          setIsUserOnClick(!isUserOnClick);
+        wrap(node) {
+          return userRole === "owner" ? node : null;
+        },
+        props: {
+          onClick: (e) => {
+            e.stopPropagation();
+            setIsUserOnClick(!isUserOnClick);
+          },
         },
       }}
       onClick={() => {

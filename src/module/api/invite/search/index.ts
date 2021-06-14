@@ -37,16 +37,18 @@ export async function Search(searchInvite: ISearchInvite): Promise<IInvite[]> {
           const propertiesPb = invitePb.getProperty();
           const metaPb = invitePb.getMetadataMap();
 
-          const id = metaPb.get(key.InviteID);
-          const ventureId = metaPb.get(key.VentureID);
+          const id = metaPb.get(key.InviteID)!;
+          const ventureId = metaPb.get(key.VentureID)!;
           const email = propertiesPb?.getMail();
           const status = propertiesPb?.getStat();
-          const resource = metaPb.get(key.ResourceKind);
-          const role = metaPb.get(key.RoleKind);
+          const resource = metaPb.get(key.ResourceKind)!;
+          const role = metaPb.get(key.RoleKind)!;
+          const timelineId = metaPb.get(key.TimelineID);
 
           const invite: IInvite = {
-            id: id,
+            id,
             ventureId,
+            timelineId,
             email,
             resource,
             role,

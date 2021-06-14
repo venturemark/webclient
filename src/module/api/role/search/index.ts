@@ -36,11 +36,11 @@ export async function Search(searchRole: IAPISearchRole): Promise<IRole[]> {
         const roles = rolesPb.map((rolePb) => {
           const metaPb = rolePb.getMetadataMap();
 
-          const id = metaPb.get(key.RoleID);
-          const resource = metaPb.get(key.ResourceKind);
-          const roleKind = metaPb.get(key.RoleKind);
-          const subjectId = metaPb.get(key.SubjectID);
-          const ventureId = metaPb.get(key.VentureID);
+          const id = metaPb.get(key.RoleID)!;
+          const resource = metaPb.get(key.ResourceKind)!;
+          const roleKind = metaPb.get(key.RoleKind)!;
+          const subjectId = metaPb.get(key.SubjectID)!;
+          const ventureId = metaPb.get(key.VentureID)!;
 
           const role: IRole = {
             id,

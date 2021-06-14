@@ -38,7 +38,7 @@ export async function Create(createMessage: ICreateMessage): Promise<string> {
         const messagePbList = res.getObjList();
         const messagePbObject = messagePbList[0];
         const metaPb = messagePbObject?.getMetadataMap();
-        const messageId = metaPb.get(key.MessageID);
+        const messageId = metaPb.get(key.MessageID)!;
 
         resolve(messageId);
       }

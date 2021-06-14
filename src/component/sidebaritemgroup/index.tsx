@@ -14,10 +14,12 @@ interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureId: string;
   timelines: ITimeline[];
   userRole?: UserRole;
+  membersWrite: boolean;
 }
 
 function SidebarItemGroup(props: SidebarItemGroupProps) {
-  const { ventureName, ventureId, timelines, userRole, ...rest } = props;
+  const { ventureName, ventureId, timelines, userRole, membersWrite, ...rest } =
+    props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { ventureSlug, timelineSlug } = useParams();
   const navigate = useNavigate();
@@ -38,10 +40,13 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       return true;
   }
 
+  const isOwner =
+    userRole === "owner" || (userRole === "member" && membersWrite);
+
   return (
     <PlasmicSidebarItemGroup
       {...rest}
-      isOwner={userRole}
+      isOwner={isOwner ? "isOwner" : undefined}
       venture={{
         ventureName,
         userRole,
@@ -53,8 +58,10 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       }}
       isCollapsed={isCollapsed}
       newTimeline={{
-        ventureName: ventureName,
-        onClick: () => navigate(`${ventureSlug}/newtimeline`),
+        props: {
+          ventureName: ventureName,
+          onClick: () => navigate(`${ventureSlug}/newtimeline`),
+        },
       }}
       itemContainer={{
         children: sortedVentureTimelines?.map((timeline: ITimeline) => (

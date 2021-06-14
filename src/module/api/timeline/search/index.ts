@@ -52,9 +52,9 @@ export async function Search(
           let desc = propertiesPb?.getDesc() as string;
           let stat = propertiesPb?.getStat() as string;
 
-          let ventureId = metaPb.get(key.VentureID);
+          let ventureId = metaPb.get(key.VentureID)!;
           let userId = metaPb.get(key.UserID);
-          let id = metaPb.get(key.TimelineID);
+          let id = metaPb.get(key.TimelineID)!;
 
           let timeline: ITimeline = {
             name,
@@ -67,7 +67,6 @@ export async function Search(
           };
           return timeline;
         });
-        console.log(timelines);
         resolve(timelines);
       }
     });

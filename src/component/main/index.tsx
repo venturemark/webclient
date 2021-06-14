@@ -73,7 +73,6 @@ function Main(props: MainProps) {
   return (
     <PlasmicMain
       {...rest}
-      isOwner={true}
       isActive={isActive}
       variantType={variantType}
       mainHeader={{

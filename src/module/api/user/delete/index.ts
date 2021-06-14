@@ -29,7 +29,7 @@ export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
 
         const status = usersPb.map((userPb) => {
           const metaPb = userPb.getMetadataMap();
-          return metaPb.get(key.UserStatus) as IUser;
+          return metaPb.get(key.UserStatus) as unknown as IUser; // TODO: this is wrong
         });
         resolve(status);
       }

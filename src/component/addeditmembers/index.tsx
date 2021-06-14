@@ -100,16 +100,18 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   const allSuccess = ventureUsersSuccess && invitesSuccess;
 
-  console.log(currentVenture, currentTimeline);
-
   const array2 = invitesData
     ?.filter(
       (invite: IInvite) =>
         invite.status === "pending" &&
-        (!currentTimeline || currentTimeline.id === invite.timelineId)
+        (!currentTimeline ||
+          !invite.timelineId ||
+          currentTimeline.id === invite.timelineId)
     )
     .map((invite: IInvite) => ({
+      id: undefined,
       name: invite.email,
+      title: undefined,
     }));
 
   const membersAndInvites = allSuccess
@@ -165,12 +167,22 @@ function AddEditMembers(props: AddEditMembersProps) {
     );
   };
 
+  console.log(ventureRolesData);
+
+  let isOwner = false;
+  if (currentTimeline) {
+    isOwner = currentTimeline.userRole === "owner";
+  } else {
+    isOwner = currentVenture.userRole === "owner";
+  }
+
   return (
     <PlasmicAddEditMembers
       {...rest}
       form={{
         onSubmit: handleSubmit(handleInvite),
       }}
+      isOwner={isOwner ? "isOwner" : undefined}
       type={!currentTimeline ? undefined : "isTimeline"}
       email={{
         ...register("email", {
@@ -189,20 +201,22 @@ function AddEditMembers(props: AddEditMembersProps) {
       }}
       membersContainer={{
         children: !currentTimeline
-          ? membersAndInvites?.map((member: any) => (
+          ? membersAndInvites?.map((member) => (
               <MemberItem
                 userName={member.name}
                 user={member}
                 userVariant={
-                  member.title === "undefined"
+                  member.title === undefined
                     ? "isRequested"
                     : ventureRolesData?.filter(
                         (role: IRole) => role.subjectId === member.id
                       )[0]?.role === "owner"
                     ? "isOwner"
-                    : undefined
+                    : "isMember"
                 }
-                handleClick={() => handleRemoveMemberRole(member.id)}
+                handleClick={() =>
+                  member.id && handleRemoveMemberRole(member.id)
+                }
               />
             ))
           : membersAndInvites?.map((member: any) => (

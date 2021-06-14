@@ -39,7 +39,7 @@ export async function Delete(
         const status = messagesPb.map((messagePb) => {
           const metaPb = messagePb.getMetadataMap();
           const id = metaPb.get(key.MessageStatus);
-          return id as IMessage;
+          return id as unknown as IMessage; // TODO: check
         });
         resolve(status);
       }

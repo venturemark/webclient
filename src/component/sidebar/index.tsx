@@ -70,6 +70,7 @@ function Sidebar(props: SidebarProps) {
             key={venture.id}
             ventureId={venture.id}
             userRole={venture.userRole}
+            membersWrite={venture.membersWrite}
           />
         )),
       }}

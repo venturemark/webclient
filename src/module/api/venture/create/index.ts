@@ -37,8 +37,6 @@ export async function Create(createVenture: ICreateVenture) {
     obj.getMetadataMap().set(key.PermissionModel, "reader");
   }
 
-  console.log(obj);
-
   objList.push(obj);
   req.setObjList(objList);
 
@@ -50,7 +48,7 @@ export async function Create(createVenture: ICreateVenture) {
         const venturePbList = res.getObjList();
         const venturePbObject = venturePbList[0];
         const metaPb = venturePbObject?.getMetadataMap();
-        const ventureId = metaPb.get(key.VentureID);
+        const ventureId = metaPb.get(key.VentureID)!;
         resolve(ventureId);
       }
     });
