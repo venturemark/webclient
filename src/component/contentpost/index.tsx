@@ -137,9 +137,7 @@ function ContentPost(props: ContentPostProps) {
       photoAvatar={{ user: postUser }}
       date={date}
       dropdown={{
-        handleClick: () => {
-          handleDeleteUpdate();
-        },
+        onClick: handleDeleteUpdate,
       }}
       viewReplies={{
         count: count,

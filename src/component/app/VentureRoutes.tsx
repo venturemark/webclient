@@ -191,8 +191,6 @@ export function VentureRoutes(props: VentureRoutesProps) {
     return <Navigate replace to={`${ventureSlugRedirect}`} />;
   }
 
-  console.log(ventureContext);
-
   return (
     <VentureContext.Provider value={ventureContext}>
       <TimelineContext.Provider value={timelineContext}>

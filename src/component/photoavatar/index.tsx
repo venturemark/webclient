@@ -15,7 +15,7 @@ function PhotoAvatar(props: PhotoAvatarProps) {
   const { profileDropdown, setProfileDropdown, user, ...rest } = props;
 
   const userInitials =
-    user.name
+    user?.name
       ?.split(" ")
       .map((n: string) => n[0])
       .join("") ?? "";

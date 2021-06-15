@@ -83,14 +83,17 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
   left: auto;
   top: auto;
   bottom: auto;
   width: 100%;
   min-width: 0;
   padding: 10px 30px;
+}
+.box__vgJde > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 .box__isPublic__vgJdexw1PM {
   display: flex;

@@ -93,12 +93,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={
-        hasVariant(variants, "variantState", "isEdit") &&
-        hasVariant(globalVariants, "screen", "mobile")
-          ? true
-          : false
-      }
+      hasGap={true}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__variantState_isEdit]: hasVariant(
           variants,

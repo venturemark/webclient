@@ -146,9 +146,7 @@ function PlasmicSidebar__RenderFunc(props: {
           {(hasVariant(variants, "isPublic", "isPublic") ? true : true) ? (
             <p.Stack
               as={"div"}
-              hasGap={
-                hasVariant(variants, "isPublic", "isPublic") ? true : false
-              }
+              hasGap={true}
               className={classNames(defaultcss.all, sty.box__vgJde, {
                 [sty.box__isPublic__vgJdexw1PM]: hasVariant(
                   variants,

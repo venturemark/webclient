@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { ForwardedRef, forwardRef, MouseEventHandler } from "react";
 
 import {
   DefaultIconButtonProps,
@@ -9,9 +9,15 @@ interface IconButtonProps extends DefaultIconButtonProps {
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-function IconButton(props: IconButtonProps) {
+function IconButton(props: IconButtonProps, ref: ForwardedRef<HTMLDivElement>) {
   const { onClick, ...rest } = props;
-  return <PlasmicIconButton onClick={onClick} {...rest} />;
+  return (
+    <PlasmicIconButton
+      onClick={onClick}
+      overrides={{ root: { ref } }}
+      {...rest}
+    />
+  );
 }
 
-export default IconButton;
+export default forwardRef(IconButton);

@@ -107,9 +107,12 @@
   display: flex;
   position: relative;
   flex-direction: row;
+  align-self: center;
+}
+.box__z9Te4 > :global(.__wab_flex-container) {
+  flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  align-self: center;
 }
 .box__editProfile__z9Te4OylNj > :global(.__wab_flex-container) {
   margin-left: calc(0px - 22px);

@@ -73,9 +73,7 @@ function ReplyContent(props: ReplyContentProps) {
       }}
       isUserOnClick={showMenu}
       dropdown={{
-        handleClick: () => {
-          handleDeleteMessage();
-        },
+        onClick: handleDeleteMessage,
       }}
       userName={user?.name}
       text={text}

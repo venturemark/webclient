@@ -104,7 +104,6 @@ function PlasmicPostDetails__RenderFunc(props: {
             data-plasmic-name={"close"}
             data-plasmic-override={overrides.close}
             className={classNames("__wab_instance", sty.close)}
-            iconSize={"large" as const}
           >
             <IconCloseIcon
               data-plasmic-name={"svg"}

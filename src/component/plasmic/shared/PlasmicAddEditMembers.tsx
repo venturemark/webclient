@@ -334,7 +334,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               defaultContents: "example@email.com",
               value: args.slot43,
             })}
-            userVariant={"isRequested" as const}
+            userVariant={"isMember" as const}
           />
 
           <MemberItem

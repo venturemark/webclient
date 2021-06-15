@@ -57,13 +57,14 @@
 .feedContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 10px /* plasmic-token: 4LaooeLwj */;
 }
-.span__cMnx {
+.span__z3 {
   position: relative;
   width: auto;
   height: auto;
   left: auto;
   top: auto;
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+  font-weight: 600;
 }
 .date {
   position: relative;

@@ -223,9 +223,7 @@ function PlasmicProfileForm__RenderFunc(props: {
       {(hasVariant(variants, "editProfile", "editProfile") ? true : true) ? (
         <p.Stack
           as={"div"}
-          hasGap={
-            hasVariant(variants, "editProfile", "editProfile") ? true : false
-          }
+          hasGap={true}
           className={classNames(defaultcss.all, sty.box__z9Te4, {
             [sty.box__editProfile__z9Te4OylNj]: hasVariant(
               variants,

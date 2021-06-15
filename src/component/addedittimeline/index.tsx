@@ -45,7 +45,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      membersWrite: true,
+      membersWrite: currentTimeline?.membersWrite ?? true,
       timelineDescription: currentTimeline?.desc || "",
       timelineName: currentTimeline?.name || "",
     },
@@ -118,6 +118,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   return (
     <PlasmicAddEditTimeline
       {...rest}
+      isOwner={currentVenture?.userRole === "owner" ? "isOwner" : undefined}
       variantState={isEdit}
       settings={{
         onSubmit: handleSubmit(handleCreate),
@@ -133,6 +134,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           setValue("timelineName", e);
           trigger("timelineName");
         },
+        value: values.timelineName,
         message: errors.timelineName?.message,
       }}
       description={{
@@ -146,6 +148,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           setValue("timelineDescription", e);
           trigger("timelineDescription");
         },
+        value: values.timelineDescription,
         message: errors.timelineDescription?.message,
       }}
       _switch={{
@@ -153,7 +156,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         onChange(e) {
           setValue("membersWrite", e);
         },
-        defaultSelected: true,
+        isSelected: values.membersWrite,
         name: "membersWrite",
         children: "Allow members to create updates",
       }}

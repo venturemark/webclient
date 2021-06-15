@@ -79,6 +79,9 @@ function PlasmicSignin__RenderFunc(props: {
 
   return (
     <React.Fragment>
+      {}
+      {}
+
       <div className={defaultcss.plasmic_page_wrapper}>
         <p.Stack
           as={"div"}
@@ -86,7 +89,7 @@ function PlasmicSignin__RenderFunc(props: {
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
-          hasGap={hasVariant(globalVariants, "screen", "mobile") ? true : false}
+          hasGap={true}
           className={classNames(
             defaultcss.all,
             projectcss.root_reset,
@@ -177,13 +180,7 @@ function PlasmicSignin__RenderFunc(props: {
           </div>
 
           <div className={classNames(defaultcss.all, sty.box___9M06)}>
-            <p.Stack
-              as={"div"}
-              hasGap={
-                hasVariant(globalVariants, "screen", "mobile") ? true : false
-              }
-              className={classNames(defaultcss.all, sty.box___5GI8X)}
-            >
+            <div className={classNames(defaultcss.all, sty.box___5GI8X)}>
               <p.Stack
                 as={"div"}
                 hasGap={true}
@@ -291,7 +288,7 @@ function PlasmicSignin__RenderFunc(props: {
                   </Button>
                 ) : null}
               </p.Stack>
-            </p.Stack>
+            </div>
           </div>
         </p.Stack>
       </div>

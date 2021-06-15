@@ -237,11 +237,7 @@ function PlasmicMainHeader__RenderFunc(props: {
               ) ? (
                 <p.Stack
                   as={"div"}
-                  hasGap={
-                    hasVariant(variants, "headerStyles", "timelineHeader")
-                      ? true
-                      : false
-                  }
+                  hasGap={true}
                   className={classNames(defaultcss.all, sty.box___6YZlv, {
                     [sty.box__headerStyles_timelineHeader___6YZlvRxxpi]:
                       hasVariant(variants, "headerStyles", "timelineHeader"),

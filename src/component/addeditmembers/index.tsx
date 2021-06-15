@@ -1,3 +1,4 @@
+import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
@@ -167,13 +168,11 @@ function AddEditMembers(props: AddEditMembersProps) {
     );
   };
 
-  console.log(ventureRolesData);
-
-  let isOwner = false;
-  if (currentTimeline) {
-    isOwner = currentTimeline.userRole === "owner";
-  } else {
-    isOwner = currentVenture.userRole === "owner";
+  let isOwner: SingleBooleanChoiceArg<"isOwner"> = false;
+  if (currentTimeline && currentTimeline.userRole === "owner") {
+    isOwner = "isOwner";
+  } else if (currentVenture && currentVenture.userRole === "owner") {
+    isOwner = "isOwner";
   }
 
   return (
@@ -182,7 +181,7 @@ function AddEditMembers(props: AddEditMembersProps) {
       form={{
         onSubmit: handleSubmit(handleInvite),
       }}
-      isOwner={isOwner ? "isOwner" : undefined}
+      isOwner={isOwner}
       type={!currentTimeline ? undefined : "isTimeline"}
       email={{
         ...register("email", {

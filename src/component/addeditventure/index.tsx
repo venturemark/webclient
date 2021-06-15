@@ -1,3 +1,4 @@
+import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -100,9 +101,15 @@ function AddEditVenture(props: AddEditVentureProps) {
     }
   };
 
+  let isOwner: SingleBooleanChoiceArg<"isOwner"> = false;
+  if (!currentVenture || currentVenture.userRole === "owner") {
+    isOwner = "isOwner";
+  }
+
   return (
     <PlasmicAddEditVenture
       {...rest}
+      isOwner={isOwner}
       variantState={isEdit}
       settings={{
         onSubmit: handleSubmit(handleCreate),

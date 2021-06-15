@@ -1,3 +1,4 @@
+import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 
@@ -15,7 +16,7 @@ import {
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
-import { IUser } from "module/interface/user";
+import { IUser, UserRole } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
@@ -26,6 +27,26 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   setIsVisible: any;
   isVisible: any;
   setPost: any;
+}
+
+type RestrictedResource = {
+  userRole?: UserRole;
+  membersWrite: boolean;
+};
+
+function resourceOwnership(
+  resource?: RestrictedResource
+): SingleBooleanChoiceArg<"isOwner"> {
+  if (!resource) {
+    return false;
+  }
+  if (resource.userRole === "owner") {
+    return "isOwner";
+  }
+  if (resource.userRole === "member" && resource.membersWrite) {
+    return "isOwner";
+  }
+  return false;
 }
 
 function FeedUpdate(props: FeedUpdateProps) {
@@ -112,6 +133,7 @@ function FeedUpdate(props: FeedUpdateProps) {
   return (
     <PlasmicFeedUpdate
       {...rest}
+      isOwner={resourceOwnership(currentTimeline || currentVenture)}
       actionBar={{
         ventureId,
         timelines,

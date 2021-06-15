@@ -118,6 +118,9 @@
   display: flex;
   position: relative;
   flex-direction: row;
+}
+.box___6YZlv > :global(.__wab_flex-container) {
+  flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
 }

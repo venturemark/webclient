@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -7,6 +7,7 @@ import {
   PlasmicHeader,
 } from "component/plasmic/shared/PlasmicHeader";
 import { UserContext } from "context/UserContext";
+import useOnClickOutside from "module/hook/ui/useOnClickOutside";
 import { IUser } from "module/interface/user";
 
 type IsVisible = "mobileSidebar" | "postDetails" | "showModal";
@@ -17,7 +18,7 @@ interface HeaderProps extends DefaultHeaderProps {
   user: IUser;
 }
 
-function Header(props: HeaderProps) {
+export default function Header(props: HeaderProps) {
   const { isVisible, setIsVisible, user, ...rest } = props;
   const { isAuthenticated } = useAuth0();
   const [profileDropdown, setProfileDropdown] = useState(false);
@@ -25,20 +26,11 @@ function Header(props: HeaderProps) {
   const userContext = useContext(UserContext);
   const hasUser = userContext?.user;
 
-  useEffect(() => {
-    const handleWindowClick = () => setProfileDropdown(false);
-    if (profileDropdown) {
-      window.addEventListener("click", handleWindowClick);
-      window.addEventListener("keydown", handleWindowClick);
-    } else {
-      window.removeEventListener("click", handleWindowClick);
-      window.removeEventListener("keydown", handleWindowClick);
-    }
-    return () => {
-      window.removeEventListener("click", handleWindowClick);
-      window.removeEventListener("keydown", handleWindowClick);
-    };
-  }, [profileDropdown, setProfileDropdown]);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useOnClickOutside(ref, () => {
+    setProfileDropdown(false);
+  });
 
   function toggleMobileSidebar() {
     const nextValue =
@@ -49,6 +41,9 @@ function Header(props: HeaderProps) {
   return (
     <PlasmicHeader
       {...rest}
+      root={{
+        ref,
+      }}
       profileDropdown={profileDropdown}
       toggleMobileSidebar={{
         visibility: setIsVisible ? "visible" : "hidden",
@@ -81,5 +76,3 @@ function Header(props: HeaderProps) {
     />
   );
 }
-
-export default Header;

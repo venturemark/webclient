@@ -1,12 +1,15 @@
 .root {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-end;
   padding-top: 28px;
   position: relative;
 }
-.root__variantState_isEdit {
+.root > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+.root__variantState_isEdit > :global(.__wab_flex-container) {
   justify-content: space-between;
 }
 @media (max-width: 767px) {

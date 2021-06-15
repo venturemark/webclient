@@ -1,5 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
 
 import {
   DefaultProfileDropdownProps,
@@ -25,7 +24,6 @@ function ProfileDropdown(props: ProfileDropdownProps) {
     ...rest
   } = props;
   const { user: authUser, logout } = useAuth0();
-  const navigate = useNavigate();
 
   const userInitials =
     user?.name
@@ -44,13 +42,16 @@ function ProfileDropdown(props: ProfileDropdownProps) {
         user,
       }}
       viewProfile={{
+        href: "/editprofile",
         onClick: () => {
           setProfileDropdown(!profileDropdown);
-          navigate("/editprofile");
         },
       }}
       logout={{
-        onClick: () => logout(),
+        onClick() {
+          console.log("logout");
+          logout();
+        },
       }}
       close={{
         onClick: () => setProfileDropdown(!profileDropdown),

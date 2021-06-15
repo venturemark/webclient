@@ -60,7 +60,6 @@ function ActionBar(props: ActionBarProps) {
     ).length > 0;
 
   const [isActive, setIsActive] = useState(false);
-  const [isTimelineSelected] = useState(false);
   const [selectFocused, setSelectFocused] = useState(false);
 
   const { mutate: createUpdate } = useCreateUpdate();
@@ -98,7 +97,8 @@ function ActionBar(props: ActionBarProps) {
     <PlasmicActionBar
       {...rest}
       onClick={() => setIsActive(true)}
-      isActive={isActive}
+      isActive={isActive ? "isActive" : false}
+      timelineSelected={true}
       form={{
         onSubmit: handleSubmit(handlePost),
       }}
@@ -154,14 +154,12 @@ function ActionBar(props: ActionBarProps) {
           width: "100%",
         },
       }}
-      shareToContainer={{
-        style: {
-          width: "100%",
-        },
-      }}
-      tagsContainer={{
+      selectedItemsContainer={{
         as: TimelineSelect,
         props: {
+          style: {
+            width: "100%",
+          },
           ventureId,
           selectedTimelines,
           setSelectedTimelines,
@@ -183,7 +181,6 @@ function ActionBar(props: ActionBarProps) {
       errorMessage={{
         message: errors.title?.message || errors.description?.message,
       }}
-      timelineSelected={isTimelineSelected}
     />
   );
 }

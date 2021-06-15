@@ -4,23 +4,31 @@ import {
 } from "component/plasmic/shared/PlasmicDropdown";
 
 interface DropdownProps extends DefaultDropdownProps {
-  timelineHandle: string;
-  isTimeline: boolean;
-  ventureHandle: string;
-  handleClick: any;
+  href: string;
+  onClick?: () => void;
 }
 
 function Dropdown(props: DropdownProps) {
-  const { timelineHandle, isTimeline, ventureHandle, handleClick, ...rest } =
-    props;
+  const { href, ...rest } = props;
 
   return (
     <PlasmicDropdown
       {...rest}
       onClick={(e) => {
         e.stopPropagation();
-        handleClick();
+        props.onClick?.();
       }}
+      overrides={
+        href
+          ? {
+              listItem: {
+                props: {
+                  href,
+                },
+              },
+            }
+          : {}
+      }
     />
   );
 }

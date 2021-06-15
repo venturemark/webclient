@@ -52,11 +52,15 @@
 .tags:global(.__wab_instance) {
   position: relative;
 }
-.svg__nb0Dj {
+.text2__userVariant_isRequested {
+  color: #616161;
+}
+.svg__qiM99 {
   position: relative;
   object-fit: cover;
   width: 12px;
   height: 10px;
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
 .svg {
   position: relative;

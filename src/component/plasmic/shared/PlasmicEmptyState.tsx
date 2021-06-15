@@ -111,15 +111,7 @@ function PlasmicEmptyState__RenderFunc(props: {
         data-plasmic-override={overrides.root}
         data-plasmic-root={true}
         data-plasmic-for-node={forNode}
-        hasGap={
-          hasVariant(variants, "variantType", "isEmpty") ||
-          (hasVariant(variants, "variantType", "isEmpty") &&
-            hasVariant(variants, "isActive", "settings")) ||
-          (hasVariant(variants, "isActive", "members") &&
-            hasVariant(variants, "variantType", "isEmpty"))
-            ? true
-            : false
-        }
+        hasGap={true}
         className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
           [sty.root__isActive_isNew_variantType_isVenture]:
             hasVariant(variants, "isActive", "isNew") &&
@@ -145,15 +137,7 @@ function PlasmicEmptyState__RenderFunc(props: {
             ? true
             : false
         ) ? (
-          <p.Stack
-            as={"div"}
-            hasGap={
-              hasVariant(variants, "variantType", "isEmpty") ||
-              (hasVariant(variants, "isActive", "isNew") &&
-                hasVariant(variants, "variantType", "isEmpty"))
-                ? true
-                : false
-            }
+          <div
             className={classNames(defaultcss.all, sty.box___2ILiu, {
               [sty.box__isActive_isNew_variantType_isEmpty___2ILiuTn7O1Hwthy]:
                 hasVariant(variants, "isActive", "isNew") &&
@@ -239,18 +223,10 @@ function PlasmicEmptyState__RenderFunc(props: {
                   : "A venture is a "}
               </div>
             ) : null}
-          </p.Stack>
+          </div>
         ) : null}
         {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
-          <p.Stack
-            as={"div"}
-            hasGap={
-              hasVariant(variants, "variantType", "isEmpty") ||
-              (hasVariant(variants, "isActive", "isNew") &&
-                hasVariant(variants, "variantType", "isEmpty"))
-                ? true
-                : false
-            }
+          <div
             className={classNames(defaultcss.all, sty.box__xLwhc, {
               [sty.box__isActive_isNew_variantType_isEmpty__xLwhcTn7O1Hwthy]:
                 hasVariant(variants, "isActive", "isNew") &&
@@ -265,12 +241,7 @@ function PlasmicEmptyState__RenderFunc(props: {
             {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
               <p.Stack
                 as={"div"}
-                hasGap={
-                  hasVariant(variants, "variantType", "isEmpty") &&
-                  hasVariant(globalVariants, "screen", "mobile")
-                    ? true
-                    : false
-                }
+                hasGap={true}
                 className={classNames(defaultcss.all, sty.box__rHe6S, {
                   [sty.box__isActive_isNew_variantType_isEmpty__rHe6STn7O1Hwthy]:
                     hasVariant(variants, "isActive", "isNew") &&
@@ -285,13 +256,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                 {(
                   hasVariant(variants, "variantType", "isEmpty") ? true : false
                 ) ? (
-                  <p.Stack
-                    as={"div"}
-                    hasGap={
-                      hasVariant(variants, "variantType", "isEmpty")
-                        ? true
-                        : false
-                    }
+                  <div
                     className={classNames(defaultcss.all, sty.box__qYFj1, {
                       [sty.box__variantType_isEmpty__qYFj1Hwthy]: hasVariant(
                         variants,
@@ -354,7 +319,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                           : "Use timelines to organize stories for your group of audiences."}
                       </div>
                     ) : null}
-                  </p.Stack>
+                  </div>
                 ) : null}
                 {(
                   hasVariant(variants, "isActive", "isNew") &&
@@ -491,12 +456,7 @@ function PlasmicEmptyState__RenderFunc(props: {
             {(hasVariant(variants, "variantType", "isEmpty") ? false : true) ? (
               <p.Stack
                 as={"div"}
-                hasGap={
-                  hasVariant(variants, "variantType", "isEmpty") &&
-                  hasVariant(globalVariants, "screen", "mobile")
-                    ? true
-                    : false
-                }
+                hasGap={true}
                 className={classNames(defaultcss.all, sty.box___77Ib2, {
                   [sty.box__variantType_isEmpty___77Ib2Hwthy]: hasVariant(
                     variants,
@@ -508,13 +468,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                 {(
                   hasVariant(variants, "variantType", "isEmpty") ? true : false
                 ) ? (
-                  <p.Stack
-                    as={"div"}
-                    hasGap={
-                      hasVariant(variants, "variantType", "isEmpty")
-                        ? true
-                        : false
-                    }
+                  <div
                     className={classNames(defaultcss.all, sty.box__rfS5, {
                       [sty.box__variantType_isEmpty__rfS5Hwthy]: hasVariant(
                         variants,
@@ -565,7 +519,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                           : "Join or sign into an existing organization"}
                       </div>
                     ) : null}
-                  </p.Stack>
+                  </div>
                 ) : null}
                 {(
                   hasVariant(variants, "variantType", "isEmpty") ? true : false
@@ -623,7 +577,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                 ) : null}
               </p.Stack>
             ) : null}
-          </p.Stack>
+          </div>
         ) : null}
       </p.Stack>
     ) : null
