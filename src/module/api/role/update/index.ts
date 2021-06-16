@@ -46,7 +46,7 @@ export async function Update(updateRole: IUpdateRole): Promise<IRole[]> {
         const metaPb = rolePb.getMetadataMap();
         const status = metaPb.get(key.RoleStatus);
 
-        resolve(status);
+        resolve(status as unknown as IRole[]); // TODO: check
       }
     });
   });

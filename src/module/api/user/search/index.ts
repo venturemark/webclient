@@ -40,7 +40,7 @@ export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
           const propertiesPb = userPb.getProperty();
           const metaPb = userPb.getMetadataMap();
 
-          const id = metaPb.get(key.UserID);
+          const id = metaPb.get(key.UserID)!;
           const name = propertiesPb?.getName() as string;
           const title = propertiesPb?.getDesc() as string;
           const profPb = propertiesPb?.getProfList()[0];

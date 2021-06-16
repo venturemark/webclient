@@ -39,6 +39,9 @@
 .button__buttonStyle_blue {
   background: rgb(46, 129, 184);
 }
+.button__buttonStyle_grey {
+  background: rgb(249, 249, 250);
+}
 .button__disabled {
   opacity: 0.5;
 }
@@ -114,14 +117,17 @@
 .slotChildren__buttonFeatures_icon {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
+.slotChildren__buttonFeatures_icon_buttonStyle_secondaryGreen {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+}
 .slotChildren__buttonFeatures_icon_buttonStyle_red {
   color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
+.slotChildren__buttonStyle_grey_buttonFeatures_icon {
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
+}
 .slotChildren__buttonFeatures_icon_buttonStyle_secondaryPurple {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.slotChildren__buttonFeatures_icon_buttonStyle_secondaryGreen {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .root:focus-within .slotChildren > *,
 .root:focus-within .slotChildren > .__wab_slot > *,
@@ -134,5 +140,6 @@
   object-fit: cover;
   width: 12px;
   height: 10px;
+  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
   flex-shrink: 0;
 }

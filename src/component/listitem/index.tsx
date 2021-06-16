@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import {
   DefaultListItemProps,
   PlasmicListItem,
@@ -5,12 +7,28 @@ import {
 
 interface ListItemProps extends DefaultListItemProps {
   onClick?: () => void;
+  href?: string;
 }
 
 function ListItem(props: ListItemProps) {
-  const { onClick, ...rest } = props;
+  const { href, onClick, ...rest } = props;
 
-  return <PlasmicListItem onClick={onClick} {...rest} />;
+  return (
+    <PlasmicListItem
+      {...rest}
+      onClick={onClick}
+      link={
+        href
+          ? {
+              as: Link,
+              props: {
+                to: href,
+              },
+            }
+          : {}
+      }
+    />
+  );
 }
 
 export default ListItem;

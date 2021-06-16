@@ -35,8 +35,13 @@ export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
 
         const status = updatesPb.map((updatePb) => {
           const metaPb = updatePb.getMetadataMap();
-          const id = metaPb.get(key.UpdateStatus);
-          return id as IUpdate;
+          const id = metaPb.get(key.UpdateStatus)!;
+          const update: IUpdate = {
+            id,
+            timelineId: deleteUpdate.timelineId,
+            ventureId: deleteUpdate.ventureId,
+          };
+          return update;
         });
         resolve(status);
       }

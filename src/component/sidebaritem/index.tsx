@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
   DefaultSidebarItemProps,
   PlasmicSidebarItem,
 } from "component/plasmic/shared/PlasmicSidebarItem";
+import useOnClickOutside from "module/hook/ui/useOnClickOutside";
 import { UserRole } from "module/interface/user";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
@@ -17,6 +18,7 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   isCollapsed?: boolean;
   itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
+
 function SidebarItem(props: SidebarItemProps) {
   const {
     timelineName,
@@ -29,7 +31,7 @@ function SidebarItem(props: SidebarItemProps) {
     userRole,
     ...rest
   } = props;
-  const [isUserOnClick, setIsUserOnClick] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
   const ventureHandle =
     typeof ventureName === "string"
@@ -47,43 +49,40 @@ function SidebarItem(props: SidebarItemProps) {
 
   const editLink =
     itemType === "timeline"
-      ? `/${ventureHandle}/${timelineHandle}`
-      : `/${ventureHandle}`;
+      ? `/${ventureHandle}/${timelineHandle}/settings`
+      : `/${ventureHandle}/settings`;
 
-  useEffect(() => {
-    const handleWindowClick = () => setIsUserOnClick(false);
-    if (isUserOnClick) {
-      window.addEventListener("click", handleWindowClick);
-      window.addEventListener("keydown", handleWindowClick);
-    } else {
-      window.removeEventListener("click", handleWindowClick);
-      window.removeEventListener("keydown", handleWindowClick);
-    }
-    return () => {
-      window.removeEventListener("click", handleWindowClick);
-      window.removeEventListener("keydown", handleWindowClick);
-    };
-  }, [isUserOnClick, setIsUserOnClick, userRole]);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useOnClickOutside(ref, () => {
+    setDropdownVisible(false);
+  });
 
   return (
     <PlasmicSidebarItem
       {...rest}
-      isUserOnClick={userRole === "isOwner" ? isUserOnClick : false}
+      root={{
+        ref,
+      }}
+      isDropdown={dropdownVisible ? "isDropdown" : undefined}
+      isOwner={userRole === "owner" ? "isOwner" : undefined}
       icon={{
         onClick: (e) => {
-          e.stopPropagation();
+          e.stopPropagation(); // Prevent root onClick from triggering when collapsing group
+          setDropdownVisible(false);
           itemType !== "createTimeline" &&
             itemType !== "timeline" &&
             setIsCollapsed(!isCollapsed);
         },
       }}
       iconButton={{
-        onClick: (e) => {
-          e.stopPropagation();
-          setIsUserOnClick(!isUserOnClick);
+        onClick(e) {
+          e.stopPropagation(); // Prevent root onClick from triggering when opening dropdown
+          setDropdownVisible(!dropdownVisible);
         },
       }}
       onClick={() => {
+        setDropdownVisible(false);
         itemType !== "createTimeline"
           ? navigate(link)
           : navigate(`/${ventureHandle}/newtimeline`);
@@ -97,12 +96,9 @@ function SidebarItem(props: SidebarItemProps) {
           : ventureName
       }
       dropdown={{
-        timelineHandle,
-        ventureHandle,
-        isTimeline: itemType === "timeline" ? true : false,
-        handleClick: () => {
-          navigate(editLink + "/settings");
-          setIsUserOnClick(false);
+        href: editLink,
+        onClick: () => {
+          setDropdownVisible(false);
         },
       }}
     />

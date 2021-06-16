@@ -46,9 +46,10 @@ import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-impor
 export type PlasmicSidebarItem__VariantMembers = {
   itemType: "timeline" | "createTimeline" | "ventureCollapsed";
   isActive: "isActive";
-  isUserOnClick: "isUserOnClick";
+  isOwner: "isOwner";
   isVisible: "isVisible";
   isPublic: "isPublic";
+  isDropdown: "isDropdown";
 };
 
 export type PlasmicSidebarItem__VariantsArgs = {
@@ -56,18 +57,20 @@ export type PlasmicSidebarItem__VariantsArgs = {
     "timeline" | "createTimeline" | "ventureCollapsed"
   >;
   isActive?: SingleBooleanChoiceArg<"isActive">;
-  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
   isVisible?: SingleBooleanChoiceArg<"isVisible">;
   isPublic?: SingleBooleanChoiceArg<"isPublic">;
+  isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
 };
 
 type VariantPropType = keyof PlasmicSidebarItem__VariantsArgs;
 export const PlasmicSidebarItem__VariantProps = new Array<VariantPropType>(
   "itemType",
   "isActive",
-  "isUserOnClick",
+  "isOwner",
   "isVisible",
-  "isPublic"
+  "isPublic",
+  "isDropdown"
 );
 
 export type PlasmicSidebarItem__ArgsType = {
@@ -91,9 +94,10 @@ export interface DefaultSidebarItemProps {
     "timeline" | "createTimeline" | "ventureCollapsed"
   >;
   isActive?: SingleBooleanChoiceArg<"isActive">;
-  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
+  isOwner?: SingleBooleanChoiceArg<"isOwner">;
   isVisible?: SingleBooleanChoiceArg<"isVisible">;
   isPublic?: SingleBooleanChoiceArg<"isPublic">;
+  isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
   className?: string;
 }
 
@@ -119,15 +123,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
-        [sty.root__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
-        [sty.root__isUserOnClick]: hasVariant(
-          variants,
-          "isUserOnClick",
-          "isUserOnClick"
-        ),
-        [sty.root__isUserOnClick_itemType_timeline]:
-          hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+        [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
+        [sty.root__isOwner_itemType_timeline]:
+          hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "itemType", "timeline"),
+        [sty.root__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
         [sty.root__itemType_createTimeline]: hasVariant(
           variants,
           "itemType",
@@ -161,11 +161,31 @@ function PlasmicSidebarItem__RenderFunc(props: {
             [sty.itemContainer__isActive_itemType_createTimeline]:
               hasVariant(variants, "isActive", "isActive") &&
               hasVariant(variants, "itemType", "createTimeline"),
-            [sty.itemContainer__isUserOnClick]: hasVariant(
+            [sty.itemContainer__isDropdown]: hasVariant(
               variants,
-              "isUserOnClick",
-              "isUserOnClick"
+              "isDropdown",
+              "isDropdown"
             ),
+            [sty.itemContainer__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.itemContainer__isOwner_isDropdown]:
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "isDropdown", "isDropdown"),
+            [sty.itemContainer__isPublic]: hasVariant(
+              variants,
+              "isPublic",
+              "isPublic"
+            ),
+            [sty.itemContainer__isPublic_isOwner]:
+              hasVariant(variants, "isPublic", "isPublic") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+            [sty.itemContainer__isPublic_isOwner_isDropdown]:
+              hasVariant(variants, "isPublic", "isPublic") &&
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "isDropdown", "isDropdown"),
             [sty.itemContainer__isVisible]: hasVariant(
               variants,
               "isVisible",
@@ -240,15 +260,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 [sty.icon__isActive_itemType_createTimeline]:
                   hasVariant(variants, "isActive", "isActive") &&
                   hasVariant(variants, "itemType", "createTimeline"),
+                [sty.icon__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
                 [sty.icon__isPublic]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
-                ),
-                [sty.icon__isUserOnClick]: hasVariant(
-                  variants,
-                  "isUserOnClick",
-                  "isUserOnClick"
                 ),
                 [sty.icon__itemType_createTimeline]: hasVariant(
                   variants,
@@ -395,22 +411,62 @@ function PlasmicSidebarItem__RenderFunc(props: {
             </p.Stack>
           ) : null}
 
-          <div className={classNames(defaultcss.all, sty.box__xZeoS)}>
+          <div
+            className={classNames(defaultcss.all, sty.box__xZeoS, {
+              [sty.box__itemType_createTimeline__xZeoSOuGst]: hasVariant(
+                variants,
+                "itemType",
+                "createTimeline"
+              ),
+              [sty.box__itemType_timeline__xZeoSoN3Wv]: hasVariant(
+                variants,
+                "itemType",
+                "timeline"
+              ),
+            })}
+          >
             {(
-              hasVariant(variants, "itemType", "createTimeline") &&
-              triggers.hover_root
+              hasVariant(variants, "isOwner", "isOwner") && triggers.hover_root
+                ? true
+                : hasVariant(variants, "itemType", "createTimeline") &&
+                  triggers.hover_root
                 ? false
                 : triggers.hover_root
                 ? true
-                : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+                : hasVariant(variants, "isOwner", "isOwner")
                 ? true
                 : hasVariant(variants, "itemType", "createTimeline")
                 ? false
-                : false
+                : true
             ) ? (
               <IconButton
                 data-plasmic-name={"iconButton"}
                 data-plasmic-override={overrides.iconButton}
+                className={classNames("__wab_instance", sty.iconButton, {
+                  [sty.iconButton__isActive]: hasVariant(
+                    variants,
+                    "isActive",
+                    "isActive"
+                  ),
+                  [sty.iconButton__isActive_itemType_createTimeline]:
+                    hasVariant(variants, "isActive", "isActive") &&
+                    hasVariant(variants, "itemType", "createTimeline"),
+                  [sty.iconButton__isOwner]: hasVariant(
+                    variants,
+                    "isOwner",
+                    "isOwner"
+                  ),
+                  [sty.iconButton__itemType_createTimeline]: hasVariant(
+                    variants,
+                    "itemType",
+                    "createTimeline"
+                  ),
+                  [sty.iconButton__itemType_timeline]: hasVariant(
+                    variants,
+                    "itemType",
+                    "timeline"
+                  ),
+                })}
                 greenBgHover={
                   hasVariant(variants, "isActive", "isActive") &&
                   triggers.hover_root
@@ -428,16 +484,16 @@ function PlasmicSidebarItem__RenderFunc(props: {
                       "isActive",
                       "isActive"
                     ),
-                    [sty.svg__isActive_isUserOnClick__zhtWcw0Xu8XgVg8]:
+                    [sty.svg__isActive_isOwner__zhtWcw0Xu8XgVg8]:
                       hasVariant(variants, "isActive", "isActive") &&
-                      hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+                      hasVariant(variants, "isOwner", "isOwner"),
                     [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
                       hasVariant(variants, "isActive", "isActive") &&
                       hasVariant(variants, "itemType", "createTimeline"),
-                    [sty.svg__isUserOnClick__zhtWcXgVg8]: hasVariant(
+                    [sty.svg__isOwner__zhtWcXgVg8]: hasVariant(
                       variants,
-                      "isUserOnClick",
-                      "isUserOnClick"
+                      "isOwner",
+                      "isOwner"
                     ),
                   })}
                   role={"img"}
@@ -447,28 +503,43 @@ function PlasmicSidebarItem__RenderFunc(props: {
           </div>
 
           {(
-            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
-            triggers.hover_root
+            hasVariant(variants, "isOwner", "isOwner") && triggers.hover_root
               ? true
-              : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+              : hasVariant(variants, "isDropdown", "isDropdown") &&
+                hasVariant(variants, "isOwner", "isOwner")
               ? true
-              : false
+              : hasVariant(variants, "isOwner", "isOwner")
+              ? true
+              : true
           ) ? (
             <Dropdown
               data-plasmic-name={"dropdown"}
               data-plasmic-override={overrides.dropdown}
               className={classNames("__wab_instance", sty.dropdown, {
-                [sty.dropdown__isUserOnClick]: hasVariant(
+                [sty.dropdown__isDropdown]: hasVariant(
                   variants,
-                  "isUserOnClick",
-                  "isUserOnClick"
+                  "isDropdown",
+                  "isDropdown"
                 ),
-                [sty.dropdown__isUserOnClick_itemType_timeline]:
-                  hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                [sty.dropdown__isDropdown_isOwner]:
+                  hasVariant(variants, "isDropdown", "isDropdown") &&
+                  hasVariant(variants, "isOwner", "isOwner"),
+                [sty.dropdown__isOwner]: hasVariant(
+                  variants,
+                  "isOwner",
+                  "isOwner"
+                ),
+                [sty.dropdown__isOwner_itemType_timeline]:
+                  hasVariant(variants, "isOwner", "isOwner") &&
                   hasVariant(variants, "itemType", "timeline"),
+                [sty.dropdown__itemType_createTimeline]: hasVariant(
+                  variants,
+                  "itemType",
+                  "createTimeline"
+                ),
               })}
               rename2={
-                hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "itemType", "timeline") &&
                 triggers.hover_root
                   ? "Edit Timeline"

@@ -1,16 +1,13 @@
+import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
 import { useContext, useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-import TextField from "component/inputtext";
-import InputTextArea from "component/inputtextarea";
 import {
   DefaultAddEditVentureProps,
   PlasmicAddEditVenture,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import { AuthContext } from "context/AuthContext";
-import { descriptionError, ventureNameError } from "module/errors";
-import { makeVentureUrl } from "module/helpers";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
 import { IVenture } from "module/interface/venture";
 
@@ -22,6 +19,8 @@ interface AddEditVentureProps extends DefaultAddEditVentureProps {
 }
 
 export type FormData = {
+  url: string;
+  membersWrite: boolean;
   ventureName: string;
   ventureDescription: string;
 };
@@ -31,12 +30,17 @@ function AddEditVenture(props: AddEditVentureProps) {
 
   const {
     handleSubmit,
-    control,
     watch,
     reset,
+    register,
+    setValue,
+    trigger,
     formState: { errors },
   } = useForm<FormData>({
+    mode: "onChange",
     defaultValues: {
+      membersWrite: true,
+      url: currentVenture?.url || "",
       ventureName: currentVenture?.name || "",
       ventureDescription: currentVenture?.desc || "",
     },
@@ -53,7 +57,6 @@ function AddEditVenture(props: AddEditVentureProps) {
   const { mutate: updateVenture } = useUpdateVenture();
 
   const navigate = useNavigate();
-  const venture = currentVenture;
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
   const ventureId = currentVenture?.id;
   const isEdit = ventureSlug && ventureSlug === handle ? "isEdit" : undefined;
@@ -64,83 +67,109 @@ function AddEditVenture(props: AddEditVentureProps) {
 
     if (isEdit) {
       if (!ventureId || !handle) return;
-      updateVenture({
-        id: ventureId,
-        name: data.ventureName,
-        desc: data.ventureDescription,
-        url: makeVentureUrl(newHandle),
-        successUrl: `/${newHandle}/feed`,
-        token,
-      });
+      updateVenture(
+        {
+          id: ventureId,
+          name: data.ventureName,
+          desc: data.ventureDescription,
+          url: data.url,
+          successUrl: `/${newHandle}/feed`,
+          token,
+        },
+        {
+          onSuccess() {
+            reset();
+          },
+        }
+      );
     } else {
-      createVenture({
-        name: data.ventureName,
-        desc: data.ventureDescription,
-        url: makeVentureUrl(newHandle),
-        successUrl: `/${newHandle}/feed`,
-        token,
-      });
+      createVenture(
+        {
+          name: data.ventureName,
+          desc: data.ventureDescription,
+          url: data.url,
+          membersWrite: data.membersWrite,
+          successUrl: `/${newHandle}/feed`,
+          token,
+        },
+        {
+          onSuccess() {
+            reset();
+          },
+        }
+      );
     }
-    reset();
   };
+
+  let isOwner: SingleBooleanChoiceArg<"isOwner"> = false;
+  if (!currentVenture || currentVenture.userRole === "owner") {
+    isOwner = "isOwner";
+  }
 
   return (
     <PlasmicAddEditVenture
       {...rest}
+      isOwner={isOwner}
       variantState={isEdit}
       settings={{
         onSubmit: handleSubmit(handleCreate),
       }}
       name={{
-        render() {
-          return (
-            <Controller
-              name="ventureName"
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label={"Name"}
-                  hasTextHelper={false}
-                  message={errors.ventureName && ventureNameError}
-                />
-              )}
-            />
-          );
+        ...register("ventureName", {
+          required: {
+            message: "Required",
+            value: true,
+          },
+        }),
+        onChange(e) {
+          setValue("ventureName", e);
+          trigger("ventureName");
         },
+        message: errors.ventureName?.message,
+        value: values.ventureName,
       }}
       description={{
-        render() {
-          return (
-            <Controller
-              name="ventureDescription"
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field }) => (
-                <InputTextArea
-                  {...field}
-                  children="Tell us a little bit about your venture."
-                  label={"Description"}
-                  hasTextHelper={true}
-                  message={errors.ventureDescription && descriptionError}
-                />
-              )}
-            />
-          );
+        ...register("ventureDescription", {
+          required: {
+            message: "Required",
+            value: true,
+          },
+        }),
+        onChange(e) {
+          setValue("ventureDescription", e);
+          trigger("ventureDescription");
         },
+        message: errors.ventureDescription?.message,
+        value: values.ventureDescription,
       }}
       url={{
-        name: "url",
-        defaultValue: venture?.url ?? "",
+        ...register("url", {
+          required: {
+            message: "Required",
+            value: true,
+          },
+          pattern: {
+            message: "Bad format",
+            value: /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/,
+          },
+        }),
+        onChange(e) {
+          setValue("url", e);
+          trigger("url");
+        },
+        placeholder: values.ventureName.toLowerCase().replace(/\s/g, ""),
+        message: errors.url?.message,
+        value: values.url,
       }}
       membersWrite={{
-        variantSettings: ["isSelected", "hasLabel"],
-        "aria-label": "members have write access switch",
+        ...register("membersWrite"),
+        onChange(e) {
+          setValue("membersWrite", e);
+          trigger("membersWrite");
+        },
+        name: "membersWrite",
+        children: "Allow members to create timelines",
+        isSelected: values.membersWrite,
       }}
       buttons={{
         handleDelete: () =>

@@ -117,15 +117,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
         </label>
       ) : null}
 
-      <p.Stack
-        as={"div"}
-        hasGap={
-          hasVariant(variants, "isHorizontal", "isHorizontal") ||
-          (hasVariant(variants, "hasLabel", "hasLabel") &&
-            hasVariant(variants, "isHorizontal", "isHorizontal"))
-            ? true
-            : false
-        }
+      <div
         className={classNames(defaultcss.all, sty.box__zgeS0, {
           [sty.box__hasLabel__zgeS0XNm45]: hasVariant(
             variants,
@@ -200,7 +192,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
         >
           {"Public"}
         </Radio>
-      </p.Stack>
+      </div>
     </p.Stack>
   ) as React.ReactElement | null;
 }

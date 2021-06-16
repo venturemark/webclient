@@ -63,7 +63,7 @@ export async function Update(
         const metaPb = timelinePb.getMetadataMap();
         const status = metaPb.get(key.TimelineStatus);
 
-        resolve(status as ITimeline[]);
+        resolve(status as unknown as ITimeline[]); // TODO: this is wrong
       }
     });
   });

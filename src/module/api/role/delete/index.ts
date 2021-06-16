@@ -36,7 +36,7 @@ export async function Delete(IDeleteRole: IAPIDeleteRole): Promise<IRole[]> {
         const status = rolesPb.map((rolePb) => {
           const metaPb = rolePb.getMetadataMap();
           const id = metaPb.get(key.RoleStatus);
-          return id as IRole;
+          return id as unknown as IRole; // TODO: check
         });
         resolve(status);
       }

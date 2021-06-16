@@ -6,6 +6,7 @@ export interface ITimeline {
   stat: string;
   ventureId: string;
   userId?: string;
+  membersWrite: boolean;
   id: string;
   date?: string;
   userRole?: UserRole;
@@ -25,6 +26,7 @@ export interface ICreateTimeline {
   name: string;
   desc: string;
   ventureId: string;
+  membersWrite: boolean;
   successUrl?: string;
   token: string | null;
 }

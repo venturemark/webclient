@@ -30,7 +30,7 @@ export async function Create(newRole: INewRole) {
         const rolePbList = res.getObjList();
         const rolePbObject = rolePbList[0];
         const metaPb = rolePbObject?.getMetadataMap();
-        const roleId = metaPb.get(key.RoleID);
+        const roleId = metaPb.get(key.RoleID)!;
         resolve(roleId);
       }
     });

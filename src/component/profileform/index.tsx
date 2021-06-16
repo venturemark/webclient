@@ -1,16 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useContext } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 
-import TextField from "component/inputtext";
 import {
   DefaultProfileFormProps,
   PlasmicProfileForm,
 } from "component/plasmic/shared/PlasmicProfileForm";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
-import { nameError, titleError } from "module/errors";
 import { useCreateUser } from "module/hook/user";
 
 interface ProfileFormProps extends DefaultProfileFormProps {
@@ -35,7 +33,10 @@ function ProfileForm(props: ProfileFormProps) {
   const {
     handleSubmit,
     formState: { errors },
-    control,
+    watch,
+    setValue,
+    trigger,
+    register,
   } = useForm<FormData>({
     defaultValues: {
       name: user?.name || authUser?.name || "",
@@ -44,6 +45,7 @@ function ProfileForm(props: ProfileFormProps) {
     mode: "onChange",
   });
 
+  const values = watch();
   const { mutate: saveUser } = useCreateUser();
 
   const handleSave = (data: any) => {
@@ -72,44 +74,28 @@ function ProfileForm(props: ProfileFormProps) {
         onSubmit: handleSubmit(handleSave),
       }}
       nameField={{
-        render() {
-          return (
-            <Controller
-              name="name"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label={"Full Name"}
-                  hasTextHelper={false}
-                  message={errors.name && nameError}
-                />
-              )}
-            />
-          );
+        ...register("name", {
+          required: true,
+          maxLength: 100,
+        }),
+        onChange(e: string) {
+          setValue("name", e);
+          trigger("name");
         },
+        value: values.name,
+        message: errors.name?.message,
       }}
       jobField={{
-        render() {
-          return (
-            <Controller
-              name="title"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label={"What I Do"}
-                  defaultValue={""}
-                  hasTextHelper={true}
-                  children={"Let people know what you do"}
-                  message={errors.title && titleError}
-                />
-              )}
-            />
-          );
+        ...register("title", {
+          required: true,
+          maxLength: 100,
+        }),
+        onChange(e: string) {
+          setValue("title", e);
+          trigger("title");
         },
+        value: values.title,
+        message: errors.title?.message,
       }}
       save={{
         onPress: () => handleSubmit(handleSave)(),

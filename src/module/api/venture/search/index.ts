@@ -40,16 +40,22 @@ export async function Search(
           const propertiesPb = venturePb.getProperty();
           const metaPb = venturePb.getMetadataMap();
 
+          let membersWrite = true;
+          if (metaPb.get(key.PermissionModel) === "reader") {
+            membersWrite = false;
+          }
+
           const name = propertiesPb?.getName() as string;
           const desc = propertiesPb?.getDesc() as string;
-          const linkAddress = propertiesPb?.getLinkList()[0].getAddr();
-          const id = metaPb.get(key.VentureID);
+          const url = propertiesPb?.getLinkList()[0].getAddr();
+          const id = metaPb.get(key.VentureID)!;
 
           return {
-            name: name,
-            desc: desc,
-            id: id,
-            url: linkAddress,
+            name,
+            desc,
+            id,
+            url,
+            membersWrite,
           };
         });
         resolve(ventures);

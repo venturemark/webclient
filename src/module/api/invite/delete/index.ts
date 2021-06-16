@@ -35,7 +35,7 @@ export async function Delete(IDeleteInvite: IDeleteInvite): Promise<IInvite[]> {
         const status = invitesPb.map((invitePb) => {
           const metaPb = invitePb.getMetadataMap();
           const id = metaPb.get(key.InviteStatus);
-          return id as IInvite;
+          return id as unknown as IInvite; // TODO: check
         });
         resolve(status);
       }

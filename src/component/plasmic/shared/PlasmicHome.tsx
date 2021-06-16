@@ -93,6 +93,9 @@ function PlasmicHome__RenderFunc(props: {
 
   return (
     <React.Fragment>
+      {}
+      {}
+
       <div className={defaultcss.plasmic_page_wrapper}>
         <div
           data-plasmic-name={"root"}
@@ -270,7 +273,7 @@ function PlasmicHome__RenderFunc(props: {
                   isOwner={
                     hasVariant(variants, "isVisible", "isPublic")
                       ? undefined
-                      : ("isOwner" as const)
+                      : undefined
                   }
                   isPublic={
                     hasVariant(variants, "isVisible", "isPublic")

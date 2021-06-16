@@ -51,8 +51,8 @@ export async function Update(updateInvite: IUpdateInvite) {
       } else {
         const invitePb = res.getObjList()[0];
         const metaPb = invitePb.getMetadataMap();
-        const status = metaPb.get(key.InviteStatus);
-        const role = metaPb.get(key.RoleStatus);
+        const status = metaPb.get(key.InviteStatus)!;
+        const role = metaPb.get(key.RoleStatus)!;
 
         resolve({
           role,

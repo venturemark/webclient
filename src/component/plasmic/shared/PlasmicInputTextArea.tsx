@@ -182,6 +182,7 @@ function PlasmicInputTextArea__RenderFunc(props: {
             data-plasmic-name={"input"}
             data-plasmic-override={overrides.input}
             className={classNames(defaultcss.textarea, sty.input, {
+              [sty.input__error]: hasVariant(variants, "error", "error"),
               [sty.input__isDisabled]: hasVariant(
                 variants,
                 "isDisabled",

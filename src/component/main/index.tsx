@@ -23,6 +23,11 @@ interface MainProps extends DefaultMainProps {
   user: IUser;
 }
 
+type EditData = {
+  description: string;
+  name: string;
+};
+
 function Main(props: MainProps) {
   const {
     isOnboarding,
@@ -43,14 +48,14 @@ function Main(props: MainProps) {
   const hasVentures =
     ventureContext && ventureContext?.ventures?.length > 0 ? true : false;
 
-  const [ventureData, setVentureData] = useState<VentureFormData>({
-    ventureName: "",
-    ventureDescription: "",
+  const [ventureData, setVentureData] = useState<EditData>({
+    name: "",
+    description: "",
   });
 
-  const [timelineData, setTimelineData] = useState<TimelineFormData>({
-    timelineDescription: "",
-    timelineName: "",
+  const [timelineData, setTimelineData] = useState<EditData>({
+    name: "",
+    description: "",
   });
 
   const currentTimeline = timelineSlug
@@ -68,7 +73,6 @@ function Main(props: MainProps) {
   return (
     <PlasmicMain
       {...rest}
-      isOwner={true}
       isActive={isActive}
       variantType={variantType}
       mainHeader={{
@@ -99,10 +103,13 @@ function Main(props: MainProps) {
         hasVentures,
         onChange(data: VentureFormData) {
           if (
-            data.ventureDescription !== ventureData.ventureDescription ||
-            data.ventureName !== ventureData.ventureName
+            data.ventureDescription !== ventureData.description ||
+            data.ventureName !== ventureData.name
           ) {
-            setVentureData(data);
+            setVentureData({
+              name: data.ventureName,
+              description: data.ventureDescription,
+            });
           }
         },
       }}
@@ -112,10 +119,13 @@ function Main(props: MainProps) {
         setIsVisible,
         onChange(data: TimelineFormData) {
           if (
-            data.timelineDescription !== timelineData.timelineDescription ||
-            data.timelineName !== timelineData.timelineName
+            data.timelineDescription !== timelineData.description ||
+            data.timelineName !== timelineData.name
           ) {
-            setTimelineData(data);
+            setTimelineData({
+              name: data.timelineName,
+              description: data.timelineDescription,
+            });
           }
         },
       }}

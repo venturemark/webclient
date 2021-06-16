@@ -118,6 +118,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         projectcss.root_reset,
         sty.settings,
         {
+          [sty.settings__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
           [sty.settings__variantState_isEdit]: hasVariant(
             variants,
             "variantState",
@@ -220,28 +221,67 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         {"Tell us a little bit about your timeline."}
       </InputTextArea>
 
-      {(hasVariant(globalVariants, "screen", "mobile") ? true : true) ? (
-        <p.Stack
-          as={"div"}
-          hasGap={hasVariant(globalVariants, "screen", "mobile") ? true : false}
-          className={classNames(defaultcss.all, sty.box__iyK9P)}
+      {(
+        hasVariant(variants, "variantState", "isEdit") &&
+        hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "variantState", "isEdit")
+          ? false
+          : hasVariant(globalVariants, "screen", "mobile")
+          ? true
+          : true
+      ) ? (
+        <div
+          className={classNames(defaultcss.all, sty.box__iyK9P, {
+            [sty.box__variantState_isEdit__iyK9P7BsqN]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+            [sty.box__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+          })}
         >
           {p.renderPlasmicSlot({
             defaultContents: "Permissions",
             value: args.slot2,
-            className: classNames(sty.slotSlot2),
+            className: classNames(sty.slotSlot2, {
+              [sty.slotSlot2__variantState_isEdit]: hasVariant(
+                variants,
+                "variantState",
+                "isEdit"
+              ),
+            }),
           })}
-        </p.Stack>
+        </div>
       ) : null}
-
-      <Switch
-        data-plasmic-name={"_switch"}
-        data-plasmic-override={overrides._switch}
-        className={classNames("__wab_instance", sty._switch)}
-        inputTitle={"Allow all members to create updates"}
-        variantSettings={["hasLabel"]}
-      />
-
+      {(
+        hasVariant(variants, "variantState", "isEdit") &&
+        hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "variantState", "isEdit")
+          ? false
+          : true
+      ) ? (
+        <Switch
+          data-plasmic-name={"_switch"}
+          data-plasmic-override={overrides._switch}
+          className={classNames("__wab_instance", sty._switch, {
+            [sty._switch__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
+            [sty._switch__variantState_isEdit]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+            [sty._switch__variantState_isEdit_isOwner]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+          })}
+          inputTitle={"Allow all members to create updates"}
+          variantSettings={["hasLabel"]}
+        />
+      ) : null}
       {(
         hasVariant(variants, "isOwner", "isOwner") &&
         hasVariant(variants, "variantState", "isEdit")

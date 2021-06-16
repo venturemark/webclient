@@ -40,7 +40,7 @@ export async function Create(newInvite: ICreateInvite) {
         const invitePbList = res.getObjList();
         const invitePbObject = invitePbList[0];
         const metaPb = invitePbObject?.getMetadataMap();
-        const id = metaPb.get(key.InviteID);
+        const id = metaPb.get(key.InviteID)!;
         const code = metaPb.get(key.InviteCode);
 
         resolve({

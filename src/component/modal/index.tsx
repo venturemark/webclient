@@ -1,8 +1,7 @@
 import { useContext } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import TextField from "component/inputtext";
 import {
   DefaultModalProps,
   PlasmicModal,
@@ -10,7 +9,6 @@ import {
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
-import { nameError, titleError } from "module/errors";
 import { useQuery } from "module/helpers";
 import { useArchiveDeleteTimeline } from "module/hook/timeline";
 import { useUpdateUser } from "module/hook/user";
@@ -42,9 +40,12 @@ function Modal(props: ModalProps) {
 
   const {
     handleSubmit,
+    register,
     formState: { errors },
     reset,
-    control,
+    setValue,
+    watch,
+    trigger,
   } = useForm<FormData>({
     defaultValues: {
       name: user?.name || "",
@@ -52,6 +53,8 @@ function Modal(props: ModalProps) {
     },
     mode: "onChange",
   });
+
+  const values = watch();
 
   const { mutate: updateUser } = useUpdateUser();
   const { mutate: deleteVenture } = useDeleteVenture();
@@ -108,43 +111,28 @@ function Modal(props: ModalProps) {
         user,
       }}
       nameField={{
-        render() {
-          return (
-            <Controller
-              name="name"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label={"Full Name"}
-                  hasTextHelper={false}
-                  message={errors.name && nameError}
-                />
-              )}
-            />
-          );
+        ...register("name", {
+          required: true,
+          maxLength: 100,
+        }),
+        onChange(e: string) {
+          setValue("name", e);
+          trigger("name");
         },
+        value: values.name,
+        message: errors.name?.message,
       }}
       jobField={{
-        render() {
-          return (
-            <Controller
-              name="title"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label={"What I Do"}
-                  hasTextHelper={true}
-                  children={"Let people know what you do"}
-                  message={errors.title && titleError}
-                />
-              )}
-            />
-          );
+        ...register("title", {
+          required: true,
+          maxLength: 100,
+        }),
+        onChange(e: string) {
+          setValue("title", e);
+          trigger("title");
         },
+        value: values.title,
+        message: errors.title?.message,
       }}
       deleteTimeline={{
         onPress: () => handleDeleteTimeline(),

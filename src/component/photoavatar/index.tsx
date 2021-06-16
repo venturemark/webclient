@@ -2,12 +2,13 @@ import {
   DefaultPhotoAvatarProps,
   PlasmicPhotoAvatar,
 } from "component/plasmic/shared/PlasmicPhotoAvatar";
-import { IUser } from "module/interface/user";
 
 interface PhotoAvatarProps extends DefaultPhotoAvatarProps {
   profileDropdown: boolean | "profileDropdown" | undefined;
   setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
-  user: IUser;
+  user: {
+    name?: string;
+  };
 }
 
 function PhotoAvatar(props: PhotoAvatarProps) {
@@ -15,7 +16,7 @@ function PhotoAvatar(props: PhotoAvatarProps) {
 
   const userInitials =
     user?.name
-      .split(" ")
+      ?.split(" ")
       .map((n: string) => n[0])
       .join("") ?? "";
 

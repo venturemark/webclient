@@ -76,7 +76,7 @@
 .title {
   position: relative;
   font-size: 18px /* plasmic-token: UFZg3bUaA */;
-  font-weight: 700;
+  font-weight: 600;
 }
 .description {
   position: relative;
@@ -92,7 +92,7 @@
 }
 .iconMenu {
   object-fit: cover;
-  width: 23px;
+  width: 16px;
   height: 26px;
   color: #4d4d4d;
   cursor: pointer;
@@ -228,7 +228,7 @@
 }
 .slotUserName {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .span__kq2PL {
@@ -238,6 +238,7 @@
   left: auto;
   top: auto;
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+  font-weight: 600;
 }
 .box__wDBh5 {
   display: inline-flex;

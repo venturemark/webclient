@@ -8,6 +8,9 @@
   min-height: 0;
   background: #ffffff;
 }
+.root > :global(.__wab_flex-container) {
+  flex-direction: row;
+}
 @media (max-width: 767px) {
   .root {
     display: flex;
@@ -260,22 +263,10 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    flex-column-gap: 0px;
     min-height: 0;
     padding: 30px;
     background: #ffffff;
-  }
-}
-@media (max-width: 767px) {
-  .box___5GI8X > :global(.__wab_flex-container) {
-    flex-direction: column;
-    margin-left: calc(0px - 0px);
-    width: calc(100% + 0px);
-  }
-}
-@media (max-width: 767px) {
-  .box___5GI8X > :global(.__wab_flex-container) > *,
-  .box___5GI8X > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
-    margin-left: 0px;
   }
 }
 .box__trjAa {

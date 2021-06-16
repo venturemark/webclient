@@ -43,13 +43,13 @@ export async function Search(searchMessage: ISearchMessage) {
           const text = propertyPb?.toObject().text ?? "";
           const reid = propertyPb?.toObject().reid ?? "";
 
-          const ventureId = metaPb.get(key.VentureID);
-          const timelineId = metaPb.get(key.TimelineID);
-          const id = metaPb.get(key.MessageID);
-          const updateId = metaPb.get(key.UpdateID);
-          const userId = metaPb.get(key.UserID);
+          const ventureId = metaPb.get(key.VentureID)!;
+          const timelineId = metaPb.get(key.TimelineID)!;
+          const id = metaPb.get(key.MessageID)!;
+          const updateId = metaPb.get(key.UpdateID)!;
+          const userId = metaPb.get(key.UserID)!;
           const subjectId = metaPb.get(key.SubjectID);
-          const rawDate = fromUnixTime(id / 1000000000);
+          const rawDate = fromUnixTime(parseInt(id) / 1000000000); // TODO: check
           const date = formatDistanceToNowStrict(rawDate) + " ago";
 
           const message: IMessage = {

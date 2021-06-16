@@ -5,6 +5,7 @@ export interface IVenture {
   name: string;
   desc: string;
   url?: string;
+  membersWrite: boolean;
   userRole?: UserRole;
 }
 
@@ -28,6 +29,7 @@ export interface ICreateVenture {
   name: string;
   desc: string;
   url: string;
+  membersWrite: boolean;
   successUrl?: string;
   token: string | null;
 }

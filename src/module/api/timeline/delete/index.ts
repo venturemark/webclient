@@ -37,7 +37,7 @@ export async function Delete(
         const status = timelinesPb.map((timelinePb) => {
           const metaPb = timelinePb.getMetadataMap();
           const id = metaPb.get(key.TimelineStatus);
-          return id as ITimeline;
+          return id as unknown as ITimeline; // TODO: this is wrong
         });
         resolve(status);
       }

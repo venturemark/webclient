@@ -226,7 +226,14 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         {"Tell us a little bit about your venture."}
       </InputTextArea>
 
-      {true ? (
+      {(
+        hasVariant(variants, "variantState", "isEdit") &&
+        hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : hasVariant(variants, "variantState", "isEdit")
+          ? false
+          : true
+      ) ? (
         <p.Stack
           as={"div"}
           hasGap={true}
@@ -241,6 +248,9 @@ function PlasmicAddEditVenture__RenderFunc(props: {
               "variantState",
               "isEdit"
             ),
+            [sty.box__variantState_isEdit_isOwner__uCWf2IFcIMdraL]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
           })}
         >
           <InputText
@@ -252,23 +262,6 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           >
             {"Enter in a URL name for this venture"}
           </InputText>
-
-          <div
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.box___8V79Q,
-              {
-                [sty.box__variantState_isEdit___8V79Q2IFcI]: hasVariant(
-                  variants,
-                  "variantState",
-                  "isEdit"
-                ),
-              }
-            )}
-          >
-            {".venturemark.co"}
-          </div>
         </p.Stack>
       ) : null}
       {(

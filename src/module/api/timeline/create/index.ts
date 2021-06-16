@@ -25,6 +25,10 @@ export async function Create(newTimeline: ICreateTimeline) {
   obj.getMetadataMap().set(key.VentureID, newTimeline.ventureId);
   obj.setProperty(objProperty);
 
+  if (!newTimeline.membersWrite) {
+    obj.getMetadataMap().set(key.PermissionModel, "reader");
+  }
+
   objList.push(obj);
   req.setObjList(objList);
 
@@ -36,7 +40,7 @@ export async function Create(newTimeline: ICreateTimeline) {
         const timelinePbList = res.getObjList();
         const timelinePbObject = timelinePbList[0];
         const metaPb = timelinePbObject?.getMetadataMap();
-        const timelineId = metaPb.get(key.TimelineID);
+        const timelineId = metaPb.get(key.TimelineID)!;
 
         resolve(timelineId);
       }

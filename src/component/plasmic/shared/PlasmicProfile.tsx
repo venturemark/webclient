@@ -74,6 +74,9 @@ function PlasmicProfile__RenderFunc(props: {
 
   return (
     <React.Fragment>
+      {}
+      {}
+
       <div className={defaultcss.plasmic_page_wrapper}>
         <div
           data-plasmic-name={"root"}
@@ -93,15 +96,7 @@ function PlasmicProfile__RenderFunc(props: {
               className={classNames("__wab_instance", sty.header)}
             />
 
-            <p.Stack
-              as={"div"}
-              hasGap={
-                hasVariant(globalVariants, "screen", "desktopLarge")
-                  ? true
-                  : false
-              }
-              className={classNames(defaultcss.all, sty.box__pMmw)}
-            >
+            <div className={classNames(defaultcss.all, sty.box__pMmw)}>
               <p.Stack
                 as={"div"}
                 hasGap={true}
@@ -155,7 +150,7 @@ function PlasmicProfile__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.profileForm)}
                 />
               </p.Stack>
-            </p.Stack>
+            </div>
           </div>
         </div>
       </div>

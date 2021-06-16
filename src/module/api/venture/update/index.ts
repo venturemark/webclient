@@ -22,6 +22,7 @@ export async function Update(
   const obj = new UpdateI_Obj();
   const nameObjJsnPatch = new UpdateI_Obj_Jsnpatch();
   const descriptionObjJsnPatch = new UpdateI_Obj_Jsnpatch();
+  const urlObjJsnPatch = new UpdateI_Obj_Jsnpatch();
   const objList = [];
   const patchList = [];
 
@@ -37,9 +38,15 @@ export async function Update(
     descriptionObjJsnPatch.setPat("/obj/property/desc");
     descriptionObjJsnPatch.setVal(ventureUpdate.desc);
   }
+  if (ventureUpdate.url) {
+    urlObjJsnPatch.setOpe("replace");
+    urlObjJsnPatch.setPat("/obj/property/link/0/addr");
+    urlObjJsnPatch.setVal(ventureUpdate.url);
+  }
 
   patchList.push(nameObjJsnPatch);
   patchList.push(descriptionObjJsnPatch);
+  patchList.push(urlObjJsnPatch);
 
   obj.setJsnpatchList(patchList);
 
@@ -56,7 +63,7 @@ export async function Update(
         const metaPb = venturePb.getMetadataMap();
         const status = metaPb.get(key.VentureStatus);
 
-        resolve(status);
+        resolve(status as unknown as IVenture[]); // TODO: check
       }
     });
   });

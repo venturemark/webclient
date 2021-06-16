@@ -68,6 +68,7 @@ export type PlasmicMemberItem__OverridesType = {
   root?: p.Flex<"div">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   tags?: p.Flex<typeof Tags>;
+  text2?: p.Flex<"div">;
   iconButton?: p.Flex<typeof IconButton>;
   svg?: p.Flex<"svg">;
 };
@@ -173,7 +174,9 @@ function PlasmicMemberItem__RenderFunc(props: {
               data-plasmic-override={overrides.tags}
               buttonFeatures={["hasText"]}
               buttonStyle={
-                hasVariant(variants, "userVariant", "isOwner")
+                hasVariant(variants, "userVariant", "isRequested")
+                  ? ("grey" as const)
+                  : hasVariant(variants, "userVariant", "isOwner")
                   ? ("secondaryGreen" as const)
                   : ("blue" as const)
               }
@@ -190,15 +193,32 @@ function PlasmicMemberItem__RenderFunc(props: {
                 ),
               })}
               text2={
-                hasVariant(variants, "userVariant", "isRequested")
-                  ? "Invited"
-                  : "Admin"
+                <div
+                  data-plasmic-name={"text2"}
+                  data-plasmic-override={overrides.text2}
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.text2,
+                    {
+                      [sty.text2__userVariant_isRequested]: hasVariant(
+                        variants,
+                        "userVariant",
+                        "isRequested"
+                      ),
+                    }
+                  )}
+                >
+                  {hasVariant(variants, "userVariant", "isRequested")
+                    ? "Invited"
+                    : "Admin"}
+                </div>
               }
             />
           ) : null}
           {(
             hasVariant(variants, "userVariant", "isRequested")
-              ? false
+              ? true
               : hasVariant(variants, "userVariant", "isOwner")
               ? false
               : true
@@ -206,6 +226,23 @@ function PlasmicMemberItem__RenderFunc(props: {
             <IconButton
               data-plasmic-name={"iconButton"}
               data-plasmic-override={overrides.iconButton}
+              className={classNames("__wab_instance", sty.iconButton, {
+                [sty.iconButton__userVariant_isMember]: hasVariant(
+                  variants,
+                  "userVariant",
+                  "isMember"
+                ),
+                [sty.iconButton__userVariant_isOwner]: hasVariant(
+                  variants,
+                  "userVariant",
+                  "isOwner"
+                ),
+                [sty.iconButton__userVariant_isRequested]: hasVariant(
+                  variants,
+                  "userVariant",
+                  "isRequested"
+                ),
+              })}
             >
               <IconCloseIcon
                 data-plasmic-name={"svg"}
@@ -233,9 +270,10 @@ function PlasmicMemberItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "photoAvatar", "tags", "iconButton", "svg"],
+  root: ["root", "photoAvatar", "tags", "text2", "iconButton", "svg"],
   photoAvatar: ["photoAvatar"],
-  tags: ["tags"],
+  tags: ["tags", "text2"],
+  text2: ["text2"],
   iconButton: ["iconButton", "svg"],
   svg: ["svg"],
 } as const;
@@ -246,6 +284,7 @@ type NodeDefaultElementType = {
   root: "div";
   photoAvatar: typeof PhotoAvatar;
   tags: typeof Tags;
+  text2: "div";
   iconButton: typeof IconButton;
   svg: "svg";
 };
@@ -313,6 +352,7 @@ export const PlasmicMemberItem = Object.assign(
     // Helper components rendering sub-elements
     photoAvatar: makeNodeComponent("photoAvatar"),
     tags: makeNodeComponent("tags"),
+    text2: makeNodeComponent("text2"),
     iconButton: makeNodeComponent("iconButton"),
     svg: makeNodeComponent("svg"),
 

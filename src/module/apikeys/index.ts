@@ -19,3 +19,5 @@ export const RoleKind = "role.venturemark.co/kind";
 export const ResourceKind = "resource.venturemark.co/kind";
 
 export const InviteCode = "invite.venturemark.co/code";
+
+export const PermissionModel = "permission.venturemark.co/model";

@@ -1,7 +1,7 @@
-import { TextareaAutosize } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
-import { FieldError, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
+import InputTextArea from "component/inputtextarea";
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
@@ -25,15 +25,6 @@ type FormData = {
   description: string;
 };
 
-function ErrorMessage(props: { error?: FieldError }) {
-  if (!props.error) {
-    return null;
-  }
-  return (
-    <p style={{ color: "red", fontSize: "12px" }}>{props.error.message}</p>
-  );
-}
-
 function ActionBar(props: ActionBarProps) {
   const { ventureId, currentTimeline, user, timelines, ...rest } = props;
 
@@ -41,7 +32,10 @@ function ActionBar(props: ActionBarProps) {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isValid, isSubmitted },
+    watch,
+    setValue,
+    trigger,
+    formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
       description: "",
@@ -49,6 +43,8 @@ function ActionBar(props: ActionBarProps) {
     },
     mode: "onChange",
   });
+
+  const values = watch();
 
   const { token } = useContext(AuthContext);
   const timelineContext = useContext(TimelineContext);
@@ -59,15 +55,11 @@ function ActionBar(props: ActionBarProps) {
     defaultTimelineOption
   );
   const hasTimelines =
-    selectedTimelines.length > 0 &&
     ventureTimelines?.filter(
       (timeline: ITimeline) => (timeline.ventureId = ventureId)
-    ).length > 0
-      ? true
-      : false;
+    ).length > 0;
 
   const [isActive, setIsActive] = useState(false);
-  const [isTimelineSelected] = useState(false);
   const [selectFocused, setSelectFocused] = useState(false);
 
   const { mutate: createUpdate } = useCreateUpdate();
@@ -105,7 +97,8 @@ function ActionBar(props: ActionBarProps) {
     <PlasmicActionBar
       {...rest}
       onClick={() => setIsActive(true)}
-      isActive={isActive}
+      isActive={isActive ? "isActive" : false}
+      timelineSelected={true}
       form={{
         onSubmit: handleSubmit(handlePost),
       }}
@@ -113,93 +106,81 @@ function ActionBar(props: ActionBarProps) {
         user,
       }}
       title={{
-        render() {
-          return (
-            <>
-              <TextareaAutosize
-                aria-label="Title"
-                style={{
-                  resize: "none",
-                  fontSize: "18px",
-                  fontWeight: 600,
-                  color: "261A3F",
-                  fontFamily: "Poppins",
-                  outline: "none",
-                  border: "none",
-                }}
-                rowsMin={1}
-                disabled={!hasTimelines}
-                placeholder="Write your update"
-                {...register("title", {
-                  required: {
-                    message: "Required",
-                    value: true,
-                  },
-                  maxLength: {
-                    message: "Too long",
-                    value: 100,
-                  },
-                })}
-              />
-              <ErrorMessage error={errors.title} />
-            </>
-          );
+        as: InputTextArea,
+        props: {
+          ...register("title", {
+            required: {
+              message: "Required",
+              value: true,
+            },
+            maxLength: {
+              message: "Too long",
+              value: 100,
+            },
+          }),
+          autosize: true,
+          "aria-label": "Title",
+          onChange(e: string) {
+            setValue("title", e);
+            trigger("title");
+          },
+          value: values.title,
         },
       }}
       description={{
-        render() {
-          return (
-            <>
-              <TextareaAutosize
-                aria-label="Description"
-                style={{
-                  resize: "none",
-                  fontSize: "15px",
-                  fontWeight: 300,
-                  color: "261A3F",
-                  fontFamily: "Poppins",
-                  outline: "none",
-                  border: "none",
-                }}
-                rowsMin={4}
-                disabled={!hasTimelines}
-                placeholder="Description..."
-                {...register("description", {
-                  required: {
-                    message: "Required",
-                    value: true,
-                  },
-                  maxLength: {
-                    message: "Too long",
-                    value: 280,
-                  },
-                })}
-              />
-              <ErrorMessage error={errors.description} />
-            </>
-          );
+        as: InputTextArea,
+        props: {
+          ...register("description", {
+            required: {
+              message: "Required",
+              value: true,
+            },
+            maxLength: {
+              message: "Too long",
+              value: 280,
+            },
+          }),
+          autosize: true,
+          "aria-label": "Description",
+          onChange(e: string) {
+            setValue("description", e);
+            trigger("description");
+          },
+          value: values.description,
         },
       }}
-      shareToContainer={{
-        render: () => (
-          <TimelineSelect
-            ventureId={ventureId}
-            selectedTimelines={selectedTimelines}
-            setSelectedTimelines={setSelectedTimelines}
-            selectFocused={selectFocused}
-            setSelectFocused={setSelectFocused}
-          />
-        ),
+      container={{
+        style: {
+          width: "100%",
+        },
+      }}
+      selectedItemsContainer={{
+        as: TimelineSelect,
+        props: {
+          style: {
+            width: "100%",
+          },
+          ventureId,
+          selectedTimelines,
+          setSelectedTimelines,
+          selectFocused,
+          setSelectFocused,
+        },
       }}
       post={{
-        isDisabled: !hasTimelines || (!isValid && isSubmitted),
+        isDisabled: !hasTimelines,
         onPress() {
           handleSubmit(handlePost)();
         },
       }}
-      error={undefined}
-      text={undefined}
-      timelineSelected={isTimelineSelected}
+      error={
+        errors.title?.message || errors.description?.message
+          ? "hasError"
+          : undefined
+      }
+      errorMessage={{
+        message: errors.title?.message || errors.description?.message,
+      }}
     />
   );
 }
