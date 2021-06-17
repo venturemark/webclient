@@ -5,19 +5,19 @@ import { useForm } from "react-hook-form";
 import MemberItem from "component/memberitem";
 import {
   DefaultAddEditMembersProps,
-  PlasmicAddEditMembers,
+  PlasmicAddEditMembers
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { AuthContext } from "context/AuthContext";
 import { getUniqueListBy } from "module/helpers";
 import {
   useCreateInvite,
   useDeleteInvite,
-  useInvites,
+  useInvites
 } from "module/hook/invite";
 import {
   useDeleteRole,
   useTimelineRole,
-  useVentureRole,
+  useVentureRole
 } from "module/hook/role";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { IInvite } from "module/interface/invite";
@@ -224,11 +224,6 @@ function AddEditMembers(props: AddEditMembersProps) {
               <MemberItem
                 userName={member.name}
                 user={member}
-                slot3={{
-                  render() {
-                    return null;
-                  },
-                }}
                 userVariant={
                   member.title === undefined
                     ? "isRequested"
