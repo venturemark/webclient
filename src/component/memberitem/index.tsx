@@ -7,7 +7,7 @@ interface MemberItemProps extends DefaultMemberItemProps {
   user: {
     name?: string;
   };
-  handleClick: any;
+  handleClick?: () => void;
 }
 
 function MemberItem(props: MemberItemProps) {
@@ -18,7 +18,15 @@ function MemberItem(props: MemberItemProps) {
         user,
       }}
       iconButton={{
-        onClick: handleClick,
+        props: {
+          onClick: handleClick,
+        },
+        wrap(node) {
+          if (!handleClick) {
+            return null;
+          }
+          return node;
+        },
       }}
       {...rest}
     />

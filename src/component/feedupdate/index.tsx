@@ -135,7 +135,7 @@ function FeedUpdate(props: FeedUpdateProps) {
       {...rest}
       isOwner={resourceOwnership(currentTimeline || currentVenture)}
       actionBar={{
-        ventureId,
+        currentVenture,
         timelines,
         currentTimeline,
         user,

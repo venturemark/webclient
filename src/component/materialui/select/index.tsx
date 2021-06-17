@@ -5,9 +5,10 @@ import React, { useContext, useEffect, useRef } from "react";
 
 import { TimelineContext } from "context/TimelineContext";
 import { ITimeline } from "module/interface/timeline";
+import { IVenture } from "module/interface/venture";
 
 interface SelectProps {
-  ventureId: string;
+  currentVenture: IVenture;
   setSelectedTimelines: React.Dispatch<React.SetStateAction<ITimeline[]>>;
   selectFocused: boolean;
   setSelectFocused: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,7 +17,7 @@ interface SelectProps {
 
 export function TimelineSelect(props: SelectProps) {
   const {
-    ventureId,
+    currentVenture,
     setSelectedTimelines,
     selectFocused,
     setSelectFocused,
@@ -29,7 +30,10 @@ export function TimelineSelect(props: SelectProps) {
   const timelines = timelineContext?.allTimelines ?? [];
 
   const ventureTimelines = timelines.filter(
-    (timeline) => timeline.ventureId === ventureId
+    (timeline) =>
+      timeline.ventureId === currentVenture.id &&
+      (currentVenture.userRole === "owner" ||
+        (currentVenture.userRole === "member" && timeline.membersWrite))
   );
 
   const sortedVentureTimelines = ventureTimelines.sort((a: any, b: any) =>
