@@ -5,6 +5,7 @@ import * as api from "module/api";
 import { sendInvite } from "module/helpers";
 import {
   ICreateInvite,
+  IDeleteInvite,
   IInvite,
   ISearchInvite,
   IUpdateInvite,
@@ -95,6 +96,22 @@ export function useUpdateInvite() {
         localStorage.removeItem("code");
         localStorage.removeItem("ventureId");
         localStorage.removeItem("id");
+      },
+    }
+  );
+}
+
+export function useDeleteInvite() {
+  const queryClient = useQueryClient();
+
+  return useMutation<IInvite[], any, IDeleteInvite>(
+    (ventureDelete) => {
+      return api.API.Invite.Delete(ventureDelete);
+    },
+    {
+      onSuccess: (data, ventureDelete) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries("invites");
       },
     }
   );

@@ -49,7 +49,6 @@ function ProfileDropdown(props: ProfileDropdownProps) {
       }}
       logout={{
         onClick() {
-          console.log("logout");
           logout();
         },
       }}

@@ -12,9 +12,10 @@ import { TimelineContext } from "context/TimelineContext";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
 import { IUser } from "module/interface/user";
+import { IVenture } from "module/interface/venture";
 
 interface ActionBarProps extends DefaultActionBarProps {
-  ventureId: string;
+  currentVenture: IVenture;
   currentTimeline: ITimeline;
   timelines: ITimeline[];
   user: IUser;
@@ -26,7 +27,7 @@ type FormData = {
 };
 
 function ActionBar(props: ActionBarProps) {
-  const { ventureId, currentTimeline, user, timelines, ...rest } = props;
+  const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
 
   const {
     handleSubmit,
@@ -56,7 +57,7 @@ function ActionBar(props: ActionBarProps) {
   );
   const hasTimelines =
     ventureTimelines?.filter(
-      (timeline: ITimeline) => (timeline.ventureId = ventureId)
+      (timeline: ITimeline) => (timeline.ventureId = currentVenture.id)
     ).length > 0;
 
   const [isActive, setIsActive] = useState(false);
@@ -73,7 +74,7 @@ function ActionBar(props: ActionBarProps) {
       createUpdate({
         title: data.title,
         text: data.description ?? "",
-        ventureId,
+        ventureId: currentVenture.id,
         timelineId: timelineId.id,
         token,
       });
@@ -160,7 +161,7 @@ function ActionBar(props: ActionBarProps) {
           style: {
             width: "100%",
           },
-          ventureId,
+          currentVenture,
           selectedTimelines,
           setSelectedTimelines,
           selectFocused,
