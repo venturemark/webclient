@@ -48,6 +48,7 @@ export async function Search(searchRole: IAPISearchRole): Promise<IRole[]> {
             role: roleKind,
             subjectId,
             ventureId,
+            timelineId: searchRole.timelineId,
           };
           return role;
         });

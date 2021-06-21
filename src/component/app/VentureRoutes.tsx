@@ -7,7 +7,7 @@ import { AuthContext } from "context/AuthContext";
 import { ITimelineContext, TimelineContext } from "context/TimelineContext";
 import { IVentureContext, VentureContext } from "context/VentureContext";
 import { getUniqueListBy } from "module/helpers";
-import { useRoleByTimelineIds, useRoleByVentureIds } from "module/hook/role";
+import { useRoleByTimelines, useRoleByVentures } from "module/hook/role";
 import { useTimelinesByUserId } from "module/hook/timeline";
 import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import { IRole } from "module/interface/role";
@@ -61,37 +61,23 @@ export function VentureRoutes(props: VentureRoutesProps) {
     return venture.name.toLowerCase().replace(/\s/g, "");
   }
 
-  const uniqueAllVentureIds = allVentures?.map(
-    (venture: IVenture) => venture.id
-  );
-
-  const { data: ventureRolesData } = useRoleByVentureIds({
-    resource: "venture",
-    ventureIds: uniqueAllVentureIds,
+  const { data: ventureRolesData } = useRoleByVentures({
+    ventures: allVentures,
     token,
   });
 
-  const timelineIds = timelinesData?.map((timeline: ITimeline) => timeline.id);
-
   const { data: timelineRolesData = [], isSuccess: timelineRolesSuccess } =
-    useRoleByTimelineIds({
-      resource: "timeline",
-      timelineIds: timelineIds,
+    useRoleByTimelines({
+      timelines: timelinesData,
       token,
     });
-
-  // Right now we don't have timeline specific roles,
-  // and timeline permissions default to parent venture
-  const timelineRoles =
-    timelineRolesSuccess && timelineRolesData.length < 1
-      ? ventureRolesData
-      : timelineRolesData;
 
   // add permission to venture
   const venturesWithRoles =
     allVentures?.map((venture: IVenture) => {
       const ventureRole = ventureRolesData?.find(
-        (role: IRole) => role.subjectId === userId
+        (role: IRole) =>
+          role.subjectId === userId && role.ventureId === venture.id
       );
       if (!ventureRole) return venture;
       return {
@@ -101,14 +87,20 @@ export function VentureRoutes(props: VentureRoutesProps) {
     }) || [];
 
   const timelinesWithRoles =
-    timelinesData?.map((timeline: ITimeline) => {
-      const timelineRole = timelineRoles?.find(
-        (role: IRole) => role.subjectId === userId
+    timelinesData?.map((timeline: ITimeline, i) => {
+      const ventureRole = ventureRolesData?.find(
+        (role: IRole) =>
+          role.subjectId === userId && role.ventureId === timeline.ventureId
       );
-      if (!timelineRole) return timeline;
+      const timelineRole = timelineRolesData.find(
+        (role: IRole) =>
+          role.subjectId === userId && role.timelineId === timeline.id
+      );
+      const userRole = timelineRole || ventureRole;
+      if (!userRole) return timeline;
       return {
         ...timeline,
-        userRole: timelineRole.role as UserRole,
+        userRole: userRole.role as UserRole,
       };
     }) || [];
 
@@ -135,7 +127,7 @@ export function VentureRoutes(props: VentureRoutesProps) {
   );
 
   const ventureRoleTimelines = ventureTimelines?.map((timeline: ITimeline) => {
-    const timelineRole: IRole | undefined = timelineRoles?.find(
+    const timelineRole: IRole | undefined = timelineRolesData.find(
       (role: IRole) => role.subjectId === userId
     );
     if (!timelineRole) return timeline;
