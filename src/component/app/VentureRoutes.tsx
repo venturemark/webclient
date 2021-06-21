@@ -61,21 +61,20 @@ export function VentureRoutes(props: VentureRoutesProps) {
     return venture.name.toLowerCase().replace(/\s/g, "");
   }
 
-  const { data: ventureRolesData } = useRoleByVentures({
+  const { data: ventureRolesData = [] } = useRoleByVentures({
     ventures: allVentures,
     token,
   });
 
-  const { data: timelineRolesData = [], isSuccess: timelineRolesSuccess } =
-    useRoleByTimelines({
-      timelines: timelinesData,
-      token,
-    });
+  const { data: timelineRolesData = [] } = useRoleByTimelines({
+    timelines: timelinesData,
+    token,
+  });
 
   // add permission to venture
   const venturesWithRoles =
     allVentures?.map((venture: IVenture) => {
-      const ventureRole = ventureRolesData?.find(
+      const ventureRole = ventureRolesData.find(
         (role: IRole) =>
           role.subjectId === userId && role.ventureId === venture.id
       );
@@ -88,7 +87,7 @@ export function VentureRoutes(props: VentureRoutesProps) {
 
   const timelinesWithRoles =
     timelinesData?.map((timeline: ITimeline, i) => {
-      const ventureRole = ventureRolesData?.find(
+      const ventureRole = ventureRolesData.find(
         (role: IRole) =>
           role.subjectId === userId && role.ventureId === timeline.ventureId
       );
@@ -106,7 +105,7 @@ export function VentureRoutes(props: VentureRoutesProps) {
 
   let currentVenture: IVenture | undefined;
   if (ventureSlug) {
-    currentVenture = venturesWithRoles?.find(
+    currentVenture = venturesWithRoles.find(
       (venture: IVenture) => calcVentureSlug(venture) === ventureSlug
     );
   } else if (ventureSuccess && ventureUserSuccess) {
@@ -122,23 +121,29 @@ export function VentureRoutes(props: VentureRoutesProps) {
     currentVenture = sortedVentures[0];
   }
 
-  const ventureTimelines = timelinesData?.filter(
+  const ventureTimelines = timelinesData.filter(
     (timeline: ITimeline) => timeline.ventureId === currentVenture?.id
   );
 
-  const ventureRoleTimelines = ventureTimelines?.map((timeline: ITimeline) => {
-    const timelineRole: IRole | undefined = timelineRolesData.find(
-      (role: IRole) => role.subjectId === userId
+  const ventureRoleTimelines = ventureTimelines.map((timeline: ITimeline) => {
+    const ventureRole = ventureRolesData?.find(
+      (role: IRole) =>
+        role.subjectId === userId && role.ventureId === timeline.ventureId
     );
-    if (!timelineRole) return timeline;
+    const timelineRole = timelineRolesData.find(
+      (role: IRole) =>
+        role.subjectId === userId && role.timelineId === timeline.id
+    );
+    const userRole = timelineRole || ventureRole;
+    if (!userRole) return timeline;
     return {
       ...timeline,
-      userRole: timelineRole.role as UserRole,
+      userRole: userRole.role as UserRole,
     };
   });
 
   const currentVentureRole = ventureSuccess
-    ? venturesWithRoles?.find(
+    ? venturesWithRoles.find(
         (venture: IVenture) => venture.id === currentVenture?.id
       )?.userRole
     : undefined;
@@ -155,7 +160,7 @@ export function VentureRoutes(props: VentureRoutesProps) {
   };
 
   const hasTimelines =
-    timelinesWithRoles?.filter(
+    timelinesWithRoles.filter(
       (timeline: ITimeline) => timeline.ventureId === currentVenture?.id
     ).length > 0;
 
