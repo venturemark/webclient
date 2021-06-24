@@ -29,6 +29,7 @@ export async function Create(newUser: ICreateUser) {
 
   objProperty.setName(newUser.name);
   objProperty.setDesc(newUser.title);
+  objProperty.setMail(newUser.mail);
   objProperty.setProfList(profList);
 
   obj.setProperty(objProperty);

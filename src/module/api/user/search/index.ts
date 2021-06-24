@@ -41,18 +41,20 @@ export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
           const metaPb = userPb.getMetadataMap();
 
           const id = metaPb.get(key.UserID)!;
-          const name = propertiesPb?.getName() as string;
-          const title = propertiesPb?.getDesc() as string;
+          const name = propertiesPb?.getName()!;
+          const mail = propertiesPb?.getMail()!;
+          const title = propertiesPb?.getDesc()!;
           const profPb = propertiesPb?.getProfList()[0];
           const job: Job = {};
           job.title = profPb?.getDesc();
           job.venture = profPb?.getVent();
 
           const user: IUser = {
-            name: name,
-            title: title,
-            id: id,
-            job: job,
+            mail,
+            name,
+            title,
+            id,
+            job,
           };
           return user;
         });

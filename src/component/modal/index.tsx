@@ -61,13 +61,14 @@ function Modal(props: ModalProps) {
   const { mutate: archiveDeleteTimeline } = useArchiveDeleteTimeline();
 
   const handleSave = (data: FormData) => {
-    if (!data.name || !data.title) {
+    if (!data.name || !data.title || !user?.mail || !user.id) {
       return;
     }
 
     updateUser(
       {
-        id: user?.id ?? "",
+        mail: user.mail,
+        id: user.id,
         name: data.name,
         title: data.title,
         successUrl: "/",
