@@ -39,12 +39,7 @@ export async function Search(
         const ventures = venturesPb.map((venturePb) => {
           const propertiesPb = venturePb.getProperty();
           const metaPb = venturePb.getMetadataMap();
-
-          let membersWrite = true;
-          if (metaPb.get(key.PermissionModel) === "reader") {
-            membersWrite = false;
-          }
-
+          const membersWrite = metaPb.get(key.PermissionModel) === "writer";
           const name = propertiesPb?.getName() as string;
           const desc = propertiesPb?.getDesc() as string;
           const url = propertiesPb?.getLinkList()[0].getAddr();

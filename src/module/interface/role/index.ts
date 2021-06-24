@@ -1,9 +1,13 @@
+import { ITimeline } from "../timeline";
+import { IVenture } from "../venture";
+
 export interface IRole {
   id: string;
   resource: string;
   role: string;
   subjectId: string;
   ventureId: string;
+  timelineId?: string;
 }
 
 export interface ISearchTimelineRoles {
@@ -19,15 +23,13 @@ export interface ISearchVentureRoles {
   token: string | null;
 }
 
-export interface ISearchRoleByTimelineIds {
-  resource: string;
-  timelineIds: string[];
+export interface ISearchRoleByTimelines {
+  timelines: ITimeline[];
   token: string | null;
 }
 
-export interface ISearchRoleByVentureIds {
-  resource: string;
-  ventureIds: string[];
+export interface ISearchRoleByVentures {
+  ventures: IVenture[];
   token: string | null;
 }
 

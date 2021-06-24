@@ -5,8 +5,8 @@ import { IAPIDeleteRole } from "module/interface/api";
 import {
   INewRole,
   IRole,
-  ISearchRoleByTimelineIds,
-  ISearchRoleByVentureIds,
+  ISearchRoleByTimelines,
+  ISearchRoleByVentures,
   ISearchTimelineRoles,
   ISearchVentureRoles,
   IUpdateRole,
@@ -14,16 +14,15 @@ import {
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getRoleByVentureIds = async ({
-  ventureIds,
-  resource,
+const getRoleByVentures = async ({
+  ventures,
   token,
-}: ISearchRoleByVentureIds) => {
+}: ISearchRoleByVentures) => {
   const allRoles = await Promise.all(
-    ventureIds.map(async (id: string) => {
+    ventures.map(async (venture) => {
       return api.API.Role.Search({
-        ventureId: id,
-        resource,
+        ventureId: venture.id,
+        resource: "venture",
         token,
       });
     })
@@ -32,33 +31,26 @@ const getRoleByVentureIds = async ({
   return allRoles.flat();
 };
 
-export function useRoleByVentureIds(
-  searchRoleByVentureIds: ISearchRoleByVentureIds
-) {
+export function useRoleByVentures({ token, ventures }: ISearchRoleByVentures) {
   return useQuery<IRole[], ErrorResponse>(
-    [
-      `role-${searchRoleByVentureIds.ventureIds}`,
-      searchRoleByVentureIds.token,
-      searchRoleByVentureIds.ventureIds,
-    ],
-    () => getRoleByVentureIds(searchRoleByVentureIds),
+    [`venture-roles`, token, ventures],
+    () => getRoleByVentures({ token, ventures }),
     {
-      enabled:
-        !!searchRoleByVentureIds.token && !!searchRoleByVentureIds.ventureIds,
+      enabled: Boolean(token && ventures),
     }
   );
 }
 
-const getRoleByTimelineIds = async ({
-  timelineIds,
-  resource,
+const getRoleByTimelines = async ({
+  timelines,
   token,
-}: ISearchRoleByTimelineIds) => {
+}: ISearchRoleByTimelines) => {
   const allRoles = await Promise.all(
-    timelineIds.map(async (id: string) => {
+    timelines.map(async (timeline) => {
       return api.API.Role.Search({
-        timelineId: id,
-        resource,
+        ventureId: timeline.ventureId,
+        timelineId: timeline.id,
+        resource: "timeline",
         token,
       });
     })
@@ -67,20 +59,15 @@ const getRoleByTimelineIds = async ({
   return allRoles.flat();
 };
 
-export function useRoleByTimelineIds(
-  searchRoleByTimelineIds: ISearchRoleByTimelineIds
-) {
+export function useRoleByTimelines({
+  timelines,
+  token,
+}: ISearchRoleByTimelines) {
   return useQuery<IRole[], ErrorResponse>(
-    [
-      `role-${searchRoleByTimelineIds.timelineIds}`,
-      searchRoleByTimelineIds.token,
-      searchRoleByTimelineIds.timelineIds,
-    ],
-    () => getRoleByTimelineIds(searchRoleByTimelineIds),
+    [`timeline-roles`, token, timelines],
+    () => getRoleByTimelines({ timelines, token }),
     {
-      enabled:
-        !!searchRoleByTimelineIds.token &&
-        !!searchRoleByTimelineIds.timelineIds,
+      enabled: Boolean(token && timelines),
     }
   );
 }

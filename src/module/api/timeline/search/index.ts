@@ -42,12 +42,7 @@ export async function Search(
         let timelines = timelinesPb.map((timelinePb) => {
           let propertiesPb = timelinePb.getProperty();
           let metaPb = timelinePb.getMetadataMap();
-
-          let membersWrite = true;
-          if (metaPb.get(key.PermissionModel) === "reader") {
-            membersWrite = false;
-          }
-
+          let membersWrite = metaPb.get(key.PermissionModel) === "writer";
           let name = propertiesPb?.getName() as string;
           let desc = propertiesPb?.getDesc() as string;
           let stat = propertiesPb?.getStat() as string;
