@@ -51,7 +51,7 @@ export interface IDeleteUser {
 }
 
 export interface IUpdateUser {
-  mail: string;
+  mail?: string;
   id: string;
   name: string;
   title: string;

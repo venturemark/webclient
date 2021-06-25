@@ -67,7 +67,6 @@ function Modal(props: ModalProps) {
 
     updateUser(
       {
-        mail: user.mail,
         id: user.id,
         name: data.name,
         title: data.title,
