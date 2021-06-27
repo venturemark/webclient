@@ -1,3 +1,5 @@
+import { ForwardedRef, forwardRef } from "react";
+
 import {
   DefaultPhotoAvatarProps,
   PlasmicPhotoAvatar,
@@ -11,7 +13,10 @@ interface PhotoAvatarProps extends DefaultPhotoAvatarProps {
   };
 }
 
-function PhotoAvatar(props: PhotoAvatarProps) {
+function PhotoAvatar(
+  props: PhotoAvatarProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const { profileDropdown, setProfileDropdown, user, ...rest } = props;
 
   const userInitials =
@@ -23,6 +28,9 @@ function PhotoAvatar(props: PhotoAvatarProps) {
   return (
     <PlasmicPhotoAvatar
       {...rest}
+      root={{
+        ref,
+      }}
       onClick={() => {
         setProfileDropdown && setProfileDropdown(!profileDropdown);
       }}
@@ -31,4 +39,4 @@ function PhotoAvatar(props: PhotoAvatarProps) {
   );
 }
 
-export default PhotoAvatar;
+export default forwardRef(PhotoAvatar);

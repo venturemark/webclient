@@ -230,7 +230,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                     : ventureRolesData?.find(
                         (role: IRole) => role.subjectId === member.id
                       )?.role === "owner"
-                    ? "isOwner"
+                    ? "isAdmin"
                     : "isMember"
                 }
                 handleClick={
@@ -256,7 +256,7 @@ function AddEditMembers(props: AddEditMembersProps) {
                     : timelineRolesData?.find(
                         (role: IRole) => role.subjectId === member.id
                       )?.role === "owner"
-                    ? "isOwner"
+                    ? "isAdmin"
                     : "isMember"
                 }
                 handleClick={

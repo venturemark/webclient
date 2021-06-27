@@ -555,7 +555,17 @@ function PlasmicMainHeader__RenderFunc(props: {
                         ? ("isActive" as const)
                         : undefined
                     }
-                    memberCount={"+"}
+                    memberCount={
+                      <div
+                        className={classNames(
+                          defaultcss.all,
+                          defaultcss.__wab_text,
+                          sty.box__lssdr
+                        )}
+                      >
+                        {"+"}
+                      </div>
+                    }
                   />
                 ) : null}
 

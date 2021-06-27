@@ -3,7 +3,6 @@ import {
   CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
-  CreateI_Obj_Property_Link,
   CreateO,
 } from "module/api/venture/proto/create_pb";
 import * as key from "module/apikeys";
@@ -16,20 +15,13 @@ export async function Create(createVenture: ICreateVenture) {
 
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
-  const objLink = new CreateI_Obj_Property_Link();
   const objList = [];
-  const objLinkList = [];
 
   const token = createVenture.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
-  objLink.setAddr(createVenture.url);
-  objLink.setText(createVenture.name);
-  objLinkList.push(objLink);
-
   objProperty.setName(createVenture.name);
   objProperty.setDesc(createVenture.desc);
-  objProperty.setLinkList(objLinkList);
 
   obj.setProperty(objProperty);
 

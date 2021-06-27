@@ -97,6 +97,7 @@
 .input__isDisabled {
   cursor: default;
   pointer-events: none;
+  background: rgb(249, 249, 250) repeat;
 }
 .root:focus-within .input {
   outline: none;

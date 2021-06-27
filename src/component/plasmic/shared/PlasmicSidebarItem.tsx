@@ -37,6 +37,7 @@ import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-i
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicSidebarItem.module.css"; // plasmic-import: KDElHbQmfd/css
 
+import IconOvalIcon from "./icons/PlasmicIcon__IconOval"; // plasmic-import: FUAnm6q86/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconAccordianIcon from "./icons/PlasmicIcon__IconAccordian"; // plasmic-import: UPgEusYgX/icon
 import IconHashIcon from "./icons/PlasmicIcon__IconHash"; // plasmic-import: AVLV6uMr56/icon
@@ -50,6 +51,7 @@ export type PlasmicSidebarItem__VariantMembers = {
   isVisible: "isVisible";
   isPublic: "isPublic";
   isDropdown: "isDropdown";
+  hasNewActivity: "hasNewActivity";
 };
 
 export type PlasmicSidebarItem__VariantsArgs = {
@@ -61,6 +63,7 @@ export type PlasmicSidebarItem__VariantsArgs = {
   isVisible?: SingleBooleanChoiceArg<"isVisible">;
   isPublic?: SingleBooleanChoiceArg<"isPublic">;
   isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
+  hasNewActivity?: SingleBooleanChoiceArg<"hasNewActivity">;
 };
 
 type VariantPropType = keyof PlasmicSidebarItem__VariantsArgs;
@@ -70,7 +73,8 @@ export const PlasmicSidebarItem__VariantProps = new Array<VariantPropType>(
   "isOwner",
   "isVisible",
   "isPublic",
-  "isDropdown"
+  "isDropdown",
+  "hasNewActivity"
 );
 
 export type PlasmicSidebarItem__ArgsType = {
@@ -98,6 +102,7 @@ export interface DefaultSidebarItemProps {
   isVisible?: SingleBooleanChoiceArg<"isVisible">;
   isPublic?: SingleBooleanChoiceArg<"isPublic">;
   isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
+  hasNewActivity?: SingleBooleanChoiceArg<"hasNewActivity">;
   className?: string;
 }
 
@@ -122,6 +127,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__hasNewActivity]: hasVariant(
+          variants,
+          "hasNewActivity",
+          "hasNewActivity"
+        ),
         [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
         [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
         [sty.root__isOwner_itemType_timeline]:
@@ -142,6 +152,20 @@ function PlasmicSidebarItem__RenderFunc(props: {
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
       {(
+        hasVariant(variants, "hasNewActivity", "hasNewActivity") ? true : false
+      ) ? (
+        <IconOvalIcon
+          className={classNames(defaultcss.all, sty.svg__bufRg, {
+            [sty.svg__hasNewActivity__bufRg0PiUm]: hasVariant(
+              variants,
+              "hasNewActivity",
+              "hasNewActivity"
+            ),
+          })}
+          role={"img"}
+        />
+      ) : null}
+      {(
         hasVariant(variants, "itemType", "createTimeline") &&
         triggers.hover_root
           ? true
@@ -153,6 +177,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
           data-plasmic-override={overrides.itemContainer}
           hasGap={true}
           className={classNames(defaultcss.all, sty.itemContainer, {
+            [sty.itemContainer__hasNewActivity]: hasVariant(
+              variants,
+              "hasNewActivity",
+              "hasNewActivity"
+            ),
             [sty.itemContainer__isActive]: hasVariant(
               variants,
               "isActive",
@@ -216,6 +245,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
           ) ? (
             <div
               className={classNames(defaultcss.all, sty.box__lklH, {
+                [sty.box__hasNewActivity__lklH0PiUm]: hasVariant(
+                  variants,
+                  "hasNewActivity",
+                  "hasNewActivity"
+                ),
                 [sty.box__itemType_createTimeline__lklHOuGst]: hasVariant(
                   variants,
                   "itemType",
@@ -252,6 +286,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
               data-plasmic-name={"icon"}
               data-plasmic-override={overrides.icon}
               className={classNames("__wab_instance", sty.icon, {
+                [sty.icon__hasNewActivity]: hasVariant(
+                  variants,
+                  "hasNewActivity",
+                  "hasNewActivity"
+                ),
                 [sty.icon__isActive]: hasVariant(
                   variants,
                   "isActive",
@@ -293,6 +332,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     : IconAccordianIcon
                 }
                 className={classNames(defaultcss.all, sty.svg___6Fx5D, {
+                  [sty.svg__hasNewActivity___6Fx5D0PiUm]: hasVariant(
+                    variants,
+                    "hasNewActivity",
+                    "hasNewActivity"
+                  ),
                   [sty.svg__isActive___6Fx5Dw0Xu8]: hasVariant(
                     variants,
                     "isActive",
@@ -443,6 +487,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                 data-plasmic-name={"iconButton"}
                 data-plasmic-override={overrides.iconButton}
                 className={classNames("__wab_instance", sty.iconButton, {
+                  [sty.iconButton__hasNewActivity]: hasVariant(
+                    variants,
+                    "hasNewActivity",
+                    "hasNewActivity"
+                  ),
                   [sty.iconButton__isActive]: hasVariant(
                     variants,
                     "isActive",

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -12,6 +12,7 @@ import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { getUniqueListBy } from "module/helpers";
 import { useTimelinesByUserId } from "module/hook/timeline";
+import useOnClickOutside from "module/hook/ui/useOnClickOutside";
 import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
@@ -58,9 +59,27 @@ function Sidebar(props: SidebarProps) {
     (a: IVenture, b: IVenture) => a.name.localeCompare(b.name) ?? []
   );
 
+  const [profileDropdown, setProfileDropdown] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+  useOnClickOutside(ref, () => {
+    setProfileDropdown(false);
+  });
+
   return (
     <PlasmicSidebar
       {...props}
+      isDropdown={profileDropdown ? "isDropdown" : false}
+      dropdown={{
+        user: userContext.user,
+      }}
+      root={{
+        ref,
+      }}
+      photoAvatar={{
+        profileDropdown,
+        setProfileDropdown,
+        user: userContext.user,
+      }}
       hasInput={sortedVentures?.length > 0 ? true : false}
       itemGroupContainer={{
         children: sortedVentures?.map((venture: IVenture) => (

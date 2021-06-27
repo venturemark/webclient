@@ -19,7 +19,6 @@ interface AddEditVentureProps extends DefaultAddEditVentureProps {
 }
 
 export type FormData = {
-  url: string;
   membersWrite: boolean;
   ventureName: string;
   ventureDescription: string;
@@ -39,8 +38,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   } = useForm<FormData>({
     mode: "onChange",
     defaultValues: {
-      membersWrite: true,
-      url: currentVenture?.url || "",
+      membersWrite: currentVenture?.membersWrite,
       ventureName: currentVenture?.name || "",
       ventureDescription: currentVenture?.desc || "",
     },
@@ -50,6 +48,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   useEffect(() => {
     onChange && onChange(values);
   }, [values, onChange]);
+  console.log(values, currentVenture?.membersWrite);
 
   const { ventureSlug } = useParams();
   const { token } = useContext(AuthContext);
@@ -72,7 +71,7 @@ function AddEditVenture(props: AddEditVentureProps) {
           id: ventureId,
           name: data.ventureName,
           desc: data.ventureDescription,
-          url: data.url,
+          membersWrite: data.membersWrite,
           successUrl: `/${newHandle}/feed`,
           token,
         },
@@ -87,7 +86,6 @@ function AddEditVenture(props: AddEditVentureProps) {
         {
           name: data.ventureName,
           desc: data.ventureDescription,
-          url: data.url,
           membersWrite: data.membersWrite,
           successUrl: `/${newHandle}/feed`,
           token,
@@ -142,25 +140,6 @@ function AddEditVenture(props: AddEditVentureProps) {
         message: errors.ventureDescription?.message,
         value: values.ventureDescription,
       }}
-      url={{
-        ...register("url", {
-          required: {
-            message: "Required",
-            value: true,
-          },
-          pattern: {
-            message: "Bad format",
-            value: /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/,
-          },
-        }),
-        onChange(e) {
-          setValue("url", e);
-          trigger("url");
-        },
-        placeholder: values.ventureName.toLowerCase().replace(/\s/g, ""),
-        message: errors.url?.message,
-        value: values.url,
-      }}
       membersWrite={{
         ...register("membersWrite"),
         onChange(e) {
@@ -177,7 +156,10 @@ function AddEditVenture(props: AddEditVentureProps) {
         handleCancel: () => {
           hasVentures ? navigate("..") : navigate("/begin");
         },
-        handleSave: () => handleSubmit(handleCreate)(),
+        handleSave: () => {
+          console.log(handleCreate);
+          handleSubmit(handleCreate)();
+        },
       }}
     />
   );

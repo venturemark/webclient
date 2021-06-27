@@ -8,7 +8,7 @@ import { IUser } from "module/interface/user";
 
 interface ProfileDropdownProps extends DefaultProfileDropdownProps {
   profileDropdown: boolean | "profileDropdown" | undefined;
-  setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+  setProfileDropdown?: React.Dispatch<React.SetStateAction<boolean>>;
   isVisible: any;
   setIsVisible: any;
   user: IUser;
@@ -23,28 +23,33 @@ function ProfileDropdown(props: ProfileDropdownProps) {
     user,
     ...rest
   } = props;
-  const { user: authUser, logout } = useAuth0();
+  const { logout } = useAuth0();
 
+  console.log(user)
   const userInitials =
     user?.name
       .split(" ")
       .map((n: string) => n[0])
       .join("") ?? "";
 
-  const userEmail = authUser?.email || "";
-
   return (
     <PlasmicProfileDropdown
       userName={user?.name ?? ""}
-      userEmail={userEmail}
+      userEmail={user?.mail ?? ""}
       userInitials={userInitials}
       photoAvatar={{
         user,
       }}
       viewProfile={{
+        href: "/newventure",
+        onClick: () => {
+          setProfileDropdown && setProfileDropdown(!profileDropdown);
+        },
+      }}
+      viewProfile2={{
         href: "/editprofile",
         onClick: () => {
-          setProfileDropdown(!profileDropdown);
+          setProfileDropdown && setProfileDropdown(!profileDropdown);
         },
       }}
       logout={{
@@ -53,7 +58,8 @@ function ProfileDropdown(props: ProfileDropdownProps) {
         },
       }}
       close={{
-        onClick: () => setProfileDropdown(!profileDropdown),
+        onClick: () =>
+          setProfileDropdown && setProfileDropdown(!profileDropdown),
       }}
       {...rest}
     />

@@ -313,6 +313,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         >
           <MemberItem
             className={classNames("__wab_instance", sty.memberItem__e3Lpj)}
+            isOwner={"isOwner" as const}
             slot3={p.renderPlasmicSlot({
               defaultContents: "example@email.com",
               value: args.slot3,
@@ -321,7 +322,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               defaultContents: "User Name",
               value: args.slot4,
             })}
-            userVariant={"isOwner" as const}
+            userVariant={"isRequested" as const}
           />
 
           <MemberItem
@@ -334,7 +335,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               defaultContents: "example@email.com",
               value: args.slot43,
             })}
-            userVariant={"isMember" as const}
+            userVariant={"isAdmin" as const}
           />
 
           <MemberItem

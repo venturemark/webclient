@@ -786,7 +786,8 @@
           "filePath": "plasmic/shared/images/signinBgsvg.svg"
         }
       ],
-      "projectApiToken": "JmYCf6lyEqM7EiZtDziaLGIpSvhdusaKVvvFgGrGK5gGNtHra4ux9jUVroNOeGMWR16Tm0H6lDcE38TWvQ"
+      "projectApiToken": "JmYCf6lyEqM7EiZtDziaLGIpSvhdusaKVvvFgGrGK5gGNtHra4ux9jUVroNOeGMWR16Tm0H6lDcE38TWvQ",
+      "codeComponents": []
     }
   ],
   "globalVariants": {
@@ -805,6 +806,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.152",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.152/dist/plasmic.schema.json"
+  "cliVersion": "0.1.157",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.157/dist/plasmic.schema.json"
 }

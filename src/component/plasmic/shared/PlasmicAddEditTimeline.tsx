@@ -207,7 +207,11 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           ),
         })}
         hasLabel={"hasLabel" as const}
-        hasTextHelper={"hasTextHelper" as const}
+        hasTextHelper={
+          hasVariant(variants, "variantState", "isEdit")
+            ? undefined
+            : ("hasTextHelper" as const)
+        }
         isDisabled={
           hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "variantState", "isEdit")
@@ -286,6 +290,8 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         hasVariant(variants, "isOwner", "isOwner") &&
         hasVariant(variants, "variantState", "isEdit")
           ? false
+          : hasVariant(variants, "isOwner", "isOwner")
+          ? true
           : hasVariant(variants, "variantState", "isEdit")
           ? false
           : true

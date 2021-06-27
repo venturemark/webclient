@@ -28,7 +28,7 @@
 }
 .box__qygsP {
   align-self: center;
-  text-align: center;
+  text-align: left;
   width: auto;
   position: relative;
   left: auto;
@@ -66,8 +66,8 @@
   left: auto;
   width: 100%;
   min-width: 0;
-  padding: 20px 10px;
-  border-top: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  padding: 10px;
+  border-top: 0px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
   border-bottom: 1px solid rgb(224, 224, 224)
     /* plasmic-token: 9--4ZPcisViPq8V */;
 }
@@ -81,6 +81,9 @@
 .box__iA4Y > :global(.__wab_flex-container) > *,
 .box__iA4Y > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 14px;
+}
+.box__isMobile__iA4YKb6FV {
+  border-top-width: 1px;
 }
 .photoAvatar:global(.__wab_instance) {
   flex-shrink: 0;
@@ -125,6 +128,9 @@
 .ul > :global(.__wab_flex-container) > *,
 .ul > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 15px;
+}
+.createNewVenture:global(.__wab_instance) {
+  position: relative;
 }
 .viewProfile:global(.__wab_instance) {
   position: relative;

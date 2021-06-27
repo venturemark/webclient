@@ -4,7 +4,7 @@ import {
 } from "component/plasmic/shared/PlasmicButtonSetEdit";
 
 interface ButtonSetEditProps extends DefaultButtonSetEditProps {
-  handleSave?: (e: any) => void;
+  handleSave?: () => void;
   handleCancel?: () => void;
   handleDelete?: () => void;
 }

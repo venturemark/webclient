@@ -20,33 +20,35 @@ export async function Update(
   const req = new UpdateI();
 
   const obj = new UpdateI_Obj();
-  const nameObjJsnPatch = new UpdateI_Obj_Jsnpatch();
-  const descriptionObjJsnPatch = new UpdateI_Obj_Jsnpatch();
-  const urlObjJsnPatch = new UpdateI_Obj_Jsnpatch();
+
   const objList = [];
   const patchList = [];
 
   obj.getMetadataMap().set(key.VentureID, ventureUpdate.id);
 
   if (ventureUpdate.name) {
-    nameObjJsnPatch.setOpe("replace");
-    nameObjJsnPatch.setPat("/obj/property/name");
-    nameObjJsnPatch.setVal(ventureUpdate.name);
-  }
-  if (ventureUpdate.desc) {
-    descriptionObjJsnPatch.setOpe("replace");
-    descriptionObjJsnPatch.setPat("/obj/property/desc");
-    descriptionObjJsnPatch.setVal(ventureUpdate.desc);
-  }
-  if (ventureUpdate.url) {
-    urlObjJsnPatch.setOpe("replace");
-    urlObjJsnPatch.setPat("/obj/property/link/0/addr");
-    urlObjJsnPatch.setVal(ventureUpdate.url);
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat("/obj/property/name");
+    patch.setVal(ventureUpdate.name);
+    patchList.push(patch);
   }
 
-  patchList.push(nameObjJsnPatch);
-  patchList.push(descriptionObjJsnPatch);
-  patchList.push(urlObjJsnPatch);
+  if (ventureUpdate.desc) {
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat("/obj/property/desc");
+    patch.setVal(ventureUpdate.desc);
+    patchList.push(patch);
+  }
+
+  {
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat(`/obj/metadata/${key.PermissionModel.replace("/", "~1")}`);
+    patch.setVal(ventureUpdate.membersWrite ? "writer" : "reader");
+    patchList.push(patch);
+  }
 
   obj.setJsnpatchList(patchList);
 

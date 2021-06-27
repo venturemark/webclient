@@ -253,21 +253,28 @@ function PlasmicAddEditVenture__RenderFunc(props: {
               hasVariant(variants, "isOwner", "isOwner"),
           })}
         >
-          <InputText
-            data-plasmic-name={"url"}
-            data-plasmic-override={overrides.url}
-            hasLabel={"hasLabel" as const}
-            hasTextHelper={"hasTextHelper" as const}
-            label={"Custom URL"}
-          >
-            {"Enter in a URL name for this venture"}
-          </InputText>
+          {false ? (
+            <InputText
+              data-plasmic-name={"url"}
+              data-plasmic-override={overrides.url}
+              hasLabel={"hasLabel" as const}
+              hasTextHelper={"hasTextHelper" as const}
+              isDisabled={
+                hasVariant(variants, "isOwner", "isOwner")
+                  ? undefined
+                  : ("isDisabled" as const)
+              }
+              label={"Custom URL"}
+            >
+              {"Enter in a URL name for this venture"}
+            </InputText>
+          ) : null}
         </p.Stack>
       ) : null}
       {(
         hasVariant(variants, "variantState", "isEdit") &&
         hasVariant(variants, "isOwner", "isOwner")
-          ? false
+          ? true
           : hasVariant(variants, "isOwner", "isOwner")
           ? true
           : hasVariant(variants, "variantState", "isEdit")
@@ -317,7 +324,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       {(
         hasVariant(variants, "variantState", "isEdit") &&
         hasVariant(variants, "isOwner", "isOwner")
-          ? false
+          ? true
           : hasVariant(variants, "isOwner", "isOwner")
           ? true
           : hasVariant(variants, "variantState", "isEdit")
