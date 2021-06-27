@@ -75,9 +75,13 @@ function Sidebar(props: SidebarProps) {
       root={{
         ref,
       }}
+      accountSettings={{
+        onClick() {
+          setProfileDropdown(!profileDropdown);
+        },
+      }}
+      userName={userContext.user?.name}
       photoAvatar={{
-        profileDropdown,
-        setProfileDropdown,
         user: userContext.user,
       }}
       hasInput={sortedVentures?.length > 0 ? true : false}

@@ -38,7 +38,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   } = useForm<FormData>({
     mode: "onChange",
     defaultValues: {
-      membersWrite: currentVenture?.membersWrite,
+      membersWrite: currentVenture?.membersWrite ?? true,
       ventureName: currentVenture?.name || "",
       ventureDescription: currentVenture?.desc || "",
     },
@@ -48,7 +48,6 @@ function AddEditVenture(props: AddEditVentureProps) {
   useEffect(() => {
     onChange && onChange(values);
   }, [values, onChange]);
-  console.log(values, currentVenture?.membersWrite);
 
   const { ventureSlug } = useParams();
   const { token } = useContext(AuthContext);

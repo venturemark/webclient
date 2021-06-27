@@ -40,6 +40,7 @@ export interface IDeleteTimeline {
 export interface IUpdateTimeline {
   id: string;
   ventureId: string;
+  membersWrite?: boolean;
   desc?: string;
   name?: string;
   stat?: string;

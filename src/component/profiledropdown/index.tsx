@@ -25,7 +25,7 @@ function ProfileDropdown(props: ProfileDropdownProps) {
   } = props;
   const { logout } = useAuth0();
 
-  console.log(user)
+  console.log(user);
   const userInitials =
     user?.name
       .split(" ")
@@ -40,13 +40,13 @@ function ProfileDropdown(props: ProfileDropdownProps) {
       photoAvatar={{
         user,
       }}
-      viewProfile={{
+      createNewVenture={{
         href: "/newventure",
         onClick: () => {
           setProfileDropdown && setProfileDropdown(!profileDropdown);
         },
       }}
-      viewProfile2={{
+      viewProfile={{
         href: "/editprofile",
         onClick: () => {
           setProfileDropdown && setProfileDropdown(!profileDropdown);
