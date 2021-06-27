@@ -49,11 +49,12 @@ function ProfileForm(props: ProfileFormProps) {
   const { mutate: saveUser } = useCreateUser();
 
   const handleSave = (data: any) => {
-    if (!data.name) {
+    if (!data.name || !authUser?.email) {
       return;
     }
 
     saveUser({
+      mail: authUser.email,
       name: data.name,
       successUrl: hasInvite ? "../joinventure" : "../begin",
       title: data.title,

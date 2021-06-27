@@ -7,6 +7,7 @@ export interface Job {
 
 export interface IUser {
   id: string;
+  mail: string;
   name: string;
   title?: string;
   job?: Job;
@@ -35,6 +36,7 @@ export interface ISearchAllUser {
 }
 
 export interface ICreateUser {
+  mail: string;
   name: string;
   title: string;
   ventureName?: string;
@@ -49,6 +51,7 @@ export interface IDeleteUser {
 }
 
 export interface IUpdateUser {
+  mail?: string;
   id: string;
   name: string;
   title: string;
