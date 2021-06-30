@@ -65,3 +65,19 @@
 .emptyState:global(.__wab_instance) {
   position: relative;
 }
+.emptyState__variantType_isEmpty:global(.__wab_instance) {
+  display: none;
+}
+.emptyState__variantType_isEmpty_isOwner:global(.__wab_instance) {
+  display: block;
+}
+.box__k8I5L {
+  position: relative;
+  margin-top: calc(51px + 30px) !important;
+}
+.box__variantType_isEmpty__k8I5LnF9Ly {
+  font-size: 26px /* plasmic-token: TujpjiAsC */;
+}
+.box__variantType_isEmpty_isOwner__k8I5LnF9LySozJa {
+  display: none;
+}

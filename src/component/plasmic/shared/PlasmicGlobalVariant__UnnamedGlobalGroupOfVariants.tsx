@@ -9,5 +9,9 @@ export const UnnamedGlobalGroupOfVariantsContext = React.createContext<
   UnnamedGlobalGroupOfVariantsValue | undefined
 >("PLEASE_RENDER_INSIDE_PROVIDER" as any);
 
+export function useUnnamedGlobalGroupOfVariants() {
+  return React.useContext(UnnamedGlobalGroupOfVariantsContext);
+}
+
 export default UnnamedGlobalGroupOfVariantsContext;
 /* prettier-ignore-end */

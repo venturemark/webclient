@@ -168,24 +168,32 @@ function PlasmicHeader__RenderFunc(props: {
                 role={"img"}
               />
             ) : null}
-
-            <Logosvg3Icon
-              data-plasmic-name={"svg"}
-              data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg, {
-                [sty.svg__mobileMenu]: hasVariant(
-                  variants,
-                  "mobileMenu",
-                  "mobileMenu"
-                ),
-                [sty.svg__views_publicView]: hasVariant(
-                  variants,
-                  "views",
-                  "publicView"
-                ),
-              })}
-              role={"img"}
-            />
+            {(
+              hasVariant(variants, "views", "publicView") &&
+              hasVariant(globalVariants, "screen", "mobile")
+                ? true
+                : hasVariant(globalVariants, "screen", "mobile")
+                ? false
+                : true
+            ) ? (
+              <Logosvg3Icon
+                data-plasmic-name={"svg"}
+                data-plasmic-override={overrides.svg}
+                className={classNames(defaultcss.all, sty.svg, {
+                  [sty.svg__mobileMenu]: hasVariant(
+                    variants,
+                    "mobileMenu",
+                    "mobileMenu"
+                  ),
+                  [sty.svg__views_publicView]: hasVariant(
+                    variants,
+                    "views",
+                    "publicView"
+                  ),
+                })}
+                role={"img"}
+              />
+            ) : null}
           </p.Stack>
         ) : null}
         {(hasVariant(variants, "views", "publicView") ? true : false) ? (
@@ -280,6 +288,7 @@ function PlasmicHeader__RenderFunc(props: {
                     "profileDropdown"
                   ),
                 })}
+                isMobile={"isMobile" as const}
                 prop3={"Log Out"}
               />
             ) : null}

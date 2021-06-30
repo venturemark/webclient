@@ -29,6 +29,8 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
+import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
+import ProfileDropdown from "../../profiledropdown/index"; // plasmic-import: bGjqf-R4Tc/component
 import SidebarItemGroup from "../../sidebaritemgroup/index"; // plasmic-import: JQWYItyW5A/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -41,26 +43,35 @@ import LockIconsvgIcon from "./icons/PlasmicIcon__LockIconsvg"; // plasmic-impor
 export type PlasmicSidebar__VariantMembers = {
   hasInput: "hasInput";
   isPublic: "isPublic";
+  isDropdown: "isDropdown";
 };
 
 export type PlasmicSidebar__VariantsArgs = {
   hasInput?: SingleBooleanChoiceArg<"hasInput">;
   isPublic?: SingleBooleanChoiceArg<"isPublic">;
+  isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
 };
 
 type VariantPropType = keyof PlasmicSidebar__VariantsArgs;
 export const PlasmicSidebar__VariantProps = new Array<VariantPropType>(
   "hasInput",
-  "isPublic"
+  "isPublic",
+  "isDropdown"
 );
 
-export type PlasmicSidebar__ArgsType = {};
+export type PlasmicSidebar__ArgsType = {
+  userName?: React.ReactNode;
+};
+
 type ArgPropType = keyof PlasmicSidebar__ArgsType;
-export const PlasmicSidebar__ArgProps = new Array<ArgPropType>();
+export const PlasmicSidebar__ArgProps = new Array<ArgPropType>("userName");
 
 export type PlasmicSidebar__OverridesType = {
   root?: p.Flex<"div">;
   topSidebar?: p.Flex<"div">;
+  accountSettings?: p.Flex<"div">;
+  photoAvatar?: p.Flex<typeof PhotoAvatar>;
+  dropdown?: p.Flex<typeof ProfileDropdown>;
   scrollContainer?: p.Flex<"div">;
   itemGroupContainer?: p.Flex<"div">;
   sidebarItemGroup?: p.Flex<typeof SidebarItemGroup>;
@@ -69,8 +80,10 @@ export type PlasmicSidebar__OverridesType = {
 };
 
 export interface DefaultSidebarProps {
+  userName?: React.ReactNode;
   hasInput?: SingleBooleanChoiceArg<"hasInput">;
   isPublic?: SingleBooleanChoiceArg<"isPublic">;
+  isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
   className?: string;
 }
 
@@ -104,6 +117,60 @@ function PlasmicSidebar__RenderFunc(props: {
           ),
         })}
       >
+        {(hasVariant(variants, "isPublic", "isPublic") ? false : true) ? (
+          <p.Stack
+            as={"div"}
+            data-plasmic-name={"accountSettings"}
+            data-plasmic-override={overrides.accountSettings}
+            hasGap={true}
+            className={classNames(defaultcss.all, sty.accountSettings, {
+              [sty.accountSettings__hasInput]: hasVariant(
+                variants,
+                "hasInput",
+                "hasInput"
+              ),
+              [sty.accountSettings__isDropdown]: hasVariant(
+                variants,
+                "isDropdown",
+                "isDropdown"
+              ),
+              [sty.accountSettings__isPublic]: hasVariant(
+                variants,
+                "isPublic",
+                "isPublic"
+              ),
+            })}
+          >
+            <PhotoAvatar
+              data-plasmic-name={"photoAvatar"}
+              data-plasmic-override={overrides.photoAvatar}
+              className={classNames("__wab_instance", sty.photoAvatar)}
+            />
+
+            {p.renderPlasmicSlot({
+              defaultContents: "Name",
+              value: args.userName,
+            })}
+
+            {(
+              hasVariant(variants, "isDropdown", "isDropdown") ? true : false
+            ) ? (
+              <ProfileDropdown
+                data-plasmic-name={"dropdown"}
+                data-plasmic-override={overrides.dropdown}
+                className={classNames("__wab_instance", sty.dropdown, {
+                  [sty.dropdown__isDropdown]: hasVariant(
+                    variants,
+                    "isDropdown",
+                    "isDropdown"
+                  ),
+                })}
+                prop3={"Log Out"}
+              />
+            ) : null}
+          </p.Stack>
+        ) : null}
+
         <p.Stack
           as={"div"}
           data-plasmic-name={"scrollContainer"}
@@ -114,6 +181,11 @@ function PlasmicSidebar__RenderFunc(props: {
               variants,
               "hasInput",
               "hasInput"
+            ),
+            [sty.scrollContainer__isDropdown]: hasVariant(
+              variants,
+              "isDropdown",
+              "isDropdown"
             ),
             [sty.scrollContainer__isPublic]: hasVariant(
               variants,
@@ -143,7 +215,7 @@ function PlasmicSidebar__RenderFunc(props: {
             ) : null}
           </p.Stack>
 
-          {(hasVariant(variants, "isPublic", "isPublic") ? true : true) ? (
+          {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
             <p.Stack
               as={"div"}
               hasGap={true}
@@ -221,6 +293,9 @@ const PlasmicDescendants = {
   root: [
     "root",
     "topSidebar",
+    "accountSettings",
+    "photoAvatar",
+    "dropdown",
     "scrollContainer",
     "itemGroupContainer",
     "sidebarItemGroup",
@@ -229,12 +304,18 @@ const PlasmicDescendants = {
   ],
   topSidebar: [
     "topSidebar",
+    "accountSettings",
+    "photoAvatar",
+    "dropdown",
     "scrollContainer",
     "itemGroupContainer",
     "sidebarItemGroup",
     "viewCreateVenture",
     "svg",
   ],
+  accountSettings: ["accountSettings", "photoAvatar", "dropdown"],
+  photoAvatar: ["photoAvatar"],
+  dropdown: ["dropdown"],
   scrollContainer: [
     "scrollContainer",
     "itemGroupContainer",
@@ -253,6 +334,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   topSidebar: "div";
+  accountSettings: "div";
+  photoAvatar: typeof PhotoAvatar;
+  dropdown: typeof ProfileDropdown;
   scrollContainer: "div";
   itemGroupContainer: "div";
   sidebarItemGroup: typeof SidebarItemGroup;
@@ -322,6 +406,9 @@ export const PlasmicSidebar = Object.assign(
   {
     // Helper components rendering sub-elements
     topSidebar: makeNodeComponent("topSidebar"),
+    accountSettings: makeNodeComponent("accountSettings"),
+    photoAvatar: makeNodeComponent("photoAvatar"),
+    dropdown: makeNodeComponent("dropdown"),
     scrollContainer: makeNodeComponent("scrollContainer"),
     itemGroupContainer: makeNodeComponent("itemGroupContainer"),
     sidebarItemGroup: makeNodeComponent("sidebarItemGroup"),
