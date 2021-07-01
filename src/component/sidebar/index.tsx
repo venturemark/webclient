@@ -22,9 +22,9 @@ function Sidebar(props: SidebarProps) {
   const timelineContext = useContext(TimelineContext);
   const ventureContext = useContext(VentureContext);
   const { token } = useContext(AuthContext);
-  const [isDropdown, setIsDropdown] = useState(false)
+  const [isDropdown, setIsDropdown] = useState(false);
 
-  const userName = userContext.user?.name ?? ""
+  const userName = userContext.user?.name ?? "";
 
   const { data: timelinesData = [] } = useTimelinesByUserId({
     userId: userContext.user?.id ?? "",
@@ -65,11 +65,10 @@ function Sidebar(props: SidebarProps) {
       {...props}
       hasInput={sortedVentures?.length > 0 ? true : false}
       userName={userName}
-      photoAvatar={{user:userContext.user}}
+      photoAvatar={{ user: userContext.user }}
       accountSettings={{
-        onClick: ()=> setIsDropdown(!isDropdown),
-        }
-      }
+        onClick: () => setIsDropdown(!isDropdown),
+      }}
       isDropdown={isDropdown}
       itemGroupContainer={{
         children: sortedVentures?.map((venture: IVenture) => (

@@ -9,6 +9,5 @@ export interface IVentureContext {
   venturesLoaded: boolean;
 }
 
-export const VentureContext = createContext<IVentureContext | undefined>(
-  undefined
-);
+export const VentureContext =
+  createContext<IVentureContext | undefined>(undefined);
