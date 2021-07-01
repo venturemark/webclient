@@ -67,10 +67,6 @@ export default function Header(props: HeaderProps) {
         user,
       }}
       dropdown={{
-        profileDropdown,
-        setProfileDropdown,
-        isVisible,
-        setIsVisible,
         user,
       }}
     />

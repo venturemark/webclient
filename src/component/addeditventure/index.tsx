@@ -144,10 +144,11 @@ function AddEditVenture(props: AddEditVentureProps) {
       }}
       url={{
         ...register("url", {
-          required: {
-            message: "Required",
-            value: true,
-          },
+          // required: {
+          //   message: "Required",
+          //   value: true,
+          // },
+          // not requiring until we put in public urls
           pattern: {
             message: "Bad format",
             value: /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/,

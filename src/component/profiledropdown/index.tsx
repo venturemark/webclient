@@ -5,25 +5,24 @@ import {
   PlasmicProfileDropdown,
 } from "component/plasmic/shared/PlasmicProfileDropdown";
 import { IUser } from "module/interface/user";
+import { useState } from "react";
 
 interface ProfileDropdownProps extends DefaultProfileDropdownProps {
-  profileDropdown: boolean | "profileDropdown" | undefined;
-  setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
-  isVisible: any;
-  setIsVisible: any;
+  // profileDropdown: boolean | "profileDropdown" | undefined;
+  // setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
   user: IUser;
 }
 
 function ProfileDropdown(props: ProfileDropdownProps) {
   const {
-    isVisible,
-    setIsVisible,
-    profileDropdown,
-    setProfileDropdown,
+    // profileDropdown,
+    // setProfileDropdown,
     user,
     ...rest
   } = props;
   const { user: authUser, logout } = useAuth0();
+
+  const [profileDropdown, setProfileDropdown] = useState(false);
 
   const userInitials =
     user?.name
@@ -40,6 +39,12 @@ function ProfileDropdown(props: ProfileDropdownProps) {
       userInitials={userInitials}
       photoAvatar={{
         user,
+      }}
+      createNewVenture={{
+        href: "/newventure",
+        onClick: () => {
+          setProfileDropdown(!profileDropdown);
+        },
       }}
       viewProfile={{
         href: "/editprofile",
