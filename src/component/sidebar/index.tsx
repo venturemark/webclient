@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 
 import {
   DefaultSidebarProps,
@@ -23,6 +22,9 @@ function Sidebar(props: SidebarProps) {
   const timelineContext = useContext(TimelineContext);
   const ventureContext = useContext(VentureContext);
   const { token } = useContext(AuthContext);
+  const [isDropdown, setIsDropdown] = useState(false);
+
+  const userName = userContext.user?.name ?? "";
 
   const { data: timelinesData = [] } = useTimelinesByUserId({
     userId: userContext.user?.id ?? "",
@@ -62,6 +64,12 @@ function Sidebar(props: SidebarProps) {
     <PlasmicSidebar
       {...props}
       hasInput={sortedVentures?.length > 0 ? true : false}
+      userName={userName}
+      photoAvatar={{ user: userContext.user }}
+      accountSettings={{
+        onClick: () => setIsDropdown(!isDropdown),
+      }}
+      isDropdown={isDropdown}
       itemGroupContainer={{
         children: sortedVentures?.map((venture: IVenture) => (
           <SidebarItemGroup
@@ -73,12 +81,6 @@ function Sidebar(props: SidebarProps) {
             membersWrite={venture.membersWrite}
           />
         )),
-      }}
-      viewCreateVenture={{
-        as: Link,
-        props: {
-          to: "/newventure",
-        },
       }}
     />
   );

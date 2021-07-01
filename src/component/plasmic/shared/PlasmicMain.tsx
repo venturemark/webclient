@@ -489,7 +489,8 @@ function PlasmicMain__RenderFunc(props: {
           : hasVariant(variants, "variantType", "isEmpty") &&
             hasVariant(variants, "isActive", "settings")
           ? false
-          : hasVariant(variants, "variantType", "isEmpty")
+          : hasVariant(variants, "variantType", "isEmpty") &&
+            hasVariant(variants, "isOwner", "isOwner")
           ? true
           : false
       ) ? (
@@ -508,6 +509,11 @@ function PlasmicMain__RenderFunc(props: {
             [sty.emptyState__isActive_members_variantType_isEmpty]:
               hasVariant(variants, "isActive", "members") &&
               hasVariant(variants, "variantType", "isEmpty"),
+            [sty.emptyState__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
             [sty.emptyState__variantType_isEmpty]: hasVariant(
               variants,
               "variantType",
@@ -519,6 +525,9 @@ function PlasmicMain__RenderFunc(props: {
             [sty.emptyState__variantType_isEmpty_isActive_settings]:
               hasVariant(variants, "variantType", "isEmpty") &&
               hasVariant(variants, "isActive", "settings"),
+            [sty.emptyState__variantType_isEmpty_isOwner]:
+              hasVariant(variants, "variantType", "isEmpty") &&
+              hasVariant(variants, "isOwner", "isOwner"),
             [sty.emptyState__variantType_isTimeline]: hasVariant(
               variants,
               "variantType",
@@ -573,6 +582,43 @@ function PlasmicMain__RenderFunc(props: {
               : undefined
           }
         />
+      ) : null}
+      {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
+        <div
+          className={classNames(
+            defaultcss.all,
+            defaultcss.__wab_text,
+            sty.box__k8I5L,
+            {
+              [sty.box__isActive_settings__k8I5LOMvQw]: hasVariant(
+                variants,
+                "isActive",
+                "settings"
+              ),
+              [sty.box__isOwner__k8I5LSozJa]: hasVariant(
+                variants,
+                "isOwner",
+                "isOwner"
+              ),
+              [sty.box__variantType_isEmpty__k8I5LnF9Ly]: hasVariant(
+                variants,
+                "variantType",
+                "isEmpty"
+              ),
+              [sty.box__variantType_isEmpty_isOwner__k8I5LnF9LySozJa]:
+                hasVariant(variants, "variantType", "isEmpty") &&
+                hasVariant(variants, "isOwner", "isOwner"),
+              [sty.box__variantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN]:
+                hasVariant(variants, "variantType", "isEmpty") &&
+                hasVariant(variants, "isOwner", "isOwner") &&
+                hasVariant(variants, "isPublic", "isPublic"),
+            }
+          )}
+        >
+          {hasVariant(variants, "variantType", "isEmpty")
+            ? "This venture has no timelines yet"
+            : "Enter some text"}
+        </div>
       ) : null}
     </p.Stack>
   ) as React.ReactElement | null;

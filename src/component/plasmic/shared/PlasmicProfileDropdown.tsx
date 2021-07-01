@@ -40,12 +40,18 @@ import * as sty from "./PlasmicProfileDropdown.module.css"; // plasmic-import: b
 
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 
-export type PlasmicProfileDropdown__VariantMembers = {};
+export type PlasmicProfileDropdown__VariantMembers = {
+  isMobile: "isMobile";
+};
 
-export type PlasmicProfileDropdown__VariantsArgs = {};
+export type PlasmicProfileDropdown__VariantsArgs = {
+  isMobile?: SingleBooleanChoiceArg<"isMobile">;
+};
+
 type VariantPropType = keyof PlasmicProfileDropdown__VariantsArgs;
-export const PlasmicProfileDropdown__VariantProps =
-  new Array<VariantPropType>();
+export const PlasmicProfileDropdown__VariantProps = new Array<VariantPropType>(
+  "isMobile"
+);
 
 export type PlasmicProfileDropdown__ArgsType = {
   prop?: React.ReactNode;
@@ -53,6 +59,7 @@ export type PlasmicProfileDropdown__ArgsType = {
   userName?: React.ReactNode;
   userEmail?: React.ReactNode;
   prop3?: React.ReactNode;
+  prop2?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicProfileDropdown__ArgsType;
@@ -61,7 +68,8 @@ export const PlasmicProfileDropdown__ArgProps = new Array<ArgPropType>(
   "userInitials",
   "userName",
   "userEmail",
-  "prop3"
+  "prop3",
+  "prop2"
 );
 
 export type PlasmicProfileDropdown__OverridesType = {
@@ -71,6 +79,7 @@ export type PlasmicProfileDropdown__OverridesType = {
   svg?: p.Flex<"svg">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   ul?: p.Flex<"ul">;
+  createNewVenture?: p.Flex<typeof ListItem>;
   viewProfile?: p.Flex<typeof ListItem>;
   logout?: p.Flex<typeof ListItem>;
 };
@@ -81,6 +90,8 @@ export interface DefaultProfileDropdownProps {
   userName?: React.ReactNode;
   userEmail?: React.ReactNode;
   prop3?: React.ReactNode;
+  prop2?: React.ReactNode;
+  isMobile?: SingleBooleanChoiceArg<"isMobile">;
   className?: string;
 }
 
@@ -104,67 +115,99 @@ function PlasmicProfileDropdown__RenderFunc(props: {
       <div
         data-plasmic-name={"rectangle574"}
         data-plasmic-override={overrides.rectangle574}
-        className={classNames(defaultcss.all, sty.rectangle574)}
+        className={classNames(defaultcss.all, sty.rectangle574, {
+          [sty.rectangle574__isMobile]: hasVariant(
+            variants,
+            "isMobile",
+            "isMobile"
+          ),
+        })}
       >
-        <div className={classNames(defaultcss.all, sty.box___4LHLu)}>
+        {(hasVariant(variants, "isMobile", "isMobile") ? true : true) ? (
           <div
-            className={classNames(
-              defaultcss.all,
-              defaultcss.__wab_text,
-              sty.box__qygsP
-            )}
-          >
-            {"Account"}
-          </div>
-
-          <div className={classNames(defaultcss.all, sty.box___9FGjg)}>
-            <IconButton
-              data-plasmic-name={"close"}
-              data-plasmic-override={overrides.close}
-              className={classNames("__wab_instance", sty.close)}
-            >
-              <IconCloseIcon
-                data-plasmic-name={"svg"}
-                data-plasmic-override={overrides.svg}
-                className={classNames(defaultcss.all, sty.svg)}
-                role={"img"}
-              />
-            </IconButton>
-          </div>
-        </div>
-
-        <p.Stack
-          as={"div"}
-          hasGap={true}
-          className={classNames(defaultcss.all, sty.box__iA4Y)}
-        >
-          <PhotoAvatar
-            data-plasmic-name={"photoAvatar"}
-            data-plasmic-override={overrides.photoAvatar}
-            className={classNames("__wab_instance", sty.photoAvatar)}
-            userInitials={p.renderPlasmicSlot({
-              defaultContents: "KO",
-              value: args.userInitials,
+            className={classNames(defaultcss.all, sty.box___4LHLu, {
+              [sty.box__isMobile___4LHLuKb6FV]: hasVariant(
+                variants,
+                "isMobile",
+                "isMobile"
+              ),
             })}
-          />
+          >
+            <div
+              className={classNames(
+                defaultcss.all,
+                defaultcss.__wab_text,
+                sty.box__qygsP
+              )}
+            >
+              {"Account"}
+            </div>
 
+            <div className={classNames(defaultcss.all, sty.box___9FGjg)}>
+              <IconButton
+                data-plasmic-name={"close"}
+                data-plasmic-override={overrides.close}
+                className={classNames("__wab_instance", sty.close)}
+              >
+                <IconCloseIcon
+                  data-plasmic-name={"svg"}
+                  data-plasmic-override={overrides.svg}
+                  className={classNames(defaultcss.all, sty.svg)}
+                  role={"img"}
+                />
+              </IconButton>
+            </div>
+          </div>
+        ) : null}
+        {true ? (
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__tyRt7)}
+            className={classNames(defaultcss.all, sty.box__iA4Y, {
+              [sty.box__isMobile__iA4YKb6FV]: hasVariant(
+                variants,
+                "isMobile",
+                "isMobile"
+              ),
+            })}
           >
-            {p.renderPlasmicSlot({
-              defaultContents: "User Name",
-              value: args.userName,
-            })}
+            {false ? (
+              <PhotoAvatar
+                data-plasmic-name={"photoAvatar"}
+                data-plasmic-override={overrides.photoAvatar}
+                className={classNames("__wab_instance", sty.photoAvatar)}
+                userInitials={p.renderPlasmicSlot({
+                  defaultContents: "KO",
+                  value: args.userInitials,
+                })}
+              />
+            ) : null}
 
-            {p.renderPlasmicSlot({
-              defaultContents: "user@email.com",
-              value: args.userEmail,
-              className: classNames(sty.slotUserEmail),
-            })}
+            <p.Stack
+              as={"div"}
+              hasGap={true}
+              className={classNames(defaultcss.all, sty.box__tyRt7)}
+            >
+              {false
+                ? p.renderPlasmicSlot({
+                    defaultContents: "User Name",
+                    value: args.userName,
+                  })
+                : null}
+              {p.renderPlasmicSlot({
+                defaultContents: "user@email.com",
+                value: args.userEmail,
+                className: classNames(sty.slotUserEmail, {
+                  [sty.slotUserEmail__isMobile]: hasVariant(
+                    variants,
+                    "isMobile",
+                    "isMobile"
+                  ),
+                }),
+              })}
+            </p.Stack>
           </p.Stack>
-        </p.Stack>
+        ) : null}
 
         <p.Stack
           as={"ul"}
@@ -174,12 +217,34 @@ function PlasmicProfileDropdown__RenderFunc(props: {
           className={classNames(defaultcss.ul, sty.ul)}
         >
           <ListItem
+            data-plasmic-name={"createNewVenture"}
+            data-plasmic-override={overrides.createNewVenture}
+            className={classNames("__wab_instance", sty.createNewVenture, {
+              [sty.createNewVenture__isMobile]: hasVariant(
+                variants,
+                "isMobile",
+                "isMobile"
+              ),
+            })}
+            rename={p.renderPlasmicSlot({
+              defaultContents: "Create new Venture",
+              value: args.prop,
+            })}
+          />
+
+          <ListItem
             data-plasmic-name={"viewProfile"}
             data-plasmic-override={overrides.viewProfile}
-            className={classNames("__wab_instance", sty.viewProfile)}
+            className={classNames("__wab_instance", sty.viewProfile, {
+              [sty.viewProfile__isMobile]: hasVariant(
+                variants,
+                "isMobile",
+                "isMobile"
+              ),
+            })}
             rename={p.renderPlasmicSlot({
               defaultContents: "Profile",
-              value: args.prop,
+              value: args.prop2,
             })}
           />
 
@@ -206,6 +271,7 @@ const PlasmicDescendants = {
     "svg",
     "photoAvatar",
     "ul",
+    "createNewVenture",
     "viewProfile",
     "logout",
   ],
@@ -215,13 +281,15 @@ const PlasmicDescendants = {
     "svg",
     "photoAvatar",
     "ul",
+    "createNewVenture",
     "viewProfile",
     "logout",
   ],
   close: ["close", "svg"],
   svg: ["svg"],
   photoAvatar: ["photoAvatar"],
-  ul: ["ul", "viewProfile", "logout"],
+  ul: ["ul", "createNewVenture", "viewProfile", "logout"],
+  createNewVenture: ["createNewVenture"],
   viewProfile: ["viewProfile"],
   logout: ["logout"],
 } as const;
@@ -235,6 +303,7 @@ type NodeDefaultElementType = {
   svg: "svg";
   photoAvatar: typeof PhotoAvatar;
   ul: "ul";
+  createNewVenture: typeof ListItem;
   viewProfile: typeof ListItem;
   logout: typeof ListItem;
 };
@@ -305,6 +374,7 @@ export const PlasmicProfileDropdown = Object.assign(
     svg: makeNodeComponent("svg"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     ul: makeNodeComponent("ul"),
+    createNewVenture: makeNodeComponent("createNewVenture"),
     viewProfile: makeNodeComponent("viewProfile"),
     logout: makeNodeComponent("logout"),
 

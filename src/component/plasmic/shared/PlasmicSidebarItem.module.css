@@ -4,10 +4,26 @@
   height: auto;
   position: relative;
   min-width: 0;
-  padding: 0px 0px 0px 20px;
+  padding: 0px;
 }
 .root__itemType_createTimeline:hover {
   opacity: 1;
+}
+.svg__bufRg {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  flex-shrink: 0;
+  height: 1em;
+}
+.svg__hasNewActivity__bufRg0PiUm {
+  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  left: -8px;
+  top: 39%;
+  flex-shrink: 0;
 }
 .itemContainer {
   display: flex;

@@ -143,7 +143,7 @@
   margin-top: 0px;
 }
 .box__headerStyles_timelineHeader__y7S0JRxxpi {
-  font-family: "SF Pro Display";
+  font-family: SF Pro Display;
   font-size: 18px /* plasmic-token: UFZg3bUaA */;
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
   font-weight: 300;
@@ -233,6 +233,10 @@
   position: relative;
   left: auto;
   top: auto;
+}
+.box__lssdr {
+  width: auto;
+  display: inline-block;
 }
 .viewSettings:global(.__wab_instance) {
   position: relative;
