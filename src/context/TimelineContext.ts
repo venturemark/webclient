@@ -7,5 +7,6 @@ export interface ITimelineContext {
   ventureRoleTimelines: ITimeline[];
 }
 
-export const TimelineContext =
-  createContext<ITimelineContext | undefined>(undefined);
+export const TimelineContext = createContext<ITimelineContext | undefined>(
+  undefined
+);
