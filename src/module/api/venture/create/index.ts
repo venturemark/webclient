@@ -23,13 +23,16 @@ export async function Create(createVenture: ICreateVenture) {
   const token = createVenture.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
-  objLink.setAddr(createVenture.url);
-  objLink.setText(createVenture.name);
-  objLinkList.push(objLink);
+  console.log(createVenture);
+  if (createVenture.url) {
+    objLink.setAddr(createVenture.url);
+    objLink.setText(createVenture.name);
+    objLinkList.push(objLink);
+    objProperty.setLinkList(objLinkList);
+  }
 
   objProperty.setName(createVenture.name);
   objProperty.setDesc(createVenture.desc);
-  objProperty.setLinkList(objLinkList);
 
   obj.setProperty(objProperty);
 

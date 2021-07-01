@@ -48,7 +48,7 @@ function ProfileForm(props: ProfileFormProps) {
   const values = watch();
   const { mutate: saveUser } = useCreateUser();
 
-  const handleSave = (data: any) => {
+  const handleSave = (data: FormData) => {
     if (!data.name || !authUser?.email) {
       return;
     }

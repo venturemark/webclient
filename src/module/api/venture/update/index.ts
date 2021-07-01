@@ -33,20 +33,30 @@ export async function Update(
     nameObjJsnPatch.setPat("/obj/property/name");
     nameObjJsnPatch.setVal(ventureUpdate.name);
   }
+
   if (ventureUpdate.desc) {
     descriptionObjJsnPatch.setOpe("replace");
     descriptionObjJsnPatch.setPat("/obj/property/desc");
     descriptionObjJsnPatch.setVal(ventureUpdate.desc);
   }
+
   if (ventureUpdate.url) {
     urlObjJsnPatch.setOpe("replace");
     urlObjJsnPatch.setPat("/obj/property/link/0/addr");
     urlObjJsnPatch.setVal(ventureUpdate.url);
+    patchList.push(urlObjJsnPatch);
+  }
+
+  {
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat(`/obj/metadata/${key.PermissionModel.replace("/", "~1")}`);
+    patch.setVal(ventureUpdate.membersWrite ? "writer" : "reader");
+    patchList.push(patch);
   }
 
   patchList.push(nameObjJsnPatch);
   patchList.push(descriptionObjJsnPatch);
-  patchList.push(urlObjJsnPatch);
 
   obj.setJsnpatchList(patchList);
 

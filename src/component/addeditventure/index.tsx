@@ -39,7 +39,7 @@ function AddEditVenture(props: AddEditVentureProps) {
   } = useForm<FormData>({
     mode: "onChange",
     defaultValues: {
-      membersWrite: true,
+      membersWrite: currentVenture?.membersWrite ?? true,
       url: currentVenture?.url || "",
       ventureName: currentVenture?.name || "",
       ventureDescription: currentVenture?.desc || "",
@@ -73,6 +73,7 @@ function AddEditVenture(props: AddEditVentureProps) {
           name: data.ventureName,
           desc: data.ventureDescription,
           url: data.url,
+          membersWrite: data.membersWrite,
           successUrl: `/${newHandle}/feed`,
           token,
         },
