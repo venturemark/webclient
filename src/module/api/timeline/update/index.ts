@@ -20,38 +20,46 @@ export async function Update(
   const req = new UpdateI();
 
   const obj = new UpdateI_Obj();
-  const nameObjJsnPatch = new UpdateI_Obj_Jsnpatch();
-  const descriptionObjJsnPatch = new UpdateI_Obj_Jsnpatch();
-  const statObjJsnPatch = new UpdateI_Obj_Jsnpatch();
-  const objList = [];
-  const patchList = [];
 
   obj.getMetadataMap().set(key.TimelineID, updateTimeline.id);
   obj.getMetadataMap().set(key.VentureID, updateTimeline.ventureId);
 
+  const patchList = [];
+
   if (updateTimeline.stat) {
+    const statObjJsnPatch = new UpdateI_Obj_Jsnpatch();
     statObjJsnPatch.setOpe("replace");
     statObjJsnPatch.setPat("/obj/property/stat");
     statObjJsnPatch.setVal(updateTimeline.stat);
     patchList.push(statObjJsnPatch);
   }
+
   if (updateTimeline.name) {
+    const nameObjJsnPatch = new UpdateI_Obj_Jsnpatch();
     nameObjJsnPatch.setOpe("replace");
     nameObjJsnPatch.setPat("/obj/property/name");
     nameObjJsnPatch.setVal(updateTimeline.name);
     patchList.push(nameObjJsnPatch);
   }
+
   if (updateTimeline.desc) {
+    const descriptionObjJsnPatch = new UpdateI_Obj_Jsnpatch();
     descriptionObjJsnPatch.setOpe("replace");
     descriptionObjJsnPatch.setPat("/obj/property/desc");
     descriptionObjJsnPatch.setVal(updateTimeline.desc);
     patchList.push(descriptionObjJsnPatch);
   }
 
-  obj.setJsnpatchList(patchList);
+  if (updateTimeline.membersWrite !== undefined) {
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat(`/obj/metadata/${key.PermissionModel.replace("/", "~1")}`);
+    patch.setVal(updateTimeline.membersWrite ? "writer" : "reader");
+    patchList.push(patch);
+  }
 
-  objList.push(obj);
-  req.setObjList(objList);
+  obj.setJsnpatchList(patchList);
+  req.setObjList([obj]);
 
   return new Promise((resolve, reject) => {
     client.update(req, metadata, function (err: any, res: UpdateO): any {

@@ -86,6 +86,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           id: timelineId,
           name: data.timelineName,
           desc: data.timelineDescription,
+          membersWrite: data.membersWrite,
           ventureId,
           successUrl: `../../${data.timelineName}/feed`,
           token,
@@ -99,9 +100,9 @@ function AddEditTimeline(props: AddEditTimelineProps) {
     } else {
       createTimeline(
         {
-          membersWrite: data.membersWrite,
           name: data.timelineName,
           desc: data.timelineDescription,
+          membersWrite: data.membersWrite,
           ventureId,
           successUrl: `../${data.timelineName}/feed`,
           token,

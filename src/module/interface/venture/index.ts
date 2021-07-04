@@ -39,6 +39,7 @@ export interface IUpdateVenture {
   name: string;
   desc: string;
   url: string;
+  membersWrite: boolean;
   successUrl?: string;
   token: string | null;
 }

@@ -43,6 +43,7 @@ export interface IUpdateTimeline {
   desc?: string;
   name?: string;
   stat?: string;
+  membersWrite?: boolean;
   successUrl?: string;
   token: string | null;
 }
