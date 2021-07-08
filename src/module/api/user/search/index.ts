@@ -44,6 +44,7 @@ export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
           const name = propertiesPb?.getName()!;
           const mail = propertiesPb?.getMail()!;
           const title = propertiesPb?.getDesc()!;
+
           const profPb = propertiesPb?.getProfList()[0];
           const job: Job = {};
           job.title = profPb?.getDesc();
@@ -56,6 +57,19 @@ export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
             id,
             job,
           };
+
+          const lastUpdateString = metaPb.get(key.TimelineLastUpdate);
+          if (lastUpdateString) {
+            const lastUpdate: Record<string, string> = {};
+            for (const [key, value] of Object.entries(
+              JSON.parse(lastUpdateString)
+            )) {
+              if (typeof value !== "string") continue;
+              lastUpdate[key] = value;
+            }
+            user.lastUpdate = lastUpdate;
+          }
+
           return user;
         });
         resolve(users);

@@ -3,10 +3,7 @@ import { createContext } from "react";
 import { ITimeline } from "module/interface/timeline";
 
 export interface ITimelineContext {
-  allTimelines: ITimeline[];
-  ventureRoleTimelines: ITimeline[];
+  currentTimeline?: ITimeline;
 }
 
-export const TimelineContext = createContext<ITimelineContext | undefined>(
-  undefined
-);
+export const TimelineContext = createContext<ITimelineContext>({});

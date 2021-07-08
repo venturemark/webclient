@@ -7,6 +7,7 @@ import {
   PlasmicAddEditTimeline,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
 import { AuthContext } from "context/AuthContext";
+import { calculateNamedSlug } from "module/helpers";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
@@ -65,7 +66,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const { mutate: createTimeline } = useCreateTimeline();
   const { mutate: updateTimeline } = useUpdateTimeline();
 
-  const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
+  const handle = calculateNamedSlug(currentVenture);
   const timelineId = currentTimeline?.id;
   const ventureId = currentVenture?.id;
 

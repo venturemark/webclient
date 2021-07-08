@@ -3,13 +3,14 @@ import {
   UpdateI,
   UpdateI_Obj,
   UpdateI_Obj_Jsnpatch,
-  UpdateO_Obj,
+  UpdateO,
 } from "module/api/role/proto/update_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IRole, IUpdateRole } from "module/interface/role";
+import { UpdateStatus } from "module/interface/api";
+import { IUpdateRole } from "module/interface/role";
 
-export async function Update(updateRole: IUpdateRole): Promise<IRole[]> {
+export async function Update(updateRole: IUpdateRole): Promise<UpdateStatus[]> {
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new UpdateI();
@@ -36,17 +37,18 @@ export async function Update(updateRole: IUpdateRole): Promise<IRole[]> {
   objList.push(obj);
   req.setObjList(objList);
 
-  return new Promise<IRole[]>((resolve, reject) => {
-    client.update(req, {}, function (err: any, res: any): any {
+  return new Promise((resolve, reject) => {
+    client.update(req, {}, function (err: any, res: UpdateO): any {
       if (err) {
         reject(err);
         return;
       } else {
-        const rolePb: UpdateO_Obj = res.getObj();
-        const metaPb = rolePb.getMetadataMap();
-        const status = metaPb.get(key.RoleStatus);
-
-        resolve(status as unknown as IRole[]); // TODO: check
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.RoleStatus) as UpdateStatus;
+          })
+        );
       }
     });
   });

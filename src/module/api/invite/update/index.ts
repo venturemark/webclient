@@ -7,6 +7,7 @@ import {
 } from "module/api/invite/proto/update_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
+import { UpdateStatus } from "module/interface/api";
 import { IUpdateInvite, IUpdateStatus } from "module/interface/invite";
 
 export async function Update(updateInvite: IUpdateInvite) {
@@ -51,8 +52,8 @@ export async function Update(updateInvite: IUpdateInvite) {
       } else {
         const invitePb = res.getObjList()[0];
         const metaPb = invitePb.getMetadataMap();
-        const status = metaPb.get(key.InviteStatus)!;
-        const role = metaPb.get(key.RoleStatus)!;
+        const status = metaPb.get(key.InviteStatus) as UpdateStatus;
+        const role = metaPb.get(key.RoleStatus)! as string;
 
         resolve({
           role,

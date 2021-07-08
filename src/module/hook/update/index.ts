@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import * as api from "module/api";
+import { DeletionStatus, UpdateStatus } from "module/interface/api";
 import {
   ICreateUpdate,
   IDeleteUpdate,
@@ -107,6 +108,7 @@ export function useCreateUpdate() {
       onSuccess: async (data, newUpdate) => {
         // Invalidate and refetch
         queryClient.invalidateQueries("updates");
+        queryClient.invalidateQueries("timelines");
       },
       // Always refetch after error or success:
       onSettled: async () => {
@@ -119,7 +121,7 @@ export function useCreateUpdate() {
 export function useUpdateUpdate() {
   const queryClient = useQueryClient();
 
-  return useMutation<IUpdate[], any, IUpdateUpdate>(
+  return useMutation<UpdateStatus[], any, IUpdateUpdate>(
     (newUpdate) => {
       return api.API.TexUpd.Update(newUpdate);
     },
@@ -135,7 +137,7 @@ export function useUpdateUpdate() {
 export function useDeleteUpdate() {
   const queryClient = useQueryClient();
 
-  return useMutation<IUpdate[], any, IDeleteUpdate>(
+  return useMutation<DeletionStatus[], any, IDeleteUpdate>(
     (updateDelete) => {
       return api.API.TexUpd.Delete(updateDelete);
     },

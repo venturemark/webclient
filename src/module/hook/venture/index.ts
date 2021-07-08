@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router";
 
 import * as api from "module/api";
+import { DeletionStatus, UpdateStatus } from "module/interface/api";
 import {
   ICreateVenture,
   IDeleteVenture,
@@ -110,7 +111,7 @@ export function useUpdateVenture() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<IVenture[], any, IUpdateVenture>(
+  return useMutation<UpdateStatus[], any, IUpdateVenture>(
     (ventureUpdate) => {
       return api.API.Venture.Update(ventureUpdate);
     },
@@ -130,7 +131,7 @@ export function useDeleteVenture() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<IVenture[], any, IDeleteVenture>(
+  return useMutation<DeletionStatus[], any, IDeleteVenture>(
     (ventureDelete) => {
       return api.API.Venture.Delete(ventureDelete);
     },

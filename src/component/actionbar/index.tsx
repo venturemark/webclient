@@ -8,7 +8,7 @@ import {
   PlasmicActionBar,
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
+import { VentureContext } from "context/VentureContext";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
 import { IUser } from "module/interface/user";
@@ -48,17 +48,15 @@ function ActionBar(props: ActionBarProps) {
   const values = watch();
 
   const { token } = useContext(AuthContext);
-  const timelineContext = useContext(TimelineContext);
-  const ventureTimelines = timelineContext?.ventureRoleTimelines ?? [];
+  const ventureContext = useContext(VentureContext);
+  const ventureTimelines = ventureContext.currentVentureTimelines;
 
-  const defaultTimelineOption = [currentTimeline] ?? [];
   const [selectedTimelines, setSelectedTimelines] = useState(
-    defaultTimelineOption
+    currentTimeline ? [currentTimeline] : []
   );
-  const hasTimelines =
-    ventureTimelines?.filter(
-      (timeline: ITimeline) => (timeline.ventureId = currentVenture.id)
-    ).length > 0;
+  const hasTimelines = ventureTimelines.some(
+    (t) => (t.ventureId = currentVenture.id)
+  );
 
   const [isActive, setIsActive] = useState(false);
   const [selectFocused, setSelectFocused] = useState(false);

@@ -7,11 +7,12 @@ import {
 } from "module/api/timeline/proto/update_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { ITimeline, IUpdateTimeline } from "module/interface/timeline";
+import { UpdateStatus } from "module/interface/api";
+import { IUpdateTimeline } from "module/interface/timeline";
 
 export async function Update(
   updateTimeline: IUpdateTimeline
-): Promise<ITimeline[]> {
+): Promise<UpdateStatus[]> {
   const token = updateTimeline.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
@@ -67,11 +68,12 @@ export async function Update(
         reject(err);
         return;
       } else {
-        const timelinePb = res.getObjList()[0];
-        const metaPb = timelinePb.getMetadataMap();
-        const status = metaPb.get(key.TimelineStatus);
-
-        resolve(status as unknown as ITimeline[]); // TODO: this is wrong
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.TimelineStatus) as UpdateStatus;
+          })
+        );
       }
     });
   });

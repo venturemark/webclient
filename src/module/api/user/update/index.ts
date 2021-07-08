@@ -7,9 +7,10 @@ import {
 } from "module/api/user/proto/update_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IUpdateUser, IUser } from "module/interface/user";
+import { UpdateStatus } from "module/interface/api";
+import { IUpdateUser } from "module/interface/user";
 
-export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
+export async function Update(updateUser: IUpdateUser): Promise<UpdateStatus[]> {
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new UpdateI();
@@ -46,6 +47,14 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
     patchList.push(patch);
   }
 
+  if (updateUser.lastUpdate) {
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat(`/obj/metadata/${key.TimelineLastUpdate.replace("/", "~1")}`);
+    patch.setVal(JSON.stringify(updateUser.lastUpdate));
+    patchList.push(patch);
+  }
+
   obj.setJsnpatchList(patchList);
   req.setObjList([obj]);
 
@@ -55,11 +64,12 @@ export async function Update(updateUser: IUpdateUser): Promise<IUser[]> {
         reject(err);
         return;
       } else {
-        const userPb = res.getObjList()[0];
-        const metaPb = userPb.getMetadataMap();
-        const status = metaPb.get(key.UserStatus);
-
-        resolve(status as unknown as IUser[]); // TODO: check
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.UserStatus) as UpdateStatus;
+          })
+        );
       }
     });
   });

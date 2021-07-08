@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import React, { useContext, useEffect, useRef } from "react";
 
-import { TimelineContext } from "context/TimelineContext";
+import { VentureContext } from "context/VentureContext";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
 
@@ -25,9 +25,7 @@ export function TimelineSelect(props: SelectProps) {
   } = props;
 
   const select = useRef<any>(null);
-
-  const timelineContext = useContext(TimelineContext);
-  const timelines = timelineContext?.allTimelines ?? [];
+  const { timelines } = useContext(VentureContext);
 
   const ventureTimelines = timelines.filter(
     (timeline) =>

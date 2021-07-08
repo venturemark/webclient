@@ -6,9 +6,12 @@ import {
 } from "module/api/invite/proto/delete_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IDeleteInvite, IInvite } from "module/interface/invite";
+import { DeletionStatus } from "module/interface/api";
+import { IDeleteInvite } from "module/interface/invite";
 
-export async function Delete(IDeleteInvite: IDeleteInvite): Promise<IInvite[]> {
+export async function Delete(
+  IDeleteInvite: IDeleteInvite
+): Promise<DeletionStatus[]> {
   const objList = [];
 
   const token = IDeleteInvite.token;
@@ -30,14 +33,12 @@ export async function Delete(IDeleteInvite: IDeleteInvite): Promise<IInvite[]> {
         reject(err);
         return;
       } else {
-        const invitesPb = res.getObjList();
-
-        const status = invitesPb.map((invitePb) => {
-          const metaPb = invitePb.getMetadataMap();
-          const id = metaPb.get(key.InviteStatus);
-          return id as unknown as IInvite; // TODO: check
-        });
-        resolve(status);
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.InviteStatus) as DeletionStatus;
+          })
+        );
       }
     });
   });

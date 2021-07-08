@@ -2,52 +2,21 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router";
 
 import * as api from "module/api";
+import { UpdateStatus } from "module/interface/api";
 import {
   ICreateTimeline,
   ISearchTimelinesbyUserId,
-  ISearchTimelinesbyVentureId,
   ITimeline,
   IUpdateTimeline,
 } from "module/interface/timeline";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getTimelinesbyVentureId = async (
-  searchTimeline: ISearchTimelinesbyVentureId
-) => {
-  return api.API.Timeline.Search(searchTimeline);
-};
-
-const getTimelinesByUserId = async (
-  searchTimeline: ISearchTimelinesbyUserId
-) => {
-  return api.API.Timeline.Search(searchTimeline);
-};
-
-export function useTimelinesByVentureId(
-  searchTimelinesbyVentureId: ISearchTimelinesbyVentureId
-) {
+export function useTimelinesByUserId(params: ISearchTimelinesbyUserId) {
   return useQuery<ITimeline[], ErrorResponse>(
-    ["timelines", searchTimelinesbyVentureId.ventureId],
-    () => getTimelinesbyVentureId(searchTimelinesbyVentureId),
-    {
-      enabled:
-        !!searchTimelinesbyVentureId.token &&
-        !!searchTimelinesbyVentureId.ventureId,
-    }
-  );
-}
-
-export function useTimelinesByUserId(
-  searchTimelinesByUserId: ISearchTimelinesbyUserId
-) {
-  const enabled = Boolean(
-    searchTimelinesByUserId.token && searchTimelinesByUserId.userId
-  );
-  return useQuery<ITimeline[], ErrorResponse>(
-    [`timelines`, searchTimelinesByUserId.userId],
-    () => getTimelinesByUserId(searchTimelinesByUserId),
-    { enabled }
+    [`timelines`, params.userId],
+    () => api.API.Timeline.Search(params),
+    { enabled: Boolean(params.token && params.userId) }
   );
 }
 
@@ -106,7 +75,7 @@ export function useUpdateTimeline() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<ITimeline[], any, IUpdateTimeline>(
+  return useMutation<UpdateStatus[], any, IUpdateTimeline>(
     (timelineUpdate) => {
       return api.API.Timeline.Update(timelineUpdate);
     },
@@ -126,7 +95,7 @@ export function useArchiveDeleteTimeline() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<ITimeline[], any, IUpdateTimeline>(
+  return useMutation<UpdateStatus[], any, IUpdateTimeline>(
     (timelineUpdate) => {
       return api.API.Timeline.Update(timelineUpdate);
     },

@@ -9,18 +9,10 @@ import { IVenture } from "module/interface/venture";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
-  ventureData: {
-    description: string;
-    name: string;
-  };
-  timelineData: {
-    description: string;
-    name: string;
-  };
-  currentTimeline: ITimeline;
+  currentTimeline?: ITimeline;
   variantType: string;
   isOnboarding?: boolean | "isOnboarding";
-  currentVenture: IVenture;
+  currentVenture?: IVenture;
 }
 
 function MainHeader(props: MainHeaderProps) {
@@ -29,8 +21,6 @@ function MainHeader(props: MainHeaderProps) {
     currentTimeline,
     variantType,
     isOnboarding,
-    timelineData,
-    ventureData,
     currentVenture,
     ...rest
   } = props;
@@ -38,8 +28,8 @@ function MainHeader(props: MainHeaderProps) {
   const navigate = useNavigate();
 
   const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
-
   const link = timelineSlug ? `/${handle}/${timelineSlug}` : `/${handle}`;
+
   return (
     <PlasmicMainHeader
       {...rest}
@@ -50,14 +40,10 @@ function MainHeader(props: MainHeaderProps) {
           ? "ventureHeader"
           : "timelineHeader"
       }
-      ventureName={ventureData?.name || currentVenture?.name || " "}
-      ventureDescription={
-        ventureData?.description || currentVenture?.desc || " "
-      }
-      timelineName={timelineData?.name || currentTimeline?.name || " "}
-      timelineDescription={
-        timelineData?.description || currentTimeline?.desc || " "
-      }
+      ventureName={currentVenture?.name || ""}
+      ventureDescription={currentVenture?.desc || ""}
+      timelineName={currentTimeline?.name || ""}
+      timelineDescription={currentTimeline?.desc || ""}
       viewHome={{
         onClick: () => navigate(link + "/feed"),
       }}

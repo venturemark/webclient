@@ -6,9 +6,12 @@ import {
 } from "module/api/texupd/proto/delete_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IDeleteUpdate, IUpdate } from "module/interface/update";
+import { DeletionStatus } from "module/interface/api";
+import { IDeleteUpdate } from "module/interface/update";
 
-export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
+export async function Delete(
+  deleteUpdate: IDeleteUpdate
+): Promise<DeletionStatus[]> {
   const objList = [];
 
   const token = deleteUpdate.token;
@@ -31,19 +34,12 @@ export async function Delete(deleteUpdate: IDeleteUpdate): Promise<IUpdate[]> {
         reject(err);
         return;
       } else {
-        const updatesPb = res.getObjList();
-
-        const status = updatesPb.map((updatePb) => {
-          const metaPb = updatePb.getMetadataMap();
-          const id = metaPb.get(key.UpdateStatus)!;
-          const update: IUpdate = {
-            id,
-            timelineId: deleteUpdate.timelineId,
-            ventureId: deleteUpdate.ventureId,
-          };
-          return update;
-        });
-        resolve(status);
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.UpdateStatus) as DeletionStatus;
+          })
+        );
       }
     });
   });

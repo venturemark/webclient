@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   DefaultMemberItemProps,
   PlasmicMemberItem,
@@ -12,20 +14,20 @@ interface MemberItemProps extends DefaultMemberItemProps {
 
 function MemberItem(props: MemberItemProps) {
   const { user, handleClick, ...rest } = props;
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   return (
     <PlasmicMemberItem
       photoAvatar={{
         user,
       }}
+      userVariant="isSelf"
+      isOwner="isOwner"
+      isDropdown={dropdownVisible ? "isDropdown" : undefined}
       iconButton={{
         props: {
-          onClick: handleClick,
-        },
-        wrap(node) {
-          if (!handleClick) {
-            return null;
-          }
-          return node;
+          onClick() {
+            setDropdownVisible(!dropdownVisible);
+          },
         },
       }}
       {...rest}

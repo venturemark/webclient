@@ -1,17 +1,33 @@
+import { useContext } from "react";
 import { Route, Routes } from "react-router";
+import { useParams } from "react-router-dom";
 
 import { Home } from "component/page/home";
+import { ITimelineContext, TimelineContext } from "context/TimelineContext";
+import { VentureContext } from "context/VentureContext";
 
 export function TimelineRoutes() {
+  const { currentVentureTimelines } = useContext(VentureContext);
+  const { timelineSlug } = useParams();
+  const currentTimeline = currentVentureTimelines.find(
+    (t) => t.name === timelineSlug
+  );
+
+  const timelineContext: ITimelineContext = {
+    currentTimeline,
+  };
+
   return (
-    <Routes>
-      <Route path="/" element={<TimelineFeed />} />
-      <Route path="feed" element={<TimelineFeed />} />
-      <Route path="members" element={<TimelineMembers />} />
-      <Route path="settings" element={<TimelineSettings />} />
-      <Route path="delete" element={<TimelineDelete />} />
-      <Route path="postdetail" element={<PostDetail />} />
-    </Routes>
+    <TimelineContext.Provider value={timelineContext}>
+      <Routes>
+        <Route path="/" element={<TimelineFeed />} />
+        <Route path="feed" element={<TimelineFeed />} />
+        <Route path="members" element={<TimelineMembers />} />
+        <Route path="settings" element={<TimelineSettings />} />
+        <Route path="delete" element={<TimelineDelete />} />
+        <Route path="postdetail" element={<PostDetail />} />
+      </Routes>
+    </TimelineContext.Provider>
   );
 }
 
