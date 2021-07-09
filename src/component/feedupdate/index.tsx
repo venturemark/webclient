@@ -1,6 +1,5 @@
 import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useMemo } from "react";
 
 import ContentPost from "component/contentpost";
 import {
@@ -13,14 +12,18 @@ import {
   useUpdatesByTimeline,
   useUpdatesByTimelineIds,
 } from "module/hook/update";
-import { useTimelineMembers, useVentureMembers } from "module/hook/user";
+import {
+  useTimelineMembers,
+  useUpdateUser,
+  useVentureMembers,
+} from "module/hook/user";
 import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { IUser, UserRole } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
-  currentTimeline: ITimeline;
+  currentTimeline?: ITimeline;
   timelines: ITimeline[];
   currentVenture: IVenture;
   user: IUser;
@@ -49,6 +52,18 @@ function resourceOwnership(
   return false;
 }
 
+function deduplicateUpdates(updates: IUpdate[]) {
+  const seen: Record<number, boolean> = {};
+  return updates.filter((update: IUpdate) => {
+    const id = Math.round(Number(update.id) / 1000000000);
+    if (seen[id]) {
+      return false;
+    }
+    seen[id] = true;
+    return true;
+  });
+}
+
 function FeedUpdate(props: FeedUpdateProps) {
   const {
     currentTimeline,
@@ -61,47 +76,94 @@ function FeedUpdate(props: FeedUpdateProps) {
     ...rest
   } = props;
 
-  const { timelineSlug } = useParams();
   const { token } = useContext(AuthContext);
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
+  const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);
+  const { mutate: updateUser, status, reset } = useUpdateUser();
 
-  const timelineIds = timelines?.map((timeline: ITimeline) => timeline.id);
+  const { data: timelineUpdates = [], isSuccess: timelineUpdatesSuccess } =
+    useUpdatesByTimeline({
+      ventureId,
+      timelineId,
+      token,
+    });
 
-  const { data: timelineUpdates = [] } = useUpdatesByTimeline({
-    ventureId,
-    timelineId,
-    token,
-  });
-
-  let updates = timelineUpdates;
-
-  const { data: allUpdates = [], isSuccess: updateSuccess } =
+  const { data: ventureUpdates = [], isSuccess: ventureUpdatesSuccess } =
     useUpdatesByTimelineIds({
       ventureId,
       timelineIds,
       token,
     });
 
-  if (updateSuccess) {
-    //deduplicate updates for home
-    const homeUpdates = Array.from(
-      new Set(
-        allUpdates.map((update: IUpdate) =>
-          Math.round(Number(update.id) / 1000000000)
-        )
-      )
-    )
-      .map((id) => {
-        return allUpdates.find(
-          (update: IUpdate) => Math.round(Number(update.id) / 1000000000) === id
-        );
-      })
-      .filter((x): x is IUpdate => Boolean(x));
+  const updates = useMemo<IUpdate[]>(() => {
+    if (timelineId && timelineUpdatesSuccess) {
+      return timelineUpdates;
+    } else if (ventureId && ventureUpdatesSuccess) {
+      return deduplicateUpdates(ventureUpdates);
+    }
+    return [];
+  }, [
+    timelineId,
+    timelineUpdates,
+    timelineUpdatesSuccess,
+    ventureId,
+    ventureUpdates,
+    ventureUpdatesSuccess,
+  ]);
 
-    // return updates or updates of current timeline.
-    updates = timelineSlug ? timelineUpdates ?? [] : homeUpdates ?? [];
-  }
+  useEffect(() => {
+    if (status !== "idle") {
+      return;
+    }
+
+    const userLastUpdates = user.lastUpdate || {};
+    const timelineLastUpdates: Record<string, string> = {};
+    timelines.forEach((timeline) => {
+      if (timeline.lastUpdate) {
+        timelineLastUpdates[timeline.id] = timeline.lastUpdate;
+      }
+    });
+
+    const newLastUpdates: Record<string, string> = {};
+    timelines.forEach((timeline) => {
+      const lastViewed = userLastUpdates[timeline.id];
+      const lastUpdate = timelineLastUpdates[timeline.id];
+      if (
+        lastUpdate &&
+        (!lastViewed || parseInt(lastViewed) < parseInt(lastUpdate))
+      ) {
+        newLastUpdates[timeline.id] = lastUpdate;
+      }
+    });
+
+    if (Object.keys(newLastUpdates).length > 0) {
+      updateUser(
+        {
+          id: user.id,
+          lastUpdate: {
+            ...userLastUpdates,
+            ...newLastUpdates,
+          },
+          token,
+        },
+        {
+          onSettled() {
+            reset();
+          },
+        }
+      );
+    }
+  }, [
+    token,
+    updateUser,
+    updates,
+    user.lastUpdate,
+    user.id,
+    status,
+    timelines,
+    reset,
+  ]);
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
@@ -158,7 +220,7 @@ function FeedUpdate(props: FeedUpdateProps) {
               })
             }
             ventureId={update.ventureId}
-            allUpdates={allUpdates}
+            allUpdates={ventureUpdates}
             userId={update.userId ?? ""}
           />
         )),

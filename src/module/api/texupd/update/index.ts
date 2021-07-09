@@ -7,9 +7,12 @@ import {
 } from "module/api/texupd/proto/update_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IUpdate, IUpdateUpdate } from "module/interface/update";
+import { UpdateStatus } from "module/interface/api";
+import { IUpdateUpdate } from "module/interface/update";
 
-export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
+export async function Update(
+  updateUpdate: IUpdateUpdate
+): Promise<UpdateStatus[]> {
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
   const req = new UpdateI();
@@ -43,11 +46,12 @@ export async function Update(updateUpdate: IUpdateUpdate): Promise<IUpdate[]> {
         reject(err);
         return;
       } else {
-        const updatePb = res.getObjList()[0];
-        const metaPb = updatePb.getMetadataMap();
-        const status = metaPb.get(key.UpdateStatus);
-
-        resolve(status as unknown as IUpdate[]); // TODO: this is wrong
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.UpdateStatus) as UpdateStatus;
+          })
+        );
       }
     });
   });

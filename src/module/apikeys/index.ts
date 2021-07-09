@@ -21,3 +21,5 @@ export const ResourceKind = "resource.venturemark.co/kind";
 export const InviteCode = "invite.venturemark.co/code";
 
 export const PermissionModel = "permission.venturemark.co/model";
+
+export const TimelineLastUpdate = "timeline.venturemark.co/last-update";

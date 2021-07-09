@@ -1,7 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import * as api from "module/api";
-import { IAPIDeleteRole } from "module/interface/api";
+import {
+  DeletionStatus,
+  IAPIDeleteRole,
+  UpdateStatus,
+} from "module/interface/api";
 import {
   INewRole,
   IRole,
@@ -115,7 +119,7 @@ export function useCreateRole() {
 export function useUpdateRole() {
   const queryClient = useQueryClient();
 
-  return useMutation<IRole[], any, IUpdateRole>(
+  return useMutation<UpdateStatus[], any, IUpdateRole>(
     (roleUpdate) => {
       return api.API.Role.Update(roleUpdate);
     },
@@ -131,7 +135,7 @@ export function useUpdateRole() {
 export function useDeleteRole() {
   const queryClient = useQueryClient();
 
-  return useMutation<IRole[], any, IAPIDeleteRole>(
+  return useMutation<DeletionStatus[], any, IAPIDeleteRole>(
     (roleDelete) => {
       return api.API.Role.Delete(roleDelete);
     },

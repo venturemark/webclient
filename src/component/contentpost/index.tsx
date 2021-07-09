@@ -6,8 +6,8 @@ import {
 } from "component/plasmic/shared/PlasmicContentPost";
 import TimelineLink from "component/timelinelink";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
 import { UserContext } from "context/UserContext";
+import { VentureContext } from "context/VentureContext";
 import { getUniqueListBy } from "module/helpers";
 import { useMessages } from "module/hook/message";
 import { useDeleteUpdate } from "module/hook/update";
@@ -55,9 +55,8 @@ function ContentPost(props: ContentPostProps) {
 
   const [showMenu, setShowMenu] = useState(false);
 
-  const timelineContext = useContext(TimelineContext);
-  const userContext = useContext(UserContext);
-  const timelines = timelineContext?.ventureRoleTimelines ?? [];
+  const ventureContext = useContext(VentureContext);
+  const timelines = ventureContext.currentVentureTimelines ?? [];
 
   const { data: messagesData } = useMessages({
     updateId: id,
@@ -111,6 +110,7 @@ function ContentPost(props: ContentPostProps) {
 
   const postUser = userData ?? user;
 
+  const userContext = useContext(UserContext);
   const isOwner = userId === userContext.user?.id ? "isOwner" : undefined;
 
   const handleDeleteUpdate = () => {
@@ -152,7 +152,7 @@ function ContentPost(props: ContentPostProps) {
         },
       }}
       timelineNamesContainer={{
-        children: updateTimelines?.map((timeline) => (
+        children: updateTimelines.map((timeline) => (
           <TimelineLink timeline={timeline} />
         )),
       }}

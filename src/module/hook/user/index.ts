@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import * as api from "module/api";
+import { UpdateStatus } from "module/interface/api";
 import {
   ICreateUser,
   ISearchAllUser,
@@ -144,14 +145,32 @@ export function useUpdateUser() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<IUser[], any, IUpdateUser>(
+  return useMutation<UpdateStatus[], any, IUpdateUser>(
     (userUpdate: IUpdateUser) => {
       return api.API.User.Update(userUpdate);
     },
     {
       onSuccess: (data, userUpdate) => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries("users");
+        if (
+          data.length === 1 &&
+          data[0] === "updated" &&
+          userUpdate.lastUpdate
+        ) {
+          // We're only updating last update, so avoid refetching and just update the cached user
+          const cachedUser = queryClient.getQueryData<IUser[]>([
+            "users",
+            userUpdate.token,
+          ]);
+          if (cachedUser) {
+            queryClient.setQueryData<IUser[]>(
+              ["users", userUpdate.token],
+              [{ ...cachedUser[0], lastUpdate: userUpdate.lastUpdate }]
+            );
+          }
+        } else {
+          // Invalidate and refetch
+          queryClient.invalidateQueries("users");
+        }
 
         //redirect on success
         userUpdate.successUrl && navigate(userUpdate.successUrl);

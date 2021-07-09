@@ -1,3 +1,5 @@
+import { UpdateStatus } from "../api";
+
 export interface IInvite {
   id: string;
   resource: string;
@@ -50,5 +52,5 @@ export interface IUpdateInvite {
 
 export interface IUpdateStatus {
   role: string;
-  status: string;
+  status: UpdateStatus;
 }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   DefaultMemberItemProps,
   PlasmicMemberItem,
@@ -12,23 +14,32 @@ interface MemberItemProps extends DefaultMemberItemProps {
 
 function MemberItem(props: MemberItemProps) {
   const { user, handleClick, ...rest } = props;
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  let rename = "Remove member";
+  if (props.userVariant === "isRequested") {
+    rename = "Cancel invitation";
+  } else if (props.userVariant === "isAdmin") {
+    rename = "Remove admin";
+  }
+
   return (
     <PlasmicMemberItem
+      {...rest}
       photoAvatar={{
         user,
       }}
+      isDropdown={dropdownVisible ? "isDropdown" : undefined}
       iconButton={{
         props: {
-          onClick: handleClick,
-        },
-        wrap(node) {
-          if (!handleClick) {
-            return null;
-          }
-          return node;
+          onClick() {
+            setDropdownVisible(!dropdownVisible);
+          },
         },
       }}
-      {...rest}
+      removeInvitation={{
+        rename,
+        onClick: handleClick,
+      }}
     />
   );
 }

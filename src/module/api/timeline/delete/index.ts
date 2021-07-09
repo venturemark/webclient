@@ -6,11 +6,12 @@ import {
 } from "module/api/timeline/proto/delete_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IDeleteTimeline, ITimeline } from "module/interface/timeline";
+import { DeletionStatus } from "module/interface/api";
+import { IDeleteTimeline } from "module/interface/timeline";
 
 export async function Delete(
   IDeleteTimeline: IDeleteTimeline
-): Promise<ITimeline[]> {
+): Promise<DeletionStatus[]> {
   const objList = [];
 
   const token = IDeleteTimeline.token;
@@ -32,14 +33,12 @@ export async function Delete(
         reject(err);
         return;
       } else {
-        const timelinesPb = res.getObjList();
-
-        const status = timelinesPb.map((timelinePb) => {
-          const metaPb = timelinePb.getMetadataMap();
-          const id = metaPb.get(key.TimelineStatus);
-          return id as unknown as ITimeline; // TODO: this is wrong
-        });
-        resolve(status);
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.TimelineStatus) as DeletionStatus;
+          })
+        );
       }
     });
   });

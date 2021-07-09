@@ -315,7 +315,7 @@ function PlasmicHome__RenderFunc(props: {
                   variantType={
                     hasVariant(variants, "isVisible", "isPublic")
                       ? ("isVenture" as const)
-                      : ("isVenture" as const)
+                      : ("isEmpty" as const)
                   }
                 />
               </div>
