@@ -30,7 +30,7 @@ interface ContentPostProps extends DefaultContentPostProps {
   user?: IUser;
   state?: "isOwner" | "isPostDetails";
   ventureId: string;
-  allUpdates: IUpdate[];
+  allUpdates?: IUpdate[];
 }
 
 function ContentPost(props: ContentPostProps) {
@@ -44,7 +44,7 @@ function ContentPost(props: ContentPostProps) {
     id,
     state,
     ventureId,
-    allUpdates,
+    allUpdates = [],
     userId,
     userName,
     isVisible,
