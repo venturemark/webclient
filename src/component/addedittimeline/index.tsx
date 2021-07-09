@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -47,10 +47,20 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   } = useForm<FormData>({
     defaultValues: {
       membersWrite: currentTimeline?.membersWrite ?? true,
-      timelineDescription: currentTimeline?.desc || "",
-      timelineName: currentTimeline?.name || "",
+      timelineDescription: currentTimeline?.desc ?? "",
+      timelineName: currentTimeline?.name ?? "",
     },
   });
+
+  const previousTimeline = useRef(currentTimeline);
+  useEffect(() => {
+    if (previousTimeline.current !== currentTimeline) {
+      setValue("membersWrite", currentTimeline?.membersWrite ?? true);
+      setValue("timelineDescription", currentTimeline?.desc ?? "");
+      setValue("timelineName", currentTimeline?.name ?? "");
+      previousTimeline.current = currentTimeline;
+    }
+  }, [currentTimeline, setValue]);
 
   const values = watch();
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -45,6 +45,17 @@ function AddEditVenture(props: AddEditVentureProps) {
       ventureDescription: currentVenture?.desc || "",
     },
   });
+
+  const previousVenture = useRef(currentVenture);
+  useEffect(() => {
+    if (previousVenture.current !== currentVenture) {
+      setValue("membersWrite", currentVenture?.membersWrite ?? true);
+      setValue("ventureName", currentVenture?.name ?? "");
+      setValue("ventureDescription", currentVenture?.desc ?? "");
+      setValue("url", currentVenture?.url ?? "");
+      previousVenture.current = currentVenture;
+    }
+  }, [currentVenture, setValue]);
 
   const values = watch();
   useEffect(() => {

@@ -55,19 +55,9 @@ function Main(props: MainProps) {
       mainHeader={{
         isActive,
         variantType,
-        currentTimeline: currentTimeline
-          ? {
-              ...currentTimeline,
-              name: timelineName !== null ? timelineName : currentTimeline.name,
-            }
-          : undefined,
+        timelineName: timelineName ?? currentTimeline?.name ?? "",
+        ventureName: ventureName ?? currentVenture?.name ?? "",
         isOnboarding,
-        currentVenture: currentVenture
-          ? {
-              ...currentVenture,
-              name: ventureName !== null ? ventureName : currentVenture.name,
-            }
-          : undefined,
       }}
       feedUpdate={{
         setIsVisible,

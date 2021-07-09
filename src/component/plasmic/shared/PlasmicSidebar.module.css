@@ -58,7 +58,7 @@
 .accountSettings > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 8px;
 }
-.root:hover .accountSettings {
+.root .accountSettings:hover {
   background: rgb(249, 249, 250) repeat;
 }
 .photoAvatar:global(.__wab_instance) {
@@ -74,6 +74,9 @@
 .dropdown__isDropdown:global(.__wab_instance) {
   top: 62px;
   left: -2px;
+}
+.box__jYiYa {
+  height: auto;
 }
 .scrollContainer {
   display: flex;

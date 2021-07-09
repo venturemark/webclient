@@ -323,6 +323,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               value: args.slot4,
             })}
             userVariant={"isRequested" as const}
+            ventureTimeline={"isTimeline" as const}
           />
 
           <MemberItem
@@ -370,7 +371,6 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                 "isOwner"
               ),
             })}
-            isDropdown={"isDropdown" as const}
             slot3={p.renderPlasmicSlot({
               defaultContents: "example@email.com",
               value: args.slot322,
@@ -382,7 +382,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             userVariant={
               hasVariant(variants, "isOwner", "isOwner")
                 ? undefined
-                : ("isAdmin" as const)
+                : ("isMember" as const)
             }
           />
 
@@ -405,7 +405,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             userVariant={
               hasVariant(variants, "isOwner", "isOwner")
                 ? undefined
-                : ("isMember" as const)
+                : ("isAdmin" as const)
             }
           />
         </div>
