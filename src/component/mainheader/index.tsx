@@ -4,31 +4,21 @@ import {
   DefaultMainHeaderProps,
   PlasmicMainHeader,
 } from "component/plasmic/shared/PlasmicMainHeader";
-import { ITimeline } from "module/interface/timeline";
-import { IVenture } from "module/interface/venture";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
-  currentTimeline?: ITimeline;
   variantType: string;
   isOnboarding?: boolean | "isOnboarding";
-  currentVenture?: IVenture;
 }
 
 function MainHeader(props: MainHeaderProps) {
-  const {
-    isActive,
-    currentTimeline,
-    variantType,
-    isOnboarding,
-    currentVenture,
-    ...rest
-  } = props;
+  const { isActive, variantType, isOnboarding, ...rest } = props;
   const { timelineSlug, ventureSlug } = useParams();
   const navigate = useNavigate();
 
-  const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
-  const link = timelineSlug ? `/${handle}/${timelineSlug}` : `/${handle}`;
+  const basePath = timelineSlug
+    ? `/${ventureSlug}/${timelineSlug}`
+    : `/${ventureSlug}`;
 
   return (
     <PlasmicMainHeader
@@ -40,18 +30,14 @@ function MainHeader(props: MainHeaderProps) {
           ? "ventureHeader"
           : "timelineHeader"
       }
-      ventureName={currentVenture?.name || ""}
-      ventureDescription={currentVenture?.desc || ""}
-      timelineName={currentTimeline?.name || ""}
-      timelineDescription={currentTimeline?.desc || ""}
       viewHome={{
-        onClick: () => navigate(link + "/feed"),
+        onClick: () => navigate(basePath + "/feed"),
       }}
       viewMembers={{
-        onClick: () => navigate(link + "/members"),
+        onClick: () => navigate(basePath + "/members"),
       }}
       viewSettings={{
-        onClick: () => navigate(link + "/settings"),
+        onClick: () => navigate(basePath + "/settings"),
       }}
       isActive={isActive}
     />

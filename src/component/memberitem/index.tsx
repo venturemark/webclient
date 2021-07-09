@@ -15,13 +15,19 @@ interface MemberItemProps extends DefaultMemberItemProps {
 function MemberItem(props: MemberItemProps) {
   const { user, handleClick, ...rest } = props;
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  let rename = "Remove member";
+  if (props.userVariant === "isRequested") {
+    rename = "Cancel invitation";
+  } else if (props.userVariant === "isAdmin") {
+    rename = "Remove admin";
+  }
+
   return (
     <PlasmicMemberItem
+      {...rest}
       photoAvatar={{
         user,
       }}
-      userVariant="isSelf"
-      isOwner="isOwner"
       isDropdown={dropdownVisible ? "isDropdown" : undefined}
       iconButton={{
         props: {
@@ -30,7 +36,10 @@ function MemberItem(props: MemberItemProps) {
           },
         },
       }}
-      {...rest}
+      removeInvitation={{
+        rename,
+        onClick: handleClick,
+      }}
     />
   );
 }

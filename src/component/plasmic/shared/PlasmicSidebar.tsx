@@ -165,6 +165,24 @@ function PlasmicSidebar__RenderFunc(props: {
                     "isDropdown"
                   ),
                 })}
+                prop={
+                  <div
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.box__jYiYa,
+                      {
+                        [sty.box__isDropdown__jYiYAmySg3]: hasVariant(
+                          variants,
+                          "isDropdown",
+                          "isDropdown"
+                        ),
+                      }
+                    )}
+                  >
+                    {"Create new Venture"}
+                  </div>
+                }
                 prop3={"Log Out"}
               />
             ) : null}
