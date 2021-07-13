@@ -5,12 +5,13 @@ import { useParams } from "react-router-dom";
 import { Home } from "component/page/home";
 import { ITimelineContext, TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
+import { calculateNamedSlug } from "module/helpers";
 
 export function TimelineRoutes() {
   const { currentVentureTimelines } = useContext(VentureContext);
   const { timelineSlug } = useParams();
   const currentTimeline = currentVentureTimelines.find(
-    (t) => t.name === timelineSlug
+    (t) => calculateNamedSlug(t) === timelineSlug
   );
 
   const timelineContext: ITimelineContext = {
