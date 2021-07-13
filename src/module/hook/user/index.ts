@@ -37,16 +37,18 @@ const getCurrentUser = async (searchCurrentUser: ISearchCurrentUser) => {
   }
 };
 
-const getVentureMembers = async (
-  searchVentureMembers: ISearchVentureMembers
-) => {
-  return api.API.User.Search(searchVentureMembers);
+const getVentureMembers = async (params: ISearchVentureMembers) => {
+  return api.API.User.Search({
+    ...params,
+    resource: "venture"
+  });
 };
 
-const getTimelineMembers = async (
-  searchTimelineMembers: ISearchTimelineMembers
-) => {
-  return api.API.User.Search(searchTimelineMembers);
+const getTimelineMembers = async (params: ISearchTimelineMembers) => {
+  return api.API.User.Search({
+    ...params,
+    resource: "timeline"
+  });
 };
 
 export function useVentureMembers(searchVentureMembers: ISearchVentureMembers) {

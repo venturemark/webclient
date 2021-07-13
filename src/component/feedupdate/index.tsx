@@ -167,7 +167,6 @@ function FeedUpdate(props: FeedUpdateProps) {
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
-      resource: "timeline",
       timelineId: timelineId ?? undefined,
       ventureId: ventureId ?? undefined,
       token,
@@ -175,7 +174,6 @@ function FeedUpdate(props: FeedUpdateProps) {
 
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
     useVentureMembers({
-      resource: "venture",
       ventureId: ventureId ?? undefined,
       token,
     });

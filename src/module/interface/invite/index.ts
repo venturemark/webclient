@@ -12,7 +12,7 @@ export interface IInvite {
 }
 
 export interface ISearchInvite {
-  ventureId: string;
+  ventureId?: string;
   token: string | null;
 }
 

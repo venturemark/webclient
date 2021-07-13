@@ -32,7 +32,6 @@ function ReplyContent(props: ReplyContentProps) {
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
-      resource: "timeline",
       timelineId: timelineId ?? undefined,
       ventureId: ventureId ?? undefined,
       token,
@@ -40,7 +39,6 @@ function ReplyContent(props: ReplyContentProps) {
 
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
     useVentureMembers({
-      resource: "venture",
       ventureId: ventureId ?? undefined,
       token,
     });

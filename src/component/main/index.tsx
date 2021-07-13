@@ -68,11 +68,6 @@ function Main(props: MainProps) {
         isVisible,
         user,
       }}
-      addEditMembers={{
-        currentVenture,
-        currentTimeline,
-        user,
-      }}
       addEditVenture={{
         currentVenture,
         hasVentures,
