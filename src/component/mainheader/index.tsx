@@ -25,12 +25,14 @@ function MainHeader(props: MainHeaderProps) {
     ? `/${ventureSlug}/${timelineSlug}`
     : `/${ventureSlug}`;
 
-  const members = [...currentVentureMembers]
+  const members = [...currentVentureMembers];
   for (const timelineMember of currentTimelineMembers) {
-    if (!members.find((member) => {
-      return member.user.id === timelineMember.user.id
-    })) {
-      members.push(timelineMember)
+    if (
+      !members.find((member) => {
+        return member.user.id === timelineMember.user.id;
+      })
+    ) {
+      members.push(timelineMember);
     }
   }
 

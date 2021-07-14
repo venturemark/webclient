@@ -49,7 +49,8 @@ function AddEditMembers(props: AddEditMembersProps) {
   const { user } = useContext(UserContext);
   const { token } = useContext(AuthContext);
   const { currentVenture, currentVentureMembers } = useContext(VentureContext);
-  const { currentTimeline, currentTimelineMembers } = useContext(TimelineContext);
+  const { currentTimeline, currentTimelineMembers } =
+    useContext(TimelineContext);
 
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
@@ -64,17 +65,19 @@ function AddEditMembers(props: AddEditMembersProps) {
   });
 
   const invites = invitesData.filter((invite: IInvite) => {
-    if (invite.status !== "pending") return false
-    if (currentTimeline) return currentTimeline.id === invite.timelineId
-    else return !invite.timelineId
-  })
-  
-  const members = [...currentVentureMembers]
+    if (invite.status !== "pending") return false;
+    if (currentTimeline) return currentTimeline.id === invite.timelineId;
+    else return !invite.timelineId;
+  });
+
+  const members = [...currentVentureMembers];
   for (const timelineMember of currentTimelineMembers) {
-    if (!members.find((member) => {
-      return member.user.id === timelineMember.user.id
-    })) {
-      members.push(timelineMember)
+    if (
+      !members.find((member) => {
+        return member.user.id === timelineMember.user.id;
+      })
+    ) {
+      members.push(timelineMember);
     }
   }
 
@@ -167,37 +170,50 @@ function AddEditMembers(props: AddEditMembersProps) {
         onPress: () => handleSubmit(handleInvite)(),
       }}
       membersContainer={{
-        children: members.map((member) => {
-          let userVariant: "isAdmin" | "isMember" | "isSelf" = "isMember";
-          if (member.user.id === user?.id) {
-            userVariant = "isSelf";
-          } else if (member.role.role === "owner" || member.role.role === "admin") {
-            userVariant = "isAdmin";
-          }
+        children: members
+          .map((member) => {
+            let userVariant: "isAdmin" | "isMember" | "isSelf" = "isMember";
+            if (member.user.id === user?.id) {
+              userVariant = "isSelf";
+            } else if (
+              member.role.role === "owner" ||
+              member.role.role === "admin"
+            ) {
+              userVariant = "isAdmin";
+            }
 
-          return (
-            <MemberItem
-              userName={member.user.name}
-              user={member.user}
-              userVariant={userVariant}
-              ventureTimeline={currentTimeline ? "isTimeline" : undefined}
-              isOwner={isOwner}
-              handleClick={isOwner ? () => handleRemoveMemberRole(member.role.id) : undefined}
-              />
-            )
-          }).concat(invites.map((invite) => {
             return (
               <MemberItem
-                userName={invite.email}
-                user={{ name: invite.email }}
-                userVariant={"isRequested"}
+                userName={member.user.name}
+                user={member.user}
+                userVariant={userVariant}
                 ventureTimeline={currentTimeline ? "isTimeline" : undefined}
                 isOwner={isOwner}
-                handleClick={isOwner ? () => handleDeleteInvite(invite.id) : undefined}
+                handleClick={
+                  isOwner
+                    ? () => handleRemoveMemberRole(member.role.id)
+                    : undefined
+                }
               />
-            )
-          }))
-        }}
+            );
+          })
+          .concat(
+            invites.map((invite) => {
+              return (
+                <MemberItem
+                  userName={invite.email}
+                  user={{ name: invite.email }}
+                  userVariant={"isRequested"}
+                  ventureTimeline={currentTimeline ? "isTimeline" : undefined}
+                  isOwner={isOwner}
+                  handleClick={
+                    isOwner ? () => handleDeleteInvite(invite.id) : undefined
+                  }
+                />
+              );
+            })
+          ),
+      }}
     />
   );
 }

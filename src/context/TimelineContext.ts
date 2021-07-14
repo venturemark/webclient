@@ -6,7 +6,7 @@ import { IUser } from "module/interface/user";
 
 export interface ITimelineContext {
   currentTimeline?: ITimeline;
-  currentTimelineMembers: Array<{ user: IUser, role: IRole }>;
+  currentTimelineMembers: Array<{ user: IUser; role: IRole }>;
 }
 
 export const TimelineContext = createContext<ITimelineContext>({

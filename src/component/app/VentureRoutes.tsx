@@ -114,13 +114,17 @@ export function VentureRoutes(props: VentureRoutesProps) {
       token,
     });
 
-  const currentVenture = ventures.find((v) => calculateNamedSlug(v) === ventureSlug);
+  const currentVenture = ventures.find(
+    (v) => calculateNamedSlug(v) === ventureSlug
+  );
 
-  const { data: currentVentureUsers = [], status: currentVentureMembersStatus } =
-    useVentureMembers({
-      ventureId: currentVenture?.id,
-      token,
-    });
+  const {
+    data: currentVentureUsers = [],
+    status: currentVentureMembersStatus,
+  } = useVentureMembers({
+    ventureId: currentVenture?.id,
+    token,
+  });
 
   const loading =
     venturesStatus === "loading" ||
@@ -148,10 +152,16 @@ export function VentureRoutes(props: VentureRoutesProps) {
     (t) => t.ventureId === currentVenture?.id
   );
 
-  const currentVentureMembers = currentVentureUsers.map(user => ({
-    user,
-    role: ventureRolesData.find(r => r.ventureId === currentVenture?.id && r.subjectId === user.id)
-  })).filter((member): member is { user: IUser, role: IRole } => Boolean(member.role))
+  const currentVentureMembers = currentVentureUsers
+    .map((user) => ({
+      user,
+      role: ventureRolesData.find(
+        (r) => r.ventureId === currentVenture?.id && r.subjectId === user.id
+      ),
+    }))
+    .filter((member): member is { user: IUser; role: IRole } =>
+      Boolean(member.role)
+    );
 
   const ventureContext: IVentureContext = {
     ventures,

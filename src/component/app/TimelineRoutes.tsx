@@ -13,35 +13,38 @@ import { IRole } from "module/interface/role";
 import { IUser } from "module/interface/user";
 
 export function TimelineRoutes() {
-  const { currentVenture, currentVentureTimelines } = useContext(VentureContext);
+  const { currentVenture, currentVentureTimelines } =
+    useContext(VentureContext);
   const { timelineSlug } = useParams();
   const { token } = useContext(AuthContext);
   const currentTimeline = currentVentureTimelines.find(
     (t) => calculateNamedSlug(t) === timelineSlug
   );
 
-  const { data: currentTimelineUsers = [] } =
-    useTimelineMembers({
-      timelineId: currentTimeline?.id,
-      ventureId: currentVenture?.id,
-      token,
-    });
+  const { data: currentTimelineUsers = [] } = useTimelineMembers({
+    timelineId: currentTimeline?.id,
+    ventureId: currentVenture?.id,
+    token,
+  });
 
-  const { data: currentTimelineRoles = [] } =
-    useTimelineRole({
-      timelineId: currentTimeline?.id,
-      ventureId: currentVenture?.id,
-      token,
-    });
+  const { data: currentTimelineRoles = [] } = useTimelineRole({
+    timelineId: currentTimeline?.id,
+    ventureId: currentVenture?.id,
+    token,
+  });
 
-  const currentTimelineMembers = currentTimelineUsers.map(user => ({
-    user,
-    role: currentTimelineRoles.find(r => r.subjectId === user.id)
-  })).filter((member): member is { user: IUser, role: IRole } => Boolean(member.role))
+  const currentTimelineMembers = currentTimelineUsers
+    .map((user) => ({
+      user,
+      role: currentTimelineRoles.find((r) => r.subjectId === user.id),
+    }))
+    .filter((member): member is { user: IUser; role: IRole } =>
+      Boolean(member.role)
+    );
 
   const timelineContext: ITimelineContext = {
     currentTimeline,
-    currentTimelineMembers
+    currentTimelineMembers,
   };
 
   return (

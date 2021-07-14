@@ -40,14 +40,14 @@ const getCurrentUser = async (searchCurrentUser: ISearchCurrentUser) => {
 const getVentureMembers = async (params: ISearchVentureMembers) => {
   return api.API.User.Search({
     ...params,
-    resource: "venture"
+    resource: "venture",
   });
 };
 
 const getTimelineMembers = async (params: ISearchTimelineMembers) => {
   return api.API.User.Search({
     ...params,
-    resource: "timeline"
+    resource: "timeline",
   });
 };
 
