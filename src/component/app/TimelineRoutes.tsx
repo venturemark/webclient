@@ -3,19 +3,48 @@ import { Route, Routes } from "react-router";
 import { useParams } from "react-router-dom";
 
 import { Home } from "component/page/home";
+import { AuthContext } from "context/AuthContext";
 import { ITimelineContext, TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import { calculateNamedSlug } from "module/helpers";
+import { useTimelineRole } from "module/hook/role";
+import { useTimelineMembers } from "module/hook/user";
+import { IRole } from "module/interface/role";
+import { IUser } from "module/interface/user";
 
 export function TimelineRoutes() {
-  const { currentVentureTimelines } = useContext(VentureContext);
+  const { currentVenture, currentVentureTimelines } =
+    useContext(VentureContext);
   const { timelineSlug } = useParams();
+  const { token } = useContext(AuthContext);
   const currentTimeline = currentVentureTimelines.find(
     (t) => calculateNamedSlug(t) === timelineSlug
   );
 
+  const { data: currentTimelineUsers = [] } = useTimelineMembers({
+    timelineId: currentTimeline?.id,
+    ventureId: currentVenture?.id,
+    token,
+  });
+
+  const { data: currentTimelineRoles = [] } = useTimelineRole({
+    timelineId: currentTimeline?.id,
+    ventureId: currentVenture?.id,
+    token,
+  });
+
+  const currentTimelineMembers = currentTimelineUsers
+    .map((user) => ({
+      user,
+      role: currentTimelineRoles.find((r) => r.subjectId === user.id),
+    }))
+    .filter((member): member is { user: IUser; role: IRole } =>
+      Boolean(member.role)
+    );
+
   const timelineContext: ITimelineContext = {
     currentTimeline,
+    currentTimelineMembers,
   };
 
   return (

@@ -19,15 +19,13 @@ export interface ISearchCurrentUser {
 }
 
 export interface ISearchVentureMembers {
-  resource: string;
-  ventureId: string;
+  ventureId?: string;
   token: string | null;
 }
 
 export interface ISearchTimelineMembers {
-  resource: string;
-  timelineId: string;
-  ventureId: string;
+  timelineId?: string;
+  ventureId?: string;
   token: string | null;
 }
 

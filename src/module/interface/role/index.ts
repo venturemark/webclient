@@ -11,14 +11,12 @@ export interface IRole {
 }
 
 export interface ISearchTimelineRoles {
-  resource: string;
-  timelineId: string;
-  ventureId: string;
+  timelineId?: string;
+  ventureId?: string;
   token: string | null;
 }
 
 export interface ISearchVentureRoles {
-  resource: string;
   ventureId: string;
   token: string | null;
 }

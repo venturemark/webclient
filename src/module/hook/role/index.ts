@@ -77,7 +77,10 @@ export function useRoleByTimelines({
 }
 
 const getTimelineRole = async (searchRole: ISearchTimelineRoles) => {
-  return api.API.Role.Search(searchRole);
+  return api.API.Role.Search({
+    ...searchRole,
+    resource: "timeline",
+  });
 };
 
 export function useTimelineRole(searchRole: ISearchTimelineRoles) {
@@ -89,7 +92,10 @@ export function useTimelineRole(searchRole: ISearchTimelineRoles) {
 }
 
 const getVentureRole = async (searchRole: ISearchVentureRoles) => {
-  return api.API.Role.Search(searchRole);
+  return api.API.Role.Search({
+    ...searchRole,
+    resource: "venture",
+  });
 };
 
 export function useVentureRole(searchRole: ISearchVentureRoles) {
