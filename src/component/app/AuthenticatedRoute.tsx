@@ -22,7 +22,8 @@ export function AuthenticatedRoute() {
   if (auth.loading) {
     return <span>Checking auth...</span>;
   } else if (auth.error || (!auth.loading && !auth.authenticated)) {
-    return <Navigate to={`signin`} />;
+    const returnTo = window.location.pathname + window.location.search
+    return <Navigate to="/signin" state={{ returnTo }} />;
   }
 
   const user = userData ? userData[0] : undefined;

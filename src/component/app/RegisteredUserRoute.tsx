@@ -19,15 +19,16 @@ export function RegisteredUserRoute(props: RegisteredUserRouteProps) {
 
   if (userLoading) return <span>Loading user...</span>;
 
-  if (userError) return <Navigate to={"../signin"} />;
-
-  if (!user) {
-    return <Navigate to={"../profile"} />;
+  const returnTo = window.location.pathname + window.location.search
+  if (userError) {
+    return <Navigate to="/signin" state={{ returnTo }} />;
+  } else if (!user) {
+    return <Navigate to={"/profile"} state={{ returnTo }} />;
   }
 
   return (
     <Routes>
-      <Route path="joinventure" element={<JoinVenture />} />
+      <Route path="invite" element={<JoinVenture />} />
       <Route path="begin" element={<Begin user={user} />} />
       <Route path="editprofile" element={<EditProfile />} />
       <Route path="newventure" element={<NewVenture />} />

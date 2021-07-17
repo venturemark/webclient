@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Signin from "component/page/signin";
 import { AuthContext } from "context/AuthContext";
@@ -11,13 +11,10 @@ export function App() {
 
   return (
     <AuthContext.Provider value={auth}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="signin" element={<Signin />} />
-          <Route path="invite" element={<Signin />} />
-          <Route path="*" element={<AuthenticatedRoute />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="signin" element={<Signin />} />
+        <Route path="*" element={<AuthenticatedRoute />} />
+      </Routes>
     </AuthContext.Provider>
   );
 }
