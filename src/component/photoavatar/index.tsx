@@ -5,7 +5,7 @@ import {
 
 interface PhotoAvatarProps extends DefaultPhotoAvatarProps {
   profileDropdown: boolean | "profileDropdown" | undefined;
-  setProfileDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+  setProfileDropdown: (v: boolean) => void;
   user: {
     name?: string;
   };
