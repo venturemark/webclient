@@ -54,14 +54,16 @@ function resourceOwnership(
 
 function deduplicateUpdates(updates: IUpdate[]) {
   const seen: Record<number, boolean> = {};
-  return updates.filter((update: IUpdate) => {
-    const id = Math.round(Number(update.id) / 1000000000);
-    if (seen[id]) {
-      return false;
-    }
-    seen[id] = true;
-    return true;
-  });
+  return updates
+    .filter((update: IUpdate) => {
+      const id = Math.round(Number(update.id) / 1000000000);
+      if (seen[id]) {
+        return false;
+      }
+      seen[id] = true;
+      return true;
+    })
+    .sort((a, b) => b.id.localeCompare(a.id)); // sort in descending order
 }
 
 function FeedUpdate(props: FeedUpdateProps) {
