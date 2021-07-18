@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -102,7 +103,7 @@ function PlasmicIconButtonMember__RenderFunc(props: {
           ),
         })}
       >
-        <div className={classNames(defaultcss.all, sty.box__op1Qu)}>
+        <div className={classNames(defaultcss.all, sty.freeBox__op1Qu)}>
           <IconMemberIcon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
@@ -116,7 +117,7 @@ function PlasmicIconButtonMember__RenderFunc(props: {
           data-plasmic-override={overrides.background}
           className={classNames(defaultcss.all, sty.background)}
         >
-          <div className={classNames(defaultcss.all, sty.box__ysBge)}>
+          <div className={classNames(defaultcss.all, sty.freeBox__ysBge)}>
             {p.renderPlasmicSlot({
               defaultContents: "+",
               value: args.memberCount,

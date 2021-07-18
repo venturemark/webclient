@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -121,8 +122,8 @@ function PlasmicVentureSettings__RenderFunc(props: {
           />
 
           <div
-            className={classNames(defaultcss.all, sty.box__kRlHv, {
-              [sty.box__isVisible_mobileSidebar__kRlHvgEoQs]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox__kRlHv, {
+              [sty.freeBox__isVisible_mobileSidebar__kRlHvgEoQs]: hasVariant(
                 variants,
                 "isVisible",
                 "mobileSidebar"
@@ -150,7 +151,7 @@ function PlasmicVentureSettings__RenderFunc(props: {
               />
             ) : null}
 
-            <div className={classNames(defaultcss.all, sty.box___1PYva)}>
+            <div className={classNames(defaultcss.all, sty.freeBox___1PYva)}>
               <div
                 data-plasmic-name={"mainContainer"}
                 data-plasmic-override={overrides.mainContainer}

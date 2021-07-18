@@ -1,5 +1,6 @@
 .settings {
   box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
+  background: #ffffff;
   display: flex;
   position: relative;
   width: 100%;
@@ -8,7 +9,6 @@
   min-width: 0;
   border-radius: 10px;
   padding: 40px /* plasmic-token: XraHK0yKz */;
-  background: #ffffff;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .settings > :global(.__wab_flex-container) {
@@ -25,7 +25,7 @@
     padding: 20px /* plasmic-token: dS7QCqXxp */;
   }
 }
-.box__nqvhu {
+.freeBox__nqvhu {
   display: flex;
   position: relative;
   left: auto;
@@ -51,42 +51,42 @@
   left: auto;
   top: auto;
 }
-.box__uCWf {
+.freeBox__uCWf {
   display: none;
   position: relative;
   flex-direction: row;
   top: auto;
   left: auto;
 }
-.box__uCWf > :global(.__wab_flex-container) {
+.freeBox__uCWf > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-start;
   margin-left: calc(0px - 6px);
   width: calc(100% + 6px);
 }
-.box__uCWf > :global(.__wab_flex-container) > *,
-.box__uCWf > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__uCWf > :global(.__wab_flex-container) > *,
+.freeBox__uCWf > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 6px;
 }
-.box__variantState_isEdit__uCWf2IFcI > :global(.__wab_flex-container) {
+.freeBox__variantState_isEdit__uCWf2IFcI > :global(.__wab_flex-container) {
   margin-left: calc(0px - 20px);
   width: calc(100% + 20px);
   margin-top: calc(0px - 0px);
   height: calc(100% + 0px);
 }
-.box__variantState_isEdit__uCWf2IFcI > :global(.__wab_flex-container) > *,
-.box__variantState_isEdit__uCWf2IFcI
+.freeBox__variantState_isEdit__uCWf2IFcI > :global(.__wab_flex-container) > *,
+.freeBox__variantState_isEdit__uCWf2IFcI
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > * {
   margin-left: 20px;
   margin-top: 0px;
 }
-.box__variantState_isEdit_isOwner__uCWf2IFcIMdraL {
+.freeBox__variantState_isEdit_isOwner__uCWf2IFcIMdraL {
   display: flex;
 }
-.box__katKc {
+.freeBox__katKc {
   display: flex;
   position: relative;
   flex-direction: column;

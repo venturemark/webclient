@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -83,7 +84,7 @@ export const PlasmicTags__ArgProps = new Array<ArgPropType>(
 export type PlasmicTags__OverridesType = {
   root?: p.Flex<"div">;
   button?: p.Flex<"button">;
-  box?: p.Flex<"div">;
+  freeBox?: p.Flex<"div">;
 };
 
 export interface DefaultTagsProps {
@@ -188,16 +189,16 @@ function PlasmicTags__RenderFunc(props: {
       >
         <p.Stack
           as={"div"}
-          data-plasmic-name={"box"}
-          data-plasmic-override={overrides.box}
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box, {
-            [sty.box__buttonStyle_blue]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox, {
+            [sty.freeBox__buttonStyle_blue]: hasVariant(
               variants,
               "buttonStyle",
               "blue"
             ),
-            [sty.box__buttonStyle_primaryPurple]: hasVariant(
+            [sty.freeBox__buttonStyle_primaryPurple]: hasVariant(
               variants,
               "buttonStyle",
               "primaryPurple"
@@ -295,9 +296,9 @@ function PlasmicTags__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "button", "box"],
-  button: ["button", "box"],
-  box: ["box"],
+  root: ["root", "button", "freeBox"],
+  button: ["button", "freeBox"],
+  freeBox: ["freeBox"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -305,7 +306,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   button: "button";
-  box: "div";
+  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -370,7 +371,7 @@ export const PlasmicTags = Object.assign(
   {
     // Helper components rendering sub-elements
     button: makeNodeComponent("button"),
-    box: makeNodeComponent("box"),
+    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicTags
     internalVariantProps: PlasmicTags__VariantProps,

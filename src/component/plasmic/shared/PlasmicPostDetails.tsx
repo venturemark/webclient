@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -93,7 +94,7 @@ function PlasmicPostDetails__RenderFunc(props: {
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
       {true ? (
-        <div className={classNames(defaultcss.all, sty.box__qxUjW)}>
+        <div className={classNames(defaultcss.all, sty.freeBox__qxUjW)}>
           {p.renderPlasmicSlot({
             defaultContents: "Post Details",
             value: args.children,
@@ -115,7 +116,7 @@ function PlasmicPostDetails__RenderFunc(props: {
         </div>
       ) : null}
 
-      <div className={classNames(defaultcss.all, sty.box__n7A9B)}>
+      <div className={classNames(defaultcss.all, sty.freeBox__n7A9B)}>
         <ContentPost
           data-plasmic-name={"post"}
           data-plasmic-override={overrides.post}

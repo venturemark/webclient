@@ -10,7 +10,7 @@ export const configJson = isDev()
       domain: "vm001.us.auth0.com",
       clientId: "g36L8KuZbNfkDsCZY8zPzDnQPf22w5Vc",
       audience: "apiserver",
-      redirectUri: "http://localhost:3006/profile",
+      redirectUri: "http://localhost:3006",
       useRefreshTokens: true,
       cacheLocation: cacheLocation,
     }

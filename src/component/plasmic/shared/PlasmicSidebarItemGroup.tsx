@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -135,14 +136,14 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.box__fqyEx,
+              sty.freeBox__fqyEx,
               {
-                [sty.box__isCollapsed__fqyExR1V]: hasVariant(
+                [sty.freeBox__isCollapsed__fqyExR1V]: hasVariant(
                   variants,
                   "isCollapsed",
                   "isCollapsed"
                 ),
-                [sty.box__isPublic__fqyExYwyIq]: hasVariant(
+                [sty.freeBox__isPublic__fqyExYwyIq]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -199,9 +200,9 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.box__fPdD,
+                  sty.freeBox__fPdD,
                   {
-                    [sty.box__isPublic__fPdDYwyIq]: hasVariant(
+                    [sty.freeBox__isPublic__fPdDYwyIq]: hasVariant(
                       variants,
                       "isPublic",
                       "isPublic"
@@ -230,7 +231,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           })}
         >
           {false ? (
-            <div className={classNames(defaultcss.all, sty.box__qDvH0)}>
+            <div className={classNames(defaultcss.all, sty.freeBox__qDvH0)}>
               {false ? (
                 <svg
                   className={classNames(defaultcss.all, sty.svg__g8Bxr)}
@@ -271,8 +272,8 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__muwKg, {
-              [sty.box__isPublic__muwKgYwyIq]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox__muwKg, {
+              [sty.freeBox__isPublic__muwKgYwyIq]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
@@ -281,8 +282,8 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           >
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
-                className={classNames(defaultcss.all, sty.box___4CYes, {
-                  [sty.box__isPublic___4CYesYwyIq]: hasVariant(
+                className={classNames(defaultcss.all, sty.freeBox___4CYes, {
+                  [sty.freeBox__isPublic___4CYesYwyIq]: hasVariant(
                     variants,
                     "isPublic",
                     "isPublic"
@@ -315,7 +316,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           })}
         >
           {false ? (
-            <div className={classNames(defaultcss.all, sty.box___8BmYf)}>
+            <div className={classNames(defaultcss.all, sty.freeBox___8BmYf)}>
               {false ? (
                 <svg
                   className={classNames(defaultcss.all, sty.svg__vtleO)}
@@ -356,8 +357,8 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__e2Uwa, {
-              [sty.box__isPublic__e2UwaYwyIq]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox__e2Uwa, {
+              [sty.freeBox__isPublic__e2UwaYwyIq]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
@@ -366,8 +367,8 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           >
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
-                className={classNames(defaultcss.all, sty.box__v4P01, {
-                  [sty.box__isPublic__v4P01YwyIq]: hasVariant(
+                className={classNames(defaultcss.all, sty.freeBox__v4P01, {
+                  [sty.freeBox__isPublic__v4P01YwyIq]: hasVariant(
                     variants,
                     "isPublic",
                     "isPublic"
@@ -400,7 +401,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           })}
         >
           {false ? (
-            <div className={classNames(defaultcss.all, sty.box__rjyq)}>
+            <div className={classNames(defaultcss.all, sty.freeBox__rjyq)}>
               {false ? (
                 <svg
                   className={classNames(defaultcss.all, sty.svg__lo3H)}
@@ -441,8 +442,8 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__ulWg4, {
-              [sty.box__isPublic__ulWg4YwyIq]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox__ulWg4, {
+              [sty.freeBox__isPublic__ulWg4YwyIq]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
@@ -451,8 +452,8 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           >
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
-                className={classNames(defaultcss.all, sty.box__my23, {
-                  [sty.box__isPublic__my23YwyIq]: hasVariant(
+                className={classNames(defaultcss.all, sty.freeBox__my23, {
+                  [sty.freeBox__isPublic__my23YwyIq]: hasVariant(
                     variants,
                     "isPublic",
                     "isPublic"
@@ -508,7 +509,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.box__f9Ow1
+                sty.freeBox__f9Ow1
               )}
             >
               {"New Timeline"}

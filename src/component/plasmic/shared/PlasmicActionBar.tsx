@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -156,23 +157,23 @@ function PlasmicActionBar__RenderFunc(props: {
       <p.Stack
         as={"div"}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box__zG8Do, {
-          [sty.box__error_hasError__zG8DoxYqMt]: hasVariant(
+        className={classNames(defaultcss.all, sty.freeBox__zG8Do, {
+          [sty.freeBox__error_hasError__zG8DoxYqMt]: hasVariant(
             variants,
             "error",
             "hasError"
           ),
-          [sty.box__isActive__zG8DovjQpn]: hasVariant(
+          [sty.freeBox__isActive__zG8DovjQpn]: hasVariant(
             variants,
             "isActive",
             "isActive"
           ),
-          [sty.box__timelineSelected__zG8Do75BwG]: hasVariant(
+          [sty.freeBox__timelineSelected__zG8Do75BwG]: hasVariant(
             variants,
             "timelineSelected",
             "timelineSelected"
           ),
-          [sty.box__timelineSelected_isActive__zG8Do75BwGVjQpn]:
+          [sty.freeBox__timelineSelected_isActive__zG8Do75BwGVjQpn]:
             hasVariant(variants, "timelineSelected", "timelineSelected") &&
             hasVariant(variants, "isActive", "isActive"),
         })}
@@ -219,8 +220,8 @@ function PlasmicActionBar__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__ptnBs, {
-              [sty.box__isActive__ptnBsvjQpn]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox__ptnBs, {
+              [sty.freeBox__isActive__ptnBsvjQpn]: hasVariant(
                 variants,
                 "isActive",
                 "isActive"
@@ -315,23 +316,23 @@ function PlasmicActionBar__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__mQqJf, {
-                  [sty.box__isActive__mQqJfvjQpn]: hasVariant(
+                className={classNames(defaultcss.all, sty.freeBox__mQqJf, {
+                  [sty.freeBox__isActive__mQqJfvjQpn]: hasVariant(
                     variants,
                     "isActive",
                     "isActive"
                   ),
-                  [sty.box__mobileLayout__mQqJfr8WpI]: hasVariant(
+                  [sty.freeBox__mobileLayout__mQqJfr8WpI]: hasVariant(
                     variants,
                     "mobileLayout",
                     "mobileLayout"
                   ),
-                  [sty.box__timelineSelected__mQqJf75BwG]: hasVariant(
+                  [sty.freeBox__timelineSelected__mQqJf75BwG]: hasVariant(
                     variants,
                     "timelineSelected",
                     "timelineSelected"
                   ),
-                  [sty.box__timelineSelected_isActive__mQqJf75BwGVjQpn]:
+                  [sty.freeBox__timelineSelected_isActive__mQqJf75BwGVjQpn]:
                     hasVariant(
                       variants,
                       "timelineSelected",
@@ -343,13 +344,13 @@ function PlasmicActionBar__RenderFunc(props: {
                   hasVariant(variants, "isActive", "isActive") ? true : false
                 ) ? (
                   <div
-                    className={classNames(defaultcss.all, sty.box__kjkQr, {
-                      [sty.box__isActive__kjkQrvjQpn]: hasVariant(
+                    className={classNames(defaultcss.all, sty.freeBox__kjkQr, {
+                      [sty.freeBox__isActive__kjkQrvjQpn]: hasVariant(
                         variants,
                         "isActive",
                         "isActive"
                       ),
-                      [sty.box__timelineSelected__kjkQr75BwG]: hasVariant(
+                      [sty.freeBox__timelineSelected__kjkQr75BwG]: hasVariant(
                         variants,
                         "timelineSelected",
                         "timelineSelected"
@@ -357,18 +358,18 @@ function PlasmicActionBar__RenderFunc(props: {
                     })}
                   >
                     <div
-                      className={classNames(defaultcss.all, sty.box__dWUd, {
-                        [sty.box__isActive__dWUdvjQpn]: hasVariant(
+                      className={classNames(defaultcss.all, sty.freeBox__dWUd, {
+                        [sty.freeBox__isActive__dWUdvjQpn]: hasVariant(
                           variants,
                           "isActive",
                           "isActive"
                         ),
-                        [sty.box__timelineSelected__dWUd75BwG]: hasVariant(
+                        [sty.freeBox__timelineSelected__dWUd75BwG]: hasVariant(
                           variants,
                           "timelineSelected",
                           "timelineSelected"
                         ),
-                        [sty.box__timelineSelected_isActive__dWUd75BwGVjQpn]:
+                        [sty.freeBox__timelineSelected_isActive__dWUd75BwGVjQpn]:
                           hasVariant(
                             variants,
                             "timelineSelected",
@@ -423,21 +424,21 @@ function PlasmicActionBar__RenderFunc(props: {
                             hasGap={true}
                             className={classNames(
                               defaultcss.all,
-                              sty.box__iriP,
+                              sty.freeBox__iriP,
                               {
-                                [sty.box__isActive__iriPvjQpn]: hasVariant(
+                                [sty.freeBox__isActive__iriPvjQpn]: hasVariant(
                                   variants,
                                   "isActive",
                                   "isActive"
                                 ),
-                                [sty.box__isActive_error_hasError__iriPvjQpnXYqMt]:
+                                [sty.freeBox__isActive_error_hasError__iriPvjQpnXYqMt]:
                                   hasVariant(
                                     variants,
                                     "isActive",
                                     "isActive"
                                   ) &&
                                   hasVariant(variants, "error", "hasError"),
-                                [sty.box__timelineSelected__iriP75BwG]:
+                                [sty.freeBox__timelineSelected__iriP75BwG]:
                                   hasVariant(
                                     variants,
                                     "timelineSelected",
@@ -449,21 +450,22 @@ function PlasmicActionBar__RenderFunc(props: {
                             <div
                               className={classNames(
                                 defaultcss.all,
-                                sty.box__vnwRg,
+                                sty.freeBox__vnwRg,
                                 {
-                                  [sty.box__isActive__vnwRgvjQpn]: hasVariant(
-                                    variants,
-                                    "isActive",
-                                    "isActive"
-                                  ),
-                                  [sty.box__isActive_error_hasError__vnwRgvjQpnXYqMt]:
+                                  [sty.freeBox__isActive__vnwRgvjQpn]:
+                                    hasVariant(
+                                      variants,
+                                      "isActive",
+                                      "isActive"
+                                    ),
+                                  [sty.freeBox__isActive_error_hasError__vnwRgvjQpnXYqMt]:
                                     hasVariant(
                                       variants,
                                       "isActive",
                                       "isActive"
                                     ) &&
                                     hasVariant(variants, "error", "hasError"),
-                                  [sty.box__timelineSelected__vnwRg75BwG]:
+                                  [sty.freeBox__timelineSelected__vnwRg75BwG]:
                                     hasVariant(
                                       variants,
                                       "timelineSelected",
@@ -476,21 +478,22 @@ function PlasmicActionBar__RenderFunc(props: {
                                 className={classNames(
                                   defaultcss.all,
                                   defaultcss.__wab_text,
-                                  sty.box__pYpv,
+                                  sty.freeBox__pYpv,
                                   {
-                                    [sty.box__isActive__pYpVvjQpn]: hasVariant(
-                                      variants,
-                                      "isActive",
-                                      "isActive"
-                                    ),
-                                    [sty.box__isActive_error_hasError__pYpVvjQpnXYqMt]:
+                                    [sty.freeBox__isActive__pYpVvjQpn]:
+                                      hasVariant(
+                                        variants,
+                                        "isActive",
+                                        "isActive"
+                                      ),
+                                    [sty.freeBox__isActive_error_hasError__pYpVvjQpnXYqMt]:
                                       hasVariant(
                                         variants,
                                         "isActive",
                                         "isActive"
                                       ) &&
                                       hasVariant(variants, "error", "hasError"),
-                                    [sty.box__timelineSelected__pYpv75BwG]:
+                                    [sty.freeBox__timelineSelected__pYpv75BwG]:
                                       hasVariant(
                                         variants,
                                         "timelineSelected",
@@ -662,7 +665,7 @@ function PlasmicActionBar__RenderFunc(props: {
                                     hasGap={true}
                                     className={classNames(
                                       defaultcss.all,
-                                      sty.box__kBcf
+                                      sty.freeBox__kBcf
                                     )}
                                   >
                                     {(
@@ -739,8 +742,8 @@ function PlasmicActionBar__RenderFunc(props: {
             ) : null}
             {(hasVariant(variants, "isActive", "isActive") ? true : false) ? (
               <div
-                className={classNames(defaultcss.all, sty.box__d8M3B, {
-                  [sty.box__isActive__d8M3BvjQpn]: hasVariant(
+                className={classNames(defaultcss.all, sty.freeBox__d8M3B, {
+                  [sty.freeBox__isActive__d8M3BvjQpn]: hasVariant(
                     variants,
                     "isActive",
                     "isActive"

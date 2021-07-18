@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -168,18 +169,12 @@ function PlasmicMainHeader__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box___3Xg51, {
-              [sty.box__headerStyles_createNewVenture___3Xg51K3Tru]: hasVariant(
-                variants,
-                "headerStyles",
-                "createNewVenture"
-              ),
-              [sty.box__headerStyles_timelineHeader___3Xg51Rxxpi]: hasVariant(
-                variants,
-                "headerStyles",
-                "timelineHeader"
-              ),
-              [sty.box__headerStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox___3Xg51, {
+              [sty.freeBox__headerStyles_createNewVenture___3Xg51K3Tru]:
+                hasVariant(variants, "headerStyles", "createNewVenture"),
+              [sty.freeBox__headerStyles_timelineHeader___3Xg51Rxxpi]:
+                hasVariant(variants, "headerStyles", "timelineHeader"),
+              [sty.freeBox__headerStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
                 variants,
                 "headerStyles",
                 "ventureHeader"
@@ -189,14 +184,11 @@ function PlasmicMainHeader__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__sDNfz, {
-                [sty.box__headerStyles_createNewVenture__sDNfzk3Tru]:
+              className={classNames(defaultcss.all, sty.freeBox__sDNfz, {
+                [sty.freeBox__headerStyles_createNewVenture__sDNfzk3Tru]:
                   hasVariant(variants, "headerStyles", "createNewVenture"),
-                [sty.box__headerStyles_ventureHeader__sDNfzNMQ9]: hasVariant(
-                  variants,
-                  "headerStyles",
-                  "ventureHeader"
-                ),
+                [sty.freeBox__headerStyles_ventureHeader__sDNfzNMQ9]:
+                  hasVariant(variants, "headerStyles", "ventureHeader"),
               })}
             >
               {(
@@ -207,12 +199,12 @@ function PlasmicMainHeader__RenderFunc(props: {
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.box__yHtqj, {
-                    [sty.box__headerStyles_createNewVenture__yHtqJk3Tru]:
+                  className={classNames(defaultcss.all, sty.freeBox__yHtqj, {
+                    [sty.freeBox__headerStyles_createNewVenture__yHtqJk3Tru]:
                       hasVariant(variants, "headerStyles", "createNewVenture"),
-                    [sty.box__headerStyles_timelineHeader__yHtqjRxxpi]:
+                    [sty.freeBox__headerStyles_timelineHeader__yHtqjRxxpi]:
                       hasVariant(variants, "headerStyles", "timelineHeader"),
-                    [sty.box__headerStyles_ventureHeader__yHtqjnMQ9]:
+                    [sty.freeBox__headerStyles_ventureHeader__yHtqjnMQ9]:
                       hasVariant(variants, "headerStyles", "ventureHeader"),
                   })}
                 >
@@ -238,10 +230,10 @@ function PlasmicMainHeader__RenderFunc(props: {
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.box___6YZlv, {
-                    [sty.box__headerStyles_timelineHeader___6YZlvRxxpi]:
+                  className={classNames(defaultcss.all, sty.freeBox___6YZlv, {
+                    [sty.freeBox__headerStyles_timelineHeader___6YZlvRxxpi]:
                       hasVariant(variants, "headerStyles", "timelineHeader"),
-                    [sty.box__headerStyles_ventureHeader___6YZlvnMQ9]:
+                    [sty.freeBox__headerStyles_ventureHeader___6YZlvnMQ9]:
                       hasVariant(variants, "headerStyles", "ventureHeader"),
                   })}
                 >
@@ -254,15 +246,15 @@ function PlasmicMainHeader__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.box__y7S0J,
+                        sty.freeBox__y7S0J,
                         {
-                          [sty.box__headerStyles_timelineHeader__y7S0JRxxpi]:
+                          [sty.freeBox__headerStyles_timelineHeader__y7S0JRxxpi]:
                             hasVariant(
                               variants,
                               "headerStyles",
                               "timelineHeader"
                             ),
-                          [sty.box__headerStyles_ventureHeader__y7S0JNMQ9]:
+                          [sty.freeBox__headerStyles_ventureHeader__y7S0JNMQ9]:
                             hasVariant(
                               variants,
                               "headerStyles",
@@ -288,7 +280,7 @@ function PlasmicMainHeader__RenderFunc(props: {
                               className={classNames(
                                 defaultcss.all,
                                 defaultcss.__wab_text,
-                                sty.box__oBTp
+                                sty.freeBox__oBTp
                               )}
                             >
                               {"Adbloom"}
@@ -348,17 +340,18 @@ function PlasmicMainHeader__RenderFunc(props: {
                   : false
               ) ? (
                 <div
-                  className={classNames(defaultcss.all, sty.box__fohK2, {
-                    [sty.box__headerStyles_timelineHeader__fohK2Rxxpi]:
+                  className={classNames(defaultcss.all, sty.freeBox__fohK2, {
+                    [sty.freeBox__headerStyles_timelineHeader__fohK2Rxxpi]:
                       hasVariant(variants, "headerStyles", "timelineHeader"),
-                    [sty.box__headerStyles_ventureHeader__fohK2NMQ9]:
+                    [sty.freeBox__headerStyles_ventureHeader__fohK2NMQ9]:
                       hasVariant(variants, "headerStyles", "ventureHeader"),
-                    [sty.box__showVentureDescription__fohK2CtI95]: hasVariant(
-                      variants,
-                      "showVentureDescription",
-                      "showVentureDescription"
-                    ),
-                    [sty.box__showVentureDescription_headerStyles_ventureHeader__fohK2CtI95NMQ9]:
+                    [sty.freeBox__showVentureDescription__fohK2CtI95]:
+                      hasVariant(
+                        variants,
+                        "showVentureDescription",
+                        "showVentureDescription"
+                      ),
+                    [sty.freeBox__showVentureDescription_headerStyles_ventureHeader__fohK2CtI95NMQ9]:
                       hasVariant(
                         variants,
                         "showVentureDescription",
@@ -429,25 +422,26 @@ function PlasmicMainHeader__RenderFunc(props: {
                   : true
               ) ? (
                 <div
-                  className={classNames(defaultcss.all, sty.box__gg4AP, {
-                    [sty.box__headerStyles_createNewVenture__gg4APk3Tru]:
+                  className={classNames(defaultcss.all, sty.freeBox__gg4AP, {
+                    [sty.freeBox__headerStyles_createNewVenture__gg4APk3Tru]:
                       hasVariant(variants, "headerStyles", "createNewVenture"),
-                    [sty.box__headerStyles_timelineHeader__gg4APRxxpi]:
+                    [sty.freeBox__headerStyles_timelineHeader__gg4APRxxpi]:
                       hasVariant(variants, "headerStyles", "timelineHeader"),
-                    [sty.box__headerStyles_timelineHeader_showVentureDescription__gg4APRxxpiCtI95]:
+                    [sty.freeBox__headerStyles_timelineHeader_showVentureDescription__gg4APRxxpiCtI95]:
                       hasVariant(variants, "headerStyles", "timelineHeader") &&
                       hasVariant(
                         variants,
                         "showVentureDescription",
                         "showVentureDescription"
                       ),
-                    [sty.box__headerStyles_ventureHeader__gg4APnMQ9]:
+                    [sty.freeBox__headerStyles_ventureHeader__gg4APnMQ9]:
                       hasVariant(variants, "headerStyles", "ventureHeader"),
-                    [sty.box__showVentureDescription__gg4APctI95]: hasVariant(
-                      variants,
-                      "showVentureDescription",
-                      "showVentureDescription"
-                    ),
+                    [sty.freeBox__showVentureDescription__gg4APctI95]:
+                      hasVariant(
+                        variants,
+                        "showVentureDescription",
+                        "showVentureDescription"
+                      ),
                   })}
                 >
                   {p.renderPlasmicSlot({
@@ -560,7 +554,7 @@ function PlasmicMainHeader__RenderFunc(props: {
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.box__lssdr
+                          sty.freeBox__lssdr
                         )}
                       >
                         {"+"}

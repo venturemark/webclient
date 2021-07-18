@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -49,7 +50,7 @@ export const PlasmicNotificationCount__ArgProps = new Array<ArgPropType>();
 export type PlasmicNotificationCount__OverridesType = {
   root?: p.Flex<"div">;
   background?: p.Flex<"div">;
-  box?: p.Flex<"div">;
+  freeBox?: p.Flex<"div">;
 };
 
 export interface DefaultNotificationCountProps {
@@ -79,9 +80,13 @@ function PlasmicNotificationCount__RenderFunc(props: {
         className={classNames(defaultcss.all, sty.background)}
       >
         <div
-          data-plasmic-name={"box"}
-          data-plasmic-override={overrides.box}
-          className={classNames(defaultcss.all, defaultcss.__wab_text, sty.box)}
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
+          className={classNames(
+            defaultcss.all,
+            defaultcss.__wab_text,
+            sty.freeBox
+          )}
         >
           {"1"}
         </div>
@@ -91,9 +96,9 @@ function PlasmicNotificationCount__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "background", "box"],
-  background: ["background", "box"],
-  box: ["box"],
+  root: ["root", "background", "freeBox"],
+  background: ["background", "freeBox"],
+  freeBox: ["freeBox"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -101,7 +106,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   background: "div";
-  box: "div";
+  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -166,7 +171,7 @@ export const PlasmicNotificationCount = Object.assign(
   {
     // Helper components rendering sub-elements
     background: makeNodeComponent("background"),
-    box: makeNodeComponent("box"),
+    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicNotificationCount
     internalVariantProps: PlasmicNotificationCount__VariantProps,

@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -116,18 +117,18 @@ function PlasmicHeader__RenderFunc(props: {
       <p.Stack
         as={"div"}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box__ky7Rm, {
-          [sty.box__mobileMenu__ky7RmdUXmX]: hasVariant(
+        className={classNames(defaultcss.all, sty.freeBox__ky7Rm, {
+          [sty.freeBox__mobileMenu__ky7RmdUXmX]: hasVariant(
             variants,
             "mobileMenu",
             "mobileMenu"
           ),
-          [sty.box__views_publicView__ky7RmYpLjb]: hasVariant(
+          [sty.freeBox__views_publicView__ky7RmYpLjb]: hasVariant(
             variants,
             "views",
             "publicView"
           ),
-          [sty.box__views_userAccount__ky7RmUjVqz]: hasVariant(
+          [sty.freeBox__views_userAccount__ky7RmUjVqz]: hasVariant(
             variants,
             "views",
             "userAccount"
@@ -138,7 +139,7 @@ function PlasmicHeader__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__wE8Ym)}
+            className={classNames(defaultcss.all, sty.freeBox__wE8Ym)}
           >
             {(
               hasVariant(variants, "mobileMenu", "mobileMenu") &&
@@ -201,9 +202,9 @@ function PlasmicHeader__RenderFunc(props: {
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.box__upjAh,
+              sty.freeBox__upjAh,
               {
-                [sty.box__views_publicView__upjAhYpLjb]: hasVariant(
+                [sty.freeBox__views_publicView__upjAhYpLjb]: hasVariant(
                   variants,
                   "views",
                   "publicView"
@@ -247,13 +248,13 @@ function PlasmicHeader__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box___4Ktdl, {
-              [sty.box__profileDropdown___4KtdlZi9Pu]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox___4Ktdl, {
+              [sty.freeBox__profileDropdown___4KtdlZi9Pu]: hasVariant(
                 variants,
                 "profileDropdown",
                 "profileDropdown"
               ),
-              [sty.box__views_userAccount___4KtdlUjVqz]: hasVariant(
+              [sty.freeBox__views_userAccount___4KtdlUjVqz]: hasVariant(
                 variants,
                 "views",
                 "userAccount"

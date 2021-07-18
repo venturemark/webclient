@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -99,7 +100,7 @@ export const PlasmicButton__ArgProps = new Array<ArgPropType>(
 export type PlasmicButton__OverridesType = {
   root?: p.Flex<"div">;
   button?: p.Flex<"div">;
-  box?: p.Flex<"div">;
+  freeBox?: p.Flex<"div">;
 };
 
 export interface DefaultButtonProps {
@@ -265,16 +266,16 @@ function PlasmicButton__RenderFunc(props: {
       >
         <p.Stack
           as={"div"}
-          data-plasmic-name={"box"}
-          data-plasmic-override={overrides.box}
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box, {
-            [sty.box__buttonFeatures_removeText]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox, {
+            [sty.freeBox__buttonFeatures_removeText]: hasVariant(
               variants,
               "buttonFeatures",
               "removeText"
             ),
-            [sty.box__buttonFeatures_showCount]: hasVariant(
+            [sty.freeBox__buttonFeatures_showCount]: hasVariant(
               variants,
               "buttonFeatures",
               "showCount"
@@ -480,9 +481,9 @@ function PlasmicButton__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "button", "box"],
-  button: ["button", "box"],
-  box: ["box"],
+  root: ["root", "button", "freeBox"],
+  button: ["button", "freeBox"],
+  freeBox: ["freeBox"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -490,7 +491,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   button: "div";
-  box: "div";
+  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -555,7 +556,7 @@ export const PlasmicButton = Object.assign(
   {
     // Helper components rendering sub-elements
     button: makeNodeComponent("button"),
-    box: makeNodeComponent("box"),
+    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicButton
     internalVariantProps: PlasmicButton__VariantProps,

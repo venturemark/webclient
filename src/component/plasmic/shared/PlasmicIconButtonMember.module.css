@@ -22,10 +22,10 @@
   padding: 5px /* plasmic-token: 5hSVea-ed */;
 }
 .root:hover .container {
-  border-radius: 5px;
   background: rgb(231, 231, 236);
+  border-radius: 5px;
 }
-.box__op1Qu {
+.freeBox__op1Qu {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -57,11 +57,11 @@
   margin-bottom: 0px;
   margin-left: 0px;
   min-width: 13px;
+  background: rgb(38, 26, 63);
   border-radius: 5px;
   padding: 0px 2px;
-  background: rgb(38, 26, 63);
 }
-.box__ysBge {
+.freeBox__ysBge {
   display: inline-flex;
   position: relative;
   width: auto;
