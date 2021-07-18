@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -132,8 +133,8 @@ function PlasmicHome__RenderFunc(props: {
         >
           {(hasVariant(variants, "isVisible", "showModal") ? true : false) ? (
             <div
-              className={classNames(defaultcss.all, sty.box__bSzQ, {
-                [sty.box__isVisible_showModal__bSzQvxFZh]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__bSzQ, {
+                [sty.freeBox__isVisible_showModal__bSzQvxFZh]: hasVariant(
                   variants,
                   "isVisible",
                   "showModal"
@@ -198,13 +199,13 @@ function PlasmicHome__RenderFunc(props: {
           ) : null}
 
           <div
-            className={classNames(defaultcss.all, sty.box___70Att, {
-              [sty.box__isVisible_isPublic___70AttunhQv]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox___70Att, {
+              [sty.freeBox__isVisible_isPublic___70AttunhQv]: hasVariant(
                 variants,
                 "isVisible",
                 "isPublic"
               ),
-              [sty.box__isVisible_mobileSidebar___70AttO6F5A]: hasVariant(
+              [sty.freeBox__isVisible_mobileSidebar___70AttO6F5A]: hasVariant(
                 variants,
                 "isVisible",
                 "mobileSidebar"
@@ -251,8 +252,8 @@ function PlasmicHome__RenderFunc(props: {
             ) : null}
 
             <div
-              className={classNames(defaultcss.all, sty.box__cJlKh, {
-                [sty.box__isVisible_isPublic__cJlKhunhQv]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__cJlKh, {
+                [sty.freeBox__isVisible_isPublic__cJlKhunhQv]: hasVariant(
                   variants,
                   "isVisible",
                   "isPublic"

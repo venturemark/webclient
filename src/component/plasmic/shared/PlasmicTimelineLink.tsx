@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -50,7 +51,7 @@ export const PlasmicTimelineLink__ArgProps = new Array<ArgPropType>("name");
 
 export type PlasmicTimelineLink__OverridesType = {
   root?: p.Flex<"div">;
-  box?: p.Flex<"div">;
+  freeBox?: p.Flex<"div">;
 };
 
 export interface DefaultTimelineLinkProps {
@@ -76,9 +77,13 @@ function PlasmicTimelineLink__RenderFunc(props: {
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
       <div
-        data-plasmic-name={"box"}
-        data-plasmic-override={overrides.box}
-        className={classNames(defaultcss.all, defaultcss.__wab_text, sty.box)}
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames(
+          defaultcss.all,
+          defaultcss.__wab_text,
+          sty.freeBox
+        )}
       >
         {"#"}
       </div>
@@ -104,15 +109,15 @@ function PlasmicTimelineLink__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "box"],
-  box: ["box"],
+  root: ["root", "freeBox"],
+  freeBox: ["freeBox"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  box: "div";
+  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -176,7 +181,7 @@ export const PlasmicTimelineLink = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    box: makeNodeComponent("box"),
+    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicTimelineLink
     internalVariantProps: PlasmicTimelineLink__VariantProps,

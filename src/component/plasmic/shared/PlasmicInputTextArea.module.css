@@ -77,7 +77,7 @@
 .input__isDisabled {
   cursor: default;
   pointer-events: none;
-  background: rgb(249, 249, 250) repeat;
+  background: rgb(249, 249, 250);
 }
 .root:focus-within .input {
   outline: none;
@@ -93,7 +93,7 @@
   flex-shrink: 0;
   height: 1em;
 }
-.box__wBY0 {
+.freeBox__wBY0 {
   display: flex;
   position: relative;
   width: 100%;
@@ -102,7 +102,7 @@
   min-width: 0;
   min-height: 0;
 }
-.box__ytJal {
+.freeBox__ytJal {
   display: flex;
   position: relative;
   flex-direction: row;

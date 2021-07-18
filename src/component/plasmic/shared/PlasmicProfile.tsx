@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -89,30 +90,32 @@ function PlasmicProfile__RenderFunc(props: {
             sty.root
           )}
         >
-          <div className={classNames(defaultcss.all, sty.box__ebv0I)}>
+          <div className={classNames(defaultcss.all, sty.freeBox__ebv0I)}>
             <Header
               data-plasmic-name={"header"}
               data-plasmic-override={overrides.header}
               className={classNames("__wab_instance", sty.header)}
             />
 
-            <div className={classNames(defaultcss.all, sty.box__pMmw)}>
+            <div className={classNames(defaultcss.all, sty.freeBox__pMmw)}>
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__ibtro)}
+                className={classNames(defaultcss.all, sty.freeBox__ibtro)}
               >
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.box__qLx8X)}
+                  className={classNames(defaultcss.all, sty.freeBox__qLx8X)}
                 >
-                  <div className={classNames(defaultcss.all, sty.box__x6LVc)}>
+                  <div
+                    className={classNames(defaultcss.all, sty.freeBox__x6LVc)}
+                  >
                     <div
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.box__qDcm3
+                        sty.freeBox__qDcm3
                       )}
                     >
                       {"Let’s finish"}
@@ -122,7 +125,7 @@ function PlasmicProfile__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.box__hUGd0
+                        sty.freeBox__hUGd0
                       )}
                     >
                       {"creating your account."}
@@ -134,7 +137,7 @@ function PlasmicProfile__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.box__xRb1Y
+                        sty.freeBox__xRb1Y
                       )}
                     >
                       {

@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -151,8 +152,8 @@ function PlasmicAddEditMembers__RenderFunc(props: {
     >
       {(hasVariant(variants, "type", "isTimeline") ? false : true) ? (
         <div
-          className={classNames(defaultcss.all, sty.box__sLr04, {
-            [sty.box__type_isTimeline__sLr04Qs8Io]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__sLr04, {
+            [sty.freeBox__type_isTimeline__sLr04Qs8Io]: hasVariant(
               variants,
               "type",
               "isTimeline"
@@ -182,8 +183,8 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       ) : null}
       {(hasVariant(variants, "type", "isTimeline") ? true : false) ? (
         <div
-          className={classNames(defaultcss.all, sty.box___8X9J3, {
-            [sty.box__type_isTimeline___8X9J3Qs8Io]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox___8X9J3, {
+            [sty.freeBox__type_isTimeline___8X9J3Qs8Io]: hasVariant(
               variants,
               "type",
               "isTimeline"
@@ -215,13 +216,13 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__mpPUs, {
-            [sty.box__isOwner__mpPUsyBfUd]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__mpPUs, {
+            [sty.freeBox__isOwner__mpPUsyBfUd]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.box__type_isTimeline__mpPUsqs8Io]: hasVariant(
+            [sty.freeBox__type_isTimeline__mpPUsqs8Io]: hasVariant(
               variants,
               "type",
               "isTimeline"
@@ -297,8 +298,8 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         </p.Stack>
       ) : null}
 
-      <div className={classNames(defaultcss.all, sty.box__yRlj0)}>
-        <div className={classNames(defaultcss.all, sty.box__guHgU)}>
+      <div className={classNames(defaultcss.all, sty.freeBox__yRlj0)}>
+        <div className={classNames(defaultcss.all, sty.freeBox__guHgU)}>
           {p.renderPlasmicSlot({
             defaultContents: "Current Members",
             value: args.slot2,
@@ -412,7 +413,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       </div>
 
       {false ? (
-        <div className={classNames(defaultcss.all, sty.box___1CNd9)}>
+        <div className={classNames(defaultcss.all, sty.freeBox___1CNd9)}>
           <Button
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}

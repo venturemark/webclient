@@ -9,21 +9,21 @@
   padding: 15px 5px;
   border-top: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.box__vAfXq {
+.freeBox__vAfXq {
   display: flex;
   position: relative;
   flex-direction: row;
   align-self: flex-end;
 }
-.box__vAfXq > :global(.__wab_flex-container) {
+.freeBox__vAfXq > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   margin-left: calc(0px - 6px);
   width: calc(100% + 6px);
 }
-.box__vAfXq > :global(.__wab_flex-container) > *,
-.box__vAfXq > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__vAfXq > :global(.__wab_flex-container) > *,
+.freeBox__vAfXq > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 6px;
 }
 .photoAvatar:global(.__wab_instance) {
@@ -59,20 +59,20 @@
 .svg__isOwner_userVariant_isRequested__dd2HXpkRzzOSddm {
   display: none;
 }
-.box__ymOfc {
+.freeBox__ymOfc {
   display: flex;
   position: relative;
   flex-direction: row;
 }
-.box__ymOfc > :global(.__wab_flex-container) {
+.freeBox__ymOfc > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   margin-left: calc(0px - 15px);
   width: calc(100% + 15px);
 }
-.box__ymOfc > :global(.__wab_flex-container) > *,
-.box__ymOfc > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__ymOfc > :global(.__wab_flex-container) > *,
+.freeBox__ymOfc > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 15px;
 }
 .iconButton:global(.__wab_instance) {
@@ -91,6 +91,7 @@
 }
 .dropdown {
   box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
+  background: #ffffff;
   display: none;
   position: absolute;
   flex-direction: column;
@@ -101,7 +102,6 @@
   flex-shrink: 0;
   border-radius: 10px;
   padding: 10px 0px;
-  background: #ffffff;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .dropdown > :global(.__wab_flex-container) {
@@ -122,10 +122,10 @@
 .removeInvitation:global(.__wab_instance) {
   position: relative;
 }
-.box___5GQ6G {
+.freeBox___5GQ6G {
   position: relative;
 }
-.box__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz {
+.freeBox__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz {
   font-size: 12px /* plasmic-token: LxqIZc9hM */;
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }

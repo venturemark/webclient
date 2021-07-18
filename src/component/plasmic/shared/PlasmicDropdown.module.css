@@ -6,6 +6,7 @@
 }
 .rectangle574 {
   box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
+  background: #ffffff;
   transform: scale(1, 1) rotate(0deg);
   opacity: 1;
   width: auto;
@@ -14,7 +15,6 @@
   flex-direction: column;
   border-radius: 5px;
   padding: 10px 0px;
-  background: #ffffff;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .ul {

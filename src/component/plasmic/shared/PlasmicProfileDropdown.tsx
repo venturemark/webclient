@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -125,8 +126,8 @@ function PlasmicProfileDropdown__RenderFunc(props: {
       >
         {(hasVariant(variants, "isMobile", "isMobile") ? true : true) ? (
           <div
-            className={classNames(defaultcss.all, sty.box___4LHLu, {
-              [sty.box__isMobile___4LHLuKb6FV]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox___4LHLu, {
+              [sty.freeBox__isMobile___4LHLuKb6FV]: hasVariant(
                 variants,
                 "isMobile",
                 "isMobile"
@@ -137,13 +138,13 @@ function PlasmicProfileDropdown__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.box__qygsP
+                sty.freeBox__qygsP
               )}
             >
               {"Account"}
             </div>
 
-            <div className={classNames(defaultcss.all, sty.box___9FGjg)}>
+            <div className={classNames(defaultcss.all, sty.freeBox___9FGjg)}>
               <IconButton
                 data-plasmic-name={"close"}
                 data-plasmic-override={overrides.close}
@@ -163,8 +164,8 @@ function PlasmicProfileDropdown__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__iA4Y, {
-              [sty.box__isMobile__iA4YKb6FV]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox__iA4Y, {
+              [sty.freeBox__isMobile__iA4YKb6FV]: hasVariant(
                 variants,
                 "isMobile",
                 "isMobile"
@@ -186,7 +187,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__tyRt7)}
+              className={classNames(defaultcss.all, sty.freeBox__tyRt7)}
             >
               {false
                 ? p.renderPlasmicSlot({

@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
 }
-.box {
+.freeBox {
   position: relative;
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }

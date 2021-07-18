@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -127,7 +128,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         }
       )}
     >
-      <div className={classNames(defaultcss.all, sty.box__tab7F)}>
+      <div className={classNames(defaultcss.all, sty.freeBox__tab7F)}>
         {(hasVariant(variants, "variantState", "isEdit") ? false : true)
           ? p.renderPlasmicSlot({
               defaultContents: "Create New Timeline",
@@ -236,13 +237,13 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           : true
       ) ? (
         <div
-          className={classNames(defaultcss.all, sty.box__iyK9P, {
-            [sty.box__variantState_isEdit__iyK9P7BsqN]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__iyK9P, {
+            [sty.freeBox__variantState_isEdit__iyK9P7BsqN]: hasVariant(
               variants,
               "variantState",
               "isEdit"
             ),
-            [sty.box__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
+            [sty.freeBox__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
               hasVariant(variants, "variantState", "isEdit") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}

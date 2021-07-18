@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -162,14 +163,14 @@ function PlasmicInputText__RenderFunc(props: {
           </div>
         ) : null}
 
-        <div className={classNames(defaultcss.all, sty.box___9LrSw)}>
+        <div className={classNames(defaultcss.all, sty.freeBox___9LrSw)}>
           <div
             data-plasmic-name={"textboxContainer"}
             data-plasmic-override={overrides.textboxContainer}
             className={classNames(defaultcss.all, sty.textboxContainer)}
           >
-            <div className={classNames(defaultcss.all, sty.box__lygyM)}>
-              <div className={classNames(defaultcss.all, sty.box__eDsPg)}>
+            <div className={classNames(defaultcss.all, sty.freeBox__lygyM)}>
+              <div className={classNames(defaultcss.all, sty.freeBox__eDsPg)}>
                 <input
                   data-plasmic-name={"input"}
                   data-plasmic-override={overrides.input}

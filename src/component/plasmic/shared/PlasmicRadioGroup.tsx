@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -118,21 +119,21 @@ function PlasmicRadioGroup__RenderFunc(props: {
       ) : null}
 
       <div
-        className={classNames(defaultcss.all, sty.box__zgeS0, {
-          [sty.box__hasLabel__zgeS0XNm45]: hasVariant(
+        className={classNames(defaultcss.all, sty.freeBox__zgeS0, {
+          [sty.freeBox__hasLabel__zgeS0XNm45]: hasVariant(
             variants,
             "hasLabel",
             "hasLabel"
           ),
-          [sty.box__hasLabel_isHorizontal__zgeS0XNm45LNttF]:
+          [sty.freeBox__hasLabel_isHorizontal__zgeS0XNm45LNttF]:
             hasVariant(variants, "hasLabel", "hasLabel") &&
             hasVariant(variants, "isHorizontal", "isHorizontal"),
-          [sty.box__isDisabled__zgeS0Zl5Fe]: hasVariant(
+          [sty.freeBox__isDisabled__zgeS0Zl5Fe]: hasVariant(
             variants,
             "isDisabled",
             "isDisabled"
           ),
-          [sty.box__isHorizontal__zgeS0LNttF]: hasVariant(
+          [sty.freeBox__isHorizontal__zgeS0LNttF]: hasVariant(
             variants,
             "isHorizontal",
             "isHorizontal"
@@ -164,7 +165,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.box___2IwyL
+                sty.freeBox___2IwyL
               )}
             >
               {"All members from this venture will be added to this timeline."}
