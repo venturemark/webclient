@@ -1,11 +1,15 @@
-import { RefObject, useEffect } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 
 type AnyEvent = MouseEvent | TouchEvent;
 
-export default function useOnClickOutside<T extends HTMLElement = HTMLElement>(
-  ref: RefObject<T>,
-  handler: (event: AnyEvent) => void
-) {
+export default function useDropdown<T extends HTMLElement = HTMLElement>(): [
+  boolean,
+  (v: boolean) => void,
+  MutableRefObject<T | null>
+] {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const ref = useRef<T | null>(null);
+
   useEffect(() => {
     const listener = (event: AnyEvent) => {
       const el = ref?.current;
@@ -15,7 +19,7 @@ export default function useOnClickOutside<T extends HTMLElement = HTMLElement>(
         return;
       }
 
-      handler(event);
+      setDropdownVisible(false);
     };
 
     document.addEventListener(`mousedown`, listener);
@@ -27,5 +31,7 @@ export default function useOnClickOutside<T extends HTMLElement = HTMLElement>(
     };
 
     // Reload only if ref or handler changes
-  }, [ref, handler]);
+  }, [ref, setDropdownVisible]);
+
+  return [dropdownVisible, setDropdownVisible, ref];
 }

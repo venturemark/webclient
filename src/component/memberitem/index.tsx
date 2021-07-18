@@ -1,9 +1,8 @@
-import { useState } from "react";
-
 import {
   DefaultMemberItemProps,
   PlasmicMemberItem,
 } from "component/plasmic/shared/PlasmicMemberItem";
+import useDropdown from "module/hook/ui/useDropdown";
 
 interface MemberItemProps extends DefaultMemberItemProps {
   user: {
@@ -14,7 +13,10 @@ interface MemberItemProps extends DefaultMemberItemProps {
 
 function MemberItem(props: MemberItemProps) {
   const { user, handleClick, ...rest } = props;
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
+
   let rename = "Remove member";
   if (props.userVariant === "isRequested") {
     rename = "Cancel invitation";
@@ -25,6 +27,9 @@ function MemberItem(props: MemberItemProps) {
   return (
     <PlasmicMemberItem
       {...rest}
+      root={{
+        ref: dropdownRootRef,
+      }}
       photoAvatar={{
         user,
       }}
