@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -41,19 +42,22 @@ export type PlasmicIconButton__VariantMembers = {
   iconSize: "large";
   isActive: "isActive";
   greenBgHover: "greenBgHover";
+  isDisabled: "isDisabled";
 };
 
 export type PlasmicIconButton__VariantsArgs = {
   iconSize?: SingleChoiceArg<"large">;
   isActive?: SingleBooleanChoiceArg<"isActive">;
   greenBgHover?: SingleBooleanChoiceArg<"greenBgHover">;
+  isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
 };
 
 type VariantPropType = keyof PlasmicIconButton__VariantsArgs;
 export const PlasmicIconButton__VariantProps = new Array<VariantPropType>(
   "iconSize",
   "isActive",
-  "greenBgHover"
+  "greenBgHover",
+  "isDisabled"
 );
 
 export type PlasmicIconButton__ArgsType = {
@@ -73,6 +77,7 @@ export interface DefaultIconButtonProps {
   iconSize?: SingleChoiceArg<"large">;
   isActive?: SingleBooleanChoiceArg<"isActive">;
   greenBgHover?: SingleBooleanChoiceArg<"greenBgHover">;
+  isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
   className?: string;
 }
 
@@ -98,6 +103,14 @@ function PlasmicIconButton__RenderFunc(props: {
           "greenBgHover"
         ),
         [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
+        [sty.root__isDisabled]: hasVariant(
+          variants,
+          "isDisabled",
+          "isDisabled"
+        ),
+        [sty.root__isDisabled_greenBgHover]:
+          hasVariant(variants, "isDisabled", "isDisabled") &&
+          hasVariant(variants, "greenBgHover", "greenBgHover"),
       })}
     >
       <div
@@ -119,6 +132,14 @@ function PlasmicIconButton__RenderFunc(props: {
             "isActive",
             "isActive"
           ),
+          [sty.container__isDisabled]: hasVariant(
+            variants,
+            "isDisabled",
+            "isDisabled"
+          ),
+          [sty.container__isDisabled_greenBgHover]:
+            hasVariant(variants, "isDisabled", "isDisabled") &&
+            hasVariant(variants, "greenBgHover", "greenBgHover"),
         })}
       >
         {p.renderPlasmicSlot({

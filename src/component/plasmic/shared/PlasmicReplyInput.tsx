@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -51,7 +52,7 @@ export const PlasmicReplyInput__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicReplyInput__OverridesType = {
   root?: p.Flex<"div">;
-  box?: p.Flex<"div">;
+  freeBox?: p.Flex<"div">;
   replyForm?: p.Flex<"form">;
   replyInput?: p.Flex<"textarea">;
   postReplyButton?: p.Flex<typeof Button>;
@@ -91,10 +92,10 @@ function PlasmicReplyInput__RenderFunc(props: {
     >
       <p.Stack
         as={"div"}
-        data-plasmic-name={"box"}
-        data-plasmic-override={overrides.box}
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box)}
+        className={classNames(defaultcss.all, sty.freeBox)}
       >
         <p.Stack
           as={"form"}
@@ -149,14 +150,21 @@ function PlasmicReplyInput__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "box",
+    "freeBox",
     "replyForm",
     "replyInput",
     "postReplyButton",
     "text",
     "svg",
   ],
-  box: ["box", "replyForm", "replyInput", "postReplyButton", "text", "svg"],
+  freeBox: [
+    "freeBox",
+    "replyForm",
+    "replyInput",
+    "postReplyButton",
+    "text",
+    "svg",
+  ],
   replyForm: ["replyForm", "replyInput", "postReplyButton", "text", "svg"],
   replyInput: ["replyInput"],
   postReplyButton: ["postReplyButton", "text", "svg"],
@@ -168,7 +176,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  box: "div";
+  freeBox: "div";
   replyForm: "form";
   replyInput: "textarea";
   postReplyButton: typeof Button;
@@ -237,7 +245,7 @@ export const PlasmicReplyInput = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    box: makeNodeComponent("box"),
+    freeBox: makeNodeComponent("freeBox"),
     replyForm: makeNodeComponent("replyForm"),
     replyInput: makeNodeComponent("replyInput"),
     postReplyButton: makeNodeComponent("postReplyButton"),

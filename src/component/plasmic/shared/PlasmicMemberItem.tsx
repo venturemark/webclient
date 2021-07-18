@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -167,8 +168,8 @@ function PlasmicMemberItem__RenderFunc(props: {
       <p.Stack
         as={"div"}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.box__vAfXq, {
-          [sty.box__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr]:
+        className={classNames(defaultcss.all, sty.freeBox__vAfXq, {
+          [sty.freeBox__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr]:
             hasVariant(variants, "isOwner", "isOwner") &&
             hasVariant(variants, "userVariant", "isMember"),
         })}
@@ -196,14 +197,14 @@ function PlasmicMemberItem__RenderFunc(props: {
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.box__biq75,
+              sty.freeBox__biq75,
               {
-                [sty.box__userVariant_isRequested__biq75OSddm]: hasVariant(
+                [sty.freeBox__userVariant_isRequested__biq75OSddm]: hasVariant(
                   variants,
                   "userVariant",
                   "isRequested"
                 ),
-                [sty.box__userVariant_isSelf__biq75AAx2Z]: hasVariant(
+                [sty.freeBox__userVariant_isSelf__biq75AAx2Z]: hasVariant(
                   variants,
                   "userVariant",
                   "isSelf"
@@ -275,26 +276,26 @@ function PlasmicMemberItem__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__ymOfc, {
-            [sty.box__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr]:
+          className={classNames(defaultcss.all, sty.freeBox__ymOfc, {
+            [sty.freeBox__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr]:
               hasVariant(variants, "isOwner", "isOwner") &&
               hasVariant(variants, "userVariant", "isMember"),
-            [sty.box__userVariant_isMember__ymOfcGdyZr]: hasVariant(
+            [sty.freeBox__userVariant_isMember__ymOfcGdyZr]: hasVariant(
               variants,
               "userVariant",
               "isMember"
             ),
-            [sty.box__userVariant_isRequested__ymOfcoSddm]: hasVariant(
+            [sty.freeBox__userVariant_isRequested__ymOfcoSddm]: hasVariant(
               variants,
               "userVariant",
               "isRequested"
             ),
-            [sty.box__userVariant_isSelf__ymOfcAAx2Z]: hasVariant(
+            [sty.freeBox__userVariant_isSelf__ymOfcAAx2Z]: hasVariant(
               variants,
               "userVariant",
               "isSelf"
             ),
-            [sty.box__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz]:
+            [sty.freeBox__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz]:
               hasVariant(variants, "userVariant", "isSelf") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}
@@ -510,24 +511,24 @@ function PlasmicMemberItem__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.box___5GQ6G,
+                sty.freeBox___5GQ6G,
                 {
-                  [sty.box__userVariant_isAdmin___5GQ6G35Uok]: hasVariant(
+                  [sty.freeBox__userVariant_isAdmin___5GQ6G35Uok]: hasVariant(
                     variants,
                     "userVariant",
                     "isAdmin"
                   ),
-                  [sty.box__userVariant_isMember___5GQ6GGdyZr]: hasVariant(
+                  [sty.freeBox__userVariant_isMember___5GQ6GGdyZr]: hasVariant(
                     variants,
                     "userVariant",
                     "isMember"
                   ),
-                  [sty.box__userVariant_isSelf___5GQ6GAAx2Z]: hasVariant(
+                  [sty.freeBox__userVariant_isSelf___5GQ6GAAx2Z]: hasVariant(
                     variants,
                     "userVariant",
                     "isSelf"
                   ),
-                  [sty.box__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz]:
+                  [sty.freeBox__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz]:
                     hasVariant(variants, "userVariant", "isSelf") &&
                     hasVariant(variants, "isOwner", "isOwner"),
                 }

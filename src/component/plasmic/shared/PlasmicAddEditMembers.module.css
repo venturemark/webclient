@@ -1,5 +1,6 @@
 .root {
   box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
+  background: #ffffff;
   display: flex;
   position: relative;
   width: 100%;
@@ -8,7 +9,6 @@
   min-width: 0;
   border-radius: 10px;
   padding: 40px /* plasmic-token: XraHK0yKz */;
-  background: #ffffff;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .root > :global(.__wab_flex-container) {
@@ -25,7 +25,7 @@
     padding: 20px /* plasmic-token: dS7QCqXxp */;
   }
 }
-.box__sLr04 {
+.freeBox__sLr04 {
   display: flex;
   position: relative;
   left: auto;
@@ -37,7 +37,7 @@
   font-size: 26px /* plasmic-token: TujpjiAsC */;
   font-weight: 600;
 }
-.box___8X9J3 {
+.freeBox___8X9J3 {
   display: flex;
   position: relative;
   left: auto;
@@ -45,7 +45,7 @@
   flex-direction: column;
   margin-bottom: 10px;
 }
-.box__type_isTimeline___8X9J3Qs8Io {
+.freeBox__type_isTimeline___8X9J3Qs8Io {
   left: auto;
   top: auto;
 }
@@ -53,7 +53,7 @@
   font-size: 26px /* plasmic-token: TujpjiAsC */;
   font-weight: 600;
 }
-.box__mpPUs {
+.freeBox__mpPUs {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -64,15 +64,15 @@
   border-bottom: 1px solid rgb(224, 224, 224)
     /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.box__mpPUs > :global(.__wab_flex-container) {
+.freeBox__mpPUs > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: calc(0px - 14px);
   height: calc(100% + 14px);
 }
-.box__mpPUs > :global(.__wab_flex-container) > *,
-.box__mpPUs > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__mpPUs > :global(.__wab_flex-container) > *,
+.freeBox__mpPUs > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 14px;
 }
 .form {
@@ -138,7 +138,7 @@
 .span {
   color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.box__yRlj0 {
+.freeBox__yRlj0 {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -147,7 +147,7 @@
   top: auto;
   left: auto;
 }
-.box__guHgU {
+.freeBox__guHgU {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -178,7 +178,7 @@
 .memberItem__rUmUt:global(.__wab_instance) {
   position: relative;
 }
-.box___1CNd9 {
+.freeBox___1CNd9 {
   display: flex;
   position: relative;
   flex-direction: row;

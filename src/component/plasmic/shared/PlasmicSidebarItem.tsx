@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -244,13 +245,13 @@ function PlasmicSidebarItem__RenderFunc(props: {
             hasVariant(variants, "itemType", "createTimeline") ? true : false
           ) ? (
             <div
-              className={classNames(defaultcss.all, sty.box__lklH, {
-                [sty.box__hasNewActivity__lklH0PiUm]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__lklH, {
+                [sty.freeBox__hasNewActivity__lklH0PiUm]: hasVariant(
                   variants,
                   "hasNewActivity",
                   "hasNewActivity"
                 ),
-                [sty.box__itemType_createTimeline__lklHOuGst]: hasVariant(
+                [sty.freeBox__itemType_createTimeline__lklHOuGst]: hasVariant(
                   variants,
                   "itemType",
                   "createTimeline"
@@ -310,6 +311,16 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   "itemType",
                   "createTimeline"
                 ),
+                [sty.icon__itemType_timeline]: hasVariant(
+                  variants,
+                  "itemType",
+                  "timeline"
+                ),
+                [sty.icon__itemType_ventureCollapsed]: hasVariant(
+                  variants,
+                  "itemType",
+                  "ventureCollapsed"
+                ),
               })}
               greenBgHover={
                 hasVariant(variants, "isActive", "isActive") &&
@@ -318,6 +329,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   : hasVariant(variants, "isActive", "isActive") &&
                     hasVariant(variants, "itemType", "createTimeline")
                   ? ("greenBgHover" as const)
+                  : undefined
+              }
+              isDisabled={
+                hasVariant(variants, "itemType", "timeline")
+                  ? ("isDisabled" as const)
                   : undefined
               }
             >
@@ -373,28 +389,28 @@ function PlasmicSidebarItem__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__zwdJs, {
-                [sty.box__isPublic__zwdJsPZwt]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__zwdJs, {
+                [sty.freeBox__isPublic__zwdJsPZwt]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
                 ),
-                [sty.box__isVisible__zwdJsb7AAs]: hasVariant(
+                [sty.freeBox__isVisible__zwdJsb7AAs]: hasVariant(
                   variants,
                   "isVisible",
                   "isVisible"
                 ),
-                [sty.box__itemType_createTimeline__zwdJsOuGst]: hasVariant(
+                [sty.freeBox__itemType_createTimeline__zwdJsOuGst]: hasVariant(
                   variants,
                   "itemType",
                   "createTimeline"
                 ),
-                [sty.box__itemType_timeline__zwdJSoN3Wv]: hasVariant(
+                [sty.freeBox__itemType_timeline__zwdJSoN3Wv]: hasVariant(
                   variants,
                   "itemType",
                   "timeline"
                 ),
-                [sty.box__itemType_ventureCollapsed__zwdJs4PCv]: hasVariant(
+                [sty.freeBox__itemType_ventureCollapsed__zwdJs4PCv]: hasVariant(
                   variants,
                   "itemType",
                   "ventureCollapsed"
@@ -408,7 +424,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.box__j6CkC
+                        sty.freeBox__j6CkC
                       )}
                     >
                       {"Add Timeline"}
@@ -456,13 +472,13 @@ function PlasmicSidebarItem__RenderFunc(props: {
           ) : null}
 
           <div
-            className={classNames(defaultcss.all, sty.box__xZeoS, {
-              [sty.box__itemType_createTimeline__xZeoSOuGst]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox__xZeoS, {
+              [sty.freeBox__itemType_createTimeline__xZeoSOuGst]: hasVariant(
                 variants,
                 "itemType",
                 "createTimeline"
               ),
-              [sty.box__itemType_timeline__xZeoSoN3Wv]: hasVariant(
+              [sty.freeBox__itemType_timeline__xZeoSoN3Wv]: hasVariant(
                 variants,
                 "itemType",
                 "timeline"

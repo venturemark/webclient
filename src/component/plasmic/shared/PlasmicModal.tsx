@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -142,18 +143,18 @@ function PlasmicModal__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box___60GYf, {
-              [sty.box__modalType_deleteTimeline___60GYfkpjFe]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox___60GYf, {
+              [sty.freeBox__modalType_deleteTimeline___60GYfkpjFe]: hasVariant(
                 variants,
                 "modalType",
                 "deleteTimeline"
               ),
-              [sty.box__modalType_deleteVenture___60GYfbglY9]: hasVariant(
+              [sty.freeBox__modalType_deleteVenture___60GYfbglY9]: hasVariant(
                 variants,
                 "modalType",
                 "deleteVenture"
               ),
-              [sty.box__modalType_editProfile___60GYfORiet]: hasVariant(
+              [sty.freeBox__modalType_editProfile___60GYfORiet]: hasVariant(
                 variants,
                 "modalType",
                 "editProfile"
@@ -163,8 +164,8 @@ function PlasmicModal__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__ljTa5, {
-                [sty.box__modalType_deleteTimeline__ljTa5KpjFe]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__ljTa5, {
+                [sty.freeBox__modalType_deleteTimeline__ljTa5KpjFe]: hasVariant(
                   variants,
                   "modalType",
                   "deleteTimeline"
@@ -174,7 +175,7 @@ function PlasmicModal__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__aUujC)}
+                className={classNames(defaultcss.all, sty.freeBox__aUujC)}
               >
                 {p.renderPlasmicSlot({
                   defaultContents: (
@@ -182,7 +183,7 @@ function PlasmicModal__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.box__yHkt8
+                        sty.freeBox__yHkt8
                       )}
                     >
                       {"Delete this timeline?"}
@@ -197,7 +198,7 @@ function PlasmicModal__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__hxFmc)}
+                className={classNames(defaultcss.all, sty.freeBox__hxFmc)}
               >
                 <Button
                   data-plasmic-name={"deleteTimeline"}
@@ -300,8 +301,8 @@ function PlasmicModal__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__zFspo, {
-                [sty.box__modalType_deleteVenture__zFspobglY9]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__zFspo, {
+                [sty.freeBox__modalType_deleteVenture__zFspobglY9]: hasVariant(
                   variants,
                   "modalType",
                   "deleteVenture"
@@ -311,12 +312,9 @@ function PlasmicModal__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__zzoZe, {
-                  [sty.box__modalType_deleteVenture__zzoZEbglY9]: hasVariant(
-                    variants,
-                    "modalType",
-                    "deleteVenture"
-                  ),
+                className={classNames(defaultcss.all, sty.freeBox__zzoZe, {
+                  [sty.freeBox__modalType_deleteVenture__zzoZEbglY9]:
+                    hasVariant(variants, "modalType", "deleteVenture"),
                 })}
               >
                 {p.renderPlasmicSlot({
@@ -325,7 +323,7 @@ function PlasmicModal__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.box__o2J7M
+                        sty.freeBox__o2J7M
                       )}
                     >
                       {"Remove this Venture?"}
@@ -340,7 +338,7 @@ function PlasmicModal__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__fFh)}
+                className={classNames(defaultcss.all, sty.freeBox__fFh)}
               >
                 <Button
                   data-plasmic-name={"deleteVenture"}
@@ -439,12 +437,12 @@ function PlasmicModal__RenderFunc(props: {
             })}
           >
             {true ? (
-              <div className={classNames(defaultcss.all, sty.box__nnGk2)}>
+              <div className={classNames(defaultcss.all, sty.freeBox__nnGk2)}>
                 <div
                   className={classNames(
                     defaultcss.all,
                     defaultcss.__wab_text,
-                    sty.box__zsEuo
+                    sty.freeBox__zsEuo
                   )}
                 >
                   {"Edit Profile"}
@@ -463,11 +461,11 @@ function PlasmicModal__RenderFunc(props: {
               </div>
             ) : null}
             {true ? (
-              <div className={classNames(defaultcss.all, sty.box__j441D)}>
+              <div className={classNames(defaultcss.all, sty.freeBox__j441D)}>
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.box__dr4Vw)}
+                  className={classNames(defaultcss.all, sty.freeBox__dr4Vw)}
                 >
                   <PhotoAvatar
                     data-plasmic-name={"photoAvatar"}
@@ -517,7 +515,7 @@ function PlasmicModal__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__jmp0N)}
+                className={classNames(defaultcss.all, sty.freeBox__jmp0N)}
               >
                 <Button
                   data-plasmic-name={"cancelEdit"}

@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -203,11 +204,11 @@ function PlasmicInputTextArea__RenderFunc(props: {
           ) : null}
         </div>
 
-        <div className={classNames(defaultcss.all, sty.box__wBY0)} />
+        <div className={classNames(defaultcss.all, sty.freeBox__wBY0)} />
 
         <div
-          className={classNames(defaultcss.all, sty.box__ytJal, {
-            [sty.box__error__ytJalieWq6]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__ytJal, {
+            [sty.freeBox__error__ytJalieWq6]: hasVariant(
               variants,
               "error",
               "error"
