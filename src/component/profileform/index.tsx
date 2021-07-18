@@ -14,7 +14,7 @@ import { useCreateUser } from "module/hook/user";
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
   setIsVisible?: any;
-  hasInvite: boolean;
+  returnTo?: string;
 }
 
 type FormData = {
@@ -23,7 +23,7 @@ type FormData = {
 };
 
 function ProfileForm(props: ProfileFormProps) {
-  const { isVisible, setIsVisible, hasInvite, ...rest } = props;
+  const { isVisible, setIsVisible, returnTo, ...rest } = props;
   const { token } = useContext(AuthContext);
   const { user: authUser } = useAuth0();
 
@@ -56,7 +56,7 @@ function ProfileForm(props: ProfileFormProps) {
     saveUser({
       mail: authUser.email,
       name: data.name,
-      successUrl: hasInvite ? "../joinventure" : "../begin",
+      successUrl: returnTo ?? "/",
       title: data.title,
       token: token,
     });
@@ -64,8 +64,8 @@ function ProfileForm(props: ProfileFormProps) {
 
   if (user) {
     // User already exists, go straight to joining or creating venture.
-    const link = hasInvite ? "../joinventure" : "/begin";
-    return <Navigate to={`${link}`} />;
+    const link = returnTo ?? "/";
+    return <Navigate to={link} />;
   }
 
   return (

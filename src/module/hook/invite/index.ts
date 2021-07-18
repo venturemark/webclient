@@ -92,11 +92,6 @@ export function useUpdateInvite() {
 
         //redirect on success
         inviteUpdate.successUrl && navigate(inviteUpdate.successUrl);
-
-        //remove invite code from local storage
-        localStorage.removeItem("code");
-        localStorage.removeItem("ventureId");
-        localStorage.removeItem("id");
       },
     }
   );

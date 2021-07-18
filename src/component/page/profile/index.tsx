@@ -1,5 +1,7 @@
+import { Location } from "history";
 import { useState } from "react";
 import { Navigate } from "react-router";
+import { useLocation } from "react-router-dom";
 
 import {
   DefaultProfileProps,
@@ -17,20 +19,14 @@ interface ProfileProps extends DefaultProfileProps {
 function Profile(props: ProfileProps) {
   const { userLoading, user, ...rest } = props;
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
-
-  const hasInvite =
-    localStorage.getItem("ventureId") &&
-    localStorage.getItem("code") &&
-    localStorage.getItem("id")
-      ? true
-      : false;
+  const { state } = useLocation() as Location<{ returnTo?: string } | null>;
 
   if (userLoading) {
     return <span>Loading User</span>;
-  } else if (user && hasInvite) {
-    return <Navigate to={`/joinventure`} />;
+  } else if (user && state?.returnTo) {
+    return <Navigate to={state?.returnTo} />;
   } else if (user) {
-    return <Navigate to={`/`} />;
+    return <Navigate to="/" />;
   }
 
   return (
@@ -39,7 +35,7 @@ function Profile(props: ProfileProps) {
       profileForm={{
         isVisible: isVisible,
         setIsVisible: setIsVisible,
-        hasInvite,
+        returnTo: state?.returnTo,
       }}
     />
   );
