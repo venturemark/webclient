@@ -19,7 +19,7 @@ interface ProfileProps extends DefaultProfileProps {
 function Profile(props: ProfileProps) {
   const { userLoading, user, ...rest } = props;
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
-  const { state } = useLocation() as Location<{ returnTo?: string } | null>
+  const { state } = useLocation() as Location<{ returnTo?: string } | null>;
 
   if (userLoading) {
     return <span>Loading User</span>;

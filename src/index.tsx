@@ -25,27 +25,28 @@ WebFont.load({
 const rootElement = document.getElementById("root");
 
 function Root() {
-  const [initialized, setInitialized] = useState(false)
-  const dev = isDev()
+  const [initialized, setInitialized] = useState(false);
+  const dev = isDev();
 
   useEffect(() => {
-    if (dev || initialized) return
+    if (dev || initialized) return;
     Promise.all([
       ga4react.initialize(),
       TagManager.initialize({
         gtmId: "GTM-PV3PGVX",
         dataLayerName: "UserDataLayer",
-      })
-    ]).then(() => setInitialized(true))
-      .catch((e) => console.error(e))
-  }, [dev, setInitialized, initialized])
+      }),
+    ])
+      .then(() => setInitialized(true))
+      .catch((e) => console.error(e));
+  }, [dev, setInitialized, initialized]);
 
   const config = getConfig();
   const navigate = useNavigate();
 
   const onRedirectCallback = (appState: { returnTo?: string } | null) => {
     if (appState?.returnTo) {
-      navigate(appState.returnTo, { replace: true })
+      navigate(appState.returnTo, { replace: true });
     }
   };
   const queryClient = new QueryClient();
@@ -67,12 +68,10 @@ function Root() {
         </QueryClientProvider>
       </Auth0Provider>
     </React.StrictMode>
-  )
+  );
 }
 
 (async () => {
-
-
   const app = (
     <BrowserRouter>
       <Root />

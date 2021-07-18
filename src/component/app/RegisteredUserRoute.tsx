@@ -19,7 +19,7 @@ export function RegisteredUserRoute(props: RegisteredUserRouteProps) {
 
   if (userLoading) return <span>Loading user...</span>;
 
-  const returnTo = window.location.pathname + window.location.search
+  const returnTo = window.location.pathname + window.location.search;
   if (userError) {
     return <Navigate to="/signin" state={{ returnTo }} />;
   } else if (!user) {

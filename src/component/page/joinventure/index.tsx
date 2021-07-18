@@ -14,7 +14,7 @@ interface JoinVentureProps extends DefaultJoinVentureProps {}
 function JoinVenture(props: JoinVentureProps) {
   const { mutate: updateInvite } = useUpdateInvite();
   const { token } = useContext(AuthContext);
-  
+
   const query = useQuery();
   const ventureId = query.get("ventureId") ?? "";
   const timelineId = query.get("timelineId") ?? "";

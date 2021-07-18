@@ -10,16 +10,16 @@ import {
 interface SigninProps extends DefaultSigninProps {}
 
 function Signin(props: SigninProps) {
-  const { state } = useLocation() as Location<{ returnTo?: string } | null>
+  const { state } = useLocation() as Location<{ returnTo?: string } | null>;
   const { loginWithRedirect } = useAuth0();
 
-  let redirectLoginOptions: RedirectLoginOptions | undefined = undefined
+  let redirectLoginOptions: RedirectLoginOptions | undefined = undefined;
   if (state?.returnTo) {
     redirectLoginOptions = {
       appState: {
-        returnTo: state.returnTo
-      }
-    }
+        returnTo: state.returnTo,
+      },
+    };
   }
 
   return (
