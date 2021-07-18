@@ -1,11 +1,10 @@
-import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
   DefaultSidebarItemProps,
   PlasmicSidebarItem,
 } from "component/plasmic/shared/PlasmicSidebarItem";
-import useOnClickOutside from "module/hook/ui/useOnClickOutside";
+import useDropdown from "module/hook/ui/useDropdown";
 import { UserRole } from "module/interface/user";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
@@ -31,8 +30,11 @@ function SidebarItem(props: SidebarItemProps) {
     userRole,
     ...rest
   } = props;
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+
   const navigate = useNavigate();
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
+
   const ventureHandle =
     typeof ventureName === "string"
       ? ventureName?.toLowerCase().replace(/\s/g, "")
@@ -52,17 +54,11 @@ function SidebarItem(props: SidebarItemProps) {
       ? `/${ventureHandle}/${timelineHandle}/settings`
       : `/${ventureHandle}/settings`;
 
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useOnClickOutside(ref, () => {
-    setDropdownVisible(false);
-  });
-
   return (
     <PlasmicSidebarItem
       {...rest}
       root={{
-        ref,
+        ref: dropdownRootRef,
       }}
       isDropdown={dropdownVisible ? "isDropdown" : undefined}
       isOwner={userRole === "owner" ? "isOwner" : undefined}

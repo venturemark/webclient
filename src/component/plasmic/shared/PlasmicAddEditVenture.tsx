@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -126,7 +127,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         }
       )}
     >
-      <div className={classNames(defaultcss.all, sty.box__nqvhu)}>
+      <div className={classNames(defaultcss.all, sty.freeBox__nqvhu)}>
         {(hasVariant(variants, "variantState", "isEdit") ? false : true)
           ? p.renderPlasmicSlot({
               defaultContents: "Create a New Venture",
@@ -237,18 +238,18 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__uCWf, {
-            [sty.box__isOwner__uCWfmdraL]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__uCWf, {
+            [sty.freeBox__isOwner__uCWfmdraL]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.box__variantState_isEdit__uCWf2IFcI]: hasVariant(
+            [sty.freeBox__variantState_isEdit__uCWf2IFcI]: hasVariant(
               variants,
               "variantState",
               "isEdit"
             ),
-            [sty.box__variantState_isEdit_isOwner__uCWf2IFcIMdraL]:
+            [sty.freeBox__variantState_isEdit_isOwner__uCWf2IFcIMdraL]:
               hasVariant(variants, "variantState", "isEdit") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}
@@ -284,18 +285,18 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           : false
       ) ? (
         <div
-          className={classNames(defaultcss.all, sty.box__katKc, {
-            [sty.box__isOwner__katKcmdraL]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__katKc, {
+            [sty.freeBox__isOwner__katKcmdraL]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.box__variantState_isEdit__katKc2IFcI]: hasVariant(
+            [sty.freeBox__variantState_isEdit__katKc2IFcI]: hasVariant(
               variants,
               "variantState",
               "isEdit"
             ),
-            [sty.box__variantState_isEdit_isOwner__katKc2IFcIMdraL]:
+            [sty.freeBox__variantState_isEdit_isOwner__katKc2IFcIMdraL]:
               hasVariant(variants, "variantState", "isEdit") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}

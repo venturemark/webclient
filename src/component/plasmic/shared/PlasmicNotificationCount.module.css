@@ -17,11 +17,11 @@
   align-items: center;
   justify-content: center;
   min-width: 15px;
+  background: rgb(2, 157, 127);
   border-radius: 5px;
   padding: 0px 2px;
-  background: rgb(2, 157, 127);
 }
-.box {
+.freeBox {
   display: inline-block;
   position: relative;
   left: auto;

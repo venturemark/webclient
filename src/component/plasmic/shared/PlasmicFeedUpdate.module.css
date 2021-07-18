@@ -5,8 +5,8 @@
   height: auto;
   position: relative;
   padding-right: 0px;
-  min-width: 0;
   background: rgba(68, 192, 255, 0);
+  min-width: 0;
 }
 .root > :global(.__wab_flex-container) {
   flex-direction: column;

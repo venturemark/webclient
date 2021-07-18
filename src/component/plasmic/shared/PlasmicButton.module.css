@@ -35,9 +35,9 @@
   align-items: center;
   min-width: 120px;
   cursor: pointer;
+  background: rgb(2, 157, 127);
   border-radius: 5px;
   padding: 10px 15px;
-  background: rgb(2, 157, 127);
   border-style: solid;
   border-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
@@ -94,8 +94,8 @@
   background: rgb(56, 31, 86);
 }
 .root__isDisabled:focus-within .button__isDisabled {
-  outline: none;
   background: rgb(2, 157, 127);
+  outline: none;
 }
 .root__buttonStyle_secondaryPurple:hover .button__buttonStyle_secondaryPurple {
   background: rgba(74, 40, 112, 0.05);
@@ -120,7 +120,7 @@
 .root .button:focus-within {
   outline: none;
 }
-.box {
+.freeBox {
   display: inline-flex;
   position: relative;
   opacity: 1;
@@ -130,17 +130,17 @@
   transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
   transform-origin: top left;
 }
-.box > :global(.__wab_flex-container) {
+.freeBox > :global(.__wab_flex-container) {
   justify-content: center;
   align-items: center;
   margin-left: calc(0px - 5px);
   width: calc(100% + 5px);
 }
-.box > :global(.__wab_flex-container) > *,
-.box > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox > :global(.__wab_flex-container) > *,
+.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-left: 5px;
 }
-.root:focus-within .box {
+.root:focus-within .freeBox {
   outline: none;
 }
 .slotSlot__buttonFeatures_showStartIcon {

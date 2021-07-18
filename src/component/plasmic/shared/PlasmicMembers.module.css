@@ -4,9 +4,9 @@
   height: 100%;
   position: relative;
   flex-direction: column;
+  background: #ffffff;
   min-width: 0;
   min-height: 0;
-  background: #ffffff;
 }
 .header:global(.__wab_instance) {
   position: absolute;
@@ -14,7 +14,7 @@
   top: 0px;
   z-index: 3;
 }
-.box__wnyfu {
+.freeBox__wnyfu {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -26,10 +26,10 @@
   height: 100vh;
   overflow: auto;
   padding-top: 75px;
+  background: rgb(249, 249, 250);
   min-width: 0;
   flex-shrink: 0;
   margin: 0px;
-  background: rgb(249, 249, 250);
 }
 .sidebar:global(.__wab_instance) {
   position: relative;
@@ -58,7 +58,7 @@
     min-width: 0;
   }
 }
-.box__qh0S7 {
+.freeBox__qh0S7 {
   display: flex;
   position: relative;
   flex-direction: row;

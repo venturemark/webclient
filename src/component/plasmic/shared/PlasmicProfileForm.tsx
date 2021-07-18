@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -103,8 +104,8 @@ function PlasmicProfileForm__RenderFunc(props: {
     >
       {(hasVariant(variants, "editProfile", "editProfile") ? true : false) ? (
         <div
-          className={classNames(defaultcss.all, sty.box__ytyPi, {
-            [sty.box__editProfile__ytyPiOylNj]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__ytyPi, {
+            [sty.freeBox__editProfile__ytyPiOylNj]: hasVariant(
               variants,
               "editProfile",
               "editProfile"
@@ -115,9 +116,9 @@ function PlasmicProfileForm__RenderFunc(props: {
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.box___55LI4,
+              sty.freeBox___55LI4,
               {
-                [sty.box__editProfile___55LI4OylNj]: hasVariant(
+                [sty.freeBox__editProfile___55LI4OylNj]: hasVariant(
                   variants,
                   "editProfile",
                   "editProfile"
@@ -148,8 +149,8 @@ function PlasmicProfileForm__RenderFunc(props: {
       ) : null}
       {(hasVariant(variants, "editProfile", "editProfile") ? true : false) ? (
         <div
-          className={classNames(defaultcss.all, sty.box__lhTso, {
-            [sty.box__editProfile__lhTsoOylNj]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__lhTso, {
+            [sty.freeBox__editProfile__lhTsoOylNj]: hasVariant(
               variants,
               "editProfile",
               "editProfile"
@@ -159,7 +160,7 @@ function PlasmicProfileForm__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__khj8R)}
+            className={classNames(defaultcss.all, sty.freeBox__khj8R)}
           >
             <PhotoAvatar
               data-plasmic-name={"photoAvatar"}
@@ -224,8 +225,8 @@ function PlasmicProfileForm__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__z9Te4, {
-            [sty.box__editProfile__z9Te4OylNj]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__z9Te4, {
+            [sty.freeBox__editProfile__z9Te4OylNj]: hasVariant(
               variants,
               "editProfile",
               "editProfile"
