@@ -70,16 +70,9 @@ function AddEditMembers(props: AddEditMembersProps) {
     else return !invite.timelineId;
   });
 
-  const members = [...currentVentureMembers];
-  for (const timelineMember of currentTimelineMembers) {
-    if (
-      !members.find((member) => {
-        return member.user.id === timelineMember.user.id;
-      })
-    ) {
-      members.push(timelineMember);
-    }
-  }
+  const members = currentTimeline
+    ? currentTimelineMembers
+    : currentVentureMembers;
 
   const handleInvite = (data: FormData) => {
     createInvite(
@@ -101,30 +94,25 @@ function AddEditMembers(props: AddEditMembersProps) {
     );
   };
 
-  const handleRemoveMemberRole = (userId: string) => {
-    if (userId === user?.id) {
-      alert("You can't delete yourself from a timeline");
-      return;
-    }
+  const handleRemoveMemberRole = (roleId: string) => {
+    const isTimelineRole = currentTimelineMembers.some(
+      (m) => m.role.id === roleId
+    );
+    const isVentureRole = currentVentureMembers.some(
+      (m) => m.role.id === roleId
+    );
 
-    const timelineRoleId = currentTimelineMembers.find(
-      (member) => member.role.subjectId === userId
-    )?.role.id;
-    const ventureRoleId = currentVentureMembers.find(
-      (member) => member.role.subjectId === userId
-    )?.role.id;
-
-    if (timelineRoleId) {
+    if (isTimelineRole) {
       deleteRole({
         resource: "timeline",
-        id: timelineRoleId,
+        id: roleId,
         timelineId,
         token: token,
       });
-    } else if (ventureRoleId) {
+    } else if (isVentureRole) {
       deleteRole({
         resource: "venture",
-        id: ventureRoleId,
+        id: roleId,
         ventureId,
         token: token,
       });

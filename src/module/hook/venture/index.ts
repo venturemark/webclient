@@ -14,10 +14,6 @@ import {
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getVenturesByUser = async (searchVenture: ISearchVenturesByUser) => {
-  return api.API.Venture.Search(searchVenture);
-};
-
 const getVentureByTimeline = async ({
   ventureIds,
   token,
@@ -34,11 +30,15 @@ const getVentureByTimeline = async ({
   return allVentures.flat();
 };
 
-export function useVenturesByUser(searchVentureByUser: ISearchVenturesByUser) {
+export function useVenturesByUser({ token, userId }: ISearchVenturesByUser) {
   return useQuery<IVenture[], ErrorResponse>(
-    ["ventures", searchVentureByUser.userId],
-    () => getVenturesByUser(searchVentureByUser),
-    { enabled: !!searchVentureByUser.token && !!searchVentureByUser.userId }
+    ["ventures", userId],
+    () =>
+      api.API.Venture.Search({
+        token,
+        userId,
+      }),
+    { enabled: Boolean(token && userId) }
   );
 }
 
@@ -136,9 +136,9 @@ export function useDeleteVenture() {
       return api.API.Venture.Delete(ventureDelete);
     },
     {
-      onSuccess: (data, ventureDelete) => {
+      onSuccess: async (data, ventureDelete) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("ventures");
+        await queryClient.invalidateQueries("ventures");
         //redirect on success
         ventureDelete.successUrl && navigate(ventureDelete.successUrl);
       },

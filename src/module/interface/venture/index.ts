@@ -10,7 +10,7 @@ export interface IVenture {
 }
 
 export interface ISearchVenturesByUser {
-  userId: string;
+  userId?: string;
   token: string | null;
 }
 

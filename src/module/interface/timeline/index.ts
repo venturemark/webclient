@@ -14,7 +14,7 @@ export interface ITimeline {
 }
 
 export interface ISearchTimelinesbyUserId {
-  userId: string;
+  userId?: string;
   token: string | null;
 }
 

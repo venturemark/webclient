@@ -23,6 +23,7 @@ WebFont.load({
 });
 
 const rootElement = document.getElementById("root");
+const queryClient = new QueryClient();
 
 function Root() {
   const [initialized, setInitialized] = useState(false);
@@ -49,7 +50,6 @@ function Root() {
       navigate(appState.returnTo, { replace: true });
     }
   };
-  const queryClient = new QueryClient();
 
   return (
     <React.StrictMode>

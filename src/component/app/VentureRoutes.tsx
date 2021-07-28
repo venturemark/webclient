@@ -4,12 +4,13 @@ import { Navigate, Route, Routes, useParams } from "react-router";
 
 import { Home } from "component/page/home";
 import { AuthContext } from "context/AuthContext";
+import { UserContext } from "context/UserContext";
 import { IVentureContext, VentureContext } from "context/VentureContext";
-import { calculateNamedSlug } from "module/helpers";
+import { calculateNamedSlug, getUniqueListBy } from "module/helpers";
 import { useRoleByTimelines, useRoleByVentures } from "module/hook/role";
 import { useTimelinesByUserId } from "module/hook/timeline";
 import { useVentureMembers } from "module/hook/user";
-import { useVenturesByUser } from "module/hook/venture";
+import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
 import { IRole } from "module/interface/role";
 import { ITimeline } from "module/interface/timeline";
 import { IUser, UserRole } from "module/interface/user";
@@ -17,13 +18,9 @@ import { IVenture } from "module/interface/venture";
 
 import { TimelineRoutes } from "./TimelineRoutes";
 
-interface VentureRoutesProps {
-  user: IUser;
-}
-
 function injectVentureRoles(
   ventures: IVenture[],
-  userId: string,
+  userId: string | undefined,
   ventureRoles: IRole[]
 ) {
   return (
@@ -43,7 +40,7 @@ function injectVentureRoles(
 
 function injectTimelineRoles(
   timelines: ITimeline[],
-  userId: string,
+  userId: string | undefined,
   ventureRoles: IRole[],
   timelineRoles: IRole[]
 ) {
@@ -66,8 +63,8 @@ function injectTimelineRoles(
   );
 }
 
-export function VentureRoutes(props: VentureRoutesProps) {
-  const { user } = props;
+export function VentureRoutes() {
+  const { user } = useContext(UserContext);
   const { token } = useContext(AuthContext);
   const { ventureSlug } = useParams();
   const userId = user?.id;
@@ -84,33 +81,49 @@ export function VentureRoutes(props: VentureRoutesProps) {
     }
   }, [userId]);
 
-  const { data: venturesData = [], status: venturesStatus } = useVenturesByUser(
-    {
+  const { data: venturesByUserData = [], status: venturesByUserStatus } =
+    useVenturesByUser({
       userId,
-      token,
-    }
-  );
-
-  const { data: ventureRolesData = [], status: ventureRolesStatus } =
-    useRoleByVentures({
-      ventures: venturesData,
       token,
     });
 
-  const ventures = injectVentureRoles(venturesData, userId, ventureRolesData);
-  ventures.sort((a, b) =>
-    calculateNamedSlug(a).localeCompare(calculateNamedSlug(b))
-  );
-
-  const { data: timelinesData = [], status: timelinesStatus } =
+  const { data: timelinesByUserData = [], status: timelinesByUserStatus } =
     useTimelinesByUserId({
       userId,
       token,
     });
 
+  const {
+    data: venturesByTimelineData = [],
+    status: venturesByTimelineStatus,
+  } = useVentureByTimeline({
+    ventureIds: [...new Set(timelinesByUserData?.map((t) => t.ventureId))],
+    token,
+  });
+
+  const combinedVentures = getUniqueListBy(
+    [...venturesByTimelineData, ...venturesByUserData],
+    "id"
+  );
+
+  const { data: ventureRolesData = [], status: ventureRolesStatus } =
+    useRoleByVentures({
+      ventures: combinedVentures,
+      token,
+    });
+
+  const ventures = injectVentureRoles(
+    combinedVentures,
+    userId,
+    ventureRolesData
+  );
+  ventures.sort((a, b) =>
+    calculateNamedSlug(a).localeCompare(calculateNamedSlug(b))
+  );
+
   const { data: timelineRolesData = [], status: timelineRolesStatus } =
     useRoleByTimelines({
-      timelines: timelinesData,
+      timelines: timelinesByUserData,
       token,
     });
 
@@ -127,20 +140,24 @@ export function VentureRoutes(props: VentureRoutesProps) {
   });
 
   const loading =
-    venturesStatus === "loading" ||
+    venturesByUserStatus === "loading" ||
+    venturesByTimelineStatus === "loading" ||
     ventureRolesStatus === "loading" ||
-    timelinesStatus === "loading" ||
+    timelinesByUserStatus === "loading" ||
     timelineRolesStatus === "loading" ||
     currentVentureMembersStatus === "loading";
 
   const timelines = injectTimelineRoles(
-    timelinesData,
+    timelinesByUserData,
     userId,
     ventureRolesData,
     timelineRolesData
   );
 
-  if (!ventureSlug && venturesStatus === "success") {
+  const venturesLoaded =
+    venturesByUserStatus === "success" &&
+    venturesByTimelineStatus === "success";
+  if (venturesLoaded && (!ventureSlug || !currentVenture)) {
     if (ventures.length > 0) {
       return <Navigate replace to={`/${calculateNamedSlug(ventures[0])}`} />;
     } else {
@@ -165,10 +182,7 @@ export function VentureRoutes(props: VentureRoutesProps) {
 
   const ventureContext: IVentureContext = {
     ventures,
-    venturesStatus,
-
     timelines,
-    timelinesStatus,
 
     currentVenture,
     currentVentureTimelines,
