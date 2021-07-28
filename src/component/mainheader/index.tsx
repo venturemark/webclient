@@ -18,23 +18,17 @@ function MainHeader(props: MainHeaderProps) {
   const { isActive, variantType, isOnboarding, ...rest } = props;
   const { timelineSlug, ventureSlug } = useParams();
   const { currentVentureMembers } = useContext(VentureContext);
-  const { currentTimelineMembers } = useContext(TimelineContext);
+  const { currentTimeline, currentTimelineMembers } =
+    useContext(TimelineContext);
   const navigate = useNavigate();
 
   const basePath = timelineSlug
     ? `/${ventureSlug}/${timelineSlug}`
     : `/${ventureSlug}`;
 
-  const members = [...currentVentureMembers];
-  for (const timelineMember of currentTimelineMembers) {
-    if (
-      !members.find((member) => {
-        return member.user.id === timelineMember.user.id;
-      })
-    ) {
-      members.push(timelineMember);
-    }
-  }
+  const members = currentTimeline
+    ? currentTimelineMembers
+    : currentVentureMembers;
 
   return (
     <PlasmicMainHeader
