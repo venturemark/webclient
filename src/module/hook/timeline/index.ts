@@ -49,23 +49,18 @@ export function useCreateTimeline() {
         return { previousTimelines };
       },
       // If the mutation fails, use the context returned from onMutate to roll back
-      onError: (err, variables, context: any) => {
+      onError: async (err, variables, context: any) => {
         if (context?.previousTimelines) {
           queryClient.setQueryData<ITimeline[]>(
             "timelines",
             context.previousTimelines
           );
         }
+        await queryClient.invalidateQueries("timelines");
       },
-      onSuccess: (data, newTimeline) => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries("timelines");
-
+      onSuccess: async (data, newTimeline) => {
+        await queryClient.invalidateQueries("timelines");
         newTimeline.successUrl && navigate(newTimeline.successUrl);
-      },
-      // Always refetch after error or success:
-      onSettled: () => {
-        queryClient.invalidateQueries("timelines");
       },
     }
   );
@@ -80,9 +75,9 @@ export function useUpdateTimeline() {
       return api.API.Timeline.Update(timelineUpdate);
     },
     {
-      onSuccess: (data, timelineUpdate) => {
+      onSuccess: async (data, timelineUpdate) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("timelines");
+        await queryClient.invalidateQueries("timelines");
 
         //redirect on success
         timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);
@@ -105,7 +100,7 @@ export function useArchiveDeleteTimeline() {
         await api.API.Timeline.Delete(timelineUpdate);
 
         //invalidate queries for refetch
-        queryClient.invalidateQueries("timelines");
+        await queryClient.invalidateQueries("timelines");
 
         //redirect on success
         timelineUpdate.successUrl && navigate(timelineUpdate.successUrl);

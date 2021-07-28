@@ -95,7 +95,7 @@ function Modal(props: ModalProps) {
   const handleDeleteVenture = () => {
     deleteVenture({
       id: ventureId,
-      successUrl: `../../`,
+      successUrl: "/",
       token,
     });
   };
@@ -112,8 +112,14 @@ function Modal(props: ModalProps) {
       }}
       nameField={{
         ...register("name", {
-          required: true,
-          maxLength: 100,
+          required: {
+            message: "Required",
+            value: true,
+          },
+          maxLength: {
+            message: "Too long",
+            value: 100,
+          },
         }),
         onChange(e: string) {
           setValue("name", e);
@@ -124,8 +130,14 @@ function Modal(props: ModalProps) {
       }}
       jobField={{
         ...register("title", {
-          required: true,
-          maxLength: 100,
+          required: {
+            message: "Required",
+            value: true,
+          },
+          maxLength: {
+            message: "Too long",
+            value: 100,
+          },
         }),
         onChange(e: string) {
           setValue("title", e);

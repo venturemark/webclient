@@ -1,5 +1,5 @@
 import { Location } from "history";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
@@ -7,21 +7,18 @@ import {
   DefaultProfileProps,
   PlasmicProfile,
 } from "component/plasmic/shared/PlasmicProfile";
-import { IUser } from "module/interface/user";
+import { UserContext } from "context/UserContext";
 
 type IsVisible = "postDetails" | "mobileSidebar" | undefined;
 
-interface ProfileProps extends DefaultProfileProps {
-  userLoading: boolean;
-  user?: IUser;
-}
+interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
-  const { userLoading, user, ...rest } = props;
+  const { user, status } = useContext(UserContext);
   const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
   const { state } = useLocation() as Location<{ returnTo?: string } | null>;
 
-  if (userLoading) {
+  if (status === "loading") {
     return <span>Loading User</span>;
   } else if (user && state?.returnTo) {
     return <Navigate to={state?.returnTo} />;
@@ -31,7 +28,6 @@ function Profile(props: ProfileProps) {
 
   return (
     <PlasmicProfile
-      {...rest}
       profileForm={{
         isVisible: isVisible,
         setIsVisible: setIsVisible,

@@ -4,6 +4,7 @@ import { Navigate, Route, Routes, useParams } from "react-router";
 
 import { Home } from "component/page/home";
 import { AuthContext } from "context/AuthContext";
+import { UserContext } from "context/UserContext";
 import { IVentureContext, VentureContext } from "context/VentureContext";
 import { calculateNamedSlug } from "module/helpers";
 import { useRoleByTimelines, useRoleByVentures } from "module/hook/role";
@@ -17,13 +18,9 @@ import { IVenture } from "module/interface/venture";
 
 import { TimelineRoutes } from "./TimelineRoutes";
 
-interface VentureRoutesProps {
-  user: IUser;
-}
-
 function injectVentureRoles(
   ventures: IVenture[],
-  userId: string,
+  userId: string | undefined,
   ventureRoles: IRole[]
 ) {
   return (
@@ -43,7 +40,7 @@ function injectVentureRoles(
 
 function injectTimelineRoles(
   timelines: ITimeline[],
-  userId: string,
+  userId: string | undefined,
   ventureRoles: IRole[],
   timelineRoles: IRole[]
 ) {
@@ -66,8 +63,8 @@ function injectTimelineRoles(
   );
 }
 
-export function VentureRoutes(props: VentureRoutesProps) {
-  const { user } = props;
+export function VentureRoutes() {
+  const { user } = useContext(UserContext);
   const { token } = useContext(AuthContext);
   const { ventureSlug } = useParams();
   const userId = user?.id;

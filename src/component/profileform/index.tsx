@@ -76,8 +76,14 @@ function ProfileForm(props: ProfileFormProps) {
       }}
       nameField={{
         ...register("name", {
-          required: true,
-          maxLength: 100,
+          required: {
+            message: "Required",
+            value: true,
+          },
+          maxLength: {
+            message: "Too long",
+            value: 100,
+          },
         }),
         onChange(e: string) {
           setValue("name", e);
@@ -88,8 +94,14 @@ function ProfileForm(props: ProfileFormProps) {
       }}
       jobField={{
         ...register("title", {
-          required: true,
-          maxLength: 100,
+          required: {
+            message: "Required",
+            value: true,
+          },
+          maxLength: {
+            message: "Too long",
+            value: 100,
+          },
         }),
         onChange(e: string) {
           setValue("title", e);

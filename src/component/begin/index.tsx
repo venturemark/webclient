@@ -3,15 +3,11 @@ import { Navigate } from "react-router";
 
 import { Home } from "component/page/home";
 import { AuthContext } from "context/AuthContext";
+import { UserContext } from "context/UserContext";
 import { useVenturesByUser } from "module/hook/venture";
-import { IUser } from "module/interface/user";
 
-interface BeginProps {
-  user: IUser;
-}
-
-export function Begin(props: BeginProps) {
-  const { user } = props;
+export function Begin() {
+  const { user } = useContext(UserContext);
   const { token } = useContext(AuthContext);
 
   const { data: venturesData = [], isLoading: venturesLoading } =

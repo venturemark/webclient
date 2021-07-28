@@ -87,7 +87,7 @@ export function useTimelineRole(searchRole: ISearchTimelineRoles) {
   return useQuery<IRole[], ErrorResponse>(
     [`role-${searchRole.timelineId}`, searchRole.token, searchRole.timelineId],
     () => getTimelineRole(searchRole),
-    { enabled: !!searchRole.token && !!searchRole.timelineId }
+    { enabled: Boolean(searchRole.token && searchRole.timelineId) }
   );
 }
 
@@ -102,7 +102,7 @@ export function useVentureRole(searchRole: ISearchVentureRoles) {
   return useQuery<IRole[], ErrorResponse>(
     [`role-${searchRole.ventureId}`, searchRole.token, searchRole.ventureId],
     () => getVentureRole(searchRole),
-    { enabled: !!searchRole.token && !!searchRole.ventureId }
+    { enabled: Boolean(searchRole.token && searchRole.ventureId) }
   );
 }
 
