@@ -7,7 +7,7 @@ import {
   PlasmicAddEditTimeline,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
 import { AuthContext } from "context/AuthContext";
-import { calculateNamedSlug } from "module/helpers";
+import { calculateNamedSlug, resourceOwnership } from "module/helpers";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { ITimeline } from "module/interface/timeline";
 import { IVenture } from "module/interface/venture";
@@ -130,7 +130,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   return (
     <PlasmicAddEditTimeline
       {...rest}
-      isOwner={currentVenture?.userRole === "owner" ? "isOwner" : undefined}
+      isOwner={resourceOwnership(currentTimeline || currentVenture)}
       variantState={isEdit}
       settings={{
         onSubmit: handleSubmit(handleCreate),
