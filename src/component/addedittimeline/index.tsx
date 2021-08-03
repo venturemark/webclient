@@ -133,6 +133,11 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           validate: (s: string) => {
             if (!s) return "Required";
             if (
+              currentTimeline &&
+              calculateNamedSlug(currentTimeline) === calculateSlug(s)
+            )
+              return true;
+            if (
               currentVentureTimelines.some((v) => {
                 return calculateNamedSlug(v) === calculateSlug(s);
               })
