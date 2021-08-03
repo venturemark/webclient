@@ -14,7 +14,9 @@ export function useScrollPosition<T extends HTMLElement>(
       return;
     }
     function onScroll() {
-      scrollPosition.current = element?.scrollTop || 0;
+      if (scrollPosition) {
+        scrollPosition.current = element?.scrollTop || 0;
+      }
     }
     element.addEventListener("scroll", onScroll);
     return () => {
@@ -24,7 +26,11 @@ export function useScrollPosition<T extends HTMLElement>(
 
   useEffect(() => {
     const element = ref.current;
-    if (!element || element.scrollTop === scrollPosition.current) {
+    if (
+      !element ||
+      !scrollPosition ||
+      element.scrollTop === scrollPosition.current
+    ) {
       return;
     }
     element.scrollTo({

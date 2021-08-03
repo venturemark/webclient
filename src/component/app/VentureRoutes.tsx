@@ -1,10 +1,9 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import TagManager from "react-gtm-module";
 import { Navigate, Route, Routes } from "react-router";
 import { useParams } from "react-router-dom";
 
 import { Home } from "component/page/home";
-import { IScrollContext, ScrollContext } from "context/ScrollContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { calculateNamedSlug } from "module/helpers";
@@ -30,10 +29,6 @@ export function VentureRoutes() {
     }
   }, [userId]);
 
-  const scrollContext: IScrollContext = {
-    sidebar: useRef(0),
-  };
-
   if (!loading && (!ventureSlug || !currentVenture)) {
     if (ventures.length > 0) {
       return <Navigate replace to={`/${calculateNamedSlug(ventures[0])}`} />;
@@ -43,19 +38,17 @@ export function VentureRoutes() {
   }
 
   return (
-    <ScrollContext.Provider value={scrollContext}>
-      <VentureContext.Provider value={ventureContext}>
-        <Routes>
-          <Route path="/" element={<VentureFeed />} />
-          <Route path="feed" element={<VentureFeed />} />
-          <Route path="members" element={<VentureMembers />} />
-          <Route path="settings" element={<VentureSettings />} />
-          <Route path="delete" element={<VentureDelete />} />
-          <Route path="newtimeline" element={<NewTimeline />} />
-          <Route path=":timelineSlug/*" element={<TimelineRoutes />} />
-        </Routes>
-      </VentureContext.Provider>
-    </ScrollContext.Provider>
+    <VentureContext.Provider value={ventureContext}>
+      <Routes>
+        <Route path="/" element={<VentureFeed />} />
+        <Route path="feed" element={<VentureFeed />} />
+        <Route path="members" element={<VentureMembers />} />
+        <Route path="settings" element={<VentureSettings />} />
+        <Route path="delete" element={<VentureDelete />} />
+        <Route path="newtimeline" element={<NewTimeline />} />
+        <Route path=":timelineSlug/*" element={<TimelineRoutes />} />
+      </Routes>
+    </VentureContext.Provider>
   );
 }
 

@@ -115,7 +115,7 @@ function FeedUpdate(props: FeedUpdateProps) {
   ]);
 
   useEffect(() => {
-    if (status !== "idle") {
+    if (status !== "idle" || !user) {
       return;
     }
 
@@ -160,11 +160,12 @@ function FeedUpdate(props: FeedUpdateProps) {
     token,
     updateUser,
     updates,
-    user.lastUpdate,
-    user.id,
+    user?.lastUpdate,
+    user?.id,
     status,
     timelines,
     reset,
+    user,
   ]);
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
