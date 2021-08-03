@@ -1,9 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import TagManager from "react-gtm-module";
 import { Navigate, Route, Routes } from "react-router";
 import { useParams } from "react-router-dom";
 
 import { Home } from "component/page/home";
+import { IScrollContext, ScrollContext } from "context/ScrollContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { calculateNamedSlug } from "module/helpers";
@@ -15,7 +16,7 @@ export function VentureRoutes() {
   const { user: { id: userId } = { id: undefined } } = useContext(UserContext);
   const { ventureSlug } = useParams();
   const ventureContext = useVentures(ventureSlug);
-  const { loading, ventures, currentVenture, timelines } = ventureContext;
+  const { loading, ventures, currentVenture } = ventureContext;
 
   useEffect(() => {
     if (userId) {
@@ -29,6 +30,10 @@ export function VentureRoutes() {
     }
   }, [userId]);
 
+  const scrollContext: IScrollContext = {
+    sidebar: useRef(0),
+  };
+
   if (!loading && (!ventureSlug || !currentVenture)) {
     if (ventures.length > 0) {
       return <Navigate replace to={`/${calculateNamedSlug(ventures[0])}`} />;
@@ -37,32 +42,20 @@ export function VentureRoutes() {
     }
   }
 
-  const hasTimelines = timelines.some(
-    (t) => t.ventureId === currentVenture?.id
-  );
-
   return (
-    <VentureContext.Provider value={ventureContext}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <VentureFeed loading={loading} hasTimelines={hasTimelines} />
-          }
-        />
-        <Route
-          path="feed"
-          element={
-            <VentureFeed loading={loading} hasTimelines={hasTimelines} />
-          }
-        />
-        <Route path="members" element={<VentureMembers />} />
-        <Route path="settings" element={<VentureSettings />} />
-        <Route path="delete" element={<VentureDelete />} />
-        <Route path="newtimeline" element={<NewTimeline />} />
-        <Route path=":timelineSlug/*" element={<TimelineRoutes />} />
-      </Routes>
-    </VentureContext.Provider>
+    <ScrollContext.Provider value={scrollContext}>
+      <VentureContext.Provider value={ventureContext}>
+        <Routes>
+          <Route path="/" element={<VentureFeed />} />
+          <Route path="feed" element={<VentureFeed />} />
+          <Route path="members" element={<VentureMembers />} />
+          <Route path="settings" element={<VentureSettings />} />
+          <Route path="delete" element={<VentureDelete />} />
+          <Route path="newtimeline" element={<NewTimeline />} />
+          <Route path=":timelineSlug/*" element={<TimelineRoutes />} />
+        </Routes>
+      </VentureContext.Provider>
+    </ScrollContext.Provider>
   );
 }
 
@@ -72,18 +65,12 @@ function NewTimeline() {
   return <Home variantType={variantType} isActive={isActive} />;
 }
 
-interface FeedProps {
-  loading: boolean;
-  hasTimelines: boolean;
-}
-
-function VentureFeed(props: FeedProps) {
-  const { hasTimelines, loading } = props;
-  if (loading) {
-    return <span>Loading</span>;
-  }
+function VentureFeed() {
+  const ventureContext = useContext(VentureContext);
+  const { loading, currentVentureTimelines } = ventureContext;
   const variantType = "isVenture";
-  const isActive = hasTimelines ? "feed" : "isNewVenture";
+  const isActive =
+    loading || currentVentureTimelines.length ? "feed" : "isNewVenture";
   return <Home variantType={variantType} isActive={isActive} />;
 }
 
