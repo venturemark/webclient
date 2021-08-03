@@ -69,8 +69,6 @@ function Main(props: MainProps) {
         user,
       }}
       addEditVenture={{
-        currentVenture,
-        hasVentures,
         onChange(data: VentureFormData) {
           if (data.ventureName !== ventureName) {
             setVentureName(data.ventureName);
@@ -78,9 +76,6 @@ function Main(props: MainProps) {
         },
       }}
       addEditTimeline={{
-        currentVenture,
-        currentTimeline,
-        setIsVisible,
         onChange(data: TimelineFormData) {
           if (data.timelineName !== timelineName) {
             setTimelineName(data.timelineName);

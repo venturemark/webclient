@@ -6,6 +6,7 @@ import { IUser } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
 export interface IVentureContext {
+  loading: boolean;
   ventures: IVenture[];
   timelines: ITimeline[];
 
@@ -15,6 +16,7 @@ export interface IVentureContext {
 }
 
 export const VentureContext = createContext<IVentureContext>({
+  loading: true,
   ventures: [],
   timelines: [],
 
