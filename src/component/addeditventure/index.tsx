@@ -8,13 +8,11 @@ import {
   PlasmicAddEditVenture,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import { AuthContext } from "context/AuthContext";
+import { VentureContext } from "context/VentureContext";
+import { calculateNamedSlug, calculateSlug } from "module/helpers";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
-import { IVenture } from "module/interface/venture";
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
-  setIsActive: any;
-  currentVenture?: IVenture;
-  hasVentures: boolean;
   onChange?: (data: FormData) => void;
 }
 
@@ -26,7 +24,8 @@ export type FormData = {
 };
 
 function AddEditVenture(props: AddEditVentureProps) {
-  const { setIsActive, currentVenture, hasVentures, onChange, ...rest } = props;
+  const { onChange, ...rest } = props;
+  const { currentVenture, ventures } = useContext(VentureContext);
 
   const {
     handleSubmit,
@@ -128,9 +127,20 @@ function AddEditVenture(props: AddEditVentureProps) {
       }}
       name={{
         ...register("ventureName", {
-          required: {
-            message: "Required",
-            value: true,
+          validate: (s: string) => {
+            if (!s) return "Required";
+            if (
+              currentVenture &&
+              calculateNamedSlug(currentVenture) === calculateSlug(s)
+            )
+              return true;
+            if (
+              ventures.some((v) => {
+                return calculateNamedSlug(v) === calculateSlug(s);
+              })
+            )
+              return "Already exists";
+            return true;
           },
         }),
         onChange(e) {
@@ -188,7 +198,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         handleDelete: () =>
           navigate(`/${handle}/delete?ventureId=${ventureId}`),
         handleCancel: () => {
-          hasVentures ? navigate("..") : navigate("/begin");
+          ventures.length ? navigate("..") : navigate("/begin");
         },
         handleSave: () => handleSubmit(handleCreate)(),
       }}

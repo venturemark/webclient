@@ -7,16 +7,16 @@ import {
   PlasmicAddEditTimeline,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
 import { AuthContext } from "context/AuthContext";
-import { calculateNamedSlug, resourceOwnership } from "module/helpers";
+import { TimelineContext } from "context/TimelineContext";
+import { VentureContext } from "context/VentureContext";
+import {
+  calculateNamedSlug,
+  calculateSlug,
+  resourceOwnership,
+} from "module/helpers";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
-import { ITimeline } from "module/interface/timeline";
-import { IVenture } from "module/interface/venture";
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
-  setIsActive: any;
-  setIsVisible: any;
-  currentVenture?: IVenture;
-  currentTimeline?: ITimeline;
   onChange?: (data: FormData) => void;
 }
 
@@ -27,14 +27,11 @@ export type FormData = {
 };
 
 function AddEditTimeline(props: AddEditTimelineProps) {
-  const {
-    setIsActive,
-    setIsVisible,
-    currentTimeline,
-    currentVenture,
-    onChange,
-    ...rest
-  } = props;
+  const { onChange, ...rest } = props;
+
+  const { currentVenture, currentVentureTimelines } =
+    useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
 
   const {
     handleSubmit,
@@ -137,9 +134,20 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       }}
       name={{
         ...register("timelineName", {
-          required: {
-            message: "Required",
-            value: true,
+          validate: (s: string) => {
+            if (!s) return "Required";
+            if (
+              currentTimeline &&
+              calculateNamedSlug(currentTimeline) === calculateSlug(s)
+            )
+              return true;
+            if (
+              currentVentureTimelines.some((v) => {
+                return calculateNamedSlug(v) === calculateSlug(s);
+              })
+            )
+              return "Already exists";
+            return true;
           },
         }),
         onChange(e) {
