@@ -21,22 +21,6 @@ interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   membersWrite: boolean;
 }
 
-function isHTMLElement(e: Element | null): e is HTMLElement {
-  return !!e && "offsetParent" in e;
-}
-
-export function getOffsetTop(el: HTMLElement, base: HTMLElement): number {
-  let offsetTop = 0;
-  let current = el;
-
-  while (isHTMLElement(current) && current !== base) {
-    offsetTop += current.offsetTop;
-    current = current.offsetParent as HTMLElement;
-  }
-
-  return offsetTop;
-}
-
 function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { ventureName, ventureId, timelines, userRole, membersWrite, ...rest } =
     props;
