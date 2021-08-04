@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import { IsVisble } from "component/page/home";
 import {
   DefaultHeaderProps,
   PlasmicHeader,
@@ -10,11 +11,9 @@ import { UserContext } from "context/UserContext";
 import useDropdown from "module/hook/ui/useDropdown";
 import { IUser } from "module/interface/user";
 
-type IsVisible = "mobileSidebar" | "postDetails" | "showModal";
-
 interface HeaderProps extends DefaultHeaderProps {
-  isVisible?: IsVisible;
-  setIsVisible?: (value?: IsVisible) => void;
+  isVisible?: IsVisble;
+  setIsVisible?: (value?: IsVisble) => void;
   user: IUser;
 }
 

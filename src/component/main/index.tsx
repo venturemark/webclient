@@ -8,6 +8,7 @@ import {
 } from "component/plasmic/shared/PlasmicMain";
 import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
+import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 
 interface MainProps extends DefaultMainProps {
@@ -16,7 +17,8 @@ interface MainProps extends DefaultMainProps {
   variantType: any;
   setIsVisible: any;
   isVisible: any;
-  setPost: any;
+  setPost: (u: IUpdate) => void;
+  post: IUpdate;
   ventureId?: string;
   user: IUser;
 }
@@ -28,6 +30,7 @@ function Main(props: MainProps) {
     variantType,
     setIsVisible,
     setPost,
+    post,
     ventureId,
     isVisible,
     user,
@@ -65,6 +68,7 @@ function Main(props: MainProps) {
         currentTimeline,
         currentVenture,
         setPost,
+        post,
         isVisible,
         user,
       }}

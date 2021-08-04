@@ -9,13 +9,13 @@ import {
 } from "component/plasmic/shared/PlasmicProfile";
 import { UserContext } from "context/UserContext";
 
-type IsVisible = "postDetails" | "mobileSidebar" | undefined;
+import { IsVisble } from "../home";
 
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
   const { user, status } = useContext(UserContext);
-  const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
+  const [isVisible, setIsVisible] = useState<IsVisble | undefined>();
   const { state } = useLocation() as Location<{ returnTo?: string } | null>;
 
   if (status === "loading") {

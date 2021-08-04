@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import {
   DefaultContentPostProps,
@@ -10,6 +10,7 @@ import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { getUniqueListBy } from "module/helpers";
 import { useMessages } from "module/hook/message";
+import useDropdown from "module/hook/ui/useDropdown";
 import { useDeleteUpdate } from "module/hook/update";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { ITimeline } from "module/interface/timeline";
@@ -24,7 +25,8 @@ interface ContentPostProps extends DefaultContentPostProps {
   date: string;
   setIsVisible: any;
   isVisible: any;
-  setPost: any;
+  setPost: () => void;
+  post?: IUpdate;
   userId: string;
   userName?: string;
   user?: IUser;
@@ -40,6 +42,7 @@ function ContentPost(props: ContentPostProps) {
     date,
     setIsVisible,
     setPost,
+    post,
     timelineId,
     id,
     state,
@@ -53,7 +56,8 @@ function ContentPost(props: ContentPostProps) {
   } = props;
   const { token } = useContext(AuthContext);
 
-  const [showMenu, setShowMenu] = useState(false);
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
 
   const ventureContext = useContext(VentureContext);
   const timelines = ventureContext.currentVentureTimelines ?? [];
@@ -124,10 +128,13 @@ function ContentPost(props: ContentPostProps) {
   return (
     <PlasmicContentPost
       {...rest}
-      iconMenu={{
-        onClick: () => setShowMenu(!showMenu),
+      root={{
+        ref: dropdownRootRef,
       }}
-      isUserOnClick={showMenu}
+      iconMenu={{
+        onClick: () => setDropdownVisible(!dropdownVisible),
+      }}
+      isUserOnClick={dropdownVisible}
       state={state || isOwner}
       title={title}
       description={description}
@@ -141,9 +148,11 @@ function ContentPost(props: ContentPostProps) {
         count: count,
         text2: count === 1 ? "reply" : "replies",
         onPress: () => {
-          if (isVisible === "postDetails") {
+          if (isVisible === "postDetails" && post?.id === id) {
+            // toggle post detail pane
             setIsVisible(undefined);
           } else {
+            // show or change details to current post
             setIsVisible("postDetails");
             setPost();
           }
