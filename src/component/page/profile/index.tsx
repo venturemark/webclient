@@ -3,13 +3,12 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
+import { IsVisible } from "component/page/home";
 import {
   DefaultProfileProps,
   PlasmicProfile,
 } from "component/plasmic/shared/PlasmicProfile";
 import { UserContext } from "context/UserContext";
-
-import { IsVisible } from "../home";
 
 interface ProfileProps extends DefaultProfileProps {}
 

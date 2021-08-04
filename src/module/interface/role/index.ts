@@ -1,5 +1,5 @@
-import { ITimeline } from "../timeline";
-import { IVenture } from "../venture";
+import { ITimeline } from "module/interface/timeline";
+import { IVenture } from "module/interface/venture";
 
 export interface IRole {
   id: string;

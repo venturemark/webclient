@@ -39,11 +39,10 @@ import {
   options,
   optionsResetBlockTypes,
 } from "component/editor/config/initialValues";
+import { MENTIONABLES } from "component/editor/config/mentionables";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
-
-import { MENTIONABLES } from "../config/mentionables";
 
 type CustomText = { text: string };
 type CustomElement = { type: "paragraph"; children: CustomText[] };

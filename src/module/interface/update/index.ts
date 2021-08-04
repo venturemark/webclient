@@ -1,4 +1,4 @@
-import { IUser } from "../user";
+import { IUser } from "module/interface/user";
 
 export interface IUpdate {
   title?: string;

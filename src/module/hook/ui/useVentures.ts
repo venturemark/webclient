@@ -1,17 +1,17 @@
 import { useContext } from "react";
 
-import { AuthContext } from "../../../context/AuthContext";
-import { UserContext } from "../../../context/UserContext";
-import { IVentureContext } from "../../../context/VentureContext";
-import { calculateNamedSlug, getUniqueListBy } from "../../helpers";
-import { useRoleByTimelines, useRoleByVentures } from "../../hook/role";
-import { useTimelinesByUserId } from "../../hook/timeline";
-import { useVentureMembers } from "../../hook/user";
-import { useVentureByTimeline, useVenturesByUser } from "../../hook/venture";
-import { IRole } from "../../interface/role";
-import { ITimeline } from "../../interface/timeline";
-import { IUser, UserRole } from "../../interface/user";
-import { IVenture } from "../../interface/venture";
+import { AuthContext } from "context/AuthContext";
+import { UserContext } from "context/UserContext";
+import { IVentureContext } from "context/VentureContext";
+import { calculateNamedSlug, getUniqueListBy } from "module/helpers";
+import { useRoleByTimelines, useRoleByVentures } from "module/hook/role";
+import { useTimelinesByUserId } from "module/hook/timeline";
+import { useVentureMembers } from "module/hook/user";
+import { useVentureByTimeline, useVenturesByUser } from "module/hook/venture";
+import { IRole } from "module/interface/role";
+import { ITimeline } from "module/interface/timeline";
+import { IUser, UserRole } from "module/interface/user";
+import { IVenture } from "module/interface/venture";
 
 function injectVentureRoles(
   ventures: IVenture[],
