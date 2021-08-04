@@ -130,6 +130,11 @@ function AddEditVenture(props: AddEditVentureProps) {
           validate: (s: string) => {
             if (!s) return "Required";
             if (
+              currentVenture &&
+              calculateNamedSlug(currentVenture) === calculateSlug(s)
+            )
+              return true;
+            if (
               ventures.some((v) => {
                 return calculateNamedSlug(v) === calculateSlug(s);
               })

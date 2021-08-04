@@ -1,4 +1,3 @@
-import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
 import { useContext, useEffect, useMemo } from "react";
 
 import ContentPost from "component/contentpost";
@@ -7,7 +6,7 @@ import {
   PlasmicFeedUpdate,
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import { AuthContext } from "context/AuthContext";
-import { getUniqueListBy } from "module/helpers";
+import { getUniqueListBy, resourceOwnership } from "module/helpers";
 import {
   useUpdatesByTimeline,
   useUpdatesByTimelineIds,
@@ -19,7 +18,7 @@ import {
 } from "module/hook/user";
 import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
-import { IUser, UserRole } from "module/interface/user";
+import { IUser } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
@@ -30,26 +29,6 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   setIsVisible: any;
   isVisible: any;
   setPost: any;
-}
-
-type RestrictedResource = {
-  userRole?: UserRole;
-  membersWrite: boolean;
-};
-
-function resourceOwnership(
-  resource?: RestrictedResource
-): SingleBooleanChoiceArg<"isOwner"> {
-  if (!resource) {
-    return false;
-  }
-  if (resource.userRole === "owner") {
-    return "isOwner";
-  }
-  if (resource.userRole === "member" && resource.membersWrite) {
-    return "isOwner";
-  }
-  return false;
 }
 
 function deduplicateUpdates(updates: IUpdate[]) {
