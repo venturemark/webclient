@@ -1,8 +1,10 @@
+import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
 import emailjs from "emailjs-com";
 import { useLocation } from "react-router-dom";
 
 import { IEmailInvite } from "module/interface/email";
 import { ICreateInvite, IInvite } from "module/interface/invite";
+import { UserRole } from "module/interface/user";
 
 export function isDev(): boolean {
   const development: boolean =
@@ -73,4 +75,25 @@ export function calculateNamedSlug(named?: { name: string }): string {
 
 export function calculateSlug(name: string): string {
   return name.toLowerCase().replace(/\s/g, "");
+}
+
+type RestrictedResource = {
+  userRole?: UserRole;
+  membersWrite: boolean;
+};
+
+export function resourceOwnership(
+  resource?: RestrictedResource
+): SingleBooleanChoiceArg<"isOwner"> {
+  console.log(resource);
+  if (!resource) {
+    return false;
+  }
+  if (resource.userRole === "owner") {
+    return "isOwner";
+  }
+  if (resource.userRole === "member" && resource.membersWrite) {
+    return "isOwner";
+  }
+  return false;
 }
