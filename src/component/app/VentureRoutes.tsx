@@ -15,7 +15,7 @@ export function VentureRoutes() {
   const { user: { id: userId } = { id: undefined } } = useContext(UserContext);
   const { ventureSlug } = useParams();
   const ventureContext = useVentures(ventureSlug);
-  const { loading, ventures, currentVenture, timelines } = ventureContext;
+  const { loading, ventures, currentVenture } = ventureContext;
 
   useEffect(() => {
     if (userId) {
@@ -37,25 +37,11 @@ export function VentureRoutes() {
     }
   }
 
-  const hasTimelines = timelines.some(
-    (t) => t.ventureId === currentVenture?.id
-  );
-
   return (
     <VentureContext.Provider value={ventureContext}>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <VentureFeed loading={loading} hasTimelines={hasTimelines} />
-          }
-        />
-        <Route
-          path="feed"
-          element={
-            <VentureFeed loading={loading} hasTimelines={hasTimelines} />
-          }
-        />
+        <Route path="/" element={<VentureFeed />} />
+        <Route path="feed" element={<VentureFeed />} />
         <Route path="members" element={<VentureMembers />} />
         <Route path="settings" element={<VentureSettings />} />
         <Route path="delete" element={<VentureDelete />} />
@@ -72,18 +58,12 @@ function NewTimeline() {
   return <Home variantType={variantType} isActive={isActive} />;
 }
 
-interface FeedProps {
-  loading: boolean;
-  hasTimelines: boolean;
-}
-
-function VentureFeed(props: FeedProps) {
-  const { hasTimelines, loading } = props;
-  if (loading) {
-    return <span>Loading</span>;
-  }
+function VentureFeed() {
+  const ventureContext = useContext(VentureContext);
+  const { loading, currentVentureTimelines } = ventureContext;
   const variantType = "isVenture";
-  const isActive = hasTimelines ? "feed" : "isNewVenture";
+  const isActive =
+    loading || currentVentureTimelines.length ? "feed" : "isNewVenture";
   return <Home variantType={variantType} isActive={isActive} />;
 }
 

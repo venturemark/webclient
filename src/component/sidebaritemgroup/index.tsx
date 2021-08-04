@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -30,10 +30,35 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const userLastViewedUpdate = user?.lastUpdate || {};
+  const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
+  const ventureItemRef = useRef<HTMLDivElement | null>(null);
 
-  const sortedVentureTimelines = timelines
-    .filter((t) => t.ventureId === ventureId)
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const sortedVentureTimelines = useMemo(() => {
+    const result = timelines
+      .filter((t) => t.ventureId === ventureId)
+      .sort((a, b) => a.name.localeCompare(b.name));
+    itemsRef.current = itemsRef.current.slice(0, result.length);
+    return result;
+  }, [timelines, ventureId]);
+
+  useEffect(() => {
+    let el: HTMLDivElement | null = null;
+    if (currentTimeline) {
+      const index = sortedVentureTimelines.findIndex(
+        (t) => t.id === currentTimeline.id
+      );
+      if (index >= 0) {
+        el = itemsRef.current[index];
+      }
+    } else if (currentVenture?.id === ventureId) {
+      el = ventureItemRef.current;
+    }
+    if (el) {
+      el.scrollIntoView({
+        block: "center",
+      });
+    }
+  }, [currentTimeline, currentVenture, sortedVentureTimelines, ventureId]);
 
   const isOwner =
     userRole === "owner" || (userRole === "member" && membersWrite);
@@ -43,6 +68,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       {...rest}
       isOwner={isOwner ? "isOwner" : undefined}
       venture={{
+        ref: ventureItemRef,
         ventureName,
         userRole,
         setIsCollapsed,
@@ -57,7 +83,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
         },
       }}
       itemContainer={{
-        children: sortedVentureTimelines.map((timeline) => {
+        children: sortedVentureTimelines.map((timeline, i) => {
           const lastViewed = userLastViewedUpdate[timeline.id];
           const lastUpdate = timeline.lastUpdate;
           const hasNewActivity = Boolean(
@@ -67,6 +93,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
 
           return (
             <SidebarItem
+              ref={(el) => (itemsRef.current[i] = el)}
               userRole={timeline.userRole}
               timelineName={timeline.name}
               key={timeline.id}

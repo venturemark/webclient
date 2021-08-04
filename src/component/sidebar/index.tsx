@@ -13,29 +13,21 @@ interface SidebarProps extends DefaultSidebarProps {}
 
 function Sidebar(props: SidebarProps) {
   const userContext = useContext(UserContext);
-  const ventureContext = useContext(VentureContext);
+  const { timelines, ventures } = useContext(VentureContext);
   const [isDropdown, setIsDropdown] = useState(false);
-
-  const userName = userContext.user?.name ?? "";
-  const timelines = ventureContext.timelines;
-  const ventures = ventureContext.ventures;
-
-  const sortedVentures = ventures?.sort(
-    (a: IVenture, b: IVenture) => a.name.localeCompare(b.name) ?? []
-  );
 
   return (
     <PlasmicSidebar
       {...props}
-      hasInput={sortedVentures?.length > 0 ? true : false}
-      userName={userName}
+      hasInput={ventures.length > 0 ? true : false}
+      userName={userContext.user?.name ?? ""}
       photoAvatar={{ user: userContext.user }}
       accountSettings={{
         onClick: () => setIsDropdown(!isDropdown),
       }}
       isDropdown={isDropdown}
       itemGroupContainer={{
-        children: sortedVentures?.map((venture: IVenture) => (
+        children: ventures.map((venture: IVenture) => (
           <SidebarItemGroup
             timelines={timelines}
             ventureName={venture.name}

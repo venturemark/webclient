@@ -63,38 +63,29 @@ function FeedUpdate(props: FeedUpdateProps) {
   const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);
   const { mutate: updateUser, status, reset } = useUpdateUser();
 
-  const { data: timelineUpdates = [], isSuccess: timelineUpdatesSuccess } =
-    useUpdatesByTimeline({
-      ventureId,
-      timelineId,
-      token,
-    });
+  const { data: timelineUpdates = [] } = useUpdatesByTimeline({
+    ventureId,
+    timelineId,
+    token,
+  });
 
-  const { data: ventureUpdates = [], isSuccess: ventureUpdatesSuccess } =
-    useUpdatesByTimelineIds({
-      ventureId,
-      timelineIds,
-      token,
-    });
+  const { data: ventureUpdates = [] } = useUpdatesByTimelineIds({
+    ventureId,
+    timelineIds,
+    token,
+  });
 
   const updates = useMemo<IUpdate[]>(() => {
-    if (timelineId && timelineUpdatesSuccess) {
+    if (timelineId) {
       return timelineUpdates;
-    } else if (ventureId && ventureUpdatesSuccess) {
+    } else if (ventureId) {
       return deduplicateUpdates(ventureUpdates);
     }
     return [];
-  }, [
-    timelineId,
-    timelineUpdates,
-    timelineUpdatesSuccess,
-    ventureId,
-    ventureUpdates,
-    ventureUpdatesSuccess,
-  ]);
+  }, [timelineId, timelineUpdates, ventureId, ventureUpdates]);
 
   useEffect(() => {
-    if (status !== "idle") {
+    if (status !== "idle" || !user) {
       return;
     }
 
@@ -139,11 +130,12 @@ function FeedUpdate(props: FeedUpdateProps) {
     token,
     updateUser,
     updates,
-    user.lastUpdate,
-    user.id,
+    user?.lastUpdate,
+    user?.id,
     status,
     timelines,
     reset,
+    user,
   ]);
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =

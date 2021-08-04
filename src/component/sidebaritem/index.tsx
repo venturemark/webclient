@@ -1,3 +1,4 @@
+import { ForwardedRef, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -18,7 +19,10 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
 
-function SidebarItem(props: SidebarItemProps) {
+function SidebarItem(
+  props: SidebarItemProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const {
     timelineName,
     ventureId,
@@ -55,50 +59,52 @@ function SidebarItem(props: SidebarItemProps) {
       : `/${ventureHandle}/settings`;
 
   return (
-    <PlasmicSidebarItem
-      {...rest}
-      root={{
-        ref: dropdownRootRef,
-      }}
-      isDropdown={dropdownVisible ? "isDropdown" : undefined}
-      isOwner={userRole === "owner" ? "isOwner" : undefined}
-      icon={{
-        onClick: (e) => {
-          e.stopPropagation(); // Prevent root onClick from triggering when collapsing group
+    <div ref={ref}>
+      <PlasmicSidebarItem
+        {...rest}
+        root={{
+          ref: dropdownRootRef,
+        }}
+        isDropdown={dropdownVisible ? "isDropdown" : undefined}
+        isOwner={userRole === "owner" ? "isOwner" : undefined}
+        icon={{
+          onClick: (e) => {
+            e.stopPropagation(); // Prevent root onClick from triggering when collapsing group
+            setDropdownVisible(false);
+            itemType !== "createTimeline" &&
+              itemType !== "timeline" &&
+              setIsCollapsed(!isCollapsed);
+          },
+        }}
+        iconButton={{
+          onClick(e) {
+            e.stopPropagation(); // Prevent root onClick from triggering when opening dropdown
+            setDropdownVisible(!dropdownVisible);
+          },
+        }}
+        onClick={() => {
           setDropdownVisible(false);
-          itemType !== "createTimeline" &&
-            itemType !== "timeline" &&
-            setIsCollapsed(!isCollapsed);
-        },
-      }}
-      iconButton={{
-        onClick(e) {
-          e.stopPropagation(); // Prevent root onClick from triggering when opening dropdown
-          setDropdownVisible(!dropdownVisible);
-        },
-      }}
-      onClick={() => {
-        setDropdownVisible(false);
-        itemType !== "createTimeline"
-          ? navigate(link)
-          : navigate(`/${ventureHandle}/newtimeline`);
-      }}
-      itemType={itemType}
-      name={
-        itemType === "createTimeline"
-          ? "Create Timeline"
-          : timelineName
-          ? timelineName
-          : ventureName
-      }
-      dropdown={{
-        href: editLink,
-        onClick: () => {
-          setDropdownVisible(false);
-        },
-      }}
-    />
+          itemType !== "createTimeline"
+            ? navigate(link)
+            : navigate(`/${ventureHandle}/newtimeline`);
+        }}
+        itemType={itemType}
+        name={
+          itemType === "createTimeline"
+            ? "Create Timeline"
+            : timelineName
+            ? timelineName
+            : ventureName
+        }
+        dropdown={{
+          href: editLink,
+          onClick: () => {
+            setDropdownVisible(false);
+          },
+        }}
+      />
+    </div>
   );
 }
 
-export default SidebarItem;
+export default forwardRef(SidebarItem);
