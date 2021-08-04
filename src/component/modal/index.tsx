@@ -17,8 +17,6 @@ import { useDeleteVenture } from "module/hook/venture";
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
 interface ModalProps extends DefaultModalProps {
-  isVisible?: any;
-  setIsVisible?: any;
   modalType?: ModalType;
 }
 
@@ -28,7 +26,7 @@ type FormData = {
 };
 
 function Modal(props: ModalProps) {
-  const { isVisible, setIsVisible, modalType, ...rest } = props;
+  const { modalType, ...rest } = props;
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const userContext = useContext(UserContext);

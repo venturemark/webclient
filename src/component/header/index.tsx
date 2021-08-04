@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { IsVisble } from "component/page/home";
+import { IsVisible } from "component/page/home";
 import {
   DefaultHeaderProps,
   PlasmicHeader,
@@ -12,8 +12,8 @@ import useDropdown from "module/hook/ui/useDropdown";
 import { IUser } from "module/interface/user";
 
 interface HeaderProps extends DefaultHeaderProps {
-  isVisible?: IsVisble;
-  setIsVisible?: (value?: IsVisble) => void;
+  isVisible: IsVisible;
+  setIsVisible?: (value: IsVisible) => void;
   user: IUser;
 }
 

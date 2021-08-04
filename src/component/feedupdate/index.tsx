@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo } from "react";
 
 import ContentPost from "component/contentpost";
-import { IsVisble } from "component/page/home";
+import { IsVisible } from "component/page/home";
 import {
   DefaultFeedUpdateProps,
   PlasmicFeedUpdate,
@@ -27,8 +27,8 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   timelines: ITimeline[];
   currentVenture: IVenture;
   user: IUser;
-  setIsVisible: (value?: IsVisble) => void;
-  isVisible: IsVisble;
+  setIsVisible: (value: IsVisible) => void;
+  isVisible: IsVisible;
   setPost: (post: IUpdate) => void;
   post?: IUpdate;
 }

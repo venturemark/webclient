@@ -9,13 +9,13 @@ import {
 } from "component/plasmic/shared/PlasmicProfile";
 import { UserContext } from "context/UserContext";
 
-import { IsVisble } from "../home";
+import { IsVisible } from "../home";
 
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
   const { user, status } = useContext(UserContext);
-  const [isVisible, setIsVisible] = useState<IsVisble | undefined>();
+  const [isVisible, setIsVisible] = useState<IsVisible>();
   const { state } = useLocation() as Location<{ returnTo?: string } | null>;
 
   if (status === "loading") {
@@ -29,8 +29,8 @@ function Profile(props: ProfileProps) {
   return (
     <PlasmicProfile
       profileForm={{
-        isVisible: isVisible,
-        setIsVisible: setIsVisible,
+        isVisible,
+        setIsVisible,
         returnTo: state?.returnTo,
       }}
     />
