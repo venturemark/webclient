@@ -1,4 +1,4 @@
-import { UpdateStatus } from "../api";
+import { UpdateStatus } from "module/interface/api";
 
 export interface IInvite {
   id: string;

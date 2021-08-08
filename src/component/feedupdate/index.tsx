@@ -1,6 +1,7 @@
 import { useContext, useEffect, useMemo } from "react";
 
 import ContentPost from "component/contentpost";
+import { IsVisible } from "component/page/home";
 import {
   DefaultFeedUpdateProps,
   PlasmicFeedUpdate,
@@ -26,9 +27,10 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   timelines: ITimeline[];
   currentVenture: IVenture;
   user: IUser;
-  setIsVisible: any;
-  isVisible: any;
-  setPost: any;
+  setIsVisible: (value: IsVisible) => void;
+  isVisible: IsVisible;
+  setPost: (post: IUpdate) => void;
+  post?: IUpdate;
 }
 
 function deduplicateUpdates(updates: IUpdate[]) {
@@ -51,6 +53,7 @@ function FeedUpdate(props: FeedUpdateProps) {
     timelines,
     setIsVisible,
     setPost,
+    post,
     currentVenture,
     isVisible,
     user,
@@ -190,6 +193,7 @@ function FeedUpdate(props: FeedUpdateProps) {
                 users: allMembers ?? [],
               })
             }
+            post={post}
             ventureId={update.ventureId}
             allUpdates={ventureUpdates}
             userId={update.userId ?? ""}

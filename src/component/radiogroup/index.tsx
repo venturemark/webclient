@@ -5,7 +5,7 @@ import {
 } from "@plasmicapp/plume";
 import { Dispatch, forwardRef, SetStateAction } from "react";
 
-import { PlasmicRadioGroup } from "../plasmic/shared/PlasmicRadioGroup";
+import { PlasmicRadioGroup } from "component/plasmic/shared/PlasmicRadioGroup";
 
 interface RadioGroupProps extends PlumeRadioGroupProps {
   setVisibility: Dispatch<SetStateAction<string>>;

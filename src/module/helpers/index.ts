@@ -85,7 +85,6 @@ type RestrictedResource = {
 export function resourceOwnership(
   resource?: RestrictedResource
 ): SingleBooleanChoiceArg<"isOwner"> {
-  console.log(resource);
   if (!resource) {
     return false;
   }

@@ -4,13 +4,14 @@ import { useContext, useState } from "react";
 import {
   DefaultHomeProps,
   PlasmicHome,
+  PlasmicHome__VariantMembers,
 } from "component/plasmic/shared/PlasmicHome";
 import { UserContext } from "context/UserContext";
 import { IUpdate } from "module/interface/update";
 
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
 type IsActive = "feed" | "settings" | "members" | "isNewVenture" | undefined;
-type IsVisible = "postDetails" | "mobileSidebar" | "showModal" | undefined;
+export type IsVisible = PlasmicHome__VariantMembers["isVisible"] | undefined;
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
 interface HomeProps extends DefaultHomeProps {
@@ -54,6 +55,7 @@ export function Home(props: HomeProps) {
           setIsVisible,
           isVisible,
           setPost,
+          post,
           user,
         }}
         postDetails={{

@@ -1,4 +1,4 @@
-import { UserRole } from "../user";
+import { UserRole } from "module/interface/user";
 
 export interface ITimeline {
   name: string;

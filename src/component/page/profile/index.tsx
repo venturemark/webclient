@@ -3,19 +3,18 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
+import { IsVisible } from "component/page/home";
 import {
   DefaultProfileProps,
   PlasmicProfile,
 } from "component/plasmic/shared/PlasmicProfile";
 import { UserContext } from "context/UserContext";
 
-type IsVisible = "postDetails" | "mobileSidebar" | undefined;
-
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
   const { user, status } = useContext(UserContext);
-  const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
+  const [isVisible, setIsVisible] = useState<IsVisible>();
   const { state } = useLocation() as Location<{ returnTo?: string } | null>;
 
   if (status === "loading") {
@@ -29,8 +28,8 @@ function Profile(props: ProfileProps) {
   return (
     <PlasmicProfile
       profileForm={{
-        isVisible: isVisible,
-        setIsVisible: setIsVisible,
+        isVisible,
+        setIsVisible,
         returnTo: state?.returnTo,
       }}
     />
