@@ -1,5 +1,5 @@
-import { ITimeline } from "../timeline";
-import { IVenture } from "../venture";
+import { ITimeline } from "module/interface/timeline";
+import { IVenture } from "module/interface/venture";
 
 export interface IRole {
   id: string;
@@ -11,14 +11,12 @@ export interface IRole {
 }
 
 export interface ISearchTimelineRoles {
-  resource: string;
-  timelineId: string;
-  ventureId: string;
+  timelineId?: string;
+  ventureId?: string;
   token: string | null;
 }
 
 export interface ISearchVentureRoles {
-  resource: string;
   ventureId: string;
   token: string | null;
 }

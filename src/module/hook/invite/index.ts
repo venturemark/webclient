@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 import * as api from "module/api";
 import { sendInvite } from "module/helpers";
+import { DeletionStatus } from "module/interface/api";
 import {
   ICreateInvite,
   IDeleteInvite,
@@ -91,11 +92,6 @@ export function useUpdateInvite() {
 
         //redirect on success
         inviteUpdate.successUrl && navigate(inviteUpdate.successUrl);
-
-        //remove invite code from local storage
-        localStorage.removeItem("code");
-        localStorage.removeItem("ventureId");
-        localStorage.removeItem("id");
       },
     }
   );
@@ -104,7 +100,7 @@ export function useUpdateInvite() {
 export function useDeleteInvite() {
   const queryClient = useQueryClient();
 
-  return useMutation<IInvite[], any, IDeleteInvite>(
+  return useMutation<DeletionStatus[], any, IDeleteInvite>(
     (ventureDelete) => {
       return api.API.Invite.Delete(ventureDelete);
     },

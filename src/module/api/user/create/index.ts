@@ -16,21 +16,23 @@ export async function Create(newUser: ICreateUser) {
 
   const obj = new CreateI_Obj();
   const objProperty = new CreateI_Obj_Property();
-  const objPropertyProf = new CreateI_Obj_Property_Prof();
   const objList = [];
   const profList = [];
 
   const token = newUser.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
-  newUser.ventureTitle && objPropertyProf.setDesc(newUser.ventureTitle);
-  newUser.ventureName && objPropertyProf.setVent(newUser.ventureName);
-  profList.push(objPropertyProf);
+  if (newUser.ventureName && newUser.ventureTitle) {
+    const objPropertyProf = new CreateI_Obj_Property_Prof();
+    objPropertyProf.setDesc(newUser.ventureTitle);
+    objPropertyProf.setVent(newUser.ventureName);
+    profList.push(objPropertyProf);
+    objProperty.setProfList(profList);
+  }
 
   objProperty.setName(newUser.name);
   objProperty.setDesc(newUser.title);
   objProperty.setMail(newUser.mail);
-  objProperty.setProfList(profList);
 
   obj.setProperty(objProperty);
 

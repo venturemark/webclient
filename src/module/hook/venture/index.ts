@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router";
 
 import * as api from "module/api";
+import { DeletionStatus, UpdateStatus } from "module/interface/api";
 import {
   ICreateVenture,
   IDeleteVenture,
@@ -12,10 +13,6 @@ import {
 } from "module/interface/venture";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
-
-const getVenturesByUser = async (searchVenture: ISearchVenturesByUser) => {
-  return api.API.Venture.Search(searchVenture);
-};
 
 const getVentureByTimeline = async ({
   ventureIds,
@@ -33,11 +30,15 @@ const getVentureByTimeline = async ({
   return allVentures.flat();
 };
 
-export function useVenturesByUser(searchVentureByUser: ISearchVenturesByUser) {
+export function useVenturesByUser({ token, userId }: ISearchVenturesByUser) {
   return useQuery<IVenture[], ErrorResponse>(
-    ["ventures", searchVentureByUser.userId],
-    () => getVenturesByUser(searchVentureByUser),
-    { enabled: !!searchVentureByUser.token && !!searchVentureByUser.userId }
+    ["ventures", userId],
+    () =>
+      api.API.Venture.Search({
+        token,
+        userId,
+      }),
+    { enabled: Boolean(token && userId) }
   );
 }
 
@@ -110,7 +111,7 @@ export function useUpdateVenture() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<IVenture[], any, IUpdateVenture>(
+  return useMutation<UpdateStatus[], any, IUpdateVenture>(
     (ventureUpdate) => {
       return api.API.Venture.Update(ventureUpdate);
     },
@@ -130,14 +131,14 @@ export function useDeleteVenture() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<IVenture[], any, IDeleteVenture>(
+  return useMutation<DeletionStatus[], any, IDeleteVenture>(
     (ventureDelete) => {
       return api.API.Venture.Delete(ventureDelete);
     },
     {
-      onSuccess: (data, ventureDelete) => {
+      onSuccess: async (data, ventureDelete) => {
         // Invalidate and refetch
-        queryClient.invalidateQueries("ventures");
+        await queryClient.invalidateQueries("ventures");
         //redirect on success
         ventureDelete.successUrl && navigate(ventureDelete.successUrl);
       },

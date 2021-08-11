@@ -6,11 +6,12 @@ import {
 } from "module/api/message/proto/delete_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IDeleteMessage, IMessage } from "module/interface/message";
+import { DeletionStatus } from "module/interface/api";
+import { IDeleteMessage } from "module/interface/message";
 
 export async function Delete(
   IDeleteMessage: IDeleteMessage
-): Promise<IMessage[]> {
+): Promise<DeletionStatus[]> {
   const objList = [];
 
   const token = IDeleteMessage.token;
@@ -34,14 +35,12 @@ export async function Delete(
         reject(err);
         return;
       } else {
-        const messagesPb = res.getObjList();
-
-        const status = messagesPb.map((messagePb) => {
-          const metaPb = messagePb.getMetadataMap();
-          const id = metaPb.get(key.MessageStatus);
-          return id as unknown as IMessage; // TODO: check
-        });
-        resolve(status);
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.MessageStatus) as DeletionStatus;
+          })
+        );
       }
     });
   });

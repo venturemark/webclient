@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
 
 import { FormData as TimelineFormData } from "component/addedittimeline";
 import { FormData as VentureFormData } from "component/addeditventure";
@@ -9,7 +8,7 @@ import {
 } from "component/plasmic/shared/PlasmicMain";
 import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
-import { ITimeline } from "module/interface/timeline";
+import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 
 interface MainProps extends DefaultMainProps {
@@ -18,15 +17,11 @@ interface MainProps extends DefaultMainProps {
   variantType: any;
   setIsVisible: any;
   isVisible: any;
-  setPost: any;
+  setPost: (u: IUpdate) => void;
+  post: IUpdate;
   ventureId?: string;
   user: IUser;
 }
-
-type EditData = {
-  description: string;
-  name: string;
-};
 
 function Main(props: MainProps) {
   const {
@@ -35,97 +30,59 @@ function Main(props: MainProps) {
     variantType,
     setIsVisible,
     setPost,
+    post,
     ventureId,
     isVisible,
     user,
     ...rest
   } = props;
-  const { timelineSlug, ventureSlug } = useParams();
-  const timelineContext = useContext(TimelineContext);
-  const ventureContext = useContext(VentureContext);
-  const currentVenture = ventureContext?.currentVenture;
-  const timelines = timelineContext?.allTimelines ?? [];
-  const hasVentures =
-    ventureContext && ventureContext?.ventures?.length > 0 ? true : false;
 
-  const [ventureData, setVentureData] = useState<EditData>({
-    name: "",
-    description: "",
-  });
+  const { currentVenture, currentVentureTimelines, ventures } =
+    useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
+  const hasVentures = ventures?.length > 0 ? true : false;
 
-  const [timelineData, setTimelineData] = useState<EditData>({
-    name: "",
-    description: "",
-  });
-
-  const currentTimeline = timelineSlug
-    ? timelines?.filter((timeline: ITimeline) => {
-        return (
-          timeline.name.toLowerCase().replace(/\s/g, "") === timelineSlug &&
-          timeline.ventureId === currentVenture?.id
-        );
-      })[0]
-    : undefined;
-
-  if (!ventureContext?.venturesLoaded && ventureSlug)
-    return <span>loading Ventures...</span>;
+  const [ventureName, setVentureName] = useState<string | null>(null);
+  const [timelineName, setTimelineName] = useState<string | null>(null);
 
   return (
     <PlasmicMain
       {...rest}
       isActive={isActive}
       variantType={variantType}
+      isOwner={
+        !hasVentures || currentVenture?.userRole === "owner"
+          ? "isOwner"
+          : undefined
+      }
       mainHeader={{
         isActive,
         variantType,
-        currentTimeline,
-        ventureData,
-        timelineData,
+        timelineName: timelineName ?? currentTimeline?.name ?? "",
+        ventureName: ventureName ?? currentVenture?.name ?? "",
         isOnboarding,
-        currentVenture,
       }}
       feedUpdate={{
         setIsVisible,
-        timelines,
+        timelines: currentVentureTimelines,
         currentTimeline,
         currentVenture,
         setPost,
+        post,
         isVisible,
         user,
       }}
-      addEditMembers={{
-        currentVenture,
-        currentTimeline,
-        user,
-      }}
       addEditVenture={{
-        currentVenture,
-        hasVentures,
         onChange(data: VentureFormData) {
-          if (
-            data.ventureDescription !== ventureData.description ||
-            data.ventureName !== ventureData.name
-          ) {
-            setVentureData({
-              name: data.ventureName,
-              description: data.ventureDescription,
-            });
+          if (data.ventureName !== ventureName) {
+            setVentureName(data.ventureName);
           }
         },
       }}
       addEditTimeline={{
-        currentVenture,
-        currentTimeline,
-        setIsVisible,
         onChange(data: TimelineFormData) {
-          if (
-            data.timelineDescription !== timelineData.description ||
-            data.timelineName !== timelineData.name
-          ) {
-            setTimelineData({
-              name: data.timelineName,
-              description: data.timelineDescription,
-            });
+          if (data.timelineName !== timelineName) {
+            setTimelineName(data.timelineName);
           }
         },
       }}

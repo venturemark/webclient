@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -103,8 +104,8 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
       })}
     >
       <div
-        className={classNames(defaultcss.all, sty.box__wbTrP, {
-          [sty.box__variantState_isEdit__wbTrPtAumS]: hasVariant(
+        className={classNames(defaultcss.all, sty.freeBox__wbTrP, {
+          [sty.freeBox__variantState_isEdit__wbTrPtAumS]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -165,8 +166,8 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box___0SmAy, {
-            [sty.box__variantState_isEdit___0SmAYtAumS]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox___0SmAy, {
+            [sty.freeBox__variantState_isEdit___0SmAYtAumS]: hasVariant(
               variants,
               "variantState",
               "isEdit"
@@ -174,8 +175,8 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
           })}
         >
           <div
-            className={classNames(defaultcss.all, sty.box__blR7J, {
-              [sty.box__variantState_isEdit__blR7JtAumS]: hasVariant(
+            className={classNames(defaultcss.all, sty.freeBox__blR7J, {
+              [sty.freeBox__variantState_isEdit__blR7JtAumS]: hasVariant(
                 variants,
                 "variantState",
                 "isEdit"

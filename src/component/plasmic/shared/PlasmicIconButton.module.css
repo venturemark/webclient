@@ -27,11 +27,14 @@
   flex-shrink: 0;
 }
 .root:hover .container {
-  border-radius: 5px;
   background: rgb(231, 231, 236);
+  border-radius: 5px;
 }
 .root__greenBgHover:hover .container__greenBgHover {
   background: rgb(0, 142, 113);
+}
+.root__isDisabled:hover .container__isDisabled {
+  background: rgba(255, 255, 255, 0);
 }
 .root__greenBgHover:hover .slotChildren__greenBgHover {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;

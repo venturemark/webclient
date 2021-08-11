@@ -1,39 +1,47 @@
+import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router";
 
 import { Begin } from "component/begin";
 import { Home } from "component/page/home";
 import JoinVenture from "component/page/joinventure";
-import { IUser } from "module/interface/user";
+import { UserContext } from "context/UserContext";
+import { VentureContext } from "context/VentureContext";
+import { useVentures } from "module/hook/ui/useVentures";
 
 import { VentureRoutes } from "./VentureRoutes";
 
-interface RegisteredUserRouteProps {
-  userSuccess: boolean;
-  user?: IUser;
-  userLoading: boolean;
-  userError: boolean;
-}
+export function RegisteredUserRoute() {
+  const { user, status } = useContext(UserContext);
 
-export function RegisteredUserRoute(props: RegisteredUserRouteProps) {
-  const { user, userLoading, userError } = props;
-
-  if (userLoading) return <span>Loading user...</span>;
-
-  if (userError) return <Navigate to={"../signin"} />;
-
-  if (!user) {
-    return <Navigate to={"../profile"} />;
+  const returnTo = window.location.pathname + window.location.search;
+  if (status === "error") {
+    return <Navigate to="/signin" state={{ returnTo }} />;
+  } else if (status === "success" && !user) {
+    return <Navigate to="/profile" state={{ returnTo }} />;
   }
 
   return (
     <Routes>
-      <Route path="joinventure" element={<JoinVenture />} />
-      <Route path="begin" element={<Begin user={user} />} />
+      <Route path="invite" element={<JoinVenture />} />
+      <Route path="begin" element={<Begin />} />
       <Route path="editprofile" element={<EditProfile />} />
       <Route path="newventure" element={<NewVenture />} />
-      <Route path="/*" element={<VentureRoutes user={user} />} />
-      <Route path=":ventureSlug/*" element={<VentureRoutes user={user} />} />
+      <Route path=":ventureSlug/*" element={<VentureRoutes />} />
+      <Route path="*" element={<VentureRoutes />} />
     </Routes>
+  );
+}
+
+function NewVenture() {
+  // We provide this in VentureRoutes, but /newventure is rendered outside of this context
+  // so we have to provide it separately here.
+  const ventureContext = useVentures("");
+  const variantType = "isVenture";
+  const isActive = "settings";
+  return (
+    <VentureContext.Provider value={ventureContext}>
+      <Home variantType={variantType} isActive={isActive} />
+    </VentureContext.Provider>
   );
 }
 
@@ -41,10 +49,4 @@ function EditProfile() {
   const modalType = "editProfile";
   const isVisible = "showModal";
   return <Home modalType={modalType} isVisible={isVisible} />;
-}
-
-export function NewVenture() {
-  const variantType = "isVenture";
-  const isActive = "settings";
-  return <Home variantType={variantType} isActive={isActive} />;
 }

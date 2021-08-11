@@ -49,7 +49,7 @@
   font-weight: 300;
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
 }
-.box___9LrSw {
+.freeBox___9LrSw {
   display: flex;
   position: relative;
   width: 100%;
@@ -66,14 +66,14 @@
   min-width: 0;
   border-radius: 5px;
 }
-.box__lygyM {
+.freeBox__lygyM {
   display: flex;
   position: relative;
   width: 100%;
   min-width: 0;
   border-radius: 5px;
 }
-.box__eDsPg {
+.freeBox__eDsPg {
   display: flex;
   position: relative;
   width: 100%;
@@ -97,7 +97,7 @@
 .input__isDisabled {
   cursor: default;
   pointer-events: none;
-  background: rgb(249, 249, 250) repeat;
+  background: rgb(249, 249, 250);
 }
 .root:focus-within .input {
   outline: none;

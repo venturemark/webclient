@@ -6,6 +6,7 @@ import {
 } from "component/plasmic/shared/PlasmicJoinVenture";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
+import { useQuery } from "module/helpers";
 import { useUpdateInvite } from "module/hook/invite";
 
 interface JoinVentureProps extends DefaultJoinVentureProps {}
@@ -13,16 +14,17 @@ interface JoinVentureProps extends DefaultJoinVentureProps {}
 function JoinVenture(props: JoinVentureProps) {
   const { mutate: updateInvite } = useUpdateInvite();
   const { token } = useContext(AuthContext);
-  const ventureName = localStorage.getItem("ventureName");
+
+  const query = useQuery();
+  const ventureId = query.get("ventureId") ?? "";
+  const timelineId = query.get("timelineId") ?? "";
+  const code = query.get("code") ?? "";
+  const id = query.get("id") ?? "";
+  const ventureName = query.get("ventureName") ?? "";
+  const resource = query.get("resource") ?? "";
+  const role = query.get("role") ?? "";
 
   const handleAcceptJoin = () => {
-    const ventureId = localStorage.getItem("ventureId");
-    const timelineId = localStorage.getItem("timelineId");
-    const code = localStorage.getItem("code");
-    const id = localStorage.getItem("id");
-    const resource = localStorage.getItem("resource");
-    const role = localStorage.getItem("role");
-
     updateInvite({
       id: id ?? "",
       ventureId: ventureId ?? "",

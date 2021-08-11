@@ -1,4 +1,4 @@
-import { UserRole } from "../user";
+import { UserRole } from "module/interface/user";
 
 export interface IVenture {
   id: string;
@@ -10,7 +10,7 @@ export interface IVenture {
 }
 
 export interface ISearchVenturesByUser {
-  userId: string;
+  userId?: string;
   token: string | null;
 }
 

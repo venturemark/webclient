@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -138,11 +139,11 @@ function PlasmicEmptyState__RenderFunc(props: {
             : false
         ) ? (
           <div
-            className={classNames(defaultcss.all, sty.box___2ILiu, {
-              [sty.box__isActive_isNew_variantType_isEmpty___2ILiuTn7O1Hwthy]:
+            className={classNames(defaultcss.all, sty.freeBox___2ILiu, {
+              [sty.freeBox__isActive_isNew_variantType_isEmpty___2ILiuTn7O1Hwthy]:
                 hasVariant(variants, "isActive", "isNew") &&
                 hasVariant(variants, "variantType", "isEmpty"),
-              [sty.box__variantType_isEmpty___2ILiuHwthy]: hasVariant(
+              [sty.freeBox__variantType_isEmpty___2ILiuHwthy]: hasVariant(
                 variants,
                 "variantType",
                 "isEmpty"
@@ -161,12 +162,12 @@ function PlasmicEmptyState__RenderFunc(props: {
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.box__cvbvU,
+                  sty.freeBox__cvbvU,
                   {
-                    [sty.box__isActive_isNew_variantType_isEmpty__cvbvUtn7O1Hwthy]:
+                    [sty.freeBox__isActive_isNew_variantType_isEmpty__cvbvUtn7O1Hwthy]:
                       hasVariant(variants, "isActive", "isNew") &&
                       hasVariant(variants, "variantType", "isEmpty"),
-                    [sty.box__variantType_isEmpty__cvbvUhwthy]: hasVariant(
+                    [sty.freeBox__variantType_isEmpty__cvbvUhwthy]: hasVariant(
                       variants,
                       "variantType",
                       "isEmpty"
@@ -186,9 +187,9 @@ function PlasmicEmptyState__RenderFunc(props: {
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.box__qxWsf,
+                  sty.freeBox__qxWsf,
                   {
-                    [sty.box__variantType_isEmpty__qxWsfHwthy]: hasVariant(
+                    [sty.freeBox__variantType_isEmpty__qxWsfHwthy]: hasVariant(
                       variants,
                       "variantType",
                       "isEmpty"
@@ -208,9 +209,9 @@ function PlasmicEmptyState__RenderFunc(props: {
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.box__eBmr,
+                  sty.freeBox__eBmr,
                   {
-                    [sty.box__variantType_isEmpty__eBmrHwthy]: hasVariant(
+                    [sty.freeBox__variantType_isEmpty__eBmrHwthy]: hasVariant(
                       variants,
                       "variantType",
                       "isEmpty"
@@ -227,11 +228,11 @@ function PlasmicEmptyState__RenderFunc(props: {
         ) : null}
         {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
           <div
-            className={classNames(defaultcss.all, sty.box__xLwhc, {
-              [sty.box__isActive_isNew_variantType_isEmpty__xLwhcTn7O1Hwthy]:
+            className={classNames(defaultcss.all, sty.freeBox__xLwhc, {
+              [sty.freeBox__isActive_isNew_variantType_isEmpty__xLwhcTn7O1Hwthy]:
                 hasVariant(variants, "isActive", "isNew") &&
                 hasVariant(variants, "variantType", "isEmpty"),
-              [sty.box__variantType_isEmpty__xLwhcHwthy]: hasVariant(
+              [sty.freeBox__variantType_isEmpty__xLwhcHwthy]: hasVariant(
                 variants,
                 "variantType",
                 "isEmpty"
@@ -242,11 +243,11 @@ function PlasmicEmptyState__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__rHe6S, {
-                  [sty.box__isActive_isNew_variantType_isEmpty__rHe6STn7O1Hwthy]:
+                className={classNames(defaultcss.all, sty.freeBox__rHe6S, {
+                  [sty.freeBox__isActive_isNew_variantType_isEmpty__rHe6STn7O1Hwthy]:
                     hasVariant(variants, "isActive", "isNew") &&
                     hasVariant(variants, "variantType", "isEmpty"),
-                  [sty.box__variantType_isEmpty__rHe6SHwthy]: hasVariant(
+                  [sty.freeBox__variantType_isEmpty__rHe6SHwthy]: hasVariant(
                     variants,
                     "variantType",
                     "isEmpty"
@@ -257,12 +258,9 @@ function PlasmicEmptyState__RenderFunc(props: {
                   hasVariant(variants, "variantType", "isEmpty") ? true : false
                 ) ? (
                   <div
-                    className={classNames(defaultcss.all, sty.box__qYFj1, {
-                      [sty.box__variantType_isEmpty__qYFj1Hwthy]: hasVariant(
-                        variants,
-                        "variantType",
-                        "isEmpty"
-                      ),
+                    className={classNames(defaultcss.all, sty.freeBox__qYFj1, {
+                      [sty.freeBox__variantType_isEmpty__qYFj1Hwthy]:
+                        hasVariant(variants, "variantType", "isEmpty"),
                     })}
                   >
                     {(
@@ -274,12 +272,12 @@ function PlasmicEmptyState__RenderFunc(props: {
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.box__nMlNv,
+                          sty.freeBox__nMlNv,
                           {
-                            [sty.box__isActive_isNew_variantType_isEmpty__nMlNvTn7O1Hwthy]:
+                            [sty.freeBox__isActive_isNew_variantType_isEmpty__nMlNvTn7O1Hwthy]:
                               hasVariant(variants, "isActive", "isNew") &&
                               hasVariant(variants, "variantType", "isEmpty"),
-                            [sty.box__variantType_isEmpty__nMlNvHwthy]:
+                            [sty.freeBox__variantType_isEmpty__nMlNvHwthy]:
                               hasVariant(variants, "variantType", "isEmpty"),
                           }
                         )}
@@ -301,12 +299,12 @@ function PlasmicEmptyState__RenderFunc(props: {
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.box__tVef,
+                          sty.freeBox__tVef,
                           {
-                            [sty.box__isActive_isNew_variantType_isEmpty__tVefTn7O1Hwthy]:
+                            [sty.freeBox__isActive_isNew_variantType_isEmpty__tVefTn7O1Hwthy]:
                               hasVariant(variants, "isActive", "isNew") &&
                               hasVariant(variants, "variantType", "isEmpty"),
-                            [sty.box__variantType_isEmpty__tVefHwthy]:
+                            [sty.freeBox__variantType_isEmpty__tVefHwthy]:
                               hasVariant(variants, "variantType", "isEmpty"),
                           }
                         )}
@@ -457,8 +455,8 @@ function PlasmicEmptyState__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box___77Ib2, {
-                  [sty.box__variantType_isEmpty___77Ib2Hwthy]: hasVariant(
+                className={classNames(defaultcss.all, sty.freeBox___77Ib2, {
+                  [sty.freeBox__variantType_isEmpty___77Ib2Hwthy]: hasVariant(
                     variants,
                     "variantType",
                     "isEmpty"
@@ -469,8 +467,8 @@ function PlasmicEmptyState__RenderFunc(props: {
                   hasVariant(variants, "variantType", "isEmpty") ? true : false
                 ) ? (
                   <div
-                    className={classNames(defaultcss.all, sty.box__rfS5, {
-                      [sty.box__variantType_isEmpty__rfS5Hwthy]: hasVariant(
+                    className={classNames(defaultcss.all, sty.freeBox__rfS5, {
+                      [sty.freeBox__variantType_isEmpty__rfS5Hwthy]: hasVariant(
                         variants,
                         "variantType",
                         "isEmpty"
@@ -486,9 +484,9 @@ function PlasmicEmptyState__RenderFunc(props: {
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.box__nuDvx,
+                          sty.freeBox__nuDvx,
                           {
-                            [sty.box__variantType_isEmpty__nuDvxHwthy]:
+                            [sty.freeBox__variantType_isEmpty__nuDvxHwthy]:
                               hasVariant(variants, "variantType", "isEmpty"),
                           }
                         )}
@@ -507,9 +505,9 @@ function PlasmicEmptyState__RenderFunc(props: {
                         className={classNames(
                           defaultcss.all,
                           defaultcss.__wab_text,
-                          sty.box__s7JUk,
+                          sty.freeBox__s7JUk,
                           {
-                            [sty.box__variantType_isEmpty__s7JUkHwthy]:
+                            [sty.freeBox__variantType_isEmpty__s7JUkHwthy]:
                               hasVariant(variants, "variantType", "isEmpty"),
                           }
                         )}

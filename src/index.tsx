@@ -2,12 +2,12 @@ import "index.css";
 
 import { Auth0Provider } from "@auth0/auth0-react";
 import GA4React from "ga-4-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import TagManager from "react-gtm-module";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { Navigate } from "react-router-dom";
+import { BrowserRouter, useNavigate } from "react-router-dom";
 import WebFont from "webfontloader";
 
 import { App } from "component/app";
@@ -22,57 +22,60 @@ WebFont.load({
   },
 });
 
-const config = getConfig();
-
-const onRedirectCallback = (appState: any) => {
-  const url =
-    appState && appState.returnTo
-      ? appState.returnTo
-      : window.location.pathname;
-  return <Navigate to={`${url}`} replace />;
-};
-
-const providerConfig = {
-  domain: config.domain,
-  clientId: config.clientId,
-  ...(config.audience ? { audience: config.audience } : null),
-  redirectUri: config.redirectUri,
-  useRefreshTokens: config.useRefreshTokens,
-  cacheLocation: config.cacheLocation,
-  onRedirectCallback,
-};
-
+const rootElement = document.getElementById("root");
 const queryClient = new QueryClient();
 
-if (!isDev()) {
-  const tagManagerArgs = {
-    gtmId: "GTM-PV3PGVX",
-    dataLayerName: "UserDataLayer",
+function Root() {
+  const [initialized, setInitialized] = useState(false);
+  const dev = isDev();
+
+  useEffect(() => {
+    if (dev || initialized) return;
+    Promise.all([
+      ga4react.initialize(),
+      TagManager.initialize({
+        gtmId: "GTM-PV3PGVX",
+        dataLayerName: "UserDataLayer",
+      }),
+    ])
+      .then(() => setInitialized(true))
+      .catch((e) => console.error(e));
+  }, [dev, setInitialized, initialized]);
+
+  const config = getConfig();
+  const navigate = useNavigate();
+
+  const onRedirectCallback = (appState: { returnTo?: string } | null) => {
+    if (appState?.returnTo) {
+      navigate(appState.returnTo, { replace: true });
+    }
   };
 
-  TagManager.initialize(tagManagerArgs);
-}
-
-const rootElement = document.getElementById("root");
-
-(async () => {
-  if (!isDev()) {
-    try {
-      await ga4react.initialize();
-    } catch (e) {
-      console.error("failed to initialize ga");
-    }
-  }
-
-  const app = (
+  return (
     <React.StrictMode>
-      <Auth0Provider {...providerConfig}>
+      <Auth0Provider
+        domain={config.domain}
+        clientId={config.clientId}
+        audience={config.audience}
+        redirectUri={config.redirectUri}
+        useRefreshTokens={config.useRefreshTokens}
+        cacheLocation={config.cacheLocation}
+        onRedirectCallback={onRedirectCallback}
+      >
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
           <App />
         </QueryClientProvider>
       </Auth0Provider>
     </React.StrictMode>
+  );
+}
+
+(async () => {
+  const app = (
+    <BrowserRouter>
+      <Root />
+    </BrowserRouter>
   );
 
   if (rootElement?.hasChildNodes()) {

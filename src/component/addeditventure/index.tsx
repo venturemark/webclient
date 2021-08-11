@@ -1,5 +1,5 @@
 import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -8,13 +8,11 @@ import {
   PlasmicAddEditVenture,
 } from "component/plasmic/shared/PlasmicAddEditVenture";
 import { AuthContext } from "context/AuthContext";
+import { VentureContext } from "context/VentureContext";
+import { calculateNamedSlug, calculateSlug } from "module/helpers";
 import { useCreateVenture, useUpdateVenture } from "module/hook/venture";
-import { IVenture } from "module/interface/venture";
 
 interface AddEditVentureProps extends DefaultAddEditVentureProps {
-  setIsActive: any;
-  currentVenture?: IVenture;
-  hasVentures: boolean;
   onChange?: (data: FormData) => void;
 }
 
@@ -26,7 +24,8 @@ export type FormData = {
 };
 
 function AddEditVenture(props: AddEditVentureProps) {
-  const { setIsActive, currentVenture, hasVentures, onChange, ...rest } = props;
+  const { onChange, ...rest } = props;
+  const { currentVenture, ventures } = useContext(VentureContext);
 
   const {
     handleSubmit,
@@ -45,6 +44,17 @@ function AddEditVenture(props: AddEditVentureProps) {
       ventureDescription: currentVenture?.desc || "",
     },
   });
+
+  const previousVenture = useRef(currentVenture);
+  useEffect(() => {
+    if (previousVenture.current !== currentVenture) {
+      setValue("membersWrite", currentVenture?.membersWrite ?? true);
+      setValue("ventureName", currentVenture?.name ?? "");
+      setValue("ventureDescription", currentVenture?.desc ?? "");
+      setValue("url", currentVenture?.url ?? "");
+      previousVenture.current = currentVenture;
+    }
+  }, [currentVenture, setValue]);
 
   const values = watch();
   useEffect(() => {
@@ -117,9 +127,20 @@ function AddEditVenture(props: AddEditVentureProps) {
       }}
       name={{
         ...register("ventureName", {
-          required: {
-            message: "Required",
-            value: true,
+          validate: (s: string) => {
+            if (!s) return "Required";
+            if (
+              currentVenture &&
+              calculateNamedSlug(currentVenture) === calculateSlug(s)
+            )
+              return true;
+            if (
+              ventures.some((v) => {
+                return calculateNamedSlug(v) === calculateSlug(s);
+              })
+            )
+              return "Already exists";
+            return true;
           },
         }),
         onChange(e) {
@@ -177,7 +198,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         handleDelete: () =>
           navigate(`/${handle}/delete?ventureId=${ventureId}`),
         handleCancel: () => {
-          hasVentures ? navigate("..") : navigate("/begin");
+          ventures.length ? navigate("..") : navigate("/begin");
         },
         handleSave: () => handleSubmit(handleCreate)(),
       }}

@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -165,8 +166,8 @@ function PlasmicContentPost__RenderFunc(props: {
         })}
       >
         <div
-          className={classNames(defaultcss.all, sty.box__z3Q65, {
-            [sty.box__state_isOwner__z3Q65U0Xnn]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__z3Q65, {
+            [sty.freeBox__state_isOwner__z3Q65U0Xnn]: hasVariant(
               variants,
               "state",
               "isOwner"
@@ -244,8 +245,8 @@ function PlasmicContentPost__RenderFunc(props: {
 
           {(hasVariant(variants, "state", "isOwner") ? true : false) ? (
             <div
-              className={classNames(defaultcss.all, sty.box__vVNrv, {
-                [sty.box__state_isOwner__vVNrvU0Xnn]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__vVNrv, {
+                [sty.freeBox__state_isOwner__vVNrvU0Xnn]: hasVariant(
                   variants,
                   "state",
                   "isOwner"
@@ -332,13 +333,13 @@ function PlasmicContentPost__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__ehjLr, {
-            [sty.box__state_isOwner__ehjLrU0Xnn]: hasVariant(
+          className={classNames(defaultcss.all, sty.freeBox__ehjLr, {
+            [sty.freeBox__state_isOwner__ehjLrU0Xnn]: hasVariant(
               variants,
               "state",
               "isOwner"
             ),
-            [sty.box__state_isPostDetails__ehjLrNeiX5]: hasVariant(
+            [sty.freeBox__state_isPostDetails__ehjLrNeiX5]: hasVariant(
               variants,
               "state",
               "isPostDetails"
@@ -348,8 +349,8 @@ function PlasmicContentPost__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.box__kyNpO, {
-              [sty.box__state_isOwner_isUserOnClick__kyNpOu0XnnG87Sf]:
+            className={classNames(defaultcss.all, sty.freeBox__kyNpO, {
+              [sty.freeBox__state_isOwner_isUserOnClick__kyNpOu0XnnG87Sf]:
                 hasVariant(variants, "state", "isOwner") &&
                 hasVariant(variants, "isUserOnClick", "isUserOnClick"),
             })}
@@ -367,20 +368,20 @@ function PlasmicContentPost__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__mkSty)}
+              className={classNames(defaultcss.all, sty.freeBox__mkSty)}
             >
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__fjL5B, {
-                  [sty.box__state_isOwner__fjL5Bu0Xnn]: hasVariant(
+                className={classNames(defaultcss.all, sty.freeBox__fjL5B, {
+                  [sty.freeBox__state_isOwner__fjL5Bu0Xnn]: hasVariant(
                     variants,
                     "state",
                     "isOwner"
                   ),
                 })}
               >
-                <div className={classNames(defaultcss.all, sty.box__nwWG)}>
+                <div className={classNames(defaultcss.all, sty.freeBox__nwWG)}>
                   {p.renderPlasmicSlot({
                     defaultContents: (
                       <span
@@ -404,8 +405,8 @@ function PlasmicContentPost__RenderFunc(props: {
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.box__wDBh5, {
-                    [sty.box__state_isOwner__wDBh5U0Xnn]: hasVariant(
+                  className={classNames(defaultcss.all, sty.freeBox__wDBh5, {
+                    [sty.freeBox__state_isOwner__wDBh5U0Xnn]: hasVariant(
                       variants,
                       "state",
                       "isOwner"
@@ -459,8 +460,8 @@ function PlasmicContentPost__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__vvzri, {
-                  [sty.box__state_isOwner_isUserOnClick__vvzriu0XnnG87Sf]:
+                className={classNames(defaultcss.all, sty.freeBox__vvzri, {
+                  [sty.freeBox__state_isOwner_isUserOnClick__vvzriu0XnnG87Sf]:
                     hasVariant(variants, "state", "isOwner") &&
                     hasVariant(variants, "isUserOnClick", "isUserOnClick"),
                 })}
@@ -501,8 +502,8 @@ function PlasmicContentPost__RenderFunc(props: {
 
           {(hasVariant(variants, "state", "isPostDetails") ? false : true) ? (
             <div
-              className={classNames(defaultcss.all, sty.box__iRFwS, {
-                [sty.box__state_isPostDetails__iRFwSNeiX5]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__iRFwS, {
+                [sty.freeBox__state_isPostDetails__iRFwSNeiX5]: hasVariant(
                   variants,
                   "state",
                   "isPostDetails"

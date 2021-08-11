@@ -1,45 +1,35 @@
+import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import {
   DefaultMainHeaderProps,
   PlasmicMainHeader,
 } from "component/plasmic/shared/PlasmicMainHeader";
-import { ITimeline } from "module/interface/timeline";
-import { IVenture } from "module/interface/venture";
+import { TimelineContext } from "context/TimelineContext";
+import { VentureContext } from "context/VentureContext";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
-  ventureData: {
-    description: string;
-    name: string;
-  };
-  timelineData: {
-    description: string;
-    name: string;
-  };
-  currentTimeline: ITimeline;
   variantType: string;
   isOnboarding?: boolean | "isOnboarding";
-  currentVenture: IVenture;
 }
 
 function MainHeader(props: MainHeaderProps) {
-  const {
-    isActive,
-    currentTimeline,
-    variantType,
-    isOnboarding,
-    timelineData,
-    ventureData,
-    currentVenture,
-    ...rest
-  } = props;
+  const { isActive, variantType, isOnboarding, ...rest } = props;
   const { timelineSlug, ventureSlug } = useParams();
+  const { currentVentureMembers } = useContext(VentureContext);
+  const { currentTimeline, currentTimelineMembers } =
+    useContext(TimelineContext);
   const navigate = useNavigate();
 
-  const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
+  const basePath = timelineSlug
+    ? `/${ventureSlug}/${timelineSlug}`
+    : `/${ventureSlug}`;
 
-  const link = timelineSlug ? `/${handle}/${timelineSlug}` : `/${handle}`;
+  const members = currentTimeline
+    ? currentTimelineMembers
+    : currentVentureMembers;
+
   return (
     <PlasmicMainHeader
       {...rest}
@@ -50,22 +40,15 @@ function MainHeader(props: MainHeaderProps) {
           ? "ventureHeader"
           : "timelineHeader"
       }
-      ventureName={ventureData?.name || currentVenture?.name || " "}
-      ventureDescription={
-        ventureData?.description || currentVenture?.desc || " "
-      }
-      timelineName={timelineData?.name || currentTimeline?.name || " "}
-      timelineDescription={
-        timelineData?.description || currentTimeline?.desc || " "
-      }
       viewHome={{
-        onClick: () => navigate(link + "/feed"),
+        onClick: () => navigate(basePath + "/feed"),
       }}
       viewMembers={{
-        onClick: () => navigate(link + "/members"),
+        memberCount: members.length,
+        onClick: () => navigate(basePath + "/members"),
       }}
       viewSettings={{
-        onClick: () => navigate(link + "/settings"),
+        onClick: () => navigate(basePath + "/settings"),
       }}
       isActive={isActive}
     />

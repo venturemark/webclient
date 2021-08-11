@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import {
   DefaultReplyContentProps,
@@ -8,6 +8,7 @@ import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { getUniqueListBy } from "module/helpers";
 import { useDeleteMessage } from "module/hook/message";
+import useDropdown from "module/hook/ui/useDropdown";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { IUser } from "module/interface/user";
 
@@ -28,11 +29,11 @@ function ReplyContent(props: ReplyContentProps) {
 
   const { mutate: deleteMessage } = useDeleteMessage();
   const userContext = useContext(UserContext);
-  const [showMenu, setShowMenu] = useState(false);
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
-      resource: "timeline",
       timelineId: timelineId ?? undefined,
       ventureId: ventureId ?? undefined,
       token,
@@ -40,7 +41,6 @@ function ReplyContent(props: ReplyContentProps) {
 
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
     useVentureMembers({
-      resource: "venture",
       ventureId: ventureId ?? undefined,
       token,
     });
@@ -67,11 +67,14 @@ function ReplyContent(props: ReplyContentProps) {
   return (
     <PlasmicReplyContent
       {...rest}
+      root={{
+        ref: dropdownRootRef,
+      }}
       state={isOwner}
       iconMenu={{
-        onClick: () => setShowMenu(!showMenu),
+        onClick: () => setDropdownVisible(!dropdownVisible),
       }}
-      isUserOnClick={showMenu}
+      isUserOnClick={dropdownVisible}
       dropdown={{
         onClick: handleDeleteMessage,
       }}

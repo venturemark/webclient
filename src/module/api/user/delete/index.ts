@@ -2,9 +2,12 @@ import { APIClient } from "module/api/user/proto/ApiServiceClientPb";
 import { DeleteI, DeleteI_Obj, DeleteO } from "module/api/user/proto/delete_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IDeleteUser, IUser } from "module/interface/user";
+import { DeletionStatus } from "module/interface/api";
+import { IDeleteUser } from "module/interface/user";
 
-export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
+export async function Delete(
+  IDeleteUser: IDeleteUser
+): Promise<DeletionStatus[]> {
   const objList = [];
 
   const token = IDeleteUser.token;
@@ -25,13 +28,12 @@ export async function Delete(IDeleteUser: IDeleteUser): Promise<IUser[]> {
         reject(err);
         return;
       } else {
-        const usersPb = res.getObjList();
-
-        const status = usersPb.map((userPb) => {
-          const metaPb = userPb.getMetadataMap();
-          return metaPb.get(key.UserStatus) as unknown as IUser; // TODO: this is wrong
-        });
-        resolve(status);
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.UserStatus) as DeletionStatus;
+          })
+        );
       }
     });
   });

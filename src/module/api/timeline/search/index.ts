@@ -43,6 +43,7 @@ export async function Search(
           let propertiesPb = timelinePb.getProperty();
           let metaPb = timelinePb.getMetadataMap();
           let membersWrite = metaPb.get(key.PermissionModel) === "writer";
+          let lastUpdate = metaPb.get(key.TimelineLastUpdate);
           let name = propertiesPb?.getName() as string;
           let desc = propertiesPb?.getDesc() as string;
           let stat = propertiesPb?.getStat() as string;
@@ -59,6 +60,7 @@ export async function Search(
             ventureId,
             id,
             membersWrite,
+            lastUpdate,
           };
           return timeline;
         });

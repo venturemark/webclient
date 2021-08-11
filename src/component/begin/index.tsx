@@ -3,15 +3,11 @@ import { Navigate } from "react-router";
 
 import { Home } from "component/page/home";
 import { AuthContext } from "context/AuthContext";
+import { UserContext } from "context/UserContext";
 import { useVenturesByUser } from "module/hook/venture";
-import { IUser } from "module/interface/user";
 
-interface BeginProps {
-  user: IUser;
-}
-
-export function Begin(props: BeginProps) {
-  const { user } = props;
+export function Begin() {
+  const { user } = useContext(UserContext);
   const { token } = useContext(AuthContext);
 
   const { data: venturesData = [], isLoading: venturesLoading } =
@@ -20,24 +16,13 @@ export function Begin(props: BeginProps) {
       token,
     });
 
-  const hasInvite =
-    localStorage.getItem("ventureId") &&
-    localStorage.getItem("code") &&
-    localStorage.getItem("id")
-      ? true
-      : false;
-
-  if (hasInvite) {
-    return <Navigate replace to={`/joinventure`} />;
-  }
-
   const variantType = "isEmpty";
   const isActive = "feed";
   if (venturesLoading) {
     return <span>loading data...</span>;
   }
   if (venturesData.length > 0) {
-    return <Navigate replace to={`../`} />;
+    return <Navigate replace to="/" />;
   }
   return <Home variantType={variantType} isActive={isActive} />;
 }

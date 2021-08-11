@@ -1,8 +1,10 @@
+import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
 import emailjs from "emailjs-com";
 import { useLocation } from "react-router-dom";
 
 import { IEmailInvite } from "module/interface/email";
 import { ICreateInvite, IInvite } from "module/interface/invite";
+import { UserRole } from "module/interface/user";
 
 export function isDev(): boolean {
   const development: boolean =
@@ -59,19 +61,38 @@ export function sendInvite(inviteData: IInvite, invite: ICreateInvite) {
     message: `Please click the link to receive updates about ${invite.fromVentureName} on Venturemark.co`,
   };
 
-  emailjs
-    .send(
-      "service_4fkfbos",
-      "template_iifu2kt",
-      templateParams,
-      "user_mRFm0l0xiY3CK24bkQMdu"
-    )
-    .then(
-      function (response) {
-        console.log("email sent!", response.status, response.text);
-      },
-      function (error) {
-        console.log("failed to send email", error);
-      }
-    );
+  emailjs.send(
+    "service_4fkfbos",
+    "template_iifu2kt",
+    templateParams,
+    "user_mRFm0l0xiY3CK24bkQMdu"
+  );
+}
+
+export function calculateNamedSlug(named?: { name: string }): string {
+  return calculateSlug(named?.name || "");
+}
+
+export function calculateSlug(name: string): string {
+  return name.toLowerCase().replace(/\s/g, "");
+}
+
+type RestrictedResource = {
+  userRole?: UserRole;
+  membersWrite: boolean;
+};
+
+export function resourceOwnership(
+  resource?: RestrictedResource
+): SingleBooleanChoiceArg<"isOwner"> {
+  if (!resource) {
+    return false;
+  }
+  if (resource.userRole === "owner") {
+    return "isOwner";
+  }
+  if (resource.userRole === "member" && resource.membersWrite) {
+    return "isOwner";
+  }
+  return false;
 }

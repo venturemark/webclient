@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -101,34 +102,39 @@ function PlasmicJoinVenture__RenderFunc(props: {
             sty.root
           )}
         >
-          <div className={classNames(defaultcss.all, sty.box___2Z8)}>
+          <div className={classNames(defaultcss.all, sty.freeBox___2Z8)}>
             <Header
               data-plasmic-name={"header"}
               data-plasmic-override={overrides.header}
               className={classNames("__wab_instance", sty.header)}
             />
 
-            <div className={classNames(defaultcss.all, sty.box__lHnLh)}>
+            <div className={classNames(defaultcss.all, sty.freeBox__lHnLh)}>
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__sMn2A)}
+                className={classNames(defaultcss.all, sty.freeBox__sMn2A)}
               >
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.box__uwKvi)}
+                  className={classNames(defaultcss.all, sty.freeBox__uwKvi)}
                 >
-                  <div className={classNames(defaultcss.all, sty.box__hRcye)}>
+                  <div
+                    className={classNames(defaultcss.all, sty.freeBox__hRcye)}
+                  >
                     <div
-                      className={classNames(defaultcss.all, sty.box___3W6Kg)}
+                      className={classNames(
+                        defaultcss.all,
+                        sty.freeBox___3W6Kg
+                      )}
                     >
                       <h2 className={classNames(defaultcss.h2, sty.h2___608W3)}>
                         <div
                           className={classNames(
                             defaultcss.all,
                             defaultcss.__wab_text,
-                            sty.box__u899S
+                            sty.freeBox__u899S
                           )}
                         >
                           {"Join "}
@@ -148,7 +154,9 @@ function PlasmicJoinVenture__RenderFunc(props: {
                       </h2>
                     </div>
 
-                    <div className={classNames(defaultcss.all, sty.box__zlDnp)}>
+                    <div
+                      className={classNames(defaultcss.all, sty.freeBox__zlDnp)}
+                    >
                       <h2
                         className={classNames(
                           defaultcss.h2,

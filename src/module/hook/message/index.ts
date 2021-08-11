@@ -1,10 +1,11 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
+import * as api from "module/api";
 import {
   ICreateMessage,
   IMessage,
   ISearchMessage,
 } from "module/interface/message";
-import * as api from "module/api";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 

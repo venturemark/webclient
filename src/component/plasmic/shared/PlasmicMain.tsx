@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -213,7 +214,7 @@ function PlasmicMain__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.box__dUFvj
+                sty.freeBox__dUFvj
               )}
             >
               {hasVariant(globalVariants, "screen", "tablet")
@@ -411,7 +412,7 @@ function PlasmicMain__RenderFunc(props: {
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.box__fdWyB
+              sty.freeBox__fdWyB
             )}
           >
             {"Create a New Venture"}
@@ -588,27 +589,27 @@ function PlasmicMain__RenderFunc(props: {
           className={classNames(
             defaultcss.all,
             defaultcss.__wab_text,
-            sty.box__k8I5L,
+            sty.freeBox__k8I5L,
             {
-              [sty.box__isActive_settings__k8I5LOMvQw]: hasVariant(
+              [sty.freeBox__isActive_settings__k8I5LOMvQw]: hasVariant(
                 variants,
                 "isActive",
                 "settings"
               ),
-              [sty.box__isOwner__k8I5LSozJa]: hasVariant(
+              [sty.freeBox__isOwner__k8I5LSozJa]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
               ),
-              [sty.box__variantType_isEmpty__k8I5LnF9Ly]: hasVariant(
+              [sty.freeBox__variantType_isEmpty__k8I5LnF9Ly]: hasVariant(
                 variants,
                 "variantType",
                 "isEmpty"
               ),
-              [sty.box__variantType_isEmpty_isOwner__k8I5LnF9LySozJa]:
+              [sty.freeBox__variantType_isEmpty_isOwner__k8I5LnF9LySozJa]:
                 hasVariant(variants, "variantType", "isEmpty") &&
                 hasVariant(variants, "isOwner", "isOwner"),
-              [sty.box__variantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN]:
+              [sty.freeBox__variantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN]:
                 hasVariant(variants, "variantType", "isEmpty") &&
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "isPublic", "isPublic"),

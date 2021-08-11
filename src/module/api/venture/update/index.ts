@@ -7,11 +7,12 @@ import {
 } from "module/api/venture/proto/update_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IUpdateVenture, IVenture } from "module/interface/venture";
+import { UpdateStatus } from "module/interface/api";
+import { IUpdateVenture } from "module/interface/venture";
 
 export async function Update(
   ventureUpdate: IUpdateVenture
-): Promise<IVenture[]> {
+): Promise<UpdateStatus[]> {
   const token = ventureUpdate.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
@@ -63,17 +64,18 @@ export async function Update(
   objList.push(obj);
   req.setObjList(objList);
 
-  return new Promise<IVenture[]>((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     client.update(req, metadata, function (err: any, res: UpdateO): any {
       if (err) {
         reject(err);
         return;
       } else {
-        const venturePb = res.getObjList()[0];
-        const metaPb = venturePb.getMetadataMap();
-        const status = metaPb.get(key.VentureStatus);
-
-        resolve(status as unknown as IVenture[]); // TODO: check
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.VentureStatus) as UpdateStatus;
+          })
+        );
       }
     });
   });

@@ -11,6 +11,7 @@ export interface IUser {
   name: string;
   title?: string;
   job?: Job;
+  lastUpdate?: Record<string, string>;
 }
 
 export interface ISearchCurrentUser {
@@ -18,15 +19,13 @@ export interface ISearchCurrentUser {
 }
 
 export interface ISearchVentureMembers {
-  resource: string;
-  ventureId: string;
+  ventureId?: string;
   token: string | null;
 }
 
 export interface ISearchTimelineMembers {
-  resource: string;
-  timelineId: string;
-  ventureId: string;
+  timelineId?: string;
+  ventureId?: string;
   token: string | null;
 }
 
@@ -51,10 +50,12 @@ export interface IDeleteUser {
 }
 
 export interface IUpdateUser {
-  mail?: string;
   id: string;
-  name: string;
-  title: string;
+  name?: string;
+  title?: string;
+  mail?: string;
+  lastUpdate?: Record<string, string>;
+
   successUrl?: string;
   token: string | null;
 }

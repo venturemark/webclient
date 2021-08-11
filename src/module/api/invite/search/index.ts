@@ -20,7 +20,7 @@ export async function Search(searchInvite: ISearchInvite): Promise<IInvite[]> {
 
   const obj = new SearchI_Obj();
 
-  obj.getMetadataMap().set(key.VentureID, searchInvite.ventureId);
+  obj.getMetadataMap().set(key.VentureID, searchInvite.ventureId!);
 
   objList.push(obj);
   req.setObjList(objList);

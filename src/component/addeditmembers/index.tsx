@@ -8,39 +8,27 @@ import {
   PlasmicAddEditMembers,
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { AuthContext } from "context/AuthContext";
-import { getUniqueListBy } from "module/helpers";
+import { TimelineContext } from "context/TimelineContext";
+import { UserContext } from "context/UserContext";
+import { VentureContext } from "context/VentureContext";
 import {
   useCreateInvite,
   useDeleteInvite,
   useInvites,
 } from "module/hook/invite";
-import {
-  useDeleteRole,
-  useTimelineRole,
-  useVentureRole,
-} from "module/hook/role";
-import { useTimelineMembers, useVentureMembers } from "module/hook/user";
+import { useDeleteRole } from "module/hook/role";
 import { IInvite } from "module/interface/invite";
-import { IRole } from "module/interface/role";
-import { ITimeline } from "module/interface/timeline";
-import { IUser } from "module/interface/user";
-import { IVenture } from "module/interface/venture";
 
 const emailRegex =
   /^\s*(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;
 
-interface AddEditMembersProps extends DefaultAddEditMembersProps {
-  currentVenture: IVenture;
-  currentTimeline: ITimeline;
-  user: IUser;
-}
+interface AddEditMembersProps extends DefaultAddEditMembersProps {}
 
 type FormData = {
   email: string;
 };
 
 function AddEditMembers(props: AddEditMembersProps) {
-  const { currentVenture, currentTimeline, user, ...rest } = props;
   const {
     handleSubmit,
     reset,
@@ -58,7 +46,12 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   const values = watch();
 
+  const { user } = useContext(UserContext);
   const { token } = useContext(AuthContext);
+  const { currentVenture, currentVentureMembers } = useContext(VentureContext);
+  const { currentTimeline, currentTimelineMembers } =
+    useContext(TimelineContext);
+
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
 
@@ -66,68 +59,20 @@ function AddEditMembers(props: AddEditMembersProps) {
   const { mutate: deleteRole } = useDeleteRole();
   const { mutate: deleteInvite } = useDeleteInvite();
 
-  const { data: invitesData = [], isSuccess: invitesSuccess } = useInvites({
+  const { data: invitesData = [] } = useInvites({
     ventureId: currentVenture?.id,
     token,
   });
 
-  const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
-    useTimelineMembers({
-      resource: "timeline",
-      timelineId: currentTimeline?.id ?? undefined,
-      ventureId: currentVenture?.id ?? undefined,
-      token,
-    });
-
-  const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
-    useVentureMembers({
-      resource: "venture",
-      ventureId: currentVenture?.id ?? undefined,
-      token,
-    });
-
-  const { data: timelineRolesData = [] } = useTimelineRole({
-    resource: "timeline",
-    timelineId: currentTimeline?.id ?? "",
-    ventureId: currentVenture?.id ?? "",
-    token,
+  const invites = invitesData.filter((invite: IInvite) => {
+    if (invite.status !== "pending") return false;
+    if (currentTimeline) return currentTimeline.id === invite.timelineId;
+    else return !invite.timelineId;
   });
 
-  const { data: ventureRolesData = [] } = useVentureRole({
-    resource: "venture",
-    ventureId: currentVenture?.id ?? "",
-    token,
-  });
-
-  const allMembers = (
-    timelineUsersSuccess && ventureUsersSuccess
-      ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
-      : ventureUsersData
-  ).map((member) => ({
-    ...member,
-    invite: false,
-  }));
-
-  const allSuccess = ventureUsersSuccess && invitesSuccess;
-
-  const allInvites = invitesData
-    ?.filter(
-      (invite: IInvite) =>
-        invite.status === "pending" &&
-        (!currentTimeline ||
-          !invite.timelineId ||
-          currentTimeline.id === invite.timelineId)
-    )
-    .map((invite: IInvite) => ({
-      invite: true,
-      id: invite.id,
-      name: invite.email,
-      title: undefined,
-    }));
-
-  const membersAndInvites = allSuccess
-    ? [...new Set([...allMembers, ...allInvites])]
-    : allMembers;
+  const members = currentTimeline
+    ? currentTimelineMembers
+    : currentVentureMembers;
 
   const handleInvite = (data: FormData) => {
     createInvite(
@@ -149,35 +94,29 @@ function AddEditMembers(props: AddEditMembersProps) {
     );
   };
 
-  const handleRemoveMemberRole = (userId: string) => {
-    if (userId === user.id) {
-      alert("You can't delete yourself from a timeline");
-      return;
-    }
-
-    const roleId = !currentTimeline
-      ? ventureRolesData.find((role: IRole) => role.subjectId === userId)?.id
-      : timelineRolesData.find((role: IRole) => role.subjectId === userId)?.id;
-
-    if (!roleId) {
-      return;
-    }
-
-    deleteRole(
-      !currentTimeline
-        ? {
-            resource: "venture",
-            id: roleId,
-            ventureId,
-            token: token,
-          }
-        : {
-            resource: "timeline",
-            id: roleId,
-            timelineId,
-            token: token,
-          }
+  const handleRemoveMemberRole = (roleId: string) => {
+    const isTimelineRole = currentTimelineMembers.some(
+      (m) => m.role.id === roleId
     );
+    const isVentureRole = currentVentureMembers.some(
+      (m) => m.role.id === roleId
+    );
+
+    if (isTimelineRole) {
+      deleteRole({
+        resource: "timeline",
+        id: roleId,
+        timelineId,
+        token: token,
+      });
+    } else if (isVentureRole) {
+      deleteRole({
+        resource: "venture",
+        id: roleId,
+        ventureId,
+        token: token,
+      });
+    }
   };
 
   const handleDeleteInvite = (inviteId: string) => {
@@ -197,7 +136,7 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   return (
     <PlasmicAddEditMembers
-      {...rest}
+      {...props}
       form={{
         onSubmit: handleSubmit(handleInvite),
       }}
@@ -219,59 +158,49 @@ function AddEditMembers(props: AddEditMembersProps) {
         onPress: () => handleSubmit(handleInvite)(),
       }}
       membersContainer={{
-        children: !currentTimeline
-          ? membersAndInvites?.map((member) => (
+        children: members
+          .map((member) => {
+            let userVariant: "isAdmin" | "isMember" | "isSelf" = "isMember";
+            if (member.user.id === user?.id) {
+              userVariant = "isSelf";
+            } else if (
+              member.role.role === "owner" ||
+              member.role.role === "admin"
+            ) {
+              userVariant = "isAdmin";
+            }
+
+            return (
               <MemberItem
-                userName={member.name}
-                user={member}
-                userVariant={
-                  member.title === undefined
-                    ? "isRequested"
-                    : ventureRolesData?.find(
-                        (role: IRole) => role.subjectId === member.id
-                      )?.role === "owner"
-                    ? "isAdmin"
-                    : "isMember"
-                }
+                userName={member.user.name}
+                user={member.user}
+                userVariant={userVariant}
+                ventureTimeline={currentTimeline ? "isTimeline" : undefined}
+                isOwner={isOwner}
                 handleClick={
                   isOwner
-                    ? () => {
-                        if (!member.invite) {
-                          handleRemoveMemberRole(member.id);
-                        } else {
-                          handleDeleteInvite(member.id);
-                        }
-                      }
+                    ? () => handleRemoveMemberRole(member.role.id)
                     : undefined
                 }
               />
-            ))
-          : membersAndInvites?.map((member: any) => (
-              <MemberItem
-                userName={member.name}
-                user={member}
-                userVariant={
-                  member.title === undefined
-                    ? "isRequested"
-                    : timelineRolesData?.find(
-                        (role: IRole) => role.subjectId === member.id
-                      )?.role === "owner"
-                    ? "isAdmin"
-                    : "isMember"
-                }
-                handleClick={
-                  isOwner
-                    ? () => {
-                        if (!member.invite) {
-                          handleRemoveMemberRole(member.id);
-                        } else {
-                          handleDeleteInvite(member.id);
-                        }
-                      }
-                    : undefined
-                }
-              />
-            )),
+            );
+          })
+          .concat(
+            invites.map((invite) => {
+              return (
+                <MemberItem
+                  userName={invite.email}
+                  user={{ name: invite.email }}
+                  userVariant={"isRequested"}
+                  ventureTimeline={currentTimeline ? "isTimeline" : undefined}
+                  isOwner={isOwner}
+                  handleClick={
+                    isOwner ? () => handleDeleteInvite(invite.id) : undefined
+                  }
+                />
+              );
+            })
+          ),
       }}
     />
   );

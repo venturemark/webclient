@@ -1,3 +1,5 @@
+import { UpdateStatus } from "module/interface/api";
+
 export interface IInvite {
   id: string;
   resource: string;
@@ -10,7 +12,7 @@ export interface IInvite {
 }
 
 export interface ISearchInvite {
-  ventureId: string;
+  ventureId?: string;
   token: string | null;
 }
 
@@ -50,5 +52,5 @@ export interface IUpdateInvite {
 
 export interface IUpdateStatus {
   role: string;
-  status: string;
+  status: UpdateStatus;
 }

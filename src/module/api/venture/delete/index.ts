@@ -6,11 +6,12 @@ import {
 } from "module/api/venture/proto/delete_pb";
 import * as key from "module/apikeys";
 import * as env from "module/env";
-import { IDeleteVenture, IVenture } from "module/interface/venture";
+import { DeletionStatus } from "module/interface/api";
+import { IDeleteVenture } from "module/interface/venture";
 
 export async function Delete(
   deleteVenture: IDeleteVenture
-): Promise<IVenture[]> {
+): Promise<DeletionStatus[]> {
   const objList = [];
 
   const token = deleteVenture.token;
@@ -31,14 +32,12 @@ export async function Delete(
         reject(err);
         return;
       } else {
-        const venturesPb = res.getObjList();
-
-        const status = venturesPb.map((venturePb) => {
-          const metaPb = venturePb.getMetadataMap();
-          return metaPb.get(key.VentureStatus) as unknown as IVenture; // TODO: check
-        });
-
-        resolve(status);
+        resolve(
+          res.getObjList().map((updatePb) => {
+            const metaPb = updatePb.getMetadataMap();
+            return metaPb.get(key.VentureStatus) as DeletionStatus;
+          })
+        );
       }
     });
   });

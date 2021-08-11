@@ -1,7 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import * as api from "module/api";
-import { IAPIDeleteRole } from "module/interface/api";
+import {
+  DeletionStatus,
+  IAPIDeleteRole,
+  UpdateStatus,
+} from "module/interface/api";
 import {
   INewRole,
   IRole,
@@ -73,26 +77,32 @@ export function useRoleByTimelines({
 }
 
 const getTimelineRole = async (searchRole: ISearchTimelineRoles) => {
-  return api.API.Role.Search(searchRole);
+  return api.API.Role.Search({
+    ...searchRole,
+    resource: "timeline",
+  });
 };
 
 export function useTimelineRole(searchRole: ISearchTimelineRoles) {
   return useQuery<IRole[], ErrorResponse>(
     [`role-${searchRole.timelineId}`, searchRole.token, searchRole.timelineId],
     () => getTimelineRole(searchRole),
-    { enabled: !!searchRole.token && !!searchRole.timelineId }
+    { enabled: Boolean(searchRole.token && searchRole.timelineId) }
   );
 }
 
 const getVentureRole = async (searchRole: ISearchVentureRoles) => {
-  return api.API.Role.Search(searchRole);
+  return api.API.Role.Search({
+    ...searchRole,
+    resource: "venture",
+  });
 };
 
 export function useVentureRole(searchRole: ISearchVentureRoles) {
   return useQuery<IRole[], ErrorResponse>(
     [`role-${searchRole.ventureId}`, searchRole.token, searchRole.ventureId],
     () => getVentureRole(searchRole),
-    { enabled: !!searchRole.token && !!searchRole.ventureId }
+    { enabled: Boolean(searchRole.token && searchRole.ventureId) }
   );
 }
 
@@ -115,7 +125,7 @@ export function useCreateRole() {
 export function useUpdateRole() {
   const queryClient = useQueryClient();
 
-  return useMutation<IRole[], any, IUpdateRole>(
+  return useMutation<UpdateStatus[], any, IUpdateRole>(
     (roleUpdate) => {
       return api.API.Role.Update(roleUpdate);
     },
@@ -131,7 +141,7 @@ export function useUpdateRole() {
 export function useDeleteRole() {
   const queryClient = useQueryClient();
 
-  return useMutation<IRole[], any, IAPIDeleteRole>(
+  return useMutation<DeletionStatus[], any, IAPIDeleteRole>(
     (roleDelete) => {
       return api.API.Role.Delete(roleDelete);
     },

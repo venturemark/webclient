@@ -1,36 +1,31 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext, useRef, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import { IsVisible } from "component/page/home";
 import {
   DefaultHeaderProps,
   PlasmicHeader,
 } from "component/plasmic/shared/PlasmicHeader";
 import { UserContext } from "context/UserContext";
-import useOnClickOutside from "module/hook/ui/useOnClickOutside";
+import useDropdown from "module/hook/ui/useDropdown";
 import { IUser } from "module/interface/user";
 
-type IsVisible = "mobileSidebar" | "postDetails" | "showModal";
-
 interface HeaderProps extends DefaultHeaderProps {
-  isVisible?: IsVisible;
-  setIsVisible?: (value?: IsVisible) => void;
+  isVisible: IsVisible;
+  setIsVisible?: (value: IsVisible) => void;
   user: IUser;
 }
 
 export default function Header(props: HeaderProps) {
   const { isVisible, setIsVisible, user, ...rest } = props;
   const { isAuthenticated } = useAuth0();
-  const [profileDropdown, setProfileDropdown] = useState(false);
 
   const userContext = useContext(UserContext);
   const hasUser = userContext?.user;
 
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useOnClickOutside(ref, () => {
-    setProfileDropdown(false);
-  });
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
 
   function toggleMobileSidebar() {
     const nextValue =
@@ -42,9 +37,9 @@ export default function Header(props: HeaderProps) {
     <PlasmicHeader
       {...rest}
       root={{
-        ref,
+        ref: dropdownRootRef,
       }}
-      profileDropdown={profileDropdown}
+      profileDropdown={dropdownVisible}
       toggleMobileSidebar={{
         visibility: setIsVisible ? "visible" : "hidden",
         onClick: toggleMobileSidebar,
@@ -62,8 +57,8 @@ export default function Header(props: HeaderProps) {
           : "publicView"
       }
       avatar={{
-        setProfileDropdown,
-        profileDropdown,
+        setProfileDropdown: setDropdownVisible,
+        profileDropdown: dropdownVisible,
         user,
       }}
       dropdown={{

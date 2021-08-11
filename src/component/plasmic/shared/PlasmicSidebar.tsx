@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -165,6 +166,24 @@ function PlasmicSidebar__RenderFunc(props: {
                     "isDropdown"
                   ),
                 })}
+                prop={
+                  <div
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.freeBox__jYiYa,
+                      {
+                        [sty.freeBox__isDropdown__jYiYAmySg3]: hasVariant(
+                          variants,
+                          "isDropdown",
+                          "isDropdown"
+                        ),
+                      }
+                    )}
+                  >
+                    {"Create new Venture"}
+                  </div>
+                }
                 prop3={"Log Out"}
               />
             ) : null}
@@ -219,8 +238,8 @@ function PlasmicSidebar__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__vgJde, {
-                [sty.box__isPublic__vgJdexw1PM]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__vgJde, {
+                [sty.freeBox__isPublic__vgJdexw1PM]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -266,9 +285,9 @@ function PlasmicSidebar__RenderFunc(props: {
                   className={classNames(
                     defaultcss.all,
                     defaultcss.__wab_text,
-                    sty.box__mR9P,
+                    sty.freeBox__mR9P,
                     {
-                      [sty.box__isPublic__mR9Pxw1PM]: hasVariant(
+                      [sty.freeBox__isPublic__mR9Pxw1PM]: hasVariant(
                         variants,
                         "isPublic",
                         "isPublic"

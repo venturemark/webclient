@@ -32,3 +32,7 @@ export interface IAPIDeleteRole {
   timelineId?: string;
   token: string | null;
 }
+
+export type CreationStatus = "created" | undefined;
+export type UpdateStatus = "updated" | undefined;
+export type DeletionStatus = "deleted" | undefined;

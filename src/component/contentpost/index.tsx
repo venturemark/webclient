@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import {
   DefaultContentPostProps,
@@ -6,10 +6,11 @@ import {
 } from "component/plasmic/shared/PlasmicContentPost";
 import TimelineLink from "component/timelinelink";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
 import { UserContext } from "context/UserContext";
+import { VentureContext } from "context/VentureContext";
 import { getUniqueListBy } from "module/helpers";
 import { useMessages } from "module/hook/message";
+import useDropdown from "module/hook/ui/useDropdown";
 import { useDeleteUpdate } from "module/hook/update";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { ITimeline } from "module/interface/timeline";
@@ -24,13 +25,14 @@ interface ContentPostProps extends DefaultContentPostProps {
   date: string;
   setIsVisible: any;
   isVisible: any;
-  setPost: any;
+  setPost: () => void;
+  post?: IUpdate;
   userId: string;
   userName?: string;
   user?: IUser;
   state?: "isOwner" | "isPostDetails";
   ventureId: string;
-  allUpdates: IUpdate[];
+  allUpdates?: IUpdate[];
 }
 
 function ContentPost(props: ContentPostProps) {
@@ -40,11 +42,12 @@ function ContentPost(props: ContentPostProps) {
     date,
     setIsVisible,
     setPost,
+    post,
     timelineId,
     id,
     state,
     ventureId,
-    allUpdates,
+    allUpdates = [],
     userId,
     userName,
     isVisible,
@@ -53,11 +56,11 @@ function ContentPost(props: ContentPostProps) {
   } = props;
   const { token } = useContext(AuthContext);
 
-  const [showMenu, setShowMenu] = useState(false);
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
 
-  const timelineContext = useContext(TimelineContext);
-  const userContext = useContext(UserContext);
-  const timelines = timelineContext?.ventureRoleTimelines ?? [];
+  const ventureContext = useContext(VentureContext);
+  const timelines = ventureContext.currentVentureTimelines ?? [];
 
   const { data: messagesData } = useMessages({
     updateId: id,
@@ -83,7 +86,6 @@ function ContentPost(props: ContentPostProps) {
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
-      resource: "timeline",
       timelineId: timelineId ?? undefined,
       ventureId: ventureId ?? undefined,
       token,
@@ -91,7 +93,6 @@ function ContentPost(props: ContentPostProps) {
 
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
     useVentureMembers({
-      resource: "venture",
       ventureId: ventureId ?? undefined,
       token,
     });
@@ -111,6 +112,7 @@ function ContentPost(props: ContentPostProps) {
 
   const postUser = userData ?? user;
 
+  const userContext = useContext(UserContext);
   const isOwner = userId === userContext.user?.id ? "isOwner" : undefined;
 
   const handleDeleteUpdate = () => {
@@ -126,10 +128,13 @@ function ContentPost(props: ContentPostProps) {
   return (
     <PlasmicContentPost
       {...rest}
-      iconMenu={{
-        onClick: () => setShowMenu(!showMenu),
+      root={{
+        ref: dropdownRootRef,
       }}
-      isUserOnClick={showMenu}
+      iconMenu={{
+        onClick: () => setDropdownVisible(!dropdownVisible),
+      }}
+      isUserOnClick={dropdownVisible}
       state={state || isOwner}
       title={title}
       description={description}
@@ -143,16 +148,18 @@ function ContentPost(props: ContentPostProps) {
         count: count,
         text2: count === 1 ? "reply" : "replies",
         onPress: () => {
-          if (isVisible === "postDetails") {
+          if (isVisible === "postDetails" && post?.id === id) {
+            // toggle post detail pane
             setIsVisible(undefined);
           } else {
+            // show or change details to current post
             setIsVisible("postDetails");
             setPost();
           }
         },
       }}
       timelineNamesContainer={{
-        children: updateTimelines?.map((timeline) => (
+        children: updateTimelines.map((timeline) => (
           <TimelineLink timeline={timeline} />
         )),
       }}

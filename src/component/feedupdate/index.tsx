@@ -1,52 +1,50 @@
-import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useMemo } from "react";
 
 import ContentPost from "component/contentpost";
+import { IsVisible } from "component/page/home";
 import {
   DefaultFeedUpdateProps,
   PlasmicFeedUpdate,
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import { AuthContext } from "context/AuthContext";
-import { getUniqueListBy } from "module/helpers";
+import { getUniqueListBy, resourceOwnership } from "module/helpers";
 import {
   useUpdatesByTimeline,
   useUpdatesByTimelineIds,
 } from "module/hook/update";
-import { useTimelineMembers, useVentureMembers } from "module/hook/user";
+import {
+  useTimelineMembers,
+  useUpdateUser,
+  useVentureMembers,
+} from "module/hook/user";
 import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
-import { IUser, UserRole } from "module/interface/user";
+import { IUser } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
-  currentTimeline: ITimeline;
+  currentTimeline?: ITimeline;
   timelines: ITimeline[];
   currentVenture: IVenture;
   user: IUser;
-  setIsVisible: any;
-  isVisible: any;
-  setPost: any;
+  setIsVisible: (value: IsVisible) => void;
+  isVisible: IsVisible;
+  setPost: (post: IUpdate) => void;
+  post?: IUpdate;
 }
 
-type RestrictedResource = {
-  userRole?: UserRole;
-  membersWrite: boolean;
-};
-
-function resourceOwnership(
-  resource?: RestrictedResource
-): SingleBooleanChoiceArg<"isOwner"> {
-  if (!resource) {
-    return false;
-  }
-  if (resource.userRole === "owner") {
-    return "isOwner";
-  }
-  if (resource.userRole === "member" && resource.membersWrite) {
-    return "isOwner";
-  }
-  return false;
+function deduplicateUpdates(updates: IUpdate[]) {
+  const seen: Record<number, boolean> = {};
+  return updates
+    .filter((update: IUpdate) => {
+      const id = Math.round(Number(update.id) / 1000000000);
+      if (seen[id]) {
+        return false;
+      }
+      seen[id] = true;
+      return true;
+    })
+    .sort((a, b) => b.id.localeCompare(a.id)); // sort in descending order
 }
 
 function FeedUpdate(props: FeedUpdateProps) {
@@ -55,18 +53,18 @@ function FeedUpdate(props: FeedUpdateProps) {
     timelines,
     setIsVisible,
     setPost,
+    post,
     currentVenture,
     isVisible,
     user,
     ...rest
   } = props;
 
-  const { timelineSlug } = useParams();
   const { token } = useContext(AuthContext);
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
-
-  const timelineIds = timelines?.map((timeline: ITimeline) => timeline.id);
+  const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);
+  const { mutate: updateUser, status, reset } = useUpdateUser();
 
   const { data: timelineUpdates = [] } = useUpdatesByTimeline({
     ventureId,
@@ -74,38 +72,77 @@ function FeedUpdate(props: FeedUpdateProps) {
     token,
   });
 
-  let updates = timelineUpdates;
+  const { data: ventureUpdates = [] } = useUpdatesByTimelineIds({
+    ventureId,
+    timelineIds,
+    token,
+  });
 
-  const { data: allUpdates = [], isSuccess: updateSuccess } =
-    useUpdatesByTimelineIds({
-      ventureId,
-      timelineIds,
-      token,
+  const updates = useMemo<IUpdate[]>(() => {
+    if (timelineId) {
+      return timelineUpdates;
+    } else if (ventureId) {
+      return deduplicateUpdates(ventureUpdates);
+    }
+    return [];
+  }, [timelineId, timelineUpdates, ventureId, ventureUpdates]);
+
+  useEffect(() => {
+    if (status !== "idle" || !user) {
+      return;
+    }
+
+    const userLastUpdates = user.lastUpdate || {};
+    const timelineLastUpdates: Record<string, string> = {};
+    timelines.forEach((timeline) => {
+      if (timeline.lastUpdate) {
+        timelineLastUpdates[timeline.id] = timeline.lastUpdate;
+      }
     });
 
-  if (updateSuccess) {
-    //deduplicate updates for home
-    const homeUpdates = Array.from(
-      new Set(
-        allUpdates.map((update: IUpdate) =>
-          Math.round(Number(update.id) / 1000000000)
-        )
-      )
-    )
-      .map((id) => {
-        return allUpdates.find(
-          (update: IUpdate) => Math.round(Number(update.id) / 1000000000) === id
-        );
-      })
-      .filter((x): x is IUpdate => Boolean(x));
+    const newLastUpdates: Record<string, string> = {};
+    timelines.forEach((timeline) => {
+      const lastViewed = userLastUpdates[timeline.id];
+      const lastUpdate = timelineLastUpdates[timeline.id];
+      if (
+        lastUpdate &&
+        (!lastViewed || parseInt(lastViewed) < parseInt(lastUpdate))
+      ) {
+        newLastUpdates[timeline.id] = lastUpdate;
+      }
+    });
 
-    // return updates or updates of current timeline.
-    updates = timelineSlug ? timelineUpdates ?? [] : homeUpdates ?? [];
-  }
+    if (Object.keys(newLastUpdates).length > 0) {
+      updateUser(
+        {
+          id: user.id,
+          lastUpdate: {
+            ...userLastUpdates,
+            ...newLastUpdates,
+          },
+          token,
+        },
+        {
+          onSettled() {
+            reset();
+          },
+        }
+      );
+    }
+  }, [
+    token,
+    updateUser,
+    updates,
+    user?.lastUpdate,
+    user?.id,
+    status,
+    timelines,
+    reset,
+    user,
+  ]);
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
-      resource: "timeline",
       timelineId: timelineId ?? undefined,
       ventureId: ventureId ?? undefined,
       token,
@@ -113,7 +150,6 @@ function FeedUpdate(props: FeedUpdateProps) {
 
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
     useVentureMembers({
-      resource: "venture",
       ventureId: ventureId ?? undefined,
       token,
     });
@@ -157,8 +193,9 @@ function FeedUpdate(props: FeedUpdateProps) {
                 users: allMembers ?? [],
               })
             }
+            post={post}
             ventureId={update.ventureId}
-            allUpdates={allUpdates}
+            allUpdates={ventureUpdates}
             userId={update.userId ?? ""}
           />
         )),

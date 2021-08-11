@@ -13,6 +13,7 @@
 import * as React from "react";
 
 import * as p from "@plasmicapp/react-web";
+
 import {
   hasVariant,
   classNames,
@@ -127,7 +128,7 @@ function PlasmicReplyContent__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.box__cyQ9E)}
+          className={classNames(defaultcss.all, sty.freeBox__cyQ9E)}
         >
           <PhotoAvatar
             data-plasmic-name={"photoAvatar"}
@@ -135,12 +136,12 @@ function PlasmicReplyContent__RenderFunc(props: {
             className={classNames("__wab_instance", sty.photoAvatar)}
           />
 
-          <div className={classNames(defaultcss.all, sty.box___0YC8Z)}>
+          <div className={classNames(defaultcss.all, sty.freeBox___0YC8Z)}>
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.box__rqpD, {
-                [sty.box__state_isUser__rqpDFEdPi]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox__rqpD, {
+                [sty.freeBox__state_isUser__rqpDFEdPi]: hasVariant(
                   variants,
                   "state",
                   "isUser"
@@ -150,19 +151,19 @@ function PlasmicReplyContent__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.box__iU0A, {
-                  [sty.box__state_isUser__iU0AfEdPi]: hasVariant(
+                className={classNames(defaultcss.all, sty.freeBox__iU0A, {
+                  [sty.freeBox__state_isUser__iU0AfEdPi]: hasVariant(
                     variants,
                     "state",
                     "isUser"
                   ),
                 })}
               >
-                <div className={classNames(defaultcss.all, sty.box__cAoxI)}>
+                <div className={classNames(defaultcss.all, sty.freeBox__cAoxI)}>
                   <p.Stack
                     as={"div"}
                     hasGap={true}
-                    className={classNames(defaultcss.all, sty.box__oKSfs)}
+                    className={classNames(defaultcss.all, sty.freeBox__oKSfs)}
                   >
                     {p.renderPlasmicSlot({
                       defaultContents: (
@@ -188,7 +189,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                     <p.Stack
                       as={"div"}
                       hasGap={true}
-                      className={classNames(defaultcss.all, sty.box__wfm2A)}
+                      className={classNames(defaultcss.all, sty.freeBox__wfm2A)}
                     >
                       <span
                         data-plasmic-name={"span"}
@@ -233,8 +234,8 @@ function PlasmicReplyContent__RenderFunc(props: {
 
                 {(hasVariant(variants, "state", "isUser") ? true : false) ? (
                   <div
-                    className={classNames(defaultcss.all, sty.box___2Fduc, {
-                      [sty.box__state_isUser___2FducFEdPi]: hasVariant(
+                    className={classNames(defaultcss.all, sty.freeBox___2Fduc, {
+                      [sty.freeBox__state_isUser___2FducFEdPi]: hasVariant(
                         variants,
                         "state",
                         "isUser"
@@ -344,8 +345,8 @@ function PlasmicReplyContent__RenderFunc(props: {
                 ) : null}
               </p.Stack>
 
-              <div className={classNames(defaultcss.all, sty.box__wE4D)}>
-                <div className={classNames(defaultcss.all, sty.box__ly8Vh)}>
+              <div className={classNames(defaultcss.all, sty.freeBox__wE4D)}>
+                <div className={classNames(defaultcss.all, sty.freeBox__ly8Vh)}>
                   {p.renderPlasmicSlot({
                     defaultContents: "",
                     value: args.text,

@@ -1,45 +1,36 @@
-import { useState } from "react";
+import { Location } from "history";
+import { useContext, useState } from "react";
 import { Navigate } from "react-router";
+import { useLocation } from "react-router-dom";
 
+import { IsVisible } from "component/page/home";
 import {
   DefaultProfileProps,
   PlasmicProfile,
 } from "component/plasmic/shared/PlasmicProfile";
-import { IUser } from "module/interface/user";
+import { UserContext } from "context/UserContext";
 
-type IsVisible = "postDetails" | "mobileSidebar" | undefined;
-
-interface ProfileProps extends DefaultProfileProps {
-  userLoading: boolean;
-  user?: IUser;
-}
+interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
-  const { userLoading, user, ...rest } = props;
-  const [isVisible, setIsVisible] = useState<IsVisible>(undefined);
+  const { user, status } = useContext(UserContext);
+  const [isVisible, setIsVisible] = useState<IsVisible>();
+  const { state } = useLocation() as Location<{ returnTo?: string } | null>;
 
-  const hasInvite =
-    localStorage.getItem("ventureId") &&
-    localStorage.getItem("code") &&
-    localStorage.getItem("id")
-      ? true
-      : false;
-
-  if (userLoading) {
+  if (status === "loading") {
     return <span>Loading User</span>;
-  } else if (user && hasInvite) {
-    return <Navigate to={`/joinventure`} />;
+  } else if (user && state?.returnTo) {
+    return <Navigate to={state?.returnTo} />;
   } else if (user) {
-    return <Navigate to={`/`} />;
+    return <Navigate to="/" />;
   }
 
   return (
     <PlasmicProfile
-      {...rest}
       profileForm={{
-        isVisible: isVisible,
-        setIsVisible: setIsVisible,
-        hasInvite,
+        isVisible,
+        setIsVisible,
+        returnTo: state?.returnTo,
       }}
     />
   );

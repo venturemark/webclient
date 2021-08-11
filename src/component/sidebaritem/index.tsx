@@ -1,11 +1,11 @@
-import { useRef, useState } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
   DefaultSidebarItemProps,
   PlasmicSidebarItem,
 } from "component/plasmic/shared/PlasmicSidebarItem";
-import useOnClickOutside from "module/hook/ui/useOnClickOutside";
+import useDropdown from "module/hook/ui/useDropdown";
 import { UserRole } from "module/interface/user";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
@@ -19,7 +19,10 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
 }
 
-function SidebarItem(props: SidebarItemProps) {
+function SidebarItem(
+  props: SidebarItemProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const {
     timelineName,
     ventureId,
@@ -31,8 +34,11 @@ function SidebarItem(props: SidebarItemProps) {
     userRole,
     ...rest
   } = props;
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+
   const navigate = useNavigate();
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
+
   const ventureHandle =
     typeof ventureName === "string"
       ? ventureName?.toLowerCase().replace(/\s/g, "")
@@ -52,57 +58,53 @@ function SidebarItem(props: SidebarItemProps) {
       ? `/${ventureHandle}/${timelineHandle}/settings`
       : `/${ventureHandle}/settings`;
 
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useOnClickOutside(ref, () => {
-    setDropdownVisible(false);
-  });
-
   return (
-    <PlasmicSidebarItem
-      {...rest}
-      root={{
-        ref,
-      }}
-      isDropdown={dropdownVisible ? "isDropdown" : undefined}
-      isOwner={userRole === "owner" ? "isOwner" : undefined}
-      icon={{
-        onClick: (e) => {
-          e.stopPropagation(); // Prevent root onClick from triggering when collapsing group
+    <div ref={ref}>
+      <PlasmicSidebarItem
+        {...rest}
+        root={{
+          ref: dropdownRootRef,
+        }}
+        isDropdown={dropdownVisible ? "isDropdown" : undefined}
+        isOwner={userRole === "owner" ? "isOwner" : undefined}
+        icon={{
+          onClick: (e) => {
+            e.stopPropagation(); // Prevent root onClick from triggering when collapsing group
+            setDropdownVisible(false);
+            itemType !== "createTimeline" &&
+              itemType !== "timeline" &&
+              setIsCollapsed(!isCollapsed);
+          },
+        }}
+        iconButton={{
+          onClick(e) {
+            e.stopPropagation(); // Prevent root onClick from triggering when opening dropdown
+            setDropdownVisible(!dropdownVisible);
+          },
+        }}
+        onClick={() => {
           setDropdownVisible(false);
-          itemType !== "createTimeline" &&
-            itemType !== "timeline" &&
-            setIsCollapsed(!isCollapsed);
-        },
-      }}
-      iconButton={{
-        onClick(e) {
-          e.stopPropagation(); // Prevent root onClick from triggering when opening dropdown
-          setDropdownVisible(!dropdownVisible);
-        },
-      }}
-      onClick={() => {
-        setDropdownVisible(false);
-        itemType !== "createTimeline"
-          ? navigate(link)
-          : navigate(`/${ventureHandle}/newtimeline`);
-      }}
-      itemType={itemType}
-      name={
-        itemType === "createTimeline"
-          ? "Create Timeline"
-          : timelineName
-          ? timelineName
-          : ventureName
-      }
-      dropdown={{
-        href: editLink,
-        onClick: () => {
-          setDropdownVisible(false);
-        },
-      }}
-    />
+          itemType !== "createTimeline"
+            ? navigate(link)
+            : navigate(`/${ventureHandle}/newtimeline`);
+        }}
+        itemType={itemType}
+        name={
+          itemType === "createTimeline"
+            ? "Create Timeline"
+            : timelineName
+            ? timelineName
+            : ventureName
+        }
+        dropdown={{
+          href: editLink,
+          onClick: () => {
+            setDropdownVisible(false);
+          },
+        }}
+      />
+    </div>
   );
 }
 
-export default SidebarItem;
+export default forwardRef(SidebarItem);

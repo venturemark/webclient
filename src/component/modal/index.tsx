@@ -17,8 +17,6 @@ import { useDeleteVenture } from "module/hook/venture";
 type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
 
 interface ModalProps extends DefaultModalProps {
-  isVisible?: any;
-  setIsVisible?: any;
   modalType?: ModalType;
 }
 
@@ -28,7 +26,7 @@ type FormData = {
 };
 
 function Modal(props: ModalProps) {
-  const { isVisible, setIsVisible, modalType, ...rest } = props;
+  const { modalType, ...rest } = props;
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const userContext = useContext(UserContext);
@@ -95,7 +93,7 @@ function Modal(props: ModalProps) {
   const handleDeleteVenture = () => {
     deleteVenture({
       id: ventureId,
-      successUrl: `../../`,
+      successUrl: "/",
       token,
     });
   };
@@ -112,8 +110,14 @@ function Modal(props: ModalProps) {
       }}
       nameField={{
         ...register("name", {
-          required: true,
-          maxLength: 100,
+          required: {
+            message: "Required",
+            value: true,
+          },
+          maxLength: {
+            message: "Too long",
+            value: 100,
+          },
         }),
         onChange(e: string) {
           setValue("name", e);
@@ -124,8 +128,14 @@ function Modal(props: ModalProps) {
       }}
       jobField={{
         ...register("title", {
-          required: true,
-          maxLength: 100,
+          required: {
+            message: "Required",
+            value: true,
+          },
+          maxLength: {
+            message: "Too long",
+            value: 100,
+          },
         }),
         onChange(e: string) {
           setValue("title", e);
