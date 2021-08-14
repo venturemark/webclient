@@ -23,7 +23,13 @@
   height: calc(100% + 10px);
 }
 .freeBox > :global(.__wab_flex-container) > *,
-.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox > :global(.__wab_flex-container) > picture > img,
+.freeBox
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 10px;
 }
 .root:focus-within .freeBox {
@@ -48,7 +54,13 @@
   width: calc(100% + 14px);
 }
 .replyForm > :global(.__wab_flex-container) > *,
-.replyForm > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.replyForm > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.replyForm > :global(.__wab_flex-container) > picture > img,
+.replyForm
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 14px;
 }
 .replyInput {

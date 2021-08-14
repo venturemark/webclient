@@ -137,7 +137,13 @@
   width: calc(100% + 5px);
 }
 .freeBox > :global(.__wab_flex-container) > *,
-.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox > :global(.__wab_flex-container) > picture > img,
+.freeBox
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 5px;
 }
 .root:focus-within .freeBox {
@@ -173,7 +179,11 @@
 .slotCount > *,
 .slotCount > .__wab_slot > *,
 .slotCount > .__wab_slot > .__wab_slot > *,
-.slotCount > .__wab_slot > .__wab_slot > .__wab_slot > * {
+.slotCount > .__wab_slot > .__wab_slot > .__wab_slot > *,
+.slotCount > picture > img,
+.slotCount > .__wab_slot > picture > img,
+.slotCount > .__wab_slot > .__wab_slot > picture > img,
+.slotCount > .__wab_slot > .__wab_slot > .__wab_slot > picture > img {
   text-decoration-line: none;
 }
 .slotCount__buttonStyle_secondaryPurple {
@@ -202,7 +212,11 @@
 .slotText2 > *,
 .slotText2 > .__wab_slot > *,
 .slotText2 > .__wab_slot > .__wab_slot > *,
-.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > * {
+.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > *,
+.slotText2 > picture > img,
+.slotText2 > .__wab_slot > picture > img,
+.slotText2 > .__wab_slot > .__wab_slot > picture > img,
+.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > picture > img {
   text-decoration-line: none;
 }
 @media (max-width: 767px) {

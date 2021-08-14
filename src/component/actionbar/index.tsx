@@ -1,7 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Descendant } from "slate";
 
-import InputTextArea from "component/inputtextarea";
+import {
+  ComposeEditor,
+  EditorShape,
+  useEditor,
+} from "component/editor/compose";
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
@@ -26,6 +31,17 @@ type FormData = {
   description: string;
 };
 
+const initialValue: Descendant[] = [
+  {
+    type: 'title',
+    children: [
+      {
+        text: '',
+      }
+    ]
+  }
+]
+
 function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
 
@@ -33,7 +49,6 @@ function ActionBar(props: ActionBarProps) {
     handleSubmit,
     register,
     reset,
-    watch,
     setValue,
     trigger,
     formState: { errors },
@@ -44,8 +59,6 @@ function ActionBar(props: ActionBarProps) {
     },
     mode: "onChange",
   });
-
-  const values = watch();
 
   const { token } = useContext(AuthContext);
   const ventureContext = useContext(VentureContext);
@@ -62,6 +75,10 @@ function ActionBar(props: ActionBarProps) {
   const [selectFocused, setSelectFocused] = useState(false);
 
   const { mutate: createUpdate } = useCreateUpdate();
+
+  const { editorShape, setEditorShape } = useEditor({
+    value: initialValue,
+  })
 
   const handlePost = (data: FormData) => {
     if (selectedTimelines.length < 1) {
@@ -80,6 +97,14 @@ function ActionBar(props: ActionBarProps) {
 
     //reset
     reset();
+    setEditorShape({
+      value: initialValue,
+      string: "",
+      numberValue: 0,
+      error: undefined,
+      hasContent: undefined,
+      progress: 0,
+    })
     setIsActive(false);
   };
 
@@ -92,6 +117,19 @@ function ActionBar(props: ActionBarProps) {
     }
   }, [currentTimeline]);
 
+  useEffect(() => {
+    register("description", {
+      required: {
+        message: "Required",
+        value: true,
+      },
+      maxLength: {
+        message: "Too long",
+        value: 280,
+      },
+    })
+  }, [register])
+
   return (
     <PlasmicActionBar
       {...rest}
@@ -101,51 +139,18 @@ function ActionBar(props: ActionBarProps) {
       form={{
         onSubmit: handleSubmit(handlePost),
       }}
-      photoAvatar={{
-        user,
-      }}
       title={{
-        as: InputTextArea,
+        as: ComposeEditor,
         props: {
-          ...register("title", {
-            required: {
-              message: "Required",
-              value: true,
-            },
-            maxLength: {
-              message: "Too long",
-              value: 100,
-            },
-          }),
-          autosize: true,
-          "aria-label": "Title",
-          onChange(e: string) {
-            setValue("title", e);
-            trigger("title");
-          },
-          value: values.title,
-        },
-      }}
-      description={{
-        as: InputTextArea,
-        props: {
-          ...register("description", {
-            required: {
-              message: "Required",
-              value: true,
-            },
-            maxLength: {
-              message: "Too long",
-              value: 280,
-            },
-          }),
           autosize: true,
           "aria-label": "Description",
-          onChange(e: string) {
-            setValue("description", e);
+          editorShape,
+          setEditorShape(e: EditorShape) {
+            setValue("description", JSON.stringify(e.value));
+            console.log(JSON.stringify(e.value))
             trigger("description");
+            setEditorShape(e)
           },
-          value: values.description,
         },
       }}
       container={{

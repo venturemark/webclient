@@ -28,7 +28,13 @@
 }
 @media (max-width: 767px) {
   .root > :global(.__wab_flex-container) > *,
-  .root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  .root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .root > :global(.__wab_flex-container) > picture > img,
+  .root
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
     margin-left: 0px;
     margin-top: 24px;
   }
@@ -127,7 +133,13 @@
   height: calc(100% + 12px);
 }
 .freeBox__lIg4F > :global(.__wab_flex-container) > *,
-.freeBox__lIg4F > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__lIg4F > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__lIg4F > :global(.__wab_flex-container) > picture > img,
+.freeBox__lIg4F
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 12px;
 }
 .freeBox__qnxd {
@@ -218,6 +230,12 @@
 .img___2L10H {
   object-fit: cover;
 }
+.img___2L10H > picture > img {
+  object-fit: cover;
+}
+.img___2L10H > .__wab_img-spacer > img {
+  object-fit: cover;
+}
 @media (max-width: 767px) {
   .img___2L10H {
     width: 100%;
@@ -282,7 +300,13 @@
   height: calc(100% + 15px);
 }
 .freeBox__trjAa > :global(.__wab_flex-container) > *,
-.freeBox__trjAa > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__trjAa > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__trjAa > :global(.__wab_flex-container) > picture > img,
+.freeBox__trjAa
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 15px;
 }
 .freeBox__wAaqV {
@@ -320,6 +344,12 @@
   left: auto;
   top: auto;
 }
+.img__a7LHy > picture > img {
+  object-fit: cover;
+}
+.img__a7LHy > .__wab_img-spacer > img {
+  object-fit: cover;
+}
 .text2 {
   width: 199px;
   padding: 0px 20px;
@@ -346,6 +376,12 @@
   height: 20px;
   left: auto;
   top: auto;
+}
+.img__yPy9C > picture > img {
+  object-fit: cover;
+}
+.img__yPy9C > .__wab_img-spacer > img {
+  object-fit: cover;
 }
 .text22 {
   width: 199px;

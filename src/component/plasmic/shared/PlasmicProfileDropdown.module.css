@@ -79,7 +79,13 @@
   width: calc(100% + 14px);
 }
 .freeBox__iA4Y > :global(.__wab_flex-container) > *,
-.freeBox__iA4Y > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__iA4Y > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__iA4Y > :global(.__wab_flex-container) > picture > img,
+.freeBox__iA4Y
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 14px;
 }
 .freeBox__isMobile__iA4YKb6FV {
@@ -103,7 +109,13 @@
   height: calc(100% + 0px);
 }
 .freeBox__tyRt7 > :global(.__wab_flex-container) > *,
-.freeBox__tyRt7 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__tyRt7 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__tyRt7 > :global(.__wab_flex-container) > picture > img,
+.freeBox__tyRt7
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 0px;
 }
 .slotUserEmail {
@@ -126,7 +138,9 @@
   height: calc(100% + 15px);
 }
 .ul > :global(.__wab_flex-container) > *,
-.ul > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.ul > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.ul > :global(.__wab_flex-container) > picture > img,
+.ul > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-top: 15px;
 }
 .createNewVenture:global(.__wab_instance) {

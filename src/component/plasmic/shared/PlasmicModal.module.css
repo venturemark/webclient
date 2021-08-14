@@ -38,7 +38,13 @@
   height: calc(100% + 20px);
 }
 .freeBox___60GYf > :global(.__wab_flex-container) > *,
-.freeBox___60GYf > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox___60GYf > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___60GYf > :global(.__wab_flex-container) > picture > img,
+.freeBox___60GYf
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 20px;
 }
 .freeBox__ljTa5 {
@@ -58,7 +64,13 @@
   height: calc(100% + 20px);
 }
 .freeBox__ljTa5 > :global(.__wab_flex-container) > *,
-.freeBox__ljTa5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__ljTa5 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__ljTa5 > :global(.__wab_flex-container) > picture > img,
+.freeBox__ljTa5
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 20px;
 }
 .freeBox__aUujC {
@@ -80,7 +92,13 @@
   height: calc(100% + 17px);
 }
 .freeBox__aUujC > :global(.__wab_flex-container) > *,
-.freeBox__aUujC > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__aUujC > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__aUujC > :global(.__wab_flex-container) > picture > img,
+.freeBox__aUujC
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 17px;
 }
 .slotOrganizationDescription {
@@ -95,7 +113,16 @@
 .slotOrganizationDescription > *,
 .slotOrganizationDescription > .__wab_slot > *,
 .slotOrganizationDescription > .__wab_slot > .__wab_slot > *,
-.slotOrganizationDescription > .__wab_slot > .__wab_slot > .__wab_slot > * {
+.slotOrganizationDescription > .__wab_slot > .__wab_slot > .__wab_slot > *,
+.slotOrganizationDescription > picture > img,
+.slotOrganizationDescription > .__wab_slot > picture > img,
+.slotOrganizationDescription > .__wab_slot > .__wab_slot > picture > img,
+.slotOrganizationDescription
+  > .__wab_slot
+  > .__wab_slot
+  > .__wab_slot
+  > picture
+  > img {
   text-decoration-line: none;
 }
 .freeBox__yHkt8 {
@@ -120,7 +147,13 @@
   width: calc(100% + 15px);
 }
 .freeBox__hxFmc > :global(.__wab_flex-container) > *,
-.freeBox__hxFmc > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__hxFmc > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__hxFmc > :global(.__wab_flex-container) > picture > img,
+.freeBox__hxFmc
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 15px;
 }
 .svg___3JrHd {
@@ -184,7 +217,13 @@
   height: calc(100% + 20px);
 }
 .deleteTimeline2 > :global(.__wab_flex-container) > *,
-.deleteTimeline2 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.deleteTimeline2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.deleteTimeline2 > :global(.__wab_flex-container) > picture > img,
+.deleteTimeline2
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 20px;
 }
 .deleteTimeline2__modalType_editProfile {
@@ -212,7 +251,13 @@
   height: calc(100% + 20px);
 }
 .freeBox__zFspo > :global(.__wab_flex-container) > *,
-.freeBox__zFspo > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__zFspo > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__zFspo > :global(.__wab_flex-container) > picture > img,
+.freeBox__zFspo
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 20px;
 }
 .freeBox__zzoZe {
@@ -234,7 +279,13 @@
   height: calc(100% + 17px);
 }
 .freeBox__zzoZe > :global(.__wab_flex-container) > *,
-.freeBox__zzoZe > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__zzoZe > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__zzoZe > :global(.__wab_flex-container) > picture > img,
+.freeBox__zzoZe
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 17px;
 }
 .slotOrganizationDescription2 {
@@ -249,7 +300,16 @@
 .slotOrganizationDescription2 > *,
 .slotOrganizationDescription2 > .__wab_slot > *,
 .slotOrganizationDescription2 > .__wab_slot > .__wab_slot > *,
-.slotOrganizationDescription2 > .__wab_slot > .__wab_slot > .__wab_slot > * {
+.slotOrganizationDescription2 > .__wab_slot > .__wab_slot > .__wab_slot > *,
+.slotOrganizationDescription2 > picture > img,
+.slotOrganizationDescription2 > .__wab_slot > picture > img,
+.slotOrganizationDescription2 > .__wab_slot > .__wab_slot > picture > img,
+.slotOrganizationDescription2
+  > .__wab_slot
+  > .__wab_slot
+  > .__wab_slot
+  > picture
+  > img {
   text-decoration-line: none;
 }
 .freeBox__o2J7M {
@@ -274,7 +334,13 @@
   width: calc(100% + 15px);
 }
 .freeBox__fFh > :global(.__wab_flex-container) > *,
-.freeBox__fFh > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__fFh > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__fFh > :global(.__wab_flex-container) > picture > img,
+.freeBox__fFh
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 15px;
 }
 .svg__yS0Jx {
@@ -375,7 +441,13 @@
   height: calc(100% + 7px);
 }
 .freeBox__dr4Vw > :global(.__wab_flex-container) > *,
-.freeBox__dr4Vw > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__dr4Vw > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__dr4Vw > :global(.__wab_flex-container) > picture > img,
+.freeBox__dr4Vw
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 7px;
 }
 .photoAvatar:global(.__wab_instance) {
@@ -409,7 +481,13 @@
   width: calc(100% + 22px);
 }
 .freeBox__jmp0N > :global(.__wab_flex-container) > *,
-.freeBox__jmp0N > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__jmp0N > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__jmp0N > :global(.__wab_flex-container) > picture > img,
+.freeBox__jmp0N
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 22px;
 }
 .svg___8AXbA {

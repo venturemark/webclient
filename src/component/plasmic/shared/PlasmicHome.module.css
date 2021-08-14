@@ -51,13 +51,14 @@
   position: relative;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   left: auto;
   top: auto;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   background: rgb(249, 249, 250);
+  align-content: unset;
   min-width: 0;
   flex-shrink: 0;
   padding: 0px;
@@ -68,32 +69,22 @@
 }
 .sidebar:global(.__wab_instance) {
   position: relative;
-  flex-shrink: 0;
-}
-@media (min-width: 1201px) {
-  .sidebar:global(.__wab_instance) {
-    flex-shrink: 0;
-  }
-}
-@media (min-width: 992px) and (max-width: 1200px) {
-  .sidebar:global(.__wab_instance) {
-    flex-shrink: 0;
-  }
+  width: 55%;
+  flex-shrink: 1;
+  flex-grow: 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar:global(.__wab_instance) {
-    flex-shrink: 0;
-  }
-}
-@media (max-width: 767px) {
-  .sidebar:global(.__wab_instance) {
+    width: 250px;
     flex-shrink: 0;
   }
 }
 .sidebar__isVisible_postDetails:global(.__wab_instance) {
+  width: 250px;
   flex-shrink: 0;
 }
 .sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
+  width: 250px;
   flex-shrink: 0;
 }
 @media (max-width: 767px) {
@@ -106,11 +97,8 @@
     min-width: 0;
   }
 }
-.sidebar__isVisible_isPublic:global(.__wab_instance) {
-  flex-shrink: 0;
-}
-.sidebar__isVisible_mobileSidebar_isVisible_postDetails:global(.__wab_instance) {
-  flex-shrink: 0;
+.freeBox__m5KNe {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .freeBox__cJlKh {
   display: flex;
@@ -137,13 +125,25 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
   overflow: auto;
   padding-bottom: 66px;
+  flex-grow: 0;
+  align-content: unset;
   min-width: 0;
   min-height: 0;
+}
+@media (max-width: 767px) {
+  .mainContainer {
+    justify-content: center;
+    align-items: flex-start;
+    align-content: unset;
+  }
+}
+.main:global(.__wab_instance) {
+  max-width: 540px;
 }
 .postDetails:global(.__wab_instance) {
   position: relative;
@@ -175,4 +175,7 @@
     top: 0px;
     right: 0px;
   }
+}
+.postDetails__isVisible_postDetails:global(.__wab_instance) {
+  flex-shrink: 1;
 }

@@ -34,6 +34,8 @@ import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC
 import ProfileDropdown from "../../profiledropdown/index"; // plasmic-import: bGjqf-R4Tc/component
 import SidebarItemGroup from "../../sidebaritemgroup/index"; // plasmic-import: JQWYItyW5A/component
 
+import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
@@ -97,6 +99,10 @@ function PlasmicSidebar__RenderFunc(props: {
 }) {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariants(),
+  });
+
   return (
     <div
       data-plasmic-name={"root"}
@@ -118,7 +124,14 @@ function PlasmicSidebar__RenderFunc(props: {
           ),
         })}
       >
-        {(hasVariant(variants, "isPublic", "isPublic") ? false : true) ? (
+        {(
+          hasVariant(variants, "isPublic", "isPublic")
+            ? false
+            : hasVariant(variants, "hasInput", "hasInput") &&
+              hasVariant(globalVariants, "screen", "mobile")
+            ? true
+            : true
+        ) ? (
           <p.Stack
             as={"div"}
             data-plasmic-name={"accountSettings"}
@@ -151,6 +164,13 @@ function PlasmicSidebar__RenderFunc(props: {
             {p.renderPlasmicSlot({
               defaultContents: "Name",
               value: args.userName,
+              className: classNames(sty.slotUserName, {
+                [sty.slotUserName__hasInput]: hasVariant(
+                  variants,
+                  "hasInput",
+                  "hasInput"
+                ),
+              }),
             })}
 
             {(
@@ -224,7 +244,18 @@ function PlasmicSidebar__RenderFunc(props: {
               <SidebarItemGroup
                 data-plasmic-name={"sidebarItemGroup"}
                 data-plasmic-override={overrides.sidebarItemGroup}
-                isOwner={"isOwner" as const}
+                className={classNames("__wab_instance", sty.sidebarItemGroup, {
+                  [sty.sidebarItemGroup__hasInput]: hasVariant(
+                    variants,
+                    "hasInput",
+                    "hasInput"
+                  ),
+                  [sty.sidebarItemGroup__isPublic]: hasVariant(
+                    variants,
+                    "isPublic",
+                    "isPublic"
+                  ),
+                })}
                 isPublic={
                   hasVariant(variants, "isPublic", "isPublic")
                     ? ("isPublic" as const)
