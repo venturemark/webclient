@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { Descendant } from "slate";
 
 import {
@@ -26,40 +25,19 @@ interface ActionBarProps extends DefaultActionBarProps {
   user: IUser;
 }
 
-type FormData = {
-  title: string;
-  description: string;
-};
-
 const initialValue: Descendant[] = [
   {
-    type: 'title',
+    type: "title",
     children: [
       {
-        text: '',
-      }
-    ]
-  }
-]
+        text: "",
+      },
+    ],
+  },
+];
 
 function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
-
-  const {
-    handleSubmit,
-    register,
-    reset,
-    setValue,
-    trigger,
-    formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      description: "",
-      title: "",
-    },
-    mode: "onChange",
-  });
-
   const { token } = useContext(AuthContext);
   const ventureContext = useContext(VentureContext);
   const ventureTimelines = ventureContext.currentVentureTimelines;
@@ -78,17 +56,20 @@ function ActionBar(props: ActionBarProps) {
 
   const { editorShape, setEditorShape } = useEditor({
     value: initialValue,
-  })
+  });
+  const [error] = useState<string | null>(null);
 
-  const handlePost = (data: FormData) => {
+  function handlePost() {
     if (selectedTimelines.length < 1) {
       return;
     }
 
+    const [titleNode, ...textNodes] = editorShape.value;
+
     selectedTimelines.forEach((timelineId) => {
       createUpdate({
-        title: data.title,
-        text: data.description ?? "",
+        title: JSON.stringify(titleNode),
+        text: JSON.stringify(textNodes),
         ventureId: currentVenture.id,
         timelineId: timelineId.id,
         token,
@@ -96,7 +77,6 @@ function ActionBar(props: ActionBarProps) {
     });
 
     //reset
-    reset();
     setEditorShape({
       value: initialValue,
       string: "",
@@ -104,9 +84,9 @@ function ActionBar(props: ActionBarProps) {
       error: undefined,
       hasContent: undefined,
       progress: 0,
-    })
+    });
     setIsActive(false);
-  };
+  }
 
   useEffect(() => {
     if (currentTimeline) {
@@ -117,19 +97,6 @@ function ActionBar(props: ActionBarProps) {
     }
   }, [currentTimeline]);
 
-  useEffect(() => {
-    register("description", {
-      required: {
-        message: "Required",
-        value: true,
-      },
-      maxLength: {
-        message: "Too long",
-        value: 280,
-      },
-    })
-  }, [register])
-
   return (
     <PlasmicActionBar
       {...rest}
@@ -137,7 +104,7 @@ function ActionBar(props: ActionBarProps) {
       isActive={isActive ? "isActive" : false}
       timelineSelected={true}
       form={{
-        onSubmit: handleSubmit(handlePost),
+        onSubmit: handlePost,
       }}
       title={{
         as: ComposeEditor,
@@ -146,10 +113,8 @@ function ActionBar(props: ActionBarProps) {
           "aria-label": "Description",
           editorShape,
           setEditorShape(e: EditorShape) {
-            setValue("description", JSON.stringify(e.value));
-            console.log(JSON.stringify(e.value))
-            trigger("description");
-            setEditorShape(e)
+            console.log(JSON.stringify(e.value));
+            setEditorShape(e);
           },
         },
       }}
@@ -173,17 +138,11 @@ function ActionBar(props: ActionBarProps) {
       }}
       post={{
         isDisabled: !hasTimelines,
-        onPress() {
-          handleSubmit(handlePost)();
-        },
+        onPress: handlePost,
       }}
-      error={
-        errors.title?.message || errors.description?.message
-          ? "hasError"
-          : undefined
-      }
+      error={error ? "hasError" : undefined}
       errorMessage={{
-        message: errors.title?.message || errors.description?.message,
+        message: error,
       }}
     />
   );

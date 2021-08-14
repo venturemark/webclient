@@ -59,8 +59,8 @@ import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
-type CustomText = { text: string, placeholder?: boolean };
-type CustomElement = TitleElement | ParagraphElement | SlateDocument
+type CustomText = { text: string; placeholder?: boolean };
+type CustomElement = TitleElement | ParagraphElement | SlateDocument;
 
 declare module "slate" {
   interface CustomTypes {
@@ -70,65 +70,87 @@ declare module "slate" {
   }
 }
 
-type TitleElement = { type: 'title'; children: Descendant[] }
-type ParagraphElement = { type: 'paragraph'; children: Descendant[] }
+type TitleElement = { type: "title"; children: Descendant[] };
+type ParagraphElement = { type: "paragraph"; children: Descendant[] };
 
-type ElementProps = { attributes: any, children: ReactNode, element: CustomElement }
+type ElementProps = {
+  attributes: any;
+  children: ReactNode;
+  element: CustomElement;
+};
 
 function Element({ attributes, children, element }: ElementProps) {
-  if ('type' in element) {
+  if ("type" in element) {
     switch (element.type) {
-      case 'title':
-        return <h3 {...attributes} style={{
-          margin: '0',
-          fontFamily: 'SF Pro Text,sans-serif',
-          fontWeight: 'bold',
-          fontSize: '18px',
-          lineHeight: '23px',
-          letterSpacing: '0.491786px'
-        }}>{children}</h3>
-      case 'paragraph':
-        return <p {...attributes} style={{
-          fontFamily: 'SF Pro Text,sans-serif',
-          fontSize: '15px',
-          lineHeight: '23px',
-          letterSpacing: '0.491786px'
-        }}>{children}</p>
+      case "title":
+        return (
+          <h3
+            {...attributes}
+            style={{
+              margin: "0",
+              fontFamily: "SF Pro Text,sans-serif",
+              fontWeight: "bold",
+              fontSize: "18px",
+              lineHeight: "23px",
+              letterSpacing: "0.491786px",
+            }}
+          >
+            {children}
+          </h3>
+        );
+      case "paragraph":
+        return (
+          <p
+            {...attributes}
+            style={{
+              fontFamily: "SF Pro Text,sans-serif",
+              fontSize: "15px",
+              lineHeight: "23px",
+              letterSpacing: "0.491786px",
+            }}
+          >
+            {children}
+          </p>
+        );
       default:
-        return null
+        return null;
     }
   }
-  return null
+  return null;
 }
 
 const withLayout = (editor: Editor) => {
-  const { normalizeNode } = editor
+  const { normalizeNode } = editor;
 
   editor.normalizeNode = ([node, path]) => {
     if (path.length === 0) {
       if (editor.children.length < 1) {
         const title: TitleElement = {
-          type: 'title',
-          children: [{ text: '' }],
-        }
-        Transforms.insertNodes(editor, title, { at: path.concat(0) })
+          type: "title",
+          children: [{ text: "" }],
+        };
+        Transforms.insertNodes(editor, title, { at: path.concat(0) });
       }
 
       for (const [child, childPath] of Node.children(editor, path)) {
-        const type = childPath[0] === 0 ? 'title' : 'paragraph'
+        const type = childPath[0] === 0 ? "title" : "paragraph";
 
-        if (SlateElement.isElement(child) && 'type' in child && child.type !== type) {
-          const newProperties: Partial<SlateElement> = { type }
-          Transforms.setNodes(editor, newProperties, { at: childPath })
+        if (
+          SlateElement.isElement(child) &&
+          "type" in child &&
+          child.type !== type
+        ) {
+          const newProperties: Partial<SlateElement> = { type };
+          Transforms.setNodes(editor, newProperties, { at: childPath });
         }
       }
     }
 
-    return normalizeNode([node, path])
-  }
+    return normalizeNode([node, path]);
+  };
 
-  return editor
-}
+  return editor;
+};
 
 const plugins = [
   ParagraphPlugin(options),
@@ -212,7 +234,7 @@ export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
 interface EditorProps {
   editorShape: EditorShape;
   setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
-  placeholder?: string
+  placeholder?: string;
 }
 
 const withPlugins = [
@@ -300,10 +322,17 @@ export function ComposeEditor(props: EditorProps) {
     onChangeMention(editor);
   };
 
-  const renderElement = useCallback((props: ElementProps) => <Element {...props} />, [])
+  const renderElement = useCallback(
+    (props: ElementProps) => <Element {...props} />,
+    []
+  );
 
   return (
-    <div ref={editorRef} className={actionbarcss.textContainer} style={{ width: '100%', minHeight: '35px' }}>
+    <div
+      ref={editorRef}
+      className={actionbarcss.textContainer}
+      style={{ width: "100%", minHeight: "35px" }}
+    >
       <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins
           renderElement={[renderElement]}
@@ -323,4 +352,4 @@ export function ComposeEditor(props: EditorProps) {
       </Slate>
     </div>
   );
-};
+}
