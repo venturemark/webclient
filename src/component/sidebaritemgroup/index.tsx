@@ -55,7 +55,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
     }
     if (el) {
       el.scrollIntoView({
-        block: "center",
+        block: "nearest",
       });
     }
   }, [currentTimeline, currentVenture, sortedVentureTimelines, ventureId]);
