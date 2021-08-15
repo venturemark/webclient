@@ -235,6 +235,7 @@ interface EditorProps {
   editorShape: EditorShape;
   setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
   placeholder?: string;
+  readOnly?: boolean;
 }
 
 const withPlugins = [
@@ -342,6 +343,7 @@ export function ComposeEditor(props: EditorProps) {
           onKeyDown={[onKeyDownMention]}
           onKeyDownDeps={[index, search, target]}
           placeholder={props.placeholder}
+          readOnly={props.readOnly}
         />
         <MentionSelect
           at={target}

@@ -1,5 +1,7 @@
 import { useContext } from "react";
+import { Descendant } from "slate";
 
+import { ComposeEditor, EditorShape } from "component/editor/compose";
 import {
   DefaultContentPostProps,
   PlasmicContentPost,
@@ -125,6 +127,39 @@ function ContentPost(props: ContentPostProps) {
     setIsVisible(undefined);
   };
 
+  let value: Descendant[] = [];
+  try {
+    value = [JSON.parse(title), ...JSON.parse(description)];
+  } catch (error) {
+    value = [
+      {
+        type: "title",
+        children: [
+          {
+            text: title,
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: description,
+          },
+        ],
+      },
+    ];
+  }
+
+  const editorShape: EditorShape = {
+    value,
+    string: "",
+    numberValue: 0,
+    error: undefined,
+    hasContent: undefined,
+    progress: 0,
+  };
+
   return (
     <PlasmicContentPost
       {...rest}
@@ -134,10 +169,23 @@ function ContentPost(props: ContentPostProps) {
       iconMenu={{
         onClick: () => setDropdownVisible(!dropdownVisible),
       }}
+      title={
+        {
+          as: ComposeEditor,
+          props: {
+            readOnly: true,
+            editorShape,
+            setEditorShape: () => null,
+          },
+        } as any
+      }
       isUserOnClick={dropdownVisible}
       state={state || isOwner}
-      title={title}
-      description={description}
+      description={{
+        wrap() {
+          return null;
+        },
+      }}
       userName={userNameData || userName}
       photoAvatar={{ user: postUser }}
       date={date}
@@ -145,7 +193,6 @@ function ContentPost(props: ContentPostProps) {
         onClick: handleDeleteUpdate,
       }}
       viewReplies={{
-        count: count,
         text2: count === 1 ? "reply" : "replies",
         onPress: () => {
           if (isVisible === "postDetails" && post?.id === id) {

@@ -179,8 +179,8 @@ function FeedUpdate(props: FeedUpdateProps) {
       feedContainer={{
         children: updates.map((update: IUpdate) => (
           <ContentPost
-            title={update.title ?? ""}
-            description={update.text ?? ""}
+            title={update.title || ""}
+            description={update.text || ""}
             key={update.id}
             id={update.id}
             timelineId={update.timelineId}
