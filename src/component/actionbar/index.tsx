@@ -1,7 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { Descendant } from "slate";
+import "emoji-mart/css/emoji-mart.css";
 
-import { ComposeEditor, useEditor } from "component/editor/compose";
+import { Picker } from "emoji-mart";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { usePopper } from "react-popper";
+import { Descendant, Transforms } from "slate";
+
+import {
+  ComposeEditor,
+  createEditor,
+  useEditor,
+} from "component/editor/compose";
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
@@ -9,6 +17,7 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
 import { VentureContext } from "context/VentureContext";
+import useDropdown from "module/hook/ui/useDropdown";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
 import { IUser } from "module/interface/user";
@@ -55,6 +64,8 @@ function ActionBar(props: ActionBarProps) {
   });
   const [error] = useState<string | null>(null);
 
+  const editor = useMemo(() => createEditor(), []);
+
   function handlePost() {
     if (selectedTimelines.length < 1) {
       return;
@@ -93,9 +104,25 @@ function ActionBar(props: ActionBarProps) {
     }
   }, [currentTimeline]);
 
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLButtonElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  );
+  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    modifiers: [{ name: "arrow", options: { element: arrowElement } }],
+    placement: "bottom-start",
+  });
+
   return (
     <PlasmicActionBar
       {...rest}
+      style={{
+        zIndex: 2,
+      }}
       onClick={() => setIsActive(true)}
       isActive={isActive ? "isActive" : false}
       timelineSelected={true}
@@ -107,29 +134,56 @@ function ActionBar(props: ActionBarProps) {
         props: {
           autosize: true,
           "aria-label": "Description",
+          editor,
           editorShape,
-          setEditorShape
+          setEditorShape,
         },
       }}
       description={{
         wrap(node) {
-          return null
-        }
+          return null;
+        },
       }}
       emoji={{
-        onClick() {
-          console.log('click')
-        }
+        wrap(node) {
+          return (
+            <div ref={dropdownRootRef} style={{ zIndex: 100 }}>
+              <button
+                style={{ background: "none", border: "none" }}
+                onClick={() => setDropdownVisible(!dropdownVisible)}
+                type="button"
+                ref={setReferenceElement}
+              >
+                {node}
+              </button>
+
+              {dropdownVisible && (
+                <div
+                  ref={setPopperElement}
+                  style={styles.popper}
+                  {...attributes.popper}
+                >
+                  <Picker
+                    onSelect={(e) =>
+                      "native" in e && Transforms.insertText(editor, e.native)
+                    }
+                  />
+                  <div ref={setArrowElement} style={styles.arrow} />
+                </div>
+              )}
+            </div>
+          );
+        },
       }}
       bulletList={{
         wrap(node) {
-          return null
-        }
+          return null;
+        },
       }}
       uploadImage={{
         wrap(node) {
-          return null
-        }
+          return null;
+        },
       }}
       container={{
         style: {

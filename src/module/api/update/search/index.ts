@@ -47,9 +47,9 @@ export async function Search(searchUpdate: ISearchUpdate) {
           const updateId = metaPb.get(key.UpdateID)!;
           const userId = metaPb.get(key.UserID);
           const subjectId = metaPb.get(key.SubjectID);
-          let format: IUpdate['format'] = 'plain-text'
-          if (metaPb.get(key.UpdateFormat) === 'slate') {
-            format = 'slate'
+          let format: IUpdate["format"] = "plain-text";
+          if (metaPb.get(key.UpdateFormat) === "slate") {
+            format = "slate";
           }
           const rawDate = fromUnixTime(
             (updateId as unknown as number) / 1000000000

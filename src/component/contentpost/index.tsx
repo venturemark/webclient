@@ -1,7 +1,11 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { Descendant } from "slate";
 
-import { ComposeEditor, EditorShape } from "component/editor/compose";
+import {
+  ComposeEditor,
+  createEditor,
+  EditorShape,
+} from "component/editor/compose";
 import {
   DefaultContentPostProps,
   PlasmicContentPost,
@@ -31,12 +35,12 @@ interface ContentPostProps extends DefaultContentPostProps {
 }
 
 function updateToEditorShape(update: IUpdate): EditorShape {
-  const { title, text } = update
+  const { title, text } = update;
   let value: Descendant[] = [];
   if (title && text) {
-    if (update.format === 'slate') {
+    if (update.format === "slate") {
       value = [JSON.parse(title), ...JSON.parse(text)];
-    } else if (update.format === 'plain-text') {
+    } else if (update.format === "plain-text") {
       value = [
         {
           type: "title",
@@ -146,11 +150,17 @@ function ContentPost(props: ContentPostProps) {
     setIsVisible(undefined);
   };
 
-  const editorShape = updateToEditorShape(update)
+  const editorShape = updateToEditorShape(update);
+  const editor = useMemo(() => createEditor(), []);
+
+  console.log(allMembers, user);
 
   return (
     <PlasmicContentPost
       {...rest}
+      style={{
+        zIndex: 200,
+      }}
       root={{
         ref: dropdownRootRef,
       }}
@@ -163,6 +173,7 @@ function ContentPost(props: ContentPostProps) {
           readOnly: true,
           editorShape,
           setEditorShape: () => null,
+          editor,
         },
       }}
       isUserOnClick={dropdownVisible}

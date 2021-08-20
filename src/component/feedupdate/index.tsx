@@ -177,6 +177,9 @@ function FeedUpdate(props: FeedUpdateProps) {
         user,
       }}
       feedContainer={{
+        style: {
+          zIndex: 1,
+        },
         children: updates.map((update: IUpdate) => (
           <ContentPost
             key={update.id}
@@ -191,6 +194,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             }
             post={post}
             allUpdates={ventureUpdates}
+            user={user}
           />
         )),
       }}

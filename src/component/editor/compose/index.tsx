@@ -28,16 +28,10 @@ import {
   withMarks,
 } from "@udecode/slate-plugins";
 import { Search } from "@venturemark/numnum";
-import React, {
-  ReactNode,
-  useCallback,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactNode, useCallback, useRef, useState } from "react";
 import {
   BaseEditor,
-  createEditor,
+  createEditor as createEditorBase,
   Descendant,
   Editor,
   Element as SlateElement,
@@ -234,8 +228,7 @@ export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
 interface EditorProps {
   editorShape: EditorShape;
   setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
-  placeholder?: string;
-  readOnly?: boolean;
+  editor: Editor;
 }
 
 const withPlugins = [
@@ -254,13 +247,17 @@ const DEFAULT_HEIGHT = 44;
 const HEIGHT_LIMIT = 188;
 const CHARACTER_LIMIT = 238;
 
-export function ComposeEditor(props: EditorProps) {
-  const { editorShape, setEditorShape } = props;
+export function createEditor(): Editor {
+  return pipe(createEditorBase(), ...withPlugins);
+}
 
+export function ComposeEditor({
+  editorShape,
+  setEditorShape,
+  editor,
+  ...rest
+}: EditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
-
-  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
-
   const { insertBreak, insertText } = editor;
 
   const {
@@ -342,8 +339,7 @@ export function ComposeEditor(props: EditorProps) {
           spellCheck
           onKeyDown={[onKeyDownMention]}
           onKeyDownDeps={[index, search, target]}
-          placeholder={props.placeholder}
-          readOnly={props.readOnly}
+          {...rest}
         />
         <MentionSelect
           at={target}
