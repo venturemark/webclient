@@ -179,12 +179,8 @@ function FeedUpdate(props: FeedUpdateProps) {
       feedContainer={{
         children: updates.map((update: IUpdate) => (
           <ContentPost
-            title={update.title || ""}
-            description={update.text || ""}
             key={update.id}
-            id={update.id}
-            timelineId={update.timelineId}
-            date={update.date ?? ""}
+            update={update}
             setIsVisible={setIsVisible}
             isVisible={isVisible}
             setPost={() =>
@@ -194,9 +190,7 @@ function FeedUpdate(props: FeedUpdateProps) {
               })
             }
             post={post}
-            ventureId={update.ventureId}
             allUpdates={ventureUpdates}
-            userId={update.userId ?? ""}
           />
         )),
       }}

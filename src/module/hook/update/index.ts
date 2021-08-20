@@ -90,7 +90,7 @@ export function useCreateUpdate() {
         if (previousUpdates) {
           queryClient.setQueryData<IUpdate[]>("updates", [
             ...previousUpdates,
-            { ...newUpdate, id: Math.random().toString() },
+            { ...newUpdate, id: Math.random().toString(), format: 'slate' },
           ]);
         }
 

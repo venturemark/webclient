@@ -12,6 +12,7 @@ export interface IUpdate {
   userId?: string;
   subjectId?: string;
   date?: string;
+  format: 'slate' | 'plain-text';
 }
 
 export interface ISearchUpdate {

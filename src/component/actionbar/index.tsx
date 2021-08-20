@@ -1,11 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Descendant } from "slate";
 
-import {
-  ComposeEditor,
-  EditorShape,
-  useEditor,
-} from "component/editor/compose";
+import { ComposeEditor, useEditor } from "component/editor/compose";
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
@@ -112,11 +108,28 @@ function ActionBar(props: ActionBarProps) {
           autosize: true,
           "aria-label": "Description",
           editorShape,
-          setEditorShape(e: EditorShape) {
-            console.log(JSON.stringify(e.value));
-            setEditorShape(e);
-          },
+          setEditorShape
         },
+      }}
+      description={{
+        wrap(node) {
+          return null
+        }
+      }}
+      emoji={{
+        onClick() {
+          console.log('click')
+        }
+      }}
+      bulletList={{
+        wrap(node) {
+          return null
+        }
+      }}
+      uploadImage={{
+        wrap(node) {
+          return null
+        }
       }}
       container={{
         style: {
