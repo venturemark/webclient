@@ -108,21 +108,32 @@ function ActionBar(props: ActionBarProps) {
     value: initialValue,
   });
 
+  const [touched, setTouched] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (editorShape.value !== initialValue && editorShape.string.length === 0) {
+    if (editorShape.string.length === 0) {
       setError("Required");
     } else if (editorShape.string.length > 280) {
       setError("Too long");
     } else {
       setError(null);
     }
-  }, [editorShape.string, setError, editorShape.value]);
+  }, [editorShape.string, setError]);
 
-  const editor = useMemo(() => createEditor(), []);
+  const editor = useMemo(() => {
+    const editor = createEditor();
+    const { insertText } = editor;
+    editor.insertText = (text) => {
+      setTouched(true);
+      insertText(text);
+    };
+    return editor;
+  }, []);
 
   function handlePost() {
+    setTouched(true);
+
     if (selectedTimelines.length < 1 || error) {
       return;
     }
@@ -268,7 +279,7 @@ function ActionBar(props: ActionBarProps) {
         isDisabled: !hasTimelines,
         onPress: handlePost,
       }}
-      error={error ? "hasError" : undefined}
+      error={error && touched ? "hasError" : undefined}
       errorMessage={{
         message: error,
       }}

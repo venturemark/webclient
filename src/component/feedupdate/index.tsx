@@ -171,10 +171,15 @@ function FeedUpdate(props: FeedUpdateProps) {
       {...rest}
       isOwner={resourceOwnership(currentTimeline || currentVenture)}
       actionBar={{
-        currentVenture,
-        timelines,
-        currentTimeline,
-        user,
+        wrap(node) {
+          return timelines.length ? node : null;
+        },
+        props: {
+          currentVenture,
+          timelines,
+          currentTimeline,
+          user,
+        },
       }}
       feedContainer={{
         style: {
