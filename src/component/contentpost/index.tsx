@@ -153,8 +153,6 @@ function ContentPost(props: ContentPostProps) {
   const editorShape = updateToEditorShape(update);
   const editor = useMemo(() => createEditor(), []);
 
-  console.log(allMembers, user);
-
   return (
     <PlasmicContentPost
       {...rest}

@@ -132,7 +132,6 @@ function ActionBar(props: ActionBarProps) {
       title={{
         as: ComposeEditor,
         props: {
-          autosize: true,
           "aria-label": "Description",
           editor,
           editorShape,
