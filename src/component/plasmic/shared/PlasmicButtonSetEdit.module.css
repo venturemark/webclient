@@ -32,7 +32,13 @@
   .root__variantState_isEdit
     > :global(.__wab_flex-container)
     > :global(.__wab_slot)
-    > * {
+    > *,
+  .root__variantState_isEdit > :global(.__wab_flex-container) > picture > img,
+  .root__variantState_isEdit
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
     margin-left: 0px;
     margin-top: 20px;
   }
@@ -79,7 +85,13 @@
   width: calc(100% + 15px);
 }
 .freeBox___0SmAy > :global(.__wab_flex-container) > *,
-.freeBox___0SmAy > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox___0SmAy > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___0SmAy > :global(.__wab_flex-container) > picture > img,
+.freeBox___0SmAy
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 15px;
 }
 @media (max-width: 767px) {
@@ -98,7 +110,16 @@
 .freeBox__variantState_isEdit___0SmAYtAumS
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
-  > * {
+  > *,
+.freeBox__variantState_isEdit___0SmAYtAumS
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.freeBox__variantState_isEdit___0SmAYtAumS
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 15px;
   margin-top: 0px;
 }
@@ -124,7 +145,16 @@
   .freeBox__variantState_isEdit___0SmAYtAumS
     > :global(.__wab_flex-container)
     > :global(.__wab_slot)
-    > * {
+    > *,
+  .freeBox__variantState_isEdit___0SmAYtAumS
+    > :global(.__wab_flex-container)
+    > picture
+    > img,
+  .freeBox__variantState_isEdit___0SmAYtAumS
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
     margin-left: 0px;
     margin-top: 20px;
   }

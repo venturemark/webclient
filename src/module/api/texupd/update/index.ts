@@ -29,6 +29,7 @@ export async function Update(
   obj.getMetadataMap().set(key.TimelineID, updateUpdate.timelineId);
   obj.getMetadataMap().set(key.VentureID, updateUpdate.ventureId);
   obj.getMetadataMap().set(key.UpdateID, updateUpdate.id);
+  obj.getMetadataMap().set(key.UpdateFormat, "slate");
 
   objJsnPatch.setOpe("replace");
   objJsnPatch.setPat("/obj/property/text");

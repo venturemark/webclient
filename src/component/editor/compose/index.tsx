@@ -15,6 +15,7 @@ import {
   ParagraphPlugin,
   pipe,
   ResetBlockTypePlugin,
+  SlateDocument,
   SoftBreakPlugin,
   StrikethroughPlugin,
   UnderlinePlugin,
@@ -27,8 +28,16 @@ import {
   withMarks,
 } from "@udecode/slate-plugins";
 import { Search } from "@venturemark/numnum";
-import React, { useMemo, useRef, useState } from "react";
-import { BaseEditor, createEditor, Descendant, Editor } from "slate";
+import React, { ReactNode, useCallback, useRef, useState } from "react";
+import {
+  BaseEditor,
+  createEditor as createEditorBase,
+  Descendant,
+  Editor,
+  Element as SlateElement,
+  Node,
+  Transforms,
+} from "slate";
 import { withHistory } from "slate-history";
 import { ReactEditor, Slate, withReact } from "slate-react";
 
@@ -44,8 +53,8 @@ import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
-type CustomText = { text: string };
-type CustomElement = { type: "paragraph"; children: CustomText[] };
+type CustomText = { text: string; placeholder?: boolean };
+type CustomElement = TitleElement | ParagraphElement | SlateDocument;
 
 declare module "slate" {
   interface CustomTypes {
@@ -54,6 +63,88 @@ declare module "slate" {
     Text: CustomText;
   }
 }
+
+type TitleElement = { type: "title"; children: Descendant[] };
+type ParagraphElement = { type: "paragraph"; children: Descendant[] };
+
+type ElementProps = {
+  attributes: any;
+  children: ReactNode;
+  element: CustomElement;
+};
+
+function Element({ attributes, children, element }: ElementProps) {
+  if ("type" in element) {
+    switch (element.type) {
+      case "title":
+        return (
+          <h3
+            {...attributes}
+            style={{
+              margin: "0",
+              fontFamily: "SF Pro Text,sans-serif",
+              fontWeight: "bold",
+              fontSize: "18px",
+              lineHeight: "23px",
+              letterSpacing: "0.491786px",
+            }}
+          >
+            {children}
+          </h3>
+        );
+      case "paragraph":
+        return (
+          <p
+            {...attributes}
+            style={{
+              fontFamily: "SF Pro Text,sans-serif",
+              fontSize: "15px",
+              lineHeight: "23px",
+              letterSpacing: "0.491786px",
+            }}
+          >
+            {children}
+          </p>
+        );
+      default:
+        return null;
+    }
+  }
+  return null;
+}
+
+const withLayout = (editor: Editor) => {
+  const { normalizeNode } = editor;
+
+  editor.normalizeNode = ([node, path]) => {
+    if (path.length === 0) {
+      if (editor.children.length < 1) {
+        const title: TitleElement = {
+          type: "title",
+          children: [{ text: "" }],
+        };
+        Transforms.insertNodes(editor, title, { at: path.concat(0) });
+      }
+
+      for (const [child, childPath] of Node.children(editor, path)) {
+        const type = childPath[0] === 0 ? "title" : "paragraph";
+
+        if (
+          SlateElement.isElement(child) &&
+          "type" in child &&
+          child.type !== type
+        ) {
+          const newProperties: Partial<SlateElement> = { type };
+          Transforms.setNodes(editor, newProperties, { at: childPath });
+        }
+      }
+    }
+
+    return normalizeNode([node, path]);
+  };
+
+  return editor;
+};
 
 const plugins = [
   ParagraphPlugin(options),
@@ -137,9 +228,11 @@ export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
 interface EditorProps {
   editorShape: EditorShape;
   setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
+  editor: Editor;
 }
 
 const withPlugins = [
+  withLayout,
   withReact,
   withHistory,
   withLink(),
@@ -152,16 +245,19 @@ const withPlugins = [
 
 const DEFAULT_HEIGHT = 44;
 const HEIGHT_LIMIT = 188;
-const CHARACTER_LIMIT = 238;
 
-const ComposeEditor = (props: EditorProps) => {
-  const { editorShape, setEditorShape } = props;
+export function createEditor(): Editor {
+  return pipe(createEditorBase(), ...withPlugins);
+}
 
+export function ComposeEditor({
+  editorShape,
+  setEditorShape,
+  editor,
+  ...rest
+}: EditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
-
-  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
-
-  const { insertBreak, insertText } = editor;
+  const { insertBreak } = editor;
 
   const {
     onAddMention,
@@ -181,15 +277,6 @@ const ComposeEditor = (props: EditorProps) => {
     if (height < HEIGHT_LIMIT) {
       insertBreak();
     }
-  };
-  editor.insertText = (text) => {
-    const count = Editor.string(editor, []).length;
-
-    if (count > CHARACTER_LIMIT) {
-      return;
-    }
-
-    insertText(text);
   };
 
   const handleChange = (newValue: Descendant[]) => {
@@ -222,14 +309,26 @@ const ComposeEditor = (props: EditorProps) => {
     onChangeMention(editor);
   };
 
+  const renderElement = useCallback(
+    (props: ElementProps) => <Element {...props} />,
+    []
+  );
+
   return (
-    <div ref={editorRef} className={actionbarcss.textContainer}>
+    <div
+      ref={editorRef}
+      className={actionbarcss.textContainer}
+      style={{ width: "100%", minHeight: "35px" }}
+    >
       <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins
+          renderElement={[renderElement]}
+          autoFocus
           plugins={plugins}
           spellCheck
           onKeyDown={[onKeyDownMention]}
           onKeyDownDeps={[index, search, target]}
+          {...rest}
         />
         <MentionSelect
           at={target}
@@ -240,6 +339,4 @@ const ComposeEditor = (props: EditorProps) => {
       </Slate>
     </div>
   );
-};
-
-export default ComposeEditor;
+}

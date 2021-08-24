@@ -7,6 +7,9 @@
   justify-content: flex-start;
   width: 50%;
   position: relative;
+  transform: skewX(0deg) skewY(0deg);
+  transition-property: all;
+  transition-duration: 1s;
   border-radius: 5px;
   padding: 30px;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
@@ -85,7 +88,13 @@
   height: calc(100% + 7px);
 }
 .freeBox__khj8R > :global(.__wab_flex-container) > *,
-.freeBox__khj8R > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__khj8R > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__khj8R > :global(.__wab_flex-container) > picture > img,
+.freeBox__khj8R
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 7px;
 }
 .photoAvatar:global(.__wab_instance) {
@@ -124,7 +133,16 @@
 .freeBox__editProfile__z9Te4OylNj
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
-  > * {
+  > *,
+.freeBox__editProfile__z9Te4OylNj
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.freeBox__editProfile__z9Te4OylNj
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 22px;
   margin-top: 0px;
 }

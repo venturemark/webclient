@@ -1,7 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import "emoji-mart/css/emoji-mart.css";
 
-import InputTextArea from "component/inputtextarea";
+import { Picker } from "emoji-mart";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { usePopper } from "react-popper";
+import { Descendant, Transforms } from "slate";
+
+import {
+  ComposeEditor,
+  createEditor,
+  useEditor,
+} from "component/editor/compose";
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
@@ -9,6 +17,7 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
 import { VentureContext } from "context/VentureContext";
+import useDropdown from "module/hook/ui/useDropdown";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
 import { IUser } from "module/interface/user";
@@ -21,32 +30,64 @@ interface ActionBarProps extends DefaultActionBarProps {
   user: IUser;
 }
 
-type FormData = {
-  title: string;
-  description: string;
-};
+const initialValue: Descendant[] = [
+  {
+    type: "title",
+    children: [
+      {
+        text: "",
+      },
+    ],
+  },
+];
+
+function CountIndicator({ count }: { count: number }) {
+  const r = 3;
+  const circleLength = 2 * Math.PI * r;
+  let colored = (circleLength * count) / 280;
+  let gray = circleLength - colored;
+  const stroke =
+    280 - count <= 0 ? "red" : 280 - count <= 20 ? "orange" : "#029D7F";
+  const strokeDasharray = `${colored} ${gray}`;
+  return (
+    <div
+      style={{
+        width: "35px",
+        height: "35px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <svg viewBox="0 0 8 8" height="35px" width="35px" role="img">
+        <circle
+          id="gray"
+          cx="50%"
+          cy="50%"
+          r={r}
+          style={{
+            stroke: "#C4C4C4",
+            fill: "none",
+          }}
+        />
+        <circle
+          id="colored"
+          cx="50%"
+          cy="50%"
+          r={r}
+          style={{
+            stroke,
+            strokeDasharray,
+            fill: "none",
+          }}
+        />
+      </svg>
+    </div>
+  );
+}
 
 function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
-
-  const {
-    handleSubmit,
-    register,
-    reset,
-    watch,
-    setValue,
-    trigger,
-    formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      description: "",
-      title: "",
-    },
-    mode: "onChange",
-  });
-
-  const values = watch();
-
   const { token } = useContext(AuthContext);
   const ventureContext = useContext(VentureContext);
   const ventureTimelines = ventureContext.currentVentureTimelines;
@@ -63,15 +104,46 @@ function ActionBar(props: ActionBarProps) {
 
   const { mutate: createUpdate } = useCreateUpdate();
 
-  const handlePost = (data: FormData) => {
-    if (selectedTimelines.length < 1) {
+  const { editorShape, setEditorShape } = useEditor({
+    value: initialValue,
+  });
+
+  const [touched, setTouched] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (editorShape.string.length === 0) {
+      setError("Required");
+    } else if (editorShape.string.length > 280) {
+      setError("Too long");
+    } else {
+      setError(null);
+    }
+  }, [editorShape.string, setError]);
+
+  const editor = useMemo(() => {
+    const editor = createEditor();
+    const { insertText } = editor;
+    editor.insertText = (text) => {
+      setTouched(true);
+      insertText(text);
+    };
+    return editor;
+  }, []);
+
+  function handlePost() {
+    setTouched(true);
+
+    if (selectedTimelines.length < 1 || error) {
       return;
     }
 
+    const [titleNode, ...textNodes] = editorShape.value;
+
     selectedTimelines.forEach((timelineId) => {
       createUpdate({
-        title: data.title,
-        text: data.description ?? "",
+        title: JSON.stringify(titleNode),
+        text: JSON.stringify(textNodes),
         ventureId: currentVenture.id,
         timelineId: timelineId.id,
         token,
@@ -79,9 +151,16 @@ function ActionBar(props: ActionBarProps) {
     });
 
     //reset
-    reset();
+    setEditorShape({
+      value: initialValue,
+      string: "",
+      numberValue: 0,
+      error: undefined,
+      hasContent: undefined,
+      progress: 0,
+    });
     setIsActive(false);
-  };
+  }
 
   useEffect(() => {
     if (currentTimeline) {
@@ -92,60 +171,84 @@ function ActionBar(props: ActionBarProps) {
     }
   }, [currentTimeline]);
 
+  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
+    useDropdown<HTMLDivElement>();
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLButtonElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  );
+  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    modifiers: [{ name: "arrow", options: { element: arrowElement } }],
+    placement: "bottom-start",
+  });
+
   return (
     <PlasmicActionBar
       {...rest}
+      style={{
+        zIndex: 2,
+      }}
       onClick={() => setIsActive(true)}
       isActive={isActive ? "isActive" : false}
       timelineSelected={true}
       form={{
-        onSubmit: handleSubmit(handlePost),
-      }}
-      photoAvatar={{
-        user,
+        onSubmit: handlePost,
       }}
       title={{
-        as: InputTextArea,
+        as: ComposeEditor,
         props: {
-          ...register("title", {
-            required: {
-              message: "Required",
-              value: true,
-            },
-            maxLength: {
-              message: "Too long",
-              value: 100,
-            },
-          }),
-          autosize: true,
-          "aria-label": "Title",
-          onChange(e: string) {
-            setValue("title", e);
-            trigger("title");
-          },
-          value: values.title,
+          "aria-label": "Description",
+          editor,
+          editorShape,
+          setEditorShape,
         },
       }}
       description={{
-        as: InputTextArea,
-        props: {
-          ...register("description", {
-            required: {
-              message: "Required",
-              value: true,
-            },
-            maxLength: {
-              message: "Too long",
-              value: 280,
-            },
-          }),
-          autosize: true,
-          "aria-label": "Description",
-          onChange(e: string) {
-            setValue("description", e);
-            trigger("description");
-          },
-          value: values.description,
+        wrap() {
+          return null;
+        },
+      }}
+      emoji={{
+        wrap(node) {
+          return (
+            <div ref={dropdownRootRef} style={{ zIndex: 100 }}>
+              <button
+                style={{ background: "none", border: "none" }}
+                onClick={() => setDropdownVisible(!dropdownVisible)}
+                type="button"
+                ref={setReferenceElement}
+              >
+                {node}
+              </button>
+
+              {dropdownVisible && (
+                <div
+                  ref={setPopperElement}
+                  style={styles.popper}
+                  {...attributes.popper}
+                >
+                  <Picker
+                    onSelect={(e) =>
+                      "native" in e && Transforms.insertText(editor, e.native)
+                    }
+                  />
+                  <div ref={setArrowElement} style={styles.arrow} />
+                </div>
+              )}
+            </div>
+          );
+        },
+      }}
+      bulletList={{
+        wrap() {
+          return null;
+        },
+      }}
+      uploadImage={{
+        wrap() {
+          return null;
         },
       }}
       container={{
@@ -166,19 +269,19 @@ function ActionBar(props: ActionBarProps) {
           setSelectFocused,
         },
       }}
-      post={{
-        isDisabled: !hasTimelines,
-        onPress() {
-          handleSubmit(handlePost)();
+      characterLimitIndicator={{
+        as: CountIndicator,
+        props: {
+          count: editorShape.string.length,
         },
       }}
-      error={
-        errors.title?.message || errors.description?.message
-          ? "hasError"
-          : undefined
-      }
+      post={{
+        isDisabled: !hasTimelines,
+        onPress: handlePost,
+      }}
+      error={error && touched ? "hasError" : undefined}
       errorMessage={{
-        message: errors.title?.message || errors.description?.message,
+        message: error,
       }}
     />
   );

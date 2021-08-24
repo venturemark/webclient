@@ -5,6 +5,8 @@
   height: 100%;
   flex-direction: column;
   background: #ffffff;
+  transition-property: all;
+  transition-duration: 300ms;
   min-width: 0;
   min-height: 0;
   border-left: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
@@ -15,7 +17,9 @@
   height: calc(100% + 0px);
 }
 .root > :global(.__wab_flex-container) > *,
-.root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.root > :global(.__wab_flex-container) > picture > img,
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-top: 0px;
 }
 .freeBox__qxUjW {

@@ -70,7 +70,13 @@
   height: calc(100% + 15px);
 }
 .textContainer2 > :global(.__wab_flex-container) > *,
-.textContainer2 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.textContainer2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.textContainer2 > :global(.__wab_flex-container) > picture > img,
+.textContainer2
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 15px;
 }
 .title {
@@ -129,7 +135,13 @@
   width: calc(100% + 10px);
 }
 .freeBox__ehjLr > :global(.__wab_flex-container) > *,
-.freeBox__ehjLr > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__ehjLr > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__ehjLr > :global(.__wab_flex-container) > picture > img,
+.freeBox__ehjLr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 10px;
 }
 @media (max-width: 767px) {
@@ -150,7 +162,13 @@
 }
 @media (max-width: 767px) {
   .freeBox__ehjLr > :global(.__wab_flex-container) > *,
-  .freeBox__ehjLr > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+  .freeBox__ehjLr > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .freeBox__ehjLr > :global(.__wab_flex-container) > picture > img,
+  .freeBox__ehjLr
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
     margin-left: 5px;
     margin-top: 8px;
   }
@@ -171,7 +189,13 @@
   width: calc(100% + 5px);
 }
 .freeBox__kyNpO > :global(.__wab_flex-container) > *,
-.freeBox__kyNpO > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__kyNpO > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__kyNpO > :global(.__wab_flex-container) > picture > img,
+.freeBox__kyNpO
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 5px;
 }
 @media (max-width: 767px) {
@@ -198,7 +222,13 @@
   height: calc(100% + 0px);
 }
 .freeBox__mkSty > :global(.__wab_flex-container) > *,
-.freeBox__mkSty > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__mkSty > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__mkSty > :global(.__wab_flex-container) > picture > img,
+.freeBox__mkSty
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 0px;
 }
 .freeBox__fjL5B {
@@ -219,7 +249,13 @@
   width: calc(100% + 5px);
 }
 .freeBox__fjL5B > :global(.__wab_flex-container) > *,
-.freeBox__fjL5B > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__fjL5B > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__fjL5B > :global(.__wab_flex-container) > picture > img,
+.freeBox__fjL5B
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 5px;
 }
 .freeBox__nwWG {
@@ -253,7 +289,13 @@
   width: calc(100% + 4px);
 }
 .freeBox__wDBh5 > :global(.__wab_flex-container) > *,
-.freeBox__wDBh5 > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__wDBh5 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__wDBh5 > :global(.__wab_flex-container) > picture > img,
+.freeBox__wDBh5
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 4px;
 }
 .span {
@@ -287,7 +329,13 @@
   width: calc(100% + 5px);
 }
 .freeBox__vvzri > :global(.__wab_flex-container) > *,
-.freeBox__vvzri > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__vvzri > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__vvzri > :global(.__wab_flex-container) > picture > img,
+.freeBox__vvzri
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 5px;
 }
 .timelineNamesContainer {
@@ -305,7 +353,13 @@
 .timelineNamesContainer
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
-  > * {
+  > *,
+.timelineNamesContainer > :global(.__wab_flex-container) > picture > img,
+.timelineNamesContainer
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 5px;
 }
 .timelineLink:global(.__wab_instance) {

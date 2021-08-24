@@ -17,7 +17,13 @@
   height: calc(100% + 18px);
 }
 .settings > :global(.__wab_flex-container) > *,
-.settings > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.settings > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.settings > :global(.__wab_flex-container) > picture > img,
+.settings
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 18px;
 }
 @media (max-width: 767px) {

@@ -1,5 +1,11 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
+import { Descendant } from "slate";
 
+import {
+  ComposeEditor,
+  createEditor,
+  EditorShape,
+} from "component/editor/compose";
 import {
   DefaultContentPostProps,
   PlasmicContentPost,
@@ -18,38 +24,62 @@ import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 
 interface ContentPostProps extends DefaultContentPostProps {
-  title: string;
-  description: string;
-  id: string;
-  timelineId: string;
-  date: string;
+  update: IUpdate;
   setIsVisible: any;
   isVisible: any;
   setPost: () => void;
   post?: IUpdate;
-  userId: string;
-  userName?: string;
   user?: IUser;
   state?: "isOwner" | "isPostDetails";
-  ventureId: string;
   allUpdates?: IUpdate[];
+}
+
+function updateToEditorShape(update: IUpdate): EditorShape {
+  const { title, text } = update;
+  let value: Descendant[] = [];
+  if (title && text) {
+    if (update.format === "slate") {
+      value = [JSON.parse(title), ...JSON.parse(text)];
+    } else if (update.format === "plain-text") {
+      value = [
+        {
+          type: "title",
+          children: [
+            {
+              text: title,
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          children: [
+            {
+              text,
+            },
+          ],
+        },
+      ];
+    }
+  }
+
+  return {
+    value,
+    string: "",
+    numberValue: 0,
+    error: undefined,
+    hasContent: undefined,
+    progress: 0,
+  };
 }
 
 function ContentPost(props: ContentPostProps) {
   const {
-    title,
-    description,
-    date,
+    update,
     setIsVisible,
     setPost,
     post,
-    timelineId,
-    id,
     state,
-    ventureId,
     allUpdates = [],
-    userId,
-    userName,
     isVisible,
     user,
     ...rest
@@ -63,9 +93,9 @@ function ContentPost(props: ContentPostProps) {
   const timelines = ventureContext.currentVentureTimelines ?? [];
 
   const { data: messagesData } = useMessages({
-    updateId: id,
-    timelineId: timelineId,
-    ventureId,
+    updateId: update.id,
+    timelineId: update.timelineId,
+    ventureId: update.ventureId,
     token,
   });
   const messages = messagesData ?? [];
@@ -73,9 +103,9 @@ function ContentPost(props: ContentPostProps) {
 
   const updateTimelines = allUpdates
     ?.filter(
-      (update: IUpdate) =>
-        Math.round(Number(update.id) / 1000000000) ===
-        Math.round(Number(id) / 1000000000)
+      (u: IUpdate) =>
+        Math.round(Number(u.id) / 1000000000) ===
+        Math.round(Number(update.id) / 1000000000)
     )
     .map((update: IUpdate) =>
       timelines.filter(
@@ -86,14 +116,14 @@ function ContentPost(props: ContentPostProps) {
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
-      timelineId: timelineId ?? undefined,
-      ventureId: ventureId ?? undefined,
+      timelineId: update.timelineId,
+      ventureId: update.ventureId,
       token,
     });
 
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
     useVentureMembers({
-      ventureId: ventureId ?? undefined,
+      ventureId: update.ventureId,
       token,
     });
 
@@ -104,51 +134,71 @@ function ContentPost(props: ContentPostProps) {
 
   const { mutate: deleteUpdate } = useDeleteUpdate();
 
-  const userData = allMembers?.filter((user: IUser) => user.id === userId)[0];
-
-  const userNameData = allMembers?.filter(
-    (user: IUser) => user.id === userId
-  )[0]?.name;
-
+  const userData = allMembers?.find((m: IUser) => m.id === user?.id);
   const postUser = userData ?? user;
 
   const userContext = useContext(UserContext);
-  const isOwner = userId === userContext.user?.id ? "isOwner" : undefined;
+  const isOwner = user?.id === userContext.user?.id ? "isOwner" : undefined;
 
   const handleDeleteUpdate = () => {
     deleteUpdate({
-      id,
-      timelineId,
-      ventureId,
+      id: update.id,
+      timelineId: update.timelineId,
+      ventureId: update.ventureId,
       token: token,
     });
     setIsVisible(undefined);
   };
 
+  const editorShape = updateToEditorShape(update);
+  const editor = useMemo(() => createEditor(), []);
+
   return (
     <PlasmicContentPost
       {...rest}
+      style={{
+        zIndex: 200,
+      }}
       root={{
         ref: dropdownRootRef,
       }}
       iconMenu={{
         onClick: () => setDropdownVisible(!dropdownVisible),
       }}
+      title={{
+        as: ComposeEditor,
+        props: {
+          readOnly: true,
+          editorShape,
+          setEditorShape: () => null,
+          editor,
+          style: {
+            width: "100%",
+          },
+        },
+      }}
+      textContainer2={{
+        style: {
+          width: "100%",
+        },
+      }}
       isUserOnClick={dropdownVisible}
       state={state || isOwner}
-      title={title}
-      description={description}
-      userName={userNameData || userName}
+      description={{
+        wrap() {
+          return null;
+        },
+      }}
+      userName={userData?.name || user?.name}
       photoAvatar={{ user: postUser }}
-      date={date}
+      date={update.date}
       dropdown={{
         onClick: handleDeleteUpdate,
       }}
       viewReplies={{
-        count: count,
         text2: count === 1 ? "reply" : "replies",
         onPress: () => {
-          if (isVisible === "postDetails" && post?.id === id) {
+          if (isVisible === "postDetails" && post?.id === update.id) {
             // toggle post detail pane
             setIsVisible(undefined);
           } else {

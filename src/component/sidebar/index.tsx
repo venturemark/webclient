@@ -19,7 +19,7 @@ function Sidebar(props: SidebarProps) {
   return (
     <PlasmicSidebar
       {...props}
-      hasInput={ventures.length > 0 ? true : false}
+      hasInput={true}
       userName={userContext.user?.name ?? ""}
       photoAvatar={{ user: userContext.user }}
       accountSettings={{

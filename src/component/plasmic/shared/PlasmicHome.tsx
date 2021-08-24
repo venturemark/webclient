@@ -248,6 +248,17 @@ function PlasmicHome__RenderFunc(props: {
                     ? ("isPublic" as const)
                     : undefined
                 }
+                userName={
+                  <div
+                    className={classNames(
+                      defaultcss.all,
+                      defaultcss.__wab_text,
+                      sty.freeBox__m5KNe
+                    )}
+                  >
+                    {"Name"}
+                  </div>
+                }
               />
             ) : null}
 
@@ -290,6 +301,11 @@ function PlasmicHome__RenderFunc(props: {
                       "isVisible",
                       "isPublic"
                     ),
+                    [sty.main__isVisible_mobileSidebar]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "mobileSidebar"
+                    ),
                     [sty.main__isVisible_postDetails]: hasVariant(
                       variants,
                       "isVisible",
@@ -301,7 +317,7 @@ function PlasmicHome__RenderFunc(props: {
                       ? ("feed" as const)
                       : hasVariant(variants, "isVisible", "postDetails")
                       ? ("feed" as const)
-                      : ("isNewVenture" as const)
+                      : ("feed" as const)
                   }
                   isOwner={
                     hasVariant(variants, "isVisible", "isPublic")
@@ -316,7 +332,7 @@ function PlasmicHome__RenderFunc(props: {
                   variantType={
                     hasVariant(variants, "isVisible", "isPublic")
                       ? ("isVenture" as const)
-                      : ("isEmpty" as const)
+                      : ("isVenture" as const)
                   }
                 />
               </div>

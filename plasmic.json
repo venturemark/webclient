@@ -747,6 +747,36 @@
           "id": "1tBTTGMGvG",
           "name": "LockIconsvgIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__LockIconsvg.tsx"
+        },
+        {
+          "id": "7EdfFx1qO",
+          "name": "IconEmojisvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconEmojisvg.tsx"
+        },
+        {
+          "id": "mIjXTEoTT",
+          "name": "IconImagesvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconImagesvg.tsx"
+        },
+        {
+          "id": "kGOcXPlB7",
+          "name": "IconListsvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconListsvg.tsx"
+        },
+        {
+          "id": "5IDGmkMiF",
+          "name": "IconQuestionsvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconQuestionsvg.tsx"
+        },
+        {
+          "id": "oacsOjkCd",
+          "name": "IconQuotesvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconQuotesvg.tsx"
+        },
+        {
+          "id": "ivt63Bul_",
+          "name": "IconMediaClosesvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconMediaClosesvg.tsx"
         }
       ],
       "images": [
@@ -806,6 +836,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.157",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.157/dist/plasmic.schema.json"
+  "cliVersion": "0.1.160",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.160/dist/plasmic.schema.json"
 }

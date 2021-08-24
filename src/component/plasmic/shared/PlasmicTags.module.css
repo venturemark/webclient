@@ -85,7 +85,13 @@
   width: calc(100% + 10px);
 }
 .freeBox > :global(.__wab_flex-container) > *,
-.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox > :global(.__wab_flex-container) > picture > img,
+.freeBox
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 10px;
 }
 .slotText2 {
@@ -99,7 +105,11 @@
 .slotText2 > *,
 .slotText2 > .__wab_slot > *,
 .slotText2 > .__wab_slot > .__wab_slot > *,
-.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > * {
+.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > *,
+.slotText2 > picture > img,
+.slotText2 > .__wab_slot > picture > img,
+.slotText2 > .__wab_slot > .__wab_slot > picture > img,
+.slotText2 > .__wab_slot > .__wab_slot > .__wab_slot > picture > img {
   text-decoration-line: none;
 }
 .slotText2__buttonStyle_secondaryPurple {
@@ -132,7 +142,17 @@
 .root:focus-within .slotChildren > *,
 .root:focus-within .slotChildren > .__wab_slot > *,
 .root:focus-within .slotChildren > .__wab_slot > .__wab_slot > *,
-.root:focus-within .slotChildren > .__wab_slot > .__wab_slot > .__wab_slot > * {
+.root:focus-within .slotChildren > .__wab_slot > .__wab_slot > .__wab_slot > *,
+.root:focus-within .slotChildren > picture > img,
+.root:focus-within .slotChildren > .__wab_slot > picture > img,
+.root:focus-within .slotChildren > .__wab_slot > .__wab_slot > picture > img,
+.root:focus-within
+  .slotChildren
+  > .__wab_slot
+  > .__wab_slot
+  > .__wab_slot
+  > picture
+  > img {
   outline: none;
 }
 .svg__vEG {

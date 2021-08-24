@@ -171,20 +171,24 @@ function FeedUpdate(props: FeedUpdateProps) {
       {...rest}
       isOwner={resourceOwnership(currentTimeline || currentVenture)}
       actionBar={{
-        currentVenture,
-        timelines,
-        currentTimeline,
-        user,
+        wrap(node) {
+          return timelines.length ? node : null;
+        },
+        props: {
+          currentVenture,
+          timelines,
+          currentTimeline,
+          user,
+        },
       }}
       feedContainer={{
+        style: {
+          zIndex: 1,
+        },
         children: updates.map((update: IUpdate) => (
           <ContentPost
-            title={update.title ?? ""}
-            description={update.text ?? ""}
             key={update.id}
-            id={update.id}
-            timelineId={update.timelineId}
-            date={update.date ?? ""}
+            update={update}
             setIsVisible={setIsVisible}
             isVisible={isVisible}
             setPost={() =>
@@ -194,9 +198,8 @@ function FeedUpdate(props: FeedUpdateProps) {
               })
             }
             post={post}
-            ventureId={update.ventureId}
             allUpdates={ventureUpdates}
-            userId={update.userId ?? ""}
+            user={user}
           />
         )),
       }}

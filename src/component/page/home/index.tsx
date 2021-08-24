@@ -44,8 +44,6 @@ export function Home(props: HomeProps) {
           user,
         }}
         modal={{
-          isVisible,
-          setIsVisible,
           modalType,
         }}
         main={{

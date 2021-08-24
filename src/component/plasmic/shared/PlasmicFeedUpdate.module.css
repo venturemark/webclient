@@ -16,7 +16,9 @@
   height: calc(100% + 38px);
 }
 .root > :global(.__wab_flex-container) > *,
-.root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.root > :global(.__wab_flex-container) > picture > img,
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-top: 38px;
 }
 .actionBar:global(.__wab_instance) {
@@ -54,7 +56,13 @@
   height: calc(100% + 10px /* plasmic-token: 4LaooeLwj */);
 }
 .feedContainer > :global(.__wab_flex-container) > *,
-.feedContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.feedContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.feedContainer > :global(.__wab_flex-container) > picture > img,
+.feedContainer
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 10px /* plasmic-token: 4LaooeLwj */;
 }
 .span__z3 {

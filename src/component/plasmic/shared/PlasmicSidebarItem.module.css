@@ -21,7 +21,7 @@
   width: 8px;
   height: 8px;
   position: absolute;
-  left: -8px;
+  left: -11px;
   top: 39%;
   flex-shrink: 0;
 }
@@ -47,7 +47,13 @@
   width: calc(100% + 6px);
 }
 .itemContainer > :global(.__wab_flex-container) > *,
-.itemContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.itemContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.itemContainer > :global(.__wab_flex-container) > picture > img,
+.itemContainer
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 6px;
 }
 .itemContainer__itemType_createTimeline {
@@ -65,7 +71,7 @@
   opacity: 1;
 }
 .root:hover .itemContainer {
-  background: rgb(249, 249, 250);
+  background: #423c50;
 }
 .root__itemType_createTimeline:hover .itemContainer__itemType_createTimeline {
   background: none;
@@ -106,6 +112,7 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   min-width: 0;
   min-height: 0;
 }
@@ -133,7 +140,13 @@
   width: calc(100% + 10px);
 }
 .freeBox__zwdJs > :global(.__wab_flex-container) > *,
-.freeBox__zwdJs > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.freeBox__zwdJs > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__zwdJs > :global(.__wab_flex-container) > picture > img,
+.freeBox__zwdJs
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-left: 10px;
 }
 .freeBox__itemType_timeline__zwdJSoN3Wv {
@@ -157,6 +170,7 @@
 .slotName {
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 600;
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .slotName__itemType_timeline {
   font-weight: 400;
@@ -213,6 +227,9 @@
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .svg__isActive_isOwner__zhtWcw0Xu8XgVg8 {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.root:hover .svg__zhtWc {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .root__isActive:hover .svg__isActive__zhtWcw0Xu8 {

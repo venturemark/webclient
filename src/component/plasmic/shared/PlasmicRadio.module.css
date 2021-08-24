@@ -13,7 +13,9 @@
   height: calc(100% + 5px);
 }
 .root > :global(.__wab_flex-container) > *,
-.root > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.root > :global(.__wab_flex-container) > picture > img,
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-top: 5px;
 }
 .radio {
@@ -37,7 +39,9 @@
   width: calc(100% + 5px);
 }
 .radio > :global(.__wab_flex-container) > *,
-.radio > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.radio > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.radio > :global(.__wab_flex-container) > picture > img,
+.radio > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-left: 5px;
 }
 .radio__position_top {
@@ -88,7 +92,13 @@
   height: calc(100% + 5px);
 }
 .labelContainer > :global(.__wab_flex-container) > *,
-.labelContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
+.labelContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.labelContainer > :global(.__wab_flex-container) > picture > img,
+.labelContainer
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 5px;
 }
 .label {

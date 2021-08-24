@@ -1,4 +1,4 @@
-import { format, formatDistanceToNowStrict } from "date-fns";
+import { format as formatDate, formatDistanceToNowStrict } from "date-fns";
 import fromUnixTime from "date-fns/fromUnixTime";
 
 import { APIClient } from "module/api/update/proto/ApiServiceClientPb";
@@ -47,21 +47,26 @@ export async function Search(searchUpdate: ISearchUpdate) {
           const updateId = metaPb.get(key.UpdateID)!;
           const userId = metaPb.get(key.UserID);
           const subjectId = metaPb.get(key.SubjectID);
+          let format: IUpdate["format"] = "plain-text";
+          if (metaPb.get(key.UpdateFormat) === "slate") {
+            format = "slate";
+          }
           const rawDate = fromUnixTime(
             (updateId as unknown as number) / 1000000000
           ); // TODO: check this
           const date = formatDistanceToNowStrict(rawDate) + " ago";
-          const defaultDate = format(rawDate, "MM/dd/yyyy");
+          const defaultDate = formatDate(rawDate, "MM/dd/yyyy");
 
           const update: IUpdate = {
-            ventureId: ventureId,
-            timelineId: timelineId,
-            userId: userId,
-            subjectId: subjectId,
+            ventureId,
+            timelineId,
+            userId,
+            subjectId,
             id: updateId,
-            text: text,
+            text,
             title: head || defaultDate,
-            date: date,
+            date,
+            format,
           };
           return update;
         });
