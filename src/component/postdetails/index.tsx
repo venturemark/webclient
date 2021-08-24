@@ -13,28 +13,24 @@ import { IUser } from "module/interface/user";
 
 interface PostDetailsProps extends DefaultPostDetailsProps {
   setIsVisible: any;
-  post: IUpdate;
+  post: IUpdate | null;
 }
 
 function PostDetails(props: PostDetailsProps) {
   const { setIsVisible, post, ...rest } = props;
   const { token } = useContext(AuthContext);
 
-  const timelineId = post?.timelineId ?? "";
-  const updateId = post?.id ?? "";
-  const ventureId = post?.ventureId ?? "";
-
   const { data: messagesData } = useMessages({
-    updateId,
-    timelineId,
-    ventureId,
+    updateId: post?.id,
+    timelineId: post?.timelineId,
+    ventureId: post?.ventureId,
     token,
   });
   const messages = messagesData;
 
-  const postUser = post?.users?.filter(
+  const updateUser = post?.users?.find(
     (user: IUser) => (post.userId = user.id)
-  )[0];
+  );
 
   const sortedMessages = messages?.sort((a: IMessage, b: IMessage) =>
     a.id.localeCompare(b.id)
@@ -47,15 +43,10 @@ function PostDetails(props: PostDetailsProps) {
         onClick: () => setIsVisible(undefined),
       }}
       post={{
+        update: post,
+        post,
         state: "isPostDetails",
-        title: post?.title ?? "",
-        description: post?.text ?? "",
-        id: updateId,
-        timelineId: timelineId,
-        ventureId: ventureId,
-        userName: postUser?.name,
-        user: postUser,
-        date: post?.date ?? "",
+        user: updateUser,
       }}
       repliesContainer={{
         children: sortedMessages?.map((message: IMessage) => (
@@ -72,9 +63,9 @@ function PostDetails(props: PostDetailsProps) {
         )),
       }}
       replyInput={{
-        ventureId,
-        timelineId,
-        updateId,
+        ventureId: post?.ventureId,
+        timelineId: post?.timelineId,
+        updateId: post?.id,
       }}
     />
   );

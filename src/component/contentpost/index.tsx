@@ -24,41 +24,43 @@ import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 
 interface ContentPostProps extends DefaultContentPostProps {
-  update: IUpdate;
+  update: IUpdate | null;
   setIsVisible: any;
   isVisible: any;
   setPost: () => void;
-  post?: IUpdate;
+  post: IUpdate | null;
   user?: IUser;
   state?: "isOwner" | "isPostDetails";
   allUpdates?: IUpdate[];
 }
 
-function updateToEditorShape(update: IUpdate): EditorShape {
-  const { title, text } = update;
+function updateToEditorShape(update: IUpdate | null): EditorShape {
   let value: Descendant[] = [];
-  if (title && text) {
-    if (update.format === "slate") {
-      value = [JSON.parse(title), ...JSON.parse(text)];
-    } else if (update.format === "plain-text") {
-      value = [
-        {
-          type: "title",
-          children: [
-            {
-              text: title,
-            },
-          ],
-        },
-        {
-          type: "paragraph",
-          children: [
-            {
-              text,
-            },
-          ],
-        },
-      ];
+  if (update) {
+    const { format, title, text } = update;
+    if (title && text) {
+      if (format === "slate") {
+        value = [JSON.parse(title), ...JSON.parse(text)];
+      } else {
+        value = [
+          {
+            type: "title",
+            children: [
+              {
+                text: title,
+              },
+            ],
+          },
+          {
+            type: "paragraph",
+            children: [
+              {
+                text,
+              },
+            ],
+          },
+        ];
+      }
     }
   }
 
@@ -92,20 +94,18 @@ function ContentPost(props: ContentPostProps) {
   const ventureContext = useContext(VentureContext);
   const timelines = ventureContext.currentVentureTimelines ?? [];
 
-  const { data: messagesData } = useMessages({
-    updateId: update.id,
-    timelineId: update.timelineId,
-    ventureId: update.ventureId,
+  const { data: messagesData = [] } = useMessages({
+    updateId: update?.id,
+    timelineId: update?.timelineId,
+    ventureId: update?.ventureId,
     token,
   });
-  const messages = messagesData ?? [];
-  const count = messages.length > 0 ? messages.length : 0;
 
   const updateTimelines = allUpdates
     ?.filter(
       (u: IUpdate) =>
         Math.round(Number(u.id) / 1000000000) ===
-        Math.round(Number(update.id) / 1000000000)
+        Math.round(Number(update?.id ?? 0) / 1000000000)
     )
     .map((update: IUpdate) =>
       timelines.filter(
@@ -116,14 +116,14 @@ function ContentPost(props: ContentPostProps) {
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
-      timelineId: update.timelineId,
-      ventureId: update.ventureId,
+      timelineId: update?.timelineId,
+      ventureId: update?.ventureId,
       token,
     });
 
   const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
     useVentureMembers({
-      ventureId: update.ventureId,
+      ventureId: update?.ventureId,
       token,
     });
 
@@ -141,6 +141,7 @@ function ContentPost(props: ContentPostProps) {
   const isOwner = user?.id === userContext.user?.id ? "isOwner" : undefined;
 
   const handleDeleteUpdate = () => {
+    if (!update) return;
     deleteUpdate({
       id: update.id,
       timelineId: update.timelineId,
@@ -191,14 +192,15 @@ function ContentPost(props: ContentPostProps) {
       }}
       userName={userData?.name || user?.name}
       photoAvatar={{ user: postUser }}
-      date={update.date}
+      date={update?.date}
       dropdown={{
         onClick: handleDeleteUpdate,
       }}
       viewReplies={{
-        text2: count === 1 ? "reply" : "replies",
+        count: messagesData.length,
+        text2: messagesData.length < 2 ? "reply" : "replies",
         onPress: () => {
-          if (isVisible === "postDetails" && post?.id === update.id) {
+          if (isVisible === "postDetails" && post?.id === update?.id) {
             // toggle post detail pane
             setIsVisible(undefined);
           } else {

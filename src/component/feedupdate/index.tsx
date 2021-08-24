@@ -29,8 +29,8 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
   user: IUser;
   setIsVisible: (value: IsVisible) => void;
   isVisible: IsVisible;
-  setPost: (post: IUpdate) => void;
-  post?: IUpdate;
+  setPost: (post: IUpdate | null) => void;
+  post: IUpdate | null;
 }
 
 function deduplicateUpdates(updates: IUpdate[]) {
