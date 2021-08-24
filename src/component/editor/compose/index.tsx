@@ -245,7 +245,6 @@ const withPlugins = [
 
 const DEFAULT_HEIGHT = 44;
 const HEIGHT_LIMIT = 188;
-const CHARACTER_LIMIT = 238;
 
 export function createEditor(): Editor {
   return pipe(createEditorBase(), ...withPlugins);
@@ -258,7 +257,7 @@ export function ComposeEditor({
   ...rest
 }: EditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
-  const { insertBreak, insertText } = editor;
+  const { insertBreak } = editor;
 
   const {
     onAddMention,
@@ -278,16 +277,6 @@ export function ComposeEditor({
     if (height < HEIGHT_LIMIT) {
       insertBreak();
     }
-  };
-
-  editor.insertText = (text) => {
-    const count = Editor.string(editor, []).length;
-
-    if (count > CHARACTER_LIMIT) {
-      return;
-    }
-
-    insertText(text);
   };
 
   const handleChange = (newValue: Descendant[]) => {

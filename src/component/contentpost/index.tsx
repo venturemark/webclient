@@ -172,6 +172,14 @@ function ContentPost(props: ContentPostProps) {
           editorShape,
           setEditorShape: () => null,
           editor,
+          style: {
+            width: "100%",
+          },
+        },
+      }}
+      textContainer2={{
+        style: {
+          width: "100%",
         },
       }}
       isUserOnClick={dropdownVisible}
