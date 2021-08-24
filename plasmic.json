@@ -836,6 +836,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.157",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.157/dist/plasmic.schema.json"
+  "cliVersion": "0.1.160",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.160/dist/plasmic.schema.json"
 }

@@ -301,6 +301,11 @@ function PlasmicHome__RenderFunc(props: {
                       "isVisible",
                       "isPublic"
                     ),
+                    [sty.main__isVisible_mobileSidebar]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "mobileSidebar"
+                    ),
                     [sty.main__isVisible_postDetails]: hasVariant(
                       variants,
                       "isVisible",
