@@ -17,8 +17,8 @@ interface MainProps extends DefaultMainProps {
   variantType: any;
   setIsVisible: any;
   isVisible: any;
-  setPost: (u: IUpdate) => void;
-  post: IUpdate;
+  setPost: (u: IUpdate | null) => void;
+  post: IUpdate | null;
   ventureId?: string;
   user: IUser;
 }

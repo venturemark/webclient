@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import { PlasmicButton } from "component/plasmic/shared/PlasmicButton";
 
 interface ButtonProps extends PlumeButtonProps {
-  // onPress?: (e: MouseEvent) => void;
+  count: number;
   text2: string;
 }
 

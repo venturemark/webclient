@@ -160,6 +160,7 @@ function ActionBar(props: ActionBarProps) {
       progress: 0,
     });
     setIsActive(false);
+    setTouched(false);
   }
 
   useEffect(() => {

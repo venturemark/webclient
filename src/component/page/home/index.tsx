@@ -32,7 +32,7 @@ export function Home(props: HomeProps) {
 
   // local hooks shared with page-level elements
   const [isVisible, setIsVisible] = useState<IsVisible>(visibleProp);
-  const [post, setPost] = useState<IUpdate>();
+  const [post, setPost] = useState<IUpdate | null>(null);
 
   return (
     <>

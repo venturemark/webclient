@@ -11,10 +11,10 @@ export interface IMessage {
 }
 
 export interface ISearchMessage {
-  ventureId: string;
-  timelineId: string;
-  updateId: string;
-  timelines?: any;
+  ventureId?: string;
+  timelineId?: string;
+  updateId?: string;
+  timelines?: string[];
   token: string | null;
 }
 

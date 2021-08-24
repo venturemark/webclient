@@ -9,15 +9,10 @@ import {
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getMessages = async (messageQuery: ISearchMessage) => {
-  const data = await api.API.Message.Search(messageQuery);
-  return data;
-};
-
 export function useMessages(messageQuery: ISearchMessage) {
-  return useQuery<any, ErrorResponse>(
+  return useQuery<IMessage[], ErrorResponse>(
     ["messages", messageQuery.updateId],
-    () => getMessages(messageQuery),
+    () => api.API.Message.Search(messageQuery),
     {
       enabled:
         !!messageQuery.token &&
