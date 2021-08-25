@@ -63,7 +63,7 @@ export function TimelineSelect(props: SelectProps) {
             label={option?.name ?? ""}
             {...getTagProps({ index })}
             style={{
-              backgroundColor: "#029D7F",
+              backgroundColor: "#2E8C8D",
               fontFamily: "Poppins",
               color: "#fff",
             }}
