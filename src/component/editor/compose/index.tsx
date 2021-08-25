@@ -319,7 +319,7 @@ export function ComposeEditor({
     <div
       ref={editorRef}
       className={actionbarcss.textContainer}
-      style={{ width: "100%", minHeight: "35px" }}
+      style={{ width: "100%", minHeight: "35px", display: "flex" }}
     >
       <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins
