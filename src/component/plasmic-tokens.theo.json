@@ -3,7 +3,7 @@
     {
       "name": "2E283C",
       "type": "color",
-      "value": "#2E283C",
+      "value": "#443D5E",
       "category": "color",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
@@ -131,16 +131,6 @@
       }
     },
     {
-      "name": "UnnamedStyleToken 3",
-      "type": "color",
-      "value": "#423C50",
-      "category": "color",
-      "meta": {
-        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
-        "id": "n8KTEVsp0"
-      }
-    },
-    {
       "name": "UnnamedStyleToken 4",
       "type": "spacing",
       "value": "1px",
@@ -153,7 +143,7 @@
     {
       "name": "UnnamedStyleToken 4",
       "type": "color",
-      "value": "#B76F92",
+      "value": "#DF9999",
       "category": "color",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",
@@ -451,6 +441,16 @@
       }
     },
     {
+      "name": "sidebarItemHover",
+      "type": "color",
+      "value": "#373050",
+      "category": "color",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "n8KTEVsp0"
+      }
+    },
+    {
       "name": "successGreen",
       "type": "color",
       "value": "rgb(88,176,113)",
@@ -483,7 +483,7 @@
     {
       "name": "ventureGreen",
       "type": "color",
-      "value": "rgb(2,157,127)",
+      "value": "#2E8C8D",
       "category": "color",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",

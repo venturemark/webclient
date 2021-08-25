@@ -210,10 +210,20 @@ function PlasmicHome__RenderFunc(props: {
                 "isVisible",
                 "mobileSidebar"
               ),
+              [sty.freeBox__isVisible_postDetails___70AttbZmLb]: hasVariant(
+                variants,
+                "isVisible",
+                "postDetails"
+              ),
             })}
           >
             {(
-              hasVariant(variants, "isVisible", "mobileSidebar")
+              hasVariant(variants, "isVisible", "isPublic") &&
+              hasVariant(globalVariants, "screen", "mobile")
+                ? true
+                : hasVariant(variants, "isVisible", "isPublic")
+                ? true
+                : hasVariant(variants, "isVisible", "mobileSidebar")
                 ? true
                 : hasVariant(globalVariants, "screen", "mobile")
                 ? false
@@ -269,6 +279,11 @@ function PlasmicHome__RenderFunc(props: {
                   "isVisible",
                   "isPublic"
                 ),
+                [sty.freeBox__isVisible_postDetails__cJlKhbZmLb]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "postDetails"
+                ),
               })}
             >
               <div
@@ -322,7 +337,7 @@ function PlasmicHome__RenderFunc(props: {
                   isOwner={
                     hasVariant(variants, "isVisible", "isPublic")
                       ? undefined
-                      : undefined
+                      : ("isOwner" as const)
                   }
                   isPublic={
                     hasVariant(variants, "isVisible", "isPublic")
@@ -332,25 +347,38 @@ function PlasmicHome__RenderFunc(props: {
                   variantType={
                     hasVariant(variants, "isVisible", "isPublic")
                       ? ("isVenture" as const)
-                      : ("isVenture" as const)
+                      : ("isTimeline" as const)
                   }
                 />
               </div>
 
               {(
-                hasVariant(variants, "isVisible", "postDetails") ? true : false
+                hasVariant(variants, "isVisible", "postDetails") ? true : true
               ) ? (
-                <PostDetails
-                  data-plasmic-name={"postDetails"}
-                  data-plasmic-override={overrides.postDetails}
-                  className={classNames("__wab_instance", sty.postDetails, {
-                    [sty.postDetails__isVisible_postDetails]: hasVariant(
-                      variants,
-                      "isVisible",
-                      "postDetails"
-                    ),
+                <div
+                  className={classNames(defaultcss.all, sty.freeBox___49Hi7, {
+                    [sty.freeBox__isVisible_postDetails___49Hi7BZmLb]:
+                      hasVariant(variants, "isVisible", "postDetails"),
                   })}
-                />
+                >
+                  {(
+                    hasVariant(variants, "isVisible", "postDetails")
+                      ? true
+                      : true
+                  ) ? (
+                    <PostDetails
+                      data-plasmic-name={"postDetails"}
+                      data-plasmic-override={overrides.postDetails}
+                      className={classNames("__wab_instance", sty.postDetails, {
+                        [sty.postDetails__isVisible_postDetails]: hasVariant(
+                          variants,
+                          "isVisible",
+                          "postDetails"
+                        ),
+                      })}
+                    />
+                  ) : null}
+                </div>
               ) : null}
             </div>
           </div>

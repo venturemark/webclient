@@ -4,14 +4,14 @@
 }
 .freeBox {
   position: relative;
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .slotName {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
   font-weight: 400;
 }
 .root:hover .slotName {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .span___0SrJl {
   width: auto;

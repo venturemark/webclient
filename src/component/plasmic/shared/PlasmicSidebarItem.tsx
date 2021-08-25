@@ -242,7 +242,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
           })}
         >
           {(
-            hasVariant(variants, "itemType", "createTimeline") ? true : false
+            hasVariant(variants, "isOwner", "isOwner")
+              ? true
+              : hasVariant(variants, "itemType", "createTimeline")
+              ? true
+              : false
           ) ? (
             <div
               className={classNames(defaultcss.all, sty.freeBox__lklH, {
@@ -250,6 +254,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   variants,
                   "hasNewActivity",
                   "hasNewActivity"
+                ),
+                [sty.freeBox__isOwner__lklHXgVg8]: hasVariant(
+                  variants,
+                  "isOwner",
+                  "isOwner"
                 ),
                 [sty.freeBox__itemType_createTimeline__lklHOuGst]: hasVariant(
                   variants,
@@ -322,13 +331,13 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   "ventureCollapsed"
                 ),
               })}
-              greenBgHover={
+              isDarkBgHover={
                 hasVariant(variants, "isActive", "isActive") &&
                 triggers.hover_root
-                  ? ("greenBgHover" as const)
+                  ? ("isDarkBgHover" as const)
                   : hasVariant(variants, "isActive", "isActive") &&
                     hasVariant(variants, "itemType", "createTimeline")
-                  ? ("greenBgHover" as const)
+                  ? ("isDarkBgHover" as const)
                   : undefined
               }
               isDisabled={
@@ -473,6 +482,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
 
           <div
             className={classNames(defaultcss.all, sty.freeBox__xZeoS, {
+              [sty.freeBox__isOwner__xZeoSXgVg8]: hasVariant(
+                variants,
+                "isOwner",
+                "isOwner"
+              ),
               [sty.freeBox__itemType_createTimeline__xZeoSOuGst]: hasVariant(
                 variants,
                 "itemType",
@@ -532,14 +546,14 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     "timeline"
                   ),
                 })}
-                greenBgHover={
+                isDarkBgHover={
                   hasVariant(variants, "isActive", "isActive") &&
                   triggers.hover_root
-                    ? ("greenBgHover" as const)
+                    ? ("isDarkBgHover" as const)
                     : hasVariant(variants, "isActive", "isActive") &&
                       hasVariant(variants, "itemType", "createTimeline")
-                    ? ("greenBgHover" as const)
-                    : undefined
+                    ? ("isDarkBgHover" as const)
+                    : ("isDarkBgHover" as const)
                 }
               >
                 <IconDotMenuIcon

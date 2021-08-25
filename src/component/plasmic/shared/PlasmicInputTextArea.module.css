@@ -87,7 +87,7 @@
 }
 .root:focus-within .input {
   outline: none;
-  border-color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  border-color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .root .input::placeholder {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;

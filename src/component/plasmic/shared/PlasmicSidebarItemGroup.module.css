@@ -10,7 +10,6 @@
   padding-bottom: 25px;
   padding-top: 25px;
   min-width: 0;
-  border-top: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 @media (max-width: 767px) {
   .root__isOwner {

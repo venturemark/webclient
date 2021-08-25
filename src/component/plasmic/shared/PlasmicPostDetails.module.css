@@ -1,15 +1,19 @@
 .root {
+  box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
+  background: #ffffff;
   display: flex;
   position: relative;
   width: 100%;
   height: 100%;
   flex-direction: column;
-  background: #ffffff;
   transition-property: all;
   transition-duration: 300ms;
+  overflow: hidden;
   min-width: 0;
   min-height: 0;
-  border-left: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+  border-radius: 10px;
+  padding: 15px 20px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .root > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -22,18 +26,29 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-top: 0px;
 }
-.freeBox__qxUjW {
+.freeBox__qVw1C {
   display: flex;
   position: absolute;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0px;
+}
+.freeBox__qxUjW {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
-  left: 0px;
-  top: 0px;
+  height: 50px;
   width: 100%;
-  z-index: 3;
-  background: #ffffff;
+  background: #443d5e;
   min-width: 0;
   flex-shrink: 0;
   padding: 0px 20px;
@@ -42,6 +57,7 @@
 }
 .slotChildren {
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .close:global(.__wab_instance) {
   position: relative;
@@ -51,6 +67,7 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   min-width: 0;
   min-height: 0;
 }
@@ -60,13 +77,10 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  margin-bottom: 0px;
-  margin-top: calc(60px + 0px) !important;
-  margin-right: 0px;
-  margin-left: 0px;
   overflow: auto;
   height: 100%;
   min-height: 0;
+  margin: 0px;
 }
 .post:global(.__wab_instance) {
   position: relative;
@@ -78,7 +92,7 @@
   left: auto;
   top: auto;
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .date3 {
   position: relative;
@@ -95,8 +109,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  height: 100%;
-  min-height: 0;
+  height: auto;
 }
 .userName2 {
   position: relative;
