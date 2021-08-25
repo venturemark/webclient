@@ -129,7 +129,7 @@ function PlasmicSignin__RenderFunc(props: {
                             sty.freeBox__qnxd
                           )}
                         >
-                          {"Welcome to \nthe community"}
+                          {"We help align \nteams and partners"}
                         </div>
 
                         <div
@@ -145,7 +145,7 @@ function PlasmicSignin__RenderFunc(props: {
                               sty.freeBox__x0Qaf
                             )}
                           >
-                            {"Where founders"}
+                            {"venturemark is the "}
                           </div>
 
                           <div
@@ -155,7 +155,7 @@ function PlasmicSignin__RenderFunc(props: {
                               sty.freeBox__yondJ
                             )}
                           >
-                            {" engage "}
+                            {"easiest way "}
                           </div>
 
                           <div
@@ -165,7 +165,7 @@ function PlasmicSignin__RenderFunc(props: {
                               sty.freeBox__i8IZq
                             )}
                           >
-                            {"investors and advisors"}
+                            {"to track and share progress"}
                           </div>
                         </div>
                       </p.Stack>

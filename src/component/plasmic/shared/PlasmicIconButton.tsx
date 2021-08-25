@@ -41,14 +41,14 @@ import IconFeedIcon from "./icons/PlasmicIcon__IconFeed"; // plasmic-import: gkI
 export type PlasmicIconButton__VariantMembers = {
   iconSize: "large";
   isActive: "isActive";
-  greenBgHover: "greenBgHover";
+  isDarkBgHover: "isDarkBgHover";
   isDisabled: "isDisabled";
 };
 
 export type PlasmicIconButton__VariantsArgs = {
   iconSize?: SingleChoiceArg<"large">;
   isActive?: SingleBooleanChoiceArg<"isActive">;
-  greenBgHover?: SingleBooleanChoiceArg<"greenBgHover">;
+  isDarkBgHover?: SingleBooleanChoiceArg<"isDarkBgHover">;
   isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
 };
 
@@ -56,7 +56,7 @@ type VariantPropType = keyof PlasmicIconButton__VariantsArgs;
 export const PlasmicIconButton__VariantProps = new Array<VariantPropType>(
   "iconSize",
   "isActive",
-  "greenBgHover",
+  "isDarkBgHover",
   "isDisabled"
 );
 
@@ -76,7 +76,7 @@ export interface DefaultIconButtonProps {
   children?: React.ReactNode;
   iconSize?: SingleChoiceArg<"large">;
   isActive?: SingleBooleanChoiceArg<"isActive">;
-  greenBgHover?: SingleBooleanChoiceArg<"greenBgHover">;
+  isDarkBgHover?: SingleBooleanChoiceArg<"isDarkBgHover">;
   isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
   className?: string;
 }
@@ -97,31 +97,26 @@ function PlasmicIconButton__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__greenBgHover]: hasVariant(
-          variants,
-          "greenBgHover",
-          "greenBgHover"
-        ),
         [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
+        [sty.root__isDarkBgHover]: hasVariant(
+          variants,
+          "isDarkBgHover",
+          "isDarkBgHover"
+        ),
         [sty.root__isDisabled]: hasVariant(
           variants,
           "isDisabled",
           "isDisabled"
         ),
-        [sty.root__isDisabled_greenBgHover]:
+        [sty.root__isDisabled_isDarkBgHover]:
           hasVariant(variants, "isDisabled", "isDisabled") &&
-          hasVariant(variants, "greenBgHover", "greenBgHover"),
+          hasVariant(variants, "isDarkBgHover", "isDarkBgHover"),
       })}
     >
       <div
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
         className={classNames(defaultcss.all, sty.container, {
-          [sty.container__greenBgHover]: hasVariant(
-            variants,
-            "greenBgHover",
-            "greenBgHover"
-          ),
           [sty.container__iconSize_large]: hasVariant(
             variants,
             "iconSize",
@@ -132,14 +127,19 @@ function PlasmicIconButton__RenderFunc(props: {
             "isActive",
             "isActive"
           ),
+          [sty.container__isDarkBgHover]: hasVariant(
+            variants,
+            "isDarkBgHover",
+            "isDarkBgHover"
+          ),
           [sty.container__isDisabled]: hasVariant(
             variants,
             "isDisabled",
             "isDisabled"
           ),
-          [sty.container__isDisabled_greenBgHover]:
+          [sty.container__isDisabled_isDarkBgHover]:
             hasVariant(variants, "isDisabled", "isDisabled") &&
-            hasVariant(variants, "greenBgHover", "greenBgHover"),
+            hasVariant(variants, "isDarkBgHover", "isDarkBgHover"),
         })}
       >
         {p.renderPlasmicSlot({
@@ -152,15 +152,15 @@ function PlasmicIconButton__RenderFunc(props: {
 
           value: args.children,
           className: classNames(sty.slotChildren, {
-            [sty.slotChildren__greenBgHover]: hasVariant(
-              variants,
-              "greenBgHover",
-              "greenBgHover"
-            ),
             [sty.slotChildren__iconSize_large]: hasVariant(
               variants,
               "iconSize",
               "large"
+            ),
+            [sty.slotChildren__isDarkBgHover]: hasVariant(
+              variants,
+              "isDarkBgHover",
+              "isDarkBgHover"
             ),
           }),
         })}

@@ -8,7 +8,7 @@
   padding-bottom: 2px;
 }
 .root__isActive {
-  border-bottom: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  border-bottom: 1px solid #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .container {
   display: inline-flex;

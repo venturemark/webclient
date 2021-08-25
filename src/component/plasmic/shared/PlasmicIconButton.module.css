@@ -8,7 +8,7 @@
   padding-bottom: 2px;
 }
 .root__isActive {
-  border-bottom: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  border-bottom: 1px solid #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .container {
   display: flex;
@@ -30,13 +30,13 @@
   background: rgb(231, 231, 236);
   border-radius: 5px;
 }
-.root__greenBgHover:hover .container__greenBgHover {
-  background: rgb(0, 142, 113);
+.root__isDarkBgHover:hover .container__isDarkBgHover {
+  background: rgb(38, 26, 63);
 }
 .root__isDisabled:hover .container__isDisabled {
   background: rgba(255, 255, 255, 0);
 }
-.root__greenBgHover:hover .slotChildren__greenBgHover {
+.root__isDarkBgHover:hover .slotChildren__isDarkBgHover {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .svg__toCuH {

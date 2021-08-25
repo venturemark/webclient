@@ -35,7 +35,7 @@
   align-items: center;
   min-width: 120px;
   cursor: pointer;
-  background: rgb(2, 157, 127);
+  background: #2e8c8d;
   border-radius: 5px;
   padding: 10px 15px;
   border-style: solid;
@@ -69,7 +69,7 @@
 }
 .button__buttonStyle_secondaryGreen {
   background: #ffffff;
-  border: 1px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  border: 1px solid #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .button__buttonStyle_danger {
   background: #ffffff;
@@ -94,7 +94,7 @@
   background: rgb(56, 31, 86);
 }
 .root__isDisabled:focus-within .button__isDisabled {
-  background: rgb(2, 157, 127);
+  background: #2e8c8d;
   outline: none;
 }
 .root__buttonStyle_secondaryPurple:hover .button__buttonStyle_secondaryPurple {
@@ -159,7 +159,7 @@
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .slotSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryGreen {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .svg__vdEop {
   position: relative;
@@ -190,7 +190,7 @@
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .slotCount__buttonStyle_secondaryGreen {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .slotCount__buttonStyle_danger {
   color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
@@ -228,7 +228,7 @@
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .slotText2__buttonStyle_secondaryGreen {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .slotText2__buttonStyle_danger {
   color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
@@ -246,7 +246,7 @@
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .slotChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryGreen {
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .slotChildren__buttonFeatures_showEndIcon_buttonStyle_danger {
   color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;

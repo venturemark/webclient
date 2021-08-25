@@ -87,7 +87,7 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  border-right: 2px solid rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  border-right: 2px solid #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .freeBox__yHtqj > :global(.__wab_flex-container) {
   flex-direction: row;

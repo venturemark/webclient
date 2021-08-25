@@ -93,98 +93,59 @@ function PlasmicPostDetails__RenderFunc(props: {
       hasGap={true}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
-      {true ? (
-        <div className={classNames(defaultcss.all, sty.freeBox__qxUjW)}>
-          {p.renderPlasmicSlot({
-            defaultContents: "Post Details",
-            value: args.children,
-            className: classNames(sty.slotChildren),
-          })}
+      <div className={classNames(defaultcss.all, sty.freeBox__qVw1C)}>
+        {true ? (
+          <div className={classNames(defaultcss.all, sty.freeBox__qxUjW)}>
+            {p.renderPlasmicSlot({
+              defaultContents: "Post Details",
+              value: args.children,
+              className: classNames(sty.slotChildren),
+            })}
 
-          <IconButton
-            data-plasmic-name={"close"}
-            data-plasmic-override={overrides.close}
-            className={classNames("__wab_instance", sty.close)}
-          >
-            <IconCloseIcon
-              data-plasmic-name={"svg"}
-              data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg)}
-              role={"img"}
-            />
-          </IconButton>
-        </div>
-      ) : null}
-
-      <div className={classNames(defaultcss.all, sty.freeBox__n7A9B)}>
-        <ContentPost
-          data-plasmic-name={"post"}
-          data-plasmic-override={overrides.post}
-          className={classNames("__wab_instance", sty.post)}
-          date={
-            <span
-              data-plasmic-name={"date3"}
-              data-plasmic-override={overrides.date3}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.date3
-              )}
+            <IconButton
+              data-plasmic-name={"close"}
+              data-plasmic-override={overrides.close}
+              className={classNames("__wab_instance", sty.close)}
+              isDarkBgHover={"isDarkBgHover" as const}
             >
-              {"3 hours ago"}
-            </span>
-          }
-          state={"isPostDetails" as const}
-          userInitials={"KO"}
-          userName={
-            <span
-              data-plasmic-name={"userName3"}
-              data-plasmic-override={overrides.userName3}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.userName3
-              )}
-            >
-              <span>
-                <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
-              </span>
-            </span>
-          }
-        />
+              <IconCloseIcon
+                data-plasmic-name={"svg"}
+                data-plasmic-override={overrides.svg}
+                className={classNames(defaultcss.all, sty.svg)}
+                role={"img"}
+              />
+            </IconButton>
+          </div>
+        ) : null}
 
-        <div
-          data-plasmic-name={"repliesContainer"}
-          data-plasmic-override={overrides.repliesContainer}
-          className={classNames(defaultcss.all, sty.repliesContainer)}
-        >
-          <ReplyContent
-            data-plasmic-name={"replyContent"}
-            data-plasmic-override={overrides.replyContent}
+        <div className={classNames(defaultcss.all, sty.freeBox__n7A9B)}>
+          <ContentPost
+            data-plasmic-name={"post"}
+            data-plasmic-override={overrides.post}
+            className={classNames("__wab_instance", sty.post)}
             date={
               <span
-                data-plasmic-name={"date2"}
-                data-plasmic-override={overrides.date2}
+                data-plasmic-name={"date3"}
+                data-plasmic-override={overrides.date3}
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.date2
+                  sty.date3
                 )}
               >
                 {"3 hours ago"}
               </span>
             }
-            text={
-              "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
-            }
+            state={"isPostDetails" as const}
+            userInitials={"KO"}
             userName={
               <span
-                data-plasmic-name={"userName2"}
-                data-plasmic-override={overrides.userName2}
+                data-plasmic-name={"userName3"}
+                data-plasmic-override={overrides.userName3}
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.userName2
+                  sty.userName3
                 )}
               >
                 <span>
@@ -193,14 +154,56 @@ function PlasmicPostDetails__RenderFunc(props: {
               </span>
             }
           />
-        </div>
-      </div>
 
-      <ReplyInput
-        data-plasmic-name={"replyInput"}
-        data-plasmic-override={overrides.replyInput}
-        className={classNames("__wab_instance", sty.replyInput)}
-      />
+          <div
+            data-plasmic-name={"repliesContainer"}
+            data-plasmic-override={overrides.repliesContainer}
+            className={classNames(defaultcss.all, sty.repliesContainer)}
+          >
+            <ReplyContent
+              data-plasmic-name={"replyContent"}
+              data-plasmic-override={overrides.replyContent}
+              date={
+                <span
+                  data-plasmic-name={"date2"}
+                  data-plasmic-override={overrides.date2}
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.date2
+                  )}
+                >
+                  {"3 hours ago"}
+                </span>
+              }
+              text={
+                "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
+              }
+              userName={
+                <span
+                  data-plasmic-name={"userName2"}
+                  data-plasmic-override={overrides.userName2}
+                  className={classNames(
+                    defaultcss.all,
+                    defaultcss.__wab_text,
+                    sty.userName2
+                  )}
+                >
+                  <span>
+                    <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                  </span>
+                </span>
+              }
+            />
+          </div>
+        </div>
+
+        <ReplyInput
+          data-plasmic-name={"replyInput"}
+          data-plasmic-override={overrides.replyInput}
+          className={classNames("__wab_instance", sty.replyInput)}
+        />
+      </div>
     </p.Stack>
   ) as React.ReactElement | null;
 }

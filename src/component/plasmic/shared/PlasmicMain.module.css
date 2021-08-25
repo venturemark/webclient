@@ -70,6 +70,8 @@
 }
 .addEditVenture:global(.__wab_instance) {
   position: relative;
+  width: 100%;
+  min-width: 0;
 }
 .freeBox__fdWyB {
   font-size: 26px /* plasmic-token: TujpjiAsC */;

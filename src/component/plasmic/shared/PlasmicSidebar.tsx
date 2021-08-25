@@ -130,6 +130,10 @@ function PlasmicSidebar__RenderFunc(props: {
             : hasVariant(variants, "hasInput", "hasInput") &&
               hasVariant(globalVariants, "screen", "mobile")
             ? true
+            : hasVariant(variants, "hasInput", "hasInput")
+            ? true
+            : hasVariant(globalVariants, "screen", "mobile")
+            ? true
             : true
         ) ? (
           <p.Stack
@@ -238,9 +242,15 @@ function PlasmicSidebar__RenderFunc(props: {
             data-plasmic-name={"itemGroupContainer"}
             data-plasmic-override={overrides.itemGroupContainer}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.itemGroupContainer)}
+            className={classNames(defaultcss.all, sty.itemGroupContainer, {
+              [sty.itemGroupContainer__hasInput]: hasVariant(
+                variants,
+                "hasInput",
+                "hasInput"
+              ),
+            })}
           >
-            {(hasVariant(variants, "hasInput", "hasInput") ? true : false) ? (
+            {(hasVariant(variants, "hasInput", "hasInput") ? true : true) ? (
               <SidebarItemGroup
                 data-plasmic-name={"sidebarItemGroup"}
                 data-plasmic-override={overrides.sidebarItemGroup}

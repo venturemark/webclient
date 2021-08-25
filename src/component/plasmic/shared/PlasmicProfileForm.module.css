@@ -103,7 +103,7 @@
 .link {
   position: relative;
   align-self: center;
-  color: rgb(2, 157, 127) /* plasmic-token: Jfzps88GdGw80SE */;
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
   cursor: pointer;
 }
 .nameField:global(.__wab_instance) {

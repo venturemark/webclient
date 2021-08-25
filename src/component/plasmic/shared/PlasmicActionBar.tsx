@@ -259,8 +259,11 @@ function PlasmicActionBar__RenderFunc(props: {
                 })}
                 placeholder={"Write your update..." as const}
                 rows={
-                  hasVariant(variants, "isActive", "isActive")
+                  hasVariant(variants, "isActive", "isActive") &&
+                  hasVariant(globalVariants, "screen", "mobile")
                     ? (5 as const)
+                    : hasVariant(variants, "isActive", "isActive")
+                    ? (1 as const)
                     : undefined
                 }
               />
