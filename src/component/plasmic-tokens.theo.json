@@ -191,6 +191,16 @@
       }
     },
     {
+      "name": "actionBarActiveBorder",
+      "type": "color",
+      "value": "#877AB7",
+      "category": "color",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "QjV0Jke_u"
+      }
+    },
+    {
       "name": "background",
       "type": "color",
       "value": "var(--token-pJ8JNfS_nOyDpci)",

@@ -76,7 +76,7 @@
 }
 .root:focus-within .replyInput {
   outline: none;
-  border-color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
+  border-color: #877ab7 /* plasmic-token: QjV0Jke_u */;
 }
 .root .replyInput::placeholder {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;

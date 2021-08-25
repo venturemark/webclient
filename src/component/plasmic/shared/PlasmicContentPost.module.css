@@ -265,7 +265,7 @@
   height: auto;
 }
 .slotUserName {
-  font-size: 16px;
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
   font-weight: 600;
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
@@ -300,9 +300,11 @@
 }
 .span {
   position: relative;
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
 }
 .slotDate {
   font-weight: 300;
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
 }
 .span__iEzaX {
   position: relative;
@@ -369,6 +371,7 @@
 }
 .slotChildren {
   font-weight: 600;
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
 }
 .freeBox__iRFwS {
   display: flex;
