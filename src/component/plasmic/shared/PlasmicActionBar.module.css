@@ -67,8 +67,8 @@
   margin-top: 0px;
 }
 .root:focus-within .freeBox__zG8Do {
-  box-shadow: none;
   outline: none;
+  border-color: #877ab7 /* plasmic-token: QjV0Jke_u */;
 }
 .form {
   display: flex;
@@ -138,16 +138,6 @@
   > img {
   margin-left: 0px;
 }
-.root:focus-within .freeBox__ptnBs {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 10px;
-  outline: none;
-}
-.root__isActive:focus-within .freeBox__isActive__ptnBsvjQpn {
-  outline: none;
-  margin: 0px;
-}
 .editorContainer {
   display: flex;
   width: 100%;
@@ -173,13 +163,9 @@
   justify-content: flex-start;
   min-height: 130px;
   align-content: unset;
+  cursor: text;
+  pointer-events: auto;
   min-width: 0;
-}
-.root:focus-within .editorContainer {
-  outline: none;
-}
-.root__isActive:focus-within .editorContainer__isActive {
-  outline: none;
 }
 .title {
   width: 100%;
@@ -205,9 +191,6 @@
 .root:focus-within .title {
   outline: none;
 }
-.root__isActive:focus-within .title__isActive {
-  outline: none;
-}
 .root .title::placeholder {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }
@@ -226,9 +209,6 @@
   width: 100%;
   min-width: 0;
   display: none;
-}
-.root:focus-within .description {
-  outline: none;
 }
 .root .description::placeholder {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
