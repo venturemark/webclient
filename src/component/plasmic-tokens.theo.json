@@ -11,6 +11,16 @@
       }
     },
     {
+      "name": "ActionBarBorder",
+      "type": "color",
+      "value": "#AEA5CE",
+      "category": "color",
+      "meta": {
+        "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+        "id": "N-EXuABtY"
+      }
+    },
+    {
       "name": "Blue",
       "type": "color",
       "value": "rgb(46,129,184)",
@@ -503,7 +513,7 @@
     {
       "name": "ventureGreenHover",
       "type": "color",
-      "value": "rgb(0,142,113)",
+      "value": "#137C7D",
       "category": "color",
       "meta": {
         "projectId": "mTVXT6w3HHjZ4d74q3gB76",

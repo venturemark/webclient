@@ -85,7 +85,7 @@
   border-radius: 30px;
 }
 .root:hover .button {
-  background: rgb(0, 142, 113);
+  background: #137c7d;
 }
 .root:focus-within .button {
   outline: none;
