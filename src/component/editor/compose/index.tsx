@@ -82,7 +82,7 @@ function Element({ attributes, children, element }: ElementProps) {
             {...attributes}
             style={{
               margin: "0",
-              fontFamily: "SF Pro Text,sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: "bold",
               fontSize: "18px",
               lineHeight: "23px",
@@ -97,10 +97,11 @@ function Element({ attributes, children, element }: ElementProps) {
           <p
             {...attributes}
             style={{
-              fontFamily: "SF Pro Text,sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "15px",
               lineHeight: "23px",
               letterSpacing: "0.491786px",
+              fontWeight: 400,
             }}
           >
             {children}
