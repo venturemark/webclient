@@ -338,7 +338,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   : hasVariant(variants, "isActive", "isActive") &&
                     hasVariant(variants, "itemType", "createTimeline")
                   ? ("isDarkBgHover" as const)
-                  : undefined
+                  : ("isDarkBgHover" as const)
               }
               isDisabled={
                 hasVariant(variants, "itemType", "timeline")
@@ -479,108 +479,115 @@ function PlasmicSidebarItem__RenderFunc(props: {
               })}
             </p.Stack>
           ) : null}
-
-          <div
-            className={classNames(defaultcss.all, sty.freeBox__xZeoS, {
-              [sty.freeBox__isOwner__xZeoSXgVg8]: hasVariant(
-                variants,
-                "isOwner",
-                "isOwner"
-              ),
-              [sty.freeBox__itemType_createTimeline__xZeoSOuGst]: hasVariant(
-                variants,
-                "itemType",
-                "createTimeline"
-              ),
-              [sty.freeBox__itemType_timeline__xZeoSoN3Wv]: hasVariant(
-                variants,
-                "itemType",
-                "timeline"
-              ),
-            })}
-          >
-            {(
-              hasVariant(variants, "isOwner", "isOwner") && triggers.hover_root
-                ? true
-                : hasVariant(variants, "itemType", "createTimeline") &&
-                  triggers.hover_root
-                ? false
-                : triggers.hover_root
-                ? true
-                : hasVariant(variants, "isOwner", "isOwner")
-                ? true
-                : hasVariant(variants, "itemType", "createTimeline")
-                ? false
-                : true
-            ) ? (
-              <IconButton
-                data-plasmic-name={"iconButton"}
-                data-plasmic-override={overrides.iconButton}
-                className={classNames("__wab_instance", sty.iconButton, {
-                  [sty.iconButton__hasNewActivity]: hasVariant(
-                    variants,
-                    "hasNewActivity",
-                    "hasNewActivity"
-                  ),
-                  [sty.iconButton__isActive]: hasVariant(
-                    variants,
-                    "isActive",
-                    "isActive"
-                  ),
-                  [sty.iconButton__isActive_itemType_createTimeline]:
-                    hasVariant(variants, "isActive", "isActive") &&
-                    hasVariant(variants, "itemType", "createTimeline"),
-                  [sty.iconButton__isOwner]: hasVariant(
-                    variants,
-                    "isOwner",
-                    "isOwner"
-                  ),
-                  [sty.iconButton__itemType_createTimeline]: hasVariant(
-                    variants,
-                    "itemType",
-                    "createTimeline"
-                  ),
-                  [sty.iconButton__itemType_timeline]: hasVariant(
-                    variants,
-                    "itemType",
-                    "timeline"
-                  ),
-                })}
-                isDarkBgHover={
-                  hasVariant(variants, "isActive", "isActive") &&
-                  triggers.hover_root
-                    ? ("isDarkBgHover" as const)
-                    : hasVariant(variants, "isActive", "isActive") &&
-                      hasVariant(variants, "itemType", "createTimeline")
-                    ? ("isDarkBgHover" as const)
-                    : ("isDarkBgHover" as const)
-                }
-              >
-                <IconDotMenuIcon
-                  className={classNames(defaultcss.all, sty.svg__zhtWc, {
-                    [sty.svg__isActive__zhtWcw0Xu8]: hasVariant(
+          {(
+            triggers.hover_root
+              ? true
+              : hasVariant(variants, "isOwner", "isOwner")
+              ? true
+              : true
+          ) ? (
+            <div
+              className={classNames(defaultcss.all, sty.freeBox__xZeoS, {
+                [sty.freeBox__isOwner__xZeoSXgVg8]: hasVariant(
+                  variants,
+                  "isOwner",
+                  "isOwner"
+                ),
+                [sty.freeBox__itemType_createTimeline__xZeoSOuGst]: hasVariant(
+                  variants,
+                  "itemType",
+                  "createTimeline"
+                ),
+                [sty.freeBox__itemType_timeline__xZeoSoN3Wv]: hasVariant(
+                  variants,
+                  "itemType",
+                  "timeline"
+                ),
+              })}
+            >
+              {(
+                hasVariant(variants, "isOwner", "isOwner") &&
+                triggers.hover_root
+                  ? true
+                  : hasVariant(variants, "itemType", "createTimeline") &&
+                    triggers.hover_root
+                  ? false
+                  : triggers.hover_root
+                  ? true
+                  : hasVariant(variants, "isOwner", "isOwner")
+                  ? true
+                  : hasVariant(variants, "itemType", "createTimeline")
+                  ? false
+                  : true
+              ) ? (
+                <IconButton
+                  data-plasmic-name={"iconButton"}
+                  data-plasmic-override={overrides.iconButton}
+                  className={classNames("__wab_instance", sty.iconButton, {
+                    [sty.iconButton__hasNewActivity]: hasVariant(
+                      variants,
+                      "hasNewActivity",
+                      "hasNewActivity"
+                    ),
+                    [sty.iconButton__isActive]: hasVariant(
                       variants,
                       "isActive",
                       "isActive"
                     ),
-                    [sty.svg__isActive_isOwner__zhtWcw0Xu8XgVg8]:
-                      hasVariant(variants, "isActive", "isActive") &&
-                      hasVariant(variants, "isOwner", "isOwner"),
-                    [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
+                    [sty.iconButton__isActive_itemType_createTimeline]:
                       hasVariant(variants, "isActive", "isActive") &&
                       hasVariant(variants, "itemType", "createTimeline"),
-                    [sty.svg__isOwner__zhtWcXgVg8]: hasVariant(
+                    [sty.iconButton__isOwner]: hasVariant(
                       variants,
                       "isOwner",
                       "isOwner"
                     ),
+                    [sty.iconButton__itemType_createTimeline]: hasVariant(
+                      variants,
+                      "itemType",
+                      "createTimeline"
+                    ),
+                    [sty.iconButton__itemType_timeline]: hasVariant(
+                      variants,
+                      "itemType",
+                      "timeline"
+                    ),
                   })}
-                  role={"img"}
-                />
-              </IconButton>
-            ) : null}
-          </div>
-
+                  isDarkBgHover={
+                    hasVariant(variants, "isActive", "isActive") &&
+                    triggers.hover_root
+                      ? ("isDarkBgHover" as const)
+                      : hasVariant(variants, "isActive", "isActive") &&
+                        hasVariant(variants, "itemType", "createTimeline")
+                      ? ("isDarkBgHover" as const)
+                      : ("isDarkBgHover" as const)
+                  }
+                >
+                  <IconDotMenuIcon
+                    className={classNames(defaultcss.all, sty.svg__zhtWc, {
+                      [sty.svg__isActive__zhtWcw0Xu8]: hasVariant(
+                        variants,
+                        "isActive",
+                        "isActive"
+                      ),
+                      [sty.svg__isActive_isOwner__zhtWcw0Xu8XgVg8]:
+                        hasVariant(variants, "isActive", "isActive") &&
+                        hasVariant(variants, "isOwner", "isOwner"),
+                      [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
+                        hasVariant(variants, "isActive", "isActive") &&
+                        hasVariant(variants, "itemType", "createTimeline"),
+                      [sty.svg__isOwner__zhtWcXgVg8]: hasVariant(
+                        variants,
+                        "isOwner",
+                        "isOwner"
+                      ),
+                    })}
+                    role={"img"}
+                  />
+                </IconButton>
+              ) : null}
+            </div>
+          ) : null}
           {(
             hasVariant(variants, "isOwner", "isOwner") && triggers.hover_root
               ? true

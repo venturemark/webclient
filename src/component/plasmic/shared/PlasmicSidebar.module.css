@@ -60,6 +60,11 @@
     min-width: 0;
   }
 }
+.topSidebar__hasInput {
+  min-width: 250px;
+  max-width: 300px;
+  width: 100%;
+}
 @media (max-width: 767px) {
   .topSidebar__hasInput {
     border-right-width: 0px;

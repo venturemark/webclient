@@ -73,7 +73,7 @@
   padding: 55px 0px 0px;
 }
 .sidebar:global(.__wab_instance) {
-  width: 52%;
+  width: 54%;
   flex-grow: 0;
   flex-shrink: 1;
   min-width: 250px;
@@ -150,17 +150,17 @@
   }
 }
 .mainContainer {
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   overflow: auto;
   padding-bottom: 66px;
   align-content: unset;
-  width: auto;
+  width: 100%;
   flex-grow: 0;
   flex-shrink: 0;
-  min-width: 500px;
+  min-width: 0;
 }
 @media (max-width: 767px) {
   .mainContainer {

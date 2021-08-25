@@ -864,6 +864,11 @@ function PlasmicActionBar__RenderFunc(props: {
                                 defaultcss.button,
                                 sty.button,
                                 {
+                                  [sty.button__isActive]: hasVariant(
+                                    variants,
+                                    "isActive",
+                                    "isActive"
+                                  ),
                                   [sty.button__isActive_timelineSelected]:
                                     hasVariant(
                                       variants,
@@ -918,6 +923,11 @@ function PlasmicActionBar__RenderFunc(props: {
                                   defaultContents: "Metric",
                                   value: args.text2,
                                   className: classNames(sty.slotText2, {
+                                    [sty.slotText2__isActive]: hasVariant(
+                                      variants,
+                                      "isActive",
+                                      "isActive"
+                                    ),
                                     [sty.slotText2__isActive_timelineSelected]:
                                       hasVariant(
                                         variants,
