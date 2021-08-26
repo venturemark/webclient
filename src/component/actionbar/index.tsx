@@ -4,6 +4,7 @@ import { Picker } from "emoji-mart";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { usePopper } from "react-popper";
 import { Descendant, Transforms } from "slate";
+import { ReactEditor } from "slate-react";
 
 import {
   ComposeEditor,
@@ -191,7 +192,10 @@ function ActionBar(props: ActionBarProps) {
       style={{
         zIndex: 2,
       }}
-      onClick={() => setIsActive(true)}
+      onClick={() => {
+        setIsActive(true);
+        setTimeout(() => ReactEditor.focus(editor), 0);
+      }}
       isActive={isActive ? "isActive" : false}
       timelineSelected={true}
       form={{
