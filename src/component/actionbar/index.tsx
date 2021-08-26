@@ -1,9 +1,16 @@
 import "emoji-mart/css/emoji-mart.css";
 
 import { Picker } from "emoji-mart";
-import { useContext, useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { usePopper } from "react-popper";
-import { Descendant, Transforms } from "slate";
+import { Descendant, Editor, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
 
 import {
@@ -132,6 +139,21 @@ function ActionBar(props: ActionBarProps) {
     return editor;
   }, []);
 
+  const savedSelection = useRef(editor.selection);
+
+  const onFocus = useCallback(() => {
+    if (!editor.selection) {
+      Transforms.select(
+        editor,
+        savedSelection.current ?? Editor.end(editor, [])
+      );
+    }
+  }, [editor]);
+
+  const onBlur = useCallback(() => {
+    savedSelection.current = editor.selection;
+  }, [editor]);
+
   function handlePost() {
     setTouched(true);
 
@@ -152,6 +174,8 @@ function ActionBar(props: ActionBarProps) {
     });
 
     //reset
+    savedSelection.current = null;
+    Transforms.select(editor, Editor.start(editor, []));
     setEditorShape({
       value: initialValue,
       string: "",
@@ -186,19 +210,25 @@ function ActionBar(props: ActionBarProps) {
     placement: "bottom-start",
   });
 
+  const focusEditor = useCallback(
+    (e: React.MouseEvent) => {
+      setIsActive(true);
+      ReactEditor.focus(editor);
+      e.preventDefault();
+    },
+    [editor]
+  );
+
   return (
     <PlasmicActionBar
       {...rest}
       style={{
         zIndex: 2,
       }}
-      onClick={() => {
-        setIsActive(true);
-        setTimeout(() => ReactEditor.focus(editor), 0);
-      }}
       isActive={isActive ? "isActive" : false}
       timelineSelected={true}
       form={{
+        onClick: focusEditor,
         onSubmit: handlePost,
       }}
       title={{
@@ -208,6 +238,8 @@ function ActionBar(props: ActionBarProps) {
           editor,
           editorShape,
           setEditorShape,
+          onFocus,
+          onBlur,
         },
       }}
       description={{
@@ -221,7 +253,13 @@ function ActionBar(props: ActionBarProps) {
             <div ref={dropdownRootRef} style={{ zIndex: 100 }}>
               <button
                 style={{ background: "none", border: "none" }}
-                onClick={() => setDropdownVisible(!dropdownVisible)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setDropdownVisible(!dropdownVisible);
+                  if (dropdownVisible) {
+                    ReactEditor.focus(editor);
+                  }
+                }}
                 type="button"
                 ref={setReferenceElement}
               >
@@ -235,9 +273,12 @@ function ActionBar(props: ActionBarProps) {
                   {...attributes.popper}
                 >
                   <Picker
-                    onSelect={(e) =>
-                      "native" in e && Transforms.insertText(editor, e.native)
-                    }
+                    onClick={(_, event) => {
+                      event.stopPropagation();
+                    }}
+                    onSelect={(e) => {
+                      "native" in e && Transforms.insertText(editor, e.native);
+                    }}
                   />
                   <div ref={setArrowElement} style={styles.arrow} />
                 </div>

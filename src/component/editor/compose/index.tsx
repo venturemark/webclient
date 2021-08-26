@@ -324,7 +324,6 @@ export function ComposeEditor({
       <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins
           renderElement={[renderElement]}
-          autoFocus
           plugins={plugins}
           spellCheck
           onKeyDown={[onKeyDownMention]}
