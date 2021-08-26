@@ -85,6 +85,7 @@
 }
 .form__isActive {
   align-items: flex-start;
+  cursor: text;
 }
 .root:focus-within .form {
   outline: none;
@@ -163,8 +164,6 @@
   justify-content: flex-start;
   min-height: 130px;
   align-content: unset;
-  cursor: text;
-  pointer-events: auto;
   min-width: 0;
 }
 .title {

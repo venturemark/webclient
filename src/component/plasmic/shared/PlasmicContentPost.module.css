@@ -106,6 +106,7 @@
 }
 .dropdown:global(.__wab_instance) {
   position: relative;
+  z-index: 99;
 }
 .dropdown__isUserOnClick:global(.__wab_instance) {
   right: auto;

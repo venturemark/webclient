@@ -139,6 +139,8 @@
 }
 .freeBox__zwdJs > :global(.__wab_flex-container) {
   align-items: center;
+  flex-wrap: nowrap;
+  align-content: unset;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
 }
@@ -174,6 +176,18 @@
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 600;
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+  white-space: pre;
+}
+.slotName > *,
+.slotName > .__wab_slot > *,
+.slotName > .__wab_slot > .__wab_slot > *,
+.slotName > .__wab_slot > .__wab_slot > .__wab_slot > *,
+.slotName > picture > img,
+.slotName > .__wab_slot > picture > img,
+.slotName > .__wab_slot > .__wab_slot > picture > img,
+.slotName > .__wab_slot > .__wab_slot > .__wab_slot > picture > img {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .slotName__itemType_timeline {
   font-weight: 400;
