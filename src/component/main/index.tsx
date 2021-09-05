@@ -37,7 +37,7 @@ function Main(props: MainProps) {
     ...rest
   } = props;
 
-  const { currentVenture, currentVentureTimelines, ventures } =
+  const { currentVenture, ventures } =
     useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
   const hasVentures = ventures?.length > 0 ? true : false;
@@ -64,9 +64,6 @@ function Main(props: MainProps) {
       }}
       feedUpdate={{
         setIsVisible,
-        timelines: currentVentureTimelines,
-        currentTimeline,
-        currentVenture,
         setPost,
         post,
         isVisible,

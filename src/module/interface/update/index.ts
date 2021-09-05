@@ -5,7 +5,7 @@ export interface IUpdate {
   text?: string;
   userName?: string;
   users?: IUser[];
-  user?: IUser[];
+  user?: IUser;
   id: string;
   ventureId: string;
   timelineId: string;

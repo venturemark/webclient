@@ -9,7 +9,6 @@ import { AuthContext } from "context/AuthContext";
 import { useMessages } from "module/hook/message";
 import { IMessage } from "module/interface/message";
 import { IUpdate } from "module/interface/update";
-import { IUser } from "module/interface/user";
 
 interface PostDetailsProps extends DefaultPostDetailsProps {
   setIsVisible: any;
@@ -28,10 +27,6 @@ function PostDetails(props: PostDetailsProps) {
   });
   const messages = messagesData;
 
-  const updateUser = post?.users?.find(
-    (user: IUser) => (post.userId = user.id)
-  );
-
   const sortedMessages = messages?.sort((a: IMessage, b: IMessage) =>
     a.id.localeCompare(b.id)
   );
@@ -46,7 +41,7 @@ function PostDetails(props: PostDetailsProps) {
         update: post,
         post,
         state: "isPostDetails",
-        user: updateUser,
+        user: post?.user,
       }}
       repliesContainer={{
         children: sortedMessages?.map((message: IMessage) => (
