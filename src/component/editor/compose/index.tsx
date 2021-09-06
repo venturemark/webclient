@@ -11,7 +11,6 @@ import {
   ItalicPlugin,
   ListPlugin,
   MentionPlugin,
-  MentionSelect,
   ParagraphPlugin,
   pipe,
   ResetBlockTypePlugin,
@@ -19,7 +18,6 @@ import {
   SoftBreakPlugin,
   StrikethroughPlugin,
   UnderlinePlugin,
-  useMention,
   withAutoformat,
   withImageUpload,
   withInlineVoid,
@@ -48,7 +46,6 @@ import {
   options,
   optionsResetBlockTypes,
 } from "component/editor/config/initialValues";
-import { MENTIONABLES } from "component/editor/config/mentionables";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
@@ -260,19 +257,6 @@ export function ComposeEditor({
   const editorRef = useRef<HTMLDivElement>(null);
   const { insertBreak } = editor;
 
-  const {
-    onAddMention,
-    onChangeMention,
-    onKeyDownMention,
-    search,
-    index,
-    target,
-    values,
-  } = useMention(MENTIONABLES, {
-    maxSuggestions: 10,
-    trigger: "@",
-  });
-
   editor.insertBreak = () => {
     const height = editorRef.current?.offsetHeight ?? DEFAULT_HEIGHT;
     if (height < HEIGHT_LIMIT) {
@@ -307,7 +291,6 @@ export function ComposeEditor({
 
     //save to local storage to persist...
     save(newValue);
-    onChangeMention(editor);
   };
 
   const renderElement = useCallback(
@@ -326,15 +309,7 @@ export function ComposeEditor({
           renderElement={[renderElement]}
           plugins={plugins}
           spellCheck
-          onKeyDown={[onKeyDownMention]}
-          onKeyDownDeps={[index, search, target]}
           {...rest}
-        />
-        <MentionSelect
-          at={target}
-          valueIndex={index}
-          options={values}
-          onClickMention={onAddMention}
         />
       </Slate>
     </div>

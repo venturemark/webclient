@@ -273,6 +273,8 @@ function ActionBar(props: ActionBarProps) {
                   {...attributes.popper}
                 >
                   <Picker
+                    showPreview={false}
+                    showSkinTones={false}
                     onClick={(_, event) => {
                       event.stopPropagation();
                     }}
