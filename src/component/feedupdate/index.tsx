@@ -46,14 +46,7 @@ function deduplicateUpdates(updates: IUpdate[]) {
 }
 
 function FeedUpdate(props: FeedUpdateProps) {
-  const {
-    setIsVisible,
-    setPost,
-    post,
-    isVisible,
-    user,
-    ...rest
-  } = props;
+  const { setIsVisible, setPost, post, isVisible, user, ...rest } = props;
 
   const { token } = useContext(AuthContext);
   const { currentVenture, timelines } = useContext(VentureContext);
@@ -75,18 +68,16 @@ function FeedUpdate(props: FeedUpdateProps) {
     token,
   });
 
-  const { data: timelineUsersData = [] } =
-    useTimelineMembers({
-      timelineId: timelineId ?? undefined,
-      ventureId: ventureId ?? undefined,
-      token,
-    });
+  const { data: timelineUsersData = [] } = useTimelineMembers({
+    timelineId: timelineId ?? undefined,
+    ventureId: ventureId ?? undefined,
+    token,
+  });
 
-  const { data: ventureUsersData = [] } =
-    useVentureMembers({
-      ventureId: ventureId ?? undefined,
-      token,
-    });
+  const { data: ventureUsersData = [] } = useVentureMembers({
+    ventureId: ventureId ?? undefined,
+    token,
+  });
 
   const allMembers = getUniqueListBy(
     [...timelineUsersData, ...ventureUsersData],
@@ -176,13 +167,13 @@ function FeedUpdate(props: FeedUpdateProps) {
           zIndex: 1,
         },
         children: updates.map((update: IUpdate) => {
-          const updateUser = allMembers.find(m => m.id === update.subjectId)
+          const updateUser = allMembers.find((m) => m.id === update.subjectId);
           return (
             <ContentPost
               key={update.id}
               update={{
                 ...update,
-                user: updateUser
+                user: updateUser,
               }}
               setIsVisible={setIsVisible}
               isVisible={isVisible}
@@ -197,7 +188,7 @@ function FeedUpdate(props: FeedUpdateProps) {
               allUpdates={ventureUpdates}
               user={updateUser}
             />
-          )
+          );
         }),
       }}
     />

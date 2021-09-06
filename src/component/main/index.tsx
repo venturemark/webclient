@@ -37,8 +37,7 @@ function Main(props: MainProps) {
     ...rest
   } = props;
 
-  const { currentVenture, ventures } =
-    useContext(VentureContext);
+  const { currentVenture, ventures } = useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
   const hasVentures = ventures?.length > 0 ? true : false;
 
