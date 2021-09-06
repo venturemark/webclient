@@ -7,6 +7,8 @@ import {
   PlasmicFeedUpdate,
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import { AuthContext } from "context/AuthContext";
+import { TimelineContext } from "context/TimelineContext";
+import { VentureContext } from "context/VentureContext";
 import { getUniqueListBy, resourceOwnership } from "module/helpers";
 import {
   useUpdatesByTimeline,
@@ -20,12 +22,8 @@ import {
 import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
-import { IVenture } from "module/interface/venture";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
-  currentTimeline?: ITimeline;
-  timelines: ITimeline[];
-  currentVenture: IVenture;
   user: IUser;
   setIsVisible: (value: IsVisible) => void;
   isVisible: IsVisible;
@@ -48,19 +46,11 @@ function deduplicateUpdates(updates: IUpdate[]) {
 }
 
 function FeedUpdate(props: FeedUpdateProps) {
-  const {
-    currentTimeline,
-    timelines,
-    setIsVisible,
-    setPost,
-    post,
-    currentVenture,
-    isVisible,
-    user,
-    ...rest
-  } = props;
+  const { setIsVisible, setPost, post, isVisible, user, ...rest } = props;
 
   const { token } = useContext(AuthContext);
+  const { currentVenture, timelines } = useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
   const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);
@@ -77,6 +67,22 @@ function FeedUpdate(props: FeedUpdateProps) {
     timelineIds,
     token,
   });
+
+  const { data: timelineUsersData = [] } = useTimelineMembers({
+    timelineId: timelineId ?? undefined,
+    ventureId: ventureId ?? undefined,
+    token,
+  });
+
+  const { data: ventureUsersData = [] } = useVentureMembers({
+    ventureId: ventureId ?? undefined,
+    token,
+  });
+
+  const allMembers = getUniqueListBy(
+    [...timelineUsersData, ...ventureUsersData],
+    "id"
+  );
 
   const updates = useMemo<IUpdate[]>(() => {
     if (timelineId) {
@@ -141,31 +147,6 @@ function FeedUpdate(props: FeedUpdateProps) {
     user,
   ]);
 
-  const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
-    useTimelineMembers({
-      timelineId: timelineId ?? undefined,
-      ventureId: ventureId ?? undefined,
-      token,
-    });
-
-  const { data: ventureUsersData = [], isSuccess: ventureUsersSuccess } =
-    useVentureMembers({
-      ventureId: ventureId ?? undefined,
-      token,
-    });
-
-  let allMembers: IUser[] = [];
-  if (timelineUsersSuccess && ventureUsersSuccess) {
-    allMembers = getUniqueListBy(
-      [...timelineUsersData, ...ventureUsersData],
-      "id"
-    );
-  } else if (timelineUsersSuccess) {
-    allMembers = timelineUsersData;
-  } else if (ventureUsersSuccess) {
-    allMembers = ventureUsersData;
-  }
-
   return (
     <PlasmicFeedUpdate
       {...rest}
@@ -185,23 +166,30 @@ function FeedUpdate(props: FeedUpdateProps) {
         style: {
           zIndex: 1,
         },
-        children: updates.map((update: IUpdate) => (
-          <ContentPost
-            key={update.id}
-            update={update}
-            setIsVisible={setIsVisible}
-            isVisible={isVisible}
-            setPost={() =>
-              setPost({
+        children: updates.map((update: IUpdate) => {
+          const updateUser = allMembers.find((m) => m.id === update.subjectId);
+          return (
+            <ContentPost
+              key={update.id}
+              update={{
                 ...update,
-                users: allMembers ?? [],
-              })
-            }
-            post={post}
-            allUpdates={ventureUpdates}
-            user={user}
-          />
-        )),
+                user: updateUser,
+              }}
+              setIsVisible={setIsVisible}
+              isVisible={isVisible}
+              setPost={() =>
+                setPost({
+                  ...update,
+                  user: updateUser,
+                  users: allMembers ?? [],
+                })
+              }
+              post={post}
+              allUpdates={ventureUpdates}
+              user={updateUser}
+            />
+          );
+        }),
       }}
     />
   );
