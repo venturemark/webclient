@@ -22,6 +22,10 @@ export async function Search(searchInvite: ISearchInvite): Promise<IInvite[]> {
 
   obj.getMetadataMap().set(key.VentureID, searchInvite.ventureId!);
 
+  if (searchInvite.timelineId) {
+    obj.getMetadataMap().set(key.TimelineID, searchInvite.timelineId!);
+  }
+
   objList.push(obj);
   req.setObjList(objList);
 

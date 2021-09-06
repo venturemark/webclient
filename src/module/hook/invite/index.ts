@@ -15,14 +15,10 @@ import {
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-const getInvites = async (searchInvite: ISearchInvite) => {
-  return api.API.Invite.Search(searchInvite);
-};
-
 export function useInvites(searchInvite: ISearchInvite) {
   return useQuery<IInvite[], ErrorResponse>(
-    ["invites", searchInvite.ventureId],
-    () => getInvites(searchInvite),
+    ["invites", searchInvite.ventureId, searchInvite.timelineId],
+    () => api.API.Invite.Search(searchInvite),
     { enabled: !!searchInvite.token && !!searchInvite.ventureId }
   );
 }

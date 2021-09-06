@@ -13,6 +13,7 @@ export interface IInvite {
 
 export interface ISearchInvite {
   ventureId?: string;
+  timelineId?: string;
   token: string | null;
 }
 

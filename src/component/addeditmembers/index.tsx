@@ -61,6 +61,7 @@ function AddEditMembers(props: AddEditMembersProps) {
 
   const { data: invitesData = [] } = useInvites({
     ventureId: currentVenture?.id,
+    timelineId: currentTimeline?.id,
     token,
   });
 
@@ -107,6 +108,7 @@ function AddEditMembers(props: AddEditMembersProps) {
         resource: "timeline",
         id: roleId,
         timelineId,
+        ventureId,
         token: token,
       });
     } else if (isVentureRole) {
@@ -172,6 +174,7 @@ function AddEditMembers(props: AddEditMembersProps) {
 
             return (
               <MemberItem
+                key={member.user.id}
                 userName={member.user.name}
                 user={member.user}
                 userVariant={userVariant}
@@ -189,6 +192,7 @@ function AddEditMembers(props: AddEditMembersProps) {
             invites.map((invite) => {
               return (
                 <MemberItem
+                  key={invite.id}
                   userName={invite.email}
                   user={{ name: invite.email }}
                   userVariant={"isRequested"}
