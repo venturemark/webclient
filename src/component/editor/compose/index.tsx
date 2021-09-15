@@ -14,7 +14,6 @@ import {
   ParagraphPlugin,
   pipe,
   ResetBlockTypePlugin,
-  SlateDocument,
   SoftBreakPlugin,
   StrikethroughPlugin,
   UnderlinePlugin,
@@ -32,9 +31,6 @@ import {
   createEditor as createEditorBase,
   Descendant,
   Editor,
-  Element as SlateElement,
-  Node,
-  Transforms,
 } from "slate";
 import { withHistory } from "slate-history";
 import { ReactEditor, Slate, withReact } from "slate-react";
@@ -51,7 +47,7 @@ import { serialize } from "module/serialize";
 import { save } from "module/store";
 
 type CustomText = { text: string; placeholder?: boolean };
-type CustomElement = TitleElement | ParagraphElement | SlateDocument;
+type CustomElement = ParagraphElement | UnorderedListElement | ListItemElement;
 
 declare module "slate" {
   interface CustomTypes {
@@ -61,8 +57,9 @@ declare module "slate" {
   }
 }
 
-type TitleElement = { type: "title"; children: Descendant[] };
 type ParagraphElement = { type: "paragraph"; children: Descendant[] };
+type UnorderedListElement = { type: "unordered-list"; children: Descendant[] };
+type ListItemElement = { type: "list-item"; children: Descendant[] };
 
 type ElementProps = {
   attributes: any;
@@ -73,22 +70,6 @@ type ElementProps = {
 function Element({ attributes, children, element }: ElementProps) {
   if ("type" in element) {
     switch (element.type) {
-      case "title":
-        return (
-          <h3
-            {...attributes}
-            style={{
-              margin: "0",
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: "bold",
-              fontSize: "18px",
-              lineHeight: "23px",
-              letterSpacing: "0.491786px",
-            }}
-          >
-            {children}
-          </h3>
-        );
       case "paragraph":
         return (
           <p
@@ -99,50 +80,22 @@ function Element({ attributes, children, element }: ElementProps) {
               lineHeight: "23px",
               letterSpacing: "0.491786px",
               fontWeight: 400,
+              margin: 0,
             }}
           >
             {children}
           </p>
         );
+      case "unordered-list":
+        return <ul {...attributes}>{children}</ul>;
+      case "list-item":
+        return <li {...attributes}>{children}</li>;
       default:
         return null;
     }
   }
   return null;
 }
-
-const withLayout = (editor: Editor) => {
-  const { normalizeNode } = editor;
-
-  editor.normalizeNode = ([node, path]) => {
-    if (path.length === 0) {
-      if (editor.children.length < 1) {
-        const title: TitleElement = {
-          type: "title",
-          children: [{ text: "" }],
-        };
-        Transforms.insertNodes(editor, title, { at: path.concat(0) });
-      }
-
-      for (const [child, childPath] of Node.children(editor, path)) {
-        const type = childPath[0] === 0 ? "title" : "paragraph";
-
-        if (
-          SlateElement.isElement(child) &&
-          "type" in child &&
-          child.type !== type
-        ) {
-          const newProperties: Partial<SlateElement> = { type };
-          Transforms.setNodes(editor, newProperties, { at: childPath });
-        }
-      }
-    }
-
-    return normalizeNode([node, path]);
-  };
-
-  return editor;
-};
 
 const plugins = [
   ParagraphPlugin(options),
@@ -230,7 +183,6 @@ interface EditorProps {
 }
 
 const withPlugins = [
-  withLayout,
   withReact,
   withHistory,
   withLink(),
@@ -302,7 +254,7 @@ export function ComposeEditor({
     <div
       ref={editorRef}
       className={actionbarcss.textContainer}
-      style={{ width: "100%" }}
+      style={{ width: "100%", marginTop: "1em" }}
     >
       <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins

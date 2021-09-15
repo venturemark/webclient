@@ -37,20 +37,12 @@ interface ContentPostProps extends DefaultContentPostProps {
 function updateToEditorShape(update: IUpdate | null): EditorShape {
   let value: Descendant[] = [];
   if (update) {
-    const { format, title, text } = update;
-    if (title && text) {
+    const { format, text } = update;
+    if (text) {
       if (format === "slate") {
-        value = [JSON.parse(title), ...JSON.parse(text)];
+        value = JSON.parse(text);
       } else {
         value = [
-          {
-            type: "title",
-            children: [
-              {
-                text: title,
-              },
-            ],
-          },
           {
             type: "paragraph",
             children: [
@@ -167,6 +159,22 @@ function ContentPost(props: ContentPostProps) {
         onClick: () => setDropdownVisible(!dropdownVisible),
       }}
       title={{
+        render() {
+          let title = update?.title || "";
+          if (update?.format === "slate") {
+            try {
+              const parsed = JSON.parse(title);
+              title = parsed.children[0].text;
+            } catch (error) {}
+          }
+          return (
+            <div style={{ fontSize: "18px", fontWeight: 400, marginTop: 0 }}>
+              {title}
+            </div>
+          );
+        },
+      }}
+      description={{
         as: ComposeEditor,
         props: {
           readOnly: true,
@@ -185,11 +193,6 @@ function ContentPost(props: ContentPostProps) {
       }}
       isUserOnClick={dropdownVisible}
       state={state || isOwner}
-      description={{
-        wrap() {
-          return null;
-        },
-      }}
       userName={userData?.name || user?.name}
       photoAvatar={{ user: postUser }}
       date={update?.date}
