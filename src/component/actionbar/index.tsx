@@ -1,5 +1,6 @@
 import "emoji-mart/css/emoji-mart.css";
 
+import { TextareaAutosize } from "@material-ui/core";
 import { Picker } from "emoji-mart";
 import {
   useCallback,
@@ -10,7 +11,7 @@ import {
   useState,
 } from "react";
 import { usePopper } from "react-popper";
-import { Descendant, Editor, Transforms } from "slate";
+import { Editor, Element, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
 
 import {
@@ -37,17 +38,6 @@ interface ActionBarProps extends DefaultActionBarProps {
   timelines: ITimeline[];
   user: IUser;
 }
-
-const initialValue: Descendant[] = [
-  {
-    type: "title",
-    children: [
-      {
-        text: "",
-      },
-    ],
-  },
-];
 
 function CountIndicator({ count }: { count: number }) {
   const r = 3;
@@ -94,6 +84,41 @@ function CountIndicator({ count }: { count: number }) {
   );
 }
 
+const toggleList = (editor: Editor) => {
+  const isActive = isListActive(editor);
+  console.log(isActive);
+
+  Transforms.unwrapNodes(editor, {
+    match: (n) =>
+      !Editor.isEditor(n) &&
+      Element.isElement(n) &&
+      n.type === "unordered-list",
+    split: true,
+  });
+  const newProperties: Partial<Element> = {
+    type: isActive ? "paragraph" : "list-item",
+  };
+  Transforms.setNodes(editor, newProperties);
+
+  if (!isActive) {
+    const block: Element = { type: "unordered-list", children: [] };
+    Transforms.wrapNodes(editor, block);
+  }
+
+  ReactEditor.focus(editor);
+};
+
+const isListActive = (editor: Editor) => {
+  const [match] = Editor.nodes(editor, {
+    match: (n) =>
+      !Editor.isEditor(n) &&
+      Element.isElement(n) &&
+      n.type === "unordered-list",
+  });
+
+  return !!match;
+};
+
 function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
   const { token } = useContext(AuthContext);
@@ -108,65 +133,78 @@ function ActionBar(props: ActionBarProps) {
   );
 
   const [isActive, setIsActive] = useState(false);
-  const [selectFocused, setSelectFocused] = useState(false);
-
   const { mutate: createUpdate } = useCreateUpdate();
 
-  const { editorShape, setEditorShape } = useEditor({
-    value: initialValue,
+  const { editorShape, setEditorShape } = useEditor();
+  const [title, setTitle] = useState<string>("");
+  const [touched, setTouched] = useState({
+    title: false,
+    description: false,
   });
-
-  const [touched, setTouched] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (editorShape.string.length === 0) {
-      setError("Required");
-    } else if (editorShape.string.length > 280) {
-      setError("Too long");
+    if (title.length > 100) {
+      setError("Title too long");
+    } else if (editorShape.string.length >= 280) {
+      setError("Description too long");
+    } else if (editorShape.string.length === 0) {
+      setError("Description required");
+    } else if (title.length === 0) {
+      setError("Title required");
     } else {
       setError(null);
     }
-  }, [editorShape.string, setError]);
+  }, [editorShape.string, title, setError]);
 
   const editor = useMemo(() => {
     const editor = createEditor();
     const { insertText } = editor;
     editor.insertText = (text) => {
-      setTouched(true);
+      setTouched({
+        title: true,
+        description: true,
+      });
       insertText(text);
     };
     return editor;
   }, []);
 
-  const savedSelection = useRef(editor.selection);
+  const [lastFocus, setLastFocus] = useState<
+    "title" | "editor" | "timeline" | null
+  >(null);
+  const editorSelection = useRef(editor.selection);
 
-  const onFocus = useCallback(() => {
-    if (!editor.selection) {
-      Transforms.select(
-        editor,
-        savedSelection.current ?? Editor.end(editor, [])
-      );
-    }
-  }, [editor]);
+  const onFocusEditor = useCallback(
+    (e: FocusEvent) => {
+      setLastFocus("editor");
+      if (!editor.selection) {
+        Transforms.select(
+          editor,
+          editorSelection.current ?? Editor.end(editor, [])
+        );
+      }
+    },
+    [editor]
+  );
 
-  const onBlur = useCallback(() => {
-    savedSelection.current = editor.selection;
+  const onBlurEditor = useCallback(() => {
+    editorSelection.current = editor.selection;
   }, [editor]);
 
   function handlePost() {
-    setTouched(true);
-
     if (selectedTimelines.length < 1 || error) {
+      setTouched({
+        title: true,
+        description: true,
+      });
       return;
     }
 
-    const [titleNode, ...textNodes] = editorShape.value;
-
     selectedTimelines.forEach((timelineId) => {
       createUpdate({
-        title: JSON.stringify(titleNode),
-        text: JSON.stringify(textNodes),
+        title: JSON.stringify({ type: "title", children: [{ text: title }] }),
+        text: JSON.stringify(editorShape.value),
         ventureId: currentVenture.id,
         timelineId: timelineId.id,
         token,
@@ -174,18 +212,20 @@ function ActionBar(props: ActionBarProps) {
     });
 
     //reset
-    savedSelection.current = null;
-    Transforms.select(editor, Editor.start(editor, []));
     setEditorShape({
-      value: initialValue,
+      value: [],
       string: "",
       numberValue: 0,
       error: undefined,
       hasContent: undefined,
       progress: 0,
     });
-    setIsActive(false);
-    setTouched(false);
+    setTitle("");
+    setTouched({
+      title: false,
+      description: false,
+    });
+    editorSelection.current = null;
   }
 
   useEffect(() => {
@@ -198,7 +238,19 @@ function ActionBar(props: ActionBarProps) {
   }, [currentTimeline]);
 
   const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
-    useDropdown<HTMLDivElement>();
+    useDropdown<HTMLDivElement>({
+      onClose: () => {
+        if (lastFocus === "editor") {
+          ReactEditor.focus(editor);
+        } else if (lastFocus === "title") {
+          titleRef.current?.focus();
+          titleRef.current?.setSelectionRange(
+            titleSelection.current,
+            titleSelection.current
+          );
+        }
+      },
+    });
   const [referenceElement, setReferenceElement] =
     useState<HTMLButtonElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
@@ -210,14 +262,13 @@ function ActionBar(props: ActionBarProps) {
     placement: "bottom-start",
   });
 
-  const focusEditor = useCallback(
-    (e: React.MouseEvent) => {
-      setIsActive(true);
-      ReactEditor.focus(editor);
-      e.preventDefault();
-    },
-    [editor]
-  );
+  const titleSelection = useRef(0);
+  const titleRef = useRef<HTMLTextAreaElement | null>(null);
+
+  function onFocusTitle(e: React.FocusEvent) {
+    setLastFocus("title");
+    setIsActive(true);
+  }
 
   return (
     <PlasmicActionBar
@@ -228,23 +279,38 @@ function ActionBar(props: ActionBarProps) {
       isActive={isActive ? "isActive" : false}
       timelineSelected={true}
       form={{
-        onClick: focusEditor,
         onSubmit: handlePost,
       }}
       title={{
+        as: TextareaAutosize,
+        props: {
+          onFocus: onFocusTitle,
+          ref: (el: HTMLTextAreaElement) => (titleRef.current = el),
+          "aria-label": "abc",
+          value: title,
+          placeholder: isActive ? "Title" : "Write your update",
+          onChange(e: any) {
+            setTouched({
+              ...touched,
+              title: true,
+            });
+            setTitle(e.target.value);
+            titleSelection.current = titleRef.current?.selectionStart || 0;
+          },
+          onMouseUp() {
+            titleSelection.current = titleRef.current?.selectionStart || 0;
+          },
+        },
+      }}
+      description={{
         as: ComposeEditor,
         props: {
           "aria-label": "Description",
           editor,
           editorShape,
           setEditorShape,
-          onFocus,
-          onBlur,
-        },
-      }}
-      description={{
-        wrap() {
-          return null;
+          onFocus: onFocusEditor,
+          onBlur: onBlurEditor,
         },
       }}
       emoji={{
@@ -257,7 +323,15 @@ function ActionBar(props: ActionBarProps) {
                   e.stopPropagation();
                   setDropdownVisible(!dropdownVisible);
                   if (dropdownVisible) {
-                    ReactEditor.focus(editor);
+                    if (lastFocus === "editor") {
+                      ReactEditor.focus(editor);
+                    } else if (lastFocus === "title") {
+                      titleRef.current?.focus();
+                      titleRef.current?.setSelectionRange(
+                        titleSelection.current,
+                        titleSelection.current
+                      );
+                    }
                   }
                 }}
                 type="button"
@@ -279,7 +353,15 @@ function ActionBar(props: ActionBarProps) {
                       event.stopPropagation();
                     }}
                     onSelect={(e) => {
-                      "native" in e && Transforms.insertText(editor, e.native);
+                      if (!("native" in e)) return;
+                      if (lastFocus === "editor") {
+                        Transforms.insertText(editor, e.native);
+                      } else if (lastFocus === "title") {
+                        const before = title.substr(0, titleSelection.current);
+                        const after = title.substr(titleSelection.current);
+                        setTitle(before + e.native + after);
+                        titleSelection.current += e.native.length;
+                      }
                     }}
                   />
                   <div ref={setArrowElement} style={styles.arrow} />
@@ -290,8 +372,15 @@ function ActionBar(props: ActionBarProps) {
         },
       }}
       bulletList={{
-        wrap() {
-          return null;
+        onMouseDown: (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleList(editor);
+        },
+        style: {
+          border: "none",
+          background: isListActive(editor) ? "rgb(231, 231, 236)" : "none",
+          borderRadius: "5px",
         },
       }}
       uploadImage={{
@@ -302,6 +391,7 @@ function ActionBar(props: ActionBarProps) {
       container={{
         style: {
           width: "100%",
+          marginTop: "1em",
         },
       }}
       selectedItemsContainer={{
@@ -313,8 +403,8 @@ function ActionBar(props: ActionBarProps) {
           currentVenture,
           selectedTimelines,
           setSelectedTimelines,
-          selectFocused,
-          setSelectFocused,
+          selectFocused: lastFocus === "timeline",
+          setSelectFocused: () => setLastFocus("timeline"),
         },
       }}
       characterLimitIndicator={{
@@ -327,7 +417,9 @@ function ActionBar(props: ActionBarProps) {
         isDisabled: !hasTimelines,
         onPress: handlePost,
       }}
-      error={error && touched ? "hasError" : undefined}
+      error={
+        error && touched.description && touched.title ? "hasError" : undefined
+      }
       errorMessage={{
         message: error,
       }}

@@ -2,11 +2,13 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 
 type AnyEvent = MouseEvent | TouchEvent;
 
-export default function useDropdown<T extends HTMLElement = HTMLElement>(): [
-  boolean,
-  (v: boolean) => void,
-  MutableRefObject<T | null>
-] {
+type Options = {
+  onClose?: () => void;
+};
+
+export default function useDropdown<T extends HTMLElement = HTMLElement>(
+  options?: Options
+): [boolean, (v: boolean) => void, MutableRefObject<T | null>] {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const ref = useRef<T | null>(null);
 
@@ -20,6 +22,7 @@ export default function useDropdown<T extends HTMLElement = HTMLElement>(): [
       }
 
       setDropdownVisible(false);
+      options?.onClose?.();
     };
 
     document.addEventListener(`mousedown`, listener);
@@ -31,7 +34,7 @@ export default function useDropdown<T extends HTMLElement = HTMLElement>(): [
     };
 
     // Reload only if ref or handler changes
-  }, [ref, setDropdownVisible]);
+  }, [ref, options, setDropdownVisible]);
 
   return [dropdownVisible, setDropdownVisible, ref];
 }

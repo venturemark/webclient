@@ -207,7 +207,6 @@
 .description__isActive {
   width: 100%;
   min-width: 0;
-  display: none;
 }
 .root .description::placeholder {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;

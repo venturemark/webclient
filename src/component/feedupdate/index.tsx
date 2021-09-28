@@ -156,6 +156,7 @@ function FeedUpdate(props: FeedUpdateProps) {
           return timelines.length ? node : null;
         },
         props: {
+          key: updates?.[0]?.id,
           currentVenture,
           timelines,
           currentTimeline,

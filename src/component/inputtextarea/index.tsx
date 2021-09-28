@@ -4,7 +4,7 @@ import {
   PlumeTextFieldRef,
   useTextField,
 } from "@plasmicapp/plume";
-import { forwardRef, ReactNode } from "react";
+import { forwardRef, MouseEvent, ReactNode, Ref } from "react";
 
 import { PlasmicInputTextArea } from "component/plasmic/shared/PlasmicInputTextArea";
 
@@ -12,7 +12,9 @@ interface InputTextAreaProps extends PlumeTextFieldProps {
   autosize?: boolean;
   children?: ReactNode;
   hasTextHelper: boolean;
+  inputRef?: Ref<HTMLTextAreaElement>;
   message?: string;
+  onMouseUp?: (e: MouseEvent) => void;
 }
 
 function InputTextArea_(
@@ -45,6 +47,8 @@ function InputTextArea_(
   }
 
   const textareaAutosizeProps: TextareaAutosizeProps = {
+    onMouseUp: props.onMouseUp,
+    ref: props.inputRef,
     style: {
       border: "none",
       padding: "0px",
@@ -60,7 +64,10 @@ function InputTextArea_(
               as: TextareaAutosize,
               props: textareaAutosizeProps,
             }
-          : {}
+          : {
+              onMouseUp: props.onMouseUp,
+              ref: props.inputRef,
+            }
       }
       errorMessage={{
         message,
