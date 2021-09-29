@@ -63,6 +63,7 @@ export const PlasmicProfileForm__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicProfileForm__OverridesType = {
   form?: p.Flex<"form">;
+  text?: p.Flex<"div">;
   close?: p.Flex<typeof IconButton>;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   link?: p.Flex<"a">;
@@ -113,12 +114,14 @@ function PlasmicProfileForm__RenderFunc(props: {
           })}
         >
           <div
+            data-plasmic-name={"text"}
+            data-plasmic-override={overrides.text}
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.freeBox___55LI4,
+              sty.text,
               {
-                [sty.freeBox__editProfile___55LI4OylNj]: hasVariant(
+                [sty.text__editProfile]: hasVariant(
                   variants,
                   "editProfile",
                   "editProfile"
@@ -339,6 +342,7 @@ function PlasmicProfileForm__RenderFunc(props: {
 const PlasmicDescendants = {
   form: [
     "form",
+    "text",
     "close",
     "photoAvatar",
     "link",
@@ -349,6 +353,7 @@ const PlasmicDescendants = {
     "save",
     "text22",
   ],
+  text: ["text"],
   close: ["close"],
   photoAvatar: ["photoAvatar"],
   link: ["link"],
@@ -364,6 +369,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   form: "form";
+  text: "div";
   close: typeof IconButton;
   photoAvatar: typeof PhotoAvatar;
   link: "a";
@@ -436,6 +442,7 @@ export const PlasmicProfileForm = Object.assign(
   makeNodeComponent("form"),
   {
     // Helper components rendering sub-elements
+    text: makeNodeComponent("text"),
     close: makeNodeComponent("close"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     link: makeNodeComponent("link"),

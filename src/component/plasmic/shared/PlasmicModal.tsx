@@ -83,6 +83,7 @@ export type PlasmicModal__OverridesType = {
   cancelVenture?: p.Flex<typeof Button>;
   text223?: p.Flex<"div">;
   editProfile?: p.Flex<"form">;
+  text?: p.Flex<"div">;
   close?: p.Flex<typeof IconButton>;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   link?: p.Flex<"a">;
@@ -183,7 +184,7 @@ function PlasmicModal__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.freeBox__yHkt8
+                        sty.text__yHkt8
                       )}
                     >
                       {"Delete this timeline?"}
@@ -191,7 +192,7 @@ function PlasmicModal__RenderFunc(props: {
                   ),
 
                   value: args.organizationDescription,
-                  className: classNames(sty.slotOrganizationDescription),
+                  className: classNames(sty.slotTargetOrganizationDescription),
                 })}
               </p.Stack>
 
@@ -323,7 +324,7 @@ function PlasmicModal__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.freeBox__o2J7M
+                        sty.text__o2J7M
                       )}
                     >
                       {"Remove this Venture?"}
@@ -331,7 +332,7 @@ function PlasmicModal__RenderFunc(props: {
                   ),
 
                   value: args.organizationDescription2,
-                  className: classNames(sty.slotOrganizationDescription2),
+                  className: classNames(sty.slotTargetOrganizationDescription2),
                 })}
               </p.Stack>
 
@@ -439,10 +440,12 @@ function PlasmicModal__RenderFunc(props: {
             {true ? (
               <div className={classNames(defaultcss.all, sty.freeBox__nnGk2)}>
                 <div
+                  data-plasmic-name={"text"}
+                  data-plasmic-override={overrides.text}
                   className={classNames(
                     defaultcss.all,
                     defaultcss.__wab_text,
-                    sty.freeBox__zsEuo
+                    sty.text
                   )}
                 >
                   {"Edit Profile"}
@@ -604,6 +607,7 @@ const PlasmicDescendants = {
     "cancelVenture",
     "text223",
     "editProfile",
+    "text",
     "close",
     "photoAvatar",
     "link",
@@ -626,6 +630,7 @@ const PlasmicDescendants = {
     "cancelVenture",
     "text223",
     "editProfile",
+    "text",
     "close",
     "photoAvatar",
     "link",
@@ -653,6 +658,7 @@ const PlasmicDescendants = {
   text223: ["text223"],
   editProfile: [
     "editProfile",
+    "text",
     "close",
     "photoAvatar",
     "link",
@@ -663,6 +669,7 @@ const PlasmicDescendants = {
     "saveUser",
     "text222",
   ],
+  text: ["text"],
   close: ["close"],
   photoAvatar: ["photoAvatar"],
   link: ["link"],
@@ -689,6 +696,7 @@ type NodeDefaultElementType = {
   cancelVenture: typeof Button;
   text223: "div";
   editProfile: "form";
+  text: "div";
   close: typeof IconButton;
   photoAvatar: typeof PhotoAvatar;
   link: "a";
@@ -772,6 +780,7 @@ export const PlasmicModal = Object.assign(
     cancelVenture: makeNodeComponent("cancelVenture"),
     text223: makeNodeComponent("text223"),
     editProfile: makeNodeComponent("editProfile"),
+    text: makeNodeComponent("text"),
     close: makeNodeComponent("close"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     link: makeNodeComponent("link"),

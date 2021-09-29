@@ -99,13 +99,13 @@ function PlasmicErrorMessage__RenderFunc(props: {
           ),
 
           value: args.children,
-          className: classNames(sty.slotChildren),
+          className: classNames(sty.slotTargetChildren),
         })}
 
         {p.renderPlasmicSlot({
           defaultContents: "Error message",
           value: args.message,
-          className: classNames(sty.slotMessage),
+          className: classNames(sty.slotTargetMessage),
         })}
       </p.Stack>
     </div>

@@ -296,33 +296,30 @@ function PlasmicButton__RenderFunc(props: {
                 ),
 
                 value: args.slot,
-                className: classNames(sty.slotSlot, {
-                  [sty.slotSlot__buttonFeatures_showEndIcon]: hasVariant(
+                className: classNames(sty.slotTargetSlot, {
+                  [sty.slotTargetSlot__buttonFeatures_showEndIcon]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "showEndIcon"
                   ),
-                  [sty.slotSlot__buttonFeatures_showEndIcon_buttonStyle_primaryPurple]:
+                  [sty.slotTargetSlot__buttonFeatures_showEndIcon_buttonStyle_primaryPurple]:
                     hasVariant(variants, "buttonFeatures", "showEndIcon") &&
                     hasVariant(variants, "buttonStyle", "primaryPurple"),
-                  [sty.slotSlot__buttonFeatures_showEndIcon_buttonStyle_secondaryPurple]:
+                  [sty.slotTargetSlot__buttonFeatures_showEndIcon_buttonStyle_secondaryPurple]:
                     hasVariant(variants, "buttonFeatures", "showEndIcon") &&
                     hasVariant(variants, "buttonStyle", "secondaryPurple"),
-                  [sty.slotSlot__buttonFeatures_showStartIcon]: hasVariant(
-                    variants,
-                    "buttonFeatures",
-                    "showStartIcon"
-                  ),
-                  [sty.slotSlot__buttonFeatures_showStartIcon_buttonFeatures_showEndIcon]:
+                  [sty.slotTargetSlot__buttonFeatures_showStartIcon]:
+                    hasVariant(variants, "buttonFeatures", "showStartIcon"),
+                  [sty.slotTargetSlot__buttonFeatures_showStartIcon_buttonFeatures_showEndIcon]:
                     hasVariant(variants, "buttonFeatures", "showStartIcon") &&
                     hasVariant(variants, "buttonFeatures", "showEndIcon"),
-                  [sty.slotSlot__buttonFeatures_showStartIcon_buttonStyle_danger]:
+                  [sty.slotTargetSlot__buttonFeatures_showStartIcon_buttonStyle_danger]:
                     hasVariant(variants, "buttonFeatures", "showStartIcon") &&
                     hasVariant(variants, "buttonStyle", "danger"),
-                  [sty.slotSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryGreen]:
+                  [sty.slotTargetSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryGreen]:
                     hasVariant(variants, "buttonFeatures", "showStartIcon") &&
                     hasVariant(variants, "buttonStyle", "secondaryGreen"),
-                  [sty.slotSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryPurple]:
+                  [sty.slotTargetSlot__buttonFeatures_showStartIcon_buttonStyle_secondaryPurple]:
                     hasVariant(variants, "buttonFeatures", "showStartIcon") &&
                     hasVariant(variants, "buttonStyle", "secondaryPurple"),
                 }),
@@ -332,48 +329,42 @@ function PlasmicButton__RenderFunc(props: {
             ? p.renderPlasmicSlot({
                 defaultContents: "1",
                 value: args.count,
-                className: classNames(sty.slotCount, {
-                  [sty.slotCount__buttonFeatures_isRounded]: hasVariant(
+                className: classNames(sty.slotTargetCount, {
+                  [sty.slotTargetCount__buttonFeatures_isRounded]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "isRounded"
                   ),
-                  [sty.slotCount__buttonFeatures_showCount]: hasVariant(
+                  [sty.slotTargetCount__buttonFeatures_showCount]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "showCount"
                   ),
-                  [sty.slotCount__buttonFeatures_showEndIcon]: hasVariant(
+                  [sty.slotTargetCount__buttonFeatures_showEndIcon]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "showEndIcon"
                   ),
-                  [sty.slotCount__buttonFeatures_showStartIcon]: hasVariant(
-                    variants,
-                    "buttonFeatures",
-                    "showStartIcon"
-                  ),
-                  [sty.slotCount__buttonStyle_danger]: hasVariant(
+                  [sty.slotTargetCount__buttonFeatures_showStartIcon]:
+                    hasVariant(variants, "buttonFeatures", "showStartIcon"),
+                  [sty.slotTargetCount__buttonStyle_danger]: hasVariant(
                     variants,
                     "buttonStyle",
                     "danger"
                   ),
-                  [sty.slotCount__buttonStyle_primaryPurple]: hasVariant(
+                  [sty.slotTargetCount__buttonStyle_primaryPurple]: hasVariant(
                     variants,
                     "buttonStyle",
                     "primaryPurple"
                   ),
-                  [sty.slotCount__buttonStyle_secondaryGreen]: hasVariant(
+                  [sty.slotTargetCount__buttonStyle_secondaryGreen]: hasVariant(
                     variants,
                     "buttonStyle",
                     "secondaryGreen"
                   ),
-                  [sty.slotCount__buttonStyle_secondaryPurple]: hasVariant(
-                    variants,
-                    "buttonStyle",
-                    "secondaryPurple"
-                  ),
-                  [sty.slotCount__isDisabled]: hasVariant(
+                  [sty.slotTargetCount__buttonStyle_secondaryPurple]:
+                    hasVariant(variants, "buttonStyle", "secondaryPurple"),
+                  [sty.slotTargetCount__isDisabled]: hasVariant(
                     variants,
                     "isDisabled",
                     "isDisabled"
@@ -385,48 +376,42 @@ function PlasmicButton__RenderFunc(props: {
             ? p.renderPlasmicSlot({
                 defaultContents: "Button",
                 value: args.text2,
-                className: classNames(sty.slotText2, {
-                  [sty.slotText2__buttonFeatures_isRounded]: hasVariant(
+                className: classNames(sty.slotTargetText2, {
+                  [sty.slotTargetText2__buttonFeatures_isRounded]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "isRounded"
                   ),
-                  [sty.slotText2__buttonFeatures_removeText]: hasVariant(
+                  [sty.slotTargetText2__buttonFeatures_removeText]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "removeText"
                   ),
-                  [sty.slotText2__buttonFeatures_showCount]: hasVariant(
+                  [sty.slotTargetText2__buttonFeatures_showCount]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "showCount"
                   ),
-                  [sty.slotText2__buttonFeatures_showStartIcon]: hasVariant(
-                    variants,
-                    "buttonFeatures",
-                    "showStartIcon"
-                  ),
-                  [sty.slotText2__buttonStyle_danger]: hasVariant(
+                  [sty.slotTargetText2__buttonFeatures_showStartIcon]:
+                    hasVariant(variants, "buttonFeatures", "showStartIcon"),
+                  [sty.slotTargetText2__buttonStyle_danger]: hasVariant(
                     variants,
                     "buttonStyle",
                     "danger"
                   ),
-                  [sty.slotText2__buttonStyle_primaryPurple]: hasVariant(
+                  [sty.slotTargetText2__buttonStyle_primaryPurple]: hasVariant(
                     variants,
                     "buttonStyle",
                     "primaryPurple"
                   ),
-                  [sty.slotText2__buttonStyle_secondaryGreen]: hasVariant(
+                  [sty.slotTargetText2__buttonStyle_secondaryGreen]: hasVariant(
                     variants,
                     "buttonStyle",
                     "secondaryGreen"
                   ),
-                  [sty.slotText2__buttonStyle_secondaryPurple]: hasVariant(
-                    variants,
-                    "buttonStyle",
-                    "secondaryPurple"
-                  ),
-                  [sty.slotText2__buttonStyle_whiteBlue]: hasVariant(
+                  [sty.slotTargetText2__buttonStyle_secondaryPurple]:
+                    hasVariant(variants, "buttonStyle", "secondaryPurple"),
+                  [sty.slotTargetText2__buttonStyle_whiteBlue]: hasVariant(
                     variants,
                     "buttonStyle",
                     "whiteBlue"
@@ -446,27 +431,21 @@ function PlasmicButton__RenderFunc(props: {
                 ),
 
                 value: args.children,
-                className: classNames(sty.slotChildren, {
-                  [sty.slotChildren__buttonFeatures_showEndIcon]: hasVariant(
-                    variants,
-                    "buttonFeatures",
-                    "showEndIcon"
-                  ),
-                  [sty.slotChildren__buttonFeatures_showEndIcon_buttonStyle_danger]:
+                className: classNames(sty.slotTargetChildren, {
+                  [sty.slotTargetChildren__buttonFeatures_showEndIcon]:
+                    hasVariant(variants, "buttonFeatures", "showEndIcon"),
+                  [sty.slotTargetChildren__buttonFeatures_showEndIcon_buttonStyle_danger]:
                     hasVariant(variants, "buttonFeatures", "showEndIcon") &&
                     hasVariant(variants, "buttonStyle", "danger"),
-                  [sty.slotChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryGreen]:
+                  [sty.slotTargetChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryGreen]:
                     hasVariant(variants, "buttonFeatures", "showEndIcon") &&
                     hasVariant(variants, "buttonStyle", "secondaryGreen"),
-                  [sty.slotChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryPurple]:
+                  [sty.slotTargetChildren__buttonFeatures_showEndIcon_buttonStyle_secondaryPurple]:
                     hasVariant(variants, "buttonFeatures", "showEndIcon") &&
                     hasVariant(variants, "buttonStyle", "secondaryPurple"),
-                  [sty.slotChildren__buttonFeatures_showStartIcon]: hasVariant(
-                    variants,
-                    "buttonFeatures",
-                    "showStartIcon"
-                  ),
-                  [sty.slotChildren__buttonStyle_danger]: hasVariant(
+                  [sty.slotTargetChildren__buttonFeatures_showStartIcon]:
+                    hasVariant(variants, "buttonFeatures", "showStartIcon"),
+                  [sty.slotTargetChildren__buttonStyle_danger]: hasVariant(
                     variants,
                     "buttonStyle",
                     "danger"

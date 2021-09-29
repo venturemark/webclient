@@ -76,6 +76,7 @@ export const PlasmicProfileDropdown__ArgProps = new Array<ArgPropType>(
 export type PlasmicProfileDropdown__OverridesType = {
   root?: p.Flex<"div">;
   rectangle574?: p.Flex<"div">;
+  text?: p.Flex<"div">;
   close?: p.Flex<typeof IconButton>;
   svg?: p.Flex<"svg">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
@@ -135,10 +136,12 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             })}
           >
             <div
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.freeBox__qygsP
+                sty.text
               )}
             >
               {"Account"}
@@ -198,8 +201,8 @@ function PlasmicProfileDropdown__RenderFunc(props: {
               {p.renderPlasmicSlot({
                 defaultContents: "user@email.com",
                 value: args.userEmail,
-                className: classNames(sty.slotUserEmail, {
-                  [sty.slotUserEmail__isMobile]: hasVariant(
+                className: classNames(sty.slotTargetUserEmail, {
+                  [sty.slotTargetUserEmail__isMobile]: hasVariant(
                     variants,
                     "isMobile",
                     "isMobile"
@@ -268,6 +271,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "rectangle574",
+    "text",
     "close",
     "svg",
     "photoAvatar",
@@ -278,6 +282,7 @@ const PlasmicDescendants = {
   ],
   rectangle574: [
     "rectangle574",
+    "text",
     "close",
     "svg",
     "photoAvatar",
@@ -286,6 +291,7 @@ const PlasmicDescendants = {
     "viewProfile",
     "logout",
   ],
+  text: ["text"],
   close: ["close", "svg"],
   svg: ["svg"],
   photoAvatar: ["photoAvatar"],
@@ -300,6 +306,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   rectangle574: "div";
+  text: "div";
   close: typeof IconButton;
   svg: "svg";
   photoAvatar: typeof PhotoAvatar;
@@ -371,6 +378,7 @@ export const PlasmicProfileDropdown = Object.assign(
   {
     // Helper components rendering sub-elements
     rectangle574: makeNodeComponent("rectangle574"),
+    text: makeNodeComponent("text"),
     close: makeNodeComponent("close"),
     svg: makeNodeComponent("svg"),
     photoAvatar: makeNodeComponent("photoAvatar"),

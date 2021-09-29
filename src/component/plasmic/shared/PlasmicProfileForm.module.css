@@ -43,9 +43,11 @@
   align-items: center;
   padding: 20px 0px;
 }
-.freeBox___55LI4 {
+.text {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   font-weight: 600;
+}
+.text__editProfile {
 }
 .close:global(.__wab_instance) {
   position: absolute;
@@ -76,6 +78,8 @@
   margin-bottom: 17px;
   align-self: center;
 }
+.freeBox__editProfile__lhTsoOylNj {
+}
 .freeBox__khj8R {
   display: flex;
   flex-direction: column;
@@ -100,17 +104,31 @@
 .photoAvatar:global(.__wab_instance) {
   flex-shrink: 0;
 }
+.text__iEkSg {
+}
 .link {
   position: relative;
   align-self: center;
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
   cursor: pointer;
 }
+.link__editProfile {
+}
 .nameField:global(.__wab_instance) {
   position: relative;
 }
+.text__ho7Lu {
+}
+.text__s41EX {
+}
 .jobField:global(.__wab_instance) {
   position: relative;
+}
+.jobField__editProfile:global(.__wab_instance) {
+}
+.text___8V6Hd {
+}
+.text__qyXG {
 }
 .freeBox__z9Te4 {
   display: flex;
@@ -122,6 +140,17 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
+}
+.freeBox__z9Te4 > :global(.__wab_flex-container) > *,
+.freeBox__z9Te4 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__z9Te4 > :global(.__wab_flex-container) > picture > img,
+.freeBox__z9Te4
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.freeBox__editProfile__z9Te4OylNj {
 }
 .freeBox__editProfile__z9Te4OylNj > :global(.__wab_flex-container) {
   margin-left: calc(0px - 22px);
@@ -146,14 +175,22 @@
   margin-left: 22px;
   margin-top: 0px;
 }
+.cancel:global(.__wab_instance) {
+}
+.cancel__editProfile:global(.__wab_instance) {
+}
 .svg__dVu44 {
   position: relative;
   object-fit: cover;
   width: 17px;
   height: 14px;
 }
+.text__vPuv7 {
+}
 .text2 {
   height: auto;
+}
+.text2__editProfile {
 }
 .svg__sv8Ps {
   position: relative;
@@ -165,11 +202,17 @@
   position: relative;
   align-self: center;
 }
+.save__editProfile:global(.__wab_instance) {
+}
 .svg__dsa3 {
   position: relative;
   object-fit: cover;
   width: 17px;
   height: 14px;
+}
+.text__vrPZo {
+}
+.text22 {
 }
 .text22__editProfile {
   height: auto;

@@ -51,7 +51,7 @@ export const PlasmicTimelineLink__ArgProps = new Array<ArgPropType>("name");
 
 export type PlasmicTimelineLink__OverridesType = {
   root?: p.Flex<"div">;
-  freeBox?: p.Flex<"div">;
+  text?: p.Flex<"div">;
 };
 
 export interface DefaultTimelineLinkProps {
@@ -77,13 +77,9 @@ function PlasmicTimelineLink__RenderFunc(props: {
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
     >
       <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(
-          defaultcss.all,
-          defaultcss.__wab_text,
-          sty.freeBox
-        )}
+        data-plasmic-name={"text"}
+        data-plasmic-override={overrides.text}
+        className={classNames(defaultcss.all, defaultcss.__wab_text, sty.text)}
       >
         {"#"}
       </div>
@@ -92,7 +88,7 @@ function PlasmicTimelineLink__RenderFunc(props: {
         defaultContents: (
           <span
             className={classNames(
-              defaultcss.all,
+              defaultcss.span,
               defaultcss.__wab_text,
               sty.span___0SrJl
             )}
@@ -102,22 +98,22 @@ function PlasmicTimelineLink__RenderFunc(props: {
         ),
 
         value: args.name,
-        className: classNames(sty.slotName),
+        className: classNames(sty.slotTargetName),
       })}
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox"],
-  freeBox: ["freeBox"],
+  root: ["root", "text"],
+  text: ["text"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -181,7 +177,7 @@ export const PlasmicTimelineLink = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicTimelineLink
     internalVariantProps: PlasmicTimelineLink__VariantProps,

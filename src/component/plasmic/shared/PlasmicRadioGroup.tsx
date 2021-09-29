@@ -66,8 +66,10 @@ export const PlasmicRadioGroup__ArgProps = new Array<ArgPropType>("label");
 export type PlasmicRadioGroup__OverridesType = {
   root?: p.Flex<"div">;
   labelContainer?: p.Flex<"label">;
+  freeBox?: p.Flex<"div">;
   _private?: p.Flex<typeof Radio>;
   members?: p.Flex<typeof Radio>;
+  text?: p.Flex<"div">;
   _public?: p.Flex<typeof Radio>;
 };
 
@@ -113,27 +115,25 @@ function PlasmicRadioGroup__RenderFunc(props: {
           {p.renderPlasmicSlot({
             defaultContents: "Visibility",
             value: args.label,
-            className: classNames(sty.slotLabel),
+            className: classNames(sty.slotTargetLabel),
           })}
         </label>
       ) : null}
 
       <div
-        className={classNames(defaultcss.all, sty.freeBox__zgeS0, {
-          [sty.freeBox__hasLabel__zgeS0XNm45]: hasVariant(
-            variants,
-            "hasLabel",
-            "hasLabel"
-          ),
-          [sty.freeBox__hasLabel_isHorizontal__zgeS0XNm45LNttF]:
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames(defaultcss.all, sty.freeBox, {
+          [sty.freeBox__hasLabel]: hasVariant(variants, "hasLabel", "hasLabel"),
+          [sty.freeBox__hasLabel_isHorizontal]:
             hasVariant(variants, "hasLabel", "hasLabel") &&
             hasVariant(variants, "isHorizontal", "isHorizontal"),
-          [sty.freeBox__isDisabled__zgeS0Zl5Fe]: hasVariant(
+          [sty.freeBox__isDisabled]: hasVariant(
             variants,
             "isDisabled",
             "isDisabled"
           ),
-          [sty.freeBox__isHorizontal__zgeS0LNttF]: hasVariant(
+          [sty.freeBox__isHorizontal]: hasVariant(
             variants,
             "isHorizontal",
             "isHorizontal"
@@ -162,10 +162,12 @@ function PlasmicRadioGroup__RenderFunc(props: {
           })}
           helperText={
             <div
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.freeBox___2IwyL
+                sty.text
               )}
             >
               {"All members from this venture will be added to this timeline."}
@@ -199,10 +201,20 @@ function PlasmicRadioGroup__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "labelContainer", "_private", "members", "_public"],
+  root: [
+    "root",
+    "labelContainer",
+    "freeBox",
+    "_private",
+    "members",
+    "text",
+    "_public",
+  ],
   labelContainer: ["labelContainer"],
+  freeBox: ["freeBox", "_private", "members", "text", "_public"],
   _private: ["_private"],
-  members: ["members"],
+  members: ["members", "text"],
+  text: ["text"],
   _public: ["_public"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -211,8 +223,10 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   labelContainer: "label";
+  freeBox: "div";
   _private: typeof Radio;
   members: typeof Radio;
+  text: "div";
   _public: typeof Radio;
 };
 
@@ -278,8 +292,10 @@ export const PlasmicRadioGroup = Object.assign(
   {
     // Helper components rendering sub-elements
     labelContainer: makeNodeComponent("labelContainer"),
+    freeBox: makeNodeComponent("freeBox"),
     _private: makeNodeComponent("_private"),
     members: makeNodeComponent("members"),
+    text: makeNodeComponent("text"),
     _public: makeNodeComponent("_public"),
 
     // Metadata about props expected for PlasmicRadioGroup

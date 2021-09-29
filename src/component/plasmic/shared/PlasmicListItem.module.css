@@ -16,9 +16,13 @@
   min-width: 0;
   padding: 0px 15px;
 }
-.slotRename {
+.root:hover .link {
+}
+.slotTargetRename {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
-.root:hover .slotRename {
+.root:hover .slotTargetRename {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
+}
+.text__lE2Ux {
 }

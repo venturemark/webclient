@@ -102,6 +102,7 @@ export type PlasmicActionBar__OverridesType = {
   errorMessage?: p.Flex<typeof ErrorMessage>;
   characterLimitIndicator?: p.Flex<typeof IconButton>;
   shareToContainer?: p.Flex<"div">;
+  text?: p.Flex<"div">;
   container?: p.Flex<"div">;
   selectedItemsContainer?: p.Flex<"div">;
   tags?: p.Flex<typeof Tags>;
@@ -704,29 +705,30 @@ function PlasmicActionBar__RenderFunc(props: {
                           )}
                         >
                           <div
+                            data-plasmic-name={"text"}
+                            data-plasmic-override={overrides.text}
                             className={classNames(
                               defaultcss.all,
                               defaultcss.__wab_text,
-                              sty.freeBox__pYpv,
+                              sty.text,
                               {
-                                [sty.freeBox__isActive__pYpVvjQpn]: hasVariant(
+                                [sty.text__isActive]: hasVariant(
                                   variants,
                                   "isActive",
                                   "isActive"
                                 ),
-                                [sty.freeBox__isActive_error_hasError__pYpVvjQpnXYqMt]:
+                                [sty.text__isActive_error_hasError]:
                                   hasVariant(
                                     variants,
                                     "isActive",
                                     "isActive"
                                   ) &&
                                   hasVariant(variants, "error", "hasError"),
-                                [sty.freeBox__timelineSelected__pYpv75BwG]:
-                                  hasVariant(
-                                    variants,
-                                    "timelineSelected",
-                                    "timelineSelected"
-                                  ),
+                                [sty.text__timelineSelected]: hasVariant(
+                                  variants,
+                                  "timelineSelected",
+                                  "timelineSelected"
+                                ),
                               }
                             )}
                           >
@@ -922,13 +924,13 @@ function PlasmicActionBar__RenderFunc(props: {
                                 {p.renderPlasmicSlot({
                                   defaultContents: "Metric",
                                   value: args.text2,
-                                  className: classNames(sty.slotText2, {
-                                    [sty.slotText2__isActive]: hasVariant(
+                                  className: classNames(sty.slotTargetText2, {
+                                    [sty.slotTargetText2__isActive]: hasVariant(
                                       variants,
                                       "isActive",
                                       "isActive"
                                     ),
-                                    [sty.slotText2__isActive_timelineSelected]:
+                                    [sty.slotTargetText2__isActive_timelineSelected]:
                                       hasVariant(
                                         variants,
                                         "isActive",
@@ -954,7 +956,7 @@ function PlasmicActionBar__RenderFunc(props: {
                                   ),
 
                                   value: args.children,
-                                  className: classNames(sty.slotChildren),
+                                  className: classNames(sty.slotTargetChildren),
                                 })}
                               </p.Stack>
                             </button>
@@ -1068,6 +1070,7 @@ const PlasmicDescendants = {
     "errorMessage",
     "characterLimitIndicator",
     "shareToContainer",
+    "text",
     "container",
     "selectedItemsContainer",
     "tags",
@@ -1093,7 +1096,8 @@ const PlasmicDescendants = {
   uploadImage: ["uploadImage"],
   errorMessage: ["errorMessage"],
   characterLimitIndicator: ["characterLimitIndicator"],
-  shareToContainer: ["shareToContainer"],
+  shareToContainer: ["shareToContainer", "text"],
+  text: ["text"],
   container: ["container", "selectedItemsContainer", "tags", "button"],
   selectedItemsContainer: ["selectedItemsContainer", "tags", "button"],
   tags: ["tags"],
@@ -1115,6 +1119,7 @@ type NodeDefaultElementType = {
   errorMessage: typeof ErrorMessage;
   characterLimitIndicator: typeof IconButton;
   shareToContainer: "div";
+  text: "div";
   container: "div";
   selectedItemsContainer: "div";
   tags: typeof Tags;
@@ -1193,6 +1198,7 @@ export const PlasmicActionBar = Object.assign(
     errorMessage: makeNodeComponent("errorMessage"),
     characterLimitIndicator: makeNodeComponent("characterLimitIndicator"),
     shareToContainer: makeNodeComponent("shareToContainer"),
+    text: makeNodeComponent("text"),
     container: makeNodeComponent("container"),
     selectedItemsContainer: makeNodeComponent("selectedItemsContainer"),
     tags: makeNodeComponent("tags"),

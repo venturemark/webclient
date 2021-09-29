@@ -21,6 +21,8 @@
   cursor: pointer;
   padding: 5px /* plasmic-token: 5hSVea-ed */;
 }
+.container__isActive {
+}
 .root:hover .container {
   background: rgb(231, 231, 236);
   border-radius: 5px;
@@ -68,12 +70,16 @@
   height: auto;
   align-self: center;
 }
-.slotMemberCount {
+.root:hover .freeBox__ysBge {
+}
+.slotTargetMemberCount {
   font-size: 12px /* plasmic-token: LxqIZc9hM */;
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   text-align: left;
   line-height: 1.2;
 }
-.root:hover .slotMemberCount {
+.root:hover .slotTargetMemberCount {
   color: rgb(231, 231, 236) /* plasmic-token: FMrtJGj8f */;
+}
+.text__vFtoF {
 }

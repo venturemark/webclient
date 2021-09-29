@@ -132,8 +132,8 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           ? p.renderPlasmicSlot({
               defaultContents: "Create a New Venture",
               value: args.children,
-              className: classNames(sty.slotChildren, {
-                [sty.slotChildren__variantState_isEdit]: hasVariant(
+              className: classNames(sty.slotTargetChildren, {
+                [sty.slotTargetChildren__variantState_isEdit]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
@@ -145,8 +145,8 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           ? p.renderPlasmicSlot({
               defaultContents: "Venture Info",
               value: args.children2,
-              className: classNames(sty.slotChildren2, {
-                [sty.slotChildren2__variantState_isEdit]: hasVariant(
+              className: classNames(sty.slotTargetChildren2, {
+                [sty.slotTargetChildren2__variantState_isEdit]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
@@ -304,16 +304,16 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           {p.renderPlasmicSlot({
             defaultContents: "Permissions",
             value: args.slot2,
-            className: classNames(sty.slotSlot2, {
-              [sty.slotSlot2__isOwner]: hasVariant(
+            className: classNames(sty.slotTargetSlot2, {
+              [sty.slotTargetSlot2__isOwner]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
               ),
-              [sty.slotSlot2__isOwner_variantState_isEdit]:
+              [sty.slotTargetSlot2__isOwner_variantState_isEdit]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "variantState", "isEdit"),
-              [sty.slotSlot2__variantState_isEdit]: hasVariant(
+              [sty.slotTargetSlot2__variantState_isEdit]: hasVariant(
                 variants,
                 "variantState",
                 "isEdit"

@@ -129,7 +129,7 @@ function PlasmicFeedUpdate__RenderFunc(props: {
               data-plasmic-name={"date"}
               data-plasmic-override={overrides.date}
               className={classNames(
-                defaultcss.all,
+                defaultcss.span,
                 defaultcss.__wab_text,
                 sty.date
               )}
@@ -157,7 +157,7 @@ function PlasmicFeedUpdate__RenderFunc(props: {
               data-plasmic-name={"date2"}
               data-plasmic-override={overrides.date2}
               className={classNames(
-                defaultcss.all,
+                defaultcss.span,
                 defaultcss.__wab_text,
                 sty.date2
               )}

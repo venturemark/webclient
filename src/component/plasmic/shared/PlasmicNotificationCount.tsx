@@ -50,7 +50,7 @@ export const PlasmicNotificationCount__ArgProps = new Array<ArgPropType>();
 export type PlasmicNotificationCount__OverridesType = {
   root?: p.Flex<"div">;
   background?: p.Flex<"div">;
-  freeBox?: p.Flex<"div">;
+  text?: p.Flex<"div">;
 };
 
 export interface DefaultNotificationCountProps {
@@ -80,12 +80,12 @@ function PlasmicNotificationCount__RenderFunc(props: {
         className={classNames(defaultcss.all, sty.background)}
       >
         <div
-          data-plasmic-name={"freeBox"}
-          data-plasmic-override={overrides.freeBox}
+          data-plasmic-name={"text"}
+          data-plasmic-override={overrides.text}
           className={classNames(
             defaultcss.all,
             defaultcss.__wab_text,
-            sty.freeBox
+            sty.text
           )}
         >
           {"1"}
@@ -96,9 +96,9 @@ function PlasmicNotificationCount__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "background", "freeBox"],
-  background: ["background", "freeBox"],
-  freeBox: ["freeBox"],
+  root: ["root", "background", "text"],
+  background: ["background", "text"],
+  text: ["text"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -106,7 +106,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   background: "div";
-  freeBox: "div";
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -171,7 +171,7 @@ export const PlasmicNotificationCount = Object.assign(
   {
     // Helper components rendering sub-elements
     background: makeNodeComponent("background"),
-    freeBox: makeNodeComponent("freeBox"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicNotificationCount
     internalVariantProps: PlasmicNotificationCount__VariantProps,

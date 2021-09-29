@@ -197,14 +197,14 @@ function PlasmicMemberItem__RenderFunc(props: {
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.freeBox__biq75,
+              sty.text__biq75,
               {
-                [sty.freeBox__userVariant_isRequested__biq75OSddm]: hasVariant(
+                [sty.text__userVariant_isRequested__biq75OSddm]: hasVariant(
                   variants,
                   "userVariant",
                   "isRequested"
                 ),
-                [sty.freeBox__userVariant_isSelf__biq75AAx2Z]: hasVariant(
+                [sty.text__userVariant_isSelf__biq75AAx2Z]: hasVariant(
                   variants,
                   "userVariant",
                   "isSelf"
@@ -219,7 +219,7 @@ function PlasmicMemberItem__RenderFunc(props: {
           ? p.renderPlasmicSlot({
               defaultContents: "example@email.com",
               value: args.slot3,
-              className: classNames(sty.slotSlot3),
+              className: classNames(sty.slotTargetSlot3),
             })
           : null}
         {(
@@ -511,24 +511,24 @@ function PlasmicMemberItem__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.freeBox___5GQ6G,
+                sty.text___5GQ6G,
                 {
-                  [sty.freeBox__userVariant_isAdmin___5GQ6G35Uok]: hasVariant(
+                  [sty.text__userVariant_isAdmin___5GQ6G35Uok]: hasVariant(
                     variants,
                     "userVariant",
                     "isAdmin"
                   ),
-                  [sty.freeBox__userVariant_isMember___5GQ6GGdyZr]: hasVariant(
+                  [sty.text__userVariant_isMember___5GQ6GGdyZr]: hasVariant(
                     variants,
                     "userVariant",
                     "isMember"
                   ),
-                  [sty.freeBox__userVariant_isSelf___5GQ6GAAx2Z]: hasVariant(
+                  [sty.text__userVariant_isSelf___5GQ6GAAx2Z]: hasVariant(
                     variants,
                     "userVariant",
                     "isSelf"
                   ),
-                  [sty.freeBox__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz]:
+                  [sty.text__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz]:
                     hasVariant(variants, "userVariant", "isSelf") &&
                     hasVariant(variants, "isOwner", "isOwner"),
                 }

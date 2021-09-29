@@ -284,23 +284,52 @@ export default function ActionBar(props: ActionBarProps) {
         },
       }}
       bulletList={{
-        onMouseDown: (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleList(editor);
-        },
-        style: {
-          background: isListActive(editor) ? "rgb(231, 231, 236)" : "none",
+        wrap(node) {
+          return (
+            <button
+              type="button"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleList(editor);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleList(editor);
+                }
+              }}
+              style={{
+                border: "none",
+                background: isListActive(editor)
+                  ? "rgb(231, 231, 236)"
+                  : "none",
+              }}
+            >
+              {node}
+            </button>
+          );
         },
       }}
       uploadImage={{
-        onMouseDown: (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setUploadImageVisible(true);
-        },
-        style: {
-          background: isListActive(editor) ? "rgb(231, 231, 236)" : "none",
+        wrap(node) {
+          return (
+            <button
+              type="button"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setUploadImageVisible(true);
+              }}
+              style={{
+                border: "none",
+                background: "none",
+              }}
+            >
+              {node}
+            </button>
+          );
         },
       }}
       container={{

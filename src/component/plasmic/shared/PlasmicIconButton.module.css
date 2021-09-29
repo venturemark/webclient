@@ -10,6 +10,12 @@
 .root__isActive {
   border-bottom: 1px solid #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
+.root__isDarkBgHover {
+}
+.root__isDisabled {
+}
+.root__isDisabled_isDarkBgHover {
+}
 .container {
   display: flex;
   position: relative;
@@ -26,6 +32,14 @@
   width: 35px;
   flex-shrink: 0;
 }
+.container__isActive {
+}
+.container__isDarkBgHover {
+}
+.container__isDisabled {
+}
+.container__isDisabled_isDarkBgHover {
+}
 .root:hover .container {
   background: rgb(231, 231, 236);
   border-radius: 5px;
@@ -36,7 +50,15 @@
 .root__isDisabled:hover .container__isDisabled {
   background: rgba(255, 255, 255, 0);
 }
-.root__isDarkBgHover:hover .slotChildren__isDarkBgHover {
+.root__isDisabled_isDarkBgHover:hover .container__isDisabled_isDarkBgHover {
+}
+.slotTargetChildren {
+}
+.slotTargetChildren__iconSize_large {
+}
+.slotTargetChildren__isDarkBgHover {
+}
+.root__isDarkBgHover:hover .slotTargetChildren__isDarkBgHover {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .svg__toCuH {

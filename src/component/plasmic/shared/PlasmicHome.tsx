@@ -67,6 +67,7 @@ export type PlasmicHome__OverridesType = {
   modal?: p.Flex<typeof Modal>;
   header?: p.Flex<typeof Header>;
   sidebar?: p.Flex<typeof Sidebar>;
+  text?: p.Flex<"div">;
   mainContainer?: p.Flex<"div">;
   main?: p.Flex<typeof Main>;
   postDetails?: p.Flex<typeof PostDetails>;
@@ -260,10 +261,12 @@ function PlasmicHome__RenderFunc(props: {
                 }
                 userName={
                   <div
+                    data-plasmic-name={"text"}
+                    data-plasmic-override={overrides.text}
                     className={classNames(
                       defaultcss.all,
                       defaultcss.__wab_text,
-                      sty.freeBox__m5KNe
+                      sty.text
                     )}
                   >
                     {"Name"}
@@ -394,13 +397,15 @@ const PlasmicDescendants = {
     "modal",
     "header",
     "sidebar",
+    "text",
     "mainContainer",
     "main",
     "postDetails",
   ],
   modal: ["modal"],
   header: ["header"],
-  sidebar: ["sidebar"],
+  sidebar: ["sidebar", "text"],
+  text: ["text"],
   mainContainer: ["mainContainer", "main"],
   main: ["main"],
   postDetails: ["postDetails"],
@@ -413,6 +418,7 @@ type NodeDefaultElementType = {
   modal: typeof Modal;
   header: typeof Header;
   sidebar: typeof Sidebar;
+  text: "div";
   mainContainer: "div";
   main: typeof Main;
   postDetails: typeof PostDetails;
@@ -482,6 +488,7 @@ export const PlasmicHome = Object.assign(
     modal: makeNodeComponent("modal"),
     header: makeNodeComponent("header"),
     sidebar: makeNodeComponent("sidebar"),
+    text: makeNodeComponent("text"),
     mainContainer: makeNodeComponent("mainContainer"),
     main: makeNodeComponent("main"),
     postDetails: makeNodeComponent("postDetails"),

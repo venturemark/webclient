@@ -433,7 +433,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.freeBox__j6CkC
+                        sty.text__j6CkC
                       )}
                     >
                       {"Add Timeline"}
@@ -454,23 +454,23 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   </React.Fragment>
                 ),
                 value: args.name,
-                className: classNames(sty.slotName, {
-                  [sty.slotName__isActive]: hasVariant(
+                className: classNames(sty.slotTargetName, {
+                  [sty.slotTargetName__isActive]: hasVariant(
                     variants,
                     "isActive",
                     "isActive"
                   ),
-                  [sty.slotName__isPublic]: hasVariant(
+                  [sty.slotTargetName__isPublic]: hasVariant(
                     variants,
                     "isPublic",
                     "isPublic"
                   ),
-                  [sty.slotName__itemType_createTimeline]: hasVariant(
+                  [sty.slotTargetName__itemType_createTimeline]: hasVariant(
                     variants,
                     "itemType",
                     "createTimeline"
                   ),
-                  [sty.slotName__itemType_timeline]: hasVariant(
+                  [sty.slotTargetName__itemType_timeline]: hasVariant(
                     variants,
                     "itemType",
                     "timeline"

@@ -9,6 +9,32 @@
   padding: 15px 5px;
   border-top: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
+.root__userVariant_isAdmin {
+}
+.root__userVariant_isRequested {
+}
+.root__userVariant_isMember {
+}
+.root__userVariant_isSelf {
+}
+.root__isOwner {
+}
+.root__isDropdown {
+}
+.root__isOwner_userVariant_isMember {
+}
+.root__userVariant_isSelf_isOwner {
+}
+.root__isOwner_userVariant_isAdmin {
+}
+.root__userVariant_isRequested_isOwner {
+}
+.root__isOwner_userVariant_isAdmin_isDropdown {
+}
+.root__isOwner_isDropdown_userVariant_isRequested {
+}
+.root__isOwner_isDropdown_userVariant_isMember {
+}
 .freeBox__vAfXq {
   display: flex;
   position: relative;
@@ -32,6 +58,28 @@
   > img {
   margin-left: 6px;
 }
+.freeBox__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr {
+}
+.freeBox__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr
+  > :global(.__wab_flex-container) {
+}
+.freeBox__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr
+  > :global(.__wab_flex-container)
+  > *,
+.freeBox__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.freeBox__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.freeBox__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
 .photoAvatar:global(.__wab_instance) {
   position: relative;
   flex-shrink: 0;
@@ -39,8 +87,22 @@
 .photoAvatar__userVariant_isRequested:global(.__wab_instance) {
   flex-shrink: 0;
 }
-.slotSlot3 {
+.text__r1BSk {
+}
+.text__userVariant_isRequested__r1BSkoSddm {
+}
+.text___9TZyL {
+}
+.text__biq75 {
+}
+.text__userVariant_isRequested__biq75OSddm {
+}
+.text__userVariant_isSelf__biq75AAx2Z {
+}
+.slotTargetSlot3 {
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
+}
+.text__dVLsa {
 }
 .svg__dd2Hx {
   position: relative;
@@ -61,6 +123,10 @@
 }
 .svg__isOwner_userVariant_isMember__dd2HXpkRzzGdyZr {
   display: none;
+}
+.svg__isOwner_userVariant_isSelf__dd2HXpkRzzAAx2Z {
+}
+.svg__isOwner_userVariant_isAdmin__dd2HXpkRzz35Uok {
 }
 .svg__isOwner_userVariant_isRequested__dd2HXpkRzzOSddm {
   display: none;
@@ -87,11 +153,134 @@
   > img {
   margin-left: 15px;
 }
+.freeBox__userVariant_isRequested__ymOfcoSddm {
+}
+.freeBox__userVariant_isRequested__ymOfcoSddm > :global(.__wab_flex-container) {
+}
+.freeBox__userVariant_isRequested__ymOfcoSddm
+  > :global(.__wab_flex-container)
+  > *,
+.freeBox__userVariant_isRequested__ymOfcoSddm
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.freeBox__userVariant_isRequested__ymOfcoSddm
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.freeBox__userVariant_isRequested__ymOfcoSddm
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.freeBox__userVariant_isMember__ymOfcGdyZr {
+}
+.freeBox__userVariant_isMember__ymOfcGdyZr > :global(.__wab_flex-container) {
+}
+.freeBox__userVariant_isMember__ymOfcGdyZr > :global(.__wab_flex-container) > *,
+.freeBox__userVariant_isMember__ymOfcGdyZr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.freeBox__userVariant_isMember__ymOfcGdyZr
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.freeBox__userVariant_isMember__ymOfcGdyZr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.freeBox__userVariant_isSelf__ymOfcAAx2Z {
+}
+.freeBox__userVariant_isSelf__ymOfcAAx2Z > :global(.__wab_flex-container) {
+}
+.freeBox__userVariant_isSelf__ymOfcAAx2Z > :global(.__wab_flex-container) > *,
+.freeBox__userVariant_isSelf__ymOfcAAx2Z
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.freeBox__userVariant_isSelf__ymOfcAAx2Z
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.freeBox__userVariant_isSelf__ymOfcAAx2Z
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.freeBox__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr {
+}
+.freeBox__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr
+  > :global(.__wab_flex-container) {
+}
+.freeBox__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr
+  > :global(.__wab_flex-container)
+  > *,
+.freeBox__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.freeBox__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.freeBox__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.freeBox__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz {
+}
+.freeBox__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz
+  > :global(.__wab_flex-container) {
+}
+.freeBox__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz
+  > :global(.__wab_flex-container)
+  > *,
+.freeBox__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.freeBox__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.freeBox__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
 .iconButton:global(.__wab_instance) {
   position: relative;
 }
+.iconButton__userVariant_isAdmin:global(.__wab_instance) {
+}
+.iconButton__userVariant_isRequested:global(.__wab_instance) {
+}
+.iconButton__userVariant_isSelf:global(.__wab_instance) {
+}
+.iconButton__isOwner:global(.__wab_instance) {
+}
+.iconButton__isDropdown:global(.__wab_instance) {
+}
 .iconButton__userVariant_isSelf_isOwner:global(.__wab_instance) {
   display: none;
+}
+.iconButton__userVariant_isAdmin_isDropdown:global(.__wab_instance) {
+}
+.iconButton__isDropdown_userVariant_isAdmin_isOwner:global(.__wab_instance) {
+}
+.iconButton__isDropdown_isOwner_userVariant_isRequested:global(.__wab_instance) {
+}
+.iconButton__isDropdown_isOwner_userVariant_isMember:global(.__wab_instance) {
+}
+.iconButton__isDropdown_isOwner_userVariant_isSelf:global(.__wab_instance) {
 }
 .svg__jmi9G {
   position: relative;
@@ -100,6 +289,16 @@
   height: 100%;
   min-width: 0;
   min-height: 0;
+}
+.svg__userVariant_isAdmin__jmi9G35Uok {
+}
+.svg__userVariant_isMember__jmi9GgdyZr {
+}
+.svg__userVariant_isSelf__jmi9GaAx2Z {
+}
+.svg__isOwner__jmi9GpkRzz {
+}
+.svg__isOwner_userVariant_isMember__jmi9GpkRzzGdyZr {
 }
 .dropdown {
   box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
@@ -133,17 +332,235 @@
   > img {
   margin-top: 10px;
 }
+.dropdown__userVariant_isRequested {
+}
+.dropdown__userVariant_isRequested > :global(.__wab_flex-container) {
+}
+.dropdown__userVariant_isRequested > :global(.__wab_flex-container) > *,
+.dropdown__userVariant_isRequested
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__userVariant_isRequested
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.dropdown__userVariant_isRequested
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.dropdown__isOwner {
+}
+.dropdown__isOwner > :global(.__wab_flex-container) {
+}
+.dropdown__isOwner > :global(.__wab_flex-container) > *,
+.dropdown__isOwner > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.dropdown__isOwner > :global(.__wab_flex-container) > picture > img,
+.dropdown__isOwner
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
 .dropdown__isDropdown {
   z-index: 60;
   display: flex;
 }
+.dropdown__isDropdown > :global(.__wab_flex-container) {
+}
+.dropdown__isDropdown > :global(.__wab_flex-container) > *,
+.dropdown__isDropdown
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__isDropdown > :global(.__wab_flex-container) > picture > img,
+.dropdown__isDropdown
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.dropdown__isOwner_userVariant_isMember {
+}
+.dropdown__isOwner_userVariant_isMember > :global(.__wab_flex-container) {
+}
+.dropdown__isOwner_userVariant_isMember > :global(.__wab_flex-container) > *,
+.dropdown__isOwner_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__isOwner_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.dropdown__isOwner_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.dropdown__isDropdown_userVariant_isMember {
+}
+.dropdown__isDropdown_userVariant_isMember > :global(.__wab_flex-container) {
+}
+.dropdown__isDropdown_userVariant_isMember > :global(.__wab_flex-container) > *,
+.dropdown__isDropdown_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__isDropdown_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.dropdown__isDropdown_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.dropdown__isOwner_isDropdown {
+}
+.dropdown__isOwner_isDropdown > :global(.__wab_flex-container) {
+}
+.dropdown__isOwner_isDropdown > :global(.__wab_flex-container) > *,
+.dropdown__isOwner_isDropdown
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__isOwner_isDropdown > :global(.__wab_flex-container) > picture > img,
+.dropdown__isOwner_isDropdown
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.dropdown__isOwner_isDropdown_userVariant_isAdmin {
+}
+.dropdown__isOwner_isDropdown_userVariant_isAdmin
+  > :global(.__wab_flex-container) {
+}
+.dropdown__isOwner_isDropdown_userVariant_isAdmin
+  > :global(.__wab_flex-container)
+  > *,
+.dropdown__isOwner_isDropdown_userVariant_isAdmin
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__isOwner_isDropdown_userVariant_isAdmin
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.dropdown__isOwner_isDropdown_userVariant_isAdmin
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.dropdown__isOwner_isDropdown_userVariant_isRequested {
+}
+.dropdown__isOwner_isDropdown_userVariant_isRequested
+  > :global(.__wab_flex-container) {
+}
+.dropdown__isOwner_isDropdown_userVariant_isRequested
+  > :global(.__wab_flex-container)
+  > *,
+.dropdown__isOwner_isDropdown_userVariant_isRequested
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__isOwner_isDropdown_userVariant_isRequested
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.dropdown__isOwner_isDropdown_userVariant_isRequested
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.dropdown__isOwner_isDropdown_userVariant_isMember {
+}
+.dropdown__isOwner_isDropdown_userVariant_isMember
+  > :global(.__wab_flex-container) {
+}
+.dropdown__isOwner_isDropdown_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > *,
+.dropdown__isOwner_isDropdown_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__isOwner_isDropdown_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.dropdown__isOwner_isDropdown_userVariant_isMember
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
+.dropdown__isOwner_isDropdown_userVariant_isSelf {
+}
+.dropdown__isOwner_isDropdown_userVariant_isSelf
+  > :global(.__wab_flex-container) {
+}
+.dropdown__isOwner_isDropdown_userVariant_isSelf
+  > :global(.__wab_flex-container)
+  > *,
+.dropdown__isOwner_isDropdown_userVariant_isSelf
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.dropdown__isOwner_isDropdown_userVariant_isSelf
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.dropdown__isOwner_isDropdown_userVariant_isSelf
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+}
 .removeInvitation:global(.__wab_instance) {
   position: relative;
 }
-.freeBox___5GQ6G {
+.removeInvitation__userVariant_isRequested:global(.__wab_instance) {
+}
+.removeInvitation__userVariant_isSelf:global(.__wab_instance) {
+}
+.removeInvitation__isDropdown:global(.__wab_instance) {
+}
+.removeInvitation__isOwner_userVariant_isMember:global(.__wab_instance) {
+}
+.removeInvitation__isOwner_userVariant_isAdmin_isDropdown:global(.__wab_instance) {
+}
+.removeInvitation__isOwner_isDropdown_userVariant_isRequested:global(.__wab_instance) {
+}
+.removeInvitation__isOwner_isDropdown_userVariant_isMember:global(.__wab_instance) {
+}
+.text__s4Qxs {
+}
+.text__userVariant_isRequested__s4QxSoSddm {
+}
+.text__userVariant_isAdmin_isDropdown__s4Qxs35UokHtX1N {
+}
+.text__userVariant_isAdmin_isOwner_isDropdown__s4Qxs35UokPkRzzHtX1N {
+}
+.text__isOwner_isDropdown_userVariant_isRequested__s4QxSpkRzzHtX1NOSddm {
+}
+.text___5GQ6G {
   position: relative;
 }
-.freeBox__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz {
+.text__userVariant_isAdmin___5GQ6G35Uok {
+}
+.text__userVariant_isMember___5GQ6GGdyZr {
+}
+.text__userVariant_isSelf___5GQ6GAAx2Z {
+}
+.text__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz {
   font-size: 12px /* plasmic-token: LxqIZc9hM */;
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }

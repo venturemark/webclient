@@ -133,8 +133,8 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           ? p.renderPlasmicSlot({
               defaultContents: "Create New Timeline",
               value: args.children,
-              className: classNames(sty.slotChildren, {
-                [sty.slotChildren__variantState_isEdit]: hasVariant(
+              className: classNames(sty.slotTargetChildren, {
+                [sty.slotTargetChildren__variantState_isEdit]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
@@ -146,8 +146,8 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           ? p.renderPlasmicSlot({
               defaultContents: "Timeline Info",
               value: args.children2,
-              className: classNames(sty.slotChildren2, {
-                [sty.slotChildren2__variantState_isEdit]: hasVariant(
+              className: classNames(sty.slotTargetChildren2, {
+                [sty.slotTargetChildren2__variantState_isEdit]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
@@ -251,8 +251,8 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           {p.renderPlasmicSlot({
             defaultContents: "Permissions",
             value: args.slot2,
-            className: classNames(sty.slotSlot2, {
-              [sty.slotSlot2__variantState_isEdit]: hasVariant(
+            className: classNames(sty.slotTargetSlot2, {
+              [sty.slotTargetSlot2__variantState_isEdit]: hasVariant(
                 variants,
                 "variantState",
                 "isEdit"

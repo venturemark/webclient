@@ -386,19 +386,30 @@ function PlasmicContentPost__RenderFunc(props: {
                     defaultContents: (
                       <span
                         className={classNames(
-                          defaultcss.all,
+                          defaultcss.span,
                           defaultcss.__wab_text,
                           sty.span__kq2PL
                         )}
                       >
-                        <span>
-                          <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                        <span
+                          className={
+                            "plasmic_default__all plasmic_default__span"
+                          }
+                        >
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {"The Rock"}
+                          </span>
                         </span>
                       </span>
                     ),
 
                     value: args.userName,
-                    className: classNames(sty.slotUserName),
+                    className: classNames(sty.slotTargetUserName),
                   })}
                 </div>
 
@@ -417,7 +428,7 @@ function PlasmicContentPost__RenderFunc(props: {
                     data-plasmic-name={"span"}
                     data-plasmic-override={overrides.span}
                     className={classNames(
-                      defaultcss.all,
+                      defaultcss.span,
                       defaultcss.__wab_text,
                       sty.span,
                       {
@@ -436,7 +447,7 @@ function PlasmicContentPost__RenderFunc(props: {
                     defaultContents: (
                       <span
                         className={classNames(
-                          defaultcss.all,
+                          defaultcss.span,
                           defaultcss.__wab_text,
                           sty.span__iEzaX
                         )}
@@ -446,8 +457,8 @@ function PlasmicContentPost__RenderFunc(props: {
                     ),
 
                     value: args.date,
-                    className: classNames(sty.slotDate, {
-                      [sty.slotDate__state_isOwner]: hasVariant(
+                    className: classNames(sty.slotTargetDate, {
+                      [sty.slotTargetDate__state_isOwner]: hasVariant(
                         variants,
                         "state",
                         "isOwner"
@@ -492,7 +503,7 @@ function PlasmicContentPost__RenderFunc(props: {
                     name={p.renderPlasmicSlot({
                       defaultContents: "Wins",
                       value: args.children,
-                      className: classNames(sty.slotChildren),
+                      className: classNames(sty.slotTargetChildren),
                     })}
                   />
                 </p.Stack>

@@ -61,6 +61,7 @@ export const PlasmicJoinVenture__ArgProps = new Array<ArgPropType>(
 export type PlasmicJoinVenture__OverridesType = {
   root?: p.Flex<"div">;
   header?: p.Flex<typeof Header>;
+  text?: p.Flex<"div">;
   span?: p.Flex<"span">;
   p?: p.Flex<"p">;
   viewCreateVenture?: p.Flex<typeof Button>;
@@ -131,10 +132,12 @@ function PlasmicJoinVenture__RenderFunc(props: {
                     >
                       <h2 className={classNames(defaultcss.h2, sty.h2___608W3)}>
                         <div
+                          data-plasmic-name={"text"}
+                          data-plasmic-override={overrides.text}
                           className={classNames(
                             defaultcss.all,
                             defaultcss.__wab_text,
-                            sty.freeBox__u899S
+                            sty.text
                           )}
                         >
                           {"Join "}
@@ -143,12 +146,12 @@ function PlasmicJoinVenture__RenderFunc(props: {
                         <span
                           data-plasmic-name={"span"}
                           data-plasmic-override={overrides.span}
-                          className={classNames(defaultcss.all, sty.span)}
+                          className={classNames(defaultcss.span, sty.span)}
                         >
                           {p.renderPlasmicSlot({
                             defaultContents: "BaronFig",
                             value: args.ventureName,
-                            className: classNames(sty.slotVentureName),
+                            className: classNames(sty.slotTargetVentureName),
                           })}
                         </span>
                       </h2>
@@ -173,7 +176,7 @@ function PlasmicJoinVenture__RenderFunc(props: {
                     data-plasmic-name={"p"}
                     data-plasmic-override={overrides.p}
                     className={classNames(
-                      defaultcss.all,
+                      defaultcss.p,
                       defaultcss.__wab_text,
                       sty.p
                     )}
@@ -220,8 +223,9 @@ function PlasmicJoinVenture__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "span", "p", "viewCreateVenture", "text2"],
+  root: ["root", "header", "text", "span", "p", "viewCreateVenture", "text2"],
   header: ["header"],
+  text: ["text"],
   span: ["span"],
   p: ["p"],
   viewCreateVenture: ["viewCreateVenture", "text2"],
@@ -233,6 +237,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
+  text: "div";
   span: "span";
   p: "p";
   viewCreateVenture: typeof Button;
@@ -301,6 +306,7 @@ export const PlasmicJoinVenture = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
+    text: makeNodeComponent("text"),
     span: makeNodeComponent("span"),
     p: makeNodeComponent("p"),
     viewCreateVenture: makeNodeComponent("viewCreateVenture"),
