@@ -1,28 +1,29 @@
-// @refresh reset
-import React, { useMemo, useState } from "react";
-import { createEditor } from "slate";
-import { withHistory } from "slate-history";
-import { Slate, withReact } from "slate-react";
 import {
-  ParagraphPlugin,
-  HeadingPlugin,
+  BlockquotePlugin,
   BoldPlugin,
   EditablePlugins,
+  HeadingPlugin,
   ItalicPlugin,
-  UnderlinePlugin,
-  StrikethroughPlugin,
-  BlockquotePlugin,
   ListPlugin,
-  MentionPlugin,
+  ParagraphPlugin,
   pipe,
-  withImageUpload,
+  StrikethroughPlugin,
+  UnderlinePlugin,
+  withInlineVoid,
   withLink,
   withList,
   withMarks,
-  withInlineVoid,
 } from "@udecode/slate-plugins";
-import { Node } from "slate";
+// @refresh reset
+import React, { useCallback, useMemo, useState } from "react";
+import { createEditor, Node } from "slate";
+import { withHistory } from "slate-history";
+import { Slate, withReact } from "slate-react";
+
 import { initialValueEmpty } from "component/editor/config/initialValues";
+
+import { Element } from "../element";
+import { ElementProps } from "../types";
 
 const plugins = [
   ParagraphPlugin(),
@@ -31,7 +32,6 @@ const plugins = [
   ItalicPlugin(),
   StrikethroughPlugin(),
   BlockquotePlugin(),
-  MentionPlugin(),
   ListPlugin(),
   HeadingPlugin(),
 ];
@@ -42,7 +42,6 @@ const withPlugins = [
   withLink(),
   withList(),
   withMarks(),
-  withImageUpload(),
   withInlineVoid({ plugins }),
 ] as const;
 
@@ -78,6 +77,11 @@ const ReadEditor = (props: EditorProps) => {
 
   const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
 
+  const renderElement = useCallback(
+    (props: ElementProps) => <Element {...props} />,
+    []
+  );
+
   return (
     <Slate
       editor={editor}
@@ -86,7 +90,13 @@ const ReadEditor = (props: EditorProps) => {
         setValue(newValue);
       }}
     >
-      <EditablePlugins plugins={plugins} spellCheck autoFocus readOnly />
+      <EditablePlugins
+        plugins={plugins}
+        spellCheck
+        autoFocus
+        readOnly
+        renderElement={[renderElement]}
+      />
     </Slate>
   );
 };

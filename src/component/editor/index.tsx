@@ -41,21 +41,8 @@ import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
+import { Element } from "./element";
 import { ElementProps } from "./types";
-
-function Element({ attributes, children, element }: ElementProps) {
-  if ("type" in element) {
-    switch (element.type) {
-      case "paragraph":
-        return <p {...attributes}>{children}</p>;
-      case "unordered-list":
-        return <ul {...attributes}>{children}</ul>;
-      case "list-item":
-        return <li {...attributes}>{children}</li>;
-    }
-  }
-  return <div {...attributes}>{children}</div>;
-}
 
 const plugins = [
   ParagraphPlugin(options),
@@ -154,7 +141,7 @@ const withPlugins = [
 ];
 
 const DEFAULT_HEIGHT = 44;
-const HEIGHT_LIMIT = 188;
+const HEIGHT_LIMIT = 1000;
 
 export function createEditor(): Editor {
   return pipe(createEditorBase(), ...withPlugins);

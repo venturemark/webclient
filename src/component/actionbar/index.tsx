@@ -20,7 +20,7 @@ import {
   EditorProps,
   useEditor,
 } from "component/editor";
-import { UnorderedListElement } from "component/editor/types";
+import { ImageElement, UnorderedListElement } from "component/editor/types";
 import { EmojiPicker } from "component/emojipicker";
 import { TimelineSelect } from "component/materialui/select";
 import {
@@ -29,6 +29,7 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
 import { VentureContext } from "context/VentureContext";
+import useScript from "module/hook/ui/useScript";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
 import { IUser } from "module/interface/user";
@@ -98,6 +99,8 @@ export default function ActionBar(props: ActionBarProps) {
     description: false,
   });
   const [error, setError] = useState<string | null>(null);
+
+  useScript("https://widget.cloudinary.com/v2.0/global/all.js");
 
   useEffect(() => {
     if (title.length > 100) {
@@ -282,6 +285,52 @@ export default function ActionBar(props: ActionBarProps) {
     setIsActive(true);
   }
 
+  function showUploadWidget() {
+    window.cloudinary.openUploadWidget(
+      {
+        cloudName: "dnsrd5zps",
+        uploadPreset: "lyam4hcn",
+        sources: ["local", "url"],
+        showAdvancedOptions: false,
+        cropping: true,
+        multiple: false,
+        defaultSource: "local",
+        styles: {
+          palette: {
+            window: "#FFFFFF",
+            windowBorder: "#90A0B3",
+            tabIcon: "#0078FF",
+            menuIcons: "#5A616A",
+            textDark: "#000000",
+            textLight: "#FFFFFF",
+            link: "#0078FF",
+            action: "#FF620C",
+            inactiveTabIcon: "#0E2F5A",
+            error: "#F44235",
+            inProgress: "#0078FF",
+            complete: "#20B832",
+            sourceBg: "#E4EBF1",
+          },
+          fonts: {
+            default: {
+              active: true,
+            },
+          },
+        },
+      },
+      (err, info) => {
+        if (!err && info.event === "success") {
+          const image: ImageElement = {
+            type: "image",
+            src: info.info.url,
+            children: [{ text: "" }],
+          };
+          Transforms.insertNodes(editor, image, { at: Editor.end(editor, []) });
+        }
+      }
+    );
+  }
+
   function restoreFocus() {
     if (lastFocus === "editor") {
       ReactEditor.focus(editor);
@@ -392,7 +441,29 @@ export default function ActionBar(props: ActionBarProps) {
       }}
       uploadImage={{
         wrap(node) {
-          return null;
+          return (
+            <button
+              type="button"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showUploadWidget();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  showUploadWidget();
+                }
+              }}
+              style={{
+                border: "none",
+                background: "none",
+              }}
+            >
+              {node}
+            </button>
+          );
         },
       }}
       container={{
