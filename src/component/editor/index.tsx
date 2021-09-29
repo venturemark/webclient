@@ -41,26 +41,20 @@ import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
-import { Image } from "./image";
-import { ListItem } from "./listitem";
-import { Paragraph } from "./paragraph";
 import { ElementProps } from "./types";
-import { UnorderedList } from "./unorderedlist";
 
 function Element({ attributes, children, element }: ElementProps) {
   if ("type" in element) {
     switch (element.type) {
       case "paragraph":
-        return <Paragraph {...attributes}>{children}</Paragraph>;
+        return <p {...attributes}>{children}</p>;
       case "unordered-list":
-        return <UnorderedList {...attributes}>{children}</UnorderedList>;
+        return <ul {...attributes}>{children}</ul>;
       case "list-item":
-        return <ListItem {...attributes}>{children}</ListItem>;
-      case "image":
-        return <Image alt="update attachment" {...attributes} />;
+        return <li {...attributes}>{children}</li>;
     }
   }
-  return null;
+  return <div {...attributes}>{children}</div>;
 }
 
 const plugins = [

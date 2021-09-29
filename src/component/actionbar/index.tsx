@@ -200,10 +200,6 @@ export default function ActionBar(props: ActionBarProps) {
     setIsActive(true);
   }
 
-  function setUploadImageVisible(b: boolean) {
-    return;
-  }
-
   function restoreFocus() {
     if (lastFocus === "editor") {
       ReactEditor.focus(editor);
@@ -314,22 +310,7 @@ export default function ActionBar(props: ActionBarProps) {
       }}
       uploadImage={{
         wrap(node) {
-          return (
-            <button
-              type="button"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setUploadImageVisible(true);
-              }}
-              style={{
-                border: "none",
-                background: "none",
-              }}
-            >
-              {node}
-            </button>
-          );
+          return null;
         },
       }}
       container={{
