@@ -10,7 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Editor, Element, Transforms } from "slate";
+import { Editor, Element, Point, Range, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
 
 import { CountIndicator } from "component/countindicator";
@@ -20,6 +20,7 @@ import {
   EditorProps,
   useEditor,
 } from "component/editor";
+import { UnorderedListElement } from "component/editor/types";
 import { EmojiPicker } from "component/emojipicker";
 import { TimelineSelect } from "component/materialui/select";
 import {
@@ -114,14 +115,95 @@ export default function ActionBar(props: ActionBarProps) {
 
   const editor = useMemo(() => {
     const editor = createEditor();
-    const { insertText } = editor;
+    const { deleteBackward, insertText } = editor;
+
     editor.insertText = (text) => {
       setTouched({
         title: true,
         description: true,
       });
+
+      const { selection } = editor;
+
+      if (text === " " && selection && Range.isCollapsed(selection)) {
+        const { anchor } = selection;
+        const block = Editor.above(editor, {
+          match: (n) => Editor.isBlock(editor, n),
+        });
+        const path = block ? block[1] : [];
+        const start = Editor.start(editor, path);
+        const range = { anchor, focus: start };
+        const beforeText = Editor.string(editor, range);
+
+        if (beforeText === "-") {
+          Transforms.select(editor, range);
+          Transforms.delete(editor);
+          const newProperties: Partial<Element> = {
+            type: "list-item",
+          };
+          Transforms.setNodes(editor, newProperties, {
+            match: (n) => Editor.isBlock(editor, n),
+          });
+
+          const list: UnorderedListElement = {
+            type: "unordered-list",
+            children: [],
+          };
+          Transforms.wrapNodes(editor, list, {
+            match: (n) =>
+              !Editor.isEditor(n) &&
+              Element.isElement(n) &&
+              n.type === "list-item",
+          });
+
+          return;
+        }
+      }
+
       insertText(text);
     };
+
+    editor.deleteBackward = (...args) => {
+      const { selection } = editor;
+
+      if (selection && Range.isCollapsed(selection)) {
+        const match = Editor.above(editor, {
+          match: (n) => Editor.isBlock(editor, n),
+        });
+
+        if (match) {
+          const [block, path] = match;
+          const start = Editor.start(editor, path);
+
+          if (
+            !Editor.isEditor(block) &&
+            Element.isElement(block) &&
+            block.type !== "paragraph" &&
+            Point.equals(selection.anchor, start)
+          ) {
+            const newProperties: Partial<Element> = {
+              type: "paragraph",
+            };
+            Transforms.setNodes(editor, newProperties);
+
+            if (block.type === "list-item") {
+              Transforms.unwrapNodes(editor, {
+                match: (n) =>
+                  !Editor.isEditor(n) &&
+                  Element.isElement(n) &&
+                  n.type === "unordered-list",
+                split: true,
+              });
+            }
+
+            return;
+          }
+        }
+
+        deleteBackward(...args);
+      }
+    };
+
     return editor;
   }, []);
 
