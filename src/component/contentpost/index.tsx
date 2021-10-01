@@ -1,11 +1,7 @@
 import { useContext, useMemo } from "react";
 import { Descendant } from "slate";
 
-import {
-  ComposeEditor,
-  createEditor,
-  EditorShape,
-} from "component/editor/compose";
+import { ComposeEditor, createEditor, EditorShape } from "component/editor";
 import {
   DefaultContentPostProps,
   PlasmicContentPost,

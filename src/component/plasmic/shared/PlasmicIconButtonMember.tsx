@@ -121,7 +121,7 @@ function PlasmicIconButtonMember__RenderFunc(props: {
             {p.renderPlasmicSlot({
               defaultContents: "+",
               value: args.memberCount,
-              className: classNames(sty.slotMemberCount),
+              className: classNames(sty.slotTargetMemberCount),
             })}
           </div>
         </div>

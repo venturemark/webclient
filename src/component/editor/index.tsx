@@ -6,11 +6,11 @@ import {
   BlockquotePlugin,
   BoldPlugin,
   EditablePlugins,
+  EditablePluginsProps,
   ExitBreakPlugin,
   HeadingPlugin,
   ItalicPlugin,
   ListPlugin,
-  MentionPlugin,
   ParagraphPlugin,
   pipe,
   ResetBlockTypePlugin,
@@ -25,15 +25,10 @@ import {
   withMarks,
 } from "@udecode/slate-plugins";
 import { Search } from "@venturemark/numnum";
-import React, { ReactNode, useCallback, useRef, useState } from "react";
-import {
-  BaseEditor,
-  createEditor as createEditorBase,
-  Descendant,
-  Editor,
-} from "slate";
+import React, { useCallback, useRef, useState } from "react";
+import { createEditor as createEditorBase, Descendant, Editor } from "slate";
 import { withHistory } from "slate-history";
-import { ReactEditor, Slate, withReact } from "slate-react";
+import { Slate, withReact } from "slate-react";
 
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import {
@@ -46,55 +41,20 @@ import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
-type CustomText = { text: string; placeholder?: boolean };
-type CustomElement = ParagraphElement | UnorderedListElement | ListItemElement;
-
-declare module "slate" {
-  interface CustomTypes {
-    Editor: BaseEditor & ReactEditor;
-    Element: CustomElement;
-    Text: CustomText;
-  }
-}
-
-type ParagraphElement = { type: "paragraph"; children: Descendant[] };
-type UnorderedListElement = { type: "unordered-list"; children: Descendant[] };
-type ListItemElement = { type: "list-item"; children: Descendant[] };
-
-type ElementProps = {
-  attributes: any;
-  children: ReactNode;
-  element: CustomElement;
-};
+import { ElementProps } from "./types";
 
 function Element({ attributes, children, element }: ElementProps) {
   if ("type" in element) {
     switch (element.type) {
       case "paragraph":
-        return (
-          <p
-            {...attributes}
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "15px",
-              lineHeight: "23px",
-              letterSpacing: "0.491786px",
-              fontWeight: 400,
-              margin: 0,
-            }}
-          >
-            {children}
-          </p>
-        );
+        return <p {...attributes}>{children}</p>;
       case "unordered-list":
         return <ul {...attributes}>{children}</ul>;
       case "list-item":
         return <li {...attributes}>{children}</li>;
-      default:
-        return null;
     }
   }
-  return null;
+  return <div {...attributes}>{children}</div>;
 }
 
 const plugins = [
@@ -107,7 +67,6 @@ const plugins = [
   ListPlugin(options),
   HeadingPlugin(options),
   ResetBlockTypePlugin(optionsResetBlockTypes),
-  MentionPlugin(options),
   SoftBreakPlugin({
     rules: [
       { hotkey: "shift+enter" },
@@ -176,7 +135,8 @@ export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
   return { editorShape, setEditorShape };
 };
 
-interface EditorProps {
+export interface EditorProps extends EditablePluginsProps {
+  "aria-label": string;
   editorShape: EditorShape;
   setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
   editor: Editor;

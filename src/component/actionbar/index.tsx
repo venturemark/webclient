@@ -1,8 +1,8 @@
 import "emoji-mart/css/emoji-mart.css";
 
-import { TextareaAutosize } from "@material-ui/core";
-import { Picker } from "emoji-mart";
+import { TextareaAutosize, TextareaAutosizeProps } from "@material-ui/core";
 import {
+  FocusEvent,
   useCallback,
   useContext,
   useEffect,
@@ -10,15 +10,18 @@ import {
   useRef,
   useState,
 } from "react";
-import { usePopper } from "react-popper";
-import { Editor, Element, Transforms } from "slate";
+import { Editor, Element, Point, Range, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
 
+import { CountIndicator } from "component/countindicator";
 import {
   ComposeEditor,
   createEditor,
+  EditorProps,
   useEditor,
-} from "component/editor/compose";
+} from "component/editor";
+import { UnorderedListElement } from "component/editor/types";
+import { EmojiPicker } from "component/emojipicker";
 import { TimelineSelect } from "component/materialui/select";
 import {
   DefaultActionBarProps,
@@ -26,7 +29,6 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
 import { VentureContext } from "context/VentureContext";
-import useDropdown from "module/hook/ui/useDropdown";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
 import { IUser } from "module/interface/user";
@@ -39,54 +41,8 @@ interface ActionBarProps extends DefaultActionBarProps {
   user: IUser;
 }
 
-function CountIndicator({ count }: { count: number }) {
-  const r = 3;
-  const circleLength = 2 * Math.PI * r;
-  let colored = (circleLength * count) / 280;
-  let gray = circleLength - colored;
-  const stroke =
-    280 - count <= 0 ? "red" : 280 - count <= 20 ? "orange" : "#029D7F";
-  const strokeDasharray = `${colored} ${gray}`;
-  return (
-    <div
-      style={{
-        width: "35px",
-        height: "35px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <svg viewBox="0 0 8 8" height="35px" width="35px" role="img">
-        <circle
-          id="gray"
-          cx="50%"
-          cy="50%"
-          r={r}
-          style={{
-            stroke: "#C4C4C4",
-            fill: "none",
-          }}
-        />
-        <circle
-          id="colored"
-          cx="50%"
-          cy="50%"
-          r={r}
-          style={{
-            stroke,
-            strokeDasharray,
-            fill: "none",
-          }}
-        />
-      </svg>
-    </div>
-  );
-}
-
 const toggleList = (editor: Editor) => {
   const isActive = isListActive(editor);
-  console.log(isActive);
 
   Transforms.unwrapNodes(editor, {
     match: (n) =>
@@ -119,7 +75,7 @@ const isListActive = (editor: Editor) => {
   return !!match;
 };
 
-function ActionBar(props: ActionBarProps) {
+export default function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
   const { token } = useContext(AuthContext);
   const ventureContext = useContext(VentureContext);
@@ -159,14 +115,95 @@ function ActionBar(props: ActionBarProps) {
 
   const editor = useMemo(() => {
     const editor = createEditor();
-    const { insertText } = editor;
+    const { deleteBackward, insertText } = editor;
+
     editor.insertText = (text) => {
       setTouched({
         title: true,
         description: true,
       });
+
+      const { selection } = editor;
+
+      if (text === " " && selection && Range.isCollapsed(selection)) {
+        const { anchor } = selection;
+        const block = Editor.above(editor, {
+          match: (n) => Editor.isBlock(editor, n),
+        });
+        const path = block ? block[1] : [];
+        const start = Editor.start(editor, path);
+        const range = { anchor, focus: start };
+        const beforeText = Editor.string(editor, range);
+
+        if (beforeText === "-") {
+          Transforms.select(editor, range);
+          Transforms.delete(editor);
+          const newProperties: Partial<Element> = {
+            type: "list-item",
+          };
+          Transforms.setNodes(editor, newProperties, {
+            match: (n) => Editor.isBlock(editor, n),
+          });
+
+          const list: UnorderedListElement = {
+            type: "unordered-list",
+            children: [],
+          };
+          Transforms.wrapNodes(editor, list, {
+            match: (n) =>
+              !Editor.isEditor(n) &&
+              Element.isElement(n) &&
+              n.type === "list-item",
+          });
+
+          return;
+        }
+      }
+
       insertText(text);
     };
+
+    editor.deleteBackward = (...args) => {
+      const { selection } = editor;
+
+      if (selection && Range.isCollapsed(selection)) {
+        const match = Editor.above(editor, {
+          match: (n) => Editor.isBlock(editor, n),
+        });
+
+        if (match) {
+          const [block, path] = match;
+          const start = Editor.start(editor, path);
+
+          if (
+            !Editor.isEditor(block) &&
+            Element.isElement(block) &&
+            block.type !== "paragraph" &&
+            Point.equals(selection.anchor, start)
+          ) {
+            const newProperties: Partial<Element> = {
+              type: "paragraph",
+            };
+            Transforms.setNodes(editor, newProperties);
+
+            if (block.type === "list-item") {
+              Transforms.unwrapNodes(editor, {
+                match: (n) =>
+                  !Editor.isEditor(n) &&
+                  Element.isElement(n) &&
+                  n.type === "unordered-list",
+                split: true,
+              });
+            }
+
+            return;
+          }
+        }
+
+        deleteBackward(...args);
+      }
+    };
+
     return editor;
   }, []);
 
@@ -176,7 +213,7 @@ function ActionBar(props: ActionBarProps) {
   const editorSelection = useRef(editor.selection);
 
   const onFocusEditor = useCallback(
-    (e: FocusEvent) => {
+    (e: FocusEvent<HTMLDivElement>) => {
       setLastFocus("editor");
       if (!editor.selection) {
         Transforms.select(
@@ -237,31 +274,6 @@ function ActionBar(props: ActionBarProps) {
     }
   }, [currentTimeline]);
 
-  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
-    useDropdown<HTMLDivElement>({
-      onClose: () => {
-        if (lastFocus === "editor") {
-          ReactEditor.focus(editor);
-        } else if (lastFocus === "title") {
-          titleRef.current?.focus();
-          titleRef.current?.setSelectionRange(
-            titleSelection.current,
-            titleSelection.current
-          );
-        }
-      },
-    });
-  const [referenceElement, setReferenceElement] =
-    useState<HTMLButtonElement | null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
-    null
-  );
-  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [{ name: "arrow", options: { element: arrowElement } }],
-    placement: "bottom-start",
-  });
-
   const titleSelection = useRef(0);
   const titleRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -269,6 +281,57 @@ function ActionBar(props: ActionBarProps) {
     setLastFocus("title");
     setIsActive(true);
   }
+
+  function restoreFocus() {
+    if (lastFocus === "editor") {
+      ReactEditor.focus(editor);
+    } else if (lastFocus === "title") {
+      titleRef.current?.focus();
+      titleRef.current?.setSelectionRange(
+        titleSelection.current,
+        titleSelection.current
+      );
+    }
+  }
+
+  function insertEmoji(e: string) {
+    if (lastFocus === "editor") {
+      Transforms.insertText(editor, e);
+    } else if (lastFocus === "title") {
+      const before = title.substr(0, titleSelection.current);
+      const after = title.substr(titleSelection.current);
+      setTitle(before + e + after);
+      titleSelection.current += e.length;
+    }
+  }
+
+  const titleProps: TextareaAutosizeProps = {
+    onFocus: onFocusTitle,
+    ref: (el: HTMLTextAreaElement) => (titleRef.current = el),
+    "aria-label": "update title",
+    value: title,
+    placeholder: isActive ? "Title" : "Write your update",
+    onChange(e: any) {
+      setTouched({
+        ...touched,
+        title: true,
+      });
+      setTitle(e.target.value);
+      titleSelection.current = titleRef.current?.selectionStart || 0;
+    },
+    onMouseUp() {
+      titleSelection.current = titleRef.current?.selectionStart || 0;
+    },
+  };
+
+  const descriptionProps: EditorProps = {
+    "aria-label": "update description",
+    editor,
+    editorShape,
+    setEditorShape,
+    onFocus: onFocusEditor,
+    onBlur: onBlurEditor,
+  };
 
   return (
     <PlasmicActionBar
@@ -283,108 +346,52 @@ function ActionBar(props: ActionBarProps) {
       }}
       title={{
         as: TextareaAutosize,
-        props: {
-          onFocus: onFocusTitle,
-          ref: (el: HTMLTextAreaElement) => (titleRef.current = el),
-          "aria-label": "abc",
-          value: title,
-          placeholder: isActive ? "Title" : "Write your update",
-          onChange(e: any) {
-            setTouched({
-              ...touched,
-              title: true,
-            });
-            setTitle(e.target.value);
-            titleSelection.current = titleRef.current?.selectionStart || 0;
-          },
-          onMouseUp() {
-            titleSelection.current = titleRef.current?.selectionStart || 0;
-          },
-        },
+        props: titleProps,
       }}
       description={{
         as: ComposeEditor,
-        props: {
-          "aria-label": "Description",
-          editor,
-          editorShape,
-          setEditorShape,
-          onFocus: onFocusEditor,
-          onBlur: onBlurEditor,
-        },
+        props: descriptionProps,
       }}
       emoji={{
         wrap(node) {
           return (
-            <div ref={dropdownRootRef} style={{ zIndex: 100 }}>
-              <button
-                style={{ background: "none", border: "none" }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setDropdownVisible(!dropdownVisible);
-                  if (dropdownVisible) {
-                    if (lastFocus === "editor") {
-                      ReactEditor.focus(editor);
-                    } else if (lastFocus === "title") {
-                      titleRef.current?.focus();
-                      titleRef.current?.setSelectionRange(
-                        titleSelection.current,
-                        titleSelection.current
-                      );
-                    }
-                  }
-                }}
-                type="button"
-                ref={setReferenceElement}
-              >
-                {node}
-              </button>
-
-              {dropdownVisible && (
-                <div
-                  ref={setPopperElement}
-                  style={styles.popper}
-                  {...attributes.popper}
-                >
-                  <Picker
-                    showPreview={false}
-                    showSkinTones={false}
-                    onClick={(_, event) => {
-                      event.stopPropagation();
-                    }}
-                    onSelect={(e) => {
-                      if (!("native" in e)) return;
-                      if (lastFocus === "editor") {
-                        Transforms.insertText(editor, e.native);
-                      } else if (lastFocus === "title") {
-                        const before = title.substr(0, titleSelection.current);
-                        const after = title.substr(titleSelection.current);
-                        setTitle(before + e.native + after);
-                        titleSelection.current += e.native.length;
-                      }
-                    }}
-                  />
-                  <div ref={setArrowElement} style={styles.arrow} />
-                </div>
-              )}
-            </div>
+            <EmojiPicker onClose={restoreFocus} onSelect={insertEmoji}>
+              {node}
+            </EmojiPicker>
           );
         },
       }}
       bulletList={{
-        onMouseDown: (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleList(editor);
-        },
-        style: {
-          border: "none",
-          background: isListActive(editor) ? "rgb(231, 231, 236)" : "none",
-          borderRadius: "5px",
+        wrap(node) {
+          return (
+            <button
+              type="button"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleList(editor);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleList(editor);
+                }
+              }}
+              style={{
+                border: "none",
+                background: isListActive(editor)
+                  ? "rgb(231, 231, 236)"
+                  : "none",
+              }}
+            >
+              {node}
+            </button>
+          );
         },
       }}
       uploadImage={{
-        wrap() {
+        wrap(node) {
           return null;
         },
       }}
@@ -426,5 +433,3 @@ function ActionBar(props: ActionBarProps) {
     />
   );
 }
-
-export default ActionBar;

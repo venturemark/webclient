@@ -108,12 +108,9 @@ function PlasmicSwitch__RenderFunc(props: {
           ? p.renderPlasmicSlot({
               defaultContents: "Allow members to create timelines",
               value: args.inputTitle,
-              className: classNames(sty.slotInputTitle, {
-                [sty.slotInputTitle__variantSettings_hasLabel]: hasVariant(
-                  variants,
-                  "variantSettings",
-                  "hasLabel"
-                ),
+              className: classNames(sty.slotTargetInputTitle, {
+                [sty.slotTargetInputTitle__variantSettings_hasLabel]:
+                  hasVariant(variants, "variantSettings", "hasLabel"),
               }),
             })
           : null}

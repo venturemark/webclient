@@ -99,7 +99,7 @@ function PlasmicPostDetails__RenderFunc(props: {
             {p.renderPlasmicSlot({
               defaultContents: "Post Details",
               value: args.children,
-              className: classNames(sty.slotChildren),
+              className: classNames(sty.slotTargetChildren),
             })}
 
             <IconButton
@@ -128,7 +128,7 @@ function PlasmicPostDetails__RenderFunc(props: {
                 data-plasmic-name={"date3"}
                 data-plasmic-override={overrides.date3}
                 className={classNames(
-                  defaultcss.all,
+                  defaultcss.span,
                   defaultcss.__wab_text,
                   sty.date3
                 )}
@@ -143,13 +143,18 @@ function PlasmicPostDetails__RenderFunc(props: {
                 data-plasmic-name={"userName3"}
                 data-plasmic-override={overrides.userName3}
                 className={classNames(
-                  defaultcss.all,
+                  defaultcss.span,
                   defaultcss.__wab_text,
                   sty.userName3
                 )}
               >
-                <span>
-                  <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                <span className={"plasmic_default__all plasmic_default__span"}>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 700 }}
+                  >
+                    {"The Rock"}
+                  </span>
                 </span>
               </span>
             }
@@ -168,7 +173,7 @@ function PlasmicPostDetails__RenderFunc(props: {
                   data-plasmic-name={"date2"}
                   data-plasmic-override={overrides.date2}
                   className={classNames(
-                    defaultcss.all,
+                    defaultcss.span,
                     defaultcss.__wab_text,
                     sty.date2
                   )}
@@ -184,13 +189,20 @@ function PlasmicPostDetails__RenderFunc(props: {
                   data-plasmic-name={"userName2"}
                   data-plasmic-override={overrides.userName2}
                   className={classNames(
-                    defaultcss.all,
+                    defaultcss.span,
                     defaultcss.__wab_text,
                     sty.userName2
                   )}
                 >
-                  <span>
-                    <span style={{ fontWeight: 700 }}>{"The Rock"}</span>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                  >
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {"The Rock"}
+                    </span>
                   </span>
                 </span>
               }

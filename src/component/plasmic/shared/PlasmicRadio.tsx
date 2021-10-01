@@ -194,8 +194,8 @@ function PlasmicRadio__RenderFunc(props: {
               {p.renderPlasmicSlot({
                 defaultContents: "Private",
                 value: args.children,
-                className: classNames(sty.slotChildren, {
-                  [sty.slotChildren__radioVariants_hasLabel]: hasVariant(
+                className: classNames(sty.slotTargetChildren, {
+                  [sty.slotTargetChildren__radioVariants_hasLabel]: hasVariant(
                     variants,
                     "radioVariants",
                     "hasLabel"
@@ -213,12 +213,9 @@ function PlasmicRadio__RenderFunc(props: {
                 defaultContents:
                   "Only admins and members invited by you can see this timeline. ",
                 value: args.helperText,
-                className: classNames(sty.slotHelperText, {
-                  [sty.slotHelperText__radioVariants_hasLabel]: hasVariant(
-                    variants,
-                    "radioVariants",
-                    "hasLabel"
-                  ),
+                className: classNames(sty.slotTargetHelperText, {
+                  [sty.slotTargetHelperText__radioVariants_hasLabel]:
+                    hasVariant(variants, "radioVariants", "hasLabel"),
                 }),
               })}
             </div>

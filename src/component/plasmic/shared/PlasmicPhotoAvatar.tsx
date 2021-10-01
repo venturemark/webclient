@@ -96,8 +96,8 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
         {p.renderPlasmicSlot({
           defaultContents: "KO",
           value: args.userInitials,
-          className: classNames(sty.slotUserInitials, {
-            [sty.slotUserInitials__variant_isLarge]: hasVariant(
+          className: classNames(sty.slotTargetUserInitials, {
+            [sty.slotTargetUserInitials__variant_isLarge]: hasVariant(
               variants,
               "variant",
               "isLarge"

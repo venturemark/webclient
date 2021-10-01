@@ -70,6 +70,7 @@ export type PlasmicHeader__OverridesType = {
   root?: p.Flex<"div">;
   toggleMobileSidebar?: p.Flex<"svg">;
   svg?: p.Flex<"svg">;
+  text?: p.Flex<"div">;
   link?: p.Flex<"a">;
   avatar?: p.Flex<typeof PhotoAvatar>;
   dropdown?: p.Flex<typeof ProfileDropdown>;
@@ -199,12 +200,14 @@ function PlasmicHeader__RenderFunc(props: {
         ) : null}
         {(hasVariant(variants, "views", "publicView") ? true : false) ? (
           <div
+            data-plasmic-name={"text"}
+            data-plasmic-override={overrides.text}
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.freeBox__upjAh,
+              sty.text,
               {
-                [sty.freeBox__views_publicView__upjAhYpLjb]: hasVariant(
+                [sty.text__views_publicView]: hasVariant(
                   variants,
                   "views",
                   "publicView"
@@ -301,9 +304,18 @@ function PlasmicHeader__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "toggleMobileSidebar", "svg", "link", "avatar", "dropdown"],
+  root: [
+    "root",
+    "toggleMobileSidebar",
+    "svg",
+    "text",
+    "link",
+    "avatar",
+    "dropdown",
+  ],
   toggleMobileSidebar: ["toggleMobileSidebar"],
   svg: ["svg"],
+  text: ["text"],
   link: ["link"],
   avatar: ["avatar"],
   dropdown: ["dropdown"],
@@ -315,6 +327,7 @@ type NodeDefaultElementType = {
   root: "div";
   toggleMobileSidebar: "svg";
   svg: "svg";
+  text: "div";
   link: "a";
   avatar: typeof PhotoAvatar;
   dropdown: typeof ProfileDropdown;
@@ -383,6 +396,7 @@ export const PlasmicHeader = Object.assign(
     // Helper components rendering sub-elements
     toggleMobileSidebar: makeNodeComponent("toggleMobileSidebar"),
     svg: makeNodeComponent("svg"),
+    text: makeNodeComponent("text"),
     link: makeNodeComponent("link"),
     avatar: makeNodeComponent("avatar"),
     dropdown: makeNodeComponent("dropdown"),

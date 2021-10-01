@@ -79,6 +79,10 @@ export type AuthState =
   | AuthStateLoading
   | AuthStateError;
 
+function isTokenError(e: unknown): e is { error: string } {
+  return Boolean(e && typeof e === "object" && "error" in e);
+}
+
 export function useAuth(): AuthState {
   const {
     error: authError,
@@ -99,8 +103,9 @@ export function useAuth(): AuthState {
       try {
         setToken(await getAccessTokenSilently());
       } catch (err) {
-        const errorString = err.error as string;
-        setTokenError(errorString);
+        if (isTokenError(err)) {
+          setTokenError(err.error);
+        }
       }
     })();
   }, [getAccessTokenSilently, isAuthenticated, authLoading]);

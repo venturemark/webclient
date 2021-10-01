@@ -151,13 +151,13 @@ function PlasmicIconButton__RenderFunc(props: {
           ),
 
           value: args.children,
-          className: classNames(sty.slotChildren, {
-            [sty.slotChildren__iconSize_large]: hasVariant(
+          className: classNames(sty.slotTargetChildren, {
+            [sty.slotTargetChildren__iconSize_large]: hasVariant(
               variants,
               "iconSize",
               "large"
             ),
-            [sty.slotChildren__isDarkBgHover]: hasVariant(
+            [sty.slotTargetChildren__isDarkBgHover]: hasVariant(
               variants,
               "isDarkBgHover",
               "isDarkBgHover"

@@ -107,6 +107,11 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__isCollapsed]: hasVariant(
+          variants,
+          "isCollapsed",
+          "isCollapsed"
+        ),
         [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
@@ -136,14 +141,14 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.freeBox__fqyEx,
+              sty.text__fqyEx,
               {
-                [sty.freeBox__isCollapsed__fqyExR1V]: hasVariant(
+                [sty.text__isCollapsed__fqyExR1V]: hasVariant(
                   variants,
                   "isCollapsed",
                   "isCollapsed"
                 ),
-                [sty.freeBox__isPublic__fqyExYwyIq]: hasVariant(
+                [sty.text__isPublic__fqyExYwyIq]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -200,9 +205,9 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                 className={classNames(
                   defaultcss.all,
                   defaultcss.__wab_text,
-                  sty.freeBox__fPdD,
+                  sty.text__fPdD,
                   {
-                    [sty.freeBox__isPublic__fPdDYwyIq]: hasVariant(
+                    [sty.text__isPublic__fPdDYwyIq]: hasVariant(
                       variants,
                       "isPublic",
                       "isPublic"
@@ -475,7 +480,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
         hasVariant(variants, "isOwner", "isOwner")
           ? true
           : hasVariant(variants, "isCollapsed", "isCollapsed")
-          ? false
+          ? true
           : false
       ) ? (
         <SidebarItem
@@ -509,7 +514,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.freeBox__f9Ow1
+                sty.text__f9Ow1
               )}
             >
               {"New Timeline"}

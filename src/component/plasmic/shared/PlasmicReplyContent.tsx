@@ -169,13 +169,22 @@ function PlasmicReplyContent__RenderFunc(props: {
                       defaultContents: (
                         <span
                           className={classNames(
-                            defaultcss.all,
+                            defaultcss.span,
                             defaultcss.__wab_text,
                             sty.span__l1Yn1
                           )}
                         >
-                          <span>
-                            <span style={{ fontWeight: 700 }}>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                          >
+                            <span
+                              className={
+                                "plasmic_default__all plasmic_default__span"
+                              }
+                              style={{ fontWeight: 700 }}
+                            >
                               {"asdasdasdasd "}
                             </span>
                           </span>
@@ -183,7 +192,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                       ),
 
                       value: args.userName,
-                      className: classNames(sty.slotUserName),
+                      className: classNames(sty.slotTargetUserName),
                     })}
 
                     <p.Stack
@@ -195,7 +204,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                         data-plasmic-name={"span"}
                         data-plasmic-override={overrides.span}
                         className={classNames(
-                          defaultcss.all,
+                          defaultcss.span,
                           defaultcss.__wab_text,
                           sty.span,
                           {
@@ -216,7 +225,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                         defaultContents: (
                           <span
                             className={classNames(
-                              defaultcss.all,
+                              defaultcss.span,
                               defaultcss.__wab_text,
                               sty.span___4NLge
                             )}
@@ -226,7 +235,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                         ),
 
                         value: args.date,
-                        className: classNames(sty.slotDate),
+                        className: classNames(sty.slotTargetDate),
                       })}
                     </p.Stack>
                   </p.Stack>
@@ -350,7 +359,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                   {p.renderPlasmicSlot({
                     defaultContents: "",
                     value: args.text,
-                    className: classNames(sty.slotText),
+                    className: classNames(sty.slotTargetText),
                   })}
                 </div>
               </div>

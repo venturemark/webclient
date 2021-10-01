@@ -163,8 +163,8 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           {p.renderPlasmicSlot({
             defaultContents: "Venture Members",
             value: args.children,
-            className: classNames(sty.slotChildren, {
-              [sty.slotChildren__type_isTimeline]: hasVariant(
+            className: classNames(sty.slotTargetChildren, {
+              [sty.slotTargetChildren__type_isTimeline]: hasVariant(
                 variants,
                 "type",
                 "isTimeline"
@@ -194,8 +194,8 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           {p.renderPlasmicSlot({
             defaultContents: "Timeline Members",
             value: args.children2,
-            className: classNames(sty.slotChildren2, {
-              [sty.slotChildren2__type_isTimeline]: hasVariant(
+            className: classNames(sty.slotTargetChildren2, {
+              [sty.slotTargetChildren2__type_isTimeline]: hasVariant(
                 variants,
                 "type",
                 "isTimeline"
@@ -279,7 +279,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                 data-plasmic-name={"span"}
                 data-plasmic-override={overrides.span}
                 className={classNames(
-                  defaultcss.all,
+                  defaultcss.span,
                   defaultcss.__wab_text,
                   sty.span,
                   {
@@ -303,7 +303,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           {p.renderPlasmicSlot({
             defaultContents: "Current Members",
             value: args.slot2,
-            className: classNames(sty.slotSlot2),
+            className: classNames(sty.slotTargetSlot2),
           })}
         </div>
 

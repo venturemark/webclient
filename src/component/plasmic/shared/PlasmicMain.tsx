@@ -214,7 +214,7 @@ function PlasmicMain__RenderFunc(props: {
               className={classNames(
                 defaultcss.all,
                 defaultcss.__wab_text,
-                sty.freeBox__dUFvj
+                sty.text__dUFvj
               )}
             >
               {hasVariant(globalVariants, "screen", "tablet")
@@ -412,7 +412,7 @@ function PlasmicMain__RenderFunc(props: {
             className={classNames(
               defaultcss.all,
               defaultcss.__wab_text,
-              sty.freeBox__fdWyB
+              sty.text__fdWyB
             )}
           >
             {"Create a New Venture"}
@@ -589,27 +589,27 @@ function PlasmicMain__RenderFunc(props: {
           className={classNames(
             defaultcss.all,
             defaultcss.__wab_text,
-            sty.freeBox__k8I5L,
+            sty.text__k8I5L,
             {
-              [sty.freeBox__isActive_settings__k8I5LOMvQw]: hasVariant(
+              [sty.text__isActive_settings__k8I5LOMvQw]: hasVariant(
                 variants,
                 "isActive",
                 "settings"
               ),
-              [sty.freeBox__isOwner__k8I5LSozJa]: hasVariant(
+              [sty.text__isOwner__k8I5LSozJa]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
               ),
-              [sty.freeBox__variantType_isEmpty__k8I5LnF9Ly]: hasVariant(
+              [sty.text__variantType_isEmpty__k8I5LnF9Ly]: hasVariant(
                 variants,
                 "variantType",
                 "isEmpty"
               ),
-              [sty.freeBox__variantType_isEmpty_isOwner__k8I5LnF9LySozJa]:
+              [sty.text__variantType_isEmpty_isOwner__k8I5LnF9LySozJa]:
                 hasVariant(variants, "variantType", "isEmpty") &&
                 hasVariant(variants, "isOwner", "isOwner"),
-              [sty.freeBox__variantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN]:
+              [sty.text__variantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN]:
                 hasVariant(variants, "variantType", "isEmpty") &&
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "isPublic", "isPublic"),

@@ -7,6 +7,22 @@
   min-width: 0;
   min-height: 0;
 }
+@media (min-width: 1201px) {
+  .root {
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .root {
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .root {
+  }
+}
+@media (max-width: 767px) {
+  .root {
+  }
+}
 .freeBox___2Z8 {
   display: flex;
   position: absolute;
@@ -30,6 +46,10 @@
   left: 0px;
   top: 0px;
   z-index: 3;
+}
+@media (max-width: 767px) {
+  .header:global(.__wab_instance) {
+  }
 }
 .freeBox__lHnLh {
   display: flex;
@@ -144,6 +164,21 @@
     padding: 10px 30px;
   }
 }
+@media (max-width: 767px) {
+  .freeBox__uwKvi > :global(.__wab_flex-container) {
+  }
+}
+@media (max-width: 767px) {
+  .freeBox__uwKvi > :global(.__wab_flex-container) > *,
+  .freeBox__uwKvi > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .freeBox__uwKvi > :global(.__wab_flex-container) > picture > img,
+  .freeBox__uwKvi
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+  }
+}
 .freeBox__hRcye {
   display: flex;
   position: relative;
@@ -163,14 +198,18 @@
   display: flex;
   flex-direction: row;
 }
-.freeBox__u899S {
+@media (max-width: 767px) {
+  .h2___608W3 {
+  }
+}
+.text {
   position: relative;
   font-size: 26px /* plasmic-token: TujpjiAsC */;
   font-weight: 300;
   line-height: 1.31;
 }
 @media (max-width: 767px) {
-  .freeBox__u899S {
+  .text {
     font-size: 22px /* plasmic-token: y8zaQOVwJ */;
     text-align: center;
     line-height: 1.1;
@@ -180,17 +219,23 @@
   display: flex;
   flex-direction: row;
 }
-.slotVentureName {
+@media (max-width: 767px) {
+  .span {
+  }
+}
+.slotTargetVentureName {
   font-size: 26px /* plasmic-token: TujpjiAsC */;
   font-weight: 600;
   line-height: 1.31;
 }
 @media (max-width: 767px) {
-  .slotVentureName {
+  .slotTargetVentureName {
     font-size: 22px /* plasmic-token: y8zaQOVwJ */;
     text-align: center;
     line-height: 1.1;
   }
+}
+.text__jhHzk {
 }
 .freeBox__zlDnp {
   display: flex;
@@ -227,11 +272,17 @@
 .viewCreateVenture:global(.__wab_instance) {
   position: relative;
 }
+@media (max-width: 767px) {
+  .viewCreateVenture:global(.__wab_instance) {
+  }
+}
 .svg__s6MQ5 {
   position: relative;
   object-fit: cover;
   width: 17px;
   height: 14px;
+}
+.text__e0Mc4 {
 }
 .text2 {
   height: auto;

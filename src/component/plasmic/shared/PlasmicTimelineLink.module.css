@@ -2,15 +2,17 @@
   display: flex;
   position: relative;
 }
-.freeBox {
+.root:hover {
+}
+.text {
   position: relative;
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.slotName {
+.slotTargetName {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
   font-weight: 400;
 }
-.root:hover .slotName {
+.root:hover .slotTargetName {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .span___0SrJl {

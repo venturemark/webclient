@@ -115,7 +115,7 @@ function PlasmicProfile__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.freeBox__qDcm3
+                        sty.text__qDcm3
                       )}
                     >
                       {"Let’s finish"}
@@ -125,7 +125,7 @@ function PlasmicProfile__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.freeBox__hUGd0
+                        sty.text__hUGd0
                       )}
                     >
                       {"creating your account."}
@@ -137,7 +137,7 @@ function PlasmicProfile__RenderFunc(props: {
                       className={classNames(
                         defaultcss.all,
                         defaultcss.__wab_text,
-                        sty.freeBox__xRb1Y
+                        sty.text__xRb1Y
                       )}
                     >
                       {

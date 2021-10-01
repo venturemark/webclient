@@ -78,6 +78,7 @@ export type PlasmicSidebar__OverridesType = {
   scrollContainer?: p.Flex<"div">;
   itemGroupContainer?: p.Flex<"div">;
   sidebarItemGroup?: p.Flex<typeof SidebarItemGroup>;
+  freeBox?: p.Flex<"div">;
   viewCreateVenture?: p.Flex<"a">;
   svg?: p.Flex<"svg">;
 };
@@ -168,8 +169,8 @@ function PlasmicSidebar__RenderFunc(props: {
             {p.renderPlasmicSlot({
               defaultContents: "Name",
               value: args.userName,
-              className: classNames(sty.slotUserName, {
-                [sty.slotUserName__hasInput]: hasVariant(
+              className: classNames(sty.slotTargetUserName, {
+                [sty.slotTargetUserName__hasInput]: hasVariant(
                   variants,
                   "hasInput",
                   "hasInput"
@@ -195,9 +196,9 @@ function PlasmicSidebar__RenderFunc(props: {
                     className={classNames(
                       defaultcss.all,
                       defaultcss.__wab_text,
-                      sty.freeBox__jYiYa,
+                      sty.text__jYiYa,
                       {
-                        [sty.freeBox__isDropdown__jYiYAmySg3]: hasVariant(
+                        [sty.text__isDropdown__jYiYAmySg3]: hasVariant(
                           variants,
                           "isDropdown",
                           "isDropdown"
@@ -266,6 +267,11 @@ function PlasmicSidebar__RenderFunc(props: {
                     "isPublic"
                   ),
                 })}
+                isOwner={
+                  hasVariant(variants, "hasInput", "hasInput")
+                    ? ("isOwner" as const)
+                    : undefined
+                }
                 isPublic={
                   hasVariant(variants, "isPublic", "isPublic")
                     ? ("isPublic" as const)
@@ -278,9 +284,11 @@ function PlasmicSidebar__RenderFunc(props: {
           {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
             <p.Stack
               as={"div"}
+              data-plasmic-name={"freeBox"}
+              data-plasmic-override={overrides.freeBox}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.freeBox__vgJde, {
-                [sty.freeBox__isPublic__vgJdexw1PM]: hasVariant(
+              className={classNames(defaultcss.all, sty.freeBox, {
+                [sty.freeBox__isPublic]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -326,9 +334,9 @@ function PlasmicSidebar__RenderFunc(props: {
                   className={classNames(
                     defaultcss.all,
                     defaultcss.__wab_text,
-                    sty.freeBox__mR9P,
+                    sty.text__mR9P,
                     {
-                      [sty.freeBox__isPublic__mR9Pxw1PM]: hasVariant(
+                      [sty.text__isPublic__mR9Pxw1PM]: hasVariant(
                         variants,
                         "isPublic",
                         "isPublic"
@@ -359,6 +367,7 @@ const PlasmicDescendants = {
     "scrollContainer",
     "itemGroupContainer",
     "sidebarItemGroup",
+    "freeBox",
     "viewCreateVenture",
     "svg",
   ],
@@ -370,6 +379,7 @@ const PlasmicDescendants = {
     "scrollContainer",
     "itemGroupContainer",
     "sidebarItemGroup",
+    "freeBox",
     "viewCreateVenture",
     "svg",
   ],
@@ -380,11 +390,13 @@ const PlasmicDescendants = {
     "scrollContainer",
     "itemGroupContainer",
     "sidebarItemGroup",
+    "freeBox",
     "viewCreateVenture",
     "svg",
   ],
   itemGroupContainer: ["itemGroupContainer", "sidebarItemGroup"],
   sidebarItemGroup: ["sidebarItemGroup"],
+  freeBox: ["freeBox", "viewCreateVenture", "svg"],
   viewCreateVenture: ["viewCreateVenture"],
   svg: ["svg"],
 } as const;
@@ -400,6 +412,7 @@ type NodeDefaultElementType = {
   scrollContainer: "div";
   itemGroupContainer: "div";
   sidebarItemGroup: typeof SidebarItemGroup;
+  freeBox: "div";
   viewCreateVenture: "a";
   svg: "svg";
 };
@@ -472,6 +485,7 @@ export const PlasmicSidebar = Object.assign(
     scrollContainer: makeNodeComponent("scrollContainer"),
     itemGroupContainer: makeNodeComponent("itemGroupContainer"),
     sidebarItemGroup: makeNodeComponent("sidebarItemGroup"),
+    freeBox: makeNodeComponent("freeBox"),
     viewCreateVenture: makeNodeComponent("viewCreateVenture"),
     svg: makeNodeComponent("svg"),
 

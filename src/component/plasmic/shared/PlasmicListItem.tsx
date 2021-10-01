@@ -84,7 +84,7 @@ function PlasmicListItem__RenderFunc(props: {
         {p.renderPlasmicSlot({
           defaultContents: "Edit",
           value: args.rename,
-          className: classNames(sty.slotRename),
+          className: classNames(sty.slotTargetRename),
         })}
       </a>
     </li>

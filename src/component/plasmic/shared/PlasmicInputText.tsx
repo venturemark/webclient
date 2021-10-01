@@ -132,7 +132,7 @@ function PlasmicInputText__RenderFunc(props: {
             {p.renderPlasmicSlot({
               defaultContents: "Label Name",
               value: args.label,
-              className: classNames(sty.slotLabel),
+              className: classNames(sty.slotTargetLabel),
             })}
           </label>
         ) : null}
@@ -158,7 +158,7 @@ function PlasmicInputText__RenderFunc(props: {
             {p.renderPlasmicSlot({
               defaultContents: "Text Helper Description",
               value: args.children,
-              className: classNames(sty.slotChildren),
+              className: classNames(sty.slotTargetChildren),
             })}
           </div>
         ) : null}

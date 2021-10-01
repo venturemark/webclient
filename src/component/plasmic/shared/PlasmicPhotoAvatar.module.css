@@ -25,16 +25,18 @@
   width: auto;
   height: auto;
 }
-.slotUserInitials {
+.slotTargetUserInitials {
   font-size: 18px;
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
   font-weight: 600;
 }
 @media (max-width: 767px) {
-  .slotUserInitials {
+  .slotTargetUserInitials {
     font-size: 12px /* plasmic-token: LxqIZc9hM */;
   }
 }
-.slotUserInitials__variant_isLarge {
+.slotTargetUserInitials__variant_isLarge {
   font-size: 39px;
+}
+.text__xtUq {
 }
