@@ -207,7 +207,6 @@ export function ComposeEditor({
           renderElement={[renderElement]}
           plugins={plugins}
           spellCheck
-          style={{}}
           {...rest}
         />
       </Slate>
