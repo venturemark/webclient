@@ -41,21 +41,7 @@ import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
-import { ElementProps } from "./types";
-
-function Element({ attributes, children, element }: ElementProps) {
-  if ("type" in element) {
-    switch (element.type) {
-      case "paragraph":
-        return <p {...attributes}>{children}</p>;
-      case "unordered-list":
-        return <ul {...attributes}>{children}</ul>;
-      case "list-item":
-        return <li {...attributes}>{children}</li>;
-    }
-  }
-  return <div {...attributes}>{children}</div>;
-}
+import { Element, ElementProps } from "../element";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -214,13 +200,14 @@ export function ComposeEditor({
     <div
       ref={editorRef}
       className={actionbarcss.textContainer}
-      style={{ width: "100%", marginTop: "1em" }}
+      style={{ width: "100%", flexGrow: 1, display: "flex" }}
     >
       <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins
           renderElement={[renderElement]}
           plugins={plugins}
           spellCheck
+          style={{}}
           {...rest}
         />
       </Slate>

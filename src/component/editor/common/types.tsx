@@ -1,9 +1,8 @@
-import { ReactNode } from "react";
 import { BaseEditor, Descendant } from "slate";
 import { ReactEditor } from "slate-react";
 
-type CustomText = { text: string; placeholder?: boolean };
-type CustomElement =
+export type CustomText = { text: string; placeholder?: boolean };
+export type CustomElement =
   | ParagraphElement
   | UnorderedListElement
   | ListItemElement
@@ -24,9 +23,3 @@ export type UnorderedListElement = {
 };
 export type ListItemElement = { type: "list-item"; children: Descendant[] };
 export type ImageElement = { type: "image"; src: string };
-
-export type ElementProps = {
-  attributes: any;
-  children: ReactNode;
-  element: CustomElement;
-};
