@@ -22,7 +22,9 @@ export default function useDropdown<T extends HTMLElement = HTMLElement>(
       }
 
       setDropdownVisible(false);
-      options?.onClose?.();
+      if (dropdownVisible) {
+        options?.onClose?.();
+      }
     };
 
     document.addEventListener(`mousedown`, listener);
@@ -34,7 +36,7 @@ export default function useDropdown<T extends HTMLElement = HTMLElement>(
     };
 
     // Reload only if ref or handler changes
-  }, [ref, options, setDropdownVisible]);
+  }, [ref, options, setDropdownVisible, dropdownVisible]);
 
   return [dropdownVisible, setDropdownVisible, ref];
 }

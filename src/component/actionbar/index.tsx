@@ -14,13 +14,14 @@ import { Editor, Element, Point, Range, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
 
 import { CountIndicator } from "component/countindicator";
+import { isListActive, toggleList } from "component/editor/common/functions";
+import { UnorderedListElement } from "component/editor/common/types";
 import {
   ComposeEditor,
   createEditor,
   EditorProps,
   useEditor,
-} from "component/editor";
-import { UnorderedListElement } from "component/editor/types";
+} from "component/editor/compose";
 import { EmojiPicker } from "component/emojipicker";
 import { TimelineSelect } from "component/materialui/select";
 import {
@@ -40,40 +41,6 @@ interface ActionBarProps extends DefaultActionBarProps {
   timelines: ITimeline[];
   user: IUser;
 }
-
-const toggleList = (editor: Editor) => {
-  const isActive = isListActive(editor);
-
-  Transforms.unwrapNodes(editor, {
-    match: (n) =>
-      !Editor.isEditor(n) &&
-      Element.isElement(n) &&
-      n.type === "unordered-list",
-    split: true,
-  });
-  const newProperties: Partial<Element> = {
-    type: isActive ? "paragraph" : "list-item",
-  };
-  Transforms.setNodes(editor, newProperties);
-
-  if (!isActive) {
-    const block: Element = { type: "unordered-list", children: [] };
-    Transforms.wrapNodes(editor, block);
-  }
-
-  ReactEditor.focus(editor);
-};
-
-const isListActive = (editor: Editor) => {
-  const [match] = Editor.nodes(editor, {
-    match: (n) =>
-      !Editor.isEditor(n) &&
-      Element.isElement(n) &&
-      n.type === "unordered-list",
-  });
-
-  return !!match;
-};
 
 export default function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
@@ -319,8 +286,18 @@ export default function ActionBar(props: ActionBarProps) {
       setTitle(e.target.value);
       titleSelection.current = titleRef.current?.selectionStart || 0;
     },
+    onKeyDown(e) {
+      if (e.key === "Enter") {
+        ReactEditor.focus(editor);
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    },
     onMouseUp() {
       titleSelection.current = titleRef.current?.selectionStart || 0;
+    },
+    style: {
+      resize: "none",
     },
   };
 
