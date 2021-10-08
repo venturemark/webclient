@@ -3,6 +3,7 @@ import {
   CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
+  CreateI_Obj_Property_Link,
   CreateO,
 } from "module/api/texupd/proto/create_pb";
 import * as key from "module/apikeys";
@@ -26,6 +27,15 @@ export async function Create(createUpdate: ICreateUpdate): Promise<string> {
   obj.getMetadataMap().set(key.TimelineID, createUpdate.timelineId);
   obj.getMetadataMap().set(key.UpdateFormat, "slate");
   obj.setProperty(objProperty);
+
+  if (createUpdate.image) {
+    const objLinkList = [];
+    const objLink = new CreateI_Obj_Property_Link();
+    objLink.setAddr(createUpdate.image);
+    objLink.setText("attached image");
+    objLinkList.push(objLink);
+    objProperty.setLinkList(objLinkList);
+  }
 
   objList.push(obj);
   req.setObjList(objList);

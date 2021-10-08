@@ -13,6 +13,7 @@ export interface IUpdate {
   subjectId?: string;
   date?: string;
   format: "slate" | "plain-text";
+  image?: string;
 }
 
 export interface ISearchUpdate {
@@ -34,6 +35,7 @@ export interface ISearchUpdateByTimelineIds {
 }
 
 export interface ICreateUpdate {
+  image: string | null;
   title: string;
   text: string;
   ventureId: string;
@@ -52,6 +54,7 @@ export interface IUpdateUpdate {
   title: string;
   text: string;
   id: string;
+  image: string | null;
   ventureId: string;
   timelineId: string;
   token: string | null;
