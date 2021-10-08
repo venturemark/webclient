@@ -207,7 +207,7 @@ export default function ActionBar(props: ActionBarProps) {
 
     selectedTimelines.forEach((timelineId) => {
       createUpdate({
-        title: JSON.stringify({ type: "title", children: [{ text: title }] }),
+        title,
         text: JSON.stringify(editorShape.value),
         ventureId: currentVenture.id,
         timelineId: timelineId.id,
