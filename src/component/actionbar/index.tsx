@@ -215,9 +215,7 @@ export default function ActionBar(props: ActionBarProps) {
               createUpdate(
                 {
                   title,
-                  text: JSON.stringify(
-                    editorShape.value.concat(editorShape.value)
-                  ),
+                  text: JSON.stringify(editorShape.value),
                   ventureId: currentVenture.id,
                   timelineId: timelineId.id,
                   token,
