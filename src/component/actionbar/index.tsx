@@ -67,18 +67,20 @@ export default function ActionBar(props: ActionBarProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (title.length > 100) {
+    if (title.length === 0) {
+      setError("Title required");
+    } else if (editorShape.string.length === 0) {
+      setError("Description required");
+    } else if (selectedTimelines.length === 0) {
+      setError("Timeline required");
+    } else if (title.length > 100) {
       setError("Title too long");
     } else if (editorShape.string.length >= 280) {
       setError("Description too long");
-    } else if (editorShape.string.length === 0) {
-      setError("Description required");
-    } else if (title.length === 0) {
-      setError("Title required");
     } else {
       setError(null);
     }
-  }, [editorShape.string, title, setError]);
+  }, [editorShape.string, title, selectedTimelines, setError]);
 
   const editor = useMemo(() => {
     const editor = createEditor();
@@ -196,7 +198,7 @@ export default function ActionBar(props: ActionBarProps) {
     editorSelection.current = editor.selection;
   }, [editor]);
 
-  function handlePost() {
+  async function handlePost() {
     if (selectedTimelines.length < 1 || error) {
       setTouched({
         title: true,
@@ -205,31 +207,54 @@ export default function ActionBar(props: ActionBarProps) {
       return;
     }
 
-    selectedTimelines.forEach((timelineId) => {
-      createUpdate({
-        title,
-        text: JSON.stringify(editorShape.value),
-        ventureId: currentVenture.id,
-        timelineId: timelineId.id,
-        token,
-      });
-    });
+    try {
+      await Promise.all(
+        selectedTimelines.map(
+          (timelineId) =>
+            new Promise((resolve, reject) => {
+              createUpdate(
+                {
+                  title,
+                  text: JSON.stringify(
+                    editorShape.value.concat(editorShape.value)
+                  ),
+                  ventureId: currentVenture.id,
+                  timelineId: timelineId.id,
+                  token,
+                },
+                {
+                  onError(error) {
+                    reject(error);
+                  },
+                  onSuccess(data) {
+                    resolve(data);
+                  },
+                }
+              );
+            })
+        )
+      );
 
-    //reset
-    setEditorShape({
-      value: [],
-      string: "",
-      numberValue: 0,
-      error: undefined,
-      hasContent: undefined,
-      progress: 0,
-    });
-    setTitle("");
-    setTouched({
-      title: false,
-      description: false,
-    });
-    editorSelection.current = null;
+      //reset
+      setEditorShape({
+        value: [],
+        string: "",
+        numberValue: 0,
+        error: undefined,
+        hasContent: undefined,
+        progress: 0,
+      });
+      setTitle("");
+      setTouched({
+        title: false,
+        description: false,
+      });
+      editorSelection.current = null;
+    } catch (error) {
+      if (typeof error === "object" && error !== null) {
+        setError((error as any).message);
+      }
+    }
   }
 
   useEffect(() => {
