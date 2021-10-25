@@ -20,7 +20,8 @@ import {
   EditorProps,
   useEditor,
 } from "component/editor";
-import { ImageElement, UnorderedListElement } from "component/editor/types";
+import { isListActive, toggleList } from "component/editor/common/functions";
+import { UnorderedListElement } from "component/editor/common/types";
 import { EmojiPicker } from "component/emojipicker";
 import { TimelineSelect } from "component/materialui/select";
 import {
@@ -32,6 +33,7 @@ import { VentureContext } from "context/VentureContext";
 import useScript from "module/hook/ui/useScript";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
+import { ICreateUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
@@ -41,40 +43,6 @@ interface ActionBarProps extends DefaultActionBarProps {
   timelines: ITimeline[];
   user: IUser;
 }
-
-const toggleList = (editor: Editor) => {
-  const isActive = isListActive(editor);
-
-  Transforms.unwrapNodes(editor, {
-    match: (n) =>
-      !Editor.isEditor(n) &&
-      Element.isElement(n) &&
-      n.type === "unordered-list",
-    split: true,
-  });
-  const newProperties: Partial<Element> = {
-    type: isActive ? "paragraph" : "list-item",
-  };
-  Transforms.setNodes(editor, newProperties);
-
-  if (!isActive) {
-    const block: Element = { type: "unordered-list", children: [] };
-    Transforms.wrapNodes(editor, block);
-  }
-
-  ReactEditor.focus(editor);
-};
-
-const isListActive = (editor: Editor) => {
-  const [match] = Editor.nodes(editor, {
-    match: (n) =>
-      !Editor.isEditor(n) &&
-      Element.isElement(n) &&
-      n.type === "unordered-list",
-  });
-
-  return !!match;
-};
 
 export default function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
@@ -90,7 +58,7 @@ export default function ActionBar(props: ActionBarProps) {
   );
 
   const [isActive, setIsActive] = useState(false);
-  const { mutate: createUpdate } = useCreateUpdate();
+  const { mutateAsync: createUpdate } = useCreateUpdate();
 
   const { editorShape, setEditorShape } = useEditor();
   const [title, setTitle] = useState<string>("");
@@ -102,19 +70,23 @@ export default function ActionBar(props: ActionBarProps) {
 
   useScript("https://widget.cloudinary.com/v2.0/global/all.js");
 
+  const [imageAttachment, setImageAttachment] = useState<string | null>(null);
+
   useEffect(() => {
-    if (title.length > 100) {
-      setError("Title too long");
-    } else if (editorShape.string.length >= 280) {
-      setError("Description too long");
-    } else if (editorShape.string.length === 0) {
-      setError("Description required");
-    } else if (title.length === 0) {
+    if (title.length === 0) {
       setError("Title required");
+    } else if (editorShape.string.length === 0 && !imageAttachment) {
+      setError("Description required");
+    } else if (selectedTimelines.length === 0) {
+      setError("Timeline required");
+    } else if (title.length > 280) {
+      setError("Title too long");
+    } else if (editorShape.string.length >= 600) {
+      setError("Description too long");
     } else {
       setError(null);
     }
-  }, [editorShape.string, title, setError]);
+  }, [editorShape.string, title, selectedTimelines, setError, imageAttachment]);
 
   const editor = useMemo(() => {
     const editor = createEditor();
@@ -232,7 +204,7 @@ export default function ActionBar(props: ActionBarProps) {
     editorSelection.current = editor.selection;
   }, [editor]);
 
-  function handlePost() {
+  async function handlePost() {
     if (selectedTimelines.length < 1 || error) {
       setTouched({
         title: true,
@@ -241,31 +213,52 @@ export default function ActionBar(props: ActionBarProps) {
       return;
     }
 
-    selectedTimelines.forEach((timelineId) => {
-      createUpdate({
-        title: JSON.stringify({ type: "title", children: [{ text: title }] }),
-        text: JSON.stringify(editorShape.value),
-        ventureId: currentVenture.id,
-        timelineId: timelineId.id,
-        token,
-      });
-    });
+    const text =
+      editorShape.string.length === 0 ? "" : JSON.stringify(editorShape.value);
 
-    //reset
-    setEditorShape({
-      value: [],
-      string: "",
-      numberValue: 0,
-      error: undefined,
-      hasContent: undefined,
-      progress: 0,
-    });
-    setTitle("");
-    setTouched({
-      title: false,
-      description: false,
-    });
-    editorSelection.current = null;
+    const baseUpdate: ICreateUpdate = {
+      attachments: [],
+      title,
+      text,
+      ventureId: currentVenture.id,
+      timelineId: "",
+      token,
+    };
+
+    if (imageAttachment) {
+      baseUpdate.attachments.push({
+        addr: imageAttachment,
+        type: "image",
+      });
+    }
+
+    try {
+      await Promise.all(
+        selectedTimelines.map((t) =>
+          createUpdate({ ...baseUpdate, timelineId: t.id })
+        )
+      );
+
+      //reset
+      setEditorShape({
+        value: [],
+        string: "",
+        numberValue: 0,
+        error: undefined,
+        hasContent: undefined,
+        progress: 0,
+      });
+      setTitle("");
+      setTouched({
+        title: false,
+        description: false,
+      });
+      editorSelection.current = null;
+    } catch (error) {
+      if (typeof error === "object" && error !== null) {
+        setError((error as any).message);
+      }
+    }
   }
 
   useEffect(() => {
@@ -320,12 +313,7 @@ export default function ActionBar(props: ActionBarProps) {
       },
       (err, info) => {
         if (!err && info.event === "success") {
-          const image: ImageElement = {
-            type: "image",
-            src: info.info.url,
-            children: [{ text: "" }],
-          };
-          Transforms.insertNodes(editor, image, { at: Editor.end(editor, []) });
+          setImageAttachment(info.info.url);
         }
       }
     );
@@ -368,8 +356,18 @@ export default function ActionBar(props: ActionBarProps) {
       setTitle(e.target.value);
       titleSelection.current = titleRef.current?.selectionStart || 0;
     },
+    onKeyDown(e) {
+      if (e.key === "Enter") {
+        ReactEditor.focus(editor);
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    },
     onMouseUp() {
       titleSelection.current = titleRef.current?.selectionStart || 0;
+    },
+    style: {
+      resize: "none",
     },
   };
 
@@ -400,6 +398,54 @@ export default function ActionBar(props: ActionBarProps) {
       description={{
         as: ComposeEditor,
         props: descriptionProps,
+        wrap(node) {
+          return (
+            <>
+              {node}
+              {imageAttachment && (
+                <div
+                  style={{
+                    position: "relative",
+                    margin: "10px",
+                    boxShadow: "0px 5px 9px rgba(0, 0, 0, 0.5)",
+                    background: "none",
+                    borderRadius: "6px",
+                    overflow: "hidden",
+                    maxHeight: "600px",
+                    width: "calc(100% - 20px)",
+                  }}
+                >
+                  <button
+                    style={{
+                      position: "absolute",
+                      top: "-10px",
+                      right: "-10px",
+                      width: "20px",
+                      height: "20px",
+                      borderRadius: "10px",
+                      backgroundColor: "#ddd",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                    type="button"
+                    onClick={() => setImageAttachment(null)}
+                  >
+                    x
+                  </button>
+                  <img
+                    style={{
+                      marginBottom: "-6px",
+                      borderRadius: "6px",
+                      width: "100%",
+                    }}
+                    alt="attachment"
+                    src={imageAttachment}
+                  />
+                </div>
+              )}
+            </>
+          );
+        },
       }}
       emoji={{
         wrap(node) {
@@ -440,9 +486,13 @@ export default function ActionBar(props: ActionBarProps) {
         },
       }}
       uploadImage={{
+        props: {
+          isDisabled: !!imageAttachment,
+        },
         wrap(node) {
           return (
             <button
+              disabled={!!imageAttachment}
               type="button"
               onMouseDown={(e) => {
                 e.preventDefault();

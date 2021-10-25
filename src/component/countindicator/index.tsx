@@ -1,10 +1,16 @@
+const maxLength = 600;
+const radius = 3;
+const circleLength = 2 * Math.PI * radius;
+
 export function CountIndicator({ count }: { count: number }) {
-  const r = 3;
-  const circleLength = 2 * Math.PI * r;
-  let colored = (circleLength * count) / 280;
-  let gray = circleLength - colored;
+  let colored = Math.min(circleLength, circleLength * (count / maxLength));
+  let gray = Math.max(0, circleLength - colored);
   const stroke =
-    280 - count <= 0 ? "red" : 280 - count <= 20 ? "orange" : "#029D7F";
+    maxLength - count <= 0
+      ? "red"
+      : maxLength - count <= maxLength / 10
+      ? "orange"
+      : "#029D7F";
   const strokeDasharray = `${colored} ${gray}`;
   return (
     <div
@@ -21,7 +27,7 @@ export function CountIndicator({ count }: { count: number }) {
           id="gray"
           cx="50%"
           cy="50%"
-          r={r}
+          r={radius}
           style={{
             stroke: "#C4C4C4",
             fill: "none",
@@ -31,7 +37,7 @@ export function CountIndicator({ count }: { count: number }) {
           id="colored"
           cx="50%"
           cy="50%"
-          r={r}
+          r={radius}
           style={{
             stroke,
             strokeDasharray,

@@ -1,17 +1,17 @@
-import { ReactNode } from "react";
 import { BaseEditor, Descendant } from "slate";
 import { ReactEditor } from "slate-react";
 
-type CustomElement =
+export type CustomText = { text: string; placeholder?: boolean };
+export type CustomElement =
   | ParagraphElement
   | UnorderedListElement
-  | ListItemElement
-  | ImageElement;
+  | ListItemElement;
 
 declare module "slate" {
   interface CustomTypes {
     Editor: BaseEditor & ReactEditor;
     Element: CustomElement;
+    Text: CustomText;
   }
 }
 
@@ -21,14 +21,3 @@ export type UnorderedListElement = {
   children: Descendant[];
 };
 export type ListItemElement = { type: "list-item"; children: Descendant[] };
-export type ImageElement = {
-  type: "image";
-  src: string;
-  children: Descendant[];
-};
-
-export type ElementProps = {
-  attributes: any;
-  children: ReactNode;
-  element: CustomElement;
-};

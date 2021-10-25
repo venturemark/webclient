@@ -277,7 +277,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   background: rgba(68, 192, 255, 0);
-  cursor: text;
   min-width: 0;
   padding: 15px 20px;
 }
@@ -287,7 +286,6 @@
 }
 .form__isActive {
   align-items: flex-start;
-  cursor: text;
 }
 @media (max-width: 767px) {
   .form__isActive {
@@ -401,6 +399,7 @@
   border-radius: 8px;
   padding: 0px;
   border-width: 0px;
+  cursor: text;
 }
 .root .title {
 }
@@ -447,6 +446,7 @@
   border-radius: 8px;
   padding: 0px;
   border-width: 0px;
+  cursor: text;
 }
 .root .description {
 }

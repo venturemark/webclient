@@ -279,6 +279,16 @@ export namespace SearchO_Obj {
 }
 
 export class SearchO_Obj_Property extends jspb.Message {
+  getAttachmentsList(): Array<SearchO_Obj_Property_Link>;
+  setAttachmentsList(
+    value: Array<SearchO_Obj_Property_Link>
+  ): SearchO_Obj_Property;
+  clearAttachmentsList(): SearchO_Obj_Property;
+  addAttachments(
+    value?: SearchO_Obj_Property_Link,
+    index?: number
+  ): SearchO_Obj_Property_Link;
+
   getHead(): string;
   setHead(value: string): SearchO_Obj_Property;
 
@@ -304,7 +314,39 @@ export class SearchO_Obj_Property extends jspb.Message {
 
 export namespace SearchO_Obj_Property {
   export type AsObject = {
+    attachmentsList: Array<SearchO_Obj_Property_Link.AsObject>;
     head: string;
     text: string;
+  };
+}
+
+export class SearchO_Obj_Property_Link extends jspb.Message {
+  getAddr(): string;
+  setAddr(value: string): SearchO_Obj_Property_Link;
+
+  getType(): string;
+  setType(value: string): SearchO_Obj_Property_Link;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchO_Obj_Property_Link.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: SearchO_Obj_Property_Link
+  ): SearchO_Obj_Property_Link.AsObject;
+  static serializeBinaryToWriter(
+    message: SearchO_Obj_Property_Link,
+    writer: jspb.BinaryWriter
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): SearchO_Obj_Property_Link;
+  static deserializeBinaryFromReader(
+    message: SearchO_Obj_Property_Link,
+    reader: jspb.BinaryReader
+  ): SearchO_Obj_Property_Link;
+}
+
+export namespace SearchO_Obj_Property_Link {
+  export type AsObject = {
+    addr: string;
+    type: string;
   };
 }

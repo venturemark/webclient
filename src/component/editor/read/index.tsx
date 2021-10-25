@@ -22,8 +22,7 @@ import { Slate, withReact } from "slate-react";
 
 import { initialValueEmpty } from "component/editor/config/initialValues";
 
-import { Element } from "../element";
-import { ElementProps } from "../types";
+import { Element, ElementProps } from "../element";
 
 const plugins = [
   ParagraphPlugin(),

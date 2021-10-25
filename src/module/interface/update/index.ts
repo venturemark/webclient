@@ -34,8 +34,13 @@ export interface ISearchUpdateByTimelineIds {
   token: string | null;
 }
 
+export interface IUpdateAttachment {
+  addr: string;
+  type: string;
+}
+
 export interface ICreateUpdate {
-  image: string | null;
+  attachments: Array<IUpdateAttachment>;
   title: string;
   text: string;
   ventureId: string;

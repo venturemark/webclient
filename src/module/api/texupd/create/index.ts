@@ -21,21 +21,23 @@ export async function Create(createUpdate: ICreateUpdate): Promise<string> {
   const token = createUpdate.token;
   const metadata = { Authorization: `Bearer ${token}` };
 
+  const objAttachmentList = [];
+
+  for (const attachment of createUpdate.attachments) {
+    const objAttachment = new CreateI_Obj_Property_Link();
+    objAttachment.setAddr(attachment.addr);
+    objAttachment.setType(attachment.type);
+    objAttachmentList.push(objAttachment);
+  }
+
+  objProperty.setAttachmentsList(objAttachmentList);
+
   objProperty.setText(createUpdate.text);
   objProperty.setHead(createUpdate.title);
   obj.getMetadataMap().set(key.VentureID, createUpdate.ventureId);
   obj.getMetadataMap().set(key.TimelineID, createUpdate.timelineId);
   obj.getMetadataMap().set(key.UpdateFormat, "slate");
   obj.setProperty(objProperty);
-
-  if (createUpdate.image) {
-    const objLinkList = [];
-    const objLink = new CreateI_Obj_Property_Link();
-    objLink.setAddr(createUpdate.image);
-    objLink.setText("attached image");
-    objLinkList.push(objLink);
-    objProperty.setLinkList(objLinkList);
-  }
 
   objList.push(obj);
   req.setObjList(objList);

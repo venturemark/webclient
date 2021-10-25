@@ -256,14 +256,7 @@ function PlasmicActionBar__RenderFunc(props: {
                     ) && hasVariant(variants, "isActive", "isActive"),
                 })}
                 placeholder={"Write your update..." as const}
-                rows={
-                  hasVariant(variants, "isActive", "isActive") &&
-                  hasVariant(globalVariants, "screen", "mobile")
-                    ? (5 as const)
-                    : hasVariant(variants, "isActive", "isActive")
-                    ? (1 as const)
-                    : undefined
-                }
+                rows={1}
               />
 
               {(hasVariant(variants, "isActive", "isActive") ? true : false) ? (
@@ -296,7 +289,14 @@ function PlasmicActionBar__RenderFunc(props: {
                       ? ("Description..." as const)
                       : ("Write a paragraph" as const)
                   }
-                  rows={2 as const}
+                  rows={
+                    hasVariant(variants, "isActive", "isActive") &&
+                    hasVariant(globalVariants, "screen", "mobile")
+                      ? (5 as const)
+                      : hasVariant(variants, "isActive", "isActive")
+                      ? (1 as const)
+                      : undefined
+                  }
                   value={"" as const}
                 />
               ) : null}

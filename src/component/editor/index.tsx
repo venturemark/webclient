@@ -41,8 +41,7 @@ import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
-import { Element } from "./element";
-import { ElementProps } from "./types";
+import { Element, ElementProps } from "./element";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -201,7 +200,7 @@ export function ComposeEditor({
     <div
       ref={editorRef}
       className={actionbarcss.textContainer}
-      style={{ width: "100%", marginTop: "1em" }}
+      style={{ width: "100%", flexGrow: 1, display: "flex" }}
     >
       <Slate editor={editor} value={editorShape.value} onChange={handleChange}>
         <EditablePlugins
