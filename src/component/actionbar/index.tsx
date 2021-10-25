@@ -281,8 +281,8 @@ export default function ActionBar(props: ActionBarProps) {
   function showUploadWidget() {
     window.cloudinary.openUploadWidget(
       {
-        cloudName: "dnsrd5zps",
-        uploadPreset: "lyam4hcn",
+        cloudName: "onebreadcrumb",
+        uploadPreset: "upload",
         sources: ["local", "url"],
         showAdvancedOptions: false,
         cropping: true,
