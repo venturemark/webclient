@@ -88,6 +88,16 @@ export namespace CreateI_Obj {
 }
 
 export class CreateI_Obj_Property extends jspb.Message {
+  getAttachmentsList(): Array<CreateI_Obj_Property_Link>;
+  setAttachmentsList(
+    value: Array<CreateI_Obj_Property_Link>
+  ): CreateI_Obj_Property;
+  clearAttachmentsList(): CreateI_Obj_Property;
+  addAttachments(
+    value?: CreateI_Obj_Property_Link,
+    index?: number
+  ): CreateI_Obj_Property_Link;
+
   getHead(): string;
   setHead(value: string): CreateI_Obj_Property;
 
@@ -113,8 +123,40 @@ export class CreateI_Obj_Property extends jspb.Message {
 
 export namespace CreateI_Obj_Property {
   export type AsObject = {
+    attachmentsList: Array<CreateI_Obj_Property_Link.AsObject>;
     head: string;
     text: string;
+  };
+}
+
+export class CreateI_Obj_Property_Link extends jspb.Message {
+  getAddr(): string;
+  setAddr(value: string): CreateI_Obj_Property_Link;
+
+  getType(): string;
+  setType(value: string): CreateI_Obj_Property_Link;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateI_Obj_Property_Link.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: CreateI_Obj_Property_Link
+  ): CreateI_Obj_Property_Link.AsObject;
+  static serializeBinaryToWriter(
+    message: CreateI_Obj_Property_Link,
+    writer: jspb.BinaryWriter
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): CreateI_Obj_Property_Link;
+  static deserializeBinaryFromReader(
+    message: CreateI_Obj_Property_Link,
+    reader: jspb.BinaryReader
+  ): CreateI_Obj_Property_Link;
+}
+
+export namespace CreateI_Obj_Property_Link {
+  export type AsObject = {
+    addr: string;
+    type: string;
   };
 }
 

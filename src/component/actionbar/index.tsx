@@ -14,14 +14,14 @@ import { Editor, Element, Point, Range, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
 
 import { CountIndicator } from "component/countindicator";
-import { isListActive, toggleList } from "component/editor/common/functions";
-import { UnorderedListElement } from "component/editor/common/types";
 import {
   ComposeEditor,
   createEditor,
   EditorProps,
   useEditor,
-} from "component/editor/compose";
+} from "component/editor";
+import { isListActive, toggleList } from "component/editor/common/functions";
+import { UnorderedListElement } from "component/editor/common/types";
 import { EmojiPicker } from "component/emojipicker";
 import { TimelineSelect } from "component/materialui/select";
 import {
@@ -30,8 +30,10 @@ import {
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
 import { VentureContext } from "context/VentureContext";
+import useScript from "module/hook/ui/useScript";
 import { useCreateUpdate } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
+import { ICreateUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
 
@@ -56,7 +58,7 @@ export default function ActionBar(props: ActionBarProps) {
   );
 
   const [isActive, setIsActive] = useState(false);
-  const { mutate: createUpdate } = useCreateUpdate();
+  const { mutateAsync: createUpdate } = useCreateUpdate();
 
   const { editorShape, setEditorShape } = useEditor();
   const [title, setTitle] = useState<string>("");
@@ -66,21 +68,25 @@ export default function ActionBar(props: ActionBarProps) {
   });
   const [error, setError] = useState<string | null>(null);
 
+  useScript("https://widget.cloudinary.com/v2.0/global/all.js");
+
+  const [imageAttachment, setImageAttachment] = useState<string | null>(null);
+
   useEffect(() => {
     if (title.length === 0) {
       setError("Title required");
-    } else if (editorShape.string.length === 0) {
+    } else if (editorShape.string.length === 0 && !imageAttachment) {
       setError("Description required");
     } else if (selectedTimelines.length === 0) {
       setError("Timeline required");
-    } else if (title.length > 100) {
+    } else if (title.length > 280) {
       setError("Title too long");
-    } else if (editorShape.string.length >= 280) {
+    } else if (editorShape.string.length >= 600) {
       setError("Description too long");
     } else {
       setError(null);
     }
-  }, [editorShape.string, title, selectedTimelines, setError]);
+  }, [editorShape.string, title, selectedTimelines, setError, imageAttachment]);
 
   const editor = useMemo(() => {
     const editor = createEditor();
@@ -207,29 +213,29 @@ export default function ActionBar(props: ActionBarProps) {
       return;
     }
 
+    const text =
+      editorShape.string.length === 0 ? "" : JSON.stringify(editorShape.value);
+
+    const baseUpdate: ICreateUpdate = {
+      attachments: [],
+      title,
+      text,
+      ventureId: currentVenture.id,
+      timelineId: "",
+      token,
+    };
+
+    if (imageAttachment) {
+      baseUpdate.attachments.push({
+        addr: imageAttachment,
+        type: "image",
+      });
+    }
+
     try {
       await Promise.all(
-        selectedTimelines.map(
-          (timelineId) =>
-            new Promise((resolve, reject) => {
-              createUpdate(
-                {
-                  title,
-                  text: JSON.stringify(editorShape.value),
-                  ventureId: currentVenture.id,
-                  timelineId: timelineId.id,
-                  token,
-                },
-                {
-                  onError(error) {
-                    reject(error);
-                  },
-                  onSuccess(data) {
-                    resolve(data);
-                  },
-                }
-              );
-            })
+        selectedTimelines.map((t) =>
+          createUpdate({ ...baseUpdate, timelineId: t.id })
         )
       );
 
@@ -270,6 +276,47 @@ export default function ActionBar(props: ActionBarProps) {
   function onFocusTitle(e: React.FocusEvent) {
     setLastFocus("title");
     setIsActive(true);
+  }
+
+  function showUploadWidget() {
+    window.cloudinary.openUploadWidget(
+      {
+        cloudName: "onebreadcrumb",
+        uploadPreset: "upload",
+        sources: ["local", "url"],
+        showAdvancedOptions: false,
+        cropping: true,
+        multiple: false,
+        defaultSource: "local",
+        styles: {
+          palette: {
+            window: "#FFFFFF",
+            windowBorder: "#90A0B3",
+            tabIcon: "#0078FF",
+            menuIcons: "#5A616A",
+            textDark: "#000000",
+            textLight: "#FFFFFF",
+            link: "#0078FF",
+            action: "#FF620C",
+            inactiveTabIcon: "#0E2F5A",
+            error: "#F44235",
+            inProgress: "#0078FF",
+            complete: "#20B832",
+            sourceBg: "#E4EBF1",
+          },
+          fonts: {
+            default: {
+              active: true,
+            },
+          },
+        },
+      },
+      (err, info) => {
+        if (!err && info.event === "success") {
+          setImageAttachment(info.info.url);
+        }
+      }
+    );
   }
 
   function restoreFocus() {
@@ -351,6 +398,54 @@ export default function ActionBar(props: ActionBarProps) {
       description={{
         as: ComposeEditor,
         props: descriptionProps,
+        wrap(node) {
+          return (
+            <>
+              {node}
+              {imageAttachment && (
+                <div
+                  style={{
+                    position: "relative",
+                    margin: "10px",
+                    boxShadow: "0px 5px 9px rgba(0, 0, 0, 0.5)",
+                    background: "none",
+                    borderRadius: "6px",
+                    overflow: "hidden",
+                    maxHeight: "600px",
+                    width: "calc(100% - 20px)",
+                  }}
+                >
+                  <button
+                    style={{
+                      position: "absolute",
+                      top: "-10px",
+                      right: "-10px",
+                      width: "20px",
+                      height: "20px",
+                      borderRadius: "10px",
+                      backgroundColor: "#ddd",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                    type="button"
+                    onClick={() => setImageAttachment(null)}
+                  >
+                    x
+                  </button>
+                  <img
+                    style={{
+                      marginBottom: "-6px",
+                      borderRadius: "6px",
+                      width: "100%",
+                    }}
+                    alt="attachment"
+                    src={imageAttachment}
+                  />
+                </div>
+              )}
+            </>
+          );
+        },
       }}
       emoji={{
         wrap(node) {
@@ -391,8 +486,34 @@ export default function ActionBar(props: ActionBarProps) {
         },
       }}
       uploadImage={{
+        props: {
+          isDisabled: !!imageAttachment,
+        },
         wrap(node) {
-          return null;
+          return (
+            <button
+              disabled={!!imageAttachment}
+              type="button"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showUploadWidget();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  showUploadWidget();
+                }
+              }}
+              style={{
+                border: "none",
+                background: "none",
+              }}
+            >
+              {node}
+            </button>
+          );
         },
       }}
       container={{

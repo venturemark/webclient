@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
 import { Descendant } from "slate";
 
-import { createEditor, EditorShape } from "component/editor/compose";
+import { createEditor, EditorShape } from "component/editor";
 import { ReadonlyEditor } from "component/editor/readonly";
 import {
   DefaultContentPostProps,
@@ -176,9 +176,38 @@ function ContentPost(props: ContentPostProps) {
         props: {
           editor,
           editorShape,
-          style: {
-            width: "100%",
-          },
+        },
+        wrap(node) {
+          return (
+            <>
+              {update?.text && node}
+              {update?.image && (
+                <div
+                  style={{
+                    position: "relative",
+                    margin: "10px",
+                    boxShadow: "0px 5px 9px rgba(0, 0, 0, 0.5)",
+                    background: "none",
+                    borderRadius: "6px",
+                    marginRight: "auto",
+                    overflow: "hidden",
+                    maxHeight: "600px",
+                    width: "calc(100% - 5px)",
+                  }}
+                >
+                  <img
+                    style={{
+                      marginBottom: "-6px",
+                      borderRadius: "6px",
+                      width: "100%",
+                    }}
+                    alt="attachment"
+                    src={update?.image}
+                  />
+                </div>
+              )}
+            </>
+          );
         },
       }}
       textContainer2={{

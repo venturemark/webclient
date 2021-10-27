@@ -57,6 +57,12 @@ export async function Search(searchUpdate: ISearchUpdate) {
           const date = formatDistanceToNowStrict(rawDate) + " ago";
           const defaultDate = formatDate(rawDate, "MM/dd/yyyy");
 
+          let image: string | undefined = undefined;
+          const attachments = propertyPb?.getAttachmentsList();
+          if (attachments?.length) {
+            image = attachments[0].getAddr();
+          }
+
           const update: IUpdate = {
             ventureId,
             timelineId,
@@ -67,6 +73,7 @@ export async function Search(searchUpdate: ISearchUpdate) {
             title: head || defaultDate,
             date,
             format,
+            image,
           };
           return update;
         });

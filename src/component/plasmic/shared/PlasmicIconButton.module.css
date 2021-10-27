@@ -37,6 +37,8 @@
 .container__isDarkBgHover {
 }
 .container__isDisabled {
+  cursor: default;
+  color: grey;
 }
 .container__isDisabled_isDarkBgHover {
 }

@@ -41,7 +41,7 @@ import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
 import { save } from "module/store";
 
-import { Element, ElementProps } from "../element";
+import { Element, ElementProps } from "./element";
 
 const plugins = [
   ParagraphPlugin(options),
@@ -140,7 +140,7 @@ const withPlugins = [
 ];
 
 const DEFAULT_HEIGHT = 44;
-const HEIGHT_LIMIT = 188;
+const HEIGHT_LIMIT = 1000;
 
 export function createEditor(): Editor {
   return pipe(createEditorBase(), ...withPlugins);

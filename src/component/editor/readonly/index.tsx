@@ -15,7 +15,7 @@ import React, { useCallback } from "react";
 import { Editor } from "slate";
 import { Slate } from "slate-react";
 
-import { EditorShape } from "../compose";
+import { EditorShape } from "..";
 import { Element, ElementProps } from "../element";
 
 const plugins = [

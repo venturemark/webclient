@@ -3,6 +3,7 @@ import {
   CreateI,
   CreateI_Obj,
   CreateI_Obj_Property,
+  CreateI_Obj_Property_Link,
   CreateO,
 } from "module/api/texupd/proto/create_pb";
 import * as key from "module/apikeys";
@@ -19,6 +20,17 @@ export async function Create(createUpdate: ICreateUpdate): Promise<string> {
 
   const token = createUpdate.token;
   const metadata = { Authorization: `Bearer ${token}` };
+
+  const objAttachmentList = [];
+
+  for (const attachment of createUpdate.attachments) {
+    const objAttachment = new CreateI_Obj_Property_Link();
+    objAttachment.setAddr(attachment.addr);
+    objAttachment.setType(attachment.type);
+    objAttachmentList.push(objAttachment);
+  }
+
+  objProperty.setAttachmentsList(objAttachmentList);
 
   objProperty.setText(createUpdate.text);
   objProperty.setHead(createUpdate.title);

@@ -13,6 +13,7 @@ export interface IUpdate {
   subjectId?: string;
   date?: string;
   format: "slate" | "plain-text";
+  image?: string;
 }
 
 export interface ISearchUpdate {
@@ -33,7 +34,13 @@ export interface ISearchUpdateByTimelineIds {
   token: string | null;
 }
 
+export interface IUpdateAttachment {
+  addr: string;
+  type: string;
+}
+
 export interface ICreateUpdate {
+  attachments: Array<IUpdateAttachment>;
   title: string;
   text: string;
   ventureId: string;
@@ -52,6 +59,7 @@ export interface IUpdateUpdate {
   title: string;
   text: string;
   id: string;
+  image: string | null;
   ventureId: string;
   timelineId: string;
   token: string | null;
