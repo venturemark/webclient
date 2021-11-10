@@ -11,6 +11,7 @@ export interface ITimeline {
   id: string;
   date?: string;
   userRole?: UserRole;
+  visibility?: string;
 }
 
 export interface ISearchTimelinesbyUserId {
@@ -23,6 +24,7 @@ export interface ICreateTimeline {
   desc: string;
   ventureId: string;
   membersWrite: boolean;
+  visibility?: string;
   successUrl?: string;
   token: string | null;
 }
@@ -40,6 +42,7 @@ export interface IUpdateTimeline {
   name?: string;
   stat?: string;
   membersWrite?: boolean;
+  visibility?: string;
   successUrl?: string;
   token: string | null;
 }
