@@ -211,7 +211,6 @@
 .description__isActive {
   width: 100%;
   min-width: 0;
-  display: none;
 }
 .description__isActive_error_hasError {
   display: block;

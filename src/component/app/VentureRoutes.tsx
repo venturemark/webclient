@@ -13,7 +13,7 @@ import { TimelineRoutes } from "./TimelineRoutes";
 
 export function VentureRoutes() {
   const { user: { id: userId } = { id: undefined } } = useContext(UserContext);
-  const { ventureSlug } = useParams();
+  const { ventureSlug = "" } = useParams();
   const ventureContext = useVentures(ventureSlug);
   const { loading, ventures, currentVenture } = ventureContext;
 
