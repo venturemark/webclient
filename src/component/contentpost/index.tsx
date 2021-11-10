@@ -181,12 +181,10 @@ function ContentPost(props: ContentPostProps) {
           return update?.text ? node : null;
         },
       }}
+      hasMedia={!!update?.image}
       actionMedia={{
         imageSource: update?.image || "",
         isEdit: false,
-        wrap(node) {
-          return update?.image ? node : null;
-        },
       }}
       textContainer2={{
         style: {
