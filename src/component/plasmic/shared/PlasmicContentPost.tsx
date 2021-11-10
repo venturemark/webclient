@@ -31,7 +31,7 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Dropdown from "../../dropdown/index"; // plasmic-import: Umq3CDOCIR/component
-import ActionMedia from "../../ActionMedia"; // plasmic-import: ja2kJswbaeG/component
+import ActionMedia from "../../actionmedia/index"; // plasmic-import: ja2kJswbaeG/component
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import TimelineLink from "../../timelinelink/index"; // plasmic-import: PGPJmONwto/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component

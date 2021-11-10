@@ -30,7 +30,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
-import ActionMedia from "../../ActionMedia"; // plasmic-import: ja2kJswbaeG/component
+import ActionMedia from "../../actionmedia/index"; // plasmic-import: ja2kJswbaeG/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
 import ErrorMessage from "../../errormessage/index"; // plasmic-import: X8H70YUTyF/component
 import Tags from "../../tags/index"; // plasmic-import: 0wz8hGqZgNQ/component
