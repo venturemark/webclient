@@ -178,15 +178,15 @@ function ContentPost(props: ContentPostProps) {
           editorShape,
         },
         wrap(node) {
-          return update?.text ? node : null
+          return update?.text ? node : null;
         },
       }}
       actionMedia={{
-        imageSource: update?.image || '',
+        imageSource: update?.image || "",
         isEdit: false,
         wrap(node) {
-          return update?.image ? node : null
-        }
+          return update?.image ? node : null;
+        },
       }}
       textContainer2={{
         style: {

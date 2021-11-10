@@ -9,12 +9,22 @@ import {
 } from "./plasmic/shared/PlasmicActionMedia";
 
 interface ActionMediaProps extends DefaultActionMediaProps {
-  imageSource: string
-  onClose?: () => void
+  imageSource: string;
+  onClose?: () => void;
 }
 
-function ActionMedia_({ imageSource, onClose, ...props }: ActionMediaProps, ref: HTMLElementRefOf<"div">) {
-  return <PlasmicActionMedia closeButton={{ onClick: onClose }} imgHolder={{ src: imageSource }} root={{ ref }} {...props} />;
+function ActionMedia_(
+  { imageSource, onClose, ...props }: ActionMediaProps,
+  ref: HTMLElementRefOf<"div">
+) {
+  return (
+    <PlasmicActionMedia
+      closeButton={{ onClick: onClose }}
+      imgHolder={{ src: imageSource }}
+      root={{ ref }}
+      {...props}
+    />
+  );
 }
 
 const ActionMedia = React.forwardRef(ActionMedia_);

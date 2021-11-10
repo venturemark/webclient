@@ -400,9 +400,9 @@ export default function ActionBar(props: ActionBarProps) {
         props: descriptionProps,
       }}
       actionMedia={{
-        imageSource: imageAttachment || '',
+        imageSource: imageAttachment || "",
         isEdit: true,
-        onClose: () => setImageAttachment(null)
+        onClose: () => setImageAttachment(null),
       }}
       hasMedia={!!imageAttachment}
       emoji={{
