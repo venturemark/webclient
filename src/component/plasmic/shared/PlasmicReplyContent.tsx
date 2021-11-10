@@ -179,6 +179,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                               "plasmic_default__all plasmic_default__span"
                             }
                           >
+                            <React.Fragment>{""}</React.Fragment>
                             <span
                               className={
                                 "plasmic_default__all plasmic_default__span"
@@ -187,6 +188,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                             >
                               {"asdasdasdasd "}
                             </span>
+                            <React.Fragment>{""}</React.Fragment>
                           </span>
                         </span>
                       ),

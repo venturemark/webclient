@@ -16,7 +16,7 @@
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "*",
     "@plasmicapp/plume": "^0.1.20",
-    "@plasmicapp/react-web": "^0.2.81",
+    "@plasmicapp/react-web": "^0.2.90",
     "@popperjs/core": "^2.10.1",
     "@udecode/slate-plugins": "0.75.2",
     "@venturemark/apigents": "github:venturemark/apigents#v0.3.1",

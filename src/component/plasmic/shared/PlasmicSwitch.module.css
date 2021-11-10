@@ -6,8 +6,6 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.root__variantSettings_isSelected {
-}
 .root__variantSettings_hasLabel {
   width: 100%;
   min-width: 0;
@@ -22,10 +20,6 @@
 .slotTargetInputTitle {
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 600;
-}
-.slotTargetInputTitle__variantSettings_hasLabel {
-}
-.text__xq4YT {
 }
 ._switch {
   display: flex;
@@ -57,6 +51,4 @@
   transition-property: all;
   transition-duration: 1s;
   flex-shrink: 0;
-}
-.svg__variantSettings_isSelected {
 }

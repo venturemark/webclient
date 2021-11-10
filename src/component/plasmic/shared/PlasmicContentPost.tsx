@@ -31,6 +31,7 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Dropdown from "../../dropdown/index"; // plasmic-import: Umq3CDOCIR/component
+import ActionMedia from "../../ActionMedia"; // plasmic-import: ja2kJswbaeG/component
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import TimelineLink from "../../timelinelink/index"; // plasmic-import: PGPJmONwto/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
@@ -50,17 +51,20 @@ import LockIconsvgIcon from "./icons/PlasmicIcon__LockIconsvg"; // plasmic-impor
 export type PlasmicContentPost__VariantMembers = {
   state: "isOwner" | "isPostDetails" | "isPublic";
   isUserOnClick: "isUserOnClick";
+  hasMedia: "hasMedia";
 };
 
 export type PlasmicContentPost__VariantsArgs = {
   state?: SingleChoiceArg<"isOwner" | "isPostDetails" | "isPublic">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
+  hasMedia?: SingleBooleanChoiceArg<"hasMedia">;
 };
 
 type VariantPropType = keyof PlasmicContentPost__VariantsArgs;
 export const PlasmicContentPost__VariantProps = new Array<VariantPropType>(
   "state",
-  "isUserOnClick"
+  "isUserOnClick",
+  "hasMedia"
 );
 
 export type PlasmicContentPost__ArgsType = {
@@ -87,6 +91,7 @@ export type PlasmicContentPost__OverridesType = {
   iconMenu?: p.Flex<"svg">;
   dropdown?: p.Flex<typeof Dropdown>;
   archiveOption?: p.Flex<"div">;
+  actionMedia?: p.Flex<typeof ActionMedia>;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   span?: p.Flex<"span">;
   timelineNamesContainer?: p.Flex<"div">;
@@ -101,6 +106,7 @@ export interface DefaultContentPostProps {
   children?: React.ReactNode;
   state?: SingleChoiceArg<"isOwner" | "isPostDetails" | "isPublic">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
+  hasMedia?: SingleBooleanChoiceArg<"hasMedia">;
   className?: string;
 }
 
@@ -195,6 +201,11 @@ function PlasmicContentPost__RenderFunc(props: {
                 defaultcss.__wab_text,
                 sty.title,
                 {
+                  [sty.title__hasMedia]: hasVariant(
+                    variants,
+                    "hasMedia",
+                    "hasMedia"
+                  ),
                   [sty.title__state_isOwner]: hasVariant(
                     variants,
                     "state",
@@ -330,6 +341,20 @@ function PlasmicContentPost__RenderFunc(props: {
           ) : null}
         </div>
 
+        {(hasVariant(variants, "hasMedia", "hasMedia") ? true : true) ? (
+          <ActionMedia
+            data-plasmic-name={"actionMedia"}
+            data-plasmic-override={overrides.actionMedia}
+            className={classNames("__wab_instance", sty.actionMedia, {
+              [sty.actionMedia__hasMedia]: hasVariant(
+                variants,
+                "hasMedia",
+                "hasMedia"
+              ),
+            })}
+          />
+        ) : null}
+
         <p.Stack
           as={"div"}
           hasGap={true}
@@ -396,6 +421,7 @@ function PlasmicContentPost__RenderFunc(props: {
                             "plasmic_default__all plasmic_default__span"
                           }
                         >
+                          <React.Fragment>{""}</React.Fragment>
                           <span
                             className={
                               "plasmic_default__all plasmic_default__span"
@@ -404,6 +430,7 @@ function PlasmicContentPost__RenderFunc(props: {
                           >
                             {"The Rock"}
                           </span>
+                          <React.Fragment>{""}</React.Fragment>
                         </span>
                       </span>
                     ),
@@ -592,6 +619,7 @@ const PlasmicDescendants = {
     "iconMenu",
     "dropdown",
     "archiveOption",
+    "actionMedia",
     "photoAvatar",
     "span",
     "timelineNamesContainer",
@@ -606,6 +634,7 @@ const PlasmicDescendants = {
     "iconMenu",
     "dropdown",
     "archiveOption",
+    "actionMedia",
     "photoAvatar",
     "span",
     "timelineNamesContainer",
@@ -618,6 +647,7 @@ const PlasmicDescendants = {
   iconMenu: ["iconMenu"],
   dropdown: ["dropdown", "archiveOption"],
   archiveOption: ["archiveOption"],
+  actionMedia: ["actionMedia"],
   photoAvatar: ["photoAvatar"],
   span: ["span"],
   timelineNamesContainer: ["timelineNamesContainer", "timelineLink"],
@@ -636,6 +666,7 @@ type NodeDefaultElementType = {
   iconMenu: "svg";
   dropdown: typeof Dropdown;
   archiveOption: "div";
+  actionMedia: typeof ActionMedia;
   photoAvatar: typeof PhotoAvatar;
   span: "span";
   timelineNamesContainer: "div";
@@ -711,6 +742,7 @@ export const PlasmicContentPost = Object.assign(
     iconMenu: makeNodeComponent("iconMenu"),
     dropdown: makeNodeComponent("dropdown"),
     archiveOption: makeNodeComponent("archiveOption"),
+    actionMedia: makeNodeComponent("actionMedia"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     span: makeNodeComponent("span"),
     timelineNamesContainer: makeNodeComponent("timelineNamesContainer"),

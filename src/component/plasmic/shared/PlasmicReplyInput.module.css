@@ -19,6 +19,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
+  min-width: 0;
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
 }
@@ -35,22 +36,6 @@
 .root:focus-within .freeBox {
   outline: none;
 }
-.root:focus-within .freeBox > :global(.__wab_flex-container) {
-}
-.root:focus-within .freeBox > :global(.__wab_flex-container) > *,
-.root:focus-within
-  .freeBox
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.root:focus-within .freeBox > :global(.__wab_flex-container) > picture > img,
-.root:focus-within
-  .freeBox
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
 .replyForm {
   height: auto;
   width: 100%;
@@ -66,6 +51,7 @@
   align-items: stretch;
   justify-content: flex-start;
   flex-direction: row;
+  min-width: 0;
   margin-left: calc(0px - 14px);
   width: calc(100% + 14px);
 }
@@ -124,6 +110,4 @@
   object-fit: cover;
   width: 17px;
   height: 14px;
-}
-.text__j9SlF {
 }

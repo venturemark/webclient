@@ -570,6 +570,19 @@
           "cssFilePath": "plasmic/shared/PlasmicEmptyState.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "ja2kJswbaeG",
+          "name": "ActionMedia",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicActionMedia.tsx",
+          "importSpec": {
+            "modulePath": "ActionMedia.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicActionMedia.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -814,6 +827,11 @@
           "id": "JPhKEtrftg",
           "name": "signin-bg.svg",
           "filePath": "plasmic/shared/images/signinBgsvg.svg"
+        },
+        {
+          "id": "wl3nlMylG",
+          "name": "Screen Shot 2021-10-20 at 5.17.21 PM.png",
+          "filePath": "plasmic/shared/images/screenShot20211020At51721PMpng.png"
         }
       ],
       "projectApiToken": "JmYCf6lyEqM7EiZtDziaLGIpSvhdusaKVvvFgGrGK5gGNtHra4ux9jUVroNOeGMWR16Tm0H6lDcE38TWvQ",

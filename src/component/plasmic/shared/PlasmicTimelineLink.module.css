@@ -2,8 +2,6 @@
   display: flex;
   position: relative;
 }
-.root:hover {
-}
 .text {
   position: relative;
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
