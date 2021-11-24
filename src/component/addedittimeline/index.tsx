@@ -77,7 +77,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const timelineId = currentTimeline?.id;
   const ventureId = currentVenture?.id;
 
-  const [visibility, setVisibility] = useState<string>('');
+  const [visibility, setVisibility] = useState<string>("");
 
   const handleCreate = (data: FormData) => {
     if (
