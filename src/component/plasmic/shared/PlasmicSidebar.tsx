@@ -112,6 +112,7 @@ function PlasmicSidebar__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
         [sty.root__hasInput]: hasVariant(variants, "hasInput", "hasInput"),
+        [sty.root__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
       })}
     >
       <div
@@ -300,7 +301,7 @@ function PlasmicSidebar__RenderFunc(props: {
                   data-plasmic-name={"viewCreateVenture"}
                   data-plasmic-override={overrides.viewCreateVenture}
                   className={classNames(
-                    defaultcss.all,
+                    defaultcss.a,
                     defaultcss.__wab_text,
                     sty.viewCreateVenture,
                     {

@@ -8,6 +8,7 @@
 }
 .root > :global(.__wab_flex-container) {
   flex-direction: column;
+  min-width: 0;
   margin-top: calc(0px - 5px);
   height: calc(100% + 5px);
 }
@@ -24,14 +25,10 @@
   margin-bottom: 4px;
   min-width: 0;
 }
-.labelContainer__hasLabel {
-}
 .slotTargetLabel {
   text-align: center;
   font-size: 15px /* plasmic-token: mV0JUhpGq */;
   font-weight: 600;
-}
-.text__bHdRs {
 }
 .freeBox {
   display: flex;
@@ -39,8 +36,6 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-}
-.freeBox__hasLabel {
 }
 .freeBox__isHorizontal {
   display: flex;
@@ -50,38 +45,12 @@
 .freeBox__isDisabled {
   opacity: 0.7;
 }
-.freeBox__hasLabel_isHorizontal {
-}
-._private:global(.__wab_instance) {
-}
-._private__isHorizontal:global(.__wab_instance) {
-}
-._private__isDisabled:global(.__wab_instance) {
-}
-.text__bfjNf {
-}
-.text__isDisabled__bfjNFzl5Fe {
-}
-.text__b4AXd {
-}
-.text__isHorizontal__b4AXdlNttF {
-}
 .members:global(.__wab_instance) {
   position: relative;
-}
-.members__isHorizontal:global(.__wab_instance) {
-}
-.text__eWh4X {
 }
 .text {
   height: auto;
 }
 ._public:global(.__wab_instance) {
   position: relative;
-}
-._public__isHorizontal:global(.__wab_instance) {
-}
-.text__n33N5 {
-}
-.text__cRod {
 }

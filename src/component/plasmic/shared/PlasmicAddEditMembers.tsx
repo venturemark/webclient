@@ -262,7 +262,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               data-plasmic-name={"link"}
               data-plasmic-override={overrides.link}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.link, {
+              className={classNames(defaultcss.a, sty.link, {
                 [sty.link__type_isTimeline]: hasVariant(
                   variants,
                   "type",

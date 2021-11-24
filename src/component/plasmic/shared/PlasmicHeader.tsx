@@ -225,7 +225,7 @@ function PlasmicHeader__RenderFunc(props: {
             data-plasmic-name={"link"}
             data-plasmic-override={overrides.link}
             className={classNames(
-              defaultcss.all,
+              defaultcss.a,
               defaultcss.__wab_text,
               sty.link,
               {

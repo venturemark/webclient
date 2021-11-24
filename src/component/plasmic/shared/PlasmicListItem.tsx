@@ -79,7 +79,7 @@ function PlasmicListItem__RenderFunc(props: {
       <a
         data-plasmic-name={"link"}
         data-plasmic-override={overrides.link}
-        className={classNames(defaultcss.all, sty.link)}
+        className={classNames(defaultcss.a, sty.link)}
       >
         {p.renderPlasmicSlot({
           defaultContents: "Edit",

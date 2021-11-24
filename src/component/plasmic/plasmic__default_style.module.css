@@ -10,10 +10,6 @@
   box-shadow: none;
   box-sizing: border-box;
   text-decoration-line: none;
-  transition-property: all;
-  transition-timing-function: ease;
-  transition-delay: 0s;
-  transition-duration: 0s;
   margin: 0;
   border-width: 0px;
 }
@@ -68,6 +64,8 @@
   color: inherit;
   text-transform: inherit;
   background-image: none;
+  align-items: flex-start;
+  text-align: center;
   padding: 2px 6px;
   border: 1px solid lightgray;
 }
@@ -125,6 +123,10 @@
   composes: all;
   font-style: inherit;
 }
+.a {
+  composes: all;
+  color: inherit;
+}
 .ol {
   composes: all;
   list-style-type: none;
@@ -146,8 +148,8 @@
 .plasmic_default__component_wrapper {
   display: grid;
 }
-.__wab_text {
-  display: inline-block;
+.plasmic_default__inline {
+  display: inline;
 }
 .plasmic_page_wrapper {
   display: flex;
