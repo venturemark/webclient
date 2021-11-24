@@ -4,16 +4,6 @@
   height: 30px;
   position: relative;
 }
-.root__buttonStyle_primaryPurple {
-}
-.root__buttonStyle_secondaryPurple {
-}
-.root__buttonStyle_secondaryGreen {
-}
-.root__buttonStyle_red {
-}
-.root__buttonStyle_blue {
-}
 .button {
   opacity: 1;
   transform: scale(1, 1) rotate(0deg);
@@ -52,18 +42,11 @@
 .button__buttonStyle_grey {
   background: rgb(249, 249, 250);
 }
-.button__buttonFeatures_icon {
-}
 .button__disabled {
   opacity: 0.5;
 }
-.button__buttonStyle_grey_buttonFeatures_icon {
-}
 .root:hover .button {
   background: #137c7d;
-}
-.root:focus-within .button {
-  outline: none;
 }
 .root__buttonStyle_primaryPurple:hover .button__buttonStyle_primaryPurple {
   background: rgb(56, 31, 86);
@@ -80,6 +63,9 @@
 .root__buttonStyle_blue:hover .button__buttonStyle_blue {
   background: rgb(46, 129, 184);
 }
+.root:focus-within .button {
+  outline: none;
+}
 .freeBox {
   display: inline-flex;
   position: relative;
@@ -95,6 +81,7 @@
 .freeBox > :global(.__wab_flex-container) {
   justify-content: center;
   align-items: center;
+  min-height: 0;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
 }
@@ -107,41 +94,6 @@
   > picture
   > img {
   margin-left: 10px;
-}
-.freeBox__buttonStyle_primaryPurple {
-}
-.freeBox__buttonStyle_primaryPurple > :global(.__wab_flex-container) {
-}
-.freeBox__buttonStyle_primaryPurple > :global(.__wab_flex-container) > *,
-.freeBox__buttonStyle_primaryPurple
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.freeBox__buttonStyle_primaryPurple
-  > :global(.__wab_flex-container)
-  > picture
-  > img,
-.freeBox__buttonStyle_primaryPurple
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.freeBox__buttonStyle_blue {
-}
-.freeBox__buttonStyle_blue > :global(.__wab_flex-container) {
-}
-.freeBox__buttonStyle_blue > :global(.__wab_flex-container) > *,
-.freeBox__buttonStyle_blue
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.freeBox__buttonStyle_blue > :global(.__wab_flex-container) > picture > img,
-.freeBox__buttonStyle_blue
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
 }
 .slotTargetText2 {
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
@@ -165,17 +117,6 @@
   > .__wab_slot-string-wrapper {
   text-decoration-line: none;
 }
-.slotTargetText2 > *,
-.slotTargetText2 > .__wab_slot > *,
-.slotTargetText2 > .__wab_slot > .__wab_slot > *,
-.slotTargetText2 > .__wab_slot > .__wab_slot > .__wab_slot > *,
-.slotTargetText2 > picture > img,
-.slotTargetText2 > .__wab_slot > picture > img,
-.slotTargetText2 > .__wab_slot > .__wab_slot > picture > img,
-.slotTargetText2 > .__wab_slot > .__wab_slot > .__wab_slot > picture > img {
-}
-.slotTargetText2__buttonStyle_primaryPurple {
-}
 .slotTargetText2__buttonStyle_secondaryPurple {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
@@ -185,22 +126,8 @@
 .slotTargetText2__buttonStyle_red {
   color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
-.slotTargetText2__buttonFeatures_icon {
-}
-.slotTargetText2__buttonFeatures_hasText {
-}
-.slotTargetText2__disabled {
-}
 .root__buttonStyle_red:hover .slotTargetText2__buttonStyle_red {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
-}
-.text__pbfPp {
-}
-.slotTargetChildren {
-}
-.slotTargetChildren__buttonStyle_red {
-}
-.slotTargetChildren__buttonStyle_grey {
 }
 .slotTargetChildren__buttonFeatures_icon {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
@@ -216,38 +143,6 @@
 }
 .slotTargetChildren__buttonFeatures_icon_buttonStyle_secondaryPurple {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
-}
-.root:focus-within .slotTargetChildren {
-}
-.root:focus-within .slotTargetChildren > .__wab_text,
-.root:focus-within .slotTargetChildren > .__wab_slot-string-wrapper,
-.root:focus-within .slotTargetChildren > .__wab_slot > .__wab_text,
-.root:focus-within
-  .slotTargetChildren
-  > .__wab_slot
-  > .__wab_slot-string-wrapper,
-.root:focus-within
-  .slotTargetChildren
-  > .__wab_slot
-  > .__wab_slot
-  > .__wab_text,
-.root:focus-within
-  .slotTargetChildren
-  > .__wab_slot
-  > .__wab_slot
-  > .__wab_slot-string-wrapper,
-.root:focus-within
-  .slotTargetChildren
-  > .__wab_slot
-  > .__wab_slot
-  > .__wab_slot
-  > .__wab_text,
-.root:focus-within
-  .slotTargetChildren
-  > .__wab_slot
-  > .__wab_slot
-  > .__wab_slot
-  > .__wab_slot-string-wrapper {
 }
 .root:focus-within .slotTargetChildren > *,
 .root:focus-within .slotTargetChildren > .__wab_slot > *,

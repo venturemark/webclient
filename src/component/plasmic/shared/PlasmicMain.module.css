@@ -10,6 +10,7 @@
 }
 .container > :global(.__wab_flex-container) {
   flex-direction: column;
+  min-width: 0;
   margin-top: calc(0px - 30px);
   height: calc(100% + 30px);
 }
@@ -22,63 +23,6 @@
   > picture
   > img {
   margin-top: 30px;
-}
-@media (max-width: 767px) {
-  .container {
-  }
-}
-@media (max-width: 767px) {
-  .container > :global(.__wab_flex-container) {
-  }
-}
-@media (max-width: 767px) {
-  .container > :global(.__wab_flex-container) > *,
-  .container > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .container > :global(.__wab_flex-container) > picture > img,
-  .container
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-  }
-}
-.container__variantType_isVenture {
-}
-.container__variantType_isVenture > :global(.__wab_flex-container) {
-}
-.container__variantType_isVenture > :global(.__wab_flex-container) > *,
-.container__variantType_isVenture
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.container__variantType_isVenture
-  > :global(.__wab_flex-container)
-  > picture
-  > img,
-.container__variantType_isVenture
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.container__variantType_isTimeline {
-}
-.container__variantType_isTimeline > :global(.__wab_flex-container) {
-}
-.container__variantType_isTimeline > :global(.__wab_flex-container) > *,
-.container__variantType_isTimeline
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.container__variantType_isTimeline
-  > :global(.__wab_flex-container)
-  > picture
-  > img,
-.container__variantType_isTimeline
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
 }
 .container__variantType_isEmpty {
   display: flex;
@@ -107,137 +51,8 @@
   > img {
   margin-left: 0px;
 }
-.container__isActive_feed {
-}
-.container__isActive_feed > :global(.__wab_flex-container) {
-}
-.container__isActive_feed > :global(.__wab_flex-container) > *,
-.container__isActive_feed
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.container__isActive_feed > :global(.__wab_flex-container) > picture > img,
-.container__isActive_feed
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.container__isActive_settings {
-}
-.container__isActive_settings > :global(.__wab_flex-container) {
-}
-.container__isActive_settings > :global(.__wab_flex-container) > *,
-.container__isActive_settings
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.container__isActive_settings > :global(.__wab_flex-container) > picture > img,
-.container__isActive_settings
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.container__isActive_isNewVenture {
-}
-.container__isActive_isNewVenture > :global(.__wab_flex-container) {
-}
-.container__isActive_isNewVenture > :global(.__wab_flex-container) > *,
-.container__isActive_isNewVenture
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.container__isActive_isNewVenture
-  > :global(.__wab_flex-container)
-  > picture
-  > img,
-.container__isActive_isNewVenture
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.container__isPublic {
-}
-.container__isPublic > :global(.__wab_flex-container) {
-}
-.container__isPublic > :global(.__wab_flex-container) > *,
-.container__isPublic
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.container__isPublic > :global(.__wab_flex-container) > picture > img,
-.container__isPublic
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.container__variantType_isTimeline_isActive_settings {
-}
-.container__variantType_isTimeline_isActive_settings
-  > :global(.__wab_flex-container) {
-}
-.container__variantType_isTimeline_isActive_settings
-  > :global(.__wab_flex-container)
-  > *,
-.container__variantType_isTimeline_isActive_settings
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.container__variantType_isTimeline_isActive_settings
-  > :global(.__wab_flex-container)
-  > picture
-  > img,
-.container__variantType_isTimeline_isActive_settings
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.container__isActive_isNewVenture_variantType_isVenture {
-}
-.container__isActive_isNewVenture_variantType_isVenture
-  > :global(.__wab_flex-container) {
-}
-.container__isActive_isNewVenture_variantType_isVenture
-  > :global(.__wab_flex-container)
-  > *,
-.container__isActive_isNewVenture_variantType_isVenture
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.container__isActive_isNewVenture_variantType_isVenture
-  > :global(.__wab_flex-container)
-  > picture
-  > img,
-.container__isActive_isNewVenture_variantType_isVenture
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
 .mainHeader:global(.__wab_instance) {
   position: relative;
-}
-@media (max-width: 767px) {
-  .mainHeader:global(.__wab_instance) {
-  }
-}
-.mainHeader__variantType_isTimeline:global(.__wab_instance) {
-}
-.mainHeader__variantType_isEmpty:global(.__wab_instance) {
-}
-.mainHeader__isActive_feed:global(.__wab_instance) {
-}
-.mainHeader__isActive_settings:global(.__wab_instance) {
-}
-.mainHeader__isPublic:global(.__wab_instance) {
-}
-.mainHeader__isPublic_variantType_isVenture:global(.__wab_instance) {
-}
-.text__ltw2X {
 }
 .text__dUFvj {
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;
@@ -248,181 +63,31 @@
     font-size: 12px /* plasmic-token: LxqIZc9hM */;
   }
 }
-.text__bX2N {
-}
-@media (min-width: 992px) and (max-width: 1200px) {
-  .text__bX2N {
-  }
-}
-@media (max-width: 767px) {
-  .text__bX2N {
-  }
-}
-.text__variantType_isVenture__bX2NxwYsV {
-}
-.text__isActive_settings__bX2NoMvQw {
-}
-.text__v9VnG {
-}
 .feedUpdate:global(.__wab_instance) {
   position: relative;
 }
-.feedUpdate__variantType_isVenture:global(.__wab_instance) {
-}
-.feedUpdate__variantType_isEmpty:global(.__wab_instance) {
-}
-.feedUpdate__isActive_feed:global(.__wab_instance) {
-}
-.feedUpdate__isActive_settings:global(.__wab_instance) {
-}
-.feedUpdate__isActive_members:global(.__wab_instance) {
-}
-.feedUpdate__isOwner:global(.__wab_instance) {
-}
-.feedUpdate__isPublic:global(.__wab_instance) {
-}
-.feedUpdate__isPublic_variantType_isVenture:global(.__wab_instance) {
-}
-.feedUpdate__isActive_isNewVenture_variantType_isVenture:global(.__wab_instance) {
-}
 .addEditMembers:global(.__wab_instance) {
   position: relative;
-}
-.addEditMembers__variantType_isVenture:global(.__wab_instance) {
-}
-.addEditMembers__variantType_isTimeline:global(.__wab_instance) {
-}
-.addEditMembers__isActive_settings:global(.__wab_instance) {
-}
-.addEditMembers__isActive_members:global(.__wab_instance) {
-}
-.addEditMembers__isOwner:global(.__wab_instance) {
-}
-.addEditMembers__isActive_members_isOwner:global(.__wab_instance) {
-}
-.addEditMembers__variantType_isVenture_isActive_members:global(.__wab_instance) {
-}
-.addEditMembers__isActive_members_variantType_isTimeline:global(.__wab_instance) {
-}
-.addEditMembers__variantType_isVenture_isActive_members_isOwner:global(.__wab_instance) {
-}
-.addEditMembers__isActive_members_isOwner_variantType_isTimeline:global(.__wab_instance) {
-}
-.text__gKvO3 {
-}
-.text__aQans {
-}
-.text__nTv8C {
-}
-.text__cJtix {
-}
-.text__ilZIr {
-}
-.text__qwfDd {
-}
-.text__mfQfB {
-}
-.text__h5Nnd {
-}
-.text__oLvO {
-}
-.text__uUhNq {
-}
-.text__gorFd {
-}
-.text__f3PY7 {
-}
-.text__peXa {
-}
-.text__krlUl {
-}
-.text___6FIlZ {
 }
 .addEditVenture:global(.__wab_instance) {
   position: relative;
   width: 100%;
   min-width: 0;
 }
-.addEditVenture__variantType_isTimeline:global(.__wab_instance) {
-}
-.addEditVenture__variantType_isEmpty:global(.__wab_instance) {
-}
-.addEditVenture__isActive_feed:global(.__wab_instance) {
-}
-.addEditVenture__isActive_settings:global(.__wab_instance) {
-}
-.addEditVenture__isOwner:global(.__wab_instance) {
-}
-.addEditVenture__variantType_isTimeline_isActive_settings:global(.__wab_instance) {
-}
 .text__fdWyB {
   font-size: 26px /* plasmic-token: TujpjiAsC */;
-}
-.text__zE1L {
-}
-.text___0X3Tj {
-}
-.text__kI8S4 {
 }
 .addEditTimeline:global(.__wab_instance) {
   position: relative;
 }
-.addEditTimeline__variantType_isTimeline:global(.__wab_instance) {
-}
-.addEditTimeline__isActive_members:global(.__wab_instance) {
-}
-.addEditTimeline__isOwner:global(.__wab_instance) {
-}
-.addEditTimeline__variantType_isTimeline_isOwner:global(.__wab_instance) {
-}
-.addEditTimeline__isOwner_isActive_settings:global(.__wab_instance) {
-}
-.addEditTimeline__isActive_members_isOwner:global(.__wab_instance) {
-}
-.addEditTimeline__variantType_isTimeline_isActive_settings:global(.__wab_instance) {
-}
-.addEditTimeline__variantType_isTimeline_isActive_settings_isOwner:global(.__wab_instance) {
-}
-.addEditTimeline__isActive_members_isOwner_variantType_isTimeline:global(.__wab_instance) {
-}
-.text__dqzg5 {
-}
-.text__nAiV4 {
-}
-.text__wwo1Z {
-}
-.text__qwoU {
-}
 .emptyState:global(.__wab_instance) {
   position: relative;
-}
-.emptyState__variantType_isVenture:global(.__wab_instance) {
-}
-.emptyState__variantType_isTimeline:global(.__wab_instance) {
 }
 .emptyState__variantType_isEmpty:global(.__wab_instance) {
   display: none;
 }
-@media (max-width: 767px) {
-  .emptyState__variantType_isEmpty:global(.__wab_instance) {
-  }
-}
-.emptyState__isActive_isNewVenture:global(.__wab_instance) {
-}
-.emptyState__isOwner:global(.__wab_instance) {
-}
 .emptyState__variantType_isEmpty_isOwner:global(.__wab_instance) {
   display: flex;
-}
-.emptyState__variantType_isEmpty_isActive_feed:global(.__wab_instance) {
-}
-.emptyState__variantType_isTimeline_isActive_settings:global(.__wab_instance) {
-}
-.emptyState__variantType_isEmpty_isActive_settings:global(.__wab_instance) {
-}
-.emptyState__isActive_isNewVenture_variantType_isVenture:global(.__wab_instance) {
-}
-.emptyState__isActive_members_variantType_isEmpty:global(.__wab_instance) {
 }
 .text__k8I5L {
   position: relative;

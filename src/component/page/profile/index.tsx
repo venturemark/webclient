@@ -1,4 +1,3 @@
-import { Location } from "history";
 import { useContext, useState } from "react";
 import { Navigate } from "react-router";
 import { useLocation } from "react-router-dom";
@@ -15,7 +14,7 @@ interface ProfileProps extends DefaultProfileProps {}
 function Profile(props: ProfileProps) {
   const { user, status } = useContext(UserContext);
   const [isVisible, setIsVisible] = useState<IsVisible>();
-  const { state } = useLocation() as Location<{ returnTo?: string } | null>;
+  const { state } = useLocation();
 
   if (status === "loading") {
     return <span>Loading User</span>;

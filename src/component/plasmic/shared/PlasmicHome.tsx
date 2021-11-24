@@ -31,8 +31,8 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import Modal from "../../modal/index"; // plasmic-import: Rd6ctyxKvRM/component
-import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
 import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/component
+import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
 import Main from "../../main/index"; // plasmic-import: 0c6QSqHYCk/component
 import PostDetails from "../../postdetails/index"; // plasmic-import: 1E73LSzV2l/component
 
@@ -65,9 +65,9 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 export type PlasmicHome__OverridesType = {
   root?: p.Flex<"div">;
   modal?: p.Flex<typeof Modal>;
-  header?: p.Flex<typeof Header>;
   sidebar?: p.Flex<typeof Sidebar>;
   text?: p.Flex<"div">;
+  header?: p.Flex<typeof Header>;
   mainContainer?: p.Flex<"div">;
   main?: p.Flex<typeof Main>;
   postDetails?: p.Flex<typeof PostDetails>;
@@ -164,40 +164,6 @@ function PlasmicHome__RenderFunc(props: {
               ) : null}
             </div>
           ) : null}
-          {(
-            hasVariant(variants, "isVisible", "isPublic")
-              ? true
-              : hasVariant(globalVariants, "screen", "mobile")
-              ? true
-              : false
-          ) ? (
-            <Header
-              data-plasmic-name={"header"}
-              data-plasmic-override={overrides.header}
-              className={classNames("__wab_instance", sty.header, {
-                [sty.header__isVisible_isPublic]: hasVariant(
-                  variants,
-                  "isVisible",
-                  "isPublic"
-                ),
-                [sty.header__isVisible_mobileSidebar]: hasVariant(
-                  variants,
-                  "isVisible",
-                  "mobileSidebar"
-                ),
-                [sty.header__isVisible_showModal]: hasVariant(
-                  variants,
-                  "isVisible",
-                  "showModal"
-                ),
-              })}
-              views={
-                hasVariant(variants, "isVisible", "isPublic")
-                  ? ("publicView" as const)
-                  : ("userAccount" as const)
-              }
-            />
-          ) : null}
 
           <div
             className={classNames(defaultcss.all, sty.freeBox___70Att, {
@@ -289,6 +255,43 @@ function PlasmicHome__RenderFunc(props: {
                 ),
               })}
             >
+              {(
+                hasVariant(variants, "isVisible", "isPublic")
+                  ? true
+                  : hasVariant(globalVariants, "screen", "mobile")
+                  ? true
+                  : hasVariant(globalVariants, "screen", "desktopLarge")
+                  ? true
+                  : true
+              ) ? (
+                <Header
+                  data-plasmic-name={"header"}
+                  data-plasmic-override={overrides.header}
+                  className={classNames("__wab_instance", sty.header, {
+                    [sty.header__isVisible_isPublic]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "isPublic"
+                    ),
+                    [sty.header__isVisible_mobileSidebar]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "mobileSidebar"
+                    ),
+                    [sty.header__isVisible_showModal]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "showModal"
+                    ),
+                  })}
+                  views={
+                    hasVariant(variants, "isVisible", "isPublic")
+                      ? ("publicView" as const)
+                      : ("userAccount" as const)
+                  }
+                />
+              ) : null}
+
               <div
                 data-plasmic-name={"mainContainer"}
                 data-plasmic-override={overrides.mainContainer}
@@ -356,7 +359,11 @@ function PlasmicHome__RenderFunc(props: {
               </div>
 
               {(
-                hasVariant(variants, "isVisible", "postDetails") ? true : true
+                hasVariant(variants, "isVisible", "postDetails")
+                  ? true
+                  : hasVariant(globalVariants, "screen", "desktopLarge")
+                  ? true
+                  : true
               ) ? (
                 <div
                   className={classNames(defaultcss.all, sty.freeBox___49Hi7, {
@@ -395,17 +402,17 @@ const PlasmicDescendants = {
   root: [
     "root",
     "modal",
-    "header",
     "sidebar",
     "text",
+    "header",
     "mainContainer",
     "main",
     "postDetails",
   ],
   modal: ["modal"],
-  header: ["header"],
   sidebar: ["sidebar", "text"],
   text: ["text"],
+  header: ["header"],
   mainContainer: ["mainContainer", "main"],
   main: ["main"],
   postDetails: ["postDetails"],
@@ -416,9 +423,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   modal: typeof Modal;
-  header: typeof Header;
   sidebar: typeof Sidebar;
   text: "div";
+  header: typeof Header;
   mainContainer: "div";
   main: typeof Main;
   postDetails: typeof PostDetails;
@@ -486,9 +493,9 @@ export const PlasmicHome = Object.assign(
   {
     // Helper components rendering sub-elements
     modal: makeNodeComponent("modal"),
-    header: makeNodeComponent("header"),
     sidebar: makeNodeComponent("sidebar"),
     text: makeNodeComponent("text"),
+    header: makeNodeComponent("header"),
     mainContainer: makeNodeComponent("mainContainer"),
     main: makeNodeComponent("main"),
     postDetails: makeNodeComponent("postDetails"),

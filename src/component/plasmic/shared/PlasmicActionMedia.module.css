@@ -1,0 +1,70 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 20px;
+  min-width: 0;
+  min-height: 0;
+}
+.freeBox {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  max-height: 360px;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 10px;
+}
+.imgHolder {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 100%;
+  display: inline-inline-block !important;
+  min-height: 0;
+}
+.imgHolder > picture > img {
+  object-fit: cover;
+}
+.imgHolder > .__wab_img-spacer > img {
+  object-fit: cover;
+}
+.closeButton {
+  box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
+  background: #ffffff;
+  position: absolute;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  left: auto;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  display: none;
+  border-radius: 50%;
+  padding: 10px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.closeButton__isEdit {
+  display: flex;
+}
+.root .closeButton:hover {
+  background: rgb(117, 124, 135);
+}
+.svg {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}

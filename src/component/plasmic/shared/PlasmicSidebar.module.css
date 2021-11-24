@@ -17,18 +17,6 @@
   padding: 0px;
   border-width: 1px;
 }
-@media (min-width: 1201px) {
-  .root {
-  }
-}
-@media (min-width: 992px) and (max-width: 1200px) {
-  .root {
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .root {
-  }
-}
 @media (max-width: 767px) {
   .root {
     background: #ffffff;
@@ -64,14 +52,6 @@
   background: #443d5e;
   min-height: 0;
   padding: 10px 0px;
-}
-@media (min-width: 992px) and (max-width: 1200px) {
-  .topSidebar {
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .topSidebar {
-  }
 }
 @media (max-width: 767px) {
   .topSidebar {
@@ -110,6 +90,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  min-width: 0;
   margin-left: calc(0px - 8px);
   width: calc(100% + 8px);
 }
@@ -128,21 +109,6 @@
     display: none;
   }
 }
-@media (max-width: 767px) {
-  .accountSettings > :global(.__wab_flex-container) {
-  }
-}
-@media (max-width: 767px) {
-  .accountSettings > :global(.__wab_flex-container) > *,
-  .accountSettings > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .accountSettings > :global(.__wab_flex-container) > picture > img,
-  .accountSettings
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-  }
-}
 .accountSettings__hasInput {
   width: 100%;
   border-bottom-width: 1px;
@@ -154,108 +120,25 @@
   margin: 0px;
 }
 .accountSettings__hasInput > :global(.__wab_flex-container) {
-}
-.accountSettings__hasInput > :global(.__wab_flex-container) > *,
-.accountSettings__hasInput
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.accountSettings__hasInput > :global(.__wab_flex-container) > picture > img,
-.accountSettings__hasInput
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
+  min-width: 0;
 }
 @media (max-width: 767px) {
   .accountSettings__hasInput {
     display: none;
   }
 }
-@media (max-width: 767px) {
-  .accountSettings__hasInput > :global(.__wab_flex-container) {
-  }
-}
-@media (max-width: 767px) {
-  .accountSettings__hasInput > :global(.__wab_flex-container) > *,
-  .accountSettings__hasInput
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > *,
-  .accountSettings__hasInput > :global(.__wab_flex-container) > picture > img,
-  .accountSettings__hasInput
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-  }
-}
-.accountSettings__isPublic {
-}
-.accountSettings__isPublic > :global(.__wab_flex-container) {
-}
-.accountSettings__isPublic > :global(.__wab_flex-container) > *,
-.accountSettings__isPublic
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.accountSettings__isPublic > :global(.__wab_flex-container) > picture > img,
-.accountSettings__isPublic
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.accountSettings__isDropdown {
-}
-.accountSettings__isDropdown > :global(.__wab_flex-container) {
-}
-.accountSettings__isDropdown > :global(.__wab_flex-container) > *,
-.accountSettings__isDropdown
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.accountSettings__isDropdown > :global(.__wab_flex-container) > picture > img,
-.accountSettings__isDropdown
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
 .root .accountSettings:hover {
   background: #373050;
-}
-.root .accountSettings:hover > :global(.__wab_flex-container) {
-}
-.root .accountSettings:hover > :global(.__wab_flex-container) > *,
-.root
-  .accountSettings:hover
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.root .accountSettings:hover > :global(.__wab_flex-container) > picture > img,
-.root
-  .accountSettings:hover
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
 }
 .photoAvatar:global(.__wab_instance) {
   position: relative;
   flex-shrink: 0;
-}
-.text__fEpH7 {
-}
-.text__hasInput__fEpH7J2HLz {
 }
 .slotTargetUserName {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .slotTargetUserName__hasInput {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
-}
-.text__pcJdS {
 }
 .dropdown:global(.__wab_instance) {
   position: absolute;
@@ -267,20 +150,8 @@
   top: 62px;
   left: -2px;
 }
-.text__zyOCx {
-}
-.text__bOp2 {
-}
-.text___6Dyn2 {
-}
 .text__jYiYa {
   height: auto;
-}
-.text__isDropdown__jYiYAmySg3 {
-}
-.text__vvEgz {
-}
-.text__dk1Le {
 }
 .scrollContainer {
   display: flex;
@@ -301,6 +172,8 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
+  min-width: 0;
+  min-height: 0;
   margin-top: calc(0px - 5px);
   height: calc(100% + 5px);
 }
@@ -314,82 +187,10 @@
   > img {
   margin-top: 5px;
 }
-@media (min-width: 1201px) {
-  .scrollContainer {
-  }
-}
-@media (min-width: 1201px) {
-  .scrollContainer > :global(.__wab_flex-container) {
-  }
-}
-@media (min-width: 1201px) {
-  .scrollContainer > :global(.__wab_flex-container) > *,
-  .scrollContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .scrollContainer > :global(.__wab_flex-container) > picture > img,
-  .scrollContainer
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-  }
-}
-@media (min-width: 992px) and (max-width: 1200px) {
-  .scrollContainer {
-  }
-}
-@media (min-width: 992px) and (max-width: 1200px) {
-  .scrollContainer > :global(.__wab_flex-container) {
-  }
-}
-@media (min-width: 992px) and (max-width: 1200px) {
-  .scrollContainer > :global(.__wab_flex-container) > *,
-  .scrollContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .scrollContainer > :global(.__wab_flex-container) > picture > img,
-  .scrollContainer
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .scrollContainer {
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .scrollContainer > :global(.__wab_flex-container) {
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .scrollContainer > :global(.__wab_flex-container) > *,
-  .scrollContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .scrollContainer > :global(.__wab_flex-container) > picture > img,
-  .scrollContainer
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-  }
-}
 @media (max-width: 767px) {
   .scrollContainer {
     padding-top: 96px;
     margin-top: 20px;
-  }
-}
-@media (max-width: 767px) {
-  .scrollContainer > :global(.__wab_flex-container) {
-  }
-}
-@media (max-width: 767px) {
-  .scrollContainer > :global(.__wab_flex-container) > *,
-  .scrollContainer > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .scrollContainer > :global(.__wab_flex-container) > picture > img,
-  .scrollContainer
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
   }
 }
 .scrollContainer__hasInput {
@@ -397,74 +198,10 @@
   border-top-style: solid;
   padding: 1px 20px 40px;
 }
-.scrollContainer__hasInput > :global(.__wab_flex-container) {
-}
-.scrollContainer__hasInput > :global(.__wab_flex-container) > *,
-.scrollContainer__hasInput
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.scrollContainer__hasInput > :global(.__wab_flex-container) > picture > img,
-.scrollContainer__hasInput
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
 @media (max-width: 767px) {
   .scrollContainer__hasInput {
     margin-top: 20px;
   }
-}
-@media (max-width: 767px) {
-  .scrollContainer__hasInput > :global(.__wab_flex-container) {
-  }
-}
-@media (max-width: 767px) {
-  .scrollContainer__hasInput > :global(.__wab_flex-container) > *,
-  .scrollContainer__hasInput
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > *,
-  .scrollContainer__hasInput > :global(.__wab_flex-container) > picture > img,
-  .scrollContainer__hasInput
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-  }
-}
-.scrollContainer__isPublic {
-}
-.scrollContainer__isPublic > :global(.__wab_flex-container) {
-}
-.scrollContainer__isPublic > :global(.__wab_flex-container) > *,
-.scrollContainer__isPublic
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.scrollContainer__isPublic > :global(.__wab_flex-container) > picture > img,
-.scrollContainer__isPublic
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-}
-.scrollContainer__isDropdown {
-}
-.scrollContainer__isDropdown > :global(.__wab_flex-container) {
-}
-.scrollContainer__isDropdown > :global(.__wab_flex-container) > *,
-.scrollContainer__isDropdown
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.scrollContainer__isDropdown > :global(.__wab_flex-container) > picture > img,
-.scrollContainer__isDropdown
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
 }
 .itemGroupContainer {
   display: flex;
@@ -487,44 +224,6 @@
   > picture
   > img {
   margin-top: 5px;
-}
-@media (max-width: 767px) {
-  .itemGroupContainer {
-  }
-}
-@media (max-width: 767px) {
-  .itemGroupContainer > :global(.__wab_flex-container) {
-  }
-}
-@media (max-width: 767px) {
-  .itemGroupContainer > :global(.__wab_flex-container) > *,
-  .itemGroupContainer
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > *,
-  .itemGroupContainer > :global(.__wab_flex-container) > picture > img,
-  .itemGroupContainer
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-  }
-}
-.itemGroupContainer__hasInput {
-}
-.itemGroupContainer__hasInput > :global(.__wab_flex-container) {
-}
-.itemGroupContainer__hasInput > :global(.__wab_flex-container) > *,
-.itemGroupContainer__hasInput
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.itemGroupContainer__hasInput > :global(.__wab_flex-container) > picture > img,
-.itemGroupContainer__hasInput
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
 }
 .sidebarItemGroup:global(.__wab_instance) {
   margin-top: calc(10px + 5px) !important;
@@ -567,15 +266,7 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-}
-.freeBox > :global(.__wab_flex-container) > *,
-.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox > :global(.__wab_flex-container) > picture > img,
-.freeBox
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
+  min-width: 0;
 }
 .freeBox__isPublic {
   display: flex;
@@ -604,8 +295,6 @@
 .viewCreateVenture {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
   cursor: pointer;
-}
-.viewCreateVenture__isPublic {
 }
 .svg {
   position: relative;
