@@ -7,7 +7,6 @@ import {
   PlasmicFeedUpdate,
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import { getUniqueListBy, resourceOwnership } from "module/helpers";
 import {
@@ -50,7 +49,7 @@ function FeedUpdate(props: FeedUpdateProps) {
 
   const { token } = useContext(AuthContext);
   const { currentVenture, timelines } = useContext(VentureContext);
-  const { currentTimeline } = useContext(TimelineContext);
+  const { currentTimeline } = useContext(VentureContext);
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
   const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);

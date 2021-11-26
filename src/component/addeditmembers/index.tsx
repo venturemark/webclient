@@ -8,7 +8,6 @@ import {
   PlasmicAddEditMembers,
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import {
@@ -50,7 +49,7 @@ function AddEditMembers(props: AddEditMembersProps) {
   const { token } = useContext(AuthContext);
   const { currentVenture, currentVentureMembers } = useContext(VentureContext);
   const { currentTimeline, currentTimelineMembers } =
-    useContext(TimelineContext);
+    useContext(VentureContext);
 
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";

@@ -13,6 +13,9 @@ export interface IVentureContext {
   currentVenture?: IVenture;
   currentVentureTimelines: ITimeline[];
   currentVentureMembers: Array<{ user: IUser; role: IRole }>;
+
+  currentTimeline?: ITimeline;
+  currentTimelineMembers: Array<{ user: IUser; role: IRole }>;
 }
 
 export const VentureContext = createContext<IVentureContext>({
@@ -22,4 +25,6 @@ export const VentureContext = createContext<IVentureContext>({
 
   currentVentureTimelines: [],
   currentVentureMembers: [],
+
+  currentTimelineMembers: [],
 });

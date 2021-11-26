@@ -6,7 +6,6 @@ import {
   PlasmicSidebarItemGroup,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
-import { TimelineContext } from "context/TimelineContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { calculateSlug } from "module/helpers";
@@ -26,7 +25,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
     props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { currentVenture } = useContext(VentureContext);
-  const { currentTimeline } = useContext(TimelineContext);
+  const { currentTimeline } = useContext(VentureContext);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const userLastViewedUpdate = user?.lastUpdate || {};

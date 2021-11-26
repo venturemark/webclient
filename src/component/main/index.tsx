@@ -6,7 +6,6 @@ import {
   DefaultMainProps,
   PlasmicMain,
 } from "component/plasmic/shared/PlasmicMain";
-import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
@@ -38,7 +37,7 @@ function Main(props: MainProps) {
   } = props;
 
   const { currentVenture, ventures } = useContext(VentureContext);
-  const { currentTimeline } = useContext(TimelineContext);
+  const { currentTimeline } = useContext(VentureContext);
   const hasVentures = ventures?.length > 0 ? true : false;
 
   const [ventureName, setVentureName] = useState<string | null>(null);

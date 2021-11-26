@@ -5,7 +5,6 @@ import {
   DefaultMainHeaderProps,
   PlasmicMainHeader,
 } from "component/plasmic/shared/PlasmicMainHeader";
-import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
@@ -19,7 +18,7 @@ function MainHeader(props: MainHeaderProps) {
   const { timelineSlug, ventureSlug } = useParams();
   const { currentVentureMembers } = useContext(VentureContext);
   const { currentTimeline, currentTimelineMembers } =
-    useContext(TimelineContext);
+    useContext(VentureContext);
   const navigate = useNavigate();
 
   const basePath = timelineSlug

@@ -7,7 +7,6 @@ import {
   PlasmicAddEditTimeline,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import {
   calculateNamedSlug,
@@ -29,9 +28,8 @@ export type FormData = {
 function AddEditTimeline(props: AddEditTimelineProps) {
   const { onChange, ...rest } = props;
 
-  const { currentVenture, currentVentureTimelines } =
+  const { currentVenture, currentVentureTimelines, currentTimeline } =
     useContext(VentureContext);
-  const { currentTimeline } = useContext(TimelineContext);
 
   const {
     handleSubmit,

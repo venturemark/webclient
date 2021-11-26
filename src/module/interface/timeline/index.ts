@@ -19,6 +19,11 @@ export interface ISearchTimelinesbyUserId {
   token: string | null;
 }
 
+export interface ISearchTimelinesByVentureId {
+  ventureId?: string;
+  token: string | null;
+}
+
 export interface ICreateTimeline {
   name: string;
   desc: string;

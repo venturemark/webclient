@@ -14,6 +14,7 @@ export interface IAPISearchTimeline {
 
 export interface IAPISearchVenture {
   id?: string;
+  slug?: string;
   userId?: string;
   token: string | null;
 }

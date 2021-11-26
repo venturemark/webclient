@@ -14,8 +14,13 @@ export interface ISearchVenturesByUser {
   token: string | null;
 }
 
-export interface ISearchVenturesByTimeline {
+export interface ISearchVenturesById {
   ventureIds: string[];
+  token: string | null;
+}
+
+export interface ISearchVentureBySlug {
+  ventureSlug: string;
   token: string | null;
 }
 

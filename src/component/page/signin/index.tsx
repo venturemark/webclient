@@ -7,11 +7,12 @@ import {
   PlasmicSignin,
 } from "component/plasmic/shared/PlasmicSignin";
 import { AuthContext } from "context/AuthContext";
+import { useAuth } from "module/auth";
 
 interface SigninProps extends DefaultSigninProps {}
 
 function Signin(props: SigninProps) {
-  const auth = useContext(AuthContext);
+  const auth = useAuth();
   const { state } = useLocation();
   const { loginWithRedirect } = useAuth0();
 
