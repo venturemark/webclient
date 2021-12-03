@@ -15,7 +15,7 @@ export async function Search(
   const objList = [];
 
   const token = timelineSearch.token;
-  const metadata = { Authorization: token ? `Bearer ${token}` : '' };
+  const metadata = { Authorization: token ? `Bearer ${token}` : "" };
 
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());

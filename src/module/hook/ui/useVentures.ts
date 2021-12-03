@@ -4,7 +4,11 @@ import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { IVentureContext } from "context/VentureContext";
 import { calculateNamedSlug, getUniqueListBy } from "module/helpers";
-import { useRoleByTimelines, useRoleByVentures, useTimelineRole } from "module/hook/role";
+import {
+  useRoleByTimelines,
+  useRoleByVentures,
+  useTimelineRole,
+} from "module/hook/role";
 import { useTimelinesByUserId } from "module/hook/timeline";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { useVenturesById, useVenturesByUser } from "module/hook/venture";
@@ -62,7 +66,12 @@ function injectTimelineRoles(
 export function useVentures(): IVentureContext {
   const { ventureSlug = "", timelineSlug = "" } = useParams();
   const { user, status } = useContext(UserContext);
-  const { token, authenticated, error, loading: authLoading } = useContext(AuthContext);
+  const {
+    token,
+    authenticated,
+    error,
+    loading: authLoading,
+  } = useContext(AuthContext);
   const userId = user?.id;
 
   const { data: venturesByUserData = [], status: venturesByUserStatus } =
@@ -83,11 +92,7 @@ export function useVentures(): IVentureContext {
       token,
     });
 
-  const ventures = injectVentureRoles(
-    [],
-    userId,
-    ventureRolesData
-  );
+  const ventures = injectVentureRoles([], userId, ventureRolesData);
   ventures.sort((a, b) =>
     calculateNamedSlug(a).localeCompare(calculateNamedSlug(b))
   );
@@ -131,9 +136,12 @@ export function useVentures(): IVentureContext {
     .filter((member): member is { user: IUser; role: IRole } =>
       Boolean(member.role)
     );
-  
-  const currentTimeline = currentVentureTimelines.find(t => calculateNamedSlug(t) === timelineSlug && currentVenture?.id === t.ventureId)
 
+  const currentTimeline = currentVentureTimelines.find(
+    (t) =>
+      calculateNamedSlug(t) === timelineSlug &&
+      currentVenture?.id === t.ventureId
+  );
 
   const {
     data: currentTimelineUsersData = [],
@@ -158,11 +166,10 @@ export function useVentures(): IVentureContext {
     ventureRolesStatus === "loading" ||
     timelinesByUserStatus === "loading" ||
     timelineRolesStatus === "loading" ||
-    (Boolean(ventureSlug) && 
-      currentVentureMembersStatus === "loading" ||
-      (Boolean(timelineSlug) &&
-        (currentTimelineUsersStatus === "loading" ||
-        currentTimelineRolesStatus === "loading")))
+    (Boolean(ventureSlug) && currentVentureMembersStatus === "loading") ||
+    (Boolean(timelineSlug) &&
+      (currentTimelineUsersStatus === "loading" ||
+        currentTimelineRolesStatus === "loading"));
 
   const currentTimelineMembers = currentTimelineUsersData
     .map((user) => ({

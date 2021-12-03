@@ -1,12 +1,10 @@
 import { RedirectLoginOptions, useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
 import {
   DefaultSigninProps,
   PlasmicSignin,
 } from "component/plasmic/shared/PlasmicSignin";
-import { AuthContext } from "context/AuthContext";
 import { useAuth } from "module/auth";
 
 interface SigninProps extends DefaultSigninProps {}

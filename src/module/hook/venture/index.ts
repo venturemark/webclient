@@ -39,7 +39,7 @@ export function useVenturesById(params: ISearchVenturesById) {
           });
         })
       );
-    
+
       return allVentures.flat();
     },
     {

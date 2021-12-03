@@ -15,7 +15,7 @@ export async function Search(
   const objList = [];
 
   const token = ventureSearch.token;
-  const metadata = { Authorization: token ? `Bearer ${token}` : '' };
+  const metadata = { Authorization: token ? `Bearer ${token}` : "" };
 
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
@@ -30,7 +30,7 @@ export async function Search(
   if (!token) {
     obj.getMetadataMap().set(key.ResourceVisibility, "visibility:public");
   }
-  
+
   objList.push(obj);
   req.setObjList(objList);
 
