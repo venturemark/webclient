@@ -48,7 +48,7 @@ export function useVenturesById(params: ISearchVenturesById) {
   );
 }
 
-export function useVentureBySlug(params: ISearchVentureBySlug) {
+export function useVenturesBySlug(params: ISearchVentureBySlug) {
   return useQuery<IVenture[], ErrorResponse>(
     ["ventures", params.ventureSlug],
     () => {

@@ -3,13 +3,10 @@ import {
   PlasmicIconButtonMember,
 } from "component/plasmic/shared/PlasmicIconButtonMember";
 
-interface IconButtonMemberProps extends DefaultIconButtonMemberProps {
-  onClick?: () => void;
-}
+interface IconButtonMemberProps extends DefaultIconButtonMemberProps {}
 
 function IconButtonMember(props: IconButtonMemberProps) {
-  const { onClick, ...rest } = props;
-  return <PlasmicIconButtonMember onClick={onClick} {...rest} />;
+  return <PlasmicIconButtonMember {...props} />;
 }
 
 export default IconButtonMember;

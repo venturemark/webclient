@@ -17,6 +17,7 @@ import {
 } from "module/hook/invite";
 import { useDeleteRole } from "module/hook/role";
 import { IInvite } from "module/interface/invite";
+import { TimelineContext } from "context/TimelineContext";
 
 const emailRegex =
   /^\s*(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;
@@ -49,7 +50,7 @@ function AddEditMembers(props: AddEditMembersProps) {
   const { token } = useContext(AuthContext);
   const { currentVenture, currentVentureMembers } = useContext(VentureContext);
   const { currentTimeline, currentTimelineMembers } =
-    useContext(VentureContext);
+    useContext(TimelineContext);
 
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";

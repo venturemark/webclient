@@ -21,6 +21,7 @@ import {
 import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
+import { TimelineContext } from "context/TimelineContext";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
   user: IUser;
@@ -49,7 +50,7 @@ function FeedUpdate(props: FeedUpdateProps) {
 
   const { token } = useContext(AuthContext);
   const { currentVenture, timelines } = useContext(VentureContext);
-  const { currentTimeline } = useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
   const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);

@@ -9,6 +9,7 @@ import {
 import { VentureContext } from "context/VentureContext";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
+import { TimelineContext } from "context/TimelineContext";
 
 interface MainProps extends DefaultMainProps {
   isOnboarding?: boolean | "isOnboarding";
@@ -37,7 +38,7 @@ function Main(props: MainProps) {
   } = props;
 
   const { currentVenture, ventures } = useContext(VentureContext);
-  const { currentTimeline } = useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
   const hasVentures = ventures?.length > 0 ? true : false;
 
   const [ventureName, setVentureName] = useState<string | null>(null);

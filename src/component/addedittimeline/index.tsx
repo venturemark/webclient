@@ -14,6 +14,7 @@ import {
   resourceOwnership,
 } from "module/helpers";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
+import { TimelineContext } from "context/TimelineContext";
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   onChange?: (data: FormData) => void;
@@ -28,8 +29,9 @@ export type FormData = {
 function AddEditTimeline(props: AddEditTimelineProps) {
   const { onChange, ...rest } = props;
 
-  const { currentVenture, currentVentureTimelines, currentTimeline } =
+  const { currentVenture, currentVentureTimelines } =
     useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
 
   const {
     handleSubmit,

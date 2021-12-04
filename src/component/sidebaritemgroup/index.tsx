@@ -11,6 +11,7 @@ import { VentureContext } from "context/VentureContext";
 import { calculateSlug } from "module/helpers";
 import { ITimeline } from "module/interface/timeline";
 import { UserRole } from "module/interface/user";
+import { TimelineContext } from "context/TimelineContext";
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;
@@ -25,7 +26,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
     props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { currentVenture } = useContext(VentureContext);
-  const { currentTimeline } = useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const userLastViewedUpdate = user?.lastUpdate || {};

@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   DefaultMainHeaderProps,
   PlasmicMainHeader,
 } from "component/plasmic/shared/PlasmicMainHeader";
 import { VentureContext } from "context/VentureContext";
+import { TimelineContext } from "context/TimelineContext";
+import { Link } from "react-router-dom";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
@@ -18,8 +20,7 @@ function MainHeader(props: MainHeaderProps) {
   const { timelineSlug, ventureSlug } = useParams();
   const { currentVentureMembers } = useContext(VentureContext);
   const { currentTimeline, currentTimelineMembers } =
-    useContext(VentureContext);
-  const navigate = useNavigate();
+    useContext(TimelineContext);
 
   const basePath = timelineSlug
     ? `/${ventureSlug}/${timelineSlug}`
@@ -40,14 +41,22 @@ function MainHeader(props: MainHeaderProps) {
           : "timelineHeader"
       }
       viewHome={{
-        onClick: () => navigate(basePath + "/feed"),
+        wrap(node) {
+          return <Link to={basePath + "/feed"}>{node}</Link>;
+        },
       }}
       viewMembers={{
-        memberCount: members.length,
-        onClick: () => navigate(basePath + "/members"),
+        props: {
+          memberCount: members.length,
+        },
+        wrap(node) {
+          return <Link to={basePath + "/members"}>{node}</Link>;
+        },
       }}
       viewSettings={{
-        onClick: () => navigate(basePath + "/settings"),
+        wrap(node) {
+          return <Link to={basePath + "/settings"}>{node}</Link>;
+        },
       }}
       isActive={isActive}
     />

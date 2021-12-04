@@ -4,19 +4,14 @@ import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { IVentureContext } from "context/VentureContext";
 import { calculateNamedSlug, getUniqueListBy } from "module/helpers";
-import {
-  useRoleByTimelines,
-  useRoleByVentures,
-  useTimelineRole,
-} from "module/hook/role";
+import { useRoleByTimelines, useRoleByVentures } from "module/hook/role";
 import { useTimelinesByUserId } from "module/hook/timeline";
-import { useTimelineMembers, useVentureMembers } from "module/hook/user";
+import { useVentureMembers } from "module/hook/user";
 import { useVenturesById, useVenturesByUser } from "module/hook/venture";
 import { IRole } from "module/interface/role";
 import { ITimeline } from "module/interface/timeline";
 import { IUser, UserRole } from "module/interface/user";
 import { IVenture } from "module/interface/venture";
-import { useParams } from "react-router";
 
 function injectVentureRoles(
   ventures: IVenture[],
@@ -63,15 +58,9 @@ function injectTimelineRoles(
   );
 }
 
-export function useVentures(): IVentureContext {
-  const { ventureSlug = "", timelineSlug = "" } = useParams();
-  const { user, status } = useContext(UserContext);
-  const {
-    token,
-    authenticated,
-    error,
-    loading: authLoading,
-  } = useContext(AuthContext);
+export function useVentures(ventureSlug: string): IVentureContext {
+  const { user } = useContext(UserContext);
+  const { token } = useContext(AuthContext);
   const userId = user?.id;
 
   const { data: venturesByUserData = [], status: venturesByUserStatus } =
@@ -86,13 +75,30 @@ export function useVentures(): IVentureContext {
       token,
     });
 
+  const {
+    data: venturesByTimelineData = [],
+    status: venturesByTimelineStatus,
+  } = useVenturesById({
+    ventureIds: [...new Set(timelinesByUserData?.map((t) => t.ventureId))],
+    token,
+  });
+
+  const combinedVentures = getUniqueListBy(
+    [...venturesByTimelineData, ...venturesByUserData],
+    "id"
+  );
+
   const { data: ventureRolesData = [], status: ventureRolesStatus } =
     useRoleByVentures({
-      ventures: [],
+      ventures: combinedVentures,
       token,
     });
 
-  const ventures = injectVentureRoles([], userId, ventureRolesData);
+  const ventures = injectVentureRoles(
+    combinedVentures,
+    userId,
+    ventureRolesData
+  );
   ventures.sort((a, b) =>
     calculateNamedSlug(a).localeCompare(calculateNamedSlug(b))
   );
@@ -114,6 +120,14 @@ export function useVentures(): IVentureContext {
     ventureId: currentVenture?.id,
     token,
   });
+
+  const loading =
+    venturesByUserStatus !== "success" ||
+    venturesByTimelineStatus !== "success" ||
+    ventureRolesStatus !== "success" ||
+    timelinesByUserStatus !== "success" ||
+    timelineRolesStatus !== "success" ||
+    (currentVentureMembersStatus !== "success" && Boolean(ventureSlug));
 
   const timelines = injectTimelineRoles(
     timelinesByUserData,
@@ -137,49 +151,6 @@ export function useVentures(): IVentureContext {
       Boolean(member.role)
     );
 
-  const currentTimeline = currentVentureTimelines.find(
-    (t) =>
-      calculateNamedSlug(t) === timelineSlug &&
-      currentVenture?.id === t.ventureId
-  );
-
-  const {
-    data: currentTimelineUsersData = [],
-    status: currentTimelineUsersStatus,
-  } = useTimelineMembers({
-    timelineId: currentTimeline?.id,
-    ventureId: currentVenture?.id,
-    token,
-  });
-
-  const {
-    data: currentTimelineRolesData = [],
-    status: currentTimelineRolesStatus,
-  } = useTimelineRole({
-    timelineId: currentTimeline?.id,
-    ventureId: currentVenture?.id,
-    token,
-  });
-
-  const loading =
-    venturesByUserStatus === "loading" ||
-    ventureRolesStatus === "loading" ||
-    timelinesByUserStatus === "loading" ||
-    timelineRolesStatus === "loading" ||
-    (Boolean(ventureSlug) && currentVentureMembersStatus === "loading") ||
-    (Boolean(timelineSlug) &&
-      (currentTimelineUsersStatus === "loading" ||
-        currentTimelineRolesStatus === "loading"));
-
-  const currentTimelineMembers = currentTimelineUsersData
-    .map((user) => ({
-      user,
-      role: currentTimelineRolesData.find((r) => r.subjectId === user.id),
-    }))
-    .filter((member): member is { user: IUser; role: IRole } =>
-      Boolean(member.role)
-    );
-
   const ventureContext: IVentureContext = {
     loading,
     ventures,
@@ -188,9 +159,6 @@ export function useVentures(): IVentureContext {
     currentVenture,
     currentVentureTimelines,
     currentVentureMembers,
-
-    currentTimeline,
-    currentTimelineMembers,
   };
 
   return ventureContext;

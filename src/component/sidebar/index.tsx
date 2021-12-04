@@ -26,6 +26,7 @@ function Sidebar(props: SidebarProps) {
         onClick: () => setIsDropdown(!isDropdown),
       }}
       isDropdown={isDropdown}
+      isPublic={!userContext.user}
       itemGroupContainer={{
         children: ventures.map((venture: IVenture) => (
           <SidebarItemGroup
