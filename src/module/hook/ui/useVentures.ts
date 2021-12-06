@@ -60,7 +60,11 @@ function injectTimelineRoles(
 
 export function useVentures(ventureSlug: string): IVentureContext {
   const { user } = useContext(UserContext);
-  const { token } = useContext(AuthContext);
+  const {
+    authenticated,
+    loading: authLoading,
+    token,
+  } = useContext(AuthContext);
   const userId = user?.id;
 
   const { data: venturesByUserData = [], status: venturesByUserStatus } =
@@ -121,13 +125,18 @@ export function useVentures(ventureSlug: string): IVentureContext {
     token,
   });
 
-  const loading =
-    venturesByUserStatus !== "success" ||
-    venturesByTimelineStatus !== "success" ||
-    ventureRolesStatus !== "success" ||
-    timelinesByUserStatus !== "success" ||
-    timelineRolesStatus !== "success" ||
-    (currentVentureMembersStatus !== "success" && Boolean(ventureSlug));
+  let loading: boolean;
+  if (!authenticated) {
+    loading = authLoading;
+  } else {
+    loading =
+      venturesByUserStatus !== "success" ||
+      venturesByTimelineStatus !== "success" ||
+      ventureRolesStatus !== "success" ||
+      timelinesByUserStatus !== "success" ||
+      timelineRolesStatus !== "success" ||
+      (currentVentureMembersStatus !== "success" && Boolean(ventureSlug));
+  }
 
   const timelines = injectTimelineRoles(
     timelinesByUserData,
