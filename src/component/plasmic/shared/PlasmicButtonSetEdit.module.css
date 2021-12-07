@@ -55,6 +55,11 @@
     order: 2;
   }
 }
+@media (max-width: 767px) {
+  ._delete:global(.__wab_instance) {
+    order: 1;
+  }
+}
 .svg__xHKz {
   position: relative;
   object-fit: cover;
@@ -64,7 +69,6 @@
 .text222 {
   height: auto;
   width: auto;
-  display: inline-block;
 }
 .svg__s1LOr {
   position: relative;
@@ -171,6 +175,11 @@
     order: 2;
   }
 }
+@media (max-width: 767px) {
+  .cancel:global(.__wab_instance) {
+    order: 2;
+  }
+}
 .svg___9S6H3 {
   position: relative;
   object-fit: cover;
@@ -180,13 +189,17 @@
 .text22 {
   height: auto;
   width: auto;
-  display: inline-block;
 }
 .svg__obcJ3 {
   position: relative;
   object-fit: cover;
   width: 17px;
   height: 14px;
+}
+@media (max-width: 767px) {
+  .save:global(.__wab_instance) {
+    order: 2;
+  }
 }
 .svg__gmFuI {
   position: relative;
@@ -197,7 +210,6 @@
 .text2 {
   height: auto;
   width: auto;
-  display: inline-block;
 }
 .text2__variantState_isEdit {
   height: auto;

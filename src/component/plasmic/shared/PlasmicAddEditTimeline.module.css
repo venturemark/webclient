@@ -48,10 +48,11 @@
   font-size: 26px /* plasmic-token: TujpjiAsC */;
   font-weight: 600;
 }
-.name:global(.__wab_instance) {
-  position: relative;
-  left: auto;
-  top: auto;
+.svg__cieqg {
+  object-fit: cover;
+  max-width: 100%;
+  width: 1em;
+  height: 1em;
 }
 .description:global(.__wab_instance) {
   position: relative;
@@ -85,6 +86,9 @@
       /* plasmic-token: 9--4ZPcisViPq8V */;
   }
 }
+.freeBox__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M {
+  display: flex;
+}
 .slotTargetSlot2 {
   font-weight: 600;
 }
@@ -96,8 +100,14 @@
 ._switch:global(.__wab_instance) {
   position: relative;
 }
+._switch__variantState_isEdit_isOwner:global(.__wab_instance) {
+  display: flex;
+}
 .visibility:global(.__wab_instance) {
   position: relative;
+}
+.visibility__isOwner:global(.__wab_instance) {
+  display: flex;
 }
 .buttonSetEdit:global(.__wab_instance) {
   position: relative;

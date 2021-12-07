@@ -109,8 +109,20 @@
 .nameField:global(.__wab_instance) {
   position: relative;
 }
+.svg__oLgkf {
+  object-fit: cover;
+  max-width: 100%;
+  width: 1em;
+  height: 1em;
+}
 .jobField:global(.__wab_instance) {
   position: relative;
+}
+.svg__shGvp {
+  object-fit: cover;
+  max-width: 100%;
+  width: 1em;
+  height: 1em;
 }
 .freeBox__z9Te4 {
   display: flex;
@@ -174,7 +186,6 @@
 .text22__editProfile {
   height: auto;
   width: auto;
-  display: inline-block;
 }
 .svg__sweNz {
   position: relative;

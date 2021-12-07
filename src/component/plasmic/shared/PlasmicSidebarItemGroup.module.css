@@ -29,7 +29,6 @@
   white-space: pre;
   text-overflow: ellipsis !important;
   overflow: hidden;
-  display: inline-block;
 }
 .itemContainer {
   display: flex;
@@ -52,7 +51,6 @@
   white-space: pre;
   text-overflow: ellipsis !important;
   overflow: hidden;
-  display: inline-block;
 }
 .itemContainer2 {
   display: flex;
@@ -384,5 +382,4 @@
   white-space: pre;
   text-overflow: ellipsis !important;
   overflow: hidden;
-  display: inline-block;
 }

@@ -72,18 +72,24 @@ function PlasmicNotificationCount__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       <div
         data-plasmic-name={"background"}
         data-plasmic-override={overrides.background}
-        className={classNames(defaultcss.all, sty.background)}
+        className={classNames(defaultcss.all, projectcss.all, sty.background)}
       >
         <div
           data-plasmic-name={"text"}
           data-plasmic-override={overrides.text}
           className={classNames(
             defaultcss.all,
+            projectcss.all,
             defaultcss.__wab_text,
             sty.text
           )}

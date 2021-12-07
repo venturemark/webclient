@@ -31,7 +31,6 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
-import ContentPost from "../../contentpost/index"; // plasmic-import: A1UjtYt6k0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -63,10 +62,7 @@ export const PlasmicFeedUpdate__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicFeedUpdate__OverridesType = {
   root?: p.Flex<"div">;
-  actionBar?: p.Flex<typeof ActionBar>;
   feedContainer?: p.Flex<"div">;
-  date?: p.Flex<"span">;
-  date2?: p.Flex<"span">;
 };
 
 export interface DefaultFeedUpdateProps {
@@ -92,20 +88,48 @@ function PlasmicFeedUpdate__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
         <ActionBar
-          data-plasmic-name={"actionBar"}
-          data-plasmic-override={overrides.actionBar}
-          className={classNames("__wab_instance", sty.actionBar, {
-            [sty.actionBar__isOwner]: hasVariant(
+          className={classNames("__wab_instance", sty.actionBar__wJeXh, {
+            [sty.actionBar__isOwner__wJeXh9Te3O]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
           })}
-          isActive={"isActive" as const}
+          postType={"isActive" as const}
+        />
+      ) : null}
+      {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
+        <ActionBar
+          className={classNames("__wab_instance", sty.actionBar__dhhrd, {
+            [sty.actionBar__isOwner__dhhrd9Te3O]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+          })}
+          content={["hasDescription"]}
+          postType={"isPosted" as const}
+        />
+      ) : null}
+      {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
+        <ActionBar
+          className={classNames("__wab_instance", sty.actionBar___8UKK, {
+            [sty.actionBar__isOwner___8UKK9Te3O]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+          })}
+          postType={"isPosted" as const}
         />
       ) : null}
 
@@ -114,84 +138,26 @@ function PlasmicFeedUpdate__RenderFunc(props: {
         data-plasmic-name={"feedContainer"}
         data-plasmic-override={overrides.feedContainer}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.feedContainer)}
-      >
-        <ContentPost
-          className={classNames("__wab_instance", sty.contentPost___4JU8W, {
-            [sty.contentPost__isPublic___4JU8WyCnHl]: hasVariant(
-              variants,
-              "isPublic",
-              "isPublic"
-            ),
-          })}
-          date={
-            <span
-              data-plasmic-name={"date"}
-              data-plasmic-override={overrides.date}
-              className={classNames(
-                defaultcss.span,
-                defaultcss.__wab_text,
-                sty.date
-              )}
-            >
-              {"3h ago"}
-            </span>
-          }
-          state={
-            hasVariant(variants, "isPublic", "isPublic")
-              ? ("isPublic" as const)
-              : undefined
-          }
-        />
-
-        <ContentPost
-          className={classNames("__wab_instance", sty.contentPost__f7T3C, {
-            [sty.contentPost__isPublic__f7T3CYCnHl]: hasVariant(
-              variants,
-              "isPublic",
-              "isPublic"
-            ),
-          })}
-          date={
-            <span
-              data-plasmic-name={"date2"}
-              data-plasmic-override={overrides.date2}
-              className={classNames(
-                defaultcss.span,
-                defaultcss.__wab_text,
-                sty.date2
-              )}
-            >
-              {"3h ago"}
-            </span>
-          }
-          state={
-            hasVariant(variants, "isPublic", "isPublic")
-              ? ("isPublic" as const)
-              : undefined
-          }
-        />
-      </p.Stack>
+        className={classNames(
+          defaultcss.all,
+          projectcss.all,
+          sty.feedContainer
+        )}
+      />
     </p.Stack>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "actionBar", "feedContainer", "date", "date2"],
-  actionBar: ["actionBar"],
-  feedContainer: ["feedContainer", "date", "date2"],
-  date: ["date"],
-  date2: ["date2"],
+  root: ["root", "feedContainer"],
+  feedContainer: ["feedContainer"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  actionBar: typeof ActionBar;
   feedContainer: "div";
-  date: "span";
-  date2: "span";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -255,10 +221,7 @@ export const PlasmicFeedUpdate = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    actionBar: makeNodeComponent("actionBar"),
     feedContainer: makeNodeComponent("feedContainer"),
-    date: makeNodeComponent("date"),
-    date2: makeNodeComponent("date2"),
 
     // Metadata about props expected for PlasmicFeedUpdate
     internalVariantProps: PlasmicFeedUpdate__VariantProps,

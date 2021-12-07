@@ -99,43 +99,76 @@ function PlasmicJoinVenture__RenderFunc(props: {
           data-plasmic-for-node={forNode}
           className={classNames(
             defaultcss.all,
+            projectcss.all,
             projectcss.root_reset,
             sty.root
           )}
         >
-          <div className={classNames(defaultcss.all, sty.freeBox___2Z8)}>
+          <div
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox___2Z8
+            )}
+          >
             <Header
               data-plasmic-name={"header"}
               data-plasmic-override={overrides.header}
               className={classNames("__wab_instance", sty.header)}
             />
 
-            <div className={classNames(defaultcss.all, sty.freeBox__lHnLh)}>
+            <div
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox__lHnLh
+              )}
+            >
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.freeBox__sMn2A)}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox__sMn2A
+                )}
               >
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.freeBox__uwKvi)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.freeBox__uwKvi
+                  )}
                 >
                   <div
-                    className={classNames(defaultcss.all, sty.freeBox__hRcye)}
+                    className={classNames(
+                      defaultcss.all,
+                      projectcss.all,
+                      sty.freeBox__hRcye
+                    )}
                   >
                     <div
                       className={classNames(
                         defaultcss.all,
+                        projectcss.all,
                         sty.freeBox___3W6Kg
                       )}
                     >
-                      <h2 className={classNames(defaultcss.h2, sty.h2___608W3)}>
+                      <h2
+                        className={classNames(
+                          defaultcss.h2,
+                          projectcss.h2,
+                          sty.h2___608W3
+                        )}
+                      >
                         <div
                           data-plasmic-name={"text"}
                           data-plasmic-override={overrides.text}
                           className={classNames(
                             defaultcss.all,
+                            projectcss.all,
                             defaultcss.__wab_text,
                             sty.text
                           )}
@@ -146,7 +179,11 @@ function PlasmicJoinVenture__RenderFunc(props: {
                         <span
                           data-plasmic-name={"span"}
                           data-plasmic-override={overrides.span}
-                          className={classNames(defaultcss.span, sty.span)}
+                          className={classNames(
+                            defaultcss.span,
+                            projectcss.span,
+                            sty.span
+                          )}
                         >
                           {p.renderPlasmicSlot({
                             defaultContents: "BaronFig",
@@ -158,11 +195,16 @@ function PlasmicJoinVenture__RenderFunc(props: {
                     </div>
 
                     <div
-                      className={classNames(defaultcss.all, sty.freeBox__zlDnp)}
+                      className={classNames(
+                        defaultcss.all,
+                        projectcss.all,
+                        sty.freeBox__zlDnp
+                      )}
                     >
                       <h2
                         className={classNames(
                           defaultcss.h2,
+                          projectcss.h2,
                           defaultcss.__wab_text,
                           sty.h2__vnLD
                         )}
@@ -177,6 +219,7 @@ function PlasmicJoinVenture__RenderFunc(props: {
                     data-plasmic-override={overrides.p}
                     className={classNames(
                       defaultcss.p,
+                      projectcss.p,
                       defaultcss.__wab_text,
                       sty.p
                     )}
@@ -204,6 +247,7 @@ function PlasmicJoinVenture__RenderFunc(props: {
                         data-plasmic-override={overrides.text2}
                         className={classNames(
                           defaultcss.all,
+                          projectcss.all,
                           defaultcss.__wab_text,
                           sty.text2
                         )}

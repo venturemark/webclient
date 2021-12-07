@@ -22,16 +22,46 @@
 .root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-top: 38px;
 }
-.actionBar:global(.__wab_instance) {
+.actionBar__wJeXh:global(.__wab_instance) {
   position: relative;
 }
-.svg__s9Ejf {
+.svg__hCy7B {
   position: relative;
   object-fit: cover;
   width: 17px;
   height: 14px;
 }
 .svg___1751V {
+  position: relative;
+  object-fit: cover;
+  width: 12px;
+  height: 10px;
+}
+.actionBar__dhhrd:global(.__wab_instance) {
+  position: relative;
+}
+.svg__jO7A {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
+.svg__hdbze {
+  position: relative;
+  object-fit: cover;
+  width: 12px;
+  height: 10px;
+}
+.actionBar___8UKK:global(.__wab_instance) {
+  position: relative;
+}
+.svg__yzCpk {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+}
+.svg__b0KEj {
   position: relative;
   object-fit: cover;
   width: 12px;
@@ -67,40 +97,4 @@
   > picture
   > img {
   margin-top: 20px /* plasmic-token: dS7QCqXxp */;
-}
-.span__suEcB {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
-  font-weight: 600;
-}
-.date {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
-  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
-}
-.span___4LMmu {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
-  font-weight: 600;
-}
-.date2 {
-  position: relative;
-  width: auto;
-  height: auto;
-  left: auto;
-  top: auto;
-  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
-  color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }

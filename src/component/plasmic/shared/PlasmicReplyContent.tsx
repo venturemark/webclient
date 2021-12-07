@@ -104,31 +104,45 @@ function PlasmicReplyContent__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       <div
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
-        className={classNames(defaultcss.all, sty.editorContainer, {
-          [sty.editorContainer__isUserOnClick]: hasVariant(
-            variants,
-            "isUserOnClick",
-            "isUserOnClick"
-          ),
-          [sty.editorContainer__isUserOnClick_state_isUser]:
-            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
-            hasVariant(variants, "state", "isUser"),
-          [sty.editorContainer__state_isUser]: hasVariant(
-            variants,
-            "state",
-            "isUser"
-          ),
-        })}
+        className={classNames(
+          defaultcss.all,
+          projectcss.all,
+          sty.editorContainer,
+          {
+            [sty.editorContainer__isUserOnClick]: hasVariant(
+              variants,
+              "isUserOnClick",
+              "isUserOnClick"
+            ),
+            [sty.editorContainer__isUserOnClick_state_isUser]:
+              hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+              hasVariant(variants, "state", "isUser"),
+            [sty.editorContainer__state_isUser]: hasVariant(
+              variants,
+              "state",
+              "isUser"
+            ),
+          }
+        )}
       >
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.freeBox__cyQ9E)}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__cyQ9E
+          )}
         >
           <PhotoAvatar
             data-plasmic-name={"photoAvatar"}
@@ -136,49 +150,72 @@ function PlasmicReplyContent__RenderFunc(props: {
             className={classNames("__wab_instance", sty.photoAvatar)}
           />
 
-          <div className={classNames(defaultcss.all, sty.freeBox___0YC8Z)}>
+          <div
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox___0YC8Z
+            )}
+          >
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.freeBox__rqpD, {
-                [sty.freeBox__state_isUser__rqpDFEdPi]: hasVariant(
-                  variants,
-                  "state",
-                  "isUser"
-                ),
-              })}
-            >
-              <p.Stack
-                as={"div"}
-                hasGap={true}
-                className={classNames(defaultcss.all, sty.freeBox__iU0A, {
-                  [sty.freeBox__state_isUser__iU0AfEdPi]: hasVariant(
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox__rqpD,
+                {
+                  [sty.freeBox__state_isUser__rqpDFEdPi]: hasVariant(
                     variants,
                     "state",
                     "isUser"
                   ),
-                })}
+                }
+              )}
+            >
+              <p.Stack
+                as={"div"}
+                hasGap={true}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox__iU0A,
+                  {
+                    [sty.freeBox__state_isUser__iU0AfEdPi]: hasVariant(
+                      variants,
+                      "state",
+                      "isUser"
+                    ),
+                  }
+                )}
               >
-                <div className={classNames(defaultcss.all, sty.freeBox__cAoxI)}>
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.freeBox__cAoxI
+                  )}
+                >
                   <p.Stack
                     as={"div"}
                     hasGap={true}
-                    className={classNames(defaultcss.all, sty.freeBox__oKSfs)}
+                    className={classNames(
+                      defaultcss.all,
+                      projectcss.all,
+                      sty.freeBox__oKSfs
+                    )}
                   >
                     {p.renderPlasmicSlot({
                       defaultContents: (
                         <span
                           className={classNames(
                             defaultcss.span,
+                            projectcss.span,
                             defaultcss.__wab_text,
                             sty.span__l1Yn1
                           )}
                         >
-                          <span
-                            className={
-                              "plasmic_default__all plasmic_default__span"
-                            }
-                          >
+                          <React.Fragment>
                             <React.Fragment>{""}</React.Fragment>
                             <span
                               className={
@@ -189,7 +226,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                               {"asdasdasdasd "}
                             </span>
                             <React.Fragment>{""}</React.Fragment>
-                          </span>
+                          </React.Fragment>
                         </span>
                       ),
 
@@ -200,13 +237,18 @@ function PlasmicReplyContent__RenderFunc(props: {
                     <p.Stack
                       as={"div"}
                       hasGap={true}
-                      className={classNames(defaultcss.all, sty.freeBox__wfm2A)}
+                      className={classNames(
+                        defaultcss.all,
+                        projectcss.all,
+                        sty.freeBox__wfm2A
+                      )}
                     >
                       <span
                         data-plasmic-name={"span"}
                         data-plasmic-override={overrides.span}
                         className={classNames(
                           defaultcss.span,
+                          projectcss.span,
                           defaultcss.__wab_text,
                           sty.span,
                           {
@@ -228,6 +270,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                           <span
                             className={classNames(
                               defaultcss.span,
+                              projectcss.span,
                               defaultcss.__wab_text,
                               sty.span___4NLge
                             )}
@@ -245,40 +288,54 @@ function PlasmicReplyContent__RenderFunc(props: {
 
                 {(hasVariant(variants, "state", "isUser") ? true : false) ? (
                   <div
-                    className={classNames(defaultcss.all, sty.freeBox___2Fduc, {
-                      [sty.freeBox__state_isUser___2FducFEdPi]: hasVariant(
-                        variants,
-                        "state",
-                        "isUser"
-                      ),
-                    })}
+                    className={classNames(
+                      defaultcss.all,
+                      projectcss.all,
+                      sty.freeBox___2Fduc,
+                      {
+                        [sty.freeBox__state_isUser___2FducFEdPi]: hasVariant(
+                          variants,
+                          "state",
+                          "isUser"
+                        ),
+                      }
+                    )}
                   >
                     <button
                       data-plasmic-name={"iconMenu"}
                       data-plasmic-override={overrides.iconMenu}
-                      className={classNames(defaultcss.button, sty.iconMenu)}
+                      className={classNames(
+                        defaultcss.button,
+                        projectcss.button,
+                        sty.iconMenu
+                      )}
                     >
                       <IconDotMenuIcon
                         data-plasmic-name={"svg"}
                         data-plasmic-override={overrides.svg}
-                        className={classNames(defaultcss.all, sty.svg, {
-                          [sty.svg__isUserOnClick]: hasVariant(
-                            variants,
-                            "isUserOnClick",
-                            "isUserOnClick"
-                          ),
-                          [sty.svg__isUserOnClick_state_isUser]:
-                            hasVariant(
+                        className={classNames(
+                          defaultcss.all,
+                          projectcss.all,
+                          sty.svg,
+                          {
+                            [sty.svg__isUserOnClick]: hasVariant(
                               variants,
                               "isUserOnClick",
                               "isUserOnClick"
-                            ) && hasVariant(variants, "state", "isUser"),
-                          [sty.svg__state_isUser]: hasVariant(
-                            variants,
-                            "state",
-                            "isUser"
-                          ),
-                        })}
+                            ),
+                            [sty.svg__isUserOnClick_state_isUser]:
+                              hasVariant(
+                                variants,
+                                "isUserOnClick",
+                                "isUserOnClick"
+                              ) && hasVariant(variants, "state", "isUser"),
+                            [sty.svg__state_isUser]: hasVariant(
+                              variants,
+                              "state",
+                              "isUser"
+                            ),
+                          }
+                        )}
                         role={"img"}
                       />
 
@@ -322,6 +379,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                               data-plasmic-override={overrides.deleteOption}
                               className={classNames(
                                 defaultcss.all,
+                                projectcss.all,
                                 defaultcss.__wab_text,
                                 sty.deleteOption,
                                 {
@@ -356,8 +414,20 @@ function PlasmicReplyContent__RenderFunc(props: {
                 ) : null}
               </p.Stack>
 
-              <div className={classNames(defaultcss.all, sty.freeBox__wE4D)}>
-                <div className={classNames(defaultcss.all, sty.freeBox__ly8Vh)}>
+              <div
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox__wE4D
+                )}
+              >
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.freeBox__ly8Vh
+                  )}
+                >
                   {p.renderPlasmicSlot({
                     defaultContents: "",
                     value: args.text,

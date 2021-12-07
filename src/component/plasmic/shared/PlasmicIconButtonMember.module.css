@@ -11,7 +11,7 @@
   border-bottom: 1px solid #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .container {
-  display: inline-flex;
+  display: flex;
   position: relative;
   flex-direction: row;
   align-items: flex-end;
@@ -47,7 +47,7 @@
 .background {
   width: auto;
   height: 14px;
-  display: inline-flex;
+  display: flex;
   position: relative;
   left: auto;
   top: auto;
@@ -62,7 +62,7 @@
   padding: 0px 2px;
 }
 .freeBox__ysBge {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;

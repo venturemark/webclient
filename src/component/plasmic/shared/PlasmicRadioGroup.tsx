@@ -98,19 +98,29 @@ function PlasmicRadioGroup__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       {(hasVariant(variants, "hasLabel", "hasLabel") ? true : false) ? (
         <label
           data-plasmic-name={"labelContainer"}
           data-plasmic-override={overrides.labelContainer}
-          className={classNames(defaultcss.all, sty.labelContainer, {
-            [sty.labelContainer__hasLabel]: hasVariant(
-              variants,
-              "hasLabel",
-              "hasLabel"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.labelContainer,
+            {
+              [sty.labelContainer__hasLabel]: hasVariant(
+                variants,
+                "hasLabel",
+                "hasLabel"
+              ),
+            }
+          )}
         >
           {p.renderPlasmicSlot({
             defaultContents: "Visibility",
@@ -123,7 +133,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(defaultcss.all, sty.freeBox, {
+        className={classNames(defaultcss.all, projectcss.all, sty.freeBox, {
           [sty.freeBox__hasLabel]: hasVariant(variants, "hasLabel", "hasLabel"),
           [sty.freeBox__hasLabel_isHorizontal]:
             hasVariant(variants, "hasLabel", "hasLabel") &&
@@ -166,6 +176,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
               data-plasmic-override={overrides.text}
               className={classNames(
                 defaultcss.all,
+                projectcss.all,
                 defaultcss.__wab_text,
                 sty.text
               )}

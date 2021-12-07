@@ -20,7 +20,7 @@ import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 
-interface ContentPostProps extends DefaultContentPostProps {
+export interface ContentPostProps extends DefaultContentPostProps {
   update: IUpdate | null;
   setIsVisible: any;
   isVisible: any;

@@ -43,6 +43,8 @@ import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-i
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicAddEditTimeline.module.css"; // plasmic-import: 2FtsgZCi1Kx/css
 
+import IconHashIcon from "./icons/PlasmicIcon__IconHash"; // plasmic-import: AVLV6uMr56/icon
+
 export type PlasmicAddEditTimeline__VariantMembers = {
   variantState: "isEdit";
   isOwner: "isOwner";
@@ -116,6 +118,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       hasGap={true}
       className={classNames(
         defaultcss.all,
+        projectcss.all,
         projectcss.root_reset,
         sty.settings,
         {
@@ -128,7 +131,13 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         }
       )}
     >
-      <div className={classNames(defaultcss.all, sty.freeBox__tab7F)}>
+      <div
+        className={classNames(
+          defaultcss.all,
+          projectcss.all,
+          sty.freeBox__tab7F
+        )}
+      >
         {(hasVariant(variants, "variantState", "isEdit") ? false : true)
           ? p.renderPlasmicSlot({
               defaultContents: "Create New Timeline",
@@ -167,17 +176,8 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       <InputText
         data-plasmic-name={"name"}
         data-plasmic-override={overrides.name}
-        className={classNames("__wab_instance", sty.name, {
-          [sty.name__isOwner_variantState_isEdit]:
-            hasVariant(variants, "isOwner", "isOwner") &&
-            hasVariant(variants, "variantState", "isEdit"),
-          [sty.name__variantState_isEdit]: hasVariant(
-            variants,
-            "variantState",
-            "isEdit"
-          ),
-        })}
         hasLabel={"hasLabel" as const}
+        hasLeftIcon={"hasLeftIcon" as const}
         isDisabled={
           hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "variantState", "isEdit")
@@ -237,16 +237,21 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           : true
       ) ? (
         <div
-          className={classNames(defaultcss.all, sty.freeBox__iyK9P, {
-            [sty.freeBox__variantState_isEdit__iyK9P7BsqN]: hasVariant(
-              variants,
-              "variantState",
-              "isEdit"
-            ),
-            [sty.freeBox__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
-              hasVariant(variants, "variantState", "isEdit") &&
-              hasVariant(variants, "isOwner", "isOwner"),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__iyK9P,
+            {
+              [sty.freeBox__variantState_isEdit__iyK9P7BsqN]: hasVariant(
+                variants,
+                "variantState",
+                "isEdit"
+              ),
+              [sty.freeBox__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
+                hasVariant(variants, "variantState", "isEdit") &&
+                hasVariant(variants, "isOwner", "isOwner"),
+            }
+          )}
         >
           {p.renderPlasmicSlot({
             defaultContents: "Permissions",

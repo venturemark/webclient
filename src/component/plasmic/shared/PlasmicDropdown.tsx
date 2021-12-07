@@ -77,19 +77,24 @@ function PlasmicDropdown__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       <div
         data-plasmic-name={"rectangle574"}
         data-plasmic-override={overrides.rectangle574}
-        className={classNames(defaultcss.all, sty.rectangle574)}
+        className={classNames(defaultcss.all, projectcss.all, sty.rectangle574)}
       >
         <p.Stack
           as={"ul"}
           data-plasmic-name={"ul"}
           data-plasmic-override={overrides.ul}
           hasGap={true}
-          className={classNames(defaultcss.ul, sty.ul)}
+          className={classNames(defaultcss.ul, projectcss.ul, sty.ul)}
         >
           <ListItem
             data-plasmic-name={"listItem"}

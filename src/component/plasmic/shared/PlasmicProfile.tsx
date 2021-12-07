@@ -86,34 +86,60 @@ function PlasmicProfile__RenderFunc(props: {
           data-plasmic-for-node={forNode}
           className={classNames(
             defaultcss.all,
+            projectcss.all,
             projectcss.root_reset,
             sty.root
           )}
         >
-          <div className={classNames(defaultcss.all, sty.freeBox__ebv0I)}>
+          <div
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__ebv0I
+            )}
+          >
             <Header
               data-plasmic-name={"header"}
               data-plasmic-override={overrides.header}
               className={classNames("__wab_instance", sty.header)}
             />
 
-            <div className={classNames(defaultcss.all, sty.freeBox__pMmw)}>
+            <div
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox__pMmw
+              )}
+            >
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.freeBox__ibtro)}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox__ibtro
+                )}
               >
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.freeBox__qLx8X)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.freeBox__qLx8X
+                  )}
                 >
                   <div
-                    className={classNames(defaultcss.all, sty.freeBox__x6LVc)}
+                    className={classNames(
+                      defaultcss.all,
+                      projectcss.all,
+                      sty.freeBox__x6LVc
+                    )}
                   >
                     <div
                       className={classNames(
                         defaultcss.all,
+                        projectcss.all,
                         defaultcss.__wab_text,
                         sty.text__qDcm3
                       )}
@@ -124,6 +150,7 @@ function PlasmicProfile__RenderFunc(props: {
                     <div
                       className={classNames(
                         defaultcss.all,
+                        projectcss.all,
                         defaultcss.__wab_text,
                         sty.text__hUGd0
                       )}
@@ -136,6 +163,7 @@ function PlasmicProfile__RenderFunc(props: {
                     <div
                       className={classNames(
                         defaultcss.all,
+                        projectcss.all,
                         defaultcss.__wab_text,
                         sty.text__xRb1Y
                       )}

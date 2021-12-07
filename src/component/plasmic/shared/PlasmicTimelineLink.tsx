@@ -74,12 +74,22 @@ function PlasmicTimelineLink__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       <div
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
-        className={classNames(defaultcss.all, defaultcss.__wab_text, sty.text)}
+        className={classNames(
+          defaultcss.all,
+          projectcss.all,
+          defaultcss.__wab_text,
+          sty.text
+        )}
       >
         {"#"}
       </div>
@@ -89,6 +99,7 @@ function PlasmicTimelineLink__RenderFunc(props: {
           <span
             className={classNames(
               defaultcss.span,
+              projectcss.span,
               defaultcss.__wab_text,
               sty.span___0SrJl
             )}

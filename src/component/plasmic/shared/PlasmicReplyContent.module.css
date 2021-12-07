@@ -120,7 +120,7 @@
   margin-left: 5px;
 }
 .freeBox__cAoxI {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;
@@ -256,7 +256,7 @@
   padding: 5px 0px 15px;
 }
 .freeBox__ly8Vh {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;

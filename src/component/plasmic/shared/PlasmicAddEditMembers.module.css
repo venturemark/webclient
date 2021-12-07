@@ -105,25 +105,31 @@
 .form > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-left: 7px;
 }
+.svg___6QWzb {
+  object-fit: cover;
+  max-width: 100%;
+  width: 1em;
+  height: 1em;
+}
 .invite:global(.__wab_instance) {
   position: relative;
   height: 40px;
   margin-bottom: 28px;
 }
-.svg__bXwI0 {
+.svg__qdTev {
   position: relative;
   object-fit: cover;
   width: 17px;
   height: 14px;
 }
-.svg___7Yi1O {
+.svg__y72Iu {
   position: relative;
   object-fit: cover;
   width: 17px;
   height: 14px;
 }
 .link {
-  display: inline-flex;
+  display: flex;
   position: relative;
   flex-direction: row;
   width: auto;
@@ -211,7 +217,6 @@
 .text2 {
   height: auto;
   width: auto;
-  display: inline-block;
 }
 .svg__zn1XH {
   position: relative;

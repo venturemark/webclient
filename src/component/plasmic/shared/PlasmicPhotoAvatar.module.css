@@ -20,7 +20,7 @@
   height: 80px;
 }
 .freeBox {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;

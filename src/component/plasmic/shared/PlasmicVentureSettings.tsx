@@ -99,6 +99,7 @@ function PlasmicVentureSettings__RenderFunc(props: {
           data-plasmic-for-node={forNode}
           className={classNames(
             defaultcss.all,
+            projectcss.all,
             projectcss.root_reset,
             sty.root,
             {
@@ -122,13 +123,18 @@ function PlasmicVentureSettings__RenderFunc(props: {
           />
 
           <div
-            className={classNames(defaultcss.all, sty.freeBox__kRlHv, {
-              [sty.freeBox__isVisible_mobileSidebar__kRlHvgEoQs]: hasVariant(
-                variants,
-                "isVisible",
-                "mobileSidebar"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__kRlHv,
+              {
+                [sty.freeBox__isVisible_mobileSidebar__kRlHvgEoQs]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "mobileSidebar"
+                ),
+              }
+            )}
           >
             {(
               hasVariant(variants, "isVisible", "mobileSidebar")
@@ -151,11 +157,21 @@ function PlasmicVentureSettings__RenderFunc(props: {
               />
             ) : null}
 
-            <div className={classNames(defaultcss.all, sty.freeBox___1PYva)}>
+            <div
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox___1PYva
+              )}
+            >
               <div
                 data-plasmic-name={"mainContainer"}
                 data-plasmic-override={overrides.mainContainer}
-                className={classNames(defaultcss.all, sty.mainContainer)}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.mainContainer
+                )}
               >
                 <Main
                   data-plasmic-name={"main"}

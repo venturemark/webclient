@@ -87,7 +87,47 @@
   min-width: 0;
   border-radius: 5px;
 }
-.input {
+.freeBox__eDsPg > :global(.__wab_flex-container) {
+  min-width: 0;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+}
+.freeBox__eDsPg > :global(.__wab_flex-container) > *,
+.freeBox__eDsPg > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__eDsPg > :global(.__wab_flex-container) > picture > img,
+.freeBox__eDsPg
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 5px;
+}
+.leftIcon {
+  background: #ffffff;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  cursor: pointer;
+  display: none;
+  border-radius: 5px;
+  padding: 15px;
+  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
+.leftIcon__hasLeftIcon {
+  display: flex;
+}
+.svg__ynG1Y {
+  object-fit: cover;
+  max-width: 100%;
+  width: 1em;
+  flex-shrink: 0;
+  height: 1em;
+}
+.input2 {
   position: relative;
   width: 100%;
   left: auto;
@@ -101,17 +141,23 @@
   padding: 10px;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.input__isDisabled {
+.input2__isDisabled {
   cursor: default;
   pointer-events: none;
   background: rgb(249, 249, 250);
+  left: auto;
+  top: auto;
 }
-.root:focus-within .input {
+.root:focus-within .input2 {
+  left: auto;
+  top: auto;
   outline: none;
   border-color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.root .input::placeholder {
+.root .input2::placeholder {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
+  left: auto;
+  top: auto;
 }
 .errorContainer {
   display: flex;

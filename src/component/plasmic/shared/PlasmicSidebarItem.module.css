@@ -9,21 +9,46 @@
 .root__itemType_createTimeline:hover {
   opacity: 1;
 }
-.svg__bufRg {
+.newActivityIndicator {
   position: relative;
-  object-fit: cover;
-  width: 1em;
-  flex-shrink: 0;
-  height: 1em;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  display: none;
+  padding: 8px;
 }
-.svg__hasNewActivity__bufRg0PiUm {
-  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
-  width: 8px;
-  height: 8px;
+.newActivityIndicator__hasNewActivity {
   position: absolute;
-  left: -11px;
-  top: 39%;
+  top: 21%;
+  left: auto;
+  background: #dd6f6f;
+  height: 22px;
+  z-index: 20;
+  right: 0px;
+  width: 24px;
   flex-shrink: 0;
+  display: flex;
+  border-radius: 8px;
+}
+.counterSlot {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.slotTargetChildren {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+  text-align: center;
+  font-weight: 600;
 }
 .itemContainer {
   display: flex;
@@ -82,18 +107,17 @@
   background: #2e8c8d;
 }
 .freeBox__lklH {
-  display: flex;
   position: relative;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
+  display: none;
 }
 .freeBox__itemType_createTimeline__lklHOuGst {
   align-items: center;
   justify-content: flex-start;
   height: auto;
   width: auto;
-  display: inline-flex;
   padding: 6px;
 }
 .freeBox__isOwner__lklHXgVg8 {
@@ -131,7 +155,7 @@
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
 .freeBox__zwdJs {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;
@@ -233,7 +257,7 @@
   overflow: hidden;
   min-width: 0;
 }
-.textbox__ogebi {
+.textInput__ogebi {
   position: relative;
   width: 180px;
   height: 26px;

@@ -64,6 +64,7 @@
   min-width: 250px;
   max-width: 300px;
   width: 100%;
+  padding-top: 0px;
 }
 @media (max-width: 767px) {
   .topSidebar__hasInput {
@@ -113,9 +114,10 @@
   width: 100%;
   border-bottom-width: 1px;
   border-bottom-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
-  height: 63px;
+  height: 65px;
   min-width: 0;
   flex-shrink: 0;
+  display: flex;
   padding: 10px 0px 16px 27px;
   margin: 0px;
 }
@@ -149,6 +151,7 @@
 .dropdown__isDropdown:global(.__wab_instance) {
   top: 62px;
   left: -2px;
+  display: flex;
 }
 .text__jYiYa {
   height: auto;

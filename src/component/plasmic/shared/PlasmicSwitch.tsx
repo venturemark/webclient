@@ -86,23 +86,29 @@ function PlasmicSwitch__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__variantSettings_hasLabel]: hasVariant(
-          variants,
-          "variantSettings",
-          "hasLabel"
-        ),
-        [sty.root__variantSettings_isSelected]: hasVariant(
-          variants,
-          "variantSettings",
-          "isSelected"
-        ),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__variantSettings_hasLabel]: hasVariant(
+            variants,
+            "variantSettings",
+            "hasLabel"
+          ),
+          [sty.root__variantSettings_isSelected]: hasVariant(
+            variants,
+            "variantSettings",
+            "isSelected"
+          ),
+        }
+      )}
     >
       <div
         data-plasmic-name={"label"}
         data-plasmic-override={overrides.label}
-        className={classNames(defaultcss.all, sty.label)}
+        className={classNames(defaultcss.all, projectcss.all, sty.label)}
       >
         {(hasVariant(variants, "variantSettings", "hasLabel") ? true : false)
           ? p.renderPlasmicSlot({
@@ -119,7 +125,7 @@ function PlasmicSwitch__RenderFunc(props: {
       <div
         data-plasmic-name={"_switch"}
         data-plasmic-override={overrides._switch}
-        className={classNames(defaultcss.all, sty._switch, {
+        className={classNames(defaultcss.all, projectcss.all, sty._switch, {
           [sty._switch__variantSettings_isSelected]: hasVariant(
             variants,
             "variantSettings",
@@ -130,7 +136,7 @@ function PlasmicSwitch__RenderFunc(props: {
         <IconOvalIcon
           data-plasmic-name={"svg"}
           data-plasmic-override={overrides.svg}
-          className={classNames(defaultcss.all, sty.svg, {
+          className={classNames(defaultcss.all, projectcss.all, sty.svg, {
             [sty.svg__variantSettings_isSelected]: hasVariant(
               variants,
               "variantSettings",

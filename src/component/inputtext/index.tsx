@@ -29,14 +29,15 @@ function InputText_(
       labelSlot: "label",
 
       root: "root",
-      textbox: "input",
+      textbox: "textInput",
       textboxContainer: "textboxContainer",
       labelContainer: "labelContainer",
     },
     ref
   );
 
-  const input = plumeProps.overrides.input as JSX.IntrinsicElements["input"];
+  const input = plumeProps.overrides
+    .textInput as JSX.IntrinsicElements["input"];
   if (input.value !== undefined) {
     // React reports an error (in dev mode) when defaultValue and value are both used
     // even if one is set to undefined. By deleting it from the props entirely, this

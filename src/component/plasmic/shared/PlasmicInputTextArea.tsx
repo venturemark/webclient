@@ -108,32 +108,43 @@ function PlasmicInputTextArea__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isDisabled]: hasVariant(
-          variants,
-          "isDisabled",
-          "isDisabled"
-        ),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__isDisabled]: hasVariant(
+            variants,
+            "isDisabled",
+            "isDisabled"
+          ),
+        }
+      )}
     >
       <p.Stack
         as={"div"}
         data-plasmic-name={"textInput"}
         data-plasmic-override={overrides.textInput}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.textInput)}
+        className={classNames(defaultcss.all, projectcss.all, sty.textInput)}
       >
         {(hasVariant(variants, "hasLabel", "hasLabel") ? true : false) ? (
           <label
             data-plasmic-name={"labelContainer"}
             data-plasmic-override={overrides.labelContainer}
-            className={classNames(defaultcss.all, sty.labelContainer, {
-              [sty.labelContainer__hasLabel]: hasVariant(
-                variants,
-                "hasLabel",
-                "hasLabel"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.labelContainer,
+              {
+                [sty.labelContainer__hasLabel]: hasVariant(
+                  variants,
+                  "hasLabel",
+                  "hasLabel"
+                ),
+              }
+            )}
           >
             {p.renderPlasmicSlot({
               defaultContents: "Label Name",
@@ -148,23 +159,28 @@ function PlasmicInputTextArea__RenderFunc(props: {
           <div
             data-plasmic-name={"inputHelperText"}
             data-plasmic-override={overrides.inputHelperText}
-            className={classNames(defaultcss.all, sty.inputHelperText, {
-              [sty.inputHelperText__error]: hasVariant(
-                variants,
-                "error",
-                "error"
-              ),
-              [sty.inputHelperText__hasLabel]: hasVariant(
-                variants,
-                "hasLabel",
-                "hasLabel"
-              ),
-              [sty.inputHelperText__hasTextHelper]: hasVariant(
-                variants,
-                "hasTextHelper",
-                "hasTextHelper"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.inputHelperText,
+              {
+                [sty.inputHelperText__error]: hasVariant(
+                  variants,
+                  "error",
+                  "error"
+                ),
+                [sty.inputHelperText__hasLabel]: hasVariant(
+                  variants,
+                  "hasLabel",
+                  "hasLabel"
+                ),
+                [sty.inputHelperText__hasTextHelper]: hasVariant(
+                  variants,
+                  "hasTextHelper",
+                  "hasTextHelper"
+                ),
+              }
+            )}
           >
             {p.renderPlasmicSlot({
               defaultContents: "Text Helper Description",
@@ -177,19 +193,28 @@ function PlasmicInputTextArea__RenderFunc(props: {
         <div
           data-plasmic-name={"textboxContainer"}
           data-plasmic-override={overrides.textboxContainer}
-          className={classNames(defaultcss.all, sty.textboxContainer)}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.textboxContainer
+          )}
         >
           <textarea
             data-plasmic-name={"input"}
             data-plasmic-override={overrides.input}
-            className={classNames(defaultcss.textarea, sty.input, {
-              [sty.input__error]: hasVariant(variants, "error", "error"),
-              [sty.input__isDisabled]: hasVariant(
-                variants,
-                "isDisabled",
-                "isDisabled"
-              ),
-            })}
+            className={classNames(
+              defaultcss.textarea,
+              projectcss.textarea,
+              sty.input,
+              {
+                [sty.input__error]: hasVariant(variants, "error", "error"),
+                [sty.input__isDisabled]: hasVariant(
+                  variants,
+                  "isDisabled",
+                  "isDisabled"
+                ),
+              }
+            )}
             placeholder={"" as const}
             title={"" as const}
           />
@@ -198,22 +223,33 @@ function PlasmicInputTextArea__RenderFunc(props: {
             <svg
               data-plasmic-name={"svg"}
               data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, sty.svg)}
+              className={classNames(defaultcss.all, projectcss.all, sty.svg)}
               role={"img"}
             />
           ) : null}
         </div>
 
-        <div className={classNames(defaultcss.all, sty.freeBox__wBY0)} />
+        <div
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__wBY0
+          )}
+        />
 
         <div
-          className={classNames(defaultcss.all, sty.freeBox__ytJal, {
-            [sty.freeBox__error__ytJalieWq6]: hasVariant(
-              variants,
-              "error",
-              "error"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__ytJal,
+            {
+              [sty.freeBox__error__ytJalieWq6]: hasVariant(
+                variants,
+                "error",
+                "error"
+              ),
+            }
+          )}
         >
           {(hasVariant(variants, "error", "error") ? true : false) ? (
             <ErrorMessage

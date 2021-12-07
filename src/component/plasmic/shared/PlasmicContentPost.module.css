@@ -12,8 +12,6 @@
   border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .editorContainer {
-  box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
-  background: #ffffff;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -28,11 +26,9 @@
   transition-property: all;
   transition-duration: 1s;
   transition-delay: 0.2s;
+  background: #ffffff;
   min-width: 0;
   min-height: 0;
-  border-radius: 10px;
-  padding: 30px 20px;
-  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .editorContainer__state_isPostDetails {
   box-shadow: none;
@@ -58,7 +54,7 @@
   justify-content: space-between;
 }
 .textContainer2 {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;
@@ -86,6 +82,10 @@
 }
 .description {
   position: relative;
+  display: none;
+}
+.description__hasDescription {
+  display: block;
 }
 .freeBox__vVNrv {
   display: flex;
@@ -96,6 +96,9 @@
   padding: 0px;
   border-width: 0px;
 }
+.freeBox__isUserOnClick__vVNrvg87Sf {
+  display: flex;
+}
 .iconMenu {
   object-fit: cover;
   width: 16px;
@@ -104,18 +107,32 @@
   cursor: pointer;
   flex-shrink: 0;
 }
+.iconMenu__isUserOnClick {
+  display: none;
+}
+.iconMenu__state_isOwner_isUserOnClick {
+  display: block;
+}
 .dropdown:global(.__wab_instance) {
   position: relative;
   z-index: 99;
 }
+.dropdown__state_isOwner:global(.__wab_instance) {
+  display: none;
+}
 .dropdown__isUserOnClick:global(.__wab_instance) {
-  right: auto;
+  position: absolute;
+  left: auto;
+  top: 26px;
+  right: 1px;
+  display: none;
 }
 .dropdown__isUserOnClick_state_isOwner:global(.__wab_instance) {
   position: absolute;
   left: auto;
   top: 33px;
   right: 0px;
+  display: flex;
 }
 .archiveOption {
   height: auto;
@@ -128,7 +145,7 @@
   display: flex;
 }
 .freeBox__ehjLr {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;
@@ -182,7 +199,7 @@
   }
 }
 .freeBox__kyNpO {
-  display: inline-flex;
+  display: flex;
   position: relative;
   flex-direction: row;
   top: auto;
@@ -216,7 +233,7 @@
   flex-shrink: 0;
 }
 .freeBox__mkSty {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;
@@ -268,7 +285,7 @@
   margin-left: 5px;
 }
 .freeBox__nwWG {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;
@@ -288,7 +305,7 @@
   font-weight: 600;
 }
 .freeBox__wDBh5 {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;
@@ -325,7 +342,7 @@
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
 .freeBox__vvzri {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;
@@ -350,7 +367,7 @@
   margin-left: 5px;
 }
 .timelineNamesContainer {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;

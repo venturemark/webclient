@@ -91,11 +91,28 @@ function PlasmicPostDetails__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
-      <div className={classNames(defaultcss.all, sty.freeBox__qVw1C)}>
+      <div
+        className={classNames(
+          defaultcss.all,
+          projectcss.all,
+          sty.freeBox__qVw1C
+        )}
+      >
         {true ? (
-          <div className={classNames(defaultcss.all, sty.freeBox__qxUjW)}>
+          <div
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__qxUjW
+            )}
+          >
             {p.renderPlasmicSlot({
               defaultContents: "Post Details",
               value: args.children,
@@ -111,14 +128,20 @@ function PlasmicPostDetails__RenderFunc(props: {
               <IconCloseIcon
                 data-plasmic-name={"svg"}
                 data-plasmic-override={overrides.svg}
-                className={classNames(defaultcss.all, sty.svg)}
+                className={classNames(defaultcss.all, projectcss.all, sty.svg)}
                 role={"img"}
               />
             </IconButton>
           </div>
         ) : null}
 
-        <div className={classNames(defaultcss.all, sty.freeBox__n7A9B)}>
+        <div
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__n7A9B
+          )}
+        >
           <ContentPost
             data-plasmic-name={"post"}
             data-plasmic-override={overrides.post}
@@ -129,6 +152,7 @@ function PlasmicPostDetails__RenderFunc(props: {
                 data-plasmic-override={overrides.date3}
                 className={classNames(
                   defaultcss.span,
+                  projectcss.span,
                   defaultcss.__wab_text,
                   sty.date3
                 )}
@@ -144,11 +168,12 @@ function PlasmicPostDetails__RenderFunc(props: {
                 data-plasmic-override={overrides.userName3}
                 className={classNames(
                   defaultcss.span,
+                  projectcss.span,
                   defaultcss.__wab_text,
                   sty.userName3
                 )}
               >
-                <span className={"plasmic_default__all plasmic_default__span"}>
+                <React.Fragment>
                   <React.Fragment>{""}</React.Fragment>
                   <span
                     className={"plasmic_default__all plasmic_default__span"}
@@ -157,7 +182,7 @@ function PlasmicPostDetails__RenderFunc(props: {
                     {"The Rock"}
                   </span>
                   <React.Fragment>{""}</React.Fragment>
-                </span>
+                </React.Fragment>
               </span>
             }
           />
@@ -165,7 +190,11 @@ function PlasmicPostDetails__RenderFunc(props: {
           <div
             data-plasmic-name={"repliesContainer"}
             data-plasmic-override={overrides.repliesContainer}
-            className={classNames(defaultcss.all, sty.repliesContainer)}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.repliesContainer
+            )}
           >
             <ReplyContent
               data-plasmic-name={"replyContent"}
@@ -176,6 +205,7 @@ function PlasmicPostDetails__RenderFunc(props: {
                   data-plasmic-override={overrides.date2}
                   className={classNames(
                     defaultcss.span,
+                    projectcss.span,
                     defaultcss.__wab_text,
                     sty.date2
                   )}
@@ -192,13 +222,12 @@ function PlasmicPostDetails__RenderFunc(props: {
                   data-plasmic-override={overrides.userName2}
                   className={classNames(
                     defaultcss.span,
+                    projectcss.span,
                     defaultcss.__wab_text,
                     sty.userName2
                   )}
                 >
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                  >
+                  <React.Fragment>
                     <React.Fragment>{""}</React.Fragment>
                     <span
                       className={"plasmic_default__all plasmic_default__span"}
@@ -207,7 +236,7 @@ function PlasmicPostDetails__RenderFunc(props: {
                       {"The Rock"}
                     </span>
                     <React.Fragment>{""}</React.Fragment>
-                  </span>
+                  </React.Fragment>
                 </span>
               }
             />

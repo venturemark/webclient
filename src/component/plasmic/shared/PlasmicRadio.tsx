@@ -109,13 +109,19 @@ function PlasmicRadio__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__radioVariants_isSelected]: hasVariant(
-          variants,
-          "radioVariants",
-          "isSelected"
-        ),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__radioVariants_isSelected]: hasVariant(
+            variants,
+            "radioVariants",
+            "isSelected"
+          ),
+        }
+      )}
       data-plasmic-trigger-props={[triggerRootFocusVisibleWithinProps]}
     >
       <p.Stack
@@ -123,7 +129,7 @@ function PlasmicRadio__RenderFunc(props: {
         data-plasmic-name={"radio"}
         data-plasmic-override={overrides.radio}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.radio, {
+        className={classNames(defaultcss.all, projectcss.all, sty.radio, {
           [sty.radio_____focusVisibleWithin]: triggers.focusVisibleWithin_root,
           [sty.radio__position_bottom]: hasVariant(
             variants,
@@ -162,23 +168,28 @@ function PlasmicRadio__RenderFunc(props: {
             data-plasmic-name={"labelContainer"}
             data-plasmic-override={overrides.labelContainer}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.labelContainer, {
-              [sty.labelContainer__radioVariants_hasLabel]: hasVariant(
-                variants,
-                "radioVariants",
-                "hasLabel"
-              ),
-              [sty.labelContainer__radioVariants_isSelected]: hasVariant(
-                variants,
-                "radioVariants",
-                "isSelected"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.labelContainer,
+              {
+                [sty.labelContainer__radioVariants_hasLabel]: hasVariant(
+                  variants,
+                  "radioVariants",
+                  "hasLabel"
+                ),
+                [sty.labelContainer__radioVariants_isSelected]: hasVariant(
+                  variants,
+                  "radioVariants",
+                  "isSelected"
+                ),
+              }
+            )}
           >
             <label
               data-plasmic-name={"label"}
               data-plasmic-override={overrides.label}
-              className={classNames(defaultcss.all, sty.label, {
+              className={classNames(defaultcss.all, projectcss.all, sty.label, {
                 [sty.label__radioVariants_hasLabel]: hasVariant(
                   variants,
                   "radioVariants",
@@ -207,7 +218,11 @@ function PlasmicRadio__RenderFunc(props: {
             <div
               data-plasmic-name={"inputHelperText"}
               data-plasmic-override={overrides.inputHelperText}
-              className={classNames(defaultcss.all, sty.inputHelperText)}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.inputHelperText
+              )}
             >
               {p.renderPlasmicSlot({
                 defaultContents:
@@ -227,26 +242,31 @@ function PlasmicRadio__RenderFunc(props: {
           <div
             data-plasmic-name={"buttonContainer"}
             data-plasmic-override={overrides.buttonContainer}
-            className={classNames(defaultcss.all, sty.buttonContainer, {
-              [sty.buttonContainer__position_middle]: hasVariant(
-                variants,
-                "position",
-                "middle"
-              ),
-              [sty.buttonContainer__radioVariants_isDisabled]: hasVariant(
-                variants,
-                "radioVariants",
-                "isDisabled"
-              ),
-              [sty.buttonContainer__radioVariants_isSelected]: hasVariant(
-                variants,
-                "radioVariants",
-                "isSelected"
-              ),
-              [sty.buttonContainer__radioVariants_isSelected_position_middle]:
-                hasVariant(variants, "radioVariants", "isSelected") &&
-                hasVariant(variants, "position", "middle"),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.buttonContainer,
+              {
+                [sty.buttonContainer__position_middle]: hasVariant(
+                  variants,
+                  "position",
+                  "middle"
+                ),
+                [sty.buttonContainer__radioVariants_isDisabled]: hasVariant(
+                  variants,
+                  "radioVariants",
+                  "isDisabled"
+                ),
+                [sty.buttonContainer__radioVariants_isSelected]: hasVariant(
+                  variants,
+                  "radioVariants",
+                  "isSelected"
+                ),
+                [sty.buttonContainer__radioVariants_isSelected_position_middle]:
+                  hasVariant(variants, "radioVariants", "isSelected") &&
+                  hasVariant(variants, "position", "middle"),
+              }
+            )}
           >
             {(
               hasVariant(variants, "position", "middle") &&
@@ -261,7 +281,7 @@ function PlasmicRadio__RenderFunc(props: {
               <IconCheckIcon
                 data-plasmic-name={"svg"}
                 data-plasmic-override={overrides.svg}
-                className={classNames(defaultcss.all, sty.svg, {
+                className={classNames(defaultcss.all, projectcss.all, sty.svg, {
                   [sty.svg__position_middle]: hasVariant(
                     variants,
                     "position",

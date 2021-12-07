@@ -33,7 +33,6 @@
   cursor: default;
   min-width: 0;
   min-height: 0;
-  padding: 15px 0px;
 }
 .freeBox___3Xg51 > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -59,13 +58,8 @@
     padding: 15px 10px;
   }
 }
-@media (max-width: 767px) {
-  .freeBox__headerStyles_timelineHeader___3Xg51Rxxpi {
-    padding: 20px 0px;
-  }
-}
 .freeBox__sDNfz {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   cursor: default;
@@ -242,12 +236,12 @@
   }
 }
 .iconContainer {
-  display: flex;
   position: relative;
   flex-direction: row;
   top: auto;
   left: auto;
   height: auto;
+  display: none;
 }
 .iconContainer > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -281,7 +275,6 @@
 }
 .text__lssdr {
   width: auto;
-  display: inline-block;
 }
 .viewSettings:global(.__wab_instance) {
   position: relative;

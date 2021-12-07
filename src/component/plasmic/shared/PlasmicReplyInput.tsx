@@ -87,7 +87,12 @@ function PlasmicReplyInput__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
       data-plasmic-trigger-props={[triggerRootFocusWithinProps]}
     >
       <p.Stack
@@ -95,19 +100,23 @@ function PlasmicReplyInput__RenderFunc(props: {
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.freeBox)}
+        className={classNames(defaultcss.all, projectcss.all, sty.freeBox)}
       >
         <p.Stack
           as={"form"}
           data-plasmic-name={"replyForm"}
           data-plasmic-override={overrides.replyForm}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.replyForm)}
+          className={classNames(defaultcss.all, projectcss.all, sty.replyForm)}
         >
           <textarea
             data-plasmic-name={"replyInput"}
             data-plasmic-override={overrides.replyInput}
-            className={classNames(defaultcss.textarea, sty.replyInput)}
+            className={classNames(
+              defaultcss.textarea,
+              projectcss.textarea,
+              sty.replyInput
+            )}
             placeholder={"Write a reply" as const}
           />
 
@@ -124,6 +133,7 @@ function PlasmicReplyInput__RenderFunc(props: {
                   data-plasmic-override={overrides.text}
                   className={classNames(
                     defaultcss.all,
+                    projectcss.all,
                     defaultcss.__wab_text,
                     sty.text
                   )}
@@ -135,7 +145,11 @@ function PlasmicReplyInput__RenderFunc(props: {
                 <IconSend2Icon
                   data-plasmic-name={"svg"}
                   data-plasmic-override={overrides.svg}
-                  className={classNames(defaultcss.all, sty.svg)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.svg
+                  )}
                   role={"img"}
                 />
               }

@@ -97,7 +97,6 @@
   .freeBox__ibtro {
     height: 100%;
     width: auto;
-    display: inline-flex;
     min-height: 0;
   }
 }

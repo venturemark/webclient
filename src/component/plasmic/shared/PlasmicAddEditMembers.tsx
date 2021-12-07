@@ -39,6 +39,7 @@ import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-i
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicAddEditMembers.module.css"; // plasmic-import: 3NTlJO7oDpw/css
 
+import IconHashIcon from "./icons/PlasmicIcon__IconHash"; // plasmic-import: AVLV6uMr56/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 import IconLinkIcon from "./icons/PlasmicIcon__IconLink"; // plasmic-import: 0QuxgUi0r/icon
@@ -146,19 +147,34 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__type_isTimeline]: hasVariant(variants, "type", "isTimeline"),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__type_isTimeline]: hasVariant(
+            variants,
+            "type",
+            "isTimeline"
+          ),
+        }
+      )}
     >
       {(hasVariant(variants, "type", "isTimeline") ? false : true) ? (
         <div
-          className={classNames(defaultcss.all, sty.freeBox__sLr04, {
-            [sty.freeBox__type_isTimeline__sLr04Qs8Io]: hasVariant(
-              variants,
-              "type",
-              "isTimeline"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__sLr04,
+            {
+              [sty.freeBox__type_isTimeline__sLr04Qs8Io]: hasVariant(
+                variants,
+                "type",
+                "isTimeline"
+              ),
+            }
+          )}
         >
           {p.renderPlasmicSlot({
             defaultContents: "Venture Members",
@@ -183,13 +199,18 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       ) : null}
       {(hasVariant(variants, "type", "isTimeline") ? true : false) ? (
         <div
-          className={classNames(defaultcss.all, sty.freeBox___8X9J3, {
-            [sty.freeBox__type_isTimeline___8X9J3Qs8Io]: hasVariant(
-              variants,
-              "type",
-              "isTimeline"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox___8X9J3,
+            {
+              [sty.freeBox__type_isTimeline___8X9J3Qs8Io]: hasVariant(
+                variants,
+                "type",
+                "isTimeline"
+              ),
+            }
+          )}
         >
           {p.renderPlasmicSlot({
             defaultContents: "Timeline Members",
@@ -216,25 +237,30 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.freeBox__mpPUs, {
-            [sty.freeBox__isOwner__mpPUsyBfUd]: hasVariant(
-              variants,
-              "isOwner",
-              "isOwner"
-            ),
-            [sty.freeBox__type_isTimeline__mpPUsqs8Io]: hasVariant(
-              variants,
-              "type",
-              "isTimeline"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__mpPUs,
+            {
+              [sty.freeBox__isOwner__mpPUsyBfUd]: hasVariant(
+                variants,
+                "isOwner",
+                "isOwner"
+              ),
+              [sty.freeBox__type_isTimeline__mpPUsqs8Io]: hasVariant(
+                variants,
+                "type",
+                "isTimeline"
+              ),
+            }
+          )}
         >
           <p.Stack
             as={"form"}
             data-plasmic-name={"form"}
             data-plasmic-override={overrides.form}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.form)}
+            className={classNames(defaultcss.all, projectcss.all, sty.form)}
           >
             <InputText
               data-plasmic-name={"email"}
@@ -262,7 +288,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               data-plasmic-name={"link"}
               data-plasmic-override={overrides.link}
               hasGap={true}
-              className={classNames(defaultcss.a, sty.link, {
+              className={classNames(defaultcss.a, projectcss.a, sty.link, {
                 [sty.link__type_isTimeline]: hasVariant(
                   variants,
                   "type",
@@ -271,7 +297,11 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               })}
             >
               <IconLinkIcon
-                className={classNames(defaultcss.all, sty.svg__opzJ7)}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.svg__opzJ7
+                )}
                 role={"img"}
               />
 
@@ -280,6 +310,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                 data-plasmic-override={overrides.span}
                 className={classNames(
                   defaultcss.span,
+                  projectcss.span,
                   defaultcss.__wab_text,
                   sty.span,
                   {
@@ -298,8 +329,20 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         </p.Stack>
       ) : null}
 
-      <div className={classNames(defaultcss.all, sty.freeBox__yRlj0)}>
-        <div className={classNames(defaultcss.all, sty.freeBox__guHgU)}>
+      <div
+        className={classNames(
+          defaultcss.all,
+          projectcss.all,
+          sty.freeBox__yRlj0
+        )}
+      >
+        <div
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__guHgU
+          )}
+        >
           {p.renderPlasmicSlot({
             defaultContents: "Current Members",
             value: args.slot2,
@@ -310,7 +353,11 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         <div
           data-plasmic-name={"membersContainer"}
           data-plasmic-override={overrides.membersContainer}
-          className={classNames(defaultcss.all, sty.membersContainer)}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.membersContainer
+          )}
         >
           <MemberItem
             className={classNames("__wab_instance", sty.memberItem__e3Lpj)}
@@ -413,7 +460,13 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       </div>
 
       {false ? (
-        <div className={classNames(defaultcss.all, sty.freeBox___1CNd9)}>
+        <div
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox___1CNd9
+          )}
+        >
           <Button
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
@@ -421,7 +474,11 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             count={"1"}
             slot={
               <IconPlusIcon
-                className={classNames(defaultcss.all, sty.svg__qlkG3)}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.svg__qlkG3
+                )}
                 role={"img"}
               />
             }
@@ -431,6 +488,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                 data-plasmic-override={overrides.text2}
                 className={classNames(
                   defaultcss.all,
+                  projectcss.all,
                   defaultcss.__wab_text,
                   sty.text2
                 )}
@@ -440,7 +498,11 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             }
           >
             <IconRightIcon
-              className={classNames(defaultcss.all, sty.svg__zn1XH)}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.svg__zn1XH
+              )}
               role={"img"}
             />
           </Button>

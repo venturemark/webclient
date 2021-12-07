@@ -55,41 +55,30 @@ function VentureFeed() {
     }
   }
 
-  const variantType = "isVenture";
   const isActive =
     venturesLoading || currentVentureTimelines.length ? "feed" : "isNewVenture";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isVenture"} isActive={isActive} />;
 }
 
 function NewTimeline() {
-  const variantType = "isTimeline";
-  const isActive = "settings";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isTimeline"} isActive={"settings"} />;
 }
 
 function VentureMembers() {
-  const variantType = "isVenture";
-  const isActive = "members";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isVenture"} isActive={"members"} />;
 }
 
 function VentureSettings() {
-  const variantType = "isVenture";
-  const isActive = "settings";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isVenture"} isActive={"settings"} />;
 }
 
 function VentureDelete() {
-  const variantType = "isVenture";
-  const isActive = "settings";
-  const modalType = "deleteVenture";
-  const isVisible = "showModal";
   return (
     <Home
-      variantType={variantType}
-      isActive={isActive}
-      modalType={modalType}
-      isVisible={isVisible}
+      variantType={"isVenture"}
+      isActive={"settings"}
+      modalType={"deleteVenture"}
+      isVisible={"showProfileModal"}
     />
   );
 }

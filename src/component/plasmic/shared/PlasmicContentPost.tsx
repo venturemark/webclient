@@ -52,19 +52,22 @@ export type PlasmicContentPost__VariantMembers = {
   state: "isOwner" | "isPostDetails" | "isPublic";
   isUserOnClick: "isUserOnClick";
   hasMedia: "hasMedia";
+  hasDescription: "hasDescription";
 };
 
 export type PlasmicContentPost__VariantsArgs = {
   state?: SingleChoiceArg<"isOwner" | "isPostDetails" | "isPublic">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
   hasMedia?: SingleBooleanChoiceArg<"hasMedia">;
+  hasDescription?: SingleBooleanChoiceArg<"hasDescription">;
 };
 
 type VariantPropType = keyof PlasmicContentPost__VariantsArgs;
 export const PlasmicContentPost__VariantProps = new Array<VariantPropType>(
   "state",
   "isUserOnClick",
-  "hasMedia"
+  "hasMedia",
+  "hasDescription"
 );
 
 export type PlasmicContentPost__ArgsType = {
@@ -107,6 +110,7 @@ export interface DefaultContentPostProps {
   state?: SingleChoiceArg<"isOwner" | "isPostDetails" | "isPublic">;
   isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
   hasMedia?: SingleBooleanChoiceArg<"hasMedia">;
+  hasDescription?: SingleBooleanChoiceArg<"hasDescription">;
   className?: string;
 }
 
@@ -134,78 +138,113 @@ function PlasmicContentPost__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isUserOnClick]: hasVariant(
-          variants,
-          "isUserOnClick",
-          "isUserOnClick"
-        ),
-        [sty.root__isUserOnClick_state_isOwner]:
-          hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
-          hasVariant(variants, "state", "isOwner"),
-        [sty.root__state_isOwner]: hasVariant(variants, "state", "isOwner"),
-        [sty.root__state_isPostDetails]: hasVariant(
-          variants,
-          "state",
-          "isPostDetails"
-        ),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__isUserOnClick]: hasVariant(
+            variants,
+            "isUserOnClick",
+            "isUserOnClick"
+          ),
+          [sty.root__isUserOnClick_state_isOwner]:
+            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+            hasVariant(variants, "state", "isOwner"),
+          [sty.root__state_isOwner]: hasVariant(variants, "state", "isOwner"),
+          [sty.root__state_isPostDetails]: hasVariant(
+            variants,
+            "state",
+            "isPostDetails"
+          ),
+        }
+      )}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
       <div
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
-        className={classNames(defaultcss.all, sty.editorContainer, {
-          [sty.editorContainer__isUserOnClick_state_isOwner]:
-            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
-            hasVariant(variants, "state", "isOwner"),
-          [sty.editorContainer__state_isOwner]: hasVariant(
-            variants,
-            "state",
-            "isOwner"
-          ),
-          [sty.editorContainer__state_isPostDetails]: hasVariant(
-            variants,
-            "state",
-            "isPostDetails"
-          ),
-        })}
-      >
-        <div
-          className={classNames(defaultcss.all, sty.freeBox__z3Q65, {
-            [sty.freeBox__state_isOwner__z3Q65U0Xnn]: hasVariant(
+        className={classNames(
+          defaultcss.all,
+          projectcss.all,
+          sty.editorContainer,
+          {
+            [sty.editorContainer__isUserOnClick_state_isOwner]:
+              hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+              hasVariant(variants, "state", "isOwner"),
+            [sty.editorContainer__state_isOwner]: hasVariant(
               variants,
               "state",
               "isOwner"
             ),
-          })}
+            [sty.editorContainer__state_isPostDetails]: hasVariant(
+              variants,
+              "state",
+              "isPostDetails"
+            ),
+          }
+        )}
+      >
+        <div
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__z3Q65,
+            {
+              [sty.freeBox__state_isOwner__z3Q65U0Xnn]: hasVariant(
+                variants,
+                "state",
+                "isOwner"
+              ),
+            }
+          )}
         >
           <p.Stack
             as={"div"}
             data-plasmic-name={"textContainer2"}
             data-plasmic-override={overrides.textContainer2}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.textContainer2, {
-              [sty.textContainer2__state_isOwner]: hasVariant(
-                variants,
-                "state",
-                "isOwner"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.textContainer2,
+              {
+                [sty.textContainer2__state_isOwner]: hasVariant(
+                  variants,
+                  "state",
+                  "isOwner"
+                ),
+              }
+            )}
           >
             <div
               data-plasmic-name={"title"}
               data-plasmic-override={overrides.title}
               className={classNames(
                 defaultcss.all,
+                projectcss.all,
                 defaultcss.__wab_text,
                 sty.title,
                 {
+                  [sty.title__hasDescription]: hasVariant(
+                    variants,
+                    "hasDescription",
+                    "hasDescription"
+                  ),
                   [sty.title__hasMedia]: hasVariant(
                     variants,
                     "hasMedia",
                     "hasMedia"
                   ),
+                  [sty.title__isUserOnClick]: hasVariant(
+                    variants,
+                    "isUserOnClick",
+                    "isUserOnClick"
+                  ),
+                  [sty.title__isUserOnClick_state_isOwner]:
+                    hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                    hasVariant(variants, "state", "isOwner"),
                   [sty.title__state_isOwner]: hasVariant(
                     variants,
                     "state",
@@ -219,64 +258,113 @@ function PlasmicContentPost__RenderFunc(props: {
                 }
               )}
             >
-              {hasVariant(variants, "state", "isOwner")
-                ? "Lorem i ut ullamcorper dui "
-                : "Lorem ipsumNam mollis varius ex. In ornare #scelerisque ex, ut ullamcorper dui "}
+              {
+                "Lorem ipsumNam mollis varius ex. In ornare #scelerisque ex, ut ullamcorper dui "
+              }
             </div>
 
+            {(
+              hasVariant(variants, "hasDescription", "hasDescription")
+                ? true
+                : true
+            ) ? (
+              <div
+                data-plasmic-name={"description"}
+                data-plasmic-override={overrides.description}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  defaultcss.__wab_text,
+                  sty.description,
+                  {
+                    [sty.description__hasDescription]: hasVariant(
+                      variants,
+                      "hasDescription",
+                      "hasDescription"
+                    ),
+                    [sty.description__isUserOnClick_state_isOwner]:
+                      hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                      hasVariant(variants, "state", "isOwner"),
+                    [sty.description__state_isOwner]: hasVariant(
+                      variants,
+                      "state",
+                      "isOwner"
+                    ),
+                    [sty.description__state_isPostDetails]: hasVariant(
+                      variants,
+                      "state",
+                      "isPostDetails"
+                    ),
+                  }
+                )}
+              >
+                {
+                  "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"
+                }
+              </div>
+            ) : null}
+          </p.Stack>
+
+          {(
+            hasVariant(variants, "isUserOnClick", "isUserOnClick")
+              ? true
+              : hasVariant(variants, "state", "isOwner")
+              ? true
+              : false
+          ) ? (
             <div
-              data-plasmic-name={"description"}
-              data-plasmic-override={overrides.description}
               className={classNames(
                 defaultcss.all,
-                defaultcss.__wab_text,
-                sty.description,
+                projectcss.all,
+                sty.freeBox__vVNrv,
                 {
-                  [sty.description__isUserOnClick_state_isOwner]:
-                    hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
-                    hasVariant(variants, "state", "isOwner"),
-                  [sty.description__state_isOwner]: hasVariant(
+                  [sty.freeBox__isUserOnClick__vVNrvg87Sf]: hasVariant(
+                    variants,
+                    "isUserOnClick",
+                    "isUserOnClick"
+                  ),
+                  [sty.freeBox__state_isOwner__vVNrvU0Xnn]: hasVariant(
                     variants,
                     "state",
                     "isOwner"
-                  ),
-                  [sty.description__state_isPostDetails]: hasVariant(
-                    variants,
-                    "state",
-                    "isPostDetails"
                   ),
                 }
               )}
             >
-              {hasVariant(variants, "state", "isOwner")
-                ? "Lorem ipsum #dolor sit amet, consectetur "
-                : "Lorem ipsum #dolor sit amet, consectetur adipiscing elit. Nam mollis varius ex. In ornare #scelerisque ex, ut 35 ullamcorper dui suscipit id. Mauris #maximus congue ante, sed varius"}
-            </div>
-          </p.Stack>
-
-          {(hasVariant(variants, "state", "isOwner") ? true : false) ? (
-            <div
-              className={classNames(defaultcss.all, sty.freeBox__vVNrv, {
-                [sty.freeBox__state_isOwner__vVNrvU0Xnn]: hasVariant(
-                  variants,
-                  "state",
-                  "isOwner"
-                ),
-              })}
-            >
-              <IconDotMenuIcon
-                data-plasmic-name={"iconMenu"}
-                data-plasmic-override={overrides.iconMenu}
-                className={classNames(defaultcss.all, sty.iconMenu, {
-                  [sty.iconMenu__state_isOwner]: hasVariant(
-                    variants,
-                    "state",
-                    "isOwner"
-                  ),
-                })}
-                role={"img"}
-              />
-
+              {(
+                hasVariant(variants, "state", "isOwner") &&
+                hasVariant(variants, "isUserOnClick", "isUserOnClick")
+                  ? true
+                  : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+                  ? true
+                  : true
+              ) ? (
+                <IconDotMenuIcon
+                  data-plasmic-name={"iconMenu"}
+                  data-plasmic-override={overrides.iconMenu}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.iconMenu,
+                    {
+                      [sty.iconMenu__isUserOnClick]: hasVariant(
+                        variants,
+                        "isUserOnClick",
+                        "isUserOnClick"
+                      ),
+                      [sty.iconMenu__state_isOwner]: hasVariant(
+                        variants,
+                        "state",
+                        "isOwner"
+                      ),
+                      [sty.iconMenu__state_isOwner_isUserOnClick]:
+                        hasVariant(variants, "state", "isOwner") &&
+                        hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+                    }
+                  )}
+                  role={"img"}
+                />
+              ) : null}
               {(
                 hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
                 hasVariant(variants, "state", "isOwner") &&
@@ -287,7 +375,12 @@ function PlasmicContentPost__RenderFunc(props: {
                   ? false
                   : triggers.hover_root
                   ? true
+                  : hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
+                    hasVariant(variants, "state", "isOwner")
+                  ? true
                   : hasVariant(variants, "isUserOnClick", "isUserOnClick")
+                  ? true
+                  : hasVariant(variants, "state", "isOwner")
                   ? true
                   : false
               ) ? (
@@ -315,9 +408,15 @@ function PlasmicContentPost__RenderFunc(props: {
                       data-plasmic-override={overrides.archiveOption}
                       className={classNames(
                         defaultcss.all,
+                        projectcss.all,
                         defaultcss.__wab_text,
                         sty.archiveOption,
                         {
+                          [sty.archiveOption__isUserOnClick]: hasVariant(
+                            variants,
+                            "isUserOnClick",
+                            "isUserOnClick"
+                          ),
                           [sty.archiveOption__isUserOnClick_state_isOwner]:
                             hasVariant(
                               variants,
@@ -358,27 +457,37 @@ function PlasmicContentPost__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.freeBox__ehjLr, {
-            [sty.freeBox__state_isOwner__ehjLrU0Xnn]: hasVariant(
-              variants,
-              "state",
-              "isOwner"
-            ),
-            [sty.freeBox__state_isPostDetails__ehjLrNeiX5]: hasVariant(
-              variants,
-              "state",
-              "isPostDetails"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__ehjLr,
+            {
+              [sty.freeBox__state_isOwner__ehjLrU0Xnn]: hasVariant(
+                variants,
+                "state",
+                "isOwner"
+              ),
+              [sty.freeBox__state_isPostDetails__ehjLrNeiX5]: hasVariant(
+                variants,
+                "state",
+                "isPostDetails"
+              ),
+            }
+          )}
         >
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.freeBox__kyNpO, {
-              [sty.freeBox__state_isOwner_isUserOnClick__kyNpOu0XnnG87Sf]:
-                hasVariant(variants, "state", "isOwner") &&
-                hasVariant(variants, "isUserOnClick", "isUserOnClick"),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__kyNpO,
+              {
+                [sty.freeBox__state_isOwner_isUserOnClick__kyNpOu0XnnG87Sf]:
+                  hasVariant(variants, "state", "isOwner") &&
+                  hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+              }
+            )}
           >
             <PhotoAvatar
               data-plasmic-name={"photoAvatar"}
@@ -393,34 +502,46 @@ function PlasmicContentPost__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.freeBox__mkSty)}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox__mkSty
+              )}
             >
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.freeBox__fjL5B, {
-                  [sty.freeBox__state_isOwner__fjL5Bu0Xnn]: hasVariant(
-                    variants,
-                    "state",
-                    "isOwner"
-                  ),
-                })}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox__fjL5B,
+                  {
+                    [sty.freeBox__state_isOwner__fjL5Bu0Xnn]: hasVariant(
+                      variants,
+                      "state",
+                      "isOwner"
+                    ),
+                  }
+                )}
               >
-                <div className={classNames(defaultcss.all, sty.freeBox__nwWG)}>
+                <div
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.freeBox__nwWG
+                  )}
+                >
                   {p.renderPlasmicSlot({
                     defaultContents: (
                       <span
                         className={classNames(
                           defaultcss.span,
+                          projectcss.span,
                           defaultcss.__wab_text,
                           sty.span__kq2PL
                         )}
                       >
-                        <span
-                          className={
-                            "plasmic_default__all plasmic_default__span"
-                          }
-                        >
+                        <React.Fragment>
                           <React.Fragment>{""}</React.Fragment>
                           <span
                             className={
@@ -431,7 +552,7 @@ function PlasmicContentPost__RenderFunc(props: {
                             {"The Rock"}
                           </span>
                           <React.Fragment>{""}</React.Fragment>
-                        </span>
+                        </React.Fragment>
                       </span>
                     ),
 
@@ -443,19 +564,25 @@ function PlasmicContentPost__RenderFunc(props: {
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(defaultcss.all, sty.freeBox__wDBh5, {
-                    [sty.freeBox__state_isOwner__wDBh5U0Xnn]: hasVariant(
-                      variants,
-                      "state",
-                      "isOwner"
-                    ),
-                  })}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.freeBox__wDBh5,
+                    {
+                      [sty.freeBox__state_isOwner__wDBh5U0Xnn]: hasVariant(
+                        variants,
+                        "state",
+                        "isOwner"
+                      ),
+                    }
+                  )}
                 >
                   <span
                     data-plasmic-name={"span"}
                     data-plasmic-override={overrides.span}
                     className={classNames(
                       defaultcss.span,
+                      projectcss.span,
                       defaultcss.__wab_text,
                       sty.span,
                       {
@@ -475,6 +602,7 @@ function PlasmicContentPost__RenderFunc(props: {
                       <span
                         className={classNames(
                           defaultcss.span,
+                          projectcss.span,
                           defaultcss.__wab_text,
                           sty.span__iEzaX
                         )}
@@ -498,11 +626,16 @@ function PlasmicContentPost__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(defaultcss.all, sty.freeBox__vvzri, {
-                  [sty.freeBox__state_isOwner_isUserOnClick__vvzriu0XnnG87Sf]:
-                    hasVariant(variants, "state", "isOwner") &&
-                    hasVariant(variants, "isUserOnClick", "isUserOnClick"),
-                })}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox__vvzri,
+                  {
+                    [sty.freeBox__state_isOwner_isUserOnClick__vvzriu0XnnG87Sf]:
+                      hasVariant(variants, "state", "isOwner") &&
+                      hasVariant(variants, "isUserOnClick", "isUserOnClick"),
+                  }
+                )}
               >
                 <p.Stack
                   as={"div"}
@@ -511,6 +644,7 @@ function PlasmicContentPost__RenderFunc(props: {
                   hasGap={true}
                   className={classNames(
                     defaultcss.all,
+                    projectcss.all,
                     sty.timelineNamesContainer,
                     {
                       [sty.timelineNamesContainer__state_isOwner_isUserOnClick]:
@@ -540,13 +674,18 @@ function PlasmicContentPost__RenderFunc(props: {
 
           {(hasVariant(variants, "state", "isPostDetails") ? false : true) ? (
             <div
-              className={classNames(defaultcss.all, sty.freeBox__iRFwS, {
-                [sty.freeBox__state_isPostDetails__iRFwSNeiX5]: hasVariant(
-                  variants,
-                  "state",
-                  "isPostDetails"
-                ),
-              })}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox__iRFwS,
+                {
+                  [sty.freeBox__state_isPostDetails__iRFwSNeiX5]: hasVariant(
+                    variants,
+                    "state",
+                    "isPostDetails"
+                  ),
+                }
+              )}
             >
               <Button
                 data-plasmic-name={"viewReplies"}
@@ -575,7 +714,11 @@ function PlasmicContentPost__RenderFunc(props: {
                 }
                 slot={
                   <IconPlusIcon
-                    className={classNames(defaultcss.all, sty.svg__w2QpP)}
+                    className={classNames(
+                      defaultcss.all,
+                      projectcss.all,
+                      sty.svg__w2QpP
+                    )}
                     role={"img"}
                   />
                 }
@@ -591,13 +734,18 @@ function PlasmicContentPost__RenderFunc(props: {
                       ? LockIconsvgIcon
                       : IconRightIcon
                   }
-                  className={classNames(defaultcss.all, sty.svg__i90Xz, {
-                    [sty.svg__state_isPublic__i90XzYirUl]: hasVariant(
-                      variants,
-                      "state",
-                      "isPublic"
-                    ),
-                  })}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.svg__i90Xz,
+                    {
+                      [sty.svg__state_isPublic__i90XzYirUl]: hasVariant(
+                        variants,
+                        "state",
+                        "isPublic"
+                      ),
+                    }
+                  )}
                   role={"img"}
                 />
               </Button>
