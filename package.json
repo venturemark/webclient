@@ -56,7 +56,10 @@
     ]
   },
   "reactSnap": {
-    "inlineCss": true
+    "inlineCss": true,
+    "puppeteerArgs": [
+      "--disable-dev-shm-usage"
+    ]
   },
   "name": "webclient",
   "private": true,
@@ -65,7 +68,8 @@
     "eject": "react-scripts eject",
     "lint": "prettier --write $(find ./src -name '*.ts' -o -name '*.tsx')",
     "start": "PORT=3006 react-scripts start",
-    "postbuild": "react-snap"
+    "postbuild": "react-snap",
+    "sync": "plasmic sync"
   },
   "version": "0.1.0",
   "devDependencies": {
