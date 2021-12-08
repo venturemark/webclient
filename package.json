@@ -58,7 +58,9 @@
   "reactSnap": {
     "inlineCss": true,
     "puppeteerArgs": [
-      "--disable-dev-shm-usage"
+      "--disable-dev-shm-usage",
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
     ]
   },
   "name": "webclient",
