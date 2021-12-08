@@ -125,9 +125,23 @@ export function useVentures(ventureSlug: string): IVentureContext {
     token,
   });
 
+  console.log({
+    venturesByUserStatus,
+    venturesByTimelineStatus,
+    ventureRolesStatus,
+    timelinesByUserStatus,
+    timelineRolesStatus,
+    currentVentureMembersStatus,
+    ventureSlug,
+    user,
+  });
+
   let loading: boolean;
   if (!authenticated) {
     loading = authLoading;
+  } else if (!ventureSlug) {
+    loading =
+      ventureRolesStatus !== "success" || venturesByUserStatus !== "success";
   } else {
     loading =
       venturesByUserStatus !== "success" ||

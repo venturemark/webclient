@@ -93,6 +93,14 @@ function FeedUpdate(props: FeedUpdateProps) {
     return [];
   }, [timelineId, timelineUpdates, ventureId, ventureUpdates]);
 
+  console.log({
+    updates,
+    timelineId,
+    timelineUpdates,
+    ventureId,
+    ventureUpdates,
+  });
+
   useEffect(() => {
     if (status !== "idle" || !user) {
       return;
