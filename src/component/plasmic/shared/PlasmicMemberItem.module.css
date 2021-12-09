@@ -49,6 +49,7 @@
   width: 1em;
   flex-shrink: 0;
   height: 1em;
+  display: block;
 }
 .svg__userVariant_isRequested__dd2HXoSddm {
   display: none;
@@ -87,8 +88,14 @@
   > img {
   margin-left: 15px;
 }
+.freeBox__userVariant_isMember__ymOfcGdyZr {
+  display: flex;
+}
 .iconButton:global(.__wab_instance) {
   position: relative;
+}
+.iconButton__isOwner:global(.__wab_instance) {
+  display: flex;
 }
 .iconButton__userVariant_isSelf_isOwner:global(.__wab_instance) {
   display: none;
@@ -139,6 +146,15 @@
 }
 .removeInvitation:global(.__wab_instance) {
   position: relative;
+}
+.removeInvitation__isOwner_userVariant_isMember:global(.__wab_instance) {
+  display: flex;
+}
+.removeInvitation__isOwner_userVariant_isAdmin_isDropdown:global(.__wab_instance) {
+  display: flex;
+}
+.removeInvitation__isOwner_isDropdown_userVariant_isMember:global(.__wab_instance) {
+  display: flex;
 }
 .text___5GQ6G {
   position: relative;

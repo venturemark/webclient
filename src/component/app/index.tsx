@@ -14,15 +14,11 @@ import { AuthRoute } from "./AuthRoute";
 import { VentureRoutes } from "./VentureRoutes";
 
 function NewVenture() {
-  const variantType = "isVenture";
-  const isActive = "settings";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isVenture"} isActive={"settings"} />;
 }
 
 function EditProfile() {
-  const modalType = "editProfile";
-  const isVisible = "showModal";
-  return <Home modalType={modalType} isVisible={isVisible} />;
+  return <Home modalType={"editProfile"} isVisible={"showProfileModal"} />;
 }
 
 export function App() {

@@ -36,11 +36,18 @@ import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-i
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicListItem.module.css"; // plasmic-import: q8aEgDsN8_/css
 
-export type PlasmicListItem__VariantMembers = {};
+export type PlasmicListItem__VariantMembers = {
+  isActive: "isActive";
+};
 
-export type PlasmicListItem__VariantsArgs = {};
+export type PlasmicListItem__VariantsArgs = {
+  isActive?: SingleBooleanChoiceArg<"isActive">;
+};
+
 type VariantPropType = keyof PlasmicListItem__VariantsArgs;
-export const PlasmicListItem__VariantProps = new Array<VariantPropType>();
+export const PlasmicListItem__VariantProps = new Array<VariantPropType>(
+  "isActive"
+);
 
 export type PlasmicListItem__ArgsType = {
   rename?: React.ReactNode;
@@ -56,6 +63,7 @@ export type PlasmicListItem__OverridesType = {
 
 export interface DefaultListItemProps {
   rename?: React.ReactNode;
+  isActive?: SingleBooleanChoiceArg<"isActive">;
   className?: string;
 }
 
@@ -74,17 +82,28 @@ function PlasmicListItem__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.li, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.li,
+        projectcss.li,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       <a
         data-plasmic-name={"link"}
         data-plasmic-override={overrides.link}
-        className={classNames(defaultcss.a, sty.link)}
+        className={classNames(defaultcss.a, projectcss.a, sty.link)}
       >
         {p.renderPlasmicSlot({
           defaultContents: "Edit",
           value: args.rename,
-          className: classNames(sty.slotTargetRename),
+          className: classNames(sty.slotTargetRename, {
+            [sty.slotTargetRename__isActive]: hasVariant(
+              variants,
+              "isActive",
+              "isActive"
+            ),
+          }),
         })}
       </a>
     </li>

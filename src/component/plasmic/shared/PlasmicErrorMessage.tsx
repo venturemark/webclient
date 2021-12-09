@@ -81,19 +81,28 @@ function PlasmicErrorMessage__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       <p.Stack
         as={"div"}
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
         hasGap={true}
-        className={classNames(defaultcss.all, sty.container)}
+        className={classNames(defaultcss.all, projectcss.all, sty.container)}
       >
         {p.renderPlasmicSlot({
           defaultContents: (
             <IconCautionIcon
-              className={classNames(defaultcss.all, sty.svg__eqR5W)}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.svg__eqR5W
+              )}
               role={"img"}
             />
           ),

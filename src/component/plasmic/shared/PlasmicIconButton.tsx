@@ -96,27 +96,33 @@ function PlasmicIconButton__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
-        [sty.root__isDarkBgHover]: hasVariant(
-          variants,
-          "isDarkBgHover",
-          "isDarkBgHover"
-        ),
-        [sty.root__isDisabled]: hasVariant(
-          variants,
-          "isDisabled",
-          "isDisabled"
-        ),
-        [sty.root__isDisabled_isDarkBgHover]:
-          hasVariant(variants, "isDisabled", "isDisabled") &&
-          hasVariant(variants, "isDarkBgHover", "isDarkBgHover"),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
+          [sty.root__isDarkBgHover]: hasVariant(
+            variants,
+            "isDarkBgHover",
+            "isDarkBgHover"
+          ),
+          [sty.root__isDisabled]: hasVariant(
+            variants,
+            "isDisabled",
+            "isDisabled"
+          ),
+          [sty.root__isDisabled_isDarkBgHover]:
+            hasVariant(variants, "isDisabled", "isDisabled") &&
+            hasVariant(variants, "isDarkBgHover", "isDarkBgHover"),
+        }
+      )}
     >
       <div
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
-        className={classNames(defaultcss.all, sty.container, {
+        className={classNames(defaultcss.all, projectcss.all, sty.container, {
           [sty.container__iconSize_large]: hasVariant(
             variants,
             "iconSize",
@@ -145,7 +151,11 @@ function PlasmicIconButton__RenderFunc(props: {
         {p.renderPlasmicSlot({
           defaultContents: (
             <IconFeedIcon
-              className={classNames(defaultcss.all, sty.svg__toCuH)}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.svg__toCuH
+              )}
               role={"img"}
             />
           ),
@@ -161,6 +171,11 @@ function PlasmicIconButton__RenderFunc(props: {
               variants,
               "isDarkBgHover",
               "isDarkBgHover"
+            ),
+            [sty.slotTargetChildren__isDisabled]: hasVariant(
+              variants,
+              "isDisabled",
+              "isDisabled"
             ),
           }),
         })}

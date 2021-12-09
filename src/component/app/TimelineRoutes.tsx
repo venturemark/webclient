@@ -161,16 +161,12 @@ function TimelineSettings() {
 }
 
 function TimelineDelete() {
-  const variantType = "isTimeline";
-  const isActive = "settings";
-  const modalType = "deleteTimeline";
-  const isVisible = "showModal";
   return (
     <Home
-      variantType={variantType}
-      isActive={isActive}
-      modalType={modalType}
-      isVisible={isVisible}
+      variantType={"isTimeline"}
+      isActive={"settings"}
+      modalType={"deleteTimeline"}
+      isVisible={"showProfileModal"}
     />
   );
 }

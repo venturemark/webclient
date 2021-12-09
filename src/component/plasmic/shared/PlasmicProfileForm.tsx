@@ -41,6 +41,7 @@ import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mT
 import * as sty from "./PlasmicProfileForm.module.css"; // plasmic-import: _XzWccJtXuE/css
 
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
+import IconHashIcon from "./icons/PlasmicIcon__IconHash"; // plasmic-import: AVLV6uMr56/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 
@@ -95,29 +96,41 @@ function PlasmicProfileForm__RenderFunc(props: {
       data-plasmic-override={overrides.form}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.form, {
-        [sty.form__editProfile]: hasVariant(
-          variants,
-          "editProfile",
-          "editProfile"
-        ),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.form,
+        {
+          [sty.form__editProfile]: hasVariant(
+            variants,
+            "editProfile",
+            "editProfile"
+          ),
+        }
+      )}
     >
       {(hasVariant(variants, "editProfile", "editProfile") ? true : false) ? (
         <div
-          className={classNames(defaultcss.all, sty.freeBox__ytyPi, {
-            [sty.freeBox__editProfile__ytyPiOylNj]: hasVariant(
-              variants,
-              "editProfile",
-              "editProfile"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__ytyPi,
+            {
+              [sty.freeBox__editProfile__ytyPiOylNj]: hasVariant(
+                variants,
+                "editProfile",
+                "editProfile"
+              ),
+            }
+          )}
         >
           <div
             data-plasmic-name={"text"}
             data-plasmic-override={overrides.text}
             className={classNames(
               defaultcss.all,
+              projectcss.all,
               defaultcss.__wab_text,
               sty.text,
               {
@@ -144,7 +157,11 @@ function PlasmicProfileForm__RenderFunc(props: {
             })}
           >
             <IconCloseIcon
-              className={classNames(defaultcss.all, sty.svg__p2Fm6)}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.svg__p2Fm6
+              )}
               role={"img"}
             />
           </IconButton>
@@ -152,18 +169,27 @@ function PlasmicProfileForm__RenderFunc(props: {
       ) : null}
       {(hasVariant(variants, "editProfile", "editProfile") ? true : false) ? (
         <div
-          className={classNames(defaultcss.all, sty.freeBox__lhTso, {
-            [sty.freeBox__editProfile__lhTsoOylNj]: hasVariant(
-              variants,
-              "editProfile",
-              "editProfile"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__lhTso,
+            {
+              [sty.freeBox__editProfile__lhTsoOylNj]: hasVariant(
+                variants,
+                "editProfile",
+                "editProfile"
+              ),
+            }
+          )}
         >
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.freeBox__khj8R)}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__khj8R
+            )}
           >
             <PhotoAvatar
               data-plasmic-name={"photoAvatar"}
@@ -177,6 +203,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                 data-plasmic-override={overrides.link}
                 className={classNames(
                   defaultcss.a,
+                  projectcss.a,
                   defaultcss.__wab_text,
                   sty.link,
                   {
@@ -228,13 +255,18 @@ function PlasmicProfileForm__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.freeBox__z9Te4, {
-            [sty.freeBox__editProfile__z9Te4OylNj]: hasVariant(
-              variants,
-              "editProfile",
-              "editProfile"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__z9Te4,
+            {
+              [sty.freeBox__editProfile__z9Te4OylNj]: hasVariant(
+                variants,
+                "editProfile",
+                "editProfile"
+              ),
+            }
+          )}
         >
           {(
             hasVariant(variants, "editProfile", "editProfile") ? true : false
@@ -250,7 +282,11 @@ function PlasmicProfileForm__RenderFunc(props: {
               count={"1"}
               slot={
                 <IconPlusIcon
-                  className={classNames(defaultcss.all, sty.svg__dVu44)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.svg__dVu44
+                  )}
                   role={"img"}
                 />
               }
@@ -260,6 +296,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                   data-plasmic-override={overrides.text2}
                   className={classNames(
                     defaultcss.all,
+                    projectcss.all,
                     defaultcss.__wab_text,
                     sty.text2,
                     {
@@ -278,7 +315,11 @@ function PlasmicProfileForm__RenderFunc(props: {
               }
             >
               <IconRightIcon
-                className={classNames(defaultcss.all, sty.svg__sv8Ps)}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.svg__sv8Ps
+                )}
                 role={"img"}
               />
             </Button>
@@ -300,7 +341,11 @@ function PlasmicProfileForm__RenderFunc(props: {
               count={"1"}
               slot={
                 <IconPlusIcon
-                  className={classNames(defaultcss.all, sty.svg__dsa3)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.svg__dsa3
+                  )}
                   role={"img"}
                 />
               }
@@ -310,6 +355,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                   data-plasmic-override={overrides.text22}
                   className={classNames(
                     defaultcss.all,
+                    projectcss.all,
                     defaultcss.__wab_text,
                     sty.text22,
                     {
@@ -328,7 +374,11 @@ function PlasmicProfileForm__RenderFunc(props: {
               }
             >
               <IconRightIcon
-                className={classNames(defaultcss.all, sty.svg__sweNz)}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.svg__sweNz
+                )}
                 role={"img"}
               />
             </Button>

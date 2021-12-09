@@ -112,34 +112,50 @@ function PlasmicProfileDropdown__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root
+      )}
     >
       <div
         data-plasmic-name={"rectangle574"}
         data-plasmic-override={overrides.rectangle574}
-        className={classNames(defaultcss.all, sty.rectangle574, {
-          [sty.rectangle574__isMobile]: hasVariant(
-            variants,
-            "isMobile",
-            "isMobile"
-          ),
-        })}
+        className={classNames(
+          defaultcss.all,
+          projectcss.all,
+          sty.rectangle574,
+          {
+            [sty.rectangle574__isMobile]: hasVariant(
+              variants,
+              "isMobile",
+              "isMobile"
+            ),
+          }
+        )}
       >
         {(hasVariant(variants, "isMobile", "isMobile") ? true : true) ? (
           <div
-            className={classNames(defaultcss.all, sty.freeBox___4LHLu, {
-              [sty.freeBox__isMobile___4LHLuKb6FV]: hasVariant(
-                variants,
-                "isMobile",
-                "isMobile"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox___4LHLu,
+              {
+                [sty.freeBox__isMobile___4LHLuKb6FV]: hasVariant(
+                  variants,
+                  "isMobile",
+                  "isMobile"
+                ),
+              }
+            )}
           >
             <div
               data-plasmic-name={"text"}
               data-plasmic-override={overrides.text}
               className={classNames(
                 defaultcss.all,
+                projectcss.all,
                 defaultcss.__wab_text,
                 sty.text
               )}
@@ -147,7 +163,13 @@ function PlasmicProfileDropdown__RenderFunc(props: {
               {"Account"}
             </div>
 
-            <div className={classNames(defaultcss.all, sty.freeBox___9FGjg)}>
+            <div
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox___9FGjg
+              )}
+            >
               <IconButton
                 data-plasmic-name={"close"}
                 data-plasmic-override={overrides.close}
@@ -156,7 +178,11 @@ function PlasmicProfileDropdown__RenderFunc(props: {
                 <IconCloseIcon
                   data-plasmic-name={"svg"}
                   data-plasmic-override={overrides.svg}
-                  className={classNames(defaultcss.all, sty.svg)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.svg
+                  )}
                   role={"img"}
                 />
               </IconButton>
@@ -167,13 +193,18 @@ function PlasmicProfileDropdown__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.freeBox__iA4Y, {
-              [sty.freeBox__isMobile__iA4YKb6FV]: hasVariant(
-                variants,
-                "isMobile",
-                "isMobile"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__iA4Y,
+              {
+                [sty.freeBox__isMobile__iA4YKb6FV]: hasVariant(
+                  variants,
+                  "isMobile",
+                  "isMobile"
+                ),
+              }
+            )}
           >
             {false ? (
               <PhotoAvatar
@@ -190,7 +221,11 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(defaultcss.all, sty.freeBox__tyRt7)}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox__tyRt7
+              )}
             >
               {false
                 ? p.renderPlasmicSlot({
@@ -218,7 +253,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
           data-plasmic-name={"ul"}
           data-plasmic-override={overrides.ul}
           hasGap={true}
-          className={classNames(defaultcss.ul, sty.ul)}
+          className={classNames(defaultcss.ul, projectcss.ul, sty.ul)}
         >
           <ListItem
             data-plasmic-name={"createNewVenture"}

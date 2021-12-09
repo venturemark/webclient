@@ -118,81 +118,100 @@ function PlasmicTags__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__buttonStyle_blue]: hasVariant(
-          variants,
-          "buttonStyle",
-          "blue"
-        ),
-        [sty.root__buttonStyle_primaryPurple]: hasVariant(
-          variants,
-          "buttonStyle",
-          "primaryPurple"
-        ),
-        [sty.root__buttonStyle_red]: hasVariant(variants, "buttonStyle", "red"),
-        [sty.root__buttonStyle_secondaryGreen]: hasVariant(
-          variants,
-          "buttonStyle",
-          "secondaryGreen"
-        ),
-        [sty.root__buttonStyle_secondaryPurple]: hasVariant(
-          variants,
-          "buttonStyle",
-          "secondaryPurple"
-        ),
-      })}
-    >
-      <button
-        data-plasmic-name={"button"}
-        data-plasmic-override={overrides.button}
-        className={classNames(defaultcss.button, sty.button, {
-          [sty.button__buttonFeatures_icon]: hasVariant(
-            variants,
-            "buttonFeatures",
-            "icon"
-          ),
-          [sty.button__buttonStyle_blue]: hasVariant(
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__buttonStyle_blue]: hasVariant(
             variants,
             "buttonStyle",
             "blue"
           ),
-          [sty.button__buttonStyle_grey]: hasVariant(
-            variants,
-            "buttonStyle",
-            "grey"
-          ),
-          [sty.button__buttonStyle_grey_buttonFeatures_icon]:
-            hasVariant(variants, "buttonStyle", "grey") &&
-            hasVariant(variants, "buttonFeatures", "icon"),
-          [sty.button__buttonStyle_primaryPurple]: hasVariant(
+          [sty.root__buttonStyle_primaryPurple]: hasVariant(
             variants,
             "buttonStyle",
             "primaryPurple"
           ),
-          [sty.button__buttonStyle_red]: hasVariant(
+          [sty.root__buttonStyle_red]: hasVariant(
             variants,
             "buttonStyle",
             "red"
           ),
-          [sty.button__buttonStyle_secondaryGreen]: hasVariant(
+          [sty.root__buttonStyle_secondaryGreen]: hasVariant(
             variants,
             "buttonStyle",
             "secondaryGreen"
           ),
-          [sty.button__buttonStyle_secondaryPurple]: hasVariant(
+          [sty.root__buttonStyle_secondaryPurple]: hasVariant(
             variants,
             "buttonStyle",
             "secondaryPurple"
           ),
-          [sty.button__disabled]: hasVariant(variants, "disabled", "disabled"),
-        })}
+        }
+      )}
+    >
+      <button
+        data-plasmic-name={"button"}
+        data-plasmic-override={overrides.button}
+        className={classNames(
+          defaultcss.button,
+          projectcss.button,
+          sty.button,
+          {
+            [sty.button__buttonFeatures_icon]: hasVariant(
+              variants,
+              "buttonFeatures",
+              "icon"
+            ),
+            [sty.button__buttonStyle_blue]: hasVariant(
+              variants,
+              "buttonStyle",
+              "blue"
+            ),
+            [sty.button__buttonStyle_grey]: hasVariant(
+              variants,
+              "buttonStyle",
+              "grey"
+            ),
+            [sty.button__buttonStyle_grey_buttonFeatures_icon]:
+              hasVariant(variants, "buttonStyle", "grey") &&
+              hasVariant(variants, "buttonFeatures", "icon"),
+            [sty.button__buttonStyle_primaryPurple]: hasVariant(
+              variants,
+              "buttonStyle",
+              "primaryPurple"
+            ),
+            [sty.button__buttonStyle_red]: hasVariant(
+              variants,
+              "buttonStyle",
+              "red"
+            ),
+            [sty.button__buttonStyle_secondaryGreen]: hasVariant(
+              variants,
+              "buttonStyle",
+              "secondaryGreen"
+            ),
+            [sty.button__buttonStyle_secondaryPurple]: hasVariant(
+              variants,
+              "buttonStyle",
+              "secondaryPurple"
+            ),
+            [sty.button__disabled]: hasVariant(
+              variants,
+              "disabled",
+              "disabled"
+            ),
+          }
+        )}
       >
         <p.Stack
           as={"div"}
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.freeBox, {
+          className={classNames(defaultcss.all, projectcss.all, sty.freeBox, {
             [sty.freeBox__buttonStyle_blue]: hasVariant(
               variants,
               "buttonStyle",
@@ -249,7 +268,11 @@ function PlasmicTags__RenderFunc(props: {
             ? p.renderPlasmicSlot({
                 defaultContents: (
                   <IconCloseIcon
-                    className={classNames(defaultcss.all, sty.svg__vEG)}
+                    className={classNames(
+                      defaultcss.all,
+                      projectcss.all,
+                      sty.svg__vEG
+                    )}
                     role={"img"}
                   />
                 ),

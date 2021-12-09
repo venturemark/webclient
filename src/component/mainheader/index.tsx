@@ -18,7 +18,7 @@ interface MainHeaderProps extends DefaultMainHeaderProps {
 function MainHeader(props: MainHeaderProps) {
   const { isActive, variantType, isOnboarding, ...rest } = props;
   const { timelineSlug, ventureSlug } = useParams();
-  const { currentVentureMembers } = useContext(VentureContext);
+  const { currentVentureMembers, currentVenture } = useContext(VentureContext);
   const { currentTimeline, currentTimelineMembers } =
     useContext(TimelineContext);
 
@@ -26,13 +26,11 @@ function MainHeader(props: MainHeaderProps) {
     ? `/${ventureSlug}/${timelineSlug}`
     : `/${ventureSlug}`;
 
-  const members = currentTimeline
-    ? currentTimelineMembers
-    : currentVentureMembers;
-
   return (
     <PlasmicMainHeader
       {...rest}
+      ventureName={currentVenture?.name}
+      timelineName={currentTimeline?.name}
       headerStyles={
         (variantType === "isVenture" && !ventureSlug) || !ventureSlug
           ? "createNewVenture"
@@ -47,7 +45,9 @@ function MainHeader(props: MainHeaderProps) {
       }}
       viewMembers={{
         props: {
-          memberCount: members.length,
+          memberCount: currentTimeline
+            ? currentTimelineMembers.length
+            : currentVentureMembers.length,
         },
         wrap(node) {
           return <Link to={basePath + "/members"}>{node}</Link>;

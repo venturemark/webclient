@@ -171,7 +171,6 @@
     align-items: center;
     justify-content: center;
     width: auto;
-    display: inline-flex;
   }
 }
 .text__x0Qaf {
@@ -227,7 +226,6 @@
     bottom: auto;
     height: auto;
     width: auto;
-    display: inline-flex;
   }
 }
 .img___2L10H {
@@ -291,7 +289,7 @@
   }
 }
 .freeBox__trjAa {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   width: auto;
 }

@@ -583,6 +583,32 @@
           "cssFilePath": "plasmic/shared/PlasmicActionMedia.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Ockk5wTs5Zq",
+          "name": "Share",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicShare.tsx",
+          "importSpec": {
+            "modulePath": "Share.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicShare.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "pG3eTcOvTW0",
+          "name": "VisibilityState",
+          "type": "managed",
+          "projectId": "mTVXT6w3HHjZ4d74q3gB76",
+          "renderModuleFilePath": "plasmic/shared/PlasmicVisibilityState.tsx",
+          "importSpec": {
+            "modulePath": "VisibilityState.tsx"
+          },
+          "cssFilePath": "plasmic/shared/PlasmicVisibilityState.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -790,6 +816,11 @@
           "id": "ivt63Bul_",
           "name": "IconMediaClosesvgIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconMediaClosesvg.tsx"
+        },
+        {
+          "id": "DkUt8Ihq_s",
+          "name": "IconPublicsvgIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconPublicsvg.tsx"
         }
       ],
       "images": [
@@ -835,7 +866,8 @@
         }
       ],
       "projectApiToken": "JmYCf6lyEqM7EiZtDziaLGIpSvhdusaKVvvFgGrGK5gGNtHra4ux9jUVroNOeGMWR16Tm0H6lDcE38TWvQ",
-      "codeComponents": []
+      "codeComponents": [],
+      "indirect": false
     }
   ],
   "globalVariants": {
@@ -854,6 +886,6 @@
       }
     ]
   },
-  "cliVersion": "0.1.161",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.161/dist/plasmic.schema.json"
+  "cliVersion": "0.1.166",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.166/dist/plasmic.schema.json"
 }

@@ -1,18 +1,6 @@
-import "emoji-mart/css/emoji-mart.css";
-
 import { TextareaAutosize, TextareaAutosizeProps } from "@material-ui/core";
-import {
-  FocusEvent,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { Editor, Element, Point, Range, Transforms } from "slate";
-import { ReactEditor } from "slate-react";
-
+import { MultiChoiceArg } from "@plasmicapp/react-web";
+import { ContentPostProps } from "component/contentpost";
 import { CountIndicator } from "component/countindicator";
 import {
   ComposeEditor,
@@ -29,33 +17,38 @@ import {
   PlasmicActionBar,
 } from "component/plasmic/shared/PlasmicActionBar";
 import { AuthContext } from "context/AuthContext";
+import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
+import "emoji-mart/css/emoji-mart.css";
 import useScript from "module/hook/ui/useScript";
 import { useCreateUpdate } from "module/hook/update";
-import { ITimeline } from "module/interface/timeline";
 import { ICreateUpdate } from "module/interface/update";
-import { IUser } from "module/interface/user";
-import { IVenture } from "module/interface/venture";
+import {
+  FocusEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { Editor, Element, Point, Range, Transforms } from "slate";
+import { ReactEditor } from "slate-react";
 
 interface ActionBarProps extends DefaultActionBarProps {
-  currentVenture: IVenture;
-  currentTimeline: ITimeline;
-  timelines: ITimeline[];
-  user: IUser;
+  contentPost?: ContentPostProps;
 }
 
 export default function ActionBar(props: ActionBarProps) {
-  const { currentVenture, currentTimeline, user, timelines, ...rest } = props;
+  const { currentVenture, currentVentureTimelines } =
+    useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
   const { token } = useContext(AuthContext);
-  const ventureContext = useContext(VentureContext);
-  const ventureTimelines = ventureContext.currentVentureTimelines;
 
   const [selectedTimelines, setSelectedTimelines] = useState(
     currentTimeline ? [currentTimeline] : []
   );
-  const hasTimelines = ventureTimelines.some(
-    (t) => (t.ventureId = currentVenture.id)
-  );
+  const hasTimelines = currentVentureTimelines.length > 0;
 
   const [isActive, setIsActive] = useState(false);
   const { mutateAsync: createUpdate } = useCreateUpdate();
@@ -220,7 +213,7 @@ export default function ActionBar(props: ActionBarProps) {
       attachments: [],
       title,
       text,
-      ventureId: currentVenture.id,
+      ventureId: currentVenture?.id || "",
       timelineId: "",
       token,
     };
@@ -382,11 +375,19 @@ export default function ActionBar(props: ActionBarProps) {
 
   return (
     <PlasmicActionBar
-      {...rest}
+      contentPost={{
+        ...props.contentPost,
+      }}
       style={{
         zIndex: 2,
       }}
-      isActive={isActive ? "isActive" : false}
+      postType={
+        isActive
+          ? "isActive"
+          : props.postType === "isPosted"
+          ? "isPosted"
+          : undefined
+      }
       timelineSelected={true}
       form={{
         onSubmit: handlePost,
@@ -404,7 +405,11 @@ export default function ActionBar(props: ActionBarProps) {
         isEdit: true,
         onClose: () => setImageAttachment(null),
       }}
-      hasMedia={!!imageAttachment}
+      content={
+        ["hasDescription"].concat(
+          imageAttachment ? ["hasMedia"] : []
+        ) as MultiChoiceArg<"hasDescription" | "hasMedia">
+      }
       emoji={{
         wrap(node) {
           return (

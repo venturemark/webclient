@@ -11,6 +11,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   padding: 0px;
 }
 .freeBox___60GYf {
@@ -195,7 +197,6 @@
 .text22 {
   height: auto;
   width: auto;
-  display: inline-block;
 }
 .svg__oTsn {
   position: relative;
@@ -393,7 +394,6 @@
 .text223 {
   height: auto;
   width: auto;
-  display: inline-block;
 }
 .svg__eYdY {
   position: relative;
@@ -424,7 +424,7 @@
   min-width: 0;
   padding: 20px 0px;
 }
-.text {
+.text__zsEuo {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
   font-weight: 600;
 }
@@ -486,8 +486,20 @@
 .nameField:global(.__wab_instance) {
   position: relative;
 }
+.svg__kkFxe {
+  object-fit: cover;
+  max-width: 100%;
+  width: 1em;
+  height: 1em;
+}
 .jobField:global(.__wab_instance) {
   position: relative;
+}
+.svg__exsyv {
+  object-fit: cover;
+  max-width: 100%;
+  width: 1em;
+  height: 1em;
 }
 .freeBox__jmp0N {
   display: flex;
@@ -540,11 +552,47 @@
 .text222 {
   height: auto;
   width: auto;
-  display: inline-block;
 }
 .svg__d1WR {
   position: relative;
   object-fit: cover;
   width: 17px;
   height: 14px;
+}
+.share:global(.__wab_instance) {
+  max-width: 640px;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.share__modalType_shareModal:global(.__wab_instance) {
+  display: flex;
+}
+.close2:global(.__wab_instance) {
+  position: relative;
+  left: auto;
+  top: auto;
+  right: auto;
+}
+.close2__modalType_shareModal:global(.__wab_instance) {
+  left: auto;
+  top: -23px;
+  position: absolute;
+  right: 19px;
+}
+.svg__ikW1Z {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+  left: auto;
+  top: auto;
+}
+.svg__qwmSz {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+  height: 100%;
+  width: 30px;
+  min-height: 0;
 }

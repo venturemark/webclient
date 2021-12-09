@@ -9,7 +9,7 @@
 .background {
   width: auto;
   height: auto;
-  display: inline-flex;
+  display: flex;
   position: relative;
   left: auto;
   top: auto;
@@ -22,7 +22,7 @@
   padding: 0px 2px;
 }
 .text {
-  display: inline-block;
+  display: block;
   position: relative;
   left: auto;
   top: auto;

@@ -26,6 +26,9 @@
   align-items: stretch;
   justify-content: flex-start;
 }
+.freeBox__isMobile___4LHLuKb6FV {
+  display: flex;
+}
 .text {
   align-self: center;
   text-align: left;
@@ -96,7 +99,7 @@
   flex-shrink: 0;
 }
 .freeBox__tyRt7 {
-  display: inline-flex;
+  display: flex;
   position: relative;
   width: auto;
   height: auto;

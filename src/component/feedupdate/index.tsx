@@ -1,6 +1,4 @@
-import { useContext, useEffect, useMemo } from "react";
-
-import ContentPost from "component/contentpost";
+import ActionBar from "component/actionbar";
 import { IsVisible } from "component/page/home";
 import {
   DefaultFeedUpdateProps,
@@ -22,6 +20,7 @@ import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 import { TimelineContext } from "context/TimelineContext";
+import { useContext, useEffect, useMemo } from "react";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
   user: IUser;
@@ -151,46 +150,40 @@ function FeedUpdate(props: FeedUpdateProps) {
     <PlasmicFeedUpdate
       {...rest}
       isOwner={resourceOwnership(currentTimeline || currentVenture)}
-      actionBar={{
-        wrap(node) {
-          return timelines.length ? node : null;
-        },
-        props: {
-          key: updates?.[0]?.id,
-          currentVenture,
-          timelines,
-          currentTimeline,
-          user,
-        },
-      }}
-      feedContainer={{
-        style: {
-          zIndex: 1,
-        },
-        children: updates.map((update: IUpdate) => {
-          const updateUser = allMembers.find((m) => m.id === update.subjectId);
-          return (
-            <ContentPost
-              key={update.id}
-              update={{
-                ...update,
-                user: updateUser,
-              }}
-              setIsVisible={setIsVisible}
-              isVisible={isVisible}
-              setPost={() =>
-                setPost({
-                  ...update,
-                  user: updateUser,
-                  users: allMembers ?? [],
-                })
-              }
-              post={post}
-              allUpdates={ventureUpdates}
-              user={updateUser}
-            />
+      root={{
+        render() {
+          const actionBar = <ActionBar />;
+          return [actionBar].concat(
+            updates.map((update: IUpdate) => {
+              const updateUser = allMembers.find(
+                (m) => m.id === update.subjectId
+              );
+              return (
+                <ActionBar
+                  key={update.id}
+                  postType={"isPosted"}
+                  contentPost={{
+                    update: {
+                      ...update,
+                      user: updateUser,
+                    },
+                    setIsVisible,
+                    isVisible,
+                    setPost: () =>
+                      setPost({
+                        ...update,
+                        user: updateUser,
+                        users: allMembers ?? [],
+                      }),
+                    post,
+                    allUpdates: ventureUpdates,
+                    user: updateUser,
+                  }}
+                />
+              );
+            })
           );
-        }),
+        },
       }}
     />
   );

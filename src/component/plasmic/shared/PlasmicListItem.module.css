@@ -19,6 +19,9 @@
 .slotTargetRename {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
+.slotTargetRename__isActive {
+  color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
+}
 .root:hover .slotTargetRename {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }

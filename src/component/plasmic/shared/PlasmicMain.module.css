@@ -6,7 +6,7 @@
   max-width: 680px;
   position: relative;
   min-width: 0;
-  padding: 20px 40px;
+  padding: 40px;
 }
 .container > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -53,6 +53,7 @@
 }
 .mainHeader:global(.__wab_instance) {
   position: relative;
+  display: none;
 }
 .text__dUFvj {
   font-size: 14px /* plasmic-token: nh1PV_1Nt */;

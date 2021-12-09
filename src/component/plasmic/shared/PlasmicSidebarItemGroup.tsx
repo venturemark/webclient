@@ -106,14 +106,20 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isCollapsed]: hasVariant(
-          variants,
-          "isCollapsed",
-          "isCollapsed"
-        ),
-        [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__isCollapsed]: hasVariant(
+            variants,
+            "isCollapsed",
+            "isCollapsed"
+          ),
+          [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
+        }
+      )}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
       <SidebarItem
@@ -140,6 +146,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           <div
             className={classNames(
               defaultcss.all,
+              projectcss.all,
               defaultcss.__wab_text,
               sty.text__fqyEx,
               {
@@ -165,18 +172,23 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
         <div
           data-plasmic-name={"itemContainer"}
           data-plasmic-override={overrides.itemContainer}
-          className={classNames(defaultcss.all, sty.itemContainer, {
-            [sty.itemContainer__isCollapsed]: hasVariant(
-              variants,
-              "isCollapsed",
-              "isCollapsed"
-            ),
-            [sty.itemContainer__isPublic]: hasVariant(
-              variants,
-              "isPublic",
-              "isPublic"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.itemContainer,
+            {
+              [sty.itemContainer__isCollapsed]: hasVariant(
+                variants,
+                "isCollapsed",
+                "isCollapsed"
+              ),
+              [sty.itemContainer__isPublic]: hasVariant(
+                variants,
+                "isPublic",
+                "isPublic"
+              ),
+            }
+          )}
         >
           <SidebarItem
             data-plasmic-name={"sidebarItem"}
@@ -204,6 +216,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
               <div
                 className={classNames(
                   defaultcss.all,
+                  projectcss.all,
                   defaultcss.__wab_text,
                   sty.text__fPdD,
                   {
@@ -227,19 +240,34 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           data-plasmic-name={"itemContainer2"}
           data-plasmic-override={overrides.itemContainer2}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.itemContainer2, {
-            [sty.itemContainer2__isPublic]: hasVariant(
-              variants,
-              "isPublic",
-              "isPublic"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.itemContainer2,
+            {
+              [sty.itemContainer2__isPublic]: hasVariant(
+                variants,
+                "isPublic",
+                "isPublic"
+              ),
+            }
+          )}
         >
           {false ? (
-            <div className={classNames(defaultcss.all, sty.freeBox__qDvH0)}>
+            <div
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox__qDvH0
+              )}
+            >
               {false ? (
                 <svg
-                  className={classNames(defaultcss.all, sty.svg__g8Bxr)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.svg__g8Bxr
+                  )}
                   role={"img"}
                 />
               ) : null}
@@ -263,13 +291,18 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                   ? LockIconsvgIcon
                   : IconHashIcon
               }
-              className={classNames(defaultcss.all, sty.svg__d4BHp, {
-                [sty.svg__isPublic__d4BHpYwyIq]: hasVariant(
-                  variants,
-                  "isPublic",
-                  "isPublic"
-                ),
-              })}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.svg__d4BHp,
+                {
+                  [sty.svg__isPublic__d4BHpYwyIq]: hasVariant(
+                    variants,
+                    "isPublic",
+                    "isPublic"
+                  ),
+                }
+              )}
               role={"img"}
             />
           </IconButton>
@@ -277,23 +310,33 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.freeBox__muwKg, {
-              [sty.freeBox__isPublic__muwKgYwyIq]: hasVariant(
-                variants,
-                "isPublic",
-                "isPublic"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__muwKg,
+              {
+                [sty.freeBox__isPublic__muwKgYwyIq]: hasVariant(
+                  variants,
+                  "isPublic",
+                  "isPublic"
+                ),
+              }
+            )}
           >
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
-                className={classNames(defaultcss.all, sty.freeBox___4CYes, {
-                  [sty.freeBox__isPublic___4CYesYwyIq]: hasVariant(
-                    variants,
-                    "isPublic",
-                    "isPublic"
-                  ),
-                })}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox___4CYes,
+                  {
+                    [sty.freeBox__isPublic___4CYesYwyIq]: hasVariant(
+                      variants,
+                      "isPublic",
+                      "isPublic"
+                    ),
+                  }
+                )}
               />
             ) : null}
           </p.Stack>
@@ -312,19 +355,34 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           data-plasmic-name={"itemContainer22"}
           data-plasmic-override={overrides.itemContainer22}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.itemContainer22, {
-            [sty.itemContainer22__isPublic]: hasVariant(
-              variants,
-              "isPublic",
-              "isPublic"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.itemContainer22,
+            {
+              [sty.itemContainer22__isPublic]: hasVariant(
+                variants,
+                "isPublic",
+                "isPublic"
+              ),
+            }
+          )}
         >
           {false ? (
-            <div className={classNames(defaultcss.all, sty.freeBox___8BmYf)}>
+            <div
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox___8BmYf
+              )}
+            >
               {false ? (
                 <svg
-                  className={classNames(defaultcss.all, sty.svg__vtleO)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.svg__vtleO
+                  )}
                   role={"img"}
                 />
               ) : null}
@@ -348,13 +406,18 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                   ? LockIconsvgIcon
                   : IconHashIcon
               }
-              className={classNames(defaultcss.all, sty.svg__lNyW, {
-                [sty.svg__isPublic__lNyWYwyIq]: hasVariant(
-                  variants,
-                  "isPublic",
-                  "isPublic"
-                ),
-              })}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.svg__lNyW,
+                {
+                  [sty.svg__isPublic__lNyWYwyIq]: hasVariant(
+                    variants,
+                    "isPublic",
+                    "isPublic"
+                  ),
+                }
+              )}
               role={"img"}
             />
           </IconButton>
@@ -362,23 +425,33 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.freeBox__e2Uwa, {
-              [sty.freeBox__isPublic__e2UwaYwyIq]: hasVariant(
-                variants,
-                "isPublic",
-                "isPublic"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__e2Uwa,
+              {
+                [sty.freeBox__isPublic__e2UwaYwyIq]: hasVariant(
+                  variants,
+                  "isPublic",
+                  "isPublic"
+                ),
+              }
+            )}
           >
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
-                className={classNames(defaultcss.all, sty.freeBox__v4P01, {
-                  [sty.freeBox__isPublic__v4P01YwyIq]: hasVariant(
-                    variants,
-                    "isPublic",
-                    "isPublic"
-                  ),
-                })}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox__v4P01,
+                  {
+                    [sty.freeBox__isPublic__v4P01YwyIq]: hasVariant(
+                      variants,
+                      "isPublic",
+                      "isPublic"
+                    ),
+                  }
+                )}
               />
             ) : null}
           </p.Stack>
@@ -397,19 +470,34 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           data-plasmic-name={"itemContainer222"}
           data-plasmic-override={overrides.itemContainer222}
           hasGap={true}
-          className={classNames(defaultcss.all, sty.itemContainer222, {
-            [sty.itemContainer222__isPublic]: hasVariant(
-              variants,
-              "isPublic",
-              "isPublic"
-            ),
-          })}
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.itemContainer222,
+            {
+              [sty.itemContainer222__isPublic]: hasVariant(
+                variants,
+                "isPublic",
+                "isPublic"
+              ),
+            }
+          )}
         >
           {false ? (
-            <div className={classNames(defaultcss.all, sty.freeBox__rjyq)}>
+            <div
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.freeBox__rjyq
+              )}
+            >
               {false ? (
                 <svg
-                  className={classNames(defaultcss.all, sty.svg__lo3H)}
+                  className={classNames(
+                    defaultcss.all,
+                    projectcss.all,
+                    sty.svg__lo3H
+                  )}
                   role={"img"}
                 />
               ) : null}
@@ -433,13 +521,18 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                   ? LockIconsvgIcon
                   : IconHashIcon
               }
-              className={classNames(defaultcss.all, sty.svg__ssKf, {
-                [sty.svg__isPublic__ssKfYwyIq]: hasVariant(
-                  variants,
-                  "isPublic",
-                  "isPublic"
-                ),
-              })}
+              className={classNames(
+                defaultcss.all,
+                projectcss.all,
+                sty.svg__ssKf,
+                {
+                  [sty.svg__isPublic__ssKfYwyIq]: hasVariant(
+                    variants,
+                    "isPublic",
+                    "isPublic"
+                  ),
+                }
+              )}
               role={"img"}
             />
           </IconButton>
@@ -447,23 +540,33 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(defaultcss.all, sty.freeBox__ulWg4, {
-              [sty.freeBox__isPublic__ulWg4YwyIq]: hasVariant(
-                variants,
-                "isPublic",
-                "isPublic"
-              ),
-            })}
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__ulWg4,
+              {
+                [sty.freeBox__isPublic__ulWg4YwyIq]: hasVariant(
+                  variants,
+                  "isPublic",
+                  "isPublic"
+                ),
+              }
+            )}
           >
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
-                className={classNames(defaultcss.all, sty.freeBox__my23, {
-                  [sty.freeBox__isPublic__my23YwyIq]: hasVariant(
-                    variants,
-                    "isPublic",
-                    "isPublic"
-                  ),
-                })}
+                className={classNames(
+                  defaultcss.all,
+                  projectcss.all,
+                  sty.freeBox__my23,
+                  {
+                    [sty.freeBox__isPublic__my23YwyIq]: hasVariant(
+                      variants,
+                      "isPublic",
+                      "isPublic"
+                    ),
+                  }
+                )}
               />
             ) : null}
           </p.Stack>
@@ -513,6 +616,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             <div
               className={classNames(
                 defaultcss.all,
+                projectcss.all,
                 defaultcss.__wab_text,
                 sty.text__f9Ow1
               )}

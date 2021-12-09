@@ -39,6 +39,9 @@
 .root__isDisabled:hover .container__isDisabled {
   background: rgba(255, 255, 255, 0);
 }
+.slotTargetChildren__isDisabled {
+  color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
+}
 .root__isDarkBgHover:hover .slotTargetChildren__isDarkBgHover {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
@@ -47,8 +50,10 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
-  opacity: 0.5;
   cursor: default;
+  transform: translateX(0px) translateY(0px) translateZ(0px);
+  filter: none;
+  backdrop-filter: none;
   min-width: 0;
   min-height: 0;
 }

@@ -111,6 +111,7 @@ function PlasmicMain__RenderFunc(props: {
       hasGap={true}
       className={classNames(
         defaultcss.all,
+        projectcss.all,
         projectcss.root_reset,
         sty.container,
         {
@@ -213,6 +214,7 @@ function PlasmicMain__RenderFunc(props: {
             <div
               className={classNames(
                 defaultcss.all,
+                projectcss.all,
                 defaultcss.__wab_text,
                 sty.text__dUFvj
               )}
@@ -411,6 +413,7 @@ function PlasmicMain__RenderFunc(props: {
           <div
             className={classNames(
               defaultcss.all,
+              projectcss.all,
               defaultcss.__wab_text,
               sty.text__fdWyB
             )}
@@ -588,6 +591,7 @@ function PlasmicMain__RenderFunc(props: {
         <div
           className={classNames(
             defaultcss.all,
+            projectcss.all,
             defaultcss.__wab_text,
             sty.text__k8I5L,
             {

@@ -88,14 +88,18 @@ function PlasmicIconButtonMember__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        { [sty.root__isActive]: hasVariant(variants, "isActive", "isActive") }
+      )}
     >
       <div
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
-        className={classNames(defaultcss.all, sty.container, {
+        className={classNames(defaultcss.all, projectcss.all, sty.container, {
           [sty.container__isActive]: hasVariant(
             variants,
             "isActive",
@@ -103,11 +107,17 @@ function PlasmicIconButtonMember__RenderFunc(props: {
           ),
         })}
       >
-        <div className={classNames(defaultcss.all, sty.freeBox__op1Qu)}>
+        <div
+          className={classNames(
+            defaultcss.all,
+            projectcss.all,
+            sty.freeBox__op1Qu
+          )}
+        >
           <IconMemberIcon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames(defaultcss.all, sty.svg)}
+            className={classNames(defaultcss.all, projectcss.all, sty.svg)}
             role={"img"}
           />
         </div>
@@ -115,9 +125,15 @@ function PlasmicIconButtonMember__RenderFunc(props: {
         <div
           data-plasmic-name={"background"}
           data-plasmic-override={overrides.background}
-          className={classNames(defaultcss.all, sty.background)}
+          className={classNames(defaultcss.all, projectcss.all, sty.background)}
         >
-          <div className={classNames(defaultcss.all, sty.freeBox__ysBge)}>
+          <div
+            className={classNames(
+              defaultcss.all,
+              projectcss.all,
+              sty.freeBox__ysBge
+            )}
+          >
             {p.renderPlasmicSlot({
               defaultContents: "+",
               value: args.memberCount,

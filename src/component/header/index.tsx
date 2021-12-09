@@ -1,7 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-
 import { IsVisible } from "component/page/home";
 import {
   DefaultHeaderProps,
@@ -10,6 +7,9 @@ import {
 import { UserContext } from "context/UserContext";
 import useDropdown from "module/hook/ui/useDropdown";
 import { IUser } from "module/interface/user";
+import { useContext } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 interface HeaderProps extends DefaultHeaderProps {
   isVisible: IsVisible;
@@ -18,6 +18,7 @@ interface HeaderProps extends DefaultHeaderProps {
 }
 
 export default function Header(props: HeaderProps) {
+  const { timelineSlug, ventureSlug } = useParams();
   const { isVisible, setIsVisible, user, ...rest } = props;
   const { isAuthenticated } = useAuth0();
 
@@ -33,6 +34,10 @@ export default function Header(props: HeaderProps) {
     setIsVisible && setIsVisible(nextValue);
   }
 
+  const basePath = timelineSlug
+    ? `/${ventureSlug}/${timelineSlug}`
+    : `/${ventureSlug}`;
+
   return (
     <PlasmicHeader
       {...rest}
@@ -44,9 +49,9 @@ export default function Header(props: HeaderProps) {
         visibility: setIsVisible ? "visible" : "hidden",
         onClick: toggleMobileSidebar,
       }}
-      svg={{
+      iconButton={{
         wrap(node) {
-          return <Link to="/">{node}</Link>;
+          return <Link to={basePath + "/settings"}>{node}</Link>;
         },
       }}
       views={

@@ -94,12 +94,11 @@
   height: auto;
   width: auto;
   font-family: "Poppins", sans-serif;
-  display: inline-block;
 }
 .root:focus-within .text {
   outline: none;
 }
-.svg___7KKO {
+.svg___8CbFh {
   position: relative;
   object-fit: cover;
   width: 17px;

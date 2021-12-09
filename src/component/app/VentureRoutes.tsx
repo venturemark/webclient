@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router";
+
 import { AuthRoute } from "component/app/AuthRoute";
 import { TimelineRoutes } from "component/app/TimelineRoutes";
 import { Home } from "component/page/home";
@@ -6,8 +9,6 @@ import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { calculateNamedSlug } from "module/helpers";
 import { useVentures } from "module/hook/ui/useVentures";
-import { useContext } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router";
 
 export function VentureRoutes() {
   const location = useLocation();
@@ -85,28 +86,20 @@ function NewTimeline() {
 }
 
 function VentureMembers() {
-  const variantType = "isVenture";
-  const isActive = "members";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isVenture"} isActive={"members"} />;
 }
 
 function VentureSettings() {
-  const variantType = "isVenture";
-  const isActive = "settings";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isVenture"} isActive={"settings"} />;
 }
 
 function VentureDelete() {
-  const variantType = "isVenture";
-  const isActive = "settings";
-  const modalType = "deleteVenture";
-  const isVisible = "showModal";
   return (
     <Home
-      variantType={variantType}
-      isActive={isActive}
-      modalType={modalType}
-      isVisible={isVisible}
+      variantType={"isVenture"}
+      isActive={"settings"}
+      modalType={"deleteVenture"}
+      isVisible={"showProfileModal"}
     />
   );
 }

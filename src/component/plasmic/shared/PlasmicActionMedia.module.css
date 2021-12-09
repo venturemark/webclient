@@ -29,7 +29,6 @@
   object-fit: cover;
   width: auto;
   height: 100%;
-  display: inline-inline-block !important;
   min-height: 0;
 }
 .imgHolder > picture > img {

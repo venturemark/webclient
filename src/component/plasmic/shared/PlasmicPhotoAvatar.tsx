@@ -84,14 +84,24 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(defaultcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__variant_isLarge]: hasVariant(variants, "variant", "isLarge"),
-      })}
+      className={classNames(
+        defaultcss.all,
+        projectcss.all,
+        projectcss.root_reset,
+        sty.root,
+        {
+          [sty.root__variant_isLarge]: hasVariant(
+            variants,
+            "variant",
+            "isLarge"
+          ),
+        }
+      )}
     >
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(defaultcss.all, sty.freeBox)}
+        className={classNames(defaultcss.all, projectcss.all, sty.freeBox)}
       >
         {p.renderPlasmicSlot({
           defaultContents: "KO",
