@@ -33,7 +33,7 @@ const LinkComponent = ({ attributes, children, element }: ElementProps) => {
       href={(element as LinkElement).url}
       style={{
         textDecoration: "none",
-        color: "blue",
+        color: "#2e8c8d",
         border: selected ? "1px solid #00bcd4" : "none",
       }}
       rel="noopener noreferrer"
