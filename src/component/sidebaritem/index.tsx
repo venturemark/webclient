@@ -17,6 +17,7 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   userRole?: UserRole;
   isCollapsed?: boolean;
   itemType?: "timeline" | "createTimeline" | "ventureCollapsed";
+  unreadCount?: number;
 }
 
 function SidebarItem(
@@ -32,6 +33,7 @@ function SidebarItem(
     setIsCollapsed,
     isCollapsed,
     userRole,
+    unreadCount = 0,
     ...rest
   } = props;
 
@@ -101,6 +103,19 @@ function SidebarItem(
           onClick: () => {
             setDropdownVisible(false);
           },
+        }}
+        hasNewActivity={unreadCount > 0}
+        counterSlot={{
+          children: (
+            <span
+              style={{
+                color: "#fff",
+                fontWeight: 500,
+              }}
+            >
+              {unreadCount}
+            </span>
+          ),
         }}
       />
     </div>
