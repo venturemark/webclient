@@ -128,6 +128,9 @@ export function useVentures(ventureSlug: string): IVentureContext {
   let loading: boolean;
   if (!authenticated) {
     loading = authLoading;
+  } else if (!ventureSlug) {
+    loading =
+      ventureRolesStatus !== "success" || venturesByUserStatus !== "success";
   } else {
     loading =
       venturesByUserStatus !== "success" ||

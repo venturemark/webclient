@@ -6,6 +6,7 @@ import {
   PlasmicSignin,
 } from "component/plasmic/shared/PlasmicSignin";
 import { useAuth } from "module/auth";
+import { ProviderConnectionName } from "module/auth";
 
 interface SigninProps extends DefaultSigninProps {}
 
@@ -32,7 +33,13 @@ function Signin(props: SigninProps) {
   return (
     <PlasmicSignin
       googleButton={{
-        onPress: () => loginWithRedirect(redirectLoginOptions),
+        onPress: () => {
+          const options = {
+            ...redirectLoginOptions,
+            connection: ProviderConnectionName.google,
+          };
+          loginWithRedirect(options);
+        },
       }}
       linkedinButton={{
         onPress: () => alert("Linkedin inactive"),

@@ -8,10 +8,12 @@ import SidebarItemGroup from "component/sidebaritemgroup";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { IVenture } from "module/interface/venture";
+import { AuthContext } from "context/AuthContext";
 
 interface SidebarProps extends DefaultSidebarProps {}
 
 function Sidebar(props: SidebarProps) {
+  const authContext = useContext(AuthContext);
   const userContext = useContext(UserContext);
   const { timelines, ventures } = useContext(VentureContext);
   const [isDropdown, setIsDropdown] = useState(false);
@@ -26,7 +28,7 @@ function Sidebar(props: SidebarProps) {
         onClick: () => setIsDropdown(!isDropdown),
       }}
       isDropdown={isDropdown}
-      isPublic={!userContext.user}
+      isPublic={!authContext.authenticated}
       itemGroupContainer={{
         children: ventures.map((venture: IVenture) => (
           <SidebarItemGroup

@@ -5,7 +5,6 @@ import {
   PlasmicFeedUpdate,
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import { getUniqueListBy, resourceOwnership } from "module/helpers";
 import {
@@ -20,6 +19,7 @@ import {
 import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
+import { TimelineContext } from "context/TimelineContext";
 import { useContext, useEffect, useMemo } from "react";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {

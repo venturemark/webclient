@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 
 import { AuthRoute } from "component/app/AuthRoute";
 import { TimelineRoutes } from "component/app/TimelineRoutes";
 import { Home } from "component/page/home";
+import { AuthContext } from "context/AuthContext";
+import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
-import { useAuth } from "module/auth";
 import { calculateNamedSlug } from "module/helpers";
 import { useVentures } from "module/hook/ui/useVentures";
 
@@ -32,36 +33,56 @@ export function VentureRoutes() {
           <Route path=":ventureSlug" element={<VentureFeed />} />
         </Route>
         <Route path=":ventureSlug/*" element={<TimelineRoutes />} />
-        <Route index element={<VentureFeed />} />
+        <Route index element={<VentureRedirect />} />
       </Routes>
     </VentureContext.Provider>
   );
 }
 
 function VentureFeed() {
-  const auth = useAuth();
-  const { ventureSlug } = useParams();
-  const {
-    currentVentureTimelines,
-    ventures,
-    loading: venturesLoading,
-  } = useContext(VentureContext);
+  const { currentVentureTimelines, loading: venturesLoading } =
+    useContext(VentureContext);
 
-  if (!auth.loading && !venturesLoading && !ventureSlug) {
-    if (ventures.length > 0) {
-      return <Navigate replace to={`/${calculateNamedSlug(ventures[0])}`} />;
-    } else {
-      return <Navigate replace to="/begin" />;
-    }
-  }
-
+  const variantType = "isVenture";
   const isActive =
     venturesLoading || currentVentureTimelines.length ? "feed" : "isNewVenture";
-  return <Home variantType={"isVenture"} isActive={isActive} />;
+  return <Home variantType={variantType} isActive={isActive} />;
+}
+
+function VentureRedirect() {
+  const auth = useContext(AuthContext);
+  const { user, status: userStatus } = useContext(UserContext);
+  const { ventures, loading: venturesLoading } = useContext(VentureContext);
+
+  // options
+  // unauthenticated, redirect to /signin
+  // authenticated, profile loading, show loading
+  // authenticated, no profile, redirect to /profile
+  // authenticated, profile, ventures loading, show loading
+  // authenticated, profile, no ventures, redirect to /begin
+  // authenticated, profile, ventures, redirect to first venture
+
+  if (auth.loading) {
+    return <span>Loading...</span>;
+  } else if (!auth.authenticated) {
+    return <Navigate replace to="/signin" />;
+  } else if (userStatus === "loading") {
+    return <span>Loading...</span>;
+  } else if (!user) {
+    return <Navigate replace to="/profile" />;
+  } else if (venturesLoading) {
+    return <span>Loading...</span>;
+  } else if (ventures.length === 0) {
+    return <Navigate replace to="/begin" />;
+  } else {
+    return <Navigate replace to={`/${calculateNamedSlug(ventures[0])}`} />;
+  }
 }
 
 function NewTimeline() {
-  return <Home variantType={"isTimeline"} isActive={"settings"} />;
+  const variantType = "isTimeline";
+  const isActive = "settings";
+  return <Home variantType={variantType} isActive={isActive} />;
 }
 
 function VentureMembers() {
