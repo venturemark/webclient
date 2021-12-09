@@ -151,35 +151,6 @@ function PlasmicRadioGroup__RenderFunc(props: {
         </Radio>
 
         <Radio
-          data-plasmic-name={"members"}
-          data-plasmic-override={overrides.members}
-          className={classNames("__wab_instance", sty.members, {
-            [sty.members__isHorizontal]: hasVariant(
-              variants,
-              "isHorizontal",
-              "isHorizontal"
-            ),
-          })}
-          helperText={
-            <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
-              className={classNames(
-                defaultcss.all,
-                defaultcss.__wab_text,
-                sty.text
-              )}
-            >
-              {"All members from this venture will be added to this timeline."}
-            </div>
-          }
-          position={"middle" as const}
-          radioVariants={["hasLabel"]}
-        >
-          {"Members"}
-        </Radio>
-
-        <Radio
           data-plasmic-name={"_public"}
           data-plasmic-override={overrides._public}
           className={classNames("__wab_instance", sty._public, {

@@ -1,15 +1,13 @@
-import { useContext } from "react";
-import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
-
 import { AuthRoute } from "component/app/AuthRoute";
 import { TimelineRoutes } from "component/app/TimelineRoutes";
 import { Home } from "component/page/home";
-import { VentureContext } from "context/VentureContext";
-import { useAuth } from "module/auth";
-import { calculateNamedSlug } from "module/helpers";
-import { useVentures } from "module/hook/ui/useVentures";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
+import { VentureContext } from "context/VentureContext";
+import { calculateNamedSlug } from "module/helpers";
+import { useVentures } from "module/hook/ui/useVentures";
+import { useContext } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 
 export function VentureRoutes() {
   const location = useLocation();
@@ -17,8 +15,6 @@ export function VentureRoutes() {
   // so they're not accessible by `useParams`.
   const [, ventureSlug] = location.pathname.split("/");
   const ventureContext = useVentures(ventureSlug);
-
-  console.log(ventureContext);
 
   return (
     <VentureContext.Provider value={ventureContext}>

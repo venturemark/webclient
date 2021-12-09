@@ -125,17 +125,6 @@ export function useVentures(ventureSlug: string): IVentureContext {
     token,
   });
 
-  console.log({
-    venturesByUserStatus,
-    venturesByTimelineStatus,
-    ventureRolesStatus,
-    timelinesByUserStatus,
-    timelineRolesStatus,
-    currentVentureMembersStatus,
-    ventureSlug,
-    user,
-  });
-
   let loading: boolean;
   if (!authenticated) {
     loading = authLoading;

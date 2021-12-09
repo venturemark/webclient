@@ -30,9 +30,7 @@ export async function Create(newTimeline: ICreateTimeline) {
     .set(key.PermissionModel, newTimeline.membersWrite ? "writer" : "reader");
 
   if (newTimeline.visibility) {
-    obj
-      .getMetadataMap()
-      .set(key.ResourceVisibility, `visibility:${newTimeline.visibility}`);
+    obj.getMetadataMap().set(key.ResourceVisibility, newTimeline.visibility);
   }
 
   objList.push(obj);
