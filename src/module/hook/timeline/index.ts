@@ -6,6 +6,7 @@ import { UpdateStatus } from "module/interface/api";
 import {
   ICreateTimeline,
   ISearchTimelinesbyUserId,
+  ISearchTimelinesByVentureId,
   ITimeline,
   IUpdateTimeline,
 } from "module/interface/timeline";
@@ -17,6 +18,14 @@ export function useTimelinesByUserId(params: ISearchTimelinesbyUserId) {
     [`timelines`, params.userId],
     () => api.API.Timeline.Search(params),
     { enabled: Boolean(params.token && params.userId) }
+  );
+}
+
+export function useTimelinesByVentureId(params: ISearchTimelinesByVentureId) {
+  return useQuery<ITimeline[], ErrorResponse>(
+    [`timelines`, params.ventureId],
+    () => api.API.Timeline.Search(params),
+    { enabled: Boolean(params.ventureId) }
   );
 }
 

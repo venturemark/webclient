@@ -45,7 +45,6 @@ export function useUpdatesByTimeline(
     {
       enabled:
         !!searchUpdateByTimelineId.timelineId &&
-        !!searchUpdateByTimelineId.token &&
         !!searchUpdateByTimelineId.ventureId,
     }
   );

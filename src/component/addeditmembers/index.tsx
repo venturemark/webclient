@@ -8,7 +8,6 @@ import {
   PlasmicAddEditMembers,
 } from "component/plasmic/shared/PlasmicAddEditMembers";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import {
@@ -18,6 +17,7 @@ import {
 } from "module/hook/invite";
 import { useDeleteRole } from "module/hook/role";
 import { IInvite } from "module/interface/invite";
+import { TimelineContext } from "context/TimelineContext";
 
 const emailRegex =
   /^\s*(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;

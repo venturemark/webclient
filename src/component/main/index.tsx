@@ -6,10 +6,10 @@ import {
   DefaultMainProps,
   PlasmicMain,
 } from "component/plasmic/shared/PlasmicMain";
-import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
+import { TimelineContext } from "context/TimelineContext";
 
 interface MainProps extends DefaultMainProps {
   isOnboarding?: boolean | "isOnboarding";

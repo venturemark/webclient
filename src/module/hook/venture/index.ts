@@ -6,29 +6,14 @@ import { DeletionStatus, UpdateStatus } from "module/interface/api";
 import {
   ICreateVenture,
   IDeleteVenture,
-  ISearchVenturesByTimeline,
+  ISearchVentureBySlug,
+  ISearchVenturesById,
   ISearchVenturesByUser,
   IUpdateVenture,
   IVenture,
 } from "module/interface/venture";
 
 type ErrorResponse = { code: number; message: string; metadata: any };
-
-const getVentureByTimeline = async ({
-  ventureIds,
-  token,
-}: ISearchVenturesByTimeline) => {
-  const allVentures = await Promise.all(
-    ventureIds.map(async (id: string) => {
-      return api.API.Venture.Search({
-        id,
-        token,
-      });
-    })
-  );
-
-  return allVentures.flat();
-};
 
 export function useVenturesByUser({ token, userId }: ISearchVenturesByUser) {
   return useQuery<IVenture[], ErrorResponse>(
@@ -42,16 +27,38 @@ export function useVenturesByUser({ token, userId }: ISearchVenturesByUser) {
   );
 }
 
-export function useVentureByTimeline(
-  searchVenturesByTimeline: ISearchVenturesByTimeline
-) {
+export function useVenturesById(params: ISearchVenturesById) {
   return useQuery<IVenture[], ErrorResponse>(
-    ["ventures", searchVenturesByTimeline.ventureIds],
-    () => getVentureByTimeline(searchVenturesByTimeline),
+    ["ventures", params.ventureIds],
+    async () => {
+      const allVentures = await Promise.all(
+        params.ventureIds.map(async (id: string) => {
+          return api.API.Venture.Search({
+            id,
+            token: params.token,
+          });
+        })
+      );
+
+      return allVentures.flat();
+    },
     {
-      enabled:
-        !!searchVenturesByTimeline.token &&
-        !!searchVenturesByTimeline.ventureIds,
+      enabled: !!params.ventureIds,
+    }
+  );
+}
+
+export function useVenturesBySlug(params: ISearchVentureBySlug) {
+  return useQuery<IVenture[], ErrorResponse>(
+    ["ventures", params.ventureSlug],
+    () => {
+      return api.API.Venture.Search({
+        slug: params.ventureSlug,
+        token: params.token,
+      });
+    },
+    {
+      enabled: !!params.ventureSlug,
     }
   );
 }

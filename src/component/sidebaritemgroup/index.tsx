@@ -6,12 +6,12 @@ import {
   PlasmicSidebarItemGroup,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
-import { TimelineContext } from "context/TimelineContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { calculateSlug } from "module/helpers";
 import { ITimeline } from "module/interface/timeline";
 import { UserRole } from "module/interface/user";
+import { TimelineContext } from "context/TimelineContext";
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;

@@ -15,7 +15,7 @@ export async function Search(searchUpdate: ISearchUpdate) {
   const objList = [];
 
   const token = searchUpdate.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: token ? `Bearer ${token}` : "" };
 
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -7,7 +7,6 @@ import {
   PlasmicAddEditTimeline,
 } from "component/plasmic/shared/PlasmicAddEditTimeline";
 import { AuthContext } from "context/AuthContext";
-import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import {
   calculateNamedSlug,
@@ -15,6 +14,7 @@ import {
   resourceOwnership,
 } from "module/helpers";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
+import { TimelineContext } from "context/TimelineContext";
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   onChange?: (data: FormData) => void;
@@ -77,6 +77,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const timelineId = currentTimeline?.id;
   const ventureId = currentVenture?.id;
 
+  const [visibility, setVisibility] = useState<string>("");
+
   const handleCreate = (data: FormData) => {
     if (
       !token ||
@@ -112,6 +114,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           desc: data.timelineDescription,
           membersWrite: data.membersWrite,
           ventureId,
+          visibility,
           successUrl: `../${data.timelineName}/feed`,
           token,
         },
@@ -189,10 +192,9 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         handleSave: () => handleSubmit(handleCreate)(),
       }}
       visibility={{
-        render: () => null,
-        // "aria-label": "Timeline Visibility",
-        // defaultValue: "members",
-        // setVisibility,
+        "aria-label": "Timeline Visibility",
+        defaultValue: "private",
+        setVisibility,
       }}
     />
   );

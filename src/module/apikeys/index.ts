@@ -16,7 +16,9 @@ export const RoleStatus = "role.venturemark.co/status";
 export const InviteStatus = "invite.venturemark.co/status";
 
 export const RoleKind = "role.venturemark.co/kind";
+
 export const ResourceKind = "resource.venturemark.co/kind";
+export const ResourceVisibility = "resource.venturemark.co/visibility";
 
 export const InviteCode = "invite.venturemark.co/code";
 
