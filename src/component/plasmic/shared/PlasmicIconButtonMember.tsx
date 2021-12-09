@@ -32,7 +32,7 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicIconButtonMember.module.css"; // plasmic-import: ZhI9zuyxBT/css
 
@@ -88,18 +88,14 @@ function PlasmicIconButtonMember__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root,
-        { [sty.root__isActive]: hasVariant(variants, "isActive", "isActive") }
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
+      })}
     >
       <div
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
-        className={classNames(defaultcss.all, projectcss.all, sty.container, {
+        className={classNames(projectcss.all, sty.container, {
           [sty.container__isActive]: hasVariant(
             variants,
             "isActive",
@@ -107,17 +103,11 @@ function PlasmicIconButtonMember__RenderFunc(props: {
           ),
         })}
       >
-        <div
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox__op1Qu
-          )}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__op1Qu)}>
           <IconMemberIcon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames(defaultcss.all, projectcss.all, sty.svg)}
+            className={classNames(projectcss.all, sty.svg)}
             role={"img"}
           />
         </div>
@@ -125,15 +115,9 @@ function PlasmicIconButtonMember__RenderFunc(props: {
         <div
           data-plasmic-name={"background"}
           data-plasmic-override={overrides.background}
-          className={classNames(defaultcss.all, projectcss.all, sty.background)}
+          className={classNames(projectcss.all, sty.background)}
         >
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__ysBge
-            )}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__ysBge)}>
             {p.renderPlasmicSlot({
               defaultContents: "+",
               value: args.memberCount,

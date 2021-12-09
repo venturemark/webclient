@@ -36,7 +36,7 @@ import ReplyContent from "../../replycontent/index"; // plasmic-import: q3VnCwfx
 import ReplyInput from "../../replyinput/index"; // plasmic-import: PE9pgtdNju/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicPostDetails.module.css"; // plasmic-import: 1E73LSzV2l/css
 
@@ -91,28 +91,11 @@ function PlasmicPostDetails__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
-      <div
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.freeBox__qVw1C
-        )}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__qVw1C)}>
         {true ? (
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__qxUjW
-            )}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__qxUjW)}>
             {p.renderPlasmicSlot({
               defaultContents: "Post Details",
               value: args.children,
@@ -128,20 +111,14 @@ function PlasmicPostDetails__RenderFunc(props: {
               <IconCloseIcon
                 data-plasmic-name={"svg"}
                 data-plasmic-override={overrides.svg}
-                className={classNames(defaultcss.all, projectcss.all, sty.svg)}
+                className={classNames(projectcss.all, sty.svg)}
                 role={"img"}
               />
             </IconButton>
           </div>
         ) : null}
 
-        <div
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox__n7A9B
-          )}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__n7A9B)}>
           <ContentPost
             data-plasmic-name={"post"}
             data-plasmic-override={overrides.post}
@@ -151,9 +128,8 @@ function PlasmicPostDetails__RenderFunc(props: {
                 data-plasmic-name={"date3"}
                 data-plasmic-override={overrides.date3}
                 className={classNames(
-                  defaultcss.span,
                   projectcss.span,
-                  defaultcss.__wab_text,
+                  projectcss.__wab_text,
                   sty.date3
                 )}
               >
@@ -167,9 +143,8 @@ function PlasmicPostDetails__RenderFunc(props: {
                 data-plasmic-name={"userName3"}
                 data-plasmic-override={overrides.userName3}
                 className={classNames(
-                  defaultcss.span,
                   projectcss.span,
-                  defaultcss.__wab_text,
+                  projectcss.__wab_text,
                   sty.userName3
                 )}
               >
@@ -190,11 +165,7 @@ function PlasmicPostDetails__RenderFunc(props: {
           <div
             data-plasmic-name={"repliesContainer"}
             data-plasmic-override={overrides.repliesContainer}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.repliesContainer
-            )}
+            className={classNames(projectcss.all, sty.repliesContainer)}
           >
             <ReplyContent
               data-plasmic-name={"replyContent"}
@@ -204,9 +175,8 @@ function PlasmicPostDetails__RenderFunc(props: {
                   data-plasmic-name={"date2"}
                   data-plasmic-override={overrides.date2}
                   className={classNames(
-                    defaultcss.span,
                     projectcss.span,
-                    defaultcss.__wab_text,
+                    projectcss.__wab_text,
                     sty.date2
                   )}
                 >
@@ -221,9 +191,8 @@ function PlasmicPostDetails__RenderFunc(props: {
                   data-plasmic-name={"userName2"}
                   data-plasmic-override={overrides.userName2}
                   className={classNames(
-                    defaultcss.span,
                     projectcss.span,
-                    defaultcss.__wab_text,
+                    projectcss.__wab_text,
                     sty.userName2
                   )}
                 >

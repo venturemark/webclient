@@ -36,7 +36,7 @@ import IconButtonMember from "../../iconbuttonmember/index"; // plasmic-import: 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicMainHeader.module.css"; // plasmic-import: LRwT0lHdps/css
 
@@ -134,7 +134,6 @@ function PlasmicMainHeader__RenderFunc(props: {
         data-plasmic-root={true}
         data-plasmic-for-node={forNode}
         className={classNames(
-          defaultcss.all,
           projectcss.all,
           projectcss.root_reset,
           sty.container,
@@ -170,36 +169,29 @@ function PlasmicMainHeader__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox___3Xg51,
-              {
-                [sty.freeBox__headerStyles_createNewVenture___3Xg51K3Tru]:
-                  hasVariant(variants, "headerStyles", "createNewVenture"),
-                [sty.freeBox__headerStyles_timelineHeader___3Xg51Rxxpi]:
-                  hasVariant(variants, "headerStyles", "timelineHeader"),
-                [sty.freeBox__headerStyles_ventureHeader___3Xg51NMQ9]:
-                  hasVariant(variants, "headerStyles", "ventureHeader"),
-              }
-            )}
+            className={classNames(projectcss.all, sty.freeBox___3Xg51, {
+              [sty.freeBox__headerStyles_createNewVenture___3Xg51K3Tru]:
+                hasVariant(variants, "headerStyles", "createNewVenture"),
+              [sty.freeBox__headerStyles_timelineHeader___3Xg51Rxxpi]:
+                hasVariant(variants, "headerStyles", "timelineHeader"),
+              [sty.freeBox__headerStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
+                variants,
+                "headerStyles",
+                "ventureHeader"
+              ),
+            })}
           >
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__sDNfz,
-                {
-                  [sty.freeBox__headerStyles_createNewVenture__sDNfzk3Tru]:
-                    hasVariant(variants, "headerStyles", "createNewVenture"),
-                  [sty.freeBox__headerStyles_timelineHeader__sDNfzRxxpi]:
-                    hasVariant(variants, "headerStyles", "timelineHeader"),
-                  [sty.freeBox__headerStyles_ventureHeader__sDNfzNMQ9]:
-                    hasVariant(variants, "headerStyles", "ventureHeader"),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__sDNfz, {
+                [sty.freeBox__headerStyles_createNewVenture__sDNfzk3Tru]:
+                  hasVariant(variants, "headerStyles", "createNewVenture"),
+                [sty.freeBox__headerStyles_timelineHeader__sDNfzRxxpi]:
+                  hasVariant(variants, "headerStyles", "timelineHeader"),
+                [sty.freeBox__headerStyles_ventureHeader__sDNfzNMQ9]:
+                  hasVariant(variants, "headerStyles", "ventureHeader"),
+              })}
             >
               {(
                 hasVariant(variants, "headerStyles", "ventureHeader")
@@ -209,23 +201,14 @@ function PlasmicMainHeader__RenderFunc(props: {
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox__yHtqj,
-                    {
-                      [sty.freeBox__headerStyles_createNewVenture__yHtqJk3Tru]:
-                        hasVariant(
-                          variants,
-                          "headerStyles",
-                          "createNewVenture"
-                        ),
-                      [sty.freeBox__headerStyles_timelineHeader__yHtqjRxxpi]:
-                        hasVariant(variants, "headerStyles", "timelineHeader"),
-                      [sty.freeBox__headerStyles_ventureHeader__yHtqjnMQ9]:
-                        hasVariant(variants, "headerStyles", "ventureHeader"),
-                    }
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox__yHtqj, {
+                    [sty.freeBox__headerStyles_createNewVenture__yHtqJk3Tru]:
+                      hasVariant(variants, "headerStyles", "createNewVenture"),
+                    [sty.freeBox__headerStyles_timelineHeader__yHtqjRxxpi]:
+                      hasVariant(variants, "headerStyles", "timelineHeader"),
+                    [sty.freeBox__headerStyles_ventureHeader__yHtqjnMQ9]:
+                      hasVariant(variants, "headerStyles", "ventureHeader"),
+                  })}
                 >
                   {p.renderPlasmicSlot({
                     defaultContents: "Wins",
@@ -249,17 +232,12 @@ function PlasmicMainHeader__RenderFunc(props: {
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox___6YZlv,
-                    {
-                      [sty.freeBox__headerStyles_timelineHeader___6YZlvRxxpi]:
-                        hasVariant(variants, "headerStyles", "timelineHeader"),
-                      [sty.freeBox__headerStyles_ventureHeader___6YZlvnMQ9]:
-                        hasVariant(variants, "headerStyles", "ventureHeader"),
-                    }
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox___6YZlv, {
+                    [sty.freeBox__headerStyles_timelineHeader___6YZlvRxxpi]:
+                      hasVariant(variants, "headerStyles", "timelineHeader"),
+                    [sty.freeBox__headerStyles_ventureHeader___6YZlvnMQ9]:
+                      hasVariant(variants, "headerStyles", "ventureHeader"),
+                  })}
                 >
                   {(
                     hasVariant(variants, "headerStyles", "timelineHeader")
@@ -268,9 +246,8 @@ function PlasmicMainHeader__RenderFunc(props: {
                   ) ? (
                     <div
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text__y7S0J,
                         {
                           [sty.text__headerStyles_timelineHeader__y7S0JRxxpi]:
@@ -303,9 +280,8 @@ function PlasmicMainHeader__RenderFunc(props: {
                           <React.Fragment>
                             <div
                               className={classNames(
-                                defaultcss.all,
                                 projectcss.all,
-                                defaultcss.__wab_text,
+                                projectcss.__wab_text,
                                 sty.text__oBTp
                               )}
                             >
@@ -322,7 +298,6 @@ function PlasmicMainHeader__RenderFunc(props: {
                               >
                                 <IconExternalLinkIcon
                                   className={classNames(
-                                    defaultcss.all,
                                     projectcss.all,
                                     sty.svg__vIuG
                                   )}
@@ -367,30 +342,25 @@ function PlasmicMainHeader__RenderFunc(props: {
                   : false
               ) ? (
                 <div
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox__fohK2,
-                    {
-                      [sty.freeBox__headerStyles_timelineHeader__fohK2Rxxpi]:
-                        hasVariant(variants, "headerStyles", "timelineHeader"),
-                      [sty.freeBox__headerStyles_ventureHeader__fohK2NMQ9]:
-                        hasVariant(variants, "headerStyles", "ventureHeader"),
-                      [sty.freeBox__showVentureDescription__fohK2CtI95]:
-                        hasVariant(
-                          variants,
-                          "showVentureDescription",
-                          "showVentureDescription"
-                        ),
-                      [sty.freeBox__showVentureDescription_headerStyles_ventureHeader__fohK2CtI95NMQ9]:
-                        hasVariant(
-                          variants,
-                          "showVentureDescription",
-                          "showVentureDescription"
-                        ) &&
-                        hasVariant(variants, "headerStyles", "ventureHeader"),
-                    }
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox__fohK2, {
+                    [sty.freeBox__headerStyles_timelineHeader__fohK2Rxxpi]:
+                      hasVariant(variants, "headerStyles", "timelineHeader"),
+                    [sty.freeBox__headerStyles_ventureHeader__fohK2NMQ9]:
+                      hasVariant(variants, "headerStyles", "ventureHeader"),
+                    [sty.freeBox__showVentureDescription__fohK2CtI95]:
+                      hasVariant(
+                        variants,
+                        "showVentureDescription",
+                        "showVentureDescription"
+                      ),
+                    [sty.freeBox__showVentureDescription_headerStyles_ventureHeader__fohK2CtI95NMQ9]:
+                      hasVariant(
+                        variants,
+                        "showVentureDescription",
+                        "showVentureDescription"
+                      ) &&
+                      hasVariant(variants, "headerStyles", "ventureHeader"),
+                  })}
                 >
                   {p.renderPlasmicSlot({
                     defaultContents:
@@ -454,40 +424,27 @@ function PlasmicMainHeader__RenderFunc(props: {
                   : true
               ) ? (
                 <div
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox__gg4AP,
-                    {
-                      [sty.freeBox__headerStyles_createNewVenture__gg4APk3Tru]:
-                        hasVariant(
-                          variants,
-                          "headerStyles",
-                          "createNewVenture"
-                        ),
-                      [sty.freeBox__headerStyles_timelineHeader__gg4APRxxpi]:
-                        hasVariant(variants, "headerStyles", "timelineHeader"),
-                      [sty.freeBox__headerStyles_timelineHeader_showVentureDescription__gg4APRxxpiCtI95]:
-                        hasVariant(
-                          variants,
-                          "headerStyles",
-                          "timelineHeader"
-                        ) &&
-                        hasVariant(
-                          variants,
-                          "showVentureDescription",
-                          "showVentureDescription"
-                        ),
-                      [sty.freeBox__headerStyles_ventureHeader__gg4APnMQ9]:
-                        hasVariant(variants, "headerStyles", "ventureHeader"),
-                      [sty.freeBox__showVentureDescription__gg4APctI95]:
-                        hasVariant(
-                          variants,
-                          "showVentureDescription",
-                          "showVentureDescription"
-                        ),
-                    }
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox__gg4AP, {
+                    [sty.freeBox__headerStyles_createNewVenture__gg4APk3Tru]:
+                      hasVariant(variants, "headerStyles", "createNewVenture"),
+                    [sty.freeBox__headerStyles_timelineHeader__gg4APRxxpi]:
+                      hasVariant(variants, "headerStyles", "timelineHeader"),
+                    [sty.freeBox__headerStyles_timelineHeader_showVentureDescription__gg4APRxxpiCtI95]:
+                      hasVariant(variants, "headerStyles", "timelineHeader") &&
+                      hasVariant(
+                        variants,
+                        "showVentureDescription",
+                        "showVentureDescription"
+                      ),
+                    [sty.freeBox__headerStyles_ventureHeader__gg4APnMQ9]:
+                      hasVariant(variants, "headerStyles", "ventureHeader"),
+                    [sty.freeBox__showVentureDescription__gg4APctI95]:
+                      hasVariant(
+                        variants,
+                        "showVentureDescription",
+                        "showVentureDescription"
+                      ),
+                  })}
                 >
                   {p.renderPlasmicSlot({
                     defaultContents:
@@ -522,25 +479,20 @@ function PlasmicMainHeader__RenderFunc(props: {
                 data-plasmic-name={"iconContainer"}
                 data-plasmic-override={overrides.iconContainer}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.iconContainer,
-                  {
-                    [sty.iconContainer__headerStyles_createNewVenture]:
-                      hasVariant(variants, "headerStyles", "createNewVenture"),
-                    [sty.iconContainer__isActive_feed]: hasVariant(
-                      variants,
-                      "isActive",
-                      "feed"
-                    ),
-                    [sty.iconContainer__isOnboarding]: hasVariant(
-                      variants,
-                      "isOnboarding",
-                      "isOnboarding"
-                    ),
-                  }
-                )}
+                className={classNames(projectcss.all, sty.iconContainer, {
+                  [sty.iconContainer__headerStyles_createNewVenture]:
+                    hasVariant(variants, "headerStyles", "createNewVenture"),
+                  [sty.iconContainer__isActive_feed]: hasVariant(
+                    variants,
+                    "isActive",
+                    "feed"
+                  ),
+                  [sty.iconContainer__isOnboarding]: hasVariant(
+                    variants,
+                    "isOnboarding",
+                    "isOnboarding"
+                  ),
+                })}
               >
                 <IconButton
                   data-plasmic-name={"viewHome"}
@@ -553,20 +505,15 @@ function PlasmicMainHeader__RenderFunc(props: {
                   }
                 >
                   <IconFeedIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__eTdlE,
-                      {
-                        [sty.svg__headerStyles_ventureHeader__eTdlEnMQ9]:
-                          hasVariant(variants, "headerStyles", "ventureHeader"),
-                        [sty.svg__isActive_feed__eTdlEfnkZp]: hasVariant(
-                          variants,
-                          "isActive",
-                          "feed"
-                        ),
-                      }
-                    )}
+                    className={classNames(projectcss.all, sty.svg__eTdlE, {
+                      [sty.svg__headerStyles_ventureHeader__eTdlEnMQ9]:
+                        hasVariant(variants, "headerStyles", "ventureHeader"),
+                      [sty.svg__isActive_feed__eTdlEfnkZp]: hasVariant(
+                        variants,
+                        "isActive",
+                        "feed"
+                      ),
+                    })}
                     role={"img"}
                   />
                 </IconButton>
@@ -607,9 +554,8 @@ function PlasmicMainHeader__RenderFunc(props: {
                     memberCount={
                       <div
                         className={classNames(
-                          defaultcss.all,
                           projectcss.all,
-                          defaultcss.__wab_text,
+                          projectcss.__wab_text,
                           sty.text__lssdr
                         )}
                       >
@@ -642,11 +588,7 @@ function PlasmicMainHeader__RenderFunc(props: {
                   }
                 >
                   <InfosvgIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__isMis
-                    )}
+                    className={classNames(projectcss.all, sty.svg__isMis)}
                     role={"img"}
                   />
                 </IconButton>

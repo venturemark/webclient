@@ -39,7 +39,7 @@ import ButtonSetEdit from "../../buttonsetedit/index"; // plasmic-import: pMqUN0
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicAddEditTimeline.module.css"; // plasmic-import: 2FtsgZCi1Kx/css
 
@@ -117,7 +117,6 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(
-        defaultcss.all,
         projectcss.all,
         projectcss.root_reset,
         sty.settings,
@@ -131,13 +130,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         }
       )}
     >
-      <div
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.freeBox__tab7F
-        )}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__tab7F)}>
         {(hasVariant(variants, "variantState", "isEdit") ? false : true)
           ? p.renderPlasmicSlot({
               defaultContents: "Create New Timeline",
@@ -237,21 +230,16 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           : true
       ) ? (
         <div
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox__iyK9P,
-            {
-              [sty.freeBox__variantState_isEdit__iyK9P7BsqN]: hasVariant(
-                variants,
-                "variantState",
-                "isEdit"
-              ),
-              [sty.freeBox__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
-                hasVariant(variants, "variantState", "isEdit") &&
-                hasVariant(variants, "isOwner", "isOwner"),
-            }
-          )}
+          className={classNames(projectcss.all, sty.freeBox__iyK9P, {
+            [sty.freeBox__variantState_isEdit__iyK9P7BsqN]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+            [sty.freeBox__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+          })}
         >
           {p.renderPlasmicSlot({
             defaultContents: "Permissions",

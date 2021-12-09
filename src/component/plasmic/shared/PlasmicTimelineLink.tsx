@@ -32,7 +32,7 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicTimelineLink.module.css"; // plasmic-import: PGPJmONwto/css
 
@@ -74,22 +74,12 @@ function PlasmicTimelineLink__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       <div
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          defaultcss.__wab_text,
-          sty.text
-        )}
+        className={classNames(projectcss.all, projectcss.__wab_text, sty.text)}
       >
         {"#"}
       </div>
@@ -98,9 +88,8 @@ function PlasmicTimelineLink__RenderFunc(props: {
         defaultContents: (
           <span
             className={classNames(
-              defaultcss.span,
               projectcss.span,
-              defaultcss.__wab_text,
+              projectcss.__wab_text,
               sty.span___0SrJl
             )}
           >
