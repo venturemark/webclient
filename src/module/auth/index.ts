@@ -143,3 +143,7 @@ export function useAuth(): AuthState {
     token: token!,
   };
 }
+
+export const ProviderConnectionName = {
+  google: "google-oauth2",
+};
