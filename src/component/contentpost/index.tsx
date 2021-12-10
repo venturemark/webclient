@@ -143,6 +143,14 @@ function ContentPost(props: ContentPostProps) {
   const editorShape = updateToEditorShape(update);
   const editor = useMemo(() => createEditor(), []);
 
+  let title = update?.title || "";
+  if (update?.format === "slate") {
+    try {
+      const parsed = JSON.parse(title);
+      title = parsed.children[0].text;
+    } catch (error) {}
+  }
+
   return (
     <PlasmicContentPost
       {...rest}
@@ -155,41 +163,20 @@ function ContentPost(props: ContentPostProps) {
       iconMenu={{
         onClick: () => setDropdownVisible(!dropdownVisible),
       }}
-      title={{
-        render() {
-          let title = update?.title || "";
-          if (update?.format === "slate") {
-            try {
-              const parsed = JSON.parse(title);
-              title = parsed.children[0].text;
-            } catch (error) {}
-          }
-          return (
-            <div style={{ fontSize: "18px", fontWeight: 400, marginTop: 0 }}>
-              {title}
-            </div>
-          );
-        },
-      }}
+      textContainer2={{}}
+      title={title}
       description={{
         as: ReadonlyEditor,
         props: {
           editor,
           editorShape,
         },
-        wrap(node) {
-          return update?.text ? node : null;
-        },
       }}
       hasMedia={!!update?.image}
+      hasDescription={!!update?.text}
       actionMedia={{
         imageSource: update?.image || "",
         isEdit: false,
-      }}
-      textContainer2={{
-        style: {
-          width: "100%",
-        },
       }}
       isUserOnClick={dropdownVisible}
       state={state || isOwner}
