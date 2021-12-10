@@ -36,6 +36,7 @@
     "react-query": "3.32.1",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
+    "react-top-loading-bar": "^2.1.0",
     "recharts": "^2.1.6",
     "slate": "^0.70.0",
     "slate-history": "^0.66.0",
