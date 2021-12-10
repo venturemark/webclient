@@ -36,7 +36,7 @@ import ProfileForm from "../../profileform/index"; // plasmic-import: _XzWccJtXu
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicProfile.module.css"; // plasmic-import: XqXAODV8pg/css
 
@@ -78,69 +78,43 @@ function PlasmicProfile__RenderFunc(props: {
       {}
       {}
 
-      <div className={defaultcss.plasmic_page_wrapper}>
+      <div className={projectcss.plasmic_page_wrapper}>
         <div
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
-            defaultcss.all,
             projectcss.all,
             projectcss.root_reset,
             sty.root
           )}
         >
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__ebv0I
-            )}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__ebv0I)}>
             <Header
               data-plasmic-name={"header"}
               data-plasmic-override={overrides.header}
               className={classNames("__wab_instance", sty.header)}
             />
 
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__pMmw
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__pMmw)}>
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__ibtro
-                )}
+                className={classNames(projectcss.all, sty.freeBox__ibtro)}
               >
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox__qLx8X
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox__qLx8X)}
                 >
                   <div
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.freeBox__x6LVc
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__x6LVc)}
                   >
                     <div
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text__qDcm3
                       )}
                     >
@@ -149,9 +123,8 @@ function PlasmicProfile__RenderFunc(props: {
 
                     <div
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text__hUGd0
                       )}
                     >
@@ -162,9 +135,8 @@ function PlasmicProfile__RenderFunc(props: {
                   {false ? (
                     <div
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text__xRb1Y
                       )}
                     >

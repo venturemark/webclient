@@ -36,7 +36,7 @@ import MemberItem from "../../memberitem/index"; // plasmic-import: D8Y_2wee1o/c
 import VisibilityState from "../../VisibilityState"; // plasmic-import: pG3eTcOvTW0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicShare.module.css"; // plasmic-import: Ockk5wTs5Zq/css
 
@@ -190,21 +190,11 @@ function PlasmicShare__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root,
-        { [sty.root__type_venture]: hasVariant(variants, "type", "venture") }
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__type_venture]: hasVariant(variants, "type", "venture"),
+      })}
     >
-      <div
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.freeBox___8PKum
-        )}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox___8PKum)}>
         {(hasVariant(variants, "type", "venture") ? false : true)
           ? p.renderPlasmicSlot({
               defaultContents: "Timeline Members",
@@ -257,13 +247,7 @@ function PlasmicShare__RenderFunc(props: {
       </div>
 
       {false ? (
-        <div
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox__pA5XW
-          )}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__pA5XW)}>
           {p.renderPlasmicSlot({
             defaultContents: "Timeline Members",
             value: args.children2,
@@ -283,18 +267,14 @@ function PlasmicShare__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox__dKcM4
-          )}
+          className={classNames(projectcss.all, sty.freeBox__dKcM4)}
         >
           <p.Stack
             as={"form"}
             data-plasmic-name={"form"}
             data-plasmic-override={overrides.form}
             hasGap={true}
-            className={classNames(defaultcss.all, projectcss.all, sty.form)}
+            className={classNames(projectcss.all, sty.form)}
           >
             <InputText
               data-plasmic-name={"email"}
@@ -320,18 +300,10 @@ function PlasmicShare__RenderFunc(props: {
             <p.Stack
               as={"a"}
               hasGap={true}
-              className={classNames(
-                defaultcss.a,
-                projectcss.a,
-                sty.link__fnYec
-              )}
+              className={classNames(projectcss.a, sty.link__fnYec)}
             >
               <IconLinkIcon
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.svg__td3Iw
-                )}
+                className={classNames(projectcss.all, sty.svg__td3Iw)}
                 role={"img"}
               />
 
@@ -339,9 +311,8 @@ function PlasmicShare__RenderFunc(props: {
                 data-plasmic-name={"span"}
                 data-plasmic-override={overrides.span}
                 className={classNames(
-                  defaultcss.span,
                   projectcss.span,
-                  defaultcss.__wab_text,
+                  projectcss.__wab_text,
                   sty.span
                 )}
               >
@@ -353,25 +324,16 @@ function PlasmicShare__RenderFunc(props: {
       ) : null}
 
       <div
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.freeBox___80D2Z,
-          {
-            [sty.freeBox__type_venture_isOwner___80D2Z49PC95R44R]:
-              hasVariant(variants, "type", "venture") &&
-              hasVariant(variants, "isOwner", "isOwner"),
-          }
-        )}
+        className={classNames(projectcss.all, sty.freeBox___80D2Z, {
+          [sty.freeBox__type_venture_isOwner___80D2Z49PC95R44R]:
+            hasVariant(variants, "type", "venture") &&
+            hasVariant(variants, "isOwner", "isOwner"),
+        })}
       >
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox__sRTx
-          )}
+          className={classNames(projectcss.all, sty.freeBox__sRTx)}
         >
           <InputText
             data-plasmic-name={"inputText"}
@@ -396,16 +358,12 @@ function PlasmicShare__RenderFunc(props: {
         <div
           data-plasmic-name={"membersContainer"}
           data-plasmic-override={overrides.membersContainer}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.membersContainer
-          )}
+          className={classNames(projectcss.all, sty.membersContainer)}
         >
           <div
             data-plasmic-name={"wrapper"}
             data-plasmic-override={overrides.wrapper}
-            className={classNames(defaultcss.all, projectcss.all, sty.wrapper)}
+            className={classNames(projectcss.all, sty.wrapper)}
           >
             <MemberItem
               className={classNames("__wab_instance", sty.memberItem__dYKyI)}
@@ -541,23 +499,13 @@ function PlasmicShare__RenderFunc(props: {
       </div>
 
       {false ? (
-        <div
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox___1T51C
-          )}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox___1T51C)}>
           <Button
             buttonStyle={"primaryPurple" as const}
             count={"1"}
             slot={
               <IconPlusIcon
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.svg___54CX6
-                )}
+                className={classNames(projectcss.all, sty.svg___54CX6)}
                 role={"img"}
               />
             }
@@ -566,9 +514,8 @@ function PlasmicShare__RenderFunc(props: {
                 data-plasmic-name={"text2"}
                 data-plasmic-override={overrides.text2}
                 className={classNames(
-                  defaultcss.all,
                   projectcss.all,
-                  defaultcss.__wab_text,
+                  projectcss.__wab_text,
                   sty.text2
                 )}
               >
@@ -577,11 +524,7 @@ function PlasmicShare__RenderFunc(props: {
             }
           >
             <IconRightIcon
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.svg__yA5Ka
-              )}
+              className={classNames(projectcss.all, sty.svg__yA5Ka)}
               role={"img"}
             />
           </Button>
@@ -618,13 +561,13 @@ function PlasmicShare__RenderFunc(props: {
               "members"
             ),
           })}
+          isDropdown={"isDropdown" as const}
           slot2={p.renderPlasmicSlot({
             defaultContents: (
               <div
                 className={classNames(
-                  defaultcss.all,
                   projectcss.all,
-                  defaultcss.__wab_text,
+                  projectcss.__wab_text,
                   sty.text__lnKnZ
                 )}
               >
@@ -651,24 +594,21 @@ function PlasmicShare__RenderFunc(props: {
           slot7={p.renderPlasmicSlot({
             defaultContents: (
               <IconMemberIcon
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.svg__u3Tfv
-                )}
+                className={classNames(projectcss.all, sty.svg__u3Tfv)}
                 role={"img"}
               />
             ),
 
             value: args.slot7,
           })}
+          visibilityType={"_public" as const}
         />
       ) : null}
       {(hasVariant(variants, "isOwner", "isOwner") ? true : true) ? (
         <div
           data-plasmic-name={"copyLink"}
           data-plasmic-override={overrides.copyLink}
-          className={classNames(defaultcss.all, projectcss.all, sty.copyLink, {
+          className={classNames(projectcss.all, sty.copyLink, {
             [sty.copyLink__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
             [sty.copyLink__type_venture_isOwner]:
               hasVariant(variants, "type", "venture") &&
@@ -679,33 +619,23 @@ function PlasmicShare__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__embnu,
-                {
-                  [sty.freeBox__isOwner__embnu5R44R]: hasVariant(
-                    variants,
-                    "isOwner",
-                    "isOwner"
-                  ),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__embnu, {
+                [sty.freeBox__isOwner__embnu5R44R]: hasVariant(
+                  variants,
+                  "isOwner",
+                  "isOwner"
+                ),
+              })}
             >
               <IconLinkIcon
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.svg__bmBbJ
-                )}
+                className={classNames(projectcss.all, sty.svg__bmBbJ)}
                 role={"img"}
               />
 
               <a
                 className={classNames(
-                  defaultcss.a,
                   projectcss.a,
-                  defaultcss.__wab_text,
+                  projectcss.__wab_text,
                   sty.link__xvzZ8
                 )}
               >

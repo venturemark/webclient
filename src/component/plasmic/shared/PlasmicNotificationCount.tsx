@@ -32,7 +32,7 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicNotificationCount.module.css"; // plasmic-import: h6nSih0ODv/css
 
@@ -72,25 +72,19 @@ function PlasmicNotificationCount__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       <div
         data-plasmic-name={"background"}
         data-plasmic-override={overrides.background}
-        className={classNames(defaultcss.all, projectcss.all, sty.background)}
+        className={classNames(projectcss.all, sty.background)}
       >
         <div
           data-plasmic-name={"text"}
           data-plasmic-override={overrides.text}
           className={classNames(
-            defaultcss.all,
             projectcss.all,
-            defaultcss.__wab_text,
+            projectcss.__wab_text,
             sty.text
           )}
         >

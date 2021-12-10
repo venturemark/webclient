@@ -34,7 +34,7 @@ import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/c
 import Dropdown from "../../dropdown/index"; // plasmic-import: Umq3CDOCIR/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicSidebarItem.module.css"; // plasmic-import: KDElHbQmfd/css
 
@@ -133,35 +133,29 @@ function PlasmicSidebarItem__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root,
-        {
-          [sty.root__hasNewActivity]: hasVariant(
-            variants,
-            "hasNewActivity",
-            "hasNewActivity"
-          ),
-          [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
-          [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-          [sty.root__isOwner_itemType_timeline]:
-            hasVariant(variants, "isOwner", "isOwner") &&
-            hasVariant(variants, "itemType", "timeline"),
-          [sty.root__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
-          [sty.root__itemType_createTimeline]: hasVariant(
-            variants,
-            "itemType",
-            "createTimeline"
-          ),
-          [sty.root__itemType_timeline]: hasVariant(
-            variants,
-            "itemType",
-            "timeline"
-          ),
-        }
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__hasNewActivity]: hasVariant(
+          variants,
+          "hasNewActivity",
+          "hasNewActivity"
+        ),
+        [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
+        [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
+        [sty.root__isOwner_itemType_timeline]:
+          hasVariant(variants, "isOwner", "isOwner") &&
+          hasVariant(variants, "itemType", "timeline"),
+        [sty.root__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
+        [sty.root__itemType_createTimeline]: hasVariant(
+          variants,
+          "itemType",
+          "createTimeline"
+        ),
+        [sty.root__itemType_timeline]: hasVariant(
+          variants,
+          "itemType",
+          "timeline"
+        ),
+      })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
       {(
@@ -170,27 +164,18 @@ function PlasmicSidebarItem__RenderFunc(props: {
         <div
           data-plasmic-name={"newActivityIndicator"}
           data-plasmic-override={overrides.newActivityIndicator}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.newActivityIndicator,
-            {
-              [sty.newActivityIndicator__hasNewActivity]: hasVariant(
-                variants,
-                "hasNewActivity",
-                "hasNewActivity"
-              ),
-            }
-          )}
+          className={classNames(projectcss.all, sty.newActivityIndicator, {
+            [sty.newActivityIndicator__hasNewActivity]: hasVariant(
+              variants,
+              "hasNewActivity",
+              "hasNewActivity"
+            ),
+          })}
         >
           <div
             data-plasmic-name={"counterSlot"}
             data-plasmic-override={overrides.counterSlot}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.counterSlot
-            )}
+            className={classNames(projectcss.all, sty.counterSlot)}
           >
             {p.renderPlasmicSlot({
               defaultContents: "3",
@@ -217,74 +202,69 @@ function PlasmicSidebarItem__RenderFunc(props: {
           data-plasmic-name={"itemContainer"}
           data-plasmic-override={overrides.itemContainer}
           hasGap={true}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.itemContainer,
-            {
-              [sty.itemContainer__hasNewActivity]: hasVariant(
-                variants,
-                "hasNewActivity",
-                "hasNewActivity"
-              ),
-              [sty.itemContainer__isActive]: hasVariant(
-                variants,
-                "isActive",
-                "isActive"
-              ),
-              [sty.itemContainer__isActive_itemType_createTimeline]:
-                hasVariant(variants, "isActive", "isActive") &&
-                hasVariant(variants, "itemType", "createTimeline"),
-              [sty.itemContainer__isDropdown]: hasVariant(
-                variants,
-                "isDropdown",
-                "isDropdown"
-              ),
-              [sty.itemContainer__isOwner]: hasVariant(
-                variants,
-                "isOwner",
-                "isOwner"
-              ),
-              [sty.itemContainer__isOwner_isDropdown]:
-                hasVariant(variants, "isOwner", "isOwner") &&
-                hasVariant(variants, "isDropdown", "isDropdown"),
-              [sty.itemContainer__isPublic]: hasVariant(
-                variants,
-                "isPublic",
-                "isPublic"
-              ),
-              [sty.itemContainer__isPublic_isOwner]:
-                hasVariant(variants, "isPublic", "isPublic") &&
-                hasVariant(variants, "isOwner", "isOwner"),
-              [sty.itemContainer__isPublic_isOwner_isDropdown]:
-                hasVariant(variants, "isPublic", "isPublic") &&
-                hasVariant(variants, "isOwner", "isOwner") &&
-                hasVariant(variants, "isDropdown", "isDropdown"),
-              [sty.itemContainer__isVisible]: hasVariant(
-                variants,
-                "isVisible",
-                "isVisible"
-              ),
-              [sty.itemContainer__itemType_createTimeline]: hasVariant(
-                variants,
-                "itemType",
-                "createTimeline"
-              ),
-              [sty.itemContainer__itemType_createTimeline_isVisible]:
-                hasVariant(variants, "itemType", "createTimeline") &&
-                hasVariant(variants, "isVisible", "isVisible"),
-              [sty.itemContainer__itemType_timeline]: hasVariant(
-                variants,
-                "itemType",
-                "timeline"
-              ),
-              [sty.itemContainer__itemType_ventureCollapsed]: hasVariant(
-                variants,
-                "itemType",
-                "ventureCollapsed"
-              ),
-            }
-          )}
+          className={classNames(projectcss.all, sty.itemContainer, {
+            [sty.itemContainer__hasNewActivity]: hasVariant(
+              variants,
+              "hasNewActivity",
+              "hasNewActivity"
+            ),
+            [sty.itemContainer__isActive]: hasVariant(
+              variants,
+              "isActive",
+              "isActive"
+            ),
+            [sty.itemContainer__isActive_itemType_createTimeline]:
+              hasVariant(variants, "isActive", "isActive") &&
+              hasVariant(variants, "itemType", "createTimeline"),
+            [sty.itemContainer__isDropdown]: hasVariant(
+              variants,
+              "isDropdown",
+              "isDropdown"
+            ),
+            [sty.itemContainer__isOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.itemContainer__isOwner_isDropdown]:
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "isDropdown", "isDropdown"),
+            [sty.itemContainer__isPublic]: hasVariant(
+              variants,
+              "isPublic",
+              "isPublic"
+            ),
+            [sty.itemContainer__isPublic_isOwner]:
+              hasVariant(variants, "isPublic", "isPublic") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+            [sty.itemContainer__isPublic_isOwner_isDropdown]:
+              hasVariant(variants, "isPublic", "isPublic") &&
+              hasVariant(variants, "isOwner", "isOwner") &&
+              hasVariant(variants, "isDropdown", "isDropdown"),
+            [sty.itemContainer__isVisible]: hasVariant(
+              variants,
+              "isVisible",
+              "isVisible"
+            ),
+            [sty.itemContainer__itemType_createTimeline]: hasVariant(
+              variants,
+              "itemType",
+              "createTimeline"
+            ),
+            [sty.itemContainer__itemType_createTimeline_isVisible]:
+              hasVariant(variants, "itemType", "createTimeline") &&
+              hasVariant(variants, "isVisible", "isVisible"),
+            [sty.itemContainer__itemType_timeline]: hasVariant(
+              variants,
+              "itemType",
+              "timeline"
+            ),
+            [sty.itemContainer__itemType_ventureCollapsed]: hasVariant(
+              variants,
+              "itemType",
+              "ventureCollapsed"
+            ),
+          })}
         >
           {(
             hasVariant(variants, "isOwner", "isOwner")
@@ -294,28 +274,23 @@ function PlasmicSidebarItem__RenderFunc(props: {
               : true
           ) ? (
             <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__lklH,
-                {
-                  [sty.freeBox__hasNewActivity__lklH0PiUm]: hasVariant(
-                    variants,
-                    "hasNewActivity",
-                    "hasNewActivity"
-                  ),
-                  [sty.freeBox__isOwner__lklHXgVg8]: hasVariant(
-                    variants,
-                    "isOwner",
-                    "isOwner"
-                  ),
-                  [sty.freeBox__itemType_createTimeline__lklHOuGst]: hasVariant(
-                    variants,
-                    "itemType",
-                    "createTimeline"
-                  ),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__lklH, {
+                [sty.freeBox__hasNewActivity__lklH0PiUm]: hasVariant(
+                  variants,
+                  "hasNewActivity",
+                  "hasNewActivity"
+                ),
+                [sty.freeBox__isOwner__lklHXgVg8]: hasVariant(
+                  variants,
+                  "isOwner",
+                  "isOwner"
+                ),
+                [sty.freeBox__itemType_createTimeline__lklHOuGst]: hasVariant(
+                  variants,
+                  "itemType",
+                  "createTimeline"
+                ),
+              })}
             >
               {(
                 hasVariant(variants, "itemType", "createTimeline")
@@ -323,18 +298,13 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   : false
               ) ? (
                 <IconPlusIcon
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.svg__w77Z,
-                    {
-                      [sty.svg__itemType_createTimeline__w77ZOuGst]: hasVariant(
-                        variants,
-                        "itemType",
-                        "createTimeline"
-                      ),
-                    }
-                  )}
+                  className={classNames(projectcss.all, sty.svg__w77Z, {
+                    [sty.svg__itemType_createTimeline__w77ZOuGst]: hasVariant(
+                      variants,
+                      "itemType",
+                      "createTimeline"
+                    ),
+                  })}
                   role={"img"}
                 />
               ) : null}
@@ -411,35 +381,33 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     ? IconHashIcon
                     : IconAccordianIcon
                 }
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.svg___6Fx5D,
-                  {
-                    [sty.svg__hasNewActivity___6Fx5D0PiUm]: hasVariant(
-                      variants,
-                      "hasNewActivity",
-                      "hasNewActivity"
-                    ),
-                    [sty.svg__isActive___6Fx5Dw0Xu8]: hasVariant(
-                      variants,
-                      "isActive",
-                      "isActive"
-                    ),
-                    [sty.svg__itemType_createTimeline___6Fx5DOuGst]: hasVariant(
-                      variants,
-                      "itemType",
-                      "createTimeline"
-                    ),
-                    [sty.svg__itemType_timeline___6Fx5DoN3Wv]: hasVariant(
-                      variants,
-                      "itemType",
-                      "timeline"
-                    ),
-                    [sty.svg__itemType_ventureCollapsed___6Fx5D4PCv]:
-                      hasVariant(variants, "itemType", "ventureCollapsed"),
-                  }
-                )}
+                className={classNames(projectcss.all, sty.svg___6Fx5D, {
+                  [sty.svg__hasNewActivity___6Fx5D0PiUm]: hasVariant(
+                    variants,
+                    "hasNewActivity",
+                    "hasNewActivity"
+                  ),
+                  [sty.svg__isActive___6Fx5Dw0Xu8]: hasVariant(
+                    variants,
+                    "isActive",
+                    "isActive"
+                  ),
+                  [sty.svg__itemType_createTimeline___6Fx5DOuGst]: hasVariant(
+                    variants,
+                    "itemType",
+                    "createTimeline"
+                  ),
+                  [sty.svg__itemType_timeline___6Fx5DoN3Wv]: hasVariant(
+                    variants,
+                    "itemType",
+                    "timeline"
+                  ),
+                  [sty.svg__itemType_ventureCollapsed___6Fx5D4PCv]: hasVariant(
+                    variants,
+                    "itemType",
+                    "ventureCollapsed"
+                  ),
+                })}
                 role={"img"}
               />
             </IconButton>
@@ -455,41 +423,41 @@ function PlasmicSidebarItem__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__zwdJs,
-                {
-                  [sty.freeBox__isPublic__zwdJsPZwt]: hasVariant(
-                    variants,
-                    "isPublic",
-                    "isPublic"
-                  ),
-                  [sty.freeBox__isVisible__zwdJsb7AAs]: hasVariant(
-                    variants,
-                    "isVisible",
-                    "isVisible"
-                  ),
-                  [sty.freeBox__itemType_createTimeline__zwdJsOuGst]:
-                    hasVariant(variants, "itemType", "createTimeline"),
-                  [sty.freeBox__itemType_timeline__zwdJSoN3Wv]: hasVariant(
-                    variants,
-                    "itemType",
-                    "timeline"
-                  ),
-                  [sty.freeBox__itemType_ventureCollapsed__zwdJs4PCv]:
-                    hasVariant(variants, "itemType", "ventureCollapsed"),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__zwdJs, {
+                [sty.freeBox__isPublic__zwdJsPZwt]: hasVariant(
+                  variants,
+                  "isPublic",
+                  "isPublic"
+                ),
+                [sty.freeBox__isVisible__zwdJsb7AAs]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "isVisible"
+                ),
+                [sty.freeBox__itemType_createTimeline__zwdJsOuGst]: hasVariant(
+                  variants,
+                  "itemType",
+                  "createTimeline"
+                ),
+                [sty.freeBox__itemType_timeline__zwdJSoN3Wv]: hasVariant(
+                  variants,
+                  "itemType",
+                  "timeline"
+                ),
+                [sty.freeBox__itemType_ventureCollapsed__zwdJs4PCv]: hasVariant(
+                  variants,
+                  "itemType",
+                  "ventureCollapsed"
+                ),
+              })}
             >
               {p.renderPlasmicSlot({
                 defaultContents: (
                   <React.Fragment>
                     <div
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text__j6CkC
                       )}
                     >
@@ -499,7 +467,6 @@ function PlasmicSidebarItem__RenderFunc(props: {
                     {false ? (
                       <input
                         className={classNames(
-                          defaultcss.input,
                           projectcss.input,
                           sty.textInput__ogebi
                         )}
@@ -545,25 +512,23 @@ function PlasmicSidebarItem__RenderFunc(props: {
               : true
           ) ? (
             <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__xZeoS,
-                {
-                  [sty.freeBox__isOwner__xZeoSXgVg8]: hasVariant(
-                    variants,
-                    "isOwner",
-                    "isOwner"
-                  ),
-                  [sty.freeBox__itemType_createTimeline__xZeoSOuGst]:
-                    hasVariant(variants, "itemType", "createTimeline"),
-                  [sty.freeBox__itemType_timeline__xZeoSoN3Wv]: hasVariant(
-                    variants,
-                    "itemType",
-                    "timeline"
-                  ),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__xZeoS, {
+                [sty.freeBox__isOwner__xZeoSXgVg8]: hasVariant(
+                  variants,
+                  "isOwner",
+                  "isOwner"
+                ),
+                [sty.freeBox__itemType_createTimeline__xZeoSOuGst]: hasVariant(
+                  variants,
+                  "itemType",
+                  "createTimeline"
+                ),
+                [sty.freeBox__itemType_timeline__xZeoSoN3Wv]: hasVariant(
+                  variants,
+                  "itemType",
+                  "timeline"
+                ),
+              })}
             >
               {(
                 hasVariant(variants, "isOwner", "isOwner") &&
@@ -624,29 +589,24 @@ function PlasmicSidebarItem__RenderFunc(props: {
                   }
                 >
                   <IconDotMenuIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__zhtWc,
-                      {
-                        [sty.svg__isActive__zhtWcw0Xu8]: hasVariant(
-                          variants,
-                          "isActive",
-                          "isActive"
-                        ),
-                        [sty.svg__isActive_isOwner__zhtWcw0Xu8XgVg8]:
-                          hasVariant(variants, "isActive", "isActive") &&
-                          hasVariant(variants, "isOwner", "isOwner"),
-                        [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
-                          hasVariant(variants, "isActive", "isActive") &&
-                          hasVariant(variants, "itemType", "createTimeline"),
-                        [sty.svg__isOwner__zhtWcXgVg8]: hasVariant(
-                          variants,
-                          "isOwner",
-                          "isOwner"
-                        ),
-                      }
-                    )}
+                    className={classNames(projectcss.all, sty.svg__zhtWc, {
+                      [sty.svg__isActive__zhtWcw0Xu8]: hasVariant(
+                        variants,
+                        "isActive",
+                        "isActive"
+                      ),
+                      [sty.svg__isActive_isOwner__zhtWcw0Xu8XgVg8]:
+                        hasVariant(variants, "isActive", "isActive") &&
+                        hasVariant(variants, "isOwner", "isOwner"),
+                      [sty.svg__isActive_itemType_createTimeline__zhtWcw0Xu8OuGst]:
+                        hasVariant(variants, "isActive", "isActive") &&
+                        hasVariant(variants, "itemType", "createTimeline"),
+                      [sty.svg__isOwner__zhtWcXgVg8]: hasVariant(
+                        variants,
+                        "isOwner",
+                        "isOwner"
+                      ),
+                    })}
                     role={"img"}
                   />
                 </IconButton>
