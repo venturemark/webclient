@@ -32,7 +32,7 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicErrorMessage.module.css"; // plasmic-import: X8H70YUTyF/css
 
@@ -81,28 +81,19 @@ function PlasmicErrorMessage__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       <p.Stack
         as={"div"}
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
         hasGap={true}
-        className={classNames(defaultcss.all, projectcss.all, sty.container)}
+        className={classNames(projectcss.all, sty.container)}
       >
         {p.renderPlasmicSlot({
           defaultContents: (
             <IconCautionIcon
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.svg__eqR5W
-              )}
+              className={classNames(projectcss.all, sty.svg__eqR5W)}
               role={"img"}
             />
           ),

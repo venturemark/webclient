@@ -37,7 +37,7 @@ import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/com
 import Share from "../../Share"; // plasmic-import: Ockk5wTs5Zq/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicModal.module.css"; // plasmic-import: Rd6ctyxKvRM/css
 
@@ -123,17 +123,12 @@ function PlasmicModal__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       <div
         data-plasmic-name={"modalTypes"}
         data-plasmic-override={overrides.modalTypes}
-        className={classNames(defaultcss.all, projectcss.all, sty.modalTypes, {
+        className={classNames(projectcss.all, sty.modalTypes, {
           [sty.modalTypes__modalType_deleteVenture]: hasVariant(
             variants,
             "modalType",
@@ -158,55 +153,46 @@ function PlasmicModal__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox___60GYf,
-              {
-                [sty.freeBox__modalType_deleteTimeline___60GYfkpjFe]:
-                  hasVariant(variants, "modalType", "deleteTimeline"),
-                [sty.freeBox__modalType_deleteVenture___60GYfbglY9]: hasVariant(
-                  variants,
-                  "modalType",
-                  "deleteVenture"
-                ),
-                [sty.freeBox__modalType_editProfile___60GYfORiet]: hasVariant(
-                  variants,
-                  "modalType",
-                  "editProfile"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.freeBox___60GYf, {
+              [sty.freeBox__modalType_deleteTimeline___60GYfkpjFe]: hasVariant(
+                variants,
+                "modalType",
+                "deleteTimeline"
+              ),
+              [sty.freeBox__modalType_deleteVenture___60GYfbglY9]: hasVariant(
+                variants,
+                "modalType",
+                "deleteVenture"
+              ),
+              [sty.freeBox__modalType_editProfile___60GYfORiet]: hasVariant(
+                variants,
+                "modalType",
+                "editProfile"
+              ),
+            })}
           >
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__ljTa5,
-                {
-                  [sty.freeBox__modalType_deleteTimeline__ljTa5KpjFe]:
-                    hasVariant(variants, "modalType", "deleteTimeline"),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__ljTa5, {
+                [sty.freeBox__modalType_deleteTimeline__ljTa5KpjFe]: hasVariant(
+                  variants,
+                  "modalType",
+                  "deleteTimeline"
+                ),
+              })}
             >
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__aUujC
-                )}
+                className={classNames(projectcss.all, sty.freeBox__aUujC)}
               >
                 {p.renderPlasmicSlot({
                   defaultContents: (
                     <div
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text__yHkt8
                       )}
                     >
@@ -222,11 +208,7 @@ function PlasmicModal__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__hxFmc
-                )}
+                className={classNames(projectcss.all, sty.freeBox__hxFmc)}
               >
                 <Button
                   data-plasmic-name={"deleteTimeline"}
@@ -235,11 +217,7 @@ function PlasmicModal__RenderFunc(props: {
                   count={"1"}
                   slot={
                     <IconPlusIcon
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.svg___3JrHd
-                      )}
+                      className={classNames(projectcss.all, sty.svg___3JrHd)}
                       role={"img"}
                     />
                   }
@@ -248,9 +226,8 @@ function PlasmicModal__RenderFunc(props: {
                       data-plasmic-name={"text2"}
                       data-plasmic-override={overrides.text2}
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text2
                       )}
                     >
@@ -259,11 +236,7 @@ function PlasmicModal__RenderFunc(props: {
                   }
                 >
                   <IconRightIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg___3WnXb
-                    )}
+                    className={classNames(projectcss.all, sty.svg___3WnXb)}
                     role={"img"}
                   />
                 </Button>
@@ -283,11 +256,7 @@ function PlasmicModal__RenderFunc(props: {
                   count={"1"}
                   slot={
                     <IconPlusIcon
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.svg__seQ2S
-                      )}
+                      className={classNames(projectcss.all, sty.svg__seQ2S)}
                       role={"img"}
                     />
                   }
@@ -296,9 +265,8 @@ function PlasmicModal__RenderFunc(props: {
                       data-plasmic-name={"text22"}
                       data-plasmic-override={overrides.text22}
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text22
                       )}
                     >
@@ -307,11 +275,7 @@ function PlasmicModal__RenderFunc(props: {
                   }
                 >
                   <IconRightIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__oTsn
-                    )}
+                    className={classNames(projectcss.all, sty.svg__oTsn)}
                     role={"img"}
                   />
                 </Button>
@@ -331,57 +295,44 @@ function PlasmicModal__RenderFunc(props: {
             data-plasmic-name={"deleteTimeline2"}
             data-plasmic-override={overrides.deleteTimeline2}
             hasGap={true}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.deleteTimeline2,
-              {
-                [sty.deleteTimeline2__modalType_deleteVenture]: hasVariant(
-                  variants,
-                  "modalType",
-                  "deleteVenture"
-                ),
-                [sty.deleteTimeline2__modalType_editProfile]: hasVariant(
-                  variants,
-                  "modalType",
-                  "editProfile"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.deleteTimeline2, {
+              [sty.deleteTimeline2__modalType_deleteVenture]: hasVariant(
+                variants,
+                "modalType",
+                "deleteVenture"
+              ),
+              [sty.deleteTimeline2__modalType_editProfile]: hasVariant(
+                variants,
+                "modalType",
+                "editProfile"
+              ),
+            })}
           >
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__zFspo,
-                {
-                  [sty.freeBox__modalType_deleteVenture__zFspobglY9]:
-                    hasVariant(variants, "modalType", "deleteVenture"),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__zFspo, {
+                [sty.freeBox__modalType_deleteVenture__zFspobglY9]: hasVariant(
+                  variants,
+                  "modalType",
+                  "deleteVenture"
+                ),
+              })}
             >
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__zzoZe,
-                  {
-                    [sty.freeBox__modalType_deleteVenture__zzoZEbglY9]:
-                      hasVariant(variants, "modalType", "deleteVenture"),
-                  }
-                )}
+                className={classNames(projectcss.all, sty.freeBox__zzoZe, {
+                  [sty.freeBox__modalType_deleteVenture__zzoZEbglY9]:
+                    hasVariant(variants, "modalType", "deleteVenture"),
+                })}
               >
                 {p.renderPlasmicSlot({
                   defaultContents: (
                     <div
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text__o2J7M
                       )}
                     >
@@ -397,11 +348,7 @@ function PlasmicModal__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__fFh
-                )}
+                className={classNames(projectcss.all, sty.freeBox__fFh)}
               >
                 <Button
                   data-plasmic-name={"deleteVenture"}
@@ -410,11 +357,7 @@ function PlasmicModal__RenderFunc(props: {
                   count={"1"}
                   slot={
                     <IconPlusIcon
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.svg__yS0Jx
-                      )}
+                      className={classNames(projectcss.all, sty.svg__yS0Jx)}
                       role={"img"}
                     />
                   }
@@ -423,9 +366,8 @@ function PlasmicModal__RenderFunc(props: {
                       data-plasmic-name={"text24"}
                       data-plasmic-override={overrides.text24}
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text24
                       )}
                     >
@@ -434,11 +376,7 @@ function PlasmicModal__RenderFunc(props: {
                   }
                 >
                   <IconRightIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__yhxik
-                    )}
+                    className={classNames(projectcss.all, sty.svg__yhxik)}
                     role={"img"}
                   />
                 </Button>
@@ -458,11 +396,7 @@ function PlasmicModal__RenderFunc(props: {
                   count={"1"}
                   slot={
                     <IconPlusIcon
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.svg__bDko
-                      )}
+                      className={classNames(projectcss.all, sty.svg__bDko)}
                       role={"img"}
                     />
                   }
@@ -471,9 +405,8 @@ function PlasmicModal__RenderFunc(props: {
                       data-plasmic-name={"text223"}
                       data-plasmic-override={overrides.text223}
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text223
                       )}
                     >
@@ -482,11 +415,7 @@ function PlasmicModal__RenderFunc(props: {
                   }
                 >
                   <IconRightIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__eYdY
-                    )}
+                    className={classNames(projectcss.all, sty.svg__eYdY)}
                     role={"img"}
                   />
                 </Button>
@@ -504,37 +433,25 @@ function PlasmicModal__RenderFunc(props: {
           <form
             data-plasmic-name={"editProfile"}
             data-plasmic-override={overrides.editProfile}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.editProfile,
-              {
-                [sty.editProfile__modalType_deleteTimeline]: hasVariant(
-                  variants,
-                  "modalType",
-                  "deleteTimeline"
-                ),
-                [sty.editProfile__modalType_editProfile]: hasVariant(
-                  variants,
-                  "modalType",
-                  "editProfile"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.editProfile, {
+              [sty.editProfile__modalType_deleteTimeline]: hasVariant(
+                variants,
+                "modalType",
+                "deleteTimeline"
+              ),
+              [sty.editProfile__modalType_editProfile]: hasVariant(
+                variants,
+                "modalType",
+                "editProfile"
+              ),
+            })}
           >
             {true ? (
-              <div
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__nnGk2
-                )}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__nnGk2)}>
                 <div
                   className={classNames(
-                    defaultcss.all,
                     projectcss.all,
-                    defaultcss.__wab_text,
+                    projectcss.__wab_text,
                     sty.text__zsEuo
                   )}
                 >
@@ -553,32 +470,18 @@ function PlasmicModal__RenderFunc(props: {
                   })}
                 >
                   <IconCloseIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__mGzaq
-                    )}
+                    className={classNames(projectcss.all, sty.svg__mGzaq)}
                     role={"img"}
                   />
                 </IconButton>
               </div>
             ) : null}
             {true ? (
-              <div
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__j441D
-                )}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__j441D)}>
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox__dr4Vw
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox__dr4Vw)}
                 >
                   <PhotoAvatar
                     data-plasmic-name={"photoAvatar"}
@@ -591,9 +494,8 @@ function PlasmicModal__RenderFunc(props: {
                       data-plasmic-name={"link"}
                       data-plasmic-override={overrides.link}
                       className={classNames(
-                        defaultcss.a,
                         projectcss.a,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.link
                       )}
                     >
@@ -629,11 +531,7 @@ function PlasmicModal__RenderFunc(props: {
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__jmp0N
-                )}
+                className={classNames(projectcss.all, sty.freeBox__jmp0N)}
               >
                 <Button
                   data-plasmic-name={"cancelEdit"}
@@ -642,11 +540,7 @@ function PlasmicModal__RenderFunc(props: {
                   count={"1"}
                   slot={
                     <IconPlusIcon
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.svg___8AXbA
-                      )}
+                      className={classNames(projectcss.all, sty.svg___8AXbA)}
                       role={"img"}
                     />
                   }
@@ -655,9 +549,8 @@ function PlasmicModal__RenderFunc(props: {
                       data-plasmic-name={"text23"}
                       data-plasmic-override={overrides.text23}
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
-                        defaultcss.__wab_text,
+                        projectcss.__wab_text,
                         sty.text23
                       )}
                     >
@@ -666,11 +559,7 @@ function PlasmicModal__RenderFunc(props: {
                   }
                 >
                   <IconRightIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__oLhK8
-                    )}
+                    className={classNames(projectcss.all, sty.svg__oLhK8)}
                     role={"img"}
                   />
                 </Button>
@@ -684,11 +573,7 @@ function PlasmicModal__RenderFunc(props: {
                     count={"1"}
                     slot={
                       <IconPlusIcon
-                        className={classNames(
-                          defaultcss.all,
-                          projectcss.all,
-                          sty.svg__i1Uc0
-                        )}
+                        className={classNames(projectcss.all, sty.svg__i1Uc0)}
                         role={"img"}
                       />
                     }
@@ -697,9 +582,8 @@ function PlasmicModal__RenderFunc(props: {
                         data-plasmic-name={"text222"}
                         data-plasmic-override={overrides.text222}
                         className={classNames(
-                          defaultcss.all,
                           projectcss.all,
-                          defaultcss.__wab_text,
+                          projectcss.__wab_text,
                           sty.text222
                         )}
                       >
@@ -708,11 +592,7 @@ function PlasmicModal__RenderFunc(props: {
                     }
                   >
                     <IconRightIcon
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.svg__d1WR
-                      )}
+                      className={classNames(projectcss.all, sty.svg__d1WR)}
                       role={"img"}
                     />
                   </Button>
@@ -750,9 +630,8 @@ function PlasmicModal__RenderFunc(props: {
           >
             <div
               className={classNames(
-                defaultcss.all,
                 projectcss.all,
-                defaultcss.__wab_text,
+                projectcss.__wab_text,
                 sty.text__vs5Dj
               )}
             >
@@ -771,11 +650,7 @@ function PlasmicModal__RenderFunc(props: {
               })}
             >
               <IconCloseIcon
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.svg__ikW1Z
-                )}
+                className={classNames(projectcss.all, sty.svg__ikW1Z)}
                 role={"img"}
               />
             </IconButton>

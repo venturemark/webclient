@@ -40,7 +40,7 @@ import EmptyState from "../../emptystate/index"; // plasmic-import: jggPyChG2Zg/
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicMain.module.css"; // plasmic-import: 0c6QSqHYCk/css
 
@@ -110,7 +110,6 @@ function PlasmicMain__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(
-        defaultcss.all,
         projectcss.all,
         projectcss.root_reset,
         sty.container,
@@ -213,9 +212,8 @@ function PlasmicMain__RenderFunc(props: {
           timelineDescription={
             <div
               className={classNames(
-                defaultcss.all,
                 projectcss.all,
-                defaultcss.__wab_text,
+                projectcss.__wab_text,
                 sty.text__dUFvj
               )}
             >
@@ -412,9 +410,8 @@ function PlasmicMain__RenderFunc(props: {
         >
           <div
             className={classNames(
-              defaultcss.all,
               projectcss.all,
-              defaultcss.__wab_text,
+              projectcss.__wab_text,
               sty.text__fdWyB
             )}
           >
@@ -590,9 +587,8 @@ function PlasmicMain__RenderFunc(props: {
       {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
         <div
           className={classNames(
-            defaultcss.all,
             projectcss.all,
-            defaultcss.__wab_text,
+            projectcss.__wab_text,
             sty.text__k8I5L,
             {
               [sty.text__isActive_settings__k8I5LOMvQw]: hasVariant(
