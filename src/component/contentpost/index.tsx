@@ -163,7 +163,6 @@ function ContentPost(props: ContentPostProps) {
       iconMenu={{
         onClick: () => setDropdownVisible(!dropdownVisible),
       }}
-      textContainer2={{}}
       title={title}
       description={{
         as: ReadonlyEditor,
