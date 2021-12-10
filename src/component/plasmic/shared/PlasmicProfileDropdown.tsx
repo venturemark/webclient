@@ -35,7 +35,7 @@ import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC
 import ListItem from "../../listitem/index"; // plasmic-import: q8aEgDsN8_/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicProfileDropdown.module.css"; // plasmic-import: bGjqf-R4Tc/css
 
@@ -112,64 +112,42 @@ function PlasmicProfileDropdown__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       <div
         data-plasmic-name={"rectangle574"}
         data-plasmic-override={overrides.rectangle574}
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.rectangle574,
-          {
-            [sty.rectangle574__isMobile]: hasVariant(
-              variants,
-              "isMobile",
-              "isMobile"
-            ),
-          }
-        )}
+        className={classNames(projectcss.all, sty.rectangle574, {
+          [sty.rectangle574__isMobile]: hasVariant(
+            variants,
+            "isMobile",
+            "isMobile"
+          ),
+        })}
       >
         {(hasVariant(variants, "isMobile", "isMobile") ? true : true) ? (
           <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox___4LHLu,
-              {
-                [sty.freeBox__isMobile___4LHLuKb6FV]: hasVariant(
-                  variants,
-                  "isMobile",
-                  "isMobile"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.freeBox___4LHLu, {
+              [sty.freeBox__isMobile___4LHLuKb6FV]: hasVariant(
+                variants,
+                "isMobile",
+                "isMobile"
+              ),
+            })}
           >
             <div
               data-plasmic-name={"text"}
               data-plasmic-override={overrides.text}
               className={classNames(
-                defaultcss.all,
                 projectcss.all,
-                defaultcss.__wab_text,
+                projectcss.__wab_text,
                 sty.text
               )}
             >
               {"Account"}
             </div>
 
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox___9FGjg
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___9FGjg)}>
               <IconButton
                 data-plasmic-name={"close"}
                 data-plasmic-override={overrides.close}
@@ -178,11 +156,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
                 <IconCloseIcon
                   data-plasmic-name={"svg"}
                   data-plasmic-override={overrides.svg}
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.svg
-                  )}
+                  className={classNames(projectcss.all, sty.svg)}
                   role={"img"}
                 />
               </IconButton>
@@ -193,18 +167,13 @@ function PlasmicProfileDropdown__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__iA4Y,
-              {
-                [sty.freeBox__isMobile__iA4YKb6FV]: hasVariant(
-                  variants,
-                  "isMobile",
-                  "isMobile"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.freeBox__iA4Y, {
+              [sty.freeBox__isMobile__iA4YKb6FV]: hasVariant(
+                variants,
+                "isMobile",
+                "isMobile"
+              ),
+            })}
           >
             {false ? (
               <PhotoAvatar
@@ -221,11 +190,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             <p.Stack
               as={"div"}
               hasGap={true}
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__tyRt7
-              )}
+              className={classNames(projectcss.all, sty.freeBox__tyRt7)}
             >
               {false
                 ? p.renderPlasmicSlot({
@@ -253,7 +218,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
           data-plasmic-name={"ul"}
           data-plasmic-override={overrides.ul}
           hasGap={true}
-          className={classNames(defaultcss.ul, projectcss.ul, sty.ul)}
+          className={classNames(projectcss.ul, sty.ul)}
         >
           <ListItem
             data-plasmic-name={"createNewVenture"}

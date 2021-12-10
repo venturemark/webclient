@@ -35,7 +35,7 @@ import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicButtonSetEdit.module.css"; // plasmic-import: pMqUN0f4G_a/css
 
@@ -95,33 +95,22 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root,
-        {
-          [sty.root__variantState_isEdit]: hasVariant(
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__variantState_isEdit]: hasVariant(
+          variants,
+          "variantState",
+          "isEdit"
+        ),
+      })}
+    >
+      <div
+        className={classNames(projectcss.all, sty.freeBox__wbTrP, {
+          [sty.freeBox__variantState_isEdit__wbTrPtAumS]: hasVariant(
             variants,
             "variantState",
             "isEdit"
           ),
-        }
-      )}
-    >
-      <div
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.freeBox__wbTrP,
-          {
-            [sty.freeBox__variantState_isEdit__wbTrPtAumS]: hasVariant(
-              variants,
-              "variantState",
-              "isEdit"
-            ),
-          }
-        )}
+        })}
       >
         {(hasVariant(variants, "variantState", "isEdit") ? true : false) ? (
           <Button
@@ -139,11 +128,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
             count={"1"}
             slot={
               <IconPlusIcon
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.svg__xHKz
-                )}
+                className={classNames(projectcss.all, sty.svg__xHKz)}
                 role={"img"}
               />
             }
@@ -152,9 +137,8 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                 data-plasmic-name={"text222"}
                 data-plasmic-override={overrides.text222}
                 className={classNames(
-                  defaultcss.all,
                   projectcss.all,
-                  defaultcss.__wab_text,
+                  projectcss.__wab_text,
                   sty.text222,
                   {
                     [sty.text222__variantState_isEdit]: hasVariant(
@@ -172,11 +156,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
             }
           >
             <IconRightIcon
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.svg__s1LOr
-              )}
+              className={classNames(projectcss.all, sty.svg__s1LOr)}
               role={"img"}
             />
           </Button>
@@ -187,32 +167,22 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox___0SmAy,
-            {
-              [sty.freeBox__variantState_isEdit___0SmAYtAumS]: hasVariant(
+          className={classNames(projectcss.all, sty.freeBox___0SmAy, {
+            [sty.freeBox__variantState_isEdit___0SmAYtAumS]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+          })}
+        >
+          <div
+            className={classNames(projectcss.all, sty.freeBox__blR7J, {
+              [sty.freeBox__variantState_isEdit__blR7JtAumS]: hasVariant(
                 variants,
                 "variantState",
                 "isEdit"
               ),
-            }
-          )}
-        >
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__blR7J,
-              {
-                [sty.freeBox__variantState_isEdit__blR7JtAumS]: hasVariant(
-                  variants,
-                  "variantState",
-                  "isEdit"
-                ),
-              }
-            )}
+            })}
           >
             {(hasVariant(variants, "variantState", "isEdit") ? true : true) ? (
               <Button
@@ -232,11 +202,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                 count={"1"}
                 slot={
                   <IconPlusIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg___9S6H3
-                    )}
+                    className={classNames(projectcss.all, sty.svg___9S6H3)}
                     role={"img"}
                   />
                 }
@@ -245,9 +211,8 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                     data-plasmic-name={"text22"}
                     data-plasmic-override={overrides.text22}
                     className={classNames(
-                      defaultcss.all,
                       projectcss.all,
-                      defaultcss.__wab_text,
+                      projectcss.__wab_text,
                       sty.text22,
                       {
                         [sty.text22__variantState_isEdit]: hasVariant(
@@ -265,11 +230,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                 }
               >
                 <IconRightIcon
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.svg__obcJ3
-                  )}
+                  className={classNames(projectcss.all, sty.svg__obcJ3)}
                   role={"img"}
                 />
               </Button>
@@ -291,11 +252,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
             count={"1"}
             slot={
               <IconPlusIcon
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.svg__gmFuI
-                )}
+                className={classNames(projectcss.all, sty.svg__gmFuI)}
                 role={"img"}
               />
             }
@@ -304,9 +261,8 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                 data-plasmic-name={"text2"}
                 data-plasmic-override={overrides.text2}
                 className={classNames(
-                  defaultcss.all,
                   projectcss.all,
-                  defaultcss.__wab_text,
+                  projectcss.__wab_text,
                   sty.text2,
                   {
                     [sty.text2__variantState_isEdit]: hasVariant(
@@ -324,11 +280,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
             }
           >
             <IconRightIcon
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.svg__ijp8A
-              )}
+              className={classNames(projectcss.all, sty.svg__ijp8A)}
               role={"img"}
             />
           </Button>

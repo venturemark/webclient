@@ -38,7 +38,7 @@ import ButtonSetEdit from "../../buttonsetedit/index"; // plasmic-import: pMqUN0
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicAddEditVenture.module.css"; // plasmic-import: xICnD3GwL-L/css
 
@@ -116,7 +116,6 @@ function PlasmicAddEditVenture__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(
-        defaultcss.all,
         projectcss.all,
         projectcss.root_reset,
         sty.settings,
@@ -130,13 +129,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         }
       )}
     >
-      <div
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.freeBox__nqvhu
-        )}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__nqvhu)}>
         {(hasVariant(variants, "variantState", "isEdit") ? false : true)
           ? p.renderPlasmicSlot({
               defaultContents: "Create a New Venture",
@@ -247,26 +240,21 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox__uCWf,
-            {
-              [sty.freeBox__isOwner__uCWfmdraL]: hasVariant(
-                variants,
-                "isOwner",
-                "isOwner"
-              ),
-              [sty.freeBox__variantState_isEdit__uCWf2IFcI]: hasVariant(
-                variants,
-                "variantState",
-                "isEdit"
-              ),
-              [sty.freeBox__variantState_isEdit_isOwner__uCWf2IFcIMdraL]:
-                hasVariant(variants, "variantState", "isEdit") &&
-                hasVariant(variants, "isOwner", "isOwner"),
-            }
-          )}
+          className={classNames(projectcss.all, sty.freeBox__uCWf, {
+            [sty.freeBox__isOwner__uCWfmdraL]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.freeBox__variantState_isEdit__uCWf2IFcI]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+            [sty.freeBox__variantState_isEdit_isOwner__uCWf2IFcIMdraL]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+          })}
         >
           {false ? (
             <InputText
@@ -299,26 +287,21 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           : false
       ) ? (
         <div
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox__katKc,
-            {
-              [sty.freeBox__isOwner__katKcmdraL]: hasVariant(
-                variants,
-                "isOwner",
-                "isOwner"
-              ),
-              [sty.freeBox__variantState_isEdit__katKc2IFcI]: hasVariant(
-                variants,
-                "variantState",
-                "isEdit"
-              ),
-              [sty.freeBox__variantState_isEdit_isOwner__katKc2IFcIMdraL]:
-                hasVariant(variants, "variantState", "isEdit") &&
-                hasVariant(variants, "isOwner", "isOwner"),
-            }
-          )}
+          className={classNames(projectcss.all, sty.freeBox__katKc, {
+            [sty.freeBox__isOwner__katKcmdraL]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.freeBox__variantState_isEdit__katKc2IFcI]: hasVariant(
+              variants,
+              "variantState",
+              "isEdit"
+            ),
+            [sty.freeBox__variantState_isEdit_isOwner__katKc2IFcIMdraL]:
+              hasVariant(variants, "variantState", "isEdit") &&
+              hasVariant(variants, "isOwner", "isOwner"),
+          })}
         >
           {p.renderPlasmicSlot({
             defaultContents: "Permissions",

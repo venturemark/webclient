@@ -35,7 +35,7 @@ import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicSignin.module.css"; // plasmic-import: VOXcGTkmP9/css
 
@@ -83,7 +83,7 @@ function PlasmicSignin__RenderFunc(props: {
       {}
       {}
 
-      <div className={defaultcss.plasmic_page_wrapper}>
+      <div className={projectcss.plasmic_page_wrapper}>
         <p.Stack
           as={"div"}
           data-plasmic-name={"root"}
@@ -92,73 +92,40 @@ function PlasmicSignin__RenderFunc(props: {
           data-plasmic-for-node={forNode}
           hasGap={true}
           className={classNames(
-            defaultcss.all,
             projectcss.all,
             projectcss.root_reset,
             sty.root
           )}
         >
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__u3Fzv
-            )}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__u3Fzv)}>
             <Logosvg3Icon
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.svg__b6TAn
-              )}
+              className={classNames(projectcss.all, sty.svg__b6TAn)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__dwUyl
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__dwUyl)}>
               {(
                 hasVariant(globalVariants, "screen", "mobile") ? false : true
               ) ? (
-                <div
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox__vpH1M
-                  )}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__vpH1M)}>
                   <div
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.freeBox__dpbjE
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__dpbjE)}
                   >
                     <div
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.freeBox__zq8W
-                      )}
+                      className={classNames(projectcss.all, sty.freeBox__zq8W)}
                     >
                       <p.Stack
                         as={"div"}
                         hasGap={true}
                         className={classNames(
-                          defaultcss.all,
                           projectcss.all,
                           sty.freeBox__lIg4F
                         )}
                       >
                         <div
                           className={classNames(
-                            defaultcss.all,
                             projectcss.all,
-                            defaultcss.__wab_text,
+                            projectcss.__wab_text,
                             sty.text__qnxd
                           )}
                         >
@@ -167,16 +134,14 @@ function PlasmicSignin__RenderFunc(props: {
 
                         <div
                           className={classNames(
-                            defaultcss.all,
                             projectcss.all,
                             sty.freeBox__siRaS
                           )}
                         >
                           <div
                             className={classNames(
-                              defaultcss.all,
                               projectcss.all,
-                              defaultcss.__wab_text,
+                              projectcss.__wab_text,
                               sty.text__x0Qaf
                             )}
                           >
@@ -185,9 +150,8 @@ function PlasmicSignin__RenderFunc(props: {
 
                           <div
                             className={classNames(
-                              defaultcss.all,
                               projectcss.all,
-                              defaultcss.__wab_text,
+                              projectcss.__wab_text,
                               sty.text__yondJ
                             )}
                           >
@@ -196,9 +160,8 @@ function PlasmicSignin__RenderFunc(props: {
 
                           <div
                             className={classNames(
-                              defaultcss.all,
                               projectcss.all,
-                              defaultcss.__wab_text,
+                              projectcss.__wab_text,
                               sty.text__i8IZq
                             )}
                           >
@@ -213,13 +176,7 @@ function PlasmicSignin__RenderFunc(props: {
               {(
                 hasVariant(globalVariants, "screen", "mobile") ? false : true
               ) ? (
-                <div
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox__n6NL9
-                  )}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__n6NL9)}>
                   <p.PlasmicImg
                     alt={""}
                     className={classNames(sty.img___2L10H)}
@@ -245,35 +202,18 @@ function PlasmicSignin__RenderFunc(props: {
             </div>
           </div>
 
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox___9M06
-            )}
-          >
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox___5GI8X
-              )}
-            >
+          <div className={classNames(projectcss.all, sty.freeBox___9M06)}>
+            <div className={classNames(projectcss.all, sty.freeBox___5GI8X)}>
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__trjAa
-                )}
+                className={classNames(projectcss.all, sty.freeBox__trjAa)}
               >
                 {true ? (
                   <div
                     className={classNames(
-                      defaultcss.all,
                       projectcss.all,
-                      defaultcss.__wab_text,
+                      projectcss.__wab_text,
                       sty.text__wAaqV
                     )}
                   >
@@ -290,11 +230,7 @@ function PlasmicSignin__RenderFunc(props: {
                   count={"1"}
                   slot={
                     <IconPlusIcon
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.svg__oGHqX
-                      )}
+                      className={classNames(projectcss.all, sty.svg__oGHqX)}
                       role={"img"}
                     />
                   }
@@ -320,9 +256,8 @@ function PlasmicSignin__RenderFunc(props: {
                         data-plasmic-name={"text2"}
                         data-plasmic-override={overrides.text2}
                         className={classNames(
-                          defaultcss.all,
                           projectcss.all,
-                          defaultcss.__wab_text,
+                          projectcss.__wab_text,
                           sty.text2
                         )}
                       >
@@ -332,11 +267,7 @@ function PlasmicSignin__RenderFunc(props: {
                   }
                 >
                   <IconRightIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__j4Mei
-                    )}
+                    className={classNames(projectcss.all, sty.svg__j4Mei)}
                     role={"img"}
                   />
                 </Button>
@@ -351,11 +282,7 @@ function PlasmicSignin__RenderFunc(props: {
                     count={"1"}
                     slot={
                       <IconPlusIcon
-                        className={classNames(
-                          defaultcss.all,
-                          projectcss.all,
-                          sty.svg__ilBOe
-                        )}
+                        className={classNames(projectcss.all, sty.svg__ilBOe)}
                         role={"img"}
                       />
                     }
@@ -381,9 +308,8 @@ function PlasmicSignin__RenderFunc(props: {
                           data-plasmic-name={"text22"}
                           data-plasmic-override={overrides.text22}
                           className={classNames(
-                            defaultcss.all,
                             projectcss.all,
-                            defaultcss.__wab_text,
+                            projectcss.__wab_text,
                             sty.text22
                           )}
                         >
@@ -393,11 +319,7 @@ function PlasmicSignin__RenderFunc(props: {
                     }
                   >
                     <IconRightIcon
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.svg__yi90R
-                      )}
+                      className={classNames(projectcss.all, sty.svg__yi90R)}
                       role={"img"}
                     />
                   </Button>
