@@ -36,7 +36,7 @@ import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicJoinVenture.module.css"; // plasmic-import: I7lcqILO9Y/css
 
@@ -91,85 +91,52 @@ function PlasmicJoinVenture__RenderFunc(props: {
       {}
       {}
 
-      <div className={defaultcss.plasmic_page_wrapper}>
+      <div className={projectcss.plasmic_page_wrapper}>
         <div
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
-            defaultcss.all,
             projectcss.all,
             projectcss.root_reset,
             sty.root
           )}
         >
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox___2Z8
-            )}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox___2Z8)}>
             <Header
               data-plasmic-name={"header"}
               data-plasmic-override={overrides.header}
               className={classNames("__wab_instance", sty.header)}
             />
 
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__lHnLh
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__lHnLh)}>
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__sMn2A
-                )}
+                className={classNames(projectcss.all, sty.freeBox__sMn2A)}
               >
                 <p.Stack
                   as={"div"}
                   hasGap={true}
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox__uwKvi
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox__uwKvi)}
                 >
                   <div
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.freeBox__hRcye
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__hRcye)}
                   >
                     <div
                       className={classNames(
-                        defaultcss.all,
                         projectcss.all,
                         sty.freeBox___3W6Kg
                       )}
                     >
-                      <h2
-                        className={classNames(
-                          defaultcss.h2,
-                          projectcss.h2,
-                          sty.h2___608W3
-                        )}
-                      >
+                      <h2 className={classNames(projectcss.h2, sty.h2___608W3)}>
                         <div
                           data-plasmic-name={"text"}
                           data-plasmic-override={overrides.text}
                           className={classNames(
-                            defaultcss.all,
                             projectcss.all,
-                            defaultcss.__wab_text,
+                            projectcss.__wab_text,
                             sty.text
                           )}
                         >
@@ -179,11 +146,7 @@ function PlasmicJoinVenture__RenderFunc(props: {
                         <span
                           data-plasmic-name={"span"}
                           data-plasmic-override={overrides.span}
-                          className={classNames(
-                            defaultcss.span,
-                            projectcss.span,
-                            sty.span
-                          )}
+                          className={classNames(projectcss.span, sty.span)}
                         >
                           {p.renderPlasmicSlot({
                             defaultContents: "BaronFig",
@@ -195,17 +158,12 @@ function PlasmicJoinVenture__RenderFunc(props: {
                     </div>
 
                     <div
-                      className={classNames(
-                        defaultcss.all,
-                        projectcss.all,
-                        sty.freeBox__zlDnp
-                      )}
+                      className={classNames(projectcss.all, sty.freeBox__zlDnp)}
                     >
                       <h2
                         className={classNames(
-                          defaultcss.h2,
                           projectcss.h2,
-                          defaultcss.__wab_text,
+                          projectcss.__wab_text,
                           sty.h2__vnLD
                         )}
                       >
@@ -218,9 +176,8 @@ function PlasmicJoinVenture__RenderFunc(props: {
                     data-plasmic-name={"p"}
                     data-plasmic-override={overrides.p}
                     className={classNames(
-                      defaultcss.p,
                       projectcss.p,
-                      defaultcss.__wab_text,
+                      projectcss.__wab_text,
                       sty.p
                     )}
                   >
@@ -246,9 +203,8 @@ function PlasmicJoinVenture__RenderFunc(props: {
                         data-plasmic-name={"text2"}
                         data-plasmic-override={overrides.text2}
                         className={classNames(
-                          defaultcss.all,
                           projectcss.all,
-                          defaultcss.__wab_text,
+                          projectcss.__wab_text,
                           sty.text2
                         )}
                       >

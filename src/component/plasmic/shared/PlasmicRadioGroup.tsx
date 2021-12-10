@@ -33,7 +33,7 @@ import {
 import Radio from "../../radio/index"; // plasmic-import: 0x0YjULkfHN/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicRadioGroup.module.css"; // plasmic-import: Q9Z-qP9n2Q/css
 
@@ -98,29 +98,19 @@ function PlasmicRadioGroup__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       {(hasVariant(variants, "hasLabel", "hasLabel") ? true : false) ? (
         <label
           data-plasmic-name={"labelContainer"}
           data-plasmic-override={overrides.labelContainer}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.labelContainer,
-            {
-              [sty.labelContainer__hasLabel]: hasVariant(
-                variants,
-                "hasLabel",
-                "hasLabel"
-              ),
-            }
-          )}
+          className={classNames(projectcss.all, sty.labelContainer, {
+            [sty.labelContainer__hasLabel]: hasVariant(
+              variants,
+              "hasLabel",
+              "hasLabel"
+            ),
+          })}
         >
           {p.renderPlasmicSlot({
             defaultContents: "Visibility",
@@ -133,7 +123,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(defaultcss.all, projectcss.all, sty.freeBox, {
+        className={classNames(projectcss.all, sty.freeBox, {
           [sty.freeBox__hasLabel]: hasVariant(variants, "hasLabel", "hasLabel"),
           [sty.freeBox__hasLabel_isHorizontal]:
             hasVariant(variants, "hasLabel", "hasLabel") &&
@@ -175,9 +165,8 @@ function PlasmicRadioGroup__RenderFunc(props: {
               data-plasmic-name={"text"}
               data-plasmic-override={overrides.text}
               className={classNames(
-                defaultcss.all,
                 projectcss.all,
-                defaultcss.__wab_text,
+                projectcss.__wab_text,
                 sty.text
               )}
             >

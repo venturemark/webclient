@@ -32,7 +32,7 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicSwitch.module.css"; // plasmic-import: l1Qe8RjaNW/css
 
@@ -86,29 +86,23 @@ function PlasmicSwitch__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root,
-        {
-          [sty.root__variantSettings_hasLabel]: hasVariant(
-            variants,
-            "variantSettings",
-            "hasLabel"
-          ),
-          [sty.root__variantSettings_isSelected]: hasVariant(
-            variants,
-            "variantSettings",
-            "isSelected"
-          ),
-        }
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__variantSettings_hasLabel]: hasVariant(
+          variants,
+          "variantSettings",
+          "hasLabel"
+        ),
+        [sty.root__variantSettings_isSelected]: hasVariant(
+          variants,
+          "variantSettings",
+          "isSelected"
+        ),
+      })}
     >
       <div
         data-plasmic-name={"label"}
         data-plasmic-override={overrides.label}
-        className={classNames(defaultcss.all, projectcss.all, sty.label)}
+        className={classNames(projectcss.all, sty.label)}
       >
         {(hasVariant(variants, "variantSettings", "hasLabel") ? true : false)
           ? p.renderPlasmicSlot({
@@ -125,7 +119,7 @@ function PlasmicSwitch__RenderFunc(props: {
       <div
         data-plasmic-name={"_switch"}
         data-plasmic-override={overrides._switch}
-        className={classNames(defaultcss.all, projectcss.all, sty._switch, {
+        className={classNames(projectcss.all, sty._switch, {
           [sty._switch__variantSettings_isSelected]: hasVariant(
             variants,
             "variantSettings",
@@ -136,7 +130,7 @@ function PlasmicSwitch__RenderFunc(props: {
         <IconOvalIcon
           data-plasmic-name={"svg"}
           data-plasmic-override={overrides.svg}
-          className={classNames(defaultcss.all, projectcss.all, sty.svg, {
+          className={classNames(projectcss.all, sty.svg, {
             [sty.svg__variantSettings_isSelected]: hasVariant(
               variants,
               "variantSettings",

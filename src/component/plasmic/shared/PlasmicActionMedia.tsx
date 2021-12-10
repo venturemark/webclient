@@ -32,7 +32,7 @@ import {
 } from "@plasmicapp/react-web";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicActionMedia.module.css"; // plasmic-import: ja2kJswbaeG/css
 
@@ -84,17 +84,12 @@ function PlasmicActionMedia__RenderFunc(props: {
         data-plasmic-override={overrides.root}
         data-plasmic-root={true}
         data-plasmic-for-node={forNode}
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          projectcss.root_reset,
-          sty.root
-        )}
+        className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
       >
         <div
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
-          className={classNames(defaultcss.all, projectcss.all, sty.freeBox)}
+          className={classNames(projectcss.all, sty.freeBox)}
         >
           <p.PlasmicImg
             data-plasmic-name={"imgHolder"}
@@ -121,23 +116,18 @@ function PlasmicActionMedia__RenderFunc(props: {
           <div
             data-plasmic-name={"closeButton"}
             data-plasmic-override={overrides.closeButton}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.closeButton,
-              {
-                [sty.closeButton__isEdit]: hasVariant(
-                  variants,
-                  "isEdit",
-                  "isEdit"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.closeButton, {
+              [sty.closeButton__isEdit]: hasVariant(
+                variants,
+                "isEdit",
+                "isEdit"
+              ),
+            })}
           >
             <IconCloseIcon
               data-plasmic-name={"svg"}
               data-plasmic-override={overrides.svg}
-              className={classNames(defaultcss.all, projectcss.all, sty.svg)}
+              className={classNames(projectcss.all, sty.svg)}
               role={"img"}
             />
           </div>

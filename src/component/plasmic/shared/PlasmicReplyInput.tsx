@@ -33,7 +33,7 @@ import {
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicReplyInput.module.css"; // plasmic-import: PE9pgtdNju/css
 
@@ -87,12 +87,7 @@ function PlasmicReplyInput__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
       data-plasmic-trigger-props={[triggerRootFocusWithinProps]}
     >
       <p.Stack
@@ -100,23 +95,19 @@ function PlasmicReplyInput__RenderFunc(props: {
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
         hasGap={true}
-        className={classNames(defaultcss.all, projectcss.all, sty.freeBox)}
+        className={classNames(projectcss.all, sty.freeBox)}
       >
         <p.Stack
           as={"form"}
           data-plasmic-name={"replyForm"}
           data-plasmic-override={overrides.replyForm}
           hasGap={true}
-          className={classNames(defaultcss.all, projectcss.all, sty.replyForm)}
+          className={classNames(projectcss.all, sty.replyForm)}
         >
           <textarea
             data-plasmic-name={"replyInput"}
             data-plasmic-override={overrides.replyInput}
-            className={classNames(
-              defaultcss.textarea,
-              projectcss.textarea,
-              sty.replyInput
-            )}
+            className={classNames(projectcss.textarea, sty.replyInput)}
             placeholder={"Write a reply" as const}
           />
 
@@ -132,9 +123,8 @@ function PlasmicReplyInput__RenderFunc(props: {
                   data-plasmic-name={"text"}
                   data-plasmic-override={overrides.text}
                   className={classNames(
-                    defaultcss.all,
                     projectcss.all,
-                    defaultcss.__wab_text,
+                    projectcss.__wab_text,
                     sty.text
                   )}
                 >
@@ -145,11 +135,7 @@ function PlasmicReplyInput__RenderFunc(props: {
                 <IconSend2Icon
                   data-plasmic-name={"svg"}
                   data-plasmic-override={overrides.svg}
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.svg
-                  )}
+                  className={classNames(projectcss.all, sty.svg)}
                   role={"img"}
                 />
               }

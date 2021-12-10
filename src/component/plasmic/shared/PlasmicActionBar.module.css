@@ -623,7 +623,7 @@
 }
 .freeBox__postType_isActive__dWUdDjN9X {
   background: #ffffff;
-  height: 40px;
+  min-height: 40px;
   padding: 10px;
 }
 .freeBox__timelineSelected__dWUd75BwG {
@@ -747,11 +747,17 @@
 .container > :global(.__wab_flex-container) {
   flex-direction: row;
 }
+.container__postType_isActive {
+  display: none;
+}
+.container__timelineSelected {
+  display: flex;
+}
 .container__timelineSelected > :global(.__wab_flex-container) {
   flex-wrap: wrap;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
-  margin-top: calc(0px - 10px);
+  margin-top: calc(0px - 10px - 1em);
   height: calc(100% + 10px);
 }
 .container__timelineSelected > :global(.__wab_flex-container) > *,
@@ -772,25 +778,51 @@
   padding-top: 0px;
 }
 .selectedItemsContainer {
-  display: flex;
   position: relative;
+  flex-direction: row;
+  display: none;
+}
+.selectedItemsContainer > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
+}
+.selectedItemsContainer__timelineSelected {
+  display: flex;
+}
+.selectedItemsContainer__timelineSelected > :global(.__wab_flex-container) {
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-left: calc(0px - 5px);
+  width: calc(100% + 5px);
+  margin-top: calc(0px - 5px);
+  height: calc(100% + 5px);
+}
+.selectedItemsContainer__timelineSelected > :global(.__wab_flex-container) > *,
+.selectedItemsContainer__timelineSelected
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.selectedItemsContainer__timelineSelected
+  > :global(.__wab_flex-container)
+  > picture
+  > img,
+.selectedItemsContainer__timelineSelected
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 5px;
+  margin-top: 5px;
 }
 .selectedItemsContainer__postType_isActive_timelineSelected {
   width: 100%;
   height: auto;
   min-width: 0;
 }
-.tags:global(.__wab_instance) {
-  position: relative;
-}
-.svg__hwNLe {
-  position: relative;
-  object-fit: cover;
-  width: 12px;
-  height: 10px;
+.selectedItemsContainer__postType_isActive_timelineSelected
+  > :global(.__wab_flex-container) {
+  min-width: 0;
 }
 .button {
   opacity: 1;
@@ -867,6 +899,87 @@
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .svg__kMNxX {
+  position: relative;
+  object-fit: cover;
+  width: 12px;
+  height: 10px;
+  flex-shrink: 0;
+}
+.button2 {
+  opacity: 1;
+  transform: scale(1, 1) rotate(0deg);
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #2e8c8d;
+  border-radius: 15px;
+  padding: 4px 10px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
+}
+.freeBox__kUgK {
+  display: flex;
+  position: relative;
+  opacity: 1;
+  top: auto;
+  left: auto;
+  width: auto;
+  transform: scale(1, 1) rotate(0deg) translate(0px, 0px);
+  transform-origin: top left;
+}
+.freeBox__kUgK > :global(.__wab_flex-container) {
+  justify-content: center;
+  align-items: center;
+  margin-left: calc(0px - 10px);
+  width: calc(100% + 10px);
+}
+.freeBox__kUgK > :global(.__wab_flex-container) > *,
+.freeBox__kUgK > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__kUgK > :global(.__wab_flex-container) > picture > img,
+.freeBox__kUgK
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 10px;
+}
+.svg__i1Wq6 {
+  position: relative;
+  object-fit: cover;
+  width: 17px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.slotTargetText3 {
+  font-size: 14px /* plasmic-token: nh1PV_1Nt */;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  text-transform: none;
+  letter-spacing: 0px;
+}
+.slotTargetText3 > .__wab_text,
+.slotTargetText3 > .__wab_slot-string-wrapper,
+.slotTargetText3 > .__wab_slot > .__wab_text,
+.slotTargetText3 > .__wab_slot > .__wab_slot-string-wrapper,
+.slotTargetText3 > .__wab_slot > .__wab_slot > .__wab_text,
+.slotTargetText3 > .__wab_slot > .__wab_slot > .__wab_slot-string-wrapper,
+.slotTargetText3 > .__wab_slot > .__wab_slot > .__wab_slot > .__wab_text,
+.slotTargetText3
+  > .__wab_slot
+  > .__wab_slot
+  > .__wab_slot
+  > .__wab_slot-string-wrapper {
+  text-decoration-line: none;
+}
+.slotTargetChildren2 {
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+}
+.svg__zAeRn {
   position: relative;
   object-fit: cover;
   width: 12px;

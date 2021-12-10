@@ -36,7 +36,7 @@ import ListItem from "../../listitem/index"; // plasmic-import: q8aEgDsN8_/compo
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicVisibilityState.module.css"; // plasmic-import: pG3eTcOvTW0/css
 
@@ -141,18 +141,13 @@ function PlasmicVisibilityState__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       {(hasVariant(variants, "visibilityType", "members") ? true : true) ? (
         <div
           data-plasmic-name={"members"}
           data-plasmic-override={overrides.members}
-          className={classNames(defaultcss.all, projectcss.all, sty.members, {
+          className={classNames(projectcss.all, sty.members, {
             [sty.members__visibilityType__private]: hasVariant(
               variants,
               "visibilityType",
@@ -166,21 +161,11 @@ function PlasmicVisibilityState__RenderFunc(props: {
           })}
         >
           {(hasVariant(globalVariants, "screen", "mobile") ? true : true) ? (
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__kyiVc
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__kyiVc)}>
               {p.renderPlasmicSlot({
                 defaultContents: (
                   <IconMemberIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg___9CuS
-                    )}
+                    className={classNames(projectcss.all, sty.svg___9CuS)}
                     role={"img"}
                   />
                 ),
@@ -190,27 +175,14 @@ function PlasmicVisibilityState__RenderFunc(props: {
             </div>
           ) : null}
 
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__dFstR
-            )}
-          >
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__jKZx
-              )}
-            >
+          <div className={classNames(projectcss.all, sty.freeBox__dFstR)}>
+            <div className={classNames(projectcss.all, sty.freeBox__jKZx)}>
               {p.renderPlasmicSlot({
                 defaultContents: (
                   <div
                     className={classNames(
-                      defaultcss.all,
                       projectcss.all,
-                      defaultcss.__wab_text,
+                      projectcss.__wab_text,
                       sty.text__zcRrp
                     )}
                   >
@@ -232,13 +204,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
               })}
             </div>
 
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__pKszk
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__pKszk)}>
               {p.renderPlasmicSlot({
                 defaultContents:
                   "All members from this network can see this timeline.",
@@ -252,7 +218,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
         <div
           data-plasmic-name={"_private"}
           data-plasmic-override={overrides._private}
-          className={classNames(defaultcss.all, projectcss.all, sty._private, {
+          className={classNames(projectcss.all, sty._private, {
             [sty._private__visibilityType__private]: hasVariant(
               variants,
               "visibilityType",
@@ -261,21 +227,11 @@ function PlasmicVisibilityState__RenderFunc(props: {
           })}
         >
           {(hasVariant(globalVariants, "screen", "mobile") ? true : true) ? (
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__uHr1P
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__uHr1P)}>
               {p.renderPlasmicSlot({
                 defaultContents: (
                   <LockIconsvgIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg__rTnCb
-                    )}
+                    className={classNames(projectcss.all, sty.svg__rTnCb)}
                     role={"img"}
                   />
                 ),
@@ -285,27 +241,14 @@ function PlasmicVisibilityState__RenderFunc(props: {
             </div>
           ) : null}
 
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__bwnan
-            )}
-          >
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__dLbL0
-              )}
-            >
+          <div className={classNames(projectcss.all, sty.freeBox__bwnan)}>
+            <div className={classNames(projectcss.all, sty.freeBox__dLbL0)}>
               {p.renderPlasmicSlot({
                 defaultContents: (
                   <div
                     className={classNames(
-                      defaultcss.all,
                       projectcss.all,
-                      defaultcss.__wab_text,
+                      projectcss.__wab_text,
                       sty.text__iXaUk
                     )}
                   >
@@ -327,13 +270,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
               })}
             </div>
 
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox___2DDls
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___2DDls)}>
               {p.renderPlasmicSlot({
                 defaultContents: "Only people added can see this timeline",
                 value: args.slot9,
@@ -352,7 +289,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
         <div
           data-plasmic-name={"_public"}
           data-plasmic-override={overrides._public}
-          className={classNames(defaultcss.all, projectcss.all, sty._public, {
+          className={classNames(projectcss.all, sty._public, {
             [sty._public__visibilityType__private]: hasVariant(
               variants,
               "visibilityType",
@@ -366,21 +303,11 @@ function PlasmicVisibilityState__RenderFunc(props: {
           })}
         >
           {(hasVariant(globalVariants, "screen", "mobile") ? true : true) ? (
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__foune
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__foune)}>
               {p.renderPlasmicSlot({
                 defaultContents: (
                   <IconPublicsvgIcon
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.svg___30WZw
-                    )}
+                    className={classNames(projectcss.all, sty.svg___30WZw)}
                     role={"img"}
                   />
                 ),
@@ -390,27 +317,14 @@ function PlasmicVisibilityState__RenderFunc(props: {
             </div>
           ) : null}
 
-          <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__r3IbM
-            )}
-          >
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox___52Vad
-              )}
-            >
+          <div className={classNames(projectcss.all, sty.freeBox__r3IbM)}>
+            <div className={classNames(projectcss.all, sty.freeBox___52Vad)}>
               {p.renderPlasmicSlot({
                 defaultContents: (
                   <div
                     className={classNames(
-                      defaultcss.all,
                       projectcss.all,
-                      defaultcss.__wab_text,
+                      projectcss.__wab_text,
                       sty.text__k8Blq
                     )}
                   >
@@ -432,13 +346,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
               })}
             </div>
 
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__ho20O
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__ho20O)}>
               {p.renderPlasmicSlot({
                 defaultContents: "Anyone with this link can see the timeline",
                 value: args.slot11,
@@ -448,13 +356,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
         </div>
       ) : null}
 
-      <div
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.freeBox__jq2M
-        )}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__jq2M)}>
         <Button
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
@@ -467,7 +369,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
           <IconAccordianIcon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames(defaultcss.all, projectcss.all, sty.svg)}
+            className={classNames(projectcss.all, sty.svg)}
             role={"img"}
           />
         </Button>
@@ -476,25 +378,20 @@ function PlasmicVisibilityState__RenderFunc(props: {
           <div
             data-plasmic-name={"dropdown"}
             data-plasmic-override={overrides.dropdown}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.dropdown,
-              {
-                [sty.dropdown__isDropdown]: hasVariant(
-                  variants,
-                  "isDropdown",
-                  "isDropdown"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.dropdown, {
+              [sty.dropdown__isDropdown]: hasVariant(
+                variants,
+                "isDropdown",
+                "isDropdown"
+              ),
+            })}
           >
             <p.Stack
               as={"ul"}
               data-plasmic-name={"ul"}
               data-plasmic-override={overrides.ul}
               hasGap={true}
-              className={classNames(defaultcss.ul, projectcss.ul, sty.ul)}
+              className={classNames(projectcss.ul, sty.ul)}
             >
               <ListItem
                 className={classNames("__wab_instance", sty.listItem__v40Od)}

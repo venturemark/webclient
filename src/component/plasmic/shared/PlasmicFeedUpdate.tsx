@@ -33,7 +33,7 @@ import {
 import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicFeedUpdate.module.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
 
@@ -88,12 +88,7 @@ function PlasmicFeedUpdate__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
         <ActionBar
@@ -138,11 +133,7 @@ function PlasmicFeedUpdate__RenderFunc(props: {
         data-plasmic-name={"feedContainer"}
         data-plasmic-override={overrides.feedContainer}
         hasGap={true}
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.feedContainer
-        )}
+        className={classNames(projectcss.all, sty.feedContainer)}
       />
     </p.Stack>
   ) as React.ReactElement | null;
