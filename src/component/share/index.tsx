@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   PlasmicShare,
   DefaultShareProps,
@@ -6,14 +5,10 @@ import {
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
-import { useContext } from "react";
+import { forwardRef, useContext } from "react";
 import { useForm } from "react-hook-form";
 
 import MemberItem from "component/memberitem";
-import {
-  DefaultAddEditMembersProps,
-  PlasmicAddEditMembers,
-} from "component/plasmic/shared/PlasmicAddEditMembers";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
@@ -218,5 +213,5 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
   );
 }
 
-const Share = React.forwardRef(Share_);
+const Share = forwardRef(Share_);
 export default Share;
