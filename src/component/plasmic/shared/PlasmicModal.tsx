@@ -34,7 +34,7 @@ import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
-import Share from "../../Share"; // plasmic-import: Ockk5wTs5Zq/component
+import Share from "../../share/index"; // plasmic-import: Ockk5wTs5Zq/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss

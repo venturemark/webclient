@@ -86,7 +86,7 @@ function NewTimeline() {
 }
 
 function VentureMembers() {
-  return <Home variantType={"isVenture"} isActive={"members"} />;
+  return <Home modalType={"shareModal"} isVisible={"showShareModal"} />;
 }
 
 function VentureSettings() {

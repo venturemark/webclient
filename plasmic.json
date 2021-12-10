@@ -591,7 +591,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicShare.tsx",
           "importSpec": {
-            "modulePath": "Share.tsx"
+            "modulePath": "share/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicShare.module.css",
           "scheme": "blackbox",
