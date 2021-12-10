@@ -58,7 +58,7 @@ export function sendInvite(inviteData: IInvite, invite: ICreateInvite) {
     from_name: invite.fromName,
     venture_name: invite.fromVentureName,
     invite_link: makeInviteLink(params),
-    message: `Please click the link to receive updates about ${invite.fromVentureName} on Venturemark.co`,
+    message: `Please click the link to receive updates about ${invite.fromVentureName} on Breadcrumb.co`,
   };
 
   emailjs.send(

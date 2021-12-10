@@ -167,7 +167,7 @@ function PlasmicJoinVenture__RenderFunc(props: {
                           sty.h2__vnLD
                         )}
                       >
-                        {"on Venturemark"}
+                        {"on Breadcrumb"}
                       </h2>
                     </div>
                   </div>

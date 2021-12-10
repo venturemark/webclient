@@ -313,7 +313,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                         hasVariant(variants, "variantType", "isEmpty")
                           ? "Organize your stories for specific audiences with timelines."
                           : hasVariant(variants, "variantType", "isEmpty")
-                          ? "Get your company or organization on Venturemark."
+                          ? "Get your company or organization on Breadcrumb."
                           : "Use timelines to organize stories for your group of audiences."}
                       </div>
                     ) : null}
@@ -513,7 +513,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                         )}
                       >
                         {hasVariant(variants, "variantType", "isEmpty")
-                          ? "Get your company or organization on Venturemark."
+                          ? "Get your company or organization on Breadcrumb."
                           : "Join or sign into an existing organization"}
                       </div>
                     ) : null}
