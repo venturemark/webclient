@@ -1,3 +1,4 @@
+import LoadingBar from "component/loadingbar";
 import { useAuth } from "module/auth";
 import { useCurrentUser } from "module/hook/user";
 import { Navigate, Outlet, RouteProps } from "react-router";
@@ -14,17 +15,18 @@ export function AuthRoute({ requiredAuth, requiredProfile }: Props) {
   });
 
   const returnTo = window.location.pathname + window.location.search;
+  const loading = auth.loading || (requiredProfile && userStatus === "loading");
 
-  if (auth.loading) {
-    return <span>Auth loading...</span>;
-  } else if (requiredAuth === "authenticated" && !auth.authenticated) {
+  if (loading) {
+    return <LoadingBar loading={loading} />;
+  }
+
+  if (requiredAuth === "authenticated" && !auth.authenticated) {
     return <Navigate to="/signin" state={{ returnTo }} />;
   } else if (requiredAuth === "unauthenticated" && auth.authenticated) {
     return <Navigate to="/" />;
   } else if (requiredProfile) {
-    if (userStatus === "loading") {
-      return <span>Auth loading...</span>;
-    } else if (requiredProfile === "exists" && !userData) {
+    if (requiredProfile === "exists" && !userData) {
       return <Navigate to="/profile" state={{ returnTo }} />;
     } else if (requiredProfile === "not-exists" && userData) {
       return <Navigate to="/" />;

@@ -12,6 +12,7 @@ import { useTimelineMembers } from "module/hook/user";
 import { useTimelineRole } from "module/hook/role";
 import { IUser } from "module/interface/user";
 import { IRole } from "module/interface/role";
+import LoadingBar from "component/loadingbar";
 
 export function TimelineRoutes() {
   const outerVentureContext = useContext(VentureContext);
@@ -91,11 +92,18 @@ export function TimelineRoutes() {
     return <Navigate replace to={`/${ventureSlug}/${timelineSlug}/feed`} />;
   }
 
-  if (venturesBySlugStatus === "loading" || timelinesStatus === "loading") {
-    return <span>Loading</span>;
-  } else if (venturesBySlugStatus === "error") {
+  const ventureLoadingAndTimelineLoading =
+    venturesBySlugStatus === "loading" || timelinesStatus === "loading";
+
+  if (ventureLoadingAndTimelineLoading) {
+    return <LoadingBar loading={ventureLoadingAndTimelineLoading} />;
+  }
+
+  if (venturesBySlugStatus === "error") {
     return <span>Error loading venture</span>;
-  } else if (timelinesStatus === "error") {
+  }
+
+  if (timelinesStatus === "error") {
     return <span>Error loading timelines</span>;
   }
 

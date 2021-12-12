@@ -37,7 +37,7 @@ import SidebarItemGroup from "../../sidebaritemgroup/index"; // plasmic-import: 
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicSidebar.module.css"; // plasmic-import: FZWTu4L61t/css
 
@@ -110,21 +110,15 @@ function PlasmicSidebar__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root,
-        {
-          [sty.root__hasInput]: hasVariant(variants, "hasInput", "hasInput"),
-          [sty.root__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
-        }
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__hasInput]: hasVariant(variants, "hasInput", "hasInput"),
+        [sty.root__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
+      })}
     >
       <div
         data-plasmic-name={"topSidebar"}
         data-plasmic-override={overrides.topSidebar}
-        className={classNames(defaultcss.all, projectcss.all, sty.topSidebar, {
+        className={classNames(projectcss.all, sty.topSidebar, {
           [sty.topSidebar__hasInput]: hasVariant(
             variants,
             "hasInput",
@@ -149,28 +143,23 @@ function PlasmicSidebar__RenderFunc(props: {
             data-plasmic-name={"accountSettings"}
             data-plasmic-override={overrides.accountSettings}
             hasGap={true}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.accountSettings,
-              {
-                [sty.accountSettings__hasInput]: hasVariant(
-                  variants,
-                  "hasInput",
-                  "hasInput"
-                ),
-                [sty.accountSettings__isDropdown]: hasVariant(
-                  variants,
-                  "isDropdown",
-                  "isDropdown"
-                ),
-                [sty.accountSettings__isPublic]: hasVariant(
-                  variants,
-                  "isPublic",
-                  "isPublic"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.accountSettings, {
+              [sty.accountSettings__hasInput]: hasVariant(
+                variants,
+                "hasInput",
+                "hasInput"
+              ),
+              [sty.accountSettings__isDropdown]: hasVariant(
+                variants,
+                "isDropdown",
+                "isDropdown"
+              ),
+              [sty.accountSettings__isPublic]: hasVariant(
+                variants,
+                "isPublic",
+                "isPublic"
+              ),
+            })}
           >
             <PhotoAvatar
               data-plasmic-name={"photoAvatar"}
@@ -206,9 +195,8 @@ function PlasmicSidebar__RenderFunc(props: {
                 prop={
                   <div
                     className={classNames(
-                      defaultcss.all,
                       projectcss.all,
-                      defaultcss.__wab_text,
+                      projectcss.__wab_text,
                       sty.text__jYiYa,
                       {
                         [sty.text__isDropdown__jYiYAmySg3]: hasVariant(
@@ -233,46 +221,36 @@ function PlasmicSidebar__RenderFunc(props: {
           data-plasmic-name={"scrollContainer"}
           data-plasmic-override={overrides.scrollContainer}
           hasGap={true}
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.scrollContainer,
-            {
-              [sty.scrollContainer__hasInput]: hasVariant(
-                variants,
-                "hasInput",
-                "hasInput"
-              ),
-              [sty.scrollContainer__isDropdown]: hasVariant(
-                variants,
-                "isDropdown",
-                "isDropdown"
-              ),
-              [sty.scrollContainer__isPublic]: hasVariant(
-                variants,
-                "isPublic",
-                "isPublic"
-              ),
-            }
-          )}
+          className={classNames(projectcss.all, sty.scrollContainer, {
+            [sty.scrollContainer__hasInput]: hasVariant(
+              variants,
+              "hasInput",
+              "hasInput"
+            ),
+            [sty.scrollContainer__isDropdown]: hasVariant(
+              variants,
+              "isDropdown",
+              "isDropdown"
+            ),
+            [sty.scrollContainer__isPublic]: hasVariant(
+              variants,
+              "isPublic",
+              "isPublic"
+            ),
+          })}
         >
           <p.Stack
             as={"div"}
             data-plasmic-name={"itemGroupContainer"}
             data-plasmic-override={overrides.itemGroupContainer}
             hasGap={true}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.itemGroupContainer,
-              {
-                [sty.itemGroupContainer__hasInput]: hasVariant(
-                  variants,
-                  "hasInput",
-                  "hasInput"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.itemGroupContainer, {
+              [sty.itemGroupContainer__hasInput]: hasVariant(
+                variants,
+                "hasInput",
+                "hasInput"
+              ),
+            })}
           >
             {(hasVariant(variants, "hasInput", "hasInput") ? true : true) ? (
               <SidebarItemGroup
@@ -310,27 +288,21 @@ function PlasmicSidebar__RenderFunc(props: {
               data-plasmic-name={"freeBox"}
               data-plasmic-override={overrides.freeBox}
               hasGap={true}
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox,
-                {
-                  [sty.freeBox__isPublic]: hasVariant(
-                    variants,
-                    "isPublic",
-                    "isPublic"
-                  ),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox, {
+                [sty.freeBox__isPublic]: hasVariant(
+                  variants,
+                  "isPublic",
+                  "isPublic"
+                ),
+              })}
             >
               {(hasVariant(variants, "isPublic", "isPublic") ? false : true) ? (
                 <a
                   data-plasmic-name={"viewCreateVenture"}
                   data-plasmic-override={overrides.viewCreateVenture}
                   className={classNames(
-                    defaultcss.a,
                     projectcss.a,
-                    defaultcss.__wab_text,
+                    projectcss.__wab_text,
                     sty.viewCreateVenture,
                     {
                       [sty.viewCreateVenture__isPublic]: hasVariant(
@@ -348,27 +320,21 @@ function PlasmicSidebar__RenderFunc(props: {
                 <LockIconsvgIcon
                   data-plasmic-name={"svg"}
                   data-plasmic-override={overrides.svg}
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.svg,
-                    {
-                      [sty.svg__isPublic]: hasVariant(
-                        variants,
-                        "isPublic",
-                        "isPublic"
-                      ),
-                    }
-                  )}
+                  className={classNames(projectcss.all, sty.svg, {
+                    [sty.svg__isPublic]: hasVariant(
+                      variants,
+                      "isPublic",
+                      "isPublic"
+                    ),
+                  })}
                   role={"img"}
                 />
               ) : null}
               {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
                 <div
                   className={classNames(
-                    defaultcss.all,
                     projectcss.all,
-                    defaultcss.__wab_text,
+                    projectcss.__wab_text,
                     sty.text__mR9P,
                     {
                       [sty.text__isPublic__mR9Pxw1PM]: hasVariant(

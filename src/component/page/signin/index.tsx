@@ -5,6 +5,7 @@ import {
   DefaultSigninProps,
   PlasmicSignin,
 } from "component/plasmic/shared/PlasmicSignin";
+import LoadingBar from "component/loadingbar";
 import { useAuth } from "module/auth";
 import { ProviderConnectionName } from "module/auth";
 
@@ -25,8 +26,10 @@ function Signin(props: SigninProps) {
   }
 
   if (auth.loading) {
-    return <div>Loading...</div>;
-  } else if (auth.authenticated) {
+    return <LoadingBar loading={auth.loading} />;
+  }
+
+  if (auth.authenticated) {
     return <Navigate to="/" replace />;
   }
 

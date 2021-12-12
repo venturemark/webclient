@@ -39,7 +39,7 @@ import PostDetails from "../../postdetails/index"; // plasmic-import: 1E73LSzV2l
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicHome.module.css"; // plasmic-import: cRgEcIgCT1/css
 
@@ -111,14 +111,13 @@ function PlasmicHome__RenderFunc(props: {
       {}
       {}
 
-      <div className={defaultcss.plasmic_page_wrapper}>
+      <div className={projectcss.plasmic_page_wrapper}>
         <div
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
-            defaultcss.all,
             projectcss.all,
             projectcss.root_reset,
             sty.root,
@@ -159,17 +158,15 @@ function PlasmicHome__RenderFunc(props: {
               : false
           ) ? (
             <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__bSzQ,
-                {
-                  [sty.freeBox__isVisible_showProfileModal__bSzQvxFZh]:
-                    hasVariant(variants, "isVisible", "showProfileModal"),
-                  [sty.freeBox__isVisible_showShareModal__bSzQyRvLm]:
-                    hasVariant(variants, "isVisible", "showShareModal"),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__bSzQ, {
+                [sty.freeBox__isVisible_showProfileModal__bSzQvxFZh]:
+                  hasVariant(variants, "isVisible", "showProfileModal"),
+                [sty.freeBox__isVisible_showShareModal__bSzQyRvLm]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "showShareModal"
+                ),
+              })}
             >
               {(
                 hasVariant(variants, "isVisible", "showShareModal")
@@ -206,28 +203,23 @@ function PlasmicHome__RenderFunc(props: {
           ) : null}
 
           <div
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox___70Att,
-              {
-                [sty.freeBox__isVisible_isPublic___70AttunhQv]: hasVariant(
-                  variants,
-                  "isVisible",
-                  "isPublic"
-                ),
-                [sty.freeBox__isVisible_mobileSidebar___70AttO6F5A]: hasVariant(
-                  variants,
-                  "isVisible",
-                  "mobileSidebar"
-                ),
-                [sty.freeBox__isVisible_postDetails___70AttbZmLb]: hasVariant(
-                  variants,
-                  "isVisible",
-                  "postDetails"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.freeBox___70Att, {
+              [sty.freeBox__isVisible_isPublic___70AttunhQv]: hasVariant(
+                variants,
+                "isVisible",
+                "isPublic"
+              ),
+              [sty.freeBox__isVisible_mobileSidebar___70AttO6F5A]: hasVariant(
+                variants,
+                "isVisible",
+                "mobileSidebar"
+              ),
+              [sty.freeBox__isVisible_postDetails___70AttbZmLb]: hasVariant(
+                variants,
+                "isVisible",
+                "postDetails"
+              ),
+            })}
           >
             {(
               hasVariant(variants, "isVisible", "isPublic") &&
@@ -275,9 +267,8 @@ function PlasmicHome__RenderFunc(props: {
                     data-plasmic-name={"text"}
                     data-plasmic-override={overrides.text}
                     className={classNames(
-                      defaultcss.all,
                       projectcss.all,
-                      defaultcss.__wab_text,
+                      projectcss.__wab_text,
                       sty.text
                     )}
                   >
@@ -288,23 +279,18 @@ function PlasmicHome__RenderFunc(props: {
             ) : null}
 
             <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__cJlKh,
-                {
-                  [sty.freeBox__isVisible_isPublic__cJlKhunhQv]: hasVariant(
-                    variants,
-                    "isVisible",
-                    "isPublic"
-                  ),
-                  [sty.freeBox__isVisible_postDetails__cJlKhbZmLb]: hasVariant(
-                    variants,
-                    "isVisible",
-                    "postDetails"
-                  ),
-                }
-              )}
+              className={classNames(projectcss.all, sty.freeBox__cJlKh, {
+                [sty.freeBox__isVisible_isPublic__cJlKhunhQv]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "isPublic"
+                ),
+                [sty.freeBox__isVisible_postDetails__cJlKhbZmLb]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "postDetails"
+                ),
+              })}
             >
               <Header
                 data-plasmic-name={"header"}
@@ -316,28 +302,23 @@ function PlasmicHome__RenderFunc(props: {
               <div
                 data-plasmic-name={"mainContainer"}
                 data-plasmic-override={overrides.mainContainer}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.mainContainer,
-                  {
-                    [sty.mainContainer__isVisible_isPublic]: hasVariant(
-                      variants,
-                      "isVisible",
-                      "isPublic"
-                    ),
-                    [sty.mainContainer__isVisible_mobileSidebar]: hasVariant(
-                      variants,
-                      "isVisible",
-                      "mobileSidebar"
-                    ),
-                    [sty.mainContainer__isVisible_postDetails]: hasVariant(
-                      variants,
-                      "isVisible",
-                      "postDetails"
-                    ),
-                  }
-                )}
+                className={classNames(projectcss.all, sty.mainContainer, {
+                  [sty.mainContainer__isVisible_isPublic]: hasVariant(
+                    variants,
+                    "isVisible",
+                    "isPublic"
+                  ),
+                  [sty.mainContainer__isVisible_mobileSidebar]: hasVariant(
+                    variants,
+                    "isVisible",
+                    "mobileSidebar"
+                  ),
+                  [sty.mainContainer__isVisible_postDetails]: hasVariant(
+                    variants,
+                    "isVisible",
+                    "postDetails"
+                  ),
+                })}
               >
                 <Main
                   data-plasmic-name={"main"}
@@ -364,7 +345,7 @@ function PlasmicHome__RenderFunc(props: {
                       ? ("feed" as const)
                       : hasVariant(variants, "isVisible", "postDetails")
                       ? ("feed" as const)
-                      : ("feed" as const)
+                      : ("settings" as const)
                   }
                   isOwner={
                     hasVariant(variants, "isVisible", "isPublic")
@@ -392,15 +373,10 @@ function PlasmicHome__RenderFunc(props: {
                   : true
               ) ? (
                 <div
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.freeBox___49Hi7,
-                    {
-                      [sty.freeBox__isVisible_postDetails___49Hi7BZmLb]:
-                        hasVariant(variants, "isVisible", "postDetails"),
-                    }
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox___49Hi7, {
+                    [sty.freeBox__isVisible_postDetails___49Hi7BZmLb]:
+                      hasVariant(variants, "isVisible", "postDetails"),
+                  })}
                 >
                   {(
                     hasVariant(variants, "isVisible", "postDetails")

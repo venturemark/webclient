@@ -4,6 +4,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router";
 import { AuthRoute } from "component/app/AuthRoute";
 import { TimelineRoutes } from "component/app/TimelineRoutes";
 import { Home } from "component/page/home";
+import LoadingBar from "component/loadingbar";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
@@ -53,6 +54,7 @@ function VentureRedirect() {
   const auth = useContext(AuthContext);
   const { user, status: userStatus } = useContext(UserContext);
   const { ventures, loading: venturesLoading } = useContext(VentureContext);
+  const loading = auth.loading || userStatus === "loading" || venturesLoading;
 
   // options
   // unauthenticated, redirect to /signin
@@ -62,21 +64,23 @@ function VentureRedirect() {
   // authenticated, profile, no ventures, redirect to /begin
   // authenticated, profile, ventures, redirect to first venture
 
-  if (auth.loading) {
-    return <span>Loading...</span>;
-  } else if (!auth.authenticated) {
-    return <Navigate replace to="/signin" />;
-  } else if (userStatus === "loading") {
-    return <span>Loading...</span>;
-  } else if (!user) {
-    return <Navigate replace to="/profile" />;
-  } else if (venturesLoading) {
-    return <span>Loading...</span>;
-  } else if (ventures.length === 0) {
-    return <Navigate replace to="/begin" />;
-  } else {
-    return <Navigate replace to={`/${calculateNamedSlug(ventures[0])}`} />;
+  if (loading) {
+    return <LoadingBar loading={loading} />;
   }
+
+  if (!auth.authenticated) {
+    return <Navigate replace to="/signin" />;
+  }
+
+  if (!user) {
+    return <Navigate replace to="/profile" />;
+  }
+
+  if (ventures.length === 0) {
+    return <Navigate replace to="/begin" />;
+  }
+
+  return <Navigate replace to={`/${calculateNamedSlug(ventures[0])}`} />;
 }
 
 function NewTimeline() {

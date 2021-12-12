@@ -39,7 +39,7 @@ import ProfileDropdown from "../../profiledropdown/index"; // plasmic-import: bG
 import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicHeader.module.css"; // plasmic-import: MkyvVOg5Ik/css
 
@@ -110,60 +110,45 @@ function PlasmicHeader__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root,
-        {
-          [sty.root__mobileMenu]: hasVariant(
-            variants,
-            "mobileMenu",
-            "mobileMenu"
-          ),
-          [sty.root__views_publicView]: hasVariant(
-            variants,
-            "views",
-            "publicView"
-          ),
-        }
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__mobileMenu]: hasVariant(
+          variants,
+          "mobileMenu",
+          "mobileMenu"
+        ),
+        [sty.root__views_publicView]: hasVariant(
+          variants,
+          "views",
+          "publicView"
+        ),
+      })}
     >
       <p.Stack
         as={"div"}
         hasGap={true}
-        className={classNames(
-          defaultcss.all,
-          projectcss.all,
-          sty.freeBox__ky7Rm,
-          {
-            [sty.freeBox__mobileMenu__ky7RmdUXmX]: hasVariant(
-              variants,
-              "mobileMenu",
-              "mobileMenu"
-            ),
-            [sty.freeBox__views_publicView__ky7RmYpLjb]: hasVariant(
-              variants,
-              "views",
-              "publicView"
-            ),
-            [sty.freeBox__views_userAccount__ky7RmUjVqz]: hasVariant(
-              variants,
-              "views",
-              "userAccount"
-            ),
-          }
-        )}
+        className={classNames(projectcss.all, sty.freeBox__ky7Rm, {
+          [sty.freeBox__mobileMenu__ky7RmdUXmX]: hasVariant(
+            variants,
+            "mobileMenu",
+            "mobileMenu"
+          ),
+          [sty.freeBox__views_publicView__ky7RmYpLjb]: hasVariant(
+            variants,
+            "views",
+            "publicView"
+          ),
+          [sty.freeBox__views_userAccount__ky7RmUjVqz]: hasVariant(
+            variants,
+            "views",
+            "userAccount"
+          ),
+        })}
       >
         {(hasVariant(globalVariants, "screen", "mobile") ? true : true) ? (
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox__wE8Ym
-            )}
+            className={classNames(projectcss.all, sty.freeBox__wE8Ym)}
           >
             {(
               hasVariant(variants, "mobileMenu", "mobileMenu") &&
@@ -178,23 +163,18 @@ function PlasmicHeader__RenderFunc(props: {
               <IconMenuIcon
                 data-plasmic-name={"toggleMobileSidebar"}
                 data-plasmic-override={overrides.toggleMobileSidebar}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.toggleMobileSidebar,
-                  {
-                    [sty.toggleMobileSidebar__mobileMenu]: hasVariant(
-                      variants,
-                      "mobileMenu",
-                      "mobileMenu"
-                    ),
-                    [sty.toggleMobileSidebar__views_publicView]: hasVariant(
-                      variants,
-                      "views",
-                      "publicView"
-                    ),
-                  }
-                )}
+                className={classNames(projectcss.all, sty.toggleMobileSidebar, {
+                  [sty.toggleMobileSidebar__mobileMenu]: hasVariant(
+                    variants,
+                    "mobileMenu",
+                    "mobileMenu"
+                  ),
+                  [sty.toggleMobileSidebar__views_publicView]: hasVariant(
+                    variants,
+                    "views",
+                    "publicView"
+                  ),
+                })}
                 role={"img"}
               />
             ) : null}
@@ -212,9 +192,8 @@ function PlasmicHeader__RenderFunc(props: {
             data-plasmic-name={"text"}
             data-plasmic-override={overrides.text}
             className={classNames(
-              defaultcss.all,
               projectcss.all,
-              defaultcss.__wab_text,
+              projectcss.__wab_text,
               sty.text,
               {
                 [sty.text__views_publicView]: hasVariant(
@@ -235,9 +214,8 @@ function PlasmicHeader__RenderFunc(props: {
             data-plasmic-name={"link"}
             data-plasmic-override={overrides.link}
             className={classNames(
-              defaultcss.a,
               projectcss.a,
-              defaultcss.__wab_text,
+              projectcss.__wab_text,
               sty.link,
               {
                 [sty.link__views_publicView]: hasVariant(
@@ -262,23 +240,18 @@ function PlasmicHeader__RenderFunc(props: {
           <p.Stack
             as={"div"}
             hasGap={true}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.freeBox___4Ktdl,
-              {
-                [sty.freeBox__profileDropdown___4KtdlZi9Pu]: hasVariant(
-                  variants,
-                  "profileDropdown",
-                  "profileDropdown"
-                ),
-                [sty.freeBox__views_userAccount___4KtdlUjVqz]: hasVariant(
-                  variants,
-                  "views",
-                  "userAccount"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.freeBox___4Ktdl, {
+              [sty.freeBox__profileDropdown___4KtdlZi9Pu]: hasVariant(
+                variants,
+                "profileDropdown",
+                "profileDropdown"
+              ),
+              [sty.freeBox__views_userAccount___4KtdlUjVqz]: hasVariant(
+                variants,
+                "views",
+                "userAccount"
+              ),
+            })}
           >
             <Button
               data-plasmic-name={"button"}
@@ -287,11 +260,7 @@ function PlasmicHeader__RenderFunc(props: {
               className={classNames("__wab_instance", sty.button)}
               slot={
                 <LockIconsvgIcon
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.svg__sYc20
-                  )}
+                  className={classNames(projectcss.all, sty.svg__sYc20)}
                   role={"img"}
                 />
               }
@@ -306,11 +275,7 @@ function PlasmicHeader__RenderFunc(props: {
                 iconSize={"large" as const}
               >
                 <IconSettings2Icon
-                  className={classNames(
-                    defaultcss.all,
-                    projectcss.all,
-                    sty.svg___8QpRc
-                  )}
+                  className={classNames(projectcss.all, sty.svg___8QpRc)}
                   role={"img"}
                 />
               </IconButton>

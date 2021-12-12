@@ -33,7 +33,7 @@ import {
 import ErrorMessage from "../../errormessage/index"; // plasmic-import: X8H70YUTyF/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
-import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
+
 import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import * as sty from "./PlasmicInputText.module.css"; // plasmic-import: v0nNSTRV39/css
 
@@ -117,36 +117,26 @@ function PlasmicInputText__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(
-        defaultcss.all,
-        projectcss.all,
-        projectcss.root_reset,
-        sty.root
-      )}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
       <p.Stack
         as={"div"}
         data-plasmic-name={"textInput"}
         data-plasmic-override={overrides.textInput}
         hasGap={true}
-        className={classNames(defaultcss.all, projectcss.all, sty.textInput)}
+        className={classNames(projectcss.all, sty.textInput)}
       >
         {(hasVariant(variants, "hasLabel", "hasLabel") ? true : false) ? (
           <label
             data-plasmic-name={"labelContainer"}
             data-plasmic-override={overrides.labelContainer}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.labelContainer,
-              {
-                [sty.labelContainer__hasLabel]: hasVariant(
-                  variants,
-                  "hasLabel",
-                  "hasLabel"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.labelContainer, {
+              [sty.labelContainer__hasLabel]: hasVariant(
+                variants,
+                "hasLabel",
+                "hasLabel"
+              ),
+            })}
           >
             {p.renderPlasmicSlot({
               defaultContents: "Label Name",
@@ -161,23 +151,18 @@ function PlasmicInputText__RenderFunc(props: {
           <div
             data-plasmic-name={"inputHelperText"}
             data-plasmic-override={overrides.inputHelperText}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.inputHelperText,
-              {
-                [sty.inputHelperText__error]: hasVariant(
-                  variants,
-                  "error",
-                  "error"
-                ),
-                [sty.inputHelperText__hasTextHelper]: hasVariant(
-                  variants,
-                  "hasTextHelper",
-                  "hasTextHelper"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.inputHelperText, {
+              [sty.inputHelperText__error]: hasVariant(
+                variants,
+                "error",
+                "error"
+              ),
+              [sty.inputHelperText__hasTextHelper]: hasVariant(
+                variants,
+                "hasTextHelper",
+                "hasTextHelper"
+              ),
+            })}
           >
             {p.renderPlasmicSlot({
               defaultContents: "Text Helper Description",
@@ -187,44 +172,23 @@ function PlasmicInputText__RenderFunc(props: {
           </div>
         ) : null}
 
-        <div
-          className={classNames(
-            defaultcss.all,
-            projectcss.all,
-            sty.freeBox___9LrSw
-          )}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox___9LrSw)}>
           <div
             data-plasmic-name={"textboxContainer"}
             data-plasmic-override={overrides.textboxContainer}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.textboxContainer
-            )}
+            className={classNames(projectcss.all, sty.textboxContainer)}
           >
-            <div
-              className={classNames(
-                defaultcss.all,
-                projectcss.all,
-                sty.freeBox__lygyM
-              )}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__lygyM)}>
               <p.Stack
                 as={"div"}
                 hasGap={true}
-                className={classNames(
-                  defaultcss.all,
-                  projectcss.all,
-                  sty.freeBox__eDsPg,
-                  {
-                    [sty.freeBox__hasLeftIcon__eDsPgLDyDu]: hasVariant(
-                      variants,
-                      "hasLeftIcon",
-                      "hasLeftIcon"
-                    ),
-                  }
-                )}
+                className={classNames(projectcss.all, sty.freeBox__eDsPg, {
+                  [sty.freeBox__hasLeftIcon__eDsPgLDyDu]: hasVariant(
+                    variants,
+                    "hasLeftIcon",
+                    "hasLeftIcon"
+                  ),
+                })}
               >
                 {(
                   hasVariant(variants, "hasLeftIcon", "hasLeftIcon")
@@ -234,27 +198,18 @@ function PlasmicInputText__RenderFunc(props: {
                   <div
                     data-plasmic-name={"leftIcon"}
                     data-plasmic-override={overrides.leftIcon}
-                    className={classNames(
-                      defaultcss.all,
-                      projectcss.all,
-                      sty.leftIcon,
-                      {
-                        [sty.leftIcon__hasLeftIcon]: hasVariant(
-                          variants,
-                          "hasLeftIcon",
-                          "hasLeftIcon"
-                        ),
-                      }
-                    )}
+                    className={classNames(projectcss.all, sty.leftIcon, {
+                      [sty.leftIcon__hasLeftIcon]: hasVariant(
+                        variants,
+                        "hasLeftIcon",
+                        "hasLeftIcon"
+                      ),
+                    })}
                   >
                     {p.renderPlasmicSlot({
                       defaultContents: (
                         <IconHashIcon
-                          className={classNames(
-                            defaultcss.all,
-                            projectcss.all,
-                            sty.svg__ynG1Y
-                          )}
+                          className={classNames(projectcss.all, sty.svg__ynG1Y)}
                           role={"img"}
                         />
                       ),
@@ -267,23 +222,18 @@ function PlasmicInputText__RenderFunc(props: {
                 <input
                   data-plasmic-name={"input2"}
                   data-plasmic-override={overrides.input2}
-                  className={classNames(
-                    defaultcss.input,
-                    projectcss.input,
-                    sty.input2,
-                    {
-                      [sty.input2__hasLeftIcon]: hasVariant(
-                        variants,
-                        "hasLeftIcon",
-                        "hasLeftIcon"
-                      ),
-                      [sty.input2__isDisabled]: hasVariant(
-                        variants,
-                        "isDisabled",
-                        "isDisabled"
-                      ),
-                    }
-                  )}
+                  className={classNames(projectcss.input, sty.input2, {
+                    [sty.input2__hasLeftIcon]: hasVariant(
+                      variants,
+                      "hasLeftIcon",
+                      "hasLeftIcon"
+                    ),
+                    [sty.input2__isDisabled]: hasVariant(
+                      variants,
+                      "isDisabled",
+                      "isDisabled"
+                    ),
+                  })}
                   disabled={false}
                   placeholder={"" as const}
                   title={"" as const}
@@ -298,18 +248,13 @@ function PlasmicInputText__RenderFunc(props: {
           <div
             data-plasmic-name={"errorContainer"}
             data-plasmic-override={overrides.errorContainer}
-            className={classNames(
-              defaultcss.all,
-              projectcss.all,
-              sty.errorContainer,
-              {
-                [sty.errorContainer__error]: hasVariant(
-                  variants,
-                  "error",
-                  "error"
-                ),
-              }
-            )}
+            className={classNames(projectcss.all, sty.errorContainer, {
+              [sty.errorContainer__error]: hasVariant(
+                variants,
+                "error",
+                "error"
+              ),
+            })}
           >
             {(hasVariant(variants, "error", "error") ? true : false) ? (
               <ErrorMessage
