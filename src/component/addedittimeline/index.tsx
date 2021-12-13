@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   DefaultAddEditTimelineProps,
@@ -65,17 +65,15 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   }, [values, onChange]);
 
   const navigate = useNavigate();
-  const { timelineSlug } = useParams();
+
   const { token } = useContext(AuthContext);
 
-  const isEdit = timelineSlug ? "isEdit" : undefined;
+  const timelineId = currentTimeline?.id;
+  const ventureId = currentVenture?.id;
+  const isEdit = timelineId ? "isEdit" : undefined;
 
   const { mutate: createTimeline } = useCreateTimeline();
   const { mutate: updateTimeline } = useUpdateTimeline();
-
-  const handle = calculateNamedSlug(currentVenture);
-  const timelineId = currentTimeline?.id;
-  const ventureId = currentVenture?.id;
 
   const [visibility, setVisibility] = useState<string>("");
 
@@ -98,7 +96,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           desc: data.timelineDescription,
           membersWrite: data.membersWrite,
           ventureId,
-          successUrl: `../../${data.timelineName}/feed`,
+          successUrl: `../../${timelineId}/feed`,
           token,
         },
         {
@@ -115,7 +113,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           membersWrite: data.membersWrite,
           ventureId,
           visibility,
-          successUrl: `../${data.timelineName}/feed`,
+          successUrl: `/`,
           token,
         },
         {
@@ -185,10 +183,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       }}
       buttonSetEdit={{
         handleCancel: () => navigate(".."),
-        handleDelete: () =>
-          navigate(
-            `/${handle}/${timelineSlug}/delete?timelineId=${timelineId}`
-          ),
+        handleDelete: () => navigate(`/${ventureId}/${timelineId}/delete`),
         handleSave: () => handleSubmit(handleCreate)(),
       }}
       visibility={{

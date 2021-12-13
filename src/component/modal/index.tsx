@@ -169,10 +169,12 @@ function Modal(props: ModalProps) {
         onPress: () => navigate("/"),
       }}
       close={{
+        // This is the close button for the EditProfile view
         onClick: () => navigate("/"),
       }}
       close2={{
-        onClick: () => navigate("/"),
+        // This is the close button for the ShareModal view
+        onClick: () => navigate(".."),
       }}
     />
   );

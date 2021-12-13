@@ -3,13 +3,15 @@ import { Home } from "component/page/home";
 import JoinVenture from "component/page/joinventure";
 import Profile from "component/page/profile";
 import Signin from "component/page/signin";
+import LoadingBar from "component/loadingbar";
 import { AuthContext } from "context/AuthContext";
 import { IUserContext, UserContext } from "context/UserContext";
 import { IVentureContext, VentureContext } from "context/VentureContext";
 import { useAuth } from "module/auth";
 import { useCurrentUser } from "module/hook/user";
 import { useVenturesByUser } from "module/hook/venture";
-import { Route, Routes } from "react-router";
+import { useContext } from "react";
+import { Navigate, Route, Routes } from "react-router";
 import { AuthRoute } from "./AuthRoute";
 import { VentureRoutes } from "./VentureRoutes";
 
@@ -78,10 +80,37 @@ export function App() {
               <Route path="editprofile" element={<EditProfile />} />
               <Route path="newventure" element={<NewVenture />} />
             </Route>
-            <Route path="*" element={<VentureRoutes />} />
+            <Route path=":ventureId/*" element={<VentureRoutes />} />
+            <Route path="/" element={<VentureRedirect />} />
           </Routes>
         </VentureContext.Provider>
       </UserContext.Provider>
     </AuthContext.Provider>
   );
+}
+
+function VentureRedirect() {
+  const auth = useContext(AuthContext);
+  const { user, status: userStatus } = useContext(UserContext);
+  const { ventures, loading: venturesLoading } = useContext(VentureContext);
+
+  const loading = auth.loading || userStatus === "loading" || venturesLoading;
+
+  if (loading) {
+    return <LoadingBar loading={loading} />;
+  }
+
+  if (!auth.authenticated) {
+    return <Navigate replace to="/signin" />;
+  }
+
+  if (!user) {
+    return <Navigate replace to="/profile" />;
+  }
+
+  if (ventures.length === 0) {
+    return <Navigate replace to="/begin" />;
+  }
+
+  return <Navigate to={`/${ventures[0].id}`} />;
 }

@@ -61,22 +61,19 @@ function AddEditVenture(props: AddEditVentureProps) {
     onChange && onChange(values);
   }, [values, onChange]);
 
-  const { ventureSlug } = useParams();
+  const { ventureId } = useParams();
   const { token } = useContext(AuthContext);
   const { mutate: createVenture } = useCreateVenture();
   const { mutate: updateVenture } = useUpdateVenture();
 
   const navigate = useNavigate();
-  const handle = currentVenture?.name?.toLowerCase().replace(/\s/g, "");
-  const ventureId = currentVenture?.id;
-  const isEdit = ventureSlug && ventureSlug === handle ? "isEdit" : undefined;
+  const isEdit = ventureId ? "isEdit" : undefined;
 
   const handleCreate = (data: FormData) => {
     if (!data.ventureName || !data.ventureDescription) return;
-    const newHandle = data.ventureName.toLowerCase().replace(/\s/g, "");
 
     if (isEdit) {
-      if (!ventureId || !handle) return;
+      if (!ventureId) return;
       updateVenture(
         {
           id: ventureId,
@@ -84,7 +81,7 @@ function AddEditVenture(props: AddEditVentureProps) {
           desc: data.ventureDescription,
           url: data.url,
           membersWrite: data.membersWrite,
-          successUrl: `/${newHandle}/feed`,
+          successUrl: `/${ventureId}/feed`,
           token,
         },
         {
@@ -100,7 +97,7 @@ function AddEditVenture(props: AddEditVentureProps) {
           desc: data.ventureDescription,
           url: data.url,
           membersWrite: data.membersWrite,
-          successUrl: `/${newHandle}/feed`,
+          successUrl: `/`,
           token,
         },
         {
@@ -195,8 +192,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         isSelected: values.membersWrite,
       }}
       buttons={{
-        handleDelete: () =>
-          navigate(`/${handle}/delete?ventureId=${ventureId}`),
+        handleDelete: () => navigate(`/${ventureId}/delete`),
         handleCancel: () => {
           ventures.length ? navigate("..") : navigate("/begin");
         },

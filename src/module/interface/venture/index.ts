@@ -19,11 +19,6 @@ export interface ISearchVenturesById {
   token: string | null;
 }
 
-export interface ISearchVentureBySlug {
-  ventureSlug: string;
-  token: string | null;
-}
-
 export interface IDeleteVenture {
   id: string;
   token: string | null;

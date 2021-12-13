@@ -8,7 +8,6 @@ import {
 import SidebarItem from "component/sidebaritem";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
-import { calculateSlug } from "module/helpers";
 import { ITimeline } from "module/interface/timeline";
 import { UserRole } from "module/interface/user";
 import { TimelineContext } from "context/TimelineContext";
@@ -74,12 +73,13 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
         setIsCollapsed,
         isCollapsed,
         isActive: currentVenture?.id === ventureId && !currentTimeline,
+        ventureId,
       }}
       isCollapsed={isCollapsed}
       newTimeline={{
         props: {
           ventureName,
-          onClick: () => navigate(`/${calculateSlug(ventureName)}/newtimeline`),
+          onClick: () => navigate(`/${ventureId}/newtimeline`),
         },
       }}
       itemContainer={{
@@ -96,6 +96,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
               ref={(el) => (itemsRef.current[i] = el)}
               userRole={timeline.userRole}
               timelineName={timeline.name}
+              timelineId={timeline.id}
               key={timeline.id}
               ventureId={timeline.ventureId}
               ventureName={ventureName}

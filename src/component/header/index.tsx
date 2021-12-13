@@ -1,4 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useContext } from "react";
+import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
+
 import { IsVisible } from "component/page/home";
 import {
   DefaultHeaderProps,
@@ -7,9 +11,6 @@ import {
 import { UserContext } from "context/UserContext";
 import useDropdown from "module/hook/ui/useDropdown";
 import { IUser } from "module/interface/user";
-import { useContext } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 
 interface HeaderProps extends DefaultHeaderProps {
   isVisible: IsVisible;
@@ -18,9 +19,10 @@ interface HeaderProps extends DefaultHeaderProps {
 }
 
 export default function Header(props: HeaderProps) {
-  const { timelineSlug, ventureSlug } = useParams();
+  const { timelineId, ventureId } = useParams();
   const { isVisible, setIsVisible, user, ...rest } = props;
   const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
   const userContext = useContext(UserContext);
   const hasUser = userContext?.user;
@@ -34,9 +36,7 @@ export default function Header(props: HeaderProps) {
     setIsVisible && setIsVisible(nextValue);
   }
 
-  const basePath = timelineSlug
-    ? `/${ventureSlug}/${timelineSlug}`
-    : `/${ventureSlug}`;
+  const basePath = timelineId ? `/${ventureId}/${timelineId}` : `/${ventureId}`;
 
   return (
     <PlasmicHeader
@@ -45,6 +45,13 @@ export default function Header(props: HeaderProps) {
         ref: dropdownRootRef,
       }}
       button={{
+        props: {
+          // For some reason the <Link> wrapper below is causing a full page reload, so handling
+          // the event directly here.
+          onPress() {
+            navigate(basePath + "/members");
+          },
+        },
         wrap(node) {
           return <Link to={basePath + "/members"}>{node}</Link>;
         },

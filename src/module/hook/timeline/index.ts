@@ -13,7 +13,7 @@ import {
 
 type ErrorResponse = { code: number; message: string; metadata: any };
 
-export function useTimelinesByUserId(params: ISearchTimelinesbyUserId) {
+export function useTimelinesByUser(params: ISearchTimelinesbyUserId) {
   return useQuery<ITimeline[], ErrorResponse>(
     [`timelines`, params.userId],
     () => api.API.Timeline.Search(params),
