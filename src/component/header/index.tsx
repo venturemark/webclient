@@ -44,6 +44,11 @@ export default function Header(props: HeaderProps) {
       root={{
         ref: dropdownRootRef,
       }}
+      button={{
+        wrap(node) {
+          return <Link to={basePath + "/members"}>{node}</Link>;
+        },
+      }}
       profileDropdown={dropdownVisible}
       toggleMobileSidebar={{
         visibility: setIsVisible ? "visible" : "hidden",
