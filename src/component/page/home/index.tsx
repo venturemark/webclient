@@ -12,7 +12,12 @@ import { IUpdate } from "module/interface/update";
 type VariantType = "isEmpty" | "isTimeline" | "isVenture" | undefined;
 type IsActive = "feed" | "settings" | "members" | "isNewVenture" | undefined;
 export type IsVisible = PlasmicHome__VariantMembers["isVisible"] | undefined;
-type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
+type ModalType =
+  | "deleteTimeline"
+  | "deleteVenture"
+  | "editProfile"
+  | "shareModal"
+  | undefined;
 
 interface HomeProps extends DefaultHomeProps {
   timelineVariant?: "isTimeline";

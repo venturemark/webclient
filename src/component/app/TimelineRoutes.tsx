@@ -151,21 +151,15 @@ export function TimelineRoutes() {
 }
 
 function TimelineFeed() {
-  const variantType = "isTimeline";
-  const isActive = "feed";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isTimeline"} isActive={"feed"} />;
 }
 
 function TimelineMembers() {
-  const variantType = "isTimeline";
-  const isActive = "members";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home modalType={"shareModal"} isVisible={"showShareModal"} />;
 }
 
 function TimelineSettings() {
-  const variantType = "isTimeline";
-  const isActive = "settings";
-  return <Home variantType={variantType} isActive={isActive} />;
+  return <Home variantType={"isTimeline"} isActive={"settings"} />;
 }
 
 function TimelineDelete() {
