@@ -19,7 +19,7 @@ export function TimelineRoutes() {
   const { ventureSlug = "" } = useParams();
   const { token } = useAuth();
   const location = useLocation();
-  // Pull :timelineSlug out of the path manually because the timeline routes are rendred by this component
+  // Pull :timelineSlug out of the path manually because the timeline routes are rendered by this component
   // so they're not accessible by `useParams`.
   const [, , timelineSlug] = location.pathname.split("/");
 
@@ -95,10 +95,6 @@ export function TimelineRoutes() {
   const ventureLoadingAndTimelineLoading =
     venturesBySlugStatus === "loading" || timelinesStatus === "loading";
 
-  if (ventureLoadingAndTimelineLoading) {
-    return <LoadingBar loading={ventureLoadingAndTimelineLoading} />;
-  }
-
   if (venturesBySlugStatus === "error") {
     return <span>Error loading venture</span>;
   }
@@ -121,6 +117,7 @@ export function TimelineRoutes() {
   return (
     <VentureContext.Provider value={innerVentureContext}>
       <TimelineContext.Provider value={timelineContext}>
+        <LoadingBar loading={ventureLoadingAndTimelineLoading} />
         <Routes>
           <Route
             element={
