@@ -14,7 +14,12 @@ import { useArchiveDeleteTimeline } from "module/hook/timeline";
 import { useUpdateUser } from "module/hook/user";
 import { useDeleteVenture } from "module/hook/venture";
 
-type ModalType = "deleteTimeline" | "deleteVenture" | "editProfile" | undefined;
+type ModalType =
+  | "deleteTimeline"
+  | "deleteVenture"
+  | "editProfile"
+  | "shareModal"
+  | undefined;
 
 interface ModalProps extends DefaultModalProps {
   modalType?: ModalType;
@@ -164,6 +169,9 @@ function Modal(props: ModalProps) {
         onPress: () => navigate("/"),
       }}
       close={{
+        onClick: () => navigate("/"),
+      }}
+      close2={{
         onClick: () => navigate("/"),
       }}
     />
