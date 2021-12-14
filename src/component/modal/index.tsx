@@ -8,8 +8,6 @@ import {
 } from "component/plasmic/shared/PlasmicModal";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
-import { VentureContext } from "context/VentureContext";
-import { useQuery } from "module/helpers";
 import { useArchiveDeleteTimeline } from "module/hook/timeline";
 import { useUpdateUser } from "module/hook/user";
 import { useDeleteVenture } from "module/hook/venture";
@@ -36,7 +34,6 @@ function Modal(props: ModalProps) {
   const { token } = useContext(AuthContext);
   const userContext = useContext(UserContext);
   const user = userContext?.user;
-  const ventureContext = useContext(VentureContext);
   const { ventureId, timelineId } = useParams();
 
   const {

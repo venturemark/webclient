@@ -76,10 +76,8 @@ export function TimelineRoutes() {
     return <Navigate replace to={`/${ventureId}/${timelineId}/feed`} />;
   }
 
-  const ventureLoadingAndTimelineLoading = timelinesStatus === "loading";
-
-  if (ventureLoadingAndTimelineLoading) {
-    return <LoadingBar loading={ventureLoadingAndTimelineLoading} />;
+  if (timelinesStatus === "loading") {
+    return <LoadingBar loading />;
   }
 
   if (timelinesStatus === "error") {
