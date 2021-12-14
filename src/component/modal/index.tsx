@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import {
   DefaultModalProps,
@@ -37,9 +37,7 @@ function Modal(props: ModalProps) {
   const userContext = useContext(UserContext);
   const user = userContext?.user;
   const ventureContext = useContext(VentureContext);
-  const query = useQuery();
-  const ventureId = query.get("ventureId") ?? "";
-  const timelineId = query.get("timelineId") ?? "";
+  const { ventureId, timelineId } = useParams();
 
   const {
     handleSubmit,
@@ -85,17 +83,20 @@ function Modal(props: ModalProps) {
   };
 
   const handleDeleteTimeline = async () => {
-    const ventureId = ventureContext?.currentVenture?.id ?? "";
+    if (!timelineId || !ventureId) return;
+
     archiveDeleteTimeline({
       id: timelineId,
       ventureId,
       stat: "archived",
-      successUrl: "/",
+      successUrl: `/${ventureId}`,
       token,
     });
   };
 
   const handleDeleteVenture = () => {
+    if (!ventureId) return;
+
     deleteVenture({
       id: ventureId,
       successUrl: "/",
