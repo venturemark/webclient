@@ -25,7 +25,7 @@ import {
   withMarks,
 } from "@udecode/slate-plugins";
 import { Search } from "@venturemark/numnum";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createEditor as createEditorBase, Descendant, Editor } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
@@ -195,6 +195,23 @@ export function ComposeEditor({
     (props: ElementProps) => <Element {...props} />,
     []
   );
+
+  useEffect(() => {
+    if (editorShape.value.length === 0) {
+      setEditorShape({
+        value: [{ type: "paragraph", children: [{ text: "" }] }],
+        string: "",
+        numberValue: 0,
+        error: undefined,
+        hasContent: undefined,
+        progress: 0,
+      });
+    }
+  }, [editorShape.value.length, setEditorShape]);
+
+  if (editorShape.value.length === 0) {
+    return null;
+  }
 
   return (
     <div
