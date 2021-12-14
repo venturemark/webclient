@@ -69,7 +69,8 @@ export function useCreateTimeline() {
       },
       onSuccess: async (data, newTimeline) => {
         await queryClient.invalidateQueries("timelines");
-        newTimeline.successUrl && navigate(newTimeline.successUrl);
+        newTimeline.redirectOnSuccess &&
+          navigate(`/${newTimeline.ventureId}/${data}`);
       },
     }
   );

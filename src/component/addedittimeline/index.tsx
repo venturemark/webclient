@@ -113,8 +113,8 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           membersWrite: data.membersWrite,
           ventureId,
           visibility,
-          successUrl: `/`,
           token,
+          redirectOnSuccess: true,
         },
         {
           onSuccess() {

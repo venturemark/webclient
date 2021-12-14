@@ -97,8 +97,8 @@ function AddEditVenture(props: AddEditVentureProps) {
           desc: data.ventureDescription,
           url: data.url,
           membersWrite: data.membersWrite,
-          successUrl: `/`,
           token,
+          redirectOnSuccess: true,
         },
         {
           onSuccess() {

@@ -78,8 +78,11 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       isCollapsed={isCollapsed}
       newTimeline={{
         props: {
+          ventureId,
           ventureName,
-          onClick: () => navigate(`/${ventureId}/newtimeline`),
+          onClick: () => {
+            navigate(`/${ventureId}/newtimeline`);
+          },
         },
       }}
       itemContainer={{
@@ -98,7 +101,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
               timelineName={timeline.name}
               timelineId={timeline.id}
               key={timeline.id}
-              ventureId={timeline.ventureId}
+              ventureId={ventureId}
               ventureName={ventureName}
               itemType={"timeline"}
               isActive={currentTimeline?.id === timeline.id}

@@ -79,7 +79,7 @@ function SidebarItem(
           setDropdownVisible(false);
           itemType !== "createTimeline"
             ? navigate(link)
-            : navigate(`/${timelineId}/newtimeline`);
+            : navigate(`/${ventureId}/newtimeline`);
         }}
         itemType={itemType}
         name={

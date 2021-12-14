@@ -30,7 +30,7 @@ export interface ICreateVenture {
   desc: string;
   url: string;
   membersWrite: boolean;
-  successUrl?: string;
+  redirectOnSuccess: boolean;
   token: string | null;
 }
 

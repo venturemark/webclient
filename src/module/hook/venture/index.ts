@@ -87,8 +87,7 @@ export function useCreateVenture() {
       onSuccess: async (data, newVenture) => {
         // Invalidate and refetch
         await queryClient.invalidateQueries("ventures");
-
-        newVenture.successUrl && navigate(newVenture.successUrl);
+        newVenture.redirectOnSuccess && navigate(`/${data}`);
       },
       // Always refetch after error or success:
       onSettled: async () => {

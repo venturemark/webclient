@@ -90,7 +90,7 @@ function Modal(props: ModalProps) {
       id: timelineId,
       ventureId,
       stat: "archived",
-      successUrl: `/`,
+      successUrl: "/",
       token,
     });
   };
