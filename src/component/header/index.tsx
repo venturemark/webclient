@@ -8,6 +8,7 @@ import { UserContext } from "context/UserContext";
 import useDropdown from "module/hook/ui/useDropdown";
 import { IUser } from "module/interface/user";
 import { useContext } from "react";
+import { useNavigate } from "react-router";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -21,6 +22,7 @@ export default function Header(props: HeaderProps) {
   const { timelineSlug, ventureSlug } = useParams();
   const { isVisible, setIsVisible, user, ...rest } = props;
   const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
   const userContext = useContext(UserContext);
   const hasUser = userContext?.user;
@@ -45,8 +47,10 @@ export default function Header(props: HeaderProps) {
         ref: dropdownRootRef,
       }}
       button={{
-        wrap(node) {
-          return <Link to={basePath + "/members"}>{node}</Link>;
+        props: {
+          onPress: () => {
+            navigate(basePath + "/members");
+          },
         },
       }}
       profileDropdown={dropdownVisible}

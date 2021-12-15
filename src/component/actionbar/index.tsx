@@ -2,12 +2,7 @@ import { TextareaAutosize, TextareaAutosizeProps } from "@material-ui/core";
 import { MultiChoiceArg } from "@plasmicapp/react-web";
 import { ContentPostProps } from "component/contentpost";
 import { CountIndicator } from "component/countindicator";
-import {
-  ComposeEditor,
-  createEditor,
-  EditorProps,
-  useEditor,
-} from "component/editor";
+import { ComposeEditor, createEditor, EditorProps } from "component/editor";
 import { isListActive, toggleList } from "component/editor/common/functions";
 import { UnorderedListElement } from "component/editor/common/types";
 import { EmojiPicker } from "component/emojipicker";
@@ -19,6 +14,7 @@ import {
 import { AuthContext } from "context/AuthContext";
 import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
+import { UpdateEditorContext } from "context/UpdateEditorContext";
 import "emoji-mart/css/emoji-mart.css";
 import useScript from "module/hook/ui/useScript";
 import { useCreateUpdate } from "module/hook/update";
@@ -43,6 +39,8 @@ export default function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentVentureTimelines } =
     useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
+  const { title, editorShape, setTitle, setEditorShape, resetUpdateEditor } =
+    useContext(UpdateEditorContext);
   const { token } = useContext(AuthContext);
 
   const [selectedTimelines, setSelectedTimelines] = useState(
@@ -53,8 +51,6 @@ export default function ActionBar(props: ActionBarProps) {
   const [isActive, setIsActive] = useState(false);
   const { mutateAsync: createUpdate } = useCreateUpdate();
 
-  const { editorShape, setEditorShape } = useEditor();
-  const [title, setTitle] = useState<string>("");
   const [touched, setTouched] = useState({
     title: false,
     description: false,
@@ -233,15 +229,7 @@ export default function ActionBar(props: ActionBarProps) {
       );
 
       //reset
-      setEditorShape({
-        value: [],
-        string: "",
-        numberValue: 0,
-        error: undefined,
-        hasContent: undefined,
-        progress: 0,
-      });
-      setTitle("");
+      resetUpdateEditor();
       setTouched({
         title: false,
         description: false,
