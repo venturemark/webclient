@@ -5,7 +5,8 @@ export type CustomText = { text: string; placeholder?: boolean };
 export type CustomElement =
   | ParagraphElement
   | UnorderedListElement
-  | ListItemElement;
+  | ListItemElement
+  | LinkElement;
 
 declare module "slate" {
   interface CustomTypes {
@@ -21,3 +22,4 @@ export type UnorderedListElement = {
   children: Descendant[];
 };
 export type ListItemElement = { type: "list-item"; children: Descendant[] };
+export type LinkElement = { type: "a"; children: Descendant[]; url: string };
