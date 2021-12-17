@@ -152,7 +152,7 @@ function FeedUpdate(props: FeedUpdateProps) {
       isOwner={resourceOwnership(currentTimeline || currentVenture)}
       root={{
         render() {
-          const actionBar = <ActionBar />;
+          const actionBar = <ActionBar key={"-"} />;
           return [actionBar].concat(
             updates.map((update: IUpdate) => {
               const updateUser = allMembers.find(

@@ -11,6 +11,7 @@ import {
   HeadingPlugin,
   ItalicPlugin,
   ListPlugin,
+  LinkPlugin,
   ParagraphPlugin,
   pipe,
   ResetBlockTypePlugin,
@@ -26,9 +27,16 @@ import {
 } from "@udecode/slate-plugins";
 import { Search } from "@venturemark/numnum";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { createEditor as createEditorBase, Descendant, Editor } from "slate";
+import {
+  createEditor as createEditorBase,
+  Descendant,
+  Editor,
+  Range,
+  Transforms,
+} from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
+import { isKeyHotkey } from "is-hotkey";
 
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import {
@@ -51,6 +59,7 @@ const plugins = [
   StrikethroughPlugin(),
   BlockquotePlugin(options),
   ListPlugin(options),
+  LinkPlugin(options),
   HeadingPlugin(options),
   ResetBlockTypePlugin(optionsResetBlockTypes),
   SoftBreakPlugin({
@@ -196,6 +205,33 @@ export function ComposeEditor({
     []
   );
 
+  // This is followed by the implementation in https://www.slatejs.org/examples/inlines
+  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
+    const { selection } = editor;
+
+    // Default left/right behavior is unit:'character'.
+    // This fails to distinguish between two cursor positions, such as
+    // <inline>foo<cursor/></inline> vs <inline>foo</inline><cursor/>.
+    // Here we modify the behavior to unit:'offset'.
+    // This lets the user step into and out of the inline without stepping over characters.
+    // You may wish to customize this further to only use unit:'offset' in specific cases.
+    if (selection && Range.isCollapsed(selection)) {
+      const { nativeEvent } = event;
+      if (isKeyHotkey("left", nativeEvent)) {
+        event.preventDefault();
+        Transforms.move(editor, { unit: "offset", reverse: true });
+        return;
+      }
+      if (isKeyHotkey("right", nativeEvent) || nativeEvent.key === " ") {
+        if (nativeEvent.key !== " ") {
+          event.preventDefault();
+        }
+        Transforms.move(editor, { unit: "offset" });
+        return;
+      }
+    }
+  };
+
   useEffect(() => {
     if (editorShape.value.length === 0) {
       setEditorShape({
@@ -224,6 +260,7 @@ export function ComposeEditor({
           renderElement={[renderElement]}
           plugins={plugins}
           spellCheck
+          onKeyDown={[onKeyDown]}
           {...rest}
         />
       </Slate>
