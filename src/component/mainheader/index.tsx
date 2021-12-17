@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import {
   DefaultMainHeaderProps,
@@ -7,7 +7,6 @@ import {
 } from "component/plasmic/shared/PlasmicMainHeader";
 import { VentureContext } from "context/VentureContext";
 import { TimelineContext } from "context/TimelineContext";
-import { Link } from "react-router-dom";
 
 interface MainHeaderProps extends DefaultMainHeaderProps {
   isActive: any;
@@ -15,16 +14,12 @@ interface MainHeaderProps extends DefaultMainHeaderProps {
   isOnboarding?: boolean | "isOnboarding";
 }
 
-function MainHeader(props: MainHeaderProps) {
+export default function MainHeader(props: MainHeaderProps) {
   const { isActive, variantType, isOnboarding, ...rest } = props;
-  const { timelineSlug, ventureSlug } = useParams();
-  const { currentVentureMembers, currentVenture } = useContext(VentureContext);
-  const { currentTimeline, currentTimelineMembers } =
-    useContext(TimelineContext);
-
-  const basePath = timelineSlug
-    ? `/${ventureSlug}/${timelineSlug}`
-    : `/${ventureSlug}`;
+  const { timelineId, ventureId } = useParams();
+  const { currentVenture } = useContext(VentureContext);
+  const { currentTimeline } = useContext(TimelineContext);
+  const basePath = timelineId ? `/${ventureId}/${timelineId}` : `/${ventureId}`;
 
   return (
     <PlasmicMainHeader
@@ -32,25 +27,15 @@ function MainHeader(props: MainHeaderProps) {
       ventureName={currentVenture?.name}
       timelineName={currentTimeline?.name}
       headerStyles={
-        (variantType === "isVenture" && !ventureSlug) || !ventureSlug
+        (variantType === "isVenture" && !ventureId) || !ventureId
           ? "createNewVenture"
-          : !timelineSlug
+          : !timelineId
           ? "ventureHeader"
           : "timelineHeader"
       }
       viewHome={{
         wrap(node) {
           return <Link to={basePath + "/feed"}>{node}</Link>;
-        },
-      }}
-      viewMembers={{
-        props: {
-          memberCount: currentTimeline
-            ? currentTimelineMembers.length
-            : currentVentureMembers.length,
-        },
-        wrap(node) {
-          return <Link to={basePath + "/members"}>{node}</Link>;
         },
       }}
       viewSettings={{
@@ -62,5 +47,3 @@ function MainHeader(props: MainHeaderProps) {
     />
   );
 }
-
-export default MainHeader;

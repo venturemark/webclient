@@ -30,7 +30,7 @@ export interface ICreateTimeline {
   ventureId: string;
   membersWrite: boolean;
   visibility?: string;
-  successUrl?: string;
+  redirectOnSuccess: boolean;
   token: string | null;
 }
 
