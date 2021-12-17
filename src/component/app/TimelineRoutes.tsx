@@ -1,60 +1,42 @@
+import { useContext } from "react";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
+
 import { AuthRoute } from "component/app/AuthRoute";
+import LoadingBar from "component/loadingbar";
 import { Home } from "component/page/home";
 import { IVentureContext, VentureContext } from "context/VentureContext";
 import { useAuth } from "module/auth";
-import { calculateNamedSlug, getUniqueListBy } from "module/helpers";
+import { getUniqueListBy } from "module/helpers";
 import { useTimelinesByVentureId } from "module/hook/timeline";
-import { useVenturesBySlug } from "module/hook/venture";
-import { useContext } from "react";
-import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import { ITimelineContext, TimelineContext } from "context/TimelineContext";
 import { useTimelineMembers } from "module/hook/user";
 import { useTimelineRole } from "module/hook/role";
 import { IUser } from "module/interface/user";
 import { IRole } from "module/interface/role";
-import LoadingBar from "component/loadingbar";
 
 export function TimelineRoutes() {
   const outerVentureContext = useContext(VentureContext);
-  const { ventureSlug = "" } = useParams();
+  const { ventureId, timelineId } = useParams();
   const { token } = useAuth();
   const location = useLocation();
-  // Pull :timelineSlug out of the path manually because the timeline routes are rendred by this component
-  // so they're not accessible by `useParams`.
-  const [, , timelineSlug] = location.pathname.split("/");
-
-  const { data: venturesBySlugData = [], status: venturesBySlugStatus } =
-    useVenturesBySlug({
-      ventureSlug,
-      token,
-    });
-  const ventures = getUniqueListBy(
-    [...outerVentureContext.ventures, ...venturesBySlugData],
-    "id"
-  );
-  const currentVenture = ventures.find(
-    (v) => calculateNamedSlug(v) === ventureSlug
-  );
 
   const { data: timelinesByVentureIdData = [], status: timelinesStatus } =
     useTimelinesByVentureId({
-      ventureId: currentVenture?.id,
+      ventureId,
       token,
     });
   const timelines = getUniqueListBy(
-    [...outerVentureContext.timelines, ...timelinesByVentureIdData],
+    [...timelinesByVentureIdData, ...outerVentureContext.timelines],
     "id"
   );
-  const currentTimeline = timelines.find(
-    (t) => calculateNamedSlug(t) === timelineSlug
-  );
+  const currentTimeline = timelines.find((t) => t.id === timelineId);
 
   const {
     data: currentTimelineUsersData = [],
     status: currentTimelineUsersStatus,
   } = useTimelineMembers({
-    timelineId: currentTimeline?.id,
-    ventureId: currentVenture?.id,
+    timelineId,
+    ventureId,
     token,
   });
 
@@ -62,8 +44,8 @@ export function TimelineRoutes() {
     data: currentTimelineRolesData = [],
     status: currentTimelineRolesStatus,
   } = useTimelineRole({
-    timelineId: currentTimeline?.id,
-    ventureId: currentVenture?.id,
+    timelineId,
+    ventureId,
     token,
   });
 
@@ -87,20 +69,15 @@ export function TimelineRoutes() {
     currentTimelineMembers,
   };
 
-  // Canonicalize the path by redirecting /:ventureSlug/:timelineSlug to /:ventureSlug/:timelineSlug/feed
-  if (location.pathname === `/${ventureSlug}/${timelineSlug}`) {
-    return <Navigate replace to={`/${ventureSlug}/${timelineSlug}/feed`} />;
+  const { currentVenture } = outerVentureContext;
+
+  // Canonicalize the path by redirecting /:ventureId/:timelineId to /:ventureId/:timelineId/feed
+  if (location.pathname === `/${ventureId}/${timelineId}`) {
+    return <Navigate replace to={`/${ventureId}/${timelineId}/feed`} />;
   }
 
-  const ventureLoadingAndTimelineLoading =
-    venturesBySlugStatus === "loading" || timelinesStatus === "loading";
-
-  if (ventureLoadingAndTimelineLoading) {
-    return <LoadingBar loading={ventureLoadingAndTimelineLoading} />;
-  }
-
-  if (venturesBySlugStatus === "error") {
-    return <span>Error loading venture</span>;
+  if (timelinesStatus === "loading") {
+    return <LoadingBar loading />;
   }
 
   if (timelinesStatus === "error") {
@@ -114,7 +91,6 @@ export function TimelineRoutes() {
   const innerVentureContext: IVentureContext = {
     ...outerVentureContext,
     timelines,
-    ventures,
     currentVenture,
   };
 
@@ -130,19 +106,12 @@ export function TimelineRoutes() {
               />
             }
           >
-            <Route path=":timelineSlug/members" element={<TimelineMembers />} />
-            <Route
-              path=":timelineSlug/settings"
-              element={<TimelineSettings />}
-            />
-            <Route path=":timelineSlug/delete" element={<TimelineDelete />} />
-            <Route
-              path=":timelineSlug/postdetail"
-              element={<TimelinePostDetails />}
-            />
+            <Route path="members" element={<TimelineMembers />} />
+            <Route path="settings" element={<TimelineSettings />} />
+            <Route path="delete" element={<TimelineDelete />} />
+            <Route path="postdetail" element={<TimelinePostDetails />} />
           </Route>
-          <Route path=":timelineSlug/feed" element={<TimelineFeed />} />
-          <Route path=":timelineSlug" element={<TimelineFeed />} />
+          <Route path="feed" element={<TimelineFeed />} />
           <Route index element={<TimelineFeed />} />
         </Routes>
       </TimelineContext.Provider>
@@ -174,6 +143,5 @@ function TimelineDelete() {
 }
 
 function TimelinePostDetails() {
-  const isVisible = "postDetails";
-  return <Home isVisible={isVisible} />;
+  return <Home isVisible={"postDetails"} />;
 }

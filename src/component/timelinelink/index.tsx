@@ -13,15 +13,12 @@ interface TimelineLinkProps extends DefaultTimelineLinkProps {
 function TimelineLink(props: TimelineLinkProps) {
   const { timeline } = props;
   const navigate = useNavigate();
-  const { ventureSlug } = useParams();
-
-  const timelineName = timeline?.name ?? "";
-  const timelineSlug = timelineName.toLowerCase().replace(/\s/g, "");
+  const { ventureId } = useParams();
 
   return (
     <PlasmicTimelineLink
-      name={timeline?.name ?? ""}
-      onClick={() => navigate(`/${ventureSlug}/${timelineSlug}/feed`)}
+      name={timeline.name}
+      onClick={() => navigate(`/${ventureId}/${timeline.id}/feed`)}
     />
   );
 }

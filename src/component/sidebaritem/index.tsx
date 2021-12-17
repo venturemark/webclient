@@ -12,6 +12,7 @@ interface SidebarItemProps extends DefaultSidebarItemProps {
   timelineName: string;
   ventureName: string;
   ventureId: string;
+  timelineId: string;
   setHasInput?: any;
   setIsCollapsed?: any;
   userRole?: UserRole;
@@ -26,6 +27,7 @@ function SidebarItem(
   const {
     timelineName,
     ventureId,
+    timelineId,
     ventureName,
     itemType,
     setHasInput,
@@ -39,24 +41,15 @@ function SidebarItem(
   const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
     useDropdown<HTMLDivElement>();
 
-  const ventureHandle =
-    typeof ventureName === "string"
-      ? ventureName?.toLowerCase().replace(/\s/g, "")
-      : "";
-  const timelineHandle =
-    itemType !== "createTimeline"
-      ? timelineName?.toLowerCase().replace(/\s/g, "")
-      : "";
-
   const link =
     itemType === "timeline"
-      ? `/${ventureHandle}/${timelineHandle}/feed`
-      : `/${ventureHandle}/feed`;
+      ? `/${ventureId}/${timelineId}/feed`
+      : `/${ventureId}/feed`;
 
   const editLink =
     itemType === "timeline"
-      ? `/${ventureHandle}/${timelineHandle}/settings`
-      : `/${ventureHandle}/settings`;
+      ? `/${ventureId}/${timelineId}/settings`
+      : `/${ventureId}/settings`;
 
   return (
     <div ref={ref}>
@@ -86,7 +79,7 @@ function SidebarItem(
           setDropdownVisible(false);
           itemType !== "createTimeline"
             ? navigate(link)
-            : navigate(`/${ventureHandle}/newtimeline`);
+            : navigate(`/${ventureId}/newtimeline`);
         }}
         itemType={itemType}
         name={
