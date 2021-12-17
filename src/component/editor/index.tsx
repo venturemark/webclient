@@ -222,8 +222,10 @@ export function ComposeEditor({
         Transforms.move(editor, { unit: "offset", reverse: true });
         return;
       }
-      if (isKeyHotkey("right", nativeEvent)) {
-        event.preventDefault();
+      if (isKeyHotkey("right", nativeEvent) || nativeEvent.key === " ") {
+        if (nativeEvent.key !== " ") {
+          event.preventDefault();
+        }
         Transforms.move(editor, { unit: "offset" });
         return;
       }
