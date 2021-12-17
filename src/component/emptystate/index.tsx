@@ -12,7 +12,7 @@ interface EmptyStateProps extends DefaultEmptyStateProps {
 
 function EmptyState(props: EmptyStateProps) {
   const { variantType, isActive, ...rest } = props;
-  const { ventureSlug } = useParams();
+  const { ventureId } = useParams();
   const navigate = useNavigate();
   return (
     <PlasmicEmptyState
@@ -23,7 +23,7 @@ function EmptyState(props: EmptyStateProps) {
         onPress: () => navigate("/newventure"),
       }}
       viewCreateTimeline={{
-        onPress: () => navigate(`/${ventureSlug}/newtimeline`),
+        onPress: () => navigate(`/${ventureId}/newtimeline`),
       }}
     />
   );

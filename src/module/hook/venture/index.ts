@@ -6,7 +6,6 @@ import { DeletionStatus, UpdateStatus } from "module/interface/api";
 import {
   ICreateVenture,
   IDeleteVenture,
-  ISearchVentureBySlug,
   ISearchVenturesById,
   ISearchVenturesByUser,
   IUpdateVenture,
@@ -44,21 +43,6 @@ export function useVenturesById(params: ISearchVenturesById) {
     },
     {
       enabled: !!params.ventureIds,
-    }
-  );
-}
-
-export function useVenturesBySlug(params: ISearchVentureBySlug) {
-  return useQuery<IVenture[], ErrorResponse>(
-    ["ventures", params.ventureSlug],
-    () => {
-      return api.API.Venture.Search({
-        slug: params.ventureSlug,
-        token: params.token,
-      });
-    },
-    {
-      enabled: !!params.ventureSlug,
     }
   );
 }
@@ -103,8 +87,7 @@ export function useCreateVenture() {
       onSuccess: async (data, newVenture) => {
         // Invalidate and refetch
         await queryClient.invalidateQueries("ventures");
-
-        newVenture.successUrl && navigate(newVenture.successUrl);
+        newVenture.redirectOnSuccess && navigate(`/${data}`);
       },
       // Always refetch after error or success:
       onSettled: async () => {

@@ -5,7 +5,7 @@ import { UserContext } from "context/UserContext";
 import { IVentureContext } from "context/VentureContext";
 import { calculateNamedSlug, getUniqueListBy } from "module/helpers";
 import { useRoleByTimelines, useRoleByVentures } from "module/hook/role";
-import { useTimelinesByUserId } from "module/hook/timeline";
+import { useTimelinesByUser } from "module/hook/timeline";
 import { useVentureMembers } from "module/hook/user";
 import { useVenturesById, useVenturesByUser } from "module/hook/venture";
 import { IRole } from "module/interface/role";
@@ -58,7 +58,7 @@ function injectTimelineRoles(
   );
 }
 
-export function useVentures(ventureSlug: string): IVentureContext {
+export function useVentures(ventureId: string): IVentureContext {
   const { user } = useContext(UserContext);
   const {
     authenticated,
@@ -74,7 +74,7 @@ export function useVentures(ventureSlug: string): IVentureContext {
     });
 
   const { data: timelinesByUserData = [], status: timelinesByUserStatus } =
-    useTimelinesByUserId({
+    useTimelinesByUser({
       userId,
       token,
     });
@@ -113,9 +113,7 @@ export function useVentures(ventureSlug: string): IVentureContext {
       token,
     });
 
-  const currentVenture = ventures.find(
-    (v) => calculateNamedSlug(v) === ventureSlug
-  );
+  const currentVenture = ventures.find((v) => v.id === ventureId);
 
   const {
     data: currentVentureUsers = [],
@@ -128,7 +126,7 @@ export function useVentures(ventureSlug: string): IVentureContext {
   let loading: boolean;
   if (!authenticated) {
     loading = authLoading;
-  } else if (!ventureSlug) {
+  } else if (!ventureId) {
     loading =
       ventureRolesStatus !== "success" || venturesByUserStatus !== "success";
   } else {
@@ -138,7 +136,7 @@ export function useVentures(ventureSlug: string): IVentureContext {
       ventureRolesStatus !== "success" ||
       timelinesByUserStatus !== "success" ||
       timelineRolesStatus !== "success" ||
-      (currentVentureMembersStatus !== "success" && Boolean(ventureSlug));
+      (currentVentureMembersStatus !== "success" && Boolean(ventureId));
   }
 
   const timelines = injectTimelineRoles(
