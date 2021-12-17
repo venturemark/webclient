@@ -53,7 +53,11 @@ export default function Header(props: HeaderProps) {
           },
         },
         wrap(node) {
-          return <Link to={basePath + "/members"}>{node}</Link>;
+          return (
+            <Link to={basePath + "/members"} style={{ color: "transparent" }}>
+              {node}
+            </Link>
+          );
         },
       }}
       profileDropdown={dropdownVisible}
