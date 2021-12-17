@@ -76,10 +76,6 @@ export function TimelineRoutes() {
     return <Navigate replace to={`/${ventureId}/${timelineId}/feed`} />;
   }
 
-  if (timelinesStatus === "loading") {
-    return <LoadingBar loading />;
-  }
-
   if (timelinesStatus === "error") {
     return <span>Error loading timelines</span>;
   }
@@ -97,6 +93,7 @@ export function TimelineRoutes() {
   return (
     <VentureContext.Provider value={innerVentureContext}>
       <TimelineContext.Provider value={timelineContext}>
+        <LoadingBar loading={timelinesStatus === "loading"} />
         <Routes>
           <Route
             element={
