@@ -79,11 +79,19 @@ export function useVentures(ventureId: string): IVentureContext {
       token,
     });
 
+  const ventureIds = [
+    ...new Set(
+      timelinesByUserData
+        ?.map((t) => t.ventureId)
+        .concat(ventureId ? [ventureId] : [])
+    ),
+  ];
+
   const {
     data: venturesByTimelineData = [],
     status: venturesByTimelineStatus,
   } = useVenturesById({
-    ventureIds: [...new Set(timelinesByUserData?.map((t) => t.ventureId))],
+    ventureIds,
     token,
   });
 
