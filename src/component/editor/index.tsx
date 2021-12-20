@@ -33,6 +33,7 @@ import {
   Editor,
   Range,
   Transforms,
+  Element as SlateElement,
 } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
@@ -222,7 +223,11 @@ export function ComposeEditor({
         Transforms.move(editor, { unit: "offset", reverse: true });
         return;
       }
-      if (isKeyHotkey("right", nativeEvent) || nativeEvent.key === " ") {
+
+      if (
+        isLinkActive(editor) &&
+        (isKeyHotkey("right", nativeEvent) || nativeEvent.key === " ")
+      ) {
         if (nativeEvent.key !== " ") {
           event.preventDefault();
         }
@@ -267,3 +272,11 @@ export function ComposeEditor({
     </div>
   );
 }
+
+const isLinkActive = (editor: Editor) => {
+  const [link] = Editor.nodes(editor, {
+    match: (n) =>
+      !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === "a",
+  });
+  return !!link;
+};
