@@ -146,14 +146,15 @@ function FeedUpdate(props: FeedUpdateProps) {
     user,
   ]);
 
+  const isOwner = resourceOwnership(currentTimeline || currentVenture);
+
   return (
     <PlasmicFeedUpdate
       {...rest}
-      isOwner={resourceOwnership(currentTimeline || currentVenture)}
+      isOwner={isOwner}
       root={{
         render() {
-          const actionBar = <ActionBar key={"-"} />;
-          return [actionBar].concat(
+          return (isOwner ? [<ActionBar key={"-"} />] : []).concat(
             updates.map((update: IUpdate) => {
               const updateUser = allMembers.find(
                 (m) => m.id === update.subjectId
