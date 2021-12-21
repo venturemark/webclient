@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-
-import { CustomElement } from "../common/types";
+import { useSelected } from "slate-react";
+import { CustomElement, LinkElement } from "../common/types";
 
 export type ElementProps = {
   attributes: any;
@@ -8,7 +8,8 @@ export type ElementProps = {
   element: CustomElement;
 };
 
-export function Element({ attributes, children, element }: ElementProps) {
+export function Element(props: ElementProps) {
+  const { attributes, children, element } = props;
   if ("type" in element) {
     switch (element.type) {
       case "paragraph":
@@ -17,7 +18,30 @@ export function Element({ attributes, children, element }: ElementProps) {
         return <ul {...attributes}>{children}</ul>;
       case "list-item":
         return <li {...attributes}>{children}</li>;
+      case "a":
+        return <LinkComponent {...props} />;
     }
   }
   return <div {...attributes}>{children}</div>;
 }
+
+const LinkComponent = ({ attributes, children, element }: ElementProps) => {
+  const selected = useSelected();
+  return (
+    <a
+      {...attributes}
+      href={(element as LinkElement).url}
+      style={{
+        textDecoration: "none",
+        color: "#2e8c8d",
+        border: selected ? "1px solid #00bcd4" : "none",
+      }}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <span />
+      {children}
+      <span />
+    </a>
+  );
+};
