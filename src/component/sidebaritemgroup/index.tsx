@@ -11,6 +11,7 @@ import { VentureContext } from "context/VentureContext";
 import { ITimeline } from "module/interface/timeline";
 import { UserRole } from "module/interface/user";
 import { TimelineContext } from "context/TimelineContext";
+import { AuthContext } from "context/AuthContext";
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;
@@ -27,6 +28,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { currentVenture } = useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
   const navigate = useNavigate();
+  const { authenticated } = useContext(AuthContext);
   const { user } = useContext(UserContext);
   const userLastViewedUpdate = user?.lastUpdate || {};
   const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
@@ -90,7 +92,8 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
           const lastViewed = userLastViewedUpdate[timeline.id];
           const lastUpdate = timeline.lastUpdate;
           const hasNewActivity = Boolean(
-            lastUpdate &&
+            authenticated &&
+              lastUpdate &&
               (!lastViewed || parseInt(lastViewed) < parseInt(lastUpdate))
           );
 

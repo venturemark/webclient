@@ -147,7 +147,7 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
       }}
       isOwner={isOwner}
       type={!currentTimeline ? "venture" : "timeline"}
-      email={{
+      inputText={{
         ...register("email", {
           required: true,
           pattern: emailRegex,

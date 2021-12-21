@@ -9,7 +9,7 @@ export async function Search(searchUser: IAPISearchUser): Promise<IUser[]> {
   const objList = [];
 
   const token = searchUser.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: token ? `Bearer ${token}` : "" };
 
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());

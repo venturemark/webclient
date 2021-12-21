@@ -348,8 +348,10 @@ function PlasmicShare__RenderFunc(props: {
           />
 
           <Button
-            buttonFeatures={["removeText", "showStartIcon", "nonFullWidth"]}
-            className={classNames("__wab_instance", sty.button__eyLcD)}
+            data-plasmic-name={"invite"}
+            data-plasmic-override={overrides.invite}
+            buttonFeatures={["nonFullWidth", "removeText", "showStartIcon"]}
+            className={classNames("__wab_instance", sty.invite)}
             count={"1"}
             text2={"Button"}
           />

@@ -93,7 +93,7 @@ function FeedUpdate(props: FeedUpdateProps) {
   }, [timelineId, timelineUpdates, ventureId, ventureUpdates]);
 
   useEffect(() => {
-    if (status !== "idle" || !user) {
+    if (status !== "idle" || !user || !updates.length) {
       return;
     }
 
