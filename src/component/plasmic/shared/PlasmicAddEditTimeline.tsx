@@ -36,12 +36,12 @@ import Switch from "../../switch/index"; // plasmic-import: l1Qe8RjaNW/component
 import RadioGroup from "../../radiogroup/index"; // plasmic-import: Q9Z-qP9n2Q/component
 import ButtonSetEdit from "../../buttonsetedit/index"; // plasmic-import: pMqUN0f4G_a/component
 
-import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicAddEditTimeline.module.css"; // plasmic-import: 2FtsgZCi1Kx/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicAddEditTimeline.module.css"; // plasmic-import: 2FtsgZCi1Kx/css
 
 import IconHashIcon from "./icons/PlasmicIcon__IconHash"; // plasmic-import: AVLV6uMr56/icon
 
@@ -105,7 +105,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants(),
+    screen: useScreenVariantsszbTUtTUfDw81Pi(),
   });
 
   return (

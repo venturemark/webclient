@@ -35,12 +35,12 @@ import Sidebar from "../../sidebar/index"; // plasmic-import: FZWTu4L61t/compone
 import Main from "../../main/index"; // plasmic-import: 0c6QSqHYCk/component
 import PostDetails from "../../postdetails/index"; // plasmic-import: 1E73LSzV2l/component
 
-import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicVentureSettings.module.css"; // plasmic-import: FuAQiqPeTF/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicVentureSettings.module.css"; // plasmic-import: FuAQiqPeTF/css
 
 export type PlasmicVentureSettings__VariantMembers = {
   isVisible: "postDetails" | "mobileSidebar";
@@ -83,7 +83,7 @@ function PlasmicVentureSettings__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants(),
+    screen: useScreenVariantsszbTUtTUfDw81Pi(),
   });
 
   return (

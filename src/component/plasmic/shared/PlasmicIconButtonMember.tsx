@@ -33,8 +33,8 @@ import {
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicIconButtonMember.module.css"; // plasmic-import: ZhI9zuyxBT/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicIconButtonMember.module.css"; // plasmic-import: ZhI9zuyxBT/css
 
 import IconMemberIcon from "./icons/PlasmicIcon__IconMember"; // plasmic-import: Vx3fG4Fxc/icon
 

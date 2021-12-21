@@ -25,6 +25,9 @@
 .actionBar__wJeXh:global(.__wab_instance) {
   position: relative;
 }
+.actionBar__isPublic__wJeXhYCnHl:global(.__wab_instance) {
+  display: none;
+}
 .svg__hCy7B {
   position: relative;
   object-fit: cover;
