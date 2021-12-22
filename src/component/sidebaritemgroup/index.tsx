@@ -11,6 +11,9 @@ import { VentureContext } from "context/VentureContext";
 import { ITimeline } from "module/interface/timeline";
 import { UserRole } from "module/interface/user";
 import { TimelineContext } from "context/TimelineContext";
+import { useUpdatesByTimelineIds } from "module/hook/update";
+import { AuthContext } from "context/AuthContext";
+import { IUpdate } from "module/interface/update";
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   ventureName: string;
@@ -20,17 +23,54 @@ interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
   membersWrite: boolean;
 }
 
+interface UpdatesDateTimeByTimelineIds {
+  [timelineId: string]: Array<string>;
+}
+
+const constructUpdateIdsByTimelineId = (updates: IUpdate[]) => {
+  const updatesByTimelineId: UpdatesDateTimeByTimelineIds = {};
+  updates.forEach((update) => {
+    if (!updatesByTimelineId[update.timelineId]) {
+      updatesByTimelineId[update.timelineId] = [];
+    }
+    updatesByTimelineId[update.timelineId].push(update?.id);
+  });
+  return updatesByTimelineId;
+};
+
+const calculateUnreadCount = (lastView: string, updateIds: Array<string>) => {
+  const lastViewIndex = updateIds.findIndex(
+    (updateId) => updateId === lastView
+  );
+
+  if (lastViewIndex <= 0) {
+    return 0;
+  }
+  return lastViewIndex;
+};
+
 function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { ventureName, ventureId, timelines, userRole, membersWrite, ...rest } =
     props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { currentVenture } = useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const userLastViewedUpdate = user?.lastUpdate || {};
+  const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);
   const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
   const ventureItemRef = useRef<HTMLDivElement | null>(null);
+
+  const { data: ventureUpdates = [] } = useUpdatesByTimelineIds({
+    ventureId,
+    timelineIds,
+    token,
+  });
+
+  const updatesDateTimeByTimelinesId =
+    constructUpdateIdsByTimelineId(ventureUpdates);
 
   const sortedVentureTimelines = useMemo(() => {
     const result = timelines
@@ -88,10 +128,9 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
       itemContainer={{
         children: sortedVentureTimelines.map((timeline, i) => {
           const lastViewed = userLastViewedUpdate[timeline.id];
-          const lastUpdate = timeline.lastUpdate;
-          const hasNewActivity = Boolean(
-            lastUpdate &&
-              (!lastViewed || parseInt(lastViewed) < parseInt(lastUpdate))
+          const unreadCount = calculateUnreadCount(
+            lastViewed,
+            updatesDateTimeByTimelinesId[timeline.id] || []
           );
 
           return (
@@ -105,7 +144,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
               ventureName={ventureName}
               itemType={"timeline"}
               isActive={currentTimeline?.id === timeline.id}
-              hasNewActivity={hasNewActivity}
+              unreadCount={unreadCount}
             />
           );
         }),
