@@ -37,12 +37,12 @@ import AddEditVenture from "../../addeditventure/index"; // plasmic-import: xICn
 import AddEditTimeline from "../../addedittimeline/index"; // plasmic-import: 2FtsgZCi1Kx/component
 import EmptyState from "../../emptystate/index"; // plasmic-import: jggPyChG2Zg/component
 
-import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicMain.module.css"; // plasmic-import: 0c6QSqHYCk/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicMain.module.css"; // plasmic-import: 0c6QSqHYCk/css
 
 export type PlasmicMain__VariantMembers = {
   variantType: "isVenture" | "isTimeline" | "isEmpty";
@@ -98,7 +98,7 @@ function PlasmicMain__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants(),
+    screen: useScreenVariantsszbTUtTUfDw81Pi(),
   });
 
   return (

@@ -36,8 +36,8 @@ import ListItem from "../../listitem/index"; // plasmic-import: q8aEgDsN8_/compo
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicMemberItem.module.css"; // plasmic-import: D8Y_2wee1o/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicMemberItem.module.css"; // plasmic-import: D8Y_2wee1o/css
 
 import IconAdminIcon from "./icons/PlasmicIcon__IconAdmin"; // plasmic-import: 20h2nOVM8/icon
 import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon

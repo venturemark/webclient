@@ -36,12 +36,12 @@ import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/c
 import ErrorMessage from "../../errormessage/index"; // plasmic-import: X8H70YUTyF/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
-import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicActionBar.module.css"; // plasmic-import: eUnRsS9UXR/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicActionBar.module.css"; // plasmic-import: eUnRsS9UXR/css
 
 import IconFeedIcon from "./icons/PlasmicIcon__IconFeed"; // plasmic-import: gkIqWTG_m/icon
 import IconEmojisvgIcon from "./icons/PlasmicIcon__IconEmojisvg"; // plasmic-import: 7EdfFx1qO/icon
@@ -148,7 +148,7 @@ function PlasmicActionBar__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants(),
+    screen: useScreenVariantsszbTUtTUfDw81Pi(),
   });
 
   return (
@@ -194,6 +194,11 @@ function PlasmicActionBar__RenderFunc(props: {
             variants,
             "postType",
             "isActive"
+          ),
+          [sty.freeBox__postType_isPosted__zG8Dok7Jk5]: hasVariant(
+            variants,
+            "postType",
+            "isPosted"
           ),
           [sty.freeBox__timelineSelected__zG8Do75BwG]: hasVariant(
             variants,

@@ -68,9 +68,16 @@
   > img {
   margin-top: 0px;
 }
+.freeBox__postType_isPosted__zG8Dok7Jk5 {
+  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
+}
 .root:focus-within .freeBox__zG8Do {
   outline: none;
   border-color: #877ab7 /* plasmic-token: QjV0Jke_u */;
+}
+.root__postType_isPosted:focus-within .freeBox__postType_isPosted__zG8Dok7Jk5 {
+  outline: none;
+  border-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
 .form {
   display: flex;
@@ -757,7 +764,7 @@
   flex-wrap: wrap;
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
-  margin-top: calc(0px - 10px - 1em);
+  margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
 }
 .container__timelineSelected > :global(.__wab_flex-container) > *,

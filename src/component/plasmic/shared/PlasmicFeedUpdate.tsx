@@ -34,8 +34,8 @@ import ActionBar from "../../actionbar/index"; // plasmic-import: eUnRsS9UXR/com
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicFeedUpdate.module.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicFeedUpdate.module.css"; // plasmic-import: Fs8bTUrvZrvfhCr/css
 
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
@@ -90,13 +90,24 @@ function PlasmicFeedUpdate__RenderFunc(props: {
       hasGap={true}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
     >
-      {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
+      {(
+        hasVariant(variants, "isPublic", "isPublic")
+          ? true
+          : hasVariant(variants, "isOwner", "isOwner")
+          ? true
+          : false
+      ) ? (
         <ActionBar
           className={classNames("__wab_instance", sty.actionBar__wJeXh, {
             [sty.actionBar__isOwner__wJeXh9Te3O]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
+            ),
+            [sty.actionBar__isPublic__wJeXhYCnHl]: hasVariant(
+              variants,
+              "isPublic",
+              "isPublic"
             ),
           })}
           postType={"isActive" as const}

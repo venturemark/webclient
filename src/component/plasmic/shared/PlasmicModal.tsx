@@ -30,20 +30,20 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
-import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
+import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import Share from "../../share/index"; // plasmic-import: Ockk5wTs5Zq/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicModal.module.css"; // plasmic-import: Rd6ctyxKvRM/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicModal.module.css"; // plasmic-import: Rd6ctyxKvRM/css
 
+import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
-import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
 import IconHashIcon from "./icons/PlasmicIcon__IconHash"; // plasmic-import: AVLV6uMr56/icon
 import IconMemberIcon from "./icons/PlasmicIcon__IconMember"; // plasmic-import: Vx3fG4Fxc/icon
 
@@ -76,6 +76,7 @@ export const PlasmicModal__ArgProps = new Array<ArgPropType>(
 export type PlasmicModal__OverridesType = {
   root?: p.Flex<"div">;
   modalTypes?: p.Flex<"div">;
+  close?: p.Flex<typeof IconButton>;
   deleteTimeline?: p.Flex<typeof Button>;
   text2?: p.Flex<"div">;
   cancelTimeline?: p.Flex<typeof Button>;
@@ -86,7 +87,6 @@ export type PlasmicModal__OverridesType = {
   cancelVenture?: p.Flex<typeof Button>;
   text223?: p.Flex<"div">;
   editProfile?: p.Flex<"form">;
-  close?: p.Flex<typeof IconButton>;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   link?: p.Flex<"a">;
   nameField?: p.Flex<typeof InputText>;
@@ -123,7 +123,13 @@ function PlasmicModal__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__modalType_shareModal]: hasVariant(
+          variants,
+          "modalType",
+          "shareModal"
+        ),
+      })}
     >
       <div
         data-plasmic-name={"modalTypes"}
@@ -141,6 +147,35 @@ function PlasmicModal__RenderFunc(props: {
           ),
         })}
       >
+        {(
+          hasVariant(variants, "modalType", "shareModal")
+            ? true
+            : hasVariant(variants, "modalType", "editProfile")
+            ? true
+            : true
+        ) ? (
+          <IconButton
+            data-plasmic-name={"close"}
+            data-plasmic-override={overrides.close}
+            className={classNames("__wab_instance", sty.close, {
+              [sty.close__modalType_editProfile]: hasVariant(
+                variants,
+                "modalType",
+                "editProfile"
+              ),
+              [sty.close__modalType_shareModal]: hasVariant(
+                variants,
+                "modalType",
+                "shareModal"
+              ),
+            })}
+          >
+            <IconCloseIcon
+              className={classNames(projectcss.all, sty.svg__mGzaq)}
+              role={"img"}
+            />
+          </IconButton>
+        ) : null}
         {(
           hasVariant(variants, "modalType", "deleteVenture")
             ? false
@@ -457,23 +492,6 @@ function PlasmicModal__RenderFunc(props: {
                 >
                   {"Edit Profile"}
                 </div>
-
-                <IconButton
-                  data-plasmic-name={"close"}
-                  data-plasmic-override={overrides.close}
-                  className={classNames("__wab_instance", sty.close, {
-                    [sty.close__modalType_shareModal]: hasVariant(
-                      variants,
-                      "modalType",
-                      "shareModal"
-                    ),
-                  })}
-                >
-                  <IconCloseIcon
-                    className={classNames(projectcss.all, sty.svg__mGzaq)}
-                    role={"img"}
-                  />
-                </IconButton>
               </div>
             ) : null}
             {true ? (
@@ -665,6 +683,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "modalTypes",
+    "close",
     "deleteTimeline",
     "text2",
     "cancelTimeline",
@@ -675,7 +694,6 @@ const PlasmicDescendants = {
     "cancelVenture",
     "text223",
     "editProfile",
-    "close",
     "photoAvatar",
     "link",
     "nameField",
@@ -689,6 +707,7 @@ const PlasmicDescendants = {
   ],
   modalTypes: [
     "modalTypes",
+    "close",
     "deleteTimeline",
     "text2",
     "cancelTimeline",
@@ -699,7 +718,6 @@ const PlasmicDescendants = {
     "cancelVenture",
     "text223",
     "editProfile",
-    "close",
     "photoAvatar",
     "link",
     "nameField",
@@ -711,6 +729,7 @@ const PlasmicDescendants = {
     "share",
     "close2",
   ],
+  close: ["close"],
   deleteTimeline: ["deleteTimeline", "text2"],
   text2: ["text2"],
   cancelTimeline: ["cancelTimeline", "text22"],
@@ -728,7 +747,6 @@ const PlasmicDescendants = {
   text223: ["text223"],
   editProfile: [
     "editProfile",
-    "close",
     "photoAvatar",
     "link",
     "nameField",
@@ -738,7 +756,6 @@ const PlasmicDescendants = {
     "saveUser",
     "text222",
   ],
-  close: ["close"],
   photoAvatar: ["photoAvatar"],
   link: ["link"],
   nameField: ["nameField"],
@@ -756,6 +773,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   modalTypes: "div";
+  close: typeof IconButton;
   deleteTimeline: typeof Button;
   text2: "div";
   cancelTimeline: typeof Button;
@@ -766,7 +784,6 @@ type NodeDefaultElementType = {
   cancelVenture: typeof Button;
   text223: "div";
   editProfile: "form";
-  close: typeof IconButton;
   photoAvatar: typeof PhotoAvatar;
   link: "a";
   nameField: typeof InputText;
@@ -841,6 +858,7 @@ export const PlasmicModal = Object.assign(
   {
     // Helper components rendering sub-elements
     modalTypes: makeNodeComponent("modalTypes"),
+    close: makeNodeComponent("close"),
     deleteTimeline: makeNodeComponent("deleteTimeline"),
     text2: makeNodeComponent("text2"),
     cancelTimeline: makeNodeComponent("cancelTimeline"),
@@ -851,7 +869,6 @@ export const PlasmicModal = Object.assign(
     cancelVenture: makeNodeComponent("cancelVenture"),
     text223: makeNodeComponent("text223"),
     editProfile: makeNodeComponent("editProfile"),
-    close: makeNodeComponent("close"),
     photoAvatar: makeNodeComponent("photoAvatar"),
     link: makeNodeComponent("link"),
     nameField: makeNodeComponent("nameField"),
