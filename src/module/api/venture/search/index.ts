@@ -27,9 +27,6 @@ export async function Search(
     obj.getMetadataMap().set(key.SubjectID, ventureSearch.userId);
   ventureSearch.slug &&
     obj.getMetadataMap().set("venture.venturemark.co/slug", ventureSearch.slug);
-  if (!token) {
-    obj.getMetadataMap().set(key.ResourceVisibility, "visibility:public");
-  }
 
   objList.push(obj);
   req.setObjList(objList);

@@ -48,7 +48,8 @@ function FeedUpdate(props: FeedUpdateProps) {
   const { setIsVisible, setPost, post, isVisible, user, ...rest } = props;
 
   const { token } = useContext(AuthContext);
-  const { currentVenture, timelines } = useContext(VentureContext);
+  const { currentVenture, currentVentureTimelines: timelines } =
+    useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
   const ventureId = currentVenture?.id ?? "";
   const timelineId = currentTimeline?.id ?? "";
@@ -99,14 +100,21 @@ function FeedUpdate(props: FeedUpdateProps) {
 
     const userLastUpdates = user.lastUpdate || {};
     const timelineLastUpdates: Record<string, string> = {};
-    timelines.forEach((timeline) => {
+    const currentViewedTimelines = currentTimeline
+      ? [currentTimeline]
+      : timelines;
+
+    // construct timelineLastUpdates
+    currentViewedTimelines.forEach((timeline) => {
       if (timeline.lastUpdate) {
         timelineLastUpdates[timeline.id] = timeline.lastUpdate;
       }
     });
 
     const newLastUpdates: Record<string, string> = {};
-    timelines.forEach((timeline) => {
+
+    // construct newLastUpdates
+    currentViewedTimelines.forEach((timeline) => {
       const lastViewed = userLastUpdates[timeline.id];
       const lastUpdate = timelineLastUpdates[timeline.id];
       if (
@@ -144,16 +152,18 @@ function FeedUpdate(props: FeedUpdateProps) {
     timelines,
     reset,
     user,
+    currentTimeline,
   ]);
+
+  const isOwner = resourceOwnership(currentTimeline || currentVenture);
 
   return (
     <PlasmicFeedUpdate
       {...rest}
-      isOwner={resourceOwnership(currentTimeline || currentVenture)}
+      isOwner={isOwner}
       root={{
         render() {
-          const actionBar = <ActionBar key={"-"} />;
-          return [actionBar].concat(
+          return (isOwner ? [<ActionBar key={"-"} />] : []).concat(
             updates.map((update: IUpdate) => {
               const updateUser = allMembers.find(
                 (m) => m.id === update.subjectId

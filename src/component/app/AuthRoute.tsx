@@ -28,7 +28,7 @@ export function AuthRoute({ requiredAuth, requiredProfile }: Props) {
   } else if (requiredProfile) {
     if (requiredProfile === "exists" && !userData) {
       return <Navigate to="/profile" state={{ returnTo }} />;
-    } else if (requiredProfile === "not-exists" && userData) {
+    } else if (requiredProfile === "not-exists" && userData?.length) {
       return <Navigate to="/" />;
     }
   }
