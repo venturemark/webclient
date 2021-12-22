@@ -33,8 +33,8 @@ import {
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicPhotoAvatar.module.css"; // plasmic-import: uaoIqTcPRC-/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicPhotoAvatar.module.css"; // plasmic-import: uaoIqTcPRC-/css
 
 export type PlasmicPhotoAvatar__VariantMembers = {
   variant: "isLarge";

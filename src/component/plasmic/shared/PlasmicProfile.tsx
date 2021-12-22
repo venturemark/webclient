@@ -33,12 +33,12 @@ import {
 import Header from "../../header/index"; // plasmic-import: MkyvVOg5Ik/component
 import ProfileForm from "../../profileform/index"; // plasmic-import: _XzWccJtXuE/component
 
-import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicProfile.module.css"; // plasmic-import: XqXAODV8pg/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicProfile.module.css"; // plasmic-import: XqXAODV8pg/css
 
 export type PlasmicProfile__VariantMembers = {};
 
@@ -70,7 +70,7 @@ function PlasmicProfile__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants(),
+    screen: useScreenVariantsszbTUtTUfDw81Pi(),
   });
 
   return (

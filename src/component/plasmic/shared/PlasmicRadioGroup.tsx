@@ -34,8 +34,8 @@ import Radio from "../../radio/index"; // plasmic-import: 0x0YjULkfHN/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicRadioGroup.module.css"; // plasmic-import: Q9Z-qP9n2Q/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicRadioGroup.module.css"; // plasmic-import: Q9Z-qP9n2Q/css
 
 export type PlasmicRadioGroup__VariantMembers = {
   hasLabel: "hasLabel";
