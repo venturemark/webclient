@@ -15,14 +15,14 @@ export function isDev(): boolean {
 export function makeVentureUrl(url: string): string {
   const address = isDev()
     ? `http://localhost:3006/${url}`
-    : `https://beta.venturemark.co/${url}`;
+    : `https://beta.breadcrumb.so/${url}`;
   return address;
 }
 
 export function makeInviteLink(params: URLSearchParams): string {
   const address = isDev()
     ? `http://localhost:3006/invite?${params}`
-    : `https://beta.venturemark.co/invite?${params}`;
+    : `https://beta.breadcrumb.so/invite?${params}`;
   return address;
 }
 

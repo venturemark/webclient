@@ -26,7 +26,7 @@ export async function Search(
   ventureSearch.userId &&
     obj.getMetadataMap().set(key.SubjectID, ventureSearch.userId);
   ventureSearch.slug &&
-    obj.getMetadataMap().set("venture.venturemark.co/slug", ventureSearch.slug);
+    obj.getMetadataMap().set("venture.breadcrumb.so/slug", ventureSearch.slug);
 
   objList.push(obj);
   req.setObjList(objList);
