@@ -33,12 +33,12 @@ import {
 import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
 import IconButtonMember from "../../iconbuttonmember/index"; // plasmic-import: ZhI9zuyxBT/component
 
-import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicMainHeader.module.css"; // plasmic-import: LRwT0lHdps/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicMainHeader.module.css"; // plasmic-import: LRwT0lHdps/css
 
 import IconExternalLinkIcon from "./icons/PlasmicIcon__IconExternalLink"; // plasmic-import: BDHiWdSyk/icon
 import IconFeedIcon from "./icons/PlasmicIcon__IconFeed"; // plasmic-import: gkIqWTG_m/icon
@@ -123,7 +123,7 @@ function PlasmicMainHeader__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants(),
+    screen: useScreenVariantsszbTUtTUfDw81Pi(),
   });
 
   return (

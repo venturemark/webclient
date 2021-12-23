@@ -34,12 +34,12 @@ import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC
 import ProfileDropdown from "../../profiledropdown/index"; // plasmic-import: bGjqf-R4Tc/component
 import SidebarItemGroup from "../../sidebaritemgroup/index"; // plasmic-import: JQWYItyW5A/component
 
-import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicSidebar.module.css"; // plasmic-import: FZWTu4L61t/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicSidebar.module.css"; // plasmic-import: FZWTu4L61t/css
 
 import LockIconsvgIcon from "./icons/PlasmicIcon__LockIconsvg"; // plasmic-import: 1tBTTGMGvG/icon
 
@@ -101,7 +101,7 @@ function PlasmicSidebar__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants(),
+    screen: useScreenVariantsszbTUtTUfDw81Pi(),
   });
 
   return (

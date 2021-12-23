@@ -13,6 +13,11 @@
   border-bottom: 0px solid rgb(224, 224, 224)
     /* plasmic-token: 9--4ZPcisViPq8V */;
 }
+@media (max-width: 767px) {
+  .root {
+    padding: 10px 20px;
+  }
+}
 .members {
   position: relative;
   flex-direction: row;
@@ -274,6 +279,7 @@
 }
 .dropdown__isDropdown {
   display: flex;
+  z-index: 100;
 }
 .ul {
   display: flex;

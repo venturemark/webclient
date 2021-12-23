@@ -34,8 +34,8 @@ import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicReplyInput.module.css"; // plasmic-import: PE9pgtdNju/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicReplyInput.module.css"; // plasmic-import: PE9pgtdNju/css
 
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 import IconSend2Icon from "./icons/PlasmicIcon__IconSend2"; // plasmic-import: Iea8iz1ew/icon

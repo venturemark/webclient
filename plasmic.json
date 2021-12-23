@@ -604,7 +604,7 @@
           "projectId": "mTVXT6w3HHjZ4d74q3gB76",
           "renderModuleFilePath": "plasmic/shared/PlasmicVisibilityState.tsx",
           "importSpec": {
-            "modulePath": "VisibilityState.tsx"
+            "modulePath": "visibilitystate/index.tsx"
           },
           "cssFilePath": "plasmic/shared/PlasmicVisibilityState.module.css",
           "scheme": "blackbox",
@@ -821,6 +821,16 @@
           "id": "DkUt8Ihq_s",
           "name": "IconPublicsvgIcon",
           "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconPublicsvg.tsx"
+        },
+        {
+          "id": "gks_vb7Qhq",
+          "name": "IconLeftIcon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconLeft.tsx"
+        },
+        {
+          "id": "rJqHeOdNDd",
+          "name": "IconRight2Icon",
+          "moduleFilePath": "plasmic/shared/icons/PlasmicIcon__IconRight2.tsx"
         }
       ],
       "images": [

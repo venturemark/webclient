@@ -36,12 +36,12 @@ import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
 import ProfileDropdown from "../../profiledropdown/index"; // plasmic-import: bGjqf-R4Tc/component
 
-import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
+import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import * as projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
-import * as sty from "./PlasmicHeader.module.css"; // plasmic-import: MkyvVOg5Ik/css
+import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
+import sty from "./PlasmicHeader.module.css"; // plasmic-import: MkyvVOg5Ik/css
 
 import IconMenuIcon from "./icons/PlasmicIcon__IconMenu"; // plasmic-import: gDL0fFl2pD/icon
 import IconExternalLinkIcon from "./icons/PlasmicIcon__IconExternalLink"; // plasmic-import: BDHiWdSyk/icon
@@ -101,7 +101,7 @@ function PlasmicHeader__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants(),
+    screen: useScreenVariantsszbTUtTUfDw81Pi(),
   });
 
   return (

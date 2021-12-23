@@ -55,6 +55,9 @@ function InputText_(
         ...plumeProps.variants,
         error: message ? "error" : undefined,
       }}
+      input2={{
+        props: { value: props.value },
+      }}
     />
   );
 }
