@@ -3,10 +3,10 @@ import {
   PlumeTextFieldRef,
   useTextField,
 } from "@plasmicapp/plume";
+import { Flex } from "@plasmicapp/react-web";
 import { forwardRef, ReactNode } from "react";
 
 import { PlasmicInputText } from "component/plasmic/shared/PlasmicInputText";
-import { Flex } from "@plasmicapp/react-web";
 
 interface TextFieldProps extends PlumeTextFieldProps {
   name: string;
