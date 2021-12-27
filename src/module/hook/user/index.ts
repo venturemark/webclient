@@ -68,8 +68,7 @@ export function useTimelineMembers(
     ["users", searchTimelineMembers.token, searchTimelineMembers.timelineId],
     () => getTimelineMembers(searchTimelineMembers),
     {
-      enabled:
-        !!searchTimelineMembers.token && !!searchTimelineMembers.timelineId,
+      enabled: Boolean(searchTimelineMembers.timelineId),
     }
   );
 }

@@ -6,13 +6,13 @@ import {
   PlasmicSidebarItemGroup,
 } from "component/plasmic/shared/PlasmicSidebarItemGroup";
 import SidebarItem from "component/sidebaritem";
+import { AuthContext } from "context/AuthContext";
+import { TimelineContext } from "context/TimelineContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
+import { useUpdatesByTimelineIds } from "module/hook/update";
 import { ITimeline } from "module/interface/timeline";
 import { UserRole } from "module/interface/user";
-import { TimelineContext } from "context/TimelineContext";
-import { useUpdatesByTimelineIds } from "module/hook/update";
-import { AuthContext } from "context/AuthContext";
 import { IUpdate } from "module/interface/update";
 
 interface SidebarItemGroupProps extends DefaultSidebarItemGroupProps {
@@ -57,6 +57,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
   const { currentTimeline } = useContext(TimelineContext);
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { authenticated } = useContext(AuthContext);
   const { user } = useContext(UserContext);
   const userLastViewedUpdate = user?.lastUpdate || {};
   const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);
@@ -144,7 +145,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
               ventureName={ventureName}
               itemType={"timeline"}
               isActive={currentTimeline?.id === timeline.id}
-              unreadCount={unreadCount}
+              unreadCount={authenticated ? unreadCount : 0}
             />
           );
         }),

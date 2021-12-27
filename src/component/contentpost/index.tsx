@@ -75,7 +75,8 @@ function ContentPost(props: ContentPostProps) {
     user,
     ...rest
   } = props;
-  const { token } = useContext(AuthContext);
+
+  const { authenticated, token } = useContext(AuthContext);
 
   const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
     useDropdown<HTMLDivElement>();
@@ -161,7 +162,12 @@ function ContentPost(props: ContentPostProps) {
         ref: dropdownRootRef,
       }}
       iconMenu={{
-        onClick: () => setDropdownVisible(!dropdownVisible),
+        wrap(node) {
+          return authenticated ? node : null;
+        },
+        props: {
+          onClick: () => setDropdownVisible(!dropdownVisible),
+        },
       }}
       title={title}
       description={{
@@ -186,17 +192,22 @@ function ContentPost(props: ContentPostProps) {
         onClick: handleDeleteUpdate,
       }}
       viewReplies={{
-        count: messagesData.length,
-        text2: messagesData.length < 2 ? "reply" : "replies",
-        onPress: () => {
-          if (isVisible === "postDetails" && post?.id === update?.id) {
-            // toggle post detail pane
-            setIsVisible(undefined);
-          } else {
-            // show or change details to current post
-            setIsVisible("postDetails");
-            setPost();
-          }
+        wrap(node) {
+          return authenticated ? node : null;
+        },
+        props: {
+          count: messagesData.length,
+          text2: messagesData.length < 2 ? "reply" : "replies",
+          onPress: () => {
+            if (isVisible === "postDetails" && post?.id === update?.id) {
+              // toggle post detail pane
+              setIsVisible(undefined);
+            } else {
+              // show or change details to current post
+              setIsVisible("postDetails");
+              setPost();
+            }
+          },
         },
       }}
       timelineNamesContainer={{
