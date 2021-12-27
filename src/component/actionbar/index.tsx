@@ -230,6 +230,13 @@ export default function ActionBar(props: ActionBarProps) {
 
       //reset
       resetUpdateEditor();
+      Transforms.delete(editor, {
+        at: {
+          anchor: Editor.start(editor, []),
+          focus: Editor.end(editor, []),
+        },
+      });
+
       setTouched({
         title: false,
         description: false,
