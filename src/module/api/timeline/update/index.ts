@@ -25,6 +25,10 @@ export async function Update(
   obj.getMetadataMap().set(key.TimelineID, updateTimeline.id);
   obj.getMetadataMap().set(key.VentureID, updateTimeline.ventureId);
 
+  if (updateTimeline.visibility) {
+    obj.getMetadataMap().set(key.ResourceVisibility, updateTimeline.visibility);
+  }
+
   const patchList = [];
 
   if (updateTimeline.stat) {

@@ -71,7 +71,7 @@ export default function Header(props: HeaderProps) {
         },
       }}
       views={
-        hasUser && isAuthenticated
+        hasUser && isAuthenticated && ventureId
           ? "userAccount"
           : isAuthenticated
           ? undefined
