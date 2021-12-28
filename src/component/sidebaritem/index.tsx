@@ -98,17 +98,8 @@ function SidebarItem(
           },
         }}
         hasNewActivity={unreadCount > 0}
-        counterSlot={{
-          children: (
-            <span
-              style={{
-                color: "#fff",
-                fontWeight: 500,
-              }}
-            >
-              {unreadCount}
-            </span>
-          ),
+        counterLabel={{
+          children: unreadCount,
         }}
       />
     </div>

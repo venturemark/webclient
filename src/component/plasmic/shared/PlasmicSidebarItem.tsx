@@ -79,19 +79,16 @@ export const PlasmicSidebarItem__VariantProps = new Array<VariantPropType>(
 
 export type PlasmicSidebarItem__ArgsType = {
   name?: React.ReactNode;
-  children?: React.ReactNode;
 };
 
 type ArgPropType = keyof PlasmicSidebarItem__ArgsType;
-export const PlasmicSidebarItem__ArgProps = new Array<ArgPropType>(
-  "name",
-  "children"
-);
+export const PlasmicSidebarItem__ArgProps = new Array<ArgPropType>("name");
 
 export type PlasmicSidebarItem__OverridesType = {
   root?: p.Flex<"div">;
   newActivityIndicator?: p.Flex<"div">;
   counterSlot?: p.Flex<"div">;
+  counterLabel?: p.Flex<"div">;
   itemContainer?: p.Flex<"div">;
   icon?: p.Flex<typeof IconButton>;
   iconButton?: p.Flex<typeof IconButton>;
@@ -100,7 +97,6 @@ export type PlasmicSidebarItem__OverridesType = {
 
 export interface DefaultSidebarItemProps {
   name?: React.ReactNode;
-  children?: React.ReactNode;
   itemType?: SingleChoiceArg<
     "timeline" | "createTimeline" | "ventureCollapsed"
   >;
@@ -177,17 +173,24 @@ function PlasmicSidebarItem__RenderFunc(props: {
             data-plasmic-override={overrides.counterSlot}
             className={classNames(projectcss.all, sty.counterSlot)}
           >
-            {p.renderPlasmicSlot({
-              defaultContents: "3",
-              value: args.children,
-              className: classNames(sty.slotTargetChildren, {
-                [sty.slotTargetChildren__hasNewActivity]: hasVariant(
-                  variants,
-                  "hasNewActivity",
-                  "hasNewActivity"
-                ),
-              }),
-            })}
+            <div
+              data-plasmic-name={"counterLabel"}
+              data-plasmic-override={overrides.counterLabel}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.counterLabel,
+                {
+                  [sty.counterLabel__hasNewActivity]: hasVariant(
+                    variants,
+                    "hasNewActivity",
+                    "hasNewActivity"
+                  ),
+                }
+              )}
+            >
+              {"3"}
+            </div>
           </div>
         </div>
       ) : null}
@@ -671,13 +674,15 @@ const PlasmicDescendants = {
     "root",
     "newActivityIndicator",
     "counterSlot",
+    "counterLabel",
     "itemContainer",
     "icon",
     "iconButton",
     "dropdown",
   ],
-  newActivityIndicator: ["newActivityIndicator", "counterSlot"],
-  counterSlot: ["counterSlot"],
+  newActivityIndicator: ["newActivityIndicator", "counterSlot", "counterLabel"],
+  counterSlot: ["counterSlot", "counterLabel"],
+  counterLabel: ["counterLabel"],
   itemContainer: ["itemContainer", "icon", "iconButton", "dropdown"],
   icon: ["icon"],
   iconButton: ["iconButton"],
@@ -690,6 +695,7 @@ type NodeDefaultElementType = {
   root: "div";
   newActivityIndicator: "div";
   counterSlot: "div";
+  counterLabel: "div";
   itemContainer: "div";
   icon: typeof IconButton;
   iconButton: typeof IconButton;
@@ -759,6 +765,7 @@ export const PlasmicSidebarItem = Object.assign(
     // Helper components rendering sub-elements
     newActivityIndicator: makeNodeComponent("newActivityIndicator"),
     counterSlot: makeNodeComponent("counterSlot"),
+    counterLabel: makeNodeComponent("counterLabel"),
     itemContainer: makeNodeComponent("itemContainer"),
     icon: makeNodeComponent("icon"),
     iconButton: makeNodeComponent("iconButton"),

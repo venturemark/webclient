@@ -477,7 +477,6 @@ export default function ActionBar(props: ActionBarProps) {
       container={{
         style: {
           width: "100%",
-          marginTop: "1em",
         },
       }}
       selectedItemsContainer={{
