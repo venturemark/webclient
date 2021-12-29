@@ -2,7 +2,7 @@ import { useContext, useMemo } from "react";
 import { Descendant } from "slate";
 
 import { createEditor, EditorShape } from "component/editor";
-import { ReadonlyEditor } from "component/editor/readonly";
+import { ComposeEditor } from "component/editor";
 import {
   DefaultContentPostProps,
   PlasmicContentPost,
@@ -171,8 +171,10 @@ function ContentPost(props: ContentPostProps) {
       }}
       title={title}
       description={{
-        as: ReadonlyEditor,
+        as: ComposeEditor,
         props: {
+          setEditorShape: () => null,
+          readOnly: true,
           editor,
           editorShape,
         },
