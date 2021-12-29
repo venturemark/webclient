@@ -152,6 +152,8 @@ function ContentPost(props: ContentPostProps) {
     } catch (error) {}
   }
 
+  if (!update) return null;
+
   return (
     <PlasmicContentPost
       {...rest}
