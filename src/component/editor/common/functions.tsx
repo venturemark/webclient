@@ -34,3 +34,17 @@ export function isListActive(editor: Editor) {
 
   return !!match;
 }
+
+export function resetEditorSettings(editor: Editor) {
+  Transforms.delete(editor, {
+    at: {
+      anchor: Editor.start(editor, []),
+      focus: Editor.end(editor, []),
+    },
+  });
+  const newProperties: Partial<Element> = {
+    type: "paragraph",
+    children: [{ text: "" }],
+  };
+  Transforms.setNodes(editor, newProperties);
+}

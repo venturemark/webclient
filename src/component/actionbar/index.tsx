@@ -3,7 +3,11 @@ import { MultiChoiceArg } from "@plasmicapp/react-web";
 import { ContentPostProps } from "component/contentpost";
 import { CountIndicator } from "component/countindicator";
 import { ComposeEditor, createEditor, EditorProps } from "component/editor";
-import { isListActive, toggleList } from "component/editor/common/functions";
+import {
+  isListActive,
+  resetEditorSettings,
+  toggleList,
+} from "component/editor/common/functions";
 import { UnorderedListElement } from "component/editor/common/types";
 import { EmojiPicker } from "component/emojipicker";
 import { TimelineSelect } from "component/materialui/select";
@@ -39,8 +43,13 @@ export default function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentVentureTimelines } =
     useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
-  const { title, editorShape, setTitle, setEditorShape, resetUpdateEditor } =
-    useContext(UpdateEditorContext);
+  const {
+    title,
+    editorShape,
+    setTitle,
+    setEditorShape,
+    resetUpdateEditor: resetUpdateEditorContext,
+  } = useContext(UpdateEditorContext);
   const { token } = useContext(AuthContext);
 
   const [selectedTimelines, setSelectedTimelines] = useState(
@@ -229,13 +238,8 @@ export default function ActionBar(props: ActionBarProps) {
       );
 
       //reset
-      resetUpdateEditor();
-      Transforms.delete(editor, {
-        at: {
-          anchor: Editor.start(editor, []),
-          focus: Editor.end(editor, []),
-        },
-      });
+      resetUpdateEditorContext();
+      resetEditorSettings(editor);
 
       setTouched({
         title: false,
