@@ -27,7 +27,7 @@
   background: #dd6f6f;
   height: 22px;
   z-index: 20;
-  right: 0px;
+  right: 4px;
   width: 24px;
   flex-shrink: 0;
   display: flex;
@@ -45,10 +45,12 @@
   justify-content: center;
   min-width: 0;
 }
-.slotTargetChildren {
-  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
+.counterLabel {
+  position: relative;
+  width: auto;
+  height: auto;
   text-align: center;
-  font-weight: 600;
+  color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .itemContainer {
   display: flex;
