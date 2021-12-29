@@ -53,26 +53,22 @@
 .freeBox__state_isOwner__z3Q65U0Xnn {
   justify-content: space-between;
 }
-.textContainer2 {
+.post {
   display: flex;
   position: relative;
   width: auto;
   height: auto;
   flex-direction: column;
 }
-.textContainer2 > :global(.__wab_flex-container) {
+.post > :global(.__wab_flex-container) {
   flex-direction: column;
   margin-top: calc(0px - 15px);
   height: calc(100% + 15px);
 }
-.textContainer2 > :global(.__wab_flex-container) > *,
-.textContainer2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.textContainer2 > :global(.__wab_flex-container) > picture > img,
-.textContainer2
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
+.post > :global(.__wab_flex-container) > *,
+.post > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.post > :global(.__wab_flex-container) > picture > img,
+.post > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-top: 15px;
 }
 .title {

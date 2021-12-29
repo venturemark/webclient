@@ -136,6 +136,8 @@ function PlasmicPostDetails__RenderFunc(props: {
                 {"3 hours ago"}
               </span>
             }
+            hasDescription={"hasDescription" as const}
+            hasMedia={"hasMedia" as const}
             state={"isPostDetails" as const}
             userInitials={"KO"}
             userName={
