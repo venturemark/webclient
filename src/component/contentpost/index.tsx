@@ -152,6 +152,8 @@ function ContentPost(props: ContentPostProps) {
     } catch (error) {}
   }
 
+  // This avoids a problem with Slate that causes the content not to be
+  // rendered if it's initially rendered with an empty value.
   if (!update) return null;
 
   return (
