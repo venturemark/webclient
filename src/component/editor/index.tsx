@@ -114,10 +114,12 @@ export interface EditorState {
 
 //create custom hook for our editor:
 export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
-  const value = JSON.parse(get("composeEditor.content")) || initialValueEmpty;
+  const savedValue = JSON.parse(get("composeEditor.content"));
+  const value = savedValue || initialValueEmpty;
+  const string = savedValue ? serialize(savedValue) : "";
   const defaultEditor: EditorShape = {
     value,
-    string: "",
+    string,
     numberValue: 0,
     error: undefined,
     hasContent: undefined,
