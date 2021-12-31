@@ -248,7 +248,6 @@ export default function ActionBar(props: ActionBarProps) {
       );
 
       //reset
-      // resetUpdateEditorContext();
       setEditorShape({
         value: [],
         string: "",
