@@ -33,7 +33,6 @@ import {
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import InputTextArea from "../../inputtextarea/index"; // plasmic-import: Q2R-U25DUBO/component
 import Switch from "../../switch/index"; // plasmic-import: l1Qe8RjaNW/component
-import RadioGroup from "../../radiogroup/index"; // plasmic-import: Q9Z-qP9n2Q/component
 import ButtonSetEdit from "../../buttonsetedit/index"; // plasmic-import: pMqUN0f4G_a/component
 
 import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
@@ -81,7 +80,6 @@ export type PlasmicAddEditTimeline__OverridesType = {
   name?: p.Flex<typeof InputText>;
   description?: p.Flex<typeof InputTextArea>;
   _switch?: p.Flex<typeof Switch>;
-  visibility?: p.Flex<typeof RadioGroup>;
   buttonSetEdit?: p.Flex<typeof ButtonSetEdit>;
 };
 
@@ -283,37 +281,6 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       {(
         hasVariant(variants, "isOwner", "isOwner") &&
         hasVariant(variants, "variantState", "isEdit")
-          ? false
-          : hasVariant(variants, "isOwner", "isOwner")
-          ? true
-          : hasVariant(variants, "variantState", "isEdit")
-          ? false
-          : true
-      ) ? (
-        <RadioGroup
-          data-plasmic-name={"visibility"}
-          data-plasmic-override={overrides.visibility}
-          className={classNames("__wab_instance", sty.visibility, {
-            [sty.visibility__isOwner]: hasVariant(
-              variants,
-              "isOwner",
-              "isOwner"
-            ),
-            [sty.visibility__isOwner_variantState_isEdit]:
-              hasVariant(variants, "isOwner", "isOwner") &&
-              hasVariant(variants, "variantState", "isEdit"),
-            [sty.visibility__variantState_isEdit]: hasVariant(
-              variants,
-              "variantState",
-              "isEdit"
-            ),
-          })}
-          hasLabel={"hasLabel" as const}
-        />
-      ) : null}
-      {(
-        hasVariant(variants, "isOwner", "isOwner") &&
-        hasVariant(variants, "variantState", "isEdit")
           ? true
           : hasVariant(variants, "variantState", "isEdit")
           ? false
@@ -344,18 +311,10 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  settings: [
-    "settings",
-    "name",
-    "description",
-    "_switch",
-    "visibility",
-    "buttonSetEdit",
-  ],
+  settings: ["settings", "name", "description", "_switch", "buttonSetEdit"],
   name: ["name"],
   description: ["description"],
   _switch: ["_switch"],
-  visibility: ["visibility"],
   buttonSetEdit: ["buttonSetEdit"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -366,7 +325,6 @@ type NodeDefaultElementType = {
   name: typeof InputText;
   description: typeof InputTextArea;
   _switch: typeof Switch;
-  visibility: typeof RadioGroup;
   buttonSetEdit: typeof ButtonSetEdit;
 };
 
@@ -434,7 +392,6 @@ export const PlasmicAddEditTimeline = Object.assign(
     _name: makeNodeComponent("name"),
     description: makeNodeComponent("description"),
     _switch: makeNodeComponent("_switch"),
-    visibility: makeNodeComponent("visibility"),
     buttonSetEdit: makeNodeComponent("buttonSetEdit"),
 
     // Metadata about props expected for PlasmicAddEditTimeline

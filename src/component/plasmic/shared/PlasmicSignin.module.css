@@ -230,6 +230,7 @@
 }
 .img___2L10H {
   object-fit: cover;
+  display: inline-block !important;
 }
 .img___2L10H > picture > img {
   object-fit: cover;

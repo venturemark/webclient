@@ -33,7 +33,7 @@ import {
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import MemberItem from "../../memberitem/index"; // plasmic-import: D8Y_2wee1o/component
-import VisibilityState from "../../visibilitystate"; // plasmic-import: pG3eTcOvTW0/component
+import VisibilityState from "../../visibilitystate/index"; // plasmic-import: pG3eTcOvTW0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -348,10 +348,8 @@ function PlasmicShare__RenderFunc(props: {
           />
 
           <Button
-            data-plasmic-name={"invite"}
-            data-plasmic-override={overrides.invite}
-            buttonFeatures={["nonFullWidth", "removeText", "showStartIcon"]}
-            className={classNames("__wab_instance", sty.invite)}
+            buttonFeatures={["removeText", "showStartIcon", "nonFullWidth"]}
+            className={classNames("__wab_instance", sty.button__eyLcD)}
             count={"1"}
             text2={"Button"}
           />
@@ -563,7 +561,6 @@ function PlasmicShare__RenderFunc(props: {
               "members"
             ),
           })}
-          isDropdown={"isDropdown" as const}
           slot2={p.renderPlasmicSlot({
             defaultContents: (
               <div

@@ -35,6 +35,9 @@
   > img {
   margin-left: 20px;
 }
+.freeBox__views_onboarding__ky7Rmx3M4P {
+  background: #ffffff;
+}
 .freeBox__wE8Ym {
   display: flex;
   position: relative;
@@ -89,6 +92,9 @@
 }
 .mainHeader:global(.__wab_instance) {
   position: relative;
+}
+.mainHeader__views_onboarding:global(.__wab_instance) {
+  display: flex;
 }
 .iconButton__eg7Gg:global(.__wab_instance) {
   position: relative;

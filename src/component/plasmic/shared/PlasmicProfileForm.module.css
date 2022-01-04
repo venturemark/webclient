@@ -176,6 +176,10 @@
 .save:global(.__wab_instance) {
   position: relative;
   align-self: center;
+  display: none;
+}
+.save__editProfile:global(.__wab_instance) {
+  display: flex;
 }
 .svg__dsa3 {
   position: relative;

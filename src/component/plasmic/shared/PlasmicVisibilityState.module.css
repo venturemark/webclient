@@ -245,68 +245,45 @@
   max-width: 100%;
   padding: 8px;
 }
-.button:global(.__wab_instance) {
+@media (max-width: 767px) {
+  .freeBox__jq2M {
+    width: auto;
+    height: auto;
+  }
+}
+.select:global(.__wab_instance) {
   max-width: 100%;
+  position: relative;
+  display: flex;
 }
-.svg__qw1Sl {
+@media (max-width: 767px) {
+  .select:global(.__wab_instance) {
+    display: flex;
+  }
+}
+@media (max-width: 767px) {
+  .text {
+    color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+  }
+}
+.dropdownIcon {
   position: relative;
   object-fit: cover;
-  width: 17px;
-  height: 14px;
+  width: 10px;
+  height: 20px;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
-.svg {
-  position: relative;
-  object-fit: cover;
-  width: 17px;
-  height: 14px;
+@media (max-width: 767px) {
+  .dropdownIcon {
+    width: 15px;
+  }
 }
-.dropdown {
-  box-shadow: 2px 2px 5px 2px rgba(212, 212, 212, 0.2);
-  background: #ffffff;
-  transform: scale(1, 1) rotate(0deg);
-  opacity: 1;
-  width: auto;
-  height: auto;
-  flex-direction: column;
-  position: absolute;
-  left: auto;
-  top: 55px;
-  right: 7px;
-  display: none;
-  border-radius: 5px;
-  padding: 10px 0px;
-  border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
-}
-.dropdown__isDropdown {
-  display: flex;
-  z-index: 100;
-}
-.ul {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  top: auto;
-  left: auto;
-}
-.ul > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: calc(0px - 15px);
-  height: calc(100% + 15px);
-}
-.ul > :global(.__wab_flex-container) > *,
-.ul > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.ul > :global(.__wab_flex-container) > picture > img,
-.ul > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-top: 15px;
-}
-.listItem__v40Od:global(.__wab_instance) {
+.optionPrivate:global(.__wab_instance) {
   position: relative;
 }
-.listItem__tnBd:global(.__wab_instance) {
+.optionMember:global(.__wab_instance) {
   position: relative;
 }
-.listItem__uJu6U:global(.__wab_instance) {
+.optionPublic:global(.__wab_instance) {
   position: relative;
 }

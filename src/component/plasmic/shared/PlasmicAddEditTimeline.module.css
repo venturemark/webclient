@@ -103,12 +103,6 @@
 ._switch__variantState_isEdit_isOwner:global(.__wab_instance) {
   display: flex;
 }
-.visibility:global(.__wab_instance) {
-  position: relative;
-}
-.visibility__isOwner:global(.__wab_instance) {
-  display: flex;
-}
 .buttonSetEdit:global(.__wab_instance) {
   position: relative;
   top: auto;
