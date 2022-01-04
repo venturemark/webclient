@@ -9,6 +9,9 @@ import { AuthContext } from "context/AuthContext";
 import { useMessages } from "module/hook/message";
 import { IMessage } from "module/interface/message";
 import { IUpdate } from "module/interface/update";
+import { useUpdatesByTimelineIds } from "module/hook/update";
+import { VentureContext } from "context/VentureContext";
+import { ITimeline } from "module/interface/timeline";
 
 interface PostDetailsProps extends DefaultPostDetailsProps {
   setIsVisible: any;
@@ -18,6 +21,13 @@ interface PostDetailsProps extends DefaultPostDetailsProps {
 function PostDetails(props: PostDetailsProps) {
   const { setIsVisible, post, ...rest } = props;
   const { token } = useContext(AuthContext);
+  const { currentVentureTimelines: timelines } = useContext(VentureContext);
+  const timelineIds = timelines.map((timeline: ITimeline) => timeline.id);
+  const { data: ventureUpdates = [] } = useUpdatesByTimelineIds({
+    ventureId: post?.ventureId ?? "",
+    timelineIds,
+    token,
+  });
 
   const { data: messagesData } = useMessages({
     updateId: post?.id,
@@ -42,6 +52,7 @@ function PostDetails(props: PostDetailsProps) {
         post,
         state: "isPostDetails",
         user: post?.user,
+        allUpdates: ventureUpdates,
       }}
       repliesContainer={{
         children: sortedMessages?.map((message: IMessage) => (
