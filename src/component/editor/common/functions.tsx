@@ -42,9 +42,8 @@ export function resetEditorSettings(editor: Editor) {
       focus: Editor.end(editor, []),
     },
   });
-  const newProperties: Partial<Element> = {
-    type: "paragraph",
-    children: [{ text: "" }],
-  };
-  Transforms.setNodes(editor, newProperties);
+
+  if (isListActive(editor)) {
+    toggleList(editor);
+  }
 }
