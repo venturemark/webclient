@@ -12,6 +12,7 @@ function Select__Overlay_(
   ref: TriggeredOverlayRef
 ) {
   const { plasmicProps } = PlasmicSelect__Overlay.useBehavior(props, ref);
+  // eslint-disable-next-line react/jsx-pascal-case
   return <PlasmicSelect__Overlay {...plasmicProps} />;
 }
 

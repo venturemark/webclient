@@ -9,6 +9,7 @@ interface Select__OptionProps extends DefaultSelect__OptionProps {}
 
 function Select__Option_(props: Select__OptionProps, ref: SelectOptionRef) {
   const { plasmicProps } = PlasmicSelect__Option.useBehavior(props, ref);
+  // eslint-disable-next-line react/jsx-pascal-case
   return <PlasmicSelect__Option {...plasmicProps} />;
 }
 

@@ -10,7 +10,7 @@ import OptionGroup from "./Select__OptionGroup";
 interface SelectProps extends DefaultSelectProps {}
 
 function Select_(props: SelectProps, ref: SelectRef) {
-  const { plasmicProps, state } = PlasmicSelect.useBehavior(props, ref);
+  const { plasmicProps } = PlasmicSelect.useBehavior(props, ref);
   return <PlasmicSelect {...plasmicProps} />;
 }
 
