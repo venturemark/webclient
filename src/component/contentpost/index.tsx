@@ -2,7 +2,7 @@ import { useContext, useMemo } from "react";
 import { Descendant } from "slate";
 
 import { createEditor, EditorShape } from "component/editor";
-import { ReadonlyEditor } from "component/editor/readonly";
+import { ComposeEditor } from "component/editor";
 import {
   DefaultContentPostProps,
   PlasmicContentPost,
@@ -152,6 +152,10 @@ function ContentPost(props: ContentPostProps) {
     } catch (error) {}
   }
 
+  // This avoids a problem with Slate that causes the content not to be
+  // rendered if it's initially rendered with an empty value.
+  if (!update) return null;
+
   return (
     <PlasmicContentPost
       {...rest}
@@ -171,8 +175,10 @@ function ContentPost(props: ContentPostProps) {
       }}
       title={title}
       description={{
-        as: ReadonlyEditor,
+        as: ComposeEditor,
         props: {
+          setEditorShape: () => null,
+          readOnly: true,
           editor,
           editorShape,
         },
