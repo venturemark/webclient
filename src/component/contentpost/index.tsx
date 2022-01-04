@@ -13,7 +13,6 @@ import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
 import { getUniqueListBy } from "module/helpers";
 import { useMessages } from "module/hook/message";
-import useDropdown from "module/hook/ui/useDropdown";
 import { useDeleteUpdate } from "module/hook/update";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { ITimeline } from "module/interface/timeline";
@@ -77,9 +76,6 @@ function ContentPost(props: ContentPostProps) {
   } = props;
 
   const { authenticated, token } = useContext(AuthContext);
-
-  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
-    useDropdown<HTMLDivElement>();
 
   const ventureContext = useContext(VentureContext);
   const timelines = ventureContext.currentVentureTimelines ?? [];
@@ -162,15 +158,15 @@ function ContentPost(props: ContentPostProps) {
       style={{
         zIndex: 200,
       }}
-      root={{
-        ref: dropdownRootRef,
-      }}
-      iconMenu={{
+      ownerSelect={{
         wrap(node) {
           return authenticated ? node : null;
         },
         props: {
-          onClick: () => setDropdownVisible(!dropdownVisible),
+          onChange: (value) => {
+            handleDeleteUpdate();
+          },
+          "aria-label": "Update option",
         },
       }}
       title={title}
@@ -189,14 +185,10 @@ function ContentPost(props: ContentPostProps) {
         imageSource: update?.image || "",
         isEdit: false,
       }}
-      isUserOnClick={dropdownVisible}
       state={state || isOwner}
       userName={userData?.name || user?.name}
       photoAvatar={{ user: postUser }}
       date={update?.date}
-      dropdown={{
-        onClick: handleDeleteUpdate,
-      }}
       viewReplies={{
         wrap(node) {
           return authenticated ? node : null;

@@ -186,11 +186,12 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         handleDelete: () => navigate(`/${ventureId}/${timelineId}/delete`),
         handleSave: () => handleSubmit(handleCreate)(),
       }}
-      visibility={{
-        "aria-label": "Timeline Visibility",
-        defaultValue: "private",
-        setVisibility,
-      }}
+      // TODO: Confirm later with the team
+      // visibility={{
+      //   "aria-label": "Timeline Visibility",
+      //   defaultValue: "private",
+      //   setVisibility,
+      // }}
     />
   );
 }
