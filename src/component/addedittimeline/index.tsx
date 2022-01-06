@@ -75,8 +75,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const { mutate: createTimeline } = useCreateTimeline();
   const { mutate: updateTimeline } = useUpdateTimeline();
 
-  const [visibility, setVisibility] = useState<string>("");
-
   const handleCreate = (data: FormData) => {
     if (
       !token ||
@@ -112,7 +110,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           desc: data.timelineDescription,
           membersWrite: data.membersWrite,
           ventureId,
-          visibility,
           token,
           redirectOnSuccess: true,
         },
@@ -186,12 +183,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         handleDelete: () => navigate(`/${ventureId}/${timelineId}/delete`),
         handleSave: () => handleSubmit(handleCreate)(),
       }}
-      // TODO: Confirm later with the team
-      // visibility={{
-      //   "aria-label": "Timeline Visibility",
-      //   defaultValue: "private",
-      //   setVisibility,
-      // }}
     />
   );
 }
