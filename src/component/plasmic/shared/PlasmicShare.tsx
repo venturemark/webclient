@@ -363,10 +363,19 @@ function PlasmicShare__RenderFunc(props: {
           <div
             data-plasmic-name={"wrapper"}
             data-plasmic-override={overrides.wrapper}
-            className={classNames(projectcss.all, sty.wrapper)}
+            className={classNames(projectcss.all, sty.wrapper, {
+              [sty.wrapper__visibilitySelect__private]: hasVariant(
+                variants,
+                "visibilitySelect",
+                "_private"
+              ),
+            })}
           >
             <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__dYKyI)}
+              className={classNames("__wab_instance", sty.memberItem__dYKyI, {
+                [sty.memberItem__visibilitySelect__private__dYKyIdcTzL]:
+                  hasVariant(variants, "visibilitySelect", "_private"),
+              })}
               isOwner={"isOwner" as const}
               slot3={p.renderPlasmicSlot({
                 defaultContents: "example@email.com",

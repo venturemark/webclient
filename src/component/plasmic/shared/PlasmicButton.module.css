@@ -4,6 +4,8 @@
   height: auto;
   position: relative;
   background: rgba(255, 255, 255, 0);
+  align-items: flex-start;
+  justify-content: center;
 }
 @media (max-width: 767px) {
   .root {
@@ -33,6 +35,7 @@
   min-width: 120px;
   cursor: pointer;
   background: #2e8c8d;
+  max-width: 460px;
   border-radius: 5px;
   padding: 10px 15px;
   border-style: solid;

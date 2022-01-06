@@ -241,7 +241,7 @@
 .img__faPxV > .__wab_img-spacer > img {
   object-fit: contain;
 }
-.button___77Pdq:global(.__wab_instance) {
+.step1ContinueButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   align-self: center;
@@ -325,25 +325,6 @@
   max-width: 460px;
   align-self: center;
   min-width: 0;
-}
-.button__gUwi:global(.__wab_instance) {
-  max-width: 100%;
-  position: relative;
-}
-.button__onboardingSteps_step2__gUwi1O3V:global(.__wab_instance) {
-  align-self: center;
-}
-.svg__wS9Kr {
-  position: relative;
-  object-fit: cover;
-  width: 17px;
-  height: 14px;
-}
-.svg__jOh2Y {
-  position: relative;
-  object-fit: cover;
-  width: 17px;
-  height: 14px;
 }
 .step3 {
   position: relative;
@@ -550,7 +531,7 @@
     object-fit: contain;
   }
 }
-.button__xdtss:global(.__wab_instance) {
+.beginButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   align-self: center;
