@@ -36,6 +36,9 @@ export async function Create(newUser: ICreateUser) {
 
   obj.setProperty(objProperty);
 
+  obj.getMetadataMap().set(key.UserPrepopulate, newUser.prepopulate);
+  obj.getMetadataMap().set(key.UserSurveyResponse, newUser.surveyResponse);
+
   objList.push(obj);
   req.setObjList(objList);
 

@@ -1,20 +1,20 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Navigate } from "react-router-dom";
 
 import {
   DefaultProfileFormProps,
   PlasmicProfileForm,
 } from "component/plasmic/shared/PlasmicProfileForm";
-import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
-import { useCreateUser } from "module/hook/user";
 
 interface ProfileFormProps extends DefaultProfileFormProps {
   isVisible?: any;
   setIsVisible?: any;
   returnTo?: string;
+  onNameChange?: (name: string) => void;
+  onTitleChange?: (title: string) => void;
+  onSubmit?: () => void;
 }
 
 type FormData = {
@@ -23,8 +23,15 @@ type FormData = {
 };
 
 function ProfileForm(props: ProfileFormProps) {
-  const { isVisible, setIsVisible, returnTo, ...rest } = props;
-  const { token } = useContext(AuthContext);
+  const {
+    isVisible,
+    setIsVisible,
+    returnTo,
+    onNameChange,
+    onTitleChange,
+    onSubmit,
+    ...rest
+  } = props;
   const { user: authUser } = useAuth0();
 
   const userContext = useContext(UserContext);
@@ -46,27 +53,19 @@ function ProfileForm(props: ProfileFormProps) {
   });
 
   const values = watch();
-  const { mutate: saveUser } = useCreateUser();
+
+  useEffect(() => {
+    if (onNameChange && values.name) onNameChange(values.name);
+    if (onTitleChange && values.title) onTitleChange(values.title);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSave = (data: FormData) => {
     if (!data.name || !authUser?.email) {
       return;
     }
-
-    saveUser({
-      mail: authUser.email,
-      name: data.name,
-      successUrl: returnTo ?? "/",
-      title: data.title,
-      token: token,
-    });
+    onSubmit?.();
   };
-
-  if (user) {
-    // User already exists, go straight to joining or creating venture.
-    const link = returnTo ?? "/";
-    return <Navigate to={link} />;
-  }
 
   return (
     <PlasmicProfileForm
@@ -88,6 +87,7 @@ function ProfileForm(props: ProfileFormProps) {
         onChange(e: string) {
           setValue("name", e);
           trigger("name");
+          onNameChange?.(e);
         },
         value: values.name,
         message: errors.name?.message,
@@ -106,6 +106,7 @@ function ProfileForm(props: ProfileFormProps) {
         onChange(e: string) {
           setValue("title", e);
           trigger("title");
+          onTitleChange?.(e);
         },
         value: values.title,
         message: errors.title?.message,
