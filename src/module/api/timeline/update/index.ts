@@ -55,6 +55,16 @@ export async function Update(
     patchList.push(descriptionObjJsnPatch);
   }
 
+  if (updateTimeline.icon) {
+    const iconObjJsnPatch = new UpdateI_Obj_Jsnpatch();
+    iconObjJsnPatch.setOpe("replace");
+    iconObjJsnPatch.setPat(
+      `/obj/metadata/${key.TimelineIcon.replace("/", "~1")}`
+    );
+    iconObjJsnPatch.setVal(updateTimeline.icon);
+    patchList.push(iconObjJsnPatch);
+  }
+
   if (updateTimeline.membersWrite !== undefined) {
     const patch = new UpdateI_Obj_Jsnpatch();
     patch.setOpe("replace");

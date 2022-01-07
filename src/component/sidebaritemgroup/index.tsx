@@ -140,6 +140,7 @@ function SidebarItemGroup(props: SidebarItemGroupProps) {
               userRole={timeline.userRole}
               timelineName={timeline.name}
               timelineId={timeline.id}
+              timelineIcon={timeline.icon}
               key={timeline.id}
               ventureId={ventureId}
               ventureName={ventureName}

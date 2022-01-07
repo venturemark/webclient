@@ -8,13 +8,16 @@ type Props = {
   children: ReactNode | null;
   onClose?: () => void;
   onSelect?: (e: string) => void;
+  closeOnSelect?: boolean;
+  containerStyle?: any;
+  buttonStyle?: any;
 };
 
 export function EmojiPicker(props: Props) {
   const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
     useDropdown<HTMLDivElement>({ onClose: props.onClose });
   const [referenceElement, setReferenceElement] =
-    useState<HTMLButtonElement | null>(null);
+    useState<HTMLDivElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
     null
   );
@@ -25,9 +28,9 @@ export function EmojiPicker(props: Props) {
   });
 
   return (
-    <div ref={dropdownRootRef} style={{ zIndex: 100 }}>
-      <button
-        style={{ background: "none", border: "none" }}
+    <div ref={dropdownRootRef} style={{ zIndex: 100, ...props.containerStyle }}>
+      <div
+        style={{ background: "none", border: "none", ...props.buttonStyle }}
         onClick={(e) => {
           e.stopPropagation();
           setDropdownVisible(!dropdownVisible);
@@ -35,11 +38,10 @@ export function EmojiPicker(props: Props) {
             props.onClose();
           }
         }}
-        type="button"
         ref={setReferenceElement}
       >
         {props.children}
-      </button>
+      </div>
 
       {dropdownVisible && (
         <div
@@ -56,6 +58,7 @@ export function EmojiPicker(props: Props) {
             onSelect={(e) => {
               if (!("native" in e)) return;
               props.onSelect && props.onSelect(e.native);
+              props.closeOnSelect && setDropdownVisible(false);
             }}
           />
           <div ref={setArrowElement} style={styles.arrow} />

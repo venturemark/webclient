@@ -6,6 +6,7 @@ export interface ITimeline {
   stat: string;
   ventureId: string;
   userId?: string;
+  icon?: string;
   membersWrite: boolean;
   lastUpdate?: string;
   id: string;
@@ -32,6 +33,7 @@ export interface ICreateTimeline {
   visibility?: string;
   redirectOnSuccess: boolean;
   token: string | null;
+  icon?: string;
 }
 
 export interface IDeleteTimeline {
@@ -50,4 +52,5 @@ export interface IUpdateTimeline {
   visibility?: string;
   successUrl?: string;
   token: string | null;
+  icon?: string;
 }

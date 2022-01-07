@@ -14,6 +14,7 @@ interface TextFieldProps extends PlumeTextFieldProps {
   message?: string;
   children?: ReactNode;
   hasTextHelper: boolean;
+  leftIcon?: Flex<"div">;
 }
 
 function InputText_(
@@ -61,6 +62,7 @@ function InputText_(
         ...plumeProps.variants,
         error: message ? "error" : undefined,
       }}
+      leftIcon={props.leftIcon}
     />
   );
 }
