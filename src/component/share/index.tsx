@@ -5,7 +5,7 @@ import {
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
-import { forwardRef, useContext } from "react";
+import { forwardRef, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import MemberItem from "component/memberitem";
@@ -20,6 +20,7 @@ import {
 import { useDeleteRole } from "module/hook/role";
 import { IInvite } from "module/interface/invite";
 import { TimelineContext } from "context/TimelineContext";
+import { useUpdateTimeline } from "module/hook/timeline";
 
 const emailRegex =
   /^\s*(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;
@@ -47,6 +48,8 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
   });
 
   const values = watch();
+
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const { user } = useContext(UserContext);
   const { token } = useContext(AuthContext);
@@ -138,6 +141,34 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
     isOwner = "isOwner";
   }
 
+  const visibilityToTypeMap: {
+    [key: string]: "members" | "_public" | "_private";
+  } = {
+    public: "_public",
+    private: "_private",
+    member: "members",
+  };
+
+  const { mutate: updateTimeline } = useUpdateTimeline();
+
+  function handleUpdateTimelineVisibility(visibility: string) {
+    if (!currentTimeline) return;
+
+    updateTimeline(
+      {
+        id: currentTimeline?.id,
+        visibility,
+        ventureId: currentTimeline?.ventureId,
+        token,
+      },
+      {
+        onSuccess() {
+          setDropdownVisible(false);
+        },
+      }
+    );
+  }
+
   return (
     <PlasmicShare
       {...props}
@@ -147,7 +178,7 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
       }}
       isOwner={isOwner}
       type={!currentTimeline ? "venture" : "timeline"}
-      email={{
+      inputText={{
         ...register("email", {
           required: true,
           pattern: emailRegex,
@@ -161,6 +192,27 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
       }}
       invite={{
         onPress: () => handleSubmit(handleInvite)(),
+      }}
+      visibilityState={{
+        rename2: (
+          <div onClick={() => handleUpdateTimelineVisibility("private")}>
+            Private
+          </div>
+        ),
+        rename3: (
+          <div onClick={() => handleUpdateTimelineVisibility("member")}>
+            Members
+          </div>
+        ),
+        rename4: (
+          <div onClick={() => handleUpdateTimelineVisibility("public")}>
+            Public
+          </div>
+        ),
+        visibilityType:
+          visibilityToTypeMap[currentTimeline?.visibility || "private"],
+        visible: dropdownVisible,
+        onClick: () => setDropdownVisible(!dropdownVisible),
       }}
       membersContainer={{
         children: members

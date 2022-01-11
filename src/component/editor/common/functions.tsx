@@ -34,3 +34,16 @@ export function isListActive(editor: Editor) {
 
   return !!match;
 }
+
+export function resetEditorSettings(editor: Editor) {
+  Transforms.delete(editor, {
+    at: {
+      anchor: Editor.start(editor, []),
+      focus: Editor.end(editor, []),
+    },
+  });
+
+  if (isListActive(editor)) {
+    toggleList(editor);
+  }
+}

@@ -88,7 +88,7 @@ export const PlasmicContentPost__ArgProps = new Array<ArgPropType>(
 export type PlasmicContentPost__OverridesType = {
   root?: p.Flex<"div">;
   editorContainer?: p.Flex<"div">;
-  textContainer2?: p.Flex<"div">;
+  post?: p.Flex<"div">;
   title?: p.Flex<"div">;
   description?: p.Flex<"div">;
   iconMenu?: p.Flex<"svg">;
@@ -186,11 +186,11 @@ function PlasmicContentPost__RenderFunc(props: {
         >
           <p.Stack
             as={"div"}
-            data-plasmic-name={"textContainer2"}
-            data-plasmic-override={overrides.textContainer2}
+            data-plasmic-name={"post"}
+            data-plasmic-override={overrides.post}
             hasGap={true}
-            className={classNames(projectcss.all, sty.textContainer2, {
-              [sty.textContainer2__state_isOwner]: hasVariant(
+            className={classNames(projectcss.all, sty.post, {
+              [sty.post__state_isOwner]: hasVariant(
                 variants,
                 "state",
                 "isOwner"
@@ -674,7 +674,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "editorContainer",
-    "textContainer2",
+    "post",
     "title",
     "description",
     "iconMenu",
@@ -689,7 +689,7 @@ const PlasmicDescendants = {
   ],
   editorContainer: [
     "editorContainer",
-    "textContainer2",
+    "post",
     "title",
     "description",
     "iconMenu",
@@ -702,7 +702,7 @@ const PlasmicDescendants = {
     "timelineLink",
     "viewReplies",
   ],
-  textContainer2: ["textContainer2", "title", "description"],
+  post: ["post", "title", "description"],
   title: ["title"],
   description: ["description"],
   iconMenu: ["iconMenu"],
@@ -721,7 +721,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   editorContainer: "div";
-  textContainer2: "div";
+  post: "div";
   title: "div";
   description: "div";
   iconMenu: "svg";
@@ -797,7 +797,7 @@ export const PlasmicContentPost = Object.assign(
   {
     // Helper components rendering sub-elements
     editorContainer: makeNodeComponent("editorContainer"),
-    textContainer2: makeNodeComponent("textContainer2"),
+    post: makeNodeComponent("post"),
     title: makeNodeComponent("title"),
     description: makeNodeComponent("description"),
     iconMenu: makeNodeComponent("iconMenu"),

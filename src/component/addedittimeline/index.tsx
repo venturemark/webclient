@@ -96,7 +96,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           desc: data.timelineDescription,
           membersWrite: data.membersWrite,
           ventureId,
-          successUrl: `../../${timelineId}/feed`,
+          successUrl: `/${ventureId}/${timelineId}/feed`,
           token,
         },
         {

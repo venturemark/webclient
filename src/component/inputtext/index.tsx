@@ -3,6 +3,7 @@ import {
   PlumeTextFieldRef,
   useTextField,
 } from "@plasmicapp/plume";
+import { Flex } from "@plasmicapp/react-web";
 import { forwardRef, ReactNode } from "react";
 
 import { PlasmicInputText } from "component/plasmic/shared/PlasmicInputText";
@@ -45,6 +46,11 @@ function InputText_(
     delete input.defaultValue;
   }
 
+  // Plume expects the input element to be called textInput while the current Plasmic design
+  // calls it input2. This assigns the textInput overrides to input2 so that onChange and other
+  // props are passed correctly.
+  plumeProps.overrides.input2 = plumeProps.overrides.textInput as Flex<"input">;
+
   return (
     <PlasmicInputText
       {...plumeProps}
@@ -54,9 +60,6 @@ function InputText_(
       variants={{
         ...plumeProps.variants,
         error: message ? "error" : undefined,
-      }}
-      input2={{
-        props: { value: props.value },
       }}
     />
   );

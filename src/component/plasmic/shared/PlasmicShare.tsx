@@ -33,7 +33,7 @@ import {
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import MemberItem from "../../memberitem/index"; // plasmic-import: D8Y_2wee1o/component
-import VisibilityState from "../../VisibilityState"; // plasmic-import: pG3eTcOvTW0/component
+import VisibilityState from "../../visibilitystate"; // plasmic-import: pG3eTcOvTW0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -348,8 +348,10 @@ function PlasmicShare__RenderFunc(props: {
           />
 
           <Button
-            buttonFeatures={["removeText", "showStartIcon", "nonFullWidth"]}
-            className={classNames("__wab_instance", sty.button__eyLcD)}
+            data-plasmic-name={"invite"}
+            data-plasmic-override={overrides.invite}
+            buttonFeatures={["nonFullWidth", "removeText", "showStartIcon"]}
+            className={classNames("__wab_instance", sty.invite)}
             count={"1"}
             text2={"Button"}
           />
