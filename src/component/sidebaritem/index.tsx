@@ -64,8 +64,8 @@ function SidebarItem(
     };
   } else {
     iconProps.wrap = (node: React.ReactNode) => {
-      return !timelineIcon ? (
-        <span style={{ marginLeft: "10px" }}>😀</span>
+      return timelineIcon ? (
+        <span style={{ marginLeft: "10px" }}>{timelineIcon}</span>
       ) : (
         node
       );
