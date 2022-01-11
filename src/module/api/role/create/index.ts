@@ -12,7 +12,7 @@ export async function Create(newRole: INewRole) {
   const objList = [];
 
   const token = newRole.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   obj.getMetadataMap().set(key.ResourceKind, newRole.resource);
   obj.getMetadataMap().set(key.RoleKind, newRole.role);

@@ -19,7 +19,7 @@ export async function Create(createUpdate: ICreateUpdate): Promise<string> {
   const objList = [];
 
   const token = createUpdate.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   const objAttachmentList = [];
 

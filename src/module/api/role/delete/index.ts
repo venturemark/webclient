@@ -10,7 +10,7 @@ export async function Delete(
   const objList = [];
 
   const token = IDeleteRole.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
