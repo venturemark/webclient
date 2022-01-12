@@ -31,7 +31,8 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
-import Dropdown from "../../dropdown/index"; // plasmic-import: Umq3CDOCIR/component
+import Select from "../../Select"; // plasmic-import: ueoKgZ85w4z/component
+import Select__Option from "../../Select__Option"; // plasmic-import: mb6SKWRg0eo/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -41,19 +42,16 @@ import sty from "./PlasmicReplyContent.module.css"; // plasmic-import: q3VnCwfx2
 import IconDotMenuIcon from "./icons/PlasmicIcon__IconDotMenu"; // plasmic-import: Dz069s-rE/icon
 
 export type PlasmicReplyContent__VariantMembers = {
-  state: "isUser";
-  isUserOnClick: "isUserOnClick";
+  state: "isOwner";
 };
 
 export type PlasmicReplyContent__VariantsArgs = {
-  state?: SingleChoiceArg<"isUser">;
-  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
+  state?: SingleChoiceArg<"isOwner">;
 };
 
 type VariantPropType = keyof PlasmicReplyContent__VariantsArgs;
 export const PlasmicReplyContent__VariantProps = new Array<VariantPropType>(
-  "state",
-  "isUserOnClick"
+  "state"
 );
 
 export type PlasmicReplyContent__ArgsType = {
@@ -75,17 +73,16 @@ export type PlasmicReplyContent__OverridesType = {
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
   span?: p.Flex<"span">;
   iconMenu?: p.Flex<"button">;
-  svg?: p.Flex<"svg">;
-  dropdown?: p.Flex<typeof Dropdown>;
-  deleteOption?: p.Flex<"div">;
+  ownerSelect?: p.Flex<typeof Select>;
+  dropdownIcon?: p.Flex<"svg">;
+  _delete?: p.Flex<typeof Select__Option>;
 };
 
 export interface DefaultReplyContentProps {
   userName?: React.ReactNode;
   text?: React.ReactNode;
   date?: React.ReactNode;
-  state?: SingleChoiceArg<"isUser">;
-  isUserOnClick?: SingleBooleanChoiceArg<"isUserOnClick">;
+  state?: SingleChoiceArg<"isOwner">;
   className?: string;
 }
 
@@ -110,18 +107,10 @@ function PlasmicReplyContent__RenderFunc(props: {
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
         className={classNames(projectcss.all, sty.editorContainer, {
-          [sty.editorContainer__isUserOnClick]: hasVariant(
-            variants,
-            "isUserOnClick",
-            "isUserOnClick"
-          ),
-          [sty.editorContainer__isUserOnClick_state_isUser]:
-            hasVariant(variants, "isUserOnClick", "isUserOnClick") &&
-            hasVariant(variants, "state", "isUser"),
-          [sty.editorContainer__state_isUser]: hasVariant(
+          [sty.editorContainer__state_isOwner]: hasVariant(
             variants,
             "state",
-            "isUser"
+            "isOwner"
           ),
         })}
       >
@@ -141,10 +130,10 @@ function PlasmicReplyContent__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__rqpD, {
-                [sty.freeBox__state_isUser__rqpDFEdPi]: hasVariant(
+                [sty.freeBox__state_isOwner__rqpDFEdPi]: hasVariant(
                   variants,
                   "state",
-                  "isUser"
+                  "isOwner"
                 ),
               })}
             >
@@ -152,10 +141,10 @@ function PlasmicReplyContent__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__iU0A, {
-                  [sty.freeBox__state_isUser__iU0AfEdPi]: hasVariant(
+                  [sty.freeBox__state_isOwner__iU0AfEdPi]: hasVariant(
                     variants,
                     "state",
-                    "isUser"
+                    "isOwner"
                   ),
                 })}
               >
@@ -204,16 +193,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                         className={classNames(
                           projectcss.span,
                           projectcss.__wab_text,
-                          sty.span,
-                          {
-                            [sty.span__state_isUser_isUserOnClick]:
-                              hasVariant(variants, "state", "isUser") &&
-                              hasVariant(
-                                variants,
-                                "isUserOnClick",
-                                "isUserOnClick"
-                              ),
-                          }
+                          sty.span
                         )}
                       >
                         {"•"}
@@ -239,13 +219,13 @@ function PlasmicReplyContent__RenderFunc(props: {
                   </p.Stack>
                 </div>
 
-                {(hasVariant(variants, "state", "isUser") ? true : false) ? (
+                {(hasVariant(variants, "state", "isOwner") ? true : false) ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox___2Fduc, {
-                      [sty.freeBox__state_isUser___2FducFEdPi]: hasVariant(
+                      [sty.freeBox__state_isOwner___2FducFEdPi]: hasVariant(
                         variants,
                         "state",
-                        "isUser"
+                        "isOwner"
                       ),
                     })}
                   >
@@ -254,99 +234,43 @@ function PlasmicReplyContent__RenderFunc(props: {
                       data-plasmic-override={overrides.iconMenu}
                       className={classNames(projectcss.button, sty.iconMenu)}
                     >
-                      <IconDotMenuIcon
-                        data-plasmic-name={"svg"}
-                        data-plasmic-override={overrides.svg}
-                        className={classNames(projectcss.all, sty.svg, {
-                          [sty.svg__isUserOnClick]: hasVariant(
-                            variants,
-                            "isUserOnClick",
-                            "isUserOnClick"
-                          ),
-                          [sty.svg__isUserOnClick_state_isUser]:
-                            hasVariant(
+                      <Select
+                        data-plasmic-name={"ownerSelect"}
+                        data-plasmic-override={overrides.ownerSelect}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.ownerSelect,
+                          {
+                            [sty.ownerSelect__state_isOwner]: hasVariant(
                               variants,
-                              "isUserOnClick",
-                              "isUserOnClick"
-                            ) && hasVariant(variants, "state", "isUser"),
-                          [sty.svg__state_isUser]: hasVariant(
-                            variants,
-                            "state",
-                            "isUser"
-                          ),
-                        })}
-                        role={"img"}
-                      />
-
-                      {(
-                        hasVariant(
-                          variants,
-                          "isUserOnClick",
-                          "isUserOnClick"
-                        ) && hasVariant(variants, "state", "isUser")
-                          ? true
-                          : false
-                      ) ? (
-                        <Dropdown
-                          data-plasmic-name={"dropdown"}
-                          data-plasmic-override={overrides.dropdown}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.dropdown,
-                            {
-                              [sty.dropdown__isUserOnClick]: hasVariant(
-                                variants,
-                                "isUserOnClick",
-                                "isUserOnClick"
-                              ),
-                              [sty.dropdown__isUserOnClick_state_isUser]:
-                                hasVariant(
-                                  variants,
-                                  "isUserOnClick",
-                                  "isUserOnClick"
-                                ) && hasVariant(variants, "state", "isUser"),
-                              [sty.dropdown__state_isUser]: hasVariant(
-                                variants,
-                                "state",
-                                "isUser"
-                              ),
-                            }
-                          )}
-                          rename2={
-                            <div
-                              data-plasmic-name={"deleteOption"}
-                              data-plasmic-override={overrides.deleteOption}
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.deleteOption,
-                                {
-                                  [sty.deleteOption__isUserOnClick_state_isUser]:
-                                    hasVariant(
-                                      variants,
-                                      "isUserOnClick",
-                                      "isUserOnClick"
-                                    ) &&
-                                    hasVariant(variants, "state", "isUser"),
-                                  [sty.deleteOption__state_isUser]: hasVariant(
-                                    variants,
-                                    "state",
-                                    "isUser"
-                                  ),
-                                }
-                              )}
-                            >
-                              {hasVariant(
-                                variants,
-                                "isUserOnClick",
-                                "isUserOnClick"
-                              ) && hasVariant(variants, "state", "isUser")
-                                ? "Delete"
-                                : "Remove"}
-                            </div>
+                              "state",
+                              "isOwner"
+                            ),
                           }
-                        />
-                      ) : null}
+                        )}
+                        color={"clear" as const}
+                        dropdownIcon={
+                          <IconDotMenuIcon
+                            data-plasmic-name={"dropdownIcon"}
+                            data-plasmic-override={overrides.dropdownIcon}
+                            className={classNames(
+                              projectcss.all,
+                              sty.dropdownIcon
+                            )}
+                            role={"img"}
+                          />
+                        }
+                        isOwner={"isOwner" as const}
+                      >
+                        <Select__Option
+                          data-plasmic-name={"_delete"}
+                          data-plasmic-override={overrides._delete}
+                          className={classNames("__wab_instance", sty._delete)}
+                          value={"value1" as const}
+                        >
+                          {"Delete"}
+                        </Select__Option>
+                      </Select>
                     </button>
                   </div>
                 ) : null}
@@ -376,25 +300,25 @@ const PlasmicDescendants = {
     "photoAvatar",
     "span",
     "iconMenu",
-    "svg",
-    "dropdown",
-    "deleteOption",
+    "ownerSelect",
+    "dropdownIcon",
+    "_delete",
   ],
   editorContainer: [
     "editorContainer",
     "photoAvatar",
     "span",
     "iconMenu",
-    "svg",
-    "dropdown",
-    "deleteOption",
+    "ownerSelect",
+    "dropdownIcon",
+    "_delete",
   ],
   photoAvatar: ["photoAvatar"],
   span: ["span"],
-  iconMenu: ["iconMenu", "svg", "dropdown", "deleteOption"],
-  svg: ["svg"],
-  dropdown: ["dropdown", "deleteOption"],
-  deleteOption: ["deleteOption"],
+  iconMenu: ["iconMenu", "ownerSelect", "dropdownIcon", "_delete"],
+  ownerSelect: ["ownerSelect", "dropdownIcon", "_delete"],
+  dropdownIcon: ["dropdownIcon"],
+  _delete: ["_delete"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -405,9 +329,9 @@ type NodeDefaultElementType = {
   photoAvatar: typeof PhotoAvatar;
   span: "span";
   iconMenu: "button";
-  svg: "svg";
-  dropdown: typeof Dropdown;
-  deleteOption: "div";
+  ownerSelect: typeof Select;
+  dropdownIcon: "svg";
+  _delete: typeof Select__Option;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -475,9 +399,9 @@ export const PlasmicReplyContent = Object.assign(
     photoAvatar: makeNodeComponent("photoAvatar"),
     span: makeNodeComponent("span"),
     iconMenu: makeNodeComponent("iconMenu"),
-    svg: makeNodeComponent("svg"),
-    dropdown: makeNodeComponent("dropdown"),
-    deleteOption: makeNodeComponent("deleteOption"),
+    ownerSelect: makeNodeComponent("ownerSelect"),
+    dropdownIcon: makeNodeComponent("dropdownIcon"),
+    _delete: makeNodeComponent("_delete"),
 
     // Metadata about props expected for PlasmicReplyContent
     internalVariantProps: PlasmicReplyContent__VariantProps,

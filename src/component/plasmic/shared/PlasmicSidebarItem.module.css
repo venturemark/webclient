@@ -85,7 +85,7 @@
   margin-left: 6px;
 }
 .itemContainer__itemType_createTimeline {
-  opacity: 0;
+  opacity: 1;
   background: none;
   border: 1px dashed rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
@@ -120,6 +120,7 @@
   justify-content: flex-start;
   height: auto;
   width: auto;
+  display: flex;
   padding: 6px;
 }
 .freeBox__isOwner__lklHXgVg8 {
@@ -133,9 +134,13 @@
 }
 .svg__itemType_createTimeline__w77ZOuGst {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
+  display: block;
 }
 .icon:global(.__wab_instance) {
   position: relative;
+}
+.icon__itemType_createTimeline:global(.__wab_instance) {
+  display: none;
 }
 .svg___6Fx5D {
   position: relative;
@@ -189,7 +194,8 @@
   min-width: 0;
 }
 .freeBox__itemType_createTimeline__zwdJsOuGst {
-  opacity: 0;
+  opacity: 1;
+  display: flex;
 }
 .freeBox__isPublic__zwdJsPZwt {
   padding-left: 6px;
@@ -277,17 +283,23 @@
   flex-shrink: 0;
   display: none;
 }
+.freeBox__itemType_createTimeline__xZeoSOuGst {
+  display: none;
+}
 .freeBox__isOwner__xZeoSXgVg8 {
+  display: none;
+}
+.freeBox__hasNewActivity__xZeoS0PiUm {
   display: none;
 }
 .root:hover .freeBox__xZeoS {
   display: flex;
 }
 .iconButton:global(.__wab_instance) {
-  display: none;
+  display: flex;
 }
 .iconButton__isOwner:global(.__wab_instance) {
-  display: none;
+  display: flex;
 }
 .root__isOwner:hover .iconButton__isOwner:global(.__wab_instance) {
   display: flex;

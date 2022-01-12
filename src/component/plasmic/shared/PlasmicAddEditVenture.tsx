@@ -134,12 +134,14 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           className={classNames("__wab_instance", sty.iconButton)}
           iconSize={"large" as const}
         >
-          <IconRightIcon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
-            role={"img"}
-          />
+          {true ? (
+            <IconRightIcon
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames(projectcss.all, sty.svg)}
+              role={"img"}
+            />
+          ) : null}
         </IconButton>
 
         <p.Stack

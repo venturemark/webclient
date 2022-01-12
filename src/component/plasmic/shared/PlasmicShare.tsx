@@ -33,7 +33,7 @@ import {
 import InputText from "../../inputtext/index"; // plasmic-import: v0nNSTRV39/component
 import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
 import MemberItem from "../../memberitem/index"; // plasmic-import: D8Y_2wee1o/component
-import VisibilityState from "../../visibilitystate"; // plasmic-import: pG3eTcOvTW0/component
+import VisibilityState from "../../visibilitystate/index"; // plasmic-import: pG3eTcOvTW0/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -348,10 +348,8 @@ function PlasmicShare__RenderFunc(props: {
           />
 
           <Button
-            data-plasmic-name={"invite"}
-            data-plasmic-override={overrides.invite}
-            buttonFeatures={["nonFullWidth", "removeText", "showStartIcon"]}
-            className={classNames("__wab_instance", sty.invite)}
+            buttonFeatures={["removeText", "showStartIcon", "nonFullWidth"]}
+            className={classNames("__wab_instance", sty.button__eyLcD)}
             count={"1"}
             text2={"Button"}
           />
@@ -365,10 +363,19 @@ function PlasmicShare__RenderFunc(props: {
           <div
             data-plasmic-name={"wrapper"}
             data-plasmic-override={overrides.wrapper}
-            className={classNames(projectcss.all, sty.wrapper)}
+            className={classNames(projectcss.all, sty.wrapper, {
+              [sty.wrapper__visibilitySelect__private]: hasVariant(
+                variants,
+                "visibilitySelect",
+                "_private"
+              ),
+            })}
           >
             <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__dYKyI)}
+              className={classNames("__wab_instance", sty.memberItem__dYKyI, {
+                [sty.memberItem__visibilitySelect__private__dYKyIdcTzL]:
+                  hasVariant(variants, "visibilitySelect", "_private"),
+              })}
               isOwner={"isOwner" as const}
               slot3={p.renderPlasmicSlot({
                 defaultContents: "example@email.com",
@@ -563,7 +570,6 @@ function PlasmicShare__RenderFunc(props: {
               "members"
             ),
           })}
-          isDropdown={"isDropdown" as const}
           slot2={p.renderPlasmicSlot({
             defaultContents: (
               <div

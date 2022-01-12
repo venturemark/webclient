@@ -123,6 +123,7 @@ function PlasmicFeedUpdate__RenderFunc(props: {
             ),
           })}
           content={["hasDescription"]}
+          isOwner={"isOwner" as const}
           postType={"isPosted" as const}
         />
       ) : null}
