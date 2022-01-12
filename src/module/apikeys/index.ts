@@ -1,29 +1,29 @@
-export const UserID = "user.breadcrumb.so/id";
-export const VentureID = "venture.breadcrumb.so/id";
-export const TimelineID = "timeline.breadcrumb.so/id";
-export const UpdateID = "update.breadcrumb.so/id";
-export const MessageID = "message.breadcrumb.so/id";
-export const RoleID = "role.breadcrumb.so/id";
-export const InviteID = "invite.breadcrumb.so/id";
-export const SubjectID = "subject.breadcrumb.so/id";
+export const UserID = "user.venturemark.co/id";
+export const VentureID = "venture.venturemark.co/id";
+export const TimelineID = "timeline.venturemark.co/id";
+export const UpdateID = "update.venturemark.co/id";
+export const MessageID = "message.venturemark.co/id";
+export const RoleID = "role.venturemark.co/id";
+export const InviteID = "invite.venturemark.co/id";
+export const SubjectID = "subject.venturemark.co/id";
 
-export const UserStatus = "user.breadcrumb.so/status";
-export const VentureStatus = "venture.breadcrumb.so/status";
-export const TimelineStatus = "timeline.breadcrumb.so/status";
-export const UpdateStatus = "update.breadcrumb.so/status";
-export const MessageStatus = "message.breadcrumb.so/status";
-export const RoleStatus = "role.breadcrumb.so/status";
-export const InviteStatus = "invite.breadcrumb.so/status";
+export const UserStatus = "user.venturemark.co/status";
+export const VentureStatus = "venture.venturemark.co/status";
+export const TimelineStatus = "timeline.venturemark.co/status";
+export const UpdateStatus = "update.venturemark.co/status";
+export const MessageStatus = "message.venturemark.co/status";
+export const RoleStatus = "role.venturemark.co/status";
+export const InviteStatus = "invite.venturemark.co/status";
 
-export const RoleKind = "role.breadcrumb.so/kind";
+export const RoleKind = "role.venturemark.co/kind";
 
-export const ResourceKind = "resource.breadcrumb.so/kind";
-export const ResourceVisibility = "resource.breadcrumb.so/visibility";
+export const ResourceKind = "resource.venturemark.co/kind";
+export const ResourceVisibility = "resource.venturemark.co/visibility";
 
-export const InviteCode = "invite.breadcrumb.so/code";
+export const InviteCode = "invite.venturemark.co/code";
 
-export const PermissionModel = "permission.breadcrumb.so/model";
+export const PermissionModel = "permission.venturemark.co/model";
 
-export const TimelineLastUpdate = "timeline.breadcrumb.so/last-update";
+export const TimelineLastUpdate = "timeline.venturemark.co/last-update";
 
-export const UpdateFormat = "update.breadcrumb.so/format";
+export const UpdateFormat = "update.venturemark.co/format";
