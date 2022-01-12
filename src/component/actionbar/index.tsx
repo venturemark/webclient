@@ -396,7 +396,7 @@ export default function ActionBar(props: ActionBarProps) {
         ...props.contentPost,
       }}
       style={{
-        zIndex: 2,
+        zIndex: props.postType === "isPosted" ? 2 : 3,
       }}
       postType={
         isActive
