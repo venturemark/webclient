@@ -2,7 +2,12 @@ import { TextareaAutosize, TextareaAutosizeProps } from "@material-ui/core";
 import { MultiChoiceArg } from "@plasmicapp/react-web";
 import { ContentPostProps } from "component/contentpost";
 import { CountIndicator } from "component/countindicator";
-import { ComposeEditor, createEditor, EditorProps } from "component/editor";
+import {
+  ComposeEditor,
+  createEditor,
+  EditorProps,
+  useEditor,
+} from "component/editor";
 import {
   isListActive,
   resetEditorSettings,
@@ -18,7 +23,6 @@ import {
 import { AuthContext } from "context/AuthContext";
 import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
-import { UpdateEditorContext } from "context/UpdateEditorContext";
 import "emoji-mart/css/emoji-mart.css";
 import useScript from "module/hook/ui/useScript";
 import { useCreateUpdate } from "module/hook/update";
@@ -34,22 +38,28 @@ import {
 } from "react";
 import { Editor, Element, Point, Range, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
+import { get, storeTitle } from "module/store";
 
 interface ActionBarProps extends DefaultActionBarProps {
   contentPost?: ContentPostProps;
 }
 
+const useTitle = (initialTitle: string) => {
+  const savedTitle = get("composeEditor.title");
+  const [title, setTitle] = useState(savedTitle || initialTitle);
+
+  useEffect(() => {
+    storeTitle(title);
+  }, [title]);
+  return { title, setTitle };
+};
+
 export default function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentVentureTimelines } =
     useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
-  const {
-    title,
-    editorShape,
-    setTitle,
-    setEditorShape,
-    resetUpdateEditor: resetUpdateEditorContext,
-  } = useContext(UpdateEditorContext);
+  const { editorShape, setEditorShape } = useEditor();
+  const { title, setTitle } = useTitle("");
   const { token } = useContext(AuthContext);
 
   const [selectedTimelines, setSelectedTimelines] = useState(
@@ -238,7 +248,15 @@ export default function ActionBar(props: ActionBarProps) {
       );
 
       //reset
-      resetUpdateEditorContext();
+      setEditorShape({
+        value: [],
+        string: "",
+        numberValue: 0,
+        error: undefined,
+        hasContent: undefined,
+        progress: 0,
+      });
+      setTitle("");
       resetEditorSettings(editor);
 
       setTouched({
