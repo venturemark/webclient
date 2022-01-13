@@ -6,9 +6,10 @@ export const save = (content: Node[]) => {
 };
 
 export const get = (name: string) => {
-  return localStorage[name] || "";
-};
-
-export const storeTitle = (title: string) => {
-  localStorage.setItem("composeEditor.title", title);
+  switch (name) {
+    case "composeEditor.content":
+      return localStorage[name];
+    default:
+      return "";
+  }
 };

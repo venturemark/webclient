@@ -7,10 +7,15 @@ import LoadingBar from "component/loadingbar";
 import { AuthContext } from "context/AuthContext";
 import { IUserContext, UserContext } from "context/UserContext";
 import { IVentureContext, VentureContext } from "context/VentureContext";
+import {
+  defaultEditorShape,
+  UpdateEditorContext,
+} from "context/UpdateEditorContext";
+import { useEditor } from "component/editor";
 import { useAuth } from "module/auth";
 import { useCurrentUser } from "module/hook/user";
 import { useVenturesByUser } from "module/hook/venture";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Navigate, Route, Routes } from "react-router";
 import { AuthRoute } from "./AuthRoute";
 import { VentureRoutes } from "./VentureRoutes";
@@ -49,40 +54,55 @@ export function App() {
     status: userStatus,
   };
 
+  const { editorShape, setEditorShape } = useEditor();
+  const [updateEditorTitle, setUpdateEditorTitle] = useState<string>("");
+  const updateEditorContext = {
+    editorShape,
+    title: updateEditorTitle,
+    setEditorShape,
+    setTitle: setUpdateEditorTitle,
+    resetUpdateEditor: () => {
+      setEditorShape(defaultEditorShape);
+      setUpdateEditorTitle("");
+    },
+  };
+
   return (
     <AuthContext.Provider value={authContext}>
       <UserContext.Provider value={userContext}>
         <VentureContext.Provider value={ventureContext}>
-          <Routes>
-            <Route element={<AuthRoute requiredAuth="unauthenticated" />}>
-              <Route path="signin" element={<Signin />} />
-            </Route>
-            <Route
-              element={
-                <AuthRoute
-                  requiredAuth="authenticated"
-                  requiredProfile="not-exists"
-                />
-              }
-            >
-              <Route path="profile" element={<Profile />} />
-            </Route>
-            <Route
-              element={
-                <AuthRoute
-                  requiredAuth="authenticated"
-                  requiredProfile="exists"
-                />
-              }
-            >
-              <Route path="invite" element={<JoinVenture />} />
-              <Route path="begin" element={<Begin />} />
-              <Route path="editprofile" element={<EditProfile />} />
-              <Route path="newventure" element={<NewVenture />} />
-            </Route>
-            <Route path=":ventureId/*" element={<VentureRoutes />} />
-            <Route path="/" element={<VentureRedirect />} />
-          </Routes>
+          <UpdateEditorContext.Provider value={updateEditorContext}>
+            <Routes>
+              <Route element={<AuthRoute requiredAuth="unauthenticated" />}>
+                <Route path="signin" element={<Signin />} />
+              </Route>
+              <Route
+                element={
+                  <AuthRoute
+                    requiredAuth="authenticated"
+                    requiredProfile="not-exists"
+                  />
+                }
+              >
+                <Route path="profile" element={<Profile />} />
+              </Route>
+              <Route
+                element={
+                  <AuthRoute
+                    requiredAuth="authenticated"
+                    requiredProfile="exists"
+                  />
+                }
+              >
+                <Route path="invite" element={<JoinVenture />} />
+                <Route path="begin" element={<Begin />} />
+                <Route path="editprofile" element={<EditProfile />} />
+                <Route path="newventure" element={<NewVenture />} />
+              </Route>
+              <Route path=":ventureId/*" element={<VentureRoutes />} />
+              <Route path="/" element={<VentureRedirect />} />
+            </Routes>
+          </UpdateEditorContext.Provider>
         </VentureContext.Provider>
       </UserContext.Provider>
     </AuthContext.Provider>
