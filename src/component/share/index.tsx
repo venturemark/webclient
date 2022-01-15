@@ -5,7 +5,7 @@ import {
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 import { SingleBooleanChoiceArg } from "@plasmicapp/react-web";
-import { forwardRef, useContext, useState } from "react";
+import { forwardRef, useContext } from "react";
 import { useForm } from "react-hook-form";
 
 import MemberItem from "component/memberitem";
@@ -21,6 +21,7 @@ import { useDeleteRole } from "module/hook/role";
 import { IInvite } from "module/interface/invite";
 import { TimelineContext } from "context/TimelineContext";
 import { useUpdateTimeline } from "module/hook/timeline";
+import Select from "component/Select";
 
 const emailRegex =
   /^\s*(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;
@@ -48,8 +49,6 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
   });
 
   const values = watch();
-
-  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const { user } = useContext(UserContext);
   const { token } = useContext(AuthContext);
@@ -153,20 +152,14 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
 
   function handleUpdateTimelineVisibility(visibility: string) {
     if (!currentTimeline) return;
+    if (visibility === currentTimeline.visibility) return;
 
-    updateTimeline(
-      {
-        id: currentTimeline?.id,
-        visibility,
-        ventureId: currentTimeline?.ventureId,
-        token,
-      },
-      {
-        onSuccess() {
-          setDropdownVisible(false);
-        },
-      }
-    );
+    updateTimeline({
+      id: currentTimeline?.id,
+      visibility,
+      ventureId: currentTimeline?.ventureId,
+      token,
+    });
   }
 
   return (
@@ -194,72 +187,84 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
         onPress: () => handleSubmit(handleInvite)(),
       }}
       visibilityState={{
-        rename2: (
-          <div onClick={() => handleUpdateTimelineVisibility("private")}>
-            Private
-          </div>
-        ),
-        rename3: (
-          <div onClick={() => handleUpdateTimelineVisibility("member")}>
-            Members
-          </div>
-        ),
-        rename4: (
-          <div onClick={() => handleUpdateTimelineVisibility("public")}>
-            Public
-          </div>
-        ),
-        visibilityType:
-          visibilityToTypeMap[currentTimeline?.visibility || "private"],
-        visible: dropdownVisible,
-        onClick: () => setDropdownVisible(!dropdownVisible),
+        props: {
+          visibilityType:
+            visibilityToTypeMap[currentTimeline?.visibility || "private"],
+          select: {
+            props: {
+              "aria-label": "Visibility state",
+              value: currentTimeline?.visibility || "private",
+              onChange: handleUpdateTimelineVisibility,
+              children: (
+                <>
+                  <Select.Option value={"private"} children={"Private"} />
+                  <Select.Option value={"member"} children={"Member"} />
+                  <Select.Option value={"public"} children={"Public"} />
+                </>
+              ),
+            },
+          },
+        },
       }}
       membersContainer={{
-        children: members
-          .map((member) => {
-            let userVariant: "isAdmin" | "isMember" | "isSelf" = "isMember";
-            if (member.user.id === user?.id) {
-              userVariant = "isSelf";
-            } else if (
-              member.role.role === "owner" ||
-              member.role.role === "admin"
-            ) {
-              userVariant = "isAdmin";
-            }
-
-            return (
-              <MemberItem
-                key={member.user.id}
-                userName={member.user.name}
-                user={member.user}
-                userVariant={userVariant}
-                ventureTimeline={currentTimeline ? "isTimeline" : undefined}
-                isOwner={isOwner}
-                handleClick={
-                  isOwner
-                    ? () => handleRemoveMemberRole(member.role.id)
-                    : undefined
+        children: (
+          <div
+            style={{
+              paddingLeft: 40,
+              paddingRight: 40,
+            }}
+          >
+            {members
+              .map((member) => {
+                let userVariant: "isAdmin" | "isMember" | "isSelf" = "isMember";
+                if (member.user.id === user?.id) {
+                  userVariant = "isSelf";
+                } else if (
+                  member.role.role === "owner" ||
+                  member.role.role === "admin"
+                ) {
+                  userVariant = "isAdmin";
                 }
-              />
-            );
-          })
-          .concat(
-            invites.map((invite) => {
-              return (
-                <MemberItem
-                  key={invite.id}
-                  userName={invite.email}
-                  user={{ name: invite.email }}
-                  userVariant={"isRequested"}
-                  ventureTimeline={currentTimeline ? "isTimeline" : undefined}
-                  isOwner={isOwner}
-                  handleClick={
-                    isOwner ? () => handleDeleteInvite(invite.id) : undefined
-                  }
-                />
-              );
-            })
-          ),
+
+                return (
+                  <MemberItem
+                    key={member.user.id}
+                    userName={member.user.name}
+                    user={member.user}
+                    userVariant={userVariant}
+                    ventureTimeline={currentTimeline ? "isTimeline" : undefined}
+                    isOwner={isOwner}
+                    handleClick={
+                      isOwner
+                        ? () => handleRemoveMemberRole(member.role.id)
+                        : undefined
+                    }
+                  />
+                );
+              })
+              .concat(
+                invites.map((invite) => {
+                  return (
+                    <MemberItem
+                      key={invite.id}
+                      userName={invite.email}
+                      user={{ name: invite.email }}
+                      userVariant={"isRequested"}
+                      ventureTimeline={
+                        currentTimeline ? "isTimeline" : undefined
+                      }
+                      isOwner={isOwner}
+                      handleClick={
+                        isOwner
+                          ? () => handleDeleteInvite(invite.id)
+                          : undefined
+                      }
+                    />
+                  );
+                })
+              )}
+          </div>
+        ),
       }}
     />
   );

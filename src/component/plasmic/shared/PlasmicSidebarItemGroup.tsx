@@ -477,11 +477,13 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
         </p.Stack>
       ) : null}
       {(
-        hasVariant(variants, "isOwner", "isOwner")
+        hasVariant(variants, "isOwner", "isOwner") && triggers.hover_root
+          ? true
+          : hasVariant(variants, "isOwner", "isOwner")
           ? true
           : hasVariant(variants, "isCollapsed", "isCollapsed")
           ? true
-          : false
+          : true
       ) ? (
         <SidebarItem
           data-plasmic-name={"newTimeline"}

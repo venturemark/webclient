@@ -89,49 +89,24 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
+  height: auto;
   padding: 0px;
   border-width: 0px;
 }
-.freeBox__isUserOnClick__vVNrvg87Sf {
-  display: flex;
-}
-.iconMenu {
-  object-fit: cover;
-  width: 16px;
-  height: 26px;
-  color: #4d4d4d;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-.iconMenu__isUserOnClick {
-  display: none;
-}
-.iconMenu__state_isOwner_isUserOnClick {
-  display: block;
-}
-.dropdown:global(.__wab_instance) {
+.ownerSelect:global(.__wab_instance) {
+  max-width: 100%;
   position: relative;
-  z-index: 99;
-}
-.dropdown__state_isOwner:global(.__wab_instance) {
-  display: none;
-}
-.dropdown__isUserOnClick:global(.__wab_instance) {
-  position: absolute;
-  left: auto;
-  top: 26px;
-  right: 1px;
-  display: none;
-}
-.dropdown__isUserOnClick_state_isOwner:global(.__wab_instance) {
-  position: absolute;
-  left: auto;
-  top: 33px;
-  right: 0px;
-  display: flex;
-}
-.archiveOption {
   height: auto;
+}
+.dropdownIcon {
+  position: relative;
+  object-fit: cover;
+  width: 14px;
+  height: 20px;
+  color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
+}
+.remove:global(.__wab_instance) {
+  position: relative;
 }
 .actionMedia:global(.__wab_instance) {
   position: relative;

@@ -28,7 +28,7 @@ export default function MainHeader(props: MainHeaderProps) {
       timelineName={currentTimeline?.name}
       headerStyles={
         (variantType === "isVenture" && !ventureId) || !ventureId
-          ? "createNewVenture"
+          ? "onboardingHeader"
           : !timelineId
           ? "ventureHeader"
           : "timelineHeader"

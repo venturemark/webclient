@@ -31,8 +31,8 @@ import {
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
 import PhotoAvatar from "../../photoavatar/index"; // plasmic-import: uaoIqTcPRC-/component
-import IconButton from "../../iconbutton/index"; // plasmic-import: UIpuE7M1YY/component
-import ListItem from "../../listitem/index"; // plasmic-import: q8aEgDsN8_/component
+import Select from "../../Select"; // plasmic-import: ueoKgZ85w4z/component
+import Select__Option from "../../Select__Option"; // plasmic-import: mb6SKWRg0eo/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -46,7 +46,6 @@ export type PlasmicMemberItem__VariantMembers = {
   ventureTimeline: "isTimeline";
   userVariant: "isAdmin" | "isRequested" | "isMember" | "isSelf";
   isOwner: "isOwner";
-  isDropdown: "isDropdown";
 };
 
 export type PlasmicMemberItem__VariantsArgs = {
@@ -55,15 +54,13 @@ export type PlasmicMemberItem__VariantsArgs = {
     "isAdmin" | "isRequested" | "isMember" | "isSelf"
   >;
   isOwner?: SingleBooleanChoiceArg<"isOwner">;
-  isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
 };
 
 type VariantPropType = keyof PlasmicMemberItem__VariantsArgs;
 export const PlasmicMemberItem__VariantProps = new Array<VariantPropType>(
   "ventureTimeline",
   "userVariant",
-  "isOwner",
-  "isDropdown"
+  "isOwner"
 );
 
 export type PlasmicMemberItem__ArgsType = {
@@ -80,9 +77,10 @@ export const PlasmicMemberItem__ArgProps = new Array<ArgPropType>(
 export type PlasmicMemberItem__OverridesType = {
   root?: p.Flex<"div">;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
-  iconButton?: p.Flex<typeof IconButton>;
-  dropdown?: p.Flex<"div">;
-  removeInvitation?: p.Flex<typeof ListItem>;
+  svg?: p.Flex<"svg">;
+  ownerSelect?: p.Flex<typeof Select>;
+  dropdownIcon?: p.Flex<"svg">;
+  remove?: p.Flex<typeof Select__Option>;
 };
 
 export interface DefaultMemberItemProps {
@@ -93,7 +91,6 @@ export interface DefaultMemberItemProps {
     "isAdmin" | "isRequested" | "isMember" | "isSelf"
   >;
   isOwner?: SingleBooleanChoiceArg<"isOwner">;
-  isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
   className?: string;
 }
 
@@ -113,27 +110,10 @@ function PlasmicMemberItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isDropdown]: hasVariant(
-          variants,
-          "isDropdown",
-          "isDropdown"
-        ),
         [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-        [sty.root__isOwner_isDropdown_userVariant_isMember]:
-          hasVariant(variants, "isOwner", "isOwner") &&
-          hasVariant(variants, "isDropdown", "isDropdown") &&
-          hasVariant(variants, "userVariant", "isMember"),
-        [sty.root__isOwner_isDropdown_userVariant_isRequested]:
-          hasVariant(variants, "isOwner", "isOwner") &&
-          hasVariant(variants, "isDropdown", "isDropdown") &&
-          hasVariant(variants, "userVariant", "isRequested"),
         [sty.root__isOwner_userVariant_isAdmin]:
           hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "userVariant", "isAdmin"),
-        [sty.root__isOwner_userVariant_isAdmin_isDropdown]:
-          hasVariant(variants, "isOwner", "isOwner") &&
-          hasVariant(variants, "userVariant", "isAdmin") &&
-          hasVariant(variants, "isDropdown", "isDropdown"),
         [sty.root__isOwner_userVariant_isMember]:
           hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "userVariant", "isMember"),
@@ -238,30 +218,32 @@ function PlasmicMemberItem__RenderFunc(props: {
             : true
         ) ? (
           <IconAdminIcon
-            className={classNames(projectcss.all, sty.svg__dd2Hx, {
-              [sty.svg__isOwner_userVariant_isAdmin__dd2HXpkRzz35Uok]:
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames(projectcss.all, sty.svg, {
+              [sty.svg__isOwner_userVariant_isAdmin]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "userVariant", "isAdmin"),
-              [sty.svg__isOwner_userVariant_isMember__dd2HXpkRzzGdyZr]:
+              [sty.svg__isOwner_userVariant_isMember]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "userVariant", "isMember"),
-              [sty.svg__isOwner_userVariant_isRequested__dd2HXpkRzzOSddm]:
+              [sty.svg__isOwner_userVariant_isRequested]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "userVariant", "isRequested"),
-              [sty.svg__isOwner_userVariant_isSelf__dd2HXpkRzzAAx2Z]:
+              [sty.svg__isOwner_userVariant_isSelf]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "userVariant", "isSelf"),
-              [sty.svg__userVariant_isMember__dd2HxgdyZr]: hasVariant(
+              [sty.svg__userVariant_isMember]: hasVariant(
                 variants,
                 "userVariant",
                 "isMember"
               ),
-              [sty.svg__userVariant_isRequested__dd2HXoSddm]: hasVariant(
+              [sty.svg__userVariant_isRequested]: hasVariant(
                 variants,
                 "userVariant",
                 "isRequested"
               ),
-              [sty.svg__userVariant_isSelf__dd2HxaAx2Z]: hasVariant(
+              [sty.svg__userVariant_isSelf]: hasVariant(
                 variants,
                 "userVariant",
                 "isSelf"
@@ -301,203 +283,47 @@ function PlasmicMemberItem__RenderFunc(props: {
           })}
         >
           {(
-            hasVariant(variants, "userVariant", "isSelf") &&
             hasVariant(variants, "isOwner", "isOwner")
               ? true
-              : hasVariant(variants, "isOwner", "isOwner")
-              ? true
               : hasVariant(variants, "userVariant", "isSelf")
-              ? false
-              : false
+              ? true
+              : true
           ) ? (
-            <IconButton
-              data-plasmic-name={"iconButton"}
-              data-plasmic-override={overrides.iconButton}
-              className={classNames("__wab_instance", sty.iconButton, {
-                [sty.iconButton__isDropdown]: hasVariant(
-                  variants,
-                  "isDropdown",
-                  "isDropdown"
-                ),
-                [sty.iconButton__isDropdown_isOwner_userVariant_isMember]:
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "userVariant", "isMember"),
-                [sty.iconButton__isDropdown_isOwner_userVariant_isRequested]:
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "userVariant", "isRequested"),
-                [sty.iconButton__isDropdown_isOwner_userVariant_isSelf]:
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "userVariant", "isSelf"),
-                [sty.iconButton__isDropdown_userVariant_isAdmin_isOwner]:
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "userVariant", "isAdmin") &&
-                  hasVariant(variants, "isOwner", "isOwner"),
-                [sty.iconButton__isOwner]: hasVariant(
+            <Select
+              data-plasmic-name={"ownerSelect"}
+              data-plasmic-override={overrides.ownerSelect}
+              className={classNames("__wab_instance", sty.ownerSelect, {
+                [sty.ownerSelect__isOwner]: hasVariant(
                   variants,
                   "isOwner",
                   "isOwner"
                 ),
-                [sty.iconButton__userVariant_isAdmin]: hasVariant(
-                  variants,
-                  "userVariant",
-                  "isAdmin"
-                ),
-                [sty.iconButton__userVariant_isAdmin_isDropdown]:
-                  hasVariant(variants, "userVariant", "isAdmin") &&
-                  hasVariant(variants, "isDropdown", "isDropdown"),
-                [sty.iconButton__userVariant_isRequested]: hasVariant(
-                  variants,
-                  "userVariant",
-                  "isRequested"
-                ),
-                [sty.iconButton__userVariant_isSelf]: hasVariant(
+                [sty.ownerSelect__userVariant_isSelf]: hasVariant(
                   variants,
                   "userVariant",
                   "isSelf"
                 ),
-                [sty.iconButton__userVariant_isSelf_isOwner]:
-                  hasVariant(variants, "userVariant", "isSelf") &&
-                  hasVariant(variants, "isOwner", "isOwner"),
               })}
-            >
-              <IconDotMenuIcon
-                className={classNames(projectcss.all, sty.svg__jmi9G, {
-                  [sty.svg__isOwner__jmi9GpkRzz]: hasVariant(
-                    variants,
-                    "isOwner",
-                    "isOwner"
-                  ),
-                  [sty.svg__isOwner_userVariant_isMember__jmi9GpkRzzGdyZr]:
-                    hasVariant(variants, "isOwner", "isOwner") &&
-                    hasVariant(variants, "userVariant", "isMember"),
-                  [sty.svg__userVariant_isAdmin__jmi9G35Uok]: hasVariant(
-                    variants,
-                    "userVariant",
-                    "isAdmin"
-                  ),
-                  [sty.svg__userVariant_isMember__jmi9GgdyZr]: hasVariant(
-                    variants,
-                    "userVariant",
-                    "isMember"
-                  ),
-                  [sty.svg__userVariant_isSelf__jmi9GaAx2Z]: hasVariant(
-                    variants,
-                    "userVariant",
-                    "isSelf"
-                  ),
-                })}
-                role={"img"}
-              />
-            </IconButton>
-          ) : null}
-          {(hasVariant(variants, "isDropdown", "isDropdown") ? true : true) ? (
-            <p.Stack
-              as={"div"}
-              data-plasmic-name={"dropdown"}
-              data-plasmic-override={overrides.dropdown}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.dropdown, {
-                [sty.dropdown__isDropdown]: hasVariant(
-                  variants,
-                  "isDropdown",
-                  "isDropdown"
-                ),
-                [sty.dropdown__isDropdown_userVariant_isMember]:
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "userVariant", "isMember"),
-                [sty.dropdown__isOwner]: hasVariant(
-                  variants,
-                  "isOwner",
-                  "isOwner"
-                ),
-                [sty.dropdown__isOwner_isDropdown]:
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "isDropdown", "isDropdown"),
-                [sty.dropdown__isOwner_isDropdown_userVariant_isAdmin]:
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "userVariant", "isAdmin"),
-                [sty.dropdown__isOwner_isDropdown_userVariant_isMember]:
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "userVariant", "isMember"),
-                [sty.dropdown__isOwner_isDropdown_userVariant_isRequested]:
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "userVariant", "isRequested"),
-                [sty.dropdown__isOwner_isDropdown_userVariant_isSelf]:
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "isDropdown", "isDropdown") &&
-                  hasVariant(variants, "userVariant", "isSelf"),
-                [sty.dropdown__isOwner_userVariant_isMember]:
-                  hasVariant(variants, "isOwner", "isOwner") &&
-                  hasVariant(variants, "userVariant", "isMember"),
-                [sty.dropdown__userVariant_isRequested]: hasVariant(
-                  variants,
-                  "userVariant",
-                  "isRequested"
-                ),
-              })}
-            >
-              {(
-                hasVariant(variants, "isOwner", "isOwner") &&
-                hasVariant(variants, "isDropdown", "isDropdown") &&
-                hasVariant(variants, "userVariant", "isMember")
-                  ? true
-                  : hasVariant(variants, "isOwner", "isOwner") &&
-                    hasVariant(variants, "userVariant", "isAdmin") &&
-                    hasVariant(variants, "isDropdown", "isDropdown")
-                  ? true
-                  : hasVariant(variants, "isOwner", "isOwner") &&
-                    hasVariant(variants, "userVariant", "isMember")
-                  ? true
-                  : hasVariant(variants, "userVariant", "isSelf")
-                  ? false
-                  : true
-              ) ? (
-                <ListItem
-                  data-plasmic-name={"removeInvitation"}
-                  data-plasmic-override={overrides.removeInvitation}
-                  className={classNames(
-                    "__wab_instance",
-                    sty.removeInvitation,
-                    {
-                      [sty.removeInvitation__isDropdown]: hasVariant(
-                        variants,
-                        "isDropdown",
-                        "isDropdown"
-                      ),
-                      [sty.removeInvitation__isOwner_isDropdown_userVariant_isMember]:
-                        hasVariant(variants, "isOwner", "isOwner") &&
-                        hasVariant(variants, "isDropdown", "isDropdown") &&
-                        hasVariant(variants, "userVariant", "isMember"),
-                      [sty.removeInvitation__isOwner_isDropdown_userVariant_isRequested]:
-                        hasVariant(variants, "isOwner", "isOwner") &&
-                        hasVariant(variants, "isDropdown", "isDropdown") &&
-                        hasVariant(variants, "userVariant", "isRequested"),
-                      [sty.removeInvitation__isOwner_userVariant_isAdmin_isDropdown]:
-                        hasVariant(variants, "isOwner", "isOwner") &&
-                        hasVariant(variants, "userVariant", "isAdmin") &&
-                        hasVariant(variants, "isDropdown", "isDropdown"),
-                      [sty.removeInvitation__isOwner_userVariant_isMember]:
-                        hasVariant(variants, "isOwner", "isOwner") &&
-                        hasVariant(variants, "userVariant", "isMember"),
-                      [sty.removeInvitation__userVariant_isRequested]:
-                        hasVariant(variants, "userVariant", "isRequested"),
-                      [sty.removeInvitation__userVariant_isSelf]: hasVariant(
-                        variants,
-                        "userVariant",
-                        "isSelf"
-                      ),
-                    }
-                  )}
-                  rename={"Remove member"}
+              color={"clear" as const}
+              dropdownIcon={
+                <IconDotMenuIcon
+                  data-plasmic-name={"dropdownIcon"}
+                  data-plasmic-override={overrides.dropdownIcon}
+                  className={classNames(projectcss.all, sty.dropdownIcon)}
+                  role={"img"}
                 />
-              ) : null}
-            </p.Stack>
+              }
+              isOwner={"isOwner" as const}
+            >
+              <Select__Option
+                data-plasmic-name={"remove"}
+                data-plasmic-override={overrides.remove}
+                className={classNames("__wab_instance", sty.remove)}
+                value={"value1" as const}
+              >
+                {"Remove member"}
+              </Select__Option>
+            </Select>
           ) : null}
           {(
             hasVariant(variants, "userVariant", "isSelf") &&
@@ -549,11 +375,12 @@ function PlasmicMemberItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "photoAvatar", "iconButton", "dropdown", "removeInvitation"],
+  root: ["root", "photoAvatar", "svg", "ownerSelect", "dropdownIcon", "remove"],
   photoAvatar: ["photoAvatar"],
-  iconButton: ["iconButton"],
-  dropdown: ["dropdown", "removeInvitation"],
-  removeInvitation: ["removeInvitation"],
+  svg: ["svg"],
+  ownerSelect: ["ownerSelect", "dropdownIcon", "remove"],
+  dropdownIcon: ["dropdownIcon"],
+  remove: ["remove"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -561,9 +388,10 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   photoAvatar: typeof PhotoAvatar;
-  iconButton: typeof IconButton;
-  dropdown: "div";
-  removeInvitation: typeof ListItem;
+  svg: "svg";
+  ownerSelect: typeof Select;
+  dropdownIcon: "svg";
+  remove: typeof Select__Option;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -628,9 +456,10 @@ export const PlasmicMemberItem = Object.assign(
   {
     // Helper components rendering sub-elements
     photoAvatar: makeNodeComponent("photoAvatar"),
-    iconButton: makeNodeComponent("iconButton"),
-    dropdown: makeNodeComponent("dropdown"),
-    removeInvitation: makeNodeComponent("removeInvitation"),
+    svg: makeNodeComponent("svg"),
+    ownerSelect: makeNodeComponent("ownerSelect"),
+    dropdownIcon: makeNodeComponent("dropdownIcon"),
+    remove: makeNodeComponent("remove"),
 
     // Metadata about props expected for PlasmicMemberItem
     internalVariantProps: PlasmicMemberItem__VariantProps,

@@ -18,7 +18,7 @@
     padding: 0px;
   }
 }
-.container__headerStyles_createNewVenture {
+.container__headerStyles_onboardingHeader {
   height: 35px;
 }
 .freeBox___3Xg51 {
@@ -58,6 +58,9 @@
     padding: 15px 10px;
   }
 }
+.freeBox__headerStyles_onboardingHeader___3Xg51K3Tru {
+  display: flex;
+}
 .freeBox__sDNfz {
   display: flex;
   position: relative;
@@ -78,6 +81,9 @@
   > picture
   > img {
   margin-left: 5px;
+}
+.freeBox__headerStyles_onboardingHeader__sDNfzk3Tru {
+  display: flex;
 }
 .freeBox__yHtqj {
   display: flex;
@@ -132,11 +138,28 @@
   margin-left: 6px;
   margin-top: 0px;
 }
-.freeBox__headerStyles_createNewVenture__yHtqJk3Tru {
+.freeBox__headerStyles_onboardingHeader__yHtqJk3Tru {
+  display: flex;
   border-width: 0px;
 }
 .slotTargetTimelineName {
   font-size: 26px /* plasmic-token: TujpjiAsC */;
+}
+.breadcrumbLogo {
+  position: relative;
+  object-fit: cover;
+  height: 35px;
+  width: auto;
+  display: none !important;
+}
+.breadcrumbLogo > picture > img {
+  object-fit: cover;
+}
+.breadcrumbLogo > .__wab_img-spacer > img {
+  object-fit: cover;
+}
+.breadcrumbLogo__headerStyles_onboardingHeader {
+  display: inline-block !important;
 }
 .freeBox___6YZlv {
   display: flex;
@@ -175,11 +198,17 @@
   margin-left: 5px;
   margin-top: 0px;
 }
+.freeBox__headerStyles_onboardingHeader___6YZlVk3Tru {
+  display: none;
+}
 .text__headerStyles_timelineHeader__y7S0JRxxpi {
   font-family: SF Pro Display;
   font-size: 18px /* plasmic-token: UFZg3bUaA */;
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
   font-weight: 300;
+}
+.text__headerStyles_onboardingHeader__y7S0Jk3Tru {
+  display: none;
 }
 .slotTargetVentureName {
   font-size: 26px /* plasmic-token: TujpjiAsC */;
@@ -226,6 +255,9 @@
   justify-content: flex-start;
   max-width: 454px;
 }
+.freeBox__headerStyles_onboardingHeader__gg4APk3Tru {
+  display: none;
+}
 .slotTargetVentureDescription {
   font-weight: 400;
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
@@ -259,6 +291,9 @@
   > picture
   > img {
   margin-left: 12px;
+}
+.iconContainer__headerStyles_onboardingHeader {
+  display: none;
 }
 .svg__eTdlE {
   position: relative;
