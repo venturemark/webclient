@@ -25,10 +25,6 @@ export async function Update(
   obj.getMetadataMap().set(key.TimelineID, updateTimeline.id);
   obj.getMetadataMap().set(key.VentureID, updateTimeline.ventureId);
 
-  if (updateTimeline.visibility) {
-    obj.getMetadataMap().set(key.ResourceVisibility, updateTimeline.visibility);
-  }
-
   const patchList = [];
 
   if (updateTimeline.stat) {
@@ -55,11 +51,19 @@ export async function Update(
     patchList.push(descriptionObjJsnPatch);
   }
 
-  if (updateTimeline.membersWrite !== undefined) {
+  if (updateTimeline.membersWrite) {
     const patch = new UpdateI_Obj_Jsnpatch();
     patch.setOpe("replace");
     patch.setPat(`/obj/metadata/${key.PermissionModel.replace("/", "~1")}`);
     patch.setVal(updateTimeline.membersWrite ? "writer" : "reader");
+    patchList.push(patch);
+  }
+
+  if (updateTimeline.visibility) {
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat(`/obj/metadata/${key.ResourceVisibility.replace("/", "~1")}`);
+    patch.setVal(updateTimeline.visibility);
     patchList.push(patch);
   }
 
