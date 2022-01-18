@@ -7,8 +7,6 @@
   justify-content: space-evenly;
   align-items: stretch;
   align-content: unset;
-  padding-bottom: 0px;
-  padding-top: 25px;
   min-width: 0;
 }
 @media (max-width: 767px) {
@@ -372,8 +370,14 @@
   top: 29px;
   right: 7px;
 }
+.newTimeline:global(.__wab_instance) {
+  display: none;
+}
 .newTimeline__isCollapsed:global(.__wab_instance) {
   display: none;
+}
+.root__isOwner:hover .newTimeline__isOwner:global(.__wab_instance) {
+  display: flex;
 }
 .text__f9Ow1 {
   font-size: 16px;

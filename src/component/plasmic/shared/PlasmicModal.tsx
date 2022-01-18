@@ -171,7 +171,13 @@ function PlasmicModal__RenderFunc(props: {
             })}
           >
             <IconCloseIcon
-              className={classNames(projectcss.all, sty.svg__mGzaq)}
+              className={classNames(projectcss.all, sty.svg__mGzaq, {
+                [sty.svg__modalType_shareModal__mGzaqLoCI]: hasVariant(
+                  variants,
+                  "modalType",
+                  "shareModal"
+                ),
+              })}
               role={"img"}
             />
           </IconButton>

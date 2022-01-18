@@ -39,7 +39,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic_shared.module.css"; // plasmic-import: mTVXT6w3HHjZ4d74q3gB76/projectcss
 import sty from "./PlasmicSignin.module.css"; // plasmic-import: VOXcGTkmP9/css
 
-import Logosvg3Icon from "./icons/PlasmicIcon__Logosvg3"; // plasmic-import: o58_ERQlgq/icon
+import Logosvg4Icon from "./icons/PlasmicIcon__Logosvg4"; // plasmic-import: 2-jRbSBCTl/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 
@@ -98,7 +98,7 @@ function PlasmicSignin__RenderFunc(props: {
           )}
         >
           <div className={classNames(projectcss.all, sty.freeBox__u3Fzv)}>
-            <Logosvg3Icon
+            <Logosvg4Icon
               className={classNames(projectcss.all, sty.svg__b6TAn)}
               role={"img"}
             />
@@ -145,7 +145,7 @@ function PlasmicSignin__RenderFunc(props: {
                               sty.text__x0Qaf
                             )}
                           >
-                            {"venturemark is the "}
+                            {"Breadcrumb is the "}
                           </div>
 
                           <div
@@ -177,26 +177,28 @@ function PlasmicSignin__RenderFunc(props: {
                 hasVariant(globalVariants, "screen", "mobile") ? false : true
               ) ? (
                 <div className={classNames(projectcss.all, sty.freeBox__n6NL9)}>
-                  <p.PlasmicImg
-                    alt={""}
-                    className={classNames(sty.img___2L10H)}
-                    displayHeight={"auto" as const}
-                    displayMaxHeight={"none" as const}
-                    displayMaxWidth={"none" as const}
-                    displayMinHeight={"0" as const}
-                    displayMinWidth={"0" as const}
-                    displayWidth={
-                      hasVariant(globalVariants, "screen", "mobile")
-                        ? ("100%" as const)
-                        : ("auto" as const)
-                    }
-                    src={{
-                      src: "https://site-assets.plasmic.app/4431c97718040cb10921857e6f05e81b.svg",
-                      fullWidth: 300,
-                      fullHeight: 131,
-                      aspectRatio: 2.293956,
-                    }}
-                  />
+                  {true ? (
+                    <p.PlasmicImg
+                      alt={""}
+                      className={classNames(sty.img___2L10H)}
+                      displayHeight={"auto" as const}
+                      displayMaxHeight={"none" as const}
+                      displayMaxWidth={"none" as const}
+                      displayMinHeight={"0" as const}
+                      displayMinWidth={"0" as const}
+                      displayWidth={
+                        hasVariant(globalVariants, "screen", "mobile")
+                          ? ("100%" as const)
+                          : ("auto" as const)
+                      }
+                      src={{
+                        src: "https://site-assets.plasmic.app/4431c97718040cb10921857e6f05e81b.svg",
+                        fullWidth: 300,
+                        fullHeight: 131,
+                        aspectRatio: 2.293956,
+                      }}
+                    />
+                  ) : null}
                 </div>
               ) : null}
             </div>

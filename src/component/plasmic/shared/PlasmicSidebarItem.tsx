@@ -166,6 +166,11 @@ function PlasmicSidebarItem__RenderFunc(props: {
               "hasNewActivity",
               "hasNewActivity"
             ),
+            [sty.newActivityIndicator__itemType_createTimeline]: hasVariant(
+              variants,
+              "itemType",
+              "createTimeline"
+            ),
           })}
         >
           <div
@@ -317,7 +322,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
             hasVariant(variants, "isPublic", "isPublic")
               ? false
               : hasVariant(variants, "itemType", "createTimeline")
-              ? false
+              ? true
               : true
           ) ? (
             <IconButton
@@ -420,7 +425,7 @@ function PlasmicSidebarItem__RenderFunc(props: {
             triggers.hover_root
               ? true
               : hasVariant(variants, "itemType", "createTimeline")
-              ? false
+              ? true
               : true
           ) ? (
             <p.Stack
@@ -510,12 +515,26 @@ function PlasmicSidebarItem__RenderFunc(props: {
           {(
             triggers.hover_root
               ? true
+              : hasVariant(variants, "hasNewActivity", "hasNewActivity")
+              ? true
               : hasVariant(variants, "isOwner", "isOwner")
+              ? true
+              : hasVariant(variants, "itemType", "createTimeline")
               ? true
               : true
           ) ? (
             <div
               className={classNames(projectcss.all, sty.freeBox__xZeoS, {
+                [sty.freeBox__hasNewActivity__xZeoS0PiUm]: hasVariant(
+                  variants,
+                  "hasNewActivity",
+                  "hasNewActivity"
+                ),
+                [sty.freeBox__isDropdown__xZeoSt11Lu]: hasVariant(
+                  variants,
+                  "isDropdown",
+                  "isDropdown"
+                ),
                 [sty.freeBox__isOwner__xZeoSXgVg8]: hasVariant(
                   variants,
                   "isOwner",

@@ -30,8 +30,8 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from "@plasmicapp/react-web";
-import Button from "../../button/index"; // plasmic-import: JU1t0P9pFY/component
-import ListItem from "../../listitem/index"; // plasmic-import: q8aEgDsN8_/component
+import Select from "../../Select"; // plasmic-import: ueoKgZ85w4z/component
+import Select__Option from "../../Select__Option"; // plasmic-import: mb6SKWRg0eo/component
 
 import { useScreenVariants as useScreenVariantsszbTUtTUfDw81Pi } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: szbTUtTUfDW81Pi/globalVariant
 
@@ -43,22 +43,18 @@ import sty from "./PlasmicVisibilityState.module.css"; // plasmic-import: pG3eTc
 import IconMemberIcon from "./icons/PlasmicIcon__IconMember"; // plasmic-import: Vx3fG4Fxc/icon
 import LockIconsvgIcon from "./icons/PlasmicIcon__LockIconsvg"; // plasmic-import: 1tBTTGMGvG/icon
 import IconPublicsvgIcon from "./icons/PlasmicIcon__IconPublicsvg"; // plasmic-import: DkUt8Ihq_s/icon
-import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconAccordianIcon from "./icons/PlasmicIcon__IconAccordian"; // plasmic-import: UPgEusYgX/icon
 
 export type PlasmicVisibilityState__VariantMembers = {
-  isDropdown: "isDropdown";
   visibilityType: "_public" | "members" | "_private";
 };
 
 export type PlasmicVisibilityState__VariantsArgs = {
-  isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
   visibilityType?: SingleChoiceArg<"_public" | "members" | "_private">;
 };
 
 type VariantPropType = keyof PlasmicVisibilityState__VariantsArgs;
 export const PlasmicVisibilityState__VariantProps = new Array<VariantPropType>(
-  "isDropdown",
   "visibilityType"
 );
 
@@ -66,9 +62,6 @@ export type PlasmicVisibilityState__ArgsType = {
   slot7?: React.ReactNode;
   slot2?: React.ReactNode;
   slot6?: React.ReactNode;
-  rename2?: React.ReactNode;
-  rename3?: React.ReactNode;
-  rename4?: React.ReactNode;
   slot8?: React.ReactNode;
   slot3?: React.ReactNode;
   slot9?: React.ReactNode;
@@ -82,9 +75,6 @@ export const PlasmicVisibilityState__ArgProps = new Array<ArgPropType>(
   "slot7",
   "slot2",
   "slot6",
-  "rename2",
-  "rename3",
-  "rename4",
   "slot8",
   "slot3",
   "slot9",
@@ -98,26 +88,24 @@ export type PlasmicVisibilityState__OverridesType = {
   members?: p.Flex<"div">;
   _private?: p.Flex<"div">;
   _public?: p.Flex<"div">;
-  button?: p.Flex<typeof Button>;
-  svg?: p.Flex<"svg">;
-  dropdown?: p.Flex<"div">;
-  ul?: p.Flex<"ul">;
+  select?: p.Flex<typeof Select>;
+  text?: p.Flex<"div">;
+  dropdownIcon?: p.Flex<"svg">;
+  optionPrivate?: p.Flex<typeof Select__Option>;
+  optionMember?: p.Flex<typeof Select__Option>;
+  optionPublic?: p.Flex<typeof Select__Option>;
 };
 
 export interface DefaultVisibilityStateProps {
   slot7?: React.ReactNode;
   slot2?: React.ReactNode;
   slot6?: React.ReactNode;
-  rename2?: React.ReactNode;
-  rename3?: React.ReactNode;
-  rename4?: React.ReactNode;
   slot8?: React.ReactNode;
   slot3?: React.ReactNode;
   slot9?: React.ReactNode;
   slot10?: React.ReactNode;
   slot4?: React.ReactNode;
   slot11?: React.ReactNode;
-  isDropdown?: SingleBooleanChoiceArg<"isDropdown">;
   visibilityType?: SingleChoiceArg<"_public" | "members" | "_private">;
   className?: string;
 }
@@ -141,7 +129,13 @@ function PlasmicVisibilityState__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      className={classNames(projectcss.all, projectcss.root_reset, sty.root)}
+      className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+        [sty.root__visibilityType__public]: hasVariant(
+          variants,
+          "visibilityType",
+          "_public"
+        ),
+      })}
     >
       {(hasVariant(variants, "visibilityType", "members") ? true : true) ? (
         <div
@@ -318,7 +312,15 @@ function PlasmicVisibilityState__RenderFunc(props: {
           ) : null}
 
           <div className={classNames(projectcss.all, sty.freeBox__r3IbM)}>
-            <div className={classNames(projectcss.all, sty.freeBox___52Vad)}>
+            <div
+              className={classNames(projectcss.all, sty.freeBox___52Vad, {
+                [sty.freeBox__visibilityType__public___52VaDboBQ]: hasVariant(
+                  variants,
+                  "visibilityType",
+                  "_public"
+                ),
+              })}
+            >
               {p.renderPlasmicSlot({
                 defaultContents: (
                   <div
@@ -356,68 +358,138 @@ function PlasmicVisibilityState__RenderFunc(props: {
         </div>
       ) : null}
 
-      <div className={classNames(projectcss.all, sty.freeBox__jq2M)}>
-        <Button
-          data-plasmic-name={"button"}
-          data-plasmic-override={overrides.button}
-          buttonFeatures={["showEndIcon"]}
-          buttonStyle={"white" as const}
-          className={classNames("__wab_instance", sty.button)}
-          count={"1"}
-          text2={"Edit"}
-        >
-          <IconAccordianIcon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
-            role={"img"}
-          />
-        </Button>
-
-        {(hasVariant(variants, "isDropdown", "isDropdown") ? true : true) ? (
-          <div
-            data-plasmic-name={"dropdown"}
-            data-plasmic-override={overrides.dropdown}
-            className={classNames(projectcss.all, sty.dropdown, {
-              [sty.dropdown__isDropdown]: hasVariant(
+      <div
+        className={classNames(projectcss.all, sty.freeBox__jq2M, {
+          [sty.freeBox__visibilityType__private__jq2MmLxEf]: hasVariant(
+            variants,
+            "visibilityType",
+            "_private"
+          ),
+        })}
+      >
+        {(hasVariant(globalVariants, "screen", "mobile") ? true : true) ? (
+          <Select
+            data-plasmic-name={"select"}
+            data-plasmic-override={overrides.select}
+            className={classNames("__wab_instance", sty.select, {
+              [sty.select__visibilityType__private]: hasVariant(
                 variants,
-                "isDropdown",
-                "isDropdown"
+                "visibilityType",
+                "_private"
+              ),
+              [sty.select__visibilityType__public]: hasVariant(
+                variants,
+                "visibilityType",
+                "_public"
+              ),
+              [sty.select__visibilityType_members]: hasVariant(
+                variants,
+                "visibilityType",
+                "members"
               ),
             })}
+            defaultValue={
+              hasVariant(variants, "visibilityType", "_private")
+                ? ("value1" as const)
+                : hasVariant(variants, "visibilityType", "members")
+                ? ("value2" as const)
+                : hasVariant(variants, "visibilityType", "_public")
+                ? ("value2 2" as const)
+                : hasVariant(globalVariants, "screen", "mobile")
+                ? ("" as const)
+                : undefined
+            }
+            dropdownIcon={
+              <IconAccordianIcon
+                data-plasmic-name={"dropdownIcon"}
+                data-plasmic-override={overrides.dropdownIcon}
+                className={classNames(projectcss.all, sty.dropdownIcon)}
+                role={"img"}
+              />
+            }
+            name={
+              hasVariant(variants, "visibilityType", "_private")
+                ? ("" as const)
+                : undefined
+            }
+            placeholder={
+              <div
+                data-plasmic-name={"text"}
+                data-plasmic-override={overrides.text}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text,
+                  {
+                    [sty.text__visibilityType__public]: hasVariant(
+                      variants,
+                      "visibilityType",
+                      "_public"
+                    ),
+                  }
+                )}
+              >
+                {hasVariant(globalVariants, "screen", "mobile")
+                  ? "Edit"
+                  : "Select…"}
+              </div>
+            }
           >
-            <p.Stack
-              as={"ul"}
-              data-plasmic-name={"ul"}
-              data-plasmic-override={overrides.ul}
-              hasGap={true}
-              className={classNames(projectcss.ul, sty.ul)}
+            <Select__Option
+              data-plasmic-name={"optionPrivate"}
+              data-plasmic-override={overrides.optionPrivate}
+              className={classNames("__wab_instance", sty.optionPrivate, {
+                [sty.optionPrivate__visibilityType__private]: hasVariant(
+                  variants,
+                  "visibilityType",
+                  "_private"
+                ),
+              })}
+              value={"value1" as const}
             >
-              <ListItem
-                className={classNames("__wab_instance", sty.listItem__v40Od)}
-                rename={p.renderPlasmicSlot({
-                  defaultContents: "Private",
-                  value: args.rename2,
-                })}
-              />
+              {hasVariant(globalVariants, "screen", "mobile")
+                ? "Private"
+                : "Option 1"}
+            </Select__Option>
 
-              <ListItem
-                className={classNames("__wab_instance", sty.listItem__tnBd)}
-                rename={p.renderPlasmicSlot({
-                  defaultContents: "Members",
-                  value: args.rename3,
-                })}
-              />
+            <Select__Option
+              data-plasmic-name={"optionMember"}
+              data-plasmic-override={overrides.optionMember}
+              className={classNames("__wab_instance", sty.optionMember, {
+                [sty.optionMember__visibilityType__private]: hasVariant(
+                  variants,
+                  "visibilityType",
+                  "_private"
+                ),
+              })}
+              value={"value2" as const}
+            >
+              {hasVariant(globalVariants, "screen", "mobile")
+                ? "Member"
+                : "Option 2"}
+            </Select__Option>
 
-              <ListItem
-                className={classNames("__wab_instance", sty.listItem__uJu6U)}
-                rename={p.renderPlasmicSlot({
-                  defaultContents: "Public",
-                  value: args.rename4,
-                })}
-              />
-            </p.Stack>
-          </div>
+            <Select__Option
+              data-plasmic-name={"optionPublic"}
+              data-plasmic-override={overrides.optionPublic}
+              className={classNames("__wab_instance", sty.optionPublic, {
+                [sty.optionPublic__visibilityType__private]: hasVariant(
+                  variants,
+                  "visibilityType",
+                  "_private"
+                ),
+              })}
+              value={
+                hasVariant(variants, "visibilityType", "_private")
+                  ? ("value2 2" as const)
+                  : ("value2 2" as const)
+              }
+            >
+              {hasVariant(globalVariants, "screen", "mobile")
+                ? "Public"
+                : "Option 2"}
+            </Select__Option>
+          </Select>
         ) : null}
       </div>
     </div>
@@ -430,18 +502,29 @@ const PlasmicDescendants = {
     "members",
     "_private",
     "_public",
-    "button",
-    "svg",
-    "dropdown",
-    "ul",
+    "select",
+    "text",
+    "dropdownIcon",
+    "optionPrivate",
+    "optionMember",
+    "optionPublic",
   ],
   members: ["members"],
   _private: ["_private"],
   _public: ["_public"],
-  button: ["button", "svg"],
-  svg: ["svg"],
-  dropdown: ["dropdown", "ul"],
-  ul: ["ul"],
+  select: [
+    "select",
+    "text",
+    "dropdownIcon",
+    "optionPrivate",
+    "optionMember",
+    "optionPublic",
+  ],
+  text: ["text"],
+  dropdownIcon: ["dropdownIcon"],
+  optionPrivate: ["optionPrivate"],
+  optionMember: ["optionMember"],
+  optionPublic: ["optionPublic"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -451,10 +534,12 @@ type NodeDefaultElementType = {
   members: "div";
   _private: "div";
   _public: "div";
-  button: typeof Button;
-  svg: "svg";
-  dropdown: "div";
-  ul: "ul";
+  select: typeof Select;
+  text: "div";
+  dropdownIcon: "svg";
+  optionPrivate: typeof Select__Option;
+  optionMember: typeof Select__Option;
+  optionPublic: typeof Select__Option;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -521,10 +606,12 @@ export const PlasmicVisibilityState = Object.assign(
     members: makeNodeComponent("members"),
     _private: makeNodeComponent("_private"),
     _public: makeNodeComponent("_public"),
-    button: makeNodeComponent("button"),
-    svg: makeNodeComponent("svg"),
-    dropdown: makeNodeComponent("dropdown"),
-    ul: makeNodeComponent("ul"),
+    select: makeNodeComponent("select"),
+    text: makeNodeComponent("text"),
+    dropdownIcon: makeNodeComponent("dropdownIcon"),
+    optionPrivate: makeNodeComponent("optionPrivate"),
+    optionMember: makeNodeComponent("optionMember"),
+    optionPublic: makeNodeComponent("optionPublic"),
 
     // Metadata about props expected for PlasmicVisibilityState
     internalVariantProps: PlasmicVisibilityState__VariantProps,

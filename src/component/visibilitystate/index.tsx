@@ -14,14 +14,7 @@ function VisibilityState_(
   { visible, onClick, ...props }: VisibilityStateProps,
   ref: HTMLElementRefOf<"div">
 ) {
-  return (
-    <PlasmicVisibilityState
-      {...props}
-      root={{ ref }}
-      isDropdown={visible ? "isDropdown" : false}
-      button={{ onPress: onClick }}
-    />
-  );
+  return <PlasmicVisibilityState {...props} root={{ ref }} />;
 }
 
 const VisibilityState = React.forwardRef(VisibilityState_);

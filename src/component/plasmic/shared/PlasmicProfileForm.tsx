@@ -63,6 +63,7 @@ type ArgPropType = keyof PlasmicProfileForm__ArgsType;
 export const PlasmicProfileForm__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicProfileForm__OverridesType = {
+  root?: p.Flex<"div">;
   form?: p.Flex<"form">;
   text?: p.Flex<"div">;
   close?: p.Flex<typeof IconButton>;
@@ -91,97 +92,54 @@ function PlasmicProfileForm__RenderFunc(props: {
   const { variants, args, overrides, forNode, dataFetches } = props;
 
   return (
-    <form
-      data-plasmic-name={"form"}
-      data-plasmic-override={overrides.form}
-      data-plasmic-root={true}
-      data-plasmic-for-node={forNode}
-      className={classNames(projectcss.all, projectcss.root_reset, sty.form, {
-        [sty.form__editProfile]: hasVariant(
-          variants,
-          "editProfile",
-          "editProfile"
-        ),
-      })}
-    >
-      {(hasVariant(variants, "editProfile", "editProfile") ? true : false) ? (
-        <div
-          className={classNames(projectcss.all, sty.freeBox__ytyPi, {
-            [sty.freeBox__editProfile__ytyPiOylNj]: hasVariant(
+    (hasVariant(variants, "editProfile", "editProfile") ? true : true) ? (
+      <p.Stack
+        as={"div"}
+        data-plasmic-name={"root"}
+        data-plasmic-override={overrides.root}
+        data-plasmic-root={true}
+        data-plasmic-for-node={forNode}
+        hasGap={true}
+        className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
+          [sty.root__editProfile]: hasVariant(
+            variants,
+            "editProfile",
+            "editProfile"
+          ),
+        })}
+      >
+        <form
+          data-plasmic-name={"form"}
+          data-plasmic-override={overrides.form}
+          className={classNames(projectcss.all, sty.form, {
+            [sty.form__editProfile]: hasVariant(
               variants,
               "editProfile",
               "editProfile"
             ),
           })}
         >
-          <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text,
-              {
-                [sty.text__editProfile]: hasVariant(
+          {(
+            hasVariant(variants, "editProfile", "editProfile") ? true : true
+          ) ? (
+            <div
+              className={classNames(projectcss.all, sty.freeBox__ytyPi, {
+                [sty.freeBox__editProfile__ytyPiOylNj]: hasVariant(
                   variants,
                   "editProfile",
                   "editProfile"
                 ),
-              }
-            )}
-          >
-            {"Edit Profile"}
-          </div>
-
-          <IconButton
-            data-plasmic-name={"close"}
-            data-plasmic-override={overrides.close}
-            className={classNames("__wab_instance", sty.close, {
-              [sty.close__editProfile]: hasVariant(
-                variants,
-                "editProfile",
-                "editProfile"
-              ),
-            })}
-          >
-            <IconCloseIcon
-              className={classNames(projectcss.all, sty.svg__p2Fm6)}
-              role={"img"}
-            />
-          </IconButton>
-        </div>
-      ) : null}
-      {(hasVariant(variants, "editProfile", "editProfile") ? true : false) ? (
-        <div
-          className={classNames(projectcss.all, sty.freeBox__lhTso, {
-            [sty.freeBox__editProfile__lhTsoOylNj]: hasVariant(
-              variants,
-              "editProfile",
-              "editProfile"
-            ),
-          })}
-        >
-          <p.Stack
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__khj8R)}
-          >
-            <PhotoAvatar
-              data-plasmic-name={"photoAvatar"}
-              data-plasmic-override={overrides.photoAvatar}
-              variant={["isLarge"]}
-            />
-
-            {false ? (
-              <a
-                data-plasmic-name={"link"}
-                data-plasmic-override={overrides.link}
+              })}
+            >
+              <div
+                data-plasmic-name={"text"}
+                data-plasmic-override={overrides.text}
                 className={classNames(
-                  projectcss.a,
+                  projectcss.all,
                   projectcss.__wab_text,
-                  sty.link,
+                  sty.text,
                   {
-                    [sty.link__editProfile]: hasVariant(
+                    [sty.text__editProfile]: hasVariant(
                       variants,
                       "editProfile",
                       "editProfile"
@@ -189,159 +147,224 @@ function PlasmicProfileForm__RenderFunc(props: {
                   }
                 )}
               >
-                {hasVariant(variants, "editProfile", "editProfile")
-                  ? "Remove Photo"
-                  : "Upload Photo"}
-              </a>
-            ) : null}
-          </p.Stack>
-        </div>
-      ) : null}
+                {"Edit Profile"}
+              </div>
 
-      <InputText
-        data-plasmic-name={"nameField"}
-        data-plasmic-override={overrides.nameField}
-        className={classNames("__wab_instance", sty.nameField)}
-        hasLabel={"hasLabel" as const}
-        label={"Full Name"}
-      >
-        {"This will be used as your display name"}
-      </InputText>
-
-      <InputText
-        data-plasmic-name={"jobField"}
-        data-plasmic-override={overrides.jobField}
-        className={classNames("__wab_instance", sty.jobField, {
-          [sty.jobField__editProfile]: hasVariant(
-            variants,
-            "editProfile",
-            "editProfile"
-          ),
-        })}
-        hasLabel={"hasLabel" as const}
-        hasTextHelper={"hasTextHelper" as const}
-        label={"What I Do"}
-      >
-        {"Let people know what you do"}
-      </InputText>
-
-      {(hasVariant(variants, "editProfile", "editProfile") ? true : true) ? (
-        <p.Stack
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__z9Te4, {
-            [sty.freeBox__editProfile__z9Te4OylNj]: hasVariant(
-              variants,
-              "editProfile",
-              "editProfile"
-            ),
-          })}
-        >
+              <IconButton
+                data-plasmic-name={"close"}
+                data-plasmic-override={overrides.close}
+                className={classNames("__wab_instance", sty.close, {
+                  [sty.close__editProfile]: hasVariant(
+                    variants,
+                    "editProfile",
+                    "editProfile"
+                  ),
+                })}
+              >
+                <IconCloseIcon
+                  className={classNames(projectcss.all, sty.svg__p2Fm6)}
+                  role={"img"}
+                />
+              </IconButton>
+            </div>
+          ) : null}
           {(
             hasVariant(variants, "editProfile", "editProfile") ? true : false
           ) ? (
-            <Button
-              data-plasmic-name={"cancel"}
-              data-plasmic-override={overrides.cancel}
-              buttonStyle={
-                hasVariant(variants, "editProfile", "editProfile")
-                  ? ("secondaryPurple" as const)
-                  : ("primaryPurple" as const)
-              }
-              count={"1"}
-              slot={
-                <IconPlusIcon
-                  className={classNames(projectcss.all, sty.svg__dVu44)}
-                  role={"img"}
-                />
-              }
-              text2={
-                <div
-                  data-plasmic-name={"text2"}
-                  data-plasmic-override={overrides.text2}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text2,
-                    {
-                      [sty.text2__editProfile]: hasVariant(
-                        variants,
-                        "editProfile",
-                        "editProfile"
-                      ),
-                    }
-                  )}
-                >
-                  {hasVariant(variants, "editProfile", "editProfile")
-                    ? "Cancel"
-                    : "Complete"}
-                </div>
-              }
-            >
-              <IconRightIcon
-                className={classNames(projectcss.all, sty.svg__sv8Ps)}
-                role={"img"}
-              />
-            </Button>
-          ) : null}
-          {(
-            hasVariant(variants, "editProfile", "editProfile") ? true : true
-          ) ? (
-            <Button
-              data-plasmic-name={"save"}
-              data-plasmic-override={overrides.save}
-              buttonStyle={"primaryPurple" as const}
-              className={classNames("__wab_instance", sty.save, {
-                [sty.save__editProfile]: hasVariant(
+            <div
+              className={classNames(projectcss.all, sty.freeBox__lhTso, {
+                [sty.freeBox__editProfile__lhTsoOylNj]: hasVariant(
                   variants,
                   "editProfile",
                   "editProfile"
                 ),
               })}
-              count={"1"}
-              slot={
-                <IconPlusIcon
-                  className={classNames(projectcss.all, sty.svg__dsa3)}
+            >
+              <p.Stack
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__khj8R)}
+              >
+                <PhotoAvatar
+                  data-plasmic-name={"photoAvatar"}
+                  data-plasmic-override={overrides.photoAvatar}
+                  variant={["isLarge"]}
+                />
+
+                {false ? (
+                  <a
+                    data-plasmic-name={"link"}
+                    data-plasmic-override={overrides.link}
+                    className={classNames(
+                      projectcss.a,
+                      projectcss.__wab_text,
+                      sty.link,
+                      {
+                        [sty.link__editProfile]: hasVariant(
+                          variants,
+                          "editProfile",
+                          "editProfile"
+                        ),
+                      }
+                    )}
+                  >
+                    {hasVariant(variants, "editProfile", "editProfile")
+                      ? "Remove Photo"
+                      : "Upload Photo"}
+                  </a>
+                ) : null}
+              </p.Stack>
+            </div>
+          ) : null}
+
+          <InputText
+            data-plasmic-name={"nameField"}
+            data-plasmic-override={overrides.nameField}
+            className={classNames("__wab_instance", sty.nameField)}
+            hasLabel={"hasLabel" as const}
+            label={"Full Name"}
+          >
+            {"This will be used as your display name"}
+          </InputText>
+
+          <InputText
+            data-plasmic-name={"jobField"}
+            data-plasmic-override={overrides.jobField}
+            className={classNames("__wab_instance", sty.jobField, {
+              [sty.jobField__editProfile]: hasVariant(
+                variants,
+                "editProfile",
+                "editProfile"
+              ),
+            })}
+            hasLabel={"hasLabel" as const}
+            hasTextHelper={"hasTextHelper" as const}
+            label={"What I Do"}
+          >
+            {"Let people know what you do"}
+          </InputText>
+        </form>
+
+        {(hasVariant(variants, "editProfile", "editProfile") ? true : true) ? (
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__z9Te4, {
+              [sty.freeBox__editProfile__z9Te4OylNj]: hasVariant(
+                variants,
+                "editProfile",
+                "editProfile"
+              ),
+            })}
+          >
+            {(
+              hasVariant(variants, "editProfile", "editProfile") ? true : false
+            ) ? (
+              <Button
+                data-plasmic-name={"cancel"}
+                data-plasmic-override={overrides.cancel}
+                buttonStyle={
+                  hasVariant(variants, "editProfile", "editProfile")
+                    ? ("secondaryPurple" as const)
+                    : ("primaryPurple" as const)
+                }
+                count={"1"}
+                slot={
+                  <IconPlusIcon
+                    className={classNames(projectcss.all, sty.svg__dVu44)}
+                    role={"img"}
+                  />
+                }
+                text2={
+                  <div
+                    data-plasmic-name={"text2"}
+                    data-plasmic-override={overrides.text2}
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text2,
+                      {
+                        [sty.text2__editProfile]: hasVariant(
+                          variants,
+                          "editProfile",
+                          "editProfile"
+                        ),
+                      }
+                    )}
+                  >
+                    {hasVariant(variants, "editProfile", "editProfile")
+                      ? "Cancel"
+                      : "Complete"}
+                  </div>
+                }
+              >
+                <IconRightIcon
+                  className={classNames(projectcss.all, sty.svg__sv8Ps)}
                   role={"img"}
                 />
-              }
-              text2={
-                <div
-                  data-plasmic-name={"text22"}
-                  data-plasmic-override={overrides.text22}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text22,
-                    {
-                      [sty.text22__editProfile]: hasVariant(
-                        variants,
-                        "editProfile",
-                        "editProfile"
-                      ),
-                    }
-                  )}
-                >
-                  {hasVariant(variants, "editProfile", "editProfile")
-                    ? "Save"
-                    : "Complete"}
-                </div>
-              }
-            >
-              <IconRightIcon
-                className={classNames(projectcss.all, sty.svg__sweNz)}
-                role={"img"}
-              />
-            </Button>
-          ) : null}
-        </p.Stack>
-      ) : null}
-    </form>
+              </Button>
+            ) : null}
+            {(
+              hasVariant(variants, "editProfile", "editProfile") ? true : true
+            ) ? (
+              <Button
+                data-plasmic-name={"save"}
+                data-plasmic-override={overrides.save}
+                buttonFeatures={[]}
+                buttonStyle={"primaryPurple" as const}
+                className={classNames("__wab_instance", sty.save, {
+                  [sty.save__editProfile]: hasVariant(
+                    variants,
+                    "editProfile",
+                    "editProfile"
+                  ),
+                })}
+                count={"1"}
+                slot={
+                  <IconPlusIcon
+                    className={classNames(projectcss.all, sty.svg__dsa3)}
+                    role={"img"}
+                  />
+                }
+                text2={
+                  <div
+                    data-plasmic-name={"text22"}
+                    data-plasmic-override={overrides.text22}
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text22,
+                      {
+                        [sty.text22__editProfile]: hasVariant(
+                          variants,
+                          "editProfile",
+                          "editProfile"
+                        ),
+                      }
+                    )}
+                  >
+                    {hasVariant(variants, "editProfile", "editProfile")
+                      ? "Save"
+                      : "Continue"}
+                  </div>
+                }
+              >
+                <IconRightIcon
+                  className={classNames(projectcss.all, sty.svg__sweNz)}
+                  role={"img"}
+                />
+              </Button>
+            ) : null}
+          </p.Stack>
+        ) : null}
+      </p.Stack>
+    ) : null
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  form: [
+  root: [
+    "root",
     "form",
     "text",
     "close",
@@ -353,6 +376,15 @@ const PlasmicDescendants = {
     "text2",
     "save",
     "text22",
+  ],
+  form: [
+    "form",
+    "text",
+    "close",
+    "photoAvatar",
+    "link",
+    "nameField",
+    "jobField",
   ],
   text: ["text"],
   close: ["close"],
@@ -369,6 +401,7 @@ type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
+  root: "div";
   form: "form";
   text: "div";
   close: typeof IconButton;
@@ -430,7 +463,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       forNode: nodeName,
     });
   };
-  if (nodeName === "form") {
+  if (nodeName === "root") {
     func.displayName = "PlasmicProfileForm";
   } else {
     func.displayName = `PlasmicProfileForm.${nodeName}`;
@@ -440,9 +473,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
 
 export const PlasmicProfileForm = Object.assign(
   // Top-level PlasmicProfileForm renders the root element
-  makeNodeComponent("form"),
+  makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    form: makeNodeComponent("form"),
     text: makeNodeComponent("text"),
     close: makeNodeComponent("close"),
     photoAvatar: makeNodeComponent("photoAvatar"),

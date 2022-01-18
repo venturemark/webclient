@@ -8,7 +8,6 @@ import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { getUniqueListBy } from "module/helpers";
 import { useDeleteMessage } from "module/hook/message";
-import useDropdown from "module/hook/ui/useDropdown";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { IUser } from "module/interface/user";
 
@@ -29,8 +28,6 @@ function ReplyContent(props: ReplyContentProps) {
 
   const { mutate: deleteMessage } = useDeleteMessage();
   const userContext = useContext(UserContext);
-  const [dropdownVisible, setDropdownVisible, dropdownRootRef] =
-    useDropdown<HTMLDivElement>();
 
   const { data: timelineUsersData = [], isSuccess: timelineUsersSuccess } =
     useTimelineMembers({
@@ -50,7 +47,7 @@ function ReplyContent(props: ReplyContentProps) {
       ? getUniqueListBy([...timelineUsersData, ...ventureUsersData], "id")
       : timelineUsersData;
 
-  const isOwner = userId === userContext.user?.id ? "isUser" : undefined;
+  const isOwner = userId === userContext.user?.id ? "isOwner" : undefined;
 
   const user = allMembers?.filter((user: IUser) => user.id === userId)[0];
 
@@ -67,16 +64,14 @@ function ReplyContent(props: ReplyContentProps) {
   return (
     <PlasmicReplyContent
       {...rest}
-      root={{
-        ref: dropdownRootRef,
-      }}
       state={isOwner}
-      iconMenu={{
-        onClick: () => setDropdownVisible(!dropdownVisible),
-      }}
-      isUserOnClick={dropdownVisible}
-      dropdown={{
-        onClick: handleDeleteMessage,
+      ownerSelect={{
+        props: {
+          onChange: (value) => {
+            handleDeleteMessage();
+          },
+          "aria-label": "Reply option",
+        },
       }}
       userName={user?.name}
       text={text}

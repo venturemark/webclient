@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -75,8 +75,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
   const { mutate: createTimeline } = useCreateTimeline();
   const { mutate: updateTimeline } = useUpdateTimeline();
 
-  const [visibility, setVisibility] = useState<string>("");
-
   const handleCreate = (data: FormData) => {
     if (
       !token ||
@@ -112,7 +110,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           desc: data.timelineDescription,
           membersWrite: data.membersWrite,
           ventureId,
-          visibility,
           token,
           redirectOnSuccess: true,
         },
@@ -185,11 +182,6 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         handleCancel: () => navigate(".."),
         handleDelete: () => navigate(`/${ventureId}/${timelineId}/delete`),
         handleSave: () => handleSubmit(handleCreate)(),
-      }}
-      visibility={{
-        "aria-label": "Timeline Visibility",
-        defaultValue: "private",
-        setVisibility,
       }}
     />
   );

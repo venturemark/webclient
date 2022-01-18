@@ -199,7 +199,7 @@
 .scrollContainer__hasInput {
   border-top-color: rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
   border-top-style: solid;
-  padding: 1px 20px 40px;
+  padding: 25px 20px 40px;
 }
 @media (max-width: 767px) {
   .scrollContainer__hasInput {

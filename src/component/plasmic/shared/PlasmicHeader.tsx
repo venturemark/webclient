@@ -52,13 +52,13 @@ import IconSettings2Icon from "./icons/PlasmicIcon__IconSettings2"; // plasmic-i
 export type PlasmicHeader__VariantMembers = {
   mobileMenu: "mobileMenu";
   profileDropdown: "profileDropdown";
-  views: "userAccount" | "publicView";
+  views: "userAccount" | "publicView" | "onboarding";
 };
 
 export type PlasmicHeader__VariantsArgs = {
   mobileMenu?: SingleBooleanChoiceArg<"mobileMenu">;
   profileDropdown?: SingleBooleanChoiceArg<"profileDropdown">;
-  views?: SingleChoiceArg<"userAccount" | "publicView">;
+  views?: SingleChoiceArg<"userAccount" | "publicView" | "onboarding">;
 };
 
 type VariantPropType = keyof PlasmicHeader__VariantsArgs;
@@ -87,7 +87,7 @@ export type PlasmicHeader__OverridesType = {
 export interface DefaultHeaderProps {
   mobileMenu?: SingleBooleanChoiceArg<"mobileMenu">;
   profileDropdown?: SingleBooleanChoiceArg<"profileDropdown">;
-  views?: SingleChoiceArg<"userAccount" | "publicView">;
+  views?: SingleChoiceArg<"userAccount" | "publicView" | "onboarding">;
   className?: string;
 }
 
@@ -131,6 +131,11 @@ function PlasmicHeader__RenderFunc(props: {
             variants,
             "mobileMenu",
             "mobileMenu"
+          ),
+          [sty.freeBox__views_onboarding__ky7Rmx3M4P]: hasVariant(
+            variants,
+            "views",
+            "onboarding"
           ),
           [sty.freeBox__views_publicView__ky7RmYpLjb]: hasVariant(
             variants,
@@ -178,13 +183,24 @@ function PlasmicHeader__RenderFunc(props: {
                 role={"img"}
               />
             ) : null}
-
-            <MainHeader
-              data-plasmic-name={"mainHeader"}
-              data-plasmic-override={overrides.mainHeader}
-              className={classNames("__wab_instance", sty.mainHeader)}
-              headerStyles={"timelineHeader" as const}
-            />
+            {(hasVariant(variants, "views", "onboarding") ? true : true) ? (
+              <MainHeader
+                data-plasmic-name={"mainHeader"}
+                data-plasmic-override={overrides.mainHeader}
+                className={classNames("__wab_instance", sty.mainHeader, {
+                  [sty.mainHeader__views_onboarding]: hasVariant(
+                    variants,
+                    "views",
+                    "onboarding"
+                  ),
+                })}
+                headerStyles={
+                  hasVariant(variants, "views", "onboarding")
+                    ? ("onboardingHeader" as const)
+                    : ("timelineHeader" as const)
+                }
+              />
+            ) : null}
           </p.Stack>
         ) : null}
         {(hasVariant(variants, "views", "publicView") ? true : false) ? (
