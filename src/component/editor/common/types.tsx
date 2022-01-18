@@ -6,7 +6,8 @@ export type CustomElement =
   | ParagraphElement
   | UnorderedListElement
   | ListItemElement
-  | LinkElement;
+  | LinkElement
+  | MentionElement;
 
 declare module "slate" {
   interface CustomTypes {
@@ -23,3 +24,9 @@ export type UnorderedListElement = {
 };
 export type ListItemElement = { type: "list-item"; children: Descendant[] };
 export type LinkElement = { type: "a"; children: Descendant[]; url: string };
+export type MentionElement = {
+  type: "mention";
+  children: Descendant[];
+  value: string;
+  name: string;
+};

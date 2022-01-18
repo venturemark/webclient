@@ -1,3 +1,4 @@
+import { MentionElement } from "@udecode/slate-plugins";
 import { ReactNode } from "react";
 import { useSelected } from "slate-react";
 import { CustomElement, LinkElement } from "../common/types";
@@ -20,6 +21,8 @@ export function Element(props: ElementProps) {
         return <li {...attributes}>{children}</li>;
       case "a":
         return <LinkComponent {...props} />;
+      case "mention":
+        return <MentionElement {...props} element={element} />;
     }
   }
   return <div {...attributes}>{children}</div>;
