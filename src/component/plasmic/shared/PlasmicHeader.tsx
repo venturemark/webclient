@@ -243,7 +243,7 @@ function PlasmicHeader__RenderFunc(props: {
             )}
             href={
               hasVariant(variants, "views", "publicView")
-                ? ("http://venturemark.co/" as const)
+                ? ("http://breadcrumb.so/" as const)
                 : ("https://www.plasmic.app/" as const)
             }
           >
