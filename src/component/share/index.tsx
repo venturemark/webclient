@@ -22,6 +22,16 @@ import { IInvite } from "module/interface/invite";
 import { TimelineContext } from "context/TimelineContext";
 import { useUpdateTimeline } from "module/hook/timeline";
 import Select from "component/Select";
+import { toast } from "react-toastify";
+
+function copyURL() {
+  const el = document.createElement("input");
+  el.value = window.location.href.split("/members")[0];
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+}
 
 const emailRegex =
   /^\s*(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;
@@ -185,6 +195,25 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
       }}
       invite={{
         onPress: () => handleSubmit(handleInvite)(),
+      }}
+      copyLink={{
+        props: {
+          onClick: () => {
+            copyURL();
+            toast("Successfully copied a link", {
+              position: "top-left",
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              type: "success",
+            });
+          },
+          style: {
+            cursor: "pointer",
+          },
+        },
       }}
       visibilityState={{
         props: {
