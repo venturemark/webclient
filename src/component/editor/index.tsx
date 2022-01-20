@@ -92,12 +92,10 @@ const plugins = [
     rules: [
       {
         hotkey: "mod+enter",
-        level: 1,
       },
       {
         hotkey: "mod+shift+enter",
         before: true,
-        level: 1,
       },
       {
         hotkey: "enter",
@@ -106,7 +104,6 @@ const plugins = [
           end: true,
           allow: headingTypes,
         },
-        level: 1,
       },
     ],
   }),
@@ -162,7 +159,7 @@ export interface EditorProps extends EditablePluginsProps {
 const withPlugins = [
   withReact,
   withHistory,
-  withLink(options),
+  withLink(),
   withList(options),
   withMarks(),
   withImageUpload(),

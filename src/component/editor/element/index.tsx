@@ -22,7 +22,19 @@ export function Element(props: ElementProps) {
       case "a":
         return <LinkComponent {...props} />;
       case "mention":
-        return <MentionElement {...props} element={element} />;
+        attributes.editablecontent = false;
+        return (
+          <MentionElement
+            {...props}
+            attributes={attributes}
+            element={element}
+            styles={{
+              root: {
+                userSelect: "none",
+              },
+            }}
+          />
+        );
     }
   }
   return <div {...attributes}>{children}</div>;
@@ -42,9 +54,7 @@ const LinkComponent = ({ attributes, children, element }: ElementProps) => {
       rel="noopener noreferrer"
       target="_blank"
     >
-      <span />
       {children}
-      <span />
     </a>
   );
 };
