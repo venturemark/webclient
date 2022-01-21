@@ -48,7 +48,7 @@ import {
 } from "component/editor/config/initialValues";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
 import { serialize } from "module/serialize";
-import { save } from "module/store";
+import { get, save } from "module/store";
 
 import { Element, ElementProps } from "./element";
 
@@ -114,9 +114,13 @@ export interface EditorState {
 
 //create custom hook for our editor:
 export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
+  const content = get("composeEditor.content");
+  const parsedContent = content ? JSON.parse(content) : undefined;
+  const value = parsedContent || initialValueEmpty;
+  const string = parsedContent ? serialize(parsedContent) : "";
   const defaultEditor: EditorShape = {
-    value: initialValueEmpty,
-    string: "",
+    value,
+    string,
     numberValue: 0,
     error: undefined,
     hasContent: undefined,
