@@ -258,7 +258,6 @@ export default function ActionBar(props: ActionBarProps) {
       });
       setTitle("");
       resetEditorSettings(editor);
-      resetUpdateEditorContext();
 
       setTouched({
         title: false,
