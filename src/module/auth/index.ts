@@ -7,7 +7,7 @@ const cacheLocation: CacheLocation = "localstorage";
 
 export const configJson = isDev()
   ? {
-      domain: "vm001.us.auth0.com",
+      domain: "auth.breadcrumb.so",
       clientId: "g36L8KuZbNfkDsCZY8zPzDnQPf22w5Vc",
       audience: "apiserver",
       redirectUri: "http://localhost:3006",
@@ -15,7 +15,7 @@ export const configJson = isDev()
       cacheLocation: cacheLocation,
     }
   : {
-      domain: "vm001.us.auth0.com",
+      domain: "auth.breadcrumb.so",
       clientId: "OcDgIHyVoiG39haDb8Vm88dTa96mgGTg",
       audience: "apiserver",
       redirectUri: "https://beta.breadcrumb.so",
