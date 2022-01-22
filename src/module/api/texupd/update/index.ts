@@ -21,7 +21,7 @@ export async function Update(
   const objJsnPatch = new UpdateI_Obj_Jsnpatch();
 
   const token = updateUpdate.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   const objList = [];
   const patchList = [];
