@@ -24,9 +24,9 @@ import { useUpdateTimeline } from "module/hook/timeline";
 import Select from "component/Select";
 import { toast } from "react-toastify";
 
-function copyURL() {
+function copyURL(url: string) {
   const el = document.createElement("input");
-  el.value = window.location.href.split("/members")[0];
+  el.value = url;
   document.body.appendChild(el);
   el.select();
   document.execCommand("copy");
@@ -199,7 +199,10 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
       copyLink={{
         props: {
           onClick: () => {
-            copyURL();
+            const url = !currentTimeline
+              ? `${window.location.origin}/${ventureId}/feed`
+              : `${window.location.origin}/${ventureId}/${timelineId}/feed`;
+            copyURL(url);
             toast("Successfully copied a link", {
               position: "top-left",
               autoClose: 3000,
