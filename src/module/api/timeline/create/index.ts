@@ -18,7 +18,7 @@ export async function Create(newTimeline: ICreateTimeline) {
   const objList = [];
 
   const token = newTimeline.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   objProperty.setName(newTimeline.name);
   objProperty.setDesc(newTimeline.desc);

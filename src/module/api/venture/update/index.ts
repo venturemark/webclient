@@ -14,7 +14,7 @@ export async function Update(
   ventureUpdate: IUpdateVenture
 ): Promise<UpdateStatus[]> {
   const token = ventureUpdate.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());

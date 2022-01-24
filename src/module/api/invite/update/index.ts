@@ -18,7 +18,7 @@ export async function Update(updateInvite: IUpdateInvite) {
   const obj = new UpdateI_Obj();
 
   const token = updateInvite.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   const nameObjJsnPatch = new UpdateI_Obj_Jsnpatch();
   const objList = [];
