@@ -61,7 +61,7 @@ export async function Update(
 
   if (updateTimeline.visibility) {
     const patch = new UpdateI_Obj_Jsnpatch();
-    patch.setOpe("replace");
+    patch.setOpe(updateTimeline.previous?.visibility ? "replace" : "add");
     patch.setPat(`/obj/metadata/${key.ResourceVisibility.replace("/", "~1")}`);
     patch.setVal(updateTimeline.visibility);
     patchList.push(patch);
