@@ -31,8 +31,4 @@ export const TimelineLastUpdate = "timeline.venturemark.co/last-update";
 
 export const UpdateFormat = "update.venturemark.co/format";
 
-export const UserPrepopulate = "user.venturemark.co/prepopulate";
-
-export const UserSurveyResponse = "user.venturemark.co/surveyResponse";
-
 export const TimelineIcon = "timeline.venturemark.co/icon";

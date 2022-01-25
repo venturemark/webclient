@@ -1,16 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Navigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
-import { DefaultProfileProps } from "component/plasmic/shared/PlasmicProfile";
+import { IsVisible } from "component/page/home";
+import {
+  DefaultProfileProps,
+  PlasmicProfile,
+} from "component/plasmic/shared/PlasmicProfile";
 import { UserContext } from "context/UserContext";
-
-import Onboarding from "component/Onboarding";
 
 interface ProfileProps extends DefaultProfileProps {}
 
 function Profile(props: ProfileProps) {
   const { user, status } = useContext(UserContext);
+  const [isVisible, setIsVisible] = useState<IsVisible>();
   const { state } = useLocation();
 
   if (status === "loading") {
@@ -21,7 +24,15 @@ function Profile(props: ProfileProps) {
     return <Navigate to="/" />;
   }
 
-  return <Onboarding />;
+  return (
+    <PlasmicProfile
+      profileForm={{
+        isVisible,
+        setIsVisible,
+        returnTo: state?.returnTo,
+      }}
+    />
+  );
 }
 
 export default Profile;
