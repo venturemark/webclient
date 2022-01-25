@@ -53,7 +53,7 @@ export async function Update(
 
   if (updateTimeline.icon) {
     const iconObjJsnPatch = new UpdateI_Obj_Jsnpatch();
-    iconObjJsnPatch.setOpe("replace");
+    iconObjJsnPatch.setOpe(updateTimeline.previous?.icon ? "replace" : "add");
     iconObjJsnPatch.setPat(
       `/obj/metadata/${key.TimelineIcon.replace("/", "~1")}`
     );
@@ -71,7 +71,7 @@ export async function Update(
 
   if (updateTimeline.visibility) {
     const patch = new UpdateI_Obj_Jsnpatch();
-    patch.setOpe("replace");
+    patch.setOpe(updateTimeline.previous?.visibility ? "replace" : "add");
     patch.setPat(`/obj/metadata/${key.ResourceVisibility.replace("/", "~1")}`);
     patch.setVal(updateTimeline.visibility);
     patchList.push(patch);

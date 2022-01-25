@@ -53,4 +53,5 @@ export interface IUpdateTimeline {
   successUrl?: string;
   token: string | null;
   icon?: string;
+  previous?: ITimeline;
 }
