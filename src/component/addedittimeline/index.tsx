@@ -48,6 +48,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       membersWrite: currentTimeline?.membersWrite ?? true,
       timelineDescription: currentTimeline?.desc ?? "",
       timelineName: currentTimeline?.name ?? "",
+      timelineIcon: currentTimeline?.icon ?? "",
     },
   });
 
