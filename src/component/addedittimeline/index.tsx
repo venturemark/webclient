@@ -96,6 +96,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           ventureId,
           successUrl: `/${ventureId}/${timelineId}/feed`,
           token,
+          previous: currentTimeline,
         },
         {
           onSuccess() {
