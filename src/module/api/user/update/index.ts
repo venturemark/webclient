@@ -19,7 +19,7 @@ export async function Update(updateUser: IUpdateUser): Promise<UpdateStatus[]> {
   obj.getMetadataMap().set(key.UserID, updateUser.id);
 
   const token = updateUser.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   const patchList = [];
 

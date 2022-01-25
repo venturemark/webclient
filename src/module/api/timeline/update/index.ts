@@ -14,7 +14,7 @@ export async function Update(
   updateTimeline: IUpdateTimeline
 ): Promise<UpdateStatus[]> {
   const token = updateTimeline.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
@@ -24,10 +24,6 @@ export async function Update(
 
   obj.getMetadataMap().set(key.TimelineID, updateTimeline.id);
   obj.getMetadataMap().set(key.VentureID, updateTimeline.ventureId);
-
-  if (updateTimeline.visibility) {
-    obj.getMetadataMap().set(key.ResourceVisibility, updateTimeline.visibility);
-  }
 
   const patchList = [];
 
@@ -65,11 +61,19 @@ export async function Update(
     patchList.push(iconObjJsnPatch);
   }
 
-  if (updateTimeline.membersWrite !== undefined) {
+  if (updateTimeline.membersWrite) {
     const patch = new UpdateI_Obj_Jsnpatch();
     patch.setOpe("replace");
     patch.setPat(`/obj/metadata/${key.PermissionModel.replace("/", "~1")}`);
     patch.setVal(updateTimeline.membersWrite ? "writer" : "reader");
+    patchList.push(patch);
+  }
+
+  if (updateTimeline.visibility) {
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat(`/obj/metadata/${key.ResourceVisibility.replace("/", "~1")}`);
+    patch.setVal(updateTimeline.visibility);
     patchList.push(patch);
   }
 

@@ -21,7 +21,7 @@ export async function Create(createVenture: ICreateVenture) {
   const objLinkList = [];
 
   const token = createVenture.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   if (createVenture.url) {
     objLink.setAddr(createVenture.url);

@@ -18,7 +18,7 @@ export async function Create(newInvite: ICreateInvite) {
   const objList = [];
 
   const token = newInvite.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   objProperty.setMail(newInvite.email);
 

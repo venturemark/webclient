@@ -19,7 +19,7 @@ export async function Create(createMessage: ICreateMessage): Promise<string[]> {
   const objList = [];
 
   const token = createMessage.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   objProperty.setText(createMessage.text);
   obj.getMetadataMap().set(key.VentureID, createMessage.ventureId);

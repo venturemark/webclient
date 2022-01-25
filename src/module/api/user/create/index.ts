@@ -20,7 +20,7 @@ export async function Create(newUser: ICreateUser) {
   const profList = [];
 
   const token = newUser.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   if (newUser.ventureName && newUser.ventureTitle) {
     const objPropertyProf = new CreateI_Obj_Property_Prof();

@@ -9,7 +9,7 @@ export async function Search(searchRole: IAPISearchRole): Promise<IRole[]> {
   const objList = [];
 
   const token = searchRole.token;
-  const metadata = { Authorization: `Bearer ${token}` };
+  const metadata = { Authorization: `Bearer ${token || key.DefaultToken}` };
 
   //instantiate client and req classes
   const client = new APIClient(env.APIEndpoint());
