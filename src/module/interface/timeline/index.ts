@@ -50,4 +50,5 @@ export interface IUpdateTimeline {
   visibility?: string;
   successUrl?: string;
   token: string | null;
+  previous?: ITimeline;
 }
