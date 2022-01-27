@@ -77,10 +77,10 @@ function PlasmicIconButtonMember__RenderFunc(props: {
   variants: PlasmicIconButtonMember__VariantsArgs;
   args: PlasmicIconButtonMember__ArgsType;
   overrides: PlasmicIconButtonMember__OverridesType;
-  dataFetches?: PlasmicIconButtonMember__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -89,18 +89,14 @@ function PlasmicIconButtonMember__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isActive]: hasVariant(variants, "isActive", "isActive"),
+        [sty.rootisActive]: hasVariant(variants, "isActive", "isActive"),
       })}
     >
       <div
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
         className={classNames(projectcss.all, sty.container, {
-          [sty.container__isActive]: hasVariant(
-            variants,
-            "isActive",
-            "isActive"
-          ),
+          [sty.containerisActive]: hasVariant(variants, "isActive", "isActive"),
         })}
       >
         <div className={classNames(projectcss.all, sty.freeBox__op1Qu)}>
@@ -157,7 +153,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicIconButtonMember__VariantsArgs;
     args?: PlasmicIconButtonMember__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicIconButtonMember__Fetches;
   } & Omit<PlasmicIconButtonMember__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicIconButtonMember__ArgsType, ReservedPropsType> &
@@ -184,13 +179,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicIconButtonMember__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicIconButtonMember__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

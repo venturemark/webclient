@@ -82,10 +82,10 @@ function PlasmicEmptyState__RenderFunc(props: {
   variants: PlasmicEmptyState__VariantsArgs;
   args: PlasmicEmptyState__ArgsType;
   overrides: PlasmicEmptyState__OverridesType;
-  dataFetches?: PlasmicEmptyState__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -114,18 +114,18 @@ function PlasmicEmptyState__RenderFunc(props: {
         data-plasmic-for-node={forNode}
         hasGap={true}
         className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-          [sty.root__isActive_isNew_variantType_isVenture]:
+          [sty.rootisActive_isNew_variantType_isVenture]:
             hasVariant(variants, "isActive", "isNew") &&
             hasVariant(variants, "variantType", "isVenture"),
-          [sty.root__isActive_members_variantType_isEmpty]:
+          [sty.rootisActive_members_variantType_isEmpty]:
             hasVariant(variants, "isActive", "members") &&
             hasVariant(variants, "variantType", "isEmpty"),
-          [sty.root__variantType_isEmpty]: hasVariant(
+          [sty.rootvariantType_isEmpty]: hasVariant(
             variants,
             "variantType",
             "isEmpty"
           ),
-          [sty.root__variantType_isEmpty_isActive_settings]:
+          [sty.rootvariantType_isEmpty_isActive_settings]:
             hasVariant(variants, "variantType", "isEmpty") &&
             hasVariant(variants, "isActive", "settings"),
         })}
@@ -140,10 +140,10 @@ function PlasmicEmptyState__RenderFunc(props: {
         ) ? (
           <div
             className={classNames(projectcss.all, sty.freeBox___2ILiu, {
-              [sty.freeBox__isActive_isNew_variantType_isEmpty___2ILiuTn7O1Hwthy]:
+              [sty.freeBoxisActive_isNew_variantType_isEmpty___2ILiuTn7O1Hwthy]:
                 hasVariant(variants, "isActive", "isNew") &&
                 hasVariant(variants, "variantType", "isEmpty"),
-              [sty.freeBox__variantType_isEmpty___2ILiuHwthy]: hasVariant(
+              [sty.freeBoxvariantType_isEmpty___2ILiuHwthy]: hasVariant(
                 variants,
                 "variantType",
                 "isEmpty"
@@ -164,10 +164,10 @@ function PlasmicEmptyState__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text__cvbvU,
                   {
-                    [sty.text__isActive_isNew_variantType_isEmpty__cvbvUtn7O1Hwthy]:
+                    [sty.textisActive_isNew_variantType_isEmpty__cvbvUtn7O1Hwthy]:
                       hasVariant(variants, "isActive", "isNew") &&
                       hasVariant(variants, "variantType", "isEmpty"),
-                    [sty.text__variantType_isEmpty__cvbvUhwthy]: hasVariant(
+                    [sty.textvariantType_isEmpty__cvbvUhwthy]: hasVariant(
                       variants,
                       "variantType",
                       "isEmpty"
@@ -189,7 +189,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text__qxWsf,
                   {
-                    [sty.text__variantType_isEmpty__qxWsfHwthy]: hasVariant(
+                    [sty.textvariantType_isEmpty__qxWsfHwthy]: hasVariant(
                       variants,
                       "variantType",
                       "isEmpty"
@@ -211,7 +211,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text__eBmr,
                   {
-                    [sty.text__variantType_isEmpty__eBmrHwthy]: hasVariant(
+                    [sty.textvariantType_isEmpty__eBmrHwthy]: hasVariant(
                       variants,
                       "variantType",
                       "isEmpty"
@@ -229,10 +229,10 @@ function PlasmicEmptyState__RenderFunc(props: {
         {(hasVariant(variants, "variantType", "isEmpty") ? true : false) ? (
           <div
             className={classNames(projectcss.all, sty.freeBox__xLwhc, {
-              [sty.freeBox__isActive_isNew_variantType_isEmpty__xLwhcTn7O1Hwthy]:
+              [sty.freeBoxisActive_isNew_variantType_isEmpty__xLwhcTn7O1Hwthy]:
                 hasVariant(variants, "isActive", "isNew") &&
                 hasVariant(variants, "variantType", "isEmpty"),
-              [sty.freeBox__variantType_isEmpty__xLwhcHwthy]: hasVariant(
+              [sty.freeBoxvariantType_isEmpty__xLwhcHwthy]: hasVariant(
                 variants,
                 "variantType",
                 "isEmpty"
@@ -244,10 +244,10 @@ function PlasmicEmptyState__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__rHe6S, {
-                  [sty.freeBox__isActive_isNew_variantType_isEmpty__rHe6STn7O1Hwthy]:
+                  [sty.freeBoxisActive_isNew_variantType_isEmpty__rHe6STn7O1Hwthy]:
                     hasVariant(variants, "isActive", "isNew") &&
                     hasVariant(variants, "variantType", "isEmpty"),
-                  [sty.freeBox__variantType_isEmpty__rHe6SHwthy]: hasVariant(
+                  [sty.freeBoxvariantType_isEmpty__rHe6SHwthy]: hasVariant(
                     variants,
                     "variantType",
                     "isEmpty"
@@ -259,8 +259,11 @@ function PlasmicEmptyState__RenderFunc(props: {
                 ) ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox__qYFj1, {
-                      [sty.freeBox__variantType_isEmpty__qYFj1Hwthy]:
-                        hasVariant(variants, "variantType", "isEmpty"),
+                      [sty.freeBoxvariantType_isEmpty__qYFj1Hwthy]: hasVariant(
+                        variants,
+                        "variantType",
+                        "isEmpty"
+                      ),
                     })}
                   >
                     {(
@@ -274,10 +277,10 @@ function PlasmicEmptyState__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text__nMlNv,
                           {
-                            [sty.text__isActive_isNew_variantType_isEmpty__nMlNvTn7O1Hwthy]:
+                            [sty.textisActive_isNew_variantType_isEmpty__nMlNvTn7O1Hwthy]:
                               hasVariant(variants, "isActive", "isNew") &&
                               hasVariant(variants, "variantType", "isEmpty"),
-                            [sty.text__variantType_isEmpty__nMlNvHwthy]:
+                            [sty.textvariantType_isEmpty__nMlNvHwthy]:
                               hasVariant(variants, "variantType", "isEmpty"),
                           }
                         )}
@@ -301,10 +304,10 @@ function PlasmicEmptyState__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text__tVef,
                           {
-                            [sty.text__isActive_isNew_variantType_isEmpty__tVefTn7O1Hwthy]:
+                            [sty.textisActive_isNew_variantType_isEmpty__tVefTn7O1Hwthy]:
                               hasVariant(variants, "isActive", "isNew") &&
                               hasVariant(variants, "variantType", "isEmpty"),
-                            [sty.text__variantType_isEmpty__tVefHwthy]:
+                            [sty.textvariantType_isEmpty__tVefHwthy]:
                               hasVariant(variants, "variantType", "isEmpty"),
                           }
                         )}
@@ -313,7 +316,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                         hasVariant(variants, "variantType", "isEmpty")
                           ? "Organize your stories for specific audiences with timelines."
                           : hasVariant(variants, "variantType", "isEmpty")
-                          ? "Get your company or organization on Breadcrumb."
+                          ? "Get your company or organization on Venturemark."
                           : "Use timelines to organize stories for your group of audiences."}
                       </div>
                     ) : null}
@@ -347,11 +350,14 @@ function PlasmicEmptyState__RenderFunc(props: {
                       "__wab_instance",
                       sty.viewCreateVenture,
                       {
-                        [sty.viewCreateVenture__isActive_isNew_variantType_isEmpty]:
+                        [sty.viewCreateVentureisActive_isNew_variantType_isEmpty]:
                           hasVariant(variants, "isActive", "isNew") &&
                           hasVariant(variants, "variantType", "isEmpty"),
-                        [sty.viewCreateVenture__variantType_isEmpty]:
-                          hasVariant(variants, "variantType", "isEmpty"),
+                        [sty.viewCreateVenturevariantType_isEmpty]: hasVariant(
+                          variants,
+                          "variantType",
+                          "isEmpty"
+                        ),
                       }
                     )}
                     text2={
@@ -363,10 +369,10 @@ function PlasmicEmptyState__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text2,
                           {
-                            [sty.text2__isActive_isNew_variantType_isEmpty]:
+                            [sty.text2isActive_isNew_variantType_isEmpty]:
                               hasVariant(variants, "isActive", "isNew") &&
                               hasVariant(variants, "variantType", "isEmpty"),
-                            [sty.text2__variantType_isEmpty]: hasVariant(
+                            [sty.text2variantType_isEmpty]: hasVariant(
                               variants,
                               "variantType",
                               "isEmpty"
@@ -412,11 +418,14 @@ function PlasmicEmptyState__RenderFunc(props: {
                       "__wab_instance",
                       sty.viewCreateTimeline,
                       {
-                        [sty.viewCreateTimeline__isActive_isNew_variantType_isEmpty]:
+                        [sty.viewCreateTimelineisActive_isNew_variantType_isEmpty]:
                           hasVariant(variants, "isActive", "isNew") &&
                           hasVariant(variants, "variantType", "isEmpty"),
-                        [sty.viewCreateTimeline__variantType_isEmpty]:
-                          hasVariant(variants, "variantType", "isEmpty"),
+                        [sty.viewCreateTimelinevariantType_isEmpty]: hasVariant(
+                          variants,
+                          "variantType",
+                          "isEmpty"
+                        ),
                       }
                     )}
                     text2={
@@ -428,10 +437,10 @@ function PlasmicEmptyState__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text23,
                           {
-                            [sty.text23__isActive_isNew_variantType_isEmpty]:
+                            [sty.text23isActive_isNew_variantType_isEmpty]:
                               hasVariant(variants, "isActive", "isNew") &&
                               hasVariant(variants, "variantType", "isEmpty"),
-                            [sty.text23__variantType_isEmpty]: hasVariant(
+                            [sty.text23variantType_isEmpty]: hasVariant(
                               variants,
                               "variantType",
                               "isEmpty"
@@ -456,7 +465,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox___77Ib2, {
-                  [sty.freeBox__variantType_isEmpty___77Ib2Hwthy]: hasVariant(
+                  [sty.freeBoxvariantType_isEmpty___77Ib2Hwthy]: hasVariant(
                     variants,
                     "variantType",
                     "isEmpty"
@@ -468,7 +477,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                 ) ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox__rfS5, {
-                      [sty.freeBox__variantType_isEmpty__rfS5Hwthy]: hasVariant(
+                      [sty.freeBoxvariantType_isEmpty__rfS5Hwthy]: hasVariant(
                         variants,
                         "variantType",
                         "isEmpty"
@@ -486,7 +495,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text__nuDvx,
                           {
-                            [sty.text__variantType_isEmpty__nuDvxHwthy]:
+                            [sty.textvariantType_isEmpty__nuDvxHwthy]:
                               hasVariant(variants, "variantType", "isEmpty"),
                           }
                         )}
@@ -507,13 +516,13 @@ function PlasmicEmptyState__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text__s7JUk,
                           {
-                            [sty.text__variantType_isEmpty__s7JUkHwthy]:
+                            [sty.textvariantType_isEmpty__s7JUkHwthy]:
                               hasVariant(variants, "variantType", "isEmpty"),
                           }
                         )}
                       >
                         {hasVariant(variants, "variantType", "isEmpty")
-                          ? "Get your company or organization on Breadcrumb."
+                          ? "Get your company or organization on Venturemark."
                           : "Join or sign into an existing organization"}
                       </div>
                     ) : null}
@@ -542,7 +551,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                       "__wab_instance",
                       sty.viewJoinVenture,
                       {
-                        [sty.viewJoinVenture__variantType_isEmpty]: hasVariant(
+                        [sty.viewJoinVenturevariantType_isEmpty]: hasVariant(
                           variants,
                           "variantType",
                           "isEmpty"
@@ -558,7 +567,7 @@ function PlasmicEmptyState__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text22,
                           {
-                            [sty.text22__variantType_isEmpty]: hasVariant(
+                            [sty.text22variantType_isEmpty]: hasVariant(
                               variants,
                               "variantType",
                               "isEmpty"
@@ -623,7 +632,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicEmptyState__VariantsArgs;
     args?: PlasmicEmptyState__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicEmptyState__Fetches;
   } & Omit<PlasmicEmptyState__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicEmptyState__ArgsType, ReservedPropsType> &
@@ -650,13 +658,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicEmptyState__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicEmptyState__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

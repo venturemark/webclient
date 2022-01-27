@@ -132,7 +132,7 @@ export type PlasmicShare__OverridesType = {
   email?: p.Flex<typeof InputText>;
   invite?: p.Flex<typeof Button>;
   span?: p.Flex<"span">;
-  inputText?: p.Flex<typeof InputText>;
+  email2?: p.Flex<typeof InputText>;
   membersContainer?: p.Flex<"div">;
   wrapper?: p.Flex<"div">;
   text2?: p.Flex<"div">;
@@ -177,10 +177,10 @@ function PlasmicShare__RenderFunc(props: {
   variants: PlasmicShare__VariantsArgs;
   args: PlasmicShare__ArgsType;
   overrides: PlasmicShare__OverridesType;
-  dataFetches?: PlasmicShare__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <p.Stack
@@ -191,7 +191,8 @@ function PlasmicShare__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__type_venture]: hasVariant(variants, "type", "venture"),
+        [sty.rootisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+        [sty.roottype_venture]: hasVariant(variants, "type", "venture"),
       })}
     >
       <div className={classNames(projectcss.all, sty.freeBox___8PKum)}>
@@ -200,12 +201,12 @@ function PlasmicShare__RenderFunc(props: {
               defaultContents: "Timeline Members",
               value: args.children,
               className: classNames(sty.slotTargetChildren, {
-                [sty.slotTargetChildren__type_timeline]: hasVariant(
+                [sty.slotTargetChildrentype_timeline]: hasVariant(
                   variants,
                   "type",
                   "timeline"
                 ),
-                [sty.slotTargetChildren__type_venture]: hasVariant(
+                [sty.slotTargetChildrentype_venture]: hasVariant(
                   variants,
                   "type",
                   "venture"
@@ -224,12 +225,12 @@ function PlasmicShare__RenderFunc(props: {
               defaultContents: "Network Members",
               value: args.children3,
               className: classNames(sty.slotTargetChildren3, {
-                [sty.slotTargetChildren3__type_timeline]: hasVariant(
+                [sty.slotTargetChildren3type_timeline]: hasVariant(
                   variants,
                   "type",
                   "timeline"
                 ),
-                [sty.slotTargetChildren3__type_venture]: hasVariant(
+                [sty.slotTargetChildren3type_venture]: hasVariant(
                   variants,
                   "type",
                   "venture"
@@ -246,14 +247,15 @@ function PlasmicShare__RenderFunc(props: {
           : null}
       </div>
 
-      {false ? (
+      {true ? (
         <div className={classNames(projectcss.all, sty.freeBox__pA5XW)}>
-          {p.renderPlasmicSlot({
-            defaultContents: "Timeline Members",
-            value: args.children2,
-            className: classNames(sty.slotTargetChildren2),
-          })}
-
+          {false
+            ? p.renderPlasmicSlot({
+                defaultContents: "Timeline Members",
+                value: args.children2,
+                className: classNames(sty.slotTargetChildren2),
+              })
+            : null}
           {false
             ? p.renderPlasmicSlot({
                 defaultContents:
@@ -263,248 +265,275 @@ function PlasmicShare__RenderFunc(props: {
             : null}
         </div>
       ) : null}
-      {false ? (
-        <p.Stack
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__dKcM4)}
-        >
-          <p.Stack
-            as={"form"}
-            data-plasmic-name={"form"}
-            data-plasmic-override={overrides.form}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.form)}
-          >
-            <InputText
-              data-plasmic-name={"email"}
-              data-plasmic-override={overrides.email}
-              hasLabel={"hasLabel" as const}
-              hasTextHelper={"hasTextHelper" as const}
-              label={"Invite a member by email"}
-            >
-              {"Enter their email to invite and add them to this organization."}
-            </InputText>
-
-            <Button
-              data-plasmic-name={"invite"}
-              data-plasmic-override={overrides.invite}
-              buttonFeatures={["nonFullWidth", "removeText", "showStartIcon"]}
-              className={classNames("__wab_instance", sty.invite)}
-              count={"1"}
-              text2={"Button"}
-            />
-          </p.Stack>
-
-          {false ? (
-            <p.Stack
-              as={"a"}
-              hasGap={true}
-              className={classNames(projectcss.a, sty.link__fnYec)}
-            >
-              <IconLinkIcon
-                className={classNames(projectcss.all, sty.svg__td3Iw)}
-                role={"img"}
-              />
-
-              <span
-                data-plasmic-name={"span"}
-                data-plasmic-override={overrides.span}
-                className={classNames(
-                  projectcss.span,
-                  projectcss.__wab_text,
-                  sty.span
-                )}
-              >
-                {"Copy Invite Link"}
-              </span>
-            </p.Stack>
-          ) : null}
-        </p.Stack>
-      ) : null}
 
       <div
         className={classNames(projectcss.all, sty.freeBox___80D2Z, {
-          [sty.freeBox__type_venture_isOwner___80D2Z49PC95R44R]:
+          [sty.freeBoxtype_venture_isOwner___80D2Z49PC95R44R]:
             hasVariant(variants, "type", "venture") &&
             hasVariant(variants, "isOwner", "isOwner"),
         })}
       >
-        <p.Stack
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__sRTx)}
-        >
-          <InputText
-            data-plasmic-name={"inputText"}
-            data-plasmic-override={overrides.inputText}
-            className={classNames("__wab_instance", sty.inputText)}
-            hasLabel={"hasLabel" as const}
-            label={
-              hasVariant(variants, "isOwner", "isOwner")
-                ? "Find or add members"
-                : "Find members"
-            }
-          />
-
-          <Button
-            buttonFeatures={["removeText", "showStartIcon", "nonFullWidth"]}
-            className={classNames("__wab_instance", sty.button__eyLcD)}
-            count={"1"}
-            text2={"Button"}
-          />
-        </p.Stack>
-
-        <div
-          data-plasmic-name={"membersContainer"}
-          data-plasmic-override={overrides.membersContainer}
-          className={classNames(projectcss.all, sty.membersContainer)}
-        >
-          <div
-            data-plasmic-name={"wrapper"}
-            data-plasmic-override={overrides.wrapper}
-            className={classNames(projectcss.all, sty.wrapper, {
-              [sty.wrapper__visibilitySelect__private]: hasVariant(
-                variants,
-                "visibilitySelect",
-                "_private"
-              ),
-            })}
+        {true ? (
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__dKcM4)}
           >
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__dYKyI, {
-                [sty.memberItem__visibilitySelect__private__dYKyIdcTzL]:
-                  hasVariant(variants, "visibilitySelect", "_private"),
-              })}
-              isOwner={"isOwner" as const}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot3,
-              })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "User Name",
-                value: args.slot4,
-              })}
-              userVariant={"isRequested" as const}
-              ventureTimeline={"isTimeline" as const}
-            />
+            <p.Stack
+              as={"form"}
+              data-plasmic-name={"form"}
+              data-plasmic-override={overrides.form}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.form)}
+            >
+              <InputText
+                data-plasmic-name={"email"}
+                data-plasmic-override={overrides.email}
+                hasLabel={true}
+                hasTextHelper={true}
+                label={"Invite a member by email"}
+              >
+                {
+                  "Enter their email to invite and add them to this organization."
+                }
+              </InputText>
 
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__f7Hx8)}
-              isOwner={"isOwner" as const}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot33,
-              })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot43,
-              })}
-              userVariant={"isAdmin" as const}
-            />
+              <Button
+                data-plasmic-name={"invite"}
+                data-plasmic-override={overrides.invite}
+                buttonFeatures={["nonFullWidth", "removeText", "showStartIcon"]}
+                className={classNames("__wab_instance", sty.invite)}
+                count={"1"}
+                text2={"Button"}
+              />
+            </p.Stack>
 
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__ppsSh)}
-              isOwner={"isOwner" as const}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot34,
-              })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot44,
-              })}
-              userVariant={"isAdmin" as const}
-            />
+            {false ? (
+              <p.Stack
+                as={"a"}
+                hasGap={true}
+                className={classNames(projectcss.a, sty.link__fnYec)}
+              >
+                <IconLinkIcon
+                  className={classNames(projectcss.all, sty.svg__td3Iw)}
+                  role={"img"}
+                />
 
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__kioF, {
-                [sty.memberItem__isOwner__kioF5R44R]: hasVariant(
+                <span
+                  data-plasmic-name={"span"}
+                  data-plasmic-override={overrides.span}
+                  className={classNames(
+                    projectcss.span,
+                    projectcss.__wab_text,
+                    sty.span
+                  )}
+                >
+                  {"Copy Invite Link"}
+                </span>
+              </p.Stack>
+            ) : null}
+          </p.Stack>
+        ) : null}
+        {true ? (
+          <p.Stack
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__sRTx)}
+          >
+            <InputText
+              data-plasmic-name={"email2"}
+              data-plasmic-override={overrides.email2}
+              className={classNames("__wab_instance", sty.email2, {
+                [sty.email2type_timeline]: hasVariant(
                   variants,
-                  "isOwner",
-                  "isOwner"
+                  "type",
+                  "timeline"
                 ),
-                [sty.memberItem__type_venture_isOwner__kioF49PC95R44R]:
-                  hasVariant(variants, "type", "venture") &&
-                  hasVariant(variants, "isOwner", "isOwner"),
               })}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot322,
-              })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "User Name",
-                value: args.slot422,
-              })}
-              userVariant={"isMember" as const}
+              hasLabel={true}
+              label={
+                hasVariant(variants, "isOwner", "isOwner")
+                  ? "Find or add members"
+                  : "Find members"
+              }
             />
 
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem___4Ardk)}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot32,
+            <Button
+              buttonFeatures={["removeText", "showStartIcon", "nonFullWidth"]}
+              className={classNames("__wab_instance", sty.button__eyLcD, {
+                [sty.buttontype_timeline__eyLcD8Drt6]: hasVariant(
+                  variants,
+                  "type",
+                  "timeline"
+                ),
+                [sty.buttontype_venture__eyLcD49PC9]: hasVariant(
+                  variants,
+                  "type",
+                  "venture"
+                ),
+                [sty.buttonvisibilitySelect__private__eyLcDdcTzL]: hasVariant(
+                  variants,
+                  "visibilitySelect",
+                  "_private"
+                ),
               })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "User Name",
-                value: args.slot42,
-              })}
-              userVariant={"isAdmin" as const}
+              count={"1"}
+              text2={"Button"}
             />
+          </p.Stack>
+        ) : null}
+        {true ? (
+          <div
+            data-plasmic-name={"membersContainer"}
+            data-plasmic-override={overrides.membersContainer}
+            className={classNames(projectcss.all, sty.membersContainer)}
+          >
+            <div
+              data-plasmic-name={"wrapper"}
+              data-plasmic-override={overrides.wrapper}
+              className={classNames(projectcss.all, sty.wrapper, {
+                [sty.wrappervisibilitySelect__private]: hasVariant(
+                  variants,
+                  "visibilitySelect",
+                  "_private"
+                ),
+              })}
+            >
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem__dYKyI, {
+                  [sty.memberItemvisibilitySelect__private__dYKyIdcTzL]:
+                    hasVariant(variants, "visibilitySelect", "_private"),
+                })}
+                isOwner={true}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot3,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "User Name",
+                  value: args.slot4,
+                })}
+                userVariant={"isRequested" as const}
+                ventureTimeline={"isTimeline" as const}
+              />
 
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__sojRo)}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot35,
-              })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "User Name",
-                value: args.slot45,
-              })}
-              userVariant={"isAdmin" as const}
-            />
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem__f7Hx8)}
+                isOwner={true}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot33,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot43,
+                })}
+                userVariant={"isAdmin" as const}
+              />
 
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__b1Vsq)}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot36,
-              })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "User Name",
-                value: args.slot46,
-              })}
-              userVariant={"isAdmin" as const}
-            />
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem__ppsSh)}
+                isOwner={true}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot34,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot44,
+                })}
+                userVariant={"isAdmin" as const}
+              />
 
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem__uuiMa)}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot37,
-              })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "User Name",
-                value: args.slot47,
-              })}
-              userVariant={"isAdmin" as const}
-            />
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem__kioF, {
+                  [sty.memberItemisOwner__kioF5R44R]: hasVariant(
+                    variants,
+                    "isOwner",
+                    "isOwner"
+                  ),
+                  [sty.memberItemtype_venture_isOwner__kioF49PC95R44R]:
+                    hasVariant(variants, "type", "venture") &&
+                    hasVariant(variants, "isOwner", "isOwner"),
+                })}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot322,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "User Name",
+                  value: args.slot422,
+                })}
+                userVariant={"isMember" as const}
+              />
 
-            <MemberItem
-              className={classNames("__wab_instance", sty.memberItem___8Pg7I)}
-              slot3={p.renderPlasmicSlot({
-                defaultContents: "example@email.com",
-                value: args.slot38,
-              })}
-              userName={p.renderPlasmicSlot({
-                defaultContents: "User Name",
-                value: args.slot48,
-              })}
-              userVariant={"isAdmin" as const}
-            />
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem___4Ardk)}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot32,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "User Name",
+                  value: args.slot42,
+                })}
+                userVariant={"isAdmin" as const}
+              />
+
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem__sojRo)}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot35,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "User Name",
+                  value: args.slot45,
+                })}
+                userVariant={"isAdmin" as const}
+              />
+
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem__b1Vsq)}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot36,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "User Name",
+                  value: args.slot46,
+                })}
+                userVariant={"isAdmin" as const}
+              />
+
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem__uuiMa)}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot37,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "User Name",
+                  value: args.slot47,
+                })}
+                userVariant={"isAdmin" as const}
+              />
+
+              <MemberItem
+                className={classNames("__wab_instance", sty.memberItem___8Pg7I)}
+                slot3={p.renderPlasmicSlot({
+                  defaultContents: "example@email.com",
+                  value: args.slot38,
+                })}
+                userName={p.renderPlasmicSlot({
+                  defaultContents: "User Name",
+                  value: args.slot48,
+                })}
+                userVariant={"isAdmin" as const}
+              />
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
 
       {false ? (
@@ -551,20 +580,20 @@ function PlasmicShare__RenderFunc(props: {
           data-plasmic-name={"visibilityState"}
           data-plasmic-override={overrides.visibilityState}
           className={classNames("__wab_instance", sty.visibilityState, {
-            [sty.visibilityState__isOwner]: hasVariant(
+            [sty.visibilityStateisOwner]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.visibilityState__type_venture_isOwner]:
+            [sty.visibilityStatetype_venture_isOwner]:
               hasVariant(variants, "type", "venture") &&
               hasVariant(variants, "isOwner", "isOwner"),
-            [sty.visibilityState__visibilitySelect__public]: hasVariant(
+            [sty.visibilityStatevisibilitySelect__public]: hasVariant(
               variants,
               "visibilitySelect",
               "_public"
             ),
-            [sty.visibilityState__visibilitySelect_members]: hasVariant(
+            [sty.visibilityStatevisibilitySelect_members]: hasVariant(
               variants,
               "visibilitySelect",
               "members"
@@ -617,8 +646,8 @@ function PlasmicShare__RenderFunc(props: {
           data-plasmic-name={"copyLink"}
           data-plasmic-override={overrides.copyLink}
           className={classNames(projectcss.all, sty.copyLink, {
-            [sty.copyLink__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-            [sty.copyLink__type_venture_isOwner]:
+            [sty.copyLinkisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+            [sty.copyLinktype_venture_isOwner]:
               hasVariant(variants, "type", "venture") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}
@@ -628,10 +657,15 @@ function PlasmicShare__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__embnu, {
-                [sty.freeBox__isOwner__embnu5R44R]: hasVariant(
+                [sty.freeBoxisOwner__embnu5R44R]: hasVariant(
                   variants,
                   "isOwner",
                   "isOwner"
+                ),
+                [sty.freeBoxtype_venture__embnu49PC9]: hasVariant(
+                  variants,
+                  "type",
+                  "venture"
                 ),
               })}
             >
@@ -644,7 +678,14 @@ function PlasmicShare__RenderFunc(props: {
                 className={classNames(
                   projectcss.a,
                   projectcss.__wab_text,
-                  sty.link__xvzZ8
+                  sty.link__xvzZ8,
+                  {
+                    [sty.linktype_venture__xvzZ849PC9]: hasVariant(
+                      variants,
+                      "type",
+                      "venture"
+                    ),
+                  }
                 )}
               >
                 {"Copy Share Link"}
@@ -664,7 +705,7 @@ const PlasmicDescendants = {
     "email",
     "invite",
     "span",
-    "inputText",
+    "email2",
     "membersContainer",
     "wrapper",
     "text2",
@@ -675,7 +716,7 @@ const PlasmicDescendants = {
   email: ["email"],
   invite: ["invite"],
   span: ["span"],
-  inputText: ["inputText"],
+  email2: ["email2"],
   membersContainer: ["membersContainer", "wrapper"],
   wrapper: ["wrapper"],
   text2: ["text2"],
@@ -691,7 +732,7 @@ type NodeDefaultElementType = {
   email: typeof InputText;
   invite: typeof Button;
   span: "span";
-  inputText: typeof InputText;
+  email2: typeof InputText;
   membersContainer: "div";
   wrapper: "div";
   text2: "div";
@@ -710,7 +751,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicShare__VariantsArgs;
     args?: PlasmicShare__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicShare__Fetches;
   } & Omit<PlasmicShare__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicShare__ArgsType, ReservedPropsType> &
@@ -737,13 +777,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicShare__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicShare__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };
@@ -764,7 +801,7 @@ export const PlasmicShare = Object.assign(
     email: makeNodeComponent("email"),
     invite: makeNodeComponent("invite"),
     span: makeNodeComponent("span"),
-    inputText: makeNodeComponent("inputText"),
+    email2: makeNodeComponent("email2"),
     membersContainer: makeNodeComponent("membersContainer"),
     wrapper: makeNodeComponent("wrapper"),
     text2: makeNodeComponent("text2"),

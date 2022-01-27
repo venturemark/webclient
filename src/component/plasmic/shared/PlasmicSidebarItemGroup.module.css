@@ -10,7 +10,7 @@
   min-width: 0;
 }
 @media (max-width: 767px) {
-  .root__isOwner {
+  .rootisOwner {
     border-top-width: 0px;
     padding-top: 65px;
   }
@@ -37,7 +37,7 @@
   top: auto;
   left: auto;
 }
-.itemContainer__isCollapsed {
+.itemContainerisCollapsed {
   display: flex;
   flex-direction: column;
   flex-column-gap: 0px;
@@ -83,7 +83,7 @@
   > img {
   margin-left: 6px;
 }
-.itemContainer2__isPublic {
+.itemContainer2isPublic {
   padding-left: 30px;
 }
 .freeBox__qDvH0 {
@@ -143,7 +143,7 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-.freeBox__isPublic___4CYesYwyIq {
+.freeBoxisPublic___4CYesYwyIq {
   width: 100%;
   height: 20px;
   background: #f1f1f1;
@@ -189,7 +189,7 @@
   > img {
   margin-left: 6px;
 }
-.itemContainer22__isPublic {
+.itemContainer22isPublic {
   padding-left: 30px;
   opacity: 0.6;
 }
@@ -250,7 +250,7 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-.freeBox__isPublic__v4P01YwyIq {
+.freeBoxisPublic__v4P01YwyIq {
   width: 100%;
   height: 20px;
   background: #f1f1f1;
@@ -296,7 +296,7 @@
   > img {
   margin-left: 6px;
 }
-.itemContainer222__isPublic {
+.itemContainer222isPublic {
   padding-left: 30px;
   opacity: 0.3;
 }
@@ -357,7 +357,7 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-.freeBox__isPublic__my23YwyIq {
+.freeBoxisPublic__my23YwyIq {
   width: 100%;
   height: 20px;
   background: #f1f1f1;
@@ -373,10 +373,13 @@
 .newTimeline:global(.__wab_instance) {
   display: none;
 }
-.newTimeline__isCollapsed:global(.__wab_instance) {
+.newTimelineisCollapsed:global(.__wab_instance) {
   display: none;
 }
-.root__isOwner:hover .newTimeline__isOwner:global(.__wab_instance) {
+.newTimelineisOwner:global(.__wab_instance) {
+  display: flex;
+}
+.rootisOwner:hover .newTimelineisOwner:global(.__wab_instance) {
   display: flex;
 }
 .text__f9Ow1 {
@@ -386,4 +389,10 @@
   white-space: pre;
   text-overflow: ellipsis !important;
   overflow: hidden;
+}
+.textisOwner__f9Ow1M0R2M {
+  display: none;
+}
+.rootisOwner:hover .textisOwner__f9Ow1M0R2M {
+  display: block;
 }

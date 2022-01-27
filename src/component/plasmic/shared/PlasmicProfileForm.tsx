@@ -86,10 +86,10 @@ function PlasmicProfileForm__RenderFunc(props: {
   variants: PlasmicProfileForm__VariantsArgs;
   args: PlasmicProfileForm__ArgsType;
   overrides: PlasmicProfileForm__OverridesType;
-  dataFetches?: PlasmicProfileForm__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     (hasVariant(variants, "editProfile", "editProfile") ? true : true) ? (
@@ -101,7 +101,7 @@ function PlasmicProfileForm__RenderFunc(props: {
         data-plasmic-for-node={forNode}
         hasGap={true}
         className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-          [sty.root__editProfile]: hasVariant(
+          [sty.rooteditProfile]: hasVariant(
             variants,
             "editProfile",
             "editProfile"
@@ -112,7 +112,7 @@ function PlasmicProfileForm__RenderFunc(props: {
           data-plasmic-name={"form"}
           data-plasmic-override={overrides.form}
           className={classNames(projectcss.all, sty.form, {
-            [sty.form__editProfile]: hasVariant(
+            [sty.formeditProfile]: hasVariant(
               variants,
               "editProfile",
               "editProfile"
@@ -124,7 +124,7 @@ function PlasmicProfileForm__RenderFunc(props: {
           ) ? (
             <div
               className={classNames(projectcss.all, sty.freeBox__ytyPi, {
-                [sty.freeBox__editProfile__ytyPiOylNj]: hasVariant(
+                [sty.freeBoxeditProfile__ytyPiOylNj]: hasVariant(
                   variants,
                   "editProfile",
                   "editProfile"
@@ -139,7 +139,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text,
                   {
-                    [sty.text__editProfile]: hasVariant(
+                    [sty.texteditProfile]: hasVariant(
                       variants,
                       "editProfile",
                       "editProfile"
@@ -154,7 +154,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                 data-plasmic-name={"close"}
                 data-plasmic-override={overrides.close}
                 className={classNames("__wab_instance", sty.close, {
-                  [sty.close__editProfile]: hasVariant(
+                  [sty.closeeditProfile]: hasVariant(
                     variants,
                     "editProfile",
                     "editProfile"
@@ -173,7 +173,7 @@ function PlasmicProfileForm__RenderFunc(props: {
           ) ? (
             <div
               className={classNames(projectcss.all, sty.freeBox__lhTso, {
-                [sty.freeBox__editProfile__lhTsoOylNj]: hasVariant(
+                [sty.freeBoxeditProfile__lhTsoOylNj]: hasVariant(
                   variants,
                   "editProfile",
                   "editProfile"
@@ -200,7 +200,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                       projectcss.__wab_text,
                       sty.link,
                       {
-                        [sty.link__editProfile]: hasVariant(
+                        [sty.linkeditProfile]: hasVariant(
                           variants,
                           "editProfile",
                           "editProfile"
@@ -221,7 +221,7 @@ function PlasmicProfileForm__RenderFunc(props: {
             data-plasmic-name={"nameField"}
             data-plasmic-override={overrides.nameField}
             className={classNames("__wab_instance", sty.nameField)}
-            hasLabel={"hasLabel" as const}
+            hasLabel={true}
             label={"Full Name"}
           >
             {"This will be used as your display name"}
@@ -231,14 +231,14 @@ function PlasmicProfileForm__RenderFunc(props: {
             data-plasmic-name={"jobField"}
             data-plasmic-override={overrides.jobField}
             className={classNames("__wab_instance", sty.jobField, {
-              [sty.jobField__editProfile]: hasVariant(
+              [sty.jobFieldeditProfile]: hasVariant(
                 variants,
                 "editProfile",
                 "editProfile"
               ),
             })}
-            hasLabel={"hasLabel" as const}
-            hasTextHelper={"hasTextHelper" as const}
+            hasLabel={true}
+            hasTextHelper={true}
             label={"What I Do"}
           >
             {"Let people know what you do"}
@@ -250,7 +250,7 @@ function PlasmicProfileForm__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__z9Te4, {
-              [sty.freeBox__editProfile__z9Te4OylNj]: hasVariant(
+              [sty.freeBoxeditProfile__z9Te4OylNj]: hasVariant(
                 variants,
                 "editProfile",
                 "editProfile"
@@ -284,7 +284,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                       projectcss.__wab_text,
                       sty.text2,
                       {
-                        [sty.text2__editProfile]: hasVariant(
+                        [sty.text2editProfile]: hasVariant(
                           variants,
                           "editProfile",
                           "editProfile"
@@ -313,7 +313,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                 buttonFeatures={[]}
                 buttonStyle={"primaryPurple" as const}
                 className={classNames("__wab_instance", sty.save, {
-                  [sty.save__editProfile]: hasVariant(
+                  [sty.saveeditProfile]: hasVariant(
                     variants,
                     "editProfile",
                     "editProfile"
@@ -335,7 +335,7 @@ function PlasmicProfileForm__RenderFunc(props: {
                       projectcss.__wab_text,
                       sty.text22,
                       {
-                        [sty.text22__editProfile]: hasVariant(
+                        [sty.text22editProfile]: hasVariant(
                           variants,
                           "editProfile",
                           "editProfile"
@@ -426,7 +426,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileForm__VariantsArgs;
     args?: PlasmicProfileForm__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicProfileForm__Fetches;
   } & Omit<PlasmicProfileForm__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicProfileForm__ArgsType, ReservedPropsType> &
@@ -453,13 +452,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicProfileForm__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicProfileForm__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

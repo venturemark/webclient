@@ -6,7 +6,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.root__variantSettings_hasLabel {
+.rootvariantSettings_hasLabel {
   width: 100%;
   min-width: 0;
 }
@@ -38,7 +38,7 @@
   border-radius: 44px;
   padding: 0px 5px;
 }
-._switch__variantSettings_isSelected {
+._switchvariantSettings_isSelected {
   justify-content: flex-end;
   background: rgb(88, 176, 113);
 }

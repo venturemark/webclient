@@ -139,10 +139,10 @@ function PlasmicSelect__RenderFunc(props: {
   variants: PlasmicSelect__VariantsArgs;
   args: PlasmicSelect__ArgsType;
   overrides: PlasmicSelect__OverridesType;
-  dataFetches?: PlasmicSelect__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
     useTrigger("useFocusVisibleWithin", {
@@ -161,33 +161,29 @@ function PlasmicSelect__RenderFunc(props: {
         data-plasmic-root={true}
         data-plasmic-for-node={forNode}
         className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-          [sty.root_____focusVisibleWithin]: triggers.focusVisibleWithin_root,
-          [sty.root__color_clear]: hasVariant(variants, "color", "clear"),
-          [sty.root__color_softBlue]: hasVariant(variants, "color", "softBlue"),
-          [sty.root__color_softCyan]: hasVariant(variants, "color", "softCyan"),
-          [sty.root__color_softGreen]: hasVariant(
-            variants,
-            "color",
-            "softGreen"
-          ),
-          [sty.root__color_softOrange]: hasVariant(
+          [sty.root___focusVisibleWithin]: triggers.focusVisibleWithin_root,
+          [sty.rootcolor_clear]: hasVariant(variants, "color", "clear"),
+          [sty.rootcolor_softBlue]: hasVariant(variants, "color", "softBlue"),
+          [sty.rootcolor_softCyan]: hasVariant(variants, "color", "softCyan"),
+          [sty.rootcolor_softGreen]: hasVariant(variants, "color", "softGreen"),
+          [sty.rootcolor_softOrange]: hasVariant(
             variants,
             "color",
             "softOrange"
           ),
-          [sty.root__color_softPink]: hasVariant(variants, "color", "softPink"),
-          [sty.root__color_softPurple]: hasVariant(
+          [sty.rootcolor_softPink]: hasVariant(variants, "color", "softPink"),
+          [sty.rootcolor_softPurple]: hasVariant(
             variants,
             "color",
             "softPurple"
           ),
-          [sty.root__color_softRed]: hasVariant(variants, "color", "softRed"),
-          [sty.root__color_softYellow]: hasVariant(
+          [sty.rootcolor_softRed]: hasVariant(variants, "color", "softRed"),
+          [sty.rootcolor_softYellow]: hasVariant(
             variants,
             "color",
             "softYellow"
           ),
-          [sty.root__isOpen]: hasVariant(variants, "isOpen", "isOpen"),
+          [sty.rootisOpen]: hasVariant(variants, "isOpen", "isOpen"),
         })}
         data-plasmic-trigger-props={[triggerRootFocusVisibleWithinProps]}
       >
@@ -197,61 +193,61 @@ function PlasmicSelect__RenderFunc(props: {
           data-plasmic-override={overrides.trigger}
           hasGap={true}
           className={classNames(projectcss.button, sty.trigger, {
-            [sty.trigger_____focusVisibleWithin]:
+            [sty.trigger___focusVisibleWithin]:
               triggers.focusVisibleWithin_root,
-            [sty.trigger__color_clear]: hasVariant(variants, "color", "clear"),
-            [sty.trigger__color_softBlue]: hasVariant(
+            [sty.triggercolor_clear]: hasVariant(variants, "color", "clear"),
+            [sty.triggercolor_softBlue]: hasVariant(
               variants,
               "color",
               "softBlue"
             ),
-            [sty.trigger__color_softCyan]: hasVariant(
+            [sty.triggercolor_softCyan]: hasVariant(
               variants,
               "color",
               "softCyan"
             ),
-            [sty.trigger__color_softGray]: hasVariant(
+            [sty.triggercolor_softGray]: hasVariant(
               variants,
               "color",
               "softGray"
             ),
-            [sty.trigger__color_softGreen]: hasVariant(
+            [sty.triggercolor_softGreen]: hasVariant(
               variants,
               "color",
               "softGreen"
             ),
-            [sty.trigger__color_softOrange]: hasVariant(
+            [sty.triggercolor_softOrange]: hasVariant(
               variants,
               "color",
               "softOrange"
             ),
-            [sty.trigger__color_softPink]: hasVariant(
+            [sty.triggercolor_softPink]: hasVariant(
               variants,
               "color",
               "softPink"
             ),
-            [sty.trigger__color_softPurple]: hasVariant(
+            [sty.triggercolor_softPurple]: hasVariant(
               variants,
               "color",
               "softPurple"
             ),
-            [sty.trigger__color_softRed]: hasVariant(
+            [sty.triggercolor_softRed]: hasVariant(
               variants,
               "color",
               "softRed"
             ),
-            [sty.trigger__color_softYellow]: hasVariant(
+            [sty.triggercolor_softYellow]: hasVariant(
               variants,
               "color",
               "softYellow"
             ),
-            [sty.trigger__isDisabled]: hasVariant(
+            [sty.triggerisDisabled]: hasVariant(
               variants,
               "isDisabled",
               "isDisabled"
             ),
-            [sty.trigger__isOpen]: hasVariant(variants, "isOpen", "isOpen"),
-            [sty.trigger__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
+            [sty.triggerisOpen]: hasVariant(variants, "isOpen", "isOpen"),
+            [sty.triggerisOwner]: hasVariant(variants, "isOwner", "isOwner"),
           })}
           disabled={
             hasVariant(variants, "isDisabled", "isDisabled") ? true : undefined
@@ -262,22 +258,22 @@ function PlasmicSelect__RenderFunc(props: {
               data-plasmic-name={"contentContainer"}
               data-plasmic-override={overrides.contentContainer}
               className={classNames(projectcss.all, sty.contentContainer, {
-                [sty.contentContainer__color_softBlue]: hasVariant(
+                [sty.contentContainercolor_softBlue]: hasVariant(
                   variants,
                   "color",
                   "softBlue"
                 ),
-                [sty.contentContainer__isDisabled]: hasVariant(
+                [sty.contentContainerisDisabled]: hasVariant(
                   variants,
                   "isDisabled",
                   "isDisabled"
                 ),
-                [sty.contentContainer__isOwner]: hasVariant(
+                [sty.contentContainerisOwner]: hasVariant(
                   variants,
                   "isOwner",
                   "isOwner"
                 ),
-                [sty.contentContainer__showPlaceholder]: hasVariant(
+                [sty.contentContainershowPlaceholder]: hasVariant(
                   variants,
                   "showPlaceholder",
                   "showPlaceholder"
@@ -293,33 +289,45 @@ function PlasmicSelect__RenderFunc(props: {
                     defaultContents: "Selected",
                     value: args.selectedContent,
                     className: classNames(sty.slotTargetSelectedContent, {
-                      [sty.slotTargetSelectedContent__color_softBlue]:
-                        hasVariant(variants, "color", "softBlue"),
-                      [sty.slotTargetSelectedContent__color_softCyan]:
-                        hasVariant(variants, "color", "softCyan"),
-                      [sty.slotTargetSelectedContent__color_softGreen]:
+                      [sty.slotTargetSelectedContentcolor_softBlue]: hasVariant(
+                        variants,
+                        "color",
+                        "softBlue"
+                      ),
+                      [sty.slotTargetSelectedContentcolor_softCyan]: hasVariant(
+                        variants,
+                        "color",
+                        "softCyan"
+                      ),
+                      [sty.slotTargetSelectedContentcolor_softGreen]:
                         hasVariant(variants, "color", "softGreen"),
-                      [sty.slotTargetSelectedContent__color_softOrange]:
+                      [sty.slotTargetSelectedContentcolor_softOrange]:
                         hasVariant(variants, "color", "softOrange"),
-                      [sty.slotTargetSelectedContent__color_softPink]:
-                        hasVariant(variants, "color", "softPink"),
-                      [sty.slotTargetSelectedContent__color_softPurple]:
+                      [sty.slotTargetSelectedContentcolor_softPink]: hasVariant(
+                        variants,
+                        "color",
+                        "softPink"
+                      ),
+                      [sty.slotTargetSelectedContentcolor_softPurple]:
                         hasVariant(variants, "color", "softPurple"),
-                      [sty.slotTargetSelectedContent__color_softRed]:
-                        hasVariant(variants, "color", "softRed"),
-                      [sty.slotTargetSelectedContent__color_softYellow]:
+                      [sty.slotTargetSelectedContentcolor_softRed]: hasVariant(
+                        variants,
+                        "color",
+                        "softRed"
+                      ),
+                      [sty.slotTargetSelectedContentcolor_softYellow]:
                         hasVariant(variants, "color", "softYellow"),
-                      [sty.slotTargetSelectedContent__isDisabled]: hasVariant(
+                      [sty.slotTargetSelectedContentisDisabled]: hasVariant(
                         variants,
                         "isDisabled",
                         "isDisabled"
                       ),
-                      [sty.slotTargetSelectedContent__isOpen]: hasVariant(
+                      [sty.slotTargetSelectedContentisOpen]: hasVariant(
                         variants,
                         "isOpen",
                         "isOpen"
                       ),
-                      [sty.slotTargetSelectedContent__showPlaceholder]:
+                      [sty.slotTargetSelectedContentshowPlaceholder]:
                         hasVariant(
                           variants,
                           "showPlaceholder",
@@ -337,65 +345,65 @@ function PlasmicSelect__RenderFunc(props: {
                     defaultContents: "Select…",
                     value: args.placeholder,
                     className: classNames(sty.slotTargetPlaceholder, {
-                      [sty.slotTargetPlaceholder__color_softBlue]: hasVariant(
+                      [sty.slotTargetPlaceholdercolor_softBlue]: hasVariant(
                         variants,
                         "color",
                         "softBlue"
                       ),
-                      [sty.slotTargetPlaceholder__color_softPurple_showPlaceholder]:
+                      [sty.slotTargetPlaceholdercolor_softPurple_showPlaceholder]:
                         hasVariant(variants, "color", "softPurple") &&
                         hasVariant(
                           variants,
                           "showPlaceholder",
                           "showPlaceholder"
                         ),
-                      [sty.slotTargetPlaceholder__isOwner]: hasVariant(
+                      [sty.slotTargetPlaceholderisOwner]: hasVariant(
                         variants,
                         "isOwner",
                         "isOwner"
                       ),
-                      [sty.slotTargetPlaceholder__showPlaceholder]: hasVariant(
+                      [sty.slotTargetPlaceholdershowPlaceholder]: hasVariant(
                         variants,
                         "showPlaceholder",
                         "showPlaceholder"
                       ),
-                      [sty.slotTargetPlaceholder__showPlaceholder_color_softBlue]:
+                      [sty.slotTargetPlaceholdershowPlaceholder_color_softBlue]:
                         hasVariant(
                           variants,
                           "showPlaceholder",
                           "showPlaceholder"
                         ) && hasVariant(variants, "color", "softBlue"),
-                      [sty.slotTargetPlaceholder__showPlaceholder_color_softCyan]:
+                      [sty.slotTargetPlaceholdershowPlaceholder_color_softCyan]:
                         hasVariant(
                           variants,
                           "showPlaceholder",
                           "showPlaceholder"
                         ) && hasVariant(variants, "color", "softCyan"),
-                      [sty.slotTargetPlaceholder__showPlaceholder_color_softGreen]:
+                      [sty.slotTargetPlaceholdershowPlaceholder_color_softGreen]:
                         hasVariant(
                           variants,
                           "showPlaceholder",
                           "showPlaceholder"
                         ) && hasVariant(variants, "color", "softGreen"),
-                      [sty.slotTargetPlaceholder__showPlaceholder_color_softOrange]:
+                      [sty.slotTargetPlaceholdershowPlaceholder_color_softOrange]:
                         hasVariant(
                           variants,
                           "showPlaceholder",
                           "showPlaceholder"
                         ) && hasVariant(variants, "color", "softOrange"),
-                      [sty.slotTargetPlaceholder__showPlaceholder_color_softPink]:
+                      [sty.slotTargetPlaceholdershowPlaceholder_color_softPink]:
                         hasVariant(
                           variants,
                           "showPlaceholder",
                           "showPlaceholder"
                         ) && hasVariant(variants, "color", "softPink"),
-                      [sty.slotTargetPlaceholder__showPlaceholder_color_softRed]:
+                      [sty.slotTargetPlaceholdershowPlaceholder_color_softRed]:
                         hasVariant(
                           variants,
                           "showPlaceholder",
                           "showPlaceholder"
                         ) && hasVariant(variants, "color", "softRed"),
-                      [sty.slotTargetPlaceholder__showPlaceholder_color_softYellow]:
+                      [sty.slotTargetPlaceholdershowPlaceholder_color_softYellow]:
                         hasVariant(
                           variants,
                           "showPlaceholder",
@@ -416,7 +424,7 @@ function PlasmicSelect__RenderFunc(props: {
 
             value: args.dropdownIcon,
             className: classNames(sty.slotTargetDropdownIcon, {
-              [sty.slotTargetDropdownIcon__isOwner]: hasVariant(
+              [sty.slotTargetDropdownIconisOwner]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
@@ -430,7 +438,7 @@ function PlasmicSelect__RenderFunc(props: {
             data-plasmic-name={"overlay"}
             data-plasmic-override={overrides.overlay}
             className={classNames("__wab_instance", sty.overlay, {
-              [sty.overlay__isOpen]: hasVariant(variants, "isOpen", "isOpen"),
+              [sty.overlayisOpen]: hasVariant(variants, "isOpen", "isOpen"),
             })}
             relativePlacement={"bottom" as const}
           >
@@ -438,7 +446,7 @@ function PlasmicSelect__RenderFunc(props: {
               data-plasmic-name={"optionsContainer"}
               data-plasmic-override={overrides.optionsContainer}
               className={classNames(projectcss.all, sty.optionsContainer, {
-                [sty.optionsContainer__isOpen]: hasVariant(
+                [sty.optionsContainerisOpen]: hasVariant(
                   variants,
                   "isOpen",
                   "isOpen"
@@ -558,7 +566,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSelect__VariantsArgs;
     args?: PlasmicSelect__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicSelect__Fetches;
   } & Omit<PlasmicSelect__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSelect__ArgsType, ReservedPropsType> &
@@ -585,13 +592,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSelect__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicSelect__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

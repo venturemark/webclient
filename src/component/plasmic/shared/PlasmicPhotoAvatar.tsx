@@ -73,10 +73,10 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
   variants: PlasmicPhotoAvatar__VariantsArgs;
   args: PlasmicPhotoAvatar__ArgsType;
   overrides: PlasmicPhotoAvatar__OverridesType;
-  dataFetches?: PlasmicPhotoAvatar__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -85,7 +85,7 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__variant_isLarge]: hasVariant(variants, "variant", "isLarge"),
+        [sty.rootvariant_isLarge]: hasVariant(variants, "variant", "isLarge"),
       })}
     >
       <div
@@ -97,7 +97,7 @@ function PlasmicPhotoAvatar__RenderFunc(props: {
           defaultContents: "KO",
           value: args.userInitials,
           className: classNames(sty.slotTargetUserInitials, {
-            [sty.slotTargetUserInitials__variant_isLarge]: hasVariant(
+            [sty.slotTargetUserInitialsvariant_isLarge]: hasVariant(
               variants,
               "variant",
               "isLarge"
@@ -132,7 +132,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPhotoAvatar__VariantsArgs;
     args?: PlasmicPhotoAvatar__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicPhotoAvatar__Fetches;
   } & Omit<PlasmicPhotoAvatar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicPhotoAvatar__ArgsType, ReservedPropsType> &
@@ -159,13 +158,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicPhotoAvatar__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicPhotoAvatar__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

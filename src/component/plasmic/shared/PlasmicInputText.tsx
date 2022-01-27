@@ -106,10 +106,10 @@ function PlasmicInputText__RenderFunc(props: {
   variants: PlasmicInputText__VariantsArgs;
   args: PlasmicInputText__ArgsType;
   overrides: PlasmicInputText__OverridesType;
-  dataFetches?: PlasmicInputText__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -131,7 +131,7 @@ function PlasmicInputText__RenderFunc(props: {
             data-plasmic-name={"labelContainer"}
             data-plasmic-override={overrides.labelContainer}
             className={classNames(projectcss.all, sty.labelContainer, {
-              [sty.labelContainer__hasLabel]: hasVariant(
+              [sty.labelContainerhasLabel]: hasVariant(
                 variants,
                 "hasLabel",
                 "hasLabel"
@@ -152,12 +152,12 @@ function PlasmicInputText__RenderFunc(props: {
             data-plasmic-name={"inputHelperText"}
             data-plasmic-override={overrides.inputHelperText}
             className={classNames(projectcss.all, sty.inputHelperText, {
-              [sty.inputHelperText__error]: hasVariant(
+              [sty.inputHelperTexterror]: hasVariant(
                 variants,
                 "error",
                 "error"
               ),
-              [sty.inputHelperText__hasTextHelper]: hasVariant(
+              [sty.inputHelperTexthasTextHelper]: hasVariant(
                 variants,
                 "hasTextHelper",
                 "hasTextHelper"
@@ -183,7 +183,7 @@ function PlasmicInputText__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__eDsPg, {
-                  [sty.freeBox__hasLeftIcon__eDsPgLDyDu]: hasVariant(
+                  [sty.freeBoxhasLeftIcon__eDsPgLDyDu]: hasVariant(
                     variants,
                     "hasLeftIcon",
                     "hasLeftIcon"
@@ -199,7 +199,7 @@ function PlasmicInputText__RenderFunc(props: {
                     data-plasmic-name={"leftIcon"}
                     data-plasmic-override={overrides.leftIcon}
                     className={classNames(projectcss.all, sty.leftIcon, {
-                      [sty.leftIcon__hasLeftIcon]: hasVariant(
+                      [sty.leftIconhasLeftIcon]: hasVariant(
                         variants,
                         "hasLeftIcon",
                         "hasLeftIcon"
@@ -223,12 +223,12 @@ function PlasmicInputText__RenderFunc(props: {
                   data-plasmic-name={"input2"}
                   data-plasmic-override={overrides.input2}
                   className={classNames(projectcss.input, sty.input2, {
-                    [sty.input2__hasLeftIcon]: hasVariant(
+                    [sty.input2hasLeftIcon]: hasVariant(
                       variants,
                       "hasLeftIcon",
                       "hasLeftIcon"
                     ),
-                    [sty.input2__isDisabled]: hasVariant(
+                    [sty.input2isDisabled]: hasVariant(
                       variants,
                       "isDisabled",
                       "isDisabled"
@@ -249,11 +249,7 @@ function PlasmicInputText__RenderFunc(props: {
             data-plasmic-name={"errorContainer"}
             data-plasmic-override={overrides.errorContainer}
             className={classNames(projectcss.all, sty.errorContainer, {
-              [sty.errorContainer__error]: hasVariant(
-                variants,
-                "error",
-                "error"
-              ),
+              [sty.errorContainererror]: hasVariant(variants, "error", "error"),
             })}
           >
             {(hasVariant(variants, "error", "error") ? true : false) ? (
@@ -326,7 +322,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicInputText__VariantsArgs;
     args?: PlasmicInputText__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicInputText__Fetches;
   } & Omit<PlasmicInputText__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicInputText__ArgsType, ReservedPropsType> &
@@ -353,13 +348,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicInputText__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicInputText__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };
