@@ -13,6 +13,8 @@ import WebFont from "webfontloader";
 import { App } from "component/app";
 import { getConfig } from "module/auth";
 import { isDev } from "module/helpers";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ga4react = new GA4React("G-H891NY4GM6");
 
@@ -53,6 +55,7 @@ function Root() {
 
   return (
     <React.StrictMode>
+      <ToastContainer />
       <Auth0Provider
         domain={config.domain}
         clientId={config.clientId}
