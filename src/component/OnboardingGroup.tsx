@@ -6,6 +6,11 @@ import {
   DefaultOnboardingGroupProps,
 } from "./plasmic/shared/PlasmicOnboardingGroup";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
+import { useContext, useReducer } from "react";
+import { useLocation } from "react-router-dom";
+import { useCreateUser } from "module/hook/user";
+import { AuthContext } from "context/AuthContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -22,27 +27,141 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 // total control over the props for your component.
 interface OnboardingGroupProps extends DefaultOnboardingGroupProps {}
 
+type Step = "step1" | "step2" | "step3" | undefined;
+
+interface IState {
+  currentStep: Step;
+  step1: string;
+  step2: {
+    name: string;
+    title: string;
+  };
+  step3: string;
+}
+
+const initialState: IState = {
+  currentStep: "step1",
+  step1: "",
+  step2: {
+    name: "",
+    title: "",
+  },
+  step3: "choiceTeam",
+};
+
+function reducer(state: IState, action: any) {
+  switch (action.type) {
+    case "continue":
+      return { ...state, currentStep: action.payload };
+    case "setChoiceStep1":
+      return { ...state, step1: action.payload };
+    case "setChoiceStep3":
+      return { ...state, step3: action.payload };
+    case "setName":
+      return { ...state, step2: { ...state.step2, name: action.payload } };
+    case "setTitle":
+      return { ...state, step2: { ...state.step2, title: action.payload } };
+    default:
+      throw new Error();
+  }
+}
+
 function OnboardingGroup_(
   props: OnboardingGroupProps,
   ref: HTMLElementRefOf<"div">
 ) {
-  // Use PlasmicOnboardingGroup to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicOnboardingGroup are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all OnboardingGroupProps here, but feel free
-  // to do whatever works for you.
+  const { token } = useContext(AuthContext);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  return <PlasmicOnboardingGroup root={{ ref }} {...props} />;
+  const { state: locationState } = useLocation();
+  const { mutate: saveUser } = useCreateUser();
+  const { user: authUser } = useAuth0();
+
+  const finishOnboarding = () => {
+    if (!authUser?.email) return;
+
+    saveUser({
+      mail: authUser.email,
+      name: state.step2.name,
+      successUrl: locationState?.returnTo ?? "/",
+      title: state.step2.title,
+      token: token,
+      prepopulate: state.step3,
+      surveyResponse: state.step1,
+    });
+  };
+
+  const currentStep = state.currentStep;
+  return (
+    <PlasmicOnboardingGroup
+      root={{ ref }}
+      {...props}
+      onboardingSteps={currentStep}
+      choicePeople={step1ChoiceProps(state, dispatch, "choicePeople")}
+      choiceSearch={step1ChoiceProps(state, dispatch, "choiceSearch")}
+      choiceSocial={step1ChoiceProps(state, dispatch, "choiceSocial")}
+      choiceOther={step1ChoiceProps(state, dispatch, "choiceOther")}
+      choiceNetwork={step3ChoiceProps(state, dispatch, "choiceNetwork")}
+      choiceProgress={step3ChoiceProps(state, dispatch, "choiceProgress")}
+      choiceTeam={step3ChoiceProps(state, dispatch, "choiceTeam")}
+      step1ContinueButton={{
+        onPress: () => {
+          dispatch({ type: "continue", payload: "step2" });
+        },
+      }}
+      profileForm={{
+        onNameChange: (name: string) => {
+          dispatch({ type: "setName", payload: name });
+        },
+        onTitleChange: (title: string) => {
+          dispatch({ type: "setTitle", payload: title });
+        },
+        onSubmit: () => {
+          dispatch({ type: "continue", payload: "step3" });
+        },
+      }}
+      beginButton={{
+        onPress: finishOnboarding,
+      }}
+    />
+  );
 }
+
+const step1ChoiceProps = (
+  state: IState,
+  dispatch: React.Dispatch<any>,
+  choice: string
+) => {
+  return {
+    props: {
+      onClick: () => {
+        dispatch({ type: "setChoiceStep1", payload: choice });
+      },
+      radioVariants:
+        state.step1 === choice
+          ? ["isSelected", "hasLabel", "hasImage"]
+          : ["hasLabel", "hasImage"],
+    },
+  } as any;
+};
+
+const step3ChoiceProps = (
+  state: IState,
+  dispatch: React.Dispatch<any>,
+  choice: string
+) => {
+  return {
+    props: {
+      onClick: () => {
+        dispatch({ type: "setChoiceStep3", payload: choice });
+      },
+      radioVariants:
+        state.step3 === choice
+          ? ["isSelected", "hasLabel", "hasImage", "hasDescription"]
+          : ["hasLabel", "hasImage", "hasDescription"],
+    },
+  } as any;
+};
 
 const OnboardingGroup = React.forwardRef(OnboardingGroup_);
 export default OnboardingGroup;
