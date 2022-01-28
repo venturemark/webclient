@@ -60,4 +60,5 @@ export interface IUpdateUser {
 
   successUrl?: string;
   token: string | null;
+  previous?: IUser;
 }

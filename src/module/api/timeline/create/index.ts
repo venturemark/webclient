@@ -33,6 +33,10 @@ export async function Create(newTimeline: ICreateTimeline) {
     obj.getMetadataMap().set(key.ResourceVisibility, newTimeline.visibility);
   }
 
+  if (newTimeline.icon) {
+    obj.getMetadataMap().set(key.TimelineIcon, newTimeline.icon);
+  }
+
   objList.push(obj);
   req.setObjList(objList);
 

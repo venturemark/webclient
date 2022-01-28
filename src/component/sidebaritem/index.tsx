@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -10,6 +10,7 @@ import { UserRole } from "module/interface/user";
 
 interface SidebarItemProps extends DefaultSidebarItemProps {
   timelineName: string;
+  timelineIcon?: string;
   ventureName: string;
   ventureId: string;
   timelineId: string;
@@ -36,6 +37,7 @@ function SidebarItem(
     isCollapsed,
     userRole,
     unreadCount = 0,
+    timelineIcon,
     ...rest
   } = props;
 
@@ -53,6 +55,23 @@ function SidebarItem(
       ? `/${ventureId}/${timelineId}/settings`
       : `/${ventureId}/settings`;
 
+  const iconProps = {} as any;
+  if (itemType !== "timeline") {
+    iconProps.onClick = (e: any) => {
+      e.stopPropagation(); // Prevent root onClick from triggering when collapsing group
+      setDropdownVisible(false);
+      itemType !== "createTimeline" && setIsCollapsed(!isCollapsed);
+    };
+  } else {
+    iconProps.wrap = (node: React.ReactNode) => {
+      return timelineIcon ? (
+        <span style={{ marginLeft: "10px" }}>{timelineIcon}</span>
+      ) : (
+        node
+      );
+    };
+  }
+
   return (
     <div ref={ref}>
       <PlasmicSidebarItem
@@ -62,15 +81,7 @@ function SidebarItem(
         }}
         isDropdown={dropdownVisible ? "isDropdown" : undefined}
         isOwner={userRole === "owner" ? "isOwner" : undefined}
-        icon={{
-          onClick: (e) => {
-            e.stopPropagation(); // Prevent root onClick from triggering when collapsing group
-            setDropdownVisible(false);
-            itemType !== "createTimeline" &&
-              itemType !== "timeline" &&
-              setIsCollapsed(!isCollapsed);
-          },
-        }}
+        icon={iconProps}
         iconButton={{
           onClick(e) {
             e.stopPropagation(); // Prevent root onClick from triggering when opening dropdown

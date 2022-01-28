@@ -15,6 +15,7 @@ import {
 } from "module/helpers";
 import { useCreateTimeline, useUpdateTimeline } from "module/hook/timeline";
 import { TimelineContext } from "context/TimelineContext";
+import { EmojiPicker } from "component/emojipicker";
 
 interface AddEditTimelineProps extends DefaultAddEditTimelineProps {
   onChange?: (data: FormData) => void;
@@ -24,6 +25,7 @@ export type FormData = {
   membersWrite: boolean;
   timelineDescription: string;
   timelineName: string;
+  timelineIcon: string;
 };
 
 function AddEditTimeline(props: AddEditTimelineProps) {
@@ -46,6 +48,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       membersWrite: currentTimeline?.membersWrite ?? true,
       timelineDescription: currentTimeline?.desc ?? "",
       timelineName: currentTimeline?.name ?? "",
+      timelineIcon: currentTimeline?.icon ?? "",
     },
   });
 
@@ -93,6 +96,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           name: data.timelineName,
           desc: data.timelineDescription,
           membersWrite: data.membersWrite,
+          icon: data.timelineIcon,
           ventureId,
           successUrl: `/${ventureId}/${timelineId}/feed`,
           token,
@@ -110,6 +114,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
           name: data.timelineName,
           desc: data.timelineDescription,
           membersWrite: data.membersWrite,
+          icon: data.timelineIcon,
           ventureId,
           token,
           redirectOnSuccess: true,
@@ -122,6 +127,31 @@ function AddEditTimeline(props: AddEditTimelineProps) {
       );
     }
   };
+
+  let timelineIconProps: any = {};
+  const emojiPickerProps = {
+    onSelect: (e: string) => setValue("timelineIcon", e),
+    containerStyle: {
+      display: "flex",
+    },
+    buttonStyle: {
+      display: "flex",
+      fontSize: "20px",
+    },
+    closeOnSelect: true,
+  };
+
+  if (!values.timelineIcon) {
+    timelineIconProps = {
+      wrap(node: React.ReactNode) {
+        return <EmojiPicker {...emojiPickerProps}>{node}</EmojiPicker>;
+      },
+    };
+  } else {
+    timelineIconProps.children = (
+      <EmojiPicker {...emojiPickerProps}>{values.timelineIcon}</EmojiPicker>
+    );
+  }
 
   return (
     <PlasmicAddEditTimeline
@@ -155,6 +185,7 @@ function AddEditTimeline(props: AddEditTimelineProps) {
         },
         value: values.timelineName,
         message: errors.timelineName?.message,
+        leftIcon: timelineIconProps,
       }}
       description={{
         ...register("timelineDescription", {

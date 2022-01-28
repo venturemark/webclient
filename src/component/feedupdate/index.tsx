@@ -134,6 +134,7 @@ function FeedUpdate(props: FeedUpdateProps) {
             ...newLastUpdates,
           },
           token,
+          previous: user,
         },
         {
           onSettled() {
