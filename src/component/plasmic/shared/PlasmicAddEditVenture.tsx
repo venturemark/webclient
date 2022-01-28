@@ -103,10 +103,10 @@ function PlasmicAddEditVenture__RenderFunc(props: {
   variants: PlasmicAddEditVenture__VariantsArgs;
   args: PlasmicAddEditVenture__ArgsType;
   overrides: PlasmicAddEditVenture__OverridesType;
-  dataFetches?: PlasmicAddEditVenture__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -120,8 +120,8 @@ function PlasmicAddEditVenture__RenderFunc(props: {
         data-plasmic-root={true}
         data-plasmic-for-node={forNode}
         className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-          [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-          [sty.root__variantState_isEdit]: hasVariant(
+          [sty.rootisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+          [sty.rootvariantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -150,8 +150,8 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           data-plasmic-override={overrides.settings}
           hasGap={true}
           className={classNames(projectcss.all, sty.settings, {
-            [sty.settings__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-            [sty.settings__variantState_isEdit]: hasVariant(
+            [sty.settingsisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+            [sty.settingsvariantState_isEdit]: hasVariant(
               variants,
               "variantState",
               "isEdit"
@@ -164,7 +164,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
                   defaultContents: "Create a New Venture",
                   value: args.children,
                   className: classNames(sty.slotTargetChildren, {
-                    [sty.slotTargetChildren__variantState_isEdit]: hasVariant(
+                    [sty.slotTargetChildrenvariantState_isEdit]: hasVariant(
                       variants,
                       "variantState",
                       "isEdit"
@@ -177,7 +177,7 @@ function PlasmicAddEditVenture__RenderFunc(props: {
                   defaultContents: "Venture Info",
                   value: args.children2,
                   className: classNames(sty.slotTargetChildren2, {
-                    [sty.slotTargetChildren2__variantState_isEdit]: hasVariant(
+                    [sty.slotTargetChildren2variantState_isEdit]: hasVariant(
                       variants,
                       "variantState",
                       "isEdit"
@@ -197,23 +197,23 @@ function PlasmicAddEditVenture__RenderFunc(props: {
             data-plasmic-name={"name"}
             data-plasmic-override={overrides.name}
             className={classNames("__wab_instance", sty.name, {
-              [sty.name__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-              [sty.name__variantState_isEdit]: hasVariant(
+              [sty.nameisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+              [sty.namevariantState_isEdit]: hasVariant(
                 variants,
                 "variantState",
                 "isEdit"
               ),
-              [sty.name__variantState_isEdit_isOwner]:
+              [sty.namevariantState_isEdit_isOwner]:
                 hasVariant(variants, "variantState", "isEdit") &&
                 hasVariant(variants, "isOwner", "isOwner"),
             })}
-            hasLabel={"hasLabel" as const}
+            hasLabel={true}
             isDisabled={
               hasVariant(variants, "variantState", "isEdit") &&
               hasVariant(variants, "isOwner", "isOwner")
                 ? undefined
                 : hasVariant(variants, "variantState", "isEdit")
-                ? ("isDisabled" as const)
+                ? true
                 : undefined
             }
             label={"Name"}
@@ -223,34 +223,34 @@ function PlasmicAddEditVenture__RenderFunc(props: {
             data-plasmic-name={"description"}
             data-plasmic-override={overrides.description}
             className={classNames("__wab_instance", sty.description, {
-              [sty.description__isOwner]: hasVariant(
+              [sty.descriptionisOwner]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
               ),
-              [sty.description__variantState_isEdit]: hasVariant(
+              [sty.descriptionvariantState_isEdit]: hasVariant(
                 variants,
                 "variantState",
                 "isEdit"
               ),
-              [sty.description__variantState_isEdit_isOwner]:
+              [sty.descriptionvariantState_isEdit_isOwner]:
                 hasVariant(variants, "variantState", "isEdit") &&
                 hasVariant(variants, "isOwner", "isOwner"),
             })}
-            hasLabel={"hasLabel" as const}
+            hasLabel={true}
             hasTextHelper={
               hasVariant(variants, "isOwner", "isOwner")
-                ? ("hasTextHelper" as const)
+                ? true
                 : hasVariant(variants, "variantState", "isEdit")
                 ? undefined
-                : ("hasTextHelper" as const)
+                : true
             }
             isDisabled={
               hasVariant(variants, "variantState", "isEdit") &&
               hasVariant(variants, "isOwner", "isOwner")
                 ? undefined
                 : hasVariant(variants, "variantState", "isEdit")
-                ? ("isDisabled" as const)
+                ? true
                 : undefined
             }
             label={"Description"}
@@ -270,17 +270,17 @@ function PlasmicAddEditVenture__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__uCWf, {
-                [sty.freeBox__isOwner__uCWfmdraL]: hasVariant(
+                [sty.freeBoxisOwner__uCWfmdraL]: hasVariant(
                   variants,
                   "isOwner",
                   "isOwner"
                 ),
-                [sty.freeBox__variantState_isEdit__uCWf2IFcI]: hasVariant(
+                [sty.freeBoxvariantState_isEdit__uCWf2IFcI]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
                 ),
-                [sty.freeBox__variantState_isEdit_isOwner__uCWf2IFcIMdraL]:
+                [sty.freeBoxvariantState_isEdit_isOwner__uCWf2IFcIMdraL]:
                   hasVariant(variants, "variantState", "isEdit") &&
                   hasVariant(variants, "isOwner", "isOwner"),
               })}
@@ -289,12 +289,12 @@ function PlasmicAddEditVenture__RenderFunc(props: {
                 <InputText
                   data-plasmic-name={"url"}
                   data-plasmic-override={overrides.url}
-                  hasLabel={"hasLabel" as const}
-                  hasTextHelper={"hasTextHelper" as const}
+                  hasLabel={true}
+                  hasTextHelper={true}
                   isDisabled={
                     hasVariant(variants, "isOwner", "isOwner")
                       ? undefined
-                      : ("isDisabled" as const)
+                      : true
                   }
                   label={"Custom URL"}
                 >
@@ -317,17 +317,17 @@ function PlasmicAddEditVenture__RenderFunc(props: {
           ) ? (
             <div
               className={classNames(projectcss.all, sty.freeBox__katKc, {
-                [sty.freeBox__isOwner__katKcmdraL]: hasVariant(
+                [sty.freeBoxisOwner__katKcmdraL]: hasVariant(
                   variants,
                   "isOwner",
                   "isOwner"
                 ),
-                [sty.freeBox__variantState_isEdit__katKc2IFcI]: hasVariant(
+                [sty.freeBoxvariantState_isEdit__katKc2IFcI]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
                 ),
-                [sty.freeBox__variantState_isEdit_isOwner__katKc2IFcIMdraL]:
+                [sty.freeBoxvariantState_isEdit_isOwner__katKc2IFcIMdraL]:
                   hasVariant(variants, "variantState", "isEdit") &&
                   hasVariant(variants, "isOwner", "isOwner"),
               })}
@@ -336,15 +336,15 @@ function PlasmicAddEditVenture__RenderFunc(props: {
                 defaultContents: "Permissions",
                 value: args.slot2,
                 className: classNames(sty.slotTargetSlot2, {
-                  [sty.slotTargetSlot2__isOwner]: hasVariant(
+                  [sty.slotTargetSlot2isOwner]: hasVariant(
                     variants,
                     "isOwner",
                     "isOwner"
                   ),
-                  [sty.slotTargetSlot2__isOwner_variantState_isEdit]:
+                  [sty.slotTargetSlot2isOwner_variantState_isEdit]:
                     hasVariant(variants, "isOwner", "isOwner") &&
                     hasVariant(variants, "variantState", "isEdit"),
-                  [sty.slotTargetSlot2__variantState_isEdit]: hasVariant(
+                  [sty.slotTargetSlot2variantState_isEdit]: hasVariant(
                     variants,
                     "variantState",
                     "isEdit"
@@ -369,17 +369,17 @@ function PlasmicAddEditVenture__RenderFunc(props: {
               data-plasmic-name={"membersWrite"}
               data-plasmic-override={overrides.membersWrite}
               className={classNames("__wab_instance", sty.membersWrite, {
-                [sty.membersWrite__isOwner]: hasVariant(
+                [sty.membersWriteisOwner]: hasVariant(
                   variants,
                   "isOwner",
                   "isOwner"
                 ),
-                [sty.membersWrite__variantState_isEdit]: hasVariant(
+                [sty.membersWritevariantState_isEdit]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
                 ),
-                [sty.membersWrite__variantState_isEdit_isOwner]:
+                [sty.membersWritevariantState_isEdit_isOwner]:
                   hasVariant(variants, "variantState", "isEdit") &&
                   hasVariant(variants, "isOwner", "isOwner"),
               })}
@@ -409,17 +409,17 @@ function PlasmicAddEditVenture__RenderFunc(props: {
               data-plasmic-name={"buttons"}
               data-plasmic-override={overrides.buttons}
               className={classNames("__wab_instance", sty.buttons, {
-                [sty.buttons__isOwner]: hasVariant(
+                [sty.buttonsisOwner]: hasVariant(
                   variants,
                   "isOwner",
                   "isOwner"
                 ),
-                [sty.buttons__variantState_isEdit]: hasVariant(
+                [sty.buttonsvariantState_isEdit]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
                 ),
-                [sty.buttons__variantState_isEdit_isOwner]:
+                [sty.buttonsvariantState_isEdit_isOwner]:
                   hasVariant(variants, "variantState", "isEdit") &&
                   hasVariant(variants, "isOwner", "isOwner"),
               })}
@@ -493,7 +493,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAddEditVenture__VariantsArgs;
     args?: PlasmicAddEditVenture__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicAddEditVenture__Fetches;
   } & Omit<PlasmicAddEditVenture__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicAddEditVenture__ArgsType, ReservedPropsType> &
@@ -520,13 +519,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicAddEditVenture__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicAddEditVenture__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

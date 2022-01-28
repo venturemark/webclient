@@ -75,10 +75,10 @@ function PlasmicFeedUpdate__RenderFunc(props: {
   variants: PlasmicFeedUpdate__VariantsArgs;
   args: PlasmicFeedUpdate__ArgsType;
   overrides: PlasmicFeedUpdate__OverridesType;
-  dataFetches?: PlasmicFeedUpdate__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <p.Stack
@@ -99,12 +99,12 @@ function PlasmicFeedUpdate__RenderFunc(props: {
       ) ? (
         <ActionBar
           className={classNames("__wab_instance", sty.actionBar__wJeXh, {
-            [sty.actionBar__isOwner__wJeXh9Te3O]: hasVariant(
+            [sty.actionBarisOwner__wJeXh9Te3O]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.actionBar__isPublic__wJeXhYCnHl]: hasVariant(
+            [sty.actionBarisPublic__wJeXhYCnHl]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
@@ -116,21 +116,21 @@ function PlasmicFeedUpdate__RenderFunc(props: {
       {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
         <ActionBar
           className={classNames("__wab_instance", sty.actionBar__dhhrd, {
-            [sty.actionBar__isOwner__dhhrd9Te3O]: hasVariant(
+            [sty.actionBarisOwner__dhhrd9Te3O]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
           })}
           content={["hasDescription"]}
-          isOwner={"isOwner" as const}
+          isOwner={true}
           postType={"isPosted" as const}
         />
       ) : null}
       {(hasVariant(variants, "isOwner", "isOwner") ? true : false) ? (
         <ActionBar
           className={classNames("__wab_instance", sty.actionBar___8UKK, {
-            [sty.actionBar__isOwner___8UKK9Te3O]: hasVariant(
+            [sty.actionBarisOwner___8UKK9Te3O]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
@@ -174,7 +174,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicFeedUpdate__VariantsArgs;
     args?: PlasmicFeedUpdate__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicFeedUpdate__Fetches;
   } & Omit<PlasmicFeedUpdate__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicFeedUpdate__ArgsType, ReservedPropsType> &
@@ -201,13 +200,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicFeedUpdate__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicFeedUpdate__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

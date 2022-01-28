@@ -7,7 +7,7 @@
   justify-content: center;
   padding-bottom: 2px;
 }
-.root__isActive {
+.rootisActive {
   border-bottom: 1px solid #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
 .container {
@@ -22,27 +22,27 @@
   flex-shrink: 0;
   padding: 5px /* plasmic-token: 5hSVea-ed */;
 }
-.container__iconSize_large {
+.containericonSize_large {
   width: 35px;
   flex-shrink: 0;
 }
-.container__isDisabled {
+.containerisDisabled {
   cursor: default;
 }
 .root:hover .container {
   background: rgb(231, 231, 236);
   border-radius: 5px;
 }
-.root__isDarkBgHover:hover .container__isDarkBgHover {
+.rootisDarkBgHover:hover .containerisDarkBgHover {
   background: rgb(38, 26, 63);
 }
-.root__isDisabled:hover .container__isDisabled {
+.rootisDisabled:hover .containerisDisabled {
   background: rgba(255, 255, 255, 0);
 }
-.slotTargetChildren__isDisabled {
+.slotTargetChildrenisDisabled {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }
-.root__isDarkBgHover:hover .slotTargetChildren__isDarkBgHover {
+.rootisDarkBgHover:hover .slotTargetChildrenisDarkBgHover {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
 .svg__toCuH {

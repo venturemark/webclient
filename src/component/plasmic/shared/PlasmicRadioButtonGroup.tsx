@@ -88,10 +88,10 @@ function PlasmicRadioButtonGroup__RenderFunc(props: {
   variants: PlasmicRadioButtonGroup__VariantsArgs;
   args: PlasmicRadioButtonGroup__ArgsType;
   overrides: PlasmicRadioButtonGroup__OverridesType;
-  dataFetches?: PlasmicRadioButtonGroup__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -106,7 +106,7 @@ function PlasmicRadioButtonGroup__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isHorizontal]: hasVariant(
+        [sty.rootisHorizontal]: hasVariant(
           variants,
           "isHorizontal",
           "isHorizontal"
@@ -118,7 +118,7 @@ function PlasmicRadioButtonGroup__RenderFunc(props: {
           data-plasmic-name={"labelContainer"}
           data-plasmic-override={overrides.labelContainer}
           className={classNames(projectcss.all, sty.labelContainer, {
-            [sty.labelContainer__hasLabel]: hasVariant(
+            [sty.labelContainerhasLabel]: hasVariant(
               variants,
               "hasLabel",
               "hasLabel"
@@ -139,20 +139,20 @@ function PlasmicRadioButtonGroup__RenderFunc(props: {
         data-plasmic-override={overrides.groupContainer}
         hasGap={true}
         className={classNames(projectcss.all, sty.groupContainer, {
-          [sty.groupContainer__hasLabel]: hasVariant(
+          [sty.groupContainerhasLabel]: hasVariant(
             variants,
             "hasLabel",
             "hasLabel"
           ),
-          [sty.groupContainer__hasLabel_isHorizontal]:
+          [sty.groupContainerhasLabel_isHorizontal]:
             hasVariant(variants, "hasLabel", "hasLabel") &&
             hasVariant(variants, "isHorizontal", "isHorizontal"),
-          [sty.groupContainer__isDisabled]: hasVariant(
+          [sty.groupContainerisDisabled]: hasVariant(
             variants,
             "isDisabled",
             "isDisabled"
           ),
-          [sty.groupContainer__isHorizontal]: hasVariant(
+          [sty.groupContainerisHorizontal]: hasVariant(
             variants,
             "isHorizontal",
             "isHorizontal"
@@ -166,7 +166,7 @@ function PlasmicRadioButtonGroup__RenderFunc(props: {
                 helperText={
                   "Only members invited by you can see this timeline. "
                 }
-                isHorizontal={"isHorizontal" as const}
+                isHorizontal={true}
                 radioVariants={["hasLabel", "hasImage", "hasDescription"]}
               >
                 {"Private"}
@@ -187,7 +187,7 @@ function PlasmicRadioButtonGroup__RenderFunc(props: {
                     }
                   </div>
                 }
-                isHorizontal={"isHorizontal" as const}
+                isHorizontal={true}
                 radioVariants={["hasLabel", "hasDescription", "hasImage"]}
               >
                 {"Members"}
@@ -198,7 +198,7 @@ function PlasmicRadioButtonGroup__RenderFunc(props: {
                 helperText={
                   "Anyone with the venture domain can see this timeline."
                 }
-                isHorizontal={"isHorizontal" as const}
+                isHorizontal={true}
                 radioVariants={["hasLabel", "hasDescription", "hasImage"]}
               >
                 {"Public"}
@@ -237,7 +237,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRadioButtonGroup__VariantsArgs;
     args?: PlasmicRadioButtonGroup__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicRadioButtonGroup__Fetches;
   } & Omit<PlasmicRadioButtonGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicRadioButtonGroup__ArgsType, ReservedPropsType> &
@@ -264,13 +263,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicRadioButtonGroup__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicRadioButtonGroup__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

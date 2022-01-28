@@ -90,10 +90,10 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
   variants: PlasmicOnboardingGroup__VariantsArgs;
   args: PlasmicOnboardingGroup__ArgsType;
   overrides: PlasmicOnboardingGroup__OverridesType;
-  dataFetches?: PlasmicOnboardingGroup__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -108,17 +108,17 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__onboardingSteps_step1]: hasVariant(
+        [sty.rootonboardingSteps_step1]: hasVariant(
           variants,
           "onboardingSteps",
           "step1"
         ),
-        [sty.root__onboardingSteps_step2]: hasVariant(
+        [sty.rootonboardingSteps_step2]: hasVariant(
           variants,
           "onboardingSteps",
           "step2"
         ),
-        [sty.root__onboardingSteps_step3]: hasVariant(
+        [sty.rootonboardingSteps_step3]: hasVariant(
           variants,
           "onboardingSteps",
           "step3"
@@ -142,17 +142,17 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
           data-plasmic-override={overrides.step1}
           hasGap={true}
           className={classNames(projectcss.all, sty.step1, {
-            [sty.step1__onboardingSteps_step1]: hasVariant(
+            [sty.step1onboardingSteps_step1]: hasVariant(
               variants,
               "onboardingSteps",
               "step1"
             ),
-            [sty.step1__onboardingSteps_step2]: hasVariant(
+            [sty.step1onboardingSteps_step2]: hasVariant(
               variants,
               "onboardingSteps",
               "step2"
             ),
-            [sty.step1__onboardingSteps_step3]: hasVariant(
+            [sty.step1onboardingSteps_step3]: hasVariant(
               variants,
               "onboardingSteps",
               "step3"
@@ -338,17 +338,17 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
           data-plasmic-override={overrides.step2}
           hasGap={true}
           className={classNames(projectcss.all, sty.step2, {
-            [sty.step2__onboardingSteps_step1]: hasVariant(
+            [sty.step2onboardingSteps_step1]: hasVariant(
               variants,
               "onboardingSteps",
               "step1"
             ),
-            [sty.step2__onboardingSteps_step2]: hasVariant(
+            [sty.step2onboardingSteps_step2]: hasVariant(
               variants,
               "onboardingSteps",
               "step2"
             ),
-            [sty.step2__onboardingSteps_step3]: hasVariant(
+            [sty.step2onboardingSteps_step3]: hasVariant(
               variants,
               "onboardingSteps",
               "step3"
@@ -371,7 +371,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
             data-plasmic-name={"profileForm"}
             data-plasmic-override={overrides.profileForm}
             className={classNames("__wab_instance", sty.profileForm, {
-              [sty.profileForm__onboardingSteps_step2]: hasVariant(
+              [sty.profileFormonboardingSteps_step2]: hasVariant(
                 variants,
                 "onboardingSteps",
                 "step2"
@@ -393,7 +393,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
           data-plasmic-override={overrides.step3}
           hasGap={true}
           className={classNames(projectcss.all, sty.step3, {
-            [sty.step3__onboardingSteps_step3]: hasVariant(
+            [sty.step3onboardingSteps_step3]: hasVariant(
               variants,
               "onboardingSteps",
               "step3"
@@ -421,7 +421,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.text__rMuN,
                 {
-                  [sty.text__onboardingSteps_step3__rMuNt81EX]: hasVariant(
+                  [sty.textonboardingSteps_step3__rMuNt81EX]: hasVariant(
                     variants,
                     "onboardingSteps",
                     "step3"
@@ -455,7 +455,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
                       helperText={
                         "Collaborate and share updates with your team."
                       }
-                      isHorizontal={"isHorizontal" as const}
+                      isHorizontal={true}
                       radioVariants={["hasLabel", "hasImage", "hasDescription"]}
                       slot={
                         <p.PlasmicImg
@@ -486,7 +486,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
                       helperText={
                         "Only members invited by you can see this timeline. "
                       }
-                      isHorizontal={"isHorizontal" as const}
+                      isHorizontal={true}
                       radioVariants={["hasLabel", "hasImage", "hasDescription"]}
                       slot={
                         <p.PlasmicImg
@@ -518,7 +518,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
                       isHorizontal={
                         hasVariant(globalVariants, "screen", "mobile")
                           ? undefined
-                          : ("isHorizontal" as const)
+                          : true
                       }
                       radioVariants={["hasLabel", "hasImage", "hasDescription"]}
                       slot={
@@ -547,7 +547,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text__gIeBd,
                           {
-                            [sty.text__onboardingSteps_step3__gIeBdt81EX]:
+                            [sty.textonboardingSteps_step3__gIeBdt81EX]:
                               hasVariant(variants, "onboardingSteps", "step3"),
                           }
                         )}
@@ -557,7 +557,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
                     </RadioButton>
                   </React.Fragment>
                 }
-                isHorizontal={"isHorizontal" as const}
+                isHorizontal={true}
               />
             </div>
           ) : null}
@@ -567,7 +567,7 @@ function PlasmicOnboardingGroup__RenderFunc(props: {
             data-plasmic-override={overrides.beginButton}
             buttonStyle={"primaryPurple" as const}
             className={classNames("__wab_instance", sty.beginButton, {
-              [sty.beginButton__onboardingSteps_step3]: hasVariant(
+              [sty.beginButtononboardingSteps_step3]: hasVariant(
                 variants,
                 "onboardingSteps",
                 "step3"
@@ -676,7 +676,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicOnboardingGroup__VariantsArgs;
     args?: PlasmicOnboardingGroup__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicOnboardingGroup__Fetches;
   } & Omit<PlasmicOnboardingGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicOnboardingGroup__ArgsType, ReservedPropsType> &
@@ -703,13 +702,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicOnboardingGroup__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicOnboardingGroup__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

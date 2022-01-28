@@ -77,10 +77,10 @@ function PlasmicJoinVenture__RenderFunc(props: {
   variants: PlasmicJoinVenture__VariantsArgs;
   args: PlasmicJoinVenture__ArgsType;
   overrides: PlasmicJoinVenture__OverridesType;
-  dataFetches?: PlasmicJoinVenture__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -168,7 +168,7 @@ function PlasmicJoinVenture__RenderFunc(props: {
                           sty.h2__vnLD
                         )}
                       >
-                        {"on Breadcrumb"}
+                        {"on Venturemark"}
                       </h2>
                     </div>
                   </div>
@@ -256,7 +256,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicJoinVenture__VariantsArgs;
     args?: PlasmicJoinVenture__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicJoinVenture__Fetches;
   } & Omit<PlasmicJoinVenture__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicJoinVenture__ArgsType, ReservedPropsType> &
@@ -283,13 +282,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicJoinVenture__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicJoinVenture__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

@@ -118,10 +118,10 @@ function PlasmicMainHeader__RenderFunc(props: {
   variants: PlasmicMainHeader__VariantsArgs;
   args: PlasmicMainHeader__ArgsType;
   overrides: PlasmicMainHeader__OverridesType;
-  dataFetches?: PlasmicMainHeader__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -139,22 +139,22 @@ function PlasmicMainHeader__RenderFunc(props: {
           projectcss.root_reset,
           sty.container,
           {
-            [sty.container__headerStyles_onboardingHeader]: hasVariant(
+            [sty.containerheaderStyles_onboardingHeader]: hasVariant(
               variants,
               "headerStyles",
               "onboardingHeader"
             ),
-            [sty.container__headerStyles_timelineHeader]: hasVariant(
+            [sty.containerheaderStyles_timelineHeader]: hasVariant(
               variants,
               "headerStyles",
               "timelineHeader"
             ),
-            [sty.container__headerStyles_ventureHeader]: hasVariant(
+            [sty.containerheaderStyles_ventureHeader]: hasVariant(
               variants,
               "headerStyles",
               "ventureHeader"
             ),
-            [sty.container__isActive_feed]: hasVariant(
+            [sty.containerisActive_feed]: hasVariant(
               variants,
               "isActive",
               "feed"
@@ -169,11 +169,14 @@ function PlasmicMainHeader__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox___3Xg51, {
-              [sty.freeBox__headerStyles_onboardingHeader___3Xg51K3Tru]:
+              [sty.freeBoxheaderStyles_onboardingHeader___3Xg51K3Tru]:
                 hasVariant(variants, "headerStyles", "onboardingHeader"),
-              [sty.freeBox__headerStyles_timelineHeader___3Xg51Rxxpi]:
-                hasVariant(variants, "headerStyles", "timelineHeader"),
-              [sty.freeBox__headerStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
+              [sty.freeBoxheaderStyles_timelineHeader___3Xg51Rxxpi]: hasVariant(
+                variants,
+                "headerStyles",
+                "timelineHeader"
+              ),
+              [sty.freeBoxheaderStyles_ventureHeader___3Xg51NMQ9]: hasVariant(
                 variants,
                 "headerStyles",
                 "ventureHeader"
@@ -189,11 +192,11 @@ function PlasmicMainHeader__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__sDNfz, {
-                  [sty.freeBox__headerStyles_onboardingHeader__sDNfzk3Tru]:
+                  [sty.freeBoxheaderStyles_onboardingHeader__sDNfzk3Tru]:
                     hasVariant(variants, "headerStyles", "onboardingHeader"),
-                  [sty.freeBox__headerStyles_timelineHeader__sDNfzRxxpi]:
+                  [sty.freeBoxheaderStyles_timelineHeader__sDNfzRxxpi]:
                     hasVariant(variants, "headerStyles", "timelineHeader"),
-                  [sty.freeBox__headerStyles_ventureHeader__sDNfzNMQ9]:
+                  [sty.freeBoxheaderStyles_ventureHeader__sDNfzNMQ9]:
                     hasVariant(variants, "headerStyles", "ventureHeader"),
                 })}
               >
@@ -208,15 +211,15 @@ function PlasmicMainHeader__RenderFunc(props: {
                     as={"div"}
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox__yHtqj, {
-                      [sty.freeBox__headerStyles_onboardingHeader__yHtqJk3Tru]:
+                      [sty.freeBoxheaderStyles_onboardingHeader__yHtqJk3Tru]:
                         hasVariant(
                           variants,
                           "headerStyles",
                           "onboardingHeader"
                         ),
-                      [sty.freeBox__headerStyles_timelineHeader__yHtqjRxxpi]:
+                      [sty.freeBoxheaderStyles_timelineHeader__yHtqjRxxpi]:
                         hasVariant(variants, "headerStyles", "timelineHeader"),
-                      [sty.freeBox__headerStyles_ventureHeader__yHtqjnMQ9]:
+                      [sty.freeBoxheaderStyles_ventureHeader__yHtqjnMQ9]:
                         hasVariant(variants, "headerStyles", "ventureHeader"),
                     })}
                   >
@@ -229,19 +232,19 @@ function PlasmicMainHeader__RenderFunc(props: {
                           defaultContents: "Wins",
                           value: args.timelineName,
                           className: classNames(sty.slotTargetTimelineName, {
-                            [sty.slotTargetTimelineName__headerStyles_onboardingHeader]:
+                            [sty.slotTargetTimelineNameheaderStyles_onboardingHeader]:
                               hasVariant(
                                 variants,
                                 "headerStyles",
                                 "onboardingHeader"
                               ),
-                            [sty.slotTargetTimelineName__headerStyles_timelineHeader]:
+                            [sty.slotTargetTimelineNameheaderStyles_timelineHeader]:
                               hasVariant(
                                 variants,
                                 "headerStyles",
                                 "timelineHeader"
                               ),
-                            [sty.slotTargetTimelineName__headerStyles_ventureHeader]:
+                            [sty.slotTargetTimelineNameheaderStyles_ventureHeader]:
                               hasVariant(
                                 variants,
                                 "headerStyles",
@@ -260,7 +263,7 @@ function PlasmicMainHeader__RenderFunc(props: {
                         data-plasmic-override={overrides.breadcrumbLogo}
                         alt={""}
                         className={classNames(sty.breadcrumbLogo, {
-                          [sty.breadcrumbLogo__headerStyles_onboardingHeader]:
+                          [sty.breadcrumbLogoheaderStyles_onboardingHeader]:
                             hasVariant(
                               variants,
                               "headerStyles",
@@ -297,15 +300,15 @@ function PlasmicMainHeader__RenderFunc(props: {
                     as={"div"}
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox___6YZlv, {
-                      [sty.freeBox__headerStyles_onboardingHeader___6YZlVk3Tru]:
+                      [sty.freeBoxheaderStyles_onboardingHeader___6YZlVk3Tru]:
                         hasVariant(
                           variants,
                           "headerStyles",
                           "onboardingHeader"
                         ),
-                      [sty.freeBox__headerStyles_timelineHeader___6YZlvRxxpi]:
+                      [sty.freeBoxheaderStyles_timelineHeader___6YZlvRxxpi]:
                         hasVariant(variants, "headerStyles", "timelineHeader"),
-                      [sty.freeBox__headerStyles_ventureHeader___6YZlvnMQ9]:
+                      [sty.freeBoxheaderStyles_ventureHeader___6YZlvnMQ9]:
                         hasVariant(variants, "headerStyles", "ventureHeader"),
                     })}
                   >
@@ -322,19 +325,19 @@ function PlasmicMainHeader__RenderFunc(props: {
                           projectcss.__wab_text,
                           sty.text__y7S0J,
                           {
-                            [sty.text__headerStyles_onboardingHeader__y7S0Jk3Tru]:
+                            [sty.textheaderStyles_onboardingHeader__y7S0Jk3Tru]:
                               hasVariant(
                                 variants,
                                 "headerStyles",
                                 "onboardingHeader"
                               ),
-                            [sty.text__headerStyles_timelineHeader__y7S0JRxxpi]:
+                            [sty.textheaderStyles_timelineHeader__y7S0JRxxpi]:
                               hasVariant(
                                 variants,
                                 "headerStyles",
                                 "timelineHeader"
                               ),
-                            [sty.text__headerStyles_ventureHeader__y7S0JNMQ9]:
+                            [sty.textheaderStyles_ventureHeader__y7S0JNMQ9]:
                               hasVariant(
                                 variants,
                                 "headerStyles",
@@ -387,7 +390,7 @@ function PlasmicMainHeader__RenderFunc(props: {
                           ),
                           value: args.ventureName,
                           className: classNames(sty.slotTargetVentureName, {
-                            [sty.slotTargetVentureName__headerStyles_timelineHeader]:
+                            [sty.slotTargetVentureNameheaderStyles_timelineHeader]:
                               hasVariant(
                                 variants,
                                 "headerStyles",
@@ -421,17 +424,17 @@ function PlasmicMainHeader__RenderFunc(props: {
                 ) ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox__fohK2, {
-                      [sty.freeBox__headerStyles_timelineHeader__fohK2Rxxpi]:
+                      [sty.freeBoxheaderStyles_timelineHeader__fohK2Rxxpi]:
                         hasVariant(variants, "headerStyles", "timelineHeader"),
-                      [sty.freeBox__headerStyles_ventureHeader__fohK2NMQ9]:
+                      [sty.freeBoxheaderStyles_ventureHeader__fohK2NMQ9]:
                         hasVariant(variants, "headerStyles", "ventureHeader"),
-                      [sty.freeBox__showVentureDescription__fohK2CtI95]:
+                      [sty.freeBoxshowVentureDescription__fohK2CtI95]:
                         hasVariant(
                           variants,
                           "showVentureDescription",
                           "showVentureDescription"
                         ),
-                      [sty.freeBox__showVentureDescription_headerStyles_ventureHeader__fohK2CtI95NMQ9]:
+                      [sty.freeBoxshowVentureDescription_headerStyles_ventureHeader__fohK2CtI95NMQ9]:
                         hasVariant(
                           variants,
                           "showVentureDescription",
@@ -445,13 +448,13 @@ function PlasmicMainHeader__RenderFunc(props: {
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                       value: args.timelineDescription,
                       className: classNames(sty.slotTargetTimelineDescription, {
-                        [sty.slotTargetTimelineDescription__headerStyles_timelineHeader]:
+                        [sty.slotTargetTimelineDescriptionheaderStyles_timelineHeader]:
                           hasVariant(
                             variants,
                             "headerStyles",
                             "timelineHeader"
                           ),
-                        [sty.slotTargetTimelineDescription__headerStyles_timelineHeader_showVentureDescription]:
+                        [sty.slotTargetTimelineDescriptionheaderStyles_timelineHeader_showVentureDescription]:
                           hasVariant(
                             variants,
                             "headerStyles",
@@ -462,15 +465,15 @@ function PlasmicMainHeader__RenderFunc(props: {
                             "showVentureDescription",
                             "showVentureDescription"
                           ),
-                        [sty.slotTargetTimelineDescription__headerStyles_ventureHeader]:
+                        [sty.slotTargetTimelineDescriptionheaderStyles_ventureHeader]:
                           hasVariant(variants, "headerStyles", "ventureHeader"),
-                        [sty.slotTargetTimelineDescription__showVentureDescription]:
+                        [sty.slotTargetTimelineDescriptionshowVentureDescription]:
                           hasVariant(
                             variants,
                             "showVentureDescription",
                             "showVentureDescription"
                           ),
-                        [sty.slotTargetTimelineDescription__showVentureDescription_headerStyles_ventureHeader]:
+                        [sty.slotTargetTimelineDescriptionshowVentureDescription_headerStyles_ventureHeader]:
                           hasVariant(
                             variants,
                             "showVentureDescription",
@@ -507,15 +510,15 @@ function PlasmicMainHeader__RenderFunc(props: {
                 ) ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox__gg4AP, {
-                      [sty.freeBox__headerStyles_onboardingHeader__gg4APk3Tru]:
+                      [sty.freeBoxheaderStyles_onboardingHeader__gg4APk3Tru]:
                         hasVariant(
                           variants,
                           "headerStyles",
                           "onboardingHeader"
                         ),
-                      [sty.freeBox__headerStyles_timelineHeader__gg4APRxxpi]:
+                      [sty.freeBoxheaderStyles_timelineHeader__gg4APRxxpi]:
                         hasVariant(variants, "headerStyles", "timelineHeader"),
-                      [sty.freeBox__headerStyles_timelineHeader_showVentureDescription__gg4APRxxpiCtI95]:
+                      [sty.freeBoxheaderStyles_timelineHeader_showVentureDescription__gg4APRxxpiCtI95]:
                         hasVariant(
                           variants,
                           "headerStyles",
@@ -526,9 +529,9 @@ function PlasmicMainHeader__RenderFunc(props: {
                           "showVentureDescription",
                           "showVentureDescription"
                         ),
-                      [sty.freeBox__headerStyles_ventureHeader__gg4APnMQ9]:
+                      [sty.freeBoxheaderStyles_ventureHeader__gg4APnMQ9]:
                         hasVariant(variants, "headerStyles", "ventureHeader"),
-                      [sty.freeBox__showVentureDescription__gg4APctI95]:
+                      [sty.freeBoxshowVentureDescription__gg4APctI95]:
                         hasVariant(
                           variants,
                           "showVentureDescription",
@@ -541,15 +544,15 @@ function PlasmicMainHeader__RenderFunc(props: {
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec volutpat magna.",
                       value: args.ventureDescription,
                       className: classNames(sty.slotTargetVentureDescription, {
-                        [sty.slotTargetVentureDescription__headerStyles_timelineHeader]:
+                        [sty.slotTargetVentureDescriptionheaderStyles_timelineHeader]:
                           hasVariant(
                             variants,
                             "headerStyles",
                             "timelineHeader"
                           ),
-                        [sty.slotTargetVentureDescription__headerStyles_ventureHeader]:
+                        [sty.slotTargetVentureDescriptionheaderStyles_ventureHeader]:
                           hasVariant(variants, "headerStyles", "ventureHeader"),
-                        [sty.slotTargetVentureDescription__showVentureDescription]:
+                        [sty.slotTargetVentureDescriptionshowVentureDescription]:
                           hasVariant(
                             variants,
                             "showVentureDescription",
@@ -574,14 +577,17 @@ function PlasmicMainHeader__RenderFunc(props: {
                 data-plasmic-override={overrides.iconContainer}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.iconContainer, {
-                  [sty.iconContainer__headerStyles_onboardingHeader]:
-                    hasVariant(variants, "headerStyles", "onboardingHeader"),
-                  [sty.iconContainer__isActive_feed]: hasVariant(
+                  [sty.iconContainerheaderStyles_onboardingHeader]: hasVariant(
+                    variants,
+                    "headerStyles",
+                    "onboardingHeader"
+                  ),
+                  [sty.iconContainerisActive_feed]: hasVariant(
                     variants,
                     "isActive",
                     "feed"
                   ),
-                  [sty.iconContainer__isOnboarding]: hasVariant(
+                  [sty.iconContainerisOnboarding]: hasVariant(
                     variants,
                     "isOnboarding",
                     "isOnboarding"
@@ -593,16 +599,14 @@ function PlasmicMainHeader__RenderFunc(props: {
                   data-plasmic-override={overrides.viewHome}
                   iconSize={"large" as const}
                   isActive={
-                    hasVariant(variants, "isActive", "feed")
-                      ? ("isActive" as const)
-                      : undefined
+                    hasVariant(variants, "isActive", "feed") ? true : undefined
                   }
                 >
                   <IconFeedIcon
                     className={classNames(projectcss.all, sty.svg__eTdlE, {
-                      [sty.svg__headerStyles_ventureHeader__eTdlEnMQ9]:
+                      [sty.svgheaderStyles_ventureHeader__eTdlEnMQ9]:
                         hasVariant(variants, "headerStyles", "ventureHeader"),
-                      [sty.svg__isActive_feed__eTdlEfnkZp]: hasVariant(
+                      [sty.svgisActive_feed__eTdlEfnkZp]: hasVariant(
                         variants,
                         "isActive",
                         "feed"
@@ -619,22 +623,22 @@ function PlasmicMainHeader__RenderFunc(props: {
                     data-plasmic-name={"viewMembers"}
                     data-plasmic-override={overrides.viewMembers}
                     className={classNames("__wab_instance", sty.viewMembers, {
-                      [sty.viewMembers__headerStyles_ventureHeader]: hasVariant(
+                      [sty.viewMembersheaderStyles_ventureHeader]: hasVariant(
                         variants,
                         "headerStyles",
                         "ventureHeader"
                       ),
-                      [sty.viewMembers__isActive_feed]: hasVariant(
+                      [sty.viewMembersisActive_feed]: hasVariant(
                         variants,
                         "isActive",
                         "feed"
                       ),
-                      [sty.viewMembers__isActive_members]: hasVariant(
+                      [sty.viewMembersisActive_members]: hasVariant(
                         variants,
                         "isActive",
                         "members"
                       ),
-                      [sty.viewMembers__isPublic]: hasVariant(
+                      [sty.viewMembersisPublic]: hasVariant(
                         variants,
                         "isPublic",
                         "isPublic"
@@ -642,7 +646,7 @@ function PlasmicMainHeader__RenderFunc(props: {
                     })}
                     isActive={
                       hasVariant(variants, "isActive", "members")
-                        ? ("isActive" as const)
+                        ? true
                         : undefined
                     }
                     memberCount={
@@ -663,12 +667,12 @@ function PlasmicMainHeader__RenderFunc(props: {
                   data-plasmic-name={"viewSettings"}
                   data-plasmic-override={overrides.viewSettings}
                   className={classNames("__wab_instance", sty.viewSettings, {
-                    [sty.viewSettings__headerStyles_ventureHeader]: hasVariant(
+                    [sty.viewSettingsheaderStyles_ventureHeader]: hasVariant(
                       variants,
                       "headerStyles",
                       "ventureHeader"
                     ),
-                    [sty.viewSettings__isActive_settings]: hasVariant(
+                    [sty.viewSettingsisActive_settings]: hasVariant(
                       variants,
                       "isActive",
                       "settings"
@@ -677,7 +681,7 @@ function PlasmicMainHeader__RenderFunc(props: {
                   iconSize={"large" as const}
                   isActive={
                     hasVariant(variants, "isActive", "settings")
-                      ? ("isActive" as const)
+                      ? true
                       : undefined
                   }
                 >
@@ -733,7 +737,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMainHeader__VariantsArgs;
     args?: PlasmicMainHeader__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicMainHeader__Fetches;
   } & Omit<PlasmicMainHeader__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicMainHeader__ArgsType, ReservedPropsType> &
@@ -760,13 +763,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicMainHeader__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicMainHeader__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

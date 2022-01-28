@@ -98,10 +98,10 @@ function PlasmicRadioButton__RenderFunc(props: {
   variants: PlasmicRadioButton__VariantsArgs;
   args: PlasmicRadioButton__ArgsType;
   overrides: PlasmicRadioButton__OverridesType;
-  dataFetches?: PlasmicRadioButton__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
     useTrigger("useFocusVisibleWithin", {
@@ -125,27 +125,27 @@ function PlasmicRadioButton__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isHorizontal]: hasVariant(
+        [sty.rootisHorizontal]: hasVariant(
           variants,
           "isHorizontal",
           "isHorizontal"
         ),
-        [sty.root__radioVariants_hasDescription]: hasVariant(
+        [sty.rootradioVariants_hasDescription]: hasVariant(
           variants,
           "radioVariants",
           "hasDescription"
         ),
-        [sty.root__radioVariants_hasImage]: hasVariant(
+        [sty.rootradioVariants_hasImage]: hasVariant(
           variants,
           "radioVariants",
           "hasImage"
         ),
-        [sty.root__radioVariants_hasLabel]: hasVariant(
+        [sty.rootradioVariants_hasLabel]: hasVariant(
           variants,
           "radioVariants",
           "hasLabel"
         ),
-        [sty.root__radioVariants_isSelected]: hasVariant(
+        [sty.rootradioVariants_isSelected]: hasVariant(
           variants,
           "radioVariants",
           "isSelected"
@@ -159,28 +159,28 @@ function PlasmicRadioButton__RenderFunc(props: {
         data-plasmic-override={overrides.radio}
         hasGap={true}
         className={classNames(projectcss.all, sty.radio, {
-          [sty.radio_____focusVisibleWithin]: triggers.focusVisibleWithin_root,
-          [sty.radio__isHorizontal]: hasVariant(
+          [sty.radio___focusVisibleWithin]: triggers.focusVisibleWithin_root,
+          [sty.radioisHorizontal]: hasVariant(
             variants,
             "isHorizontal",
             "isHorizontal"
           ),
-          [sty.radio__radioVariants_hasImage]: hasVariant(
+          [sty.radioradioVariants_hasImage]: hasVariant(
             variants,
             "radioVariants",
             "hasImage"
           ),
-          [sty.radio__radioVariants_hasLabel]: hasVariant(
+          [sty.radioradioVariants_hasLabel]: hasVariant(
             variants,
             "radioVariants",
             "hasLabel"
           ),
-          [sty.radio__radioVariants_isDisabled]: hasVariant(
+          [sty.radioradioVariants_isDisabled]: hasVariant(
             variants,
             "radioVariants",
             "isDisabled"
           ),
-          [sty.radio__radioVariants_isSelected]: hasVariant(
+          [sty.radioradioVariants_isSelected]: hasVariant(
             variants,
             "radioVariants",
             "isSelected"
@@ -190,12 +190,12 @@ function PlasmicRadioButton__RenderFunc(props: {
         {(hasVariant(variants, "radioVariants", "hasImage") ? true : true) ? (
           <div
             className={classNames(projectcss.all, sty.freeBox__gJxhU, {
-              [sty.freeBox__isHorizontal__gJxhUysWIq]: hasVariant(
+              [sty.freeBoxisHorizontal__gJxhUysWIq]: hasVariant(
                 variants,
                 "isHorizontal",
                 "isHorizontal"
               ),
-              [sty.freeBox__radioVariants_hasImage__gJxhUhPxes]: hasVariant(
+              [sty.freeBoxradioVariants_hasImage__gJxhUhPxes]: hasVariant(
                 variants,
                 "radioVariants",
                 "hasImage"
@@ -228,22 +228,22 @@ function PlasmicRadioButton__RenderFunc(props: {
             data-plasmic-override={overrides.labelContainer}
             hasGap={true}
             className={classNames(projectcss.all, sty.labelContainer, {
-              [sty.labelContainer__isHorizontal]: hasVariant(
+              [sty.labelContainerisHorizontal]: hasVariant(
                 variants,
                 "isHorizontal",
                 "isHorizontal"
               ),
-              [sty.labelContainer__radioVariants_hasImage]: hasVariant(
+              [sty.labelContainerradioVariants_hasImage]: hasVariant(
                 variants,
                 "radioVariants",
                 "hasImage"
               ),
-              [sty.labelContainer__radioVariants_hasLabel]: hasVariant(
+              [sty.labelContainerradioVariants_hasLabel]: hasVariant(
                 variants,
                 "radioVariants",
                 "hasLabel"
               ),
-              [sty.labelContainer__radioVariants_isSelected]: hasVariant(
+              [sty.labelContainerradioVariants_isSelected]: hasVariant(
                 variants,
                 "radioVariants",
                 "isSelected"
@@ -257,22 +257,22 @@ function PlasmicRadioButton__RenderFunc(props: {
                 data-plasmic-name={"label"}
                 data-plasmic-override={overrides.label}
                 className={classNames(projectcss.all, sty.label, {
-                  [sty.label__isHorizontal]: hasVariant(
+                  [sty.labelisHorizontal]: hasVariant(
                     variants,
                     "isHorizontal",
                     "isHorizontal"
                   ),
-                  [sty.label__radioVariants_hasImage]: hasVariant(
+                  [sty.labelradioVariants_hasImage]: hasVariant(
                     variants,
                     "radioVariants",
                     "hasImage"
                   ),
-                  [sty.label__radioVariants_hasLabel]: hasVariant(
+                  [sty.labelradioVariants_hasLabel]: hasVariant(
                     variants,
                     "radioVariants",
                     "hasLabel"
                   ),
-                  [sty.label__radioVariants_isSelected]: hasVariant(
+                  [sty.labelradioVariants_isSelected]: hasVariant(
                     variants,
                     "radioVariants",
                     "isSelected"
@@ -283,15 +283,21 @@ function PlasmicRadioButton__RenderFunc(props: {
                   defaultContents: "Private",
                   value: args.children,
                   className: classNames(sty.slotTargetChildren, {
-                    [sty.slotTargetChildren__isHorizontal]: hasVariant(
+                    [sty.slotTargetChildrenisHorizontal]: hasVariant(
                       variants,
                       "isHorizontal",
                       "isHorizontal"
                     ),
-                    [sty.slotTargetChildren__radioVariants_hasImage]:
-                      hasVariant(variants, "radioVariants", "hasImage"),
-                    [sty.slotTargetChildren__radioVariants_hasLabel]:
-                      hasVariant(variants, "radioVariants", "hasLabel"),
+                    [sty.slotTargetChildrenradioVariants_hasImage]: hasVariant(
+                      variants,
+                      "radioVariants",
+                      "hasImage"
+                    ),
+                    [sty.slotTargetChildrenradioVariants_hasLabel]: hasVariant(
+                      variants,
+                      "radioVariants",
+                      "hasLabel"
+                    ),
                   }),
                 })}
               </label>
@@ -305,14 +311,17 @@ function PlasmicRadioButton__RenderFunc(props: {
                 data-plasmic-name={"inputHelperText"}
                 data-plasmic-override={overrides.inputHelperText}
                 className={classNames(projectcss.all, sty.inputHelperText, {
-                  [sty.inputHelperText__isHorizontal]: hasVariant(
+                  [sty.inputHelperTextisHorizontal]: hasVariant(
                     variants,
                     "isHorizontal",
                     "isHorizontal"
                   ),
-                  [sty.inputHelperText__radioVariants_hasDescription]:
-                    hasVariant(variants, "radioVariants", "hasDescription"),
-                  [sty.inputHelperText__radioVariants_hasLabel]: hasVariant(
+                  [sty.inputHelperTextradioVariants_hasDescription]: hasVariant(
+                    variants,
+                    "radioVariants",
+                    "hasDescription"
+                  ),
+                  [sty.inputHelperTextradioVariants_hasLabel]: hasVariant(
                     variants,
                     "radioVariants",
                     "hasLabel"
@@ -324,14 +333,14 @@ function PlasmicRadioButton__RenderFunc(props: {
                     "Only admins and members invited by you can see this timeline. ",
                   value: args.helperText,
                   className: classNames(sty.slotTargetHelperText, {
-                    [sty.slotTargetHelperText__isHorizontal]: hasVariant(
+                    [sty.slotTargetHelperTextisHorizontal]: hasVariant(
                       variants,
                       "isHorizontal",
                       "isHorizontal"
                     ),
-                    [sty.slotTargetHelperText__radioVariants_hasImage]:
+                    [sty.slotTargetHelperTextradioVariants_hasImage]:
                       hasVariant(variants, "radioVariants", "hasImage"),
-                    [sty.slotTargetHelperText__radioVariants_hasLabel]:
+                    [sty.slotTargetHelperTextradioVariants_hasLabel]:
                       hasVariant(variants, "radioVariants", "hasLabel"),
                   }),
                 })}
@@ -344,22 +353,22 @@ function PlasmicRadioButton__RenderFunc(props: {
             data-plasmic-name={"buttonContainer"}
             data-plasmic-override={overrides.buttonContainer}
             className={classNames(projectcss.all, sty.buttonContainer, {
-              [sty.buttonContainer__isHorizontal]: hasVariant(
+              [sty.buttonContainerisHorizontal]: hasVariant(
                 variants,
                 "isHorizontal",
                 "isHorizontal"
               ),
-              [sty.buttonContainer__radioVariants_hasLabel]: hasVariant(
+              [sty.buttonContainerradioVariants_hasLabel]: hasVariant(
                 variants,
                 "radioVariants",
                 "hasLabel"
               ),
-              [sty.buttonContainer__radioVariants_isDisabled]: hasVariant(
+              [sty.buttonContainerradioVariants_isDisabled]: hasVariant(
                 variants,
                 "radioVariants",
                 "isDisabled"
               ),
-              [sty.buttonContainer__radioVariants_isSelected]: hasVariant(
+              [sty.buttonContainerradioVariants_isSelected]: hasVariant(
                 variants,
                 "radioVariants",
                 "isSelected"
@@ -368,12 +377,12 @@ function PlasmicRadioButton__RenderFunc(props: {
           >
             <div
               className={classNames(projectcss.all, sty.freeBox__gJHtM, {
-                [sty.freeBox__isHorizontal__gJHtMysWIq]: hasVariant(
+                [sty.freeBoxisHorizontal__gJHtMysWIq]: hasVariant(
                   variants,
                   "isHorizontal",
                   "isHorizontal"
                 ),
-                [sty.freeBox__radioVariants_isSelected__gJHtMnYn7]: hasVariant(
+                [sty.freeBoxradioVariants_isSelected__gJHtMnYn7]: hasVariant(
                   variants,
                   "radioVariants",
                   "isSelected"
@@ -431,7 +440,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRadioButton__VariantsArgs;
     args?: PlasmicRadioButton__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicRadioButton__Fetches;
   } & Omit<PlasmicRadioButton__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicRadioButton__ArgsType, ReservedPropsType> &
@@ -458,13 +466,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicRadioButton__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicRadioButton__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

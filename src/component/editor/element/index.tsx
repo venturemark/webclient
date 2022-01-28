@@ -1,3 +1,4 @@
+import { MentionElement } from "@udecode/slate-plugins";
 import { ReactNode } from "react";
 import { useSelected } from "slate-react";
 import { CustomElement, LinkElement } from "../common/types";
@@ -20,6 +21,20 @@ export function Element(props: ElementProps) {
         return <li {...attributes}>{children}</li>;
       case "a":
         return <LinkComponent {...props} />;
+      case "mention":
+        attributes.editablecontent = false;
+        return (
+          <MentionElement
+            {...props}
+            attributes={attributes}
+            element={element}
+            styles={{
+              root: {
+                userSelect: "none",
+              },
+            }}
+          />
+        );
     }
   }
   return <div {...attributes}>{children}</div>;
@@ -39,9 +54,7 @@ const LinkComponent = ({ attributes, children, element }: ElementProps) => {
       rel="noopener noreferrer"
       target="_blank"
     >
-      <span />
       {children}
-      <span />
     </a>
   );
 };
