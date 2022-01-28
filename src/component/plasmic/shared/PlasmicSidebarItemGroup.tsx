@@ -90,10 +90,10 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
   variants: PlasmicSidebarItemGroup__VariantsArgs;
   args: PlasmicSidebarItemGroup__ArgsType;
   overrides: PlasmicSidebarItemGroup__OverridesType;
-  dataFetches?: PlasmicSidebarItemGroup__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const [isRootHover, triggerRootHoverProps] = useTrigger("useHover", {});
   const triggers = {
@@ -107,12 +107,12 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isCollapsed]: hasVariant(
+        [sty.rootisCollapsed]: hasVariant(
           variants,
           "isCollapsed",
           "isCollapsed"
         ),
-        [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
+        [sty.rootisOwner]: hasVariant(variants, "isOwner", "isOwner"),
       })}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -120,17 +120,15 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
         data-plasmic-name={"venture"}
         data-plasmic-override={overrides.venture}
         className={classNames("__wab_instance", sty.venture, {
-          [sty.venture__isCollapsed]: hasVariant(
+          [sty.ventureisCollapsed]: hasVariant(
             variants,
             "isCollapsed",
             "isCollapsed"
           ),
-          [sty.venture__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-          [sty.venture__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
+          [sty.ventureisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+          [sty.ventureisPublic]: hasVariant(variants, "isPublic", "isPublic"),
         })}
-        isActive={
-          triggers.hover_root ? ("isActive" as const) : ("isActive" as const)
-        }
+        isActive={triggers.hover_root ? true : true}
         itemType={
           hasVariant(variants, "isCollapsed", "isCollapsed")
             ? ("ventureCollapsed" as const)
@@ -143,12 +141,12 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
               projectcss.__wab_text,
               sty.text__fqyEx,
               {
-                [sty.text__isCollapsed__fqyExR1V]: hasVariant(
+                [sty.textisCollapsed__fqyExR1V]: hasVariant(
                   variants,
                   "isCollapsed",
                   "isCollapsed"
                 ),
-                [sty.text__isPublic__fqyExYwyIq]: hasVariant(
+                [sty.textisPublic__fqyExYwyIq]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -166,12 +164,12 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           data-plasmic-name={"itemContainer"}
           data-plasmic-override={overrides.itemContainer}
           className={classNames(projectcss.all, sty.itemContainer, {
-            [sty.itemContainer__isCollapsed]: hasVariant(
+            [sty.itemContainerisCollapsed]: hasVariant(
               variants,
               "isCollapsed",
               "isCollapsed"
             ),
-            [sty.itemContainer__isPublic]: hasVariant(
+            [sty.itemContainerisPublic]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
@@ -182,23 +180,23 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             data-plasmic-name={"sidebarItem"}
             data-plasmic-override={overrides.sidebarItem}
             className={classNames("__wab_instance", sty.sidebarItem, {
-              [sty.sidebarItem__isCollapsed]: hasVariant(
+              [sty.sidebarItemisCollapsed]: hasVariant(
                 variants,
                 "isCollapsed",
                 "isCollapsed"
               ),
-              [sty.sidebarItem__isOwner]: hasVariant(
+              [sty.sidebarItemisOwner]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
               ),
-              [sty.sidebarItem__isPublic]: hasVariant(
+              [sty.sidebarItemisPublic]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
               ),
             })}
-            hasNewActivity={"hasNewActivity" as const}
+            hasNewActivity={true}
             itemType={"timeline" as const}
             name={
               <div
@@ -207,7 +205,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text__fPdD,
                   {
-                    [sty.text__isPublic__fPdDYwyIq]: hasVariant(
+                    [sty.textisPublic__fPdDYwyIq]: hasVariant(
                       variants,
                       "isPublic",
                       "isPublic"
@@ -228,7 +226,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           data-plasmic-override={overrides.itemContainer2}
           hasGap={true}
           className={classNames(projectcss.all, sty.itemContainer2, {
-            [sty.itemContainer2__isPublic]: hasVariant(
+            [sty.itemContainer2isPublic]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
@@ -250,11 +248,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             data-plasmic-name={"icon"}
             data-plasmic-override={overrides.icon}
             className={classNames("__wab_instance", sty.icon, {
-              [sty.icon__isPublic]: hasVariant(
-                variants,
-                "isPublic",
-                "isPublic"
-              ),
+              [sty.iconisPublic]: hasVariant(variants, "isPublic", "isPublic"),
             })}
           >
             <p.PlasmicIcon
@@ -264,7 +258,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                   : IconHashIcon
               }
               className={classNames(projectcss.all, sty.svg__d4BHp, {
-                [sty.svg__isPublic__d4BHpYwyIq]: hasVariant(
+                [sty.svgisPublic__d4BHpYwyIq]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -278,7 +272,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__muwKg, {
-              [sty.freeBox__isPublic__muwKgYwyIq]: hasVariant(
+              [sty.freeBoxisPublic__muwKgYwyIq]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
@@ -288,7 +282,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
                 className={classNames(projectcss.all, sty.freeBox___4CYes, {
-                  [sty.freeBox__isPublic___4CYesYwyIq]: hasVariant(
+                  [sty.freeBoxisPublic___4CYesYwyIq]: hasVariant(
                     variants,
                     "isPublic",
                     "isPublic"
@@ -313,7 +307,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           data-plasmic-override={overrides.itemContainer22}
           hasGap={true}
           className={classNames(projectcss.all, sty.itemContainer22, {
-            [sty.itemContainer22__isPublic]: hasVariant(
+            [sty.itemContainer22isPublic]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
@@ -335,11 +329,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             data-plasmic-name={"icon2"}
             data-plasmic-override={overrides.icon2}
             className={classNames("__wab_instance", sty.icon2, {
-              [sty.icon2__isPublic]: hasVariant(
-                variants,
-                "isPublic",
-                "isPublic"
-              ),
+              [sty.icon2isPublic]: hasVariant(variants, "isPublic", "isPublic"),
             })}
           >
             <p.PlasmicIcon
@@ -349,7 +339,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                   : IconHashIcon
               }
               className={classNames(projectcss.all, sty.svg__lNyW, {
-                [sty.svg__isPublic__lNyWYwyIq]: hasVariant(
+                [sty.svgisPublic__lNyWYwyIq]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -363,7 +353,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__e2Uwa, {
-              [sty.freeBox__isPublic__e2UwaYwyIq]: hasVariant(
+              [sty.freeBoxisPublic__e2UwaYwyIq]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
@@ -373,7 +363,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
                 className={classNames(projectcss.all, sty.freeBox__v4P01, {
-                  [sty.freeBox__isPublic__v4P01YwyIq]: hasVariant(
+                  [sty.freeBoxisPublic__v4P01YwyIq]: hasVariant(
                     variants,
                     "isPublic",
                     "isPublic"
@@ -398,7 +388,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           data-plasmic-override={overrides.itemContainer222}
           hasGap={true}
           className={classNames(projectcss.all, sty.itemContainer222, {
-            [sty.itemContainer222__isPublic]: hasVariant(
+            [sty.itemContainer222isPublic]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
@@ -420,7 +410,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             data-plasmic-name={"icon22"}
             data-plasmic-override={overrides.icon22}
             className={classNames("__wab_instance", sty.icon22, {
-              [sty.icon22__isPublic]: hasVariant(
+              [sty.icon22isPublic]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
@@ -434,7 +424,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
                   : IconHashIcon
               }
               className={classNames(projectcss.all, sty.svg__ssKf, {
-                [sty.svg__isPublic__ssKfYwyIq]: hasVariant(
+                [sty.svgisPublic__ssKfYwyIq]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -448,7 +438,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__ulWg4, {
-              [sty.freeBox__isPublic__ulWg4YwyIq]: hasVariant(
+              [sty.freeBoxisPublic__ulWg4YwyIq]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
@@ -458,7 +448,7 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
             {(hasVariant(variants, "isPublic", "isPublic") ? true : false) ? (
               <div
                 className={classNames(projectcss.all, sty.freeBox__my23, {
-                  [sty.freeBox__isPublic__my23YwyIq]: hasVariant(
+                  [sty.freeBoxisPublic__my23YwyIq]: hasVariant(
                     variants,
                     "isPublic",
                     "isPublic"
@@ -489,17 +479,17 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           data-plasmic-name={"newTimeline"}
           data-plasmic-override={overrides.newTimeline}
           className={classNames("__wab_instance", sty.newTimeline, {
-            [sty.newTimeline__isCollapsed]: hasVariant(
+            [sty.newTimelineisCollapsed]: hasVariant(
               variants,
               "isCollapsed",
               "isCollapsed"
             ),
-            [sty.newTimeline__isOwner]: hasVariant(
+            [sty.newTimelineisOwner]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.newTimeline__isPublic]: hasVariant(
+            [sty.newTimelineisPublic]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
@@ -507,20 +497,35 @@ function PlasmicSidebarItemGroup__RenderFunc(props: {
           })}
           isVisible={
             hasVariant(variants, "isOwner", "isOwner") && triggers.hover_root
-              ? ("isVisible" as const)
+              ? true
               : undefined
           }
           itemType={"createTimeline" as const}
           name={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__f9Ow1
-              )}
-            >
-              {"New Timeline"}
-            </div>
+            (
+              hasVariant(variants, "isOwner", "isOwner") && triggers.hover_root
+                ? true
+                : hasVariant(variants, "isOwner", "isOwner")
+                ? true
+                : true
+            ) ? (
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__f9Ow1,
+                  {
+                    [sty.textisOwner__f9Ow1M0R2M]: hasVariant(
+                      variants,
+                      "isOwner",
+                      "isOwner"
+                    ),
+                  }
+                )}
+              >
+                {"New Timeline"}
+              </div>
+            ) : null
           }
         />
       ) : null}
@@ -581,7 +586,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSidebarItemGroup__VariantsArgs;
     args?: PlasmicSidebarItemGroup__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicSidebarItemGroup__Fetches;
   } & Omit<PlasmicSidebarItemGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSidebarItemGroup__ArgsType, ReservedPropsType> &
@@ -608,13 +612,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSidebarItemGroup__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicSidebarItemGroup__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

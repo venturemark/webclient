@@ -69,10 +69,10 @@ function PlasmicSignin__RenderFunc(props: {
   variants: PlasmicSignin__VariantsArgs;
   args: PlasmicSignin__ArgsType;
   overrides: PlasmicSignin__OverridesType;
-  dataFetches?: PlasmicSignin__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -364,7 +364,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSignin__VariantsArgs;
     args?: PlasmicSignin__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicSignin__Fetches;
   } & Omit<PlasmicSignin__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSignin__ArgsType, ReservedPropsType> &
@@ -391,13 +390,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSignin__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicSignin__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

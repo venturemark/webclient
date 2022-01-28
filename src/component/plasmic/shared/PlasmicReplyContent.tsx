@@ -90,10 +90,10 @@ function PlasmicReplyContent__RenderFunc(props: {
   variants: PlasmicReplyContent__VariantsArgs;
   args: PlasmicReplyContent__ArgsType;
   overrides: PlasmicReplyContent__OverridesType;
-  dataFetches?: PlasmicReplyContent__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -107,7 +107,7 @@ function PlasmicReplyContent__RenderFunc(props: {
         data-plasmic-name={"editorContainer"}
         data-plasmic-override={overrides.editorContainer}
         className={classNames(projectcss.all, sty.editorContainer, {
-          [sty.editorContainer__state_isOwner]: hasVariant(
+          [sty.editorContainerstate_isOwner]: hasVariant(
             variants,
             "state",
             "isOwner"
@@ -130,7 +130,7 @@ function PlasmicReplyContent__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__rqpD, {
-                [sty.freeBox__state_isOwner__rqpDFEdPi]: hasVariant(
+                [sty.freeBoxstate_isOwner__rqpDFEdPi]: hasVariant(
                   variants,
                   "state",
                   "isOwner"
@@ -141,7 +141,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__iU0A, {
-                  [sty.freeBox__state_isOwner__iU0AfEdPi]: hasVariant(
+                  [sty.freeBoxstate_isOwner__iU0AfEdPi]: hasVariant(
                     variants,
                     "state",
                     "isOwner"
@@ -222,7 +222,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                 {(hasVariant(variants, "state", "isOwner") ? true : false) ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox___2Fduc, {
-                      [sty.freeBox__state_isOwner___2FducFEdPi]: hasVariant(
+                      [sty.freeBoxstate_isOwner___2FducFEdPi]: hasVariant(
                         variants,
                         "state",
                         "isOwner"
@@ -241,7 +241,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                           "__wab_instance",
                           sty.ownerSelect,
                           {
-                            [sty.ownerSelect__state_isOwner]: hasVariant(
+                            [sty.ownerSelectstate_isOwner]: hasVariant(
                               variants,
                               "state",
                               "isOwner"
@@ -260,7 +260,7 @@ function PlasmicReplyContent__RenderFunc(props: {
                             role={"img"}
                           />
                         }
-                        isOwner={"isOwner" as const}
+                        isOwner={true}
                       >
                         <Select__Option
                           data-plasmic-name={"_delete"}
@@ -345,7 +345,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicReplyContent__VariantsArgs;
     args?: PlasmicReplyContent__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicReplyContent__Fetches;
   } & Omit<PlasmicReplyContent__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicReplyContent__ArgsType, ReservedPropsType> &
@@ -372,13 +371,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicReplyContent__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicReplyContent__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

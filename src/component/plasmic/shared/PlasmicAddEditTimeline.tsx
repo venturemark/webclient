@@ -97,10 +97,10 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
   variants: PlasmicAddEditTimeline__VariantsArgs;
   args: PlasmicAddEditTimeline__ArgsType;
   overrides: PlasmicAddEditTimeline__OverridesType;
-  dataFetches?: PlasmicAddEditTimeline__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -119,8 +119,8 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         projectcss.root_reset,
         sty.settings,
         {
-          [sty.settings__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-          [sty.settings__variantState_isEdit]: hasVariant(
+          [sty.settingsisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+          [sty.settingsvariantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -134,7 +134,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
               defaultContents: "Create New Timeline",
               value: args.children,
               className: classNames(sty.slotTargetChildren, {
-                [sty.slotTargetChildren__variantState_isEdit]: hasVariant(
+                [sty.slotTargetChildrenvariantState_isEdit]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
@@ -147,7 +147,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
               defaultContents: "Timeline Info",
               value: args.children2,
               className: classNames(sty.slotTargetChildren2, {
-                [sty.slotTargetChildren2__variantState_isEdit]: hasVariant(
+                [sty.slotTargetChildren2variantState_isEdit]: hasVariant(
                   variants,
                   "variantState",
                   "isEdit"
@@ -167,14 +167,14 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       <InputText
         data-plasmic-name={"name"}
         data-plasmic-override={overrides.name}
-        hasLabel={"hasLabel" as const}
-        hasLeftIcon={"hasLeftIcon" as const}
+        hasLabel={true}
+        hasLeftIcon={true}
         isDisabled={
           hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "variantState", "isEdit")
             ? undefined
             : hasVariant(variants, "variantState", "isEdit")
-            ? ("isDisabled" as const)
+            ? true
             : undefined
         }
         label={"Name"}
@@ -184,32 +184,26 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
         data-plasmic-name={"description"}
         data-plasmic-override={overrides.description}
         className={classNames("__wab_instance", sty.description, {
-          [sty.description__isOwner]: hasVariant(
-            variants,
-            "isOwner",
-            "isOwner"
-          ),
-          [sty.description__isOwner_variantState_isEdit]:
+          [sty.descriptionisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+          [sty.descriptionisOwner_variantState_isEdit]:
             hasVariant(variants, "isOwner", "isOwner") &&
             hasVariant(variants, "variantState", "isEdit"),
-          [sty.description__variantState_isEdit]: hasVariant(
+          [sty.descriptionvariantState_isEdit]: hasVariant(
             variants,
             "variantState",
             "isEdit"
           ),
         })}
-        hasLabel={"hasLabel" as const}
+        hasLabel={true}
         hasTextHelper={
-          hasVariant(variants, "variantState", "isEdit")
-            ? undefined
-            : ("hasTextHelper" as const)
+          hasVariant(variants, "variantState", "isEdit") ? undefined : true
         }
         isDisabled={
           hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "variantState", "isEdit")
             ? undefined
             : hasVariant(variants, "variantState", "isEdit")
-            ? ("isDisabled" as const)
+            ? true
             : undefined
         }
         label={"Description"}
@@ -229,12 +223,12 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
       ) ? (
         <div
           className={classNames(projectcss.all, sty.freeBox__iyK9P, {
-            [sty.freeBox__variantState_isEdit__iyK9P7BsqN]: hasVariant(
+            [sty.freeBoxvariantState_isEdit__iyK9P7BsqN]: hasVariant(
               variants,
               "variantState",
               "isEdit"
             ),
-            [sty.freeBox__variantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
+            [sty.freeBoxvariantState_isEdit_isOwner__iyK9P7BsqNKSn9M]:
               hasVariant(variants, "variantState", "isEdit") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}
@@ -243,7 +237,7 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
             defaultContents: "Permissions",
             value: args.slot2,
             className: classNames(sty.slotTargetSlot2, {
-              [sty.slotTargetSlot2__variantState_isEdit]: hasVariant(
+              [sty.slotTargetSlot2variantState_isEdit]: hasVariant(
                 variants,
                 "variantState",
                 "isEdit"
@@ -264,13 +258,13 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           data-plasmic-name={"_switch"}
           data-plasmic-override={overrides._switch}
           className={classNames("__wab_instance", sty._switch, {
-            [sty._switch__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-            [sty._switch__variantState_isEdit]: hasVariant(
+            [sty._switchisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+            [sty._switchvariantState_isEdit]: hasVariant(
               variants,
               "variantState",
               "isEdit"
             ),
-            [sty._switch__variantState_isEdit_isOwner]:
+            [sty._switchvariantState_isEdit_isOwner]:
               hasVariant(variants, "variantState", "isEdit") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}
@@ -290,10 +284,15 @@ function PlasmicAddEditTimeline__RenderFunc(props: {
           data-plasmic-name={"buttonSetEdit"}
           data-plasmic-override={overrides.buttonSetEdit}
           className={classNames("__wab_instance", sty.buttonSetEdit, {
-            [sty.buttonSetEdit__isOwner_variantState_isEdit]:
+            [sty.buttonSetEditisOwner]: hasVariant(
+              variants,
+              "isOwner",
+              "isOwner"
+            ),
+            [sty.buttonSetEditisOwner_variantState_isEdit]:
               hasVariant(variants, "isOwner", "isOwner") &&
               hasVariant(variants, "variantState", "isEdit"),
-            [sty.buttonSetEdit__variantState_isEdit]: hasVariant(
+            [sty.buttonSetEditvariantState_isEdit]: hasVariant(
               variants,
               "variantState",
               "isEdit"
@@ -339,7 +338,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAddEditTimeline__VariantsArgs;
     args?: PlasmicAddEditTimeline__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicAddEditTimeline__Fetches;
   } & Omit<PlasmicAddEditTimeline__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicAddEditTimeline__ArgsType, ReservedPropsType> &
@@ -366,13 +364,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicAddEditTimeline__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicAddEditTimeline__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

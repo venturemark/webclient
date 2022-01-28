@@ -97,10 +97,10 @@ function PlasmicHome__RenderFunc(props: {
   variants: PlasmicHome__VariantsArgs;
   args: PlasmicHome__ArgsType;
   overrides: PlasmicHome__OverridesType;
-  dataFetches?: PlasmicHome__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -122,27 +122,27 @@ function PlasmicHome__RenderFunc(props: {
             projectcss.root_reset,
             sty.root,
             {
-              [sty.root__isVisible_isPublic]: hasVariant(
+              [sty.rootisVisible_isPublic]: hasVariant(
                 variants,
                 "isVisible",
                 "isPublic"
               ),
-              [sty.root__isVisible_mobileSidebar]: hasVariant(
+              [sty.rootisVisible_mobileSidebar]: hasVariant(
                 variants,
                 "isVisible",
                 "mobileSidebar"
               ),
-              [sty.root__isVisible_postDetails]: hasVariant(
+              [sty.rootisVisible_postDetails]: hasVariant(
                 variants,
                 "isVisible",
                 "postDetails"
               ),
-              [sty.root__isVisible_showProfileModal]: hasVariant(
+              [sty.rootisVisible_showProfileModal]: hasVariant(
                 variants,
                 "isVisible",
                 "showProfileModal"
               ),
-              [sty.root__isVisible_showShareModal]: hasVariant(
+              [sty.rootisVisible_showShareModal]: hasVariant(
                 variants,
                 "isVisible",
                 "showShareModal"
@@ -159,9 +159,12 @@ function PlasmicHome__RenderFunc(props: {
           ) ? (
             <div
               className={classNames(projectcss.all, sty.freeBox__bSzQ, {
-                [sty.freeBox__isVisible_showProfileModal__bSzQvxFZh]:
-                  hasVariant(variants, "isVisible", "showProfileModal"),
-                [sty.freeBox__isVisible_showShareModal__bSzQyRvLm]: hasVariant(
+                [sty.freeBoxisVisible_showProfileModal__bSzQvxFZh]: hasVariant(
+                  variants,
+                  "isVisible",
+                  "showProfileModal"
+                ),
+                [sty.freeBoxisVisible_showShareModal__bSzQyRvLm]: hasVariant(
                   variants,
                   "isVisible",
                   "showShareModal"
@@ -179,12 +182,12 @@ function PlasmicHome__RenderFunc(props: {
                   data-plasmic-name={"modal"}
                   data-plasmic-override={overrides.modal}
                   className={classNames("__wab_instance", sty.modal, {
-                    [sty.modal__isVisible_showProfileModal]: hasVariant(
+                    [sty.modalisVisible_showProfileModal]: hasVariant(
                       variants,
                       "isVisible",
                       "showProfileModal"
                     ),
-                    [sty.modal__isVisible_showShareModal]: hasVariant(
+                    [sty.modalisVisible_showShareModal]: hasVariant(
                       variants,
                       "isVisible",
                       "showShareModal"
@@ -204,17 +207,17 @@ function PlasmicHome__RenderFunc(props: {
 
           <div
             className={classNames(projectcss.all, sty.freeBox___70Att, {
-              [sty.freeBox__isVisible_isPublic___70AttunhQv]: hasVariant(
+              [sty.freeBoxisVisible_isPublic___70AttunhQv]: hasVariant(
                 variants,
                 "isVisible",
                 "isPublic"
               ),
-              [sty.freeBox__isVisible_mobileSidebar___70AttO6F5A]: hasVariant(
+              [sty.freeBoxisVisible_mobileSidebar___70AttO6F5A]: hasVariant(
                 variants,
                 "isVisible",
                 "mobileSidebar"
               ),
-              [sty.freeBox__isVisible_postDetails___70AttbZmLb]: hasVariant(
+              [sty.freeBoxisVisible_postDetails___70AttbZmLb]: hasVariant(
                 variants,
                 "isVisible",
                 "postDetails"
@@ -237,29 +240,29 @@ function PlasmicHome__RenderFunc(props: {
                 data-plasmic-name={"sidebar"}
                 data-plasmic-override={overrides.sidebar}
                 className={classNames("__wab_instance", sty.sidebar, {
-                  [sty.sidebar__isVisible_isPublic]: hasVariant(
+                  [sty.sidebarisVisible_isPublic]: hasVariant(
                     variants,
                     "isVisible",
                     "isPublic"
                   ),
-                  [sty.sidebar__isVisible_mobileSidebar]: hasVariant(
+                  [sty.sidebarisVisible_mobileSidebar]: hasVariant(
                     variants,
                     "isVisible",
                     "mobileSidebar"
                   ),
-                  [sty.sidebar__isVisible_mobileSidebar_isVisible_postDetails]:
+                  [sty.sidebarisVisible_mobileSidebar_isVisible_postDetails]:
                     hasVariant(variants, "isVisible", "mobileSidebar") &&
                     hasVariant(variants, "isVisible", "postDetails"),
-                  [sty.sidebar__isVisible_postDetails]: hasVariant(
+                  [sty.sidebarisVisible_postDetails]: hasVariant(
                     variants,
                     "isVisible",
                     "postDetails"
                   ),
                 })}
-                hasInput={"hasInput" as const}
+                hasInput={true}
                 isPublic={
                   hasVariant(variants, "isVisible", "isPublic")
-                    ? ("isPublic" as const)
+                    ? true
                     : undefined
                 }
                 userName={
@@ -280,12 +283,12 @@ function PlasmicHome__RenderFunc(props: {
 
             <div
               className={classNames(projectcss.all, sty.freeBox__cJlKh, {
-                [sty.freeBox__isVisible_isPublic__cJlKhunhQv]: hasVariant(
+                [sty.freeBoxisVisible_isPublic__cJlKhunhQv]: hasVariant(
                   variants,
                   "isVisible",
                   "isPublic"
                 ),
-                [sty.freeBox__isVisible_postDetails__cJlKhbZmLb]: hasVariant(
+                [sty.freeBoxisVisible_postDetails__cJlKhbZmLb]: hasVariant(
                   variants,
                   "isVisible",
                   "postDetails"
@@ -296,7 +299,7 @@ function PlasmicHome__RenderFunc(props: {
                 data-plasmic-name={"header"}
                 data-plasmic-override={overrides.header}
                 className={classNames("__wab_instance", sty.header, {
-                  [sty.header__isVisible_postDetails]: hasVariant(
+                  [sty.headerisVisible_postDetails]: hasVariant(
                     variants,
                     "isVisible",
                     "postDetails"
@@ -309,17 +312,17 @@ function PlasmicHome__RenderFunc(props: {
                 data-plasmic-name={"mainContainer"}
                 data-plasmic-override={overrides.mainContainer}
                 className={classNames(projectcss.all, sty.mainContainer, {
-                  [sty.mainContainer__isVisible_isPublic]: hasVariant(
+                  [sty.mainContainerisVisible_isPublic]: hasVariant(
                     variants,
                     "isVisible",
                     "isPublic"
                   ),
-                  [sty.mainContainer__isVisible_mobileSidebar]: hasVariant(
+                  [sty.mainContainerisVisible_mobileSidebar]: hasVariant(
                     variants,
                     "isVisible",
                     "mobileSidebar"
                   ),
-                  [sty.mainContainer__isVisible_postDetails]: hasVariant(
+                  [sty.mainContainerisVisible_postDetails]: hasVariant(
                     variants,
                     "isVisible",
                     "postDetails"
@@ -330,17 +333,17 @@ function PlasmicHome__RenderFunc(props: {
                   data-plasmic-name={"main"}
                   data-plasmic-override={overrides.main}
                   className={classNames("__wab_instance", sty.main, {
-                    [sty.main__isVisible_isPublic]: hasVariant(
+                    [sty.mainisVisible_isPublic]: hasVariant(
                       variants,
                       "isVisible",
                       "isPublic"
                     ),
-                    [sty.main__isVisible_mobileSidebar]: hasVariant(
+                    [sty.mainisVisible_mobileSidebar]: hasVariant(
                       variants,
                       "isVisible",
                       "mobileSidebar"
                     ),
-                    [sty.main__isVisible_postDetails]: hasVariant(
+                    [sty.mainisVisible_postDetails]: hasVariant(
                       variants,
                       "isVisible",
                       "postDetails"
@@ -356,11 +359,11 @@ function PlasmicHome__RenderFunc(props: {
                   isOwner={
                     hasVariant(variants, "isVisible", "isPublic")
                       ? undefined
-                      : ("isOwner" as const)
+                      : true
                   }
                   isPublic={
                     hasVariant(variants, "isVisible", "isPublic")
-                      ? ("isPublic" as const)
+                      ? true
                       : undefined
                   }
                   variantType={
@@ -380,8 +383,11 @@ function PlasmicHome__RenderFunc(props: {
               ) ? (
                 <div
                   className={classNames(projectcss.all, sty.freeBox___49Hi7, {
-                    [sty.freeBox__isVisible_postDetails___49Hi7BZmLb]:
-                      hasVariant(variants, "isVisible", "postDetails"),
+                    [sty.freeBoxisVisible_postDetails___49Hi7BZmLb]: hasVariant(
+                      variants,
+                      "isVisible",
+                      "postDetails"
+                    ),
                   })}
                 >
                   {(
@@ -393,7 +399,7 @@ function PlasmicHome__RenderFunc(props: {
                       data-plasmic-name={"postDetails"}
                       data-plasmic-override={overrides.postDetails}
                       className={classNames("__wab_instance", sty.postDetails, {
-                        [sty.postDetails__isVisible_postDetails]: hasVariant(
+                        [sty.postDetailsisVisible_postDetails]: hasVariant(
                           variants,
                           "isVisible",
                           "postDetails"
@@ -455,7 +461,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHome__VariantsArgs;
     args?: PlasmicHome__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicHome__Fetches;
   } & Omit<PlasmicHome__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicHome__ArgsType, ReservedPropsType> &
@@ -482,13 +487,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicHome__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicHome__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

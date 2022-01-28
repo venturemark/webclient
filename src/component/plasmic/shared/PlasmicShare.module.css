@@ -51,16 +51,26 @@
   font-weight: 600;
 }
 .freeBox__pA5XW {
-  display: flex;
   position: relative;
   left: auto;
   top: auto;
   flex-direction: column;
   margin-bottom: 10px;
+  display: none;
 }
 .slotTargetChildren2 {
   font-size: 26px /* plasmic-token: TujpjiAsC */;
   font-weight: 600;
+}
+.freeBox___80D2Z {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  top: auto;
+  left: auto;
+  padding: 0px;
 }
 .freeBox__dKcM4 {
   display: flex;
@@ -69,7 +79,7 @@
   top: auto;
   left: auto;
   padding-bottom: 20px;
-  margin-bottom: 10px;
+  margin: 0px;
   border-bottom: 1px solid rgb(224, 224, 224)
     /* plasmic-token: 9--4ZPcisViPq8V */;
 }
@@ -96,6 +106,7 @@
   flex-direction: row;
   width: 100%;
   min-width: 0;
+  padding: 0px 20px;
 }
 .form > :global(.__wab_flex-container) {
   flex-direction: row;
@@ -168,24 +179,14 @@
 .span {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.freeBox___80D2Z {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  top: auto;
-  left: auto;
-  padding: 0px;
-}
 .freeBox__sRTx {
-  display: flex;
   position: relative;
   flex-direction: row;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
   padding: 8px 40px;
 }
 .freeBox__sRTx > :global(.__wab_flex-container) {
@@ -211,7 +212,7 @@
     padding: 8px 20px;
   }
 }
-.inputText:global(.__wab_instance) {
+.email2:global(.__wab_instance) {
   max-width: 100%;
 }
 .svg__dylnz {
@@ -332,10 +333,10 @@
     z-index: 99;
   }
 }
-.visibilityState__isOwner:global(.__wab_instance) {
+.visibilityStateisOwner:global(.__wab_instance) {
   display: flex;
 }
-.visibilityState__type_venture_isOwner:global(.__wab_instance) {
+.visibilityStatetype_venture_isOwner:global(.__wab_instance) {
   display: none;
 }
 .svg__u3Tfv {
@@ -382,10 +383,10 @@
     padding: 5px 20px;
   }
 }
-.copyLink__isOwner {
+.copyLinkisOwner {
   display: flex;
 }
-.copyLink__type_venture_isOwner {
+.copyLinktype_venture_isOwner {
   border-top-width: 1px;
 }
 .freeBox__embnu {
@@ -416,7 +417,7 @@
   > img {
   margin-left: 15px;
 }
-.freeBox__isOwner__embnu5R44R {
+.freeBoxisOwner__embnu5R44R {
   display: flex;
 }
 .svg__bmBbJ {

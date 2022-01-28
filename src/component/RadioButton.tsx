@@ -20,25 +20,17 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 //
 // You can also stop extending from DefaultRadioButtonProps altogether and have
 // total control over the props for your component.
-interface RadioButtonProps extends DefaultRadioButtonProps {}
+interface RadioButtonProps extends DefaultRadioButtonProps {
+  onClick?: () => void;
+}
 
 function RadioButton_(props: RadioButtonProps, ref: HTMLElementRefOf<"div">) {
-  // Use PlasmicRadioButton to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicRadioButton are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all RadioButtonProps here, but feel free
-  // to do whatever works for you.
-
-  return <PlasmicRadioButton root={{ ref }} {...props} />;
+  const { onClick, ...rest } = props;
+  return (
+    <div onClick={onClick}>
+      <PlasmicRadioButton root={{ ref }} {...rest} />
+    </div>
+  );
 }
 
 const RadioButton = React.forwardRef(RadioButton_);

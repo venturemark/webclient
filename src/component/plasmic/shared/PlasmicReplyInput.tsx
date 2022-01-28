@@ -68,10 +68,10 @@ function PlasmicReplyInput__RenderFunc(props: {
   variants: PlasmicReplyInput__VariantsArgs;
   args: PlasmicReplyInput__ArgsType;
   overrides: PlasmicReplyInput__OverridesType;
-  dataFetches?: PlasmicReplyInput__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const [isRootFocusWithin, triggerRootFocusWithinProps] = useTrigger(
     "useFocusedWithin",
@@ -195,7 +195,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicReplyInput__VariantsArgs;
     args?: PlasmicReplyInput__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicReplyInput__Fetches;
   } & Omit<PlasmicReplyInput__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicReplyInput__ArgsType, ReservedPropsType> &
@@ -222,13 +221,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicReplyInput__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicReplyInput__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

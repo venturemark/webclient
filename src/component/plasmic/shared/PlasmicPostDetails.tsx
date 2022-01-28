@@ -78,10 +78,10 @@ function PlasmicPostDetails__RenderFunc(props: {
   variants: PlasmicPostDetails__VariantsArgs;
   args: PlasmicPostDetails__ArgsType;
   overrides: PlasmicPostDetails__OverridesType;
-  dataFetches?: PlasmicPostDetails__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <p.Stack
@@ -106,7 +106,7 @@ function PlasmicPostDetails__RenderFunc(props: {
               data-plasmic-name={"close"}
               data-plasmic-override={overrides.close}
               className={classNames("__wab_instance", sty.close)}
-              isDarkBgHover={"isDarkBgHover" as const}
+              isDarkBgHover={true}
             >
               <IconCloseIcon
                 data-plasmic-name={"svg"}
@@ -136,8 +136,8 @@ function PlasmicPostDetails__RenderFunc(props: {
                 {"3 hours ago"}
               </span>
             }
-            hasDescription={"hasDescription" as const}
-            hasMedia={"hasMedia" as const}
+            hasDescription={true}
+            hasMedia={true}
             state={"isPostDetails" as const}
             userInitials={"KO"}
             userName={
@@ -277,7 +277,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPostDetails__VariantsArgs;
     args?: PlasmicPostDetails__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicPostDetails__Fetches;
   } & Omit<PlasmicPostDetails__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicPostDetails__ArgsType, ReservedPropsType> &
@@ -304,13 +303,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicPostDetails__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicPostDetails__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

@@ -30,3 +30,7 @@ export const PermissionModel = "permission.venturemark.co/model";
 export const TimelineLastUpdate = "timeline.venturemark.co/last-update";
 
 export const UpdateFormat = "update.venturemark.co/format";
+
+export const UserPrepopulate = "user.venturemark.co/prepopulate";
+
+export const UserSurveyResponse = "user.venturemark.co/surveyResponse";

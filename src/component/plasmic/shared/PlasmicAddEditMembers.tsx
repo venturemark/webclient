@@ -100,7 +100,7 @@ export const PlasmicAddEditMembers__ArgProps = new Array<ArgPropType>(
 export type PlasmicAddEditMembers__OverridesType = {
   root?: p.Flex<"div">;
   form?: p.Flex<"form">;
-  email?: p.Flex<typeof InputText>;
+  inputText?: p.Flex<typeof InputText>;
   invite?: p.Flex<typeof Button>;
   link?: p.Flex<"a">;
   span?: p.Flex<"span">;
@@ -134,10 +134,10 @@ function PlasmicAddEditMembers__RenderFunc(props: {
   variants: PlasmicAddEditMembers__VariantsArgs;
   args: PlasmicAddEditMembers__ArgsType;
   overrides: PlasmicAddEditMembers__OverridesType;
-  dataFetches?: PlasmicAddEditMembers__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <p.Stack
@@ -148,13 +148,13 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__type_isTimeline]: hasVariant(variants, "type", "isTimeline"),
+        [sty.roottype_isTimeline]: hasVariant(variants, "type", "isTimeline"),
       })}
     >
       {(hasVariant(variants, "type", "isTimeline") ? false : true) ? (
         <div
           className={classNames(projectcss.all, sty.freeBox__sLr04, {
-            [sty.freeBox__type_isTimeline__sLr04Qs8Io]: hasVariant(
+            [sty.freeBoxtype_isTimeline__sLr04Qs8Io]: hasVariant(
               variants,
               "type",
               "isTimeline"
@@ -165,7 +165,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             defaultContents: "Venture Members",
             value: args.children,
             className: classNames(sty.slotTargetChildren, {
-              [sty.slotTargetChildren__type_isTimeline]: hasVariant(
+              [sty.slotTargetChildrentype_isTimeline]: hasVariant(
                 variants,
                 "type",
                 "isTimeline"
@@ -185,7 +185,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
       {(hasVariant(variants, "type", "isTimeline") ? true : false) ? (
         <div
           className={classNames(projectcss.all, sty.freeBox___8X9J3, {
-            [sty.freeBox__type_isTimeline___8X9J3Qs8Io]: hasVariant(
+            [sty.freeBoxtype_isTimeline___8X9J3Qs8Io]: hasVariant(
               variants,
               "type",
               "isTimeline"
@@ -196,7 +196,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             defaultContents: "Timeline Members",
             value: args.children2,
             className: classNames(sty.slotTargetChildren2, {
-              [sty.slotTargetChildren2__type_isTimeline]: hasVariant(
+              [sty.slotTargetChildren2type_isTimeline]: hasVariant(
                 variants,
                 "type",
                 "isTimeline"
@@ -218,12 +218,12 @@ function PlasmicAddEditMembers__RenderFunc(props: {
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__mpPUs, {
-            [sty.freeBox__isOwner__mpPUsyBfUd]: hasVariant(
+            [sty.freeBoxisOwner__mpPUsyBfUd]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.freeBox__type_isTimeline__mpPUsqs8Io]: hasVariant(
+            [sty.freeBoxtype_isTimeline__mpPUsqs8Io]: hasVariant(
               variants,
               "type",
               "isTimeline"
@@ -238,10 +238,10 @@ function PlasmicAddEditMembers__RenderFunc(props: {
             className={classNames(projectcss.all, sty.form)}
           >
             <InputText
-              data-plasmic-name={"email"}
-              data-plasmic-override={overrides.email}
-              hasLabel={"hasLabel" as const}
-              hasTextHelper={"hasTextHelper" as const}
+              data-plasmic-name={"inputText"}
+              data-plasmic-override={overrides.inputText}
+              hasLabel={true}
+              hasTextHelper={true}
               label={"Invite a member by email"}
             >
               {"Enter their email to invite and add them to this organization."}
@@ -264,7 +264,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
               data-plasmic-override={overrides.link}
               hasGap={true}
               className={classNames(projectcss.a, sty.link, {
-                [sty.link__type_isTimeline]: hasVariant(
+                [sty.linktype_isTimeline]: hasVariant(
                   variants,
                   "type",
                   "isTimeline"
@@ -284,7 +284,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.span,
                   {
-                    [sty.span__type_isTimeline]: hasVariant(
+                    [sty.spantype_isTimeline]: hasVariant(
                       variants,
                       "type",
                       "isTimeline"
@@ -315,7 +315,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
         >
           <MemberItem
             className={classNames("__wab_instance", sty.memberItem__e3Lpj)}
-            isOwner={"isOwner" as const}
+            isOwner={true}
             slot3={p.renderPlasmicSlot({
               defaultContents: "example@email.com",
               value: args.slot3,
@@ -343,13 +343,13 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 
           <MemberItem
             className={classNames("__wab_instance", sty.memberItem__vCc52, {
-              [sty.memberItem__isOwner__vCc52YBfUd]: hasVariant(
+              [sty.memberItemisOwner__vCc52YBfUd]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
               ),
             })}
-            isOwner={"isOwner" as const}
+            isOwner={true}
             slot3={p.renderPlasmicSlot({
               defaultContents: "example@email.com",
               value: args.slot3222,
@@ -367,7 +367,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 
           <MemberItem
             className={classNames("__wab_instance", sty.memberItem__u5CiK, {
-              [sty.memberItem__isOwner__u5CiKyBfUd]: hasVariant(
+              [sty.memberItemisOwner__u5CiKyBfUd]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
@@ -390,7 +390,7 @@ function PlasmicAddEditMembers__RenderFunc(props: {
 
           <MemberItem
             className={classNames("__wab_instance", sty.memberItem__rUmUt, {
-              [sty.memberItem__isOwner__rUmUtyBfUd]: hasVariant(
+              [sty.memberItemisOwner__rUmUtyBfUd]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
@@ -455,7 +455,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "form",
-    "email",
+    "inputText",
     "invite",
     "link",
     "span",
@@ -463,8 +463,8 @@ const PlasmicDescendants = {
     "button",
     "text2",
   ],
-  form: ["form", "email", "invite"],
-  email: ["email"],
+  form: ["form", "inputText", "invite"],
+  inputText: ["inputText"],
   invite: ["invite"],
   link: ["link", "span"],
   span: ["span"],
@@ -478,7 +478,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   form: "form";
-  email: typeof InputText;
+  inputText: typeof InputText;
   invite: typeof Button;
   link: "a";
   span: "span";
@@ -498,7 +498,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAddEditMembers__VariantsArgs;
     args?: PlasmicAddEditMembers__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicAddEditMembers__Fetches;
   } & Omit<PlasmicAddEditMembers__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicAddEditMembers__ArgsType, ReservedPropsType> &
@@ -525,13 +524,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicAddEditMembers__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicAddEditMembers__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };
@@ -549,7 +545,7 @@ export const PlasmicAddEditMembers = Object.assign(
   {
     // Helper components rendering sub-elements
     form: makeNodeComponent("form"),
-    email: makeNodeComponent("email"),
+    inputText: makeNodeComponent("inputText"),
     invite: makeNodeComponent("invite"),
     link: makeNodeComponent("link"),
     span: makeNodeComponent("span"),
