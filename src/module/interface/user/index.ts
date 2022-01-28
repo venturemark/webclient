@@ -42,6 +42,8 @@ export interface ICreateUser {
   ventureTitle?: string;
   successUrl?: string;
   token: string | null;
+  prepopulate: string;
+  surveyResponse: string;
 }
 
 export interface IDeleteUser {
