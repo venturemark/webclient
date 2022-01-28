@@ -75,10 +75,10 @@ function PlasmicSwitch__RenderFunc(props: {
   variants: PlasmicSwitch__VariantsArgs;
   args: PlasmicSwitch__ArgsType;
   overrides: PlasmicSwitch__OverridesType;
-  dataFetches?: PlasmicSwitch__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -87,12 +87,12 @@ function PlasmicSwitch__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__variantSettings_hasLabel]: hasVariant(
+        [sty.rootvariantSettings_hasLabel]: hasVariant(
           variants,
           "variantSettings",
           "hasLabel"
         ),
-        [sty.root__variantSettings_isSelected]: hasVariant(
+        [sty.rootvariantSettings_isSelected]: hasVariant(
           variants,
           "variantSettings",
           "isSelected"
@@ -109,8 +109,11 @@ function PlasmicSwitch__RenderFunc(props: {
               defaultContents: "Allow members to create timelines",
               value: args.inputTitle,
               className: classNames(sty.slotTargetInputTitle, {
-                [sty.slotTargetInputTitle__variantSettings_hasLabel]:
-                  hasVariant(variants, "variantSettings", "hasLabel"),
+                [sty.slotTargetInputTitlevariantSettings_hasLabel]: hasVariant(
+                  variants,
+                  "variantSettings",
+                  "hasLabel"
+                ),
               }),
             })
           : null}
@@ -120,7 +123,7 @@ function PlasmicSwitch__RenderFunc(props: {
         data-plasmic-name={"_switch"}
         data-plasmic-override={overrides._switch}
         className={classNames(projectcss.all, sty._switch, {
-          [sty._switch__variantSettings_isSelected]: hasVariant(
+          [sty._switchvariantSettings_isSelected]: hasVariant(
             variants,
             "variantSettings",
             "isSelected"
@@ -131,7 +134,7 @@ function PlasmicSwitch__RenderFunc(props: {
           data-plasmic-name={"svg"}
           data-plasmic-override={overrides.svg}
           className={classNames(projectcss.all, sty.svg, {
-            [sty.svg__variantSettings_isSelected]: hasVariant(
+            [sty.svgvariantSettings_isSelected]: hasVariant(
               variants,
               "variantSettings",
               "isSelected"
@@ -171,7 +174,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSwitch__VariantsArgs;
     args?: PlasmicSwitch__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicSwitch__Fetches;
   } & Omit<PlasmicSwitch__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSwitch__ArgsType, ReservedPropsType> &
@@ -198,13 +200,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSwitch__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicSwitch__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

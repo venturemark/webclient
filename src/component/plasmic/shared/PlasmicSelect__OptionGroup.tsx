@@ -81,10 +81,10 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
   variants: PlasmicSelect__OptionGroup__VariantsArgs;
   args: PlasmicSelect__OptionGroup__ArgsType;
   overrides: PlasmicSelect__OptionGroup__OverridesType;
-  dataFetches?: PlasmicSelect__OptionGroup__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context),
@@ -103,16 +103,8 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
           data-plasmic-name={"separator"}
           data-plasmic-override={overrides.separator}
           className={classNames(projectcss.all, sty.separator, {
-            [sty.separator__isFirst]: hasVariant(
-              variants,
-              "isFirst",
-              "isFirst"
-            ),
-            [sty.separator__noTitle]: hasVariant(
-              variants,
-              "noTitle",
-              "noTitle"
-            ),
+            [sty.separatorisFirst]: hasVariant(variants, "isFirst", "isFirst"),
+            [sty.separatornoTitle]: hasVariant(variants, "noTitle", "noTitle"),
           })}
         />
       ) : null}
@@ -121,12 +113,12 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
           data-plasmic-name={"titleContainer"}
           data-plasmic-override={overrides.titleContainer}
           className={classNames(projectcss.all, sty.titleContainer, {
-            [sty.titleContainer__isFirst]: hasVariant(
+            [sty.titleContainerisFirst]: hasVariant(
               variants,
               "isFirst",
               "isFirst"
             ),
-            [sty.titleContainer__noTitle]: hasVariant(
+            [sty.titleContainernoTitle]: hasVariant(
               variants,
               "noTitle",
               "noTitle"
@@ -206,7 +198,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSelect__OptionGroup__VariantsArgs;
     args?: PlasmicSelect__OptionGroup__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicSelect__OptionGroup__Fetches;
   } & Omit<PlasmicSelect__OptionGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSelect__OptionGroup__ArgsType, ReservedPropsType> &
@@ -233,13 +224,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSelect__OptionGroup__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicSelect__OptionGroup__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

@@ -77,10 +77,10 @@ function PlasmicVentureSettings__RenderFunc(props: {
   variants: PlasmicVentureSettings__VariantsArgs;
   args: PlasmicVentureSettings__ArgsType;
   overrides: PlasmicVentureSettings__OverridesType;
-  dataFetches?: PlasmicVentureSettings__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -102,12 +102,12 @@ function PlasmicVentureSettings__RenderFunc(props: {
             projectcss.root_reset,
             sty.root,
             {
-              [sty.root__isVisible_mobileSidebar]: hasVariant(
+              [sty.rootisVisible_mobileSidebar]: hasVariant(
                 variants,
                 "isVisible",
                 "mobileSidebar"
               ),
-              [sty.root__isVisible_postDetails]: hasVariant(
+              [sty.rootisVisible_postDetails]: hasVariant(
                 variants,
                 "isVisible",
                 "postDetails"
@@ -123,7 +123,7 @@ function PlasmicVentureSettings__RenderFunc(props: {
 
           <div
             className={classNames(projectcss.all, sty.freeBox__kRlHv, {
-              [sty.freeBox__isVisible_mobileSidebar__kRlHvgEoQs]: hasVariant(
+              [sty.freeBoxisVisible_mobileSidebar__kRlHvgEoQs]: hasVariant(
                 variants,
                 "isVisible",
                 "mobileSidebar"
@@ -141,13 +141,13 @@ function PlasmicVentureSettings__RenderFunc(props: {
                 data-plasmic-name={"sidebar"}
                 data-plasmic-override={overrides.sidebar}
                 className={classNames("__wab_instance", sty.sidebar, {
-                  [sty.sidebar__isVisible_mobileSidebar]: hasVariant(
+                  [sty.sidebarisVisible_mobileSidebar]: hasVariant(
                     variants,
                     "isVisible",
                     "mobileSidebar"
                   ),
                 })}
-                hasInput={"hasInput" as const}
+                hasInput={true}
               />
             ) : null}
 
@@ -173,7 +173,7 @@ function PlasmicVentureSettings__RenderFunc(props: {
                   data-plasmic-name={"postDetails"}
                   data-plasmic-override={overrides.postDetails}
                   className={classNames("__wab_instance", sty.postDetails, {
-                    [sty.postDetails__isVisible_postDetails]: hasVariant(
+                    [sty.postDetailsisVisible_postDetails]: hasVariant(
                       variants,
                       "isVisible",
                       "postDetails"
@@ -222,7 +222,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicVentureSettings__VariantsArgs;
     args?: PlasmicVentureSettings__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicVentureSettings__Fetches;
   } & Omit<PlasmicVentureSettings__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicVentureSettings__ArgsType, ReservedPropsType> &
@@ -249,13 +248,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicVentureSettings__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicVentureSettings__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

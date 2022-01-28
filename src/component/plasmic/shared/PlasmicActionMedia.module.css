@@ -53,7 +53,7 @@
   padding: 10px;
   border: 1px solid rgb(224, 224, 224) /* plasmic-token: 9--4ZPcisViPq8V */;
 }
-.closeButton__isEdit {
+.closeButtonisEdit {
   display: flex;
 }
 .root .closeButton:hover {

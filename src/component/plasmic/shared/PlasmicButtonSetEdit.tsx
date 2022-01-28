@@ -78,10 +78,10 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
   variants: PlasmicButtonSetEdit__VariantsArgs;
   args: PlasmicButtonSetEdit__ArgsType;
   overrides: PlasmicButtonSetEdit__OverridesType;
-  dataFetches?: PlasmicButtonSetEdit__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -96,7 +96,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       hasGap={true}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__variantState_isEdit]: hasVariant(
+        [sty.rootvariantState_isEdit]: hasVariant(
           variants,
           "variantState",
           "isEdit"
@@ -105,7 +105,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
     >
       <div
         className={classNames(projectcss.all, sty.freeBox__wbTrP, {
-          [sty.freeBox__variantState_isEdit__wbTrPtAumS]: hasVariant(
+          [sty.freeBoxvariantState_isEdit__wbTrPtAumS]: hasVariant(
             variants,
             "variantState",
             "isEdit"
@@ -141,7 +141,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text222,
                   {
-                    [sty.text222__variantState_isEdit]: hasVariant(
+                    [sty.text222variantState_isEdit]: hasVariant(
                       variants,
                       "variantState",
                       "isEdit"
@@ -168,7 +168,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox___0SmAy, {
-            [sty.freeBox__variantState_isEdit___0SmAYtAumS]: hasVariant(
+            [sty.freeBoxvariantState_isEdit___0SmAYtAumS]: hasVariant(
               variants,
               "variantState",
               "isEdit"
@@ -177,7 +177,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
         >
           <div
             className={classNames(projectcss.all, sty.freeBox__blR7J, {
-              [sty.freeBox__variantState_isEdit__blR7JtAumS]: hasVariant(
+              [sty.freeBoxvariantState_isEdit__blR7JtAumS]: hasVariant(
                 variants,
                 "variantState",
                 "isEdit"
@@ -215,7 +215,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                       projectcss.__wab_text,
                       sty.text22,
                       {
-                        [sty.text22__variantState_isEdit]: hasVariant(
+                        [sty.text22variantState_isEdit]: hasVariant(
                           variants,
                           "variantState",
                           "isEdit"
@@ -265,7 +265,7 @@ function PlasmicButtonSetEdit__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text2,
                   {
-                    [sty.text2__variantState_isEdit]: hasVariant(
+                    [sty.text2variantState_isEdit]: hasVariant(
                       variants,
                       "variantState",
                       "isEdit"
@@ -323,7 +323,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicButtonSetEdit__VariantsArgs;
     args?: PlasmicButtonSetEdit__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicButtonSetEdit__Fetches;
   } & Omit<PlasmicButtonSetEdit__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicButtonSetEdit__ArgsType, ReservedPropsType> &
@@ -350,13 +349,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicButtonSetEdit__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicButtonSetEdit__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

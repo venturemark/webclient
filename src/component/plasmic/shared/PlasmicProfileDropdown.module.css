@@ -26,7 +26,7 @@
   align-items: stretch;
   justify-content: flex-start;
 }
-.freeBox__isMobile___4LHLuKb6FV {
+.freeBoxisMobile___4LHLuKb6FV {
   display: flex;
 }
 .text {
@@ -92,7 +92,7 @@
   > img {
   margin-left: 14px;
 }
-.freeBox__isMobile__iA4YKb6FV {
+.freeBoxisMobile__iA4YKb6FV {
   border-top-width: 1px;
 }
 .photoAvatar:global(.__wab_instance) {

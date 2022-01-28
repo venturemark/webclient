@@ -7,10 +7,10 @@
   cursor: pointer;
   padding: 8px 16px;
 }
-.root__isSelected {
+.rootisSelected {
   background: #edf6ff;
 }
-.root__isHighlighted {
+.rootisHighlighted {
   background: none;
 }
 .labelContainer {
@@ -47,12 +47,12 @@
 .slotTargetChildren > .__wab_slot > .__wab_slot > .__wab_slot > picture > img {
   overflow: hidden;
 }
-.slotTargetChildren__isSelected {
+.slotTargetChildrenisSelected {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.slotTargetChildren__isHighlighted {
+.slotTargetChildrenisHighlighted {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.slotTargetChildren__isDisabled {
+.slotTargetChildrenisDisabled {
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }

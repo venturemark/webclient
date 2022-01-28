@@ -35,7 +35,7 @@
   position: relative;
 }
 @media (max-width: 767px) {
-  .sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
+  .sidebarisVisible_mobileSidebar:global(.__wab_instance) {
     position: absolute;
     left: 0px;
     top: 75px;

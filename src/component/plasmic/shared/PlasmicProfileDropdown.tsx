@@ -101,10 +101,10 @@ function PlasmicProfileDropdown__RenderFunc(props: {
   variants: PlasmicProfileDropdown__VariantsArgs;
   args: PlasmicProfileDropdown__ArgsType;
   overrides: PlasmicProfileDropdown__OverridesType;
-  dataFetches?: PlasmicProfileDropdown__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -118,7 +118,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
         data-plasmic-name={"rectangle574"}
         data-plasmic-override={overrides.rectangle574}
         className={classNames(projectcss.all, sty.rectangle574, {
-          [sty.rectangle574__isMobile]: hasVariant(
+          [sty.rectangle574isMobile]: hasVariant(
             variants,
             "isMobile",
             "isMobile"
@@ -128,7 +128,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
         {(hasVariant(variants, "isMobile", "isMobile") ? true : true) ? (
           <div
             className={classNames(projectcss.all, sty.freeBox___4LHLu, {
-              [sty.freeBox__isMobile___4LHLuKb6FV]: hasVariant(
+              [sty.freeBoxisMobile___4LHLuKb6FV]: hasVariant(
                 variants,
                 "isMobile",
                 "isMobile"
@@ -168,7 +168,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__iA4Y, {
-              [sty.freeBox__isMobile__iA4YKb6FV]: hasVariant(
+              [sty.freeBoxisMobile__iA4YKb6FV]: hasVariant(
                 variants,
                 "isMobile",
                 "isMobile"
@@ -202,7 +202,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
                 defaultContents: "user@email.com",
                 value: args.userEmail,
                 className: classNames(sty.slotTargetUserEmail, {
-                  [sty.slotTargetUserEmail__isMobile]: hasVariant(
+                  [sty.slotTargetUserEmailisMobile]: hasVariant(
                     variants,
                     "isMobile",
                     "isMobile"
@@ -224,7 +224,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             data-plasmic-name={"createNewVenture"}
             data-plasmic-override={overrides.createNewVenture}
             className={classNames("__wab_instance", sty.createNewVenture, {
-              [sty.createNewVenture__isMobile]: hasVariant(
+              [sty.createNewVentureisMobile]: hasVariant(
                 variants,
                 "isMobile",
                 "isMobile"
@@ -240,7 +240,7 @@ function PlasmicProfileDropdown__RenderFunc(props: {
             data-plasmic-name={"viewProfile"}
             data-plasmic-override={overrides.viewProfile}
             className={classNames("__wab_instance", sty.viewProfile, {
-              [sty.viewProfile__isMobile]: hasVariant(
+              [sty.viewProfileisMobile]: hasVariant(
                 variants,
                 "isMobile",
                 "isMobile"
@@ -327,7 +327,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileDropdown__VariantsArgs;
     args?: PlasmicProfileDropdown__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicProfileDropdown__Fetches;
   } & Omit<PlasmicProfileDropdown__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicProfileDropdown__ArgsType, ReservedPropsType> &
@@ -354,13 +353,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicProfileDropdown__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicProfileDropdown__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

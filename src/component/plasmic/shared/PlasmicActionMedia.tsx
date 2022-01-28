@@ -72,10 +72,10 @@ function PlasmicActionMedia__RenderFunc(props: {
   variants: PlasmicActionMedia__VariantsArgs;
   args: PlasmicActionMedia__ArgsType;
   overrides: PlasmicActionMedia__OverridesType;
-  dataFetches?: PlasmicActionMedia__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     true ? (
@@ -117,11 +117,7 @@ function PlasmicActionMedia__RenderFunc(props: {
             data-plasmic-name={"closeButton"}
             data-plasmic-override={overrides.closeButton}
             className={classNames(projectcss.all, sty.closeButton, {
-              [sty.closeButton__isEdit]: hasVariant(
-                variants,
-                "isEdit",
-                "isEdit"
-              ),
+              [sty.closeButtonisEdit]: hasVariant(variants, "isEdit", "isEdit"),
             })}
           >
             <IconCloseIcon
@@ -166,7 +162,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActionMedia__VariantsArgs;
     args?: PlasmicActionMedia__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicActionMedia__Fetches;
   } & Omit<PlasmicActionMedia__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicActionMedia__ArgsType, ReservedPropsType> &
@@ -193,13 +188,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicActionMedia__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicActionMedia__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };
