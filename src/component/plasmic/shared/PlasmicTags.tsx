@@ -107,10 +107,10 @@ function PlasmicTags__RenderFunc(props: {
   variants: PlasmicTags__VariantsArgs;
   args: PlasmicTags__ArgsType;
   overrides: PlasmicTags__OverridesType;
-  dataFetches?: PlasmicTags__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -119,23 +119,19 @@ function PlasmicTags__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__buttonStyle_blue]: hasVariant(
-          variants,
-          "buttonStyle",
-          "blue"
-        ),
-        [sty.root__buttonStyle_primaryPurple]: hasVariant(
+        [sty.rootbuttonStyle_blue]: hasVariant(variants, "buttonStyle", "blue"),
+        [sty.rootbuttonStyle_primaryPurple]: hasVariant(
           variants,
           "buttonStyle",
           "primaryPurple"
         ),
-        [sty.root__buttonStyle_red]: hasVariant(variants, "buttonStyle", "red"),
-        [sty.root__buttonStyle_secondaryGreen]: hasVariant(
+        [sty.rootbuttonStyle_red]: hasVariant(variants, "buttonStyle", "red"),
+        [sty.rootbuttonStyle_secondaryGreen]: hasVariant(
           variants,
           "buttonStyle",
           "secondaryGreen"
         ),
-        [sty.root__buttonStyle_secondaryPurple]: hasVariant(
+        [sty.rootbuttonStyle_secondaryPurple]: hasVariant(
           variants,
           "buttonStyle",
           "secondaryPurple"
@@ -146,45 +142,45 @@ function PlasmicTags__RenderFunc(props: {
         data-plasmic-name={"button"}
         data-plasmic-override={overrides.button}
         className={classNames(projectcss.button, sty.button, {
-          [sty.button__buttonFeatures_icon]: hasVariant(
+          [sty.buttonbuttonFeatures_icon]: hasVariant(
             variants,
             "buttonFeatures",
             "icon"
           ),
-          [sty.button__buttonStyle_blue]: hasVariant(
+          [sty.buttonbuttonStyle_blue]: hasVariant(
             variants,
             "buttonStyle",
             "blue"
           ),
-          [sty.button__buttonStyle_grey]: hasVariant(
+          [sty.buttonbuttonStyle_grey]: hasVariant(
             variants,
             "buttonStyle",
             "grey"
           ),
-          [sty.button__buttonStyle_grey_buttonFeatures_icon]:
+          [sty.buttonbuttonStyle_grey_buttonFeatures_icon]:
             hasVariant(variants, "buttonStyle", "grey") &&
             hasVariant(variants, "buttonFeatures", "icon"),
-          [sty.button__buttonStyle_primaryPurple]: hasVariant(
+          [sty.buttonbuttonStyle_primaryPurple]: hasVariant(
             variants,
             "buttonStyle",
             "primaryPurple"
           ),
-          [sty.button__buttonStyle_red]: hasVariant(
+          [sty.buttonbuttonStyle_red]: hasVariant(
             variants,
             "buttonStyle",
             "red"
           ),
-          [sty.button__buttonStyle_secondaryGreen]: hasVariant(
+          [sty.buttonbuttonStyle_secondaryGreen]: hasVariant(
             variants,
             "buttonStyle",
             "secondaryGreen"
           ),
-          [sty.button__buttonStyle_secondaryPurple]: hasVariant(
+          [sty.buttonbuttonStyle_secondaryPurple]: hasVariant(
             variants,
             "buttonStyle",
             "secondaryPurple"
           ),
-          [sty.button__disabled]: hasVariant(variants, "disabled", "disabled"),
+          [sty.buttondisabled]: hasVariant(variants, "disabled", "disabled"),
         })}
       >
         <p.Stack
@@ -193,12 +189,12 @@ function PlasmicTags__RenderFunc(props: {
           data-plasmic-override={overrides.freeBox}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox, {
-            [sty.freeBox__buttonStyle_blue]: hasVariant(
+            [sty.freeBoxbuttonStyle_blue]: hasVariant(
               variants,
               "buttonStyle",
               "blue"
             ),
-            [sty.freeBox__buttonStyle_primaryPurple]: hasVariant(
+            [sty.freeBoxbuttonStyle_primaryPurple]: hasVariant(
               variants,
               "buttonStyle",
               "primaryPurple"
@@ -210,34 +206,37 @@ function PlasmicTags__RenderFunc(props: {
                 defaultContents: "Tag Name",
                 value: args.text2,
                 className: classNames(sty.slotTargetText2, {
-                  [sty.slotTargetText2__buttonFeatures_hasText]: hasVariant(
+                  [sty.slotTargetText2buttonFeatures_hasText]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "hasText"
                   ),
-                  [sty.slotTargetText2__buttonFeatures_icon]: hasVariant(
+                  [sty.slotTargetText2buttonFeatures_icon]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "icon"
                   ),
-                  [sty.slotTargetText2__buttonStyle_primaryPurple]: hasVariant(
+                  [sty.slotTargetText2buttonStyle_primaryPurple]: hasVariant(
                     variants,
                     "buttonStyle",
                     "primaryPurple"
                   ),
-                  [sty.slotTargetText2__buttonStyle_red]: hasVariant(
+                  [sty.slotTargetText2buttonStyle_red]: hasVariant(
                     variants,
                     "buttonStyle",
                     "red"
                   ),
-                  [sty.slotTargetText2__buttonStyle_secondaryGreen]: hasVariant(
+                  [sty.slotTargetText2buttonStyle_secondaryGreen]: hasVariant(
                     variants,
                     "buttonStyle",
                     "secondaryGreen"
                   ),
-                  [sty.slotTargetText2__buttonStyle_secondaryPurple]:
-                    hasVariant(variants, "buttonStyle", "secondaryPurple"),
-                  [sty.slotTargetText2__disabled]: hasVariant(
+                  [sty.slotTargetText2buttonStyle_secondaryPurple]: hasVariant(
+                    variants,
+                    "buttonStyle",
+                    "secondaryPurple"
+                  ),
+                  [sty.slotTargetText2disabled]: hasVariant(
                     variants,
                     "disabled",
                     "disabled"
@@ -256,29 +255,29 @@ function PlasmicTags__RenderFunc(props: {
 
                 value: args.children,
                 className: classNames(sty.slotTargetChildren, {
-                  [sty.slotTargetChildren__buttonFeatures_icon]: hasVariant(
+                  [sty.slotTargetChildrenbuttonFeatures_icon]: hasVariant(
                     variants,
                     "buttonFeatures",
                     "icon"
                   ),
-                  [sty.slotTargetChildren__buttonFeatures_icon_buttonStyle_red]:
+                  [sty.slotTargetChildrenbuttonFeatures_icon_buttonStyle_red]:
                     hasVariant(variants, "buttonFeatures", "icon") &&
                     hasVariant(variants, "buttonStyle", "red"),
-                  [sty.slotTargetChildren__buttonFeatures_icon_buttonStyle_secondaryGreen]:
+                  [sty.slotTargetChildrenbuttonFeatures_icon_buttonStyle_secondaryGreen]:
                     hasVariant(variants, "buttonFeatures", "icon") &&
                     hasVariant(variants, "buttonStyle", "secondaryGreen"),
-                  [sty.slotTargetChildren__buttonFeatures_icon_buttonStyle_secondaryPurple]:
+                  [sty.slotTargetChildrenbuttonFeatures_icon_buttonStyle_secondaryPurple]:
                     hasVariant(variants, "buttonFeatures", "icon") &&
                     hasVariant(variants, "buttonStyle", "secondaryPurple"),
-                  [sty.slotTargetChildren__buttonStyle_grey]: hasVariant(
+                  [sty.slotTargetChildrenbuttonStyle_grey]: hasVariant(
                     variants,
                     "buttonStyle",
                     "grey"
                   ),
-                  [sty.slotTargetChildren__buttonStyle_grey_buttonFeatures_icon]:
+                  [sty.slotTargetChildrenbuttonStyle_grey_buttonFeatures_icon]:
                     hasVariant(variants, "buttonStyle", "grey") &&
                     hasVariant(variants, "buttonFeatures", "icon"),
-                  [sty.slotTargetChildren__buttonStyle_red]: hasVariant(
+                  [sty.slotTargetChildrenbuttonStyle_red]: hasVariant(
                     variants,
                     "buttonStyle",
                     "red"
@@ -317,7 +316,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicTags__VariantsArgs;
     args?: PlasmicTags__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicTags__Fetches;
   } & Omit<PlasmicTags__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicTags__ArgsType, ReservedPropsType> &
@@ -344,13 +342,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicTags__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicTags__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

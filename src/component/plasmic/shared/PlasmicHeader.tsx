@@ -95,10 +95,10 @@ function PlasmicHeader__RenderFunc(props: {
   variants: PlasmicHeader__VariantsArgs;
   args: PlasmicHeader__ArgsType;
   overrides: PlasmicHeader__OverridesType;
-  dataFetches?: PlasmicHeader__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -111,38 +111,30 @@ function PlasmicHeader__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__mobileMenu]: hasVariant(
-          variants,
-          "mobileMenu",
-          "mobileMenu"
-        ),
-        [sty.root__views_publicView]: hasVariant(
-          variants,
-          "views",
-          "publicView"
-        ),
+        [sty.rootmobileMenu]: hasVariant(variants, "mobileMenu", "mobileMenu"),
+        [sty.rootviews_publicView]: hasVariant(variants, "views", "publicView"),
       })}
     >
       <p.Stack
         as={"div"}
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox__ky7Rm, {
-          [sty.freeBox__mobileMenu__ky7RmdUXmX]: hasVariant(
+          [sty.freeBoxmobileMenu__ky7RmdUXmX]: hasVariant(
             variants,
             "mobileMenu",
             "mobileMenu"
           ),
-          [sty.freeBox__views_onboarding__ky7Rmx3M4P]: hasVariant(
+          [sty.freeBoxviews_onboarding__ky7Rmx3M4P]: hasVariant(
             variants,
             "views",
             "onboarding"
           ),
-          [sty.freeBox__views_publicView__ky7RmYpLjb]: hasVariant(
+          [sty.freeBoxviews_publicView__ky7RmYpLjb]: hasVariant(
             variants,
             "views",
             "publicView"
           ),
-          [sty.freeBox__views_userAccount__ky7RmUjVqz]: hasVariant(
+          [sty.freeBoxviews_userAccount__ky7RmUjVqz]: hasVariant(
             variants,
             "views",
             "userAccount"
@@ -169,12 +161,12 @@ function PlasmicHeader__RenderFunc(props: {
                 data-plasmic-name={"toggleMobileSidebar"}
                 data-plasmic-override={overrides.toggleMobileSidebar}
                 className={classNames(projectcss.all, sty.toggleMobileSidebar, {
-                  [sty.toggleMobileSidebar__mobileMenu]: hasVariant(
+                  [sty.toggleMobileSidebarmobileMenu]: hasVariant(
                     variants,
                     "mobileMenu",
                     "mobileMenu"
                   ),
-                  [sty.toggleMobileSidebar__views_publicView]: hasVariant(
+                  [sty.toggleMobileSidebarviews_publicView]: hasVariant(
                     variants,
                     "views",
                     "publicView"
@@ -188,7 +180,7 @@ function PlasmicHeader__RenderFunc(props: {
                 data-plasmic-name={"mainHeader"}
                 data-plasmic-override={overrides.mainHeader}
                 className={classNames("__wab_instance", sty.mainHeader, {
-                  [sty.mainHeader__views_onboarding]: hasVariant(
+                  [sty.mainHeaderviews_onboarding]: hasVariant(
                     variants,
                     "views",
                     "onboarding"
@@ -212,7 +204,7 @@ function PlasmicHeader__RenderFunc(props: {
               projectcss.__wab_text,
               sty.text,
               {
-                [sty.text__views_publicView]: hasVariant(
+                [sty.textviews_publicView]: hasVariant(
                   variants,
                   "views",
                   "publicView"
@@ -234,7 +226,7 @@ function PlasmicHeader__RenderFunc(props: {
               projectcss.__wab_text,
               sty.link,
               {
-                [sty.link__views_publicView]: hasVariant(
+                [sty.linkviews_publicView]: hasVariant(
                   variants,
                   "views",
                   "publicView"
@@ -243,7 +235,7 @@ function PlasmicHeader__RenderFunc(props: {
             )}
             href={
               hasVariant(variants, "views", "publicView")
-                ? ("http://breadcrumb.so/" as const)
+                ? ("http://venturemark.co/" as const)
                 : ("https://www.plasmic.app/" as const)
             }
           >
@@ -257,12 +249,12 @@ function PlasmicHeader__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox___4Ktdl, {
-              [sty.freeBox__profileDropdown___4KtdlZi9Pu]: hasVariant(
+              [sty.freeBoxprofileDropdown___4KtdlZi9Pu]: hasVariant(
                 variants,
                 "profileDropdown",
                 "profileDropdown"
               ),
-              [sty.freeBox__views_userAccount___4KtdlUjVqz]: hasVariant(
+              [sty.freeBoxviews_userAccount___4KtdlUjVqz]: hasVariant(
                 variants,
                 "views",
                 "userAccount"
@@ -301,7 +293,7 @@ function PlasmicHeader__RenderFunc(props: {
                 data-plasmic-name={"avatar"}
                 data-plasmic-override={overrides.avatar}
                 className={classNames("__wab_instance", sty.avatar, {
-                  [sty.avatar__profileDropdown]: hasVariant(
+                  [sty.avatarprofileDropdown]: hasVariant(
                     variants,
                     "profileDropdown",
                     "profileDropdown"
@@ -319,13 +311,13 @@ function PlasmicHeader__RenderFunc(props: {
                 data-plasmic-name={"dropdown"}
                 data-plasmic-override={overrides.dropdown}
                 className={classNames("__wab_instance", sty.dropdown, {
-                  [sty.dropdown__profileDropdown]: hasVariant(
+                  [sty.dropdownprofileDropdown]: hasVariant(
                     variants,
                     "profileDropdown",
                     "profileDropdown"
                   ),
                 })}
-                isMobile={"isMobile" as const}
+                isMobile={true}
                 prop3={"Log Out"}
               />
             ) : null}
@@ -383,7 +375,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHeader__VariantsArgs;
     args?: PlasmicHeader__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicHeader__Fetches;
   } & Omit<PlasmicHeader__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicHeader__ArgsType, ReservedPropsType> &
@@ -410,13 +401,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicHeader__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicHeader__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

@@ -16,7 +16,7 @@
   width: auto;
   padding: 0px;
 }
-.modalTypes__modalType_shareModal {
+.modalTypesmodalType_shareModal {
   width: auto;
 }
 .close:global(.__wab_instance) {
@@ -26,7 +26,7 @@
   right: auto;
   display: none;
 }
-.close__modalType_editProfile:global(.__wab_instance) {
+.closemodalType_editProfile:global(.__wab_instance) {
   left: auto;
   top: 10px;
   position: absolute;
@@ -34,7 +34,7 @@
   right: 10px;
   display: flex;
 }
-.close__modalType_shareModal:global(.__wab_instance) {
+.closemodalType_shareModal:global(.__wab_instance) {
   left: auto;
   top: 10px;
   position: absolute;
@@ -275,11 +275,11 @@
   > img {
   margin-top: 20px;
 }
-.deleteTimeline2__modalType_editProfile {
+.deleteTimeline2modalType_editProfile {
   left: auto;
   top: auto;
 }
-.deleteTimeline2__modalType_deleteVenture {
+.deleteTimeline2modalType_deleteVenture {
   left: auto;
   top: auto;
 }
@@ -496,7 +496,7 @@
 .photoAvatar:global(.__wab_instance) {
   flex-shrink: 0;
 }
-.photoAvatar__modalType_editProfile:global(.__wab_instance) {
+.photoAvatarmodalType_editProfile:global(.__wab_instance) {
   flex-shrink: 0;
 }
 .link {
@@ -592,7 +592,7 @@
     min-width: auto;
   }
 }
-.share__modalType_shareModal:global(.__wab_instance) {
+.sharemodalType_shareModal:global(.__wab_instance) {
   display: flex;
 }
 .close2:global(.__wab_instance) {
@@ -601,7 +601,7 @@
   top: auto;
   right: auto;
 }
-.close2__modalType_shareModal:global(.__wab_instance) {
+.close2modalType_shareModal:global(.__wab_instance) {
   left: auto;
   top: 79px;
   position: absolute;

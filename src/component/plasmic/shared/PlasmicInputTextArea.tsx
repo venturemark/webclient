@@ -97,10 +97,10 @@ function PlasmicInputTextArea__RenderFunc(props: {
   variants: PlasmicInputTextArea__VariantsArgs;
   args: PlasmicInputTextArea__ArgsType;
   overrides: PlasmicInputTextArea__OverridesType;
-  dataFetches?: PlasmicInputTextArea__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -109,11 +109,7 @@ function PlasmicInputTextArea__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isDisabled]: hasVariant(
-          variants,
-          "isDisabled",
-          "isDisabled"
-        ),
+        [sty.rootisDisabled]: hasVariant(variants, "isDisabled", "isDisabled"),
       })}
     >
       <p.Stack
@@ -128,7 +124,7 @@ function PlasmicInputTextArea__RenderFunc(props: {
             data-plasmic-name={"labelContainer"}
             data-plasmic-override={overrides.labelContainer}
             className={classNames(projectcss.all, sty.labelContainer, {
-              [sty.labelContainer__hasLabel]: hasVariant(
+              [sty.labelContainerhasLabel]: hasVariant(
                 variants,
                 "hasLabel",
                 "hasLabel"
@@ -149,17 +145,17 @@ function PlasmicInputTextArea__RenderFunc(props: {
             data-plasmic-name={"inputHelperText"}
             data-plasmic-override={overrides.inputHelperText}
             className={classNames(projectcss.all, sty.inputHelperText, {
-              [sty.inputHelperText__error]: hasVariant(
+              [sty.inputHelperTexterror]: hasVariant(
                 variants,
                 "error",
                 "error"
               ),
-              [sty.inputHelperText__hasLabel]: hasVariant(
+              [sty.inputHelperTexthasLabel]: hasVariant(
                 variants,
                 "hasLabel",
                 "hasLabel"
               ),
-              [sty.inputHelperText__hasTextHelper]: hasVariant(
+              [sty.inputHelperTexthasTextHelper]: hasVariant(
                 variants,
                 "hasTextHelper",
                 "hasTextHelper"
@@ -183,8 +179,8 @@ function PlasmicInputTextArea__RenderFunc(props: {
             data-plasmic-name={"input"}
             data-plasmic-override={overrides.input}
             className={classNames(projectcss.textarea, sty.input, {
-              [sty.input__error]: hasVariant(variants, "error", "error"),
-              [sty.input__isDisabled]: hasVariant(
+              [sty.inputerror]: hasVariant(variants, "error", "error"),
+              [sty.inputisDisabled]: hasVariant(
                 variants,
                 "isDisabled",
                 "isDisabled"
@@ -208,7 +204,7 @@ function PlasmicInputTextArea__RenderFunc(props: {
 
         <div
           className={classNames(projectcss.all, sty.freeBox__ytJal, {
-            [sty.freeBox__error__ytJalieWq6]: hasVariant(
+            [sty.freeBoxerror__ytJalieWq6]: hasVariant(
               variants,
               "error",
               "error"
@@ -280,7 +276,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicInputTextArea__VariantsArgs;
     args?: PlasmicInputTextArea__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicInputTextArea__Fetches;
   } & Omit<PlasmicInputTextArea__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicInputTextArea__ArgsType, ReservedPropsType> &
@@ -307,13 +302,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicInputTextArea__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicInputTextArea__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

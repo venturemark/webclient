@@ -95,10 +95,10 @@ function PlasmicSidebar__RenderFunc(props: {
   variants: PlasmicSidebar__VariantsArgs;
   args: PlasmicSidebar__ArgsType;
   overrides: PlasmicSidebar__OverridesType;
-  dataFetches?: PlasmicSidebar__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -111,15 +111,15 @@ function PlasmicSidebar__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__hasInput]: hasVariant(variants, "hasInput", "hasInput"),
-        [sty.root__isPublic]: hasVariant(variants, "isPublic", "isPublic"),
+        [sty.roothasInput]: hasVariant(variants, "hasInput", "hasInput"),
+        [sty.rootisPublic]: hasVariant(variants, "isPublic", "isPublic"),
       })}
     >
       <div
         data-plasmic-name={"topSidebar"}
         data-plasmic-override={overrides.topSidebar}
         className={classNames(projectcss.all, sty.topSidebar, {
-          [sty.topSidebar__hasInput]: hasVariant(
+          [sty.topSidebarhasInput]: hasVariant(
             variants,
             "hasInput",
             "hasInput"
@@ -144,17 +144,17 @@ function PlasmicSidebar__RenderFunc(props: {
             data-plasmic-override={overrides.accountSettings}
             hasGap={true}
             className={classNames(projectcss.all, sty.accountSettings, {
-              [sty.accountSettings__hasInput]: hasVariant(
+              [sty.accountSettingshasInput]: hasVariant(
                 variants,
                 "hasInput",
                 "hasInput"
               ),
-              [sty.accountSettings__isDropdown]: hasVariant(
+              [sty.accountSettingsisDropdown]: hasVariant(
                 variants,
                 "isDropdown",
                 "isDropdown"
               ),
-              [sty.accountSettings__isPublic]: hasVariant(
+              [sty.accountSettingsisPublic]: hasVariant(
                 variants,
                 "isPublic",
                 "isPublic"
@@ -171,7 +171,7 @@ function PlasmicSidebar__RenderFunc(props: {
               defaultContents: "Name",
               value: args.userName,
               className: classNames(sty.slotTargetUserName, {
-                [sty.slotTargetUserName__hasInput]: hasVariant(
+                [sty.slotTargetUserNamehasInput]: hasVariant(
                   variants,
                   "hasInput",
                   "hasInput"
@@ -186,7 +186,7 @@ function PlasmicSidebar__RenderFunc(props: {
                 data-plasmic-name={"dropdown"}
                 data-plasmic-override={overrides.dropdown}
                 className={classNames("__wab_instance", sty.dropdown, {
-                  [sty.dropdown__isDropdown]: hasVariant(
+                  [sty.dropdownisDropdown]: hasVariant(
                     variants,
                     "isDropdown",
                     "isDropdown"
@@ -199,7 +199,7 @@ function PlasmicSidebar__RenderFunc(props: {
                       projectcss.__wab_text,
                       sty.text__jYiYa,
                       {
-                        [sty.text__isDropdown__jYiYAmySg3]: hasVariant(
+                        [sty.textisDropdown__jYiYAmySg3]: hasVariant(
                           variants,
                           "isDropdown",
                           "isDropdown"
@@ -222,17 +222,17 @@ function PlasmicSidebar__RenderFunc(props: {
           data-plasmic-override={overrides.scrollContainer}
           hasGap={true}
           className={classNames(projectcss.all, sty.scrollContainer, {
-            [sty.scrollContainer__hasInput]: hasVariant(
+            [sty.scrollContainerhasInput]: hasVariant(
               variants,
               "hasInput",
               "hasInput"
             ),
-            [sty.scrollContainer__isDropdown]: hasVariant(
+            [sty.scrollContainerisDropdown]: hasVariant(
               variants,
               "isDropdown",
               "isDropdown"
             ),
-            [sty.scrollContainer__isPublic]: hasVariant(
+            [sty.scrollContainerisPublic]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
@@ -245,7 +245,7 @@ function PlasmicSidebar__RenderFunc(props: {
             data-plasmic-override={overrides.itemGroupContainer}
             hasGap={true}
             className={classNames(projectcss.all, sty.itemGroupContainer, {
-              [sty.itemGroupContainer__hasInput]: hasVariant(
+              [sty.itemGroupContainerhasInput]: hasVariant(
                 variants,
                 "hasInput",
                 "hasInput"
@@ -257,12 +257,12 @@ function PlasmicSidebar__RenderFunc(props: {
                 data-plasmic-name={"sidebarItemGroup"}
                 data-plasmic-override={overrides.sidebarItemGroup}
                 className={classNames("__wab_instance", sty.sidebarItemGroup, {
-                  [sty.sidebarItemGroup__hasInput]: hasVariant(
+                  [sty.sidebarItemGrouphasInput]: hasVariant(
                     variants,
                     "hasInput",
                     "hasInput"
                   ),
-                  [sty.sidebarItemGroup__isPublic]: hasVariant(
+                  [sty.sidebarItemGroupisPublic]: hasVariant(
                     variants,
                     "isPublic",
                     "isPublic"
@@ -270,12 +270,12 @@ function PlasmicSidebar__RenderFunc(props: {
                 })}
                 isOwner={
                   hasVariant(variants, "hasInput", "hasInput")
-                    ? ("isOwner" as const)
+                    ? true
                     : undefined
                 }
                 isPublic={
                   hasVariant(variants, "isPublic", "isPublic")
-                    ? ("isPublic" as const)
+                    ? true
                     : undefined
                 }
               />
@@ -289,7 +289,7 @@ function PlasmicSidebar__RenderFunc(props: {
               data-plasmic-override={overrides.freeBox}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox, {
-                [sty.freeBox__isPublic]: hasVariant(
+                [sty.freeBoxisPublic]: hasVariant(
                   variants,
                   "isPublic",
                   "isPublic"
@@ -305,7 +305,7 @@ function PlasmicSidebar__RenderFunc(props: {
                     projectcss.__wab_text,
                     sty.viewCreateVenture,
                     {
-                      [sty.viewCreateVenture__isPublic]: hasVariant(
+                      [sty.viewCreateVentureisPublic]: hasVariant(
                         variants,
                         "isPublic",
                         "isPublic"
@@ -321,7 +321,7 @@ function PlasmicSidebar__RenderFunc(props: {
                   data-plasmic-name={"svg"}
                   data-plasmic-override={overrides.svg}
                   className={classNames(projectcss.all, sty.svg, {
-                    [sty.svg__isPublic]: hasVariant(
+                    [sty.svgisPublic]: hasVariant(
                       variants,
                       "isPublic",
                       "isPublic"
@@ -337,7 +337,7 @@ function PlasmicSidebar__RenderFunc(props: {
                     projectcss.__wab_text,
                     sty.text__mR9P,
                     {
-                      [sty.text__isPublic__mR9Pxw1PM]: hasVariant(
+                      [sty.textisPublic__mR9Pxw1PM]: hasVariant(
                         variants,
                         "isPublic",
                         "isPublic"
@@ -429,7 +429,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSidebar__VariantsArgs;
     args?: PlasmicSidebar__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicSidebar__Fetches;
   } & Omit<PlasmicSidebar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSidebar__ArgsType, ReservedPropsType> &
@@ -456,13 +455,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSidebar__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicSidebar__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

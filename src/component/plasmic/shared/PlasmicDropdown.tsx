@@ -66,10 +66,10 @@ function PlasmicDropdown__RenderFunc(props: {
   variants: PlasmicDropdown__VariantsArgs;
   args: PlasmicDropdown__ArgsType;
   overrides: PlasmicDropdown__OverridesType;
-  dataFetches?: PlasmicDropdown__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -133,7 +133,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicDropdown__VariantsArgs;
     args?: PlasmicDropdown__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicDropdown__Fetches;
   } & Omit<PlasmicDropdown__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicDropdown__ArgsType, ReservedPropsType> &
@@ -160,13 +159,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicDropdown__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicDropdown__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

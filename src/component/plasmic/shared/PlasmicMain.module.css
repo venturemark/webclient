@@ -24,27 +24,24 @@
   > img {
   margin-top: 30px;
 }
-.container__variantType_isEmpty {
+.containervariantType_isEmpty {
   display: flex;
   flex-direction: column;
 }
-.container__variantType_isEmpty > :global(.__wab_flex-container) {
+.containervariantType_isEmpty > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-left: calc(0px - 0px);
   width: calc(100% + 0px);
 }
-.container__variantType_isEmpty > :global(.__wab_flex-container) > *,
-.container__variantType_isEmpty
+.containervariantType_isEmpty > :global(.__wab_flex-container) > *,
+.containervariantType_isEmpty
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > *,
-.container__variantType_isEmpty
-  > :global(.__wab_flex-container)
-  > picture
-  > img,
-.container__variantType_isEmpty
+.containervariantType_isEmpty > :global(.__wab_flex-container) > picture > img,
+.containervariantType_isEmpty
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > picture
@@ -84,30 +81,30 @@
 .emptyState:global(.__wab_instance) {
   position: relative;
 }
-.emptyState__variantType_isEmpty:global(.__wab_instance) {
+.emptyStatevariantType_isEmpty:global(.__wab_instance) {
   display: none;
 }
-.emptyState__variantType_isEmpty_isOwner:global(.__wab_instance) {
+.emptyStatevariantType_isEmpty_isOwner:global(.__wab_instance) {
   display: flex;
 }
 .text__k8I5L {
   position: relative;
   margin-top: calc(51px + 30px) !important;
 }
-.text__variantType_isEmpty__k8I5LnF9Ly {
+.textvariantType_isEmpty__k8I5LnF9Ly {
   font-size: 26px /* plasmic-token: TujpjiAsC */;
   margin-top: calc(51px + 30px) !important;
 }
-.text__isActive_settings__k8I5LOMvQw {
+.textisActive_settings__k8I5LOMvQw {
   margin-top: calc(51px + 30px) !important;
 }
-.text__isOwner__k8I5LSozJa {
+.textisOwner__k8I5LSozJa {
   margin-top: calc(51px + 30px) !important;
 }
-.text__variantType_isEmpty_isOwner__k8I5LnF9LySozJa {
+.textvariantType_isEmpty_isOwner__k8I5LnF9LySozJa {
   margin-top: calc(51px + 30px) !important;
   display: none;
 }
-.text__variantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN {
+.textvariantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN {
   margin-top: calc(51px + 30px) !important;
 }

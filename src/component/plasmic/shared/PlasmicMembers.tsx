@@ -77,10 +77,10 @@ function PlasmicMembers__RenderFunc(props: {
   variants: PlasmicMembers__VariantsArgs;
   args: PlasmicMembers__ArgsType;
   overrides: PlasmicMembers__OverridesType;
-  dataFetches?: PlasmicMembers__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -102,12 +102,12 @@ function PlasmicMembers__RenderFunc(props: {
             projectcss.root_reset,
             sty.root,
             {
-              [sty.root__isVisible_mobileSidebar]: hasVariant(
+              [sty.rootisVisible_mobileSidebar]: hasVariant(
                 variants,
                 "isVisible",
                 "mobileSidebar"
               ),
-              [sty.root__isVisible_postDetails]: hasVariant(
+              [sty.rootisVisible_postDetails]: hasVariant(
                 variants,
                 "isVisible",
                 "postDetails"
@@ -123,7 +123,7 @@ function PlasmicMembers__RenderFunc(props: {
 
           <div
             className={classNames(projectcss.all, sty.freeBox__wnyfu, {
-              [sty.freeBox__isVisible_mobileSidebar__wnyfuKdjeL]: hasVariant(
+              [sty.freeBoxisVisible_mobileSidebar__wnyfuKdjeL]: hasVariant(
                 variants,
                 "isVisible",
                 "mobileSidebar"
@@ -141,13 +141,13 @@ function PlasmicMembers__RenderFunc(props: {
                 data-plasmic-name={"sidebar"}
                 data-plasmic-override={overrides.sidebar}
                 className={classNames("__wab_instance", sty.sidebar, {
-                  [sty.sidebar__isVisible_mobileSidebar]: hasVariant(
+                  [sty.sidebarisVisible_mobileSidebar]: hasVariant(
                     variants,
                     "isVisible",
                     "mobileSidebar"
                   ),
                 })}
-                hasInput={"hasInput" as const}
+                hasInput={true}
               />
             ) : null}
 
@@ -173,7 +173,7 @@ function PlasmicMembers__RenderFunc(props: {
                   data-plasmic-name={"postDetails"}
                   data-plasmic-override={overrides.postDetails}
                   className={classNames("__wab_instance", sty.postDetails, {
-                    [sty.postDetails__isVisible_postDetails]: hasVariant(
+                    [sty.postDetailsisVisible_postDetails]: hasVariant(
                       variants,
                       "isVisible",
                       "postDetails"
@@ -222,7 +222,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMembers__VariantsArgs;
     args?: PlasmicMembers__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicMembers__Fetches;
   } & Omit<PlasmicMembers__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicMembers__ArgsType, ReservedPropsType> &
@@ -249,13 +248,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicMembers__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicMembers__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

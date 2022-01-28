@@ -36,7 +36,7 @@
   position: relative;
   flex-shrink: 0;
 }
-.photoAvatar__userVariant_isRequested:global(.__wab_instance) {
+.photoAvataruserVariant_isRequested:global(.__wab_instance) {
   flex-shrink: 0;
 }
 .slotTargetSlot3 {
@@ -51,19 +51,19 @@
   height: 1em;
   display: block;
 }
-.svg__userVariant_isRequested {
+.svguserVariant_isRequested {
   display: none;
 }
-.svg__userVariant_isMember {
+.svguserVariant_isMember {
   display: none;
 }
-.svg__userVariant_isSelf {
+.svguserVariant_isSelf {
   display: none;
 }
-.svg__isOwner_userVariant_isMember {
+.svgisOwner_userVariant_isMember {
   display: none;
 }
-.svg__isOwner_userVariant_isRequested {
+.svgisOwner_userVariant_isRequested {
   display: none;
 }
 .freeBox__ymOfc {
@@ -88,7 +88,7 @@
   > img {
   margin-left: 15px;
 }
-.freeBox__userVariant_isMember__ymOfcGdyZr {
+.freeBoxuserVariant_isMember__ymOfcGdyZr {
   display: flex;
 }
 .ownerSelect:global(.__wab_instance) {
@@ -96,10 +96,10 @@
   position: relative;
   display: none;
 }
-.ownerSelect__userVariant_isSelf:global(.__wab_instance) {
+.ownerSelectuserVariant_isSelf:global(.__wab_instance) {
   display: flex;
 }
-.ownerSelect__isOwner:global(.__wab_instance) {
+.ownerSelectisOwner:global(.__wab_instance) {
   display: flex;
 }
 .dropdownIcon {
@@ -115,7 +115,7 @@
 .text___5GQ6G {
   position: relative;
 }
-.text__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz {
+.textuserVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz {
   font-size: 12px /* plasmic-token: LxqIZc9hM */;
   color: rgb(187, 187, 187) /* plasmic-token: gYMfVVYI5 */;
 }

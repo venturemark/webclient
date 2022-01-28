@@ -79,10 +79,10 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
   variants: PlasmicSelect__Overlay__VariantsArgs;
   args: PlasmicSelect__Overlay__ArgsType;
   overrides: PlasmicSelect__Overlay__OverridesType;
-  dataFetches?: PlasmicSelect__Overlay__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context),
@@ -101,7 +101,7 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
           data-plasmic-name={"top"}
           data-plasmic-override={overrides.top}
           className={classNames(projectcss.all, sty.top, {
-            [sty.top__relativePlacement_bottom]: hasVariant(
+            [sty.toprelativePlacement_bottom]: hasVariant(
               variants,
               "relativePlacement",
               "bottom"
@@ -120,7 +120,7 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
             data-plasmic-name={"left"}
             data-plasmic-override={overrides.left}
             className={classNames(projectcss.all, sty.left, {
-              [sty.left__relativePlacement_right]: hasVariant(
+              [sty.leftrelativePlacement_right]: hasVariant(
                 variants,
                 "relativePlacement",
                 "right"
@@ -145,7 +145,7 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
             data-plasmic-name={"right"}
             data-plasmic-override={overrides.right}
             className={classNames(projectcss.all, sty.right, {
-              [sty.right__relativePlacement_left]: hasVariant(
+              [sty.rightrelativePlacement_left]: hasVariant(
                 variants,
                 "relativePlacement",
                 "left"
@@ -160,7 +160,7 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
           data-plasmic-name={"bottom"}
           data-plasmic-override={overrides.bottom}
           className={classNames(projectcss.all, sty.bottom, {
-            [sty.bottom__relativePlacement_top]: hasVariant(
+            [sty.bottomrelativePlacement_top]: hasVariant(
               variants,
               "relativePlacement",
               "top"
@@ -225,7 +225,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSelect__Overlay__VariantsArgs;
     args?: PlasmicSelect__Overlay__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicSelect__Overlay__Fetches;
   } & Omit<PlasmicSelect__Overlay__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSelect__Overlay__ArgsType, ReservedPropsType> &
@@ -252,13 +251,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSelect__Overlay__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicSelect__Overlay__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

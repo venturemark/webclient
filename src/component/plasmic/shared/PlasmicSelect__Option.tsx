@@ -81,10 +81,10 @@ function PlasmicSelect__Option__RenderFunc(props: {
   variants: PlasmicSelect__Option__VariantsArgs;
   args: PlasmicSelect__Option__ArgsType;
   overrides: PlasmicSelect__Option__OverridesType;
-  dataFetches?: PlasmicSelect__Option__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const superContexts = {
     Select: React.useContext(SUPER__PlasmicSelect.Context),
@@ -97,21 +97,13 @@ function PlasmicSelect__Option__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isDisabled]: hasVariant(
-          variants,
-          "isDisabled",
-          "isDisabled"
-        ),
-        [sty.root__isHighlighted]: hasVariant(
+        [sty.rootisDisabled]: hasVariant(variants, "isDisabled", "isDisabled"),
+        [sty.rootisHighlighted]: hasVariant(
           variants,
           "isHighlighted",
           "isHighlighted"
         ),
-        [sty.root__isSelected]: hasVariant(
-          variants,
-          "isSelected",
-          "isSelected"
-        ),
+        [sty.rootisSelected]: hasVariant(variants, "isSelected", "isSelected"),
       })}
     >
       <div
@@ -123,20 +115,20 @@ function PlasmicSelect__Option__RenderFunc(props: {
           defaultContents: "Option",
           value: args.children,
           className: classNames(sty.slotTargetChildren, {
-            [sty.slotTargetChildren__isDisabled]: hasVariant(
+            [sty.slotTargetChildrenisDisabled]: hasVariant(
               variants,
               "isDisabled",
               "isDisabled"
             ),
-            [sty.slotTargetChildren__isHighlighted]: hasVariant(
+            [sty.slotTargetChildrenisHighlighted]: hasVariant(
               variants,
               "isHighlighted",
               "isHighlighted"
             ),
-            [sty.slotTargetChildren__isHighlighted_isSelected]:
+            [sty.slotTargetChildrenisHighlighted_isSelected]:
               hasVariant(variants, "isHighlighted", "isHighlighted") &&
               hasVariant(variants, "isSelected", "isSelected"),
-            [sty.slotTargetChildren__isSelected]: hasVariant(
+            [sty.slotTargetChildrenisSelected]: hasVariant(
               variants,
               "isSelected",
               "isSelected"
@@ -194,7 +186,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSelect__Option__VariantsArgs;
     args?: PlasmicSelect__Option__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicSelect__Option__Fetches;
   } & Omit<PlasmicSelect__Option__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicSelect__Option__ArgsType, ReservedPropsType> &
@@ -221,13 +212,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicSelect__Option__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicSelect__Option__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

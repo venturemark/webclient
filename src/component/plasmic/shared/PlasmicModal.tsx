@@ -112,10 +112,10 @@ function PlasmicModal__RenderFunc(props: {
   variants: PlasmicModal__VariantsArgs;
   args: PlasmicModal__ArgsType;
   overrides: PlasmicModal__OverridesType;
-  dataFetches?: PlasmicModal__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -124,7 +124,7 @@ function PlasmicModal__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__modalType_shareModal]: hasVariant(
+        [sty.rootmodalType_shareModal]: hasVariant(
           variants,
           "modalType",
           "shareModal"
@@ -135,12 +135,12 @@ function PlasmicModal__RenderFunc(props: {
         data-plasmic-name={"modalTypes"}
         data-plasmic-override={overrides.modalTypes}
         className={classNames(projectcss.all, sty.modalTypes, {
-          [sty.modalTypes__modalType_deleteVenture]: hasVariant(
+          [sty.modalTypesmodalType_deleteVenture]: hasVariant(
             variants,
             "modalType",
             "deleteVenture"
           ),
-          [sty.modalTypes__modalType_shareModal]: hasVariant(
+          [sty.modalTypesmodalType_shareModal]: hasVariant(
             variants,
             "modalType",
             "shareModal"
@@ -158,12 +158,12 @@ function PlasmicModal__RenderFunc(props: {
             data-plasmic-name={"close"}
             data-plasmic-override={overrides.close}
             className={classNames("__wab_instance", sty.close, {
-              [sty.close__modalType_editProfile]: hasVariant(
+              [sty.closemodalType_editProfile]: hasVariant(
                 variants,
                 "modalType",
                 "editProfile"
               ),
-              [sty.close__modalType_shareModal]: hasVariant(
+              [sty.closemodalType_shareModal]: hasVariant(
                 variants,
                 "modalType",
                 "shareModal"
@@ -172,7 +172,7 @@ function PlasmicModal__RenderFunc(props: {
           >
             <IconCloseIcon
               className={classNames(projectcss.all, sty.svg__mGzaq, {
-                [sty.svg__modalType_shareModal__mGzaqLoCI]: hasVariant(
+                [sty.svgmodalType_shareModal__mGzaqLoCI]: hasVariant(
                   variants,
                   "modalType",
                   "shareModal"
@@ -195,17 +195,17 @@ function PlasmicModal__RenderFunc(props: {
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox___60GYf, {
-              [sty.freeBox__modalType_deleteTimeline___60GYfkpjFe]: hasVariant(
+              [sty.freeBoxmodalType_deleteTimeline___60GYfkpjFe]: hasVariant(
                 variants,
                 "modalType",
                 "deleteTimeline"
               ),
-              [sty.freeBox__modalType_deleteVenture___60GYfbglY9]: hasVariant(
+              [sty.freeBoxmodalType_deleteVenture___60GYfbglY9]: hasVariant(
                 variants,
                 "modalType",
                 "deleteVenture"
               ),
-              [sty.freeBox__modalType_editProfile___60GYfORiet]: hasVariant(
+              [sty.freeBoxmodalType_editProfile___60GYfORiet]: hasVariant(
                 variants,
                 "modalType",
                 "editProfile"
@@ -216,7 +216,7 @@ function PlasmicModal__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__ljTa5, {
-                [sty.freeBox__modalType_deleteTimeline__ljTa5KpjFe]: hasVariant(
+                [sty.freeBoxmodalType_deleteTimeline__ljTa5KpjFe]: hasVariant(
                   variants,
                   "modalType",
                   "deleteTimeline"
@@ -288,7 +288,7 @@ function PlasmicModal__RenderFunc(props: {
                   buttonFeatures={[]}
                   buttonStyle={"secondaryPurple" as const}
                   className={classNames("__wab_instance", sty.cancelTimeline, {
-                    [sty.cancelTimeline__modalType_deleteTimeline]: hasVariant(
+                    [sty.cancelTimelinemodalType_deleteTimeline]: hasVariant(
                       variants,
                       "modalType",
                       "deleteTimeline"
@@ -337,12 +337,12 @@ function PlasmicModal__RenderFunc(props: {
             data-plasmic-override={overrides.deleteTimeline2}
             hasGap={true}
             className={classNames(projectcss.all, sty.deleteTimeline2, {
-              [sty.deleteTimeline2__modalType_deleteVenture]: hasVariant(
+              [sty.deleteTimeline2modalType_deleteVenture]: hasVariant(
                 variants,
                 "modalType",
                 "deleteVenture"
               ),
-              [sty.deleteTimeline2__modalType_editProfile]: hasVariant(
+              [sty.deleteTimeline2modalType_editProfile]: hasVariant(
                 variants,
                 "modalType",
                 "editProfile"
@@ -353,7 +353,7 @@ function PlasmicModal__RenderFunc(props: {
               as={"div"}
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__zFspo, {
-                [sty.freeBox__modalType_deleteVenture__zFspobglY9]: hasVariant(
+                [sty.freeBoxmodalType_deleteVenture__zFspobglY9]: hasVariant(
                   variants,
                   "modalType",
                   "deleteVenture"
@@ -364,8 +364,11 @@ function PlasmicModal__RenderFunc(props: {
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__zzoZe, {
-                  [sty.freeBox__modalType_deleteVenture__zzoZEbglY9]:
-                    hasVariant(variants, "modalType", "deleteVenture"),
+                  [sty.freeBoxmodalType_deleteVenture__zzoZEbglY9]: hasVariant(
+                    variants,
+                    "modalType",
+                    "deleteVenture"
+                  ),
                 })}
               >
                 {p.renderPlasmicSlot({
@@ -428,7 +431,7 @@ function PlasmicModal__RenderFunc(props: {
                   buttonFeatures={[]}
                   buttonStyle={"secondaryPurple" as const}
                   className={classNames("__wab_instance", sty.cancelVenture, {
-                    [sty.cancelVenture__modalType_deleteVenture]: hasVariant(
+                    [sty.cancelVenturemodalType_deleteVenture]: hasVariant(
                       variants,
                       "modalType",
                       "deleteVenture"
@@ -475,12 +478,12 @@ function PlasmicModal__RenderFunc(props: {
             data-plasmic-name={"editProfile"}
             data-plasmic-override={overrides.editProfile}
             className={classNames(projectcss.all, sty.editProfile, {
-              [sty.editProfile__modalType_deleteTimeline]: hasVariant(
+              [sty.editProfilemodalType_deleteTimeline]: hasVariant(
                 variants,
                 "modalType",
                 "deleteTimeline"
               ),
-              [sty.editProfile__modalType_editProfile]: hasVariant(
+              [sty.editProfilemodalType_editProfile]: hasVariant(
                 variants,
                 "modalType",
                 "editProfile"
@@ -534,7 +537,7 @@ function PlasmicModal__RenderFunc(props: {
               data-plasmic-name={"nameField"}
               data-plasmic-override={overrides.nameField}
               className={classNames("__wab_instance", sty.nameField)}
-              hasLabel={"hasLabel" as const}
+              hasLabel={true}
               label={"Full Name"}
             >
               {"This will be used as your display name"}
@@ -544,8 +547,8 @@ function PlasmicModal__RenderFunc(props: {
               data-plasmic-name={"jobField"}
               data-plasmic-override={overrides.jobField}
               className={classNames("__wab_instance", sty.jobField)}
-              hasLabel={"hasLabel" as const}
-              hasTextHelper={"hasTextHelper" as const}
+              hasLabel={true}
+              hasTextHelper={true}
               label={"What I Do"}
             >
               {"Let people know what you do"}
@@ -630,22 +633,22 @@ function PlasmicModal__RenderFunc(props: {
             data-plasmic-name={"share"}
             data-plasmic-override={overrides.share}
             className={classNames("__wab_instance", sty.share, {
-              [sty.share__modalType_deleteTimeline]: hasVariant(
+              [sty.sharemodalType_deleteTimeline]: hasVariant(
                 variants,
                 "modalType",
                 "deleteTimeline"
               ),
-              [sty.share__modalType_deleteVenture]: hasVariant(
+              [sty.sharemodalType_deleteVenture]: hasVariant(
                 variants,
                 "modalType",
                 "deleteVenture"
               ),
-              [sty.share__modalType_editProfile]: hasVariant(
+              [sty.sharemodalType_editProfile]: hasVariant(
                 variants,
                 "modalType",
                 "editProfile"
               ),
-              [sty.share__modalType_shareModal]: hasVariant(
+              [sty.sharemodalType_shareModal]: hasVariant(
                 variants,
                 "modalType",
                 "shareModal"
@@ -666,7 +669,7 @@ function PlasmicModal__RenderFunc(props: {
               data-plasmic-name={"close2"}
               data-plasmic-override={overrides.close2}
               className={classNames("__wab_instance", sty.close2, {
-                [sty.close2__modalType_shareModal]: hasVariant(
+                [sty.close2modalType_shareModal]: hasVariant(
                   variants,
                   "modalType",
                   "shareModal"
@@ -813,7 +816,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicModal__VariantsArgs;
     args?: PlasmicModal__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicModal__Fetches;
   } & Omit<PlasmicModal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicModal__ArgsType, ReservedPropsType> &
@@ -840,13 +842,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicModal__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicModal__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

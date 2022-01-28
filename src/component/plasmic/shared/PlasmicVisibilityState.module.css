@@ -30,7 +30,7 @@
   display: none;
   padding: 8px;
 }
-.members__visibilityType_members {
+.membersvisibilityType_members {
   display: flex;
 }
 .freeBox__kyiVc {
@@ -101,7 +101,7 @@
   display: none;
   padding: 8px;
 }
-._private__visibilityType__private {
+._privatevisibilityType__private {
   display: flex;
 }
 .freeBox__uHr1P {
@@ -172,10 +172,10 @@
   min-width: 0;
   padding: 8px;
 }
-._public__visibilityType_members {
+._publicvisibilityType_members {
   display: none;
 }
-._public__visibilityType__private {
+._publicvisibilityType__private {
   display: none;
 }
 .freeBox__foune {
