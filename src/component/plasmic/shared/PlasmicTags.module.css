@@ -21,46 +21,46 @@
   border-style: solid;
   border-color: rgba(255, 255, 255, 0) /* plasmic-token: W4gFmUIar */;
 }
-.button__buttonStyle_primaryPurple {
+.buttonbuttonStyle_primaryPurple {
   background: rgb(38, 26, 63);
 }
-.button__buttonStyle_secondaryPurple {
+.buttonbuttonStyle_secondaryPurple {
   background: none;
   border: 1px solid rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
-.button__buttonStyle_secondaryGreen {
+.buttonbuttonStyle_secondaryGreen {
   background: #ffffff;
   border: 1px solid #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.button__buttonStyle_red {
+.buttonbuttonStyle_red {
   background: #ffffff;
   border: 1px solid rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
-.button__buttonStyle_blue {
+.buttonbuttonStyle_blue {
   background: rgb(46, 129, 184);
 }
-.button__buttonStyle_grey {
+.buttonbuttonStyle_grey {
   background: rgb(249, 249, 250);
 }
-.button__disabled {
+.buttondisabled {
   opacity: 0.5;
 }
 .root:hover .button {
   background: #137c7d;
 }
-.root__buttonStyle_primaryPurple:hover .button__buttonStyle_primaryPurple {
+.rootbuttonStyle_primaryPurple:hover .buttonbuttonStyle_primaryPurple {
   background: rgb(56, 31, 86);
 }
-.root__buttonStyle_secondaryPurple:hover .button__buttonStyle_secondaryPurple {
+.rootbuttonStyle_secondaryPurple:hover .buttonbuttonStyle_secondaryPurple {
   background: rgba(74, 40, 112, 0.05);
 }
-.root__buttonStyle_secondaryGreen:hover .button__buttonStyle_secondaryGreen {
+.rootbuttonStyle_secondaryGreen:hover .buttonbuttonStyle_secondaryGreen {
   background: rgba(20, 220, 152, 0.06);
 }
-.root__buttonStyle_red:hover .button__buttonStyle_red {
+.rootbuttonStyle_red:hover .buttonbuttonStyle_red {
   background: rgb(218, 36, 82);
 }
-.root__buttonStyle_blue:hover .button__buttonStyle_blue {
+.rootbuttonStyle_blue:hover .buttonbuttonStyle_blue {
   background: rgb(46, 129, 184);
 }
 .root:focus-within .button {
@@ -117,31 +117,31 @@
   > .__wab_slot-string-wrapper {
   text-decoration-line: none;
 }
-.slotTargetText2__buttonStyle_secondaryPurple {
+.slotTargetText2buttonStyle_secondaryPurple {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
-.slotTargetText2__buttonStyle_secondaryGreen {
+.slotTargetText2buttonStyle_secondaryGreen {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.slotTargetText2__buttonStyle_red {
+.slotTargetText2buttonStyle_red {
   color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
-.root__buttonStyle_red:hover .slotTargetText2__buttonStyle_red {
+.rootbuttonStyle_red:hover .slotTargetText2buttonStyle_red {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
-.slotTargetChildren__buttonFeatures_icon {
+.slotTargetChildrenbuttonFeatures_icon {
   color: #ffffff /* plasmic-token: sm1UmsjMUgvPdL9 */;
 }
-.slotTargetChildren__buttonFeatures_icon_buttonStyle_secondaryGreen {
+.slotTargetChildrenbuttonFeatures_icon_buttonStyle_secondaryGreen {
   color: #2e8c8d /* plasmic-token: Jfzps88GdGw80SE */;
 }
-.slotTargetChildren__buttonFeatures_icon_buttonStyle_red {
+.slotTargetChildrenbuttonFeatures_icon_buttonStyle_red {
   color: rgb(218, 36, 82) /* plasmic-token: NYSf9tLZvxevghS */;
 }
-.slotTargetChildren__buttonStyle_grey_buttonFeatures_icon {
+.slotTargetChildrenbuttonStyle_grey_buttonFeatures_icon {
   color: rgb(117, 124, 135) /* plasmic-token: 1C_cuVvze */;
 }
-.slotTargetChildren__buttonFeatures_icon_buttonStyle_secondaryPurple {
+.slotTargetChildrenbuttonFeatures_icon_buttonStyle_secondaryPurple {
   color: rgb(38, 26, 63) /* plasmic-token: pJ8JNfS_nOyDpci */;
 }
 .root:focus-within .slotTargetChildren > *,

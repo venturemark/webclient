@@ -64,10 +64,10 @@ function PlasmicOnboarding__RenderFunc(props: {
   variants: PlasmicOnboarding__VariantsArgs;
   args: PlasmicOnboarding__ArgsType;
   overrides: PlasmicOnboarding__OverridesType;
-  dataFetches?: PlasmicOnboarding__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -97,7 +97,7 @@ function PlasmicOnboarding__RenderFunc(props: {
               className={classNames("__wab_instance", sty.header)}
               mobileMenu={
                 hasVariant(globalVariants, "screen", "mobile")
-                  ? ("mobileMenu" as const)
+                  ? true
                   : undefined
               }
               views={"onboarding" as const}
@@ -143,7 +143,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicOnboarding__VariantsArgs;
     args?: PlasmicOnboarding__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicOnboarding__Fetches;
   } & Omit<PlasmicOnboarding__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicOnboarding__ArgsType, ReservedPropsType> &
@@ -170,13 +169,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicOnboarding__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicOnboarding__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

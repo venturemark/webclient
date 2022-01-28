@@ -52,24 +52,24 @@
   > img {
   margin-top: 16px;
 }
-.groupContainer__isHorizontal {
+.groupContainerisHorizontal {
   display: flex;
   flex-direction: row;
 }
-.groupContainer__isHorizontal > :global(.__wab_flex-container) {
+.groupContainerisHorizontal > :global(.__wab_flex-container) {
   flex-direction: row;
   margin-left: calc(0px - 17px);
   width: calc(100% + 17px);
   margin-top: calc(0px - 0px);
   height: calc(100% + 0px);
 }
-.groupContainer__isHorizontal > :global(.__wab_flex-container) > *,
-.groupContainer__isHorizontal
+.groupContainerisHorizontal > :global(.__wab_flex-container) > *,
+.groupContainerisHorizontal
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > *,
-.groupContainer__isHorizontal > :global(.__wab_flex-container) > picture > img,
-.groupContainer__isHorizontal
+.groupContainerisHorizontal > :global(.__wab_flex-container) > picture > img,
+.groupContainerisHorizontal
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > picture
@@ -78,13 +78,13 @@
   margin-top: 0px;
 }
 @media (max-width: 767px) {
-  .groupContainer__isHorizontal {
+  .groupContainerisHorizontal {
     display: flex;
     flex-direction: column;
   }
 }
 @media (max-width: 767px) {
-  .groupContainer__isHorizontal > :global(.__wab_flex-container) {
+  .groupContainerisHorizontal > :global(.__wab_flex-container) {
     flex-direction: column;
     margin-left: calc(0px - 0px);
     width: calc(100% + 0px);
@@ -93,16 +93,13 @@
   }
 }
 @media (max-width: 767px) {
-  .groupContainer__isHorizontal > :global(.__wab_flex-container) > *,
-  .groupContainer__isHorizontal
+  .groupContainerisHorizontal > :global(.__wab_flex-container) > *,
+  .groupContainerisHorizontal
     > :global(.__wab_flex-container)
     > :global(.__wab_slot)
     > *,
-  .groupContainer__isHorizontal
-    > :global(.__wab_flex-container)
-    > picture
-    > img,
-  .groupContainer__isHorizontal
+  .groupContainerisHorizontal > :global(.__wab_flex-container) > picture > img,
+  .groupContainerisHorizontal
     > :global(.__wab_flex-container)
     > :global(.__wab_slot)
     > picture
@@ -111,7 +108,7 @@
     margin-top: 16px;
   }
 }
-.groupContainer__isDisabled {
+.groupContainerisDisabled {
   opacity: 0.7;
 }
 .img__gdCk {

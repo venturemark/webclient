@@ -15,7 +15,7 @@
     height: 26px;
   }
 }
-.root__variant_isLarge {
+.rootvariant_isLarge {
   width: 80px;
   height: 80px;
 }
@@ -35,6 +35,6 @@
     font-size: 12px /* plasmic-token: LxqIZc9hM */;
   }
 }
-.slotTargetUserInitials__variant_isLarge {
+.slotTargetUserInitialsvariant_isLarge {
   font-size: 39px;
 }

@@ -26,26 +26,26 @@
   min-width: 0;
   min-height: 0;
 }
-.freeBox__isVisible_showProfileModal__bSzQvxFZh {
+.freeBoxisVisible_showProfileModal__bSzQvxFZh {
   z-index: 70;
 }
-.freeBox__isVisible_showShareModal__bSzQyRvLm {
+.freeBoxisVisible_showShareModal__bSzQyRvLm {
   z-index: 70;
 }
 .modal:global(.__wab_instance) {
   position: relative;
 }
 @media (max-width: 767px) {
-  .modal__isVisible_showProfileModal:global(.__wab_instance) {
+  .modalisVisible_showProfileModal:global(.__wab_instance) {
     width: auto;
   }
 }
-.modal__isVisible_showShareModal:global(.__wab_instance) {
+.modalisVisible_showShareModal:global(.__wab_instance) {
   width: 100%;
   min-width: 0;
 }
 @media (max-width: 767px) {
-  .modal__isVisible_showShareModal:global(.__wab_instance) {
+  .modalisVisible_showShareModal:global(.__wab_instance) {
     width: auto;
   }
 }
@@ -79,7 +79,7 @@
   padding: 0px;
   margin: 0px;
 }
-.freeBox__isVisible_isPublic___70AttunhQv {
+.freeBoxisVisible_isPublic___70AttunhQv {
   padding: 55px 0px 0px;
 }
 .sidebar:global(.__wab_instance) {
@@ -89,21 +89,21 @@
   min-width: 250px;
   display: flex;
 }
-.sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
+.sidebarisVisible_mobileSidebar:global(.__wab_instance) {
   width: 250px;
   flex-shrink: 0;
 }
 @media (max-width: 767px) {
-  .sidebar__isVisible_mobileSidebar:global(.__wab_instance) {
+  .sidebarisVisible_mobileSidebar:global(.__wab_instance) {
     width: 100%;
     min-width: 0;
   }
 }
-.sidebar__isVisible_isPublic:global(.__wab_instance) {
+.sidebarisVisible_isPublic:global(.__wab_instance) {
   display: flex;
 }
 @media (max-width: 767px) {
-  .sidebar__isVisible_isPublic:global(.__wab_instance) {
+  .sidebarisVisible_isPublic:global(.__wab_instance) {
     display: none;
   }
 }
@@ -123,7 +123,7 @@
   min-width: 0;
   min-height: 0;
 }
-.freeBox__isVisible_postDetails__cJlKhbZmLb {
+.freeBoxisVisible_postDetails__cJlKhbZmLb {
   width: auto;
   justify-content: center;
   align-items: stretch;
@@ -133,7 +133,7 @@
   flex-row-gap: 0px;
 }
 @media (min-width: 1201px) {
-  .freeBox__isVisible_postDetails__cJlKhbZmLb {
+  .freeBoxisVisible_postDetails__cJlKhbZmLb {
     width: 100%;
     justify-content: space-evenly;
     align-items: stretch;
@@ -142,13 +142,13 @@
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .freeBox__isVisible_postDetails__cJlKhbZmLb {
+  .freeBoxisVisible_postDetails__cJlKhbZmLb {
     width: 100%;
     min-width: 0;
   }
 }
 @media (max-width: 767px) {
-  .freeBox__isVisible_isPublic__cJlKhunhQv {
+  .freeBoxisVisible_isPublic__cJlKhunhQv {
     padding: 0px;
   }
 }
@@ -180,7 +180,7 @@
     align-content: unset;
   }
 }
-.mainContainer__isVisible_postDetails {
+.mainContainerisVisible_postDetails {
   flex-grow: 0;
   width: 100%;
   flex-shrink: 1;
@@ -198,7 +198,7 @@
     min-width: 0;
   }
 }
-.main__isVisible_postDetails:global(.__wab_instance) {
+.mainisVisible_postDetails:global(.__wab_instance) {
   flex-shrink: 0;
   flex-grow: 0;
   width: 100%;
@@ -234,7 +234,7 @@
     right: auto;
   }
 }
-.freeBox__isVisible_postDetails___49Hi7BZmLb {
+.freeBoxisVisible_postDetails___49Hi7BZmLb {
   justify-content: flex-start;
   align-items: flex-start;
   align-content: unset;
@@ -251,13 +251,13 @@
   padding: 30px 20px 30px 0px;
 }
 @media (min-width: 1201px) {
-  .freeBox__isVisible_postDetails___49Hi7BZmLb {
+  .freeBoxisVisible_postDetails___49Hi7BZmLb {
     flex-grow: 0;
     flex-shrink: 0;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .freeBox__isVisible_postDetails___49Hi7BZmLb {
+  .freeBoxisVisible_postDetails___49Hi7BZmLb {
     position: absolute;
     width: 100%;
     flex-shrink: 1;
@@ -267,7 +267,7 @@
   }
 }
 @media (max-width: 767px) {
-  .freeBox__isVisible_postDetails___49Hi7BZmLb {
+  .freeBoxisVisible_postDetails___49Hi7BZmLb {
     position: absolute;
     bottom: auto;
     top: auto;
@@ -301,7 +301,7 @@
     min-width: 0;
   }
 }
-.postDetails__isVisible_postDetails:global(.__wab_instance) {
+.postDetailsisVisible_postDetails:global(.__wab_instance) {
   width: 100%;
   height: 100%;
   position: relative;
@@ -311,12 +311,12 @@
   min-height: 0;
 }
 @media (min-width: 1201px) {
-  .postDetails__isVisible_postDetails:global(.__wab_instance) {
+  .postDetailsisVisible_postDetails:global(.__wab_instance) {
     max-width: 100%;
   }
 }
 @media (max-width: 767px) {
-  .postDetails__isVisible_postDetails:global(.__wab_instance) {
+  .postDetailsisVisible_postDetails:global(.__wab_instance) {
     position: relative;
     height: 93vh;
     flex-shrink: 0;

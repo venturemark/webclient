@@ -114,10 +114,10 @@ function PlasmicVisibilityState__RenderFunc(props: {
   variants: PlasmicVisibilityState__VariantsArgs;
   args: PlasmicVisibilityState__ArgsType;
   overrides: PlasmicVisibilityState__OverridesType;
-  dataFetches?: PlasmicVisibilityState__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -130,7 +130,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__visibilityType__public]: hasVariant(
+        [sty.rootvisibilityType__public]: hasVariant(
           variants,
           "visibilityType",
           "_public"
@@ -142,12 +142,12 @@ function PlasmicVisibilityState__RenderFunc(props: {
           data-plasmic-name={"members"}
           data-plasmic-override={overrides.members}
           className={classNames(projectcss.all, sty.members, {
-            [sty.members__visibilityType__private]: hasVariant(
+            [sty.membersvisibilityType__private]: hasVariant(
               variants,
               "visibilityType",
               "_private"
             ),
-            [sty.members__visibilityType_members]: hasVariant(
+            [sty.membersvisibilityType_members]: hasVariant(
               variants,
               "visibilityType",
               "members"
@@ -213,7 +213,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
           data-plasmic-name={"_private"}
           data-plasmic-override={overrides._private}
           className={classNames(projectcss.all, sty._private, {
-            [sty._private__visibilityType__private]: hasVariant(
+            [sty._privatevisibilityType__private]: hasVariant(
               variants,
               "visibilityType",
               "_private"
@@ -284,12 +284,12 @@ function PlasmicVisibilityState__RenderFunc(props: {
           data-plasmic-name={"_public"}
           data-plasmic-override={overrides._public}
           className={classNames(projectcss.all, sty._public, {
-            [sty._public__visibilityType__private]: hasVariant(
+            [sty._publicvisibilityType__private]: hasVariant(
               variants,
               "visibilityType",
               "_private"
             ),
-            [sty._public__visibilityType_members]: hasVariant(
+            [sty._publicvisibilityType_members]: hasVariant(
               variants,
               "visibilityType",
               "members"
@@ -314,7 +314,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
           <div className={classNames(projectcss.all, sty.freeBox__r3IbM)}>
             <div
               className={classNames(projectcss.all, sty.freeBox___52Vad, {
-                [sty.freeBox__visibilityType__public___52VaDboBQ]: hasVariant(
+                [sty.freeBoxvisibilityType__public___52VaDboBQ]: hasVariant(
                   variants,
                   "visibilityType",
                   "_public"
@@ -360,7 +360,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
 
       <div
         className={classNames(projectcss.all, sty.freeBox__jq2M, {
-          [sty.freeBox__visibilityType__private__jq2MmLxEf]: hasVariant(
+          [sty.freeBoxvisibilityType__private__jq2MmLxEf]: hasVariant(
             variants,
             "visibilityType",
             "_private"
@@ -372,17 +372,17 @@ function PlasmicVisibilityState__RenderFunc(props: {
             data-plasmic-name={"select"}
             data-plasmic-override={overrides.select}
             className={classNames("__wab_instance", sty.select, {
-              [sty.select__visibilityType__private]: hasVariant(
+              [sty.selectvisibilityType__private]: hasVariant(
                 variants,
                 "visibilityType",
                 "_private"
               ),
-              [sty.select__visibilityType__public]: hasVariant(
+              [sty.selectvisibilityType__public]: hasVariant(
                 variants,
                 "visibilityType",
                 "_public"
               ),
-              [sty.select__visibilityType_members]: hasVariant(
+              [sty.selectvisibilityType_members]: hasVariant(
                 variants,
                 "visibilityType",
                 "members"
@@ -421,7 +421,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text,
                   {
-                    [sty.text__visibilityType__public]: hasVariant(
+                    [sty.textvisibilityType__public]: hasVariant(
                       variants,
                       "visibilityType",
                       "_public"
@@ -439,7 +439,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
               data-plasmic-name={"optionPrivate"}
               data-plasmic-override={overrides.optionPrivate}
               className={classNames("__wab_instance", sty.optionPrivate, {
-                [sty.optionPrivate__visibilityType__private]: hasVariant(
+                [sty.optionPrivatevisibilityType__private]: hasVariant(
                   variants,
                   "visibilityType",
                   "_private"
@@ -456,7 +456,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
               data-plasmic-name={"optionMember"}
               data-plasmic-override={overrides.optionMember}
               className={classNames("__wab_instance", sty.optionMember, {
-                [sty.optionMember__visibilityType__private]: hasVariant(
+                [sty.optionMembervisibilityType__private]: hasVariant(
                   variants,
                   "visibilityType",
                   "_private"
@@ -473,7 +473,7 @@ function PlasmicVisibilityState__RenderFunc(props: {
               data-plasmic-name={"optionPublic"}
               data-plasmic-override={overrides.optionPublic}
               className={classNames("__wab_instance", sty.optionPublic, {
-                [sty.optionPublic__visibilityType__private]: hasVariant(
+                [sty.optionPublicvisibilityType__private]: hasVariant(
                   variants,
                   "visibilityType",
                   "_private"
@@ -553,7 +553,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicVisibilityState__VariantsArgs;
     args?: PlasmicVisibilityState__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicVisibilityState__Fetches;
   } & Omit<PlasmicVisibilityState__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicVisibilityState__ArgsType, ReservedPropsType> &
@@ -580,13 +579,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicVisibilityState__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicVisibilityState__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

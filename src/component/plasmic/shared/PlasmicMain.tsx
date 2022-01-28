@@ -92,10 +92,10 @@ function PlasmicMain__RenderFunc(props: {
   variants: PlasmicMain__VariantsArgs;
   args: PlasmicMain__ArgsType;
   overrides: PlasmicMain__OverridesType;
-  dataFetches?: PlasmicMain__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsszbTUtTUfDw81Pi(),
@@ -114,43 +114,39 @@ function PlasmicMain__RenderFunc(props: {
         projectcss.root_reset,
         sty.container,
         {
-          [sty.container__isActive_feed]: hasVariant(
+          [sty.containerisActive_feed]: hasVariant(
             variants,
             "isActive",
             "feed"
           ),
-          [sty.container__isActive_isNewVenture]: hasVariant(
+          [sty.containerisActive_isNewVenture]: hasVariant(
             variants,
             "isActive",
             "isNewVenture"
           ),
-          [sty.container__isActive_isNewVenture_variantType_isVenture]:
+          [sty.containerisActive_isNewVenture_variantType_isVenture]:
             hasVariant(variants, "isActive", "isNewVenture") &&
             hasVariant(variants, "variantType", "isVenture"),
-          [sty.container__isActive_settings]: hasVariant(
+          [sty.containerisActive_settings]: hasVariant(
             variants,
             "isActive",
             "settings"
           ),
-          [sty.container__isPublic]: hasVariant(
-            variants,
-            "isPublic",
-            "isPublic"
-          ),
-          [sty.container__variantType_isEmpty]: hasVariant(
+          [sty.containerisPublic]: hasVariant(variants, "isPublic", "isPublic"),
+          [sty.containervariantType_isEmpty]: hasVariant(
             variants,
             "variantType",
             "isEmpty"
           ),
-          [sty.container__variantType_isTimeline]: hasVariant(
+          [sty.containervariantType_isTimeline]: hasVariant(
             variants,
             "variantType",
             "isTimeline"
           ),
-          [sty.container__variantType_isTimeline_isActive_settings]:
+          [sty.containervariantType_isTimeline_isActive_settings]:
             hasVariant(variants, "variantType", "isTimeline") &&
             hasVariant(variants, "isActive", "settings"),
-          [sty.container__variantType_isVenture]: hasVariant(
+          [sty.containervariantType_isVenture]: hasVariant(
             variants,
             "variantType",
             "isVenture"
@@ -163,30 +159,30 @@ function PlasmicMain__RenderFunc(props: {
           data-plasmic-name={"mainHeader"}
           data-plasmic-override={overrides.mainHeader}
           className={classNames("__wab_instance", sty.mainHeader, {
-            [sty.mainHeader__isActive_feed]: hasVariant(
+            [sty.mainHeaderisActive_feed]: hasVariant(
               variants,
               "isActive",
               "feed"
             ),
-            [sty.mainHeader__isActive_settings]: hasVariant(
+            [sty.mainHeaderisActive_settings]: hasVariant(
               variants,
               "isActive",
               "settings"
             ),
-            [sty.mainHeader__isPublic]: hasVariant(
+            [sty.mainHeaderisPublic]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
             ),
-            [sty.mainHeader__isPublic_variantType_isVenture]:
+            [sty.mainHeaderisPublic_variantType_isVenture]:
               hasVariant(variants, "isPublic", "isPublic") &&
               hasVariant(variants, "variantType", "isVenture"),
-            [sty.mainHeader__variantType_isEmpty]: hasVariant(
+            [sty.mainHeadervariantType_isEmpty]: hasVariant(
               variants,
               "variantType",
               "isEmpty"
             ),
-            [sty.mainHeader__variantType_isTimeline]: hasVariant(
+            [sty.mainHeadervariantType_isTimeline]: hasVariant(
               variants,
               "variantType",
               "isTimeline"
@@ -205,9 +201,7 @@ function PlasmicMain__RenderFunc(props: {
               : ("unnamedVariant" as const)
           }
           isPublic={
-            hasVariant(variants, "isPublic", "isPublic")
-              ? ("isPublic" as const)
-              : undefined
+            hasVariant(variants, "isPublic", "isPublic") ? true : undefined
           }
           timelineDescription={
             <div
@@ -242,57 +236,49 @@ function PlasmicMain__RenderFunc(props: {
           data-plasmic-name={"feedUpdate"}
           data-plasmic-override={overrides.feedUpdate}
           className={classNames("__wab_instance", sty.feedUpdate, {
-            [sty.feedUpdate__isActive_feed]: hasVariant(
+            [sty.feedUpdateisActive_feed]: hasVariant(
               variants,
               "isActive",
               "feed"
             ),
-            [sty.feedUpdate__isActive_isNewVenture_variantType_isVenture]:
+            [sty.feedUpdateisActive_isNewVenture_variantType_isVenture]:
               hasVariant(variants, "isActive", "isNewVenture") &&
               hasVariant(variants, "variantType", "isVenture"),
-            [sty.feedUpdate__isActive_members]: hasVariant(
+            [sty.feedUpdateisActive_members]: hasVariant(
               variants,
               "isActive",
               "members"
             ),
-            [sty.feedUpdate__isActive_settings]: hasVariant(
+            [sty.feedUpdateisActive_settings]: hasVariant(
               variants,
               "isActive",
               "settings"
             ),
-            [sty.feedUpdate__isOwner]: hasVariant(
-              variants,
-              "isOwner",
-              "isOwner"
-            ),
-            [sty.feedUpdate__isPublic]: hasVariant(
+            [sty.feedUpdateisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+            [sty.feedUpdateisPublic]: hasVariant(
               variants,
               "isPublic",
               "isPublic"
             ),
-            [sty.feedUpdate__isPublic_variantType_isVenture]:
+            [sty.feedUpdateisPublic_variantType_isVenture]:
               hasVariant(variants, "isPublic", "isPublic") &&
               hasVariant(variants, "variantType", "isVenture"),
-            [sty.feedUpdate__variantType_isEmpty]: hasVariant(
+            [sty.feedUpdatevariantType_isEmpty]: hasVariant(
               variants,
               "variantType",
               "isEmpty"
             ),
-            [sty.feedUpdate__variantType_isVenture]: hasVariant(
+            [sty.feedUpdatevariantType_isVenture]: hasVariant(
               variants,
               "variantType",
               "isVenture"
             ),
           })}
           isOwner={
-            hasVariant(variants, "isOwner", "isOwner")
-              ? ("isOwner" as const)
-              : undefined
+            hasVariant(variants, "isOwner", "isOwner") ? true : undefined
           }
           isPublic={
-            hasVariant(variants, "isPublic", "isPublic")
-              ? ("isPublic" as const)
-              : undefined
+            hasVariant(variants, "isPublic", "isPublic") ? true : undefined
           }
         />
       ) : null}
@@ -301,45 +287,45 @@ function PlasmicMain__RenderFunc(props: {
           data-plasmic-name={"addEditMembers"}
           data-plasmic-override={overrides.addEditMembers}
           className={classNames("__wab_instance", sty.addEditMembers, {
-            [sty.addEditMembers__isActive_members]: hasVariant(
+            [sty.addEditMembersisActive_members]: hasVariant(
               variants,
               "isActive",
               "members"
             ),
-            [sty.addEditMembers__isActive_members_isOwner]:
+            [sty.addEditMembersisActive_members_isOwner]:
               hasVariant(variants, "isActive", "members") &&
               hasVariant(variants, "isOwner", "isOwner"),
-            [sty.addEditMembers__isActive_members_isOwner_variantType_isTimeline]:
+            [sty.addEditMembersisActive_members_isOwner_variantType_isTimeline]:
               hasVariant(variants, "isActive", "members") &&
               hasVariant(variants, "isOwner", "isOwner") &&
               hasVariant(variants, "variantType", "isTimeline"),
-            [sty.addEditMembers__isActive_members_variantType_isTimeline]:
+            [sty.addEditMembersisActive_members_variantType_isTimeline]:
               hasVariant(variants, "isActive", "members") &&
               hasVariant(variants, "variantType", "isTimeline"),
-            [sty.addEditMembers__isActive_settings]: hasVariant(
+            [sty.addEditMembersisActive_settings]: hasVariant(
               variants,
               "isActive",
               "settings"
             ),
-            [sty.addEditMembers__isOwner]: hasVariant(
+            [sty.addEditMembersisOwner]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.addEditMembers__variantType_isTimeline]: hasVariant(
+            [sty.addEditMembersvariantType_isTimeline]: hasVariant(
               variants,
               "variantType",
               "isTimeline"
             ),
-            [sty.addEditMembers__variantType_isVenture]: hasVariant(
+            [sty.addEditMembersvariantType_isVenture]: hasVariant(
               variants,
               "variantType",
               "isVenture"
             ),
-            [sty.addEditMembers__variantType_isVenture_isActive_members]:
+            [sty.addEditMembersvariantType_isVenture_isActive_members]:
               hasVariant(variants, "variantType", "isVenture") &&
               hasVariant(variants, "isActive", "members"),
-            [sty.addEditMembers__variantType_isVenture_isActive_members_isOwner]:
+            [sty.addEditMembersvariantType_isVenture_isActive_members_isOwner]:
               hasVariant(variants, "variantType", "isVenture") &&
               hasVariant(variants, "isActive", "members") &&
               hasVariant(variants, "isOwner", "isOwner"),
@@ -348,10 +334,10 @@ function PlasmicMain__RenderFunc(props: {
             hasVariant(variants, "isActive", "members") &&
             hasVariant(variants, "isOwner", "isOwner") &&
             hasVariant(variants, "variantType", "isTimeline")
-              ? ("isOwner" as const)
+              ? true
               : hasVariant(variants, "isActive", "members") &&
                 hasVariant(variants, "isOwner", "isOwner")
-              ? ("isOwner" as const)
+              ? true
               : undefined
           }
         />
@@ -372,39 +358,37 @@ function PlasmicMain__RenderFunc(props: {
           data-plasmic-name={"addEditVenture"}
           data-plasmic-override={overrides.addEditVenture}
           className={classNames("__wab_instance", sty.addEditVenture, {
-            [sty.addEditVenture__isActive_feed]: hasVariant(
+            [sty.addEditVentureisActive_feed]: hasVariant(
               variants,
               "isActive",
               "feed"
             ),
-            [sty.addEditVenture__isActive_settings]: hasVariant(
+            [sty.addEditVentureisActive_settings]: hasVariant(
               variants,
               "isActive",
               "settings"
             ),
-            [sty.addEditVenture__isOwner]: hasVariant(
+            [sty.addEditVentureisOwner]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.addEditVenture__variantType_isEmpty]: hasVariant(
+            [sty.addEditVenturevariantType_isEmpty]: hasVariant(
               variants,
               "variantType",
               "isEmpty"
             ),
-            [sty.addEditVenture__variantType_isTimeline]: hasVariant(
+            [sty.addEditVenturevariantType_isTimeline]: hasVariant(
               variants,
               "variantType",
               "isTimeline"
             ),
-            [sty.addEditVenture__variantType_isTimeline_isActive_settings]:
+            [sty.addEditVenturevariantType_isTimeline_isActive_settings]:
               hasVariant(variants, "variantType", "isTimeline") &&
               hasVariant(variants, "isActive", "settings"),
           })}
           isOwner={
-            hasVariant(variants, "isOwner", "isOwner")
-              ? ("isOwner" as const)
-              : undefined
+            hasVariant(variants, "isOwner", "isOwner") ? true : undefined
           }
           variantState={"isEdit" as const}
         >
@@ -429,39 +413,39 @@ function PlasmicMain__RenderFunc(props: {
           data-plasmic-name={"addEditTimeline"}
           data-plasmic-override={overrides.addEditTimeline}
           className={classNames("__wab_instance", sty.addEditTimeline, {
-            [sty.addEditTimeline__isActive_members]: hasVariant(
+            [sty.addEditTimelineisActive_members]: hasVariant(
               variants,
               "isActive",
               "members"
             ),
-            [sty.addEditTimeline__isActive_members_isOwner]:
+            [sty.addEditTimelineisActive_members_isOwner]:
               hasVariant(variants, "isActive", "members") &&
               hasVariant(variants, "isOwner", "isOwner"),
-            [sty.addEditTimeline__isActive_members_isOwner_variantType_isTimeline]:
+            [sty.addEditTimelineisActive_members_isOwner_variantType_isTimeline]:
               hasVariant(variants, "isActive", "members") &&
               hasVariant(variants, "isOwner", "isOwner") &&
               hasVariant(variants, "variantType", "isTimeline"),
-            [sty.addEditTimeline__isOwner]: hasVariant(
+            [sty.addEditTimelineisOwner]: hasVariant(
               variants,
               "isOwner",
               "isOwner"
             ),
-            [sty.addEditTimeline__isOwner_isActive_settings]:
+            [sty.addEditTimelineisOwner_isActive_settings]:
               hasVariant(variants, "isOwner", "isOwner") &&
               hasVariant(variants, "isActive", "settings"),
-            [sty.addEditTimeline__variantType_isTimeline]: hasVariant(
+            [sty.addEditTimelinevariantType_isTimeline]: hasVariant(
               variants,
               "variantType",
               "isTimeline"
             ),
-            [sty.addEditTimeline__variantType_isTimeline_isActive_settings]:
+            [sty.addEditTimelinevariantType_isTimeline_isActive_settings]:
               hasVariant(variants, "variantType", "isTimeline") &&
               hasVariant(variants, "isActive", "settings"),
-            [sty.addEditTimeline__variantType_isTimeline_isActive_settings_isOwner]:
+            [sty.addEditTimelinevariantType_isTimeline_isActive_settings_isOwner]:
               hasVariant(variants, "variantType", "isTimeline") &&
               hasVariant(variants, "isActive", "settings") &&
               hasVariant(variants, "isOwner", "isOwner"),
-            [sty.addEditTimeline__variantType_isTimeline_isOwner]:
+            [sty.addEditTimelinevariantType_isTimeline_isOwner]:
               hasVariant(variants, "variantType", "isTimeline") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}
@@ -469,7 +453,7 @@ function PlasmicMain__RenderFunc(props: {
             hasVariant(variants, "variantType", "isTimeline") &&
             hasVariant(variants, "isActive", "settings") &&
             hasVariant(variants, "isOwner", "isOwner")
-              ? ("isOwner" as const)
+              ? true
               : undefined
           }
           variantState={
@@ -499,45 +483,41 @@ function PlasmicMain__RenderFunc(props: {
           data-plasmic-name={"emptyState"}
           data-plasmic-override={overrides.emptyState}
           className={classNames("__wab_instance", sty.emptyState, {
-            [sty.emptyState__isActive_isNewVenture]: hasVariant(
+            [sty.emptyStateisActive_isNewVenture]: hasVariant(
               variants,
               "isActive",
               "isNewVenture"
             ),
-            [sty.emptyState__isActive_isNewVenture_variantType_isVenture]:
+            [sty.emptyStateisActive_isNewVenture_variantType_isVenture]:
               hasVariant(variants, "isActive", "isNewVenture") &&
               hasVariant(variants, "variantType", "isVenture"),
-            [sty.emptyState__isActive_members_variantType_isEmpty]:
+            [sty.emptyStateisActive_members_variantType_isEmpty]:
               hasVariant(variants, "isActive", "members") &&
               hasVariant(variants, "variantType", "isEmpty"),
-            [sty.emptyState__isOwner]: hasVariant(
-              variants,
-              "isOwner",
-              "isOwner"
-            ),
-            [sty.emptyState__variantType_isEmpty]: hasVariant(
+            [sty.emptyStateisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+            [sty.emptyStatevariantType_isEmpty]: hasVariant(
               variants,
               "variantType",
               "isEmpty"
             ),
-            [sty.emptyState__variantType_isEmpty_isActive_feed]:
+            [sty.emptyStatevariantType_isEmpty_isActive_feed]:
               hasVariant(variants, "variantType", "isEmpty") &&
               hasVariant(variants, "isActive", "feed"),
-            [sty.emptyState__variantType_isEmpty_isActive_settings]:
+            [sty.emptyStatevariantType_isEmpty_isActive_settings]:
               hasVariant(variants, "variantType", "isEmpty") &&
               hasVariant(variants, "isActive", "settings"),
-            [sty.emptyState__variantType_isEmpty_isOwner]:
+            [sty.emptyStatevariantType_isEmpty_isOwner]:
               hasVariant(variants, "variantType", "isEmpty") &&
               hasVariant(variants, "isOwner", "isOwner"),
-            [sty.emptyState__variantType_isTimeline]: hasVariant(
+            [sty.emptyStatevariantType_isTimeline]: hasVariant(
               variants,
               "variantType",
               "isTimeline"
             ),
-            [sty.emptyState__variantType_isTimeline_isActive_settings]:
+            [sty.emptyStatevariantType_isTimeline_isActive_settings]:
               hasVariant(variants, "variantType", "isTimeline") &&
               hasVariant(variants, "isActive", "settings"),
-            [sty.emptyState__variantType_isVenture]: hasVariant(
+            [sty.emptyStatevariantType_isVenture]: hasVariant(
               variants,
               "variantType",
               "isVenture"
@@ -591,25 +571,25 @@ function PlasmicMain__RenderFunc(props: {
             projectcss.__wab_text,
             sty.text__k8I5L,
             {
-              [sty.text__isActive_settings__k8I5LOMvQw]: hasVariant(
+              [sty.textisActive_settings__k8I5LOMvQw]: hasVariant(
                 variants,
                 "isActive",
                 "settings"
               ),
-              [sty.text__isOwner__k8I5LSozJa]: hasVariant(
+              [sty.textisOwner__k8I5LSozJa]: hasVariant(
                 variants,
                 "isOwner",
                 "isOwner"
               ),
-              [sty.text__variantType_isEmpty__k8I5LnF9Ly]: hasVariant(
+              [sty.textvariantType_isEmpty__k8I5LnF9Ly]: hasVariant(
                 variants,
                 "variantType",
                 "isEmpty"
               ),
-              [sty.text__variantType_isEmpty_isOwner__k8I5LnF9LySozJa]:
+              [sty.textvariantType_isEmpty_isOwner__k8I5LnF9LySozJa]:
                 hasVariant(variants, "variantType", "isEmpty") &&
                 hasVariant(variants, "isOwner", "isOwner"),
-              [sty.text__variantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN]:
+              [sty.textvariantType_isEmpty_isOwner_isPublic__k8I5LnF9LySozJaUqOqN]:
                 hasVariant(variants, "variantType", "isEmpty") &&
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "isPublic", "isPublic"),
@@ -666,7 +646,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMain__VariantsArgs;
     args?: PlasmicMain__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicMain__Fetches;
   } & Omit<PlasmicMain__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicMain__ArgsType, ReservedPropsType> &
@@ -693,13 +672,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicMain__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicMain__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };

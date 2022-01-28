@@ -98,10 +98,10 @@ function PlasmicMemberItem__RenderFunc(props: {
   variants: PlasmicMemberItem__VariantsArgs;
   args: PlasmicMemberItem__ArgsType;
   overrides: PlasmicMemberItem__OverridesType;
-  dataFetches?: PlasmicMemberItem__Fetches;
+
   forNode?: string;
 }) {
-  const { variants, args, overrides, forNode, dataFetches } = props;
+  const { variants, args, overrides, forNode } = props;
 
   return (
     <div
@@ -110,37 +110,37 @@ function PlasmicMemberItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(projectcss.all, projectcss.root_reset, sty.root, {
-        [sty.root__isOwner]: hasVariant(variants, "isOwner", "isOwner"),
-        [sty.root__isOwner_userVariant_isAdmin]:
+        [sty.rootisOwner]: hasVariant(variants, "isOwner", "isOwner"),
+        [sty.rootisOwner_userVariant_isAdmin]:
           hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "userVariant", "isAdmin"),
-        [sty.root__isOwner_userVariant_isMember]:
+        [sty.rootisOwner_userVariant_isMember]:
           hasVariant(variants, "isOwner", "isOwner") &&
           hasVariant(variants, "userVariant", "isMember"),
-        [sty.root__userVariant_isAdmin]: hasVariant(
+        [sty.rootuserVariant_isAdmin]: hasVariant(
           variants,
           "userVariant",
           "isAdmin"
         ),
-        [sty.root__userVariant_isMember]: hasVariant(
+        [sty.rootuserVariant_isMember]: hasVariant(
           variants,
           "userVariant",
           "isMember"
         ),
-        [sty.root__userVariant_isRequested]: hasVariant(
+        [sty.rootuserVariant_isRequested]: hasVariant(
           variants,
           "userVariant",
           "isRequested"
         ),
-        [sty.root__userVariant_isRequested_isOwner]:
+        [sty.rootuserVariant_isRequested_isOwner]:
           hasVariant(variants, "userVariant", "isRequested") &&
           hasVariant(variants, "isOwner", "isOwner"),
-        [sty.root__userVariant_isSelf]: hasVariant(
+        [sty.rootuserVariant_isSelf]: hasVariant(
           variants,
           "userVariant",
           "isSelf"
         ),
-        [sty.root__userVariant_isSelf_isOwner]:
+        [sty.rootuserVariant_isSelf_isOwner]:
           hasVariant(variants, "userVariant", "isSelf") &&
           hasVariant(variants, "isOwner", "isOwner"),
       })}
@@ -149,7 +149,7 @@ function PlasmicMemberItem__RenderFunc(props: {
         as={"div"}
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox__vAfXq, {
-          [sty.freeBox__isOwner_userVariant_isMember__vAfXqpkRzzGdyZr]:
+          [sty.freeBoxisOwner_userVariant_isMember__vAfXqpkRzzGdyZr]:
             hasVariant(variants, "isOwner", "isOwner") &&
             hasVariant(variants, "userVariant", "isMember"),
         })}
@@ -158,7 +158,7 @@ function PlasmicMemberItem__RenderFunc(props: {
           data-plasmic-name={"photoAvatar"}
           data-plasmic-override={overrides.photoAvatar}
           className={classNames("__wab_instance", sty.photoAvatar, {
-            [sty.photoAvatar__userVariant_isRequested]: hasVariant(
+            [sty.photoAvataruserVariant_isRequested]: hasVariant(
               variants,
               "userVariant",
               "isRequested"
@@ -179,12 +179,12 @@ function PlasmicMemberItem__RenderFunc(props: {
               projectcss.__wab_text,
               sty.text__biq75,
               {
-                [sty.text__userVariant_isRequested__biq75OSddm]: hasVariant(
+                [sty.textuserVariant_isRequested__biq75OSddm]: hasVariant(
                   variants,
                   "userVariant",
                   "isRequested"
                 ),
-                [sty.text__userVariant_isSelf__biq75AAx2Z]: hasVariant(
+                [sty.textuserVariant_isSelf__biq75AAx2Z]: hasVariant(
                   variants,
                   "userVariant",
                   "isSelf"
@@ -221,29 +221,29 @@ function PlasmicMemberItem__RenderFunc(props: {
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
             className={classNames(projectcss.all, sty.svg, {
-              [sty.svg__isOwner_userVariant_isAdmin]:
+              [sty.svgisOwner_userVariant_isAdmin]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "userVariant", "isAdmin"),
-              [sty.svg__isOwner_userVariant_isMember]:
+              [sty.svgisOwner_userVariant_isMember]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "userVariant", "isMember"),
-              [sty.svg__isOwner_userVariant_isRequested]:
+              [sty.svgisOwner_userVariant_isRequested]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "userVariant", "isRequested"),
-              [sty.svg__isOwner_userVariant_isSelf]:
+              [sty.svgisOwner_userVariant_isSelf]:
                 hasVariant(variants, "isOwner", "isOwner") &&
                 hasVariant(variants, "userVariant", "isSelf"),
-              [sty.svg__userVariant_isMember]: hasVariant(
+              [sty.svguserVariant_isMember]: hasVariant(
                 variants,
                 "userVariant",
                 "isMember"
               ),
-              [sty.svg__userVariant_isRequested]: hasVariant(
+              [sty.svguserVariant_isRequested]: hasVariant(
                 variants,
                 "userVariant",
                 "isRequested"
               ),
-              [sty.svg__userVariant_isSelf]: hasVariant(
+              [sty.svguserVariant_isSelf]: hasVariant(
                 variants,
                 "userVariant",
                 "isSelf"
@@ -259,25 +259,25 @@ function PlasmicMemberItem__RenderFunc(props: {
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__ymOfc, {
-            [sty.freeBox__isOwner_userVariant_isMember__ymOfcpkRzzGdyZr]:
+            [sty.freeBoxisOwner_userVariant_isMember__ymOfcpkRzzGdyZr]:
               hasVariant(variants, "isOwner", "isOwner") &&
               hasVariant(variants, "userVariant", "isMember"),
-            [sty.freeBox__userVariant_isMember__ymOfcGdyZr]: hasVariant(
+            [sty.freeBoxuserVariant_isMember__ymOfcGdyZr]: hasVariant(
               variants,
               "userVariant",
               "isMember"
             ),
-            [sty.freeBox__userVariant_isRequested__ymOfcoSddm]: hasVariant(
+            [sty.freeBoxuserVariant_isRequested__ymOfcoSddm]: hasVariant(
               variants,
               "userVariant",
               "isRequested"
             ),
-            [sty.freeBox__userVariant_isSelf__ymOfcAAx2Z]: hasVariant(
+            [sty.freeBoxuserVariant_isSelf__ymOfcAAx2Z]: hasVariant(
               variants,
               "userVariant",
               "isSelf"
             ),
-            [sty.freeBox__userVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz]:
+            [sty.freeBoxuserVariant_isSelf_isOwner__ymOfcAAx2ZPkRzz]:
               hasVariant(variants, "userVariant", "isSelf") &&
               hasVariant(variants, "isOwner", "isOwner"),
           })}
@@ -293,12 +293,12 @@ function PlasmicMemberItem__RenderFunc(props: {
               data-plasmic-name={"ownerSelect"}
               data-plasmic-override={overrides.ownerSelect}
               className={classNames("__wab_instance", sty.ownerSelect, {
-                [sty.ownerSelect__isOwner]: hasVariant(
+                [sty.ownerSelectisOwner]: hasVariant(
                   variants,
                   "isOwner",
                   "isOwner"
                 ),
-                [sty.ownerSelect__userVariant_isSelf]: hasVariant(
+                [sty.ownerSelectuserVariant_isSelf]: hasVariant(
                   variants,
                   "userVariant",
                   "isSelf"
@@ -313,7 +313,7 @@ function PlasmicMemberItem__RenderFunc(props: {
                   role={"img"}
                 />
               }
-              isOwner={"isOwner" as const}
+              isOwner={true}
             >
               <Select__Option
                 data-plasmic-name={"remove"}
@@ -339,22 +339,22 @@ function PlasmicMemberItem__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.text___5GQ6G,
                 {
-                  [sty.text__userVariant_isAdmin___5GQ6G35Uok]: hasVariant(
+                  [sty.textuserVariant_isAdmin___5GQ6G35Uok]: hasVariant(
                     variants,
                     "userVariant",
                     "isAdmin"
                   ),
-                  [sty.text__userVariant_isMember___5GQ6GGdyZr]: hasVariant(
+                  [sty.textuserVariant_isMember___5GQ6GGdyZr]: hasVariant(
                     variants,
                     "userVariant",
                     "isMember"
                   ),
-                  [sty.text__userVariant_isSelf___5GQ6GAAx2Z]: hasVariant(
+                  [sty.textuserVariant_isSelf___5GQ6GAAx2Z]: hasVariant(
                     variants,
                     "userVariant",
                     "isSelf"
                   ),
-                  [sty.text__userVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz]:
+                  [sty.textuserVariant_isSelf_isOwner___5GQ6GAAx2ZPkRzz]:
                     hasVariant(variants, "userVariant", "isSelf") &&
                     hasVariant(variants, "isOwner", "isOwner"),
                 }
@@ -405,7 +405,6 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMemberItem__VariantsArgs;
     args?: PlasmicMemberItem__ArgsType;
     overrides?: NodeOverridesType<T>;
-    dataFetches?: PlasmicMemberItem__Fetches;
   } & Omit<PlasmicMemberItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
     Omit<PlasmicMemberItem__ArgsType, ReservedPropsType> &
@@ -432,13 +431,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       internalVariantPropNames: PlasmicMemberItem__VariantProps,
     });
 
-    const { dataFetches } = props;
-
     return PlasmicMemberItem__RenderFunc({
       variants,
       args,
       overrides,
-      dataFetches,
       forNode: nodeName,
     });
   };
