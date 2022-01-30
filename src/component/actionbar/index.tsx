@@ -1,6 +1,6 @@
 import { TextareaAutosize, TextareaAutosizeProps } from "@material-ui/core";
 import { MultiChoiceArg } from "@plasmicapp/react-web";
-import { ContentPostProps } from "component/contentpost";
+import { ContentPostProps, updateToEditorShape } from "component/contentpost";
 import { CountIndicator } from "component/countindicator";
 import {
   ComposeEditor,
@@ -25,8 +25,8 @@ import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import "emoji-mart/css/emoji-mart.css";
 import useScript from "module/hook/ui/useScript";
-import { useCreateUpdate } from "module/hook/update";
-import { ICreateUpdate } from "module/interface/update";
+import { useCreateUpdate, useUpdateUpdate } from "module/hook/update";
+import { ICreateUpdate, IUpdateUpdate } from "module/interface/update";
 import {
   FocusEvent,
   useCallback,
@@ -67,8 +67,11 @@ export default function ActionBar(props: ActionBarProps) {
   );
   const hasTimelines = currentVentureTimelines.length > 0;
 
-  const [isActive, setIsActive] = useState(false);
+  const [postType, setPostType] = useState(
+    props.postType === "isPosted" ? "isPosted" : undefined
+  );
   const { mutateAsync: createUpdate } = useCreateUpdate();
+  const { mutateAsync: updateUpdate } = useUpdateUpdate();
 
   const [touched, setTouched] = useState({
     title: false,
@@ -224,7 +227,7 @@ export default function ActionBar(props: ActionBarProps) {
     const text =
       editorShape.string.length === 0 ? "" : JSON.stringify(editorShape.value);
 
-    const baseUpdate: ICreateUpdate = {
+    const baseUpdate: ICreateUpdate | IUpdateUpdate = {
       attachments: [],
       title,
       text,
@@ -241,11 +244,21 @@ export default function ActionBar(props: ActionBarProps) {
     }
 
     try {
-      await Promise.all(
-        selectedTimelines.map((t) =>
-          createUpdate({ ...baseUpdate, timelineId: t.id })
-        )
-      );
+      if (postType === "isEdit") {
+        await updateUpdate({
+          ...baseUpdate,
+          timelineId: currentTimeline?.id || "",
+          id: props.contentPost?.update?.id || "",
+        });
+
+        setPostType("isPosted");
+      } else {
+        await Promise.all(
+          selectedTimelines.map((t) =>
+            createUpdate({ ...baseUpdate, timelineId: t.id })
+          )
+        );
+      }
 
       //reset
       setEditorShape({
@@ -285,7 +298,9 @@ export default function ActionBar(props: ActionBarProps) {
 
   function onFocusTitle(e: React.FocusEvent) {
     setLastFocus("title");
-    setIsActive(true);
+
+    // Prevent the actionbar going to create mode when in edit mode
+    postType !== "isEdit" && setPostType("isActive");
   }
 
   function showUploadWidget() {
@@ -357,7 +372,7 @@ export default function ActionBar(props: ActionBarProps) {
     ref: (el: HTMLTextAreaElement) => (titleRef.current = el),
     "aria-label": "update title",
     value: title,
-    placeholder: isActive ? "Title" : "Write your update",
+    placeholder: postType === "isActive" ? "Title" : "Write your update",
     onChange(e: any) {
       setTouched({
         ...touched,
@@ -381,6 +396,23 @@ export default function ActionBar(props: ActionBarProps) {
     },
   };
 
+  useEffect(() => {
+    let newShape = { ...editorShape };
+    let newTitle = title;
+    if (postType === "isEdit") {
+      newTitle = props.contentPost?.update?.title || "";
+      newShape = updateToEditorShape(props.contentPost?.update || null);
+      Transforms.insertNodes(editor, newShape.value);
+      Transforms.removeNodes(editor, {
+        at: [0],
+      });
+    }
+
+    setTitle(newTitle);
+    setEditorShape(newShape);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postType]);
+
   const descriptionProps: EditorProps = {
     "aria-label": "update description",
     editor,
@@ -394,17 +426,12 @@ export default function ActionBar(props: ActionBarProps) {
     <PlasmicActionBar
       contentPost={{
         ...props.contentPost,
+        setPostType: setPostType,
       }}
       style={{
         zIndex: props.postType === "isPosted" ? 2 : 3,
       }}
-      postType={
-        isActive
-          ? "isActive"
-          : props.postType === "isPosted"
-          ? "isPosted"
-          : undefined
-      }
+      postType={postType as "isActive" | "isPosted" | "isEdit" | undefined}
       timelineSelected={true}
       form={{
         onSubmit: handlePost,
@@ -529,6 +556,11 @@ export default function ActionBar(props: ActionBarProps) {
       }
       errorMessage={{
         message: error,
+      }}
+      cancel={{
+        onPress: () => {
+          setPostType("isPosted");
+        },
       }}
     />
   );

@@ -91,6 +91,7 @@ export type PlasmicContentPost__OverridesType = {
   description?: p.Flex<"div">;
   ownerSelect?: p.Flex<typeof Select>;
   dropdownIcon?: p.Flex<"svg">;
+  edit?: p.Flex<typeof Select__Option>;
   remove?: p.Flex<typeof Select__Option>;
   actionMedia?: p.Flex<typeof ActionMedia>;
   photoAvatar?: p.Flex<typeof PhotoAvatar>;
@@ -283,7 +284,17 @@ function PlasmicContentPost__RenderFunc(props: {
                   />
                 }
                 isOwner={true}
+                name={"" as const}
               >
+                <Select__Option
+                  data-plasmic-name={"edit"}
+                  data-plasmic-override={overrides.edit}
+                  className={classNames("__wab_instance", sty.edit)}
+                  value={"value1 2" as const}
+                >
+                  {"Edit"}
+                </Select__Option>
+
                 <Select__Option
                   data-plasmic-name={"remove"}
                   data-plasmic-override={overrides.remove}
@@ -548,6 +559,7 @@ const PlasmicDescendants = {
     "description",
     "ownerSelect",
     "dropdownIcon",
+    "edit",
     "remove",
     "actionMedia",
     "photoAvatar",
@@ -563,6 +575,7 @@ const PlasmicDescendants = {
     "description",
     "ownerSelect",
     "dropdownIcon",
+    "edit",
     "remove",
     "actionMedia",
     "photoAvatar",
@@ -574,8 +587,9 @@ const PlasmicDescendants = {
   post: ["post", "title", "description"],
   title: ["title"],
   description: ["description"],
-  ownerSelect: ["ownerSelect", "dropdownIcon", "remove"],
+  ownerSelect: ["ownerSelect", "dropdownIcon", "edit", "remove"],
   dropdownIcon: ["dropdownIcon"],
+  edit: ["edit"],
   remove: ["remove"],
   actionMedia: ["actionMedia"],
   photoAvatar: ["photoAvatar"],
@@ -595,6 +609,7 @@ type NodeDefaultElementType = {
   description: "div";
   ownerSelect: typeof Select;
   dropdownIcon: "svg";
+  edit: typeof Select__Option;
   remove: typeof Select__Option;
   actionMedia: typeof ActionMedia;
   photoAvatar: typeof PhotoAvatar;
@@ -667,6 +682,7 @@ export const PlasmicContentPost = Object.assign(
     description: makeNodeComponent("description"),
     ownerSelect: makeNodeComponent("ownerSelect"),
     dropdownIcon: makeNodeComponent("dropdownIcon"),
+    edit: makeNodeComponent("edit"),
     remove: makeNodeComponent("remove"),
     actionMedia: makeNodeComponent("actionMedia"),
     photoAvatar: makeNodeComponent("photoAvatar"),

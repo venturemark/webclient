@@ -36,6 +36,14 @@ export async function Update(
   objJsnPatch.setVal(updateUpdate.text);
   patchList.push(objJsnPatch);
 
+  if (updateUpdate.title) {
+    const patch = new UpdateI_Obj_Jsnpatch();
+    patch.setOpe("replace");
+    patch.setPat("/obj/property/head");
+    patch.setVal(updateUpdate.title);
+    patchList.push(patch);
+  }
+
   obj.setJsnpatchList(patchList);
   objList.push(obj);
 
