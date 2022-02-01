@@ -91,7 +91,9 @@ function ContentPost(props: ContentPostProps) {
     ?.filter(
       (u: IUpdate) =>
         Math.round(Number(u.id) / 1000000000) ===
-        Math.round(Number(update?.id ?? 0) / 1000000000)
+          Math.round(Number(update?.id ?? 0) / 1000000000) &&
+        u.text === update?.text &&
+        u.title === update?.title
     )
     .map((update: IUpdate) =>
       timelines.filter(

@@ -21,6 +21,7 @@ import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 import { TimelineContext } from "context/TimelineContext";
 import { useContext, useEffect, useMemo } from "react";
+import { Md5 } from "ts-md5";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
   user: IUser;
@@ -31,10 +32,12 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
 }
 
 function deduplicateUpdates(updates: IUpdate[]) {
-  const seen: Record<number, boolean> = {};
+  const seen: Record<string, boolean> = {};
   return updates
     .filter((update: IUpdate) => {
-      const id = Math.round(Number(update.id) / 1000000000);
+      const id = `${Math.round(Number(update.id) / 1000000000)}-${Md5.hashStr(
+        JSON.stringify({ title: update.title, text: update.text })
+      )}`;
       if (seen[id]) {
         return false;
       }
