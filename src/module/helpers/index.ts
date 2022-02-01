@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import { IEmailInvite } from "module/interface/email";
 import { ICreateInvite, IInvite } from "module/interface/invite";
 import { UserRole } from "module/interface/user";
+import { IUpdate } from "module/interface/update";
+import { Md5 } from "ts-md5";
 
 export function isDev(): boolean {
   const development: boolean =
@@ -95,4 +97,14 @@ export function resourceOwnership(
     return "isOwner";
   }
   return false;
+}
+
+export function hashUpdate(update: IUpdate): string {
+  const id = Math.round(Number(update.id) / 1000000000);
+  const inputs = {
+    id,
+    title: update.title,
+    text: update.text,
+  };
+  return Md5.hashStr(JSON.stringify(inputs));
 }

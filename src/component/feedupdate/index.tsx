@@ -6,7 +6,7 @@ import {
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import { AuthContext } from "context/AuthContext";
 import { VentureContext } from "context/VentureContext";
-import { getUniqueListBy, resourceOwnership } from "module/helpers";
+import { getUniqueListBy, hashUpdate, resourceOwnership } from "module/helpers";
 import {
   useUpdatesByTimeline,
   useUpdatesByTimelineIds,
@@ -31,14 +31,14 @@ interface FeedUpdateProps extends DefaultFeedUpdateProps {
 }
 
 function deduplicateUpdates(updates: IUpdate[]) {
-  const seen: Record<number, boolean> = {};
+  const seen: Record<string, boolean> = {};
   return updates
     .filter((update: IUpdate) => {
-      const id = Math.round(Number(update.id) / 1000000000);
-      if (seen[id]) {
+      const hash = hashUpdate(update);
+      if (seen[hash]) {
         return false;
       }
-      seen[id] = true;
+      seen[hash] = true;
       return true;
     })
     .sort((a, b) => b.id.localeCompare(a.id)); // sort in descending order
