@@ -18,6 +18,7 @@ import { useTimelineMembers, useVentureMembers } from "module/hook/user";
 import { ITimeline } from "module/interface/timeline";
 import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
+import Select from "component/Select";
 
 export interface ContentPostProps extends DefaultContentPostProps {
   update: IUpdate | null;
@@ -28,9 +29,10 @@ export interface ContentPostProps extends DefaultContentPostProps {
   user?: IUser;
   state?: "isOwner" | "isPostDetails";
   allUpdates?: IUpdate[];
+  setPostType?: (type: string) => void;
 }
 
-function updateToEditorShape(update: IUpdate | null): EditorShape {
+export function updateToEditorShape(update: IUpdate | null): EditorShape {
   let value: Descendant[] = [];
   if (update) {
     const { format, text } = update;
@@ -72,6 +74,7 @@ function ContentPost(props: ContentPostProps) {
     allUpdates = [],
     isVisible,
     user,
+    setPostType,
     ...rest
   } = props;
 
@@ -160,9 +163,24 @@ function ContentPost(props: ContentPostProps) {
         },
         props: {
           onChange: (value) => {
-            handleDeleteUpdate();
+            switch (value) {
+              case "edit":
+                setPostType && setPostType("isEdit");
+                break;
+              case "remove":
+                handleDeleteUpdate();
+                break;
+              default:
+                break;
+            }
           },
           "aria-label": "Update option",
+          children: (
+            <>
+              <Select.Option value={"edit"} children={"Edit"} />
+              <Select.Option value={"remove"} children={"Remove"} />
+            </>
+          ),
         },
       }}
       title={title}

@@ -51,11 +51,12 @@ import IconCautionIcon from "./icons/PlasmicIcon__IconCaution"; // plasmic-impor
 import IconOvalIcon from "./icons/PlasmicIcon__IconOval"; // plasmic-import: FUAnm6q86/icon
 import IconPlusIcon from "./icons/PlasmicIcon__IconPlus"; // plasmic-import: B5QLKmr2tW/icon
 import IconCloseIcon from "./icons/PlasmicIcon__IconClose"; // plasmic-import: v016HsKmfL/icon
+import IconRightIcon from "./icons/PlasmicIcon__IconRight"; // plasmic-import: v822ZhrBq/icon
 import IconSend2Icon from "./icons/PlasmicIcon__IconSend2"; // plasmic-import: Iea8iz1ew/icon
 
 export type PlasmicActionBar__VariantMembers = {
   error: "hasError";
-  postType: "isActive" | "isPosted";
+  postType: "isActive" | "isPosted" | "isEdit";
   content: "hasDescription" | "hasMedia";
   timelineSelected: "timelineSelected";
   mobileLayout: "mobileLayout";
@@ -64,7 +65,7 @@ export type PlasmicActionBar__VariantMembers = {
 
 export type PlasmicActionBar__VariantsArgs = {
   error?: MultiChoiceArg<"hasError">;
-  postType?: SingleChoiceArg<"isActive" | "isPosted">;
+  postType?: SingleChoiceArg<"isActive" | "isPosted" | "isEdit">;
   content?: MultiChoiceArg<"hasDescription" | "hasMedia">;
   timelineSelected?: SingleBooleanChoiceArg<"timelineSelected">;
   mobileLayout?: SingleBooleanChoiceArg<"mobileLayout">;
@@ -104,6 +105,8 @@ export type PlasmicActionBar__OverridesType = {
   root?: p.Flex<"div">;
   form?: p.Flex<"form">;
   contentPost?: p.Flex<typeof ContentPost>;
+  userName?: p.Flex<"span">;
+  date?: p.Flex<"span">;
   editorContainer?: p.Flex<"div">;
   title?: p.Flex<"textarea">;
   description?: p.Flex<"textarea">;
@@ -119,7 +122,9 @@ export type PlasmicActionBar__OverridesType = {
   selectedItemsContainer?: p.Flex<"div">;
   button?: p.Flex<"button">;
   button2?: p.Flex<"button">;
+  cancel?: p.Flex<typeof Button>;
   post?: p.Flex<typeof Button>;
+  text23?: p.Flex<"div">;
 };
 
 export interface DefaultActionBarProps {
@@ -130,7 +135,7 @@ export interface DefaultActionBarProps {
   text3?: React.ReactNode;
   children2?: React.ReactNode;
   error?: MultiChoiceArg<"hasError">;
-  postType?: SingleChoiceArg<"isActive" | "isPosted">;
+  postType?: SingleChoiceArg<"isActive" | "isPosted" | "isEdit">;
   content?: MultiChoiceArg<"hasDescription" | "hasMedia">;
   timelineSelected?: SingleBooleanChoiceArg<"timelineSelected">;
   mobileLayout?: SingleBooleanChoiceArg<"mobileLayout">;
@@ -169,6 +174,10 @@ function PlasmicActionBar__RenderFunc(props: {
         [sty.rootpostType_isActive_error_hasError]:
           hasVariant(variants, "postType", "isActive") &&
           hasVariant(variants, "error", "hasError"),
+        [sty.rootpostType_isEdit]: hasVariant(variants, "postType", "isEdit"),
+        [sty.rootpostType_isEdit_error_hasError]:
+          hasVariant(variants, "postType", "isEdit") &&
+          hasVariant(variants, "error", "hasError"),
         [sty.rootpostType_isPosted]: hasVariant(
           variants,
           "postType",
@@ -195,6 +204,11 @@ function PlasmicActionBar__RenderFunc(props: {
             "postType",
             "isActive"
           ),
+          [sty.freeBoxpostType_isEdit__zG8DoR755F]: hasVariant(
+            variants,
+            "postType",
+            "isEdit"
+          ),
           [sty.freeBoxpostType_isPosted__zG8Dok7Jk5]: hasVariant(
             variants,
             "postType",
@@ -208,6 +222,9 @@ function PlasmicActionBar__RenderFunc(props: {
           [sty.freeBoxtimelineSelected_postType_isActive__zG8Do75BwGDjN9X]:
             hasVariant(variants, "timelineSelected", "timelineSelected") &&
             hasVariant(variants, "postType", "isActive"),
+          [sty.freeBoxtimelineSelected_postType_isEdit__zG8Do75BwGR755F]:
+            hasVariant(variants, "timelineSelected", "timelineSelected") &&
+            hasVariant(variants, "postType", "isEdit"),
         })}
       >
         <form
@@ -225,6 +242,11 @@ function PlasmicActionBar__RenderFunc(props: {
               "postType",
               "isActive"
             ),
+            [sty.formpostType_isEdit]: hasVariant(
+              variants,
+              "postType",
+              "isEdit"
+            ),
             [sty.formpostType_isPosted]: hasVariant(
               variants,
               "postType",
@@ -238,6 +260,9 @@ function PlasmicActionBar__RenderFunc(props: {
             [sty.formtimelineSelected_postType_isActive]:
               hasVariant(variants, "timelineSelected", "timelineSelected") &&
               hasVariant(variants, "postType", "isActive"),
+            [sty.formtimelineSelected_postType_isEdit]:
+              hasVariant(variants, "timelineSelected", "timelineSelected") &&
+              hasVariant(variants, "postType", "isEdit"),
           })}
         >
           <p.Stack
@@ -248,6 +273,11 @@ function PlasmicActionBar__RenderFunc(props: {
                 variants,
                 "postType",
                 "isActive"
+              ),
+              [sty.freeBoxpostType_isEdit__ptnBsR755F]: hasVariant(
+                variants,
+                "postType",
+                "isEdit"
               ),
               [sty.freeBoxpostType_isPosted__ptnBsk7Jk5]: hasVariant(
                 variants,
@@ -282,6 +312,19 @@ function PlasmicActionBar__RenderFunc(props: {
                     "isPosted"
                   ),
                 })}
+                date={
+                  <span
+                    data-plasmic-name={"date"}
+                    data-plasmic-override={overrides.date}
+                    className={classNames(
+                      projectcss.span,
+                      projectcss.__wab_text,
+                      sty.date
+                    )}
+                  >
+                    {"3 hours ago"}
+                  </span>
+                }
                 hasDescription={
                   hasVariant(variants, "content", "hasDescription")
                     ? true
@@ -295,7 +338,32 @@ function PlasmicActionBar__RenderFunc(props: {
                     ? ("isOwner" as const)
                     : undefined
                 }
-              />
+                userInitials={"KO"}
+                userName={
+                  <span
+                    data-plasmic-name={"userName"}
+                    data-plasmic-override={overrides.userName}
+                    className={classNames(
+                      projectcss.span,
+                      projectcss.__wab_text,
+                      sty.userName
+                    )}
+                  >
+                    <React.Fragment>
+                      <React.Fragment>{""}</React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ fontWeight: 700 }}
+                      >
+                        {"The Rock"}
+                      </span>
+                      <React.Fragment>{""}</React.Fragment>
+                    </React.Fragment>
+                  </span>
+                }
+              >
+                {"Wins"}
+              </ContentPost>
             ) : null}
             {(hasVariant(variants, "postType", "isPosted") ? true : true) ? (
               <div
@@ -322,6 +390,21 @@ function PlasmicActionBar__RenderFunc(props: {
                     hasVariant(variants, "error", "hasError"),
                   [sty.editorContainerpostType_isActive_timelineSelected]:
                     hasVariant(variants, "postType", "isActive") &&
+                    hasVariant(
+                      variants,
+                      "timelineSelected",
+                      "timelineSelected"
+                    ),
+                  [sty.editorContainerpostType_isEdit]: hasVariant(
+                    variants,
+                    "postType",
+                    "isEdit"
+                  ),
+                  [sty.editorContainerpostType_isEdit_error_hasError]:
+                    hasVariant(variants, "postType", "isEdit") &&
+                    hasVariant(variants, "error", "hasError"),
+                  [sty.editorContainerpostType_isEdit_timelineSelected]:
+                    hasVariant(variants, "postType", "isEdit") &&
                     hasVariant(
                       variants,
                       "timelineSelected",
@@ -354,6 +437,14 @@ function PlasmicActionBar__RenderFunc(props: {
                       [sty.titlepostType_isActive_error_hasError]:
                         hasVariant(variants, "postType", "isActive") &&
                         hasVariant(variants, "error", "hasError"),
+                      [sty.titlepostType_isEdit]: hasVariant(
+                        variants,
+                        "postType",
+                        "isEdit"
+                      ),
+                      [sty.titlepostType_isEdit_error_hasError]:
+                        hasVariant(variants, "postType", "isEdit") &&
+                        hasVariant(variants, "error", "hasError"),
                       [sty.titlepostType_isPosted]: hasVariant(
                         variants,
                         "postType",
@@ -370,11 +461,22 @@ function PlasmicActionBar__RenderFunc(props: {
                           "timelineSelected",
                           "timelineSelected"
                         ) && hasVariant(variants, "postType", "isActive"),
+                      [sty.titletimelineSelected_postType_isEdit]:
+                        hasVariant(
+                          variants,
+                          "timelineSelected",
+                          "timelineSelected"
+                        ) && hasVariant(variants, "postType", "isEdit"),
                     })}
                     placeholder={"Write your update..." as const}
                     rows={
-                      hasVariant(variants, "postType", "isActive") &&
+                      hasVariant(variants, "postType", "isEdit") &&
                       hasVariant(globalVariants, "screen", "mobile")
+                        ? (5 as const)
+                        : hasVariant(variants, "postType", "isEdit")
+                        ? (1 as const)
+                        : hasVariant(variants, "postType", "isActive") &&
+                          hasVariant(globalVariants, "screen", "mobile")
                         ? (5 as const)
                         : hasVariant(variants, "postType", "isActive")
                         ? (1 as const)
@@ -383,8 +485,13 @@ function PlasmicActionBar__RenderFunc(props: {
                   />
                 ) : null}
                 {(
-                  hasVariant(variants, "postType", "isActive") &&
+                  hasVariant(variants, "postType", "isEdit") &&
                   hasVariant(variants, "error", "hasError")
+                    ? true
+                    : hasVariant(variants, "postType", "isActive") &&
+                      hasVariant(variants, "error", "hasError")
+                    ? true
+                    : hasVariant(variants, "postType", "isEdit")
                     ? true
                     : hasVariant(variants, "postType", "isPosted")
                     ? true
@@ -410,6 +517,17 @@ function PlasmicActionBar__RenderFunc(props: {
                         [sty.descriptionpostType_isActive_error_hasError]:
                           hasVariant(variants, "postType", "isActive") &&
                           hasVariant(variants, "error", "hasError"),
+                        [sty.descriptionpostType_isEdit]: hasVariant(
+                          variants,
+                          "postType",
+                          "isEdit"
+                        ),
+                        [sty.descriptionpostType_isEdit_content_hasDescription]:
+                          hasVariant(variants, "postType", "isEdit") &&
+                          hasVariant(variants, "content", "hasDescription"),
+                        [sty.descriptionpostType_isEdit_error_hasError]:
+                          hasVariant(variants, "postType", "isEdit") &&
+                          hasVariant(variants, "error", "hasError"),
                         [sty.descriptionpostType_isPosted]: hasVariant(
                           variants,
                           "postType",
@@ -426,10 +544,18 @@ function PlasmicActionBar__RenderFunc(props: {
                             "timelineSelected",
                             "timelineSelected"
                           ) && hasVariant(variants, "postType", "isActive"),
+                        [sty.descriptiontimelineSelected_postType_isEdit]:
+                          hasVariant(
+                            variants,
+                            "timelineSelected",
+                            "timelineSelected"
+                          ) && hasVariant(variants, "postType", "isEdit"),
                       }
                     )}
                     placeholder={
-                      hasVariant(variants, "postType", "isActive")
+                      hasVariant(variants, "postType", "isEdit")
+                        ? ("Description..." as const)
+                        : hasVariant(variants, "postType", "isActive")
                         ? ("Description..." as const)
                         : ("Write a paragraph" as const)
                     }
@@ -443,7 +569,12 @@ function PlasmicActionBar__RenderFunc(props: {
               hasVariant(variants, "postType", "isActive") &&
               hasVariant(variants, "content", "hasMedia")
                 ? true
+                : hasVariant(variants, "postType", "isEdit") &&
+                  hasVariant(variants, "content", "hasMedia")
+                ? true
                 : hasVariant(variants, "content", "hasMedia")
+                ? true
+                : hasVariant(variants, "postType", "isEdit")
                 ? true
                 : hasVariant(variants, "postType", "isActive")
                 ? true
@@ -466,11 +597,25 @@ function PlasmicActionBar__RenderFunc(props: {
                   [sty.actionMediapostType_isActive_content_hasMedia]:
                     hasVariant(variants, "postType", "isActive") &&
                     hasVariant(variants, "content", "hasMedia"),
+                  [sty.actionMediapostType_isEdit]: hasVariant(
+                    variants,
+                    "postType",
+                    "isEdit"
+                  ),
+                  [sty.actionMediapostType_isEdit_content_hasMedia]:
+                    hasVariant(variants, "postType", "isEdit") &&
+                    hasVariant(variants, "content", "hasMedia"),
                 })}
                 isEdit={true}
               />
             ) : null}
-            {(hasVariant(variants, "postType", "isActive") ? true : false) ? (
+            {(
+              hasVariant(variants, "postType", "isEdit")
+                ? true
+                : hasVariant(variants, "postType", "isActive")
+                ? true
+                : false
+            ) ? (
               <div
                 className={classNames(projectcss.all, sty.freeBox__hHc69, {
                   [sty.freeBoxpostType_isActive__hHc69DjN9X]: hasVariant(
@@ -478,10 +623,19 @@ function PlasmicActionBar__RenderFunc(props: {
                     "postType",
                     "isActive"
                   ),
+                  [sty.freeBoxpostType_isEdit__hHc69R755F]: hasVariant(
+                    variants,
+                    "postType",
+                    "isEdit"
+                  ),
                 })}
               >
                 {(
-                  hasVariant(variants, "postType", "isActive") ? true : false
+                  hasVariant(variants, "postType", "isEdit")
+                    ? true
+                    : hasVariant(variants, "postType", "isActive")
+                    ? true
+                    : false
                 ) ? (
                   <p.Stack
                     as={"div"}
@@ -492,10 +646,17 @@ function PlasmicActionBar__RenderFunc(props: {
                         "postType",
                         "isActive"
                       ),
+                      [sty.freeBoxpostType_isEdit___1SVGiR755F]: hasVariant(
+                        variants,
+                        "postType",
+                        "isEdit"
+                      ),
                     })}
                   >
                     {(
-                      hasVariant(variants, "postType", "isActive")
+                      hasVariant(variants, "postType", "isEdit")
+                        ? true
+                        : hasVariant(variants, "postType", "isActive")
                         ? true
                         : false
                     ) ? (
@@ -508,16 +669,25 @@ function PlasmicActionBar__RenderFunc(props: {
                             "postType",
                             "isActive"
                           ),
+                          [sty.emojipostType_isEdit]: hasVariant(
+                            variants,
+                            "postType",
+                            "isEdit"
+                          ),
                         })}
                         iconSize={
-                          hasVariant(variants, "postType", "isActive")
+                          hasVariant(variants, "postType", "isEdit")
+                            ? ("large" as const)
+                            : hasVariant(variants, "postType", "isActive")
                             ? ("large" as const)
                             : undefined
                         }
                       >
                         <p.PlasmicIcon
                           PlasmicIconType={
-                            hasVariant(variants, "postType", "isActive")
+                            hasVariant(variants, "postType", "isEdit")
+                              ? IconEmojisvgIcon
+                              : hasVariant(variants, "postType", "isActive")
                               ? IconEmojisvgIcon
                               : IconFeedIcon
                           }
@@ -527,13 +697,20 @@ function PlasmicActionBar__RenderFunc(props: {
                               "postType",
                               "isActive"
                             ),
+                            [sty.svgpostType_isEdit__xoE5R755F]: hasVariant(
+                              variants,
+                              "postType",
+                              "isEdit"
+                            ),
                           })}
                           role={"img"}
                         />
                       </IconButton>
                     ) : null}
                     {(
-                      hasVariant(variants, "postType", "isActive")
+                      hasVariant(variants, "postType", "isEdit")
+                        ? true
+                        : hasVariant(variants, "postType", "isActive")
                         ? true
                         : false
                     ) ? (
@@ -549,17 +726,26 @@ function PlasmicActionBar__RenderFunc(props: {
                               "postType",
                               "isActive"
                             ),
+                            [sty.bulletListpostType_isEdit]: hasVariant(
+                              variants,
+                              "postType",
+                              "isEdit"
+                            ),
                           }
                         )}
                         iconSize={
-                          hasVariant(variants, "postType", "isActive")
+                          hasVariant(variants, "postType", "isEdit")
+                            ? ("large" as const)
+                            : hasVariant(variants, "postType", "isActive")
                             ? ("large" as const)
                             : undefined
                         }
                       >
                         <p.PlasmicIcon
                           PlasmicIconType={
-                            hasVariant(variants, "postType", "isActive")
+                            hasVariant(variants, "postType", "isEdit")
+                              ? IconListsvgIcon
+                              : hasVariant(variants, "postType", "isActive")
                               ? IconListsvgIcon
                               : IconFeedIcon
                           }
@@ -569,6 +755,11 @@ function PlasmicActionBar__RenderFunc(props: {
                             {
                               [sty.svgpostType_isActive__t421VDjN9X]:
                                 hasVariant(variants, "postType", "isActive"),
+                              [sty.svgpostType_isEdit__t421Vr755F]: hasVariant(
+                                variants,
+                                "postType",
+                                "isEdit"
+                              ),
                             }
                           )}
                           role={"img"}
@@ -576,7 +767,9 @@ function PlasmicActionBar__RenderFunc(props: {
                       </IconButton>
                     ) : null}
                     {(
-                      hasVariant(variants, "postType", "isActive")
+                      hasVariant(variants, "postType", "isEdit")
+                        ? true
+                        : hasVariant(variants, "postType", "isActive")
                         ? true
                         : false
                     ) ? (
@@ -592,17 +785,26 @@ function PlasmicActionBar__RenderFunc(props: {
                               "postType",
                               "isActive"
                             ),
+                            [sty.uploadImagepostType_isEdit]: hasVariant(
+                              variants,
+                              "postType",
+                              "isEdit"
+                            ),
                           }
                         )}
                         iconSize={
-                          hasVariant(variants, "postType", "isActive")
+                          hasVariant(variants, "postType", "isEdit")
+                            ? ("large" as const)
+                            : hasVariant(variants, "postType", "isActive")
                             ? ("large" as const)
                             : undefined
                         }
                       >
                         <p.PlasmicIcon
                           PlasmicIconType={
-                            hasVariant(variants, "postType", "isActive")
+                            hasVariant(variants, "postType", "isEdit")
+                              ? IconImagesvgIcon
+                              : hasVariant(variants, "postType", "isActive")
                               ? IconImagesvgIcon
                               : IconFeedIcon
                           }
@@ -612,6 +814,11 @@ function PlasmicActionBar__RenderFunc(props: {
                             {
                               [sty.svgpostType_isActive__zxbGeDjN9X]:
                                 hasVariant(variants, "postType", "isActive"),
+                              [sty.svgpostType_isEdit__zxbGeR755F]: hasVariant(
+                                variants,
+                                "postType",
+                                "isEdit"
+                              ),
                             }
                           )}
                           role={"img"}
@@ -621,7 +828,11 @@ function PlasmicActionBar__RenderFunc(props: {
                   </p.Stack>
                 ) : null}
                 {(
-                  hasVariant(variants, "postType", "isActive") ? true : false
+                  hasVariant(variants, "postType", "isEdit")
+                    ? true
+                    : hasVariant(variants, "postType", "isActive")
+                    ? true
+                    : false
                 ) ? (
                   <p.Stack
                     as={"div"}
@@ -635,11 +846,22 @@ function PlasmicActionBar__RenderFunc(props: {
                       [sty.freeBoxpostType_isActive_error_hasError___9ZsQDjN9XXYqMt]:
                         hasVariant(variants, "postType", "isActive") &&
                         hasVariant(variants, "error", "hasError"),
+                      [sty.freeBoxpostType_isEdit___9ZsQr755F]: hasVariant(
+                        variants,
+                        "postType",
+                        "isEdit"
+                      ),
+                      [sty.freeBoxpostType_isEdit_error_hasError___9ZsQr755FXYqMt]:
+                        hasVariant(variants, "postType", "isEdit") &&
+                        hasVariant(variants, "error", "hasError"),
                     })}
                   >
                     {(
-                      hasVariant(variants, "postType", "isActive") &&
+                      hasVariant(variants, "postType", "isEdit") &&
                       hasVariant(variants, "error", "hasError")
+                        ? true
+                        : hasVariant(variants, "postType", "isActive") &&
+                          hasVariant(variants, "error", "hasError")
                         ? true
                         : false
                     ) ? (
@@ -655,6 +877,14 @@ function PlasmicActionBar__RenderFunc(props: {
                           [sty.errorMessagepostType_isActive_error_hasError]:
                             hasVariant(variants, "postType", "isActive") &&
                             hasVariant(variants, "error", "hasError"),
+                          [sty.errorMessagepostType_isEdit]: hasVariant(
+                            variants,
+                            "postType",
+                            "isEdit"
+                          ),
+                          [sty.errorMessagepostType_isEdit_error_hasError]:
+                            hasVariant(variants, "postType", "isEdit") &&
+                            hasVariant(variants, "error", "hasError"),
                         })}
                         message={"Error message"}
                       >
@@ -663,13 +893,18 @@ function PlasmicActionBar__RenderFunc(props: {
                             [sty.svgpostType_isActive_error_hasError__r40LDjN9XXYqMt]:
                               hasVariant(variants, "postType", "isActive") &&
                               hasVariant(variants, "error", "hasError"),
+                            [sty.svgpostType_isEdit_error_hasError__r40Lr755FXYqMt]:
+                              hasVariant(variants, "postType", "isEdit") &&
+                              hasVariant(variants, "error", "hasError"),
                           })}
                           role={"img"}
                         />
                       </ErrorMessage>
                     ) : null}
                     {(
-                      hasVariant(variants, "postType", "isActive")
+                      hasVariant(variants, "postType", "isEdit")
+                        ? true
+                        : hasVariant(variants, "postType", "isActive")
                         ? true
                         : false
                     ) ? (
@@ -684,17 +919,23 @@ function PlasmicActionBar__RenderFunc(props: {
                           {
                             [sty.characterLimitIndicatorpostType_isActive]:
                               hasVariant(variants, "postType", "isActive"),
+                            [sty.characterLimitIndicatorpostType_isEdit]:
+                              hasVariant(variants, "postType", "isEdit"),
                           }
                         )}
                         iconSize={
-                          hasVariant(variants, "postType", "isActive")
+                          hasVariant(variants, "postType", "isEdit")
+                            ? ("large" as const)
+                            : hasVariant(variants, "postType", "isActive")
                             ? ("large" as const)
                             : undefined
                         }
                       >
                         <p.PlasmicIcon
                           PlasmicIconType={
-                            hasVariant(variants, "postType", "isActive")
+                            hasVariant(variants, "postType", "isEdit")
+                              ? IconOvalIcon
+                              : hasVariant(variants, "postType", "isActive")
                               ? IconOvalIcon
                               : IconFeedIcon
                           }
@@ -704,6 +945,11 @@ function PlasmicActionBar__RenderFunc(props: {
                             {
                               [sty.svgpostType_isActive__j4IjpDjN9X]:
                                 hasVariant(variants, "postType", "isActive"),
+                              [sty.svgpostType_isEdit__j4IjpR755F]: hasVariant(
+                                variants,
+                                "postType",
+                                "isEdit"
+                              ),
                             }
                           )}
                           role={"img"}
@@ -717,7 +963,13 @@ function PlasmicActionBar__RenderFunc(props: {
           </p.Stack>
         </form>
 
-        {(hasVariant(variants, "postType", "isActive") ? true : false) ? (
+        {(
+          hasVariant(variants, "postType", "isEdit")
+            ? true
+            : hasVariant(variants, "postType", "isActive")
+            ? true
+            : false
+        ) ? (
           <p.Stack
             as={"div"}
             hasGap={true}
@@ -732,6 +984,11 @@ function PlasmicActionBar__RenderFunc(props: {
                 "postType",
                 "isActive"
               ),
+              [sty.freeBoxpostType_isEdit__mQqJfR755F]: hasVariant(
+                variants,
+                "postType",
+                "isEdit"
+              ),
               [sty.freeBoxtimelineSelected__mQqJf75BwG]: hasVariant(
                 variants,
                 "timelineSelected",
@@ -740,9 +997,18 @@ function PlasmicActionBar__RenderFunc(props: {
               [sty.freeBoxtimelineSelected_postType_isActive__mQqJf75BwGDjN9X]:
                 hasVariant(variants, "timelineSelected", "timelineSelected") &&
                 hasVariant(variants, "postType", "isActive"),
+              [sty.freeBoxtimelineSelected_postType_isEdit__mQqJf75BwGR755F]:
+                hasVariant(variants, "timelineSelected", "timelineSelected") &&
+                hasVariant(variants, "postType", "isEdit"),
             })}
           >
-            {(hasVariant(variants, "postType", "isActive") ? true : false) ? (
+            {(
+              hasVariant(variants, "postType", "isEdit")
+                ? true
+                : hasVariant(variants, "postType", "isActive")
+                ? true
+                : false
+            ) ? (
               <p.Stack
                 as={"div"}
                 hasGap={true}
@@ -752,6 +1018,11 @@ function PlasmicActionBar__RenderFunc(props: {
                     "postType",
                     "isActive"
                   ),
+                  [sty.freeBoxpostType_isEdit__kjkQrR755F]: hasVariant(
+                    variants,
+                    "postType",
+                    "isEdit"
+                  ),
                   [sty.freeBoxtimelineSelected__kjkQr75BwG]: hasVariant(
                     variants,
                     "timelineSelected",
@@ -759,99 +1030,113 @@ function PlasmicActionBar__RenderFunc(props: {
                   ),
                 })}
               >
-                <div
-                  className={classNames(projectcss.all, sty.freeBox__dWUd, {
-                    [sty.freeBoxpostType_isActive__dWUdDjN9X]: hasVariant(
-                      variants,
-                      "postType",
-                      "isActive"
-                    ),
-                    [sty.freeBoxtimelineSelected__dWUd75BwG]: hasVariant(
-                      variants,
-                      "timelineSelected",
-                      "timelineSelected"
-                    ),
-                    [sty.freeBoxtimelineSelected_postType_isActive__dWUd75BwGDjN9X]:
-                      hasVariant(
+                {(hasVariant(variants, "postType", "isEdit") ? true : true) ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__dWUd, {
+                      [sty.freeBoxpostType_isActive__dWUdDjN9X]: hasVariant(
+                        variants,
+                        "postType",
+                        "isActive"
+                      ),
+                      [sty.freeBoxpostType_isEdit__dWUdR755F]: hasVariant(
+                        variants,
+                        "postType",
+                        "isEdit"
+                      ),
+                      [sty.freeBoxtimelineSelected__dWUd75BwG]: hasVariant(
                         variants,
                         "timelineSelected",
                         "timelineSelected"
-                      ) && hasVariant(variants, "postType", "isActive"),
-                  })}
-                >
-                  <p.Stack
-                    as={"div"}
-                    data-plasmic-name={"shareToContainer"}
-                    data-plasmic-override={overrides.shareToContainer}
-                    hasGap={true}
-                    className={classNames(
-                      projectcss.all,
-                      sty.shareToContainer,
-                      {
-                        [sty.shareToContainermobileLayout]: hasVariant(
-                          variants,
-                          "mobileLayout",
-                          "mobileLayout"
-                        ),
-                        [sty.shareToContainerpostType_isActive]: hasVariant(
-                          variants,
-                          "postType",
-                          "isActive"
-                        ),
-                        [sty.shareToContainerpostType_isActive_error_hasError]:
-                          hasVariant(variants, "postType", "isActive") &&
-                          hasVariant(variants, "error", "hasError"),
-                        [sty.shareToContainertimelineSelected]: hasVariant(
+                      ),
+                      [sty.freeBoxtimelineSelected_postType_isActive__dWUd75BwGDjN9X]:
+                        hasVariant(
                           variants,
                           "timelineSelected",
                           "timelineSelected"
-                        ),
-                        [sty.shareToContainertimelineSelected_postType_isActive]:
-                          hasVariant(
+                        ) && hasVariant(variants, "postType", "isActive"),
+                      [sty.freeBoxtimelineSelected_postType_isEdit__dWUd75BwGR755F]:
+                        hasVariant(
+                          variants,
+                          "timelineSelected",
+                          "timelineSelected"
+                        ) && hasVariant(variants, "postType", "isEdit"),
+                    })}
+                  >
+                    <p.Stack
+                      as={"div"}
+                      data-plasmic-name={"shareToContainer"}
+                      data-plasmic-override={overrides.shareToContainer}
+                      hasGap={true}
+                      className={classNames(
+                        projectcss.all,
+                        sty.shareToContainer,
+                        {
+                          [sty.shareToContainermobileLayout]: hasVariant(
+                            variants,
+                            "mobileLayout",
+                            "mobileLayout"
+                          ),
+                          [sty.shareToContainerpostType_isActive]: hasVariant(
+                            variants,
+                            "postType",
+                            "isActive"
+                          ),
+                          [sty.shareToContainerpostType_isActive_error_hasError]:
+                            hasVariant(variants, "postType", "isActive") &&
+                            hasVariant(variants, "error", "hasError"),
+                          [sty.shareToContainerpostType_isEdit]: hasVariant(
+                            variants,
+                            "postType",
+                            "isEdit"
+                          ),
+                          [sty.shareToContainerpostType_isEdit_error_hasError]:
+                            hasVariant(variants, "postType", "isEdit") &&
+                            hasVariant(variants, "error", "hasError"),
+                          [sty.shareToContainertimelineSelected]: hasVariant(
                             variants,
                             "timelineSelected",
                             "timelineSelected"
-                          ) && hasVariant(variants, "postType", "isActive"),
-                      }
-                    )}
-                  >
-                    {(
-                      hasVariant(variants, "postType", "isActive")
-                        ? true
-                        : false
-                    ) ? (
-                      <p.Stack
-                        as={"div"}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__iriP,
-                          {
-                            [sty.freeBoxpostType_isActive__iriPDjN9X]:
-                              hasVariant(variants, "postType", "isActive"),
-                            [sty.freeBoxpostType_isActive_error_hasError__iriPDjN9XXYqMt]:
-                              hasVariant(variants, "postType", "isActive") &&
-                              hasVariant(variants, "error", "hasError"),
-                            [sty.freeBoxtimelineSelected__iriP75BwG]:
-                              hasVariant(
-                                variants,
-                                "timelineSelected",
-                                "timelineSelected"
-                              ),
-                          }
-                        )}
-                      >
-                        <div
+                          ),
+                          [sty.shareToContainertimelineSelected_postType_isActive]:
+                            hasVariant(
+                              variants,
+                              "timelineSelected",
+                              "timelineSelected"
+                            ) && hasVariant(variants, "postType", "isActive"),
+                          [sty.shareToContainertimelineSelected_postType_isEdit]:
+                            hasVariant(
+                              variants,
+                              "timelineSelected",
+                              "timelineSelected"
+                            ) && hasVariant(variants, "postType", "isEdit"),
+                        }
+                      )}
+                    >
+                      {(
+                        hasVariant(variants, "postType", "isEdit")
+                          ? true
+                          : hasVariant(variants, "postType", "isActive")
+                          ? true
+                          : false
+                      ) ? (
+                        <p.Stack
+                          as={"div"}
+                          hasGap={true}
                           className={classNames(
                             projectcss.all,
-                            sty.freeBox__vnwRg,
+                            sty.freeBox__iriP,
                             {
-                              [sty.freeBoxpostType_isActive__vnwRgDjN9X]:
+                              [sty.freeBoxpostType_isActive__iriPDjN9X]:
                                 hasVariant(variants, "postType", "isActive"),
-                              [sty.freeBoxpostType_isActive_error_hasError__vnwRgDjN9XXYqMt]:
+                              [sty.freeBoxpostType_isActive_error_hasError__iriPDjN9XXYqMt]:
                                 hasVariant(variants, "postType", "isActive") &&
                                 hasVariant(variants, "error", "hasError"),
-                              [sty.freeBoxtimelineSelected__vnwRg75BwG]:
+                              [sty.freeBoxpostType_isEdit__iriPr755F]:
+                                hasVariant(variants, "postType", "isEdit"),
+                              [sty.freeBoxpostType_isEdit_error_hasError__iriPr755FXYqMt]:
+                                hasVariant(variants, "postType", "isEdit") &&
+                                hasVariant(variants, "error", "hasError"),
+                              [sty.freeBoxtimelineSelected__iriP75BwG]:
                                 hasVariant(
                                   variants,
                                   "timelineSelected",
@@ -861,177 +1146,171 @@ function PlasmicActionBar__RenderFunc(props: {
                           )}
                         >
                           <div
-                            data-plasmic-name={"text"}
-                            data-plasmic-override={overrides.text}
                             className={classNames(
                               projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text,
+                              sty.freeBox__vnwRg,
                               {
-                                [sty.textpostType_isActive]: hasVariant(
-                                  variants,
-                                  "postType",
-                                  "isActive"
-                                ),
-                                [sty.textpostType_isActive_error_hasError]:
+                                [sty.freeBoxpostType_isActive__vnwRgDjN9X]:
+                                  hasVariant(variants, "postType", "isActive"),
+                                [sty.freeBoxpostType_isActive_error_hasError__vnwRgDjN9XXYqMt]:
                                   hasVariant(
                                     variants,
                                     "postType",
                                     "isActive"
                                   ) &&
                                   hasVariant(variants, "error", "hasError"),
-                                [sty.texttimelineSelected]: hasVariant(
-                                  variants,
-                                  "timelineSelected",
-                                  "timelineSelected"
-                                ),
+                                [sty.freeBoxpostType_isEdit__vnwRgR755F]:
+                                  hasVariant(variants, "postType", "isEdit"),
+                                [sty.freeBoxpostType_isEdit_error_hasError__vnwRgR755FXYqMt]:
+                                  hasVariant(variants, "postType", "isEdit") &&
+                                  hasVariant(variants, "error", "hasError"),
+                                [sty.freeBoxtimelineSelected__vnwRg75BwG]:
+                                  hasVariant(
+                                    variants,
+                                    "timelineSelected",
+                                    "timelineSelected"
+                                  ),
                               }
                             )}
                           >
-                            {hasVariant(variants, "postType", "isActive")
-                              ? "Post to:"
-                              : "Share to:"}
+                            <div
+                              data-plasmic-name={"text"}
+                              data-plasmic-override={overrides.text}
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text,
+                                {
+                                  [sty.textpostType_isActive]: hasVariant(
+                                    variants,
+                                    "postType",
+                                    "isActive"
+                                  ),
+                                  [sty.textpostType_isActive_error_hasError]:
+                                    hasVariant(
+                                      variants,
+                                      "postType",
+                                      "isActive"
+                                    ) &&
+                                    hasVariant(variants, "error", "hasError"),
+                                  [sty.textpostType_isEdit]: hasVariant(
+                                    variants,
+                                    "postType",
+                                    "isEdit"
+                                  ),
+                                  [sty.textpostType_isEdit_error_hasError]:
+                                    hasVariant(
+                                      variants,
+                                      "postType",
+                                      "isEdit"
+                                    ) &&
+                                    hasVariant(variants, "error", "hasError"),
+                                  [sty.texttimelineSelected]: hasVariant(
+                                    variants,
+                                    "timelineSelected",
+                                    "timelineSelected"
+                                  ),
+                                }
+                              )}
+                            >
+                              {hasVariant(variants, "postType", "isEdit")
+                                ? "Post to:"
+                                : hasVariant(variants, "postType", "isActive")
+                                ? "Post to:"
+                                : "Share to:"}
+                            </div>
                           </div>
-                        </div>
-                      </p.Stack>
-                    ) : null}
-                  </p.Stack>
+                        </p.Stack>
+                      ) : null}
+                    </p.Stack>
 
-                  {(
-                    hasVariant(variants, "timelineSelected", "timelineSelected")
-                      ? true
-                      : hasVariant(variants, "postType", "isActive")
-                      ? true
-                      : true
-                  ) ? (
-                    <p.Stack
-                      as={"div"}
-                      data-plasmic-name={"container"}
-                      data-plasmic-override={overrides.container}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.container, {
-                        [sty.containerpostType_isActive]: hasVariant(
-                          variants,
-                          "postType",
-                          "isActive"
-                        ),
-                        [sty.containerpostType_isActive_timelineSelected]:
+                    {(
+                      hasVariant(
+                        variants,
+                        "timelineSelected",
+                        "timelineSelected"
+                      )
+                        ? true
+                        : hasVariant(variants, "postType", "isEdit")
+                        ? true
+                        : hasVariant(variants, "postType", "isActive")
+                        ? true
+                        : true
+                    ) ? (
+                      <p.Stack
+                        as={"div"}
+                        data-plasmic-name={"container"}
+                        data-plasmic-override={overrides.container}
+                        hasGap={true}
+                        className={classNames(projectcss.all, sty.container, {
+                          [sty.containerpostType_isActive]: hasVariant(
+                            variants,
+                            "postType",
+                            "isActive"
+                          ),
+                          [sty.containerpostType_isActive_timelineSelected]:
+                            hasVariant(variants, "postType", "isActive") &&
+                            hasVariant(
+                              variants,
+                              "timelineSelected",
+                              "timelineSelected"
+                            ),
+                          [sty.containerpostType_isEdit]: hasVariant(
+                            variants,
+                            "postType",
+                            "isEdit"
+                          ),
+                          [sty.containerpostType_isEdit_timelineSelected]:
+                            hasVariant(variants, "postType", "isEdit") &&
+                            hasVariant(
+                              variants,
+                              "timelineSelected",
+                              "timelineSelected"
+                            ),
+                          [sty.containertimelineSelected]: hasVariant(
+                            variants,
+                            "timelineSelected",
+                            "timelineSelected"
+                          ),
+                        })}
+                      >
+                        {(
                           hasVariant(variants, "postType", "isActive") &&
                           hasVariant(
                             variants,
                             "timelineSelected",
                             "timelineSelected"
-                          ),
-                        [sty.containertimelineSelected]: hasVariant(
-                          variants,
-                          "timelineSelected",
-                          "timelineSelected"
-                        ),
-                      })}
-                    >
-                      {(
-                        hasVariant(variants, "postType", "isActive") &&
-                        hasVariant(
-                          variants,
-                          "timelineSelected",
-                          "timelineSelected"
-                        )
-                          ? true
-                          : hasVariant(
-                              variants,
-                              "timelineSelected",
-                              "timelineSelected"
-                            )
-                          ? true
-                          : true
-                      ) ? (
-                        <p.Stack
-                          as={"div"}
-                          data-plasmic-name={"selectedItemsContainer"}
-                          data-plasmic-override={
-                            overrides.selectedItemsContainer
-                          }
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.selectedItemsContainer,
-                            {
-                              [sty.selectedItemsContainerpostType_isActive]:
-                                hasVariant(variants, "postType", "isActive"),
-                              [sty.selectedItemsContainerpostType_isActive_timelineSelected]:
-                                hasVariant(variants, "postType", "isActive") &&
-                                hasVariant(
-                                  variants,
-                                  "timelineSelected",
-                                  "timelineSelected"
-                                ),
-                              [sty.selectedItemsContainertimelineSelected]:
-                                hasVariant(
-                                  variants,
-                                  "timelineSelected",
-                                  "timelineSelected"
-                                ),
+                          )
+                            ? true
+                            : hasVariant(variants, "postType", "isEdit") &&
+                              hasVariant(
+                                variants,
+                                "timelineSelected",
+                                "timelineSelected"
+                              )
+                            ? true
+                            : hasVariant(
+                                variants,
+                                "timelineSelected",
+                                "timelineSelected"
+                              )
+                            ? true
+                            : true
+                        ) ? (
+                          <p.Stack
+                            as={"div"}
+                            data-plasmic-name={"selectedItemsContainer"}
+                            data-plasmic-override={
+                              overrides.selectedItemsContainer
                             }
-                          )}
-                        >
-                          {(
-                            hasVariant(variants, "postType", "isActive") &&
-                            hasVariant(
-                              variants,
-                              "timelineSelected",
-                              "timelineSelected"
-                            )
-                              ? true
-                              : false
-                          ) ? (
-                            <button
-                              data-plasmic-name={"button"}
-                              data-plasmic-override={overrides.button}
-                              className={classNames(
-                                projectcss.button,
-                                sty.button,
-                                {
-                                  [sty.buttonpostType_isActive]: hasVariant(
-                                    variants,
-                                    "postType",
-                                    "isActive"
-                                  ),
-                                  [sty.buttonpostType_isActive_timelineSelected]:
-                                    hasVariant(
-                                      variants,
-                                      "postType",
-                                      "isActive"
-                                    ) &&
-                                    hasVariant(
-                                      variants,
-                                      "timelineSelected",
-                                      "timelineSelected"
-                                    ),
-                                  [sty.buttontimelineSelected]: hasVariant(
-                                    variants,
-                                    "timelineSelected",
-                                    "timelineSelected"
-                                  ),
-                                }
-                              )}
-                            >
-                              <p.Stack
-                                as={"div"}
-                                hasGap={true}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.freeBox__kBcf,
-                                  {
-                                    [sty.freeBoxtimelineSelected__kBcf75BwG]:
-                                      hasVariant(
-                                        variants,
-                                        "timelineSelected",
-                                        "timelineSelected"
-                                      ),
-                                  }
-                                )}
-                              >
-                                {(
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.selectedItemsContainer,
+                              {
+                                [sty.selectedItemsContainerpostType_isActive]:
+                                  hasVariant(variants, "postType", "isActive"),
+                                [sty.selectedItemsContainerpostType_isActive_timelineSelected]:
                                   hasVariant(
                                     variants,
                                     "postType",
@@ -1041,35 +1320,55 @@ function PlasmicActionBar__RenderFunc(props: {
                                     variants,
                                     "timelineSelected",
                                     "timelineSelected"
+                                  ),
+                                [sty.selectedItemsContainerpostType_isEdit]:
+                                  hasVariant(variants, "postType", "isEdit"),
+                                [sty.selectedItemsContainerpostType_isEdit_timelineSelected]:
+                                  hasVariant(variants, "postType", "isEdit") &&
+                                  hasVariant(
+                                    variants,
+                                    "timelineSelected",
+                                    "timelineSelected"
+                                  ),
+                                [sty.selectedItemsContainertimelineSelected]:
+                                  hasVariant(
+                                    variants,
+                                    "timelineSelected",
+                                    "timelineSelected"
+                                  ),
+                              }
+                            )}
+                          >
+                            {(
+                              hasVariant(variants, "postType", "isActive") &&
+                              hasVariant(
+                                variants,
+                                "timelineSelected",
+                                "timelineSelected"
+                              )
+                                ? true
+                                : hasVariant(variants, "postType", "isEdit") &&
+                                  hasVariant(
+                                    variants,
+                                    "timelineSelected",
+                                    "timelineSelected"
                                   )
-                                    ? false
-                                    : true
-                                )
-                                  ? p.renderPlasmicSlot({
-                                      defaultContents: (
-                                        <IconPlusIcon
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.svg__niToo
-                                          )}
-                                          role={"img"}
-                                        />
-                                      ),
-
-                                      value: args.slot,
-                                    })
-                                  : null}
-                                {p.renderPlasmicSlot({
-                                  defaultContents: "Metric",
-                                  value: args.text2,
-                                  className: classNames(sty.slotTargetText2, {
-                                    [sty.slotTargetText2postType_isActive]:
-                                      hasVariant(
-                                        variants,
-                                        "postType",
-                                        "isActive"
-                                      ),
-                                    [sty.slotTargetText2postType_isActive_timelineSelected]:
+                                ? true
+                                : false
+                            ) ? (
+                              <button
+                                data-plasmic-name={"button"}
+                                data-plasmic-override={overrides.button}
+                                className={classNames(
+                                  projectcss.button,
+                                  sty.button,
+                                  {
+                                    [sty.buttonpostType_isActive]: hasVariant(
+                                      variants,
+                                      "postType",
+                                      "isActive"
+                                    ),
+                                    [sty.buttonpostType_isActive_timelineSelected]:
                                       hasVariant(
                                         variants,
                                         "postType",
@@ -1080,55 +1379,47 @@ function PlasmicActionBar__RenderFunc(props: {
                                         "timelineSelected",
                                         "timelineSelected"
                                       ),
-                                    [sty.slotTargetText2timelineSelected]:
+                                    [sty.buttonpostType_isEdit]: hasVariant(
+                                      variants,
+                                      "postType",
+                                      "isEdit"
+                                    ),
+                                    [sty.buttonpostType_isEdit_timelineSelected]:
+                                      hasVariant(
+                                        variants,
+                                        "postType",
+                                        "isEdit"
+                                      ) &&
                                       hasVariant(
                                         variants,
                                         "timelineSelected",
                                         "timelineSelected"
                                       ),
-                                  }),
-                                })}
-
-                                {p.renderPlasmicSlot({
-                                  defaultContents: (
-                                    <IconCloseIcon
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.svg__kMNxX
-                                      )}
-                                      role={"img"}
-                                    />
-                                  ),
-
-                                  value: args.children,
-                                  className: classNames(sty.slotTargetChildren),
-                                })}
-                              </p.Stack>
-                            </button>
-                          ) : null}
-                          {(
-                            hasVariant(variants, "postType", "isActive") &&
-                            hasVariant(
-                              variants,
-                              "timelineSelected",
-                              "timelineSelected"
-                            )
-                              ? true
-                              : true
-                          ) ? (
-                            <button
-                              data-plasmic-name={"button2"}
-                              data-plasmic-override={overrides.button2}
-                              className={classNames(
-                                projectcss.button,
-                                sty.button2,
-                                {
-                                  [sty.button2postType_isActive]: hasVariant(
-                                    variants,
-                                    "postType",
-                                    "isActive"
-                                  ),
-                                  [sty.button2postType_isActive_timelineSelected]:
+                                    [sty.buttontimelineSelected]: hasVariant(
+                                      variants,
+                                      "timelineSelected",
+                                      "timelineSelected"
+                                    ),
+                                  }
+                                )}
+                              >
+                                <p.Stack
+                                  as={"div"}
+                                  hasGap={true}
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.freeBox__kBcf,
+                                    {
+                                      [sty.freeBoxtimelineSelected__kBcf75BwG]:
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        ),
+                                    }
+                                  )}
+                                >
+                                  {(
                                     hasVariant(
                                       variants,
                                       "postType",
@@ -1138,70 +1429,131 @@ function PlasmicActionBar__RenderFunc(props: {
                                       variants,
                                       "timelineSelected",
                                       "timelineSelected"
+                                    )
+                                      ? false
+                                      : hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isEdit"
+                                        ) &&
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        )
+                                      ? false
+                                      : true
+                                  )
+                                    ? p.renderPlasmicSlot({
+                                        defaultContents: (
+                                          <IconPlusIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__niToo
+                                            )}
+                                            role={"img"}
+                                          />
+                                        ),
+
+                                        value: args.slot,
+                                      })
+                                    : null}
+                                  {p.renderPlasmicSlot({
+                                    defaultContents: "Metric",
+                                    value: args.text2,
+                                    className: classNames(sty.slotTargetText2, {
+                                      [sty.slotTargetText2postType_isActive]:
+                                        hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isActive"
+                                        ),
+                                      [sty.slotTargetText2postType_isActive_timelineSelected]:
+                                        hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isActive"
+                                        ) &&
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        ),
+                                      [sty.slotTargetText2postType_isEdit]:
+                                        hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isEdit"
+                                        ),
+                                      [sty.slotTargetText2postType_isEdit_timelineSelected]:
+                                        hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isEdit"
+                                        ) &&
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        ),
+                                      [sty.slotTargetText2timelineSelected]:
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        ),
+                                    }),
+                                  })}
+
+                                  {p.renderPlasmicSlot({
+                                    defaultContents: (
+                                      <IconCloseIcon
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.svg__kMNxX
+                                        )}
+                                        role={"img"}
+                                      />
                                     ),
-                                  [sty.button2timelineSelected]: hasVariant(
-                                    variants,
-                                    "timelineSelected",
-                                    "timelineSelected"
-                                  ),
-                                }
-                              )}
-                            >
-                              <p.Stack
-                                as={"div"}
-                                hasGap={true}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.freeBox__kUgK,
-                                  {
-                                    [sty.freeBoxtimelineSelected__kUgK75BwG]:
-                                      hasVariant(
-                                        variants,
-                                        "timelineSelected",
-                                        "timelineSelected"
-                                      ),
-                                  }
-                                )}
-                              >
-                                {(
-                                  hasVariant(
-                                    variants,
-                                    "postType",
-                                    "isActive"
-                                  ) &&
+
+                                    value: args.children,
+                                    className: classNames(
+                                      sty.slotTargetChildren
+                                    ),
+                                  })}
+                                </p.Stack>
+                              </button>
+                            ) : null}
+                            {(
+                              hasVariant(variants, "postType", "isActive") &&
+                              hasVariant(
+                                variants,
+                                "timelineSelected",
+                                "timelineSelected"
+                              )
+                                ? true
+                                : hasVariant(variants, "postType", "isEdit") &&
                                   hasVariant(
                                     variants,
                                     "timelineSelected",
                                     "timelineSelected"
                                   )
-                                    ? false
-                                    : true
-                                )
-                                  ? p.renderPlasmicSlot({
-                                      defaultContents: (
-                                        <IconPlusIcon
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.svg__i1Wq6
-                                          )}
-                                          role={"img"}
-                                        />
-                                      ),
-
-                                      value: args.slot2,
-                                    })
-                                  : null}
-                                {p.renderPlasmicSlot({
-                                  defaultContents: "Metric",
-                                  value: args.text3,
-                                  className: classNames(sty.slotTargetText3, {
-                                    [sty.slotTargetText3postType_isActive]:
-                                      hasVariant(
-                                        variants,
-                                        "postType",
-                                        "isActive"
-                                      ),
-                                    [sty.slotTargetText3postType_isActive_timelineSelected]:
+                                ? true
+                                : true
+                            ) ? (
+                              <button
+                                data-plasmic-name={"button2"}
+                                data-plasmic-override={overrides.button2}
+                                className={classNames(
+                                  projectcss.button,
+                                  sty.button2,
+                                  {
+                                    [sty.button2postType_isActive]: hasVariant(
+                                      variants,
+                                      "postType",
+                                      "isActive"
+                                    ),
+                                    [sty.button2postType_isActive_timelineSelected]:
                                       hasVariant(
                                         variants,
                                         "postType",
@@ -1212,65 +1564,230 @@ function PlasmicActionBar__RenderFunc(props: {
                                         "timelineSelected",
                                         "timelineSelected"
                                       ),
-                                    [sty.slotTargetText3timelineSelected]:
+                                    [sty.button2postType_isEdit]: hasVariant(
+                                      variants,
+                                      "postType",
+                                      "isEdit"
+                                    ),
+                                    [sty.button2postType_isEdit_timelineSelected]:
+                                      hasVariant(
+                                        variants,
+                                        "postType",
+                                        "isEdit"
+                                      ) &&
                                       hasVariant(
                                         variants,
                                         "timelineSelected",
                                         "timelineSelected"
                                       ),
-                                  }),
-                                })}
+                                    [sty.button2timelineSelected]: hasVariant(
+                                      variants,
+                                      "timelineSelected",
+                                      "timelineSelected"
+                                    ),
+                                  }
+                                )}
+                              >
+                                <p.Stack
+                                  as={"div"}
+                                  hasGap={true}
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.freeBox__kUgK,
+                                    {
+                                      [sty.freeBoxtimelineSelected__kUgK75BwG]:
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        ),
+                                    }
+                                  )}
+                                >
+                                  {(
+                                    hasVariant(
+                                      variants,
+                                      "postType",
+                                      "isActive"
+                                    ) &&
+                                    hasVariant(
+                                      variants,
+                                      "timelineSelected",
+                                      "timelineSelected"
+                                    )
+                                      ? false
+                                      : hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isEdit"
+                                        ) &&
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        )
+                                      ? false
+                                      : true
+                                  )
+                                    ? p.renderPlasmicSlot({
+                                        defaultContents: (
+                                          <IconPlusIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__i1Wq6
+                                            )}
+                                            role={"img"}
+                                          />
+                                        ),
 
-                                {p.renderPlasmicSlot({
-                                  defaultContents: (
-                                    <IconCloseIcon
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.svg__zAeRn
-                                      )}
-                                      role={"img"}
-                                    />
-                                  ),
+                                        value: args.slot2,
+                                      })
+                                    : null}
+                                  {p.renderPlasmicSlot({
+                                    defaultContents: "Metric",
+                                    value: args.text3,
+                                    className: classNames(sty.slotTargetText3, {
+                                      [sty.slotTargetText3postType_isActive]:
+                                        hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isActive"
+                                        ),
+                                      [sty.slotTargetText3postType_isActive_timelineSelected]:
+                                        hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isActive"
+                                        ) &&
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        ),
+                                      [sty.slotTargetText3postType_isEdit]:
+                                        hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isEdit"
+                                        ),
+                                      [sty.slotTargetText3postType_isEdit_timelineSelected]:
+                                        hasVariant(
+                                          variants,
+                                          "postType",
+                                          "isEdit"
+                                        ) &&
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        ),
+                                      [sty.slotTargetText3timelineSelected]:
+                                        hasVariant(
+                                          variants,
+                                          "timelineSelected",
+                                          "timelineSelected"
+                                        ),
+                                    }),
+                                  })}
 
-                                  value: args.children2,
-                                  className: classNames(
-                                    sty.slotTargetChildren2
-                                  ),
-                                })}
-                              </p.Stack>
-                            </button>
-                          ) : null}
-                        </p.Stack>
-                      ) : null}
-                    </p.Stack>
-                  ) : null}
-                </div>
+                                  {p.renderPlasmicSlot({
+                                    defaultContents: (
+                                      <IconCloseIcon
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.svg__zAeRn
+                                        )}
+                                        role={"img"}
+                                      />
+                                    ),
 
+                                    value: args.children2,
+                                    className: classNames(
+                                      sty.slotTargetChildren2
+                                    ),
+                                  })}
+                                </p.Stack>
+                              </button>
+                            ) : null}
+                          </p.Stack>
+                        ) : null}
+                      </p.Stack>
+                    ) : null}
+                  </div>
+                ) : null}
                 {(
-                  hasVariant(variants, "postType", "isActive") ? true : false
+                  hasVariant(variants, "postType", "isEdit")
+                    ? true
+                    : hasVariant(variants, "postType", "isActive")
+                    ? true
+                    : false
                 ) ? (
-                  <div
+                  <p.Stack
+                    as={"div"}
+                    hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox__d8M3B, {
                       [sty.freeBoxpostType_isActive__d8M3BDjN9X]: hasVariant(
                         variants,
                         "postType",
                         "isActive"
                       ),
+                      [sty.freeBoxpostType_isEdit__d8M3Br755F]: hasVariant(
+                        variants,
+                        "postType",
+                        "isEdit"
+                      ),
                     })}
                   >
+                    {(
+                      hasVariant(variants, "postType", "isActive") ? true : true
+                    ) ? (
+                      <Button
+                        data-plasmic-name={"cancel"}
+                        data-plasmic-override={overrides.cancel}
+                        buttonStyle={
+                          hasVariant(variants, "postType", "isEdit")
+                            ? ("white" as const)
+                            : undefined
+                        }
+                        className={classNames("__wab_instance", sty.cancel, {
+                          [sty.cancelpostType_isActive]: hasVariant(
+                            variants,
+                            "postType",
+                            "isActive"
+                          ),
+                          [sty.cancelpostType_isEdit]: hasVariant(
+                            variants,
+                            "postType",
+                            "isEdit"
+                          ),
+                        })}
+                        count={"1"}
+                        text2={
+                          hasVariant(variants, "postType", "isEdit")
+                            ? "Cancel"
+                            : "Button"
+                        }
+                      />
+                    ) : null}
+
                     <Button
                       data-plasmic-name={"post"}
                       data-plasmic-override={overrides.post}
                       buttonFeatures={
                         hasVariant(variants, "mobileLayout", "mobileLayout")
                           ? []
+                          : hasVariant(variants, "postType", "isEdit") &&
+                            hasVariant(globalVariants, "screen", "mobile")
+                          ? ["nonFullWidth"]
                           : hasVariant(variants, "postType", "isActive") &&
                             hasVariant(globalVariants, "screen", "mobile")
                           ? ["nonFullWidth"]
                           : []
                       }
                       buttonStyle={
-                        hasVariant(variants, "postType", "isActive")
+                        hasVariant(variants, "postType", "isEdit")
+                          ? undefined
+                          : hasVariant(variants, "postType", "isActive")
                           ? undefined
                           : ("primaryPurple" as const)
                       }
@@ -1295,6 +1812,21 @@ function PlasmicActionBar__RenderFunc(props: {
                             "timelineSelected",
                             "timelineSelected"
                           ),
+                        [sty.postpostType_isEdit]: hasVariant(
+                          variants,
+                          "postType",
+                          "isEdit"
+                        ),
+                        [sty.postpostType_isEdit_error_hasError]:
+                          hasVariant(variants, "postType", "isEdit") &&
+                          hasVariant(variants, "error", "hasError"),
+                        [sty.postpostType_isEdit_timelineSelected]:
+                          hasVariant(variants, "postType", "isEdit") &&
+                          hasVariant(
+                            variants,
+                            "timelineSelected",
+                            "timelineSelected"
+                          ),
                       })}
                       count={"1"}
                       isDisabled={
@@ -1305,9 +1837,21 @@ function PlasmicActionBar__RenderFunc(props: {
                           "timelineSelected"
                         )
                           ? undefined
+                          : hasVariant(variants, "postType", "isEdit") &&
+                            hasVariant(variants, "error", "hasError")
+                          ? undefined
                           : hasVariant(variants, "postType", "isActive") &&
                             hasVariant(variants, "error", "hasError")
                           ? undefined
+                          : hasVariant(variants, "postType", "isEdit") &&
+                            hasVariant(
+                              variants,
+                              "timelineSelected",
+                              "timelineSelected"
+                            )
+                          ? undefined
+                          : hasVariant(variants, "postType", "isEdit")
+                          ? true
                           : hasVariant(variants, "postType", "isActive")
                           ? true
                           : true
@@ -1318,14 +1862,40 @@ function PlasmicActionBar__RenderFunc(props: {
                           role={"img"}
                         />
                       }
-                      text2={"Post"}
+                      text2={
+                        <div
+                          data-plasmic-name={"text23"}
+                          data-plasmic-override={overrides.text23}
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text23,
+                            {
+                              [sty.text23postType_isActive]: hasVariant(
+                                variants,
+                                "postType",
+                                "isActive"
+                              ),
+                              [sty.text23postType_isEdit]: hasVariant(
+                                variants,
+                                "postType",
+                                "isEdit"
+                              ),
+                            }
+                          )}
+                        >
+                          {hasVariant(variants, "postType", "isEdit")
+                            ? "Save"
+                            : "Post"}
+                        </div>
+                      }
                     >
                       <IconSend2Icon
                         className={classNames(projectcss.all, sty.svg__ljFz)}
                         role={"img"}
                       />
                     </Button>
-                  </div>
+                  </p.Stack>
                 ) : null}
               </p.Stack>
             ) : null}
@@ -1341,6 +1911,8 @@ const PlasmicDescendants = {
     "root",
     "form",
     "contentPost",
+    "userName",
+    "date",
     "editorContainer",
     "title",
     "description",
@@ -1356,11 +1928,15 @@ const PlasmicDescendants = {
     "selectedItemsContainer",
     "button",
     "button2",
+    "cancel",
     "post",
+    "text23",
   ],
   form: [
     "form",
     "contentPost",
+    "userName",
+    "date",
     "editorContainer",
     "title",
     "description",
@@ -1371,7 +1947,9 @@ const PlasmicDescendants = {
     "errorMessage",
     "characterLimitIndicator",
   ],
-  contentPost: ["contentPost"],
+  contentPost: ["contentPost", "userName", "date"],
+  userName: ["userName"],
+  date: ["date"],
   editorContainer: ["editorContainer", "title", "description"],
   title: ["title"],
   description: ["description"],
@@ -1387,7 +1965,9 @@ const PlasmicDescendants = {
   selectedItemsContainer: ["selectedItemsContainer", "button", "button2"],
   button: ["button"],
   button2: ["button2"],
-  post: ["post"],
+  cancel: ["cancel"],
+  post: ["post", "text23"],
+  text23: ["text23"],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1396,6 +1976,8 @@ type NodeDefaultElementType = {
   root: "div";
   form: "form";
   contentPost: typeof ContentPost;
+  userName: "span";
+  date: "span";
   editorContainer: "div";
   title: "textarea";
   description: "textarea";
@@ -1411,7 +1993,9 @@ type NodeDefaultElementType = {
   selectedItemsContainer: "div";
   button: "button";
   button2: "button";
+  cancel: typeof Button;
   post: typeof Button;
+  text23: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1473,6 +2057,8 @@ export const PlasmicActionBar = Object.assign(
     // Helper components rendering sub-elements
     form: makeNodeComponent("form"),
     contentPost: makeNodeComponent("contentPost"),
+    userName: makeNodeComponent("userName"),
+    date: makeNodeComponent("date"),
     editorContainer: makeNodeComponent("editorContainer"),
     title: makeNodeComponent("title"),
     description: makeNodeComponent("description"),
@@ -1488,7 +2074,9 @@ export const PlasmicActionBar = Object.assign(
     selectedItemsContainer: makeNodeComponent("selectedItemsContainer"),
     button: makeNodeComponent("button"),
     button2: makeNodeComponent("button2"),
+    cancel: makeNodeComponent("cancel"),
     post: makeNodeComponent("post"),
+    text23: makeNodeComponent("text23"),
 
     // Metadata about props expected for PlasmicActionBar
     internalVariantProps: PlasmicActionBar__VariantProps,

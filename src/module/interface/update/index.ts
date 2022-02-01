@@ -59,7 +59,7 @@ export interface IUpdateUpdate {
   title: string;
   text: string;
   id: string;
-  image: string | null;
+  image?: string | null;
   ventureId: string;
   timelineId: string;
   token: string | null;
