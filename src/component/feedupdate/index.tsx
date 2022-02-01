@@ -6,7 +6,7 @@ import {
 } from "component/plasmic/shared/PlasmicFeedUpdate";
 import { AuthContext } from "context/AuthContext";
 import { VentureContext } from "context/VentureContext";
-import { getUniqueListBy, resourceOwnership } from "module/helpers";
+import { getUniqueListBy, hashUpdate, resourceOwnership } from "module/helpers";
 import {
   useUpdatesByTimeline,
   useUpdatesByTimelineIds,
@@ -21,7 +21,6 @@ import { IUpdate } from "module/interface/update";
 import { IUser } from "module/interface/user";
 import { TimelineContext } from "context/TimelineContext";
 import { useContext, useEffect, useMemo } from "react";
-import { Md5 } from "ts-md5";
 
 interface FeedUpdateProps extends DefaultFeedUpdateProps {
   user: IUser;
@@ -35,13 +34,11 @@ function deduplicateUpdates(updates: IUpdate[]) {
   const seen: Record<string, boolean> = {};
   return updates
     .filter((update: IUpdate) => {
-      const id = `${Math.round(Number(update.id) / 1000000000)}-${Md5.hashStr(
-        JSON.stringify({ title: update.title, text: update.text })
-      )}`;
-      if (seen[id]) {
+      const hash = hashUpdate(update);
+      if (seen[hash]) {
         return false;
       }
-      seen[id] = true;
+      seen[hash] = true;
       return true;
     })
     .sort((a, b) => b.id.localeCompare(a.id)); // sort in descending order

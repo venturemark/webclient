@@ -42,6 +42,7 @@ import { get, storeTitle } from "module/store";
 
 interface ActionBarProps extends DefaultActionBarProps {
   contentPost?: ContentPostProps;
+  key?: string;
 }
 
 const useTitle = (initialTitle: string) => {

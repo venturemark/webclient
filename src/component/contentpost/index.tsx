@@ -11,7 +11,7 @@ import TimelineLink from "component/timelinelink";
 import { AuthContext } from "context/AuthContext";
 import { UserContext } from "context/UserContext";
 import { VentureContext } from "context/VentureContext";
-import { getUniqueListBy } from "module/helpers";
+import { getUniqueListBy, hashUpdate } from "module/helpers";
 import { useMessages } from "module/hook/message";
 import { useDeleteUpdate } from "module/hook/update";
 import { useTimelineMembers, useVentureMembers } from "module/hook/user";
@@ -88,13 +88,7 @@ function ContentPost(props: ContentPostProps) {
   });
 
   const updateTimelines = allUpdates
-    ?.filter(
-      (u: IUpdate) =>
-        Math.round(Number(u.id) / 1000000000) ===
-          Math.round(Number(update?.id ?? 0) / 1000000000) &&
-        u.text === update?.text &&
-        u.title === update?.title
-    )
+    ?.filter((u: IUpdate) => update && hashUpdate(update) === hashUpdate(u))
     .map((update: IUpdate) =>
       timelines.filter(
         (timeline: ITimeline) => timeline.id === update.timelineId
