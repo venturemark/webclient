@@ -79,10 +79,11 @@ function AddEditVenture(props: AddEditVentureProps) {
           id: ventureId,
           name: data.ventureName,
           desc: data.ventureDescription,
-          url: data.url,
+          url: data.url || undefined,
           membersWrite: data.membersWrite,
           successUrl: `/${ventureId}/feed`,
           token,
+          previous: currentVenture,
         },
         {
           onSuccess() {
@@ -95,7 +96,7 @@ function AddEditVenture(props: AddEditVentureProps) {
         {
           name: data.ventureName,
           desc: data.ventureDescription,
-          url: data.url,
+          url: data.url || undefined,
           membersWrite: data.membersWrite,
           token,
           redirectOnSuccess: true,

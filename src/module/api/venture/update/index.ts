@@ -29,28 +29,32 @@ export async function Update(
 
   obj.getMetadataMap().set(key.VentureID, ventureUpdate.id);
 
-  if (ventureUpdate.name) {
-    nameObjJsnPatch.setOpe("replace");
-    nameObjJsnPatch.setPat("/obj/property/name");
-    nameObjJsnPatch.setVal(ventureUpdate.name);
-  }
+  // name
+  nameObjJsnPatch.setOpe("replace");
+  nameObjJsnPatch.setPat("/obj/property/name");
+  nameObjJsnPatch.setVal(ventureUpdate.name);
 
-  if (ventureUpdate.desc) {
-    descriptionObjJsnPatch.setOpe("replace");
-    descriptionObjJsnPatch.setPat("/obj/property/desc");
-    descriptionObjJsnPatch.setVal(ventureUpdate.desc);
-  }
+  // desc
+  descriptionObjJsnPatch.setOpe("replace");
+  descriptionObjJsnPatch.setPat("/obj/property/desc");
+  descriptionObjJsnPatch.setVal(ventureUpdate.desc);
 
-  if (ventureUpdate.url) {
-    urlObjJsnPatch.setOpe("replace");
+  // url
+  if (ventureUpdate.url !== undefined) {
+    urlObjJsnPatch.setOpe(
+      ventureUpdate.previous?.url === undefined ? "add" : "replace"
+    );
     urlObjJsnPatch.setPat("/obj/property/link/0/addr");
     urlObjJsnPatch.setVal(ventureUpdate.url);
     patchList.push(urlObjJsnPatch);
   }
 
-  {
+  // permission model
+  if (ventureUpdate.membersWrite !== undefined) {
     const patch = new UpdateI_Obj_Jsnpatch();
-    patch.setOpe("replace");
+    patch.setOpe(
+      ventureUpdate.previous?.membersWrite === undefined ? "add" : "replace"
+    );
     patch.setPat(`/obj/metadata/${key.PermissionModel.replace("/", "~1")}`);
     patch.setVal(ventureUpdate.membersWrite ? "writer" : "reader");
     patchList.push(patch);

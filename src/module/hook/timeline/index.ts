@@ -23,7 +23,7 @@ export function useTimelinesByUser(params: ISearchTimelinesbyUserId) {
 
 export function useTimelinesByVentureId(params: ISearchTimelinesByVentureId) {
   return useQuery<ITimeline[], ErrorResponse>(
-    [`timelines`, params.ventureId],
+    [`timelines`, params.ventureId, params.userId],
     () => api.API.Timeline.Search(params),
     { enabled: Boolean(params.ventureId) }
   );

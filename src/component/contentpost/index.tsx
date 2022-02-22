@@ -169,7 +169,7 @@ function ContentPost(props: ContentPostProps) {
       description={{
         as: ComposeEditor,
         props: {
-          setEditorShape: () => null,
+          setContent: () => null,
           readOnly: true,
           editor,
           editorShape,

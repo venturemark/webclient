@@ -51,9 +51,11 @@ export async function Update(
     patchList.push(descriptionObjJsnPatch);
   }
 
-  if (updateTimeline.icon) {
+  if (updateTimeline.icon !== undefined) {
     const iconObjJsnPatch = new UpdateI_Obj_Jsnpatch();
-    iconObjJsnPatch.setOpe(updateTimeline.previous?.icon ? "replace" : "add");
+    iconObjJsnPatch.setOpe(
+      updateTimeline.previous?.icon !== undefined ? "replace" : "add"
+    );
     iconObjJsnPatch.setPat(
       `/obj/metadata/${key.TimelineIcon.replace("/", "~1")}`
     );
@@ -61,17 +63,21 @@ export async function Update(
     patchList.push(iconObjJsnPatch);
   }
 
-  if (updateTimeline.membersWrite) {
+  if (updateTimeline.membersWrite !== undefined) {
     const patch = new UpdateI_Obj_Jsnpatch();
-    patch.setOpe("replace");
+    patch.setOpe(
+      updateTimeline.previous?.membersWrite !== undefined ? "replace" : "add"
+    );
     patch.setPat(`/obj/metadata/${key.PermissionModel.replace("/", "~1")}`);
     patch.setVal(updateTimeline.membersWrite ? "writer" : "reader");
     patchList.push(patch);
   }
 
-  if (updateTimeline.visibility) {
+  if (updateTimeline.visibility !== undefined) {
     const patch = new UpdateI_Obj_Jsnpatch();
-    patch.setOpe(updateTimeline.previous?.visibility ? "replace" : "add");
+    patch.setOpe(
+      updateTimeline.previous?.visibility !== undefined ? "replace" : "add"
+    );
     patch.setPat(`/obj/metadata/${key.ResourceVisibility.replace("/", "~1")}`);
     patch.setVal(updateTimeline.visibility);
     patchList.push(patch);

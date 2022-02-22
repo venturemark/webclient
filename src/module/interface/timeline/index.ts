@@ -7,7 +7,7 @@ export interface ITimeline {
   ventureId: string;
   userId?: string;
   icon?: string;
-  membersWrite: boolean;
+  membersWrite?: boolean;
   lastUpdate?: string;
   id: string;
   date?: string;
@@ -21,6 +21,7 @@ export interface ISearchTimelinesbyUserId {
 }
 
 export interface ISearchTimelinesByVentureId {
+  userId?: string;
   ventureId?: string;
   token: string | null;
 }

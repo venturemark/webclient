@@ -2,11 +2,12 @@ import { TextareaAutosize, TextareaAutosizeProps } from "@material-ui/core";
 import { MultiChoiceArg } from "@plasmicapp/react-web";
 import { ContentPostProps } from "component/contentpost";
 import { CountIndicator } from "component/countindicator";
+import { Search } from "@venturemark/numnum";
 import {
   ComposeEditor,
   createEditor,
   EditorProps,
-  useEditor,
+  EditorShape,
 } from "component/editor";
 import {
   isListActive,
@@ -14,6 +15,7 @@ import {
   toggleList,
 } from "component/editor/common/functions";
 import { UnorderedListElement } from "component/editor/common/types";
+import { initialValueEmpty } from "component/editor/config/initialValues";
 import { EmojiPicker } from "component/emojipicker";
 import { TimelineSelect } from "component/materialui/select";
 import {
@@ -25,8 +27,10 @@ import { TimelineContext } from "context/TimelineContext";
 import { VentureContext } from "context/VentureContext";
 import "emoji-mart/css/emoji-mart.css";
 import useScript from "module/hook/ui/useScript";
+import { useSessionStorage } from "module/hook/ui/useSessionStorage";
 import { useCreateUpdate } from "module/hook/update";
 import { ICreateUpdate } from "module/interface/update";
+import { serialize } from "module/serialize";
 import {
   FocusEvent,
   useCallback,
@@ -36,31 +40,33 @@ import {
   useRef,
   useState,
 } from "react";
-import { Editor, Element, Point, Range, Transforms } from "slate";
+import { Descendant, Editor, Element, Point, Range, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
-import { get, storeTitle } from "module/store";
 
 interface ActionBarProps extends DefaultActionBarProps {
   contentPost?: ContentPostProps;
   key?: string;
 }
 
-const useTitle = (initialTitle: string) => {
-  const savedTitle = get("composeEditor.title");
-  const [title, setTitle] = useState(savedTitle || initialTitle);
-
-  useEffect(() => {
-    storeTitle(title);
-  }, [title]);
-  return { title, setTitle };
-};
-
 export default function ActionBar(props: ActionBarProps) {
   const { currentVenture, currentVentureTimelines } =
     useContext(VentureContext);
   const { currentTimeline } = useContext(TimelineContext);
-  const { editorShape, setEditorShape } = useEditor();
-  const { title, setTitle } = useTitle("");
+
+  const [content, setContent] = useSessionStorage<Descendant[]>(
+    "composeEditor.content",
+    initialValueEmpty
+  );
+  const serializedValue = serialize(content);
+  const editorShape: EditorShape = {
+    value: content,
+    string: serializedValue,
+    numberValue: Search(serializedValue)[0],
+    error: undefined,
+    hasContent: serializedValue.trim().length ? "hasContent" : undefined,
+    progress: serializedValue.length,
+  };
+  const [title, setTitle] = useSessionStorage("composeEditor.title", "");
   const { token } = useContext(AuthContext);
 
   const [selectedTimelines, setSelectedTimelines] = useState(
@@ -68,7 +74,10 @@ export default function ActionBar(props: ActionBarProps) {
   );
   const hasTimelines = currentVentureTimelines.length > 0;
 
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(
+    props.postType !== "isPosted" &&
+      Boolean(title.length || serializedValue.length)
+  );
   const { mutateAsync: createUpdate } = useCreateUpdate();
 
   const [touched, setTouched] = useState({
@@ -249,14 +258,7 @@ export default function ActionBar(props: ActionBarProps) {
       );
 
       //reset
-      setEditorShape({
-        value: [],
-        string: "",
-        numberValue: 0,
-        error: undefined,
-        hasContent: undefined,
-        progress: 0,
-      });
+      setContent(initialValueEmpty);
       setTitle("");
       resetEditorSettings(editor);
 
@@ -265,6 +267,7 @@ export default function ActionBar(props: ActionBarProps) {
         description: false,
       });
       editorSelection.current = null;
+      setIsActive(false);
     } catch (error) {
       if (typeof error === "object" && error !== null) {
         setError((error as any).message);
@@ -386,7 +389,7 @@ export default function ActionBar(props: ActionBarProps) {
     "aria-label": "update description",
     editor,
     editorShape,
-    setEditorShape,
+    setContent,
     onFocus: onFocusEditor,
     onBlur: onBlurEditor,
   };

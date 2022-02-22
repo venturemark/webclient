@@ -42,7 +42,11 @@ export async function Search(
         let timelines = timelinesPb.map((timelinePb) => {
           let propertiesPb = timelinePb.getProperty();
           let metaPb = timelinePb.getMetadataMap();
-          let membersWrite = metaPb.get(key.PermissionModel) === "writer";
+          let permissionModel = metaPb.get(key.PermissionModel);
+          const membersWrite =
+            permissionModel === undefined
+              ? undefined
+              : permissionModel === "writer";
           let lastUpdate = metaPb.get(key.TimelineLastUpdate);
           let visibility = metaPb.get(key.ResourceVisibility);
           let icon = metaPb.get(key.TimelineIcon);
@@ -68,6 +72,7 @@ export async function Search(
           };
           return timeline;
         });
+        console.log(timelineSearch, timelines);
         resolve(timelines);
       }
     });

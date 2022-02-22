@@ -81,7 +81,7 @@ export function calculateSlug(name: string): string {
 
 type RestrictedResource = {
   userRole?: UserRole;
-  membersWrite: boolean;
+  membersWrite?: boolean;
 };
 
 export function resourceOwnership(

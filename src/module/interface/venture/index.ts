@@ -5,7 +5,7 @@ export interface IVenture {
   name: string;
   desc: string;
   url?: string;
-  membersWrite: boolean;
+  membersWrite?: boolean;
   userRole?: UserRole;
 }
 
@@ -28,7 +28,7 @@ export interface IDeleteVenture {
 export interface ICreateVenture {
   name: string;
   desc: string;
-  url: string;
+  url?: string;
   membersWrite: boolean;
   redirectOnSuccess: boolean;
   token: string | null;
@@ -38,8 +38,9 @@ export interface IUpdateVenture {
   id: string;
   name: string;
   desc: string;
-  url: string;
-  membersWrite: boolean;
+  url?: string;
+  membersWrite?: boolean;
   successUrl?: string;
   token: string | null;
+  previous?: IVenture;
 }

@@ -17,7 +17,7 @@ import {
   useDeleteInvite,
   useInvites,
 } from "module/hook/invite";
-import { useDeleteRole } from "module/hook/role";
+import { useDeleteRole, useUpdateRole } from "module/hook/role";
 import { IInvite } from "module/interface/invite";
 import { TimelineContext } from "context/TimelineContext";
 import { useUpdateTimeline } from "module/hook/timeline";
@@ -35,6 +35,14 @@ function copyURL(url: string) {
 
 const emailRegex =
   /^\s*(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;
+
+const visibilityToTypeMap: {
+  [key: string]: "members" | "_public" | "_private";
+} = {
+  public: "_public",
+  private: "_private",
+  member: "members",
+};
 
 type FormData = {
   email: string;
@@ -135,6 +143,35 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
     }
   };
 
+  const { mutate: updateRole } = useUpdateRole();
+
+  function handleUpdateMemberRole(roleId: string, role: string) {
+    const isTimelineRole = currentTimelineMembers.some(
+      (m) => m.role.id === roleId
+    );
+    const isVentureRole = currentVentureMembers.some(
+      (m) => m.role.id === roleId
+    );
+
+    if (isTimelineRole) {
+      updateRole({
+        resource: "timeline",
+        id: roleId,
+        ventureId,
+        token,
+        role,
+      });
+    } else if (isVentureRole) {
+      updateRole({
+        resource: "venture",
+        id: roleId,
+        ventureId,
+        token,
+        role,
+      });
+    }
+  }
+
   const handleDeleteInvite = (inviteId: string) => {
     deleteInvite({
       id: inviteId,
@@ -144,31 +181,28 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
   };
 
   let isOwner: SingleBooleanChoiceArg<"isOwner"> = false;
-  if (currentTimeline && currentTimeline.userRole === "owner") {
+  if (
+    currentTimeline &&
+    ["owner", "admin"].includes(currentTimeline.userRole || "")
+  ) {
     isOwner = "isOwner";
-  } else if (currentVenture && currentVenture.userRole === "owner") {
+  } else if (
+    currentVenture &&
+    ["owner", "admin"].includes(currentVenture.userRole || "")
+  ) {
     isOwner = "isOwner";
   }
-
-  const visibilityToTypeMap: {
-    [key: string]: "members" | "_public" | "_private";
-  } = {
-    public: "_public",
-    private: "_private",
-    member: "members",
-  };
 
   const { mutate: updateTimeline } = useUpdateTimeline();
 
   function handleUpdateTimelineVisibility(visibility: string) {
-    if (!currentTimeline) return;
-    if (visibility === currentTimeline.visibility) return;
-
+    if (!currentTimeline || visibility === currentTimeline.visibility) return;
     updateTimeline({
       id: currentTimeline?.id,
       visibility,
       ventureId: currentTimeline?.ventureId,
       token,
+      previous: currentTimeline,
     });
   }
 
@@ -230,7 +264,7 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
               children: (
                 <>
                   <Select.Option value={"private"} children={"Private"} />
-                  <Select.Option value={"member"} children={"Member"} />
+                  {/*<Select.Option value={"member"} children={"Member"} />*/}
                   <Select.Option value={"public"} children={"Public"} />
                 </>
               ),
@@ -266,7 +300,13 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
                     userVariant={userVariant}
                     ventureTimeline={currentTimeline ? "isTimeline" : undefined}
                     isOwner={isOwner}
-                    handleClick={
+                    onUpdateMemberRole={
+                      isOwner
+                        ? (role: string) =>
+                            handleUpdateMemberRole(member.role.id, role)
+                        : undefined
+                    }
+                    onDeleteMemberRole={
                       isOwner
                         ? () => handleRemoveMemberRole(member.role.id)
                         : undefined
@@ -286,10 +326,10 @@ function Share_(props: ShareProps, ref: HTMLElementRefOf<"div">) {
                         currentTimeline ? "isTimeline" : undefined
                       }
                       isOwner={isOwner}
-                      handleClick={
+                      onDeleteInvite={
                         isOwner
                           ? () => handleDeleteInvite(invite.id)
-                          : undefined
+                          : () => null
                       }
                     />
                   );
