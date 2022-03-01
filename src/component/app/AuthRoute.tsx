@@ -10,10 +10,10 @@ type Props = RouteProps & {
 
 export function AuthRoute({ requiredAuth, requiredProfile }: Props) {
   const auth = useAuth();
-  const { data: userData, status: userStatus } = useCurrentUser({
+  const { data: userData = [], status: userStatus } = useCurrentUser({
     token: auth.token,
   });
-
+  const hasProfile = userData.length > 0;
   const returnTo = window.location.pathname + window.location.search;
   const loading = auth.loading || (requiredProfile && userStatus === "loading");
 
@@ -26,9 +26,9 @@ export function AuthRoute({ requiredAuth, requiredProfile }: Props) {
   } else if (requiredAuth === "unauthenticated" && auth.authenticated) {
     return <Navigate to="/" />;
   } else if (requiredProfile) {
-    if (requiredProfile === "exists" && !userData) {
+    if (requiredProfile === "exists" && !hasProfile) {
       return <Navigate to="/profile" state={{ returnTo }} />;
-    } else if (requiredProfile === "not-exists" && userData?.length) {
+    } else if (requiredProfile === "not-exists" && hasProfile) {
       return <Navigate to="/" />;
     }
   }

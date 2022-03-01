@@ -1,4 +1,4 @@
-export type UserRole = "owner" | "member";
+export type UserRole = "owner" | "member" | "admin";
 
 export interface Job {
   title?: string;
@@ -58,7 +58,7 @@ export interface IUpdateUser {
   mail?: string;
   lastUpdate?: Record<string, string>;
 
-  successUrl?: string;
+  successUrl?: string | number;
   token: string | null;
   previous?: IUser;
 }

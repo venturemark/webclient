@@ -174,7 +174,13 @@ export function useUpdateUser() {
         }
 
         //redirect on success
-        userUpdate.successUrl && navigate(userUpdate.successUrl);
+        if (userUpdate.successUrl) {
+          if (typeof userUpdate.successUrl === "string") {
+            navigate(userUpdate.successUrl);
+          } else {
+            navigate(userUpdate.successUrl);
+          }
+        }
       },
     }
   );

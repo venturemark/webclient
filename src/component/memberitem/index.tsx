@@ -8,17 +8,29 @@ interface MemberItemProps extends DefaultMemberItemProps {
   user: {
     name?: string;
   };
-  handleClick?: () => void;
+  onDeleteInvite?: () => void;
+  onDeleteMemberRole?: () => void;
+  onUpdateMemberRole?: (role: string) => void;
 }
 
 function MemberItem(props: MemberItemProps) {
-  const { user, handleClick, ...rest } = props;
+  const {
+    user,
+    onDeleteMemberRole,
+    onUpdateMemberRole,
+    onDeleteInvite,
+    ...rest
+  } = props;
 
+  let action: (() => void) | undefined = onDeleteMemberRole;
   let rename = "Remove member";
   if (props.userVariant === "isRequested") {
+    action = onDeleteInvite;
     rename = "Cancel invitation";
   } else if (props.userVariant === "isAdmin") {
     rename = "Remove admin";
+  } else if (props.userVariant === "isSelf") {
+    action = undefined;
   }
 
   return (
@@ -28,8 +40,11 @@ function MemberItem(props: MemberItemProps) {
         user,
       }}
       ownerSelect={{
+        wrap(node) {
+          return action ? node : null;
+        },
         props: {
-          onChange: handleClick,
+          onChange: action,
           "aria-label": "Member action",
           children: <Select.Option value={rename} children={rename} />,
         },

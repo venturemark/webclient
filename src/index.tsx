@@ -15,6 +15,7 @@ import { getConfig } from "module/auth";
 import { isDev } from "module/helpers";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PlasmicRootProvider } from "@plasmicapp/react-web";
 
 const ga4react = new GA4React("G-H891NY4GM6");
 
@@ -54,23 +55,25 @@ function Root() {
   };
 
   return (
-    <React.StrictMode>
-      <ToastContainer />
-      <Auth0Provider
-        domain={config.domain}
-        clientId={config.clientId}
-        audience={config.audience}
-        redirectUri={config.redirectUri}
-        useRefreshTokens={config.useRefreshTokens}
-        cacheLocation={config.cacheLocation}
-        onRedirectCallback={onRedirectCallback}
-      >
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <App />
-        </QueryClientProvider>
-      </Auth0Provider>
-    </React.StrictMode>
+    <PlasmicRootProvider>
+      <React.StrictMode>
+        <ToastContainer />
+        <Auth0Provider
+          domain={config.domain}
+          clientId={config.clientId}
+          audience={config.audience}
+          redirectUri={config.redirectUri}
+          useRefreshTokens={config.useRefreshTokens}
+          cacheLocation={config.cacheLocation}
+          onRedirectCallback={onRedirectCallback}
+        >
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <App />
+          </QueryClientProvider>
+        </Auth0Provider>
+      </React.StrictMode>
+    </PlasmicRootProvider>
   );
 }
 

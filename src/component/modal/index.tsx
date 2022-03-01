@@ -58,7 +58,7 @@ function Modal(props: ModalProps) {
   const { mutate: deleteVenture } = useDeleteVenture();
   const { mutate: archiveDeleteTimeline } = useArchiveDeleteTimeline();
 
-  const handleSave = (data: FormData) => {
+  const handleUpdateUser = (data: FormData) => {
     if (!data.name || !data.title || !user) {
       return;
     }
@@ -68,7 +68,7 @@ function Modal(props: ModalProps) {
         id: user.id,
         name: data.name,
         title: data.title,
-        successUrl: "/",
+        successUrl: -1,
         token: token,
       },
       {
@@ -106,7 +106,7 @@ function Modal(props: ModalProps) {
       {...rest}
       modalType={modalType}
       editProfile={{
-        onSubmit: handleSubmit(handleSave),
+        onSubmit: handleSubmit(handleUpdateUser),
       }}
       photoAvatar={{
         user,
@@ -155,24 +155,24 @@ function Modal(props: ModalProps) {
         elementType: "button",
       }}
       saveUser={{
-        onPress: () => handleSubmit(handleSave)(),
+        onPress: () => handleSubmit(handleUpdateUser)(),
       }}
       cancelEdit={{
-        onPress: () => navigate("/"),
+        onPress: () => navigate(-1),
       }}
       cancelTimeline={{
-        onPress: () => navigate("/"),
+        onPress: () => navigate(-1),
       }}
       cancelVenture={{
-        onPress: () => navigate("/"),
+        onPress: () => navigate(-1),
       }}
       close={{
         // This is the close button for the EditProfile view
-        onClick: () => navigate("/"),
+        onClick: () => navigate(-1),
       }}
       close2={{
         // This is the close button for the ShareModal view
-        onClick: () => navigate(".."),
+        onClick: () => navigate(-1),
       }}
     />
   );

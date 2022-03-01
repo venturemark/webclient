@@ -13,15 +13,18 @@ import { useTimelineMembers } from "module/hook/user";
 import { useTimelineRole } from "module/hook/role";
 import { IUser } from "module/interface/user";
 import { IRole } from "module/interface/role";
+import { UserContext } from "context/UserContext";
 
 export function TimelineRoutes() {
+  const { user } = useContext(UserContext);
   const outerVentureContext = useContext(VentureContext);
   const { ventureId, timelineId } = useParams();
-  const { token } = useAuth();
+  const { token, authenticated } = useAuth();
   const location = useLocation();
 
   const { data: timelinesByVentureIdData = [], status: timelinesStatus } =
     useTimelinesByVentureId({
+      userId: user?.id,
       ventureId,
       token,
     });
@@ -35,7 +38,10 @@ export function TimelineRoutes() {
     data: currentTimelineUsersData = [],
     status: currentTimelineUsersStatus,
   } = useTimelineMembers({
-    timelineId,
+    timelineId:
+      currentTimeline?.visibility === "public" || authenticated
+        ? timelineId
+        : undefined,
     ventureId,
     token,
   });
@@ -78,10 +84,6 @@ export function TimelineRoutes() {
 
   if (timelinesStatus === "error") {
     return <span>Error loading timelines</span>;
-  }
-
-  if (!currentVenture || !currentTimeline) {
-    return <span>Not found</span>;
   }
 
   const innerVentureContext: IVentureContext = {

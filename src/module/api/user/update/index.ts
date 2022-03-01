@@ -47,9 +47,11 @@ export async function Update(updateUser: IUpdateUser): Promise<UpdateStatus[]> {
     patchList.push(patch);
   }
 
-  if (updateUser.lastUpdate) {
+  if (updateUser.lastUpdate !== undefined) {
     const patch = new UpdateI_Obj_Jsnpatch();
-    patch.setOpe(updateUser.previous?.lastUpdate ? "replace" : "add");
+    patch.setOpe(
+      updateUser.previous?.lastUpdate !== undefined ? "replace" : "add"
+    );
     patch.setPat(`/obj/metadata/${key.TimelineLastUpdate.replace("/", "~1")}`);
     patch.setVal(JSON.stringify(updateUser.lastUpdate));
     patchList.push(patch);

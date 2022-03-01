@@ -29,8 +29,7 @@ import {
   useMention,
   MentionSelect,
 } from "@udecode/slate-plugins";
-import { Search } from "@venturemark/numnum";
-import React, { useCallback, useContext, useRef, useState } from "react";
+import React, { useCallback, useContext, useRef } from "react";
 import {
   createEditor as createEditorBase,
   Descendant,
@@ -46,13 +45,10 @@ import { isKeyHotkey } from "is-hotkey";
 import { autoformatRules } from "component/editor/config/autoformatRules";
 import {
   headingTypes,
-  initialValueEmpty,
   options,
   optionsResetBlockTypes,
 } from "component/editor/config/initialValues";
 import actionbarcss from "component/plasmic/shared/PlasmicActionBar.module.css";
-import { serialize } from "module/serialize";
-import { get, save } from "module/store";
 import { renderLabel } from "component/editor/config/mentionables";
 import { Element, ElementProps } from "./element";
 import { VentureContext } from "context/VentureContext";
@@ -126,33 +122,10 @@ export interface EditorState {
   setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
 }
 
-//create custom hook for our editor:
-export const useEditor = (overrides?: Partial<EditorShape>): EditorState => {
-  const content = get("composeEditor.content");
-  const parsedContent = content ? JSON.parse(content) : undefined;
-  const value = parsedContent || initialValueEmpty;
-  const string = parsedContent ? serialize(parsedContent) : "";
-  const defaultEditor: EditorShape = {
-    value,
-    string,
-    numberValue: 0,
-    error: undefined,
-    hasContent: undefined,
-    progress: 0,
-  };
-
-  const [editorShape, setEditorShape] = useState<EditorShape>({
-    ...defaultEditor,
-    ...overrides,
-  });
-
-  return { editorShape, setEditorShape };
-};
-
 export interface EditorProps extends EditablePluginsProps {
   "aria-label": string;
   editorShape: EditorShape;
-  setEditorShape: React.Dispatch<React.SetStateAction<EditorShape>>;
+  setContent: (content: Descendant[]) => void;
   editor: Editor;
 }
 
@@ -191,7 +164,7 @@ const useMembers = () => {
 
 export function ComposeEditor({
   editorShape,
-  setEditorShape,
+  setContent,
   editor,
   ...rest
 }: EditorProps) {
@@ -225,33 +198,7 @@ export function ComposeEditor({
   });
 
   const handleChange = (newValue: Descendant[]) => {
-    //store serialized value
-    const serializedValue = serialize(newValue);
-
-    // get the first number in text
-    const number = Search(serializedValue)[0];
-    // determine if there is a value in editor
-    const hasValue = serializedValue.trim().length;
-    //remove number error if a number is typed
-    const error = number ? undefined : editorShape.error;
-    // determine if a value has been entered
-    const hasContent: HasContent = hasValue ? "hasContent" : undefined;
-
-    // set editor data
-    const editorData = {
-      value: newValue,
-      string: serializedValue,
-      numberValue: number,
-      error: error,
-      hasContent: hasContent,
-      progress: serializedValue.length,
-    };
-
-    setEditorShape(editorData);
-
-    //save to local storage to persist...
-    save(newValue);
-
+    setContent(newValue);
     onChangeMention(editor);
   };
 

@@ -40,10 +40,14 @@ export async function Search(
         const ventures = venturesPb.map((venturePb) => {
           const propertiesPb = venturePb.getProperty();
           const metaPb = venturePb.getMetadataMap();
-          const membersWrite = metaPb.get(key.PermissionModel) === "writer";
+          let permissionModel = metaPb.get(key.PermissionModel);
+          const membersWrite =
+            permissionModel === undefined
+              ? undefined
+              : permissionModel === "writer";
           const name = propertiesPb?.getName() as string;
           const desc = propertiesPb?.getDesc() as string;
-          const url = propertiesPb?.getLinkList()?.[0]?.getAddr() || "";
+          const url = propertiesPb?.getLinkList()?.[0]?.getAddr();
           const id = metaPb.get(key.VentureID)!;
 
           return {
